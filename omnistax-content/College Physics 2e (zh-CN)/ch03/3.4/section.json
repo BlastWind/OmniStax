@@ -1,0 +1,1257 @@
+{
+ "id": "3.4",
+ "module": "m42042",
+ "chapter": "3",
+ "title": "抛体运动",
+ "short": "抛体运动",
+ "lead": "被踢出的橄榄球、<span data-ref=\"shell\">一枚烟花弹</span>和从<span data-ref=\"volcano\">火山</span>抛出的<span data-ref=\"rock\">一块岩石</span>，一旦进入空中，都沿着同一类曲线路径运动，作用在它们上面的<span data-concept=\"force\">力</span>只有重力。用运动学方程分别处理这种运动的水平部分和竖直部分，就能知道这样的抛体飞向何处、上升多高、飞行多远。",
+ "objectives": [
+  "识别并解释抛体的性质，例如重力加速度、射程、最大高度和轨迹。",
+  "确定抛体在其轨迹上不同点处的位置和速度。",
+  "应用运动独立性原理求解抛体运动问题。"
+ ],
+ "summary_html": "<ul><li>抛体运动是物体在空中仅受重力<span data-concept=\"acceleration\">加速度</span>作用的运动。</li><li>要求解抛体运动问题，请执行以下步骤：<ol><li>确定一个坐标系。然后，把物体的<span data-concept=\"position\">位置</span>和/或<span data-concept=\"velocity\">速度</span>分解为水平分量和竖直分量。<span data-concept=\"position\">位置</span> $\\mathbf{s}$ 的分量由量 $\\kx$ 和 $\\ky$ 给出，<span data-concept=\"velocity\">速度</span> $\\mathbf{v}$ 的分量由 $\\kvx = \\kv\\cos\\theta$ 和 $\\kvy = \\kv\\sin\\theta$ 给出，其中 $\\kv$ 是<span data-concept=\"velocity\">速度</span>的大小，$\\theta$ 是它的方向。</li><li>用下列方程分析抛体在水平方向的运动：水平运动（$\\kax = 0$），$\\kx = \\kxo + \\kvx\\kt$，$\\kvx = \\kvox = \\kvx = \\text{速度是恒定的。}$</li><li>用下列方程分析抛体在竖直方向的运动：竖直运动（设向上为正，$\\kay = -\\kg = -9.80\\ \\text{m/s}^2$），$\\ky = \\kyo + \\tfrac{1}{2}(\\kvoy + \\kvy)\\kt$，$\\kvy = \\kvoy - \\kg\\kt$，$\\ky = \\kyo + \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2$，$\\kvy^2 = \\kvoy^2 - 2\\kg(\\ky - \\kyo)$。</li><li>用下列方程把位置和/或<span data-concept=\"velocity\">速度</span>的水平分量和竖直分量重新合成：$\\ks = \\sqrt{\\kx^2 + \\ky^2}$，$\\theta = \\tan^{-1}(\\ky/\\kx)$，$\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$，$\\theta_v = \\tan^{-1}(\\kvy/\\kvx)$。</li></ol></li><li>以竖直初<span data-concept=\"velocity\">速度</span> $\\kvoy$ 抛出的抛体的最大高度 $\\kh$ 由 $\\kh = \\frac{\\kvoy^2}{2\\kg}$ 给出。</li><li>抛体所经过的最大水平<span data-concept=\"distance-traveled\">路程</span>称为<em><span data-concept=\"range\">射程</span></em>。在水平地面上，以初速率 $\\kvo$、高于水平方向 $\\theta_0$ 的<span data-concept=\"angle\">角度</span>抛出的抛体，其<span data-concept=\"range\">射程</span> $\\kR$ 由 $\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}$ 给出。</li></ul>",
+ "notes": "习题 2、4、6、8、10、12、14、16、18、20、22 和 24，以及“不合理的结果”和“自拟习题”两项，在书后答案中没有给出，因此略去；PhET 模拟的说明也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案；习题 2、4、6、8、10、12、14、16、18、20、22 和 24、“不合理的结果”一项和“自拟习题”一项没有给出答案，因此略去。3.2 节的两道 AP 备考练习考查抛体的竖直速度和水平速度，而这正是本节所介绍的内容，因此两道题都放在这里，其 source_section 为 3.2：以 60 度角抛出、附有高度表的球，以书中对图像的描述作为答案；竖直抛出、附有同一张表的球没有给出答案，保留为开放式题目，四个选项照书中印出的样子给出，并附有 AI 撰写并已标明的建议思路；3.2 的说明中也这样写明。本节自己的 AP 题，即从 2.00 m 高处以 5.00 m/s 水平抛出的球，同样没有答案，按同样的方式保留。3.5 节关于两个弹簧发射器的批判性思考题（exer-14790）取决于抛体的最大高度，因此放在这里，其 source_section 为 3.5，其（c）问的答案为书中的图像；3.5 的说明中也这样写明。习题 5 只给出角度的答案，习题 15 只给出竖直方向偏差的答案，因此每道题都是针对那一问的数值，另一问的书中讨论放在解答里；习题 19 问一脚能否踢出 95 m，书中以约 92 m 的最大射程作答，核对的就是这个数。习题 25 是一道推导题，书中的推导保留为开放式答案。思考题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-displacement",
+   "kind": "sim",
+   "number": "3.34",
+   "originals": [
+    "/media/ch03/Figure_03_04_01.jpg"
+   ],
+   "original_caption": "足球在其路径上某一点处的总位移 s。矢量 s 沿水平轴和竖直轴的分量为 x 和 y。它的大小为 s，并与水平方向成角 θ。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "typeset headline and note, labels clear, angle arc kept"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-components",
+   "kind": "sim",
+   "number": "3.35",
+   "originals": [
+    "/media/ch03/Figure_03_04_02.jpg"
+   ],
+   "original_caption": "（a）我们把二维抛体运动分解为沿竖直轴和水平轴的两个相互独立的一维运动来分析。（b）水平运动很简单，因为 a_x = 0，所以 v_x 恒定。（c）物体上升时，竖直方向的速度开始减小；在最高点，竖直速度为零。当物体再次朝地球下落时，竖直速度的大小再次增大，但方向与初始竖直速度相反。（d）把 x 方向和 y 方向的运动重新合成，就得到轨迹上任一给定点处的合速度。",
+   "draws": [
+    "velocity",
+    "acceleration",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "arrows named in a key, shorter arrows, note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fireworks",
+   "kind": "sim",
+   "number": "3.36",
+   "originals": [
+    "/media/ch03/Figure_03_04_03a.jpg"
+   ],
+   "original_caption": "烟花弹的轨迹。引信被设定为在烟花弹轨迹的最高点引爆，该点经求得位于高度 233 m、水平距离 125 m 处。",
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "height bracket clear of the burst, headline and note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rock",
+   "kind": "sim",
+   "number": "3.37",
+   "originals": [
+    "/media/ch03/Figure_03_04_04a.jpg"
+   ],
+   "original_caption": "从基拉韦厄火山喷出的岩石的轨迹。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph axes hold every root, flank kept off the graph, note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-range",
+   "kind": "sim",
+   "number": "3.38",
+   "originals": [
+    "/media/ch03/Figure_03_04_05a.jpg"
+   ],
+   "original_caption": "水平地面上抛体的轨迹。（a）对给定的初始角度，初速率 v_0 越大，射程越大。（b）对给定初速率的抛体，初始角度 θ_0 对射程的影响。请注意，15º 和 75º 的射程相同，尽管这两条路径的最大高度不同。",
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-orbit",
+   "kind": "sim",
+   "number": "3.39",
+   "originals": [
+    "/media/ch03/Figure_03_04_06a.jpg"
+   ],
+   "original_caption": "假想的从抛体到卫星。从这座理论上的塔上，抛体从一座极高的塔上抛出，以避开空气阻力。随着初速率增大，射程增大，并且比在水平地面上更长，因为地球在其路径下方弯曲离去。初速率足够大时，就能进入轨道。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "thousands separators in the readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "projectile",
+   "concept": "projectile-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "projectile",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile",
+   "concept": "motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "projectile",
+   "concept": "air-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "projectile",
+   "concept": "projectile",
+   "verb": "introduces"
+  },
+  {
+   "span": "projectile",
+   "concept": "trajectory",
+   "verb": "introduces"
+  },
+  {
+   "span": "steps",
+   "concept": "projectile-horizontal-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "steps",
+   "concept": "projectile-vertical-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "steps",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "free-fall-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "x-from-vbar",
+   "verb": "uses"
+  },
+  {
+   "span": "recombine",
+   "concept": "projectile-analysis",
+   "verb": "introduces"
+  },
+  {
+   "span": "recombine",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "recombine",
+   "concept": "projectile-horizontal-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "recombine",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "max-height",
+   "concept": "maximum-height",
+   "verb": "introduces"
+  },
+  {
+   "span": "max-height",
+   "concept": "free-fall-highest-point",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "projectile-analysis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "projectile-horizontal-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "maximum-height",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-fireworks",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "projectile-analysis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "projectile-horizontal-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-rock",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "range",
+   "concept": "range",
+   "verb": "introduces"
+  },
+  {
+   "span": "range",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "orbit",
+   "concept": "range",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2183300",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "对于水平地面上的抛体运动，假设空气阻力可以忽略（初始角度既不是 $0^\\circ$ 也不是 $90^\\circ$），回答下列问题：（a）速度会为零吗？（b）速度何时最小？何时最大？（c）在 $t = 0$ 以外的某个时刻，速度会与初速度相同吗？（d）在 $t = 0$ 以外的某个时刻，速率会与初速率相同吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）不会。速度的水平分量 $\\kvx = \\kvo\\cos\\theta_0$ 始终不变，且不为零，所以速度从不为零，即使在最高点也是如此，那里只有竖直分量变为零。（b）速率在轨迹的最高点最小，那里 $\\kvy = 0$，速度就是 $\\kvx$；在抛出点和落地点最大，那里竖直分量的大小最大。（c）不会。当抛体回到抛出的高度时，它的竖直分量是 $-\\kvoy$，与初值相反，所以速度的大小相同而方向不同，在其他任何时刻 $\\kvy$ 都不等于 $\\kvoy$。（d）会。落地时速率等于初速率，因为 $\\kvx$ 不变，而 $\\kvy$ 的大小与抛出时相同。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1638420",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile",
+   "prompt": "对于水平地面上的抛体运动，假设空气阻力可以忽略（初始角度既不是 $0^\\circ$ 也不是 $90^\\circ$），回答下列问题：（a）加速度会为零吗？（b）加速度的方向会与速度的某个分量的方向相同吗？（c）加速度的方向会与速度的某个分量的方向相反吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）不会。在飞行的每一点，加速度都是重力加速度，即向下的 $\\kg$，包括最高点，那里的竖直速度为零但仍在变化。（b）会。下落途中，速度的竖直分量向下，与加速度的方向相同，这就是抛体下落时竖直速率增大的原因。（c）会。上升途中，速度的竖直分量向上，与加速度的方向相反，这就是它在顶点减小到零的原因。水平分量的方向从不与加速度相同或相反，因为加速度没有水平部分。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2062475",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "对于固定的初速率，抛体的射程由射出时的角度决定。除最大射程外，都有两个角度给出相同的射程。考虑可能影响弓箭手命中目标的能力的因素，例如风，解释为什么较小的角度（更接近水平方向）更可取。弓箭手在什么情况下必须使用较大的角度？为什么橄榄球比赛中的弃踢手要采用较高的轨迹？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "较小的角度给出较平的轨迹，初速度的竖直分量也较小，所以箭在空中的时间较短，上升的最大高度也较低。因此，风和空气阻力推动箭偏离航线的时间较少，射出角度或速率的微小误差对落点的影响也较小。当弓箭手与目标之间有东西挡着时，例如箭必须越过的树枝或墙，或者必须从上方击中目标时，就必须使用较大的角度。弃踢手想要的与弓箭手相反：较高的轨迹使球在空中停留更久，因为飞行时间取决于初速度的竖直分量，而这段时间让弃踢手的队友能在球落下之前沿球场向前跑动。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1875651",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile",
+   "prompt": "在一次课堂演示中，一位教授把两枚硬币放在桌子边缘。然后她把其中一枚硬币沿水平方向弹出桌面，同时把另一枚推出桌沿。描述这两枚硬币随后的运动，并特别讨论它们是否同时落到地面上。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两枚硬币在同一时刻离开桌沿，都没有竖直速度，所以它们的竖直运动是相同的，都是从桌面高度开始的自由落体运动，$\\kay = -\\kg$，它们同时落到地面。被弹出的硬币还有水平速度，由于没有水平加速度，这个速度保持恒定，所以它沿抛物线运动，落在离桌子一段距离的地方；而被推出的硬币几乎竖直下落，落在桌沿的正下方。被弹出的硬币的水平运动对它的竖直运动没有影响，这正是抛体运动所说明的相互垂直运动的独立性。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2061889",
+   "source_section": "3.2",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "<table class=\"data\"><tr><th>高度（m）</th><th>时间（秒）</th></tr><tr><td>0.490</td><td>0.1</td></tr><tr><td>0.882</td><td>0.2</td></tr><tr><td>1.176</td><td>0.3</td></tr><tr><td>1.372</td><td>0.4</td></tr><tr><td>1.470</td><td>0.5</td></tr><tr><td>1.470</td><td>0.6</td></tr><tr><td>1.372</td><td>0.7</td></tr></table>一个球以高于水平方向 60 度的角度抛出，表中记录了球在不同时刻的竖直位置，假设球在时刻 $t = 0$ 时的高度为 0。1. 画出球的竖直速度随时间变化的图像。2. 描述球的水平速度的图像。3. 画出球的竖直加速度随时间变化的图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "球的竖直速度随时间变化的图像，应在 0 – 0.1 秒的时间间隔内从 4.90 m/s 开始（应有一个数据点：t = 0.05 秒，v = 4.90 m/s）。然后它的斜率应为 $-9.8\\ \\text{m/s}^2$，在 t = 0.55 秒时穿过 v = 0，在 t = 0.65 秒时终止于 v = −0.98 m/s。球的水平速度的图像应是一个恒定的正值，即从 t = 0 到 t = 0.7 秒、位于某一正速度处的一条水平直线。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1398128",
+   "source_section": "3.2",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "一个球被竖直向上抛出。表中记录了球在不同时刻的竖直位置。<table class=\"data\"><tr><th>高度（m）</th><th>时间（秒）</th></tr><tr><td>0.490</td><td>0.1</td></tr><tr><td>0.882</td><td>0.2</td></tr><tr><td>1.176</td><td>0.3</td></tr><tr><td>1.372</td><td>0.4</td></tr><tr><td>1.470</td><td>0.5</td></tr><tr><td>1.470</td><td>0.6</td></tr><tr><td>1.372</td><td>0.7</td></tr></table>下列哪一项正确地描述了球的竖直速度随时间变化的图像？<ol type=\"a\"><li>始终为正，稳步减小</li><li>始终为正，恒定</li><li>起初为正，稳步减小，最后变为负</li><li>起初为零，稳步地越来越负</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（c）起初为正，稳步减小，最后变为负。竖直向上抛出的球是没有水平分量的抛体，所以它的竖直运动遵循 $\\kvy = \\kvoy - \\kg\\kt$。表中以相等的 0.1 s 间隔记录高度，在每个间隔内，球上升的高度都比前一个间隔少：0.490 m，然后是 0.392 m、0.294 m、0.196 m、0.098 m。因此，各间隔内的平均竖直速度每 0.1 s 下降 0.98 m/s，这就是自由落体的斜率 $-9.80\\ \\text{m/s}^2$。在 0.5 s 到 0.6 s 之间高度不变，所以球在这一间隔内到达最高点，那里的竖直速度为零；在 0.6 s 到 0.7 s 之间它下落了 0.098 m，所以它的竖直速度已经变为负。因此，竖直速度随时间变化的图像是一条直线：起初为正，稳步减小，在约 0.55 s 时穿过零，最后为负。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1316152",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "在一次实验中，一名学生以 5.00 米/秒的水平初速度，在离地面 2.00 米的高度抛出一个球。画出球的水平速度随时间变化的图像和竖直速度随时间变化的图像，并用适当的数值和单位清楚地标注。图像应涵盖从球刚被抛出的一瞬间到刚要落地的一瞬间的运动。在这道题中，假设向下的方向为负。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把这两个运动分开处理。重力不改变水平速度，所以 $\\kvx$ 在整个飞行过程中保持为 5.00 m/s，它随时间变化的图像是 5.00 m/s 处的一条水平线。竖直速度从零开始，因为抛出是水平的；取向下的方向为负，它按 $\\kay = -\\kg = -9.80\\ \\text{m/s}^2$ 的变化率变化，所以 $\\kvy = -\\kg\\kt$，它的图像是一条从原点出发、斜率为 $-9.80\\ \\text{m/s}^2$ 的直线。两幅图像都在球落地时结束，而下落的时间只由竖直运动决定：$\\ky = \\kyo - \\tfrac{1}{2}\\kg\\kt^2$，其中 $\\ky - \\kyo = -2.00\\ \\text{m}$，得 $\\kt = \\sqrt{2(2.00\\ \\text{m})/(9.80\\ \\text{m/s}^2)} = 0.639\\ \\text{s}$，在那一时刻 $\\kvy = -(9.80\\ \\text{m/s}^2)(0.639\\ \\text{s}) = -6.26\\ \\text{m/s}$。把时间轴标注为以秒为单位，从 0 到 0.639 s，把速度轴标注为以米每秒为单位，水平速度保持在 5.00 m/s，竖直速度从 0 一直下降到 −6.26 m/s。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1923898",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "一个抛体从地面以 50.0 m/s 的初速率、高于水平方向 $30.0^\\circ$ 的角度抛出。3.00 秒后，它击中了地面以上的一个目标。从抛出点到落点的 $\\kx$ 距离和 $\\ky$ 距离各是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x",
+      "value": 130,
+      "unit": "m",
+      "hint": "水平速度为 $\\kvo\\cos\\theta_0$，并且始终不变，所以 $\\kx = \\kvx\\kt$。"
+     },
+     {
+      "part": "y",
+      "value": 30.9,
+      "unit": "m",
+      "hint": "竖直运动是从 $\\kvoy = \\kvo\\sin\\theta_0$ 开始的自由落体运动：使用 $\\ky = \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2$。"
+     }
+    ],
+    "solution": "$\\kx = 1.30 \\times 10^{2}\\ \\text{m}$，$\\ky = 30.9\\ \\text{m}$。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2889503",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "一个球从一幢 60.0 m 高的建筑物顶部水平抛出，落在离建筑物底部 100.0 m 处。忽略空气阻力。（a）球在空中停留多长时间？（b）速度的初始水平分量必定是多少？（c）球刚要落地时，速度的竖直分量是多少？（d）球刚要落地时的速度（包括水平分量和竖直分量）是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.5,
+      "unit": "s",
+      "hint": "在空中的时间只由竖直运动决定：球在竖直方向上从静止下落 60.0 m，所以 $\\ky = -\\tfrac{1}{2}\\kg\\kt^2$，其中 $\\ky = -60.0$ m。"
+     },
+     {
+      "part": "(b)",
+      "value": 28.6,
+      "unit": "m/s",
+      "hint": "水平速度是恒定的，在（a）中求得的时间内使球前进 100.0 m。"
+     },
+     {
+      "part": "(c)",
+      "value": 34.3,
+      "unit": "m/s",
+      "hint": "使用 $\\kvy = \\kvoy - \\kg\\kt$，其中 $\\kvoy = 0$；书中给出的是大小。"
+     },
+     {
+      "part": "(d) speed",
+      "value": 44.7,
+      "unit": "m/s",
+      "hint": "用 $\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$ 合成各分量。"
+     },
+     {
+      "part": "(d) angle below the horizontal",
+      "value": 50.2,
+      "unit": "º",
+      "hint": "方向为 $\\theta_v = \\tan^{-1}(\\kvy/\\kvx)$，竖直分量为负，说明它在水平方向以下。"
+     }
+    ],
+    "solution": "（a）3.50 s （b）28.6 m/s （c）34.3 m/s （d）44.7 m/s，在水平方向以下 $50.2^\\circ$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1420192",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "一名弓箭手向 75.0 m 远的靶子射出一支箭；靶心与箭的释放高度相同。（a）如果箭的初速率为 35.0 m/s，箭必须以多大的角度射出才能命中靶心？在这一问中，请明确展示你是如何遵循求解抛体运动问题的各个步骤的。（b）在弓箭手与靶子的中间有一棵大树，一根水平的树枝悬在箭释放高度以上 3.50 m 处。箭会从树枝上方还是下方通过？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 18.4,
+    "unit": "º",
+    "hint": "靶子与释放点等高，所以射程方程 $\\kR = \\kvo^2 \\sin 2\\theta_0 / \\kg$ 适用；解出 $\\sin 2\\theta_0$，并取两个角度中较小的一个。",
+    "solution": "（a）$18.4^\\circ$ （b）箭会从树枝上方通过。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2126267",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "对于图 3.38（a）中的抛体，验证 $\\theta = 45^\\circ$ 和给定初速度时的射程。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "R for 30 m/s",
+      "value": 91.8,
+      "unit": "m",
+      "hint": "在 $45^\\circ$ 时，$\\sin 2\\theta_0 = 1$，射程方程化为 $\\kR = \\kvo^2/\\kg$。"
+     },
+     {
+      "part": "R for 40 m/s",
+      "value": 163,
+      "unit": "m"
+     },
+     {
+      "part": "R for 50 m/s",
+      "value": 255,
+      "unit": "m"
+     }
+    ],
+    "solution": "$\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}$。对于 $\\theta = 45^\\circ$，$\\kR = \\frac{\\kvo^2}{\\kg}$。$\\kvo = 30\\ \\text{m/s}$ 时 $\\kR = 91.8\\ \\text{m}$；$\\kvo = 40\\ \\text{m/s}$ 时 $\\kR = 163\\ \\text{m}$；$\\kvo = 50\\ \\text{m/s}$ 时 $\\kR = 255\\ \\text{m}$。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2905201",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "战列舰上的火炮能把炮弹发射到最远 32.0 km 的距离。（a）计算炮弹的初速度。（b）它能达到的最大高度是多少？（在最高点，炮弹位于 60% 的大气之上——但空气阻力并非像为了简化本题而假设的那样可以忽略。）（c）由于地球是弯曲的，海洋并不是平的。假设地球半径为 $6.37 \\times 10^{3}\\ \\text{km}$。沿着与舰船处表面平行的水平线，在离舰船 32.0 km 处，海洋表面要低多少米？你的答案是否意味着，在抛体运动中假设地球是平的所引入的误差在这里是显著的？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 560,
+      "unit": "m/s",
+      "hint": "最大射程在 $45^\\circ$ 时取得，此时射程方程给出 $\\kR = \\kvo^2/\\kg$。"
+     },
+     {
+      "part": "(b)",
+      "value": 8000,
+      "unit": "m",
+      "hint": "最大高度为 $\\kh = \\kvoy^2/2\\kg$，其中 $\\kvoy = \\kvo \\sin 45^\\circ$。"
+     },
+     {
+      "part": "(c)",
+      "value": 80.0,
+      "unit": "m",
+      "hint": "长 32.0 km 的水平线是一个直角三角形的一条直角边，这个直角三角形的斜边从地心出发；下降的高度是斜边与半径之差。"
+     }
+    ],
+    "solution": "（a）560 m/s （b）$8.00 \\times 10^{3}\\ \\text{m}$ （c）80.0 m。这一误差并不显著，因为它只占（b）问答案的 1%。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1745072",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "在立定跳远中，人先下蹲，然后用腿蹬地，看能跳多远。假设腿从下蹲姿势伸展的长度为 0.600 m，从这个姿势获得的加速度是重力加速度 $\\kg$ 的 1.25 倍。他们能跳多远？请说明你的假设。（沿跳跃方向摆臂可以获得更大的射程。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5,
+    "unit": "m",
+    "hint": "在 0.600 m 的腿部伸展距离上，用 $\\kv^2 = \\kvo^2 + 2\\ka(\\kx - \\kxo)$ 求起跳速率，然后把这次跳跃看作在水平地面上以 $45^\\circ$ 抛出的抛体。",
+    "solution": "1.50 m，假设抛射角为 $45^\\circ$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2254986",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "一名网球运动员以 170 km/h 的速率发球，在 2.5 m 高度、低于水平方向 $\\theta$ 的角度击球。底线离球网 11.9 m，球网高 0.91 m。要使球刚好越过球网，角度 $\\theta$ 应是多少？球会落在发球区内吗？发球区的发球线离球网 6.40 m。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "θ",
+      "value": 6.1,
+      "unit": "º",
+      "hint": "把速率换算成 m/s，由水平运动写出到达球网所需的时间，并令那一时刻的高度为 0.91 m；初速度的竖直分量向下。"
+     },
+     {
+      "part": "distance from the net at landing",
+      "value": 5.3,
+      "unit": "m",
+      "hint": "角度已知后，求球下落 2.5 m 所需的时间，该时间内的水平距离减去 11.9 m，就是球越过球网后落点离球网的距离。"
+     }
+    ],
+    "solution": "$\\theta = 6.1^\\circ$；会，球落在离球网 5.3 m 处"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1796436",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "枪的瞄准具被调整为瞄准偏高，以补偿重力的影响，这实际上使枪只在特定的射程上才是准确的。（a）如果枪被校准为击中与枪等高、相距 100.0 m 的目标，那么在直接瞄准 150.0 m 远的目标时，子弹会低多少击中目标？子弹的枪口速度为 275 m/s。（b）定性地讨论更大的枪口速度会如何影响这个问题，以及空气阻力会产生什么影响。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": -0.486,
+    "unit": "m",
+    "hint": "瞄准具的校准用射程方程（$\\kR = 100.0$ m）给出较小的抛射角；有了这个角度，求水平前进 150.0 m 所需的时间和那一时刻的高度，结果为负。",
+    "solution": "（a）−0.486 m （b）枪口速度越大，竖直方向上的偏差越小，因为飞行时间越短。空气阻力会使飞行时间减小，因此会增大竖直偏差。"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id1914025",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "一只猫头鹰正叼着一只老鼠飞向巢中的雏鸟。此时它的位置在直径 30.0 cm 的鸟巢中心以西 4.00 m、上方 12.0 m 处。当猫头鹰不小心把老鼠掉落时，它正以 3.50 m/s 的速率向东飞行，方向低于水平方向 $30.0^\\circ$。猫头鹰是否足够幸运，使老鼠落进鸟巢？要回答这个问题，请计算老鼠下落 12.0 m 时的水平位置。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.23,
+    "unit": "m",
+    "hint": "老鼠带着猫头鹰的速度离开，所以它的初始竖直分量向下；解二次方程求出下落 12.0 m 所需的时间，再乘以恒定的水平速度。",
+    "solution": "4.23 m。不，猫头鹰不够幸运；它没有命中鸟巢。"
+   }
+  },
+  {
+   "id": "p19",
+   "source_id": "fs-id2260735",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "守门员能否在自己的球门处把足球踢出，使它不触地就进入对方球门？距离约为 95 m。守门员能给球 30 m/s 的速率。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 92,
+    "unit": "m",
+    "hint": "30 m/s 的一脚在水平地面上最远能到达的距离，就是 $45^\\circ$ 时的射程 $\\kR = \\kvo^2/\\kg$；把它与 95 m 比较。",
+    "solution": "不能，最大射程（忽略空气阻力）约为 92 m。"
+   }
+  },
+  {
+   "id": "p21",
+   "source_id": "fs-id1827481",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recombine",
+   "prompt": "2007 年，迈克尔·卡特（美国）以 24.77 m 的成绩创造了铅球世界纪录。如果他在 2.10 m 的高度出手，投掷角度高于水平方向 $38.0^\\circ$，铅球的初速率是多少？（虽然忽略空气阻力时，水平地面上抛体的最大距离在 $45^\\circ$ 时取得，但取得最大射程的实际角度更小；因此在推铅球中，$38^\\circ$ 会比 $45^\\circ$ 给出更长的射程。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 15.0,
+    "unit": "m/s",
+    "hint": "铅球落在出手点下方 2.10 m 处，所以射程方程不适用；由水平运动写出时间 $\\kt = 24.77 / (\\kvo\\cos 38.0^\\circ)$，把它代入竖直方程，其中 $\\ky = -2.10$ m，再解出 $\\kvo$。",
+    "solution": "15.0 m/s"
+   }
+  },
+  {
+   "id": "p23",
+   "source_id": "fs-id1779635",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "一名橄榄球运动员以 $45.0^\\circ$ 的角度弃踢出球。如果没有风的影响，球将水平飞行 60.0 m。（a）球的初速率是多少？（b）当球接近最大高度时，它遇到一阵短暂的阵风，使其水平速度减小 1.50 m/s。球水平飞行的距离是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 24.2,
+      "unit": "m/s",
+      "hint": "在 $45^\\circ$ 时，射程方程给出 $\\kR = \\kvo^2/\\kg$。"
+     },
+     {
+      "part": "(b)",
+      "value": 57.4,
+      "unit": "m",
+      "hint": "球在飞行中一半时间上升，一半时间下落；前一半飞行了 30.0 m，在后一半中水平速度小 1.50 m/s。"
+     }
+    ],
+    "solution": "（a）24.2 m/s （b）在这阵短暂的阵风作用下，球总共飞行了 57.4 m。"
+   }
+  },
+  {
+   "id": "p25",
+   "source_id": "fs-id2133758",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range",
+   "prompt": "通过求出 $\\ky$ 变为零的时间 $\\kt$，并把这个 $\\kt$ 值代入 $\\kx - \\kxo$ 的表达式，同时注意 $\\kR = \\kx - \\kxo$，推导水平地面上抛体射程的公式 $\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky - \\kyo = 0 = \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2 = (\\kvo\\sin\\theta)\\kt - \\tfrac{1}{2}\\kg\\kt^2$，所以 $\\kt = \\frac{2(\\kvo\\sin\\theta)}{\\kg}$。$\\kx - \\kxo = \\kvox\\kt = (\\kvo\\cos\\theta)\\kt = \\kR$，代入 $\\kt$ 得：$\\kR = \\kvo\\cos\\theta\\left(\\frac{2\\kvo\\sin\\theta}{\\kg}\\right) = \\frac{2\\kvo^2\\sin\\theta\\cos\\theta}{\\kg}$。由于 $2\\sin\\theta\\cos\\theta = \\sin 2\\theta$，射程为：$\\kR = \\frac{\\kvo^2\\sin 2\\theta}{\\kg}$。"
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-14790",
+   "source_section": "3.5",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "max-height",
+   "prompt": "两个相同的弹簧发射器固定在桌子的一端。发射器 A 的倾角为高于水平方向 $40^\\circ$，发射器 B 的倾角为高于水平方向 $50^\\circ$。（a）这两个发射器中，哪一个发射的球在撞到地面之前，能到达发射器上方最大的竖直高度？（b）根据实验数据，对发射器上方的竖直高度 <em>y</em> 提出了一个与数据吻合的方程，但它可能并不正确：$y = K V_0^2 \\sin\\theta$，其中 <em>K</em> 是带有适当单位的常量，$V_0$ 是发射器的初速度，$\\theta$ 是相对于发射器 <em>x</em> 轴的角度。这个方程与你在（a）问中的答案一致吗？说明一致或不一致的理由。这个方程合理吗？说明合理或不合理的理由。（c）画出发射器 A 和 B 的速度大小随竖直高度变化的图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）由于 $\\sin^2 50^\\circ > \\sin^2 40^\\circ$，所以 B 到达的高度最大。（b）i. 一致，因为 $\\sin 50^\\circ > \\sin 40^\\circ$。ii. 不合理，因为 <em>y</em> 与 $\\sin^2\\theta$ 成正比。（c）<img src=\"/media/ch03/OSX_CP2e_Figure_03_05Sol_CTQ01c.jpg\" alt=\"该图表示速率（v 的绝对值）随位置 y 变化的图像。A 的曲线是一条斜率为负的直线，从 v 下标零 A 开始，终止于速率为零。B 的曲线是一条直线，斜率与 A 的相同，从 v 下标零 B 开始，v 下标零 B 大于 v 下标零 A，终止于速率为零。\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "range"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "maximum-height",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-horizontal-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-vertical-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "free-fall-highest-point",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "derive-motion-graphs",
+   "weight": 1
+  },
+  {
+   "exercise": "ap3",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "derive-motion-graphs",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p3",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p5",
+   "concept": "range"
+  },
+  {
+   "exercise": "p5",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p5",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p7",
+   "concept": "range"
+  },
+  {
+   "exercise": "p9",
+   "concept": "range"
+  },
+  {
+   "exercise": "p9",
+   "concept": "maximum-height"
+  },
+  {
+   "exercise": "p11",
+   "concept": "range"
+  },
+  {
+   "exercise": "p11",
+   "concept": "projectile-analysis",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p13",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p13",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p15",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p15",
+   "concept": "range"
+  },
+  {
+   "exercise": "p15",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p17",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p17",
+   "concept": "projectile-vertical-motion"
+  },
+  {
+   "exercise": "p17",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p19",
+   "concept": "range"
+  },
+  {
+   "exercise": "p21",
+   "concept": "projectile-analysis"
+  },
+  {
+   "exercise": "p21",
+   "concept": "range",
+   "weight": 1
+  },
+  {
+   "exercise": "p23",
+   "concept": "range"
+  },
+  {
+   "exercise": "p23",
+   "concept": "projectile-horizontal-motion"
+  },
+  {
+   "exercise": "p23",
+   "concept": "projectile-vertical-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "p25",
+   "concept": "range"
+  },
+  {
+   "exercise": "p25",
+   "concept": "projectile-horizontal-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "p25",
+   "concept": "projectile-vertical-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "maximum-height"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "projectile-vertical-motion",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "ball",
+   "label": "足球",
+   "figures": [
+    "sim-displacement"
+   ]
+  },
+  {
+   "id": "shell",
+   "label": "例题 3.4 中的烟花弹",
+   "figures": [
+    "sim-fireworks"
+   ]
+  },
+  {
+   "id": "rock",
+   "label": "例题 3.5 中的岩石",
+   "figures": [
+    "sim-rock"
+   ]
+  },
+  {
+   "id": "volcano",
+   "label": "基拉韦厄火山，岩石飞出的火山",
+   "figures": [
+    "sim-rock"
+   ]
+  },
+  {
+   "id": "projectile",
+   "label": "从塔上抛出的抛体",
+   "figures": [
+    "sim-orbit"
+   ]
+  },
+  {
+   "id": "tower",
+   "label": "极高的塔",
+   "figures": [
+    "sim-orbit"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-orbit"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "maximum-height",
+   "what": "抛体的最大高度",
+   "source": "《大学物理（第2版）》，3.4 抛体运动，例题 3.4",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "空气阻力可以忽略，且向上为正，所以 $\\kay = -\\kg$。",
+       "src": "3.4"
+      },
+      {
+       "text": "最高点即顶点，在 $\\kvy = 0$ 时到达。"
+      },
+      {
+       "tex": "\\kyo = 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{vy}{\\kvy^2} = \\mk{voy}{\\kvoy^2} - \\mk{g}{2\\kg}(\\mk{y}{\\ky} - \\mk{y0}{\\kyo})",
+      "src": "3.4",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{vy}{0} = \\mk{voy}{\\kvoy^2} - \\mk{g}{2\\kg}\\mk{y}{\\ky}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\ky} = \\frac{\\mk{voy}{\\kvoy^2}}{\\mk{g}{2\\kg}}",
+       "uses": []
+      }
+     ],
+     "src": "例题 3.4"
+    }
+   ]
+  }
+ ]
+}

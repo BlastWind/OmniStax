@@ -1,0 +1,480 @@
+{
+ "id": "3",
+ "dir": "ch03",
+ "title": "二维运动学",
+ "intro": {
+  "module": "m42126",
+  "slug": "3-introduction-to-two-dimensional-kinematics"
+ },
+ "sections": [
+  {
+   "id": "3.1",
+   "module": "m42104",
+   "title": "二维运动学：引言",
+   "slug": "3-1-kinematics-in-two-dimensions-an-introduction"
+  },
+  {
+   "id": "3.2",
+   "module": "m42127",
+   "title": "矢量的加法和减法：图解法",
+   "slug": "3-2-vector-addition-and-subtraction-graphical-methods"
+  },
+  {
+   "id": "3.3",
+   "module": "m42128",
+   "title": "矢量的加法和减法：解析法",
+   "slug": "3-3-vector-addition-and-subtraction-analytical-methods"
+  },
+  {
+   "id": "3.4",
+   "module": "m42042",
+   "title": "抛体运动",
+   "slug": "3-4-projectile-motion"
+  },
+  {
+   "id": "3.5",
+   "module": "m42045",
+   "title": "速度的合成",
+   "slug": "3-5-addition-of-velocities"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "D",
+   "concept": "displacement",
+   "meaning": "人在城市中行走的总位移 D 的大小，即东偏北 29.1º 的 10.3 个街区",
+   "unit": "blocks",
+   "section": "3.2",
+   "anchor": "3.2-vectors-2d"
+  },
+  {
+   "sym": "A_mag",
+   "concept": "displacement",
+   "meaning": "矢量 A 的大小，A 是被相加的第一个位移；矢量用黑体书写，其大小用斜体书写",
+   "unit": "m",
+   "section": "3.2",
+   "anchor": "3.2-ex-walk"
+  },
+  {
+   "sym": "B",
+   "concept": "displacement",
+   "meaning": "矢量 B 的大小，B 是被相加的第二个位移；−B 的大小相同、方向相反",
+   "unit": "m",
+   "section": "3.2",
+   "anchor": "3.2-ex-walk"
+  },
+  {
+   "sym": "C",
+   "concept": "displacement",
+   "meaning": "矢量 C 的大小，C 是被相加的第三个位移",
+   "unit": "m",
+   "section": "3.2",
+   "anchor": "3.2-ex-walk"
+  },
+  {
+   "sym": "R",
+   "concept": "resultant-vector",
+   "meaning": "合矢量 R 的大小，R 是首尾相接相加的各矢量之和",
+   "unit": "m",
+   "section": "3.2",
+   "anchor": "3.2-ex-walk"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "矢量的方向，即它与参考轴所成的角，例如东偏北 29.1º",
+   "unit": "°",
+   "section": "3.2",
+   "anchor": "3.2-vectors-2d"
+  },
+  {
+   "sym": "A_mag",
+   "concept": "displacement",
+   "meaning": "矢量 A 的大小，即它的长度；本节中的矢量是位移",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-components"
+  },
+  {
+   "sym": "A_x",
+   "concept": "displacement",
+   "meaning": "矢量 A 的 x 分量，A cos θ；沿水平轴的分量",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-components"
+  },
+  {
+   "sym": "A_y",
+   "concept": "displacement",
+   "meaning": "矢量 A 的 y 分量，A sin θ；沿竖直轴的分量",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-components"
+  },
+  {
+   "sym": "B",
+   "concept": "displacement",
+   "meaning": "矢量 B 的大小，即行走的第二个路段",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "B_x",
+   "concept": "displacement",
+   "meaning": "矢量 B 的 x 分量，B cos θ_B",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "B_y",
+   "concept": "displacement",
+   "meaning": "矢量 B 的 y 分量，B sin θ_B",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "R",
+   "concept": "resultant-vector",
+   "meaning": "合矢量 R 的大小，由其分量用勾股定理求出",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "R_x",
+   "concept": "resultant-vector",
+   "meaning": "合矢量的 x 分量，即被相加各矢量的 x 分量之和",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "R_y",
+   "concept": "resultant-vector",
+   "meaning": "合矢量的 y 分量，即被相加各矢量的 y 分量之和",
+   "unit": "m",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "矢量相对于 x 轴的方向，即其 y 分量与 x 分量之比的反正切 tan⁻¹",
+   "unit": "°",
+   "section": "3.3",
+   "anchor": "3.3-components"
+  },
+  {
+   "sym": "θ_A",
+   "concept": "angle",
+   "meaning": "矢量 A 与 x 轴所成的角",
+   "unit": "°",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "θ_B",
+   "concept": "angle",
+   "meaning": "矢量 B 与 x 轴所成的角",
+   "unit": "°",
+   "section": "3.3",
+   "anchor": "3.3-adding"
+  },
+  {
+   "sym": "s",
+   "concept": "displacement",
+   "meaning": "抛体相对于其起点的总位移 s 的大小",
+   "unit": "m",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "x",
+   "concept": "displacement",
+   "meaning": "位移的水平分量，沿 x 轴",
+   "unit": "m",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "y",
+   "concept": "displacement",
+   "meaning": "位移的竖直分量，沿 y 轴，取向上为正",
+   "unit": "m",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "x0",
+   "concept": "position",
+   "meaning": "初始水平位置，通常取为零",
+   "unit": "m",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "y0",
+   "concept": "position",
+   "meaning": "初始竖直位置，通常取为零",
+   "unit": "m",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "h",
+   "concept": "maximum-height",
+   "meaning": "抛体高于其起点的最大高度，在竖直速度为零处到达",
+   "unit": "m",
+   "section": "3.4",
+   "anchor": "3.4-max-height"
+  },
+  {
+   "sym": "R",
+   "concept": "range",
+   "meaning": "射程，即抛体在水平地面上行进的水平距离",
+   "redefines": true,
+   "unit": "m",
+   "section": "3.4",
+   "anchor": "3.4-range"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "抛体速度的大小",
+   "unit": "m/s",
+   "section": "3.4",
+   "anchor": "3.4-steps"
+  },
+  {
+   "sym": "v0",
+   "concept": "instantaneous-velocity",
+   "meaning": "抛体的初速率",
+   "unit": "m/s",
+   "section": "3.4",
+   "anchor": "3.4-max-height"
+  },
+  {
+   "sym": "v_x",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的水平分量，因 a_x = 0 而保持不变",
+   "unit": "m/s",
+   "section": "3.4",
+   "anchor": "3.4-steps"
+  },
+  {
+   "sym": "v_y",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的竖直分量，抛体上升时减小，在最高点为零",
+   "unit": "m/s",
+   "section": "3.4",
+   "anchor": "3.4-steps"
+  },
+  {
+   "sym": "v_0x",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的初始水平分量，v_0 cos θ_0",
+   "unit": "m/s",
+   "section": "3.4",
+   "anchor": "3.4-steps"
+  },
+  {
+   "sym": "v_0y",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的初始竖直分量，v_0 sin θ_0",
+   "unit": "m/s",
+   "section": "3.4",
+   "anchor": "3.4-steps"
+  },
+  {
+   "sym": "a_x",
+   "concept": "acceleration",
+   "meaning": "加速度的水平分量，空气阻力可忽略时为零",
+   "unit": "m/s²",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "a_y",
+   "concept": "acceleration",
+   "meaning": "加速度的竖直分量，取向上为正时为 −g",
+   "unit": "m/s²",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度的大小，9.80 m/s²",
+   "unit": "m/s²",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "自发射起的时间，是水平运动和竖直运动共有的唯一变量",
+   "unit": "s",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "位移 s 的方向，即它与水平方向所成的角",
+   "unit": "°",
+   "section": "3.4",
+   "anchor": "3.4-projectile"
+  },
+  {
+   "sym": "θ_0",
+   "concept": "angle",
+   "meaning": "速度在水平方向之上的初始角度",
+   "unit": "°",
+   "section": "3.4",
+   "anchor": "3.4-range"
+  },
+  {
+   "sym": "θ_v",
+   "concept": "angle",
+   "meaning": "速度 v 的方向，即它与水平方向所成的角；在水平方向之下为负",
+   "unit": "°",
+   "section": "3.4",
+   "anchor": "3.4-recombine"
+  },
+  {
+   "sym": "v_tot",
+   "concept": "relative-velocity",
+   "type": "velocity",
+   "meaning": "物体相对于观察者的合速度，即它相对于介质的速度与介质相对于观察者的速度的矢量和",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-boat"
+  },
+  {
+   "sym": "v_totx",
+   "concept": "relative-velocity",
+   "type": "velocity",
+   "meaning": "合速度的 x 分量",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane"
+  },
+  {
+   "sym": "v_toty",
+   "concept": "relative-velocity",
+   "type": "velocity",
+   "meaning": "合速度的 y 分量",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane"
+  },
+  {
+   "sym": "v_boat",
+   "concept": "instantaneous-velocity",
+   "meaning": "小船相对于河流的速度，在例题 3.6 中为径直横渡的 0.75 m/s",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-boat",
+   "ref": "boat"
+  },
+  {
+   "sym": "v_river",
+   "concept": "instantaneous-velocity",
+   "meaning": "河流相对于岸的速度，在例题 3.6 中为向右的 1.20 m/s",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-boat",
+   "ref": "river"
+  },
+  {
+   "sym": "v_p",
+   "concept": "instantaneous-velocity",
+   "meaning": "飞机相对于气团的速度，在例题 3.7 中为正北的 45.0 m/s",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane",
+   "ref": "plane"
+  },
+  {
+   "sym": "v_px",
+   "concept": "instantaneous-velocity",
+   "meaning": "飞机相对于空气的速度的 x 分量，飞机朝北飞行时为零",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane",
+   "ref": "plane"
+  },
+  {
+   "sym": "v_py",
+   "concept": "instantaneous-velocity",
+   "meaning": "飞机相对于空气的速度的 y 分量，飞机朝北飞行时等于 v_p",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane",
+   "ref": "plane"
+  },
+  {
+   "sym": "v_w",
+   "concept": "instantaneous-velocity",
+   "meaning": "风的速度，即气团相对于地面的速度",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane",
+   "ref": "air"
+  },
+  {
+   "sym": "v_wx",
+   "concept": "instantaneous-velocity",
+   "meaning": "风的速度的 x 分量，风向西吹时为负",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane",
+   "ref": "air"
+  },
+  {
+   "sym": "v_wy",
+   "concept": "instantaneous-velocity",
+   "meaning": "风的速度的 y 分量，风向南吹时为负",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-ex-plane",
+   "ref": "air"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的大小，由其分量求出",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-velocity-addition"
+  },
+  {
+   "sym": "v_x",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的 x 分量，v cos θ",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-velocity-addition"
+  },
+  {
+   "sym": "v_y",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的 y 分量，v sin θ",
+   "unit": "m/s",
+   "section": "3.5",
+   "anchor": "3.5-velocity-addition"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "速度相对于所选坐标系 x 轴的方向",
+   "unit": "°",
+   "section": "3.5",
+   "anchor": "3.5-velocity-addition"
+  }
+ ]
+}

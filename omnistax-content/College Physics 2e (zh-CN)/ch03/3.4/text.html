@@ -1,0 +1,166 @@
+<section id="projectile">
+<h2>抛体运动及其相互独立的分量</h2>
+<p class="cite-target"><strong><span data-concept="projectile-motion">抛体运动</span></strong>是指物体被抛出或射向空中后，仅受重力<span data-concept="acceleration">加速度</span>作用的<strong><span data-concept="motion">运动</span></strong>。该物体称为<strong><span data-concept="projectile">抛体</span></strong>，它的路径称为它的<strong><span data-concept="trajectory">轨迹</span></strong>。落体的<span data-concept="motion">运动</span>（如“一维<span data-concept="kinematics">运动学</span>的解题基础”中所述）是一种简单的一维<span data-concept="projectile-motion">抛体运动</span>，其中没有水平方向的移动。在本节中，我们考虑二维<span data-concept="projectile-motion">抛体运动</span>，例如橄榄球或其他<strong><span data-concept="air-resistance">空气阻力</span></strong><em>可以忽略</em>的物体的运动。</p>
+<p>这里要记住的最重要的事实是：<em>沿相互垂直的坐标轴的<span data-concept="motion">运动</span>是相互独立的</em>，因此可以分别分析。这一事实已在“二维<span data-concept="kinematics">运动学</span>：引言”中讨论过，在那里我们看到，竖直和水平<span data-concept="motion">运动</span>是相互独立的。分析二维<span data-concept="projectile-motion">抛体运动</span>的关键，是把它分解为两个<span data-concept="motion">运动</span>，一个沿水平轴，另一个沿竖直轴。（这样选取坐标轴最为合理，因为<span data-concept="acceleration-due-to-gravity">重力加速度</span>是竖直的——因此，当<span data-concept="air-resistance">空气阻力</span>可以忽略时，沿水平轴不存在<span data-concept="acceleration">加速度</span>。）按照惯例，我们把水平轴称为 <em>x</em> 轴，把竖直轴称为 <em>y</em> 轴。图 3.34 表示了<span data-concept="displacement">位移</span>的记号，其中 $\mathbf{s}$ 定义为总<span data-concept="displacement">位移</span>，$\mathbf{x}$ 和 $\mathbf{y}$ 分别是它沿水平轴和竖直轴的<span data-concept="vector-components">分量</span>。这些<span data-concept="vector">矢量</span>的<span data-concept="vector-magnitude">大小</span>为 $\ks$、$\kx$ 和 $\ky$。（请注意，在上一节中，我们用记号 $\mathbf{A}$ 表示<span data-concept="vector">矢量</span>，其<span data-concept="vector-components">分量</span>为 $A_x$ 和 $A_y$。如果沿用这种格式，我们就应把<span data-concept="displacement">位移</span>记作 $\mathbf{s}$，其<span data-concept="vector-components">分量</span>为 $\mathbf{s}_x$ 和 $\mathbf{s}_y$。不过，为了简化记号，我们将直接把<span data-concept="vector-components">分</span><span data-concept="vector">矢量</span>表示为 $\mathbf{x}$ 和 $\mathbf{y}$。）</p>
+<p>当然，要描述<span data-concept="motion">运动</span>，我们必须处理<span data-concept="velocity">速度</span>和<span data-concept="acceleration">加速度</span>，也要处理<span data-concept="displacement">位移</span>。我们同样必须求出它们沿 <em>x</em> 轴和 <em>y</em> 轴的<span data-concept="vector-components">分量</span>。我们将假定除重力以外的所有<span data-concept="force">力</span>（例如<span data-concept="air-resistance">空气阻力</span>和<span data-concept="friction">摩擦力</span>）都可以忽略。于是<span data-concept="acceleration">加速度</span>的<span data-concept="vector-components">分量</span>就非常简单：$\kay = -\kg = -9.80\ \text{m/s}^2$。（请注意，这一定义假设向上的<span data-concept="vector-direction">方向</span>被定义为正<span data-concept="vector-direction">方向</span>。如果你把坐标系布置成向下的<span data-concept="vector-direction">方向</span>为正，那么<span data-concept="acceleration-due-to-gravity">重力加速度</span>就取正值。）由于重力是竖直的，所以 $\kax = 0$。这两个<span data-concept="acceleration">加速度</span>都是恒定的，因此可以使用运动学方程。</p>
+<div class="note">
+<div class="eyebrow">运动学方程回顾（恒定 $\ka$）</div>
+$$\kx = \kxo + \kvb\kt$$
+$$\kvb = \frac{\kvo + \kv}{2}$$
+$$\kv = \kvo + \ka\kt$$
+$$\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2$$
+$$\kv^2 = \kvo^2 + 2\ka(\kx - \kxo).$$
+</div>
+<figure class="sim" id="sim-displacement" data-figure="3.34" data-original="/media/ch03/Figure_03_04_01.jpg" data-original-width="350" data-original-caption="足球在其路径上某一点处的总位移 s。矢量 s 沿水平轴和竖直轴的分量为 x 和 y。它的大小为 s，并与水平方向成角 θ。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.34</span><span><span data-ref="ball">一个足球</span>从原点被踢出，在空中沿其轨迹飞行。在每一时刻，从踢球点到<span data-ref="ball">球</span>都画出<span data-type="position">总位移</span> $\mathbf{s}$，并画出<span data-type="position">它的分量</span>，即沿水平轴的 $\kx$ 和沿竖直轴的 $\ky$，以及它与水平方向所成的<span data-type="angle">角度</span> $\ktheta$。改变<span data-type="velocity">初速率</span>或<span data-type="angle">踢球的角度</span>，观察<span data-ref="ball">球</span>飞行时<span data-type="position">位移</span>及<span data-type="position">其分量</span>如何增大。</span></div>
+</figure>
+<p>在这些假设下，按以下步骤分析<span data-concept="projectile-motion">抛体运动</span>：</p>
+</section>
+
+<section id="steps">
+<h2>分解运动：水平方程和竖直方程</h2>
+<p class="cite-target"><strong><em>步骤 1。</em></strong><em>沿 x 轴和 y 轴，把<span data-concept="motion">运动</span>分解或拆分为水平<span data-concept="vector-components">分量</span>和竖直分量。</em>这两条坐标轴相互垂直，所以使用 $A_x = A\cos\ktheta$ 和 $A_y = A\sin\ktheta$。<span data-concept="displacement">位移</span> $\mathbf{s}$ 沿这两条坐标轴的<span data-concept="vector-components">分量</span>的<span data-concept="vector-magnitude">大小</span>为 $\kx$ 和 $\ky$。<span data-concept="velocity">速度</span> $\mathbf{v}$ 的<span data-concept="vector-components">分量</span>的<span data-concept="vector-magnitude">大小</span>为 $\kvx = \kv\cos\ktheta$ 和 $\kvy = \kv\sin\ktheta$，其中 $\kv$ 是<span data-concept="velocity">速度</span>的<span data-concept="vector-magnitude">大小</span>，$\ktheta$ 是它的<span data-concept="vector-direction">方向</span>，如图 3.35 所示。初值照例用下标 0 表示。</p>
+<p class="cite-target"><strong><em>步骤 2。</em></strong><em>把<span data-concept="motion">运动</span>看作两个相互独立的一维<span data-concept="motion">运动</span>，一个沿水平方向，另一个沿竖直方向。</em>水平<span data-concept="motion">运动</span>和竖直运动的运动学方程具有如下形式：</p>
+<div class="summary-box">
+<div class="eyebrow">水平运动（$\kax = 0$）</div>
+$$\kx = \kxo + \kvx\kt$$
+$$\kvx = \kvox = \kvx = \text{速度是恒定的。}$$
+</div>
+<div class="summary-box">
+<div class="eyebrow">竖直运动（设向上为正，$\kay = -\kg = -9.80\ \text{m/s}^2$）</div>
+$$\ky = \kyo + \tfrac{1}{2}(\kvoy + \kvy)\kt$$
+$$\kvy = \kvoy - \kg\kt$$
+$$\ky = \kyo + \kvoy\kt - \tfrac{1}{2}\kg\kt^2$$
+$$\kvy^2 = \kvoy^2 - 2\kg(\ky - \kyo).$$
+</div>
+</section>
+
+<section id="recombine">
+<h2>求解与重新合成</h2>
+<p class="cite-target"><strong><em>步骤 3。</em></strong><em>分别求出两个独立<span data-concept="motion">运动</span>——一个水平、一个竖直——中的未知量。</em>请注意，两个<span data-concept="motion">运动</span>之间唯一共同的变量是<span data-concept="time">时间</span> $\kt$。这里的解题方法与一维<strong><span data-concept="kinematics">运动学</span></strong>相同，并在下面的例题中加以演示。</p>
+<p><strong><em>步骤 4。</em></strong><em>把两个<span data-concept="motion">运动</span>重新合成，求出总<span data-concept="displacement">位移</span></em> $\mathbf{s}$ <em>和<span data-concept="velocity">速度</span></em> $\mathbf{v}$。由于 <em>x</em> 方向和 <em>y</em> 方向的运动相互垂直，我们利用“<span data-concept="vector-addition">矢量的加法</span>和减法：<span data-concept="analytical-method">解析法</span>”中概述的方法，并采用如下形式的 $A = \sqrt{A_x^2 + A_y^2}$ 和 $\ktheta = \tan^{-1}(A_y / A_x)$，来确定这些<span data-concept="vector">矢量</span>，其中 $\ktheta$ 是<span data-concept="displacement">位移</span> $\mathbf{s}$ 的<span data-concept="vector-direction">方向</span>，$\kthetav$ 是<span data-concept="velocity">速度</span> $\mathbf{v}$ 的<span data-concept="vector-direction">方向</span>：</p>
+<div class="summary-box">
+<div class="eyebrow">总位移和速度</div>
+$$\ks = \sqrt{\kx^2 + \ky^2}$$
+$$\ktheta = \tan^{-1}(\ky / \kx)$$
+$$\kv = \sqrt{\kvx^2 + \kvy^2}$$
+$$\kthetav = \tan^{-1}(\kvy / \kvx).$$
+</div>
+<figure class="sim" id="sim-components" data-figure="3.35" data-original="/media/ch03/Figure_03_04_02.jpg" data-original-caption="（a）我们把二维抛体运动分解为沿竖直轴和水平轴的两个相互独立的一维运动来分析。（b）水平运动很简单，因为 a_x = 0，所以 v_x 恒定。（c）物体上升时，竖直方向的速度开始减小；在最高点，竖直速度为零。当物体再次朝地球下落时，竖直速度的大小再次增大，但方向与初始竖直速度相反。（d）把 x 方向和 y 方向的运动重新合成，就得到轨迹上任一给定点处的合速度。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.35</span><span>一个抛体以高于水平方向的<span data-concept="angle">角度</span>抛出，箭头在每一时刻表示<span data-type="velocity">它的速度</span>，以及它的水平分量 $\kvx$ 和竖直分量 $\kvy$。<span data-type="velocity">水平分量</span>在整个飞行过程中保持相同的<span data-concept="length">长度</span>。<span data-type="velocity">竖直分量</span>在最高点缩小为零，随后又增大，方向向下，而<span data-type="acceleration">加速度</span>始终竖直向下。下面的两幅图像表示分量随<span data-concept="time">时间</span>的变化。改变<span data-type="velocity">初速率</span>或<span data-type="angle">抛射角</span>，飞行便重新开始。</span></div>
+</figure>
+</section>
+
+<section id="max-height">
+<h2>抛体的最大高度</h2>
+<div class="example" id="ex-fireworks">
+<h3>例题 3.4 · 烟花弹在高处远处爆炸</h3>
+<p>在一场烟花表演中，<span data-ref="shell">一枚烟花弹</span>以 <span data-type="velocity">70.0 m/s 的初速率</span>、高于水平方向 $75.0^\circ$ 的<span data-concept="angle">角度</span>射向空中，如图 3.36 所示。引信经过定时，使<span data-ref="shell">烟花弹</span>恰好在<span data-ref="shell">它</span>到达离地面的最高点时被点燃。（a）求<span data-ref="shell">烟花弹</span>爆炸处的<span data-type="position">高度</span>。（b）从<span data-ref="shell">烟花弹</span>发射到爆炸，经过了多少<span data-concept="time">时间</span>？（c）当<span data-ref="shell">它</span>爆炸时，<span data-ref="shell">烟花弹</span>的<span data-type="position">水平<span data-concept="displacement">位移</span></span>是多少？</p>
+<figure class="sim" id="sim-fireworks" data-figure="3.36" data-original="/media/ch03/Figure_03_04_03a.jpg" data-original-caption="烟花弹的轨迹。引信被设定为在烟花弹轨迹的最高点引爆，该点经求得位于高度 233 m、水平距离 125 m 处。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.36</span><span>如例题 3.4 所示，<span data-ref="shell">一枚烟花弹</span>以 <span data-type="velocity">70.0 m/s</span> 的速率、高于水平方向 $75.0^\circ$ 的方向向上射出，它的引信在轨迹的最高点点燃。该点的<span data-type="position">高度</span> $\kh$ 用括号标在路径旁边，<span data-type="position">水平位移</span> $\kx$ 标在路径下方，场景旁边的图像表示<span data-type="velocity">竖直速度</span> $\kvy$ 在顶点降为零。改变<span data-type="velocity">初速率</span>或<span data-type="angle">角度</span>，观察<span data-type="position">高度</span>和<span data-type="time">到达最高点的时间</span>如何仅随<span data-type="velocity">初速度的竖直分量</span>而变化。</span></div>
+</figure>
+<h4>思路</h4>
+<p>因为对未爆炸的烟花弹而言<span data-concept="air-resistance">空气阻力</span>可以忽略，所以可以使用上面概述的分析方法。<span data-concept="motion">运动</span>可以分解为水平和竖直两个<span data-concept="motion">运动</span>，其中 $\kax = 0$，$\kay = -\kg$。然后我们可以把 $\kxo$ 和 $\kyo$ 定义为零，并求出所需的量。</p>
+<h4>（a）的解</h4>
+<p>我们所说的“高度”，是指高于起点的海拔或竖直<span data-concept="position">位置</span> $\ky$。任何<span data-concept="trajectory">轨迹</span>的最高点称为顶点，在 $\kvy = 0$ 时到达。由于我们知道<span data-type="velocity">初、末<span data-concept="velocity">速度</span></span>以及<span data-type="position">初<span data-concept="position">位置</span></span>，所以用下面的方程求 $\ky$：</p>
+<figure class="dv" id="drv-maximum-height"></figure>
+<p>现在我们必须求出 $\kvoy$，即<span data-type="velocity">初<span data-concept="velocity">速度</span></span>在 <em>y</em> 方向上的<span data-concept="vector-components">分量</span>。它由 $\kvoy = \kvo\sin\ktheta$ 给出，其中 $\kvoy$ 是<span data-type="velocity">70.0 m/s 的初<span data-concept="velocity">速度</span></span>，$\kthetao = 75.0^\circ$ 是<span data-type="angle">初始角度</span>。因此，</p>
+$$\kvoy = \kvo\sin\kthetao = (70.0\ \text{m/s})(\sin 75^\circ) = 67.6\ \text{m/s}.$$
+<p>而 $\ky$ 为</p>
+$$\ky = \frac{(67.6\ \text{m/s})^2}{2(9.80\ \text{m/s}^2)},$$
+<p>所以</p>
+$$\ky = 233\ \text{m}.$$
+<h4>（a）的讨论</h4>
+<p>请注意，由于向上为正，所以<span data-type="velocity">初<span data-concept="velocity">速度</span></span>为正，<span data-type="position">最大高度</span>也为正，而<span data-type="acceleration"><span data-concept="acceleration-due-to-gravity">重力加速度</span></span>为负。还请注意，最大高度只取决于初<span data-concept="velocity">速度</span>的竖直<span data-concept="vector-components">分量</span>，因此，任何<span data-concept="projectile">抛体</span>，只要<span data-type="velocity">初<span data-concept="velocity">速度</span>的竖直<span data-concept="vector-components">分量</span>为 67.6 m/s</span>，就将达到<span data-type="position">233 m 的最大高度</span>（忽略<span data-concept="air-resistance">空气阻力</span>）。这个例题中的数值对于大型烟花表演来说是合理的，其烟花弹在爆炸前确实能达到这样的高度。实际上，<span data-concept="air-resistance">空气阻力</span>并非完全可以忽略，所以要达到同样的高度，<span data-type="velocity">初<span data-concept="velocity">速度</span></span>必须比题中给出的略大一些。</p>
+<h4>（b）的解</h4>
+<p>与许多<span data-concept="physics">物理学</span>问题一样，求<span data-type="time">到达最高点的<span data-concept="time">时间</span></span>有不止一种方法。在这里，最简单的方法是使用 $\ky = \kyo + \tfrac{1}{2}(\kvoy + \kvy)\kt$。由于 $\kyo$ 为零，这个方程就简化为</p>
+$$\ky = \tfrac{1}{2}(\kvoy + \kvy)\kt.$$
+<p>请注意，最高点处的<span data-type="velocity">竖直末<span data-concept="velocity">速度</span></span> $\kvy$ 为零。因此，</p>
+$$\begin{aligned}\kt &= \frac{2\ky}{(\kvoy + \kvy)} = \frac{2(233\ \text{m})}{(67.6\ \text{m/s})}\\ &= 6.90\ \text{s}.\end{aligned}$$
+<h4>（b）的讨论</h4>
+<p>这个<span data-concept="time">时间</span>对于大型烟花来说也是合理的。当你能看到烟花发射时，你会注意到<span data-ref="shell">烟花弹</span>爆炸之前要过几秒钟。（求<span data-type="time"><span data-concept="time">时间</span></span>的另一种方法是使用 $\ky = \kyo + \kvoy\kt - \tfrac{1}{2}\kg\kt^2$，并对 $\kt$ 解二次方程。）</p>
+<h4>（c）的解</h4>
+<p>由于<span data-concept="air-resistance">空气阻力</span>可以忽略，所以 $\kax = 0$，并且如上所述，<span data-type="velocity">水平<span data-concept="velocity">速度</span></span>是恒定的。水平<span data-concept="displacement">位移</span>等于水平<span data-concept="velocity">速度</span>乘以<span data-concept="time">时间</span>，即 $\kx = \kxo + \kvx\kt$，其中 $\kxo$ 等于零：</p>
+$$\kx = \kvx\kt,$$
+<p>其中 $\kvx$ 是<span data-concept="velocity">速度</span>的 <em>x</em> 分量，由 $\kvx = \kvo\cos\kthetao$ 给出。现在，</p>
+$$\kvx = \kvo\cos\kthetao = (70.0\ \text{m/s})(\cos 75.0^\circ) = 18.1\ \text{m/s}.$$
+<p>两个<span data-concept="motion">运动</span>的<span data-type="time"><span data-concept="time">时间</span></span> $\kt$ 相同，所以 $\kx$ 为</p>
+$$\kx = (18.1\ \text{m/s})(6.90\ \text{s}) = 125\ \text{m}.$$
+<h4>（c）的讨论</h4>
+<p>在没有<span data-concept="air-resistance">空气阻力</span>的情况下，水平<span data-concept="motion">运动</span>的<span data-concept="velocity">速度</span>是恒定的。这里求得的<span data-type="position">水平<span data-concept="displacement">位移</span></span>，可以用来避免烟花碎片落到观众身上。<span data-ref="shell">烟花弹</span>一旦爆炸，<span data-concept="air-resistance">空气阻力</span>就会产生重大影响，许多碎片将直接落在正下方。</p>
+</div>
+<p class="cite-target">在求解上面例题的（a）部分时，我们得到的 $\ky$ 的表达式对任何<span data-concept="air-resistance">空气阻力</span>可以忽略的<span data-concept="projectile-motion">抛体运动</span>都成立。把最大高度记为 $\ky = \kh$，那么，</p>
+$$\kh = \frac{\kvoy^2}{2\kg}.$$
+<p>这个方程定义了<em><span data-concept="maximum-height">抛体的最大高度</span></em>，它只取决于初<span data-concept="velocity">速度</span>的竖直<span data-concept="vector-components">分量</span>。</p>
+<div class="note">
+<div class="eyebrow">建立坐标系</div>
+<p>分析<span data-concept="projectile-motion">抛体运动</span>时，建立坐标系很重要。定义坐标系的一部分工作，是为 $\kx$ 和 $\ky$ <span data-concept="position">位置</span>定义一个原点。通常，选取物体的初始<span data-concept="position">位置</span>作为原点，使 $\kxo = 0$、$\kyo = 0$，是很方便的。同样重要的是，要定义 $\kx$ 和 $\ky$ <span data-concept="vector-direction">方向</span>上的正、负<span data-concept="vector-direction">方向</span>。通常，我们把竖直方向的正<span data-concept="vector-direction">方向</span>定为向上，而水平方向的正<span data-concept="vector-direction">方向</span>通常是物体<span data-concept="motion">运动</span>的<span data-concept="vector-direction">方向</span>。在这种情况下，竖直<span data-concept="acceleration">加速度</span> $\kay = -\kg$ 取负值（因为它向下指向<span data-ref="earth">地球</span>）。不过，有时用不同的方式定义坐标会更有用。例如，如果你在分析从悬崖顶部向下抛出的球的<span data-concept="motion">运动</span>，那么由于球的<span data-concept="motion">运动</span>完全沿向下的<span data-concept="vector-direction">方向</span>，把正<span data-concept="vector-direction">方向</span>定为向下可能更合理。在这种情况下，$\kay = \kg$ 取正值。</p>
+</div>
+</section>
+
+<section id="impact">
+<h2>飞行时间与着地速度</h2>
+<div class="example" id="ex-rock">
+<h3>例题 3.5 · 计算抛体运动：炽热的岩石</h3>
+<p>夏威夷的<span data-ref="volcano">基拉韦厄火山</span>是世界上活动最为持续不断的火山。非常活跃的火山的特点是喷出炽热的岩石和熔岩，而不是烟和灰。假设<span data-ref="rock">一块大岩石</span>从<span data-ref="volcano">火山</span>喷出，<span data-type="velocity">速率为 25.0 m/s</span>，以高于水平方向 $35.0^\circ$ 的<span data-concept="angle">角度</span>喷出，如图 3.37 所示。<span data-ref="rock">岩石</span>在<span data-type="position">海拔比其起点低 20.0 m 的位置</span>撞上<span data-ref="volcano">火山的侧面</span>。（a）求<span data-ref="rock">岩石</span>沿这条路径运动所需的<span data-type="time"><span data-concept="time">时间</span></span>。（b）<span data-ref="rock">岩石</span>在<span data-type="velocity">着地时的<span data-concept="velocity">速度</span></span>的<span data-concept="vector-magnitude">大小</span>和<span data-concept="vector-direction">方向</span>各是多少？</p>
+<figure class="sim" id="sim-rock" data-figure="3.37" data-original="/media/ch03/Figure_03_04_04a.jpg" data-original-width="400" data-original-caption="从基拉韦厄火山喷出的岩石的轨迹。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.37</span><span>如例题 3.5 所示，<span data-ref="rock">一块岩石</span>以 <span data-type="velocity">25.0 m/s</span> 的速率、高于水平方向 $35.0^\circ$ 的方向离开<span data-ref="volcano">火山口边缘</span>，上升后撞上<span data-ref="volcano">山坡</span>，撞击点在<span data-type="position">起点下方 20.0 m 处</span>。着地时，箭头表示<span data-type="velocity">它的速度</span>、<span data-type="velocity">它的水平分量和竖直分量</span>，以及<span data-type="angle">低于水平方向的角度</span>。下方的图像表示<span data-type="position">高度</span>随<span data-concept="time">时间</span>的变化。抛物线两次穿过落地高度，空心的交点是二次方程的负根，对应于抛出之前的一个事件。改变<span data-type="velocity">速率</span>、<span data-type="angle">角度</span>或<span data-type="position">到落点的下降高度</span>，观察<span data-type="time">飞行时间</span>和<span data-type="velocity">着地速度</span>如何变化。</span></div>
+</figure>
+<h4>思路</h4>
+<p>同样，把这个二维<span data-concept="motion">运动</span>分解为两个相互独立的一维<span data-concept="motion">运动</span>，就能求出所需的量。<span data-concept="projectile">抛体</span>在空中的<span data-concept="time">时间</span>完全由其竖直<span data-concept="motion">运动</span>决定。我们先求 $\kt$。在<span data-ref="rock">岩石</span>竖直上升和下落的同时，水平<span data-concept="motion">运动</span>以恒定的<span data-concept="velocity">速度</span>继续进行。这个例题要求的是<span data-type="velocity">末<span data-concept="velocity">速度</span></span>。因此，要把竖直方向和水平方向的结果重新合成，以得到在例题第一部分所确定的<span data-type="time">末<span data-concept="time">时刻</span></span> $\kt$ 的 $\kv$ 和 $\kthetav$。</p>
+<h4>（a）的解</h4>
+<p><span data-ref="rock">岩石</span>在空中时，<span data-ref="rock">它</span>先上升，然后下落到<span data-type="position">比起始海拔低 20.0 m 的末<span data-concept="position">位置</span></span>。我们可以用下式求出这一过程所需的<span data-type="time"><span data-concept="time">时间</span></span>：</p>
+$$\ky = \kyo + \kvoy\kt - \tfrac{1}{2}\kg\kt^2.$$
+<p>如果取<span data-type="position">初<span data-concept="position">位置</span></span> $\kyo$ 为零，则<span data-type="position">末<span data-concept="position">位置</span></span>为 $\ky = -20.0\ \text{m}$。现在，<span data-type="velocity">竖直初<span data-concept="velocity">速度</span></span>就是<span data-type="velocity">初<span data-concept="velocity">速度</span>的竖直<span data-concept="vector-components">分量</span></span>，由 $\kvoy = \kvo\sin\kthetao$ = ($25.0\ \text{m/s}$)($\sin 35.0^\circ$) = $14.3\ \text{m/s}$ 求得。代入已知值得</p>
+$$-20.0\ \text{m} = (14.3\ \text{m/s})\kt - (4.90\ \text{m/s}^2)\kt^2.$$
+<p>整理各项，得到关于 $\kt$ 的二次方程：</p>
+$$(4.90\ \text{m/s}^2)\kt^2 - (14.3\ \text{m/s})\kt - (20.0\ \text{m}) = 0.$$
+<p>这个表达式是形如 $at^2 + bt + c = 0$ 的二次方程，其中常数为 $a = 4.90$，$b = -14.3$，$c = -20.0$。它的解由二次方程求根公式给出：</p>
+$$t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.$$
+<p>这个方程有两个解：$\kt = 3.96$ 和 $\kt = -1.03$。（验证这两个解留给读者作为练习。）<span data-type="time"><span data-concept="time">时间</span></span>为 $\kt = 3.96\ \text{s}$ 或 $-1.03\ \text{s}$。<span data-concept="time">时间</span>取负值，意味着这是<span data-concept="motion">运动</span>开始之前的事件，所以我们把它舍去。因此，</p>
+$$\kt = 3.96\ \text{s}.$$
+<h4>（a）的讨论</h4>
+<p><span data-concept="projectile-motion">抛体运动</span>的<span data-concept="time">时间</span>完全由竖直<span data-concept="motion">运动</span>决定。因此，任何<span data-concept="projectile">抛体</span>，只要<span data-type="velocity">竖直初<span data-concept="velocity">速度</span>为 14.3 m/s</span>，并且落在<span data-type="position">比起始海拔低 20.0 m 处</span>，就会在空中停留 <span data-type="time">3.96 s</span>。</p>
+<h4>（b）的解</h4>
+<p>根据现在掌握的信息，我们可以求出<span data-type="velocity">水平和竖直方向的末<span data-concept="velocity">速度</span></span> $\kvx$ 和 $\kvy$，并把它们合成，求出<span data-type="velocity">合<span data-concept="velocity">速度</span></span> $\kv$，以及它与水平方向所成的<span data-type="angle">角度</span> $\kthetao$。当然，$\kvx$ 是恒定的，所以可以在任何水平位置求它。在这里，我们选择起点，因为我们知道<span data-type="velocity">初<span data-concept="velocity">速度</span></span>和<span data-type="angle">初始角度</span>。因此：</p>
+$$\kvx = \kvo\cos\kthetao = (25.0\ \text{m/s})(\cos 35^\circ) = 20.5\ \text{m/s}.$$
+<p><span data-type="velocity">竖直末<span data-concept="velocity">速度</span></span>由下面的方程给出：</p>
+$$\kvy = \kvoy - \kg\kt,$$
+<p>其中 $\kvoy$ 在（a）部分中求得为 $14.3\ \text{m/s}$。因此，</p>
+$$\kvy = 14.3\ \text{m/s} - (9.80\ \text{m/s}^2)(3.96\ \text{s})$$
+<p>所以</p>
+$$\kvy = -24.5\ \text{m/s}.$$
+<p>为了求出<span data-type="velocity">末<span data-concept="velocity">速度</span>的<span data-concept="vector-magnitude">大小</span></span> $\kv$，我们用下面的方程合成它相互垂直的<span data-concept="vector-components">分量</span>：</p>
+$$\kv = \sqrt{\kvx^2 + \kvy^2} = \sqrt{(20.5\ \text{m/s})^2 + (-24.5\ \text{m/s})^2},$$
+<p>得到</p>
+$$\kv = 31.9\ \text{m/s}.$$
+<p><span data-type="angle"><span data-concept="vector-direction">方向</span></span> $\kthetav$ 由下面的方程求得：</p>
+$$\kthetav = \tan^{-1}(\kvy / \kvx)$$
+<p>所以</p>
+$$\kthetav = \tan^{-1}(-24.5 / 20.5) = \tan^{-1}(-1.19).$$
+<p>因此，</p>
+$$\kthetav = -50.1^\circ.$$
+<h4>（b）的讨论</h4>
+<p><span data-type="angle">负角度</span>表示<span data-type="velocity"><span data-concept="velocity">速度</span></span>在水平方向以下 $50.1^\circ$。这一结果与<span data-type="velocity">竖直末<span data-concept="velocity">速度</span></span>为负、因而向下这一事实一致——这正是你所预料的，因为<span data-type="position">最终海拔</span>比<span data-type="position">初始海拔</span>低 20.0 m。（见图 3.37。）</p>
+</div>
+</section>
+
+<section id="range">
+<h2>抛体的射程</h2>
+<p class="cite-target"><span data-concept="projectile-motion">抛体运动</span>所说明的最重要的一点是：竖直和水平<span data-concept="motion">运动</span>相互独立。伽利略是第一个充分理解这一特性的人。他用它来预测<span data-concept="range">抛体的射程</span>。在水平地面上，我们把<strong><span data-concept="range">射程</span></strong>定义为<span data-concept="projectile">抛体</span>所经过的水平<span data-concept="distance">距离</span> $\kR$。伽利略和许多其他人关心<span data-concept="projectile">抛体</span>的<span data-concept="range">射程</span>，主要出于军事目的——例如瞄准火炮。不过，研究<span data-concept="projectile">抛体</span>的<span data-concept="range">射程</span>，可以帮助我们理解其他有趣的现象，例如卫星绕<span data-ref="earth">地球</span>的轨道。让我们进一步考虑<span data-concept="projectile">抛体</span><span data-concept="range">射程</span>。</p>
+<figure class="sim" id="sim-range" data-figure="3.38" data-original="/media/ch03/Figure_03_04_05a.jpg" data-original-caption="水平地面上抛体的轨迹。（a）对给定的初始角度，初速率 v_0 越大，射程越大。（b）对给定初速率的抛体，初始角度 θ_0 对射程的影响。请注意，15º 和 75º 的射程相同，尽管这两条路径的最大高度不同。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.38</span><span>一个抛体在水平地面上抛出，轨迹下方的括号标出<span data-type="position">它的射程</span> $\kR$。虚线路径是以<span data-type="angle">余角</span>抛出的情形，它落在相同的<span data-concept="range">射程</span>处，但最大高度不同。淡色路径是以 $45^\circ$ 抛出的情形，它飞得最远。当<span data-type="angle">角度</span>接近 $45^\circ$ 时，虚线路径向所选路径靠拢。在 $45^\circ$ 时，两个<span data-concept="angle">角度</span>合为一个<span data-concept="angle">角度</span>，$\sin 2\kthetao$ 变为 1，<span data-concept="range">射程</span>方程化为 $\kR = \kvo^2/\kg$，即这个速率所能达到的最远处。下方的图像表示在所设<span data-type="velocity">速率</span>下，<span data-type="position">射程</span>随<span data-type="angle">抛射角</span>的变化。</span></div>
+</figure>
+<p><span data-concept="projectile">抛体</span>的初<span data-concept="velocity">速度</span>如何影响它的<span data-concept="range">射程</span>？显然，初速率 $\kvo$ 越大，<span data-concept="range">射程</span>越大，如图 3.38（a）所示。初始<span data-concept="angle">角度</span> $\kthetao$ 对<span data-concept="range">射程</span>的影响也很显著，如图 3.38（b）所示。对于固定的初速率（例如火炮所能产生的初速率），最大<span data-concept="range">射程</span>在 $\kthetao = 45^\circ$ 时取得。这只在忽略<span data-concept="air-resistance">空气阻力</span>的条件下成立。如果考虑<span data-concept="air-resistance">空气阻力</span>，最大<span data-concept="angle">角度</span>约为 $38^\circ$。有趣的是，除 $45^\circ$ 外，对每一个初始<span data-concept="angle">角度</span>，都有两个<span data-concept="angle">角度</span>给出相同的<span data-concept="range">射程</span>——这两个<span data-concept="angle">角度</span>之和为 $90^\circ$。<span data-concept="range">射程</span>还取决于重力<span data-concept="acceleration">加速度</span> $\kg$ 的值。登月航天员艾伦·谢泼德之所以能在月球上把一个高尔夫球击出很远的<span data-concept="distance">距离</span>，是因为那里的重力较弱。在<em>水平地面</em>上，<span data-concept="projectile">抛体</span>的<span data-concept="range">射程</span> $\kR$（<span data-concept="air-resistance">空气阻力</span>可以忽略时）由下式给出</p>
+$$\kR = \frac{\kvo^2 \sin 2\kthetao}{\kg},$$
+<p>其中 $\kvo$ 是初速率，$\kthetao$ 是相对于水平方向的初始<span data-concept="angle">角度</span>。这个方程的证明留作本章末的习题（给出了提示），但它确实符合前面所述<span data-concept="projectile">抛体</span><span data-concept="range">射程</span>的主要特征。</p>
+</section>
+
+<section id="orbit">
+<h2>从射程到轨道</h2>
+<p class="cite-target">当我们谈到水平地面上的<span data-concept="range">抛体的射程</span>时，我们假定 $\kR$ 与<span data-ref="earth">地球</span>的周长相比非常小。然而，如果<span data-concept="range">射程</span>很大，<span data-ref="earth">地球</span>就会在<span data-ref="projectile"><span data-concept="projectile">抛体</span></span>下方弯曲离去，重力<span data-concept="acceleration">加速度</span>的<span data-concept="vector-direction">方向</span>也沿路径变化。这时的<span data-concept="range">射程</span>比上面给出的<span data-concept="range">射程</span>方程所预测的更大，因为<span data-ref="projectile"><span data-concept="projectile">抛体</span></span>要下落的距离比<span data-ref="projectile">它</span>在水平地面上更远。（见图 3.39。）如果初速率足够大，<span data-ref="projectile"><span data-concept="projectile">抛体</span></span>就会进入轨道。这种可能性在能够实现的几个世纪之前就已被认识到。当物体在轨道上时，<span data-ref="earth">地球</span>从物体下方弯曲离去的速率与物体下落的速率相同。因此物体不断下落，却永远不会撞到地表。轨道<span data-concept="motion">运动</span>的这些方面和其他方面，例如<span data-ref="earth">地球</span>的自转，将在本书后面做更深入的解析讨论。</p>
+<figure class="sim" id="sim-orbit" data-figure="3.39" data-original="/media/ch03/Figure_03_04_06a.jpg" data-original-width="200" data-original-caption="假想的从抛体到卫星。从这座理论上的塔上，抛体从一座极高的塔上抛出，以避开空气阻力。随着初速率增大，射程增大，并且比在水平地面上更长，因为地球在其路径下方弯曲离去。初速率足够大时，就能进入轨道。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.39</span><span><span data-ref="projectile">一个抛体</span>从空气之上的<span data-ref="tower">一座极高的塔</span>顶水平抛出，在始终指向<span data-ref="earth">地球</span>中心的<span data-type="acceleration">加速度</span>作用下朝<span data-ref="earth">地球</span>落去。视野随之扩大，以容纳<span data-ref="tower">塔</span>、整条路径和落点。慢速抛出时落在近处，下方的地面几乎是水平的，沿路径的<span data-type="acceleration">加速度</span>箭头几乎平行。速率更高时，地面在<span data-ref="projectile">抛体</span>下方弯曲离去，箭头转向<span data-ref="earth">地球</span>中心，<span data-type="position">射程</span>增大到超过水平地面所能给出的值。抛出速率滑块上的标记是<span data-type="velocity">圆轨道速率</span> $\sqrt{\kg R_E^2/(R_E + h)}$，对应<span data-ref="tower">塔</span>的高度。以该速率抛出时，<span data-ref="projectile">抛体</span>在<span data-ref="tower">塔</span>的<span data-type="position">高度</span>上绕<span data-ref="earth">地球</span>运行，永不落下。</span></div>
+</figure>
+<p>我们再一次看到，思考一个话题，例如<span data-concept="range">抛体的射程</span>，可以把我们引向其他话题，例如<span data-ref="earth">地球</span>轨道。在“<span data-concept="velocity">速度</span>的合成”中，我们将考察<span data-concept="velocity">速度</span>的合成，这是二维<span data-concept="kinematics">运动学</span>的另一个重要方面，也将带来超出当前话题的见解。</p>
+</section>

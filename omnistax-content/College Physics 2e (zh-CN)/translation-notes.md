@@ -180,6 +180,7 @@ None recorded.
 | ch03/3.2/figures.js | sim-head-to-tail stage labels (fmt(e, 0) + ' blocks east', fmt(n, 0) + ' blocks north') | operand order swapped to '向东 ' + fmt(e, 0) + ' 个街区' and '向北 ' + fmt(n, 0) + ' 个街区' | Chinese word order: the direction comes before the count |
 | ch03/3.2/figures.js | sim-components stage labels (fmt(ex, 1) + ' blocks east', fmt(no, 1) + ' blocks north') and topline | operand order swapped to '向东 ' + fmt(ex, 1) + ' 个街区' / '向北 ' + fmt(no, 1) + ' 个街区'; the topline now begins with compass(th) and the displacement magnitude follows ('东偏北 29.0°、10.3 个街区的位移，是向东 … 个街区和向北 … 个街区。') | Chinese word order |
 | ch03/3.2/figures.js | sim-scalar topline | the leading literal 'Multiplying ' dropped, so the string begins with fmt(A.v, 1) ('27.5 m 乘以 3.0，得到 82.5 m，方向相同：东偏北 66.0°。'); the zero case likewise | Chinese word order: 乘以 follows the operand |
+| ch03/3.2/text.html, ch03/3.2/section.json, ch03/3.2/figures.js, ch03/3.3/text.html, ch03/3.3/section.json; ch02/2.4/text.html | every head and tail of a vector (#head-to-tail and the steps, sim-heads of Figures 3.10–3.23, 3.27 and 3.33, original_captions, exercise hints and alts, concepts vector-head and vector-tail; ch02/2.4 sim-head 'tails together') | head of a vector written 矢端 and tail 矢尾; the drawn vector (the arrow) stays 箭头 and the tip of the arrowhead 箭尖; 'this arrow' and 'the first arrow' written 这支箭头 and 第一支箭头 | collision (translate.md 4.5): the glossary target of arrow (a drawn vector) is 箭头, and the textbook target of the head of a vector was also 箭头, so 'arrow … from its head' read ambiguously; the more specific term takes the qualified textbook form 矢端/矢尾, and the rows arrow, head (of a vector), head of a vector, tail and tail of a vector say so |
 
 ### ch03/3.3
 
@@ -198,6 +199,7 @@ None recorded.
 | ch03/3.4/text.html, ch03/3.4/section.json | Example 3.5, Figure 3.37, referent rock, exercise text on the volcano | rock written 岩石 throughout (the glossary rows for Example 3.5 and the referent label), not 石块 | collision (translate.md 4.5): the glossary row rock 石块 names a stone; the glossary's own Example 3.5 rows use 岩石 |
 | ch03/3.4/section.json | exercises[p19].prompt, 'at her/ his goal' | written 在自己的球门处, the pronoun pair dropped | English gendered pronoun pair with no Chinese form (translate.md 4.1, grammar) |
 | ch03/3.4/section.json | exercises[ct1].answer.solution, img alt, 'v sub zero A' | spoken form translated literally: v 下标零 A | the alt text reads a subscript aloud in English; the Chinese reading keeps the same structure (4.3) |
+| ch03/3.4/figures.js | sim-orbit landing label, lab.add(sig3(along) + ' km along the surface') | written '沿地表 ' + sig3(along) + ' km', the number moved after the words | Chinese phrase order in a label assembled by code (4.1); the same words, number and unit in the order the Chinese reads, as for the compass labels of 3.5 |
 
 ### ch03/3.5
 

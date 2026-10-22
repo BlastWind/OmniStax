@@ -1,0 +1,103 @@
+<section id="analytical">
+<h2>解析法</h2>
+<p><strong><span data-concept="analytical-method">解析法</span></strong>求<span data-concept="vector-addition">矢量加法</span>和减法时，使用的是几何和简单的三角学，而不是图解法中的直尺和量角器。图解技术的一部分得以保留，因为<span data-concept="vector">矢量</span>仍然用箭头表示，以便形象化。然而，<span data-concept="analytical-method">解析法</span>比图解法更简明、更准确、更精密，而图解法受限于作图所能达到的<span data-concept="accuracy">准确度</span>。<span data-concept="analytical-method">解析法</span>只受限于<span data-concept="physical-quantity">物理量</span>已知的<span data-concept="accuracy">准确度</span>和<span data-concept="precision">精密度</span>。</p>
+</section>
+
+<section id="components">
+<h2>把矢量分解为相互垂直的分量</h2>
+<p class="cite-target">解析技术与直角三角形在<span data-concept="physics">物理学</span>中密不可分，原因之一是沿相互垂直<span data-concept="vector-direction">方向</span>的<span data-concept="motion">运动</span>是相互独立的。我们经常需要把一个<span data-concept="vector">矢量</span>分成相互垂直的<span data-concept="vector-components">分量</span>。例如，给定图 3.24 中的<span data-concept="vector">矢量</span> $\mathbf{A}$，我们可能希望求出哪两个相互垂直的<span data-concept="vector">矢量</span> $\mathbf{A}_x$ 和 $\mathbf{A}_y$ 相加得到它。</p>
+<figure class="sim" id="sim-components" data-figure="3.24 + 3.25 + 3.26" data-original="/media/ch03/Figure_03_03_01a.jpg,/media/ch03/Figure_03_03_02a.jpg,/media/ch03/Figure_03_03_03.jpg" data-original-caption="矢量 A 的矢尾位于 x、y 坐标系的原点，图中同时给出了它的 x 分量 Ax 和 y 分量 Ay。这些矢量构成一个直角三角形。这些矢量之间的解析关系总结如下。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.24 + 3.25 + 3.26</span><span>从 $x$、$y$ 坐标系的原点画出一个矢量 $\mathbf{A}$，以及它的分量 $\mathbf{A}_x$ 和 $\mathbf{A}_y$，它们与 $\mathbf{A}$ 构成一个直角三角形。设定<span data-type="position">大小</span> $\kA$ 和<span data-type="angle">角</span> $\ktheta$，观察两个分量随之变化，<span data-type="position">它们的长度</span>由 $\kA\cos\ktheta$ 和 $\kA\sin\ktheta$ 算出，列在图旁。默认值是城市中的那次行走，<span data-type="position">10.3 个街区</span>，东偏北 $29.1^\circ$，而把<span data-type="angle">角</span>转到超过 $90^\circ$ 就会看到一个分量变为负值。</span></div>
+</figure>
+<p>$\mathbf{A}_x$ 和 $\mathbf{A}_y$ 被定义为 $\mathbf{A}$ 沿<em>x</em> 轴和<em>y</em> 轴的<span data-concept="vector-components">分量</span>。三个<span data-concept="vector">矢量</span> $\mathbf{A}$、$\mathbf{A}_x$ 和 $\mathbf{A}_y$ 构成一个直角三角形：</p>
+$$\mathbf{A}_x + \mathbf{A}_y = \mathbf{A}.$$
+<p>请注意，<span data-concept="vector">矢量</span><span data-concept="vector-components">分量</span>与<span data-concept="resultant-vector">合矢量</span>之间的这一关系只适用于<span data-concept="vector">矢量</span>（它们既包括<span data-concept="vector-magnitude">大小</span>也包括<span data-concept="vector-direction">方向</span>）。这一关系不适用于单独的<span data-concept="vector-magnitude">大小</span>。例如，若 $\kAx = 3\ \text{m}$ 向东，$\kAy = 4\ \text{m}$ 向北，$\kA = 5\ \text{m}$ 向东北，则确有<span data-concept="vector">矢量</span> $\mathbf{A}_x + \mathbf{A}_y = \mathbf{A}$。然而，说这些<span data-concept="vector">矢量</span>的<span data-concept="vector-magnitude">大小</span>之和也相等，却<em>并非</em>事实。也就是说，</p>
+$$3\ \text{m} + 4\ \text{m} \neq 5\ \text{m}$$
+<p>因此，</p>
+$$\kAx + \kAy \neq \kA$$
+<p>如果<span data-concept="vector">矢量</span> $\mathbf{A}$ 已知，那么它的<span data-concept="vector-magnitude">大小</span> $\kA$（即它的<span data-concept="length">长度</span>）和<span data-concept="angle">角</span> $\ktheta$（即它的<span data-concept="vector-direction">方向</span>）也就已知。要求 $\kAx$ 和 $\kAy$，即它的 <em>x</em> 分量和 <em>y</em> 分量，我们使用直角三角形的下列关系。</p>
+$$\kAx = \kA\cos\ktheta$$
+<p>和</p>
+$$\kAy = \kA\sin\ktheta.$$
+<p>例如，假设 $\mathbf{A}$ 是表示“<span data-concept="kinematics">二维运动学</span>：引言”和“<span data-concept="vector-addition">矢量的加法</span>和减法：图解法”中所考虑的在城市中行走的人的<span data-type="position">总<span data-concept="displacement">位移</span></span>的<span data-concept="vector">矢量</span>。</p>
+<p>于是 $\kA = 10.3$ 个街区，$\ktheta = 29.1^\circ$，因此</p>
+$$\kAx = \kA\cos\ktheta = (10.3\ \text{街区})(\cos 29.1^\circ) = 9.0\ \text{街区}$$
+$$\kAy = \kA\sin\ktheta = (10.3\ \text{街区})(\sin 29.1^\circ) = 5.0\ \text{街区}.$$
+</section>
+
+<section id="resultant">
+<h2>计算合矢量</h2>
+<p class="cite-target">如果<span data-concept="vector">矢量</span> $\mathbf{A}$ 的相互垂直的<span data-concept="vector-components">分量</span> $\mathbf{A}_x$ 和 $\mathbf{A}_y$ 已知，那么 $\mathbf{A}$ 也可以用解析的方法求出。要由<span data-concept="vector">矢量</span>的相互垂直的<span data-concept="vector-components">分量</span> $\mathbf{A}_x$ 和 $\mathbf{A}_y$ 求出它相对于<em>x</em> 轴的<span data-concept="vector-magnitude">大小</span> $\kA$ 和<span data-concept="vector-direction">方向</span> $\ktheta$，我们使用下列关系：</p>
+$$\kA = \sqrt{\kAx^2 + \kAy^2}$$
+$$\ktheta = \tan^{-1}(\kAy / \kAx).$$
+<figure class="sim" id="sim-resultant" data-figure="3.27" data-original="/media/ch03/Figure_03_03_04a.jpg" data-original-width="145" data-original-caption="一旦确定了水平分量 Ax 和竖直分量 Ay，就可以确定合矢量的大小和方向。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.27</span><span>两个分量从原点起首尾相接地画出，它们相加所得的矢量则从原点画到第二个分量的矢端处。设定 $\kAx$ 和 $\kAy$，观察<span data-type="position">大小</span>如何由勾股定理得出，<span data-type="angle">方向</span>如何由反正切得出，<span data-type="angle">方向</span>还以罗盘方向的形式读出。默认值仍是城市中的那次行走，<span data-type="position">向东 9 个街区</span>和<span data-type="position">向北 5 个街区</span>。</span></div>
+</figure>
+<p>请注意，方程 $\kA = \sqrt{\kAx^2 + \kAy^2}$ 恰是勾股定理，它把直角三角形的两条直角边与斜边的<span data-concept="length">长度</span>联系起来。例如，若 $\kAx$ 和 $\kAy$ 分别为<span data-type="position">9 个和 5 个街区</span>，则 $\kA = \sqrt{9^2 + 5^2} = 10.3$ 个街区，这与在城市中行走的人的例子再次一致。最后，<span data-type="angle"><span data-concept="vector-direction">方向</span></span>为 $\ktheta = \tan^{-1}(5/9) = 29.1^\circ$，与前面相同。</p>
+<div class="note">
+<div class="eyebrow">用解析法确定矢量及其分量</div>
+<p>方程 $\kAx = \kA\cos\ktheta$ 和 $\kAy = \kA\sin\ktheta$ 用来求<span data-concept="vector">矢量</span>的相互垂直的<span data-concept="vector-components">分量</span>——即由 $\kA$ 和 $\ktheta$ 求 $\kAx$ 和 $\kAy$。方程 $\kA = \sqrt{\kAx^2 + \kAy^2}$ 和 $\ktheta = \tan^{-1}(\kAy / \kAx)$ 用来由相互垂直的<span data-concept="vector-components">分量</span>求<span data-concept="vector">矢量</span>——即由 $\kAx$ 和 $\kAy$ 求 $\kA$ 和 $\ktheta$。这两个过程对于<span data-concept="analytical-method">解析法</span>的<span data-concept="vector-addition">矢量加法</span>和减法都至关重要。</p>
+</div>
+</section>
+
+<section id="adding">
+<h2>用解析法求矢量和</h2>
+<p class="cite-target">要了解如何用相互垂直的<span data-concept="vector-components">分量</span>来相加<span data-concept="vector">矢量</span>，请看图 3.28，其中<span data-concept="vector">矢量</span> $\mathbf{A}$ 和 $\mathbf{B}$ 相加，得到<span data-concept="resultant-vector">合矢量</span> $\mathbf{R}$。</p>
+<p>如果 $\mathbf{A}$ 和 $\mathbf{B}$ 表示一次行走的两段路（两个<span data-concept="displacement">位移</span>），那么 $\mathbf{R}$ 就是总<span data-concept="displacement">位移</span>。行走的人最终停在 $\mathbf{R}$ 的矢端处。到达同一点有很多种方式。特别是，这个人可以先沿 <em>x</em> 方向走，再沿 <em>y</em> 方向走。这两段路径就是<span data-concept="resultant-vector">合矢量</span>的 <em>x</em> 分量和 <em>y</em> 分量，即 $\mathbf{R}_x$ 和 $\mathbf{R}_y$。如果我们知道 $\kRx$ 和 $\kRy$，就可以用方程 $\kA = \sqrt{\kAx^2 + \kAy^2}$ 和 $\ktheta = \tan^{-1}(\kAy / \kAx)$ 求出 $\kR$ 和 $\ktheta$。使用<span data-concept="vector-addition">矢量加法</span>的<span data-concept="analytical-method">解析法</span>时，你可以确定一个<span data-concept="vector">矢量</span>的<span data-concept="vector-components">分量</span>，或者确定它的<span data-concept="vector-magnitude">大小</span>和<span data-concept="vector-direction">方向</span>。</p>
+<figure class="sim" id="sim-add" data-figure="3.28 + 3.29 + 3.30 + 3.31 + 3.32" data-original="/media/ch03/Figure_03_03_05a.jpg,/media/ch03/Figure_03_03_06a.jpg,/media/ch03/Figure_03_03_07a.jpg,/media/ch03/Figure_03_03_08a.jpg,/media/ch03/Figure_03_03_09a-3f2c.jpg" data-original-width="300,325,375,325,375" data-original-caption="矢量 A 和 B 是一次行走的两段路，R 是合矢量，即总位移。你可以用解析法确定 R 的大小和方向。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.28 + 3.29 + 3.30 + 3.31 + 3.32</span><span>一次行走的<span data-type="position">两段路</span> $\mathbf{A}$ 和 $\mathbf{B}$ 首尾相接，<span data-type="position">合矢量</span> $\mathbf{R}$ 从第一段的起点画到第二段的终点。设定每段路的<span data-type="position">大小</span>和<span data-type="angle">角</span>，观察这次行走在固定不变的比例尺下变长、变短和转向。<span data-type="position">两段路的分量</span>以虚线画在图下方的各行和图左侧的各列上，相加得到以实线画出的<span data-type="position">合矢量的分量</span>，下面方法的四个步骤也随数值一起更新。默认值是例题 3.3 中的行走，东偏北 $20.0^\circ$ 的<span data-type="position">53.0 m</span>和东偏北 $63.0^\circ$ 的<span data-type="position">34.0 m</span>。</span></div>
+</figure>
+<p><strong>步骤 1。</strong>确定题目中要使用的<em>x</em> 轴和<em>y</em> 轴。然后，求出要相加的每个<span data-concept="vector">矢量</span>沿所选相互垂直轴的<span data-concept="vector-components">分量</span>。使用方程 $\kAx = \kA\cos\ktheta$ 和 $\kAy = \kA\sin\ktheta$ 求<span data-concept="vector-components">分量</span>。在图 3.29 中，这些<span data-concept="vector-components">分量</span>是 $\kAx$、$\kAy$、$\kBx$ 和 $\kBy$。<span data-concept="vector">矢量</span> $\mathbf{A}$ 和 $\mathbf{B}$ 与<em>x</em> 轴所成的<span data-concept="angle">角</span>分别为 $\kthetaA$ 和 $\kthetaB$。</p>
+<p><strong>步骤 2。</strong>把各个<span data-concept="vector">矢量</span>沿某个轴的<span data-concept="vector-components">分量</span>相加，得到<span data-concept="resultant-vector">合矢量</span>沿每个轴的<span data-concept="vector-components">分量</span>。也就是说，如图 3.30 所示，</p>
+$$\kRx = \kAx + \kBx$$
+<p>和</p>
+$$\kRy = \kAy + \kBy.$$
+<p>沿同一个轴（比如<em>x</em> 轴）的<span data-concept="vector-components">分量</span>是沿同一直线的<span data-concept="vector">矢量</span>，因此可以像普通的数一样彼此相加。沿<em>y</em> 轴的<span data-concept="vector-components">分量</span>也是如此。（例如，<span data-type="position">向东走 9 个街区</span>可以分两段走，第一段<span data-type="position">向东 3 个街区</span>，第二段<span data-type="position">向东 6 个街区</span>，总共 9 个街区，因为它们沿相同的<span data-concept="vector-direction">方向</span>。）所以把<span data-concept="vector">矢量</span>分解为沿共同轴的<span data-concept="vector-components">分量</span>，会使它们更容易相加。既然 $\mathbf{R}$ 的<span data-concept="vector-components">分量</span>已知，就可以求出它的<span data-concept="vector-magnitude">大小</span>和<span data-concept="vector-direction">方向</span>。</p>
+<p><strong>步骤 3。</strong>要得到<span data-concept="resultant-vector">合矢量</span>的<span data-concept="vector-magnitude">大小</span> $\kR$，使用勾股定理：</p>
+$$\kR = \sqrt{\kRx^2 + \kRy^2}.$$
+<p><strong>步骤 4。</strong>要得到<span data-concept="resultant-vector">合矢量</span>相对于<em>x</em> 轴的<span data-concept="vector-direction">方向</span>：</p>
+$$\ktheta = \tan^{-1}(\kRy / \kRx).$$
+<p>下面的例题说明了用相互垂直的<span data-concept="vector-components">分量</span>相加<span data-concept="vector">矢量</span>的这种方法。</p>
+<div class="example" id="ex-walk">
+<h3>例题 3.3 · 用解析法求矢量和</h3>
+<p>利用沿<em>x</em> 轴和<em>y</em> 轴的相互垂直的<span data-concept="vector-components">分量</span>，把图 3.31 中所示的<span data-concept="vector">矢量</span> $\mathbf{A}$ 与<span data-concept="vector">矢量</span> $\mathbf{B}$ 相加。<em>x</em> 轴和<em>y</em> 轴分别沿东西和南北<span data-concept="vector-direction">方向</span>。<span data-concept="vector">矢量</span> $\mathbf{A}$ 表示一次行走的<span data-type="position">第一段</span>，其中一个人沿东偏北 $20.0^\circ$ 的<span data-concept="vector-direction">方向</span>走 $53.0\ \text{m}$。<span data-concept="vector">矢量</span> $\mathbf{B}$ 表示<span data-type="position">第二段</span>，是沿东偏北 $63.0^\circ$ 的<span data-concept="vector-direction">方向</span>、大小为 $34.0\ \text{m}$ 的<span data-concept="displacement">位移</span>。</p>
+<h4>思路</h4>
+<p>$\mathbf{A}$ 和 $\mathbf{B}$ 沿<em>x</em> 轴和<em>y</em> 轴的<span data-concept="vector-components">分量</span>，表示为到达同一终点而向正东和向正北行走。求出之后，把它们合起来，得到<span data-concept="resultant-vector">合矢量</span>。</p>
+<h4>解</h4>
+<p>按照上面概述的方法，我们首先求出 $\mathbf{A}$ 和 $\mathbf{B}$ 沿<em>x</em> 轴和<em>y</em> 轴的<span data-concept="vector-components">分量</span>。请注意 $\kA = 53.0\ \text{m}$，$\kthetaA = 20.0^\circ$，$\kB = 34.0\ \text{m}$，$\kthetaB = 63.0^\circ$。我们用 $\kAx = \kA\cos\ktheta$ 求 <em>x</em> 分量，得到</p>
+$$\begin{aligned}\kAx &= \kA\cos\kthetaA = (53.0\ \text{m})(\cos 20.0^\circ)\\ &= (53.0\ \text{m})(0.940) = 49.8\ \text{m}\end{aligned}$$
+<p>和</p>
+$$\begin{aligned}\kBx &= \kB\cos\kthetaB = (34.0\ \text{m})(\cos 63.0^\circ)\\ &= (34.0\ \text{m})(0.454) = 15.4\ \text{m}.\end{aligned}$$
+<p>类似地，用 $\kAy = \kA\sin\kthetaA$ 求 <em>y</em> 分量：</p>
+$$\begin{aligned}\kAy &= \kA\sin\kthetaA = (53.0\ \text{m})(\sin 20.0^\circ)\\ &= (53.0\ \text{m})(0.342) = 18.1\ \text{m}\end{aligned}$$
+<p>和</p>
+$$\begin{aligned}\kBy &= \kB\sin\kthetaB = (34.0\ \text{m})(\sin 63.0^\circ)\\ &= (34.0\ \text{m})(0.891) = 30.3\ \text{m}.\end{aligned}$$
+<p><span data-concept="resultant-vector">合矢量</span>的 <em>x</em> 分量和 <em>y</em> 分量因此为</p>
+$$\kRx = \kAx + \kBx = 49.8\ \text{m} + 15.4\ \text{m} = 65.2\ \text{m}$$
+<p>和</p>
+$$\kRy = \kAy + \kBy = 18.1\ \text{m} + 30.3\ \text{m} = 48.4\ \text{m}.$$
+<p>现在我们可以用勾股定理求出<span data-type="position"><span data-concept="resultant-vector">合矢量</span>的<span data-concept="vector-magnitude">大小</span></span>：</p>
+$$\kR = \sqrt{\kRx^2 + \kRy^2} = \sqrt{(65.2)^2 + (48.4)^2}\ \text{m}$$
+<p>于是</p>
+$$\kR = 81.2\ \text{m}.$$
+<p>最后，我们求出<span data-type="angle"><span data-concept="resultant-vector">合矢量</span>的<span data-concept="vector-direction">方向</span></span>：</p>
+$$\ktheta = \tan^{-1}(\kRy / \kRx) = +\tan^{-1}(48.4 / 65.2).$$
+<p>因此，</p>
+$$\ktheta = \tan^{-1}(0.742) = 36.6^\circ.$$
+<h4>讨论</h4>
+<p>这个例题说明了用相互垂直的<span data-concept="vector-components">分量</span>相加<span data-concept="vector">矢量</span>。用相互垂直的<span data-concept="vector-components">分量</span>做<span data-concept="vector">矢量</span>减法与此非常相似——它只是加上一个负<span data-concept="vector">矢量</span>。</p>
+</div>
+</section>
+
+<section id="subtraction">
+<h2>用解析法求矢量差</h2>
+<p class="cite-target"><span data-concept="vector">矢量</span>的减法是通过加上一个负<span data-concept="vector">矢量</span>来完成的。也就是说，$\mathbf{A} - \mathbf{B} \equiv \mathbf{A} + (-\mathbf{B})$。因此，<em>用相互垂直的<span data-concept="vector-components">分量</span>做<span data-concept="vector">矢量</span>减法的方法与加法完全相同</em>。$-\mathbf{B}$ 的<span data-concept="vector-components">分量</span>是 $\mathbf{B}$ 的<span data-concept="vector-components">分量</span>的负值。因此，<span data-concept="resultant-vector">合矢量</span> $\mathbf{A} - \mathbf{B} = \mathbf{R}$ 的 <em>x</em> 分量和 <em>y</em> 分量为</p>
+$$\kRx = \kAx + (-\kBx)$$
+<p>和</p>
+$$\kRy = \kAy + (-\kBy)$$
+<p>而上面概述的其余方法与加法完全相同。（见图 3.33。）</p>
+<figure class="sim" id="sim-subtract" data-figure="3.33" data-original="/media/ch03/Figure_03_03_10a.jpg" data-original-width="300" data-original-caption="图 3.28 中所示两个矢量的减法。–B 的分量是 B 的分量的负值。减法的方法与加法相同。">
+  <div class="sim-head"><span class="eyebrow">Figure 3.33</span><span>这是与图 3.28 中<span data-type="position">相同的两段路</span>，只是第二段现在沿相反方向。$-\mathbf{B}$ 从 $\mathbf{A}$ 的矢端处出发，$\mathbf{B}$ 本身保留为淡淡的虚影，<span data-type="position">合矢量</span>为 $\mathbf{A} - \mathbf{B}$。设定每个矢量的<span data-type="position">大小</span>和<span data-type="angle">角</span>：$-\mathbf{B}$ 的分量（在图旁的各行和各列上）与 $\mathbf{B}$ 的分量方向相反，所以要从 $\mathbf{A}$ 的分量中减去它们，其余方法与前面相同。</span></div>
+</figure>
+<p>用相互垂直的<span data-concept="vector-components">分量</span>分析<span data-concept="vector">矢量</span>在<span data-concept="physics">物理学</span>的许多领域都非常有用，因为相互垂直的量往往彼此独立。下一节<span data-concept="projectile-motion">抛体运动</span>是许多这样的小节之一，其中使用相互垂直的<span data-concept="vector-components">分量</span>有助于使图景清晰，并使其中的<span data-concept="physics">物理学</span>问题变得简单。</p>
+</section>

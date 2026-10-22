@@ -1,0 +1,317 @@
+{
+ "id": "3.1",
+ "module": "m42104",
+ "chapter": "3",
+ "title": "二维运动学：引言",
+ "short": "二维运动学",
+ "lead": "平面内的运动有水平和竖直两个部分。在方正街区的城市里行走，以及<span data-ref=\"dropped-ball thrown-ball\">两个球</span>从同一高度下落，都说明这两个部分如何合成一个<span data-concept=\"displacement\">位移</span>，以及其中一个部分是否会影响另一个。",
+ "objectives": [
+  "观察到二维运动由水平分量和竖直分量构成。",
+  "理解二维运动中水平矢量与竖直矢量的独立性。"
+ ],
+ "summary_html": "<ul><li>任意两点之间的最短路径是一条直线。在二维情形中，这条路径可以用一个具有水平分量和竖直分量的矢量来表示。</li><li>矢量的水平分量和竖直分量彼此独立。水平方向上的运动不影响竖直方向上的运动，反之亦然。</li></ul>",
+ "notes": "节首那张纽约十字路口的照片因属装饰而略去，关于 Ladybug Motion 2D 模拟的说明也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案：第一道 AP 题的答案为 (d)，第三道题保留了书中关于学生应当记录什么的那句话，作为可供对照的开放式答案。第二道 AP 题是关于水平发射的球的竖直加速度—时间图像，书后答案没有给出它的答案，因此作为开放题保留，四个选项照书中印刷的样子给出，并附一条标明为 AI 撰写的建议思路，而不是作为可判分的选择题。第一道 AP 题是排在两球下落那段文字之后的一道简短检测。没有取自其他小节的内容，也没有留给后面页面的内容；3.4 节中关于两枚硬币被弹出和被推下桌子的思考题虽然检验相互垂直运动的独立性，但与抛体运动一起印出，仍留在那一页。",
+ "figures": [
+  {
+   "id": "sim-walk",
+   "kind": "sim",
+   "number": "3.3",
+   "folds": [
+    "3.4",
+    "3.5"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_01_01.jpg",
+    "/media/ch03/Figure_03_01_02.jpg",
+    "/media/ch03/Figure_03_01_03.jpg"
+   ],
+   "original_caption": "一位行人在一座街区方正的城市里的两点之间沿二维路径行走。在这一场景中，所有街区都是正方形，大小相同。",
+   "widths": [
+    400,
+    200,
+    350
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library walker and helicopter, labels clear of them, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-balls",
+   "kind": "sim",
+   "number": "3.6",
+   "originals": [
+    "/media/ch03/Figure_03_01_04a.jpg"
+   ],
+   "original_caption": "这里显示了两个相同的球的运动——一个从静止下落，另一个有水平初速度。后续每个位置之间的时间间隔相等。箭头表示每个位置上的水平速度和竖直速度。右边的球有水平初速度，左边的球没有水平速度。尽管水平速度不同，两个球的竖直速度和竖直位置却完全相同。这说明竖直运动和水平运动是相互独立的。",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "time",
+    "position",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "fixed graph axes, labels clear of arrows, graph key"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "walking",
+   "concept": "right-triangle-resultant",
+   "verb": "introduces"
+  },
+  {
+   "span": "walking",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "walking",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "vectors",
+   "concept": "vector-components",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors",
+   "concept": "vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vectors",
+   "concept": "right-triangle-resultant",
+   "verb": "uses"
+  },
+  {
+   "span": "independence",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "introduces"
+  },
+  {
+   "span": "independence",
+   "concept": "vector-components",
+   "verb": "uses"
+  },
+  {
+   "span": "independence",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "independence",
+   "concept": "acceleration",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1421044",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "independence",
+   "prompt": "一个球以与水平方向成 45 度的角向上抛出。下列哪一项最能描述这个球从离开抛出者的手之后到落地为止的加速度？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "始终与运动方向相同，起初为正，并逐渐减小，落地时降为零",
+     "起初沿向上方向为正，在最大高度处为零，此后为负，直到落地",
+     "始终与运动方向相反，起初为正，并逐渐减小，落地时降为零",
+     "始终沿向下方向，且数值恒定不变"
+    ],
+    "correct": 3,
+    "hint": "球一离开手，就只受重力作用，而重力在飞行中的每一点都相同，包括最高点。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id895568",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "independence",
+   "prompt": "在一次实验中，一名学生在离地面 2 米高处以水平初速度发射一个球。球沿抛物线轨迹运动，直到落地。下列哪一项正确描述了球的竖直加速度随时间变化的图像（取向下的方向为负）？<ol type=\"a\"><li>不随时间变化的负值</li><li>逐渐增大的负值（直线）</li><li>负值随时间越来越快地增大（抛物线）</li><li>始终为零，因为初始运动是水平的</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) 不随时间变化的负值。球一离开学生的手，作用在它上面的力就只有重力，所以它的加速度就是重力加速度 $9.80\\ \\text{m/s}^2$，在飞行的每一时刻都竖直向下。水平发射并不改变这一点，因为水平运动和竖直运动相互独立，水平速度对竖直加速度没有影响。取向下为负，从发射后的瞬间到落地前的瞬间，竖直加速度都是 $-9.80\\ \\text{m/s}^2$，所以它随时间变化的图像是一条位于这一个负值处的水平线。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1462671",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "independence",
+   "prompt": "一名学生想设计一个实验，来说明物体的加速度与物体的速度无关。为此，球 A 在离地面 1.5 米高处以某一初速率水平发射，球 B 在离地面 1.5 米高处从静止释放，球 C 在离地面 1.5 米高处以某一初速率竖直发射。为了检验这一假说，学生需要收集每个球的哪些信息？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "我们需要知道每个球在若干时刻的水平位置和竖直位置。由这些数据，我们可以推出若干时间间隔内的速度，也可以推出每个球在若干时间间隔内的加速度（水平的和竖直的）。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "independence-of-perpendicular-motions"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "acceleration-due-to-gravity",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "free-fall-highest-point",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "independence-of-perpendicular-motions"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "acceleration-due-to-gravity",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "derive-motion-graphs",
+   "weight": 1
+  },
+  {
+   "exercise": "ap3",
+   "concept": "independence-of-perpendicular-motions"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "acceleration",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "walker",
+   "label": "沿街区行走的行人",
+   "figures": [
+    "sim-walk"
+   ]
+  },
+  {
+   "id": "helicopter",
+   "label": "沿直线飞行的直升机",
+   "figures": [
+    "sim-walk"
+   ]
+  },
+  {
+   "id": "dropped-ball",
+   "label": "从静止释放的球",
+   "figures": [
+    "sim-two-balls"
+   ]
+  },
+  {
+   "id": "thrown-ball",
+   "label": "水平抛出的球",
+   "figures": [
+    "sim-two-balls"
+   ]
+  }
+ ]
+}
