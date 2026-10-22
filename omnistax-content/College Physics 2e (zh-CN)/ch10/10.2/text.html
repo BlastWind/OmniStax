@@ -1,0 +1,152 @@
+<section id="rotational-kinematics">
+<h2>转动运动学及其与直线运动的类比</h2>
+<p class="cite-target">仅凭直觉，我们就能开始看出 $\ktheta$、$\kw$ 和 $\kalpha$ 这样的转动量是如何相互联系的。例如，如果一个摩托车车轮在相当长的<span data-concept="time">时间</span>里具有很大的<span data-concept="angular-acceleration">角加速度</span>，它最终就会转得很快，并转过许多圈。说得更专业一些，如果车轮的<span data-concept="angular-acceleration">角加速度</span> $\kalpha$ 很大，且持续了很长一段<span data-concept="time">时间</span> $\kt$，那么末<span data-concept="angular-velocity">角速度</span> $\kw$ 和<span data-concept="angle">转角</span> $\ktheta$ 都很大。车轮的转动<span data-concept="motion">运动</span>恰好类似于这样一个事实：摩托车较大的平动<span data-concept="acceleration">加速度</span>会产生较大的末<span data-concept="velocity">速度</span>，而<span data-concept="distance-traveled">路程</span>也会很大。</p>
+<p><span data-concept="kinematics">运动学</span>是对<span data-concept="motion">运动</span>的描述。<strong><span data-concept="kinematics-of-rotational-motion">转动运动学</span></strong>描述<span data-concept="rotation-angle">转角</span>、<span data-concept="angular-velocity">角速度</span>、<span data-concept="angular-acceleration">角加速度</span>和<span data-concept="time">时间</span>之间的关系。让我们先来求一个联系 $\kw$、$\kalpha$ 和 $\kt$ 的方程。</p>
+<p>请注意，在转动<span data-concept="motion">运动</span>中 $\ka = \kat$，从现在起，我们将用符号 $\ka$ 表示切向加速度或线<span data-concept="acceleration">加速度</span>。</p>
+<figure class="dv" id="drv-angular-velocity-time"></figure>
+<p>这里 $\kwo$ 是初<span data-concept="angular-velocity">角速度</span>。最后这个方程是 $\kw$、$\kalpha$ 和 $\kt$ 之间的一个<em>运动学关系</em>——也就是说，它描述它们之间的关系，而不涉及可能影响转动的<span data-concept="force">力</span>或<span data-concept="mass">质量</span>。它在形式上也与其平动对应量恰好类似。</p>
+<div class="note">
+<div class="eyebrow">建立联系</div>
+<p>转动<span data-concept="motion">运动</span>的<span data-concept="kinematics">运动学</span>与平动<span data-concept="kinematics">运动学</span>完全类似，后者最早在“一维<span data-concept="kinematics">运动学</span>”中介绍。<span data-concept="kinematics">运动学</span>关注的是不考虑<span data-concept="force">力</span>或<span data-concept="mass">质量</span>的<span data-concept="motion">运动</span>描述。我们将会发现，诸如<span data-concept="displacement">位移</span>、<span data-concept="velocity">速度</span>和<span data-concept="acceleration">加速度</span>这些平动运动学量，在转动<span data-concept="motion">运动</span>中都有直接的类比量。</p>
+</div>
+</section>
+
+<section id="four-equations">
+<h2>四个转动运动学方程</h2>
+<p class="cite-target">从我们在“一维<span data-concept="kinematics">运动学</span>”中得出的四个运动学方程出发，我们可以推导出下面四个转动运动学方程（与它们的平动对应量一并给出）：</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 10.2</span><span>转动运动学方程</span></div>
+  <table>
+    <thead><tr><th>转动</th><th>平动</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>$\ktheta = \kwb\kt$</td><td>$\kx = \kvb\kt$</td><td></td></tr>
+      <tr><td>$\kw = \kwo + \kalpha\kt$</td><td>$\kv = \kvo + \ka\kt$</td><td>（$\kalpha$、$\ka$ 恒定）</td></tr>
+      <tr><td>$\ktheta = \kwo\kt + \tfrac{1}{2}\kalpha\kt^2$</td><td>$\kx = \kvo\kt + \tfrac{1}{2}\ka\kt^2$</td><td>（$\kalpha$、$\ka$ 恒定）</td></tr>
+      <tr><td>$\kw^2 = \kwo^2 + 2\kalpha\ktheta$</td><td>$\kv^2 = \kvo^2 + 2\ka\kx$</td><td>（$\kalpha$、$\ka$ 恒定）</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>在这些方程中，下标 0 表示初始值（$\kthetao$、$\kxo$ 和 $\kto$ 是初始值），平均<span data-concept="angular-velocity">角速度</span> $\kwb$ 和<span data-concept="average-velocity">平均速度</span> $\kvb$ 的定义如下：</p>
+$$\kwb = \frac{\kwo + \kw}{2} \quad\text{和}\quad \kvb = \frac{\kvo + \kv}{2}.$$
+<figure class="dv" id="drv-rotational-kinematic-equations"></figure>
+<p>上面表 10.2 中给出的方程可用于求解任何 $\ka$ 和 $\kalpha$ 恒定的转动或平动<span data-concept="kinematics">运动学</span>问题。</p>
+</section>
+
+<section id="strategy">
+<h2>转动运动学的解题策略</h2>
+<div class="note">
+<div class="eyebrow">转动运动学的解题策略</div>
+<ol>
+<li><em>审视情境，确定涉及的是转动<span data-concept="kinematics">运动学</span>（转动<span data-concept="motion">运动</span>）</em>。必须涉及转动，但无需考虑影响<span data-concept="motion">运动</span>的<span data-concept="force">力</span>或<span data-concept="mass">质量</span>。</li>
+<li><em>准确找出题目中需要求出的量（确定未知量）</em>。画一张情境草图会有帮助。</li>
+<li><em>列出题目所述情境中已给出或可以推断的量（确定已知量）</em>。</li>
+<li><em>针对要求的量（未知量），解出合适的一个或几个方程</em>。可以从平动类比的角度来思考，因为到目前为止你已经熟悉这种<span data-concept="motion">运动</span>了。</li>
+<li><em>把已知值连同它们的<span data-concept="units">单位</span>一起代入合适的方程，得到带有<span data-concept="units">单位</span>的数值结果</em>。务必使用<span data-concept="radian">弧度</span>作为<span data-concept="angle">角</span>的<span data-concept="units">单位</span>。</li>
+<li><em>检查你的答案是否合理：你的答案说得通吗</em>？</li>
+</ol>
+</div>
+</section>
+
+<section id="ex-reel">
+<div class="example">
+<h3>例题 10.3 · 计算渔线轮的加速度</h3>
+<p class="cite-target">一位深海垂钓者钓到了一条大鱼，大鱼游离渔船，把<span data-ref="line">鱼线</span>从<span data-ref="reel">他的渔线轮</span>上拉出。整个<span data-concept="system">系统</span>起初静止，<span data-ref="line">鱼线</span>从<span data-ref="reel">渔线轮</span>上放出，放出处距<span data-ref="reel">其</span>转轴的<span data-type="position">半径为 4.50 cm</span>。如图 10.7 所示，<span data-ref="reel">渔线轮</span>在 <span data-type="time">2.00 s</span> 内获得 $110\ \text{rad/s}^2$ 的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>。</p>
+<p>（a）<span data-ref="reel">渔线轮</span>的<span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>是多少？</p>
+<p>（b）经过 <span data-type="time">2.00 s</span> 后，<span data-ref="line">鱼线</span>离开<span data-ref="reel">渔线轮</span>的<span data-type="velocity">速率</span>是多少？</p>
+<p>（c）<span data-ref="reel">渔线轮</span>转过多少圈？</p>
+<p>（d）在这段<span data-concept="time">时间</span>内，有多少<span data-concept="meter">米</span>的<span data-ref="line">鱼线</span>从<span data-ref="reel">渔线轮</span>上放出？</p>
+<p><strong>思路</strong></p>
+<p>在本例的每一部分中，思路都与求解直线<span data-concept="kinematics">运动学</span>问题时相同。具体来说，先确定已知值，然后寻找可用来求解未知量的关系式。</p>
+<p><strong>（a）的解</strong></p>
+<p>这里已知 $\kalpha$ 和 $\kt$，需要求 $\kw$。最直接可用的方程是 $\kw = \kwo + \kalpha\kt$，因为未知量已经在方程的一边，而其他各项都是已知的。该方程表明</p>
+$$\kw = \kwo + \kalpha\kt.$$
+<p>我们还知道 $\kwo = 0$（它由静止开始），因此</p>
+$$\kw = 0 + (110\ \text{rad/s}^2)(2.00\ \text{s}) = 220\ \text{rad/s}.$$
+<p><strong>（b）的解</strong></p>
+<p>既然 $\kw$ 已知，<span data-type="velocity">速率</span> $\kv$ 最容易利用下列关系求得</p>
+$$\kv = \kr\kw,$$
+<p>其中<span data-ref="reel">渔线轮</span>的<span data-type="position">半径</span> $\kr$ 已知为 4.50 cm；因此，</p>
+$$\kv = (0.0450\ \text{m})(220\ \text{rad/s}) = 9.90\ \text{m/s}.$$
+<p>再次提醒，在任何联系线量与角量的计算中，都必须使用<span data-concept="radian">弧度</span>。另外，由于<span data-concept="radian">弧度</span>是无量纲的，所以有 $\text{m} \times \text{rad} = \text{m}$。</p>
+<p><strong>（c）的解</strong></p>
+<p>这里要求的是<span data-type="angle">圈数</span>。因为 $1\ \text{rev} = 2\pi\ \text{rad}$，我们可以通过求出以<span data-concept="radian">弧度</span>为单位的 $\ktheta$ 来得到圈数。已知 $\kalpha$ 和 $\kt$，并且我们知道 $\kwo$ 为零，因此可以用 $\ktheta = \kwo\kt + \tfrac{1}{2}\kalpha\kt^2$ 求得 $\ktheta$。</p>
+$$\begin{array}{lll}\ktheta &amp; = &amp; \kwo\kt + \tfrac{1}{2}\kalpha\kt^2 \\ &amp; = &amp; 0 + (0.500)(110\ \text{rad/s}^2)(2.00\ \text{s})^2 = 220\ \text{rad}.\end{array}$$
+<p>把<span data-concept="radian">弧度</span>换算成圈数，得</p>
+$$\ktheta = (220\ \text{rad})\frac{1\ \text{rev}}{2\pi\ \text{rad}} = 35.0\ \text{rev}.$$
+<p><strong>（d）的解</strong></p>
+<p><span data-type="position">鱼线的<span data-concept="meter">米</span>数</span>就是 $\kx$，它可以通过与 $\ktheta$ 的关系求得：</p>
+$$\kx = \kr\ktheta = (0.0450\ \text{m})(220\ \text{rad}) = 9.90\ \text{m}.$$
+<p><strong>讨论</strong></p>
+<p>本例说明，转动量之间的关系与线量之间的关系高度类似。我们还在本例中看到了线量与转动量是如何联系起来的。各问的答案是符合实际的。放线<span data-type="time">两<span data-concept="second">秒</span></span>后，<span data-ref="reel">渔线轮</span>的转速<span data-type="angular-rate">为 220 rad/s，即 2100 转每分</span>。（难怪渔线轮有时会发出尖锐的<span data-concept="sound">声音</span>。）<span data-type="position">放出的鱼线量</span>为 9.90 m，与大鱼上钩时的情形大致相符。</p>
+</div>
+<figure class="sim" id="sim-reel" data-figure="10.7" data-original="/media/ch10/Figure_11_02_01a.jpg" data-original-width="275" data-original-caption="从转动的渔线轮上放出的鱼线做直线运动。例题 10.3 和例题 10.4 考虑与渔线轮相关的转动量与线量之间的关系。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.7</span><span><span data-ref="reel">一个渔线轮</span>的<span data-type="position">半径</span>为 $\kr$，从<span data-type="angular-rate">角速度</span> $\kwo$ 开始，以<span data-type="angular-acceleration">恒定角加速度</span> $\kalpha$ 转动<span data-type="time">一段时间</span> $\kt$，<span data-ref="reel">它</span>放出的<span data-ref="line">鱼线</span>沿着<span data-ref="reel">其</span>右侧的标尺铺开。下方的图像表示<span data-type="angular-rate">角速度</span> $\kw = \kwo + \kalpha\kt$。直线下方的<span data-concept="area">面积</span>就是<span data-ref="reel">渔线轮</span>转过的<span data-type="angle">角度</span> $\ktheta$，这就是为什么 $\ktheta = \kwo\kt + \tfrac{1}{2}\kalpha\kt^2$。<span data-ref="reel">渔线轮</span>的起始状态与例题 10.3 相同；把 $\kwo$ 设为 220 rad/s、$\kalpha$ 设为 $-300\ \text{rad/s}^2$，就能看到例题 10.4 中的刹车使<span data-ref="reel">它</span>在 <span data-type="time">0.733 s</span> 内静止下来。</span></div>
+</figure>
+</section>
+
+<section id="ex-brake">
+<div class="example">
+<h3>例题 10.4 · 计算渔线轮减速直至停止所用的时间</h3>
+<p class="cite-target">现在设想垂钓者对<span data-ref="reel">转动的渔线轮</span>施加刹车，使其获得 $-300\ \text{rad/s}^2$ 的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>。<span data-ref="reel">渔线轮</span>需要多长时间才能停下来？</p>
+<p><strong>思路</strong></p>
+<p>我们要求的是<span data-ref="reel">渔线轮</span>停下来所用的<span data-type="time"><span data-concept="time">时间</span></span> $\kt$。初始条件和最终条件与上一题不同，上一题涉及的是<span data-ref="reel">同一个渔线轮</span>。现在我们看到，<span data-type="angular-rate">初<span data-concept="angular-velocity">角速度</span></span>为 $\kwo = 220\ \text{rad/s}$，<span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span> $\kw$ 为零。<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>给定为 $\kalpha = -300\ \text{rad/s}^2$。检查可用的方程，我们发现在 $\kw = \kwo + \kalpha\kt,$ 中除 $\kt$ 外的所有量都是已知的，因此最容易使用这个方程。</p>
+<p><strong>解</strong></p>
+<p>该方程表明</p>
+$$\kw = \kwo + \kalpha\kt.$$
+<p>我们先对 $\kt$ 代数求解该方程，然后像往常一样代入已知值，得</p>
+$$\kt = \frac{\kw - \kwo}{\kalpha} = \frac{0 - 220\ \text{rad/s}}{-300\ \text{rad/s}^2} = 0.733\ \text{s}.$$
+<p><strong>讨论</strong></p>
+<p>请注意，必须小心处理表示各量<span data-concept="vector-direction">方向</span>的正负号。另外还要注意，由于<span data-type="angular-acceleration"><span data-concept="acceleration">加速度</span></span>相当大，<span data-type="time">让渔线轮停下来的<span data-concept="time">时间</span></span>相当短。鱼线有时会因为所涉及的<span data-concept="acceleration">加速度</span>而绷断，垂钓者往往让鱼游一会儿再对渔线轮刹车。疲惫的鱼会游得更慢，所需的<span data-concept="acceleration">加速度</span>也较小。</p>
+</div>
+</section>
+
+<section id="ex-train">
+<div class="example">
+<h3>例题 10.5 · 计算列车及其车轮的缓慢加速</h3>
+<p class="cite-target">大型货运列车的加速非常缓慢。假设一列这样的列车由静止开始加速，使其<span data-type="position">半径为 0.350 m</span> 的车轮获得 $0.250\ \text{rad/s}^2$ 的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>。在车轮转过 <span data-type="angle">200 圈</span>后（假设不打滑）：（a）列车沿轨道前进了多远？（b）车轮的<span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>和列车的<span data-type="velocity">线<span data-concept="velocity">速度</span></span>各是多少？</p>
+<p><strong>思路</strong></p>
+<p>在（a）部分，要求的是 $\kx$，在（b）部分，要求的是 $\kw$ 和 $\kv$。已知<span data-type="angle">圈数</span> $\ktheta$、车轮的<span data-type="position">半径</span> $\kr$ 和<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span> $\kalpha$。</p>
+<p><strong>（a）的解</strong></p>
+<p><span data-type="position"><span data-concept="distance">距离</span></span> $\kx$ 很容易由<span data-concept="distance">距离</span>与<span data-concept="rotation-angle">转角</span>之间的关系求得：</p>
+$$\ktheta = \frac{\kx}{\kr}.$$
+<p>由该方程解出 $\kx$，得</p>
+$$\kx = \kr\ktheta.$$
+<p>在使用这个方程之前，我们必须先把圈数换算成<span data-concept="radian">弧度</span>，因为我们处理的是线量与转动量之间的关系：</p>
+$$\ktheta = (200\ \text{rev})\frac{2\pi\ \text{rad}}{1\ \text{rev}} = 1257\ \text{rad}.$$
+<p>现在我们可以把已知值代入 $\kx = \kr\ktheta$，求出<span data-type="position">列车沿轨道前进的<span data-concept="distance">距离</span></span>：</p>
+$$\kx = \kr\ktheta = (0.350\ \text{m})(1257\ \text{rad}) = 440\ \text{m}.$$
+<p><strong>（b）的解</strong></p>
+<p>我们不能用任何含有 $\kt$ 的方程来求 $\kw$，因为这样的方程至少会有两个未知量。方程 $\kw^2 = \kwo^2 + 2\kalpha\ktheta$ 可以用，因为除 $\kw$ 外，所有变量的值我们都知道：</p>
+$$\kw^2 = \kwo^2 + 2\kalpha\ktheta$$
+<p>对该方程取平方根并代入已知值，得</p>
+$$\begin{array}{lll}\kw &amp; = &amp; [0 + 2(0.250\ \text{rad/s}^2)(1257\ \text{rad})]^{1/2} \\ &amp; = &amp; 25.1\ \text{rad/s}.\end{array}$$
+<p>我们可以通过<span data-type="velocity">列车的线<span data-concept="velocity">速度</span></span> $\kv$ 与 $\kw$ 的关系求出它：</p>
+$$\kv = \kr\kw = (0.350\ \text{m})(25.1\ \text{rad/s}) = 8.77\ \text{m/s}.$$
+<p><strong>讨论</strong></p>
+<p><span data-type="position"><span data-concept="distance-traveled">路程</span></span>相当大，而<span data-type="velocity">末<span data-concept="velocity">速度</span></span>相当慢（略低于 32 km/h）。</p>
+</div>
+</section>
+
+<section id="microwave">
+<h2>原地旋转物体的平动</h2>
+<p class="cite-target">即使是原地旋转的物体也存在平动<span data-concept="motion">运动</span>，下面的例题就说明了这一点。图 10.8 显示了<span data-ref="fly">一只苍蝇</span>位于<span data-ref="plate">一个旋转的微波炉转盘</span>的边缘。下面的例题计算<span data-ref="fly">它</span>走过的<span data-type="position">总<span data-concept="distance">距离</span></span>。</p>
+<figure class="sim" id="sim-fly" data-figure="10.8" data-original="/media/ch10/Figure_11_02_02a.jpg" data-original-width="250" data-original-caption="该图像显示了一个微波炉转盘。在食物（连同苍蝇）被加热的过程中，苍蝇转了若干圈。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.8</span><span><span data-ref="fly">一只苍蝇</span>停在<span data-ref="plate">一个微波炉转盘</span>的外缘，该转盘的<span data-type="position">半径</span>为 $\kr$，以<span data-type="angular-rate">恒定角速度</span> $\kwb$ 转动，持续<span data-type="time">加热时间</span> $\kt$。<span data-ref="plate">转盘</span>转过<span data-type="angle">角度</span> $\ktheta = \kwb\kt$，<span data-ref="fly">苍蝇</span>沿边缘走过<span data-type="position">距离</span> $\kx = \kr\ktheta$，该距离在<span data-ref="plate">转盘</span>旁边的图像中是一条随<span data-concept="time">时间</span>变化的直线。从<span data-ref="fly">苍蝇</span>出发处到<span data-ref="fly">它</span>现在所在处的虚线是<span data-ref="fly">它</span>的<span data-type="position">位移</span>，每转完一圈，该位移就缩减为零。<span data-ref="plate">转盘</span>的起始状态与例题 10.6 相同。</span></div>
+</figure>
+<div class="example">
+<h3>例题 10.6 · 计算微波炉转盘边缘上的苍蝇所走过的距离</h3>
+<p>一个人决定用微波炉加热<span data-ref="lunch">一些午餐</span>。在此过程中，<span data-ref="fly">一只苍蝇</span>意外地飞进微波炉，落在<span data-ref="plate">旋转的转盘</span>的外缘并留在那里。如果<span data-ref="plate">转盘</span>的<span data-type="position">半径为 0.15 m</span>，以 <span data-type="angular-rate">6.0 转每分</span>转动，求<span data-ref="fly">苍蝇</span>在 <span data-type="time">2.0 min 的加热期间</span>走过的<span data-type="position">总<span data-concept="distance">距离</span></span>。（忽略启动和减速的<span data-concept="time">时间</span>。）</p>
+<p><strong>思路</strong></p>
+<p>首先求出<span data-type="angle">总圈数</span> $\ktheta$，然后求出走过的<span data-type="position">线<span data-concept="distance">距离</span></span> $\kx$。因为已知 $\kwb$ 为 6.0 转每分，所以可以用 $\ktheta = \kwb\kt$ 求出 $\ktheta$。</p>
+<p><strong>解</strong></p>
+<p>把已知值代入 $\ktheta = \kwb\kt$，得</p>
+$$\ktheta = \kwb\kt = (6.0\ \text{rpm})(2.0\ \text{min}) = 12\ \text{rev}.$$
+<p>和以往一样，在由 $\ktheta$ 这样的角量计算 $\kx$ 这样的线量之前，必须先把圈数换算成<span data-concept="radian">弧度</span>：</p>
+$$\ktheta = (12\ \text{rev})\left(\frac{2\pi\ \text{rad}}{1\ \text{rev}}\right) = 75.4\ \text{rad}.$$
+<p>现在，利用 $\kx$ 与 $\ktheta$ 之间的关系，我们可以求出<span data-type="position">走过的<span data-concept="distance-traveled">路程</span></span>：</p>
+$$\kx = \kr\ktheta = (0.15\ \text{m})(75.4\ \text{rad}) = 11\ \text{m}.$$
+<p><strong>讨论</strong></p>
+<p>这趟旅程可真不短（如果<span data-ref="fly">它</span>能活下来的话）！请注意，<span data-type="position">这段<span data-concept="distance">距离</span></span>是<span data-type="position">苍蝇走过的总<span data-concept="distance-traveled">路程</span></span>。对于完整的转圈，<span data-type="position"><span data-concept="displacement">位移</span></span>实际上为零，因为转完整圈会把<span data-ref="fly">苍蝇</span>带回<span data-ref="fly">它</span>的<span data-type="position">原来的<span data-concept="position">位置</span></span>。总<span data-concept="distance-traveled">路程</span>与<span data-concept="displacement">位移</span>之间的区别，最早是在“一维<span data-concept="kinematics">运动学</span>”中指出的。</p>
+</div>
+<div class="exercises" data-place="microwave"></div>
+</section>

@@ -1,0 +1,734 @@
+{
+ "id": "10.2",
+ "module": "m42178",
+ "chapter": "10",
+ "title": "转动运动学",
+ "short": "转动运动学",
+ "lead": "给一个车轮很大的<span data-concept=\"angular-acceleration\">角加速度</span>并持续很长<span data-concept=\"time\">时间</span>，它最终就会转得很快，并转过许多圈，就像一辆<span data-concept=\"acceleration\">加速度</span>很大的摩托车最终会跑得很快、行驶很长的<span data-concept=\"distance\">距离</span>一样。本节把这一类比对转动精确地建立起来，并把它用于<span data-ref=\"reel\">一个渔线轮</span>、一列货运列车和<span data-ref=\"plate\">微波炉转盘</span>上的<span data-ref=\"fly\">一只苍蝇</span>。",
+ "objectives": [
+  "观察转动运动学。",
+  "推导转动运动学方程。",
+  "评估转动运动学的解题策略。"
+ ],
+ "summary_html": "<ul><li>运动学是对运动的描述。</li><li>转动运动学描述<span data-concept=\"rotation-angle\">转角</span>、<span data-concept=\"angular-velocity\">角速度</span>、<span data-concept=\"angular-acceleration\">角加速度</span>和<span data-concept=\"time\">时间</span>之间的关系。</li><li>从我们在“一维运动学”中得出的四个运动学方程出发，我们可以推导出表 10.2 中的四个转动运动学方程（与它们的平动对应量一并给出）。</li><li>在这些方程中，下标 0 表示初始值（$\\kxo$ 和 $\\kto$ 是初始值），平均角速度 $\\kwb$ 和<span data-concept=\"average-velocity\">平均速度</span> $\\kvb$ 的定义如下：$\\kwb = \\frac{\\kwo + \\kw}{2}$ 和 $\\kvb = \\frac{\\kvo + \\kv}{2}$。</li></ul>",
+ "notes": "习题 2 和 4（旋转光盘上的灰尘，以及急刹车时汽车的轮胎）在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2（fs-id1815900，光盘上的灰尘）和习题 4（fs-id3055432，急刹车时汽车的轮胎）没有给出答案，因而略去。书中习题 5 的（b）（c）两问的单位印有多余的上标，卡片上将它们写作 rad/s 和 m/s²。悠悠球的照片，即图 10.9，在原书中位于习题 4 之内，但所示的是习题 5 的悠悠球，所以它连同书中的图注和来源一起放在习题 5 的卡片上。唯一的一个理解检测框有答案，就地放在正文末尾，即书中印出它的位置。本模块没有思考题，也没有 AP 备考练习；没有任何内容留给后面的页面，也没有从别的页面取来任何内容。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-reel",
+   "kind": "sim",
+   "number": "10.7",
+   "originals": [
+    "/media/ch10/Figure_11_02_01a.jpg"
+   ],
+   "original_caption": "从转动的渔线轮上放出的鱼线做直线运动。例题 10.3 和例题 10.4 考虑与渔线轮相关的转动量与线量之间的关系。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "angular-rate",
+    "angular-acceleration",
+    "position",
+    "velocity",
+    "acceleration",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note one sentence via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fly",
+   "kind": "sim",
+   "number": "10.8",
+   "originals": [
+    "/media/ch10/Figure_11_02_02a.jpg"
+   ],
+   "original_caption": "该图像显示了一个微波炉转盘。在食物（连同苍蝇）被加热的过程中，苍蝇转了若干圈。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "angular-rate",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped, theta typed, lunch named on hover on a small plate"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "rotational-kinematics",
+   "concept": "rotational-kinematic-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotational-kinematics",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinematics",
+   "concept": "tangential-angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinematics",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinematics",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinematics",
+   "concept": "rotational-translational-analogy",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinematics",
+   "concept": "kinematics-of-rotational-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "four-equations",
+   "concept": "average-angular-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "four-equations",
+   "concept": "rotational-kinematic-equations",
+   "verb": "reinforces"
+  },
+  {
+   "span": "four-equations",
+   "concept": "x-from-vbar",
+   "verb": "uses"
+  },
+  {
+   "span": "four-equations",
+   "concept": "vbar-midpoint",
+   "verb": "uses"
+  },
+  {
+   "span": "four-equations",
+   "concept": "x-quadratic",
+   "verb": "uses"
+  },
+  {
+   "span": "four-equations",
+   "concept": "v-squared",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "rotational-kinematics-strategy",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-reel",
+   "concept": "rotational-kinematic-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-reel",
+   "concept": "rotational-kinematics-strategy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-reel",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-reel",
+   "concept": "radian",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-brake",
+   "concept": "rotational-kinematic-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-brake",
+   "concept": "rotational-kinematics-strategy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-train",
+   "concept": "linear-from-angular",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-train",
+   "concept": "rotational-kinematic-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-train",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-train",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "microwave",
+   "concept": "linear-from-angular",
+   "verb": "reinforces"
+  },
+  {
+   "span": "microwave",
+   "concept": "average-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "microwave",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "microwave",
+   "concept": "displacement",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3076176",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "microwave"
+   },
+   "cite": "rotational-kinematics",
+   "prompt": "转动运动学有许多有用的关系，常以方程的形式表示。这些关系是物理定律，还是只是描述性的？（提示：同样的问题也适用于直线运动学。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "转动运动学（和直线运动学一样）是描述性的，并不代表自然定律。借助运动学，我们可以非常精确地描述许多事物，但运动学不考虑原因。例如，大的角加速度描述的是角速度非常快的变化，而不考虑其原因。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3246708",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-equations",
+   "prompt": "借助一根细绳，一个陀螺仪在 0.40 s 内由静止加速到 32 rad/s。（a）它的角加速度是多少 rad/s²？（b）在此过程中它转过多少圈？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 80,
+      "unit": "rad/s²",
+      "hint": "陀螺仪由静止开始，所以 $\\kwo = 0$，由 $\\kw = \\kwo + \\kalpha\\kt$ 可直接得到 $\\kalpha$。"
+     },
+     {
+      "part": "b",
+      "value": 1.0,
+      "unit": "rev",
+      "hint": "由 $\\theta = \\kwo\\kt + \\tfrac{1}{2}\\kalpha\\kt^2$ 或 $\\theta = \\kwb\\kt$ 求出以弧度为单位的角度，再除以每圈 $2\\pi$ rad。"
+     }
+    ],
+    "solution": "（a）$80\\ \\text{rad/s}^2$　（b）1.0 rev"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2673238",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-equations",
+   "prompt": "一个陀螺仪从 32.0 rad/s 的初角速度开始，以 $0.700\\ \\text{rad/s}^2$ 的变化率减慢。（a）它需要多长时间才能停下来？（b）它在停止之前转过多少圈？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 45.7,
+      "unit": "s",
+      "hint": "陀螺仪在减慢，所以它的角加速度为负；在 $\\kw = \\kwo + \\kalpha\\kt$ 中，当 $\\kw = 0$ 时它停下来。"
+     },
+     {
+      "part": "b",
+      "value": 116,
+      "unit": "rev",
+      "hint": "当 $\\kw = 0$ 时，方程 $\\kw^2 = \\kwo^2 + 2\\kalpha\\theta$ 不需要时间就能给出 $\\theta$；记得把弧度换算成圈数。"
+     }
+    ],
+    "solution": "（a）45.7 s　（b）116 rev"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2972882",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-train",
+   "figure": {
+    "src": "/media/ch10/Figure_11_02_03a.jpg",
+    "alt": "图中是一名男子戴着手套、带有纹身图案的左臂。他正在玩一个悠悠球，悠悠球悬在半空中，通过细线与他的手相连。背景中有一些人站着，观看这场悠悠球表演。",
+    "caption": "悠悠球是有趣的玩具，体现了重要的物理学，并且根据物理定律设计以提升性能。（来源：Beyond Neon, Flickr）"
+   },
+   "prompt": "日常应用：假设一个悠悠球的中心转轴半径为 0.250 cm，并且它的细绳正被拉动。（a）如果细绳静止不动，而悠悠球以 $1.50\\ \\text{m/s}^2$ 的加速度离开细绳，悠悠球的角加速度是多少？（b）如果它由静止开始，0.750 s 后的角速度是多少？（c）悠悠球的外半径为 3.50 cm。其边缘上一点的切向加速度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 600,
+      "unit": "rad/s²",
+      "hint": "细绳在转轴上不打滑，所以转轴边缘的线加速度为 $\\ka = \\kr\\kalpha$，其中 $\\kr$ 是以米为单位的转轴半径。"
+     },
+     {
+      "part": "b",
+      "value": 450,
+      "unit": "rad/s",
+      "hint": "由静止开始，$\\kw = \\kalpha\\kt$。"
+     },
+     {
+      "part": "c",
+      "value": 21.0,
+      "unit": "m/s²",
+      "hint": "整个悠悠球具有同一个角加速度，所以在外半径处 $\\kat = \\kr\\kalpha$，其中 $\\kr$ 取较大的值。"
+     }
+    ],
+    "solution": "（a）$600\\ \\text{rad/s}^2$　（b）450 rad/s　（c）$21.0\\ \\text{m/s}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "rotational-kinematic-equations"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotational-kinematic-equations"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotational-kinematics-strategy",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "rotational-kinematic-equations"
+  },
+  {
+   "exercise": "p3",
+   "concept": "rotational-kinematics-strategy",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "rotational-kinematic-equations"
+  },
+  {
+   "exercise": "p5",
+   "concept": "tangential-angular-acceleration",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "linear-from-angular",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "reel",
+   "label": "渔线轮",
+   "figures": [
+    "sim-reel"
+   ]
+  },
+  {
+   "id": "line",
+   "label": "鱼线",
+   "figures": [
+    "sim-reel"
+   ]
+  },
+  {
+   "id": "fly",
+   "label": "苍蝇",
+   "figures": [
+    "sim-fly"
+   ]
+  },
+  {
+   "id": "plate",
+   "label": "微波炉转盘",
+   "figures": [
+    "sim-fly"
+   ]
+  },
+  {
+   "id": "lunch",
+   "label": "转盘上的午餐",
+   "figures": [
+    "sim-fly"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "angular-velocity-time",
+   "what": "恒定角加速度下的角速度",
+   "source": "《大学物理（第2版）》，10.2 转动运动学",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "加速度 $\\ka$ 恒定。",
+       "src": "10.2"
+      },
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\ka = \\kr\\kalpha",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\mk{vo}{\\kvo} + \\mk{a}{\\ka}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kr\\kw} = \\mk{vo}{\\kr\\kwo} + \\mk{a}{\\ka}\\mk{t}{\\kt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kr\\kw} = \\mk{vo}{\\kr\\kwo} + \\mk{a}{\\kr\\kalpha}\\mk{t}{\\kt}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kw} = \\mk{vo}{\\kwo} + \\mk{a}{\\kalpha}\\mk{t}{\\kt}",
+       "uses": []
+      }
+     ],
+     "src": "10.2"
+    }
+   ]
+  },
+  {
+   "id": "rotational-kinematic-equations",
+   "what": "其余三个转动运动学方程",
+   "source": "《大学物理（第2版）》，10.2 转动运动学，表 10.2",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\kwb = \\dfrac{\\kwo + \\kw}{2}",
+       "src": "10.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{vb}{\\kvb} = \\dfrac{\\mk{vo}{\\kvo} + \\mk{v}{\\kv}}{\\mk{two}{2}}",
+      "src": "2.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\dfrac{\\mk{vo}{\\kr\\kwo} + \\mk{v}{\\kr\\kw}}{\\mk{two}{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\mk{r}{\\kr}\\,\\dfrac{\\mk{vo}{\\kwo} + \\mk{v}{\\kw}}{\\mk{two}{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\mk{r}{\\kr}\\mk{v}{\\kwb}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "vo": "v",
+        "two": "v"
+       }
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "沿圆周移动的距离为 $\\kx = \\kr\\ktheta$。",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+      "src": "表 10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vb}{\\kr\\kwb}\\mk{t}{\\kt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\ktheta} = \\mk{vb}{\\kwb}\\mk{t}{\\kt}",
+       "uses": []
+      }
+     ],
+     "src": "10.2，表 10.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "加速度 $\\ka$ 恒定。",
+       "src": "10.2"
+      },
+      {
+       "text": "沿圆周移动的距离为 $\\kx = \\kr\\ktheta$。",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\ka = \\kr\\kalpha",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{vo}{\\kvo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt^2}",
+      "src": "表 10.2",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vo}{\\kvo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vo}{\\kr\\kwo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt^2}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vo}{\\kr\\kwo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\kr\\kalpha\\kt^2}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\ktheta} = \\mk{vo}{\\kwo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\kalpha\\kt^2}",
+       "uses": []
+      }
+     ],
+     "src": "10.2，表 10.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "加速度 $\\ka$ 恒定。",
+       "src": "10.2"
+      },
+      {
+       "text": "沿圆周移动的距离为 $\\kx = \\kr\\ktheta$。",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\ka = \\kr\\kalpha",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{x}{\\kx}",
+      "src": "表 10.2",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{x}{\\kr\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kr^2\\kw^2} = \\mk{vo}{\\kr^2\\kwo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{x}{\\kr\\ktheta}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kr^2\\kw^2} = \\mk{vo}{\\kr^2\\kwo^2} + \\mk{two}{2}\\mk{a}{\\kr\\kalpha}\\mk{x}{\\kr\\ktheta}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kw^2} = \\mk{vo}{\\kwo^2} + \\mk{two}{2}\\mk{a}{\\kalpha}\\mk{x}{\\ktheta}",
+       "uses": []
+      }
+     ],
+     "src": "10.2，表 10.2"
+    }
+   ]
+  }
+ ]
+}

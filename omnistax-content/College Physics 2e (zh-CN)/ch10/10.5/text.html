@@ -1,0 +1,147 @@
+<section id="angular-momentum">
+<h2>角动量，线动量的转动类比</h2>
+<p class="cite-target">地球为什么会一直转下去？最初又是什么让它转起来的？一位滑冰者只需把手臂收拢，怎么就能越转越快？她为什么不必施加<span data-concept="torque">力矩</span>就能转得更快？这类问题的答案都基于<span data-concept="angular-momentum">角动量</span>，即<span data-concept="linear-momentum">线动量</span>的转动类比。</p>
+<p>到现在为止，规律已经很清楚——每一种转动现象都有与之直接对应的平动类比。那么，很自然地可以把<strong><span data-concept="angular-momentum">角动量</span></strong> $\kL$ 定义为</p>
+$$\kL = \kI\kw.$$
+<p>这个方程与<span data-concept="linear-momentum">线动量</span>的定义 $\kp = \km\kv$ 相类似。<span data-concept="linear-momentum">线动量</span>的<span data-concept="units">单位</span>是 $\text{kg}\cdot\text{m/s}$，而<span data-concept="angular-momentum">角动量</span>的<span data-concept="units">单位</span>是 $\text{kg}\cdot\text{m}^2\text{/s}$。正如我们所预料的，<span data-concept="moment-of-inertia">转动惯量</span> $\kI$ 很大的物体，比如地球，其<span data-concept="angular-momentum">角动量</span>也非常大。<span data-concept="angular-velocity">角速度</span> $\kw$ 很大的物体，比如离心机，其<span data-concept="angular-momentum">角动量</span>也相当大。</p>
+<div class="note">
+<div class="eyebrow">建立联系</div>
+<p><span data-concept="angular-momentum">角动量</span>与<span data-concept="linear-momentum">线动量</span>完全类似，后者最早是在“<span data-concept="uniform-circular-motion">匀速圆周运动</span>与引力”中介绍的。它在使转动延续下去这一点上有同样的含义，并且在合外<span data-concept="torque">力矩</span>为零时守恒。<span data-concept="angular-momentum">角动量</span>和<span data-concept="linear-momentum">线动量</span>一样，也是<span data-concept="atom">原子</span>和亚原子粒子的一种性质。</p>
+</div>
+<div class="example" id="ex-earth">
+<h3>例题 10.11 · 计算地球的角动量</h3>
+<h4>思路</h4>
+<p>题目的叙述中没有给出任何信息，所以我们必须先查到相关数据，才能计算 $\kL = \kI\kw$。首先，根据图 10.12，球体的<span data-concept="moment-of-inertia">转动惯量</span>公式为</p>
+$$\kI = \frac{2\kM\kR^2}{5}$$
+<p>因此</p>
+$$\kL = \kI\kw = \frac{2\kM\kR^2\kw}{5}.$$
+<p><span data-type="mass">地球的<span data-concept="mass">质量</span></span> $\kM$ 为 $5.979 \times 10^{24}\ \text{kg}$，<span data-type="position">它的半径</span> $\kR$ 为 $6.376 \times 10^{6}\ \text{m}$。<span data-type="angular-rate">地球的<span data-concept="angular-velocity">角速度</span></span> $\kw$ 当然恰好是每天转一圈，但为了用 <span data-concept="si-units">SI 单位</span>进行计算，我们必须把 $\kw$ 换算成<span data-concept="radian">弧度</span>每<span data-concept="second">秒</span>。</p>
+<h4>解</h4>
+<p>用 $2\pi$ rad 代替 rev，并把 1 天近似为 24 小时，即 $8.64 \times 10^{4}\ \text{s}$，得到</p>
+$$\begin{aligned}\kL &= 0.4(5.979 \times 10^{24}\ \text{kg})(6.376 \times 10^{6}\ \text{m})^2\left(\frac{1\ \text{rev}}{\text{d}}\right)\\ &= 9.72 \times 10^{37}\ \text{kg}\cdot\text{m}^2\cdot\text{rev/d}.\end{aligned}$$
+<p>用 $2\pi$ rad 代替 $1$ rev，用 $8.64 \times 10^{4}\ \text{s}$ 代替 1 天，得到</p>
+$$\begin{aligned}\kL &= (9.72 \times 10^{37}\ \text{kg}\cdot\text{m}^2)\left(\frac{2\pi\ \text{rad/rev}}{8.64 \times 10^{4}\ \text{s/d}}\right)(1\ \text{rev/d})\\ &= 7.07 \times 10^{33}\ \text{kg}\cdot\text{m}^2\text{/s}.\end{aligned}$$
+<h4>讨论</h4>
+<p>这个数很大，说明地球正如预期的那样，具有<span data-type="angular-momentum">极大的<span data-concept="angular-momentum">角动量</span></span>。这个答案是近似的，因为在估算<span data-type="rotational-inertia">它的<span data-concept="moment-of-inertia">转动惯量</span></span>时，我们假设地球的<span data-concept="density">密度</span>是恒定的。</p>
+</div>
+</section>
+
+<section id="torque-and-angular-momentum">
+<h2>力矩改变角动量</h2>
+<p class="cite-target">当你推旋转木马、拨动自行车车轮或打开一扇门时，你就在施加<span data-concept="torque">力矩</span>。如果你施加的<span data-concept="torque">力矩</span>大于与之相反的<span data-concept="torque">力矩</span>，转动就会加速，<span data-concept="angular-momentum">角动量</span>也随之增大。合<span data-concept="torque">力矩</span>越大，$\kL$ 增大得越快。<span data-concept="torque">力矩</span>与<span data-concept="angular-momentum">角动量</span>之间的关系为</p>
+$$\text{合力矩}\;\ktau = \frac{\kdLang}{\kdt}.$$
+<p>这个表达式与<span data-concept="force">力</span>和<span data-concept="linear-momentum">线动量</span>之间的关系 $\kF = \kdp/\kdt$ 完全类似。方程 $\text{合力矩}\;\ktau = \frac{\kdLang}{\kdt}$ 非常基本，适用范围很广。事实上，它就是牛顿第二<span data-concept="law">定律</span>的转动形式。</p>
+<div class="example" id="ex-lazy-susan">
+<h3>例题 10.12 · 计算给旋转餐盘注入角动量的力矩</h3>
+<p>图 10.23 显示了<span data-ref="lazy-susan">一个旋转餐盘，常被称为 lazy Susan</span>，正被<span data-ref="person">一位为觅食而来的人</span>转动。假设<span data-ref="person">这个人</span>施加一个 <span data-type="force">2.50 N 的<span data-concept="force">力</span></span>，方向垂直于<span data-ref="lazy-susan">旋转餐盘</span>的 <span data-type="position">0.260 m 半径</span>，作用时间为 <span data-type="time">0.150 s</span>。（a）若<span data-ref="lazy-susan">旋转餐盘</span>从静止开始转动，并假设<span data-concept="friction">摩擦力</span>可以忽略，<span data-ref="lazy-susan">它</span><span data-type="angular-momentum">末<span data-concept="angular-momentum">角动量</span></span>是多少？（b）已知<span data-ref="lazy-susan">它的</span><span data-type="mass"><span data-concept="mass">质量</span></span>为 4.00 kg，并假设<span data-ref="lazy-susan">它的</span><span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>与圆盘的相同，那么<span data-ref="lazy-susan">旋转餐盘</span><span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>是多少？</p>
+<figure class="sim" id="sim-lazy-susan" data-figure="10.23" data-original="/media/ch10/Figure_11_05_01a.jpg" data-original-width="250" data-original-caption="一位参加聚会的人对旋转餐盘施加力矩，使它转动起来。方程 net τ = ΔL/Δt 给出了力矩与所产生的角动量之间的关系。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.23</span><span>你从上方俯视静止的<span data-ref="lazy-susan">旋转餐盘</span>，<span data-ref="person">一只手</span>在<span data-type="time">很短的时间</span>内推<span data-ref="lazy-susan">它</span>的边缘，如例题 10.12 所示。<span data-type="force">推力</span>持续期间，一段转动的弧线标出<span data-type="torque">合力矩</span>，<span data-ref="lazy-susan">餐盘</span>的<span data-type="angular-momentum">角动量</span>以恒定的速率增大。<span data-ref="person">手</span>一松开，<span data-ref="lazy-susan">餐盘</span>就带着<span data-ref="lazy-susan">它</span>获得的<span data-type="angular-momentum">角动量</span>滑行。下方的图给出<span data-type="angular-momentum">角动量</span>随<span data-concept="time">时间</span>的变化。改变<span data-type="torque">力矩</span>、<span data-type="time">力矩作用的时间</span>或<span data-ref="lazy-susan">餐盘</span>的<span data-type="rotational-inertia">转动惯量</span>：<span data-type="angular-momentum">所传递的角动量</span>只取决于<span data-type="torque">力矩</span>和<span data-type="time">时间</span>，而<span data-type="angular-rate">末角速度</span>还取决于<span data-ref="lazy-susan">餐盘</span>。</span></div>
+</figure>
+<h4>思路</h4>
+<p>我们可以通过解出 $\text{合力矩}\;\ktau = \frac{\kdLang}{\kdt}$ 中的 $\kdLang$，并利用已知信息计算<span data-type="torque"><span data-concept="torque">力矩</span></span>，来求出<span data-type="angular-momentum"><span data-concept="angular-momentum">角动量</span></span>。因为<span data-ref="lazy-susan">旋转餐盘</span>从静止开始转动，所以<span data-type="angular-momentum">末<span data-concept="angular-momentum">角动量</span></span>等于<span data-type="angular-momentum"><span data-concept="angular-momentum">角动量</span>的变化量</span>。也就是说，$\kdLang = \kL$。要求<span data-type="angular-rate">末<span data-concept="velocity">速度</span></span>，我们必须根据 $\kL = \kI\kw$ 中 $\kL$ 的定义来计算 $\kw$。</p>
+<h4>（a）的解</h4>
+<p>将 $\text{合力矩}\;\ktau = \frac{\kdLang}{\kdt}$ 对 $\kdLang$ 求解，得到</p>
+$$\kdLang = (\text{合力矩}\;\ktau)\kdt.$$
+<p>因为<span data-type="force">该<span data-concept="force">力</span></span>垂直于 $\kr$，所以 $\text{合力矩}\;\ktau = \kr\kF$，于是</p>
+$$\begin{aligned}\kL &= \kr\kF\kdt = (0.260\ \text{m})(2.50\ \text{N})(0.150\ \text{s})\\ &= 9.75 \times 10^{-2}\ \text{kg}\cdot\text{m}^2\text{/s}.\end{aligned}$$
+<h4>（b）的解</h4>
+<p><span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>可以根据<span data-concept="angular-momentum">角动量</span>的定义算出，</p>
+$$\kL = \kI\kw.$$
+<p>对 $\kw$ 求解，并把圆盘<span data-concept="moment-of-inertia">转动惯量</span>的公式代入所得方程，得到</p>
+$$\kw = \frac{\kL}{\kI} = \frac{\kL}{\frac{1}{2}\kM\kR^2}.$$
+<p>再把已知值代入上式，得</p>
+$$\kw = \frac{9.75 \times 10^{-2}\ \text{kg}\cdot\text{m}^2\text{/s}}{(0.500)(4.00\ \text{kg})(0.260\ \text{m})^2} = 0.721\ \text{rad/s}.$$
+<h4>讨论</h4>
+<p>请注意，<span data-type="angular-momentum">所传递的<span data-concept="angular-momentum">角动量</span></span>并不取决于物体的任何性质，只取决于<span data-concept="torque">力矩</span>和<span data-concept="time">时间</span>。<span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>相当于 <span data-type="time">8.71 s</span> 转一圈（求这个<span data-concept="time">时间</span>周期留给读者作为练习），这对旋转餐盘来说大致合理。</p>
+</div>
+<div class="example" id="ex-kick">
+<h3>例题 10.13 · 计算踢腿时的力矩</h3>
+<p>图 10.24 中画出<span data-ref="leg">腿</span>的那个人，通过大腿肌肉施加 <span data-type="force">2000 N 的<span data-concept="force">力</span></span>来踢<span data-ref="leg">他的腿</span>。<span data-type="position">有效<span data-concept="perpendicular-lever-arm">垂直力臂</span></span>为 2.20 cm。已知<span data-ref="leg">小腿</span>的<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>为 $1.25\ \text{kg}\cdot\text{m}^2$，（a）求<span data-ref="leg">腿</span>的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>。（b）忽略<span data-concept="force">重力</span>，<span data-ref="leg">腿</span>的<span data-type="energy"><span data-concept="rotational-kinetic-energy">转动动能</span></span>在<span data-ref="leg">它</span>转过 $57.3^\circ$（1.00 rad）后是多少？</p>
+<figure class="sim" id="sim-kick" data-figure="10.24" data-original="/media/ch10/Figure_11_05_02a.jpg" data-original-width="250" data-original-caption="大腿的肌肉通过对膝施加力矩，使小腿获得角加速度，并赋予它转动动能。F 是垂直于 r 的矢量。本例题考察的就是这种情形。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.24</span><span><span data-ref="leg">小腿</span>从膝部悬垂下来，大腿肌肉对膝施加<span data-type="torque">一个力矩</span>，如例题 10.13 所示。<span data-ref="leg">腿</span>从静止开始，向前摆过你设定的<span data-type="angle">角度</span>，一路越转越快，<span data-ref="leg">它</span>旁边的图给出<span data-ref="leg">腿</span>的<span data-type="energy">转动动能</span>随<span data-ref="leg">它</span>已转过的<span data-type="angle">角度</span>的变化。改变<span data-type="torque">力矩</span>或<span data-ref="leg">腿</span>的<span data-type="rotational-inertia">转动惯量</span>，观察<span data-ref="leg">它</span>摆动得多快，以及到踢腿结束时<span data-type="torque">力矩</span>给了<span data-ref="leg">它</span>多少<span data-type="energy">动能</span>。</span></div>
+</figure>
+<h4>思路</h4>
+<p><span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>可以用牛顿第二<span data-concept="law">定律</span>的转动类比求出，即 $\kalpha = \text{合力矩}\;\ktau/\kI$。<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span> $\kI$ 已给出，<span data-type="torque"><span data-concept="torque">力矩</span></span>很容易根据<span data-type="force">已知的<span data-concept="force">力</span></span>和<span data-type="position"><span data-concept="perpendicular-lever-arm">垂直力臂</span></span>求出。一旦知道了<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span> $\kalpha$，就可以计算<span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>和<span data-type="energy"><span data-concept="rotational-kinetic-energy">转动动能</span></span>。</p>
+<h4>（a）的解</h4>
+<p>根据牛顿第二<span data-concept="law">定律</span>的转动类比，<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span> $\kalpha$ 为</p>
+$$\kalpha = \frac{\text{合力矩}\;\ktau}{\kI}.$$
+<p>因为<span data-type="force">该<span data-concept="force">力</span></span>和<span data-type="position"><span data-concept="perpendicular-lever-arm">垂直力臂</span></span>是已知的，并且<span data-ref="leg">腿</span>是竖直的，使得<span data-ref="leg">它</span>的<span data-type="force"><span data-concept="weight">重力</span></span>不产生<span data-concept="torque">力矩</span>，所以<span data-type="torque">合<span data-concept="torque">力矩</span></span>为</p>
+$$\begin{aligned}\text{合力矩}\;\ktau &= \krperp\kF\\ &= (0.0220\ \text{m})(2000\ \text{N})\\ &= 44.0\ \text{N}\cdot\text{m}.\end{aligned}$$
+<p>将<span data-type="torque"><span data-concept="torque">力矩</span></span>的这个值和<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>的已知值代入 $\kalpha$ 的表达式，得</p>
+$$\kalpha = \frac{44.0\ \text{N}\cdot\text{m}}{1.25\ \text{kg}\cdot\text{m}^2} = 35.2\ \text{rad/s}^2.$$
+<h4>（b）的解</h4>
+<p><span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>可以根据运动学表达式算出，</p>
+$$\kw^2 = \kwo^2 + 2\kalpha\ktheta$$
+<p>或者</p>
+$$\kw^2 = 2\kalpha\ktheta$$
+<p>因为<span data-type="angular-rate">初<span data-concept="angular-velocity">角速度</span></span>为零。<span data-type="energy">转动<span data-concept="kinetic-energy">动能</span></span>为</p>
+$$\kKErot = \frac{1}{2}\kI\kw^2$$
+<p>所以最方便的做法是使用刚刚求得的 $\kw^2$ 的值和<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>的已知值。于是<span data-type="energy"><span data-concept="kinetic-energy">动能</span></span>为</p>
+$$\begin{aligned}\kKErot &= 0.5(1.25\ \text{kg}\cdot\text{m}^2)(70.4\ \text{rad}^2\text{/s}^2)\\ &= 44.0\ \text{J}.\end{aligned}$$
+<h4>讨论</h4>
+<p>对于一个从图示<span data-concept="position">位置</span>开始踢<span data-ref="leg">腿</span>的人来说，这些值是合理的。在（a）问中，<span data-type="force">腿的<span data-concept="weight">重力</span></span>可以忽略，因为当<span data-ref="leg">小腿</span>的<span data-concept="center-of-gravity">重心</span>正好位于膝部支点的正下方时，它不产生<span data-concept="torque">力矩</span>。在（b）问中，<span data-type="force">大腿施加的<span data-concept="force">力</span></span>非常大，以至于<span data-type="torque">它的<span data-concept="torque">力矩</span></span>远大于<span data-type="force">小腿的<span data-concept="weight">重力</span></span>在<span data-ref="leg">它</span>转动时所产生的力矩。<span data-type="energy">赋予小腿的<span data-concept="rotational-kinetic-energy">转动动能</span></span>已足够大，通过在踢腿时把其中一部分<span data-concept="energy">能量</span>传递出去，就能使球获得相当大的<span data-concept="velocity">速度</span>。</p>
+</div>
+<div class="note">
+<div class="eyebrow">建立联系：守恒定律</div>
+<p><span data-concept="angular-momentum">角动量</span>和<span data-concept="energy">能量</span>、<span data-concept="linear-momentum">线动量</span>一样，是守恒的。这条普遍适用的<span data-concept="law">定律</span>，是物理<span data-concept="law">定律</span>背后统一性的又一标志。合外<span data-concept="torque">力矩</span>为零时，<span data-concept="angular-momentum">角动量</span>守恒，正如<span data-concept="net-external-force">合外力</span>为零时，<span data-concept="linear-momentum">线动量</span>守恒一样。</p>
+</div>
+</section>
+
+<section id="conservation">
+<h2>角动量守恒</h2>
+<p class="cite-target">我们现在可以理解地球为什么会一直转下去了。正如我们在上一个例题中看到的，$\kdLang = (\text{合力矩}\;\ktau)\kdt$。这个方程的意思是，要改变<span data-concept="angular-momentum">角动量</span>，必须有<span data-concept="torque">力矩</span>在一段<span data-concept="time">时间</span>内起作用。因为地球具有<span data-type="angular-momentum">很大的<span data-concept="angular-momentum">角动量</span></span>，所以要改变<span data-type="angular-rate">它的转速</span>，就需要一个<span data-type="torque">很大的<span data-concept="torque">力矩</span></span>作用很长的<span data-concept="time">时间</span>。那么，有哪些外<span data-concept="torque">力矩</span>呢？潮汐<span data-concept="friction">摩擦</span>施加的<span data-concept="torque">力矩</span>使地球的自转变慢，但要经过几千万年，这种变化才会变得非常显著。最近的研究表明，大约 9 亿年前，<span data-type="time">一天的长度</span>是 18 h。只有潮汐会对地球施加显著的阻碍<span data-concept="torque">力矩</span>，因此地球会继续转下去，尽管会越来越慢，但还能转好几十亿年。</p>
+<p>实际上，我们这里得到的是另一条守恒<span data-concept="law">定律</span>。如果合<span data-concept="torque">力矩</span>为<em>零</em>，那么<span data-concept="angular-momentum">角动量</span>就是恒定的，即<em>守恒</em>的。考虑合<span data-concept="torque">力矩</span>为零的情形，对 $\text{合力矩}\;\ktau = \frac{\kdLang}{\kdt}$ 加以分析，就可以严格地看出这一点。</p>
+<figure class="dv" id="drv-angular-momentum-conservation"></figure>
+<p>这些表达式就是<strong><span data-concept="conservation-of-angular-momentum">角动量守恒定律</span></strong>。<span data-concept="conservation-laws">守恒定律</span>有多重要，就有多稀少。</p>
+</section>
+
+<section id="skater">
+<h2>旋转的滑冰者：转动惯量越小，转得越快</h2>
+<p class="cite-target">图 10.25 给出了一个<span data-concept="angular-momentum">角动量</span>守恒的例子，图中<span data-ref="skater">一位滑冰者</span>正在做旋转动作。<span data-type="torque">她所受的合<span data-concept="torque">力矩</span></span>非常接近于零，因为<span data-ref="skater">她</span>的冰刀与冰面之间的<span data-concept="friction">摩擦力</span>相对很小，而且<span data-type="force"><span data-concept="friction">摩擦力</span></span>作用在非常靠近支点的地方。（$\kF$ 和 $\kr$ 都很小，所以 $\ktau$ 小到可以忽略。）因此，<span data-ref="skater">她</span>可以旋转相当长的时间。<span data-ref="skater">她</span>还能做另一件事：<span data-ref="skater">她</span>可以通过把<span data-ref="skater">她的</span>手臂和腿收拢来增大<span data-ref="skater">她的</span><span data-type="angular-rate">转速</span>。为什么把<span data-ref="skater">她的</span>手臂和腿收拢会使<span data-ref="skater">她的</span><span data-type="angular-rate">转速</span>增大？答案是<span data-ref="skater">她的</span><span data-type="angular-momentum"><span data-concept="angular-momentum">角动量</span></span>是恒定的，所以</p>
+$$\kL = \kLprime.$$
+<p>用<span data-concept="moment-of-inertia">转动惯量</span>来表示这个方程，即</p>
+$$\kI\kw = \kIprime\kwprime,$$
+<p>其中带撇的量指的是<span data-ref="skater">她</span>收拢<span data-ref="skater">她的</span>手臂、减小<span data-ref="skater">她的</span><span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>之后的情况。因为 $\kIprime$ 较小，所以<span data-type="angular-rate"><span data-concept="angular-velocity">角速度</span></span> $\kwprime$ 必须增大，才能使<span data-type="angular-momentum"><span data-concept="angular-momentum">角动量</span></span>保持恒定。这种变化可能非常显著，下面的例题就说明了这一点。</p>
+<figure class="photo" id="fig-skater" data-figure="10.25">
+  <img src="/media/ch10/Figure_11_05_03.jpg" data-width="275" alt="图 a 显示一位滑冰者在冰刀刀尖上旋转，双臂和一条腿都伸展开。图 b 显示这位滑冰者在一只冰刀的刀尖上旋转，双臂交叉，一条腿架在另一条腿上。">
+  <figcaption><span class="eyebrow">Figure 10.25</span><span>（a）<span data-ref="skater">一位滑冰者</span>正用<span data-ref="skater">她的</span>冰刀刀尖旋转，<span data-ref="skater">她的</span>双臂伸开。因为<span data-type="torque">她所受的合力矩</span>小到可以忽略，所以<span data-ref="skater">她的</span><span data-type="angular-momentum">角动量</span>守恒。在下一幅图中，<span data-ref="skater">她</span>收拢<span data-ref="skater">她的</span>手臂，减小了<span data-ref="skater">她的</span><span data-type="rotational-inertia">转动惯量</span>，<span data-ref="skater">她的</span><span data-type="angular-rate">转速</span>因此大大增加。<span data-type="energy">她为收拢手臂所做的功</span>使<span data-type="energy">转动动能</span>增加。</span></figcaption>
+</figure>
+<figure class="sim" id="sim-skater">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="skater">一位滑冰者</span>带着<span data-ref="skater">她</span>起初具有的<span data-type="angular-momentum">角动量</span>旋转，<span data-ref="skater">她</span>旁边的四根条形分别显示<span data-ref="skater">她的</span><span data-type="rotational-inertia">转动惯量</span>、<span data-ref="skater">她的</span><span data-type="angular-rate">角速度</span>、<span data-ref="skater">她的</span><span data-type="angular-momentum">角动量</span>和<span data-ref="skater">她的</span><span data-type="energy">转动动能</span>。把<span data-type="rotational-inertia">转动惯量</span>从 2.34 kg·m² 向下拖到 0.363 kg·m²，就像<span data-ref="skater">例题 10.14 中的滑冰者</span>收拢<span data-ref="skater">她的</span>手臂那样，可以看到<span data-type="angular-rate">角速度</span>恰好按<span data-type="rotational-inertia">转动惯量</span>减小的倍数上升，而<span data-type="angular-momentum">角动量</span>的条形保持不动。<span data-type="energy">动能</span>也在上升，其增加量就是<span data-ref="skater">她</span>收拢<span data-ref="skater">她的</span>手臂时所做的<span data-type="energy">功</span>。</span></div>
+</figure>
+<div class="example" id="ex-skater">
+<h3>例题 10.14 · 计算旋转滑冰者的角动量</h3>
+<p>假设<span data-ref="skater">一位滑冰者</span>，比如<span data-ref="skater">图 10.25 中的那一位</span>，正以 <span data-type="angular-rate">0.800 rev/ s</span> 的转速旋转，<span data-ref="skater">她的</span>双臂伸开。<span data-ref="skater">她</span>的<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>在<span data-ref="skater">她的</span>双臂伸开时为 $2.34\ \text{kg}\cdot\text{m}^2$，在<span data-ref="skater">她的</span>双臂靠近<span data-ref="skater">她的</span>身体时为 $0.363\ \text{kg}\cdot\text{m}^2$。（这些<span data-concept="moment-of-inertia">转动惯量</span>是基于对一位<span data-type="mass">质量为 60.0 kg</span>的<span data-ref="skater">滑冰者</span>所作的合理假设得出的。）（a）<span data-ref="skater">她</span>收拢<span data-ref="skater">她的</span>手臂后，<span data-ref="skater">她的</span><span data-type="angular-rate"><span data-concept="angular-velocity">角速度</span></span>以转每<span data-concept="second">秒</span>计是多少？（b）<span data-ref="skater">她</span>这样做之前和之后，<span data-ref="skater">她的</span><span data-type="energy"><span data-concept="rotational-kinetic-energy">转动动能</span></span>各是多少？</p>
+<h4>思路</h4>
+<p>在本题的第一问中，我们要求的是<span data-ref="skater">滑冰者</span>在<span data-ref="skater">她</span>收拢<span data-ref="skater">她的</span>手臂之后的<span data-type="angular-rate"><span data-concept="angular-velocity">角速度</span></span> $\kwprime$。为了求出这个量，我们利用<span data-concept="angular-momentum">角动量</span>守恒，并注意到<span data-type="rotational-inertia">各个<span data-concept="moment-of-inertia">转动惯量</span></span>和<span data-type="angular-rate">初<span data-concept="angular-velocity">角速度</span></span>都是已知的。要求<span data-type="energy">初、末<span data-concept="kinetic-energy">动能</span></span>，我们使用<span data-concept="rotational-kinetic-energy">转动动能</span>的定义，即</p>
+$$\kKErot = \frac{1}{2}\kI\kw^2.$$
+<h4>（a）的解</h4>
+<p>因为<span data-concept="torque">力矩</span>可以忽略（如上所述），所以 $\kI\kw = \kIprime\kwprime$ 所表示的<span data-concept="angular-momentum">角动量</span>守恒是适用的。于是，</p>
+$$\kL = \kLprime$$
+<p>或</p>
+$$\kI\kw = \kIprime\kwprime$$
+<p>对 $\kwprime$ 求解，并把已知值代入所得方程，得</p>
+$$\begin{aligned}\kwprime &= \frac{\kI}{\kIprime}\kw = \left(\frac{2.34\ \text{kg}\cdot\text{m}^2}{0.363\ \text{kg}\cdot\text{m}^2}\right)(0.800\ \text{rev/s})\\ &= 5.16\ \text{rev/s}.\end{aligned}$$
+<h4>（b）的解</h4>
+<p><span data-concept="rotational-kinetic-energy">转动动能</span>由下式给出</p>
+$$\kKErot = \frac{1}{2}\kI\kw^2.$$
+<p>把已知值代入该方程，并把<span data-type="angular-rate"><span data-concept="angular-velocity">角速度</span></span>换算成 rad/s，就得到初始值：</p>
+$$\begin{aligned}\kKErot &= (0.5)(2.34\ \text{kg}\cdot\text{m}^2)\left((0.800\ \text{rev/s})(2\pi\ \text{rad/rev})\right)^2\\ &= 29.6\ \text{J}.\end{aligned}$$
+<p><span data-type="energy">末<span data-concept="rotational-kinetic-energy">转动动能</span></span>为</p>
+$$\kKErotprime = \frac{1}{2}\kIprime\kwprime^2.$$
+<p>把已知值代入这个方程，得</p>
+$$\begin{aligned}\kKErotprime &= (0.5)(0.363\ \text{kg}\cdot\text{m}^2)\left[(5.16\ \text{rev/s})(2\pi\ \text{rad/rev})\right]^2\\ &= 191\ \text{J}.\end{aligned}$$
+<h4>讨论</h4>
+<p>在两问中，都有惊人的增大。第一，<span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>很大，不过大多数世界级滑冰者能达到与此相当的转速。第二，<span data-type="energy">末<span data-concept="kinetic-energy">动能</span></span>远大于<span data-type="energy">初<span data-concept="kinetic-energy">动能</span></span>。<span data-type="energy"><span data-concept="rotational-kinetic-energy">转动动能</span>的增加</span>来自<span data-ref="skater">滑冰者</span>在收拢<span data-ref="skater">她的</span>手臂时所做的<span data-type="energy"><span data-concept="work">功</span></span>。<span data-type="energy">这部分<span data-concept="work">功</span></span>是内<span data-concept="work">功</span>，它消耗了<span data-ref="skater">滑冰者的</span><span data-type="energy">食物<span data-concept="energy">能量</span></span>中的一部分。</p>
+</div>
+</section>
+
+<section id="collapse">
+<h2>龙卷风、太阳系和漂浮的航天员</h2>
+<p class="cite-target">还有其他几个例子，说明物体会因为某种原因减小了<span data-concept="moment-of-inertia">转动惯量</span>而使转速增大。龙卷风就是一个例子。产生龙卷风的风暴系统在缓慢转动。当转动半径变小时，哪怕只是在局部区域，<span data-concept="angular-velocity">角速度</span>也会增大，有时会增大到龙卷风那样猛烈的程度。地球是另一个例子。我们的星球诞生于<span data-ref="cloud">一个巨大的气体和尘埃云</span>，它的转动来自一个更大的云中的<span data-concept="turbulent-flow">湍流</span>。<span data-concept="force">引力</span>使<span data-ref="cloud">这团云</span>收缩，<span data-type="angular-rate">转速</span>也随之增大。（见图 10.26。）</p>
+<figure class="sim" id="sim-cloud" data-figure="10.26" data-original="/media/ch10/Figure_11_05_04a.jpg" data-original-width="350" data-original-caption="太阳系由一团最初在转动的气体和尘埃云凝聚而成。行星的轨道运动和自转与最初的自转方向相同，并使母云的角动量守恒。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.26</span><span><span data-ref="cloud">一团缓慢转动的气体和尘埃云</span>在<span data-ref="cloud">自身</span>引力的作用下收缩，随着<span data-ref="cloud">它</span>向内收拢，<span data-ref="cloud">它</span>转得越来越快，在<span data-ref="cloud">云</span>最致密的地方形成一个中心天体。场景旁边的三根条形，把<span data-ref="cloud">云</span>的<span data-type="rotational-inertia">转动惯量</span>和<span data-type="angular-rate">角速度</span>与它们的起始值作比较，而<span data-type="angular-momentum">角动量</span>的条形保持不动。设定<span data-ref="cloud">云</span>收缩到什么程度，观察<span data-type="angular-rate">角速度</span>按<span data-type="position">半径</span>减小的倍数的平方上升。</span></div>
+</figure>
+<p>就人体<span data-concept="motion">运动</span>而言，当身体与环境相互作用，比如脚蹬离地面时，我们不会指望<span data-concept="angular-momentum">角动量</span>守恒。在国际空间站上漂浮于太空中的航天员，如果静止不动，则相对于飞船内部没有<span data-concept="angular-momentum">角动量</span>。只要他们不借助飞船侧壁推自己一把，无论怎样扭动身体，他们的身体都将一直保持这个零值。</p>
+<div class="exercises" data-place="collapse"></div>
+</section>

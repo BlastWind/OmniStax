@@ -1,0 +1,94 @@
+<section id="force-and-rotation">
+<h2>改变转动需要力</h2>
+<p class="cite-target">如果你曾让自行车车轮转起来，或推过旋转木马，你就知道需要<span data-concept="force">力</span>才能改变<span data-concept="angular-velocity">角速度</span>，如图 10.10 所示。事实上，你的直觉在预测所涉及的许多因素时是可靠的。例如，我们知道，如果推门的位置离铰链太近，门就会开得很慢。此外，我们还知道，门的质量越大，开得越慢。第一个例子意味着，<span data-concept="force">力</span>的作用点离支点越远，<span data-concept="angular-acceleration">角加速度</span>就越大；另一个含义是，<span data-concept="angular-acceleration">角加速度</span>与<span data-concept="mass">质量</span>成反比。这些关系应该看起来与<span data-concept="force">力</span>、<span data-concept="mass">质量</span>和<span data-concept="acceleration">加速度</span>之间我们熟悉的关系非常相似，后者体现在<span data-concept="newtons-second-law">牛顿第二定律</span>中。事实上，<span data-concept="force">力</span>和<span data-concept="mass">质量</span>都有精确的转动类比。</p>
+<figure class="sim" id="sim-bike-wheel" data-figure="10.10" data-original="/media/ch10/Figure_11_03_01a.jpg" data-original-width="200" data-original-caption="要让自行车车轮转起来需要力。力越大，产生的角加速度越大。车轮的质量越大，角加速度越小。如果你推的是离车轴更近的辐条，角加速度会更小。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.10</span><span><span data-ref="wheel">一个自行车车轮</span>可以绕<span data-ref="wheel">它的</span>车轴自由转动，<span data-ref="hand">一只手</span>以<span data-type="force">一个力</span> $\kF$ 拉<span data-ref="wheel">它</span>，拉力的作用点与车轴相距<span data-type="position">一段距离</span> $\kr$。<span data-ref="wheel">车轮</span>从静止开始，在<span data-type="force">拉力</span>持续期间越转越快，<span data-ref="wheel">它</span>获得的<span data-type="angular-acceleration">角加速度</span>和<span data-ref="wheel">它</span>达到的<span data-type="angular-rate">角速度</span>会随着<span data-ref="wheel">它</span>的转动读出。拉得更用力，<span data-ref="wheel">它</span>就转得更快；让<span data-ref="wheel">车轮</span>的质量更大，<span data-ref="wheel">它</span>就转得更慢；把<span data-type="force">拉力</span>移向车轴，<span data-type="force">同样的力</span>起的作用就更小。</span></div>
+</figure>
+</section>
+
+<section id="point-mass">
+<h2>质点的牛顿第二定律的转动类比</h2>
+<p class="cite-target">为了建立<span data-concept="force">力</span>、<span data-concept="mass">质量</span>、半径和<span data-concept="angular-acceleration">角加速度</span>之间的精确关系，考虑如图 10.11 所示的情形：对<span data-ref="point-mass">一个<span data-concept="mass">质点</span></span> $\km$ 施加<span data-type="force">一个<span data-concept="force">力</span></span> $\kF$，该质点与<span data-ref="pivot">支点</span>相距<span data-type="position">一段<span data-concept="distance">距离</span></span> $\kr$。</p>
+<figure class="dv" id="drv-torque-point-mass"></figure>
+<p>最后这个方程是牛顿第二<span data-concept="law">定律</span>（$\kF = \km\ka$）的转动类比，其中<span data-concept="torque">力矩</span>类比于<span data-concept="force">力</span>，<span data-concept="angular-acceleration">角加速度</span>类比于平动<span data-concept="acceleration">加速度</span>，而 $\km\kr^2$ 类比于<span data-concept="mass">质量</span>（或<span data-concept="inertia">惯性</span>）。量 $\km\kr^2$ 称为与转动中心相距<span data-concept="distance">距离</span> $\kr$ 的<span data-concept="mass">质点</span> $\km$ 的<strong><span data-concept="moment-of-inertia">转动惯量</span></strong>或<strong><span data-concept="moment-of-inertia">转动惯量</span></strong>。</p>
+<figure class="sim" id="sim-point-mass" data-figure="10.11" data-original="/media/ch10/Figure_11_03_02a.jpg" data-original-width="200" data-original-caption="一个物体由水平的无摩擦桌面支承，并用一根提供向心力的绳与支点相连。一个力 F 垂直于半径 r 作用在物体上，使它绕支点加速。该力始终保持与 r 垂直。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.11</span><span><span data-ref="point-mass">一个质点</span> $\km$ 静置在从上方看去的无摩擦桌面上，被<span data-ref="cord">一根绳</span>拴在<span data-ref="pivot">支点</span>上，绳的<span data-type="position">长度</span>为 $\kr$，<span data-type="force">一个力</span> $\kF$ 垂直于<span data-ref="cord">绳</span>作用在<span data-ref="point-mass">它</span>上。<span data-type="force">该力</span>使<span data-ref="point-mass">质点</span>沿着<span data-type="force">力</span>的方向获得<span data-type="acceleration">线加速度</span> $\ka = \kF/\km$，并绕<span data-ref="pivot">支点</span>获得<span data-type="angular-acceleration">角加速度</span> $\kalpha = \ka/\kr$，而<span data-type="torque">力矩</span> $\ktau = \kr\kF$ 等于 $\km\kr^2\kalpha$。从静止开始，<span data-ref="point-mass">质点</span>沿着它的圆周越转越快，同时<span data-type="force">力</span>随它一起转动。改变<span data-type="force">力</span>、<span data-type="mass">质量</span>或<span data-type="position">绳的长度</span>，观察这三个量如何一起变化。</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">建立联系：转动动力学</div>
+<p>转动<span data-concept="motion">运动</span>的<span data-concept="dynamics">动力学</span>与线性的或平动的<span data-concept="dynamics">动力学</span>完全类似。<span data-concept="dynamics">动力学</span>关注的是<span data-concept="force">力</span>和<span data-concept="mass">质量</span>及其对<span data-concept="motion">运动</span>的影响。对于转动<span data-concept="motion">运动</span>，我们将找到与<span data-concept="force">力</span>和<span data-concept="mass">质量</span>直接对应的类比量，它们的表现正如我们根据以往经验所预期的那样。</p>
+</div>
+</section>
+
+<section id="moment-of-inertia">
+<h2>转动惯性与转动惯量</h2>
+<p class="cite-target">在我们能够考虑除了像<span data-ref="point-mass">图 10.11 中的那个</span><span data-concept="mass">质点</span>以外的任何物体的转动之前，我们必须把<span data-concept="moment-of-inertia">转动惯量</span>的概念推广到所有类型的物体。为了扩展我们的<span data-concept="moment-of-inertia">转动惯量</span>概念，我们把物体的<strong><span data-concept="moment-of-inertia">转动惯量</span></strong> $\kI$ 定义为组成它的所有<span data-concept="point-mass">质点</span>的 $\km\kr^2$ 之和。也就是说，$\kI = \sum \km\kr^2$。这里 $\kI$ 类比于平动<span data-concept="motion">运动</span>中的 $\km$。由于有<span data-concept="distance">距离</span> $\kr$，任何物体的<span data-concept="moment-of-inertia">转动惯量</span>都取决于所选的转轴。实际上，计算 $\kI$ 超出了本教材的范围，只有一种简单的情形除外——细圆环，它的全部<span data-concept="mass">质量</span>都与转轴相距同样的<span data-concept="distance">距离</span>。因此，细圆环绕其转轴的<span data-concept="moment-of-inertia">转动惯量</span>为 $\kM\kR^2$，其中 $\kM$ 是它的总<span data-concept="mass">质量</span>，$\kR$ 是它的半径。（我们用 $\kM$ 和 $\kR$ 表示整个物体，以便与表示<span data-concept="point-mass">质点</span>的 $\km$ 和 $\kr$ 区分开来。）在所有其他情形中，我们必须查阅图 10.12（注意，该表是一件既有形状又有公式的艺术作品），其中的 $\kI$ 公式是对连续物体积分导出的。注意，$\kI$ 的<span data-concept="units">单位</span>是<span data-concept="mass">质量</span>乘以<span data-concept="distance">距离</span>的平方（$\text{kg}\cdot\text{m}^2$），正如我们根据它的定义所预期的那样。</p>
+</section>
+
+<section id="second-law-rotation">
+<h2>转动的牛顿第二定律</h2>
+<p class="cite-target"><span data-concept="torque">力矩</span>、<span data-concept="moment-of-inertia">转动惯量</span>和<span data-concept="angular-acceleration">角加速度</span>之间的一般关系是</p>
+$$\text{合力矩}\;\ktau = \kI\kalpha$$
+<p>或</p>
+$$\kalpha = \frac{\text{合力矩}\;\ktau}{\kI},$$
+<p>其中合力矩 $\ktau$ 是所有<span data-concept="force">力</span>相对于选定转轴的总<span data-concept="torque">力矩</span>。为简单起见，我们只考虑转动平面内的<span data-concept="force">力</span>所施加的<span data-concept="torque">力矩</span>。这样的<span data-concept="torque">力矩</span>不是正的就是负的，并且像普通的数一样相加。$\ktau = \kI\kalpha, \kalpha = \frac{\text{合力矩}\;\ktau}{\kI}$ 中的关系是牛顿第二<span data-concept="law">定律</span>的转动类比，适用范围非常广。这个方程实际上对施加在<em>任何</em>物体上的<em>任何</em><span data-concept="torque">力矩</span>、相对于<em>任何</em>转轴都成立。</p>
+<p>正如我们所预期的，<span data-concept="torque">力矩</span>越大，<span data-concept="angular-acceleration">角加速度</span>就越大。例如，孩子推旋转木马推得越用力，它加速得就越快。此外，旋转木马的质量越大，在同样的<span data-concept="torque">力矩</span>下它加速得就越慢。<span data-concept="moment-of-inertia">转动惯量</span>与<span data-concept="angular-acceleration">角加速度</span>之间的基本关系是：<span data-concept="moment-of-inertia">转动惯量</span>越大，<span data-concept="angular-acceleration">角加速度</span>越小。但还有一个额外的转折。<span data-concept="moment-of-inertia">转动惯量</span>不仅取决于物体的<span data-concept="mass">质量</span>，还取决于<span data-concept="mass">质量</span>相对于它所绕转轴的<em>分布</em>。例如，如果孩子们都站在靠近旋转木马转轴的地方，要让坐满孩子的旋转木马加速，就会比他们都站在外缘时容易得多。两种情形下<span data-concept="mass">质量</span>是一样的，但孩子们在边缘时，<span data-concept="moment-of-inertia">转动惯量</span>要大得多。</p>
+<div class="note">
+<div class="eyebrow">居家实验</div>
+<p>用硬纸板剪出一个半径约为 10 cm 的圆。在圆的边缘附近，像钟面上的小时那样写上数字 1 到 12。摆放这个圆，使它能像车轮一样绕一根穿过圆心的水平转轴自由转动。（你可以把圆松松地钉在墙上。）让圆保持静止，数字 12 位于顶部，在数字 3 处贴上一团蓝色油灰（用来把海报固定在墙上的粘性材料）。这团油灰需要多大，才刚好能使圆转动？描述你可以怎样改变圆的<span data-concept="moment-of-inertia">转动惯量</span>。这一改变如何影响在数字 3 处刚好使圆转动所需的蓝色油灰的量？改变圆的<span data-concept="moment-of-inertia">转动惯量</span>，然后用不同量的蓝色油灰试着转动圆。把这个过程重复几次。</p>
+</div>
+</section>
+
+<section id="strategy">
+<h2>求解转动动力学问题</h2>
+<div class="note">
+<div class="eyebrow">转动动力学的解题策略</div>
+<ol>
+<li><em>审视情形，确定<span data-concept="torque">力矩</span>和<span data-concept="mass">质量</span>参与了转动</em>。仔细画出情形的草图。</li>
+<li><em>确定所研究的<span data-concept="system">系统</span></em>。</li>
+<li><em>画出受力图</em>。也就是说，画出并标注作用在所研究<span data-concept="system">系统</span>上的所有<span data-concept="external-force">外力</span>。</li>
+<li><em>应用 $\text{合力矩}\;\ktau = \kI\kalpha, \kalpha = \frac{\text{合力矩}\;\ktau}{\kI}$，即牛顿第二<span data-concept="law">定律</span>的转动等价形式，来解决问题</em>。必须注意使用正确的<span data-concept="moment-of-inertia">转动惯量</span>，并考虑对转动点的<span data-concept="torque">力矩</span>。</li>
+<li><em>一如既往，检验解是否合理</em>。</li>
+</ol>
+</div>
+<div class="note">
+<div class="eyebrow">建立联系</div>
+<p class="cite-target">在静力学中，合<span data-concept="torque">力矩</span>为零，没有<span data-concept="angular-acceleration">角加速度</span>。在转动<span data-concept="motion">运动</span>中，合<span data-concept="torque">力矩</span>是<span data-concept="angular-acceleration">角加速度</span>的原因，这与适用于转动的<span data-concept="newtons-second-law">牛顿第二定律</span>完全一样。</p>
+<figure class="sim" id="sim-inertias" data-figure="10.12" data-original="/media/ch10/Figure_11_03_06.jpg" data-original-caption="几种转动惯量。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.12</span><span>每个物体都画出了它所绕的转轴，其<span data-concept="moment-of-inertia">转动惯量</span>取自本书中该形状的公式。选择形状，然后改变它的<span data-concept="mass">质量</span>和尺寸，观察<span data-concept="moment-of-inertia">转动惯量</span>如何随之变化。旁边的条形比较的是物体的<span data-concept="moment-of-inertia">转动惯量</span>与同样的<span data-concept="mass">质量</span>全部位于离转轴最远的点时所具有的转动惯量，因此它显示了物体的<span data-concept="mass">质量</span>总体上分布得有多远。细圆环绕其转轴时填满整个条形，因为细圆环的每一小部分都在边缘。</span></div>
+</figure>
+</div>
+</section>
+
+<section id="merry-go-round">
+<h2>父亲推旋转木马</h2>
+<div class="example" id="ex-merry-go-round">
+<h3>例题 10.7 · 计算质量分布对旋转木马的影响</h3>
+<p class="cite-target">请看图 10.13 中<span data-ref="father">父亲</span>推<span data-ref="merry-go-round">游乐场旋转木马</span>的情形。<span data-ref="father">他</span>在<span data-type="mass">50.0 kg</span> 的<span data-ref="merry-go-round">旋转木马</span>边缘施加<span data-type="force">250 N 的<span data-concept="force">力</span></span>，该旋转木马的<span data-type="position">半径为 1.50 m</span>。求（a）<span data-ref="merry-go-round">旋转木马</span>上没有人时和（b）一个 <span data-type="mass">18.0 kg</span> 的<span data-ref="child">孩子</span>坐在距中心 <span data-type="position">1.25 m</span> 处时产生的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>。把<span data-ref="merry-go-round">旋转木马本身</span>看作均匀圆盘，阻碍转动的<span data-concept="friction">摩擦力</span>可忽略不计。</p>
+<figure class="sim" id="sim-merry-go-round" data-figure="10.13" data-original="/media/ch10/Figure_11_03_03a.jpg" data-original-width="200" data-original-caption="一位父亲在游乐场旋转木马的边缘、垂直于其半径的方向推它，以获得最大的力矩。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.13</span><span>你从上方俯视例题中的<span data-ref="merry-go-round">旋转木马</span>，它是一个<span data-type="position">半径为 1.50 m</span> 的均匀圆盘，<span data-ref="child">一个孩子</span>坐在<span data-ref="merry-go-round">它</span>上面，而<span data-ref="father">父亲</span>在<span data-ref="merry-go-round">它的</span>边缘、垂直于半径的方向以<span data-type="force">一个力</span> $\kF$ 推。<span data-ref="merry-go-round">平台</span>从静止开始，在 <span data-type="time">2.00 s</span> 内越转越快。<span data-ref="merry-go-round">它</span>旁边的图线画出了<span data-ref="merry-go-round">它的</span><span data-type="angular-rate">角速度</span>随<span data-concept="time">时间</span>的变化，虚线表示对<span data-ref="merry-go-round">空平台</span>施加<span data-type="force">同样的推力</span>时的情形。例题的（a）部分把<span data-ref="child">孩子的</span><span data-type="mass">质量</span>设为零，（b）部分设为 <span data-type="mass">18.0 kg</span>，再把<span data-ref="child">孩子</span>向中心移近或向边缘移远，观察<span data-type="force">推力</span>有多少用于使<span data-ref="merry-go-round">平台</span>转动。</span></div>
+</figure>
+<h4>思路</h4>
+<p><span data-concept="angular-acceleration">角加速度</span>由表达式 $\kalpha = \frac{\text{合力矩}\;\ktau}{\kI}$ 直接给出：</p>
+$$\kalpha = \frac{\ktau}{\kI}.$$
+<p>要求 $\kalpha$，我们必须先计算<span data-type="torque"><span data-concept="torque">力矩</span></span> $\ktau$（两种情形下相同）和<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span> $\kI$（第二种情形中更大）。为求<span data-type="torque"><span data-concept="torque">力矩</span></span>，我们注意到<span data-type="force">所施加的<span data-concept="force">力</span></span>垂直于<span data-type="position">半径</span>，且<span data-concept="friction">摩擦力</span>可忽略，因此</p>
+$$\ktau = \kr\kF\sin\ktheta = (1.50\ \text{m})(250\ \text{N}) = 375\ \text{N}\cdot\text{m}.$$
+<h4>（a）的解</h4>
+<p>实心圆盘绕此转轴的<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>在图 10.12 中给出为</p>
+$$\frac{1}{2}\kM\kR^2,$$
+<p>其中 $\kM = 50.0\ \text{kg}$，$\kR = 1.50\ \text{m}$，所以</p>
+$$\kI = (0.500)(50.0\ \text{kg})(1.50\ \text{m})^2 = 56.25\ \text{kg}\cdot\text{m}^2.$$
+<p>现在，代入已知数值后，我们求得<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>为</p>
+$$\kalpha = \frac{\ktau}{\kI} = \frac{375\ \text{N}\cdot\text{m}}{56.25\ \text{kg}\cdot\text{m}^2} = 6.67\ \frac{\text{rad}}{\text{s}^2}.$$
+<h4>（b）的解</h4>
+<p>我们预期这一部分中<span data-type="angular-acceleration">该<span data-concept="system">系统</span>的<span data-concept="angular-acceleration">角加速度</span></span>会更小，因为<span data-ref="child">孩子</span>在<span data-ref="merry-go-round">旋转木马</span>上时，<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>更大。为求总<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span> $\kI$，我们先求<span data-ref="child">孩子的</span><span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span> $\kIc$，方法是把<span data-ref="child">孩子</span>看作等效于位于距转轴<span data-type="position"><span data-concept="distance">距离</span>为 1.25 m</span> 处的<span data-concept="mass">质点</span>。于是，</p>
+$$\kIc = \kM\kR^2 = (18.0\ \text{kg})(1.25\ \text{m})^2 = 28.13\ \text{kg}\cdot\text{m}^2.$$
+<p><span data-type="rotational-inertia">总<span data-concept="moment-of-inertia">转动惯量</span></span>是<span data-ref="merry-go-round">旋转木马</span>和<span data-ref="child">孩子</span>的<span data-type="rotational-inertia"><span data-concept="moment-of-inertia">转动惯量</span></span>之和（绕同一转轴）。要自己验证这个求和，请考察 $\kI$ 的定义：</p>
+$$\kI = 28.13\ \text{kg}\cdot\text{m}^2 + 56.25\ \text{kg}\cdot\text{m}^2 = 84.38\ \text{kg}\cdot\text{m}^2.$$
+<p>把已知数值代入 $\kalpha$ 的方程，得到</p>
+$$\kalpha = \frac{\ktau}{\kI} = \frac{375\ \text{N}\cdot\text{m}}{84.38\ \text{kg}\cdot\text{m}^2} = 4.44\ \frac{\text{rad}}{\text{s}^2}.$$
+<h4>讨论</h4>
+<p>正如预期的那样，<span data-ref="child">孩子</span>在<span data-ref="merry-go-round">旋转木马</span>上时的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>比<span data-ref="merry-go-round">旋转木马</span>空着时小。<span data-type="angular-acceleration">求得的<span data-concept="angular-acceleration">角加速度</span></span>相当大，部分原因是<span data-concept="friction">摩擦力</span>被认为可以忽略。例如，如果<span data-ref="father">父亲</span>持续垂直推 <span data-type="time">2.00 s</span>，<span data-ref="father">他</span>会使<span data-ref="merry-go-round">旋转木马</span>在<span data-ref="merry-go-round">它</span>空着时获得 <span data-type="angular-rate">13.3 rad/s 的<span data-concept="angular-velocity">角速度</span></span>，而<span data-ref="child">孩子</span>在<span data-ref="merry-go-round">它</span>上面时只有 <span data-type="angular-rate">8.89 rad/s</span>。以转每<span data-concept="second">秒</span>计，<span data-type="angular-rate">这些<span data-concept="angular-velocity">角速度</span></span>分别为 2.12 rev/s 和 1.41 rev/s。在第一种情形中，<span data-ref="father">父亲</span>最终将以<span data-type="velocity">约 50 km/h</span> 的速度奔跑。夏季奥运会，<span data-ref="father">他</span>来了！对这些数值的验证留给读者作为练习。</p>
+</div>
+<div class="exercises" data-place="merry-go-round"></div>
+</section>

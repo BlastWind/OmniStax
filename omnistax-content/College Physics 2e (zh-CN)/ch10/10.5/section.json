@@ -1,0 +1,1428 @@
+{
+ "id": "10.5",
+ "module": "m42182",
+ "chapter": "10",
+ "title": "角动量及其守恒",
+ "short": "角动量",
+ "lead": "到目前为止，每个转动量都有一个对应的平动量，现在转动也有了自己的动量：旋转物体的<span data-concept=\"angular-momentum\">角动量</span>，即<span data-concept=\"linear-momentum\">线动量</span>的对应量。本节研究力矩如何改变它、它在什么时候保持不变，并考察<span data-ref=\"skater\">一位滑冰者</span>收拢<span data-ref=\"skater\">她的</span>手臂，以及<span data-ref=\"cloud\">一团缓慢转动的气体和尘埃云</span>如何变成一个太阳系。",
+ "objectives": [
+  "理解角动量与线动量之间的类比。",
+  "观察力矩与角动量之间的关系。",
+  "应用角动量守恒定律。"
+ ],
+ "summary_html": "<ul><li>每一种转动现象都有与之直接对应的平动类比，同样地，<span data-concept=\"angular-momentum\">角动量</span> $\\kL$ 可以定义为 $\\kL = \\kI\\kw.$</li><li>这个方程与<span data-concept=\"linear-momentum\">线动量</span>的定义 $p = mv$ 相类似。力矩与角动量之间的关系为 $\\text{合力矩}\\;\\ktau = \\frac{\\kdLang}{\\kdt}.$</li><li><span data-concept=\"angular-momentum\">角动量</span>和<span data-concept=\"energy\">能量</span>、<span data-concept=\"linear-momentum\">线动量</span>一样，是守恒的。这条普遍适用的定律，是物理定律背后统一性的又一标志。合外力矩为零时，<span data-concept=\"angular-momentum\">角动量</span>守恒，正如<span data-concept=\"net-external-force\">合外力</span>为零时，<span data-concept=\"linear-momentum\">线动量</span>守恒一样。</li></ul>",
+ "notes": "书中没有给出答案的四道习题，即月球在其轨道上的习题、抓住旋转木马边缘的孩子的习题、以 6.00 rev/s 旋转的滑冰者的习题，以及关于地月系统的“自拟习题”，都已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示，以及十三道思考题和九道无标准答案的 AP 题的建议解法，均由 AI 生成并已作标注；三道习题、理解检测框和有标准答案的 AP 题的答案来自本书自带的答案，这里没有计算任何内容。习题 2（轨道上的月球）、习题 4（抓住边缘的孩子）、习题 6（以 6.00 rev/s 旋转的滑冰者）和关于地月系统的“自拟习题”没有标准答案，已略去。理解检测框问的是角动量是否与线动量完全类似，它被放在最后一段之后的行内位置，其余各题都放在末尾。两道无标准答案但印有备选答案的 AP 题，即最无帮助的测量和产生可测量力矩的最佳方式，被当作开放题保留，其选项与书中印出的一样，因为不能为评分的选择题虚构答案。10.3 的 AP 题中有三道问的是角动量而不是转动惯量，在这里按 source_section 10.3 编排：载人摩天轮（fs-id438270）、杠杆和石头（fs-id1500072），以及把同一根杠杆用作求角加速度和角动量的装置（fs-id2003821）。10.6 的 AP 题中有五道问的是力矩如何改变角动量，或物体的形状为什么重要，而不是碰撞，在这里按 source_section 10.6 编排：骑行者的挡位（fs-id2159515）、电动螺丝刀（fs-id1526286）、物体的形状为什么重要（fs-id1519591）、台式风扇（fs-id1581467），以及不同力矩作用下的转动系统（fs-id1686879），最后一道书中自己给出了答案。本节自己的题目没有留给后面的小节。习题所引用的五幅图，即平台上的孩子（图 10.27）、卫星的轨道（图 10.28）、离开旋转木马的四种方式（图 10.29，在引用它的两道思考题上都带有）、跳水运动员（图 10.30）和有膛线的炮管（图 10.31），都带在各自的题目卡片上。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-lazy-susan",
+   "kind": "sim",
+   "number": "10.23",
+   "originals": [
+    "/media/ch10/Figure_11_05_01a.jpg"
+   ],
+   "original_caption": "一位参加聚会的人对旋转餐盘施加力矩，使它转动起来。方程 net τ = ΔL/Δt 给出了力矩与所产生的角动量之间的关系。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "torque",
+    "time",
+    "rotational-inertia",
+    "angular-momentum",
+    "angular-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library hand in place of the drawn one; note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-kick",
+   "kind": "sim",
+   "number": "10.24",
+   "originals": [
+    "/media/ch10/Figure_11_05_02a.jpg"
+   ],
+   "original_caption": "大腿的肌肉通过对膝施加力矩，使小腿获得角加速度，并赋予它转动动能。F 是垂直于 r 的矢量。本例题考察的就是这种情形。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "torque",
+    "rotational-inertia",
+    "angular-rate",
+    "energy",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note one sentence via macros (rewrite filed)"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: seated library silhouette, labels through the labeller"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-skater",
+   "kind": "photo",
+   "number": "10.25",
+   "originals": [
+    "/media/ch10/Figure_11_05_03.jpg"
+   ],
+   "original_caption": "（a）一位滑冰者正用她的冰刀刀尖旋转，她的双臂伸开。因为她所受的合力矩小到可以忽略，所以她的角动量守恒。在下一幅图中，她收拢她的手臂，减小了她的转动惯量，她的转速因此大大增加。她为收拢手臂所做的功使转动动能增加。",
+   "widths": [
+    275
+   ]
+  },
+  {
+   "id": "sim-skater",
+   "kind": "sim",
+   "draws": [
+    "rotational-inertia",
+    "angular-rate",
+    "angular-momentum",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note via macros, caption puts the bars beside her (rewrite filed)"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library silhouette from the front, arms set by joint"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cloud",
+   "kind": "sim",
+   "number": "10.26",
+   "originals": [
+    "/media/ch10/Figure_11_05_04a.jpg"
+   ],
+   "original_caption": "太阳系由一团最初在转动的气体和尘埃云凝聚而成。行星的轨道运动和自转与最初的自转方向相同，并使母云的角动量守恒。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "rotational-inertia",
+    "angular-rate",
+    "angular-momentum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note via macros, 'center' spelled as the book does, caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "angular-momentum",
+   "concept": "angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-momentum",
+   "concept": "rotational-translational-analogy",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "torque-changes-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "newtons-second-law-rotation",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "rotational-kinematic-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-and-angular-momentum",
+   "concept": "rotational-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation",
+   "concept": "torque-changes-angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conservation",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "isolated-system",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "spin-rate-from-moment-of-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "skater",
+   "concept": "work-done-in-pulling-in",
+   "verb": "introduces"
+  },
+  {
+   "span": "skater",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "skater",
+   "concept": "mass-distribution-and-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "rotational-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "skater",
+   "concept": "work-transfers-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "collapse",
+   "concept": "spin-rate-from-moment-of-inertia",
+   "verb": "reinforces"
+  },
+  {
+   "span": "collapse",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3112286",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "collapse"
+   },
+   "cite": "angular-momentum",
+   "prompt": "角动量与线动量是否完全类似？如果有区别，区别是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "是的，角动量和线动量完全类似。虽然它们是严格的类比量，但它们的单位不同，也不能像各种形式的能量那样直接相互转换。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1520916",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "要测量当系统所受的力改变时角动量如何变化，用下列哪个转动系统作模型最合适？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "渔线轮",
+     "一颗行星及其卫星",
+     "旋转的花样滑冰运动员",
+     "人的小腿"
+    ],
+    "correct": 0,
+    "hint": "对每个系统都问一问：你能否设定力、力臂和力的作用时间，然后读出由此产生的角速度，因为要检验的正是 $\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1798043",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "你正在收集数据，研究对自行车车轮施力时它的角动量的变化。下列哪项测量对你帮助最小？<ol type=\"a\"><li>施力的时间</li><li>施力处的半径</li><li>施力时车轮的角速度</li><li>力的方向</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（c）施力时车轮的角速度是帮助最小的测量。车轮角动量的变化为 $\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$，其余三项测量都出现在这个式子里。力作用的时间就是 $\\kdt$ 本身。力的作用半径和方向共同确定垂直力臂，而力矩等于力乘以这个力臂，所以求 $\\text{合力矩}\\;\\ktau$ 需要这两项。车轮原来具有的角速度在这个关系式中根本没有出现。正如例题 10.12 所指出的，所传递的角动量并不取决于物体的任何性质，只取决于力矩和时间，所以无论车轮原来转得多快，给定的力矩所产生的变化都是相同的。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1545671",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "对一个半径为 7.0 cm 的圆盘施加多大的力矩，作用 3.5 s，可以产生 25 N·m·s 的角动量？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "7.1 N·m",
+     "357.1 N·m",
+     "3.6 N·m",
+     "612.5 N·m"
+    ],
+    "correct": 0,
+    "hint": "对力矩求解 $\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$；用不到圆盘的半径，因为所传递的角动量只取决于力矩和时间。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2840694",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "下列哪种做法是在系统上产生可测量的力矩的最佳方式，以检验系统的角动量、施加于系统的平均力矩和力矩作用时间之间的关系？<ol type=\"a\"><li>让不同数目的人推旋转木马</li><li>在跷跷板的一端放上已知质量的物体</li><li>让自行车车轮的外缘接触以不同速度运动的跑步机</li><li>把已知质量的物体悬挂在绕于线轴的细绳上，线轴水平地装在转轴上</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（d）把已知质量的物体悬挂在绕于水平转轴上的线轴的细绳上，是最好的方式。检验 $\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$ 需要一个在实验开始前大小就已知的力矩。悬挂的物体以接近其重力的力拉细绳，细绳在线轴的半径处离开线轴，所以力矩就是这个重力乘以线轴的半径，每次实验都相同，而且只需改变质量就很容易改变。对下落计时可得 $\\kdt$，再由末了时线轴的角速度和它的转动惯量，可得 $\\kL = \\kI\\kw$。其他选项给出的力矩没有人能说清：人们推旋转木马时施加的力是没有测量过的，一端放着物体的跷跷板只会倾斜，直到碰到地面，而接触跑步机的车轮所受的摩擦力取决于压得多紧。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1597661",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_08a.jpg",
+    "alt": "该图是沿逆时针方向转动的圆形平台的俯视示意图。孩子的位置用一个黑点表示，孩子所走过的路径用一个虚线圆表示，其半径小于平台的半径。",
+    "caption": "图 10.27 一个弯曲的箭头位于一个灰色圆盘的一侧。圆盘的中心有一个点，围绕该点有一个虚线圆。虚线圆上有一个标着“Child”的点。圆盘下方有一个写着“Top View”的标签。"
+   },
+   "prompt": "上图是质量为 <em>M</em> 的孩子站在质量为 2<em>M</em>、沿逆时针方向转动的圆形平台上的俯视图。假设平台转动时没有摩擦。下列哪项描述的是孩子的一个动作，它会使平台—孩子系统的角速率增大，原因是什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "孩子向平台中心移动，使系统的总角动量增大。",
+     "孩子向平台中心移动，使系统的转动惯量减小。",
+     "孩子远离平台中心移动，使系统的总角动量增大。",
+     "孩子远离平台中心移动，使系统的转动惯量减小。"
+    ],
+    "correct": 1,
+    "hint": "平台和孩子不受外力矩，所以它们的角动量不会改变；想一想在 $\\kI\\kw = \\kIprime\\kwprime$ 中孩子能改变什么，并记住，离转轴越近的质量对转动惯量的贡献越小。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1631548",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_09a.jpg",
+    "alt": "该图表示一颗卫星绕行星的椭圆轨道。卫星沿顺时针方向运行。行星位于椭圆的一个焦点上。点 A 和点 B 是椭圆长轴的两个端点。点 A 画在离行星最远的顶点处，点 B 画在离行星最近的顶点处。",
+    "caption": "图 10.28 一个标着“Moon”的点位于一个虚线椭圆上。另外两个分别标着“A”和“B”的点位于椭圆的两端。一个标着“Planet”的点位于椭圆内部。"
+   },
+   "prompt": "一颗卫星沿上图所示的椭圆轨道绕一颗行星运行。在点 <em>A</em>，卫星的速率为 <em>u<sub>A</sub></em>，与行星的距离为 <em>R<sub>A</sub></em>。在点 <em>B</em>，卫星的速率为 <em>u<sub>B</sub></em>。卫星的角动量变了吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "没有，卫星相对于行星的角动量没有改变。卫星所受的唯一的力是行星的引力，其方向沿着卫星到行星的连线。它相对于行星的力臂为零，所以它对行星不产生力矩。没有合力矩，$\\text{合力矩}\\;\\ktau = \\kdLang/\\kdt = 0$，角动量在轨道的每一点都相同，包括 <em>A</em> 和 <em>B</em>。变化的是速率。在轨道长轴的两端，卫星的运动方向与它到行星的连线垂直，所以那里的角动量是 $\\km\\kv\\kr$，即质量乘以速率再乘以距离。这个乘积在两点处相同，所以卫星在离行星较近处运动得较快，在较远处运动得较慢。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1445572",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "一只仓鼠坐在质量可忽略的旋转餐盘上，距中心 0.10 m。这个轮子以 1.0 rev/s 的频率转动。如果仓鼠走到距转动中心 0.30 m 处，旋转餐盘的频率将如何变化？假设没有摩擦，也没有外力矩。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "它将加快到 2.0 rev/s。",
+     "它将加快到 9.0 rev/s。",
+     "它将减慢到 0.11 rev/s。",
+     "它将减慢到 0.22 rev/s。"
+    ],
+    "correct": 2,
+    "hint": "旋转餐盘的质量可忽略，所以转动惯量只来自仓鼠，$\\kI = mr^2$，把 $r$ 变为三倍，转动惯量就变为九倍；然后用 $\\kI\\kw = \\kIprime\\kwprime$。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1722786",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "地球的质量为 $6.0 \\times 10^{24}\\ \\text{kg}$，半径为 $6.4 \\times 10^{6}\\ \\text{m}$，转动频率为 $1.2 \\times 10^{-5}\\ \\text{rev/s}$。如果地球上一个质量为 $1.0 \\times 10^{23}\\ \\text{kg}$ 的圈层从地球上脱落，使地球半径减小了 $0.2 \\times 10^{6}\\ \\text{m}$，这颗行星的转动频率会如何变化？假设没有摩擦。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "转动频率将从 $1.2 \\times 10^{-5}\\ \\text{rev/s}$ 增大到约 $1.3 \\times 10^{-5}\\ \\text{rev/s}$，增大约 8%。像例题 10.11 那样把地球当作均匀球体，所以 $\\kI = \\frac{2}{5}\\kM\\kR^2$。脱落之前，$\\kI = \\frac{2}{5}(6.0 \\times 10^{24}\\ \\text{kg})(6.4 \\times 10^{6}\\ \\text{m})^2 = 9.8 \\times 10^{37}\\ \\text{kg}\\cdot\\text{m}^2$。脱落之后，质量为 $5.9 \\times 10^{24}\\ \\text{kg}$，半径为 $6.2 \\times 10^{6}\\ \\text{m}$，所以 $\\kIprime = \\frac{2}{5}(5.9 \\times 10^{24}\\ \\text{kg})(6.2 \\times 10^{6}\\ \\text{m})^2 = 9.1 \\times 10^{37}\\ \\text{kg}\\cdot\\text{m}^2$。没有摩擦就没有外力矩，所以 $\\kI\\kw = \\kIprime\\kwprime$。频率与 $\\kw$ 成正比，所以新的频率为 $(1.2 \\times 10^{-5}\\ \\text{rev/s})(9.83/9.07) = 1.3 \\times 10^{-5}\\ \\text{rev/s}$。半径是以平方的形式出现的，所以半径减小 3% 使转动惯量降低的幅度，比质量减少不到 2% 所降低的幅度更大，因此这颗行星转得更快。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id1665126",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "考虑系统 A，它由两个半径为 <em>R</em> 的圆盘组成，两个圆盘都沿顺时针方向转动。再考虑系统 B，它由一个半径为 <em>R</em>、沿逆时针方向转动的圆盘和另一个半径为 2<em>R</em>、沿顺时针方向转动的圆盘组成。所有圆盘的质量相同，角速度的大小也都相同。\n哪个系统的角动量最大？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A",
+     "B",
+     "二者相等。",
+     "信息不足"
+    ],
+    "correct": 1,
+    "hint": "圆盘的转动惯量为 $\\frac{1}{2}MR^2$，所以在角速度相同时，半径为 $2R$ 的圆盘的转动惯量和角动量都是半径为 $R$ 的圆盘的四倍；把每个系统中各角动量连同其正负号相加。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id2019185",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "假设击球机以 3π rad/s 的角速度挥动的棒球棒，相当于一根长 1.1 m、质量 1.0 kg 的细杆。一个质量为 0.15 kg 的棒球正对球棒的最末端击中，它必须以多大的速度运动，才能使球棒—球系统的总角动量为零？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "球必须以约 23 m/s 的速度运动，方向与球棒的挥动方向相反。球棒绕机器握住的那一端转动，所以图 10.12 给出了绕一端转动的细杆，$\\kI = \\kM\\ell^2/3 = (1.0\\ \\text{kg})(1.1\\ \\text{m})^2/3 = 0.403\\ \\text{kg}\\cdot\\text{m}^2$。它的角动量为 $\\kL = \\kI\\kw = (0.403\\ \\text{kg}\\cdot\\text{m}^2)(3\\pi\\ \\text{rad/s}) = 3.80\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$。球击中最末端，所以在击中前一瞬间，它沿垂直于球棒的方向运动，与支点的距离为 $\\kr = 1.1\\ \\text{m}$，它相对于支点的角动量为 $\\km\\kv\\kr$。要使总角动量为零，球的角动量必须与球棒的角动量大小相等、转向相反：$\\kv = \\kL/(\\km\\kr) = (3.80\\ \\text{kg}\\cdot\\text{m}^2\\text{/s})/[(0.15\\ \\text{kg})(1.1\\ \\text{m})] = 23\\ \\text{m/s}$。"
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id438270",
+   "source_section": "10.3",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "一架摩天轮的座椅上载着人，座椅所在位置分别是 4 点钟、1 点钟、9 点钟和 6 点钟方向。当摩天轮开始转动时，系统受到哪些力的作用？每个力将如何影响角速度和角动量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "作用在摩天轮及其乘客上的力有：电动机的驱动力、转轴处的摩擦力、转轴向上的推力、摩天轮的重力，以及四个载人座椅的重力。只有合力矩才能改变角动量，$\\text{合力矩}\\;\\ktau = \\kdLang/\\kdt$。电动机的力矩在其作用期间使角动量增大，因而使角速度增大，而转轴处的摩擦力与它相反，使摩天轮变慢。转轴的推力和摩天轮自身的重力作用在转轴上，没有力臂，不起任何作用。每个座椅的重力所产生的力矩，等于该重力乘以座椅到转轴的水平距离。设乘客的重力都相等，为 $w$，摩天轮的半径为 $R$。6 点钟的座椅正好悬在转轴下方，不产生力矩。9 点钟的座椅在左侧，位于整个半径处，朝一个方向产生 $wR$ 的力矩。1 点钟和 4 点钟的座椅在右侧，距转轴的水平距离分别为 $R\\sin 30^\\circ = 0.50R$ 和 $R\\sin 120^\\circ = 0.87R$，朝另一个方向产生 $1.37wR$ 的力矩。因此，乘客们产生的合力矩为 $0.37wR$，使摩天轮沿顺时针方向转动，即时钟指针转动的方向。一开始，如果摩天轮沿顺时针方向转动，这个力矩就加到电动机的力矩上，如果沿逆时针方向转动，就从电动机的力矩中减去。随着摩天轮转动，座椅的位置改变，所以这个力矩是变化的，而电动机的力矩和摩擦力则持续存在。"
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "fs-id1500072",
+   "source_section": "10.3",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "把一根杠杆放在支点上。杠杆的左端放一块石头，右端施加一个向下的（顺时针方向的）力。哪些测量最有助于你确定该系统的角动量？（假设杠杆本身的质量可忽略。）",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "石头的角速度和质量",
+     "石头的角速度和质量，以及杠杆的半径",
+     "力的速度、杠杆的半径和石头的质量",
+     "石头的质量、杠杆在支点两侧的长度，以及施加在杠杆右侧的力"
+    ],
+    "correct": 3,
+    "hint": "系统的角动量是合力矩赋予它的，$\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$，而合力矩等于所施加的力乘以它的力臂，减去石头的重力乘以它的力臂；想一想哪一组测量能让你求出这两个力矩。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap13",
+   "source_id": "fs-id2003821",
+   "source_section": "10.3",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "你可以用下面的装置来确定角加速度和角动量：把一根杠杆放在支点上。杠杆的左端放一块石头，右端施加一个已知的向下的（顺时针方向的）力。你会进行哪些计算？在计算中你将如何考虑重力？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先求绕支点的合力矩。所施加的力作用在右端，所以它的力矩等于该力乘以支点到右端的距离，它使杠杆沿顺时针方向转动。石头在左端受到重力的作用，重力的力矩等于石头的重力 $mg$ 乘以支点到左端的距离。这个力矩使杠杆沿逆时针方向转动，所以要从所施加的力矩中减去它；重力就是这样进入计算的。如果杠杆本身有质量，它的重力作用在它的中心，除非支点正好在该中心，否则也会产生力矩。求得合力矩之后，角加速度为 $\\alpha = \\text{合力矩}\\;\\ktau/\\kI$，如例题 10.13 那样。转动惯量是把石头当作距支点 $r$ 处的质点所得的转动惯量，$\\kI = mr^2$，如果杠杆本身的转动惯量不可忽略，还要加上它的转动惯量。力作用了一段时间 $\\kdt$ 之后的角动量为 $\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$，你可以通过测量杠杆此刻达到的角速度，用 $\\kL = \\kI\\kw$ 来检验它。"
+   }
+  },
+  {
+   "id": "ap14",
+   "source_id": "fs-id2159515",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "骑行者蹬踏板，对自行车的后轮施加一个力矩。当骑行者换到更高的挡位时，力矩增大。下列哪种策略最有助于你确定自行车车轮角动量的变化？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "把两个力矩之比乘以自行车和骑行者的质量",
+     "把两个力矩相加，再乘以两个力矩共同作用的时间",
+     "把两个力矩之差乘以新力矩作用的时间",
+     "把两个力矩都乘以自行车和骑行者的质量"
+    ],
+    "correct": 2,
+    "hint": "角动量的变化等于合力矩乘以它的作用时间，$\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$；题目问的是换挡所带来的变化，所以想一想哪一部分力矩是多出来的，以及它作用了多长时间。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap15",
+   "source_id": "fs-id1526286",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "电动螺丝刀有两个速度挡，每一挡对螺钉施加的力矩不同。请描述你可以用哪些计算来比较螺钉在每一挡的角动量。为了进行这些计算，你需要做哪些测量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有两种方法可以得到螺钉的角动量。第一种是用定义，$\\kL = \\kI\\kw$。通过数在一段测定的时间内转了几圈，测出螺钉在每一挡的角速度。由螺钉的质量和半径求出它的转动惯量，把螺钉当作绕自身轴线转动的实心圆柱体，于是根据图 10.12，$\\kI = \\frac{1}{2}MR^2$。每一挡的角动量就是二者的乘积，由于两次用的是同一颗螺钉，两个角动量之比就等于两个角速度之比。第二种方法用力矩，$\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$。根据螺丝刀的规格，或者根据它在已知力臂处所施的力，求出它在每一挡施加的力矩。测量使螺钉从静止加速到运转速度所用的时间；力矩与这段时间的乘积就是所传递的角动量。两种方法都做，就可以相互检验，而木头中的摩擦则会表现为二者之间的差异。"
+   }
+  },
+  {
+   "id": "ap16",
+   "source_id": "fs-id1519591",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "在确定物体的角动量时，为什么必须考虑物体的形状？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "形状决定质心的位置。质心的位置又决定物体的角速度。",
+     "形状有助于你确定物体外缘的位置，那里的转动速度最大。",
+     "形状有助于你确定转动中心的位置。",
+     "形状决定质心的位置。质心的位置对物体的转动惯量有贡献，而转动惯量又对它的角动量有贡献。"
+    ],
+    "correct": 3,
+    "hint": "角动量为 $\\kL = \\kI\\kw$，而转动惯量取决于物体的质量绕转轴是如何分布的，这正是由形状决定的。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap17",
+   "source_id": "fs-id1581467",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "你怎样收集并分析数据，来检验台式风扇的两个速度挡所提供的力矩之间的差异？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "利用关系式 $\\text{合力矩}\\;\\ktau = \\kdLang/\\kdt$，测量它右边的两个量。对于角动量的变化，先根据叶片的质量和长度求出叶片的转动惯量（只需求一次），把每片叶片当作绕一端转动的细杆，于是图 10.12 给出每片叶片的 $\\kI = M\\ell^2/3$。在每个速度挡，让风扇从静止开始转动，测出它达到稳定转速所用的时间，并用频闪灯或慢放视频数出已知时间内转过的圈数，测出这个转速。全速时的角动量为 $\\kL = \\kI\\kw$，而风扇是从静止开始的，所以这就是角动量的变化。用它除以达到全速所用的时间，就得到每一挡的平均合力矩，然后比较这两个平均值。每次测量重复几遍并取平均，因为达到转速的时间很短，不易判断。你测到的是合力矩，即电动机的力矩减去空气对叶片的阻力。阻力随转速增大，所以电动机两个力矩之间的差异比你测到的差异要稍大一些。"
+   }
+  },
+  {
+   "id": "ap18",
+   "source_id": "fs-id1686879",
+   "source_section": "10.6",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "请描述一个转动系统，你可以用它来演示施加不同大小的外力矩对该系统角动量的影响。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "装在铰链上的门是一个转动系统。当你推或拉门把手时，系统的角动量就会改变。如果在门把手上挂一个重物，那么用同样的力推门，角动量的增大就会不同。如果你用同样的力在靠近铰链处推或拉，系统所得到的角动量也会不同。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2410017",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "当你在变速器处于空挡时发动汽车的发动机，你会注意到汽车沿与发动机转动相反的方向晃动。请用角动量守恒来解释。汽车的角动量能长时间（超过几秒钟）守恒吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把汽车和它的发动机一起当作系统。起动机转动之前，系统的角动量为零，而在最初的一瞬间，来自汽车外部的力矩还来不及起作用，所以总角动量仍为零。随着曲轴和飞轮转快，它们沿一个转向获得角动量。总角动量要保持为零，汽车的其余部分就必须沿相反的转向获得大小相等的角动量，这就是你注意到的晃动。这种情况不会持续，因为汽车不是孤立系统。它站在轮胎上，车身一倾斜，路面对一侧的推力就比对另一侧的大，于是悬架和轮胎施加一个力矩，使车身回到静止。这个外力矩在一两秒之内就改变了汽车的角动量，此后发动机继续转动，而车身则保持不动。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2640407",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_07a.jpg",
+    "alt": "图 A 中有一个旋转木马，一个孩子沿径向向外跳出。图 B 中，一个孩子沿与旋转木马运动方向相反的方向向后跳。图 C 中，一个孩子从旋转木马上跳起，去抓住树枝悬挂。图 D 中，一个孩子沿与旋转木马圆周相切的方向从旋转木马上跳出。",
+    "caption": "图 10.29 孩子可以沿各种不同的方向从旋转木马上跳下。"
+   },
+   "prompt": "假设一个孩子从转动的旋转木马的外缘走向里面。旋转木马的角速度是增大、减小还是保持不变？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把孩子和旋转木马当作一个系统。孩子的脚推平台，平台反过来推他，但这些力对系统来说是内力，而且如果轴承几乎没有摩擦，就没有外力矩，所以系统的角动量 $\\kL = \\kI\\kw$ 守恒。当孩子向里走时，他的质量更靠近转轴，系统的转动惯量减小，就像滑冰者收拢手臂时一样。由 $\\kI\\kw = \\kIprime\\kwprime$，而 $\\kIprime$ 较小，角速度必然增大，所以旋转木马转得更快。图 10.29 画的是相反的动作，即孩子以几种方式离开平台，下一个问题问的就是这些情形。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1994709",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_07a.jpg",
+    "alt": "图 A 中有一个旋转木马，一个孩子沿径向向外跳出。图 B 中，一个孩子沿与旋转木马运动方向相反的方向向后跳。图 C 中，一个孩子从旋转木马上跳起，去抓住树枝悬挂。图 D 中，一个孩子沿与旋转木马圆周相切的方向从旋转木马上跳出。",
+    "caption": "图 10.29 孩子可以沿各种不同的方向从旋转木马上跳下。"
+   },
+   "prompt": "假设一个孩子从转动的旋转木马上下来。在下列情形中，旋转木马的角速度是增大、减小还是保持不变：（a）他沿径向跳下？（b）他向后跳，落地后静止不动？（c）他笔直向上跳，抓住头顶的树枝悬挂？（d）他沿与边缘相切的方向向前跳下？请解释你的答案。（参见图 10.29。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在每种情形中，孩子的脚与平台之间的推力都是内力，所以孩子离开时，孩子和旋转木马合起来的角动量保持不变。问一问孩子带走了多少角动量；其余的由旋转木马保留。（a）沿径向跳下只增加了一个沿半径方向的速度，它相对于转轴没有力臂。孩子带走的角动量恰好等于他乘坐时具有的角动量，旋转木马的角速度保持不变。（b）要落地后静止不动，孩子离开时相对于地面必须没有速度，所以他带走的角动量为零。旋转木马保留了他乘坐时具有的角动量，因而转得更快。（c）笔直向上跳只增加一个竖直方向的速度，所以和（a）一样，他带走了他原来具有的角动量，旋转木马的角速度保持不变。树枝随后拦住他，但它的力矩作用在他身上，而不是作用在旋转木马上。（d）沿切线方向向前跳下，使孩子在他原来运动的方向上的速度更大，因而比他乘坐时具有更大的角动量。多出来的部分来自旋转木马，于是它变慢。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2052739",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "直升机的尾部有一个小尾桨，以防机身沿与主旋翼桨叶相反的方向转动。请用牛顿第三定律解释，为什么直升机机身会沿与桨叶相反的方向转动。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "发动机固定在直升机的机身上，它对主桨叶施加一个力矩，使桨叶沿一个方向转动。根据牛顿第三定律，桨叶反过来对发动机施加一个大小相等、方向相反的力矩，并通过发动机作用在机身上，使机身倾向于沿另一个方向转动。用角动量也能得出同样的结论。桨叶转动之前，直升机的角动量为零，发动机与桨叶之间的力矩是内力矩。桨叶沿一个转向获得角动量时，机身必须沿相反的转向获得角动量，才能使总角动量保持为零。尾桨向侧面推空气，空气反过来推尾部。在尾梁的长力臂上，这个推力是作用在机身上的外力矩；它抵消主桨叶的反作用力矩，使机身不转动。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3180885",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "只要直升机有两组旋翼桨叶，它们就沿相反的方向转动（并且没有尾桨）。请解释为什么让桨叶沿相反的方向转动最好。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "考虑整架直升机的角动量，它起初为零，只有在外力矩作用下才会改变。只有一组桨叶时，机身必须沿相反的转向转动，以平衡桨叶获得的角动量，这就是直升机需要尾桨的原因（见上一个问题）。有两组沿相反方向转动的桨叶时，一组的角动量与另一组的相抵。如果二者相等，桨叶合起来的总角动量就为零。于是机身没有什么需要平衡的，也就没有转动的倾向。两组桨叶通过各自的发动机施加在机身上的反作用力矩相互抵消，因而不需要尾桨。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2446255",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "请描述滑冰者在旋转过程中收拢手臂时是如何做功的。特别是，请指出她为把每条手臂拉进来而对它施加的力，以及每条手臂移动的距离，并注意力的一个分量沿着移动的方向。为什么这个动作不会使角动量增大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "她旋转时，每条手臂都在做圆周运动，她的肩膀必须沿手臂向内拉它，指向她旋转的转轴，才能使它保持在圆周上；她的肌肉提供这个向心力。要把手臂拉进来，她拉的力要比维持圆周运动所需的更大，于是手臂向内移动，从伸直的手所在的半径移到手贴近胸前时所在的半径。力是向内的，手臂也是向内移动的，所以力有一个分量沿着位移方向，力就做功，$W = Fd\\cos\\theta$，其中余弦为正。这个功使她的转动动能增大，在例题 10.14 中从 29.6 J 增大到 191 J，它来自她的肌肉，也就是来自她的食物能量。她的角动量不会增大，因为她对手臂施加的力是她身体的内力。每个内力在同一个身体内都有一个大小相等、方向相反的对应力，所以这一对力对她不产生合力矩。每次向内拉也是沿着一条通过转轴的直线作用的，相对于转轴没有力臂。没有外力矩，就有 $\\kL = \\kLprime$，把手臂收拢只是用较小的转动惯量换取了较大的角速度。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2595479",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "当地球出现全球变暖的趋势时，大气膨胀，一天的长度会极其轻微地增加。请解释为什么一天的长度会增加。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "大气随地球一起转动，是地球角动量的一部分，而且在它变暖时，地球之外没有任何东西对它施加力矩，所以地球和大气合起来的角动量守恒。大气膨胀时，它的一部分质量移到离转轴更远的地方，地球与大气的转动惯量增大，这与滑冰者收拢手臂的情形相反。由 $\\kI\\kw = \\kIprime\\kwprime$，转动惯量越大，角速度就越小，所以地球转得稍微慢一些，转完一圈要多花一点时间，也就是一天变长了。大气只占地球质量的极小一部分，所以这种变化非常轻微，但是可以测量到。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1985120",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "几乎所有的传统活塞式发动机上都装有飞轮，用来平抑由各个活塞点火的推力所引起的发动机振动。飞轮为什么有这种作用？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个活塞点火都会在很短的时间内给曲轴一个力矩，由 $\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$，它给曲轴增加一小股角动量；在两次点火之间，发动机所带的负载施加一个反方向的力矩，把角动量带走。与给定角动量相对应的角速度为 $\\kw = \\kL/\\kI$，所以一股角动量脉冲所产生的角速度变化，等于该脉冲除以转动惯量。飞轮是远离转轴的沉重的边缘，因其转动惯量大而被选用，曲轴上装了它之后，同样的角动量脉冲所产生的角速度变化要小得多：飞轮在两次点火的间隙里储存角动量，并把它还回去，所以轴以接近恒定的速率转动，而不会随每次点火而忽快忽慢。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3450198",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "喷气涡轮机转得很快。它们被设计成：如果有什么东西使它们突然卡住，就会飞散开来，而不是把角动量传给飞机的机翼，那样可能把机翼撕掉。请解释飞散开来为什么既能保持角动量守恒，又不把角动量传给机翼。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "旋转的涡轮机带有很大的角动量，这些角动量不会消失；只有力矩才能把它传出去。如果涡轮机卡住了，它的轴承就会施加一个很大的力矩使它停下来。根据牛顿第三定律，它会对发动机支座和机翼施加一个大小相等的力矩，在不到一秒的时间里把它全部的角动量传给飞机。相反，如果涡轮机碎裂成向外飞出的碎片，每块碎片都带着它在边缘上的速度离开，并沿直线继续运动，从转轴旁边飞过。沿直线运动的物体相对于转轴仍然有角动量，等于它的质量乘以速率再乘以它到转轴的垂直距离。这些碎片合起来恰好带走了涡轮机原有的角动量。轴承处从未作用过很大的力矩，所以这些角动量一点也传不到机翼上。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3093611",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "一名航天员在轨道上的卫星上拧紧一颗螺栓。他沿与螺栓相反的方向转动，而卫星沿与螺栓相同的方向转动。请解释原因。如果卫星上有把手可用，能防止这种反向转动吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "为了转动螺栓，航天员对它施加一个力矩，根据牛顿第三定律，螺栓对他施加一个大小相等、方向相反的力矩。他在太空中自由漂浮，没有任何东西能使他保持不动，所以这个反作用力矩使他沿与螺栓相反的方向转动。航天员和螺栓合起来的角动量原来为零，并且必须保持为零。螺栓拧在卫星上，螺纹的摩擦拖着卫星沿与螺栓相同的转向转动；卫星转得很慢，因为它的转动惯量很大。有了把手，航天员就可以靠在卫星上稳住自己，这样他对螺栓施加的力矩，就遇到他通过把手对卫星施加的反方向的力矩。于是他和卫星构成一个刚性系统，反作用力矩在系统内部相互抵消，两者彼此之间不发生转动。航天员、螺栓和卫星的总角动量仍为零，但现在它被分配成使任何东西都看不出有转动。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id1080849",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_05a.jpg",
+    "alt": "该图显示一位跳水运动员在翻腾时蜷起身体，然后完全伸展四肢，笔直地入水。",
+    "caption": "图 10.30 跳水运动员蜷起身体时转得很快，入水前伸展四肢时就慢下来。"
+   },
+   "prompt": "竞技跳水运动员做翻腾动作时，会把四肢收拢并蜷起身体。入水之前，他们会完全伸展四肢，以便笔直入水。请解释这两个动作对他们角速度的影响。同时也请解释对他们角动量的影响。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "跳水运动员离开跳板之后，她所受的唯一的力是重力，重力作用在她的质心上，对质心不产生力矩，所以她的角动量在整个腾空过程中保持不变。蜷起身体使她的四肢靠近她转动所绕的转轴，使她的转动惯量减小。由 $\\kI\\kw = \\kIprime\\kwprime$，她的角速度增大，她在腾空的一秒左右时间里完成了几个翻腾。入水前伸展四肢使她的转动惯量再次增大，角速度减小，所以她及时停止转动，笔直入水。这两个动作都不改变她的角动量，因为她用来蜷起和伸展的力是她身体的内力。两个动作改变的只是这个角动量在转动惯量和角速度之间如何分配，如图 10.30 所示。"
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id1860696",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "画一幅受力图，表示跳水运动员离开跳板时是如何获得角动量的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把跳水运动员画成一个物体，标出她的质心，让她站在跳板的末端，处于离开跳板前的那一刻。有两个力作用在她身上：她的重力，从她的质心向下画出；以及跳板对她双脚的力，从她双脚压在跳板上的那一点向上画出。如果她站直，这两个力就在同一条竖直线上，对她的质心不产生力矩。一名要翻腾的跳水运动员身体前倾，使她的质心在双脚的前方；于是跳板向上的推力相对于她的质心有一个力臂，对质心产生一个力矩，而由于她的重力就作用在质心上，这个力矩就是合力矩。在她双脚停留在跳板上的短暂时间里，$\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$ 给了她在整个跳水过程中所带有的角动量。在图上标出力臂，即她的质心到双脚的水平距离，并注明这个力矩所产生的转动方向，即向前，越过她的脚尖。"
+   }
+  },
+  {
+   "id": "cq13",
+   "source_id": "eip-746",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_05_06a.jpg",
+    "alt": "一幅特写，沿着大型火炮或大炮的带膛线炮管向里看，显示出炮口内部清晰的螺旋形凹槽。",
+    "caption": "图 10.31 该图显示沿火炮炮管向里看的景象，突出了它的膛线（rifling）。炮管中的膛线使炮弹旋转，与步枪的情形相同（炮管中的凹槽因此得名）。（来源：Elsie esq., Flickr）"
+   },
+   "prompt": "从角动量的角度看，在投掷橄榄球或射出步枪子弹时让它们旋转，有什么好处？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "旋转的抛体沿它的自转轴带有角动量。在飞行中，空气只对它施加很小的力矩，所以根据角动量守恒定律，这个角动量的大小和方向都保持不变，抛体的轴线一直指向它离开手或炮管时所指的方向。不旋转地被抛出的橄榄球或子弹没有这样的角动量来保持轴线稳定，空气最轻微的不均匀推动就会使它翻滚起来，使它摇摆、减速并偏离轨道。旋转使它的尖端保持朝前，所以抛体飞得更远、更直，落在瞄准的地方；图 10.31 中的膛线就是为了在抛体离开炮管时赋予它这种旋转。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1615758",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-momentum",
+   "prompt": "（a）计算地球绕太阳公转轨道上的角动量。\n（b）把这个角动量与地球绕自转轴的角动量作比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 2.66e+40,
+      "unit": "kg·m²/s",
+      "hint": "在轨道上，地球是位于轨道半径处的质点，所以 $\\kI = MR^2$，其中 $R$ 为地球到太阳的距离，$\\kw$ 是每年一圈，换算成 rad/s。"
+     },
+     {
+      "part": "b",
+      "value": 7.07e+33,
+      "unit": "kg·m²/s",
+      "hint": "地球绕自转轴的角动量已在例题 10.11 中算出；这一问要的是那个值，以及轨道角动量是它的多少倍。"
+     }
+    ],
+    "solution": "（a）$2.66 \\times 10^{40}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$\n（b）$7.07 \\times 10^{33}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$\n地球绕太阳公转的角动量，是地球绕自转轴的角动量的 $3.77 \\times 10^{6}$ 倍。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1426438",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-and-angular-momentum",
+   "prompt": "假设你用 300 N 的力摇动一辆老式汽车的曲柄 0.250 s 来发动它。如果曲柄的手柄距支点 0.300 m，并且这个力在整个过程中都以产生最大力矩的方式施加，那么发动机得到的角动量是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 22.5,
+    "unit": "kg·m²/s",
+    "hint": "最大力矩意味着力垂直于曲柄，所以 $\\text{合力矩}\\;\\ktau = rF$，然后像例题 10.12 那样用 $\\kdLang = (\\text{合力矩}\\;\\ktau)\\kdt$。",
+    "solution": "$22.5\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3173435",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "skater",
+   "prompt": "三个孩子骑在旋转木马的边缘，旋转木马的质量为 100 kg，半径为 1.60 m，正以 20.0 转每分的转速旋转。这三个孩子的质量分别为 22.0 kg、28.0 kg 和 33.0 kg。如果质量为 28.0 kg 的孩子移到旋转木马的中心，新的角速度以转每分计是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 25.3,
+    "unit": "rpm",
+    "hint": "旋转木马是一个圆盘，$\\frac{1}{2}MR^2$，边缘上的每个孩子是质点 $mR^2$；中心处的孩子没有贡献，所以求出前后的 $\\kI$ 和 $\\kIprime$，再用 $\\kI\\kw = \\kIprime\\kwprime$，它用转每分和用 rad/s 都成立。",
+    "solution": "25.3 转每分"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "linear-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "ap5",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "ap7",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "moment-of-inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "ap8",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap11",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "ap12",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "torque-changes-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "newtons-second-law-rotation",
+   "weight": 2
+  },
+  {
+   "exercise": "ap14",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap15",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap15",
+   "concept": "angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap16",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "ap16",
+   "concept": "mass-distribution-and-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap17",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap17",
+   "concept": "moment-of-inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "ap18",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "torque-changes-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "spin-rate-from-moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "work-done-in-pulling-in"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq9",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq11",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq12",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "cq13",
+   "concept": "conservation-of-angular-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "angular-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "moment-of-inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "spin-rate-from-moment-of-inertia"
+  },
+  {
+   "exercise": "p5",
+   "concept": "angular-momentum",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "lazy-susan",
+   "label": "旋转餐盘",
+   "figures": [
+    "sim-lazy-susan"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "转动旋转餐盘的人，以手表示",
+   "figures": [
+    "sim-lazy-susan"
+   ]
+  },
+  {
+   "id": "leg",
+   "label": "小腿",
+   "figures": [
+    "sim-kick"
+   ]
+  },
+  {
+   "id": "skater",
+   "label": "滑冰者",
+   "figures": [
+    "sim-skater"
+   ]
+  },
+  {
+   "id": "cloud",
+   "label": "气体和尘埃云",
+   "figures": [
+    "sim-cloud"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "angular-momentum-conservation",
+   "what": "角动量守恒定律",
+   "source": "《大学物理（第2版）》，10.5 角动量及其守恒",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "合力矩为零。",
+       "src": "10.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\text{合力矩}\\;\\ktau} = \\dfrac{\\mk{L}{\\kdLang}}{\\mk{dt}{\\kdt}}",
+      "src": "10.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{0} = \\dfrac{\\mk{L}{\\kdLang}}{\\mk{dt}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kdLang} = \\mk{t}{0}",
+       "uses": [],
+       "map": {
+        "dt": "t"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{t}{\\text{常量}}",
+       "uses": [],
+       "cap": "如果角动量的变化为零，角动量就保持同一个值不变。"
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{t}{\\kLprime}",
+       "uses": [],
+       "cap": "较晚时刻的值 $\\kLprime$ 与之前的值 $\\kL$ 相同。"
+      }
+     ],
+     "src": "10.5"
+    }
+   ]
+  }
+ ]
+}

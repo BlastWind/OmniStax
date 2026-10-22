@@ -1,0 +1,97 @@
+<section id="uniform-circular-motion">
+<h2>回顾匀速圆周运动</h2>
+<p class="cite-target">“<span data-concept="uniform-circular-motion">匀速圆周运动</span>与引力”只讨论了<span data-concept="uniform-circular-motion">匀速圆周运动</span>，即沿圆周以恒定速率进行的<span data-concept="motion">运动</span>，因而<span data-concept="angular-velocity">角速度</span>也恒定。回想一下，<span data-concept="angular-velocity">角速度</span> $\kw$ 被定义为<span data-concept="angle">角</span> $\ktheta$ 对<span data-concept="time">时间</span>的变化率：</p>
+$$\kw = \frac{\kdtheta}{\kdt},$$
+<p>其中 $\ktheta$ 是转动的<span data-concept="angle">角</span>，如图 10.3 所示。<span data-concept="angular-velocity">角速度</span> $\kw$ 与线<span data-concept="velocity">速度</span> $\kv$ 之间的关系，也已在“<span data-concept="rotation-angle">转角</span>与<span data-concept="angular-velocity">角速度</span>”中定义为</p>
+$$\kv = \kr\kw$$
+<p>或</p>
+$$\kw = \frac{\kv}{\kr},$$
+<p>其中 $\kr$ 是<span data-concept="circular-path-radius">曲率半径</span>，同样见图 10.3。按照符号约定，逆时针<span data-concept="vector-direction">方向</span>被视为正<span data-concept="vector-direction">方向</span>，顺时针<span data-concept="vector-direction">方向</span>为负</p>
+<figure class="sim" id="sim-uniform" data-figure="10.3" data-original="/media/ch10/Figure_11_01_01a.jpg" data-original-width="200" data-original-caption="此图显示了匀速圆周运动及其若干已定义的量。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.3</span><span><span data-ref="disk">一个圆盘</span>以<span data-type="angular-rate">恒定的角速度</span> $\kw$ 逆时针转动。随着<span data-concept="time">时间</span>推移，<span data-type="position">半径</span>扫过<span data-type="angle">角</span> $\kdtheta$，而<span data-ref="rim-point">边缘上一点</span>的<span data-type="velocity">速度</span> $\kv$ 保持大小 $\kr\kw$ 不变，其方向则随<span data-type="position">半径</span>一起转动。改变<span data-type="angular-rate">角速度</span>或<span data-type="position">半径</span>，观察<span data-type="angle">角</span>增长得多快，以及<span data-concept="velocity">速度</span>箭头有多长。</span></div>
+</figure>
+</section>
+
+<section id="angular-acceleration">
+<h2>角加速度</h2>
+<p class="cite-target">当滑冰者收拢手臂时，当孩子让旋转木马从静止开始转动时，或者当计算机的硬盘在关机后减速直至停下时，<span data-concept="angular-velocity">角速度</span>都不是恒定的。在所有这些情形中，都存在<strong><span data-concept="angular-acceleration">角加速度</span></strong>，其中 $\kw$ 在变化。变化发生得越快，<span data-concept="angular-acceleration">角加速度</span>就越大。<span data-concept="angular-acceleration">角加速度</span> $\kalpha$ 定义为<span data-concept="angular-velocity">角速度</span>的变化率。用方程的形式，<span data-concept="angular-acceleration">角加速度</span>表示为：</p>
+$$\kalpha = \frac{\kdw}{\kdt},$$
+<p>其中 $\kdw$ 是<strong><span data-concept="change-in-angular-velocity">角速度的变化量</span></strong>，$\kdt$ 是<span data-concept="time">时间</span>的变化量。<span data-concept="angular-acceleration">角加速度</span>的<span data-concept="units">单位</span>是 $(\text{rad/s})/\text{s}$，即 $\text{rad/s}^2$。如果 $\kw$ 增大，则 $\kalpha$ 为正。如果 $\kw$ 减小，则 $\kalpha$ 为负。</p>
+<figure class="sim" id="sim-spin-up">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="wheel">倒置自行车的后轮</span>在<span data-type="time">一段时间</span> $\kdt$ 内从静止被转动到<span data-type="angular-rate">某一末角速度</span> $\kw$，然后刹车使<span data-ref="wheel">它</span>以<span data-type="angular-acceleration">很大的负角加速度</span> $\kalpha$ 停下。<span data-ref="wheel">车轮</span>旁边的图像显示<span data-type="angular-rate">角速度</span>在这两个阶段中的变化，先是平缓上升，随后陡然下降。改变<span data-type="angular-rate">末角速度</span>、<span data-type="time">达到它所用的时间</span>和<span data-type="angular-acceleration">刹车的角加速度</span>，观察两条斜线的斜率如何变化。</span></div>
+</figure>
+<div class="example" id="ex-bike-wheel">
+<h3>例题 10.1 · 计算自行车车轮的角加速度和减速度</h3>
+<p>假设一个十几岁的女孩把她的自行车翻过来放着，让<span data-ref="wheel">后轮</span>从静止开始转动，在<span data-type="time">5.00 s</span> 内达到<span data-type="angular-rate">250 转每分的末<span data-concept="angular-velocity">角速度</span></span>。（a）求以 $\text{rad/s}^2$ 为单位的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>。（b）如果她现在猛踩刹车，产生 $-87.3\ \text{rad/s}^2$ 的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>，<span data-ref="wheel">车轮</span>需要多长时间才能停下？</p>
+<h4>（a）的思路</h4>
+<p>因为<span data-type="angular-rate">末<span data-concept="angular-velocity">角速度</span></span>和<span data-type="time"><span data-concept="time">时间</span></span>已知，所以<span data-concept="angular-acceleration">角加速度</span>可以直接由其定义 $\kalpha = \frac{\kdw}{\kdt}$ 求得。可见 $\kdw$ 为 250 转每分，$\kdt$ 为 5.00 s。</p>
+<h4>（a）的解</h4>
+<p>把已知信息代入<span data-concept="angular-acceleration">角加速度</span>的定义，得到</p>
+$$\begin{aligned}\kalpha &= \frac{\kdw}{\kdt}\\ &= \frac{250\ \text{rpm}}{5.00\ \text{s}}.\end{aligned}$$
+<p>因为 $\kdw$ 以转每分（rpm）为单位，而我们希望<span data-concept="angular-acceleration">角加速度</span>取 $\text{rad/s}^2$ 这一标准<span data-concept="units">单位</span>，所以需要把 $\kdw$ 从转每分换算为 rad/s：</p>
+$$\begin{aligned}\kdw &= 250\frac{\text{rev}}{\text{min}}\cdot\frac{2\pi\ \text{rad}}{\text{rev}}\cdot\frac{1\ \text{min}}{60\ \text{s}}\\ &= 26.2\frac{\text{rad}}{\text{s}}.\end{aligned}$$
+<p>把这个量代入 $\kalpha$ 的表达式，得到</p>
+$$\begin{aligned}\kalpha &= \frac{\kdw}{\kdt}\\ &= \frac{26.2\ \text{rad/s}}{5.00\ \text{s}}\\ &= 5.24\ \text{rad/s}^2.\end{aligned}$$
+<h4>（b）的思路</h4>
+<p>在这一问中，我们已知<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>和<span data-type="angular-rate">初<span data-concept="angular-velocity">角速度</span></span>。利用<span data-concept="angular-acceleration">角加速度</span>的定义并解出 $\kdt$，就能求得<span data-type="time">停止所需的<span data-concept="time">时间</span></span>，即</p>
+$$\kdt = \frac{\kdw}{\kalpha}.$$
+<h4>（b）的解</h4>
+<p>这里<span data-type="angular-rate"><span data-concept="angular-velocity">角速度</span></span>从 $26.2\ \text{rad/s}$（250 转每分）减小到零，所以 $\kdw$ 为 $-26.2\ \text{rad/s}$，而 $\kalpha$ 已给定为 $-87.3\ \text{rad/s}^2$。因此，</p>
+$$\begin{aligned}\kdt &= \frac{-26.2\ \text{rad/s}}{-87.3\ \text{rad/s}^2}\\ &= 0.300\ \text{s.}\end{aligned}$$
+<h4>讨论</h4>
+<p>请注意，女孩转动<span data-ref="wheel">车轮</span>时，<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>很小且为正；要经过 <span data-type="time">5 s</span> 才能产生<span data-type="angular-rate">可观的<span data-concept="angular-velocity">角速度</span></span>。当她踩下刹车时，<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>很大且为负。<span data-type="angular-rate"><span data-concept="angular-velocity">角速度</span></span>很快降为零。在这两种情形中，这些关系都类似于直线<span data-concept="motion">运动</span>中发生的情况。例如，当你撞上砖墙时会有很大的<span data-concept="deceleration">减速度</span>——在很短的<span data-concept="time">时间</span>间隔内，<span data-concept="velocity">速度</span>的变化很大。</p>
+</div>
+</section>
+
+<section id="tangential-acceleration">
+<h2>切向加速度和向心加速度</h2>
+<p class="cite-target">如果前面例题中的自行车是车轮着地，而不是倒置，它就会先沿地面加速，然后停下来。圆周<span data-concept="motion">运动</span>与直线<span data-concept="motion">运动</span>之间的这种联系需要加以探究。例如，知道线加速度和<span data-concept="angular-acceleration">角加速度</span>是如何联系的会很有用。在圆周<span data-concept="motion">运动</span>中，线<span data-concept="acceleration">加速度</span>在<span data-ref="point">所关注的点</span>处与圆<em>相切</em>，如图 10.4 所示。因此，线<span data-concept="acceleration">加速度</span>称为<strong><span data-concept="tangential-acceleration">切向加速度</span></strong> $\kat$。</p>
+<figure class="sim" id="sim-accelerations" data-figure="10.4 + 10.5" data-original="/media/ch10/Figure_11_01_02a.jpg,/media/ch10/Figure_11_01_03a.jpg" data-original-caption="在圆周运动中，线加速度 a 随速度大小的变化而产生：a 与该运动相切。在圆周运动的语境中，线加速度也称为切向加速度 a_t。向心加速度 a_c 随速度方向的变化而产生；它垂直于圆周运动。因此，向心加速度和切向加速度彼此垂直。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.4 + 10.5</span><span><span data-ref="point">一个点</span>沿<span data-type="position">半径</span>为 $\kr$ 的圆逆时针运动，同时<span data-ref="point">它</span>的<span data-type="angular-rate">角速度</span>以 $\kalpha$ 的变化率改变。<span data-ref="point">它</span>的<span data-type="velocity">速度</span> $\kv$ 与圆相切，<span data-type="acceleration">切向加速度</span> $\kat$ 沿<span data-type="velocity">速度</span>方向并改变其大小，<span data-type="acceleration">向心加速度</span> $\kac$ 指向圆心并改变其方向。圆旁边的图像显示<span data-type="velocity">速率</span>随<span data-concept="time">时间</span>的变化，这是一条斜率为 $\kat$ 的直线。把<span data-type="angular-acceleration">角加速度</span>设为零，<span data-type="acceleration">切向加速度</span>就消失了，剩下第 6 章的匀速圆周运动。</span></div>
+</figure>
+<p>线加速度或<span data-concept="tangential-acceleration">切向加速度</span>指的是<span data-concept="velocity">速度</span>的<span data-concept="vector-magnitude">大小</span>的变化，而不是其<span data-concept="vector-direction">方向</span>的变化。我们从“<span data-concept="uniform-circular-motion">匀速圆周运动</span>与引力”中得知，在圆周<span data-concept="motion">运动</span>中，<span data-concept="centripetal-acceleration">向心加速度</span> $\kac$ 指的是<span data-concept="velocity">速度</span>的<span data-concept="vector-direction">方向</span>的变化，而不是其<span data-concept="vector-magnitude">大小</span>的变化。做圆周<span data-concept="motion">运动</span>的物体具有<span data-concept="centripetal-acceleration">向心加速度</span>，如图 10.5 所示。因此，$\kat$ 和 $\kac$ 相互垂直，彼此独立。<span data-concept="tangential-acceleration">切向加速度</span> $\kat$ 与<span data-concept="angular-acceleration">角加速度</span> $\kalpha$ 直接相关，并与<span data-concept="velocity">速度</span>的增大或减小有关，而与其<span data-concept="vector-direction">方向</span>无关。</p>
+</section>
+
+<section id="linear-angular">
+<h2>线加速度与角加速度的联系</h2>
+<p class="cite-target">现在我们可以求出线<span data-concept="acceleration">加速度</span> $\kat$ 与<span data-concept="angular-acceleration">角加速度</span> $\kalpha$ 之间的确切关系。</p>
+<figure class="dv" id="drv-tangential-acceleration"></figure>
+<p>这些方程表明，线<span data-concept="acceleration">加速度</span>与<span data-concept="angular-acceleration">角加速度</span>成正比。<span data-concept="angular-acceleration">角加速度</span>越大，线（切向）<span data-concept="acceleration">加速度</span>就越大，反之亦然。例如，汽车驱动轮的<span data-concept="angular-acceleration">角加速度</span>越大，汽车的<span data-concept="acceleration">加速度</span>就越大。半径也有影响。例如，对于给定的<span data-concept="angular-acceleration">角加速度</span> $\kalpha$，车轮越小，其线<span data-concept="acceleration">加速度</span>就越小。</p>
+<div class="example" id="ex-motorcycle">
+<h3>例题 10.2 · 计算摩托车车轮的角加速度</h3>
+<p><span data-ref="motorcycle">一辆大功率摩托车</span>能在<span data-type="time">4.20 s</span> 内<span data-type="velocity">从 0 加速到 30.0 m/s（约 108 km/h）</span>。<span data-ref="motorcycle">它</span><span data-type="position">半径为 0.320 m</span> 的<span data-ref="wheels">车轮</span>的<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>是多少？（见图 10.6。）</p>
+<figure class="sim" id="sim-motorcycle" data-figure="10.6" data-original="/media/ch10/Figure_11_01_04a.jpg" data-original-width="225" data-original-caption="摩托车的线加速度伴随着其车轮的角加速度。">
+  <div class="sim-head"><span class="eyebrow">Figure 10.6</span><span><span data-ref="motorcycle">一辆摩托车</span>沿笔直的道路从静止起步，在<span data-type="time">时间</span> $\kdt$ 内达到<span data-ref="motorcycle">它</span>的<span data-type="velocity">末速率</span> $\kv$。<span data-ref="motorcycle">它</span>的<span data-type="acceleration">线加速度</span> $\kat$ 就是<span data-ref="wheels">每个车轮</span>边缘的<span data-type="acceleration">切向加速度</span>，而<span data-ref="wheels">车轮</span>以<span data-type="angular-acceleration">角加速度</span> $\kalpha = \kat/\kr$ 转动。道路下方的图像显示<span data-ref="wheels">一个车轮</span>的<span data-type="angular-rate">角速度</span>随<span data-concept="time">时间</span>的变化。改变<span data-type="velocity">末速率</span>、<span data-type="time">时间</span>和<span data-ref="wheels">车轮</span>的<span data-type="position">半径</span>，观察那条直线的斜率如何变化。</span></div>
+</figure>
+<h4>思路</h4>
+<p>题中给出了<span data-ref="motorcycle">摩托车</span>的<span data-type="velocity">线<span data-concept="velocity">速度</span></span>的信息。因此，我们可以求出<span data-ref="motorcycle">它</span>的<span data-type="acceleration">线<span data-concept="acceleration">加速度</span></span> $\kat$。然后，就可以用表达式 $\kalpha = \frac{\kat}{\kr}$ 求出<span data-type="angular-acceleration"><span data-concept="angular-acceleration">角加速度</span></span>。</p>
+<h4>解</h4>
+<p><span data-type="acceleration">线<span data-concept="acceleration">加速度</span></span>为</p>
+$$\begin{aligned}\kat &= \frac{\kdv}{\kdt}\\ &= \frac{30.0\ \text{m/s}}{4.20\ \text{s}}\\ &= 7.14\ \text{m/s}^2.\end{aligned}$$
+<p>我们还知道<span data-ref="wheels">车轮</span>的<span data-type="position">半径</span>。把 $\kat$ 和 $\kr$ 的值代入 $\kalpha = \frac{\kat}{\kr}$，得到</p>
+$$\begin{aligned}\kalpha &= \frac{\kat}{\kr}\\ &= \frac{7.14\ \text{m/s}^2}{0.320\ \text{m}}\\ &= 22.3\ \text{rad/s}^2.\end{aligned}$$
+<h4>讨论</h4>
+<p><span data-concept="radian">弧度</span>这种<span data-concept="units">单位</span>是无量纲的，会出现在联系角量和线量的任何关系中。</p>
+</div>
+</section>
+
+<section id="analogy">
+<h2>转动量与平动量</h2>
+<p class="cite-target">到目前为止，我们已经定义了三个转动量——$\ktheta$、$\kw$ 和 $\kalpha$。这些量类似于平动量 $\kx$、$\kv$ 和 $\ka$。表 10.1 列出了转动量、与之类似的平动量，以及它们之间的关系。</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 10.1</span><span>转动量与平动量</span></div>
+  <table>
+    <thead><tr><th>转动</th><th>平动</th><th>关系</th></tr></thead>
+    <tbody>
+      <tr><td>$\ktheta$</td><td>$\kx$</td><td>$\ktheta = \frac{\kx}{\kr}$</td></tr>
+      <tr><td>$\kw$</td><td>$\kv$</td><td>$\kw = \frac{\kv}{\kr}$</td></tr>
+      <tr><td>$\kalpha$</td><td>$\ka$</td><td>$\kalpha = \frac{\kat}{\kr}$</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="note">
+<div class="eyebrow">建立联系：居家实验</div>
+<p>双脚着地，坐在一把可以转动的椅子上。抬起一条腿，使它伸直（不弯曲）。用另一条腿蹬地，让自己开始转动。然后不再用腿蹬地，但让椅子继续转动。从你开始转动的起点算起，以三幅独立图像的形式，画出你那条腿的<span data-concept="angle">角</span>、<span data-concept="angular-velocity">角速度</span>和<span data-concept="angular-acceleration">角加速度</span>随<span data-concept="time">时间</span>变化的草图。估计这些量的大小。</p>
+</div>
+<div class="exercises" data-place="analogy"></div>
+</section>

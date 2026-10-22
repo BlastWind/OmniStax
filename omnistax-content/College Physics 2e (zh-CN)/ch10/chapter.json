@@ -1,0 +1,883 @@
+{
+ "id": "10",
+ "dir": "ch10",
+ "title": "转动与角动量",
+ "intro": {
+  "module": "m42176",
+  "slug": "10-introduction-to-rotational-motion-and-angular-momentum"
+ },
+ "sections": [
+  {
+   "id": "10.1",
+   "module": "m42177",
+   "title": "角加速度",
+   "slug": "10-1-angular-acceleration"
+  },
+  {
+   "id": "10.2",
+   "module": "m42178",
+   "title": "转动运动学",
+   "slug": "10-2-kinematics-of-rotational-motion"
+  },
+  {
+   "id": "10.3",
+   "module": "m42179",
+   "title": "转动动力学：转动惯量",
+   "slug": "10-3-dynamics-of-rotational-motion-rotational-inertia"
+  },
+  {
+   "id": "10.4",
+   "module": "m42180",
+   "title": "转动动能：再论功和能量",
+   "slug": "10-4-rotational-kinetic-energy-work-and-energy-revisited"
+  },
+  {
+   "id": "10.5",
+   "module": "m42182",
+   "title": "角动量及其守恒",
+   "slug": "10-5-angular-momentum-and-its-conservation"
+  },
+  {
+   "id": "10.6",
+   "module": "m42183",
+   "title": "有限大小物体的二维碰撞",
+   "slug": "10-6-collisions-of-extended-bodies-in-two-dimensions"
+  },
+  {
+   "id": "10.7",
+   "module": "m42184",
+   "title": "回转效应：角动量的矢量特性",
+   "slug": "10-7-gyroscopic-effects-vector-aspects-of-angular-momentum"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "θ",
+   "concept": "rotation-angle",
+   "meaning": "物体绕其转轴的转角",
+   "unit": "rad",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "角速度，转角变化的快慢",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "Δω",
+   "concept": "change-in-angular-velocity",
+   "meaning": "角速度的变化量，末值与初值之差",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-angular-acceleration"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "角速度发生变化所经历的时间变化量",
+   "unit": "s",
+   "section": "10.1",
+   "anchor": "10.1-angular-acceleration"
+  },
+  {
+   "sym": "α",
+   "concept": "angular-acceleration",
+   "meaning": "角加速度，角速度的变化率",
+   "unit": "rad/s²",
+   "section": "10.1",
+   "anchor": "10.1-angular-acceleration"
+  },
+  {
+   "sym": "a_t",
+   "concept": "tangential-acceleration",
+   "meaning": "切向加速度，在所关注的点处沿圆的切线方向的线加速度",
+   "unit": "m/s²",
+   "section": "10.1",
+   "anchor": "10.1-tangential-acceleration"
+  },
+  {
+   "sym": "a_c",
+   "concept": "centripetal-acceleration",
+   "meaning": "向心加速度，它改变速度的方向而不改变其大小",
+   "unit": "m/s²",
+   "section": "10.1",
+   "anchor": "10.1-tangential-acceleration"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "转动物体上一点的线速度",
+   "unit": "m/s",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "Δv",
+   "concept": "instantaneous-velocity",
+   "meaning": "线速度大小的变化量",
+   "unit": "m/s",
+   "section": "10.1",
+   "anchor": "10.1-tangential-acceleration"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "曲率半径，从转轴到所关注的点的距离",
+   "unit": "m",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "θ",
+   "concept": "rotation-angle",
+   "meaning": "物体转过的角度",
+   "unit": "rad",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "ω_0",
+   "concept": "angular-velocity",
+   "meaning": "初角速度",
+   "unit": "rad/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "末角速度",
+   "unit": "rad/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "ω̄",
+   "concept": "angular-velocity",
+   "meaning": "平均角速度，角加速度恒定时处在初值与末值的正中间",
+   "unit": "rad/s",
+   "section": "10.2",
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "sym": "α",
+   "concept": "angular-acceleration",
+   "meaning": "角加速度，这些方程把它取为恒定",
+   "unit": "rad/s²",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "转动所持续的时间",
+   "unit": "s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "x",
+   "concept": "position",
+   "meaning": "边缘上一点所经过的距离，例如从渔线轮上放出的鱼线的长度",
+   "unit": "m",
+   "section": "10.2",
+   "anchor": "10.2-ex-train"
+  },
+  {
+   "sym": "v0",
+   "concept": "instantaneous-velocity",
+   "meaning": "初线速度",
+   "unit": "m/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "末线速度",
+   "unit": "m/s",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "v̄",
+   "concept": "average-velocity",
+   "meaning": "平均线速度",
+   "unit": "m/s",
+   "section": "10.2",
+   "anchor": "10.2-four-equations"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "切向加速度，这些方程把它取为恒定",
+   "unit": "m/s²",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "测量线量时所在的半径",
+   "unit": "m",
+   "section": "10.2",
+   "anchor": "10.2-rotational-kinematics"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "施加在物体上、垂直于半径的力",
+   "unit": "N",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "质点的质量",
+   "unit": "kg",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "有限大小物体的总质量",
+   "unit": "kg",
+   "section": "10.3",
+   "anchor": "10.3-moment-of-inertia"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "从支点到力的作用点的距离",
+   "redefines": true,
+   "unit": "m",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "R",
+   "concept": "position",
+   "meaning": "有限大小物体的半径",
+   "unit": "m",
+   "section": "10.3",
+   "anchor": "10.3-moment-of-inertia"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "质点沿力的方向的线加速度",
+   "unit": "m/s²",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "α",
+   "concept": "angular-acceleration",
+   "meaning": "绕转轴产生的角加速度",
+   "unit": "rad/s²",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "τ",
+   "concept": "torque",
+   "type": "torque",
+   "meaning": "力矩，力绕转轴的转动效果",
+   "unit": "N·m",
+   "section": "10.3",
+   "anchor": "10.3-point-mass"
+  },
+  {
+   "sym": "I",
+   "concept": "moment-of-inertia",
+   "meaning": "物体绕所选转轴的转动惯量，即组成它的所有质点的 $mr^2$ 之和",
+   "unit": "kg·m²",
+   "section": "10.3",
+   "anchor": "10.3-moment-of-inertia"
+  },
+  {
+   "sym": "I_c",
+   "concept": "moment-of-inertia",
+   "meaning": "孩子的转动惯量，把她取为处在她到转轴的距离上的一个质点",
+   "unit": "kg·m²",
+   "section": "10.3",
+   "anchor": "10.3-merry-go-round"
+  },
+  {
+   "sym": "W",
+   "concept": "work",
+   "meaning": "对转动物体所做的合外力的功",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "τ",
+   "concept": "torque",
+   "type": "torque",
+   "meaning": "做功的合力矩",
+   "unit": "N·m",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "θ",
+   "concept": "rotation-angle",
+   "meaning": "力矩作用期间物体转过的角度",
+   "unit": "rad",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "Δs",
+   "concept": "arc-length",
+   "meaning": "力的作用点所经过的弧长",
+   "unit": "m",
+   "section": "10.4",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "I",
+   "concept": "moment-of-inertia",
+   "meaning": "转动物体绕其转轴的转动惯量",
+   "unit": "kg·m²",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "ω_0",
+   "concept": "angular-velocity",
+   "meaning": "初角速度",
+   "unit": "rad/s",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "末角速度",
+   "unit": "rad/s",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "KE_rot",
+   "concept": "rotational-kinetic-energy",
+   "meaning": "转动动能，物体因转动而具有的动能",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-rotational-kinetic-energy"
+  },
+  {
+   "sym": "KE_trans",
+   "concept": "kinetic-energy",
+   "meaning": "物体整体的平动动能",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "PE_grav",
+   "concept": "gravitational-potential-energy",
+   "meaning": "物体在斜面顶端开始时具有的重力势能",
+   "unit": "J",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "滚动或旋转物体的质量",
+   "unit": "kg",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "h",
+   "concept": "position",
+   "meaning": "物体下降的高度",
+   "unit": "m",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体质心的线速度",
+   "unit": "m/s",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度",
+   "unit": "m/s²",
+   "section": "10.4",
+   "anchor": "10.4-helicopter"
+  },
+  {
+   "sym": "L",
+   "concept": "angular-momentum",
+   "meaning": "角动量，转动惯量与角速度的乘积",
+   "unit": "kg·m²/s",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "I",
+   "concept": "moment-of-inertia",
+   "meaning": "转动物体绕其转轴的转动惯量",
+   "unit": "kg·m²",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "转动物体的角速度",
+   "unit": "rad/s",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "τ",
+   "concept": "torque",
+   "type": "torque",
+   "meaning": "作用在物体上、改变其角动量的合力矩",
+   "unit": "N·m",
+   "section": "10.5",
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "sym": "ΔL_ang",
+   "concept": "angular-momentum",
+   "meaning": "合力矩所产生的角动量的变化量",
+   "unit": "kg·m²/s",
+   "section": "10.5",
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "合力矩作用的时间",
+   "unit": "s",
+   "section": "10.5",
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "sym": "L_prime",
+   "concept": "angular-momentum",
+   "meaning": "变化之后的角动量，合力矩为零时它等于变化之前的角动量",
+   "unit": "kg·m²/s",
+   "section": "10.5",
+   "anchor": "10.5-conservation"
+  },
+  {
+   "sym": "I_prime",
+   "concept": "moment-of-inertia",
+   "meaning": "物体改变形状之后的转动惯量，就像滑冰者收拢双臂时那样",
+   "unit": "kg·m²",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "ω_prime",
+   "concept": "angular-velocity",
+   "meaning": "转动惯量改变之后的角速度",
+   "unit": "rad/s",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "KE_rot",
+   "concept": "rotational-kinetic-energy",
+   "meaning": "变化之前的转动动能",
+   "unit": "J",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "KE_rotprime",
+   "concept": "rotational-kinetic-energy",
+   "meaning": "变化之后的转动动能，它更大，因为滑冰者收拢双臂时做了功",
+   "unit": "J",
+   "section": "10.5",
+   "anchor": "10.5-skater"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "转动物体的质量",
+   "unit": "kg",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "R",
+   "concept": "position",
+   "meaning": "转动物体的半径",
+   "unit": "m",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "L",
+   "concept": "angular-momentum",
+   "meaning": "碰撞之前系统绕支点计算的角动量",
+   "unit": "kg·m²/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "L_prime",
+   "concept": "angular-momentum",
+   "meaning": "碰撞之后系统的角动量",
+   "unit": "kg·m²/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "I",
+   "concept": "moment-of-inertia",
+   "meaning": "入射圆盘绕支点的转动惯量",
+   "unit": "kg·m²",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "I_prime",
+   "concept": "moment-of-inertia",
+   "meaning": "木棍与圆盘粘在一起后绕支点的转动惯量",
+   "unit": "kg·m²",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "圆盘在撞击之前绕支点的角速度",
+   "unit": "rad/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "ω_prime",
+   "concept": "angular-velocity",
+   "meaning": "碰撞之后木棍与圆盘的角速度",
+   "unit": "rad/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "圆盘的质量",
+   "unit": "kg",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "木棍的质量",
+   "unit": "kg",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "从钉子到圆盘撞击点的距离",
+   "redefines": true,
+   "unit": "m",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "碰撞之前圆盘的速度",
+   "unit": "m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "v_prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "碰撞之后圆盘的速度",
+   "unit": "m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "v_cm",
+   "concept": "instantaneous-velocity",
+   "meaning": "碰撞之后木棍质心的速度，它是被撞端速度的一半",
+   "unit": "m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "p",
+   "concept": "linear-momentum",
+   "meaning": "碰撞之前系统的总线动量",
+   "unit": "kg·m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "p_prime",
+   "concept": "linear-momentum",
+   "meaning": "碰撞之后系统的总线动量",
+   "unit": "kg·m/s",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "meaning": "碰撞之前的动能，即圆盘的平动动能",
+   "unit": "J",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "KE_prime",
+   "concept": "kinetic-energy",
+   "meaning": "碰撞之后的动能，即木棍与圆盘合在一起的转动动能",
+   "unit": "J",
+   "section": "10.6",
+   "anchor": "10.6-rotation-in-a-collision"
+  },
+  {
+   "sym": "L",
+   "concept": "angular-momentum",
+   "meaning": "旋转物体的角动量，它沿转轴指向右手定则所给出的方向",
+   "unit": "kg·m²/s",
+   "section": "10.7",
+   "anchor": "10.7-right-hand-rule"
+  },
+  {
+   "sym": "ΔL_ang",
+   "concept": "angular-momentum",
+   "meaning": "角动量的变化量，它指向产生它的力矩的方向",
+   "unit": "kg·m²/s",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "角速度，它沿转轴指向与角动量相同的方向",
+   "unit": "rad/s",
+   "section": "10.7",
+   "anchor": "10.7-right-hand-rule"
+  },
+  {
+   "sym": "τ",
+   "concept": "torque",
+   "type": "torque",
+   "meaning": "合力矩，垂直于 $r$ 和 $F$ 所构成的平面",
+   "unit": "N·m",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "力矩作用的时间",
+   "unit": "s",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "产生力矩的力",
+   "unit": "N",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "从转轴到力的作用点的距离",
+   "redefines": true,
+   "unit": "m",
+   "section": "10.7",
+   "anchor": "10.7-torque-direction"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "unit": "m",
+   "section": "10.4",
+   "meaning": "圆盘的半径，垂直于它的力就作用在这个半径处",
+   "anchor": "10.4-rotational-work"
+  },
+  {
+   "sym": "R",
+   "concept": "position",
+   "unit": "m",
+   "section": "10.4",
+   "meaning": "滚动圆柱体的半径",
+   "anchor": "10.4-rolling"
+  },
+  {
+   "sym": "Δθ",
+   "concept": "rotation-angle",
+   "meaning": "在时间 Δt 内半径扫过的角度",
+   "unit": "rad",
+   "section": "10.1",
+   "anchor": "10.1-uniform-circular-motion"
+  },
+  {
+   "sym": "x",
+   "concept": "position",
+   "meaning": "边缘上一点所经过的距离，例如从渔线轮上放出的鱼线的长度",
+   "unit": "m",
+   "section": "10.1",
+   "anchor": "10.1-analogy"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "与角加速度相类似的平动量，即线加速度",
+   "unit": "m/s²",
+   "section": "10.1",
+   "anchor": "10.1-analogy"
+  },
+  {
+   "sym": "θ_0",
+   "concept": "rotation-angle",
+   "meaning": "初始转角，转过的角度从它算起",
+   "unit": "rad",
+   "section": "10.2",
+   "anchor": "10.2-four-equations",
+   "redefines": true
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "力与从作用点指向支点的矢量之间的夹角",
+   "unit": "°",
+   "section": "10.3",
+   "anchor": "10.3-merry-go-round",
+   "redefines": true
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "有限大小物体的总质量",
+   "unit": "kg",
+   "section": "10.4",
+   "anchor": "10.4-grindstone"
+  },
+  {
+   "sym": "p",
+   "concept": "linear-momentum",
+   "meaning": "运动物体的线动量，即它的质量与速度的乘积",
+   "unit": "kg·m/s",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "运动物体的质量，用于它的线动量的定义",
+   "unit": "kg",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "运动物体的速度，用于它的线动量的定义",
+   "unit": "m/s",
+   "section": "10.5",
+   "anchor": "10.5-angular-momentum"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "施加在物体上、垂直于半径的力",
+   "unit": "N",
+   "section": "10.5",
+   "anchor": "10.5-ex-lazy-susan"
+  },
+  {
+   "sym": "Δp",
+   "concept": "change-in-momentum",
+   "meaning": "合力在时间 Δt 内产生的线动量的变化量",
+   "unit": "kg·m/s",
+   "section": "10.5",
+   "anchor": "10.5-torque-and-angular-momentum"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "从支点到力的作用点的距离",
+   "unit": "m",
+   "section": "10.5",
+   "anchor": "10.5-ex-lazy-susan",
+   "redefines": true
+  },
+  {
+   "sym": "α",
+   "concept": "angular-acceleration",
+   "meaning": "角加速度，角速度的变化率",
+   "unit": "rad/s²",
+   "section": "10.5",
+   "anchor": "10.5-ex-kick"
+  },
+  {
+   "sym": "θ",
+   "concept": "rotation-angle",
+   "meaning": "物体转过的角度",
+   "unit": "rad",
+   "section": "10.5",
+   "anchor": "10.5-ex-kick"
+  },
+  {
+   "sym": "r_perp",
+   "concept": "perpendicular-lever-arm",
+   "meaning": "垂直力臂，从支点到力的作用线的最短距离",
+   "unit": "m",
+   "section": "10.5",
+   "anchor": "10.5-ex-kick"
+  },
+  {
+   "sym": "I",
+   "concept": "moment-of-inertia",
+   "meaning": "转动物体绕其转轴的转动惯量",
+   "unit": "kg·m²",
+   "section": "10.7",
+   "anchor": "10.7-right-hand-rule"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "陀螺仪飞轮的质量",
+   "unit": "kg",
+   "section": "10.7",
+   "anchor": "10.7-gyroscope"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "陀螺仪的转轴与竖直方向的倾角",
+   "unit": "°",
+   "section": "10.7",
+   "anchor": "10.7-gyroscope",
+   "redefines": true
+  }
+ ]
+}
