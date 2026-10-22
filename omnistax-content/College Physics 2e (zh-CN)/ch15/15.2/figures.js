@@ -1,0 +1,588 @@
+/* Figures for section 15.2 The First Law of Thermodynamics and Some Simple Processes. Boots against the section's text article.
+   Two figures have a clock in them and move: the piston of Figure 15.8, whose
+   three panels are three moments of one stroke, and the cycle of Figure 15.12,
+   which is walked round its loop while the area fills leg by leg. Every other
+   figure answers its sliders, registers no cycle and carries no transport. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['15.2'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, pinned, curve, fixed } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the figures ---------- */
+const TAU = 2 * Math.PI;
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (n) => String(n).split('').map((c) => SUP[c] ?? c).join('');
+/* a number in scientific form, in plain text and in TeX: sci(150000, 5, 2) is "1.50 × 10⁵" */
+const sci = (v, e, dec) => fmt(v / Math.pow(10, e), dec) + ' × 10' + sup(e);
+const sciTex = (v, e, dec) => `${fmt(v / Math.pow(10, e), dec)}\\times 10^{${e}}`;
+/* a value that rounds to nothing at d decimals is nothing, so that no reading shows a signed zero */
+const eps = (v, d) => (Math.abs(v) < 0.5 * Math.pow(10, -d) ? 0 : v);
+const num = (v, d) => { const x = eps(v, d); return (x < 0 ? '−' : '') + fmt(Math.abs(x), d); };
+const numTex = (v, d) => { const x = eps(v, d); return (x < 0 ? '-' : '') + fmt(Math.abs(x), d); };
+/* a whole number of joules with a thin space every three digits */
+const J = (v) => { const x = Math.round(eps(v, 0)); return (x < 0 ? '−' : '') + String(Math.abs(x)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+const JTex = (v) => { const x = Math.round(eps(v, 0)); return (x < 0 ? '-' : '') + String(Math.abs(x)).replace(/\B(?=(\d{3})+(?!\d))/g, '\\,'); };
+/* a closed polygon from a list of [x, y] points */
+function poly(ctx, pts) { ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); }
+/* a region filled in a hue, at the alpha the figure asks for */
+function fillPoly(ctx, pts, color, a) { ctx.save(); poly(ctx, pts); ctx.fillStyle = alpha(color, a); ctx.fill(); ctx.restore(); }
+/* a region hatched in a hue: the mark of an area counted negative */
+function hatchPoly(ctx, pts, color, gap = 13) {
+  const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+  const l = Math.min(...xs), r = Math.max(...xs), t = Math.min(...ys), b = Math.max(...ys), h = b - t;
+  ctx.save(); poly(ctx, pts); ctx.clip(); ctx.strokeStyle = alpha(color, 0.85); ctx.lineWidth = 2; ctx.beginPath();
+  for (let s = l - h; s < r; s += gap) { ctx.moveTo(s, b); ctx.lineTo(s + h, t); }
+  ctx.stroke(); ctx.restore();
+}
+/* a block arrow, as wide as the energy it carries, from (x1, y1) to (x2, y2); `flow`
+   is a phase in [0, 1) that slides chevrons along it when the energy is moving */
+function fatArrow(ctx, x1, y1, x2, y2, w, color, flow) {
+  const L = Math.hypot(x2 - x1, y2 - y1); if (L < 2) return;
+  const ux = (x2 - x1) / L, uy = (y2 - y1) / L, px = -uy, py = ux;
+  const hl = Math.min(0.45 * L, 0.9 * w + 26), hw = 0.75 * w + 12, bx = x2 - ux * hl, by = y2 - uy * hl, h = w / 2;
+  const pts = [[x1 + px * h, y1 + py * h], [bx + px * h, by + py * h], [bx + px * hw, by + py * hw], [x2, y2], [bx - px * hw, by - py * hw], [bx - px * h, by - py * h], [x1 - px * h, y1 - py * h]];
+  ctx.save(); poly(ctx, pts); ctx.fillStyle = alpha(color, 0.3); ctx.fill(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.stroke();
+  if (flow !== undefined) {
+    poly(ctx, pts); ctx.clip(); ctx.lineWidth = 3; ctx.strokeStyle = alpha(color, 0.7); ctx.beginPath();
+    const step = 34, k = Math.min(h - 2, 12);
+    for (let s = (flow * step) % step - step; s < L; s += step) { const cx = x1 + ux * s, cy = y1 + uy * s; ctx.moveTo(cx - ux * 10 + px * k, cy - uy * 10 + py * k); ctx.lineTo(cx, cy); ctx.lineTo(cx - ux * 10 - px * k, cy - uy * 10 - py * k); }
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+/* an arrowhead on a path at (x, y), pointing along (ux, uy) */
+function head(ctx, x, y, ux, uy, color, s = 14) {
+  ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(x + ux * s * 0.6, y + uy * s * 0.6);
+  ctx.lineTo(x - ux * s * 0.6 - uy * s * 0.55, y - uy * s * 0.6 + ux * s * 0.55); ctx.lineTo(x - ux * s * 0.6 + uy * s * 0.55, y - uy * s * 0.6 - ux * s * 0.55);
+  ctx.closePath(); ctx.fill(); ctx.restore();
+}
+/* a state on a PV diagram, with its letter set beside it in the direction (ox, oy) */
+function state(ctx, x, y, letter, ox, oy) {
+  dot(ctx, x, y, PAL.ink, true, 8);
+  text(ctx, letter, x + ox * 24, y + oy * 24, PAL.ink, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+}
+/* Simpson's rule over [a, b] */
+function integrate(f, a, b, n = 200) { const h = (b - a) / n; let s = f(a) + f(b); for (let i = 1; i < n; i++) s += f(a + i * h) * (i % 2 ? 4 : 2); return (s * h) / 3; }
+/* a curve of the graph, walked from t0 to t1, with an arrowhead at its far end */
+function walk(ctx, f, t0, t1, X, Y, color, w, dash, n = 90) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.beginPath();
+  for (let i = 0; i <= n; i++) { const t = t0 + ((t1 - t0) * i) / n; if (i) ctx.lineTo(X(t), Y(f(t))); else ctx.moveTo(X(t), Y(f(t))); }
+  ctx.stroke(); ctx.restore();
+}
+/* the area under a curve of the graph between two volumes, as a polygon */
+function under(f, t0, t1, X, Y, n = 60) { const pts = [[X(t0), Y(0)]]; for (let i = 0; i <= n; i++) { const t = t0 + ((t1 - t0) * i) / n; pts.push([X(t), Y(f(t))]); } pts.push([X(t1), Y(0)]); return pts; }
+/* the band between two curves of the graph, as a polygon */
+function between(fa, fb, t0, t1, X, Y, n = 60) { const pts = []; for (let i = 0; i <= n; i++) { const t = t0 + ((t1 - t0) * i) / n; pts.push([X(t), Y(fa(t))]); } for (let i = n; i >= 0; i--) { const t = t0 + ((t1 - t0) * i) / n; pts.push([X(t), Y(fb(t))]); } return pts; }
+const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
+
+/* =====================================================================
+   FIGURE 15.7: the schematic heat engine. Heat in from the left, work out
+   to the right, heat out below, every arrow as wide as the energy it
+   carries. Still: an energy account has no time in it.
+===================================================================== */
+(function () {
+  const d = sim('sim-heat-engine', 560);
+  const qi = ctl(d.controls, { label: '\\kQin', cls: 'energy', min: 0, max: 200, step: 5, value: 100, unit: 'J', dec: 0, aria: '进入热机的热传递量' });
+  const qo = ctl(d.controls, { label: '\\kQout', cls: 'energy', min: 0, max: 200, step: 5, value: 60, unit: 'J', dec: 0, aria: '从热机传向环境的热传递量', specials: [{ at: 0, label: '没有热量放出' }] });
+  const CX = 640, CY = 300, R = 132, KW = 0.6;   /* 200 J is an arrow 120 units wide */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy');
+    const Qi = qi.v, Qo = qo.v, W = Qi - Qo;
+    /* the engine as a system */
+    ctx.save(); ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.stroke(); ctx.restore();
+    text(ctx, '热机', CX, CY - 30, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'ΔE_int = 0', CX, CY + 14, ec, { size: 22, weight: 600, align: 'center' });
+    text(ctx, '每个循环中', CX, CY + 50, PAL.muted, { size: 17, align: 'center' });
+    /* heat in, from the left */
+    if (Qi > 0) fatArrow(ctx, 150, CY, CX - R - 6, CY, Math.max(8, Qi * KW), ec);
+    text(ctx, 'Q_in = ' + J(Qi) + ' J', 150, CY - Math.max(8, Qi * KW) / 2 - 30, ec, { size: 22, weight: 600 });
+    /* heat out, downward */
+    if (Qo > 0) fatArrow(ctx, CX, CY + R + 6, CX, 520, Math.max(8, Qo * KW), ec);
+    const ho = 0.75 * Math.max(8, Qo * KW) + 12;   /* the half-width of the head of the arrow out */
+    text(ctx, 'Q_out = ' + J(Qo) + ' J', CX + ho + 18, 470, ec, { size: 22, weight: 600 });
+    /* work, out to the right; when the heat out exceeds the heat in, the device needs work put in */
+    if (W > 0) fatArrow(ctx, CX + R + 6, CY, 1230, CY, Math.max(8, W * KW), ec);
+    else if (W < 0) fatArrow(ctx, 1230, CY, CX + R + 6, CY, Math.max(8, -W * KW), ec);
+    text(ctx, (W < 0 ? 'W = ' + J(W) + ' J（输入的功）' : 'W = ' + J(W) + ' J'), 1230, CY - (0.75 * Math.max(8, Math.abs(W) * KW) + 12) - 24, ec, { size: 22, weight: 600, align: 'right' });
+    text(ctx, '向环境', CX - ho - 18, 470, PAL.muted, { size: 17, align: 'right' });
+    headline(ctx, Qi === 0 ? '没有热传递传入，热机就没有什么可以转化为功的东西。'
+      : W > 0 && Qo === 0 ? '全部 ' + J(Qi) + ' J 的热传递都将变成功，这是第一定律所允许的，但没有任何热机能做到。'
+      : W > 0 ? '热机吸入 ' + J(Qi) + ' J 的热量，向环境放回 ' + J(Qo) + ' J，并输出 ' + J(W) + ' J 的功。'
+      : W === 0 ? '全部 ' + J(Qi) + ' J 的热传递都直接传向环境，没有功输出。'
+      : '放出的热量多于吸入的热量，因此必须输入 ' + J(-W) + ' J 的功：这已经不再是热机。');
+    readout(d.readout, `\\kW = \\kQin - \\kQout = ${J(Qi)}\\ \\text{J} - ${J(Qo)}\\ \\text{J} = ${JTex(W)}\\ \\text{J}`,
+      '没有哪台实际热机能达到 $\\kQout = 0$：总会有一些热传递传向环境。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.8: the gas in a cylinder heated, expanding against a piston
+   and pushed back. Moving: the three panels of the book are three moments
+   of one stroke, so the figure plays heat in, expansion and heat out with
+   the return over about six seconds, then holds.
+===================================================================== */
+(function () {
+  const d = sim('sim-piston', 620);
+  const ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 1, max: 5, step: 0.1, value: 3, unit: '× 10⁵ N/m²', dec: 1, onInput: reset, aria: '受热气体的压强' });
+  const qs = ctl(d.controls, { label: "P'", cls: 'pressure', min: 0.5, max: 4, step: 0.1, value: 1, unit: '× 10⁵ N/m²', dec: 1, onInput: reset, aria: '热量离开后气体的压强' });
+  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.05, max: 0.3, step: 0.01, value: 0.2, unit: 'm', dec: 2, onInput: reset, aria: '活塞移动的距离' });
+  const A = 0.01, T = 6, TA = 1.5, TB = 3.5;   /* the piston area, the loop's model seconds, and the ends of the heating and expansion phases */
+  const S = 1200, X0 = 380, YC = 350, HALF = 96, ROD = 470, KF = 0.04;   /* units per metre; the piston face at rest; the cylinder's axis and half height */
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure'), fc = C('force'), xc = C('position');
+    const P = ps.v * 1e5, Pp = qs.v * 1e5, dd = ds.v, t = cy.now();
+    const phase = t < TA ? 'a' : t <= TB ? 'b' : 'c';
+    const th = phase === 'a' ? 0 : phase === 'b' ? (Math.PI * (t - TA)) / (TB - TA) : Math.PI + (Math.PI * (t - TB)) / (T - TB);
+    const r = (dd * S) / 2, xc0 = X0 + r + ROD;                      /* the crank's radius and centre */
+    const px = xc0 - r * Math.cos(th) - Math.sqrt(ROD * ROD - Math.pow(r * Math.sin(th), 2));   /* the piston face */
+    const s = (px - X0) / (dd * S);                                  /* the fraction of the stroke */
+    const Fv = P * A, Fp = Pp * A, Wout = Fv * dd, Win = Fp * dd;
+    const pNow = phase === 'a' ? Pp + (P - Pp) * (t / TA) : phase === 'b' ? P : Pp;
+    /* the cylinder, closed at the left, and the gas inside it */
+    ctx.save(); ctx.fillStyle = alpha(F.ref('gas'), 0.16); ctx.fillRect(160, YC - HALF, px - 160, 2 * HALF); ctx.restore();
+    fixed(ctx, 140, YC - HALF - 18, 660, 18); fixed(ctx, 140, YC + HALF, 660, 18); fixed(ctx, 140, YC - HALF - 18, 20, 2 * HALF + 36);
+    text(ctx, '气体', 200, YC - 72, F.ref('gas'), { size: 19 });
+    text(ctx, (phase === 'c' ? "P' = " : 'P = ') + sci(pNow, 5, 1) + ' N/m²', 172, YC + 62, pc, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* the piston, its rod and the crank */
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('piston'); ctx.lineWidth = 4; ctx.fillRect(px, YC - HALF + 2, 46, 2 * HALF - 4); ctx.strokeRect(px, YC - HALF + 2, 46, 2 * HALF - 4); ctx.restore();
+    const cpx = xc0 - r * Math.cos(th), cpy = YC - r * Math.sin(th);
+    line(ctx, px + 46, YC, cpx, cpy, PAL.ink, 9);
+    ctx.save(); ctx.beginPath(); ctx.arc(xc0, YC, r, 0, TAU); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.beginPath(); ctx.arc(xc0, YC, 26, 0, TAU); ctx.fillStyle = PAL.soft; ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.stroke(); ctx.restore();
+    line(ctx, xc0, YC, cpx, cpy, PAL.ink, 9);
+    dot(ctx, xc0, YC, PAL.ink, true, 8); dot(ctx, cpx, cpy, PAL.panel, true, 9); dot(ctx, cpx, cpy, PAL.ink, false, 9); dot(ctx, px + 46, YC, PAL.ink, true, 7);
+    text(ctx, '曲柄', xc0, YC + r + 44, PAL.muted, { size: 19, align: 'center' });
+    /* the rest position of the piston face, and the stroke measured from it */
+    line(ctx, X0, YC - HALF + 4, X0, YC + HALF - 4, alpha(PAL.ink, 0.4), 2, [8, 8]);
+    if (s > 0.01) { hbracket(ctx, X0, px, YC + HALF + 60, xc, 'd = ' + fmt(s * dd, 2) + ' m'); }
+    /* phase a: heat flows in, the pressure rises, nothing moves yet */
+    if (phase === 'a') {
+      fatArrow(ctx, 250, 90, 330, YC - HALF - 22, 46, ec, (t * 1.6) % 1);
+      text(ctx, 'Q_in', 200, 96, ec, { size: 24, weight: 600, align: 'right' });
+      text(ctx, 'ΔE_int = Q_in', 560, YC + HALF + 60, ec, { size: 22, weight: 600, align: 'center' });
+    }
+    /* phase b: the gas pushes the piston out, doing work */
+    if (phase === 'b') {
+      const fx0 = Math.max(172, px - 24 - Fv * KF);
+      arrow(ctx, fx0, YC, px - 24, YC, fc, 5);
+      text(ctx, 'F = ' + sci(Fv, 3, 2) + ' N', 172, YC - 34, fc, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'W_out = Fd = ' + J(Wout * s) + ' J', 1230, 120, ec, { size: 22, weight: 600, align: 'right' });
+      text(ctx, 'ΔE_int = −W_out', 1230, 160, ec, { size: 22, weight: 600, align: 'right' });
+    }
+    /* phase c: heat leaves, and a smaller force pushes the piston back */
+    if (phase === 'c') {
+      fatArrow(ctx, 330, YC + HALF + 22, 250, 590, 46, ec, (t * 1.6) % 1);
+      text(ctx, 'Q_out', 200, 590, ec, { size: 24, weight: 600, align: 'right' });
+      arrow(ctx, px + 46 + 24 + Fp * KF, YC - 60, px + 46 + 24, YC - 60, fc, 5);
+      text(ctx, "F' = P'A = " + sci(Fp, 3, 2) + ' N', px + 70, YC - 28, fc, { size: 21, weight: 700, align: 'left', bg: alpha(PAL.panel, 0.9) });
+      text(ctx, "W_in = F'd = " + J(Win * (1 - s)) + ' J', 1230, 120, ec, { size: 22, weight: 600, align: 'right' });
+      text(ctx, Fp < Fv ? "F' < F" : Fp > Fv ? "F' > F" : "F' = F", 1230, 160, PAL.ink, { size: 22, weight: 600, align: 'right' });
+    }
+    topline(ctx, phase === 'a' ? '热量流入气体，它的压强升高到 ' + sci(P, 5, 1) + ' N/m²。'
+      : phase === 'b' ? '气体把活塞推出 ' + fmt(dd, 2) + ' m，所用的力为 ' + sci(Fv, 3, 2) + ' N，做功 ' + J(Wout) + ' J。'
+      : '热量离开气体，' + sci(Fp, 3, 2) + ' N 的力把活塞推回，对它做功 ' + J(Win) + ' J。');
+    const net = Wout - Win;
+    readout(d.readout, phase === 'a' ? `\\kdEint = \\kQin \\quad\\text{（气体在恒定体积下被加热）}`
+      : phase === 'b' ? `\\kWout = \\kF\\kd = \\kPr\\karea\\kd = (${sciTex(P, 5, 1)}\\ \\text{N/m}^2)(0.0100\\ \\text{m}^2)(${fmt(dd, 2)}\\ \\text{m}) = ${JTex(Wout)}\\ \\text{J}`
+      : `\\kWin = F'\\kd = P'\\karea\\kd = (${sciTex(Pp, 5, 1)}\\ \\text{N/m}^2)(0.0100\\ \\text{m}^2)(${fmt(dd, 2)}\\ \\text{m}) = ${JTex(Win)}\\ \\text{J}`,
+      '在整个行程中，$\\kWout - \\kWin = ' + JTex(Wout) + '\\ \\text{J} - ' + JTex(Win) + '\\ \\text{J} = ' + JTex(net) + '\\ \\text{J}$' + (net > 0 ? '，即净功。' : '：以不低于膨胀时的压强被推回，气体没有净功输出。'));
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.9 + 15.10: the isobaric expansion of a gas in a vertical
+   cylinder, with the same expansion drawn on a PV diagram beside it. Still:
+   one expansion, whose stroke is the reader's choice of ΔV.
+===================================================================== */
+(function () {
+  const d = sim('sim-isobaric', 640);
+  const ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 1, max: 5, step: 0.1, value: 2, unit: '× 10⁵ N/m²', dec: 1, aria: '气体的恒定压强' });
+  const as = ctl(d.controls, { label: '\\karea', cls: 'area', min: 50, max: 150, step: 5, value: 100, unit: 'cm²', dec: 0, aria: '气缸的横截面积' });
+  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0, max: 0.3, step: 0.01, value: 0.1, unit: 'm', dec: 3, aria: '活塞上升的距离' });
+  const H0 = 0.1, SY = 1000, YB = 560, CX = 360, KF = 0.04;   /* the gas column at rest, units per metre, the cylinder's floor and axis */
+  const box = { l: 780, r: 1320, t: 150, b: 520 };            /* V 0 to 6 × 10⁻³ m³, P 0 to 6 × 10⁵ N/m², fixed */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure'), fc = C('force'), xc = C('position');
+    const P = ps.v * 1e5, A = as.v * 1e-4, dd = ds.v, dV = A * dd, W = P * dV, Fv = P * A;
+    const V0 = A * H0, V1 = V0 + dV;
+    const hw = 120 * Math.sqrt(as.v / 100), y0 = YB - H0 * SY, yp = YB - (H0 + dd) * SY;
+    /* the cylinder and the gas, the piston and its rod */
+    ctx.save(); ctx.fillStyle = alpha(F.ref('gas'), 0.16); ctx.fillRect(CX - hw, yp, 2 * hw, YB - yp); ctx.restore();
+    fixed(ctx, CX - hw - 18, 120, 18, YB - 120 + 18); fixed(ctx, CX + hw, 120, 18, YB - 120 + 18); fixed(ctx, CX - hw - 18, YB, 2 * hw + 36, 18);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('piston'); ctx.lineWidth = 4; ctx.fillRect(CX - hw + 2, yp - 26, 2 * hw - 4, 26); ctx.strokeRect(CX - hw + 2, yp - 26, 2 * hw - 4, 26); ctx.restore();
+    line(ctx, CX, yp - 26, CX, 92, F.ref('piston'), 12);
+    text(ctx, 'A', CX + hw - 12, yp - 13, C('area'), { size: 22, weight: 600, align: 'right' });
+    text(ctx, 'V', CX, YB - 40, C('volume'), { size: 22, weight: 600, align: 'center' });
+    /* where the piston started, and the volume swept out */
+    line(ctx, CX - hw + 2, y0, CX + hw - 2, y0, alpha(PAL.ink, 0.5), 2, [8, 8]);
+    if (dd > 0.004) {
+      vbracket(ctx, CX + hw + 54, yp, y0, xc, 'd = ' + fmt(dd, 3) + ' m', 1);
+      if (dd > 0.045) text(ctx, 'ΔV = Ad', CX + hw + 70, (yp + y0) / 2 + 30, C('volume'), { size: 20, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    }
+    /* the force of the gas on the piston, and the heat that keeps the pressure up */
+    const fy0 = Math.min(YB - 20, yp + 4 + Fv * KF);   /* the force on the piston, drawn up to its face, as long as the gas column allows */
+    arrow(ctx, CX - 30, fy0, CX - 30, yp + 4, fc, 5);
+    text(ctx, 'F = PA', CX - 16, (fy0 + yp) / 2, fc, { size: 20, weight: 700, bg: alpha(PAL.panel, 0.9) });
+    text(ctx, 'P = ' + sci(P, 5, 1) + ' N/m²', CX, YB + 46, pc, { size: 20, weight: 700, align: 'center' });
+    fatArrow(ctx, 40, 612, CX - hw - 26, YB - 30, 40, ec);
+    text(ctx, 'Q_in', 40, 566, ec, { size: 24, weight: 600 });
+    /* the PV diagram beside it: the process is the horizontal line from A to B, and the work the rectangle under it */
+    const g = axes(ctx, box, [0, 6], [0, 6], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 6, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const xa = g.X(V0 * 1e3), xb = g.X(V1 * 1e3), yl = g.Y(ps.v);
+    if (dd > 0) fillPoly(ctx, [[xa, g.Y(0)], [xa, yl], [xb, yl], [xb, g.Y(0)]], ec, 0.35);
+    line(ctx, xa, yl, xb, yl, PAL.ink, 5);
+    if (dd > 0.01) head(ctx, (xa + xb) / 2 + 8, yl, 1, 0, PAL.ink);
+    state(ctx, xa, yl, 'A', -0.7, -0.9); state(ctx, xb, yl, 'B', 0.7, -0.9);
+    text(ctx, '等压', (xa + xb) / 2, yl - 54, PAL.ink, { size: 19, align: 'center' });
+    if (dd > 0.02 && g.Y(0) - yl > 56) text(ctx, 'W = PΔV', (xa + xb) / 2, (yl + g.Y(0)) / 2, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    topline(ctx, dd === 0 ? '活塞静止时，气体占有 ' + fmt(V0 * 1e3, 2) + ' × 10⁻³ m³，压强为 ' + sci(P, 5, 1) + ' N/m²，不做功。'
+      : '在 ' + sci(P, 5, 1) + ' N/m² 的恒定压强下，活塞上升 ' + fmt(dd, 3) + ' m，体积增大 ' + sci(dV, -3, 2) + ' m³，气体做功 ' + J(W) + ' J。');
+    readout(d.readout, `\\kW = \\kPr\\kdvol = (${sciTex(P, 5, 2)}\\ \\text{N/m}^2)(${sciTex(dV, -3, 2)}\\ \\text{m}^3) = ${JTex(W)}\\ \\text{J}`,
+      '活塞所受的力为 $\\kF = \\kPr\\karea = ' + sciTex(Fv, 3, 2) + '\\ \\text{N}$，而 $\\kF\\kd = (' + sciTex(Fv, 3, 2) + '\\ \\text{N})(' + fmt(dd, 3) + '\\ \\text{m}) = ' + JTex(W) + '\\ \\text{J}$，功相同。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.11: a path along which both pressure and volume change, cut
+   into strips of average pressure, and the same path reversed. Still: an
+   area has no clock; the number of strips is the reader's approximation.
+===================================================================== */
+(function () {
+  const d = sim('sim-strips', 600);
+  const ns = ctl(d.controls, { label: '\\text{窄条数}', cls: '', min: 1, max: 40, step: 1, value: 6, unit: '', dec: 0, aria: '面积所分成的窄条数' });
+  const dir = choice(d.controls, { label: '\\text{路径}', options: [{ value: 'ab', label: 'A 到 B' }, { value: 'ba', label: 'B 到 A' }], value: 'ab', aria: '过程沿哪个方向进行' });
+  const box = { l: 220, r: 1240, t: 130, b: 480 };   /* V 0 to 5 × 10⁻³ m³, P 0 to 4 × 10⁵ N/m², fixed */
+  const VA = 1, VB = 4, PA = 3;
+  const f = (v) => PA * Math.pow(VA / v, 1.2);       /* the pressure along the path, in 10⁵ N/m² */
+  const exact = integrate(f, VA, VB) * 100;          /* 10⁵ N/m² × 10⁻³ m³ is 100 J */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure');
+    const n = ns.v, rev = dir.value === 'ba', dv = (VB - VA) / n;
+    const g = axes(ctx, box, [0, 5], [0, 4], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* the strips, each of the average pressure at its middle */
+    let sum = 0;
+    for (let i = 0; i < n; i++) {
+      const v0 = VA + i * dv, v1 = v0 + dv, pm = f(v0 + dv / 2); sum += pm * dv;
+      const pts = [[g.X(v0), g.Y(0)], [g.X(v0), g.Y(pm)], [g.X(v1), g.Y(pm)], [g.X(v1), g.Y(0)]];
+      if (rev) hatchPoly(ctx, pts, ec); else fillPoly(ctx, pts, ec, 0.32);
+      ctx.save(); poly(ctx, pts); ctx.strokeStyle = alpha(PAL.ink, 0.6); ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore();
+    }
+    sum *= 100;
+    /* the path itself, and which way it is walked */
+    walk(ctx, f, VA, VB, g.X, g.Y, PAL.ink, 5);
+    const vm = 2.2, dvm = 1e-3, slope = (g.Y(f(vm + dvm)) - g.Y(f(vm))) / (g.X(vm + dvm) - g.X(vm)), L = Math.hypot(1, slope);
+    head(ctx, g.X(vm), g.Y(f(vm)), (rev ? -1 : 1) / L, (rev ? -1 : 1) * slope / L, PAL.ink, 18);
+    state(ctx, g.X(VA), g.Y(PA), 'A', 0.7, -0.9); state(ctx, g.X(VB), g.Y(f(VB)), 'B', 0.8, -0.8);
+    /* one strip named, when the strips are wide enough to read */
+    if (n <= 12) {
+      const v0 = VA, v1 = VA + dv, pm = f(VA + dv / 2);
+      hbracket(ctx, g.X(v0), g.X(v1), g.Y(0) + 74, C('volume'), '');
+      text(ctx, 'ΔV_1', (g.X(v0) + g.X(v1)) / 2, g.Y(0) + 100, C('volume'), { size: 19, weight: 600, align: 'center' });
+      line(ctx, g.X(v0) - 40, g.Y(pm), g.X(v0) - 6, g.Y(pm), pc, 2, [4, 6]);
+      text(ctx, 'P_{1(ave)}', g.X(v0) - 46, g.Y(pm), pc, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    }
+    text(ctx, rev ? '反向路径：面积计为负' : '路径下的面积就是气体所做的功', box.r, box.t - 24, PAL.muted, { size: 19, align: 'right' });
+    topline(ctx, rev
+      ? '从 B 走回 A，体积减小，所以这 ' + J(sum) + ' J 是对气体所做的功，计为负。'
+      : n + ' 个窄条按平均压强相加，得 ' + J(sum) + ' J，而曲线下方的面积为 ' + J(exact) + ' J。');
+    readout(d.readout, rev
+      ? `\\kW = \\sum P_{i(\\text{ave})}\\Delta V_i = -${JTex(sum)}\\ \\text{J}`
+      : `\\kW \\approx \\sum_{i=1}^{${n}} P_{i(\\text{ave})}\\Delta V_i = ${JTex(sum)}\\ \\text{J}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.12: the rectangle ABCD of Example 15.2, the two paths from A
+   to C, the cycle walked either way, and a general loop. Moving: the path
+   is walked over about five seconds and the area is laid down leg by leg,
+   filled where the volume grows and hatched where it shrinks, so that what
+   is left at the end is the area inside the loop.
+===================================================================== */
+(function () {
+  const d = sim('sim-cycle-work', 690);
+  const pab = ctl(d.controls, { label: '\\kPrAB', cls: 'pressure', min: 1, max: 2, step: 0.05, value: 1.5, unit: '× 10⁶ N/m²', dec: 2, onInput: reset, aria: 'AB 段的压强' });
+  const pcd = ctl(d.controls, { label: '\\kPrCD', cls: 'pressure', min: 0.1, max: 0.9, step: 0.05, value: 0.2, unit: '× 10⁶ N/m²', dec: 2, onInput: reset, aria: 'CD 段的压强' });
+  const dvs = ctl(d.controls, { label: '\\kdvol', cls: 'volume', min: 100, max: 800, step: 10, value: 500, unit: 'cm³', dec: 0, onInput: reset, aria: 'AB 段的体积变化' });
+  const path = select(d.controls, { label: '\\text{路径}', options: [
+    { value: 'ABC', label: 'A 经 B 到 C' }, { value: 'ADC', label: 'A 经 D 到 C' },
+    { value: 'ABCDA', label: 'ABCDA ↻ 顺时针' }, { value: 'ADCBA', label: 'ADCBA ↺ 反方向' },
+    { value: 'CW', label: '环路 ↻ 顺时针' }, { value: 'CCW', label: '环路 ↺ 反方向' }], value: 'ABCDA', aria: '气体所沿的路径', onInput: reset });
+  const box = { l: 230, r: 1240, t: 130, b: 480 };   /* V 0 to 1000 cm³, P 0 to 2.0 × 10⁶ N/m², fixed */
+  const VA = 200, TWALK = 5;
+  const cy = cycle(() => TWALK, 1.4);
+  function reset() { cy.reset(); }
+  /* the corners, in cm³ and 10⁶ N/m² */
+  const corners = () => { const Ph = pab.v, Pl = pcd.v, dv = dvs.v; return { A: [VA, Ph], B: [VA + dv, Ph], C: [VA + dv, Pl], D: [VA, Pl] }; };
+  /* the path as a list of points, and the name of each leg */
+  function route() {
+    const c = corners(), k = path.value;
+    if (k === 'CW' || k === 'CCW') {
+      const cx = (c.A[0] + c.B[0]) / 2, cyy = (c.A[1] + c.C[1]) / 2, a = (c.B[0] - c.A[0]) / 2, b = (c.A[1] - c.C[1]) / 2, pts = [];
+      for (let i = 0; i <= 120; i++) { const t = (TAU * i) / 120; pts.push([cx - a * Math.cos(t), cyy + (k === 'CW' ? 1 : -1) * b * Math.sin(t)]); }
+      return { pts, legs: null, a, b };
+    }
+    const letters = k.split(''); return { pts: letters.map((L) => c[L]), legs: letters.slice(0, -1).map((L, i) => L + letters[i + 1]) };
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure');
+    const c = corners(), R = route(), k = path.value, t = cy.now(), done = t >= TWALK - 1e-9;
+    const g = axes(ctx, box, [0, 1000], [0, 2], { xl: 'V (cm³)', xc: C('volume'), yl: 'P (10⁶ N/m²)', yc: pc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
+    const X = (p) => g.X(p[0]), Y = (p) => g.Y(p[1]);
+    /* how far along the path the walk has come, by length on the canvas */
+    const segs = R.pts.slice(1).map((p, i) => [R.pts[i], p]);
+    const lens = segs.map(([p, q]) => Math.hypot(X(q) - X(p), Y(q) - Y(p))), total = lens.reduce((a, b) => a + b, 0);
+    let left = (t / TWALK) * total, W = 0, cur = R.pts[0];
+    const legW = R.legs ? R.legs.map(() => 0) : null, legI = (i) => (R.legs ? i : 0);
+    const pos = [], neg = [];
+    segs.forEach(([p, q], i) => {
+      if (left <= 0) return;
+      const fr = Math.min(1, left / Math.max(lens[i], 1e-9)); left -= lens[i];
+      const e = [p[0] + (q[0] - p[0]) * fr, p[1] + (q[1] - p[1]) * fr];
+      const w = ((p[1] + e[1]) / 2) * (e[0] - p[0]) * 1e6 * 1e-6;   /* 10⁶ N/m² × cm³ = 1 J */
+      W += w; if (legW) legW[legI(i)] += w; cur = e;
+      if (Math.abs(e[0] - p[0]) > 1e-9) (e[0] > p[0] ? pos : neg).push([[X(p), g.Y(0)], [X(p), Y(p)], [X(e), Y(e)], [X(e), g.Y(0)]]);
+    });
+    pos.forEach((pts) => fillPoly(ctx, pts, ec, 0.3));
+    neg.forEach((pts) => hatchPoly(ctx, pts, ec));
+    /* the whole path faintly, the walked part in ink, and the point on it */
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 3; ctx.setLineDash([8, 8]); ctx.beginPath(); R.pts.forEach((p, i) => (i ? ctx.lineTo(X(p), Y(p)) : ctx.moveTo(X(p), Y(p)))); ctx.stroke(); ctx.restore();
+    let rem = (t / TWALK) * total;
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(X(R.pts[0]), Y(R.pts[0]));
+    segs.forEach(([p, q], i) => { if (rem <= 0) return; const fr = Math.min(1, rem / Math.max(lens[i], 1e-9)); rem -= lens[i]; ctx.lineTo(X(p) + (X(q) - X(p)) * fr, Y(p) + (Y(q) - Y(p)) * fr); });
+    ctx.stroke(); ctx.restore();
+    /* the direction of each leg of the rectangle, or of the loop */
+    if (R.legs) segs.forEach(([p, q]) => { const mx = (X(p) + X(q)) / 2, my = (Y(p) + Y(q)) / 2, L = Math.hypot(X(q) - X(p), Y(q) - Y(p)); if (L > 30) head(ctx, mx, my, (X(q) - X(p)) / L, (Y(q) - Y(p)) / L, PAL.ink); });
+    else [30, 90].forEach((i) => { const p = R.pts[i], q = R.pts[i + 1], L = Math.hypot(X(q) - X(p), Y(q) - Y(p)); head(ctx, X(p), Y(p), (X(q) - X(p)) / L, (Y(q) - Y(p)) / L, PAL.ink); });
+    /* the four states, the two pressures on the axis and the volume change under it */
+    state(ctx, X(c.A), Y(c.A), 'A', -0.8, -0.8); state(ctx, X(c.B), Y(c.B), 'B', 0.8, -0.8); state(ctx, X(c.C), Y(c.C), 'C', 0.8, 0.9); state(ctx, X(c.D), Y(c.D), 'D', -0.8, 0.9);
+    line(ctx, box.l, Y(c.A), X(c.A) - 26, Y(c.A), pc, 2, [6, 6]); line(ctx, box.l, Y(c.D), X(c.D) - 26, Y(c.D), pc, 2, [6, 6]);
+    const near = Y(c.D) - Y(c.A) < 110;   /* the two pressures close together: the lower label goes under its line */
+    text(ctx, 'P_AB', box.l + 10, Y(c.A) + 22, pc, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, sci(pab.v * 1e6, 6, 2) + ' N/m²', box.l + 10, Y(c.A) + 46, pc, { size: 17, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'P_CD', box.l + 10, Y(c.D) + (near ? 22 : -46), pc, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, sci(pcd.v * 1e6, 6, 2) + ' N/m²', box.l + 10, Y(c.D) + (near ? 46 : -22), pc, { size: 17, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    hbracket(ctx, X(c.A), X(c.B), box.b + 84, C('volume'), '');
+    text(ctx, 'ΔV = ' + fmt(dvs.v, 0) + ' cm³', (X(c.A) + X(c.B)) / 2, box.b + 108, C('volume'), { size: 19, weight: 600, align: 'center' });
+    dot(ctx, X(cur), Y(cur), ec, true, 10);
+    /* what the fills mean */
+    fillPoly(ctx, [[860, 622], [860, 646], [900, 646], [900, 622]], ec, 0.3); text(ctx, '计为正，体积增大', 912, 634, PAL.muted, { size: 17 });
+    hatchPoly(ctx, [[860, 654], [860, 678], [900, 678], [900, 654]], ec); text(ctx, '计为负，体积减小', 912, 666, PAL.muted, { size: 17 });
+    /* the numbers */
+    const Ph = pab.v * 1e6, Pl = pcd.v * 1e6, dV = dvs.v * 1e-6, inside = (Ph - Pl) * dV, ell = Math.PI * (R.a ?? 0) * (R.b ?? 0);
+    const legTex = (i) => (R.legs[i] === 'BC' || R.legs[i] === 'DA' || R.legs[i] === 'AD' || R.legs[i] === 'CB' ? '0' : (legW[i] < 0 ? '(' + JTex(legW[i]) + '\\ \\text{J})' : JTex(legW[i]) + '\\ \\text{J}'));
+    const names = { AB: '\\kWAB', BC: '\\kWBC', CD: '\\kWCD', DA: '\\kWDA', AD: 'W_{\\text{AD}}', DC: 'W_{\\text{DC}}', CB: 'W_{\\text{CB}}', BA: 'W_{\\text{BA}}' };
+    let main, small, line1;
+    if (R.legs) {
+      main = `\\kW = ${R.legs.map((L) => names[L]).join(' + ')} = ${R.legs.map((L, i) => legTex(i)).join(' + ')} = ${JTex(W)}\\ \\text{J}`;
+      if (k === 'ABC') { line1 = done ? '从 A 经 B 到 C，功为 ' + J(W) + ' J，即 AB 下方的面积；等容段 BC 不增加任何功。' : '从 A 经 B 行进到 C：到目前为止填入的面积为 ' + J(W) + ' J。'; small = '经 D 走同样的端点，只得到 $\\kPrCD\\kdvol = ' + JTex(Pl * dV) + '\\ \\text{J}$。'; }
+      else if (k === 'ADC') { line1 = done ? '从 A 经 D 到 C，功为 ' + J(W) + ' J，即 DC 下方的面积；等容段 AD 不增加任何功。' : '从 A 经 D 行进到 C：到目前为止填入的面积为 ' + J(W) + ' J。'; small = '经 B 走同样的端点，得到 $\\kPrAB\\kdvol = ' + JTex(Ph * dV) + '\\ \\text{J}$。'; }
+      else if (k === 'ABCDA') { line1 = done ? '绕 ABCDA 一周，功为 ' + J(Ph * dV) + ' + 0 − ' + J(Pl * dV) + ' + 0 = ' + J(W) + ' J，即矩形内部的面积。' : '沿顺时针方向绕循环 ABCDA 行进：到目前为止的功为 ' + J(W) + ' J。'; small = '矩形的面积为 $(\\kPrAB - \\kPrCD)\\kdvol = ' + JTex(inside) + '\\ \\text{J}$。'; }
+      else { line1 = done ? '绕 ADCBA 一周，功为 0 + ' + J(Pl * dV) + ' + 0 − ' + J(Ph * dV) + ' = ' + J(W) + ' J，即同一面积，符号相反。' : '沿逆时针方向绕循环 ADCBA 行进：到目前为止的功为 ' + J(W) + ' J。'; small = '计为负的矩形面积为 $-(\\kPrAB - \\kPrCD)\\kdvol = ' + JTex(-inside) + '\\ \\text{J}$。'; }
+    } else {
+      main = `\\kW = \\text{环路内部的面积} = ${k === 'CW' ? '' : '-'}\\pi ab = ${JTex(k === 'CW' ? ell : -ell)}\\ \\text{J}`;
+      line1 = done ? '沿' + (k === 'CW' ? '顺时针' : '逆时针') + '方向绕环路一周，净功为 ' + J(W) + ' J，即它内部的面积。' : '沿' + (k === 'CW' ? '顺时针' : '逆时针') + '方向绕环路行进：到目前为止的功为 ' + J(W) + ' J。';
+      small = '环路是内接于矩形的椭圆，半轴为 $a = ' + fmt(dvs.v / 2, 0) + '\\ \\text{cm}^3$ 和 $b = ' + sciTex((Ph - Pl) / 2, 5, 2) + '\\ \\text{N/m}^2$。';
+    }
+    topline(ctx, line1);
+    readout(d.readout, main, small);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.13: the isotherm and the adiabat from A, and the cycle ABCA.
+   Still: two paths from one starting point are a relation, not a motion.
+===================================================================== */
+(function () {
+  const d = sim('sim-isotherm-adiabat', 600);
+  const ps = ctl(d.controls, { label: '\\text{A 点的}\\ \\kPr', cls: 'pressure', min: 1, max: 5, step: 0.1, value: 3, unit: '× 10⁵ N/m²', dec: 1, aria: 'A 点的压强' });
+  const rs = ctl(d.controls, { label: 'V_{\\text{B}}/V_{\\text{A}}', cls: '', min: 1.2, max: 4, step: 0.1, value: 3, unit: '', dec: 1, aria: '气体膨胀的程度' });
+  const panel = choice(d.controls, { label: '\\text{图幅}', options: [{ value: 'a', label: '（a）从 A 出发的两条路径' }, { value: 'b', label: '（b）循环 ABCA' }], value: 'a', aria: '画出图中的哪一幅' });
+  const box = { l: 220, r: 1240, t: 130, b: 480 };   /* V 0 to 5 × 10⁻³ m³, P 0 to 6 × 10⁵ N/m², fixed */
+  const VA = 1;
+  const ro = F.readout(d);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure');
+    const PA = ps.v, r = rs.v, VB = VA * r, b = panel.value === 'b', q = panel.mix((v) => (v === 'b' ? 1 : 0));
+    const iso = (v) => (PA * VA) / v, adi = (v) => PA * Math.pow(VA / v, GAMMA);
+    const PC = adi(VB), EA = 1.5 * PA * VA * 100, Wiso = PA * VA * 100 * Math.log(r), Wad = 1.5 * (PA * VA - PC * VB) * 100;
+    const g = axes(ctx, box, [0, 5], [0, 6], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 5, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* the areas: the one under the adiabat drains as the band the isotherm adds above it deepens into the net work of the cycle */
+    if (q < 1) fillPoly(ctx, under(adi, VA, VB, g.X, g.Y), ec, 0.22 * (1 - q));
+    fillPoly(ctx, between(iso, adi, VA, VB, g.X, g.Y), ec, 0.22 + 0.13 * q);
+    /* the two paths, the isotherm solid and the adiabat dashed; the adiabat's arrowhead shrinks and turns round as the cycle walks it back */
+    const ic = F.ref('isotherm'), ac = F.ref('adiabat');
+    walk(ctx, iso, VA, VB, g.X, g.Y, ic, 5);
+    walk(ctx, adi, VA, VB, g.X, g.Y, ac, 4, [12, 9]);
+    const mid = VA * Math.sqrt(r), dvm = 1e-3, turn = 1 - 2 * q;
+    for (const [f, sgn, s, hc] of [[iso, 1, 18, ic], [adi, turn < 0 ? -1 : 1, 18 * Math.abs(turn), ac]]) {
+      if (s < 1) continue;
+      const sl = (g.Y(f(mid + dvm)) - g.Y(f(mid))) / (g.X(mid + dvm) - g.X(mid)), L = Math.hypot(1, sl); head(ctx, g.X(mid), g.Y(f(mid)), sgn / L, (sgn * sl) / L, hc, s);
+    }
+    /* the isochoric leg grows down from B */
+    const yB = g.Y(iso(VB)), yC = g.Y(PC);
+    if (q > 0) line(ctx, g.X(VB), yB, g.X(VB), yB + (yC - yB) * q, PAL.ink, 5);
+    if (q > 0.6) head(ctx, g.X(VB), (yB + yC) / 2, 0, 1, PAL.ink, (18 * (q - 0.6)) / 0.4);
+    line(ctx, g.X(VA), g.Y(PA), g.X(VA), g.Y(0), alpha(PAL.ink, 0.5), 2, [4, 8]);
+    line(ctx, g.X(VB), g.Y(PC * q), g.X(VB), g.Y(0), alpha(PAL.ink, 0.5), 2, [4, 8]);
+    state(ctx, g.X(VA), g.Y(PA), 'A', -0.9, -0.6); state(ctx, g.X(VB), yB, 'B', 0.9, -0.5); state(ctx, g.X(VB), yC, 'C', 0.9, 0.7);
+    const kx = box.r - 250;
+    line(ctx, kx, box.t + 62, kx + 40, box.t + 62, ic, 5); text(ctx, '等温，ΔT = 0', kx + 52, box.t + 62, ic, { size: 19, weight: 600 });
+    line(ctx, kx, box.t + 92, kx + 40, box.t + 92, ac, 4, [12, 9]); text(ctx, '绝热，Q = 0', kx + 52, box.t + 92, ac, { size: 19, weight: 600 });
+    panel.only(ctx, 'b', () => text(ctx, '等容', g.X(VB) + 16, (yB + yC) / 2, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) }));
+    panel.only(ctx, 'a', () => text(ctx, '沿 AB 的功 = ' + J(Wiso) + ' J，沿 AC 的功 = ' + J(Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }), [0, -12]);
+    panel.only(ctx, 'b', () => text(ctx, '循环的净功 = ' + J(Wiso - Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }), [0, -12]);
+    topline(ctx, b
+      ? '沿等温线出去，冷却到 C，再沿绝热线回来，循环 ABCA 输出 ' + J(Wiso - Wad) + ' J 的净功。'
+      : '从 A 出发的等温路径做功 ' + J(Wiso) + ' J，绝热路径只做功 ' + J(Wad) + ' J。');
+    const AB = '\\mk{AB}{\\kW_{\\text{AB}}}', nAB = `\\mk{nAB}{${JTex(Wiso)}}\\ \\text{J}`, nAC = `\\mk{nAC}{${JTex(Wad)}}\\ \\text{J}`;
+    ro.set(b
+      ? `\\mk{W}{\\kW} = ${AB} - \\mk{AC}{\\kW_{\\text{CA}}} = ${nAB} - ${nAC} = \\mk{nW}{${JTex(Wiso - Wad)}}\\ \\text{J}`
+      : `\\kQh = ${AB} = ${nAB},\\quad \\kdEint = -\\mk{AC}{\\kW_{\\text{AC}}} = -${nAC}`, b ? ''
+      : '对单原子理想气体，$\\kEint = \\tfrac{3}{2}\\kPr\\kvol$，在 A 点为 ' + J(EA) + ' J，在 C 点为 ' + J(EA - Wad) + ' J。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the four simple processes of Table 15.2 from one state A, with the
+   first law written for each. Still: a choice of process and how far it
+   goes, and the readout answers.
+===================================================================== */
+(function () {
+  const d = sim('sim-four-processes', 600);
+  const kind = select(d.controls, { label: '\\text{过程}', options: [{ value: 'isobaric', label: '等压' }, { value: 'isochoric', label: '等容' }, { value: 'isothermal', label: '等温' }, { value: 'adiabatic', label: '绝热' }], value: 'isobaric', aria: '过程的种类', onInput: hold });
+  const rv = ctl(d.controls, { label: 'V_{\\text{B}}/V_{\\text{A}}', cls: '', min: 0.6, max: 3, step: 0.1, value: 2, unit: '', dec: 1, aria: '末体积是初体积的多少倍' });
+  const rp = ctl(d.controls, { label: 'P_{\\text{B}}/P_{\\text{A}}', cls: '', min: 0.5, max: 2.5, step: 0.1, value: 2, unit: '', dec: 1, aria: '末压强是初压强的多少倍，用于等容过程' });
+  function hold() { rv.disable(kind.value === 'isochoric'); rp.disable(kind.value !== 'isochoric'); }
+  hold();
+  const box = { l: 220, r: 1240, t: 130, b: 480 };   /* V 0 to 4 × 10⁻³ m³, P 0 to 6 × 10⁵ N/m², fixed */
+  const VA = 1, PA = 2, KINDS = ['isobaric', 'isochoric', 'isothermal', 'adiabatic'], NAMES = { isobaric: '等压', isochoric: '等容', isothermal: '等温', adiabatic: '绝热' };
+  /* each process as a curve of V (or, for the isochoric one, a vertical line), and its first-law numbers in joules */
+  function model(k) {
+    const r = rv.v, q = rp.v;
+    if (k === 'isobaric') { const VB = VA * r, W = PA * (VB - VA) * 100, dE = 1.5 * PA * (VB - VA) * 100; return { f: () => PA, VB, PB: PA, W, dE, Q: W + dE }; }
+    if (k === 'isochoric') { const PB = PA * q, dE = 1.5 * VA * (PB - PA) * 100; return { f: null, VB: VA, PB, W: 0, dE, Q: dE }; }
+    if (k === 'isothermal') { const VB = VA * r, W = PA * VA * 100 * Math.log(r); return { f: (v) => (PA * VA) / v, VB, PB: PA / r, W, dE: 0, Q: W }; }
+    const VB = VA * r, PB = PA * Math.pow(1 / r, GAMMA), W = 1.5 * (PA * VA - PB * VB) * 100; return { f: (v) => PA * Math.pow(VA / v, GAMMA), VB, PB, W, dE: -W, Q: 0 };
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure');
+    const k = kind.value, m = model(k);
+    const g = axes(ctx, box, [0, 4], [0, 6], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* all four processes are always drawn; a change of process thins the old path into a ghost while the new ghost thickens,
+       and the area under the path passes from one to the other */
+    const w = kind.mix((v) => KINDS.map((o) => (o === v ? 1 : 0)));
+    const ghosts = [];
+    KINDS.forEach((o, i) => {
+      const mo = model(o), q = w[i], col = alpha(PAL.ink, 0.35 + 0.65 * q), lw = 2.5 + 2.5 * q, dash = o === 'adiabatic' ? [10 + 2 * q, 8 + q] : undefined;
+      if (mo.f) {
+        if (q > 0) { const pts = under(mo.f, VA, mo.VB, g.X, g.Y); ctx.save(); ctx.globalAlpha *= q; if (mo.VB > VA) fillPoly(ctx, pts, ec, 0.32); else hatchPoly(ctx, pts, ec); ctx.restore(); }
+        walk(ctx, mo.f, VA, mo.VB, g.X, g.Y, col, lw, dash);
+        if (q > 0.05) { const mid = (VA + mo.VB) / 2, dv = 1e-3 * (mo.VB > VA ? 1 : -1), sl = (g.Y(mo.f(mid + dv)) - g.Y(mo.f(mid))) / (g.X(mid + dv) - g.X(mid)), L = Math.hypot(1, sl), sg = mo.VB > VA ? 1 : -1;
+          head(ctx, g.X(mid), g.Y(mo.f(mid)), sg / L, (sg * sl) / L, PAL.ink, 18 * q); }
+        /* each ghost is named at the middle of its own path, clear of the chosen path's endpoint B, and the names are set after B so nothing is drawn over them */
+        const r = rv.v, vm = (VA + mo.VB) / 2, dy = o === 'adiabatic' ? 26 : -20;
+        if (r >= 1.5) ghosts.push([o, g.X(vm), g.Y(mo.f(vm)) + dy, 'center', 1 - q]);
+        else if (r <= 0.75) ghosts.push([o, g.X(mo.VB) - 16, g.Y(mo.f(mo.VB)) + (o === 'isobaric' ? 24 : 0), 'right', 1 - q]);
+      } else {
+        line(ctx, g.X(VA), g.Y(PA), g.X(VA), g.Y(Math.min(mo.PB, 6)), col, lw);
+        if (q > 0.05) head(ctx, g.X(VA), g.Y((PA + Math.min(mo.PB, 6)) / 2), 0, mo.PB > PA ? -1 : 1, PAL.ink, 18 * q);
+        ghosts.push([o, g.X(VA) - 14, g.Y((PA + Math.min(mo.PB, 6)) / 2), 'right', 1 - q]);
+      }
+    });
+    /* the endpoint B travels from the old process's end to the new one's */
+    const iv = KINDS.indexOf('isochoric'), [VBm, PBm] = kind.mix((v) => { const mo = model(v); return [mo.VB, mo.PB]; });
+    state(ctx, g.X(VA), g.Y(PA), 'A', 0.9 * (2 * w[iv] - 1), -0.7 * (1 - w[iv]));
+    const e = pinned(ctx, box, g.X, g.Y, VBm, PBm, PAL.ink, 'B');
+    if (!e.out) text(ctx, 'B', e.x + (VBm >= VA ? 24 : -24), e.y - 24, PAL.ink, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    ghosts.forEach(([o, x, y, al, a]) => { if (a <= 0.02) return; ctx.save(); ctx.globalAlpha *= a; text(ctx, NAMES[o], x, y, PAL.muted, { size: 17, align: al, bg: alpha(PAL.panel, 0.8) }); ctx.restore(); });
+    KINDS.forEach((o) => {
+      const a = kind.a(o); if (a <= 0) return; const [dx, dy] = kind.off(o, [0, -12]);
+      ctx.save(); ctx.globalAlpha *= a; ctx.translate(dx, dy);
+      text(ctx, NAMES[o] + (o === 'isochoric' ? '：体积恒定，W = 0' : o === 'isobaric' ? '：压强恒定，W = PΔV' : o === 'isothermal' ? '：温度恒定，Q = W' : '：没有热传递，Q = 0'), box.r - 10, box.t + 26, PAL.ink, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+      ctx.restore();
+    });
+    /* the words and the numbers */
+    const exp = m.VB > VA + 1e-9, comp = m.VB < VA - 1e-9;
+    const lines = {
+      isobaric: exp ? '等压膨胀到 ' + fmt(rv.v, 1) + ' 倍体积，做功 ' + J(m.W) + ' J，吸入 ' + J(m.Q) + ' J 的热量。' : comp ? '等压压缩到 ' + fmt(rv.v, 1) + ' 倍体积，输入 ' + J(-m.W) + ' J 的功，放出 ' + J(-m.Q) + ' J 的热量。' : '体积没有变化，就根本没有等压过程。',
+      isochoric: m.PB > PA ? '恒定体积下加热不做功：全部 ' + J(m.Q) + ' J 的热传递都进入内能。' : m.PB < PA ? '恒定体积下冷却不做功：内能减少的 ' + J(-m.dE) + ' J 以热量的形式离开。' : '压强没有变化，气体就停留在 A 点。',
+      isothermal: exp ? '等温膨胀到 ' + fmt(rv.v, 1) + ' 倍体积，做功 ' + J(m.W) + ' J，全部由传入的热传递来补偿。' : comp ? '等温压缩到 ' + fmt(rv.v, 1) + ' 倍体积，输入 ' + J(-m.W) + ' J 的功，同样多的热量离开。' : '体积没有变化，气体就停留在 A 点。',
+      adiabatic: exp ? '绝热膨胀到 ' + fmt(rv.v, 1) + ' 倍体积，做功 ' + J(m.W) + ' J，全部来自内能。' : comp ? '绝热压缩到 ' + fmt(rv.v, 1) + ' 倍体积，输入 ' + J(-m.W) + ' J 的功，全部进入内能。' : '体积没有变化，气体就停留在 A 点。',
+    };
+    topline(ctx, lines[k]);
+    const smalls = {
+      isobaric: '内能 $\\tfrac{3}{2}\\kPr\\kvol$ 随体积变化，所以 $\\kQh = \\kdEint + \\kW$。',
+      isochoric: '没有功时，每一焦耳热传递都改变内能：$\\kdEint = \\kQh$。',
+      isothermal: '沿曲线 $\\kPr\\kvol$ 为常量，所以内能 $\\tfrac{3}{2}\\kPr\\kvol$ 不变。',
+      adiabatic: '功完全来自内能，$\\kdEint = -\\kW$，所以气体冷却，压强比沿等温线下降得更快。',
+    };
+    readout(d.readout, `\\kQh = ${JTex(m.Q)}\\ \\text{J},\\quad \\kW = ${JTex(m.W)}\\ \\text{J},\\quad \\kdEint = \\kQh - \\kW = ${JTex(m.dE)}\\ \\text{J}`, smalls[k]);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE (unnumbered): the nested loops ABCFA and ABDEA that a conceptual
+   question and two AP items read. A faithful copy: no sliders, still.
+===================================================================== */
+(function () {
+  const d = sim('fig-loops', 520);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure');
+    const L = 300, R = 1100, T = 90, B = 470;
+    const A = [430, 130], Bp = [960, 130], Cp = [960, 360], Fp = [430, 360], Dp = [960, 420], Ep = [430, 420];
+    fillPoly(ctx, [A, Bp, Cp, Fp], ec, 0.3); fillPoly(ctx, [Fp, Cp, Dp, Ep], ec, 0.14);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; poly(ctx, [A, Bp, Dp, Ep]); ctx.stroke(); ctx.beginPath(); ctx.moveTo(Fp[0], Fp[1]); ctx.lineTo(Cp[0], Cp[1]); ctx.stroke(); ctx.restore();
+    /* the axes, unnumbered as the book leaves them */
+    arrow(ctx, L, B, L, T, PAL.muted, 3); arrow(ctx, L, B, R, B, PAL.muted, 3);
+    text(ctx, 'P', L - 30, T + 10, pc, { size: 24, weight: 600, align: 'center' }); text(ctx, 'V', R, B + 34, C('volume'), { size: 24, weight: 600, align: 'center' });
+    for (const [p, s, ox, oy] of [[A, 'A', -1, 0], [Bp, 'B', 1, 0], [Cp, 'C', 1, 0], [Dp, 'D', 1, 0], [Ep, 'E', -1, 0], [Fp, 'F', -1, 0]]) text(ctx, s, p[0] + ox * 34, p[1] + oy * 30, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    headline(ctx, '两个循环过程都始于 A 并终于 A：环路 ABCFA，以及更高的环路 ABDEA。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE (unnumbered): the parallelogram ABCD with its diagonal DB and the
+   book's numbers, which a keyed problem and three AP items read. A
+   faithful copy: no sliders, still.
+===================================================================== */
+(function () {
+  const d = sim('fig-parallelogram', 560);
+  const box = { l: 300, r: 1200, t: 140, b: 480 };   /* V 0 to 5 × 10⁻³ m³, P 0 to 3 × 10⁶ N/m² */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('pressure');
+    const X = (v) => box.l + (v / 5) * (box.r - box.l), Y = (p) => box.b - (p / 3) * (box.b - box.t);
+    arrow(ctx, box.l, box.b, box.l, box.t - 10, PAL.muted, 3); arrow(ctx, box.l, box.b, box.r + 10, box.b, PAL.muted, 3);
+    text(ctx, 'P (10⁶ N/m²)', box.l, box.t - 36, pc, { size: 20, weight: 600, align: 'left' });
+    text(ctx, 'V (10⁻³ m³)', box.r, box.b + 62, C('volume'), { size: 20, weight: 600, align: 'right' });
+    const A = [1, 2.6], B = [4, 2.0], Cc = [4, 0.6], D = [1, 1.0];
+    /* the values each state sits at, dropped to the axes as the book draws them */
+    for (const p of [2.6, 2.0, 1.0, 0.6]) { line(ctx, box.l, Y(p), X(p === 2.6 || p === 1.0 ? 1 : 4), Y(p), alpha(PAL.ink, 0.45), 2, [6, 6]); text(ctx, fmt(p, 1), box.l - 12, Y(p), pc, { size: 19, weight: 600, align: 'right' }); }
+    for (const v of [1, 4]) { line(ctx, X(v), box.b, X(v), Y(v === 1 ? 2.6 : 2.0), alpha(PAL.ink, 0.45), 2, [6, 6]); text(ctx, fmt(v, 1), X(v), box.b + 28, C('volume'), { size: 19, weight: 600, align: 'center' }); }
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; poly(ctx, [A, B, Cc, D].map(([v, p]) => [X(v), Y(p)])); ctx.stroke(); ctx.restore();
+    line(ctx, X(D[0]), Y(D[1]), X(B[0]), Y(B[1]), PAL.ink, 3, [12, 9]);
+    for (const [p, s, ox, oy] of [[A, 'A', -0.9, -0.8], [B, 'B', 1, -0.3], [Cc, 'C', 1, 0.4], [D, 'D', -0.7, 0.9]]) { dot(ctx, X(p[0]), Y(p[1]), PAL.ink, true, 8); text(ctx, s, X(p[0]) + ox * 30, Y(p[1]) + oy * 30, PAL.ink, { size: 24, weight: 600, align: 'center' }); }
+    headline(ctx, '热机绕平行四边形 ABCDA 运行，虚线 DB 把它分成两部分。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

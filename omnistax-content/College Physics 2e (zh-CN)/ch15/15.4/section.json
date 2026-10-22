@@ -1,0 +1,704 @@
+{
+ "id": "15.4",
+ "module": "m42235",
+ "chapter": "15",
+ "title": "卡诺的理想热机：热力学第二定律的重新表述",
+ "short": "卡诺的理想热机",
+ "lead": "热机的效率永远不可能达到 100%，所以剩下的问题是它的效率究竟能有多高。萨迪·卡诺于 1824 年用一个只由可逆过程构成的循环回答了这个问题，该循环包含两个等温过程和两个绝热过程，工作于两个给定的<span data-concept=\"temperature\">温度</span>之间，每一台实际热机，连同它的<span data-concept=\"friction\">摩擦</span>和其他耗散过程，都要拿它来衡量。",
+ "objectives": [
+  "识别卡诺循环。",
+  "计算核反应堆的理论最大效率。",
+  "解释耗散过程如何影响理想的卡诺热机。"
+ ],
+ "summary_html": "<ul><li>卡诺循环是一种理论循环，是所能有的效率最高的循环过程。任何采用卡诺循环的热机，称为卡诺热机，卡诺循环只使用可逆过程（绝热过程和等温过程）。</li><li>任何采用卡诺循环的热机都具有理论最大效率。</li><li>卡诺热机虽然是理想热机，但在现实中，没有任何一台热机能达到卡诺的理论最大效率，因为<span data-concept=\"friction\">摩擦</span>等耗散过程会起作用。在绝对零度下，也许可能存在没有<span data-concept=\"heat\">热</span>损失的卡诺循环，但这在自然界中从未见过。</li></ul>",
+ "notes": "书中未给出答案的四道习题已略去：工作于 700 °C 和 27.0 °C 之间的气冷反应堆、效率为 17.0% 的蒸汽机车、效率为 38% 的燃煤电厂，以及卡诺效率为 0.800 的“不合理的结果”蒸汽机；15.2 节印出的、工作于 450 °C 和 150 °C 之间的“不合理的结果”热机同样没有答案，也在两节中都已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。四道习题没有给出答案，已略去：工作于 700 °C 和 27.0 °C 之间的气冷反应堆、效率为 17.0% 的蒸汽机车、效率为 38% 的燃煤电厂，以及要求在卡诺效率为 0.800 时求热蒸汽温度的“不合理的结果”蒸汽机。15.2 节中工作于 450 °C 和 150 °C 之间的“不合理的结果”热机需要用到本节的卡诺效率，没有给出答案，也在两节中都已略去。效率为 42.0% 的卡诺热机一题给出了（a）和（b）两部分的答案，（c）部分的答案是文字，附在题卡的解答中；两级蒸汽机一题给出了（a）到（c）三部分的答案，（d）部分是书中自己的证明，保留在解答中；使用 450 °C 蒸汽的“不合理的结果”热机一题给出了（a）部分的答案，书中的（b）和（c）在解答中。发明者的装置一题是开放题，附有书中自己的答案。三道思考题的建议思路由 AI 撰写，并已标明。本节没有印出 AP 题，也没有为它留下任何一道。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-drinking-bird",
+   "kind": "photo",
+   "number": "15.20",
+   "originals": [
+    "/media/ch15/Figure_16_04_01.jpg"
+   ],
+   "original_caption": "这件名为饮水鸟的新奇玩具，是卡诺热机的一个例子。它的腹部装有二氯甲烷（混有染料），这种液体在很低的温度下就会沸腾——约 100 °F。使用时，要先把鸟头弄湿。水蒸发时，液体向上移入头部，使鸟变得头重脚轻，向前俯下，重新点入水中。这使头部的二氯甲烷冷却，并流回腹部，使鸟变得下重上轻而翘起来。除了很小的一点能量输入——最初弄湿鸟头的那一下——这只鸟就成了某种永动机。（来源：Arabesk.nl, Wikimedia Commons）",
+   "widths": [
+    400
+   ]
+  },
+  {
+   "id": "sim-carnot-cycle",
+   "kind": "sim",
+   "number": "15.21",
+   "originals": [
+    "/media/ch15/Figure_16_04_02.jpg"
+   ],
+   "original_caption": "卡诺循环的 PV 图，只采用可逆的等温过程和绝热过程。热传递量 Q_h 在等温路径 AB 上进入工质，该路径在恒定温度 T_h 下进行。热传递量 Q_c 在等温路径 CD 上离开工质，该路径在恒定温度 T_c 下进行。净输出功 W 等于路径 ABCDA 所围的面积。图中还给出了工作于温度为 T_h 的高温热库和温度为 T_c 的低温热库之间的卡诺热机的示意图。任何采用可逆过程并工作于这两个温度之间的热机，都具有与卡诺热机相同的最大效率。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "pressure",
+    "energy",
+    "temperature",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "cold isotherm named on its own run, clear of the axis; note cut, macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-efficiency-map",
+   "kind": "sim",
+   "draws": [
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "short 100% key, efficiency label under the point at the top, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-reactor",
+   "kind": "sim",
+   "number": "15.22",
+   "originals": [
+    "/media/ch15/Figure_16_04_03.jpg"
+   ],
+   "original_caption": "压水型核反应堆和把功转化为电能的汽轮机的示意图。采用热交换来产生蒸汽，部分原因是为了避免发电机受到放射性污染。使用两台汽轮机，是因为这比运行一台产生同样电能的发电机花费更少。蒸汽在返回热交换器之前凝结为液体，以便使排出蒸汽的压强保持较低，并有助于蒸汽流过汽轮机（相当于使用温度较低的低温热库）。与凝结相联系的大量能量必须耗散到当地环境中；在这个例子中使用了冷却塔，因此没有直接向水生环境的热传递。（注意，流向冷却塔的水不与流过汽轮机的蒸汽接触。）",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "temperature",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels off outlines and the steam pipe; loop named by hover; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-power-stations",
+   "kind": "photo",
+   "number": "15.23",
+   "originals": [
+    "/media/ch15/Figure_16_04_04.jpg"
+   ],
+   "original_caption": "（a）一座核电站（来源：BlatantWorld.com）和（b）一座燃煤电厂。两者都有冷却塔，水在塔中蒸发进入环境，这就是 Q_c。提供 Q_h 的核反应堆位于圆顶状的安全壳建筑之内。（来源：Robert & Mihaela Vicol, publicphoto.org）",
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "sim-real-engine",
+   "kind": "sim",
+   "number": "15.24",
+   "originals": [
+    "/media/ch15/Figure_16_04_05.jpg"
+   ],
+   "original_caption": "实际热机的效率低于卡诺热机。（a）实际热机使用不可逆过程，使转化为功的热传递量减少。实线表示实际过程；虚线表示卡诺热机在同样两个热库之间会怎样做。（b）热机输出机构中的摩擦和其他耗散过程，把它输出的一部分功转变为流向环境的热传递量。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "W label clear of the arrows; note cut to the comparison"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "carnot-cycle",
+   "concept": "carnot-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "second-law-carnot-statement",
+   "verb": "introduces"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "second-law-no-perfect-engine",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "reversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "irreversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "isothermal-process",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "adiabatic-process",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "heat-engine",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "cyclical-process",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "net-work-of-a-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "carnot-cycle",
+   "concept": "carnot-engine",
+   "verb": "introduces"
+  },
+  {
+   "span": "maximum-efficiency",
+   "concept": "carnot-efficiency",
+   "verb": "introduces"
+  },
+  {
+   "span": "maximum-efficiency",
+   "concept": "heat-engine-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "maximum-efficiency",
+   "concept": "heat-engine-work-output",
+   "verb": "uses"
+  },
+  {
+   "span": "maximum-efficiency",
+   "concept": "absolute-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "maximum-efficiency",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "maximum-efficiency",
+   "concept": "otto-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "maximum-efficiency",
+   "concept": "carnot-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "nuclear-reactor",
+   "concept": "calculate-carnot-efficiency",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-reactor",
+   "concept": "carnot-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-reactor",
+   "concept": "convert-temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-reactor",
+   "concept": "heat-engine",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-reactor",
+   "concept": "real-engines-below-carnot",
+   "verb": "uses"
+  },
+  {
+   "span": "real-engines",
+   "concept": "real-engines-below-carnot",
+   "verb": "introduces"
+  },
+  {
+   "span": "real-engines",
+   "concept": "irreversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "real-engines",
+   "concept": "carnot-efficiency",
+   "verb": "reinforces"
+  },
+  {
+   "span": "real-engines",
+   "concept": "friction-dissipates-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "real-engines",
+   "concept": "energy-degradation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738163020",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "carnot-cycle",
+   "prompt": "想一想本节开头的饮水鸟（图 15.20）。虽然这只鸟享有理论上可能的最大效率，但如果任其自行运转，时间一久，这只鸟就会停止“饮水”。有哪些耗散过程可能使这只鸟的运动停止？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只要鸟头比腹部凉，这只鸟就会一直运转，而这个温差靠头部水分的蒸发来维持。一旦玻璃杯里的水空了，或者头上的毡布干了，就不再有蒸发，也就没有温差，没有热机了。即使水还在，玩具本身也有不可逆过程在起作用。支点处的摩擦和摆动的身体所受的空气阻力，把微小功输出的一部分变成流向周围环境的热传递，而液体在颈管中上下运动时还与玻璃摩擦。通过玻璃的热传递也使头部变暖、腹部略微冷却而趋向室温，这就缩小了热机赖以运转的温差。这些都是本节所说的那一类耗散过程，每一个都使这只鸟成不了人们常说的那种理想的卡诺热机。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738110586",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "real-engines",
+   "prompt": "能否在热机中采用更好的工程技术和材料来减少传给环境的热传递量？能否把传给环境的热传递量完全消除？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "第一个问题的答案是能，第二个是不能。更好的工程技术可以减少耗散过程，例如摩擦和湍流，正是它们使实际热机的效率低于在同样两个温度之间工作的卡诺热机。更好的材料可以使高温热库运行在更高的温度，这会提高卡诺效率 $\\text{Eff}_{\\text{C}} = 1 - \\kTempc/\\kTemph$ 本身。在给定功输出的情况下，二者都能减少传给环境的热传递量 $\\kQC$。但是，无论怎样的工程技术都不能完全消除 $\\kQC$。卡诺形式的第二定律指出，即使是理想热机，效率也只有 $1 - \\kTempc/\\kTemph$，只有当低温热库处于绝对零度时才会达到 100%，而这是不可能的。要求有一些热传递进入环境的，是定律本身，而不是机器的质量。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737926553",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "maximum-efficiency",
+   "prompt": "热力学第二定律是否改变了能量守恒原理？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不改变。热机所进行的每一个过程都遵守能量守恒。热机在一个循环中吸入的热传递量 $\\kQH$ 又以功 $\\kW$ 和热传递量 $\\kQC$ 的形式出来，所以 $\\kW = \\kQH - \\kQC$，热机完全服从热力学第一定律。第二定律说的是第一定律没有说的事情：在遵守能量守恒的过程中，哪些确实会发生，以及 $\\kQH$ 中有多少能变成功。把 $\\kQH$ 全部变成功的过程完全遵守能量守恒，但第二定律禁止它。第二定律并没有改变能量守恒，而是在它之上增加了进一步的限制。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737792990",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "maximum-efficiency",
+   "prompt": "某台汽油机的效率为 30.0%。若一台具有该效率的卡诺热机工作于温度为 $200^\\circ\\text{C}$ 的低温热库，则其高温热库的温度应为多少？",
+   "answer": {
+    "type": "number",
+    "value": 403,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "把低温热库的温度换算成开尔文，由 $\\text{Eff}_{\\text{C}} = 1 - \\kTempc/\\kTemph$ 解出 $\\kTemph$，再把答案换算回摄氏度。",
+    "solution": "$403^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738114379",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "real-engines",
+   "prompt": "（a）效率为 42.0%、低温热库温度为 $27.0^\\circ\\text{C}$ 的卡诺热机，其高温热库的温度是多少？（b）一台实际热机只达到最大效率的 0.700，却仍有 42.0% 的效率（低温热库为 $27.0^\\circ\\text{C}$），它的高温热库温度必须是多少？（c）你的答案是否意味着汽车汽油机的效率存在实际极限？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 244,
+      "unit": "°C",
+      "hint": "取 $\\kTempc = 300\\ \\text{K}$，由 $0.420 = 1 - 300\\ \\text{K}/\\kTemph$ 解出 $\\kTemph$，并换算成摄氏度。"
+     },
+     {
+      "part": "(b)",
+      "value": 477,
+      "unit": "°C",
+      "hint": "若实际热机只达到最大效率的 0.700，则其两个热库之间的卡诺效率必为 $0.420/0.700 = 0.600$；求出给出该值的高温热库温度。"
+     }
+    ],
+    "solution": "（a）$244^\\circ\\text{C}$（b）$477^\\circ\\text{C}$（c）是的，因为汽车发动机温度太高就会过热，所以其效率受到限制。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738043420",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "maximum-efficiency",
+   "prompt": "实用的蒸汽机使用 $450^\\circ\\text{C}$ 的蒸汽，之后以 $270^\\circ\\text{C}$ 排出。（a）这样的热机最大效率是多少？（b）由于 $270^\\circ\\text{C}$ 的蒸汽仍然相当热，有时会再用第一台的排气来运转第二台蒸汽机。如果第二台的排气温度为 $150^\\circ\\text{C}$，它的最大效率是多少？（c）两台蒸汽机的总效率是多少？（d）证明这与工作于 $450^\\circ\\text{C}$ 和 $150^\\circ\\text{C}$ 之间的单台卡诺热机的效率相同。请明确展示你如何遵循“热力学问题的解题策略”中的各个步骤。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 24.9,
+      "unit": "%",
+      "hint": "第一台热机工作于 723 K 与 543 K 之间。"
+     },
+     {
+      "part": "(b)",
+      "value": 22.1,
+      "unit": "%",
+      "hint": "第二台热机的高温热库是第一台热机的排气，即 543 K，其低温热库为 423 K。"
+     },
+     {
+      "part": "(c)",
+      "value": 41.5,
+      "unit": "%",
+      "hint": "到达第二台热机的热传递量，是第一台没有转化为功的部分，因此两台热机都没有转化的那部分占原来热传递量的份额是 $(1 - \\text{Eff}_1)(1 - \\text{Eff}_2)$。"
+     }
+    ],
+    "solution": "（a）$\\text{Eff}_{1} = 1 - \\frac{T_{\\text{c,1}}}{T_{\\text{h,1}}} = 1 - \\frac{543\\ \\text{K}}{723\\ \\text{K}} = 0.249\\ \\text{即}\\ 24.9\\%$（b）$\\text{Eff}_{2} = 1 - \\frac{423\\ \\text{K}}{543\\ \\text{K}} = 0.221\\ \\text{即}\\ 22.1\\%$（c）$\\text{Eff}_{1} = 1 - \\frac{T_{\\text{c,1}}}{T_{\\text{h,1}}} \\Rightarrow T_{\\text{c,1}} = T_{\\text{h,1}}(1 - \\text{Eff}_{1})$；同理，$T_{\\text{c,2}} = T_{\\text{h,2}}(1 - \\text{Eff}_{2})$；在上式中代入 $T_{\\text{h,2}} = T_{\\text{c,1}}$，得 $T_{\\text{c,2}} = T_{\\text{h,1}}(1 - \\text{Eff}_{1})(1 - \\text{Eff}_{2}) \\equiv T_{\\text{h,1}}(1 - \\text{Eff}_{\\text{overall}})$，$\\therefore (1 - \\text{Eff}_{\\text{overall}}) = (1 - \\text{Eff}_{1})(1 - \\text{Eff}_{2})$，$\\text{Eff}_{\\text{overall}} = 1 - (1 - 0.249)(1 - 0.221) = 41.5\\%$（d）$\\text{Eff}_{\\text{overall}} = 1 - \\frac{423\\ \\text{K}}{723\\ \\text{K}} = 0.415\\ \\text{即}\\ 41.5\\%$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738045392",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "maximum-efficiency",
+   "prompt": "你是否愿意在经济上资助一位发明者？她正在推销一种装置，声称它在 600 K 下有 25 kJ 的热传递，在 300 K 下向环境传热，并做 12 kJ 的功。请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "传给低温热库的热传递量为 $\\kQC = \\kQH - \\kW = 25\\ \\text{kJ} - 12\\ \\text{kJ} = 13\\ \\text{kJ}$，所以效率为 $\\text{Eff} = 1 - \\frac{\\kQC}{\\kQH} = 1 - \\frac{13\\ \\text{kJ}}{25\\ \\text{kJ}} = 0.48$。卡诺效率为 $\\text{Eff}_{\\text{C}} = 1 - \\frac{\\kTempc}{\\kTemph} = 1 - \\frac{300\\ \\text{K}}{600\\ \\text{K}} = 0.50$。实际效率是卡诺效率的 96%，远高于迄今所达到的最佳值约 70%，所以她的方案很可能是骗局。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737988086",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "maximum-efficiency",
+   "prompt": "求一台使用 $450^\\circ\\text{C}$ 热蒸汽、卡诺效率为 0.700 的蒸汽机的低温热库温度。（b）这个温度有什么不合理之处？（c）哪个前提是不合理的？",
+   "answer": {
+    "type": "number",
+    "value": -56.3,
+    "unit": "°C",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "由 $\\text{Eff}_{\\text{C}} = 1 - \\kTempc/\\kTemph$ 解出 $\\kTempc$（取 $\\kTemph = 723\\ \\text{K}$），再换算成摄氏度，并问一问蒸汽机能否向那样冷的东西排气。",
+    "solution": "（a）$-56.3^\\circ\\text{C}$（b）对于蒸汽机的排放对象（当地环境）来说，这个温度太低了。它低于水的凝固点。（c）假设的效率太高。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "real-engines-below-carnot"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "carnot-cycle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "real-engines-below-carnot"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "second-law-carnot-statement",
+   "weight": 3
+  },
+  {
+   "exercise": "cq3",
+   "concept": "second-law-carnot-statement"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "first-law-of-thermodynamics",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-carnot-efficiency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "carnot-efficiency",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-carnot-efficiency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "carnot-efficiency",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "real-engines-below-carnot",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-carnot-efficiency"
+  },
+  {
+   "exercise": "p5",
+   "concept": "carnot-efficiency",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "carnot-efficiency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "second-law-carnot-statement",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-engine-efficiency",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-carnot-efficiency"
+  },
+  {
+   "exercise": "p9",
+   "concept": "carnot-efficiency",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "hot-reservoir",
+   "label": "高温热库",
+   "figures": [
+    "sim-carnot-cycle",
+    "sim-real-engine"
+   ]
+  },
+  {
+   "id": "cold-reservoir",
+   "label": "低温热库",
+   "figures": [
+    "sim-carnot-cycle",
+    "sim-real-engine"
+   ]
+  },
+  {
+   "id": "carnot-engine",
+   "label": "卡诺热机",
+   "figures": [
+    "sim-carnot-cycle"
+   ]
+  },
+  {
+   "id": "pressurized-water",
+   "label": "加压水",
+   "figures": [
+    "sim-reactor"
+   ]
+  },
+  {
+   "id": "steam",
+   "label": "蒸汽",
+   "figures": [
+    "sim-reactor"
+   ]
+  },
+  {
+   "id": "turbines",
+   "label": "汽轮机",
+   "figures": [
+    "sim-reactor"
+   ]
+  },
+  {
+   "id": "cooling-tower",
+   "label": "冷却塔",
+   "figures": [
+    "sim-reactor"
+   ]
+  },
+  {
+   "id": "real-engine",
+   "label": "实际热机",
+   "figures": [
+    "sim-real-engine"
+   ]
+  }
+ ]
+}

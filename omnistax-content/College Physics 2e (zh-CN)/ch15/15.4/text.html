@@ -1,0 +1,64 @@
+<section id="carnot-cycle">
+<h2>只由可逆过程构成的卡诺循环</h2>
+<figure class="photo" id="fig-drinking-bird" data-figure="15.20">
+  <img src="/media/ch15/Figure_16_04_01.jpg" alt="一件名为“饮水鸟”的新奇玩具的照片。它由两个玻璃泡和连接二者的玻璃管组成。上面的泡做成鸟头的形状，玻璃管看上去像它的脖子。下面的泡可以比作腹部，里面装有被染成红色的二氯甲烷。脖子的底端连在一个支点上，鸟头前面有一杯水。" data-width="400">
+  <figcaption><span class="eyebrow">Figure 15.20</span><span>这件名为饮水鸟的新奇玩具，是卡诺热机的一个例子。它的腹部装有二氯甲烷（混有染料），这种液体在很低的<span data-concept="temperature">温度</span>下就会沸腾——约 $100^\circ\text{F}$。使用时，要先把鸟头弄湿。水蒸发时，液体向上移入头部，使鸟变得头重脚轻，向前俯下，重新点入水中。这使头部的二氯甲烷冷却，并流回腹部，使鸟变得下重上轻而翘起来。除了很小的一点<span data-concept="energy">能量</span>输入——最初弄湿鸟头的那一下——这只鸟就成了某种永动机。（来源：Arabesk.nl, Wikimedia Commons）</span></figcaption>
+</figure>
+<p class="cite-target">由<span data-concept="second-law-of-thermodynamics">热力学第二定律</span>我们知道，<span data-concept="heat-engine">热机</span>的效率不可能达到 100%，因为总有一些<span data-concept="heat">热</span>传递量 $\kQC$ 传给环境，这部分常被称为废<span data-concept="heat">热</span>。那么，<span data-concept="heat-engine">热机</span>的效率究竟能有多高？1824 年，法国青年工程师萨迪·卡诺（Sadi Carnot，1796–1832）在研究当时刚刚兴起、对工业革命至关重要的<span data-concept="heat-engine">热机</span>技术时，从理论上回答了这个问题。他设计了一种理论循环，现在称为<strong><span data-concept="carnot-cycle">卡诺循环</span></strong>，它是所能有的效率最高的<span data-concept="cyclical-process">循环过程</span>。<span data-concept="second-law-of-thermodynamics">热力学第二定律</span>可以用<span data-concept="carnot-cycle">卡诺循环</span>重新表述，所以卡诺实际上发现的就是这一基本<span data-concept="law">定律</span>。任何采用<span data-concept="carnot-cycle">卡诺循环</span>的<span data-concept="heat-engine">热机</span>都称为<strong><span data-concept="carnot-engine">卡诺热机</span></strong>。</p>
+<p><span data-concept="carnot-cycle">卡诺循环</span>的关键所在——实际上也是它的定义——是只使用<span data-concept="reversible-process">可逆过程</span>。<span data-concept="irreversible-process">不可逆过程</span>涉及耗散因素，例如<span data-concept="friction">摩擦</span>和<span data-concept="turbulent-flow">湍流</span>。这会使传给环境的<span data-concept="heat">热</span>传递量 $\kQC$ 增大，并降低热机的<span data-concept="efficiency">效率</span>。因此，显然<span data-concept="reversible-process">可逆过程</span>更优越。</p>
+<div class="note">
+<div class="eyebrow">卡诺热机</div>
+<p>用<span data-concept="reversible-process">可逆过程</span>来表述，<strong><span data-concept="second-law-of-thermodynamics">热力学第二定律</span></strong>有第三种表述：</p>
+<p>工作于两个给定<span data-concept="temperature">温度</span>之间的<span data-concept="carnot-engine">卡诺热机</span>，其<span data-concept="efficiency">效率</span>是工作于这两个<span data-concept="temperature">温度</span>之间的所有<span data-concept="heat-engine">热机</span>中可能达到的最大值。此外，所有只采用<span data-concept="reversible-process">可逆过程</span>的热机，在同样两个给定<span data-concept="temperature">温度</span>之间工作时，都具有这同一个最大<span data-concept="efficiency">效率</span>。</p>
+</div>
+<p>图 15.21 给出了<span data-concept="carnot-cycle">卡诺循环</span>的 $PV$ 图。该循环由两个等温过程和两个<span data-concept="adiabatic-process">绝热过程</span>组成。回想一下，等温过程和<span data-concept="adiabatic-process">绝热过程</span>原则上都是可逆的。</p>
+<figure class="sim" id="sim-carnot-cycle" data-figure="15.21" data-original="/media/ch15/Figure_16_04_02.jpg" data-original-width="400" data-original-caption="卡诺循环的 PV 图，只采用可逆的等温过程和绝热过程。热传递量 Q_h 在等温路径 AB 上进入工质，该路径在恒定温度 T_h 下进行。热传递量 Q_c 在等温路径 CD 上离开工质，该路径在恒定温度 T_c 下进行。净输出功 W 等于路径 ABCDA 所围的面积。图中还给出了工作于温度为 T_h 的高温热库和温度为 T_c 的低温热库之间的卡诺热机的示意图。任何采用可逆过程并工作于这两个温度之间的热机，都具有与卡诺热机相同的最大效率。">
+  <div class="sim-head"><span class="eyebrow">Figure 15.21</span><span>一摩尔单原子理想气体在 $PV$ 图上沿卡诺循环绕行，<span data-ref="carnot-engine">它所驱动的热机</span>在旁边，工作于<span data-ref="hot-reservoir cold-reservoir">它的两个热库</span>之间。沿高温等温线 AB，气体在 $\kTemph$ 下膨胀，吸入<span data-type="energy">热传递量</span> $\kQH$。沿绝热线 BC，气体在没有<span data-concept="heat">热</span>传递的情况下膨胀，并冷却到 $\kTempc$。沿低温等温线 CD，活塞压缩气体，气体放出 $\kQC$，沿绝热线 DA，活塞把气体压缩回起点。<span data-type="energy">每一段膨胀线下的面积</span>被填满，<span data-type="energy">每一段压缩线下的面积</span>又被去掉，在环路之内留下<span data-type="energy">净功</span> $\kW$。移动<span data-type="temperature">这两个温度</span>，环路和效率都会改变。加大膨胀量，每一种<span data-concept="energy">能量</span>都增大，而效率则丝毫不变。</span></div>
+</figure>
+</section>
+
+<section id="maximum-efficiency">
+<h2>卡诺效率</h2>
+<p class="cite-target">卡诺还确定了理想<span data-concept="heat-engine">热机</span>——也就是<span data-concept="carnot-engine">卡诺热机</span>——的<span data-concept="efficiency">效率</span>。循环<span data-concept="heat-engine">热机</span>的<span data-concept="efficiency">效率</span>总是由下式给出：</p>
+$$\text{Eff} = \frac{\kQH - \kQC}{\kQH} = 1 - \frac{\kQC}{\kQH}.$$
+<p>卡诺发现，对于理想<span data-concept="heat-engine">热机</span>，比值 $\kQC/\kQH$ 等于各<span data-concept="heat">热</span>源的<span data-concept="temperature">热力学温度</span>之比。也就是说，对于<span data-concept="carnot-engine">卡诺热机</span>，$\kQC/\kQH = \kTempc/\kTemph$，因此最大效率，即<strong><span data-concept="carnot-efficiency">卡诺效率</span></strong> $\text{Eff}_{\text{C}}$ 由下式给出</p>
+$$\text{Eff}_{\text{C}} = 1 - \frac{\kTempc}{\kTemph},$$
+<p>其中 $\kTemph$ 和 $\kTempc$ 以开尔文为单位（或采用任何其他<span data-concept="temperature">热力学温标</span>）。没有任何实际<span data-concept="heat-engine">热机</span>能达到<span data-concept="carnot-efficiency">卡诺效率</span>。但是，理想的<span data-concept="carnot-engine">卡诺热机</span>，就像上面的饮水鸟一样，虽然是令人着迷的新奇玩意儿，<span data-concept="power">功率</span>却为零。这使它对任何应用都不现实。</p>
+<p>卡诺这一有趣的结果意味着，只有当 $\kTempc = 0\ \text{K}$ 时，100% 的<span data-concept="efficiency">效率</span>才有可能——也就是说，只有<span data-ref="cold-reservoir">低温热库</span>处于<span data-concept="absolute-zero">绝对零度</span>时，而这在实践上和理论上都是不可能的。但其物理含义是这样的——要使全部<span data-concept="heat">热</span>传递都用来做<span data-concept="work">功</span>，唯一的办法是移走<em>全部</em><span data-concept="thermal-energy">热能</span>，而这需要有一个处于<span data-concept="absolute-zero">绝对零度</span>的低温热库。</p>
+<figure class="sim" id="sim-efficiency-map">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>曲线给出的是<span data-type="temperature">高温热库温度</span> $\kTemph$ 变化时的卡诺效率，对应于你所选的<span data-type="temperature">低温热库温度</span> $\kTempc$，圆点标出你所设定的热机。曲线随<span data-ref="hot-reservoir">高温热库</span>变热而上升，但无论<span data-ref="hot-reservoir">它</span>有多热，都达不到 100%。降低<span data-ref="cold-reservoir">低温热库</span>，整条曲线就会升高；只有当 $\kTempc$ 为绝对零度时，<span data-type="temperature">每一个高温热库温度</span>才会给出 100% 的效率。</span></div>
+</figure>
+<p>同样明显的是，当比值 $\kTempc/\kTemph$ 尽可能小时，可获得最高的<span data-concept="efficiency">效率</span>。正如上一节对<span data-concept="otto-cycle">奥托循环</span>所讨论的那样，这意味着高温热库的<span data-concept="temperature">温度</span>尽可能高、低温热库的<span data-concept="temperature">温度</span>尽可能低时，<span data-concept="efficiency">效率</span>最大。（这样的安排增大了 $PV$ 图上闭合曲线所围的<span data-concept="area">面积</span>；而且，<span data-concept="temperature">温差</span>越大，就越容易把<span data-concept="heat">热</span>传递转化为<span data-concept="work">功</span>，这似乎也是合理的。）<span data-concept="heat-engine">热机</span>实际的热库<span data-concept="temperature">温度</span>通常与<span data-concept="heat">热</span>源的类型以及发生<span data-concept="heat">热</span>传递的那个环境的<span data-concept="temperature">温度</span>有关。请看下面的例子。</p>
+</section>
+
+<section id="nuclear-reactor">
+<h2>核反应堆的理论最大效率</h2>
+<div class="example" id="ex-nuclear-reactor">
+<h3>例题 15.4 · 核反应堆的理论最大效率</h3>
+<p class="cite-target">某核动力反应堆里有 $300^\circ\text{C}$ 的<span data-ref="pressurized-water">加压水</span>。（更高的<span data-concept="temperature">温度</span>在理论上是可能的，但由于反应堆所用材料的限制，在实际中不可能。）从<span data-ref="pressurized-water">这些水</span>开始的<span data-concept="heat">热</span>传递是一个复杂的过程（见图 15.22）。在蒸汽发生器中产生的<span data-ref="steam">蒸汽</span>用来驱动<span data-ref="turbines">汽轮发电机</span>。最后，<span data-ref="steam">蒸汽</span>凝结成 $27^\circ\text{C}$ 的水，然后再次被加热，使循环重新开始。求工作于<span data-type="temperature">这两个<span data-concept="temperature">温度</span></span>之间的<span data-concept="heat-engine">热机</span>的理论最大<span data-concept="efficiency">效率</span>。</p>
+<figure class="sim" id="sim-reactor" data-figure="15.22" data-original="/media/ch15/Figure_16_04_03.jpg" data-original-width="400" data-original-caption="压水型核反应堆和把功转化为电能的汽轮机的示意图。采用热交换来产生蒸汽，部分原因是为了避免发电机受到放射性污染。使用两台汽轮机，是因为这比运行一台产生同样电能的发电机花费更少。蒸汽在返回热交换器之前凝结为液体，以便使排出蒸汽的压强保持较低，并有助于蒸汽流过汽轮机（相当于使用温度较低的低温热库）。与凝结相联系的大量能量必须耗散到当地环境中；在这个例子中使用了冷却塔，因此没有直接向水生环境的热传递。（注意，流向冷却塔的水不与流过汽轮机的蒸汽接触。）">
+  <div class="sim-head"><span class="eyebrow">Figure 15.22</span><span>压水堆是一台热机。反应堆堆芯加热<span data-concept="pressure">压力</span>容器内<span data-ref="pressurized-water">加压水</span>，<span data-ref="pressurized-water">这些水</span>在蒸汽发生器中把第二个回路的水烧成<span data-ref="steam">蒸汽</span>。<span data-ref="steam">蒸汽</span>驱动<span data-ref="turbines">一台高压汽轮机和一台低压汽轮机</span>，带动发电机转动，冷凝器再把<span data-ref="steam">用过的蒸汽</span>变回水，并把它的<span data-concept="heat">热量</span>送往<span data-ref="cooling-tower">冷却塔</span>。<span data-type="energy">热传递量</span> $\kQH$ 在<span data-ref="pressurized-water">加压水</span>的<span data-type="temperature">温度</span>下进入，$\kQC$ 在<span data-ref="steam">冷凝后的蒸汽</span>的<span data-type="temperature">温度</span>下离开。以摄氏度设定<span data-type="temperature">这两个温度</span>；读数栏把它们换算成开尔文，并求出 $\kQH$ 中至多能有多大份额变成<span data-type="energy">功</span> $\kW$ 输出。</span></div>
+</figure>
+<h4>思路</h4>
+<p>由于已知这台<span data-concept="heat-engine">热机</span>的<span data-ref="hot-reservoir cold-reservoir">高温热库和低温热库</span>的<span data-type="temperature"><span data-concept="temperature">温度</span></span>，可以用 $\text{Eff}_{\text{C}} = 1 - \frac{\kTempc}{\kTemph}$ 来计算卡诺（理论最大）<span data-concept="efficiency">效率</span>。必须先把<span data-type="temperature">那些<span data-concept="temperature">温度</span></span>换算成开尔文。</p>
+<h4>解</h4>
+<p><span data-type="temperature">高温热库和低温热库的<span data-concept="temperature">温度</span></span>分别给定为 $300^\circ\text{C}$ 和 $27.0^\circ\text{C}$。因此，以开尔文表示，$\kTemph = 573\ \text{K}$，$\kTempc = 300\ \text{K}$，于是最大<span data-concept="efficiency">效率</span>为</p>
+$$\text{Eff}_{\text{C}} = 1 - \frac{\kTempc}{\kTemph}.$$
+<p>于是，</p>
+$$\begin{aligned}\text{Eff}_{\text{C}} &= 1 - \frac{300\ \text{K}}{573\ \text{K}}\\ &= 0.476\text{, 即 }47.6\%.\end{aligned}$$
+<h4>讨论</h4>
+<p>典型核电站的实际<span data-concept="efficiency">效率</span>约为 35%，比最大可能值的 0.7 倍略高一点，这是对卓越工程设计的赞誉。以煤、石油和天然气为燃料的发电厂，实际<span data-concept="efficiency">效率</span>更高（约 42%），因为它们的锅炉能达到更高的<span data-concept="temperature">温度</span>和<span data-concept="pressure">压强</span>。这些发电厂的低温热库<span data-concept="temperature">温度</span>都受当地环境的限制。图 15.23 给出了（a）一座核电站的外观和（b）一座燃煤电厂的外观。两者都有冷却塔，来自冷凝器的水从塔顶附近进入塔内，向下喷淋，通过蒸发冷却。</p>
+</div>
+<figure class="photo" id="fig-power-stations" data-figure="15.23">
+  <img src="/media/ch15/Figure_16_04_04.jpg" alt="图（a）是一座运行中的核电站的夜景照片。图中有圆顶状的建筑物，其中容纳着放射性物质，水汽从两座冷却塔中冒出。图（b）是一座燃煤电厂的照片，图中可见几座巨大的冷却塔。" data-width="300">
+  <figcaption><span class="eyebrow">Figure 15.23</span><span>（a）一座核电站（来源：BlatantWorld.com）和（b）一座燃煤电厂。两者都有冷却塔，水在塔中蒸发进入环境，这就是 $\kQC$。提供 $\kQH$ 的核反应堆位于圆顶状的安全壳建筑之内。（来源：Robert &amp; Mihaela Vicol, publicphoto.org）</span></figcaption>
+</figure>
+</section>
+
+<section id="real-engines">
+<h2>实际热机为什么有所不及</h2>
+<p class="cite-target">由于一切实际过程都是不可逆的，<span data-concept="heat-engine">热机</span>的实际<span data-concept="efficiency">效率</span>永远不可能像<span data-concept="carnot-engine">卡诺热机</span>那样高，如图 15.24（a）所示。即使有可能的最好的<span data-concept="heat-engine">热机</span>，其外围设备中也总有耗散过程，例如电力<span data-concept="transformer">变压器</span>或汽车变速器。如图 15.24（b）所示，这些过程把热机输出的一部分<span data-concept="work">功</span>又转变回<span data-concept="heat">热</span>传递，从而进一步降低总<span data-concept="efficiency">效率</span>。</p>
+<figure class="sim" id="sim-real-engine" data-figure="15.24" data-original="/media/ch15/Figure_16_04_05.jpg" data-original-width="400" data-original-caption="实际热机的效率低于卡诺热机。（a）实际热机使用不可逆过程，使转化为功的热传递量减少。实线表示实际过程；虚线表示卡诺热机在同样两个热库之间会怎样做。（b）热机输出机构中的摩擦和其他耗散过程，把它输出的一部分功转变为流向环境的热传递量。">
+  <div class="sim-head"><span class="eyebrow">Figure 15.24</span><span><span data-ref="real-engine">一台实际热机</span>每个循环从<span data-ref="hot-reservoir">它的高温热库</span>吸入<span data-type="energy">100 kJ 的热传递量</span> $\kQH$。实线箭头表示<span data-ref="real-engine">它</span>实际上如何处理<span data-type="energy">这些能量</span>：<span data-ref="real-engine">它</span>输出<span data-type="energy">功</span> $\kW$，<span data-ref="real-engine">它</span>把<span data-type="energy">热传递量</span> $\kQC$ 送给<span data-ref="cold-reservoir">低温热库</span>；虚线箭头表示<span data-ref="carnot-engine">卡诺热机</span>在<span data-ref="hot-reservoir cold-reservoir">同样两个热库</span>之间会怎样做。随后，输出机构中的<span data-concept="friction">摩擦</span>和其他耗散过程，把<span data-type="energy">一部分功</span>又转变为流向<span data-ref="cold-reservoir">低温热库</span>的<span data-type="energy">热传递量</span> $\kQf$。设定<span data-type="temperature">这两个温度</span>、<span data-ref="real-engine">热机</span>接近卡诺效率的程度，以及<span data-concept="friction">摩擦</span>占去其输出的多少，然后观察实线箭头如何落在虚线箭头之后。</span></div>
+</figure>
+</section>

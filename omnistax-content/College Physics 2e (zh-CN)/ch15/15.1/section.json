@@ -1,0 +1,882 @@
+{
+ "id": "15.1",
+ "module": "m42232",
+ "chapter": "15",
+ "title": "热力学第一定律",
+ "short": "第一定律",
+ "lead": "<span data-concept=\"heat\">热</span>传递和<span data-concept=\"work\">功</span>是<span data-concept=\"energy\">能量</span>穿过系统边界的两种方式，热力学第一定律就是把<span data-concept=\"energy\">能量</span>守恒写成针对这两种传递以及它们所改变的<span data-concept=\"internal-energy\">内能</span>的形式。<span data-ref=\"body\">人体</span>用食物、<span data-concept=\"heat\">热</span>传递、<span data-concept=\"work\">功</span>和储存的脂肪记着同样的账。",
+ "objectives": [
+  "给出热力学第一定律的定义。",
+  "描述能量守恒与热力学第一定律的关系。",
+  "识别热力学第一定律在日常情境中的作用，包括生物代谢。",
+  "在考虑了热传递和所做的功之后，计算系统内能的变化。"
+ ],
+ "summary_html": "<ul><li>热力学第一定律表示为 $\\kdEint = \\kQh - \\kW$，其中 $\\kdEint$ 是系统<span data-concept=\"internal-energy\">内能</span>的变化，$\\kQh$ 是净<span data-concept=\"heat\">热</span>传递量（传入和传出系统的所有<span data-concept=\"heat\">热</span>传递之和），$\\kW$ 是所做的<span data-concept=\"net-work\">净功</span>（系统所做的或外界对系统所做的所有<span data-concept=\"work\">功</span>之和）。</li><li>$\\kQh$ 和 $\\kW$ 都是传递中的<span data-concept=\"energy\">能量</span>；只有 $\\kdEint$ 代表能够被储存的独立的量。</li><li>系统的<span data-concept=\"internal-energy\">内能</span> $\\kEint$ 只取决于系统的状态，而与它如何达到该状态无关。</li><li>生物的代谢和植物的光合作用，是系统的<span data-concept=\"heat\">热</span>传递、做<span data-concept=\"work\">功</span>和<span data-concept=\"internal-energy\">内能</span>的特殊类型。</li></ul>",
+ "notes": "关于封闭的冰箱或冷冻室里发生什么的 AP 题，放在介绍冰箱的 15.5 中；书中未给出答案的四道习题已略去：内能减少了 150 J 的系统的热传递、在热传递传入和传出的情况下做了 4.50 × 10⁵ J 功的系统、在 5.00% 的效率下做了 35.0 kJ 功的男子，以及 1470 kJ 的一杯酸奶。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。第 2、4、6、8 题没有给出答案，已略去：内能减少了 150 J、同时做了 30.0 J 功的系统的热传递，在 3.00 × 10⁶ J 热传递传入、8.00 × 10⁶ J 传出的情况下做了 4.50 × 10⁵ J 功的系统，通过代谢食物以 5.00% 的效率做了 35.0 kJ 功的男子，以及 1470 kJ 的一杯酸奶。第 9 题只给出了（a）问的答案，所以题卡检查那个数值，并在解答里放上书中对（b）问的讨论；第 7 题的第三问设为电动机一天所做的功，书中的比较放在解答里。本节的六道 AP 题中，三道有答案，设为评分选择题（被圆盘分成两半的圆柱体、300 J 的功和 −320 J 的热传递，以及土豆炮）；弹簧上的台球和以 150 W 烧掉的零食这两道没有答案，作为开放题保留，附有 AI 撰写的建议思路并已标明；关于封闭的冰箱或冷冻室里发生什么的那道，由 15.5 的冰箱来回答，在那里设为 source_section 15.1，无答案，附有 AI 撰写的思路。七道思考题的建议思路由 AI 撰写并已标明。本章没有“理解检测”框，所以没有内嵌的题。没有取自其他小节的内容。数值答案允许 2% 的误差。",
+ "figures": [
+  {
+   "id": "fig-tea-kettle",
+   "kind": "photo",
+   "number": "15.2",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-first-law",
+   "kind": "sim",
+   "number": "15.3",
+   "originals": [
+    "/media/ch15/Figure_16_01_02.jpg"
+   ],
+   "original_caption": "热力学第一定律是针对处于热平衡、以热量和功作为传递能量方式的系统所表述的能量守恒原理。Q 表示净热传递量——它是传入和传出系统的所有热传递之和。净热传递量传入系统时 Q 为正。W 是系统所做的和外界对系统所做的总功。系统所做的功多于外界对它所做的功时，W 为正。系统内能的变化 ΔE_int 与热量和功的关系由热力学第一定律给出，ΔE_int = Q − W。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "system widened, gauge rescaled to the sliders' range, note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-paths",
+   "kind": "sim",
+   "number": "15.4",
+   "originals": [
+    "/media/ch15/Figure_16_01_03.jpg"
+   ],
+   "original_caption": "两个不同的过程使系统产生相同的变化。（a）共有 15.00 J 的热传递传入系统，同时功共带走 6.00 J。内能的变化为 ΔE_int = Q − W = 9.00 J。（b）热传递从系统带走 150.00 J，而功向系统输入 159.00 J，使内能增加 9.00 J。如果系统在（a）和（b）中从相同的状态出发，那么无论哪种情况，它都将到达相同的末态——它的末态与内能有关，而与这份能量是如何获得的无关。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "short labels off the system rings; note that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-metabolism",
+   "kind": "sim",
+   "number": "15.5",
+   "originals": [
+    "/media/ch15/Figure_16_01_04.jpg"
+   ],
+   "original_caption": "（a）热力学第一定律应用于代谢。从人体传出的热传递（Q）和人体所做的功（W）带走内能，而食物摄入则把它补回。（食物摄入可以看作是外界对人体所做的功。）（b）植物把阳光中的一部分辐射热传递转化为储存的化学能，这一过程称为光合作用。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "gauges rescaled to the sliders' range, labels off arrows, notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "first-law",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "introduces"
+  },
+  {
+   "span": "first-law",
+   "concept": "heat-and-work-sign-convention",
+   "verb": "introduces"
+  },
+  {
+   "span": "first-law",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "first-law",
+   "concept": "heat",
+   "verb": "uses"
+  },
+  {
+   "span": "first-law",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "first-law",
+   "concept": "net-work",
+   "verb": "uses"
+  },
+  {
+   "span": "first-law",
+   "concept": "work-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-and-work",
+   "concept": "heat-and-work-are-energy-in-transit",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-and-work",
+   "concept": "heat",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-and-work",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-and-work",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-and-work",
+   "concept": "heat-vs-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-and-work",
+   "concept": "internal-energy-changed-by-heat-or-work",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-and-work",
+   "concept": "energy-transformation",
+   "verb": "uses"
+  },
+  {
+   "span": "internal-energy",
+   "concept": "internal-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "internal-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "internal-energy",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "internal-energy",
+   "concept": "forms-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "internal-energy",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "reinforces"
+  },
+  {
+   "span": "path-independence",
+   "concept": "internal-energy-is-a-state-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-independence",
+   "concept": "calculate-internal-energy-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-independence",
+   "concept": "internal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "path-independence",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "path-independence",
+   "concept": "heat-and-work-sign-convention",
+   "verb": "reinforces"
+  },
+  {
+   "span": "metabolism",
+   "concept": "human-metabolism-first-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "metabolism",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "reinforces"
+  },
+  {
+   "span": "metabolism",
+   "concept": "heat-and-work-sign-convention",
+   "verb": "reinforces"
+  },
+  {
+   "span": "metabolism",
+   "concept": "heat-and-work-are-energy-in-transit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "metabolism",
+   "concept": "energy-conversion-in-humans",
+   "verb": "uses"
+  },
+  {
+   "span": "metabolism",
+   "concept": "metabolic-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "metabolism",
+   "concept": "units-of-heat",
+   "verb": "uses"
+  },
+  {
+   "span": "metabolism",
+   "concept": "efficiency",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737771878",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-law",
+   "prompt": "请从热传递、所做的功和内能的角度，描述本节开头那张烧水壶的照片。热量是怎样传递的？所做的功是什么，做功的又是什么？水壶是怎样维持它的内能的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "以水壶和壶中的水作为系统。热量从灶头流入系统，一部分通过水壶的金属传导进入水中，一部分由火焰的热气体和辐射到达壶底。这一热传递使水的内能升高，直到水沸腾。做功的是水蒸气。水变成蒸汽时急剧膨胀，在壶嘴把空气推开，并挤过哨子，使它发声，所以蒸汽克服大气压对周围环境做功。水壶之所以能维持其内能，是因为从炉灶传入的热传递与流出的相当。水沸腾时，它的温度保持不变，炉灶的能量用于使水变成蒸汽，蒸汽经壶嘴把能量带走，同时也用于蒸汽所做的功。关掉灶头，传入的热传递就停止了，而功和传出的热传递还要持续一会儿。水壶的内能下降，它也就不再鸣响了。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169736613764",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-law",
+   "prompt": "热力学第一定律与能量守恒（见“能量守恒”一节的讨论）显然是相关的。它们在所考虑的能量类型上有什么不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能量守恒定律说的是，系统各种形式的总能量保持不变，除非有能量传入或传出系统。在第 7 章中，能量的形式主要是物体整体的动能和势能，而功是传递能量的方式。热力学第一定律是同一原理，只是针对一组特定的形式和传递写出的。所储存的能量是内能，即系统的原子和分子的动能和势能，而不是物体整体的动能和势能。能量穿过边界的两种方式是功和热传递，第 7 章没有把它们单独挑出来。所以，第一定律考虑内能，而此前的表述考虑的是机械能，并且在功之外加上了热传递。两条定律谁也不与对方矛盾；热传递和功同时起作用时，第一定律就是最有用形式的能量守恒。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737795632",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-and-work",
+   "prompt": "热传递 $\\kQh$ 和所做的功 $\\kW$ 总是传递中的能量，而内能 $\\kEint$ 是储存在系统中的能量。请对每一种类型的能量各举一个例子，并明确说明它是处于传递中，还是存在于系统中。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "热传递：由于炉灶灶头比水热，能量从灶头传给锅里的水。它是处于传递中的，因为它只在温差驱动它穿过灶头与水之间的边界时才存在；一旦到达，它就只是水的能量的一部分，不再是热量。功：打气筒的活塞推动空气移动一段距离时，打气筒传给轮胎里空气的能量。它也是处于传递中的，因为它是在行程中从打气筒传给空气的能量，事后轮胎里没有任何东西可以被指认为功。内能：轮胎里温暖的空气现在所拥有的能量，即其分子的动能和分子间相互作用的势能。它存在于系统中，因为它是空气在当前状态下的一种属性，不论空气是怎样变暖的都一样，并且一直留在那里，直到热传递或功把其中一部分带走。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738066105",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-and-work",
+   "prompt": "热传递和内能有什么不同？具体来说，哪一个能以其本身的形式储存在系统中，哪一个不能？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "热传递是一个过程，即由于温度不同，能量从一个物体传到另一个物体。内能是系统所拥有的一个量，即其原子和分子的动能与势能之和。系统储存内能：在给定的状态下，它有确定的内能，而第一定律记录热传递和功如何改变它。热传递不能以其本身的形式储存。能量一旦通过热传递进入系统，就和其他内能一样是内能，与以功的形式进入的能量无从区分。系统不含有热量，只含有热传递可能使之升高的内能。这就是为什么书中说的是热传递而不是热量，以免有人把这个过程误当作物体所持有的一件东西。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737981273",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "internal-energy",
+   "prompt": "如果你跑下一些楼梯然后停下来，你的动能和最初的重力势能会怎样？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者都变成了内能，其中大部分是热能。下楼时，重力势能变成动能。你的肌肉、肌腱和鞋底在每一步都做负功，以免你越来越快，把这份动能变成你的腿、鞋、楼梯和空气中的热能，还有一小部分变成声音。当你在底部停下来时，最后剩下的动能也同样如此。你的身体比以前稍微暖了一些，楼梯也是，而这份额外的内能随后以热量的形式流向周围环境。其中没有任何一部分会自行变回势能：你不能靠冷却下来而重新回到楼梯上去。这是热力学不可逆过程之一。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169736609392",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "internal-energy",
+   "prompt": "请解释食物能量（大卡）怎样可以看作分子势能（与内能的原子和分子定义一致）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "系统的内能是其原子和分子的动能与势能之和，而势能包括把原子束缚在分子内的键的能量。像糖这样的食物分子，是由电力束缚在一起的碳、氢、氧原子的一种排列。这种排列的势能比同样的原子重新排列成二氧化碳和水时的势能更高。代谢就是造成这种重新排列的氧化过程，它把势能的差值以热传递、功的形式释放出来，或者把它储存起来。因此，食品标签上印的大卡衡量的是分子势能：食物的原子重新排列成较低能量的分子时放出的能量，与量热器通过燃烧食物所测得的能量相同。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169738111986",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "metabolism",
+   "prompt": "请判断下面每种情况中传给你身体的能量类型，是内能、热传递，还是做功：（a）晒太阳；（b）吃食物；（c）乘电梯到更高的楼层。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）晒太阳是热传递：太阳比你的皮肤热，它的辐射因这一温差而把能量带入你的身体，就像阳光使自行车轮胎里的空气变暖一样。（b）吃食物增加内能：食物把其分子的化学势能带入身体。因为代谢通过氧化把这份能量释放出来，所以第一定律可以把食物的输入算作外界对人体所做的功，但能量是以储存在食物中的形式到达的，而不是以热量的形式。（c）乘电梯到更高的楼层是外界对你做功。电梯的地板在你上升的距离内向上推你的脚，它所做的功增加的是你的重力势能，而不是内能，所以你到达时并不比出发时更暖。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2216854",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-and-work",
+   "prompt": "一个圆柱体被中间一个可移动的圆盘分成两半。每一半都充有相同数量的气体分子，但其中一半的温度比另一半高。下列哪个选项最好地描述了接下来发生的事？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "什么也不会发生。",
+     "高温一侧膨胀，压缩低温一侧。",
+     "热量从热的一侧移向冷的一侧，所以低温一侧的温度会逐渐升高并膨胀",
+     "（b）很快发生，但在那之后（c）发生得较慢。"
+    ],
+    "correct": 3,
+    "hint": "有两件事发生在不同的时间尺度上。温度较高的气体压强较高，立即推动圆盘，这是做功；然后温差驱动一个通过圆盘的较慢的传递，这是热传递。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2211820",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "internal-energy",
+   "prompt": "把固体材料在分子水平上设想成一堆用弹簧相互连接的台球（这实际上是一个出人意料地有用的近似）。如果我们有两块相同材料的物块，其中一块里的台球在弹簧上来回大幅晃动，而另一块里的台球几乎不动，那么哪一块的温度更高？利用你所知道的碰撞中的动量守恒，说明哪一块会把能量传给另一块，并证明你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "温度衡量的是原子和分子的平均动能，所以台球大幅晃动的那一块温度更高。它的内能，即台球的动能加上被拉伸和压缩的弹簧中的势能，也更大。现在让两块物块接触，使其中一块表面的台球与另一块表面的台球相碰。在快球与慢球的碰撞中，动量守恒，动能被重新分配。平均而言，较快的球失去动能，较慢的球得到动能，正如第 8 章的碰撞所表明的。一次又一次碰撞，能量从台球运动得厉害的那一块传到台球几乎不动的那一块，总的来说绝不会反过来，并且通过弹簧向内扩散。这就是分子水平上的热传递，由温差驱动，一直持续到两块物块中台球的平均动能，即温度，变得相同为止。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2218737",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-law",
+   "prompt": "外界对一个系统做了 300 J 的功，该系统的热传递为 -320 J。与这些过程之前相比，内能：",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "少 20 J",
+     "多 20 J",
+     "多 620 J",
+     "少 620 J"
+    ],
+    "correct": 0,
+    "hint": "外界对系统做的功是系统所做的负功，所以 $\\kW = -300\\ \\text{J}$，而热传递已经连同符号一起给出。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id884487",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "metabolism",
+   "prompt": "在教室里或你下一顿饭时找一件零食或饮料。找出其中的总大卡（千卡）数，并计算以 150 W（适度，爬楼梯）的功率、20% 的效率锻炼，需要多长时间才能烧掉这些能量。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一块标有 250 大卡的零食棒，以 150 W 爬楼梯大约需要 23 分钟才能烧掉。一个食物大卡就是一千卡，即 $4186\\ \\text{J}$，所以这块零食棒含有 $E = (250)(4186\\ \\text{J}) = 1.05\\times10^{6}\\ \\text{J}$。150 W 是做有用功的速率，在 20% 的效率下，身体耗用的内能中只有五分之一表现为功；其余的以热传递的形式离开。因此，用掉全部的 $E$ 所伴随的功是 $\\kW = (0.20)(1.05\\times10^{6}\\ \\text{J}) = 2.09\\times10^{5}\\ \\text{J}$。每秒做 150 J 的功，所需时间为 $t = \\kW/P = (2.09\\times10^{5}\\ \\text{J})/(150\\ \\text{W}) = 1.40\\times10^{3}\\ \\text{s}$，约 23 min。等价地，爬楼梯时身体耗能的功率是 $150\\ \\text{W}/0.20 = 750\\ \\text{W}$，用 $E/(750\\ \\text{W})$ 得到同样的时间。其他任何食品都按比例换算：每 100 大卡约需爬楼梯 9 分钟。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id3184155",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-law",
+   "prompt": "一门土豆炮使燃料燃烧，产生大量的热量和压强，把一个土豆发射出去。燃烧过程使内能_____，而发射土豆使土豆炮的内能_____。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "增加，增加",
+     "增加，减少",
+     "减少，增加",
+     "减少，减少"
+    ],
+    "correct": 1,
+    "hint": "对每一步都问一问，是给炮里的气体增加了能量，还是从它取走了能量。燃烧把能量释放到气体中；发射土豆是气体对土豆所做的功。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738251354",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-independence",
+   "prompt": "如果你向一辆汽车的油箱里加入 12.0 gal 汽油，它的内能变化是多少？汽油的能量含量是 $1.3\\times10^{8}\\ \\text{J/gal}$。所有其他因素，例如汽车的温度，都保持不变。",
+   "answer": {
+    "type": "number",
+    "value": 1600000000.0,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "汽油以化学势能的形式进入汽车，这就是内能，而汽车的其他方面都没有改变，所以内能的变化就是所加燃料的能量含量。",
+    "solution": "$1.6\\times10^{9}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738061831",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-independence",
+   "prompt": "一个系统做了 $1.80\\times10^{8}\\ \\text{J}$ 的功，同时有 $7.50\\times10^{8}\\ \\text{J}$ 的热传递传给环境。假设没有其他变化（例如温度的变化或添加燃料），该系统的内能变化是多少？",
+   "answer": {
+    "type": "number",
+    "value": -930000000.0,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "向环境的热传递是传出系统的，所以 $\\kQh$ 为负，而系统所做的功使 $\\kW$ 为正；二者都带走内能。",
+    "solution": "$-9.30\\times10^{8}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738072326",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "metabolism",
+   "prompt": "假设一位女士做了 500 J 的功，在这个过程中有 9500 J 的热传递传给环境。（a）假设温度没有变化、也没有消耗食物，她的内能减少了多少？（也就是说，没有其他能量传递。）（b）她的效率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -10000,
+      "unit": "J",
+      "hint": "以她的身体为系统：热传递是传出的，所以 $\\kQh = -9500\\ \\text{J}$，而功是她做的，所以 $\\kW = +500\\ \\text{J}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 5,
+      "unit": "%",
+      "hint": "效率是有用的功输出除以所消耗的能量，而这里消耗的能量就是她失去的内能。"
+     }
+    ],
+    "solution": "（a）$-1.0\\times10^{4}\\ \\text{J}$，即 $-2.39\\ \\text{kcal}$　（b）5.00%"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738011987",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "metabolism",
+   "prompt": "（a）一名男子一天代谢了 10,500 kJ 的食物能量，他以瓦特为单位的平均代谢率是多少？（b）假设最大效率为 20.0%，他在不分解脂肪的情况下最多能做多少焦耳的功？（c）把他的功输出与一台 187 W（0.250 马力）的电动机一天的输出相比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 122,
+      "unit": "W",
+      "hint": "速率是能量除以时间；一天是 86,400 s。"
+     },
+     {
+      "part": "(b)",
+      "value": 2100000.0,
+      "unit": "J",
+      "hint": "在不分解脂肪的情况下，他一天能花掉的内能就是他摄入的食物能量，其中至多 20.0% 以功的形式输出。"
+     },
+     {
+      "part": "(c), the work done by the motor in a day",
+      "value": 16100000.0,
+      "unit": "J",
+      "hint": "电动机的功率乘以一天的秒数就是它所做的功，而比较就是二者之比。"
+     }
+    ],
+    "solution": "（a）122 W　（b）$2.10\\times10^{6}\\ \\text{J}$　（c）电动机所做的功是 $1.61\\times10^{7}\\ \\text{J}$；因此电动机产生的功是该男子所做功的 7.67 倍"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737799530",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "metabolism",
+   "prompt": "（a）一位女士爬华盛顿纪念碑时代谢了 $6.00\\times10^{2}\\ \\text{kJ}$ 的食物能量。如果她的效率是 18.0%，为了保持她的温度恒定，有多少热传递传给了环境？（b）讨论（a）中求得的热传递量。它与你在锻炼时很快会变热这一事实一致吗？",
+   "answer": {
+    "type": "number",
+    "value": 492,
+    "unit": "kJ",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "她的效率说明这 600 kJ 中有多少变成了功；为了保持她的温度恒定，她所耗用的内能中其余的部分必须以热传递的形式离开。",
+    "solution": "（a）492 kJ　（b）这个热量与你在锻炼时很快变热这一事实是一致的。由于人体效率不高，产生的多余热量必须通过出汗、呼吸等方式散发出去。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "first-law-of-thermodynamics"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "heat-and-work-are-energy-in-transit",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "first-law-of-thermodynamics"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "heat-and-work-are-energy-in-transit"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "internal-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "heat-and-work-are-energy-in-transit"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "internal-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "internal-energy"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "conservation-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "internal-energy"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "human-metabolism-first-law"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "heat-and-work-are-energy-in-transit",
+   "weight": 3
+  },
+  {
+   "exercise": "ap1",
+   "concept": "heat-and-work-are-energy-in-transit"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "heat",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "internal-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "heat",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "calculate-internal-energy-change"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "heat-and-work-sign-convention",
+   "weight": 3
+  },
+  {
+   "exercise": "ap4",
+   "concept": "human-metabolism-first-law"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "efficiency",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "first-law-of-thermodynamics"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "heat-and-work-sign-convention",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-internal-energy-change"
+  },
+  {
+   "exercise": "p1",
+   "concept": "internal-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-internal-energy-change"
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-and-work-sign-convention",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "human-metabolism-first-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-internal-energy-change",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "human-metabolism-first-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "calculate-internal-energy-change",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "metabolic-rate",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "human-metabolism-first-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-internal-energy-change",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "process-a",
+   "label": "过程（a）",
+   "figures": [
+    "sim-two-paths"
+   ]
+  },
+  {
+   "id": "process-b",
+   "label": "过程（b）",
+   "figures": [
+    "sim-two-paths"
+   ]
+  },
+  {
+   "id": "body",
+   "label": "人体",
+   "figures": [
+    "sim-metabolism"
+   ]
+  },
+  {
+   "id": "plant",
+   "label": "植物",
+   "figures": [
+    "sim-metabolism"
+   ]
+  }
+ ]
+}

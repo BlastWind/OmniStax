@@ -1,0 +1,1223 @@
+{
+ "id": "15.6",
+ "module": "m42237",
+ "chapter": "15",
+ "title": "熵与热力学第二定律：无序与能量的不可用性",
+ "short": "熵",
+ "lead": "整理后，卡诺比值表明，在可逆过程中，<span data-concept=\"heat\">热</span>传递量除以<span data-concept=\"temperature\">热力学温度</span>，在两个热库处是相同的，而这个比值就是<span data-concept=\"change-in-entropy\">熵变</span>。随后，<span data-concept=\"entropy\">熵</span>伴随一个系统走过可逆过程和不可逆过程，走过再也无法做的<span data-concept=\"work\">功</span>，并进入<span data-ref=\"ice\">冰</span>熔化时的无序之中。",
+ "objectives": [
+  "定义熵，并计算系统在可逆过程和不可逆过程中熵的增加。",
+  "用熵来解释宇宙预期的命运。",
+  "计算系统无序程度的增加。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"entropy\">熵</span>是可用于做<span data-concept=\"work\">功</span>的<span data-concept=\"energy\">能量</span>的损失。</li><li>热力学第二定律的另一种形式表明，系统的总<span data-concept=\"entropy\">熵</span>要么增加，要么保持不变；它绝不会减少。</li><li>在可逆过程中<span data-concept=\"entropy\">熵</span>为零；在不可逆过程中它增加。</li><li>宇宙的最终命运很可能是热力学平衡，那时宇宙的<span data-concept=\"temperature\">温度</span>处处恒定，没有<span data-concept=\"energy\">能量</span>可用来做<span data-concept=\"work\">功</span>。</li><li><span data-concept=\"entropy\">熵</span>还与封闭系统趋向无序的倾向相联系。</li></ul>",
+ "notes": "本节开头那张冰块正在熔化的饮料的照片作为题图略去，PhET 链接“Reversible Reactions”略去，书中小写的熵 s，以及例题 15.7 为图 15.34 中称作 T′h 的热库所写的 T′c，均照原样保留；书中未给出答案的五道习题也略去：大热天停放的汽车、肉馅饼、把 1 kg 40.0 °C 的水与 1 kg 20.0 °C 的水放在一起、沸腾并升温的液氮，以及 20.0 kg 90.0 °C 的水与 20.0 kg 10.0 °C 的水混合。",
+ "built": "2026-10-22",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。习题 2、4、6、8 和 10 没有给出答案，因而略去：温度从 35.0 °C 升到 45.0 °C 的停放的汽车、熵增加 480 J/K 的肉馅饼、把 1.00 kg 40.0 °C 的水与 1.00 kg 20.0 °C 的水接触放置、沸腾并升温到 20.0 °C 的液氮，以及 20.0 kg 90.0 °C 的水与 20.0 kg 10.0 °C 的水混合。习题 1 只给出了（a）部分的答案，所以该习题卡片核对这个数，并在解中附上本书自己给出的（b）部分的答案。本节的两道 AP 题中，关于蒸汽与冰接触的一道有答案，设为评分的选择题；问为什么两个热库之间的传递是不可逆的那一道没有答案，作为开放题保留，附有 AI 撰写的建议思路，并已标明。九道思考题的建议思路由 AI 撰写，并已标明；其中最后一道，即砖块与砖堆，在 15.7 节中又一字不差地印作那一节唯一的思考题，由于书中两处都印了，两处都保留。本章没有“理解检测”框，所以没有内联设置任何题目。没有任何内容取自其他小节，也没有任何内容留给后面的小节。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-state-paths",
+   "kind": "sim",
+   "number": "15.32",
+   "originals": [
+    "/media/ch15/Figure_16_06_02.jpg"
+   ],
+   "original_caption": "当系统从状态 1 变到状态 2 时，无论是沿一条假想的可逆路径，还是经由一条真实的不可逆路径，它的熵都改变相同的量 ΔS。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "entropy",
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated the caption and headline dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-irreversible-transfer",
+   "kind": "sim",
+   "number": "15.33",
+   "originals": [
+    "/media/ch15/Figure_16_06_03.jpg"
+   ],
+   "original_caption": "（a）热传递从热物体传到冷物体是一个不可逆过程，使熵总体增加。（b）如果在这两个物体之间进行可逆的热传递过程，且两个物体的温度与不可逆过程中对应物体的温度相同，那么这两个物体也达到相同的末态，因而熵变也相同。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "entropy",
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "entropy axis headroom to 100 J/K; note cut to one sentence"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: heat packets crossing, entropy bars filling"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-engines",
+   "kind": "sim",
+   "number": "15.34",
+   "originals": [
+    "/media/ch15/Figure_16_06_04.jpg"
+   ],
+   "original_caption": "（a）一台工作在 600 K 和 100 K 之间的卡诺热机有 4000 J 的热传递，做功 3333 J。（b）4000 J 的热传递先不可逆地传到一个 250 K 的热库，然后进入一台卡诺热机。热传递到较低温热库所造成的熵增加，使输出功变小，为 2400 J。就做功这一目的而言，有 933 J 的能量被永久地损失了。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "entropy",
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "entropy label off the (b) Q_h label; note cut, through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-melting-ice",
+   "kind": "sim",
+   "number": "15.35",
+   "originals": [
+    "/media/ch15/Figure_16_06_06.jpg"
+   ],
+   "original_caption": "冰熔化时，变得更加无序，结构性更差。晶体结构中分子的系统排列，被没有固定位置或取向的、更加随机而无序的分子运动所取代。因为有热传递传入冰，所以它的熵增加。熵是无序的量度。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "entropy",
+    "energy",
+    "temperature",
+    "mass",
+    "latent-heat"
+   ],
+   "conventions": [
+    "H",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-sun-earth",
+   "kind": "sim",
+   "number": "15.36",
+   "originals": [
+    "/media/ch15/Figure_16_06_07.jpg"
+   ],
+   "original_caption": "地球在截获从太阳进入深空的一小部分热传递的过程中，熵可能减少。整个过程的熵大幅增加，而地球则随着生命系统以及以各种形式储存的能量而变得更有结构。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "entropy",
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "ΔE_int label off the heat band; note cut to one sentence"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: heat packets Sun to deep space, some to Earth; bars fill"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "entropy-defined",
+   "concept": "entropy",
+   "verb": "introduces"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "change-in-entropy",
+   "verb": "introduces"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "carnot-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "carnot-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "reversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "irreversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "internal-energy-is-a-state-function",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "heat",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-defined",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "irreversible-process-increases-entropy",
+   "verb": "introduces"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "second-law-entropy-statement",
+   "verb": "introduces"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "calculate-entropy-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "change-in-entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "carnot-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "reversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "irreversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "second-law-heat-flow-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-second-law",
+   "concept": "entropy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unavailable-work",
+   "concept": "unavailable-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "unavailable-work",
+   "concept": "carnot-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "unavailable-work",
+   "concept": "heat-engine-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "unavailable-work",
+   "concept": "heat-engine-work-output",
+   "verb": "uses"
+  },
+  {
+   "span": "unavailable-work",
+   "concept": "irreversible-process-increases-entropy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unavailable-work",
+   "concept": "calculate-entropy-change",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-death",
+   "concept": "heat-death-of-the-universe",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-death",
+   "concept": "energy-degradation",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-death",
+   "concept": "second-law-entropy-statement",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-death",
+   "concept": "unavailable-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "order-to-disorder",
+   "concept": "entropy-and-disorder",
+   "verb": "introduces"
+  },
+  {
+   "span": "order-to-disorder",
+   "concept": "heat-of-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "order-to-disorder",
+   "concept": "latent-heat",
+   "verb": "uses"
+  },
+  {
+   "span": "order-to-disorder",
+   "concept": "calculate-entropy-change",
+   "verb": "reinforces"
+  },
+  {
+   "span": "order-to-disorder",
+   "concept": "change-in-entropy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "order-to-disorder",
+   "concept": "unavailable-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "life-and-evolution",
+   "concept": "entropy-and-life",
+   "verb": "introduces"
+  },
+  {
+   "span": "life-and-evolution",
+   "concept": "heat-engine",
+   "verb": "uses"
+  },
+  {
+   "span": "life-and-evolution",
+   "concept": "second-law-entropy-statement",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737806756",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-to-disorder",
+   "prompt": "一位女士在九月份关闭了她的夏季小屋，到六月份才回来。在此期间没有人进过小屋。请根据热力学第二定律解释她可能会发现什么。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "她很可能会发现小屋比她离开时更加无序：每个表面都落满灰尘，墙角布满蛛网，油漆和织物褪了色，有一股潮味，抽屉里有一个老鼠窝，树叶从门缝下被吹了进来。没有任何东西会自己收拾整齐。用熵表述的第二定律说，系统的总熵要么增加，要么保持不变，绝不减少。在一间关起来、任其自行变化的小屋里，每一个自发过程——灰尘落定、潮气扩散、使颜色褪去的缓慢化学变化——都朝着更大的无序进行。她留下的有序状态是她的功的结果，即向系统传递的能量，而宇宙某一部分熵的任何减少都需要这样的传递。九个月里没有人对小屋做功，它的熵只会增加。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737830797",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unavailable-work",
+   "prompt": "考虑一个具有一定能量的系统，我们希望从中提取尽可能多的功。系统的熵应该是高还是低？这是有序的还是无序的？是有结构的还是均匀的？请简要解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它的熵应该低。熵衡量系统有多少能量不能用来做功，而变得不可用的能量等于熵的增加乘以所用的最低温度。对于给定的能量，熵较低的系统有更多的能量仍可转化为功。低熵意味着有序的、有结构的系统，而不是无序的、均匀的系统。最清楚的例子是温差：温度分别为 $20.0^\\circ\\text{C}$ 和 $40.0^\\circ\\text{C}$ 的两份水可以驱动热机，而同样的水混合成均匀的 $30.0^\\circ\\text{C}$ 后，能量相同，却根本不能驱动热机。可以从有结构的系统中提取功，它的能量被分成了热的部分和冷的部分，而一旦它变得均匀，这种可能性就消失了。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737713421",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-to-disorder",
+   "prompt": "气体液化时会变得更有序吗？它的熵会改变吗？如果会，熵是增加还是减少？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的，气体液化时会变得更有序。在气体中，分子各自独立地四处飞行，速率范围很宽，并充满它们所能占据的任何体积。在液体中，分子紧密地挤在一起，被彼此的吸引力束缚着，位置的自由度小得多，所以液体是结构性更强的状态。它的熵减少。凝结是为冰计算的熔化或沸腾的逆过程：潜热必须在气体的凝结温度下离开气体，所以热传递量 $\\kQh$ 为负，熵变 $\\kdS = \\kQh/\\kTemp$ 为负。气体能够损失熵，只是因为别的东西获得的熵更多。热量进入周围环境，周围环境的熵至少增加同样多，总变化为正，正如第二定律所要求的。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169736657600",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "life-and-evolution",
+   "prompt": "解释水结冰时它的熵如何能够减少而又不违反热力学第二定律。具体来说，解释其周围环境的熵会发生什么变化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水结冰时，从无序的液体变成有序的晶体，它的熵减少。熔化热在 $\\kTemp = 273\\ \\text{K}$ 时离开水，所以热传递量为负，水的熵变为 $\\kdSsyst = -\\km\\kLf/\\kTemp$。这是允许的，因为水只是一个更大的系统的一部分。它放出的热量进入它的周围环境，即冷空气或冷冻室，使周围环境的熵按周围环境的温度增加 $\\kQh/\\kTemp$。只有当周围环境的温度低于 $273\\ \\text{K}$ 时水才会结冰，而同样的热量除以更低的温度是更大的变化，所以周围环境获得的熵多于水损失的熵。用符号表示，$\\kdStot = \\kdSsyst + \\kdSenvir > 0$：系统的变化为负，环境的变化为正且量值更大，总和增加，正如第二定律所要求的。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169738046950",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-to-disorder",
+   "prompt": "温度均匀的气体与具有几种不同温度的气体相比，是更有序还是更无序？哪一个更有结构？在哪一个中，热传递可以导致做功，而不需要来自另一个系统的热传递？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "温度均匀的气体比不同区域温度不同的气体更无序。不同区域温度不同的气体更有结构：它的能量被分了类，较热的部分中分子平均更快，较冷的部分中分子更慢。同样，温度为 $20.0^\\circ\\text{C}$ 和 $40.0^\\circ\\text{C}$ 的两份水，比它们混合成的单一 $30.0^\\circ\\text{C}$ 的水更有结构。在有温差的气体内部，热传递可以做功而不需要来自另一个系统的热量，因为热机需要一个高温热库和一个低温热库，而较热和较冷的区域恰好提供了这两者。均匀的气体具有同样的能量，却只有一个温度，所以没有热机能在它的各部分之间运转。这部分能量已变得不能用来做功，它的熵是两者中较高的。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169738205677",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-to-disorder",
+   "prompt": "举一个自发过程的例子，其中系统变得更无序，能量变得更不能用来做功。在这个过程中系统的熵会怎样变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把质量相等的 $20.0^\\circ\\text{C}$ 和 $40.0^\\circ\\text{C}$ 的水倒进同一个容器，它们会自发地混合成均匀的 $30.0^\\circ\\text{C}$。系统变得更无序：两个温度下的两份水，具有两种不同的分子速率分布，变成了一个温度下的一份水。能量变得更不能用来做功。本来可以在温水和凉水之间运转一台热机，但水的温度全都相同时，没有热机能运转，尽管水的总能量没有改变。系统的熵增加。混合的效果与热量从温水传出、同样的热量传入凉水相同。由于熵变是 $\\kQh/\\kTemp$，凉水获得的熵多于温水损失的熵，所以总变化为正。其他例子也是如此：热的石头在空气中冷却、冰在饮料中熔化、气体向真空膨胀。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169737826678",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entropy-second-law",
+   "prompt": "绝热过程中的熵变是多少？这是否意味着绝热过程都是可逆的？对于宏观系统，一个过程可以精确地绝热吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在绝热过程中没有热传递，所以如果该过程同时是可逆的，熵变为 $\\kdS = \\kQh/\\kTemp$，其中 $\\kQh = 0$，即为零。但这并不意味着每个绝热过程都是可逆的。定义 $\\kdS = (\\kQh/\\kTemp)_{\\text{rev}}$ 只适用于可逆过程，而不可逆过程可以没有热传递，熵仍然增加。通过隔板上的小孔自由膨胀到真空中的气体，不与任何东西交换热量。然而它最终处于更无序的状态，从同一起点出发的可逆路径只有通过热传递传入才能到达这一状态，所以它的熵增加了。不可逆过程总是使总熵增加，无论是否绝热；只有可逆的绝热过程才使熵保持不变。而且宏观系统中没有任何过程能够精确地绝热。任何真实的容器都会传导一些热量，任何真实的过程都要花时间，在这段时间里总会发生一些这样的传递。绝热过程是一种理想化，在隔热良好的系统中快速进行的过程可以接近它，但永远达不到。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169737861961",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-death",
+   "prompt": "恒星在辐射时，它的熵是增加还是减少？它向其中辐射的太空（温度约为 3 K）的熵是增加还是减少？这对宇宙的熵有什么影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "恒星在辐射时熵减少，因为热传递从它传出：它的熵变为 $\\kdSh = -\\kQh/\\kTemph$，其中 $\\kTemph$ 是恒星的表面温度，几千开尔文。它向其中辐射的太空的熵增加，因为同样的热传递传入太空，它的熵变为 $\\kdSc = \\kQh/\\kTempc$，而 $\\kTempc$ 只有约 $3\\ \\text{K}$。同样的热传递量除以低得多的温度是大得多的变化，所以太空获得的熵比恒星损失的熵多许多倍，宇宙的熵大幅增加。这就是本节所讲的由热到冷的热传递，处在最大的尺度上：仅太阳一个，在本节自己的习题中，每天就使宇宙的熵增加约 $10^{31}\\ \\text{J/K}$。每一颗辐射的恒星都在消耗一个不会被补充的温差，而本节所说的宇宙热寂，就是这种消耗终结的地方。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169738007382",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-to-disorder",
+   "prompt": "解释为什么由砖砌成的建筑物比同样这些砖杂乱堆成的一堆具有更小的熵。请通过考虑二者各自可以形成的方式数（每个宏观态中的微观态数）来作答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把建筑和砖堆看作砖的两个整体状态，数一数各自有多少种形成方式。在建筑中，每块砖必须放在一个特定的位置，取一个特定的方向，否则这面墙就不是那面墙，所以只有极少数砖的排列方式算作这座建筑。对于砖堆，几乎任何排列都行。把任何一块砖以任何角度放在堆上的任何地方，它仍然是杂乱的砖堆，所以有极大数目的排列方式算作砖堆。熵正是在这个意义上衡量无序：可以通过许多种方式达到的状态，比只能通过少数几种方式达到的状态更无序。建筑的排列方式少，熵较小；砖堆的熵较大。这也是为什么建筑给足时间会自己变成砖堆，而砖堆永远不会变成建筑。几乎每一种变化都使砖朝着构成砖堆的许多排列方式之一移动，而远离构成建筑的少数几种。下一节将计算这些排列方式，即每个宏观态的微观态，并表明熵与它们的数目的对数成正比。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2322666",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-to-disorder",
+   "prompt": "质量相等的蒸汽（100 摄氏度）和冰（0 摄氏度）在一个与外界隔热的容器中相互接触。它们最后都成为处于共同温度的液态水。蒸汽___熵，___有序度，而冰___熵，___有序度。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "获得、获得、失去、失去",
+     "获得、失去、失去、获得",
+     "失去、获得、获得、失去",
+     "失去、失去、获得、获得"
+    ],
+    "correct": 2,
+    "hint": "问一问两者各自的热传递朝哪个方向：蒸汽凝结并冷却，放出热量；冰熔化并升温，吸收热量。熵变是 Q/T，所以它的符号跟随热传递，而有序度的变化与熵的变化方向相反。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2401812",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entropy-second-law",
+   "prompt": "一个高温热库失去热量，因而失去熵，是一个可逆过程。一个低温热库获得一定量的热量，因而获得熵，是一个可逆过程。但是一个高温热库向一个低温热库放出热量，却是不可逆的。为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个过程单独来看都可以倒过来进行而不留下任何变化。热量可以离开高温热库，也可以在它自己的温度下通过可逆过程回到它那里，低温热库在它自己的温度下也是如此。因此，各自的熵变，高温热库的 $\\kdSh = -\\kQh/\\kTemph$ 和低温热库的 $\\kdSc = \\kQh/\\kTempc$，都可以被抵消。而它们之间的传递则不同，因为它连接了两个不同的温度。热量只会自发地从较热的物体流向较冷的物体，绝不会反过来，这是第二定律的第一种表述，所以一旦热量从高温热库流到了低温热库，没有任何东西会让它自己回去。熵说明了原因。同样的热量除以较低的温度是较大的变化，所以低温热库获得的熵多于高温热库损失的熵，总和增加 $\\kdStot = \\kQh/\\kTempc - \\kQh/\\kTemph$。反向的传递会使总熵减少，而第二定律禁止这样。例题 15.6 给出了数值：$4000\\ \\text{J}$ 从 $600\\ \\text{K}$ 传到 $250\\ \\text{K}$ 使总和增加 $9.33\\ \\text{J/K}$，这一增加是无法被抵消的。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737793331",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entropy-second-law",
+   "prompt": "（a）在冬天的一天，某所房子向室外损失了 $5.00\\times10^{8}\\ \\text{J}$ 的热量（约 500,000 Btu）。假设室内平均温度为 $21.0^\\circ\\text{C}$，室外平均温度为 $5.00^\\circ\\text{C}$，仅由这一热传递引起的总熵变是多少？（b）这一巨大的熵变意味着大量能量已变得不能用来做功。当这样的能量对我们而言损失了的时候，我们到哪里去找更多的能量？",
+   "answer": {
+    "type": "number",
+    "value": 97800,
+    "unit": "J/K",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "房子在 294 K 时失去热量，室外在 278 K 时获得热量。如例题 15.6 那样，总变化是房子的损失 −Q/T_h 加上室外的获得 +Q/T_c，温度必须用开尔文。",
+    "solution": "（a）$9.78\\times10^{4}\\ \\text{J/K}$（b）为了获得更多的能量，我们必须从房子里面的东西产生它，比如热泵、人体和其他电器。如你所知，冬天我们要用大量的能量来使房子保持温暖，原因就是热量向室外损失。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738111073",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entropy-defined",
+   "prompt": "从火山熔岩喷泉中抛出的一块热岩石从 $1100^\\circ\\text{C}$ 冷却到 $40.0^\\circ\\text{C}$，它的熵减少了 950 J/K。从岩石传出的热传递量是多少？",
+   "answer": {
+    "type": "number",
+    "value": 801000,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "温度变化很大，所以把 $\\kdS = \\kQh/\\kTemp$ 中的 $\\kTemp$ 取为两个温度（以开尔文计）的平均值，然后解出热传递量。",
+    "solution": "$8.01\\times10^{5}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737955124",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unavailable-work",
+   "prompt": "太阳以 $3.80\\times10^{26}\\ \\text{W}$ 的功率从其 $5500^\\circ\\text{C}$ 的表面向黑暗的空旷太空辐射能量（可忽略的一小部分辐射到地球和其他行星上）。深空的有效温度为 $-270^\\circ\\text{C}$。（a）由这一热传递引起的熵在一天内增加多少？（b）有多少功变得不可用？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.04e+31,
+      "unit": "J/K",
+      "hint": "一天内的热传递量等于功率乘以 86,400 s。太阳在 5773 K 时损失 $\\kQh/\\kTemph$，深空在 3 K 时获得 $\\kQh/\\kTempc$；总和是二者之和，与获得量相比，太阳的损失可以忽略。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.28e+31,
+      "unit": "J",
+      "hint": "$\\kWunavail = \\kdS\\cdot\\kTempo$，所用的最低温度是深空的温度。"
+     }
+    ],
+    "solution": "（a）$1.04\\times10^{31}\\ \\text{J/K}$（b）$3.28\\times10^{31}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737828249",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-to-disorder",
+   "prompt": "在 $35.0^\\circ\\text{C}$ 的温度下凝结在浴室镜子上的 25.0 g 水，其熵的减少是多少？假设温度不变，并已知汽化热为 2450 kJ/kg。",
+   "answer": {
+    "type": "number",
+    "value": 199,
+    "unit": "J/K",
+    "generated_by": "source",
+    "hint": "凝结是例题 15.8 中熔化的逆过程：从水传出的热传递量是 $mL_{\\text{v}}$，它发生在 308 K。",
+    "solution": "199 J/K"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738239396",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unavailable-work",
+   "prompt": "一座大型发电厂以 35.0% 的效率发出 1000 MW 的电力。（a）计算一天内发电厂获得的热传递量 $\\kQH$。（b）一天内向环境发生了多少热传递 $\\kQC$？（c）如果冷却塔中的热传递是从 $35.0^\\circ\\text{C}$ 的水传入当地的气团，使气团的温度从 $18.0^\\circ\\text{C}$ 升高到 $20.0^\\circ\\text{C}$，那么由这一热传递引起的总熵增加是多少？（d）假设最低温度为 $18.0^\\circ\\text{C}$，由于这一熵增加，有多少能量变得不能用来做功？（$\\kQC$ 的一部分可以用来运转热机或仅仅用来加热周围环境，但很少这样做。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 247000000000000.0,
+      "unit": "J",
+      "hint": "一天内的功等于 1000 MW 乘以 86,400 s，效率是 $\\kW/\\kQH$。"
+     },
+     {
+      "part": "(b)",
+      "value": 160000000000000.0,
+      "unit": "J",
+      "hint": "$\\kQC = \\kQH - \\kW$。"
+     },
+     {
+      "part": "(c)",
+      "value": 28500000000.0,
+      "unit": "J/K",
+      "hint": "水在 308 K 时损失 $\\kQC/\\kTemph$，空气在其平均温度 292 K 时获得 $\\kQC/\\kTempc$；总和是二者之和。"
+     },
+     {
+      "part": "(d)",
+      "value": 8290000000000.0,
+      "unit": "J",
+      "hint": "$\\kWunavail = \\kdS\\cdot\\kTempo$，其中 $\\kTempo = 291\\ \\text{K}$。"
+     }
+    ],
+    "solution": "（a）$2.47\\times10^{14}\\ \\text{J}$（b）$1.60\\times10^{14}\\ \\text{J}$（c）$2.85\\times10^{10}\\ \\text{J/K}$（d）$8.29\\times10^{12}\\ \\text{J}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "entropy-and-disorder"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "second-law-entropy-statement",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "unavailable-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "entropy-and-disorder",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "entropy-and-disorder"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "change-in-entropy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "entropy-and-life"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "entropy-and-disorder",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "entropy-and-disorder"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "unavailable-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "entropy-and-disorder"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "irreversible-process-increases-entropy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "second-law-entropy-statement"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "change-in-entropy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "heat-death-of-the-universe"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "irreversible-process-increases-entropy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq9",
+   "concept": "entropy-and-disorder"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "entropy-and-disorder"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "change-in-entropy",
+   "weight": 3
+  },
+  {
+   "exercise": "ap2",
+   "concept": "second-law-entropy-statement"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "irreversible-process-increases-entropy",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-entropy-change"
+  },
+  {
+   "exercise": "p1",
+   "concept": "irreversible-process-increases-entropy",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "unavailable-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-entropy-change"
+  },
+  {
+   "exercise": "p3",
+   "concept": "change-in-entropy",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-entropy-change"
+  },
+  {
+   "exercise": "p5",
+   "concept": "unavailable-energy",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "irreversible-process-increases-entropy",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "calculate-entropy-change"
+  },
+  {
+   "exercise": "p7",
+   "concept": "change-in-entropy",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-entropy-change"
+  },
+  {
+   "exercise": "p9",
+   "concept": "unavailable-energy",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "irreversible-process-increases-entropy",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "state-1",
+   "label": "状态 1",
+   "figures": [
+    "sim-state-paths"
+   ]
+  },
+  {
+   "id": "state-2",
+   "label": "状态 2",
+   "figures": [
+    "sim-state-paths"
+   ]
+  },
+  {
+   "id": "reversible-path",
+   "label": "可逆过程",
+   "figures": [
+    "sim-state-paths"
+   ]
+  },
+  {
+   "id": "irreversible-path",
+   "label": "不可逆过程",
+   "figures": [
+    "sim-state-paths"
+   ]
+  },
+  {
+   "id": "hot-reservoir",
+   "label": "高温热库",
+   "figures": [
+    "sim-irreversible-transfer",
+    "sim-two-engines"
+   ]
+  },
+  {
+   "id": "cold-reservoir",
+   "label": "低温热库",
+   "figures": [
+    "sim-irreversible-transfer",
+    "sim-two-engines"
+   ]
+  },
+  {
+   "id": "colder-reservoir",
+   "label": "热传递量落入的 250 K 热库",
+   "figures": [
+    "sim-two-engines"
+   ]
+  },
+  {
+   "id": "engine-a",
+   "label": "热机（a）",
+   "figures": [
+    "sim-two-engines"
+   ]
+  },
+  {
+   "id": "engine-b",
+   "label": "热机（b）",
+   "figures": [
+    "sim-two-engines"
+   ]
+  },
+  {
+   "id": "ice",
+   "label": "冰",
+   "figures": [
+    "sim-melting-ice"
+   ]
+  },
+  {
+   "id": "water",
+   "label": "熔化后的水",
+   "figures": [
+    "sim-melting-ice"
+   ]
+  },
+  {
+   "id": "sun",
+   "label": "太阳",
+   "figures": [
+    "sim-sun-earth"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-sun-earth"
+   ]
+  },
+  {
+   "id": "deep-space",
+   "label": "深空",
+   "figures": [
+    "sim-sun-earth"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "reversible-entropy",
+   "what": "卡诺热机及其热库的熵变",
+   "source": "《大学物理（第2版）》，15.6 熵与热力学第二定律：无序与能量的不可用性",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kdSh = -\\dfrac{\\kQH}{\\kTemph}",
+       "src": "15.6"
+      },
+      {
+       "tex": "\\kdSc = \\dfrac{\\kQC}{\\kTempc}",
+       "src": "15.6"
+      },
+      {
+       "tex": "\\dfrac{\\kQC}{\\kTempc} = \\dfrac{\\kQH}{\\kTemph}",
+       "src": "15.6"
+      },
+      {
+       "text": "热库足够大，它们的温度保持恒定。",
+       "src": "15.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kdStot} = \\mk{h}{\\kdSh} + \\mk{c}{\\kdSc}",
+      "uses": [],
+      "src": "15.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kdStot} = \\mk{h}{-\\dfrac{\\kQH}{\\kTemph}} + \\mk{c}{\\dfrac{\\kQC}{\\kTempc}}",
+       "uses": [
+        0,
+        1,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kdStot} = \\mk{h}{-\\dfrac{\\kQH}{\\kTemph}} + \\mk{c}{\\dfrac{\\kQH}{\\kTemph}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kdStot} = \\mk{h}{0}",
+       "uses": [],
+       "map": {
+        "c": "h"
+       }
+      }
+     ],
+     "src": "15.6"
+    }
+   ]
+  },
+  {
+   "id": "unavailable-work",
+   "what": "变得不能用来做功的能量",
+   "source": "《大学物理（第2版）》，15.6 熵与热力学第二定律：无序与能量的不可用性",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "热传递量 $\\kQH$ 使一台卡诺热机在 $\\kTemph$ 与所用的最低温度 $\\kTempo$ 之间运转。",
+       "src": "例题 15.7"
+      },
+      {
+       "tex": "\\text{Eff}_{\\text{C}} = 1 - \\dfrac{\\kTempc}{\\kTemph}",
+       "src": "15.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{E}{\\text{Eff}_{\\text{C}}}\\mk{Q}{\\kQH}",
+      "uses": [
+       0
+      ],
+      "src": "例题 15.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{E}{\\left(1 - \\dfrac{\\kTempo}{\\kTemph}\\right)}\\mk{Q}{\\kQH}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "例题 15.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "同样的 $\\kQH$ 先从 $\\kTemph$ 流到温度为 $\\kTempcprime$ 的热库，不做功，然后使一台卡诺热机在 $\\kTempcprime$ 与 $\\kTempo$ 之间运转。",
+       "src": "例题 15.7"
+      },
+      {
+       "tex": "\\text{Eff}_{\\text{C}} = 1 - \\dfrac{\\kTempc}{\\kTemph}",
+       "src": "15.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWprime} = \\mk{E}{{\\text{Eff}'}_{\\text{C}}}\\mk{Q}{\\kQH}",
+      "uses": [
+       0
+      ],
+      "src": "例题 15.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kWprime} = \\mk{E}{\\left(1 - \\dfrac{\\kTempo}{\\kTempcprime}\\right)}\\mk{Q}{\\kQH}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "例题 15.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kdS = -\\dfrac{\\kQH}{\\kTemph} + \\dfrac{\\kQH}{\\kTempcprime}",
+       "src": "15.6，例题 15.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{U}{\\kWunavail} = \\mk{W}{\\kW} - \\mk{Wp}{\\kWprime}",
+      "uses": [],
+      "src": "15.6",
+      "why": "变得不可用的能量，就是同样的热传递量再也做不了的功。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{U}{\\kWunavail} = \\mk{W}{\\left(1 - \\dfrac{\\kTempo}{\\kTemph}\\right)\\kQH} - \\mk{Wp}{\\left(1 - \\dfrac{\\kTempo}{\\kTempcprime}\\right)\\kQH}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{U}{\\kWunavail} = \\mk{Wp}{\\dfrac{\\kTempo\\kQH}{\\kTempcprime}} - \\mk{W}{\\dfrac{\\kTempo\\kQH}{\\kTemph}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{U}{\\kWunavail} = \\mk{T}{\\kTempo}\\left(\\mk{W}{-\\dfrac{\\kQH}{\\kTemph}} + \\mk{Wp}{\\dfrac{\\kQH}{\\kTempcprime}}\\right)",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{U}{\\kWunavail} = \\mk{S}{\\kdS} \\cdot \\mk{T}{\\kTempo}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "W": "S",
+        "Wp": "S"
+       }
+      }
+     ],
+     "src": "15.6"
+    }
+   ]
+  }
+ ]
+}

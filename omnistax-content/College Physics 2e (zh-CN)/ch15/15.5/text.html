@@ -1,0 +1,91 @@
+<section id="heat-engines-backward">
+<h2>反向运行的热机</h2>
+<p class="cite-target"><span data-concept="heat-pump">热泵</span>、空调和冰箱利用的是从冷处到热处的<span data-concept="heat">热</span>传递。它们是反向运行的<span data-concept="heat-engine">热机</span>。我们说“反向”而不说“逆转”，是因为除<span data-concept="carnot-engine">卡诺热机</span>外，所有<span data-concept="heat-engine">热机</span>虽然可以反向运行，却不可能真正被逆转。<span data-concept="heat">热</span>传递从<span data-ref="cold-reservoir">低温热库</span> $\kQC$ 发生，进入<span data-ref="hot-reservoir">高温热库</span>。这需要<span data-type="energy">输入<span data-concept="work">功</span></span> $\kW$，它也转化为<span data-concept="heat">热</span>传递。因此，传给<span data-ref="hot-reservoir">高温热库</span>的<span data-type="energy"><span data-concept="heat">热量</span></span>为 $\kQH = \kQC + \kW$。（请注意，$\kQH$、$\kQC$ 和 $\kW$ 都是正值，它们的方向在示意图上标出，而不是用正负号表示。）<span data-concept="heat-pump">热泵</span>的任务是使<span data-concept="heat">热</span>传递 $\kQH$ 进入温暖的环境，例如冬天的住宅。空调和冰箱的任务是使<span data-concept="heat">热</span>传递 $\kQC$ 从较凉的环境中发生，例如使房间变凉，或使食物保持在比环境更低的<span data-concept="temperature">温度</span>。（实际上，<span data-concept="heat-pump">热泵</span>既可以用来给空间<span data-concept="heat">加热</span>，也可以用来给空间降温。它本质上是空调和供暖装置合二为一。在本节中，我们将集中讨论它的制热模式。）</p>
+<figure class="sim" id="sim-heat-pump-backward" data-figure="15.26" data-original="/media/ch15/Figure_16_05_01.jpg" data-original-width="400" data-original-caption="热泵、空调和冰箱是反向运行的热机。这里所示的一台基于卡诺（可逆）热机。（a） 示意图，显示热泵把热传递从低温热库送到温暖的热库。W、Q_h 和 Q_c 的方向与它们在热机中的方向相反。（b） 与图 15.27 中类似的卡诺循环的 PV 图，但反向，沿路径 ADCBA。环路内的面积为负，意味着有净功输入。沿路径 DC 有热传递 Q_c 从低温热库进入系统，沿路径 BA 有热传递 Q_h 从系统流出，进入高温热库。">
+  <div class="sim-head"><span class="eyebrow">Figure 15.26</span><span>一个<span data-ref="machine">卡诺循环</span>在温度为 $\kTemph$ 的<span data-ref="hot-reservoir">高温热库</span>和温度为 $\kTempc$ 的<span data-ref="cold-reservoir">低温热库</span>之间运行。左侧是穿过其边界的<span data-type="energy">三种传递</span>，右侧是它在 $PV$ 图上的环路。作为热机时，<span data-ref="machine">它</span>从<span data-ref="hot-reservoir">高温热库</span>吸收 $\kQH$，输出 $\kW$，并向<span data-ref="cold-reservoir">低温热库</span>排出 $\kQC$，沿环路 ABCDA 运行。作为热泵时，每个箭头都掉转方向，环路沿 ADCBA 运行，而且<span data-type="energy">功</span>是输入而不是输出。让循环在这两者之间切换，并改变<span data-type="temperature">温度</span>。箭头保持着 $\kQH = \kQC + \kW$ 的平衡，而环路的<span data-concept="area">面积</span>就是<span data-type="energy">功</span>，它随着<span data-type="temperature">两个温度</span>彼此靠近而缩小。</span></div>
+</figure>
+</section>
+
+<section id="heat-pumps">
+<h2>热泵</h2>
+<p class="cite-target">用<span data-concept="heat-pump">热泵</span>而不是仅仅燃烧燃料来使你的住宅保暖，最大的好处是<span data-concept="heat-pump">热泵</span>提供的是 $\kQH = \kQC + \kW$。<span data-concept="heat">热</span>传递来自<span data-ref="cold-reservoir">室外空气</span>，即使是在<span data-type="temperature">低于冰点的<span data-concept="temperature">温度</span></span>下，也传向<span data-ref="hot-reservoir">室内空间</span>。你只需为 $\kW$ 付费，而来自<span data-ref="cold-reservoir">室外</span>的<span data-type="energy">额外<span data-concept="heat">热</span>传递</span> $\kQC$ 则分文不花；在许多情况下，传给<span data-ref="hot-reservoir">受热空间</span>的<span data-concept="energy">能量</span>至少是驱动<span data-concept="heat-pump">热泵</span>所用能量的两倍。燃烧燃料取暖时，你要为全部能量付费。缺点是，（<span data-concept="second-law-of-thermodynamics">热力学第二定律</span>所要求的）输入<span data-concept="work">功</span>有时比直接燃烧燃料更昂贵，尤其是当<span data-concept="work">功</span>由<span data-concept="electrical-energy">电能</span>来做时。</p>
+<p><span data-concept="heat-pump">热泵</span>在制热模式下的基本部件如图 15.27 所示。使用的是<span data-ref="working-fluid">工质</span>，例如无氯氟烃制冷剂。在<span data-ref="outdoor-coil">室外盘管（蒸发器）</span>中，<span data-type="energy"><span data-concept="heat">热</span>传递</span> $\kQC$ 从<span data-ref="cold-reservoir">冷的室外空气</span>传给<span data-ref="working-fluid">工质</span>，使<span data-ref="working-fluid">它</span>变成气体。</p>
+<figure class="sim" id="sim-heat-pump-components" data-figure="15.27" data-original="/media/ch15/Figure_16_05_02.jpg" data-original-width="250" data-original-caption="一台简单的热泵有四个基本部件：（1） 冷凝器，（2） 膨胀阀，（3） 蒸发器和（4） 压缩机。在制热模式下，热传递 Q_c 在蒸发器（3） 中从较冷的室外空气传给工质，使其变成气体。电动压缩机（4） 提高气体的温度和压强，并将其压入受热空间内的冷凝器盘管（1）。由于气体的温度高于房间的温度，气体凝结成液体时，热传递便从气体传到房间。随后，工质在流回膨胀阀（2） 的过程中被冷却，到达室外的蒸发器盘管。">
+  <div class="sim-head"><span class="eyebrow">Figure 15.27</span><span>热泵的<span data-ref="working-fluid">工质</span>循环流经四个部件：<span data-ref="outdoor-coil">墙外的一个盘管</span>和<span data-ref="indoor-coil">墙内的一个</span>、<span data-ref="compressor">一台压缩机</span>和<span data-ref="expansion-valve">一个膨胀阀</span>，管道上的箭头表示<span data-ref="working-fluid">它</span>的流动方向。在制热模式下，<span data-ref="outdoor-coil">室外盘管</span>是蒸发器，在此<span data-type="energy">热传递</span> $\kQC$ 从<span data-ref="cold-reservoir">冷空气</span>进入<span data-ref="working-fluid">工质</span>，而<span data-ref="indoor-coil">室内盘管</span>是冷凝器，在此 $\kQH$ 进入<span data-ref="hot-reservoir">房间</span>。把热泵切换到制冷模式，观察流向反转，<span data-ref="outdoor-coil indoor-coil">两个盘管</span>互换角色，于是同一台机器从房间吸取<span data-type="energy">热传递</span>，并把它送到室外。</span></div>
+</figure>
+<p><span data-ref="compressor">电动压缩机</span>（<span data-type="energy">输入<span data-concept="work">功</span></span> $\kW$）提高<span data-ref="working-fluid">气体</span>的<span data-type="temperature"><span data-concept="temperature">温度</span></span>和<span data-type="pressure"><span data-concept="pressure">压强</span></span>，并将<span data-ref="working-fluid">它</span>压入位于<span data-ref="hot-reservoir">受热空间</span>内的<span data-ref="indoor-coil">冷凝器盘管</span>。由于<span data-ref="working-fluid">气体</span>的<span data-type="temperature"><span data-concept="temperature">温度</span></span>高于<span data-type="temperature">室内的<span data-concept="temperature">温度</span></span>，<span data-concept="heat">热</span>传递便传向<span data-ref="hot-reservoir">房间</span>，<span data-ref="working-fluid">气体</span>凝结为液体。<span data-ref="working-fluid">液体</span>随后流回，经过<span data-ref="expansion-valve">减压阀</span>到达<span data-ref="outdoor-coil">室外蒸发器盘管</span>，在膨胀中被冷却。（在制冷循环中，<span data-ref="outdoor-coil indoor-coil">蒸发器和冷凝器盘管</span>互换角色，<span data-ref="working-fluid">工质</span>的流动方向也反转。）</p>
+</section>
+
+<section id="coefficient-of-performance">
+<h2>热泵的性能系数</h2>
+<p class="cite-target"><span data-concept="heat-pump">热泵</span>的好坏，要看进入温暖空间的<span data-concept="heat">热</span>传递 $\kQH$ 与所需的输入<span data-concept="work">功</span> $\kW$ 相比有多大。本着取所得与所付之比的精神，我们把<strong><span data-concept="heat-pump">热泵</span>的<span data-concept="coefficient-of-performance-heat-pump">性能系数</span></strong>（$\text{COP}_{\text{hp}}$）定义为</p>
+$$\text{COP}_{\text{hp}} = \frac{\kQH}{\kW}.$$
+<p>由于<span data-concept="heat-engine">热机</span>的<span data-concept="efficiency">效率</span>为 $\text{Eff} = \kW/\kQH$，我们看出 $\text{COP}_{\text{hp}} = 1/\text{Eff}$，这是一个重要而有趣的事实。首先，由于任何<span data-concept="heat-engine">热机</span>的<span data-concept="efficiency">效率</span>都小于 1，这意味着 $\text{COP}_{\text{hp}}$ 总是大于 1——也就是说，<span data-concept="heat-pump">热泵</span>得到的<span data-concept="heat">热</span>传递 $\kQH$ 总是多于投入其中的<span data-concept="work">功</span>。其次，这意味着<span data-concept="heat-pump">热泵</span>在<span data-concept="temperature">温差</span>较小时工作得最好。理想的热机，即卡诺热机，其<span data-concept="efficiency">效率</span>为 $\text{Eff}_{\text{C}} = 1 - (\kTempc/\kTemph)$；因此，<span data-concept="temperature">温差</span>越小，<span data-concept="efficiency">效率</span>越小，而 $\text{COP}_{\text{hp}}$ 越大（因为 $\text{COP}_{\text{hp}} = 1/\text{Eff}$）。换句话说，<span data-concept="heat-pump">热泵</span>在非常寒冷的气候中不如在较温和的气候中工作得好。</p>
+<p><span data-concept="friction">摩擦</span>和其他<span data-concept="irreversible-process">不可逆过程</span>会降低<span data-concept="heat-engine">热机</span>的<span data-concept="efficiency">效率</span>，但它们对<span data-concept="heat-pump">热泵</span>的运行并<em>没有</em>好处——相反，它们会减少输入<span data-concept="work">功</span>，因为在输入功进入<span data-concept="heat-pump">热泵</span>之前，就把其中一部分转化成了回到低温热库的<span data-concept="heat">热</span>传递。</p>
+<figure class="sim" id="sim-friction" data-figure="15.28" data-original="/media/ch15/Figure_16_05_03.jpg" data-original-width="200" data-original-caption="当一台实际的热机反向运行时，预定输入的功（W） 中有一部分在进入热机之前就变成了热传递，从而降低了它的性能系数 COP_hp。图中，W′ 表示 W 中进入热泵的那一部分，而 W 的其余部分则以摩擦热（Q_f） 的形式损失给低温热库。如果 W 全部进入热泵，Q_h 就会更大。最好的热泵采用绝热过程和等温过程，因为理论上这样就没有会减少传给高温热库的热传递的耗散过程。">
+  <div class="sim-head"><span class="eyebrow">Figure 15.28</span><span><span data-ref="real-pump">实际热泵</span>由<span data-type="energy">功</span> $\kW$ 驱动，但只有<span data-type="energy">一部分</span> $\kWprime$ 到达<span data-ref="real-pump">热泵本身</span>；<span data-type="energy">其余部分</span>用于克服<span data-concept="friction">摩擦</span>，在它还没能提升任何东西之前，就作为<span data-type="energy">热传递</span> $\kQf$ 传给了<span data-ref="cold-reservoir">低温热库</span>。<span data-ref="real-pump">热泵</span>随后向<span data-ref="hot-reservoir">高温热库</span>输送 $\kQH = \kQC + \kWprime$。把因<span data-concept="friction">摩擦</span>损失的份额从零开始往上拖，观察 $\kQH$ 下降，而<span data-type="energy">你所付出的功</span>保持不变，于是性能系数降到低于<span data-type="temperature">两个温度</span>所允许的最佳值。</span></div>
+</figure>
+</section>
+
+<section id="best-heat-pump">
+<h2>家用的最佳热泵</h2>
+<div class="example" id="ex-best-cop">
+<h3>例题 15.5 · 家用热泵的最佳 $\text{COP}_{\text{hp}}$</h3>
+<p class="cite-target">用来给<span data-ref="house">住宅</span>取暖的<span data-concept="heat-pump">热泵</span>，必须采用这样一种循环：使<span data-ref="working-fluid">工质</span>的<span data-type="temperature"><span data-concept="temperature">温度</span></span>高于<span data-type="temperature">典型的室内<span data-concept="temperature">温度</span></span>，这样<span data-concept="heat">热</span>传递才能传向室内。同样，它还必须使<span data-ref="working-fluid">工质</span>的<span data-type="temperature"><span data-concept="temperature">温度</span></span>低于<span data-type="temperature">室外<span data-concept="temperature">温度</span></span>，这样<span data-concept="heat">热</span>传递才能从室外发生。因此，<span data-type="temperature">它的高温热库和低温热库的<span data-concept="temperature">温度</span></span>不能靠得太近，这就给它的 $\text{COP}_{\text{hp}}$ 设置了一个限度。（见图 15.29。）如果这样一台<span data-concept="heat-pump">热泵</span>的<span data-type="temperature">高温热库<span data-concept="temperature">温度</span></span>为 $45.0^\circ\text{C}$，<span data-type="temperature">低温热库<span data-concept="temperature">温度</span></span>为 $-15.0^\circ\text{C}$，它可能达到的最佳<span data-concept="coefficient-of-performance-heat-pump">性能系数</span>是多少？</p>
+<h4>思路</h4>
+<p>反向运行的<span data-concept="carnot-engine">卡诺热机</span>将给出作为<span data-concept="heat-pump">热泵</span>的最佳可能性能。如上所述，$\text{COP}_{\text{hp}} = 1/\text{Eff}$，所以我们需要先计算<span data-concept="carnot-efficiency">卡诺效率</span>来解这道题。</p>
+<h4>解</h4>
+<p>用<span data-concept="temperature">热力学温度</span>表示的<span data-concept="carnot-efficiency">卡诺效率</span>为：</p>
+$$\text{Eff}_{\text{C}} = 1 - \frac{\kTempc}{\kTemph}.$$
+<p>以开尔文为单位的<span data-type="temperature"><span data-concept="temperature">温度</span></span>为 $\kTemph = 318\ \text{K}$ 和 $\kTempc = 258\ \text{K}$，因此</p>
+$$\text{Eff}_{\text{C}} = 1 - \frac{258\ \text{K}}{318\ \text{K}} = 0.1887.$$
+<p>于是，根据上面的讨论，</p>
+$$\text{COP}_{\text{hp}} = \frac{1}{\text{Eff}} = \frac{1}{0.1887} = 5.30,$$
+<p>即</p>
+$$\text{COP}_{\text{hp}} = \frac{\kQH}{\kW} = 5.30,$$
+<p>因此</p>
+$$\kQH = 5.30\,\kW.$$
+<h4>讨论</h4>
+<p>这个结果意味着，<span data-concept="heat-pump">热泵</span>传递的<span data-type="energy"><span data-concept="heat">热量</span></span>是投入其中的<span data-type="energy"><span data-concept="work">功</span></span>的 5.30 倍。要得到同样的<span data-concept="heat">热</span>传递，用电取暖器的费用是用这台<span data-concept="heat-pump">热泵</span>的 5.30 倍。这并不违背<span data-concept="energy">能量</span>守恒。<span data-ref="cold-reservoir">冷的环境空气</span>提供 <span data-type="energy">4.3 J</span>，对应于来自电源插座的每 <span data-type="energy">1 J <span data-concept="work">功</span></span>。</p>
+<figure class="sim" id="sim-heat-pump-house" data-figure="15.29" data-original="/media/ch15/Figure_16_05_04.jpg" data-original-width="300" data-original-caption="从室外到室内的热传递，以及为驱动热泵所做的功，发生在上面例题的热泵中。注意，热泵产生的低温低于室外温度，因此热传递进入工质。热泵的压缩机产生高于室内温度的温度，以便热传递进入住宅。">
+  <div class="sim-head"><span class="eyebrow">Figure 15.29</span><span>例题中的热泵跨在<span data-ref="house">一座住宅</span>的墙上，<span data-ref="outdoor-coil">室外盘管</span>的温度 $\kTempc$ 低于<span data-type="temperature">室外空气的 −5 °C</span>，<span data-ref="indoor-coil">室内盘管</span>的温度 $\kTemph$ 高于<span data-type="temperature">房间的 20 °C</span>。<span data-type="energy">功</span> $\kW$ 来自电源插座，<span data-type="energy">热传递</span> $\kQC$ 从<span data-ref="cold-reservoir">冷空气</span>进入<span data-ref="outdoor-coil">室外盘管</span>，$\kQH$ 从<span data-ref="indoor-coil">室内盘管</span>进入<span data-ref="hot-reservoir">房间</span>。移动<span data-type="temperature">工质所达到的两个温度</span>，观察下方图中的性能系数：两个温度靠近时它上升，在寒冷气候中则下降。</span></div>
+</figure>
+</div>
+<p>实际的<span data-concept="heat-pump">热泵</span>不如前面例题中的理想热泵表现得那样好；它们的 $\text{COP}_{\text{hp}}$ 值约为 2 到 4。这个范围意味着，<span data-concept="heat-pump">热泵</span>输出的<span data-concept="heat">热</span>传递 $\kQH$ 是投入其中的<span data-concept="work">功</span> $\kW$ 的 2 到 4 倍。然而，它们在经济上的可行性仍然有限，因为 $\kW$ 通常由<span data-concept="electrical-energy">电能</span>供给，而电能每<span data-concept="joule">焦耳</span>的价格比燃烧天然气等燃料所得的<span data-concept="heat">热</span>传递要贵。此外，<span data-concept="heat-pump">热泵</span>的初始成本比许多供暖炉都高，所以<span data-concept="heat-pump">热泵</span>必须用得更久才能收回成本。<span data-concept="heat-pump">热泵</span>最有可能在冬季<span data-concept="temperature">温度</span>温和、电价相对便宜、其他燃料相对昂贵的地方在经济上占优。另外，由于它们既能给空间制冷，也能给空间<span data-concept="heat">加热</span>，所以在夏季也需要制冷的地方它们更有优势。因此，<span data-concept="heat-pump">热泵</span>的一些最佳地点是夏季炎热、冬季凉爽的气候地区。图 15.30 显示了一台<span data-concept="heat-pump">热泵</span>，在一些国家被称为“<em>反向循环空调</em>”或“<em>分体式空调</em>”。</p>
+<figure class="photo" id="fig-reverse-cycle" data-figure="15.30">
+  <img src="/media/ch15/Figure_16_05_05.jpg" alt="一台住宅用热泵。" data-width="150">
+  <figcaption><span class="eyebrow">Figure 15.30</span><span>在炎热的天气里，<span data-concept="heat">热</span>传递从室内的空气传到室外的空气，使房间变凉。在凉爽的天气里，<span data-concept="heat">热</span>传递从室外的空气传到室内的空气，使房间变暖。这种切换是通过使工质的流动方向反转来实现的。</span></figcaption>
+</figure>
+</section>
+
+<section id="refrigerators">
+<h2>空调和冰箱</h2>
+<p class="cite-target">空调和冰箱的设计目的，是在温暖的环境中使某样东西降温。与<span data-concept="heat-pump">热泵</span>一样，<span data-concept="heat">热</span>传递从冷处传到热处需要输入<span data-concept="work">功</span>，而这是昂贵的。空调和冰箱的好坏，要看从冷环境中发生的<span data-concept="heat">热</span>传递 $\kQC$ 与所需的输入<span data-concept="work">功</span> $\kW$ 相比有多大。<span data-concept="heat-pump">热泵</span>中被视为收益的部分，在冰箱中被视为废<span data-concept="heat">热</span>。因此，我们把空调或冰箱的<strong><span data-concept="coefficient-of-performance-heat-pump">性能系数</span></strong>（$\text{COP}_{\text{ref}}$）定义为</p>
+$$\text{COP}_{\text{ref}} = \frac{\kQC}{\kW}.$$
+<p>再次注意 $\kQH = \kQC + \kW$，我们可以看出，空调的<span data-concept="coefficient-of-performance-heat-pump">性能系数</span>将低于<span data-concept="heat-pump">热泵</span>，因为 $\text{COP}_{\text{hp}} = \kQH/\kW$，而 $\kQH$ 大于 $\kQC$。在本模块的习题中，你将证明</p>
+$$\text{COP}_{\text{ref}} = \text{COP}_{\text{hp}} - 1$$
+<p>对于用作空调或<span data-concept="heat-pump">热泵</span>、在相同两个<span data-concept="temperature">温度</span>之间运行的<span data-concept="heat-engine">热机</span>都成立。实际的空调和冰箱通常表现得出奇地好，其 $\text{COP}_{\text{ref}}$ 的值为 2 到 6。这些数值比上面提到的<span data-concept="heat-pump">热泵</span>的 $\text{COP}_{\text{hp}}$ 值要好，因为<span data-concept="temperature">温差</span>更小，但它们低于在相同两个<span data-concept="temperature">温度</span>之间运行的<span data-concept="carnot-engine">卡诺热机</span>的相应值。</p>
+<figure class="sim" id="sim-two-ratios">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="machine">一台机器</span>在温度为 $\kTemph$ 的<span data-ref="hot-reservoir">高温热库</span>和温度为 $\kTempc$ 的<span data-ref="cold-reservoir">低温热库</span>之间反向运行，输入<span data-type="energy">一个单位的功</span>，<span data-type="energy">它的三个能量</span>画成旁边的条形，以<span data-type="energy">该功</span>为单位。用来给空间制热时，<span data-type="energy">它的收益</span>是 $\kQH$，它的性能系数就是那根高的条形；用来给空间制冷时，<span data-type="energy">它的收益</span>是 $\kQC$，它的系数就是那根较矮的条形。选择<span data-ref="machine">这台机器</span>的用途并移动<span data-type="temperature">温度</span>，观察两根条形一同升降，而它们之间的差始终是 $\kW$ 本身的那根条形，恰好等于 1。</span></div>
+</figure>
+<p>人们制定了一种称为“<span data-concept="energy">能</span><span data-concept="efficiency">效</span>比”（$\text{EER}$）的 $\text{COP}$ 评级体系。这一评级是一个仍在使用、并与消费者相关的非 SI <span data-concept="units">单位</span>的例子。为了方便消费者，澳大利亚、加拿大、新西兰和美国使用满分为 5 星的“能源之星”评级——星越多，该电器的<span data-concept="energy">能量</span>效率就越高。$\text{EER}\text{s}$ 以混合<span data-concept="units">单位</span>表示，即每小时制热或制冷的英热<span data-concept="units">单位</span>（Btu）数，除以输入<span data-concept="power">功率</span>（单位为<span data-concept="watt">瓦特</span>）。房间空调很容易买到 $\text{EER}\text{s}$ 为 6 到 12 的。虽然与刚才描述的 $\text{COP}\text{s}$ 不同，但这些 $\text{EER}\text{s}$ 很适合用来比较——$\text{EER}$ 越大，空调的运行费用就越低（但它的购买价格可能越高）。</p>
+<p>空调或冰箱的 $\text{EER}$ 可以表示为</p>
+$$\text{EER} = \frac{\kQC/t_1}{\kW/t_2},$$
+<p>其中 $\kQC$ 是从冷环境中传出的<span data-concept="heat">热量</span>，以英热<span data-concept="units">单位</span>计，$t_1$ 是<span data-concept="time">时间</span>，以小时计，$\kW$ 是输入<span data-concept="work">功</span>，以<span data-concept="joule">焦耳</span>计，$t_2$ 是<span data-concept="time">时间</span>，以<span data-concept="second">秒</span>计。</p>
+</section>
+
+<section id="problem-solving">
+<h2>如何解热力学问题</h2>
+<div class="note">
+<div class="eyebrow">热力学问题的解题策略</div>
+<ol>
+<li><em>考察具体情形，判断其中是否涉及<span data-concept="heat">热量</span>、<span data-concept="work">功</span>或<span data-concept="internal-energy">内能</span></em>。寻找任何主要的<span data-concept="energy">能量</span>传递方式为<span data-concept="heat">热量</span>和<span data-concept="work">功</span>的<span data-concept="system">系统</span>。<span data-concept="heat-engine">热机</span>、<span data-concept="heat-pump">热泵</span>、冰箱和空调都是这类<span data-concept="system">系统</span>的例子。</li>
+<li><em>确定所关心的<span data-concept="system">系统</span>，并画出该<span data-concept="system">系统</span>的带标注的示意图，标明<span data-concept="energy">能量</span>流动。</em></li>
+<li><em>准确确定题目要求求出什么（确定未知量）</em>。列一张书面清单会有帮助。最大<span data-concept="efficiency">效率</span>意味着涉及<span data-concept="carnot-engine">卡诺热机</span>。<span data-concept="efficiency">效率</span>与<span data-concept="coefficient-of-performance-heat-pump">性能系数</span>不是一回事。</li>
+<li><em>列出题目所述中已给出的或可以推断出的量（确定已知量）</em>。务必把传入<span data-concept="system">系统</span>的<span data-concept="heat">热</span>传递与传出<span data-concept="system">系统</span>的<span data-concept="heat">热</span>传递区分开，也要把输入<span data-concept="work">功</span>与输出<span data-concept="work">功</span>区分开。在许多情形中，确定过程的类型，例如等温过程或绝热过程，是有用的。</li>
+<li><em>针对待求量（未知量）解出相应的方程。</em></li>
+<li><em>把已知量连同其<span data-concept="units">单位</span>代入相应的方程，求出带有<span data-concept="units">单位</span>的数值解。</em></li>
+<li><em>检查答案是否合理：说得通吗？</em>例如，<span data-concept="efficiency">效率</span>总是小于 1，而性能系数大于 1。</li>
+</ol>
+</div>
+</section>

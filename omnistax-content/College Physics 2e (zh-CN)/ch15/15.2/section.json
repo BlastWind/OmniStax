@@ -1,0 +1,1321 @@
+{
+ "id": "15.2",
+ "module": "m42233",
+ "chapter": "15",
+ "title": "热力学第一定律与几种简单过程",
+ "short": "简单过程",
+ "lead": "热机是利用<span data-concept=\"heat\">热</span>传递做<span data-concept=\"work\">功</span>的机器，它由气缸中<span data-ref=\"gas\">气体</span>的几种简单过程构成，每种过程都有各自形式的热力学第一定律。每种过程所做的<span data-concept=\"work\">功</span>可以从<span data-concept=\"pressure\">压强</span>对<span data-concept=\"volume\">体积</span>的图上读出。",
+ "objectives": [
+  "描述简单热机的各个过程。",
+  "解释简单热力学过程——等压、等容、等温和绝热过程——之间的区别。",
+  "计算循环热力学过程中所做的总功。"
+ ],
+ "summary_html": "<ul><li>热力学第一定律的一个重要推论是，可以利用机器来做<span data-concept=\"work\">功</span>，这些功以前是由人类用手做的，或者是由流水或太阳的<span data-concept=\"heat\">热量</span>等外部<span data-concept=\"energy\">能量</span>供应来做的。利用<span data-concept=\"heat\">热</span>传递做<span data-concept=\"work\">功</span>的机器称为热机。</li><li>热机所使用的几种简单过程是从热力学第一定律推出的。其中有等压、等容、等温和绝热过程。</li><li>这些过程彼此的区别在于它们对<span data-concept=\"pressure\">压强</span>、<span data-concept=\"volume\">体积</span>、<span data-concept=\"temperature\">温度</span>和<span data-concept=\"heat\">热</span>传递的影响不同。</li><li>如果所做的<span data-concept=\"work\">功</span>是对外部环境做的，则<span data-concept=\"work\">功</span>（$\\kW$）为正值。如果所做的<span data-concept=\"work\">功</span>是对热机系统做的，则<span data-concept=\"work\">功</span>（$\\kW$）为负值。</li><li>包括等温过程和绝热过程在内的一些热力学过程，在理论上是可逆的；也就是说，热力学系统和环境都可以回到它们的初态。然而，由于热力学第二定律所导致的<span data-concept=\"energy\">能量</span>损失，完全可逆在实际中是行不通的。</li></ul>",
+ "notes": "Turbinia 工厂蒸汽机的照片（图 15.6）作为题图被略去，PhET 链接“States of Matter”也略去，六道没有给出答案的习题被略去（充氦气球、手动轮胎打气筒、循环 ABDA、450 °C 与 150 °C 之间的热机，以及两道“自拟习题”），并且图 15.12（b）的替代文字把 CD 段的压强写成 1.2 × 10⁵ N/m²，而印刷的图和例题 15.2 用的是 2.00 × 10⁵ N/m²。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。六道题没有给出答案，因而略去：充氦气球、手动轮胎打气筒、平行四边形上的循环 ABDA、450 °C 与 150 °C 之间的“不合理的结果”热机（它需要用到第 15.4 节的卡诺效率，两节都略去，正如本章的 config 所决定的），以及两道“自拟习题”。机车一题的两问给出了同一个数，设为两问。关于做 4.00 kJ 功的热机的“不合理的结果”一题，答案是一句话，设为开放题，附上书中的答案。六道 AP 题中的三道有答案，设为评分选择题；另外三道没有答案，保留为开放题，题目照书中原样给出，并附上由 AI 撰写、已标明的建议思路。八道思考题的建议思路由 AI 撰写，并已标明。书中的活塞图附在第二道思考题的题卡上，嵌套的环路 ABCFA 和 ABDEA 附在第六道思考题和两道 AP 题的题卡上，平行四边形 ABCD 附在有答案的习题和读它的三道 AP 题的题卡上。没有从别的小节取题，也没有留给后面页面的题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-heat-engine",
+   "kind": "sim",
+   "number": "15.7",
+   "originals": [
+    "/media/ch15/Figure_16_02_02.jpg"
+   ],
+   "original_caption": "热机的示意图，当然受热力学第一定律支配。不可能设计出一个 Q_out = 0 的系统，也就是说，不可能设计出一个不向环境发生热传递的系统。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "work label off the arrowhead; note cut to one fact through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-piston",
+   "kind": "sim",
+   "number": "15.8",
+   "originals": [
+    "/media/ch15/Figure_16_02_03.jpg"
+   ],
+   "original_caption": "（a）向气缸中的气体进行热传递，使气体的内能增大，产生更高的压强和温度。（b）气体膨胀时，作用在可移动气缸上的力做功。气体膨胀时压强和温度降低，表明气体的内能因做功而减少。（c）向环境的热传递进一步降低气体的压强，使活塞更容易回到起始位置。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "energy",
+    "pressure",
+    "force",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "force arrows kept inside the cylinder, F' against F told truly, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-isobaric",
+   "kind": "sim",
+   "number": "15.9",
+   "folds": [
+    "15.10"
+   ],
+   "originals": [
+    "/media/ch15/Figure_16_02_04a.jpg",
+    "/media/ch15/Figure_16_02_05a.jpg"
+   ],
+   "original_caption": "气体的等压膨胀需要热传递来保持压强恒定。由于压强恒定，所做的功为 PΔV。",
+   "widths": [
+    200,
+    300
+   ],
+   "draws": [
+    "energy",
+    "pressure",
+    "force",
+    "position",
+    "area",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bore as root of area, labels out of the column, graph headroom, note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-strips",
+   "kind": "sim",
+   "number": "15.11",
+   "originals": [
+    "/media/ch15/Figure_16_02_06abc.jpg"
+   ],
+   "original_caption": "（a）压强和体积都变化的 PV 图。每个区间所做的功等于该区间的平均压强乘以体积变化，也就是该区间上曲线下方的面积。因此曲线下方的总面积等于所做的总功。（b）要沿反向路径进行，必须对系统做功。这被解释为曲线下方的负面积。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "energy",
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "reverse readout true as written, agreement, notes repeating text dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cycle-work",
+   "kind": "sim",
+   "number": "15.12",
+   "originals": [
+    "/media/ch15/Figure_16_02_07a.jpg"
+   ],
+   "original_caption": "（a）从 A 到 C 所做的功取决于路径。沿路径 ABC 所做的功大于沿路径 ADC 所做的功，因为前者处于较高压强。在两种情形下，所做的功都是路径下方的面积。路径 ABC 下方的面积更大。（b）循环过程 ABCDA 所做的总功是环路内部的面积，因为 CD 下方的负面积被减去，只剩下矩形内部的面积。（图中给出的压强和体积变化的数值是为下面的例题准备的。）（c）任何闭合曲线内部的面积就是循环过程所做的功。如果环路沿顺时针方向绕行，则 W 为正——它是对外部环境所做的功。如果环路沿逆时针方向绕行，则 W 为负——它是对系统所做的功。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "energy",
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes cut to one fact each through the macros, P_CD in 10^6 like its slider"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-isotherm-adiabat",
+   "kind": "sim",
+   "number": "15.13",
+   "originals": [
+    "/media/ch15/Figure_16_02_08a.jpg"
+   ],
+   "original_caption": "（a）上方的曲线是等温过程（ΔT = 0），下方的曲线是绝热过程（Q = 0）。两者都从同一点 A 出发，但等温过程做的功比绝热过程多，因为有热传递进入气体以保持其温度恒定。这使整条等温路径上的压强始终高于绝热路径上的压强，从而产生更多的功。因此，绝热路径在 C 点终止时压强和温度都较低，尽管其末体积与等温过程相同。（b）循环 ABCA 产生净输出功。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "energy",
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend for the two paths, first law in the readout, headroom, note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-four-processes",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes true either way through macros; ghost names only where apart"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-loops",
+   "kind": "figure",
+   "originals": [
+    "/media/ch15/Figure_16_02_10a.jpg"
+   ],
+   "original_caption": "这个 PV 图上所示的两个循环过程，都从 A 点的条件出发并使系统回到该条件，但它们沿不同的路径进行，产生的功也不同。",
+   "widths": [
+    274
+   ],
+   "draws": [
+    "energy",
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-parallelogram",
+   "kind": "figure",
+   "originals": [
+    "/media/ch15/Figure_16_02_11a-3d61.jpg"
+   ],
+   "original_caption": "热机的循环过程 ABCDA 的压强对体积图。",
+   "draws": [
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "axis title clear of the headline, D clear of its dashed line"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "heat-engine",
+   "concept": "heat-engine",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-engine",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engine",
+   "concept": "heat-and-work-sign-convention",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engine",
+   "concept": "internal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engine",
+   "concept": "isobaric-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "isobaric-work",
+   "verb": "introduces"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "pv-diagram-work-as-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "work-as-area",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "ideal-gas-law-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "heat-and-work-sign-convention",
+   "verb": "uses"
+  },
+  {
+   "span": "path-and-cycles",
+   "concept": "work-depends-on-path",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-and-cycles",
+   "concept": "isochoric-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-and-cycles",
+   "concept": "net-work-of-a-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-and-cycles",
+   "concept": "pv-diagram-work-as-area",
+   "verb": "uses"
+  },
+  {
+   "span": "path-and-cycles",
+   "concept": "isobaric-work",
+   "verb": "uses"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "isothermal-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "internal-energy-monatomic-ideal-gas",
+   "verb": "introduces"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "adiabatic-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "thermal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "internal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "pv-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "isothermal-adiabatic",
+   "concept": "net-work-of-a-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "reversible",
+   "concept": "reversible-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "reversible",
+   "concept": "isothermal-process",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reversible",
+   "concept": "adiabatic-process",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reversible",
+   "concept": "isobaric-work",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reversible",
+   "concept": "isochoric-process",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reversible",
+   "concept": "heat-engine",
+   "verb": "uses"
+  },
+  {
+   "span": "reversible",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "exercise-diagrams",
+   "concept": "net-work-of-a-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exercise-diagrams",
+   "concept": "pv-diagram-work-as-area",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737813337",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-engine",
+   "prompt": "为了寻求所谓的永动机，人们投入了大量的精力、时间和金钱。永动机被定义为一种能够无限期运转或无限期产生有用功的假想机器，和/或一种产生的功或能量多于它所消耗的功或能量的假想机器。请根据热机和热力学第一定律，解释这样的机器为什么可能或不可能被制造出来。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把这台机器看作一台热机，对一个循环应用热力学第一定律。因为这台机器在每个循环结束时回到同一状态，所以它的内能不变，于是 $\\kdEint = \\kQh - \\kW = 0$，它输出的功等于传入它的净热传递量，$\\kW = \\kQin - \\kQout$。一台产生的功多于它所消耗的能量的机器，会有 $\\kW$ 大于 $\\kQin$，而这是第一定律所禁止的：能量会凭空出现。一台不供给任何能量就能无限期运转的机器，会有 $\\kQin = 0$ 却仍然输出功，这同样为同一个方程所禁止。即使是一台只想把它输入的全部热量都转化为功的机器，即 $\\kQout = 0$，在实践中也从未实现，因为图 15.7 和后面几节表明，总会有一部分热传递传向环境。仅靠第一定律就排除了第一类永动机，而后面几节要阐述的第二定律则排除了其余的永动机。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737777774",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isothermal-adiabatic",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_09.jpg",
+    "alt": "图 a 显示一个活塞连在一个可移动的气缸上，这个气缸连在另一个充满气体的气缸的右边。热量 Q 下标 in 被传给气缸中的气体，如指向它的粗箭头所示。气体对带活塞的移动气缸的力表示为 F 等于 P 乘以 A，画成指向右边的矢量箭头。图中把内能的变化标为 delta E 下标 int 下标 a 等于 Q 下标 in。图 b 显示一个活塞连在一个可移动的气缸上，这个气缸连在另一个充满气体的气缸的右边。气体的力已使带活塞的气缸向右移动了距离 d。图中把内能的变化标为 delta E 下标 int 下标 b 等于负 W 下标 out。活塞通过位置的改变做了功，标为 F d 等于 W 下标 out。图 c 显示一个活塞连在一个可移动的气缸上，这个气缸连在另一个充满气体的气缸的右边。连着气缸的活塞回到了图 a 所示的初始位置。距离 d 被走回，热量 Q 下标 out 离开系统，用一个向外的箭头表示。向后推动的力画成指向左边的矢量箭头，标为 F 撇。F 撇小于 F。力 F 撇所做的功由等式 W 下标 in 等于 F 撇乘以 d 表示。"
+   },
+   "prompt": "把热传递转化为功的一种方法，是让热传递进入一团气体，气体膨胀，对活塞做功，如下图所示。（a）在等压过程中，热传递是直接转化为功，还是先经过另一种形式？说明你的回答。（b）在等温过程中又如何？（c）在绝热过程中又如何（热传递发生在绝热过程之前）？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在每种情形下，先问问第一定律 $\\kdEint = \\kQh - \\kW$ 对内能说了什么。（a）在等压膨胀中，气体做功 $\\kW = \\kPr\\Delta V$，但它的内能也会变化。对恒定压强下的理想气体，体积增大时温度升高，所以 $\\kdEint$ 为正，传入的热传递量大于输出的功。热传递的一部分进入内能，只有一部分变成功。（b）在等温过程中，温度恒定，所以对理想气体 $\\kdEint = 0$，$\\kQh = \\kW$。热传递直接变成功：恰好有足够的热量流入，来补偿所做的功，气体的内能不变。（c）在绝热过程中根本没有热传递，$\\kQh = 0$，所以功完全来自内能，$\\kdEint = -\\kW$。先前的热传递被储存为内能，气体现在转化的是这些储存的能量，而不是同时发生的热传递。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738164305",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-and-cycles",
+   "prompt": "对于等容过程，上一题还有意义吗？说明你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "没有意义。等容过程是体积恒定的过程，所以活塞不动，$\\Delta V = 0$，气体根本不做功：在 $PV$ 图上，该过程是一条不围成任何面积的竖直线。这时第一定律写成 $\\kdEint = \\kQh$，意思是传入气体的每一焦耳热传递都进入了它的内能，使它的压强和温度升高。没有功可供热传递转化而成，所以转化是否直接的问题也就不会出现。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738243863",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isothermal-adiabatic",
+   "prompt": "我们通常说，对于等温过程 $\\kdEint = 0$。这是否假定没有发生相变？说明你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的，确实如此。这个说法依据的是理想气体的内能只取决于它的温度，对单原子气体 $\\kEint = \\tfrac{3}{2}Nk\\kTemp$，所以温度恒定就意味着内能恒定。在相变期间，温度保持恒定而热传递仍在继续，如第 14 章的潜热所描述的那样，这部分热传递进入了物质的内能，使分子之间的键断开或形成。因此，在恒定温度下沸腾的液体，即使 $\\Delta T = 0$，$\\kdEint$ 也大于零。等温过程中 $\\kdEint = 0$ 的规则适用于没有相变的理想气体，这正是正文写出 $PV = nR\\kTemp$ 时所作的假定。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737927114",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isothermal-adiabatic",
+   "prompt": "快速膨胀的气体温度会降低。请根据热力学第一定律解释原因。（提示：考虑气体是否做功，以及是否有热传递通过热传导迅速进入气体。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "膨胀的气体推动它的周围环境，因此做功，$\\kW$ 为正。快速膨胀没有留下时间让热传递通过热传导进入气体，所以 $\\kQh$ 接近于零，这个过程近似绝热。于是第一定律 $\\kdEint = \\kQh - \\kW$ 给出 $\\kdEint = -\\kW$：功是以消耗内能为代价而做的。对气体来说，内能是其分子的动能，对单原子气体 $\\kEint = \\tfrac{3}{2}Nk\\kTemp$，所以内能下降就是温度下降。这就是为什么从加压气瓶中释放出来的气体是冷的。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169736657271",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-and-cycles",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_10a.jpg",
+    "alt": "图中是压强对体积的图。压强沿 Y 轴，体积画在 X 轴上。图由矩形 A B C F 叠加在一个稍大的矩形 A B D E 上构成。直线 A B、C F 和 D E 平行于 X 轴，直线 B C D 和 A F E 平行于 Y 轴。",
+    "caption": "这个 PV 图上所示的两个循环过程，都从 A 点的条件出发并使系统回到该条件，但它们沿不同的路径进行，产生的功也不同。"
+   },
+   "prompt": "下图 $PV$ 图中两条闭合曲线 ABCFA 和 ABDEA 所代表的循环过程，哪一个产生最大的<em>净</em>功？该过程是否也是使它回到 A 点所需输入功最小的那一个？说明你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "循环过程的净功是它在 $PV$ 图上的环路内部的面积。环路 ABDEA 围住矩形 ABCF 和它下方的窄条 FCDE，因此面积更大，产生的净功也更大。使系统回到 A 所需的输入功，是沿返回各段对气体所做的功，也就是压缩段下方的面积：对 ABCFA 是 FC 下方的面积，对 ABDEA 是 ED 下方的面积。由于 ED 所处的压强比 FC 低，它下方的面积更小，所以 ABDEA 在回到 A 的途中所需的输入功也更小。它在向外的 AB 段上做的功多于返回所需的功，而二者之差，即所围的面积，对更高的环路来说更大。这里最大的净功和最小的返回功属于同一个循环，因为两个环路在相同的压强下共有膨胀段 AB，只是压缩时压降得多低不同。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169737980711",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isothermal-adiabatic",
+   "prompt": "一个真实过程如果在很短的时间内发生，就可能近似绝热。短的时间跨度如何有助于使过程绝热？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "绝热过程是没有热传递的过程，$\\kQh = 0$。热传递需要时间：热传导传递能量的速率由温差、材料和它要穿过的厚度决定，而在气体中对流和辐射也不会更快。如果过程在任何可观的热传递来得及发生之前就已结束，那么过程中的总热传递就非常小，即使没有隔热，过程也接近绝热。过程越快，进出的热量就越少，这就是发动机的压缩冲程和压缩气体的突然释放被当作绝热过程处理的原因。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169737826122",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isothermal-adiabatic",
+   "prompt": "除非过程非常缓慢，否则它不大可能是等温的。解释原因。等压过程和等容过程也是如此吗？说明你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "等温过程在气体做功或被做功时保持气体温度恒定。对理想气体来说，这要求在过程进行时有等于功的热传递，$\\kQh = \\kW$，流入或流出。热传递需要时间，而且它还必须在气体中扩散，使得没有哪个区域比其余部分更热或更冷。在快速的过程中，功会在热量到达之前就已做完，温度就会改变，就像在绝热过程中那样。所以等温过程必须是缓慢的。等压过程和等容过程则不必如此。等容过程只需要体积固定，刚性容器无论多快都能保持，此时温度可以自由变化。等压过程只需要恒定的压强，固定载荷下可自由移动的活塞就能提供。温度沿途变化，也没有哪种特定的热传递必须与功同步，所以只要气体保持接近均匀的压强，它也可以很快。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2539531",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pv-diagrams",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_11a-3d61.jpg",
+    "alt": "图中是压强对体积的图，压强在 Y 轴上，体积在 X 轴上。一个平行四边形连接图上的四个点 A、B、C 和 D。A 点的 y 等于 2.6 乘以 10 的 6 次方牛每平方米，x 等于 1.0 乘以 10 的负 3 次方立方米。一条向下倾斜的线把 A 连到 B。B 点的 y 等于 2.0，x 等于 4。一条竖直线把 B 连到 C。C 点的 y 等于 0.6，x 等于 4。一条线把 C 连到 D。D 点的 y 等于 1.0，x 等于 1.0。一条竖直线把 D 连到 A。一条对角线还把 D 和 B 连起来。"
+   },
+   "prompt": "在下图中，系统在过程 AB 中做了多少功？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "4.5 × 10<sup>3</sup> J",
+     "6.0 × 10<sup>3</sup> J",
+     "6.9 × 10<sup>3</sup> J",
+     "7.8 × 10<sup>3</sup> J"
+    ],
+    "correct": 2,
+    "hint": "过程 AB 中的功是从 A 到 B 的线下方的面积，这是一个梯形，它的两条平行边是 A 和 B 处的压强，宽是二者之间的体积变化。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2328663",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pv-diagrams",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_11a-3d61.jpg",
+    "alt": "图中是压强对体积的图，压强在 Y 轴上，体积在 X 轴上。一个平行四边形连接图上的四个点 A、B、C 和 D。A 点的 y 等于 2.6 乘以 10 的 6 次方牛每平方米，x 等于 1.0 乘以 10 的负 3 次方立方米。一条向下倾斜的线把 A 连到 B。B 点的 y 等于 2.0，x 等于 4。一条竖直线把 B 连到 C。C 点的 y 等于 0.6，x 等于 4。一条线把 C 连到 D。D 点的 y 等于 1.0，x 等于 1.0。一条竖直线把 D 连到 A。一条对角线还把 D 和 B 连起来。"
+   },
+   "prompt": "考虑下图中的过程 CD。它表示的是系统所做的功还是对系统所做的功，是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "过程 CD 从体积为 $4.0 \\times 10^{-3}\\ \\text{m}^3$ 的 C 点进行到体积为 $1.0 \\times 10^{-3}\\ \\text{m}^3$ 的 D 点。体积减小，所以 $\\Delta V$ 为负，功是对系统做的，而不是系统做的。功的大小是直线 CD 下方的面积，这是一个梯形，宽为 $3.0 \\times 10^{-3}\\ \\text{m}^3$，两条平行边是 C 处的压强 $0.6 \\times 10^{6}\\ \\text{N/m}^2$ 和 D 处的压强 $1.0 \\times 10^{6}\\ \\text{N/m}^2$。因此沿 CD 的平均压强为 $0.8 \\times 10^{6}\\ \\text{N/m}^2$，$\\kW = (0.8 \\times 10^{6}\\ \\text{N/m}^2)(-3.0 \\times 10^{-3}\\ \\text{m}^3) = -2.4 \\times 10^{3}\\ \\text{J}$。在过程 CD 中，大约有 $2.4 \\times 10^{3}\\ \\text{J}$ 的功是对气体做的，负号表明它是输入的功而不是输出的功。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2200650",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-and-cycles",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_10a.jpg",
+    "alt": "图中是压强对体积的图。压强沿 Y 轴，体积画在 X 轴上。图由矩形 A B C F 叠加在一个稍大的矩形 A B D E 上构成。直线 A B、C F 和 D E 平行于 X 轴，直线 B C D 和 A F E 平行于 Y 轴。"
+   },
+   "prompt": "一个热力学过程从 1.2 × 10<sup>6</sup> N/m<sup>2</sup> 和 5 L 开始。然后状态变为 1.2 × 10<sup>6</sup> N/m<sup>2</sup> 和 2 L。接着变为 2.2 × 10<sup>6</sup> N/m<sup>2</sup> 和 2 L。下一次变化是 2.2 × 10<sup>6</sup> N/m<sup>2</sup> 和 5 L。最后，系统终止于 1.0 × 10<sup>6</sup> N/m<sup>2</sup> 和 5 L。在下图中，这个过程最适合用下面哪一项来描述",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "EFCDB",
+     "DEFCD",
+     "CFABC",
+     "CFABD"
+    ],
+    "correct": 3,
+    "hint": "按压强和体积把五个状态逐一标在图上，体积越大越靠右，压强越大越靠上，然后按路径经过各状态的顺序读出相应的字母。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2150466",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isothermal-adiabatic",
+   "prompt": "热力学循环的第一步是体积增大的等压过程。第二步是压强降低的等容过程。最后一步可以是等温过程，也可以是绝热过程，终止于等压过程的起点。画出这两种可能情形的图，并说明哪一种每个循环的净功更大。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "画出坐标轴，压强向上，体积向右，从一点 A 开始。体积增大的等压步骤是从 A 向右的一条水平线，到达一点 B。压强降低的等容步骤是从 B 竖直向下到一点 C 的直线。最后一步必须从 C 回到 A，向上并向左，所以是沿一条向左上升的曲线所作的压缩。如果它是等温的，曲线上 $PV$ 为常量，并且是两者中较平缓的一条。如果它是绝热的，压缩时压强上升得更陡，因为没有热量离开，对气体所做的功使它的温度升高。因此对于相同的两个端点，从 C 到 A 的绝热曲线位于等温曲线下方。两个循环都沿顺时针方向进行，所以它们的净功为正，且等于各自环路内部的面积。返回曲线位置越低，所围的面积越大，所以由绝热压缩闭合的循环每个循环的净功更大。要使两条曲线都交于同一点 A，两种情形下的 C 点是不同的，因为过 A 的等温线和绝热线在 B 的体积处经过不同的点。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1738036",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-and-cycles",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_11a-3d61.jpg",
+    "alt": "图中是压强对体积的图，压强在 Y 轴上，体积在 X 轴上。一个平行四边形连接图上的四个点 A、B、C 和 D。A 点的 y 等于 2.6 乘以 10 的 6 次方牛每平方米，x 等于 1.0 乘以 10 的负 3 次方立方米。一条向下倾斜的线把 A 连到 B。B 点的 y 等于 2.0，x 等于 4。一条竖直线把 B 连到 C。C 点的 y 等于 0.6，x 等于 4。一条线把 C 连到 D。D 点的 y 等于 1.0，x 等于 1.0。一条竖直线把 D 连到 A。一条对角线还把 D 和 B 连起来。"
+   },
+   "prompt": "在下图中，下列哪个循环的净输出功最大？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "ABDA",
+     "BCDB",
+     "（a） 和（b） 相等",
+     "ADCBA"
+    ],
+    "correct": 0,
+    "hint": "循环的净功是它的环路内部的面积，并且只有路径沿顺时针方向进行时才为正。直线 DB 把平行四边形分成两个三角形；比较它们的面积，并检查循环 ADCBA 沿哪个方向进行。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2537938",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-and-cycles",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_10a.jpg",
+    "alt": "图中是压强对体积的图。压强沿 Y 轴，体积画在 X 轴上。图由矩形 A B C F 叠加在一个稍大的矩形 A B D E 上构成。直线 A B、C F 和 D E 平行于 X 轴，直线 B C D 和 A F E 平行于 Y 轴。"
+   },
+   "prompt": "看下面的图，给图中给出的三个压强和两个体积赋值。然后用这些值计算循环 ABCFEDCFA 的净功。这个功与系统的热量输出或输入相比如何？你会改变哪个（些）值，使每个循环的净功最大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沿 AB 取 $P_1 = 2.0\\times10^{6}\\ \\text{N/m}^2$，沿 FC 取 $P_2 = 1.2\\times10^{6}\\ \\text{N/m}^2$，沿 ED 取 $P_3 = 1.0\\times10^{6}\\ \\text{N/m}^2$，左侧 AFE 处取 $V_1 = 1.0\\times10^{-3}\\ \\text{m}^3$，右侧 BCD 处取 $V_2 = 4.0\\times10^{-3}\\ \\text{m}^3$，于是每一水平段跨越 $\\Delta V = 3.0\\times10^{-3}\\ \\text{m}^3$。用这些值，净功为 $1.8\\times10^{3}\\ \\text{J}$。沿每一水平段所做的功是 $P\\Delta V$，膨胀为正，压缩为负，竖直段不做功。路径沿 AB 做功 $+P_1\\Delta V = 6.0\\times10^{3}\\ \\text{J}$，沿 CF 做功 $-P_2\\Delta V = -3.6\\times10^{3}\\ \\text{J}$，沿 ED 做功 $+P_3\\Delta V = 3.0\\times10^{3}\\ \\text{J}$，第二次沿 CF 做功 $-3.6\\times10^{3}\\ \\text{J}$。总和为 $\\kW = (P_1 - 2P_2 + P_3)\\Delta V = 1.8\\times10^{3}\\ \\text{J}$。这是顺时针环路 ABCF 的 $2.4\\times10^{3}\\ \\text{J}$，减去逆时针环路 FEDC 的 $0.6\\times10^{3}\\ \\text{J}$。系统终止于 A，所以 $\\kdEint = 0$，第一定律给出 $\\kW = \\kQin - \\kQout$：整个循环中传入系统的净热传递量也是 $1.8\\times10^{3}\\ \\text{J}$，传入的热传递量 $\\kQin$ 比功大出热量输出 $\\kQout$。要使每个循环的净功尽可能大，就要提高 $P_1$ 或加宽 $V_2 - V_1$，这会增大顺时针环路，并把 $P_3$ 提高到 $P_2$，这会消除把功收回去的逆时针环路。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738045355",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isothermal-adiabatic",
+   "prompt": "一个汽车轮胎里有 $0.0380\\ \\text{m}^3$ 的氮气，表压强为 $2.20 \\times 10^{5}\\ \\text{N/m}^2$（约 32 psi）。这些气体比相同体积、表压强为零（相当于正常的大气压）的气体多出多少内能？（氮气是双原子气体，其内能用 $\\kEint = \\tfrac{5}{2}Nk\\kTemp$。）",
+   "answer": {
+    "type": "number",
+    "value": 20900,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "理想气体定律给出 $Nk\\kTemp = PV$，所以氮气的内能是 $\\tfrac{5}{2}PV$，多出的内能是 $\\tfrac{5}{2}\\Delta P\\,V$，其中 $\\Delta P$ 是表压强。",
+    "solution": "$2.09 \\times 10^{4}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737713001",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pv-diagrams",
+   "prompt": "驱动老式蒸汽机车的蒸汽，以 $1.75 \\times 10^{6}\\ \\text{N/m}^2$（约 250 psi）的恒定表压强供给半径为 0.200 m 的活塞。（a）通过计算 $\\kPr\\Delta V$，求活塞移动 0.800 m 时蒸汽所做的功。请注意，由于使用的是表压强，这是净输出功。（b）现在通过计算所施加的力乘以移动的距离来求功的大小。答案与（a）问相同吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 176000,
+      "unit": "J",
+      "hint": "该过程是等压的，所以 $\\kW = \\kPr\\Delta V$，体积变化等于活塞的面积 $\\pi r^2$ 乘以它移动的距离。"
+     },
+     {
+      "part": "(b)",
+      "value": 176000,
+      "unit": "J",
+      "hint": "活塞所受的力为 $\\kF = \\kPr A$，其中 $A = \\pi r^2$，功为 $\\kF\\kd$。"
+     }
+    ],
+    "solution": "（a） $\\kW = \\kPr\\Delta V = 1.76 \\times 10^{5}\\ \\text{J}$（b） $\\kW = \\kF\\kd = 1.76 \\times 10^{5}\\ \\text{J}$。是的，答案相同。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737041721",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-and-cycles",
+   "figure": {
+    "src": "/media/ch15/Figure_16_02_11a-3d61.jpg",
+    "alt": "图中是压强对体积的图，压强在 Y 轴上，体积在 X 轴上。一个平行四边形连接图上的四个点 A、B、C 和 D。A 点的 y 等于 2.6 乘以 10 的 6 次方牛每平方米，x 等于 1.0 乘以 10 的负 3 次方立方米。一条向下倾斜的线把 A 连到 B。B 点的 y 等于 2.0，x 等于 4。一条竖直线把 B 连到 C。C 点的 y 等于 0.6，x 等于 4。一条线把 C 连到 D。D 点的 y 等于 1.0，x 等于 1.0。一条竖直线把 D 连到 A。一条对角线还把 D 和 B 连起来。"
+   },
+   "prompt": "计算热机沿下图中路径 ABCDA 运行的净输出功。",
+   "answer": {
+    "type": "number",
+    "value": 4500,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "沿循环一周的净功是环路内部的面积。由于 BC 和 DA 处于恒定体积，没有贡献，所以它等于 AB 下方的面积减去 DC 下方的面积，每个面积都是一个梯形，其两条平行边是它两端的两个压强。",
+    "solution": "$\\kW = 4.5 \\times 10^{3}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737818589",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-engine",
+   "prompt": "<strong>不合理的结果</strong> 说循环热机在输入 24.0 kJ 热传递的情况下做了 4.00 kJ 的功，同时有 16.0 kJ 热传递给环境，这种说法有什么问题？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kW$ 不等于热量输入与热量输出之差。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "heat-engine"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "first-law-of-thermodynamics",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "isobaric-work"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "isothermal-process"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "adiabatic-process"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "heat-engine",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "isochoric-process"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "isothermal-process"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "internal-energy-monatomic-ideal-gas",
+   "weight": 3
+  },
+  {
+   "exercise": "cq5",
+   "concept": "adiabatic-process"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "internal-energy-monatomic-ideal-gas",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "net-work-of-a-cycle"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "work-depends-on-path",
+   "weight": 3
+  },
+  {
+   "exercise": "cq7",
+   "concept": "adiabatic-process"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "isothermal-process"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "isobaric-work",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "isochoric-process",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "pv-diagram-work-as-area"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "isobaric-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "pv-diagram-work-as-area"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "isobaric-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "net-work-of-a-cycle"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "pv-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "work-depends-on-path"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "isothermal-process",
+   "weight": 3
+  },
+  {
+   "exercise": "ap4",
+   "concept": "adiabatic-process",
+   "weight": 3
+  },
+  {
+   "exercise": "ap4",
+   "concept": "net-work-of-a-cycle",
+   "weight": 3
+  },
+  {
+   "exercise": "ap5",
+   "concept": "net-work-of-a-cycle"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "pv-diagram-work-as-area",
+   "weight": 3
+  },
+  {
+   "exercise": "ap6",
+   "concept": "net-work-of-a-cycle"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "first-law-of-thermodynamics",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "internal-energy-monatomic-ideal-gas"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "isobaric-work"
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-engine",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "net-work-of-a-cycle"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pv-diagram-work-as-area",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-engine"
+  },
+  {
+   "exercise": "p7",
+   "concept": "first-law-of-thermodynamics",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "gas",
+   "label": "气体",
+   "figures": [
+    "sim-isobaric",
+    "sim-piston"
+   ]
+  },
+  {
+   "id": "piston",
+   "label": "活塞",
+   "figures": [
+    "sim-isobaric",
+    "sim-piston"
+   ]
+  },
+  {
+   "id": "isotherm",
+   "label": "等温路径 AB",
+   "figures": [
+    "sim-isotherm-adiabat"
+   ]
+  },
+  {
+   "id": "adiabat",
+   "label": "绝热路径 AC",
+   "figures": [
+    "sim-isotherm-adiabat"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "isobaric-work",
+   "what": "气体在恒定压强下所做的功",
+   "source": "《大学物理（第2版）》，15.2 热力学第一定律与几种简单过程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "压强恒定，所以气体作用在活塞上的力是恒定的。",
+       "src": "15.2"
+      },
+      {
+       "tex": "\\kF = \\kPr\\karea",
+       "src": "11.3"
+      },
+      {
+       "tex": "\\karea\\kd = \\kdvol",
+       "src": "15.2，图 15.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}",
+      "uses": [
+       0
+      ],
+      "src": "7.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{P}{\\kPr}\\mk{A}{\\karea}\\mk{d}{\\kd}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "F": [
+         "P",
+         "A"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{P}{\\kPr}\\mk{A}{\\kdvol}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "d": "A"
+       }
+      }
+     ],
+     "src": "15.2"
+    }
+   ]
+  },
+  {
+   "id": "isothermal-first-law",
+   "what": "等温过程中的热量与功",
+   "source": "《大学物理（第2版）》，15.2 热力学第一定律与几种简单过程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "原子的动能是单原子理想气体内能的唯一形式，所以 $N$ 个原子的内能是一个原子平均动能的 $N$ 倍。",
+       "src": "15.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kvb^2} = \\mk{kT}{\\tfrac{3}{2}k\\kTemp}",
+      "uses": [],
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEint} = \\mk{ke}{N\\tfrac{1}{2}\\km\\kvb^2} = \\mk{kT}{\\tfrac{3}{2}Nk\\kTemp}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "15.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "在等温过程中，温度 $\\kTemp$ 保持恒定。",
+       "src": "15.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dE}{\\kdEint} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+      "uses": [],
+      "src": "15.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dE}{0} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "$\\kTemp$ 恒定时，$\\kEint = \\tfrac{3}{2}Nk\\kTemp$ 不变。"
+      },
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{W}{\\kW}",
+       "uses": []
+      }
+     ],
+     "src": "15.2"
+    }
+   ]
+  }
+ ]
+}

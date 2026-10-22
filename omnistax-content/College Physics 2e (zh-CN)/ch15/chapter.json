@@ -1,0 +1,856 @@
+{
+  "id": "15",
+  "dir": "ch15",
+  "title": "热力学",
+  "intro": {
+    "module": "m42231",
+    "slug": "15-introduction-to-thermodynamics"
+  },
+  "sections": [
+    {
+      "id": "15.1",
+      "module": "m42232",
+      "title": "热力学第一定律",
+      "slug": "15-1-the-first-law-of-thermodynamics"
+    },
+    {
+      "id": "15.2",
+      "module": "m42233",
+      "title": "热力学第一定律与几种简单过程",
+      "slug": "15-2-the-first-law-of-thermodynamics-and-some-simple-processes"
+    },
+    {
+      "id": "15.3",
+      "module": "m42234",
+      "title": "热力学第二定律导论：热机及其效率",
+      "slug": "15-3-introduction-to-the-second-law-of-thermodynamics-heat-engines-and-their-efficiency"
+    },
+    {
+      "id": "15.4",
+      "module": "m42235",
+      "title": "卡诺的理想热机：热力学第二定律的重新表述",
+      "slug": "15-4-carnots-perfect-heat-engine-the-second-law-of-thermodynamics-restated"
+    },
+    {
+      "id": "15.5",
+      "module": "m42236",
+      "title": "热力学的应用：热泵和冰箱",
+      "slug": "15-5-applications-of-thermodynamics-heat-pumps-and-refrigerators"
+    },
+    {
+      "id": "15.6",
+      "module": "m42237",
+      "title": "熵与热力学第二定律：无序与能量的不可用性",
+      "slug": "15-6-entropy-and-the-second-law-of-thermodynamics-disorder-and-the-unavailability-of-energy"
+    },
+    {
+      "id": "15.7",
+      "module": "m42238",
+      "title": "熵与热力学第二定律的统计解释：其背后的解释",
+      "slug": "15-7-statistical-interpretation-of-entropy-and-the-second-law-of-thermodynamics-the-underlying-explanation"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "ΔE_int",
+      "concept": "internal-energy",
+      "meaning": "系统内能的变化",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "E_int",
+      "concept": "internal-energy",
+      "meaning": "系统的内能，即其原子和分子的动能与势能之和",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-internal-energy"
+    },
+    {
+      "sym": "E_int1",
+      "concept": "internal-energy",
+      "meaning": "系统在状态 1 的内能，它与系统如何到达该状态无关",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "E_int2",
+      "concept": "internal-energy",
+      "meaning": "系统在状态 2 的内能",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "Q_heat",
+      "concept": "heat",
+      "meaning": "流入系统的净热量，即流入和流出系统的所有热传递量之和；净热传递量流入系统时为正",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "系统所做的净功，即对系统和由系统所做的所有功之和；净功由系统所做时为正",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "Q_in",
+      "concept": "heat",
+      "meaning": "流入系统的热传递量",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "Q_out",
+      "concept": "heat",
+      "meaning": "流出系统的热传递量",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "W_out",
+      "concept": "work",
+      "meaning": "系统对外界所做的功",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "W_in",
+      "concept": "work",
+      "meaning": "对系统所做的功",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-first-law"
+    },
+    {
+      "sym": "Q_heat1",
+      "concept": "heat",
+      "meaning": "两步过程的第一步中的净热传递量",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "Q_heat2",
+      "concept": "heat",
+      "meaning": "两步过程的第二步中的净热传递量",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "W_1",
+      "concept": "work",
+      "meaning": "系统在第一步中所做的净功",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "W_2",
+      "concept": "work",
+      "meaning": "系统在第二步中所做的净功",
+      "unit": "J",
+      "section": "15.1",
+      "anchor": "15.1-path-independence"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "气体对活塞所做的功，气体膨胀并对外界做功时为正",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "气缸内气体的压强，在等压过程中恒定",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "ΔV",
+      "concept": "volume",
+      "meaning": "气体体积的变化，膨胀时为正",
+      "unit": "m³",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "气体对活塞施加的力，F = PA",
+      "unit": "N",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "气缸的横截面积",
+      "unit": "m²",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "d",
+      "concept": "displacement",
+      "meaning": "活塞移动的距离",
+      "unit": "m",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "P_ext",
+      "concept": "pressure",
+      "meaning": "罐外的压强，在许多其他教材使用的符号约定中，膨胀的气体抵抗它而做功",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-pv-diagrams"
+    },
+    {
+      "sym": "W_AB",
+      "concept": "work",
+      "meaning": "沿循环 ABCDA 的等压路径 AB 所做的功",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "W_BC",
+      "concept": "work",
+      "meaning": "沿等容路径 BC 所做的功，为零",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "W_CD",
+      "concept": "work",
+      "meaning": "沿等压路径 CD 所做的功，因体积减小而为负",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "W_DA",
+      "concept": "work",
+      "meaning": "沿等容路径 DA 所做的功，为零",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "P_AB",
+      "concept": "pressure",
+      "meaning": "循环中沿路径 AB 的压强",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "P_CD",
+      "concept": "pressure",
+      "meaning": "循环中沿路径 CD 的压强",
+      "unit": "N/m²",
+      "section": "15.2",
+      "anchor": "15.2-path-and-cycles"
+    },
+    {
+      "sym": "E_int",
+      "concept": "internal-energy",
+      "meaning": "单原子理想气体的总内能，即其原子的动能",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "v̄",
+      "concept": "rms-speed",
+      "meaning": "气体中原子的平均速率",
+      "unit": "m/s",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "气体中一个原子的质量",
+      "unit": "kg",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "气体的热力学温度，在等温过程中恒定",
+      "unit": "K",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "Q_heat",
+      "concept": "heat",
+      "meaning": "流入气体的净热传递量，在绝热过程中为零",
+      "unit": "J",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "N_count",
+      "concept": "ideal-gas-law",
+      "meaning": "气体中的原子数",
+      "unit": "",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "k_boltz",
+      "concept": "boltzmann-constant",
+      "meaning": "玻尔兹曼常量，1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "15.2",
+      "anchor": "15.2-isothermal-adiabatic"
+    },
+    {
+      "sym": "Q_h",
+      "concept": "heat",
+      "meaning": "来自热物体即高温热库、流入热机的热传递量",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "Q_c",
+      "concept": "heat",
+      "meaning": "从热机流入冷物体即低温热库的热传递量",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "热机在一个循环中所做的净功",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines"
+    },
+    {
+      "sym": "T_h",
+      "concept": "temperature",
+      "meaning": "高温热库的温度",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "T_c",
+      "concept": "temperature",
+      "meaning": "低温热库的温度",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-heat-engines",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "Q_heat",
+      "concept": "heat",
+      "meaning": "循环中的净热传递量，即 Q_h 减 Q_c",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-cyclical"
+    },
+    {
+      "sym": "ΔE_int",
+      "concept": "internal-energy",
+      "meaning": "一个完整循环中内能的变化，为零",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-cyclical"
+    },
+    {
+      "sym": "Eff",
+      "concept": "heat-engine-efficiency",
+      "meaning": "热机的转换效率，即其净输出功除以流入热机的热传递量",
+      "unit": "",
+      "section": "15.3",
+      "anchor": "15.3-efficiency"
+    },
+    {
+      "sym": "Q_hprime",
+      "concept": "heat",
+      "meaning": "温度范围较大的奥托循环中流入热机的热传递量",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-otto",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "Q_cprime",
+      "concept": "heat",
+      "meaning": "温度范围较大的奥托循环中流出热机的热传递量",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-otto",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "W_prime",
+      "concept": "work",
+      "meaning": "温度范围较大的奥托循环中较大的净输出功",
+      "unit": "J",
+      "section": "15.3",
+      "anchor": "15.3-otto"
+    },
+    {
+      "sym": "T_hprime",
+      "concept": "temperature",
+      "meaning": "第二个奥托循环中较高的高温热库温度",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-otto",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "T_cprime",
+      "concept": "temperature",
+      "meaning": "第二个奥托循环中较低的低温热库温度",
+      "unit": "K",
+      "section": "15.3",
+      "anchor": "15.3-otto",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "Eff_C",
+      "concept": "carnot-efficiency",
+      "meaning": "卡诺效率，即工作在两个温度之间的热机的最大理论效率",
+      "unit": "",
+      "section": "15.4",
+      "anchor": "15.4-maximum-efficiency"
+    },
+    {
+      "sym": "T_h",
+      "concept": "temperature",
+      "meaning": "高温热库的温度，以开尔文计",
+      "unit": "K",
+      "section": "15.4",
+      "anchor": "15.4-maximum-efficiency",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "T_c",
+      "concept": "temperature",
+      "meaning": "低温热库的温度，以开尔文计",
+      "unit": "K",
+      "section": "15.4",
+      "anchor": "15.4-maximum-efficiency",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "Q_h",
+      "concept": "heat",
+      "meaning": "在等温路径 AB 上流入工质的热传递量",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-carnot-cycle",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "Q_c",
+      "concept": "heat",
+      "meaning": "在等温路径 CD 上流出工质的热传递量，常称为废热",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-carnot-cycle",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "卡诺热机在一个循环中所做的净功，即路径 ABCDA 内部的面积",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-carnot-cycle"
+    },
+    {
+      "sym": "Q_f",
+      "concept": "heat",
+      "meaning": "由输出机构中的摩擦和其他耗散过程流向低温热库的热传递量",
+      "unit": "J",
+      "section": "15.4",
+      "anchor": "15.4-real-engines"
+    },
+    {
+      "sym": "Q_h",
+      "concept": "heat",
+      "meaning": "流入高温热库的热传递量，即热泵所加热的温暖空间",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-heat-engines-backward",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "Q_c",
+      "concept": "heat",
+      "meaning": "来自低温热库的热传递量，即寒冷的室外空气或冰箱内部",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-heat-engines-backward",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "把热传递量从冷处移向热处所需的输入功",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-heat-engines-backward",
+      "redefines": true
+    },
+    {
+      "sym": "W_prime",
+      "concept": "work",
+      "meaning": "输入功中在摩擦分走其一份之后到达热泵的那一部分",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance",
+      "redefines": true
+    },
+    {
+      "sym": "Q_f",
+      "concept": "heat",
+      "meaning": "在功到达热泵之前流失到低温热库的摩擦热",
+      "unit": "J",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "COP_hp",
+      "concept": "coefficient-of-performance-heat-pump",
+      "meaning": "热泵的性能系数，即流入温暖空间的热传递量除以输入功",
+      "unit": "",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "COP_ref",
+      "concept": "coefficient-of-performance-refrigerator",
+      "meaning": "空调或冰箱的性能系数，即来自冷环境的热传递量除以输入功",
+      "unit": "",
+      "section": "15.5",
+      "anchor": "15.5-refrigerators"
+    },
+    {
+      "sym": "Eff_C",
+      "concept": "carnot-efficiency",
+      "meaning": "工作在相同两个温度之间的卡诺热机的效率，其倒数是最佳性能系数",
+      "unit": "",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance"
+    },
+    {
+      "sym": "T_h",
+      "concept": "temperature",
+      "meaning": "热泵的高温热库温度，高于室内温度",
+      "unit": "K",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "T_c",
+      "concept": "temperature",
+      "meaning": "热泵的低温热库温度，低于室外温度",
+      "unit": "K",
+      "section": "15.5",
+      "anchor": "15.5-coefficient-of-performance",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "EER",
+      "concept": "energy-efficiency-rating",
+      "meaning": "能效比，即每小时来自冷环境的以英热单位计的热传递量除以以瓦计的输入功率",
+      "unit": "Btu/(h·W)",
+      "section": "15.5",
+      "anchor": "15.5-refrigerators"
+    },
+    {
+      "sym": "S_ent",
+      "concept": "entropy",
+      "meaning": "系统的熵，即其无序程度和其能量不可用于做功的程度的量度；一种态函数",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "ΔS",
+      "concept": "change-in-entropy",
+      "meaning": "系统在可逆过程中的熵变，即热传递量除以它发生时的热力学温度",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "Q_heat",
+      "concept": "heat",
+      "meaning": "热传递量，流入系统为正，流出为负",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "可逆过程发生时的热力学温度，或温度变化不大时的平均温度",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-defined"
+    },
+    {
+      "sym": "ΔS_h",
+      "concept": "change-in-entropy",
+      "meaning": "高温热库的熵变，因热传递从它流出而为损失",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "ΔS_c",
+      "concept": "change-in-entropy",
+      "meaning": "低温热库的熵变，因热传递流入它而为增加",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "ΔS_tot",
+      "concept": "change-in-entropy",
+      "meaning": "系统及其周围环境的总熵变",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law"
+    },
+    {
+      "sym": "Q_h",
+      "concept": "heat",
+      "meaning": "流出高温热库的热传递量，取绝对值",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "Q_c",
+      "concept": "heat",
+      "meaning": "流入低温热库的热传递量，取绝对值",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "T_h",
+      "concept": "temperature",
+      "meaning": "高温热库的温度",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law",
+      "ref": "hot-reservoir"
+    },
+    {
+      "sym": "T_c",
+      "concept": "temperature",
+      "meaning": "低温热库的温度",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-entropy-second-law",
+      "ref": "cold-reservoir"
+    },
+    {
+      "sym": "W_unavail",
+      "concept": "unavailable-energy",
+      "meaning": "熵增加时变得不可用于做功的能量的量",
+      "unit": "J",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work"
+    },
+    {
+      "sym": "T_0temp",
+      "concept": "temperature",
+      "meaning": "所用的最低温度",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work"
+    },
+    {
+      "sym": "ΔS_syst",
+      "concept": "change-in-entropy",
+      "meaning": "宇宙某一部分即系统的熵变，可以为负",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-life-and-evolution"
+    },
+    {
+      "sym": "ΔS_envir",
+      "concept": "change-in-entropy",
+      "meaning": "环境的熵变，为正，且量值更大",
+      "unit": "J/K",
+      "section": "15.6",
+      "anchor": "15.6-life-and-evolution"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "熔化的冰的质量",
+      "unit": "kg",
+      "section": "15.6",
+      "anchor": "15.6-order-to-disorder"
+    },
+    {
+      "sym": "L_f",
+      "concept": "heat-of-fusion",
+      "meaning": "熔化热，水为 334 kJ/kg",
+      "unit": "J/kg",
+      "section": "15.6",
+      "anchor": "15.6-order-to-disorder"
+    },
+    {
+      "sym": "S_ent",
+      "concept": "entropy",
+      "meaning": "系统处于给定宏观态时的熵",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-disorder-in-a-gas"
+    },
+    {
+      "sym": "W_micro",
+      "concept": "macrostate-and-microstate",
+      "meaning": "对应于给定宏观态的微观态数，与该宏观态出现的概率成正比",
+      "unit": "",
+      "section": "15.7",
+      "anchor": "15.7-coin-tosses"
+    },
+    {
+      "sym": "ΔS",
+      "concept": "change-in-entropy",
+      "meaning": "初宏观态与末宏观态之间的熵变",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "S_i",
+      "concept": "entropy",
+      "meaning": "初宏观态的熵",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change",
+      "ref": "initial"
+    },
+    {
+      "sym": "S_f",
+      "concept": "entropy",
+      "meaning": "末宏观态的熵",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change",
+      "ref": "final"
+    },
+    {
+      "sym": "W_microi",
+      "concept": "macrostate-and-microstate",
+      "meaning": "初宏观态的微观态数",
+      "unit": "",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "W_microf",
+      "concept": "macrostate-and-microstate",
+      "meaning": "末宏观态的微观态数",
+      "unit": "",
+      "section": "15.7",
+      "anchor": "15.7-entropy-change"
+    },
+    {
+      "sym": "k_boltz",
+      "concept": "boltzmann-constant",
+      "meaning": "玻尔兹曼常量，1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "15.7",
+      "anchor": "15.7-disorder-in-a-gas"
+    },
+    {
+      "sym": "T_hprime",
+      "concept": "temperature",
+      "meaning": "热传递不可逆地降到的较冷热库的温度，之后它才进入第二台卡诺热机",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work",
+      "ref": "colder-reservoir"
+    },
+    {
+      "sym": "T_cprime",
+      "concept": "temperature",
+      "meaning": "250 K 的热库温度，它决定例题 15.7 (b) 部分中第二台热机的卡诺效率",
+      "unit": "K",
+      "section": "15.6",
+      "anchor": "15.6-unavailable-work",
+      "ref": "colder-reservoir"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "系统的压强，内能所依赖的宏观量之一",
+      "unit": "N/m²",
+      "section": "15.1"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "系统的体积，内能所依赖的宏观量之一",
+      "unit": "m³",
+      "section": "15.1"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "系统的温度，内能所依赖的宏观量之一",
+      "unit": "K",
+      "section": "15.1",
+      "redefines": true
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "气体的体积，它与压强的乘积 PV 具有能量的单位，并且沿等温线恒定",
+      "unit": "m³",
+      "section": "15.2"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "气缸中气体的体积，奥托循环 PV 图的横轴",
+      "unit": "m³",
+      "section": "15.3",
+      "redefines": true
+    }
+  ]
+}
