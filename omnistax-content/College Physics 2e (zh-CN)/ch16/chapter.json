@@ -1,0 +1,690 @@
+{
+ "id": "16",
+ "dir": "ch16",
+ "title": "振动与波",
+ "intro": {
+  "module": "m42239",
+  "slug": "16-introduction-to-oscillatory-motion-and-waves"
+ },
+ "sections": [
+  {
+   "id": "16.1",
+   "module": "m42240",
+   "title": "胡克定律：再论应力与应变",
+   "slug": "16-1-hookes-law-stress-and-strain-revisited"
+  },
+  {
+   "id": "16.2",
+   "module": "m42241",
+   "title": "振动中的周期与频率",
+   "slug": "16-2-period-and-frequency-in-oscillations"
+  },
+  {
+   "id": "16.3",
+   "module": "m42242",
+   "title": "简谐运动：一种特殊的周期运动",
+   "slug": "16-3-simple-harmonic-motion-a-special-periodic-motion"
+  },
+  {
+   "id": "16.4",
+   "module": "m42243",
+   "title": "单摆",
+   "slug": "16-4-the-simple-pendulum"
+  },
+  {
+   "id": "16.5",
+   "module": "m42244",
+   "title": "能量与简谐振子",
+   "slug": "16-5-energy-and-the-simple-harmonic-oscillator"
+  },
+  {
+   "id": "16.6",
+   "module": "m42245",
+   "title": "匀速圆周运动与简谐运动",
+   "slug": "16-6-uniform-circular-motion-and-simple-harmonic-motion"
+  },
+  {
+   "id": "16.7",
+   "module": "m42246",
+   "title": "阻尼简谐运动",
+   "slug": "16-7-damped-harmonic-motion"
+  },
+  {
+   "id": "16.8",
+   "module": "m42247",
+   "title": "受迫振动与共振",
+   "slug": "16-8-forced-oscillations-and-resonance"
+  },
+  {
+   "id": "16.9",
+   "module": "m42248",
+   "title": "波",
+   "slug": "16-9-waves"
+  },
+  {
+   "id": "16.10",
+   "module": "m42249",
+   "title": "叠加与干涉",
+   "slug": "16-10-superposition-and-interference"
+  },
+  {
+   "id": "16.11",
+   "module": "m42250",
+   "title": "波的能量：强度",
+   "slug": "16-11-energy-in-waves-intensity"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "F",
+   "concept": "restoring-force",
+   "meaning": "回复力；胡克定律中的负号表示它的方向与位移相反",
+   "unit": "N",
+   "section": "16.1",
+   "anchor": "16.1-hookes-law"
+  },
+  {
+   "sym": "F_app",
+   "concept": "force",
+   "meaning": "外加力，在系统发生形变时与回复力大小相等、方向相反",
+   "unit": "N",
+   "section": "16.1",
+   "anchor": "16.1-elastic-energy"
+  },
+  {
+   "sym": "k",
+   "concept": "force-constant",
+   "meaning": "劲度系数，系统的刚度；力—位移图像的斜率",
+   "unit": "N/m",
+   "section": "16.1",
+   "anchor": "16.1-hookes-law"
+  },
+  {
+   "sym": "x",
+   "concept": "displacement",
+   "meaning": "偏离平衡位置的位移，或形变",
+   "unit": "m",
+   "section": "16.1",
+   "anchor": "16.1-hookes-law"
+  },
+  {
+   "sym": "PE_el",
+   "concept": "elastic-potential-energy",
+   "meaning": "储存在服从胡克定律的形变系统中的弹性势能",
+   "unit": "J",
+   "section": "16.1",
+   "anchor": "16.1-elastic-energy"
+  },
+  {
+   "sym": "W",
+   "concept": "work",
+   "meaning": "使系统发生形变所做的功；外加力—形变图像下的面积",
+   "unit": "J",
+   "section": "16.1",
+   "anchor": "16.1-elastic-energy"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "质量",
+   "unit": "kg",
+   "section": "16.1",
+   "anchor": "16.1-ex-car"
+  },
+  {
+   "sym": "T",
+   "concept": "period",
+   "meaning": "周期，完成一次振动所用的时间",
+   "unit": "s",
+   "section": "16.2",
+   "anchor": "16.2-periodic-motion"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "频率，单位时间内的振动次数",
+   "unit": "Hz",
+   "section": "16.2",
+   "anchor": "16.2-frequency"
+  },
+  {
+   "sym": "X",
+   "concept": "amplitude",
+   "meaning": "振幅，偏离平衡位置的最大位移",
+   "unit": "m",
+   "section": "16.3",
+   "anchor": "16.3-shm"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "自振子从 x = X 处释放起的时间",
+   "unit": "s",
+   "section": "16.3",
+   "anchor": "16.3-shm-waves"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "振动物体的速度；在折返点为零，经过平衡位置时最大",
+   "unit": "m/s",
+   "section": "16.3",
+   "anchor": "16.3-shm-waves"
+  },
+  {
+   "sym": "v_max",
+   "concept": "instantaneous-speed",
+   "meaning": "最大速率，物体经过平衡位置时达到",
+   "unit": "m/s",
+   "section": "16.3",
+   "anchor": "16.3-shm-waves"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "振动物体的加速度，方向始终与位移相反",
+   "unit": "m/s²",
+   "section": "16.3",
+   "anchor": "16.3-shm-waves"
+  },
+  {
+   "sym": "s",
+   "concept": "arc-length",
+   "meaning": "摆锤从最低点起沿圆弧的位移",
+   "unit": "m",
+   "section": "16.4",
+   "anchor": "16.4-pendulum-force"
+  },
+  {
+   "sym": "θ",
+   "concept": "rotation-angle",
+   "meaning": "绳与竖直方向的夹角；以弧度计，θ = s/L",
+   "unit": "rad",
+   "section": "16.4",
+   "anchor": "16.4-pendulum-force"
+  },
+  {
+   "sym": "L",
+   "concept": "length",
+   "meaning": "摆长，从支点到摆锤中心",
+   "unit": "m",
+   "section": "16.4",
+   "anchor": "16.4-small-angle"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度，除非另有说明取 9.80 m/s²",
+   "unit": "m/s²",
+   "section": "16.4",
+   "anchor": "16.4-pendulum-force"
+  },
+  {
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "meaning": "振动物体的动能，½mv²",
+   "unit": "J",
+   "section": "16.5",
+   "anchor": "16.5-shm-energy"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "摆锤的角速度，v = Lω；也是振动的角频率 2π/T",
+   "unit": "rad/s",
+   "section": "16.5",
+   "anchor": "16.5-shm-energy"
+  },
+  {
+   "sym": "ω_max",
+   "concept": "angular-velocity",
+   "meaning": "摆的最大角速度，在最低点达到",
+   "unit": "rad/s",
+   "section": "16.5",
+   "anchor": "16.5-max-speed"
+  },
+  {
+   "sym": "θ_max",
+   "concept": "rotation-angle",
+   "meaning": "摆的摆动的最大角度，即它的角振幅",
+   "unit": "rad",
+   "section": "16.5",
+   "anchor": "16.5-max-speed"
+  },
+  {
+   "sym": "W_nc",
+   "concept": "work-by-nonconservative-forces",
+   "meaning": "非保守力（这里是阻尼力）所做的功；对阻尼振子为负，因为它从系统中带走机械能",
+   "section": "16.7",
+   "unit": "J",
+   "anchor": "16.7-damping"
+  },
+  {
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "meaning": "振子的动能",
+   "section": "16.7",
+   "unit": "J",
+   "anchor": "16.7-damping"
+  },
+  {
+   "sym": "PE",
+   "concept": "potential-energy",
+   "meaning": "振子的势能，弹簧上的物体为弹性势能",
+   "section": "16.7",
+   "unit": "J",
+   "anchor": "16.7-damping"
+  },
+  {
+   "sym": "f_fric",
+   "concept": "kinetic-friction",
+   "meaning": "物体与表面之间的摩擦力，μ_k mg",
+   "section": "16.7",
+   "unit": "N",
+   "anchor": "16.7-friction-example"
+  },
+  {
+   "sym": "μ_k",
+   "concept": "coefficient-of-friction",
+   "meaning": "物体与表面之间的动摩擦因数",
+   "section": "16.7",
+   "anchor": "16.7-friction-example"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "弹簧上物体的质量",
+   "section": "16.7",
+   "unit": "kg",
+   "anchor": "16.7-friction-example"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "meaning": "重力加速度，它决定法向力，从而决定摩擦力",
+   "section": "16.7",
+   "type": "acceleration",
+   "unit": "m/s²",
+   "anchor": "16.7-friction-example"
+  },
+  {
+   "sym": "k",
+   "concept": "force-constant",
+   "meaning": "弹簧的劲度系数",
+   "section": "16.7",
+   "unit": "N/m",
+   "anchor": "16.7-friction-example"
+  },
+  {
+   "sym": "X",
+   "concept": "amplitude",
+   "meaning": "物体从静止释放时的位移，即初始振幅",
+   "section": "16.7",
+   "unit": "m",
+   "anchor": "16.7-damping"
+  },
+  {
+   "sym": "x",
+   "concept": "displacement",
+   "meaning": "偏离平衡位置的位移；最终位置在摩擦力与弹簧力平衡处，为 μ_k mg/k",
+   "section": "16.7",
+   "unit": "m",
+   "anchor": "16.7-damping"
+  },
+  {
+   "sym": "d",
+   "concept": "distance-traveled",
+   "meaning": "物体在停下之前来回运动经过的总路程",
+   "section": "16.7",
+   "unit": "m",
+   "anchor": "16.7-friction-example"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "周期性驱动力的频率",
+   "section": "16.8",
+   "unit": "Hz",
+   "anchor": "16.8-driven"
+  },
+  {
+   "sym": "f_0",
+   "concept": "natural-frequency",
+   "meaning": "固有频率，系统在没有驱动力和阻尼力时振动的频率",
+   "section": "16.8",
+   "unit": "Hz",
+   "anchor": "16.8-driven"
+  },
+  {
+   "sym": "X",
+   "concept": "amplitude",
+   "meaning": "受迫振动的振幅，在驱动频率等于固有频率时最大，阻尼越小越大",
+   "section": "16.8",
+   "unit": "m",
+   "anchor": "16.8-resonance-curve"
+  },
+  {
+   "sym": "v_w",
+   "concept": "wave-velocity",
+   "meaning": "波速，扰动运动的速率；也称传播速度或传播速率",
+   "section": "16.9",
+   "unit": "m/s",
+   "anchor": "16.9-wave"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "波长，波中相邻的相同部分之间的距离，沿平行于传播方向测量",
+   "section": "16.9",
+   "unit": "m",
+   "anchor": "16.9-wave-speed"
+  },
+  {
+   "sym": "T",
+   "concept": "period",
+   "meaning": "波的周期，波经过时完成一次完整的上下运动所用的时间",
+   "section": "16.9",
+   "unit": "s",
+   "anchor": "16.9-wave"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "波的频率，1/T",
+   "section": "16.9",
+   "unit": "Hz",
+   "anchor": "16.9-wave"
+  },
+  {
+   "sym": "X",
+   "concept": "amplitude",
+   "meaning": "波的振动的振幅，扰动的大小，与传播速率完全无关",
+   "section": "16.9",
+   "unit": "m",
+   "anchor": "16.9-transverse-longitudinal"
+  },
+  {
+   "sym": "x",
+   "concept": "displacement",
+   "meaning": "空间中某一点的位移，是到达该点的各列波的位移之和",
+   "section": "16.10",
+   "unit": "m",
+   "anchor": "16.10-superposition"
+  },
+  {
+   "sym": "x_1",
+   "concept": "displacement",
+   "meaning": "两列波中第一列波在该点的扰动",
+   "section": "16.10",
+   "unit": "m",
+   "anchor": "16.10-superposition",
+   "ref": "wave-1"
+  },
+  {
+   "sym": "x_2",
+   "concept": "displacement",
+   "meaning": "两列波中第二列波在该点的扰动",
+   "section": "16.10",
+   "unit": "m",
+   "anchor": "16.10-superposition",
+   "ref": "wave-2"
+  },
+  {
+   "sym": "X",
+   "concept": "amplitude",
+   "meaning": "相加的两列相同的波中每一列的振幅",
+   "section": "16.10",
+   "unit": "m",
+   "anchor": "16.10-beats"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "时间",
+   "section": "16.10",
+   "unit": "s",
+   "anchor": "16.10-beats"
+  },
+  {
+   "sym": "T",
+   "concept": "period",
+   "meaning": "空间中某一点所表示的波的周期",
+   "section": "16.10",
+   "unit": "s",
+   "anchor": "16.10-beats"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "空间中某一点所表示的波的频率，1/T",
+   "section": "16.10",
+   "unit": "Hz",
+   "anchor": "16.10-beats"
+  },
+  {
+   "sym": "f_1",
+   "concept": "frequency",
+   "meaning": "两端固定的弦的基频，v_w/2L；也是发生拍的两个频率中的第一个",
+   "section": "16.10",
+   "unit": "Hz",
+   "anchor": "16.10-standing-waves"
+  },
+  {
+   "sym": "f_2",
+   "concept": "frequency",
+   "meaning": "弦的第一泛音的频率，2f_1；也是发生拍的两个频率中的第二个",
+   "section": "16.10",
+   "unit": "Hz",
+   "anchor": "16.10-standing-waves"
+  },
+  {
+   "sym": "f_3",
+   "concept": "frequency",
+   "meaning": "弦的第二泛音的频率，3f_1",
+   "section": "16.10",
+   "unit": "Hz",
+   "anchor": "16.10-standing-waves"
+  },
+  {
+   "sym": "f_B",
+   "concept": "beat-frequency",
+   "meaning": "拍频，合成波的振幅起伏的频率",
+   "section": "16.10",
+   "unit": "Hz",
+   "anchor": "16.10-beats"
+  },
+  {
+   "sym": "f_ave",
+   "concept": "frequency",
+   "meaning": "f_1 与 f_2 的平均值，合成波的频率",
+   "section": "16.10",
+   "unit": "Hz",
+   "anchor": "16.10-beats"
+  },
+  {
+   "sym": "λ_1",
+   "concept": "wavelength",
+   "meaning": "两端固定的弦所能承载的最长波长，2L",
+   "section": "16.10",
+   "unit": "m",
+   "anchor": "16.10-standing-waves"
+  },
+  {
+   "sym": "λ_2",
+   "concept": "wavelength",
+   "meaning": "第一泛音的波长，L",
+   "section": "16.10",
+   "unit": "m",
+   "anchor": "16.10-standing-waves"
+  },
+  {
+   "sym": "L_len",
+   "concept": "length",
+   "meaning": "弦在两个固定点之间的长度",
+   "section": "16.10",
+   "unit": "m",
+   "anchor": "16.10-standing-waves"
+  },
+  {
+   "sym": "v_w",
+   "concept": "wave-velocity",
+   "meaning": "弦上扰动的传播速率，张力越大越大",
+   "section": "16.10",
+   "unit": "m/s",
+   "anchor": "16.10-standing-waves"
+  },
+  {
+   "sym": "I_intens",
+   "concept": "intensity",
+   "meaning": "强度，波携带的单位面积上的功率",
+   "section": "16.11",
+   "unit": "W/m²",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "P",
+   "concept": "power",
+   "meaning": "波通过该面积所携带的功率",
+   "section": "16.11",
+   "unit": "W",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "功率通过的面积",
+   "section": "16.11",
+   "unit": "m²",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "该时间内落到该面积上的能量，IAt",
+   "section": "16.11",
+   "unit": "J",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "波作用的时间",
+   "section": "16.11",
+   "unit": "s",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "I_intensprime",
+   "concept": "intensity",
+   "meaning": "面积改变后或两列波干涉后的新强度",
+   "section": "16.11",
+   "unit": "W/m²",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "X",
+   "concept": "amplitude",
+   "meaning": "波的振幅，波的能量和强度与它的平方成正比",
+   "section": "16.11",
+   "unit": "m",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "X_prime",
+   "concept": "amplitude",
+   "meaning": "合成波的振幅，两列相同的波完全相长干涉时为 2X",
+   "section": "16.11",
+   "unit": "m",
+   "anchor": "16.11-intensity"
+  },
+  {
+   "sym": "W",
+   "concept": "work",
+   "meaning": "产生波所做的功，与振幅的平方成正比",
+   "section": "16.11",
+   "unit": "J",
+   "anchor": "16.11-wave-energy"
+  },
+  {
+   "sym": "F",
+   "concept": "restoring-force",
+   "meaning": "阻碍波的位移的回复力，kx",
+   "section": "16.11",
+   "unit": "N",
+   "anchor": "16.11-wave-energy"
+  },
+  {
+   "sym": "x",
+   "concept": "displacement",
+   "meaning": "波的位移",
+   "section": "16.11",
+   "unit": "m",
+   "anchor": "16.11-wave-energy"
+  },
+  {
+   "sym": "k",
+   "concept": "force-constant",
+   "meaning": "回复力的劲度系数",
+   "section": "16.11",
+   "unit": "N/m",
+   "anchor": "16.11-wave-energy"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "振动物体的质量",
+   "unit": "kg",
+   "section": "16.3",
+   "anchor": "16.3-shm-period"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "摆锤的质量",
+   "unit": "kg",
+   "section": "16.4",
+   "anchor": "16.4-pendulum-force"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "振动物体或摆锤的质量",
+   "unit": "kg",
+   "section": "16.5",
+   "anchor": "16.5-shm-energy"
+  },
+  {
+   "sym": "L",
+   "concept": "length",
+   "meaning": "摆长，从支点到摆锤中心",
+   "unit": "m",
+   "section": "16.5",
+   "anchor": "16.5-shm-energy"
+  },
+  {
+   "sym": "θ",
+   "concept": "rotation-angle",
+   "meaning": "绳与竖直方向的夹角；以弧度计，θ = s/L",
+   "unit": "rad",
+   "section": "16.5",
+   "anchor": "16.5-shm-energy"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "简谐振子的质量",
+   "unit": "kg",
+   "section": "16.6",
+   "anchor": "16.6-from-the-circle"
+  },
+  {
+   "sym": "θ",
+   "concept": "rotation-angle",
+   "meaning": "通向 P 的半径自 x 轴起转过的角度，ωt",
+   "unit": "rad",
+   "section": "16.6",
+   "anchor": "16.6-projection"
+  }
+ ]
+}

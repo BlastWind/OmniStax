@@ -1,0 +1,499 @@
+{
+ "id": "16.5",
+ "module": "m42244",
+ "chapter": "16",
+ "title": "能量与简谐振子",
+ "short": "振子的能量",
+ "lead": "简谐振子没有耗散<span data-concept=\"force\">力</span>，所以它的<span data-concept=\"energy\">能量</span>在弹簧的<span data-concept=\"elastic-potential-energy\">弹性势能</span>与物体的<span data-concept=\"kinetic-energy\">动能</span>之间来回传递。跟踪每个循环中的这份<span data-concept=\"energy\">能量</span>，就能知道物体在每个<span data-concept=\"position\">位置</span>处运动得有多快。",
+ "objectives": [
+  "求振动系统的最大速率。"
+ ],
+ "summary_html": "<ul><li>简谐振子中的<span data-concept=\"energy\">能量</span>由<span data-concept=\"elastic-potential-energy\">弹性势能</span>和<span data-concept=\"kinetic-energy\">动能</span>共同分担，总量保持不变：$\\tfrac{1}{2}m\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = \\text{常量}.$</li><li>最大<span data-concept=\"velocity\">速度</span>取决于三个因素：它与<span data-concept=\"amplitude\">振幅</span>成正比，刚度更大的系统最大速度更大，<span data-concept=\"mass\">质量</span>较大的物体最大速度较小：$\\kvmax = \\kX\\sqrt{\\frac{\\kk}{m}}$</li></ul>",
+ "notes": "16.3 节的 AP 第 4 题问的是振子在中心处的能量，这正是本节所介绍的内容，因此该题放在本节。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示均由 AI 生成。答案取自书后答案；本节的每道习题都有答案。16.3 节的 AP 第 4 题考查振动中心处的能量，因此放在本节。开放题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-energy-transfer",
+   "kind": "sim",
+   "number": "16.14",
+   "originals": [
+    "/media/ch16/Figure_17_05_01a.jpg"
+   ],
+   "original_caption": "在无摩擦表面上与弹簧相连的物体，其简谐运动中的能量转化如图所示。",
+   "draws": [
+    "energy",
+    "position",
+    "stiffness",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend, label under line, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-max-speed",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "stiffness",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "pinned labels apart, note and headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "shm-energy",
+   "concept": "shm-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "shm-energy",
+   "concept": "elastic-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-energy",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-energy",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "max-speed",
+   "concept": "shm-max-speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "max-speed",
+   "concept": "shm-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "max-speed",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-bumpy-road",
+   "concept": "shm-max-speed",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3399175",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "max-speed"
+   },
+   "cite": "max-speed",
+   "prompt": "为什么用直尺弹一下你的手，比用松软的弹簧弹一下更疼，即使两个系统的位移相等？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "直尺是刚度更大的系统，在相同的位移下它所带的力更大。直尺弹你的手时力更大，所以更疼。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id2653384",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "max-speed"
+   },
+   "cite": "max-speed",
+   "prompt": "你在观察一个简谐振子。指出一种可以减小该系统最大速度的办法。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "你可以增大振动物体的质量。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1765110",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "max-speed",
+   "prompt": "一个质量为 1 kg 的物体做简谐运动，振幅为 1 m。如果振动的周期为 1 s，求该系统的内能。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 19.7,
+    "unit": "J",
+    "hint": "总能量为 $\\tfrac{1}{2}\\kk\\kX^2$。由周期求 $\\kk$，$\\kk = 4\\pi^2 m/\\kT^2$。",
+    "solution": "19.7 J"
+   }
+  },
+  {
+   "id": "ap-16-3-4",
+   "source_id": "fs-id1170241022648",
+   "source_section": "16.3",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-energy",
+   "prompt": "一个质量为 200 g 的摆在 15 N 的力作用下做简谐运动。摆以 5 m∙s<sup>−1</sup> 的速率经过平衡点。摆在振动中心处的能量是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.5,
+    "unit": "J",
+    "hint": "在中心处，能量全部是动能。",
+    "solution": "粒子在振动中心处的能量为 $E = \\tfrac{1}{2}m\\kv^2 = \\tfrac{1}{2} \\times 0.2\\ \\text{kg} \\times (5\\ \\text{m/s})^2 = 2.5\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3144926",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-energy",
+   "prompt": "从能量的角度解释，摩擦等耗散力如何使谐振子的振幅减小。并解释驱动机构如何予以补偿。（摆钟就是这样一种系统。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "振子的总能量为 $\\tfrac{1}{2}\\kk\\kX^2$，所以振幅由系统具有多少能量决定。摩擦等耗散力在每个循环都对物体做负功，把它的一部分机械能转化为热能，因此总能量下降，振幅也随之减小，因为 $\\kX = \\sqrt{2E/\\kk}$。驱动机构在每个循环向系统补充能量，例如摆钟的擒纵机构，它靠下落的重锤或上紧的发条，在摆每摆动一次时给它一个小小的推力。如果每个循环补充的能量等于损失的能量，振幅就保持不变。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "eip-863",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "登山者所悬挂的那段尼龙绳的劲度系数为 $1.40 \\times 10^{4}\\ \\text{N/m}$。（a）已知他的质量加上装备的质量为 90.0 kg，他上下弹跳的频率是多少？忽略绳子开始伸长之后重力势能的变化。（b）如果他在绳子拉直前自由下落 2.00 m，这根绳子要伸长多少才能使他停止下落？提示：利用能量守恒。（c）如果所用尼龙绳的长度是这根绳的两倍，对本题的两个部分重新求解。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.99,
+      "unit": "Hz",
+      "hint": "利用 $\\kf = \\frac{1}{2\\pi}\\sqrt{\\kk/m}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 50.2,
+      "unit": "cm",
+      "hint": "在 2.00 m 的下落中损失的重力势能，变成了绳子的弹性势能 $\\tfrac{1}{2}\\kk\\kx^2$。"
+     },
+     {
+      "part": "(c) f",
+      "value": 1.4,
+      "unit": "Hz",
+      "hint": "绳长为两倍时，劲度系数为一半。"
+     },
+     {
+      "part": "(c) stretch",
+      "value": 71.0,
+      "unit": "cm",
+      "hint": "用一半的劲度系数重复（b）部分的计算。"
+     }
+    ],
+    "solution": "（a）1.99 Hz（b）50.2 cm（c）1.40 Hz，71.0 cm"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "eip-217",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "工程应用",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "在纽约市花旗集团中心大楼的顶部附近，有一个质量为 $4.00 \\times 10^{5}\\ \\text{kg}$ 的物体，装在劲度系数可调的弹簧上。它的作用是抑制风驱动的大楼振动，办法是让它以与大楼被驱动时相同的频率振动——驱动力传给这个物体，使它振动，而不是整栋大楼振动。（a）为使这个物体以 2.00 s 的周期振动，弹簧应具有多大的等效劲度系数？（b）相对于平衡位置位移 2.00 m 时，弹簧中储存了多少能量？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3950000,
+      "unit": "N/m",
+      "hint": "由 $\\kT = 2\\pi\\sqrt{m/\\kk}$ 解出 $\\kk$。"
+     },
+     {
+      "part": "(b)",
+      "value": 7900000,
+      "unit": "J",
+      "hint": "储存的能量为 $\\tfrac{1}{2}\\kk\\kx^2$。"
+     }
+    ],
+    "solution": "（a）$3.95 \\times 10^{6}\\ \\text{N/m}$（b）$7.90 \\times 10^{6}\\ \\text{J}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "shm-max-speed"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "force-constant"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "shm-max-speed"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "shm-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "ap-16-3-4",
+   "concept": "shm-energy"
+  },
+  {
+   "exercise": "ap-16-3-4",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "shm-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "p1",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "p1",
+   "concept": "shm-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "potential-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "p2",
+   "concept": "shm-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "elastic-potential-energy"
+  }
+ ],
+ "referents": [
+  {
+   "id": "object",
+   "label": "弹簧上的物体",
+   "figures": [
+    "sim-energy-transfer"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "例题 16.6 的汽车",
+   "figures": [
+    "sim-max-speed"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "shm-speed",
+   "what": "简谐振子的速率",
+   "source": "《大学物理（第2版）》，16.5 能量与简谐振子",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "运动从最大位移 $\\kx = \\kX$ 处、速度为零开始，所以总能量为 $\\tfrac{1}{2}\\kk\\kX^{2}$；它是恒定的，在动能与势能之间来回转移。",
+       "src": "16.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} + \\mk{pe}{\\tfrac{1}{2}\\kk\\kx^{2}} = \\mk{c}{\\text{常量}}",
+      "uses": [],
+      "src": "16.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} + \\mk{pe}{\\tfrac{1}{2}\\kk\\kx^{2}} = \\mk{c}{\\tfrac{1}{2}\\kk\\kX^{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} = \\mk{c}{\\tfrac{1}{2}\\kk\\kX^{2}} - \\mk{pe}{\\tfrac{1}{2}\\kk\\kx^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} = \\mk{c}{\\tfrac{1}{2}\\kk(\\kX^{2} - \\kx^{2})}",
+       "uses": [],
+       "map": {
+        "pe": "c"
+       }
+      },
+      {
+       "tex": "\\mk{ke}{\\kv^{2}} = \\mk{c}{\\dfrac{\\kk}{\\km}(\\kX^{2} - \\kx^{2})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ke}{\\kv} = \\pm\\sqrt{\\mk{c}{\\dfrac{\\kk}{\\km}(\\kX^{2} - \\kx^{2})}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": [],
+       "map": {
+        "c": [
+         "r",
+         "X",
+         "c"
+        ]
+       }
+      }
+     ],
+     "src": "16.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ke}{\\kvmax} = \\mk{X}{\\kX}\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}",
+       "uses": [],
+       "cap": "速率在 $\\kx = 0$ 处最大，此时最后一个根式等于 1。"
+      }
+     ],
+     "src": "16.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\kvmax}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "X": "r"
+       }
+      }
+     ],
+     "src": "16.5"
+    }
+   ]
+  }
+ ]
+}

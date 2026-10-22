@@ -1,0 +1,437 @@
+{
+ "id": "16.8",
+ "module": "m42247",
+ "chapter": "16",
+ "title": "受迫振动与共振",
+ "short": "受迫振动与共振",
+ "lead": "以驱动者选定的任何<span data-concept=\"frequency\">频率</span>反复施加的<span data-concept=\"force\">力</span>，可以使振子运动起来。系统响应的强弱取决于这一驱动<span data-concept=\"frequency\">频率</span>，也取决于它有多大的阻尼。",
+ "objectives": [
+  "观察拍球玩具在橡皮筋上的共振。",
+  "观察阻尼谐振子的振幅。"
+ ],
+ "summary_html": "<ul><li>系统的<span data-concept=\"natural-frequency\">固有频率</span>，是系统在不受驱动力和阻尼<span data-concept=\"force\">力</span>影响时发生振动的<span data-concept=\"frequency\">频率</span>。</li><li>以固有频率驱动谐振子的周期性<span data-concept=\"force\">力</span>会产生共振。这时称系统发生共振。</li><li>系统的阻尼越小，共振附近受迫振动的<span data-concept=\"amplitude\">振幅</span>就越大。系统的阻尼越大，它对不同驱动<span data-concept=\"frequency\">频率</span>的响应就越宽。</li></ul>",
+ "notes": "本节开头钢琴弦的照片是一幅题图，正文没有指向它，因此略去。习题 2 和习题 4 在书后答案中没有给出，因此略去；习题 4 考查的是 16.7 节中受摩擦阻尼的振子。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案；习题 2 和习题 4 没有给出答案，因此略去。AP 题和思考题在本书中没有答案，其建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-resonance",
+   "kind": "sim",
+   "number": "16.24",
+   "folds": [
+    "16.25"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_08_02a.jpg",
+    "/media/ch16/Figure_17_08_03a.jpg"
+   ],
+   "original_caption": "（图 16.24）橡皮筋上的拍球玩具随托着它的手指而运动。如果手指以橡皮筋上的球的固有频率 f₀ 运动，就会达到共振，球的振幅急剧增大。在更高和更低的驱动频率下，能量传给球的效率较低，它的响应是较小振幅的振动。（图 16.25）谐振子的振幅随驱动力频率变化的函数关系。这些曲线表示固有频率相同、阻尼大小不同的同一个振子。驱动频率等于固有频率时发生共振，阻尼最小时响应最大。阻尼最小时响应也最窄。",
+   "widths": [
+    450,
+    350
+   ],
+   "draws": [
+    "frequency",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library hand, labels off lines, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-driven-energy",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "position",
+    "power",
+    "stiffness",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "towers below headline, labels, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-tacoma",
+   "kind": "photo",
+   "number": "16.26",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "driven",
+   "concept": "natural-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "driven",
+   "concept": "resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "driven",
+   "concept": "frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "driven",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "driven",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-curve",
+   "concept": "resonance-curve-damping",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-curve",
+   "concept": "energy-removed-by-damping",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-curve",
+   "concept": "damped-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-curve",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-curve",
+   "concept": "shm-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-everywhere",
+   "concept": "resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resonance-everywhere",
+   "concept": "resonance-curve-damping",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2929352",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "resonance-everywhere"
+   },
+   "cite": "resonance-everywhere",
+   "prompt": "一个著名的魔术是：表演者朝一只水晶玻璃杯唱出一个音，直到杯子碎裂。请用共振和固有频率解释这个魔术为什么行得通。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "表演者所唱的音必须与玻璃杯的固有频率相对应。声波对准玻璃杯时，玻璃杯以与声波相同的频率共振作出响应。随着足够的能量输入系统，玻璃杯开始振动，最终碎裂。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id3527682",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resonance-curve",
+   "prompt": "受迫振动中如何维持恒定的振幅？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "驱动力在每个循环向振子输入能量，阻尼力在每个循环带走能量。振幅较小时，阻尼带走的能量少于驱动者供给的，所以振幅增大。阻尼器在一个循环内带走的能量随振幅增大而增大，因此振幅只会攀升到每个循环带走的能量等于输入的能量为止。从那时起，振子中储存的能量不再变化，振幅保持恒定。撤去驱动力，只剩下阻尼，振动就会逐渐消失。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2424262",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resonance-everywhere",
+   "prompt": "为什么一般要命令士兵以“便步”（不齐步）走过桥梁？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "士兵齐步行进时，以同一个稳定的频率踏击桥面，这就是一个周期性驱动力。如果这个步调恰好等于桥的某个固有频率，桥就会共振：每一步都给已经存在的振动增添能量，而桥的阻尼很小，振幅可能增大到使结构受损。不齐步走会把脚步分散到许多频率上，没有哪一个频率能驱动桥，振动也就不会积累起来。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2589952",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一辆 1200 kg 的汽车，其减震器必须耗散多少能量，才能使一次在平衡位置处初速度为 0.800 m/s 的弹跳衰减？假设汽车回到原来的竖直位置。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 384,
+    "unit": "J",
+    "hint": "在平衡位置处，储存的能量全部是动能。$\\tfrac{1}{2}m\\kv^2$ 是多少？",
+    "solution": "$384\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3245980",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）当质量为 0.500 kg 的物体静止地挂在劲度系数为 40.0 N/m 的弹簧上时，弹簧会被拉伸多少？（b）计算这个 0.500 kg 的物体下降这段距离时重力势能的减少量。（c）这部分重力势能有一部分进入弹簧。计算这一拉伸在弹簧中储存的能量，并将它与重力势能比较。解释其余的能量可能去了哪里。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.123,
+      "unit": "m",
+      "hint": "物体静止悬挂时，弹簧的回复力与重力平衡，所以 $\\kk\\kx = m\\kg$。"
+     },
+     {
+      "part": "(b)",
+      "value": -0.6,
+      "unit": "J",
+      "hint": "重力势能的变化为 $-m\\kg h$，其中 $h$ 是（a）中求得的距离。"
+     },
+     {
+      "part": "(c)",
+      "value": 0.3,
+      "unit": "J",
+      "hint": "弹簧中储存的能量为 $\\tfrac{1}{2}\\kk\\kx^2$。将它与（b）的答案比较。"
+     }
+    ],
+    "solution": "（a）$0.123\\ \\text{m}$（b）$-0.600\\ \\text{J}$（c）$0.300\\ \\text{J}$。其余的能量可能变成了摩擦和其他阻尼力产生的热量。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2663758",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "工程应用：一座悬索桥振动时的有效劲度系数为 $1.00 \\times 10^{8}\\ \\text{N/m}$。（a）要使它以 0.100 m 的振幅振动，需要多少能量？（b）如果士兵以等于桥的固有频率的步调走过桥，每秒传入 $1.00 \\times 10^{4}\\ \\text{J}$ 的能量，桥的振动振幅从 0.100 m 增大到 0.500 m 需要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 500000,
+      "unit": "J",
+      "hint": "振幅为 $\\kX$ 的振动的能量是 $\\tfrac{1}{2}\\kk\\kX^2$。"
+     },
+     {
+      "part": "(b)",
+      "value": 1200,
+      "unit": "s",
+      "hint": "求出两个振幅下储存的能量，取其差，再除以每秒输入的能量。"
+     }
+    ],
+    "solution": "（a）$5.00 \\times 10^{5}\\ \\text{J}$（b）$1.20 \\times 10^{3}\\ \\text{s}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "natural-frequency"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "resonance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "resonance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "energy-removed-by-damping"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "resonance"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "natural-frequency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "energy-removed-by-damping"
+  },
+  {
+   "exercise": "p1",
+   "concept": "shm-energy"
+  },
+  {
+   "exercise": "p3",
+   "concept": "energy-removed-by-damping"
+  },
+  {
+   "exercise": "p3",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "energy-removed-by-damping"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resonance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "elastic-potential-energy"
+  }
+ ],
+ "referents": [
+  {
+   "id": "paddle-ball",
+   "label": "拍球玩具",
+   "figures": [
+    "sim-resonance"
+   ]
+  },
+  {
+   "id": "finger",
+   "label": "你的手指",
+   "figures": [
+    "sim-resonance"
+   ]
+  },
+  {
+   "id": "band",
+   "label": "橡皮筋",
+   "figures": [
+    "sim-resonance"
+   ]
+  },
+  {
+   "id": "bridge",
+   "label": "悬索桥",
+   "figures": [
+    "sim-driven-energy"
+   ]
+  },
+  {
+   "id": "soldiers",
+   "label": "齐步行进的士兵",
+   "figures": [
+    "sim-driven-energy"
+   ]
+  }
+ ]
+}

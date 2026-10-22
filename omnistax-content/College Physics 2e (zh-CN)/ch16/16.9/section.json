@@ -1,0 +1,588 @@
+{
+ "id": "16.9",
+ "module": "m42248",
+ "chapter": "16",
+ "title": "波",
+ "short": "波",
+ "lead": "波是一种从产生它的地方向外移动的扰动，水波是最容易想象的一种。它的<span data-concept=\"wavelength\">波长</span>、<span data-concept=\"period\">周期</span>和<span data-concept=\"frequency\">频率</span>描述了这种波，而扰动的方向则把波分为横波和纵波。",
+ "objectives": [
+  "说出波的特征。",
+  "计算波传播的速度。"
+ ],
+ "summary_html": "<ul><li>波是从产生处向外移动的扰动，其<span data-concept=\"wave-velocity\">波速</span>为 $\\kvw$。</li><li>波有<span data-concept=\"wavelength\">波长</span> $\\klam$，即波的相邻相同部分之间的<span data-concept=\"distance\">距离</span>。</li><li><span data-concept=\"wave-velocity\">波速</span>和<span data-concept=\"wavelength\">波长</span>与波的<span data-concept=\"frequency\">频率</span>和<span data-concept=\"period\">周期</span>的关系为 $\\kvw = \\frac{\\klam}{\\kT}$ 或 $\\kvw = \\kf\\klam.$</li><li>横波的扰动垂直于其传播方向，而纵波的扰动平行于其传播方向。</li></ul>",
+ "notes": "节首的海洋照片是一张正文从未指向的题图，因此略去，PhET 模拟 Wave on a String 的链接也一并略去。习题 2、4、6、8 和 10 在书后答案中没有给出，因此略去，习题 10 旁的地震仪照片也随之略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案；习题 2、4、6、8 和 10 没有给出答案，因此略去。两道 AP 题同样没有给出答案，作为开放题保留，其中关于横波中质点运动的一道，其四个选项照书中印刷的样子给出，而不是作为判分的选择题。开放题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-ocean-wave",
+   "kind": "sim",
+   "number": "16.28",
+   "originals": [
+    "/media/ch16/Figure_17_09_02a.jpg"
+   ],
+   "original_caption": "一列理想化的海浪从一只海鸥下方经过，海鸥在简谐运动中上下起伏。这列波的波长为 λ，即波的相邻相同部分之间的距离。水面的上下扰动平行于水面传播，速率为 v_w。",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels off gull and scale, note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-wave-types",
+   "kind": "sim",
+   "number": "16.29",
+   "folds": [
+    "16.30"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_09_03.jpg",
+    "/media/ch16/Figure_17_09_04.jpg"
+   ],
+   "original_caption": "（图 16.29）在这个横波的例子中，波沿水平方向传播，绳中的扰动沿竖直方向。（图 16.30）在这个纵波的例子中，波沿水平方向传播，绳中的扰动也沿水平方向。",
+   "widths": [
+    300,
+    375
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-guitar-paper",
+   "kind": "photo",
+   "number": "16.31",
+   "widths": [
+    270
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "wave",
+   "concept": "wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave",
+   "concept": "wave-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "wave",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "wave-speed",
+   "concept": "wavelength",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-speed",
+   "concept": "wave-speed-wavelength-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-speed",
+   "concept": "wave-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "transverse-longitudinal",
+   "concept": "transverse-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "transverse-longitudinal",
+   "concept": "longitudinal-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "transverse-longitudinal",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "transverse-longitudinal",
+   "concept": "wave",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3027056",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "transverse-longitudinal"
+   },
+   "cite": "transverse-longitudinal",
+   "prompt": "为什么区分纵波和横波很重要？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "在不同类型的波中，能量可以沿相对于波的运动的不同方向传播。这对于理解不同类型的波如何影响周围的材料很重要。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1766256",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transverse-longitudinal",
+   "prompt": "音叉发出的波与电磁波有什么区别？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "音叉发出的波是机械波，本质上是纵波，而电磁波本质上是横波。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1179762",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transverse-longitudinal",
+   "prompt": "用图形表示纵波和横波。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先画出传播方向，用一个指向右方的箭头表示，再对着它画出扰动。对于横波，沿该方向画一根绳，并使它上下偏移。其形状是波长为 $\\klam$ 的正弦曲线，波峰和波谷位于未受扰动的直线上方和下方 $\\kX$ 的距离处，扰动垂直于箭头。对于纵波，沿同一方向画一排间距相等的线圈，并使每个线圈沿该直线前后移动。线圈在密部聚拢，在密部之间散开，扰动平行于箭头，波长是从一个密部到下一个密部的距离。在两幅图中，振幅 $\\kX$ 都是介质的一小块离开其未受扰动位置所移动的最大距离。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id880486",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-speed",
+   "prompt": "为什么铃鼓发出的声音与鼓发出的声音不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "乐器发出的声能取决于它的大小。所产生的声波与乐器的大小有关。较小的乐器，例如铃鼓，会发出音调较高的声音（频率较高，波长较短），而较大的乐器，例如鼓，会发出较低沉的声音（频率较低，波长较长）。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id4239804",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transverse-longitudinal",
+   "prompt": "一列横波从左向右传播。关于波中质点的运动，下列说法哪一个是正确的？<br>（a）波在真空中传播时，质点上下运动。<br>（b）波在介质中传播时，质点左右运动。<br>（c）波在介质中传播时，质点上下运动。<br>（d）波在真空中传播时，质点左右运动。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "选项（c）。在横波中，扰动垂直于传播方向，所以从左向右传播的波使质点上下运动，这就排除了（b）和（d）。质点是介质的一部分，而这样的机械波需要介质才能传播，所以把质点放在真空中的（a），描述的是一种不可能承载这列波的情形。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1837839",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-speed",
+   "figure": {
+    "src": "/media/ch16/new.jpg",
+    "alt": "图中显示一条振动的曲线。纵轴是位移，从 −1 米到 +1 米。横轴是时间，从 0 秒到 8π 秒。曲线从 0，+1 开始，向下弯曲，穿过位移为 0 处，到达 π，−1。曲线再向上弯曲，又一次穿过位移等于 0 处，然后到达 2π，+1。它就这样继续下去，最后到达 8π，+1。",
+    "caption": "一列机械波的图像，其位移从 −1 m 到 +1 m。"
+   },
+   "prompt": "图中显示了一列机械波的传播。这列波的波长是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.28,
+    "unit": "m",
+    "hint": "读出从一个波峰到下一个波峰的距离。",
+    "solution": "$2\\pi\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1931421",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transverse-longitudinal",
+   "prompt": "各举一个横波和一个纵波的例子，注意说明每种情形中扰动方向与波传播方向的相对关系。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "吉他弦上的波是横波：波沿着弦传播，而弦本身沿垂直于这一方向的方向运动，即垂直于波传播的方向。空气中的声波是纵波：波从扬声器向外传播，空气沿同一条直线被前后推动，因此扰动平行于传播方向。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2639388",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-speed",
+   "prompt": "传播速率与波的频率有什么区别？二者是否都影响波长？如果是，如何影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "传播速率 $\\kvw$ 是扰动本身在介质中移动的快慢，由介质决定。频率 $\\kf$ 是介质的一小块每秒经历多少次完整循环，由产生波的东西决定。二者都影响波长，因为 $\\kvw = \\kf\\klam$，所以 $\\klam = \\kvw/\\kf$。对于给定的介质，摇得越快，波长越短；对于给定的频率，介质传播波越快，波长越长。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1487653",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave",
+   "prompt": "南太平洋的风暴可以产生一直传到加利福尼亚海岸的波，那里相距 12,000 km。如果它们以 15.0 m/s 的速率传播，需要多长时间？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9.26,
+    "unit": "d",
+    "hint": "距离除以速率得到以秒计的时间；再把它换算成天。",
+    "solution": "$9.26\\ \\text{d}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1599456",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-speed",
+   "prompt": "阵风在海面上吹起波长为 5.00 cm、传播速率为 2.00 m/s 的涟漪。它们的频率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 40.0,
+    "unit": "Hz",
+    "hint": "把 $\\kvw = \\kf\\klam$ 改写成求频率的形式，波长以米为单位。",
+    "solution": "$40.0\\ \\text{Hz}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2682886",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-speed",
+   "prompt": "营地的童子军摇动他们刚刚走过的索桥，观察到波峰相距 8.00 m。如果他们每秒摇动桥两次，波的传播速率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 16.0,
+    "unit": "m/s",
+    "hint": "波峰相距一个波长，摇动的快慢就是频率，所以用 $\\kvw = \\kf\\klam$。",
+    "solution": "$16.0\\ \\text{m/s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1974400",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-speed",
+   "prompt": "一次地震以 10.0 Hz 的频率使你震动，并在 12.0 s 内传到 84.0 km 外的另一座城市，这次地震的波长是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 700.0,
+    "unit": "m",
+    "hint": "先由距离和时间求出传播速率，再用 $\\klam = \\kvw/\\kf$。",
+    "solution": "$700\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1410891",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave",
+   "prompt": "你的耳朵能够分辨到达耳朵的时间仅相差 1.00 ms 的声音。在声速为 340 m/s 的某一天，两个扬声器发出的声音要在到达时间上有明显差别，它们之间的最小距离是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 34.0,
+    "unit": "cm",
+    "hint": "第二个声音多走的距离，等于声速乘以耳朵能分辨的最小时间差。",
+    "solution": "$34.0\\ \\text{cm}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "transverse-wave"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "longitudinal-wave"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "transverse-wave"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "longitudinal-wave"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "transverse-wave"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "longitudinal-wave"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "wavelength"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "wave-speed-wavelength-frequency",
+   "weight": 3
+  },
+  {
+   "exercise": "ap4",
+   "concept": "transverse-wave"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "wave",
+   "weight": 3
+  },
+  {
+   "exercise": "ap5",
+   "concept": "wavelength"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "transverse-wave"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "longitudinal-wave"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "wave-speed-wavelength-frequency"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "wave-velocity",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "wavelength",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "wave-velocity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "wave-speed-wavelength-frequency"
+  },
+  {
+   "exercise": "p5",
+   "concept": "wave-speed-wavelength-frequency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "wave-speed-wavelength-frequency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "wave-velocity",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "wave-velocity"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ocean-wave",
+   "label": "海浪",
+   "figures": [
+    "sim-ocean-wave"
+   ]
+  },
+  {
+   "id": "gull",
+   "label": "海鸥",
+   "figures": [
+    "sim-ocean-wave"
+   ]
+  },
+  {
+   "id": "particle",
+   "label": "被标记的水质点",
+   "figures": [
+    "sim-ocean-wave"
+   ]
+  },
+  {
+   "id": "cord",
+   "label": "长绳",
+   "figures": [
+    "sim-wave-types"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "抖动绳子的手",
+   "figures": [
+    "sim-wave-types"
+   ]
+  },
+  {
+   "id": "marked-coil",
+   "label": "被标记的线圈",
+   "figures": [
+    "sim-wave-types"
+   ]
+  }
+ ]
+}

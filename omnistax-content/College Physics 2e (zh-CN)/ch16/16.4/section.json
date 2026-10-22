@@ -1,0 +1,674 @@
+{
+ "id": "16.4",
+ "module": "m42243",
+ "chapter": "16",
+ "title": "单摆",
+ "short": "单摆",
+ "lead": "悬挂在轻绳下的一个小质量物体，即单摆，在<span data-concept=\"restoring-force\">回复力</span>的作用下绕最低点来回摆动。每摆动一次所用的时间就是它的<span data-concept=\"period\">周期</span>，测量单摆的周期是测量重力加速度的一种方法。",
+ "objectives": [
+  "测量重力加速度。"
+ ],
+ "summary_html": "<ul><li>用<span data-concept=\"length\">长度</span>为 $L$ 的金属丝悬挂的质量 $m$ 是一个单摆，当<span data-concept=\"amplitude\">振幅</span>小于约 $15°$ 时，它做简谐运动。单摆的周期为 $\\kT = 2\\pi\\sqrt{\\frac{L}{\\kg}},$ 其中 $L$ 是细绳的<span data-concept=\"length\">长度</span>，$\\kg$ 是重力加速度。</li></ul>",
+ "notes": "AP 第 1、3 题，以及习题 2、4、6、8、10 和 12，在书后答案中没有给出，因此略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "与往常一样，除非另有说明，这些习题中的重力加速度取 $\\kg = 9.80\\ \\text{m/s}^2$。",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案来自书后答案；AP 第 1、3 题，以及习题 2、4、6、8、10 和 12 没有给出答案，因此略去。开放题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-pendulum-force",
+   "kind": "sim",
+   "number": "16.13",
+   "originals": [
+    "/media/ch16/Figure_17_04_01a.jpg"
+   ],
+   "original_caption": "单摆的摆锤直径很小，细绳质量极小，但足够结实，不会明显伸长。相对于平衡位置的线位移是 s，即弧长。图中还画出了摆锤所受的力，它们的合力为指向平衡位置的 −mg sin θ，也就是回复力。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "acceleration",
+    "force",
+    "position",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene rescaled to stay on stage, force label, typeset text"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-pendulum-period",
+   "kind": "sim",
+   "draws": [
+    "acceleration",
+    "time",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline, layout, note dropped, caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-measure-g",
+   "kind": "sim",
+   "draws": [
+    "acceleration",
+    "time",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label moved, note trimmed, headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pendulum-force",
+   "concept": "simple-pendulum",
+   "verb": "introduces"
+  },
+  {
+   "span": "pendulum-force",
+   "concept": "restoring-force",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-force",
+   "concept": "tension",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-force",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "small-angle",
+   "concept": "pendulum-restoring-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "small-angle",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "small-angle",
+   "concept": "simple-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-period",
+   "concept": "pendulum-period",
+   "verb": "introduces"
+  },
+  {
+   "span": "pendulum-period",
+   "concept": "measuring-g",
+   "verb": "introduces"
+  },
+  {
+   "span": "pendulum-period",
+   "concept": "shm-period",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-period",
+   "concept": "pendulum-restoring-force",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-measuring-g",
+   "concept": "measuring-g",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-measuring-g",
+   "concept": "pendulum-period",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2990952",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "pendulum-period"
+   },
+   "cite": "pendulum-period",
+   "prompt": "一位工程师制作了两个单摆。两个单摆都悬挂在固定于房间天花板的细金属丝上。每个单摆都悬在离地面 2 cm 处。单摆 1 的摆锤质量为 $10\\ \\text{kg}$。单摆 2 的摆锤质量为 $100\\ \\text{kg}$。如果两个摆锤都被拉开 $12°$，请描述两个单摆的运动有何不同。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "两个单摆的运动完全没有区别，因为摆锤的质量对单摆的运动没有影响。单摆只受周期（它与单摆的长度有关）和重力加速度的影响。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1877058",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pendulum-period",
+   "prompt": "下列哪一项给出了重力加速度与摆的周期之间的正确关系？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "g = 2πL/T²",
+     "g = 4π²L/T²",
+     "g = 2πL/T",
+     "g = 2π²L/T"
+    ],
+    "correct": 1,
+    "hint": "把 $\\kT = 2\\pi\\sqrt{L/\\kg}$ 两边平方，再解出 $\\kg$。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2588490",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pendulum-period",
+   "prompt": "摆钟是通过调节摆的长度来使走时准确的。假设你带着摆钟从一座城市搬到另一座城市，那里的重力加速度略大，在其他因素不变的情况下，为使计时准确，你需要把摆加长还是缩短？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "加长。周期为 $\\kT = 2\\pi\\sqrt{L/\\kg}$，所以摆长不变时，$\\kg$ 越大，周期越短，钟就走快了。要使周期恢复到正确的值，摆长必须与 $\\kg$ 按相同的比例增大，因为 $\\kT$ 取决于比值 $L/\\kg$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2593990",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "周期为 0.500 s 的摆，摆长是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.21,
+    "unit": "cm",
+    "hint": "由 $\\kT = 2\\pi\\sqrt{L/\\kg}$ 解出 $L$，并以厘米为单位给出答案。",
+    "solution": "6.21 cm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1986261",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一个长 1.00 m 的摆，周期是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.01,
+    "unit": "s",
+    "hint": "把 $L = 1.00$ m 和 $\\kg = 9.80$ m/s² 代入周期公式。",
+    "solution": "2.01 s"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2382885",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "布谷鸟钟的摆长为 5.00 cm。它的频率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.23,
+    "unit": "Hz",
+    "hint": "由摆长求出周期，再取其倒数。注意长度的单位。",
+    "solution": "2.23 Hz"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2454166",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）一个周期为 3.00000 s 的摆，原本位于重力加速度为 $9.79\\ \\text{m/s}^2$ 的地方，被移到重力加速度为 $9.82\\ \\text{m/s}^2$ 的地方。它新的周期是多少？（b）根据周期与重力加速度的关系，解释为什么周期的值需要这么多位数字。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 2.99541,
+    "unit": "s",
+    "hint": "摆长不变，所以两个周期之比等于两个 $\\kg$ 值之比的倒数的平方根。",
+    "solution": "（a）2.99541 s（b）由于周期与重力加速度的平方根有关，当加速度改变 1% 时，周期改变 $(0.01)^2 = 0.01\\%$，所以小数点后至少需要 4 位数字，才能看出这些变化。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2408955",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）如果把摆的长度加倍，对周期有什么影响？（b）如果把摆的长度减小 5.00%，对周期有什么影响？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.41,
+      "unit": "× the old period",
+      "hint": "周期与长度的平方根成正比。"
+     },
+     {
+      "part": "(b)",
+      "value": 97.5,
+      "unit": "% of the old period",
+      "hint": "取 0.950 的平方根。"
+     }
+    ],
+    "solution": "（a）周期增大到原来的 1.41 倍（$\\sqrt{2}$）（b）周期减小到原周期的 97.5%"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1864432",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一个摆钟在地球上走时准确，把它放到月球上（那里的重力加速度为 $1.63\\ \\text{m/s}^2$），它会以什么快慢走动？也就是说，求在地球上每小时转一圈的分针，在月球上转一圈所需的时间（以小时计）。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.45,
+    "unit": "h",
+    "hint": "钟数的是摆动的次数，月球上每次摆动所需的时间要长，长的倍数为 $\\sqrt{9.80/1.63}$。",
+    "solution": "变慢，慢的倍数为 2.45"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2688094",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "如果一个摆钟每天走快 5.00 s，为使它走时完全准确，摆长必须改变多大的比例？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0116,
+    "unit": "% longer",
+    "hint": "在 86,400 s 内走快 5.00 s，说明周期偏短了这个比例。由于 $\\kT$ 与 $\\sqrt{L}$ 成正比，摆长必须改变这个比例的两倍。",
+    "solution": "摆长必须增加 0.0116%。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "simple-pendulum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "measuring-g"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p1",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p3",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p5",
+   "concept": "period-frequency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p7",
+   "concept": "measuring-g"
+  },
+  {
+   "exercise": "p9",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p11",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p13",
+   "concept": "pendulum-period"
+  },
+  {
+   "exercise": "p13",
+   "concept": "measuring-g"
+  }
+ ],
+ "referents": [
+  {
+   "id": "bob",
+   "label": "摆锤",
+   "figures": [
+    "sim-pendulum-force"
+   ]
+  },
+  {
+   "id": "pendulum-1",
+   "label": "第一个摆",
+   "figures": [
+    "sim-pendulum-period"
+   ]
+  },
+  {
+   "id": "pendulum-2",
+   "label": "第二个摆",
+   "figures": [
+    "sim-pendulum-period"
+   ]
+  },
+  {
+   "id": "timed-pendulum",
+   "label": "例题 16.5 的摆",
+   "figures": [
+    "sim-measure-g"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "pendulum-restoring-force",
+   "what": "小角度时摆所受的回复力",
+   "source": "《大学物理（第2版）》，16.4 单摆",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sin\\ktheta \\approx \\ktheta",
+       "src": "16.4"
+      },
+      {
+       "text": "角小于约 $15°$。",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\sin\\ktheta}",
+      "uses": [],
+      "src": "16.4，图 16.13"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} \\approx -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\ktheta}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "16.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "角 $\\ktheta$ 以弧度为单位。",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks} = \\mk{L}{\\kL}\\,\\mk{th}{\\ktheta}",
+      "uses": [
+       0
+      ],
+      "src": "16.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{th}{\\ktheta} = \\dfrac{\\mk{s}{\\ks}}{\\mk{L}{\\kL}}",
+       "uses": []
+      }
+     ],
+     "src": "16.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} \\approx -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\ktheta}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} \\approx -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\dfrac{\\ks}{\\kL}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} \\approx -\\dfrac{\\mk{mg}{\\km\\kg}}{\\mk{L}{\\kL}}\\,\\mk{s}{\\ks}",
+       "uses": [],
+       "map": {
+        "th": [
+         "s",
+         "L"
+        ]
+       }
+      }
+     ],
+     "src": "16.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kx = \\ks",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = -\\mk{k}{\\kk}\\,\\mk{x}{\\kx}",
+      "uses": [],
+      "src": "16.1"
+     },
+     "steps": [
+      {
+       "tex": "-\\mk{F}{\\dfrac{\\km\\kg}{\\kL}\\,\\ks} \\approx -\\mk{k}{\\kk}\\,\\mk{x}{\\kx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "-\\mk{F}{\\dfrac{\\km\\kg}{\\kL}\\,\\ks} \\approx -\\mk{k}{\\kk}\\,\\mk{x}{\\ks}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k}{\\kk} = \\mk{F}{\\dfrac{\\km\\kg}{\\kL}}",
+       "uses": [],
+       "cap": "对每个小的 $\\ks$，两边都相等，所以 $\\ks$ 的系数相同。"
+      }
+     ],
+     "src": "16.4"
+    }
+   ]
+  },
+  {
+   "id": "pendulum-period",
+   "what": "单摆的周期",
+   "source": "《大学物理（第2版）》，16.4 单摆",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kk = \\dfrac{\\km\\kg}{\\kL}",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{m}{\\km}}{\\mk{k}{\\kk}}}",
+      "uses": [],
+      "src": "16.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{m}{\\km}}{\\mk{k}{\\km\\kg/\\kL}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{m}{\\km}\\,\\mk{L}{\\kL}}{\\mk{k}{\\km\\kg}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{L}{\\kL}}{\\mk{k}{\\kg}}}",
+       "uses": []
+      }
+     ],
+     "src": "16.4"
+    }
+   ]
+  }
+ ]
+}

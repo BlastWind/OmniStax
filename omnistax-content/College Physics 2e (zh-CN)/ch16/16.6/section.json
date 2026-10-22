@@ -1,0 +1,435 @@
+{
+ "id": "16.6",
+ "module": "m42245",
+ "chapter": "16",
+ "title": "匀速圆周运动与简谐运动",
+ "short": "圆周运动与简谐运动",
+ "lead": "<span data-ref=\"ball\">一个小球</span>以稳定的速率绕圆运动，会投下<span data-ref=\"shadow\">一个影子</span>，这个影子沿一条直线来回运动。把那个<span data-ref=\"shadow\">影子</span>与弹簧上的物体相比较，就把匀速圆周运动与简谐运动联系了起来。",
+ "objectives": [
+  "将简谐运动与匀速圆周运动进行比较。"
+ ],
+ "summary_html": "<ul><li>匀速圆周运动的投影做简谐振动。</li></ul>",
+ "notes": "AP 题以及习题 2 和 4 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案；AP 题以及习题 2 和 4 没有给出答案，因而略去。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-merry-go-round",
+   "kind": "photo",
+   "number": "16.15",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-turntable",
+   "kind": "sim",
+   "number": "16.16",
+   "folds": [
+    "16.18"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_06_02a.jpg",
+    "/media/ch16/Figure_17_06_04a.jpg"
+   ],
+   "original_caption": "（图 16.16）以恒定角速度 ω 在转盘上转动的小球，其影子来回做精确的简谐运动。（图 16.18）匀速圆周运动的投影的位置做简谐运动，正如这幅 x 对 t 的波状图像所示。",
+   "widths": [
+    100,
+    200
+   ],
+   "draws": [
+    "angular-rate",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "turntable clear of the lights, headline and note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-circle-triangles",
+   "kind": "sim",
+   "number": "16.17",
+   "originals": [
+    "/media/ch16/Figure_17_06_03a.jpg"
+   ],
+   "original_caption": "点 P 以恒定角速度 ω 沿圆形路径运动，做的是匀速圆周运动。它在 x 轴上的投影做简谐运动。图中还画出了该点绕圆运动的速度 v_max，以及它的投影，即 v。注意，这些速度构成的三角形与位移三角形相似。",
+   "widths": [
+    230
+   ],
+   "draws": [
+    "angular-rate",
+    "position",
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "circle clear of headline, headline and note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "projection",
+   "concept": "ucm-shm-projection",
+   "verb": "introduces"
+  },
+  {
+   "span": "projection",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "projection",
+   "concept": "shm-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "projection",
+   "concept": "uniform-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "projection",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "from-the-circle",
+   "concept": "ucm-shm-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "from-the-circle",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "from-the-circle",
+   "concept": "shm-max-speed",
+   "verb": "reinforces"
+  },
+  {
+   "span": "from-the-circle",
+   "concept": "shm-period",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2209875",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "projection"
+   },
+   "cite": "projection",
+   "prompt": "指出一个做匀速圆周运动的物体。描述你如何能把这个物体的简谐运动描绘成一条波。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "电唱机做匀速圆周运动。你可以把一根木棒固定在转盘外缘的一点上，再把一支笔固定在木棒的另一端。电唱机转动时，笔就会移动。你可以在笔下拉动一张长纸，把它的运动记录成一条波。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2615915",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "from-the-circle",
+   "prompt": "（a）一个质量为 85.0 kg 的人在劲度系数为 $1.50 \\times 10^{6}\\ \\text{N/m}$ 的体重秤上上下颠动，若颠动的振幅为 0.200 cm，他的最大速度是多少？（b）弹簧中储存的最大能量是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.266,
+      "unit": "m/s",
+      "hint": "用 $\\kvmax = \\kX\\sqrt{\\kk/m}$，振幅以米为单位代入。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.0,
+      "unit": "J",
+      "hint": "在折返点，全部能量都储存在弹簧中，即 $\\tfrac{1}{2}\\kk\\kX^2$。"
+     }
+    ],
+    "solution": "（a）0.266 m/s　（b）3.00 J"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1348556",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "from-the-circle",
+   "prompt": "简谐振子在什么位置时，速率为其最大值的一半？也就是说，$\\kx/\\kX$ 取什么值时有 $\\kv = \\pm\\kvmax/2$，其中 $\\kX$ 是运动的振幅？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.866,
+    "unit": "",
+    "hint": "令 $\\sqrt{1 - \\kx^2/\\kX^2} = 1/2$，解出 $\\kx/\\kX$。有两个位置，在平衡位置两侧各一个；给出正的那个。",
+    "solution": "$\\pm\\frac{\\sqrt{3}}{2}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "ucm-shm-projection"
+  },
+  {
+   "exercise": "p1",
+   "concept": "shm-max-speed"
+  },
+  {
+   "exercise": "p1",
+   "concept": "shm-energy"
+  },
+  {
+   "exercise": "p3",
+   "concept": "shm-max-speed"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ucm-shm-projection"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ball",
+   "label": "转盘上的小球",
+   "figures": [
+    "sim-turntable"
+   ]
+  },
+  {
+   "id": "shadow",
+   "label": "小球的影子",
+   "figures": [
+    "sim-turntable"
+   ]
+  },
+  {
+   "id": "point-p",
+   "label": "点 P",
+   "figures": [
+    "sim-circle-triangles"
+   ]
+  },
+  {
+   "id": "projection",
+   "label": "P 在 x 轴上的投影",
+   "figures": [
+    "sim-circle-triangles"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "projection-position",
+   "what": "匀速圆周运动的投影的位置",
+   "source": "《大学物理（第2版）》，16.6 匀速圆周运动与简谐运动",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\ktheta = \\kw\\kt",
+       "src": "16.6"
+      },
+      {
+       "tex": "\\kw = \\dfrac{2\\pi}{\\kT}",
+       "src": "16.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{X}{\\kX}\\mk{c}{\\cos\\ktheta}",
+      "uses": [],
+      "src": "16.6，图 16.17"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{X}{\\kX}\\mk{c}{\\cos\\kw\\kt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx(\\kt)} = \\mk{X}{\\kX}\\mk{c}{\\cos\\left(\\dfrac{2\\pi\\kt}{\\kT}\\right)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  },
+  {
+   "id": "shm-speed-from-circle",
+   "what": "由圆得出的简谐振子的速率",
+   "source": "《大学物理（第2版）》，16.6 匀速圆周运动与简谐运动",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "由速度构成的三角形与由位移（$\\kX$、$\\kx$ 和 $\\sqrt{\\kX^{2} - \\kx^{2}}$）构成的三角形是相似的直角三角形。",
+       "src": "16.6，图 16.17"
+      }
+     ],
+     "then": {
+      "tex": "\\dfrac{\\mk{v}{\\kv}}{\\mk{vm}{\\kvmax}} = \\dfrac{\\mk{r}{\\sqrt{\\kX^{2} - \\kx^{2}}}}{\\mk{X}{\\kX}}",
+      "uses": [
+       0
+      ],
+      "src": "16.6",
+      "why": "相似三角形对应边之比相等。"
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{v}{\\kv}}{\\mk{vm}{\\kvmax}} = \\mk{r}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": [],
+       "map": {
+        "X": "r"
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\mk{vm}{\\kvmax}\\mk{r}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  },
+  {
+   "id": "shm-period-from-circle",
+   "what": "由圆得出的简谐振子的周期",
+   "source": "《大学物理（第2版）》，16.6 匀速圆周运动与简谐运动",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{v}{\\kvmax} = \\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}",
+      "uses": [],
+      "src": "16.5"
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{X}{\\kX}}{\\mk{v}{\\kvmax}} = \\mk{r}{\\sqrt{\\dfrac{\\km}{\\kk}}}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kT} = \\dfrac{\\mk{tp}{2\\pi}\\mk{X}{\\kX}}{\\mk{v}{\\kvmax}}",
+      "uses": [],
+      "src": "16.6",
+      "why": "周期是 P 绕圆一周所需的时间：圆的周长 $2\\pi\\kX$ 除以绕圆运动的速率 $\\kvmax$。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\mk{X}{\\sqrt{\\dfrac{\\km}{\\kk}}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "v": "X"
+       }
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  }
+ ]
+}
