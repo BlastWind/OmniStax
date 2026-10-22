@@ -76,7 +76,7 @@ function stopwatch(ctx, x, y, r, f) {
     ctx.fillRect(X(0), ys - 24, X(LEN) - X(0), 32); ctx.strokeRect(X(0), ys - 24, X(LEN) - X(0), 32); ctx.restore();
     scale(ctx, (cm) => X(cm / 100), 0, 150, 10, ys, 'cm', 5);
     line(ctx, X(1), ys + 40, X(1), ys + 58, PAL.ink, 3);
-    text(ctx, '米刻度', X(1), ys + 76, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, '1 m 刻度', X(1), ys + 76, PAL.ink, { size: 20, weight: 600, align: 'center' });
     /* the flashlight and the pulse of light */
     flashlight(ctx, X(0) - 4, yp, F.ref('flashlight'));
     if (dist > 0.002) {
@@ -87,7 +87,7 @@ function stopwatch(ctx, x, y, r, f) {
     text(ctx, 't = ' + fmt(tau, 2) + ' ns', Math.min(X(dist), R - 60), yp - 48, C('time'), { weight: 600, align: 'center', bg: PAL.panel });
     /* the distance covered so far */
     if (dist > 0.02) hbracket(ctx, X(0), X(dist), 118, C('position'), 'd = ' + fmt(dist, 2) + ' m');
-    const clause = Math.abs(dEnd - 1) < 0.005 ? '这正是米的定义' : dEnd < 1 ? '还没有到达米刻度' : '越过了米刻度';
+    const clause = Math.abs(dEnd - 1) < 0.005 ? '这正是米的定义' : dEnd < 1 ? '还没有到达 1 m 刻度' : '越过了 1 m 刻度';
     headline(ctx, done ? '在 ' + fmt(T.v, 2) + ' ns 内，光传播了 ' + fmt(dEnd, 2) + ' m，' + clause + '。'
       : fmt(tau, 2) + ' ns 后，光已传播了 ' + fmt(dist, 2) + ' m，并且仍在前进。');
     readout(d.readout, `\\kd = \\kc\\,\\kt = (299{,}792{,}458\\ \\text{m/s})(${fmt(T.v, 2)} \\times 10^{-9}\\ \\text{s}) = ${fmt(dEnd, 2)}\\ \\text{m}`,

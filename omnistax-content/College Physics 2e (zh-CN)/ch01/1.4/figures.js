@@ -35,7 +35,7 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
 (function () {
   const d = sim('sim-building', 620);
   const N = ctl(d.controls, { label: '\\text{层数}', cls: '', min: 1, max: 100, step: 1, value: 39, unit: '', dec: 0, aria: '楼层数' });
-  const P = ctl(d.controls, { label: '\\text{人}', cls: 'position', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, aria: '人的身高' });
+  const P = ctl(d.controls, { label: '\\text{身高}', cls: 'position', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, aria: '人的身高' });
   const S = ctl(d.controls, { label: '\\text{每层人数}', cls: '', min: 1, max: 3, step: 0.5, value: 2, unit: '', dec: 1, aria: '每层的人数' });
   function draw() {
     const { ctx } = begin(d.c);

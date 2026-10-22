@@ -182,7 +182,7 @@ function runs(ctx, parts, x, y, size) {
   const Lc = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, aria: '木棍的真实长度' });
   /* The smallest division is one of three rulers, not a quantity to slide through, so it is a choice (rule 26.1). */
   const DIVS = { cm: { cm: 1, dec: 0, name: '厘米分度' }, mm: { cm: 0.1, dec: 1, name: '毫米分度' }, tenth: { cm: 0.01, dec: 2, name: '0.1 mm 分度' } };
-  const Dv = F.choice(d.controls, { label: '\\text{分度值}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: '刻度尺的分度值' });
+  const Dv = F.choice(d.controls, { label: '\\text{分度值}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: '直尺的分度值' });
   const X0 = 200, K = 22, YS = 140, SLIDE = 760;
   const BOX = { l: 175, r: 1225, t: 262, b: 470 };
   function draw() {
@@ -205,7 +205,7 @@ function runs(ctx, parts, x, y, size) {
     /* a caliper's window is ten times narrower than a ruler's, so its 0.1 mm marks stand as far apart as a ruler's millimeters */
     const S = dv.cm === 1 ? 1 : dv.cm * 10, WIN = 1.5 * S, KM = (BOX.r - BOX.l) / WIN, w0 = Math.floor(L / S + 1e-9) * S - 0.25 * S, Xm = (c) => BOX.l + (c - w0) * KM;
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    text(ctx, '放大视图，刻度尺为' + dv.name, BOX.l + 16, BOX.t + 20, PAL.muted, { size: 17 });
+    text(ctx, '放大视图，直尺为' + dv.name, BOX.l + 16, BOX.t + 20, PAL.muted, { size: 17 });
     bar(ctx, Xm(w0) - 20, 360, Xm(L) - Xm(w0) + 20, 26, true, F.ref('stick'));
     /* the ruler's marks where the ruler is */
     const lo = Math.max(w0, sw), hi = Math.min(w0 + WIN, 50 + 36 / K + sw);   /* the ruler runs on past its 50 mark, as the one above does */
@@ -228,9 +228,9 @@ function runs(ctx, parts, x, y, size) {
     }
     ctx.restore();
     headline(ctx, aligned ? '用' + dv.name + '时，木棍读数为 ' + reading + ' cm，有' + words(n) + '位数字，其中 ' + last + ' 是估读的。'
-      : '刻度尺滑到木棍下方，直到它的零刻线与木棍的左端对齐。');
+      : '直尺滑到木棍下方，直到它的零刻线与木棍的左端对齐。');
     readout(d.readout, `\\kLlen = ${reading}\\ \\text{cm}`,
-      '写下的最后一位数字是第一位含有一定不确定度的数字。以厘米为刻度的刻度尺给出 ' + L.toFixed(0) + ' cm，' + words(sigfigs(L, 0)) + '位数字，而读数到 0.1 mm 的卡尺给出 ' + L.toFixed(2) + ' cm，' + words(sigfigs(L, 2)) + '位。');
+      '写下的最后一位数字是第一位含有一定不确定度的数字。以厘米为刻度的直尺给出 ' + L.toFixed(0) + ' cm，' + words(sigfigs(L, 0)) + '位数字，而读数到 0.1 mm 的卡尺给出 ' + L.toFixed(2) + ' cm，' + words(sigfigs(L, 2)) + '位。');
   }
   register(d.fig, { update: () => {}, draw });
 })();
