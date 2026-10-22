@@ -1,0 +1,1103 @@
+{
+ "id": "13.4",
+ "module": "m42217",
+ "chapter": "13",
+ "title": "气体动理论：压强和温度的原子与分子解释",
+ "short": "气体动理论",
+ "lead": "到目前为止，<span data-concept=\"pressure\">压强</span>一直是一块<span data-concept=\"area\">面积</span>上受到的<span data-concept=\"force\">力</span>，<span data-concept=\"temperature\">温度</span>则是温度计读出的数。二者都可以追溯到原子和分子永不停息的随机运动，而它们的速率还决定了一颗行星或一颗卫星能留住哪些气体。",
+ "objectives": [
+  "用分子质量和速度表示理想气体定律。",
+  "定义热能。",
+  "已知气体分子的温度，计算它的动能。",
+  "描述气体的温度与原子和分子的动能之间的关系。",
+  "描述气体中分子速率的分布。"
+ ],
+ "summary_html": "<ul><li>气体动理论是对气体以及液体和固体的原子论描述。</li><li>气体动理论根据原子和分子的连续随机运动，为物质的性质建立模型。</li><li>理想气体定律也可以表示为 $$\\kPr V = \\frac{1}{3}Nm\\overline{v^2},$$ 其中 $\\kPr$ 是<span data-concept=\"pressure\">压强</span>（单位<span data-concept=\"area\">面积</span>上的平均<span data-concept=\"force\">力</span>），$V$ 是容器中气体的<span data-concept=\"volume\">体积</span>，$N$ 是容器中的分子数，$m$ 是一个分子的<span data-concept=\"mass\">质量</span>，$\\overline{v^2}$ 是分子速率平方的平均值。</li><li><span data-concept=\"thermal-energy\">热能</span>定义为原子或分子的平均平动<span data-concept=\"kinetic-energy\">动能</span> $\\kKEbar$。</li><li>气体的<span data-concept=\"temperature\">温度</span>与原子和分子的平均平动<span data-concept=\"kinetic-energy\">动能</span>成正比。 $$\\kKEbar = \\frac{1}{2}m\\overline{v^2} = \\frac{3}{2}k\\kTemp$$ 或 $$\\sqrt{\\overline{v^2}} = \\kvrms = \\sqrt{\\frac{3k\\kTemp}{m}}.$$</li><li>气体中单个分子的运动在大小和方向上是随机的。然而，由大量分子组成的气体具有可预测的分子速率分布，称为<em>麦克斯韦-玻尔兹曼分布</em>。</li></ul>",
+ "notes": "习题 2、4、6、8 和 10 在书中的答案表里没有答案，故略去；关于气体性质的 PhET 模拟说明也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均为 AI 生成。答案取自书后答案；习题 2、4、6、8 和 10（5.00 K 的氦、地球逃逸速度下的氧、聚变温度、193 m/s 的氢以及六氟化铀同位素）没有标注的答案，故略去。关于超新星的“不合理的结果”习题（fs-id2705483）在书中位于 13.6 节末尾，其内容取决于本节引入的方均根速率，因此在此处设置，source_section 为 13.6，书中第（a）问的答案按数值核对，第（b）问和第（c）问的答案放在解答中；13.6 的说明中也这样写明。六道 AP 题中，第一题和第三题有答案，是评分的选择题，第一题的题干中附有书中的选项表；第五题有答案，含两个数值部分；第二、第四和第六题没有答案，作为开放题保留，第二题附有书中印出的四个选项，每道都附有 AI 撰写并如此标明的建议思路。关于两条分布曲线的 AP 题在其卡片上附有书中的图。思考题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-box",
+   "kind": "sim",
+   "number": "13.21",
+   "folds": [
+    "13.22"
+   ],
+   "originals": [
+    "/media/ch13/Figure_14_04_01.jpg",
+    "/media/ch13/Figure_14_04_02.jpg"
+   ],
+   "original_caption": "当分子与刚性器壁碰撞时，其动量垂直于器壁的分量反向。于是器壁受到一个力，从而产生压强。",
+   "widths": [
+    200,
+    250
+   ],
+   "draws": [
+    "temperature",
+    "pressure",
+    "velocity",
+    "momentum",
+    "force",
+    "mass",
+    "volume",
+    "position",
+    "time"
+   ],
+   "conventions": [
+    "He",
+    "N",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "meter labels under it, no NaN with no strikes, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-speeds",
+   "kind": "sim",
+   "number": "13.23",
+   "originals": [
+    "/media/ch13/Figure_14_04_03.jpg"
+   ],
+   "original_caption": "（a）普通气体中有许多分子运动得如此之快，以致它们每秒钟相互碰撞 10 亿次。（b）单个分子在很短的时间内走不了多远，但是像声波这样的扰动却以与分子速率相关的速率传播。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "velocity",
+    "energy",
+    "mass"
+   ],
+   "conventions": [
+    "He",
+    "N",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bottom labels split apart, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-distribution",
+   "kind": "sim",
+   "number": "13.24",
+   "folds": [
+    "13.25"
+   ],
+   "originals": [
+    "/media/ch13/OSX_CP2e_Figure_14_04_04.jpg",
+    "/media/ch13/OSX_CP2e_Figure_14_04_05.jpg"
+   ],
+   "original_caption": "理想气体中分子速率的麦克斯韦-玻尔兹曼分布。最概然速率 v_p 小于方均根速率 v_rms。虽然很高的速率是可能的，但只有极小一部分分子的速率比 v_rms 大一个数量级。",
+   "widths": [
+    350,
+    250
+   ],
+   "draws": [
+    "temperature",
+    "velocity",
+    "mass"
+   ],
+   "conventions": [
+    "He",
+    "N",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph top lowered, curves keyed in the table, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-escape",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "velocity",
+    "mass"
+   ],
+   "conventions": [
+    "H",
+    "He",
+    "N",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph narrowed, legend in two rows, level named in legend, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-rover",
+   "kind": "photo",
+   "number": "13.26",
+   "widths": [
+    250
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "collisions",
+   "concept": "kinetic-theory",
+   "verb": "introduces"
+  },
+  {
+   "span": "collisions",
+   "concept": "ideal-gas",
+   "verb": "uses"
+  },
+  {
+   "span": "collisions",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "collisions",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "derivation",
+   "concept": "molecular-origin-of-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "derivation",
+   "concept": "kinetic-theory",
+   "verb": "uses"
+  },
+  {
+   "span": "derivation",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "derivation",
+   "concept": "change-in-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "derivation",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "derivation",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "derivation",
+   "concept": "elastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "derivation",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-energy",
+   "concept": "thermal-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-energy",
+   "concept": "rms-speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-energy",
+   "concept": "molecular-origin-of-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-energy",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-energy",
+   "concept": "boltzmann-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-kinetic-energy",
+   "concept": "molecular-mass-from-molar-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-kinetic-energy",
+   "concept": "thermal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-kinetic-energy",
+   "concept": "rms-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-kinetic-energy",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-kinetic-energy",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "distribution",
+   "concept": "maxwell-boltzmann-distribution",
+   "verb": "introduces"
+  },
+  {
+   "span": "distribution",
+   "concept": "rms-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "escape",
+   "concept": "atmospheric-escape",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-escape",
+   "concept": "rms-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-escape",
+   "concept": "thermal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-escape",
+   "concept": "molecular-mass-from-molar-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-escape",
+   "concept": "maxwell-boltzmann-distribution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-escape",
+   "concept": "universal-gravitation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1589233",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "collisions"
+   },
+   "cite": "collisions",
+   "prompt": "如果考虑气体中一个很小的物体，例如一粒花粉，那么撞击其表面的原子和分子的数目也会相对较少。由于在给定时间内撞击花粉粒的气体原子和分子数目的统计涨落，花粉粒会不会经历压强的涨落？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "会。这样的涨落实际上对气体中任何大小的物体都会出现，但是对于宏观物体，原子和分子的数目极其巨大，涨落只占碰撞次数的极小百分比，本节所说的各种平均值的变化小到察觉不出。粗略地说，涨落与碰撞次数的平方根成反比，所以对小物体来说，涨落可能变得显著。这在 19 世纪确实在水中的花粉粒上被观察到，称为布朗运动。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1380376",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "collisions",
+   "prompt": "动量与气体所施加的压强有什么关系？请在原子和分子的层次上，考虑原子和分子的行为来加以解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "气体的压强是其分子对器壁所施加的单位面积上的平均力，而这个力来自动量。当一个分子与刚性器壁发生弹性碰撞时，其动量垂直于器壁的分量反向，因此它的动量改变 $\\kdp = 2m\\kvx$。根据用动量表述的牛顿第二定律，在碰撞期间器壁对分子施加力 $\\kF = \\kdp/\\Delta t$，根据牛顿第三定律，分子对器壁施加大小相等的力。一个分子每隔 $\\Delta t = 2l/\\kvx$ 撞击同一器壁一次，这是它在盒中来回一趟所需的时间，所以它对器壁的平均力为 $m\\kvx^2/l$。每秒有大量分子撞击器壁，它们单位时间内的动量改变之和除以器壁的面积，就是压强。分子越多或分子越快，每秒传递的动量就越多，因此压强随分子数和温度而升高，正如 $\\kPr V = \\tfrac{1}{3}Nm\\overline{v^2}$ 所表明的。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2564957",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "相同分子数、相同温度的两份理想气体分别装在不同的容器中，但气体 X 的分子质量大于气体 Y 的。下列哪一项正确地比较了这两种气体的分子平均速率以及它们对各自容器所施加的平均力？<table class=\"data\"><tr><th></th><th>分子的平均速率</th><th>对容器的平均力</th></tr><tr><td>（a）</td><td>气体 X 的更大</td><td>气体 X 的更大</td></tr><tr><td>（b）</td><td>气体 X 的更大</td><td>不知道气体的体积就无法比较这些力。</td></tr><tr><td>（c）</td><td>气体 Y 的更大</td><td>气体 Y 的更大</td></tr><tr><td>（d）</td><td>气体 Y 的更大</td><td>不知道气体的体积就无法比较这些力。</td></tr></table>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "气体 X 的平均速率更大；气体 X 的平均力更大",
+     "气体 X 的平均速率更大；不知道气体的体积就无法比较这些力",
+     "气体 Y 的平均速率更大；气体 Y 的平均力更大",
+     "气体 Y 的平均速率更大；不知道气体的体积就无法比较这些力"
+    ],
+    "correct": 3,
+    "hint": "在相同温度下，每个分子的平均动能相同，所以根据 $\\kvrms = \\sqrt{3k\\kTemp/m}$ 判断哪种气体运动得更快；然后想一想，除了 $N$ 和 $\\kTemp$ 之外，容器所受的力还取决于什么。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1689385",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "如果气体分子的温度从 20°C 升高到 313°C，它的平均动能将如何变化？<ol type=\"a\"><li>变为原来的十六倍。</li><li>变为原来的四倍</li><li>变为原来的两倍</li><li>保持不变。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "分子的平均动能为 $\\kKEbar = \\tfrac{3}{2}k\\kTemp$，与热力学温度成正比，所以比较之前要把两个温度都换算成开尔文：$20^\\circ\\text{C}$ 是 293 K，$313^\\circ\\text{C}$ 是 586 K。热力学温度变为两倍，所以平均动能也变为两倍，这就是第三个选项。摄氏温度之比约为十六，在这里毫无意义，因为摄氏温标不是从绝对零度开始的。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1860075",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "distribution",
+   "figure": {
+    "src": "/media/ch13/Figure_Ch13_S02.jpg",
+    "alt": "该图的纵轴（y 轴）标为“概率”，横轴（x 轴）标为“速度 v（m/s）”。图中有两条分布曲线，红色的标为 T1，绿色的标为 T2。红色曲线上升得很快，然后逐渐变缓。绿色曲线比红色曲线上升得慢（因此位于红色曲线的右侧），峰值比红色曲线的峰值低，然后比红色曲线下降得慢。"
+   },
+   "prompt": "该图表示理想气体中分子速率在 $T_1$ 和 $T_2$ 两个温度下的麦克斯韦-玻尔兹曼分布。下列哪一个说法是错误的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "T₁ 低于 T₂",
+     "T₁ 时的方均根速率高于 T₂ 时的。",
+     "每条曲线的峰值表示相应温度下的最概然速率。",
+     "以上都不是。"
+    ],
+    "correct": 1,
+    "hint": "温度越高，整个分布越向高速率移动并且变宽，而方均根速率随温度的平方根增大。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1469775",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "collisions",
+   "prompt": "设气缸中有气体，缸中有一个可移动的活塞，其面积为 0.40 m<sup>2</sup>。活塞高度为 0.02 m 时，气体的压强为 150 Pa。求气体对活塞施加的力。如果把活塞移到 0.03 m 的高度，这个力如何变化？假设温度保持不变。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "活塞受到的力等于压强乘以其面积，$\\kF = \\kPr A = (150\\ \\text{Pa})(0.40\\ \\text{m}^2) = 60\\ \\text{N}$。把活塞从 0.02 m 升到 0.03 m，气体的体积变为原来的 1.5 倍，而温度和分子数不变，根据理想气体定律 $\\kPr V = Nk\\kTemp$，压强以同样的倍数下降，降到 100 Pa。活塞受到的力也随之下降，降到 $\\kF = (100\\ \\text{Pa})(0.40\\ \\text{m}^2) = 40\\ \\text{N}$。在分子层面上，分子运动得和以前一样快，但在两次撞击活塞之间要走更远的路，所以撞击得不那么频繁，每秒传给活塞的动量也更少。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id4428826",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "如果氮分子（N<sub>2</sub>）的方均根速率是 560 m/s，它的平均动能是多少？这一方均根速率在什么温度下达到？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 7.29e-21,
+      "unit": "J",
+      "hint": "氮分子的质量是 $4.65 \\times 10^{-26}$ kg，平均动能是 $\\tfrac{1}{2}m\\kvrms^2$。"
+     },
+     {
+      "part": "(b)",
+      "value": 352,
+      "unit": "K",
+      "hint": "令 $\\tfrac{3}{2}k\\kTemp$ 等于平均动能，解出 $\\kTemp$。"
+     }
+    ],
+    "solution": "（a）7.29 × 10<sup>−21</sup> J；（b）352 K 或 79°C"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2516136",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "在相同温度下，氮分子与氦原子的动能之比和方均根速率之比是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "无论是什么分子，分子的平均动能都是 $\\tfrac{3}{2}k\\kTemp$，所以在相同温度下，氮分子与氦原子的动能之比为 1。方均根速率为 $\\kvrms = \\sqrt{3k\\kTemp/m}$，所以在相同温度下，速率之比等于质量之比的平方根的倒数。氮分子的摩尔质量为 28.0 g/mol，氦原子为 4.00 g/mol，所以 $\\kvrms(\\text{N}_2)/\\kvrms(\\text{He}) = \\sqrt{4.00/28.0} = 0.378$；氦原子的运动速率约为氮分子的 2.65 倍，二者的平均动能相同。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1358201",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "有些白炽灯泡中充有氩气。假设温度为 2500 K，灯丝附近氩原子的 $\\kvrms$ 是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1250,
+    "unit": "m/s",
+    "hint": "由氩的摩尔质量 39.9 g/mol 和阿伏伽德罗常量求出一个氩原子的质量，然后用 $\\kvrms = \\sqrt{3k\\kTemp/m}$。",
+    "solution": "$1.25 \\times 10^{3}\\ \\text{m/s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1472510",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "（a）太阳 $5500^\\circ\\text{C}$ 的表面上，氢原子的平均动能是多少焦耳？（b）在日冕中温度为 $6.00 \\times 10^{5}\\ \\text{K}$ 的区域，氦原子的平均动能是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.2e-19,
+      "unit": "J",
+      "hint": "先把温度换算成开尔文；平均动能是 $\\tfrac{3}{2}k\\kTemp$，与原子的种类无关。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.24e-17,
+      "unit": "J",
+      "hint": "同样是 $\\tfrac{3}{2}k\\kTemp$，温度已经以开尔文表示。"
+     }
+    ],
+    "solution": "（a）$1.20 \\times 10^{-19}\\ \\text{J}$（b）$1.24 \\times 10^{-17}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1213414",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "escape",
+   "prompt": "月球的逃逸速度比地球的小得多，只有 2.38 km/s。氢分子（分子质量等于 2.016 g/mol）在什么温度下，其平均速度 $\\kvrms$ 才等于月球的逃逸速度？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 458,
+    "unit": "K",
+    "hint": "由氢的摩尔质量求出一个氢分子的质量，然后在 $\\kvrms = 2380$ m/s 的条件下，从 $\\kvrms = \\sqrt{3k\\kTemp/m}$ 解出 $\\kTemp$。",
+    "solution": "$458\\ \\text{K}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1616491",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "假设发现火焰中二氧化碳分子（分子质量等于 44.0 g/mol）的平均速度 $(\\kvrms)$ 为 $1.05 \\times 10^{5}\\ \\text{m/s}$。这代表多高的温度？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 19500000.0,
+    "unit": "K",
+    "hint": "一个分子的质量等于以千克为单位的摩尔质量除以阿伏伽德罗常量；然后 $\\kTemp = m\\kvrms^2/3k$。",
+    "solution": "$1.95 \\times 10^{7}\\ \\text{K}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2720605",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "escape",
+   "prompt": "太阳附近的气体大部分是原子氢。它的温度必须达到 $1.5 \\times 10^{7}\\ \\text{K}$，平均速度 $\\kvrms$ 才会等于太阳的逃逸速度。那个速度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 609000.0,
+    "unit": "m/s",
+    "hint": "氢原子的摩尔质量为 1.008 g/mol；求出它的质量，再用 $\\kvrms = \\sqrt{3k\\kTemp/m}$。",
+    "solution": "$6.09 \\times 10^{5}\\ \\text{m/s}$"
+   }
+  },
+  {
+   "id": "ur1",
+   "source_id": "fs-id2705483",
+   "source_section": "13.6",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-energy",
+   "prompt": "据说超新星爆发内部的温度为 $2.00 \\times 10^{13}\\ \\text{K}$。（a）氢原子的平均速度 $\\kvrms$ 会是多少？（b）这个速度有什么不合理之处？（c）是哪个前提或假设造成的？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 703000000.0,
+    "unit": "m/s",
+    "hint": "用氢原子的质量代入 $\\kvrms = \\sqrt{3k\\kTemp/m}$，然后把求得的速率与光速比较。",
+    "solution": "（a）$7.03 \\times 10^{8}\\ \\text{m/s}$（b）这个速度太大了——它大于光速。（c）造成这一问题的是“超新星内部的氢表现为理想气体”这一假设，因为恒星核心的温度和密度极高。此外，当得到大于光速的速度时，经典物理学必须由相对论取代，而这一主题尚未讲到。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "kinetic-theory"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "kinetic-theory"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "molecular-origin-of-pressure"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "molecular-origin-of-pressure"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "thermal-energy"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "maxwell-boltzmann-distribution"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "force-from-pressure"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "ideal-gas-law"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "molecular-origin-of-pressure",
+   "weight": 1
+  },
+  {
+   "exercise": "ap5",
+   "concept": "thermal-energy"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "molecular-mass-from-molar-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "thermal-energy"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "p1",
+   "concept": "molecular-mass-from-molar-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "thermal-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "p5",
+   "concept": "atmospheric-escape"
+  },
+  {
+   "exercise": "p5",
+   "concept": "molecular-mass-from-molar-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "p7",
+   "concept": "molecular-mass-from-molar-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "p9",
+   "concept": "atmospheric-escape"
+  },
+  {
+   "exercise": "p9",
+   "concept": "molecular-mass-from-molar-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ur1",
+   "concept": "rms-speed"
+  },
+  {
+   "exercise": "ur1",
+   "concept": "ideal-gas",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "molecule",
+   "label": "被追踪的分子，带有一个圆环标记",
+   "figures": [
+    "sim-box"
+   ]
+  },
+  {
+   "id": "wall",
+   "label": "盒子的右壁",
+   "figures": [
+    "sim-box"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "pressure-from-molecules",
+   "what": "由分子碰撞推出理想气体定律",
+   "source": "《大学物理（第2版）》，13.4 气体动理论：压强和温度的原子与分子解释，大与小",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "器壁是刚性的，分子的速率不变，所以它沿 $x$ 方向的速度由 $-\\kvx$ 反向为 $+\\kvx$。",
+       "src": "13.4，图 13.22"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dp}{\\Delta(\\km\\kv)} = \\mk{a}{+\\km\\kvx} - \\mk{b}{(-\\km\\kvx)}",
+      "uses": [
+       0
+      ],
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dp}{\\Delta(\\km\\kv)} = \\mk{a}{2\\km\\kvx}",
+       "uses": [],
+       "map": {
+        "b": "a"
+       }
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kdt = \\dfrac{2\\kl}{\\kvx}",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{\\kdp}}{\\mk{dt}{\\kdt}}",
+      "uses": [],
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{2\\km\\kvx}}{\\mk{dt}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{2\\km\\kvx}}{\\mk{dt}{2\\kl/\\kvx}}",
+       "uses": [
+        1
+       ],
+       "cap": "对于平均力，$\\kdt$ 是与这个器壁相邻两次碰撞之间的时间：在盒中来回一趟，即走过距离 $2\\kl$，速率为 $\\kvx$。"
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{\\km\\kvx^2}}{\\mk{dt}{\\kl}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$N$ 个分子产生的力是一个分子产生的力的 $N$ 倍，其中 $\\kvx^2$ 换成它的平均值 $\\overline{v_x^2}$。",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{\\km\\kvx^2}}{\\mk{dt}{\\kl}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v_x^2}}}{\\mk{dt}{\\kl}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\overline{v_x^2} = \\overline{v_y^2} = \\overline{v_z^2}",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\overline{v^2}} = \\mk{x}{\\overline{v_x^2}} + \\mk{y}{\\overline{v_y^2}} + \\mk{z}{\\overline{v_z^2}}",
+      "uses": [],
+      "src": "13.4",
+      "why": "合速度的平方等于其各分量平方之和。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\overline{v^2}} = \\mk{x}{3\\overline{v_x^2}}",
+       "uses": [
+        0
+       ],
+       "cap": "速度是随机的，所以它们在各个方向上的平均分量相同。",
+       "map": {
+        "y": "x",
+        "z": "x"
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\overline{v_x^2}} = \\mk{v}{\\tfrac{1}{3}\\overline{v^2}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v_x^2}}}{\\mk{dt}{\\kl}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v^2}}}{\\mk{dt}{3\\kl}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "tex": "\\kvol = \\karea\\kl",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPr} = \\dfrac{\\mk{F}{\\kF}}{\\mk{A}{\\karea}}",
+      "uses": [],
+      "src": "11.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPr} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v^2}}}{\\mk{dt}{3}\\mk{A}{\\karea}\\mk{l}{\\kl}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "F": [
+         "N",
+         "dp",
+         "dt",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{P}{\\kPr} = \\mk{dt}{\\tfrac{1}{3}}\\dfrac{\\mk{N}{N}\\mk{dp}{\\km\\overline{v^2}}}{\\mk{A}{\\kvol}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "l": "A"
+       }
+      },
+      {
+       "tex": "\\mk{P}{\\kPr}\\mk{A}{\\kvol} = \\mk{dt}{\\tfrac{1}{3}}\\mk{N}{N}\\mk{dp}{\\km\\overline{v^2}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4"
+    }
+   ]
+  },
+  {
+   "id": "thermal-energy",
+   "what": "气体分子的平均动能",
+   "source": "《大学物理（第2版）》，13.4 气体动理论：压强和温度的原子与分子解释",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kPr \\kvol = \\tfrac{1}{3}N\\km\\overline{v^2}",
+       "src": "13.4"
+      },
+      {
+       "text": "分子的平均动能为 $\\kKEbar = \\tfrac{1}{2}\\km\\overline{v^2}$。",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{N}\\mk{kT}{k\\kTemp}",
+      "uses": [],
+      "src": "13.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{PV}{\\tfrac{1}{3}N\\km\\overline{v^2}} = \\mk{N}{N}\\mk{kT}{k\\kTemp}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{PV}{\\tfrac{1}{3}\\km\\overline{v^2}} = \\mk{kT}{k\\kTemp}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{PV}{\\tfrac{1}{2}\\km\\overline{v^2}} = \\mk{kT}{\\tfrac{3}{2}k\\kTemp}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{KE}{\\kKEbar} = \\mk{PV}{\\tfrac{1}{2}\\km\\overline{v^2}} = \\mk{kT}{\\tfrac{3}{2}k\\kTemp}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.4"
+    }
+   ]
+  }
+ ]
+}

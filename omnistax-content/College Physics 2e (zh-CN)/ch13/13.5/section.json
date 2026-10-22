@@ -1,0 +1,696 @@
+{
+ "id": "13.5",
+ "module": "m42218",
+ "chapter": "13",
+ "title": "相变",
+ "short": "相变",
+ "lead": "理想气体永远不会凝结，但实际气体在冷却或压缩到足够程度时会凝结，进一步冷却则会凝固。PV 图和相图描述实际气体如何偏离理想气体定律，而<span data-concept=\"vapor-pressure\">蒸气压</span>、分压和道尔顿分压定律则描述处于平衡的液体及其气体。",
+ "objectives": [
+  "解读相图。",
+  "陈述道尔顿分压定律。",
+  "根据相图识别并描述气体的三相点。",
+  "描述液体与气体、液体与固体、气体与固体之间的平衡状态。"
+ ],
+ "summary_html": "<ul><li>大多数物质有三个不同的相：气体、液体和固体。</li><li>物质各个相之间的相变取决于<span data-concept=\"temperature\">温度</span>和<span data-concept=\"pressure\">压强</span>。</li><li>三个相在<span data-concept=\"pressure\">压强</span>和<span data-concept=\"temperature\">温度</span>方面的存在情形，可以用相图来描述。</li><li>两个相在一组<span data-concept=\"pressure\">压强</span>和<span data-concept=\"temperature\">温度</span>下共存（即它们处于热平衡）。这在相图上描述为一条线。</li><li>三个相在单一的<span data-concept=\"pressure\">压强</span>和<span data-concept=\"temperature\">温度</span>下共存。这称为三相点，在相图上用一个点来描述。</li><li>温度低于沸点的气体称为蒸气。</li><li><span data-concept=\"vapor-pressure\">蒸气压</span>是气体与其固相或液相共存时的<span data-concept=\"pressure\">压强</span>。</li><li>分压是一种气体单独存在时所产生的<span data-concept=\"pressure\">压强</span>。</li><li>道尔顿分压定律指出，总<span data-concept=\"pressure\">压强</span>等于存在的所有气体的分压之和。</li></ul>",
+ "notes": "关于“物态”的 PhET 说明已略去，13.6 节中关于水的临界压强所在深度的综合概念题也已略去，该题在本书答案中没有给出答案。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。两个“理解检测”框书中附有答案，并内嵌排印。本节没有印出自己的习题；从 13.6 节末尾取了两题，其 source_section 为 13.6，因为分压在本节定义，而 13.6 节只是使用它：干空气中氮气的分压，答案为 7.89 × 10⁴ Pa，以及深海潜水员的氧气，答案分为两问。潜水员第（a）问的答案 2.12 × 10⁴ Pa 是 1.013 × 10⁵ Pa 的 20.9%；按题目给出的 1.01 × 10⁵ N/m²，乘积为 2.11 × 10⁴ Pa，卡片的容差可以接受。13.6 节的第三题，即关于水的临界压强出现在多深处的综合概念题，没有给出答案，因而略去。六道思考题的建议思路由 AI 撰写，并已标明。第三道思考题印出的未编号二氧化碳相图，出现在第三、第四两题的卡片上，两题都引用了它。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-real-gas-volume",
+   "kind": "sim",
+   "number": "13.27",
+   "originals": [
+    "/media/ch13/Figure_14_05_01.jpg"
+   ],
+   "original_caption": "在恒定压强下，实际气体的体积随温度变化的示意图。图中线性（直线）部分表示理想气体的行为——体积与温度成正比（正相关），这条直线外推到 −273.15 °C，即绝对零度时，体积为零。然而当气体变成液体时，体积在液化点处实际上急剧减小。物质成为固体后，体积又略有减小，但绝不会变为零。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "volume",
+    "pressure"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of the T line and the ideal line, gas note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-pv-isotherms",
+   "kind": "sim",
+   "number": "13.28",
+   "originals": [
+    "/media/ch13/Figure_14_05_04.jpg"
+   ],
+   "original_caption": "PV 图。（a）每条曲线（等温线）表示固定温度下 P 与 V 之间的关系；上方的曲线对应较高的温度。下方的曲线不是双曲线，因为气体已不再是理想气体。（b）低温下 PV 图的放大部分，在这一区域相可以由气体变为液体。“蒸气”一词指温度低于沸点时的气相。",
+   "widths": [
+    600
+   ],
+   "draws": [
+    "temperature",
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "Liquid off the curves, V label low, NkT typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-phase-diagram",
+   "kind": "sim",
+   "number": "13.29",
+   "originals": [
+    "/media/ch13/Figure_14_05_05.jpg"
+   ],
+   "original_caption": "水的相图（PT 图）。请注意，坐标轴是非线性的，图不按比例。这张图是简化的——在更高的压强下，冰还有几种其他奇特的相。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "pressure"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "CO2 vapor curve sign fixed, P label moved off the curves"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-liquid-vapor-equilibrium",
+   "kind": "sim",
+   "number": "13.30",
+   "originals": [
+    "/media/ch13/Figure_14_05_06.jpg"
+   ],
+   "original_caption": "密闭容器内液体与气体在两个不同沸点下的平衡。（a）在这一温度和压强的组合下，沸腾速率与凝结速率相等，所以液相和气相处于平衡。（b）在较高的温度下，沸腾速率更快，分子离开液体进入气体的速率也更快。由于气体中的分子更多，气体压强更高，气体分子凝结并进入液体的速率也更快。结果，气体和液体在这个较高的温度下处于平衡。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "pressure"
+   ],
+   "conventions": [
+    "H",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "liquid label backed, note repeating the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-partial-pressures",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "pressure"
+   ],
+   "conventions": [
+    "N",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "gauge label off the box, partial symbols via macros, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "real-gases",
+   "concept": "real-gas-condensation",
+   "verb": "introduces"
+  },
+  {
+   "span": "real-gases",
+   "concept": "ideal-gas",
+   "verb": "uses"
+  },
+  {
+   "span": "real-gases",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "real-gases",
+   "concept": "phases-of-matter",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "pv-diagram",
+   "verb": "introduces"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "critical-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "critical-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "pv-diagrams",
+   "concept": "critical-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-diagrams",
+   "concept": "phase-diagram",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-diagrams",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-diagrams",
+   "concept": "critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sublimation-triple-point",
+   "concept": "sublimation",
+   "verb": "introduces"
+  },
+  {
+   "span": "sublimation-triple-point",
+   "concept": "triple-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "sublimation-triple-point",
+   "concept": "phase-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibrium",
+   "concept": "phase-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "equilibrium",
+   "concept": "thermal-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibrium",
+   "concept": "triple-point",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibrium",
+   "concept": "vapor",
+   "verb": "introduces"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "vapor-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "daltons-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "maxwell-boltzmann-distribution",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "kinetic-theory",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "pressures-add",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "phase-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "partial-pressure",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2259406",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "equilibrium"
+   },
+   "cite": "equilibrium",
+   "prompt": "解释为什么一杯放了冰块的水（或汽水），即使在炎热的夏日也保持在 0 °C。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "冰和液态水处于热平衡，所以只要液体中还有冰，温度就保持在凝固点。（一旦冰全部熔化，水温就会开始升高。）"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id2635559",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "vapor-pressure"
+   },
+   "cite": "vapor-pressure",
+   "prompt": "相变中是否涉及能量传递？如果是，从固体变为液体、从液体变为气体是否必须供给能量？从气体变为液体、从液体变为固体呢？为什么在佛罗里达州，气温接近或刚低于凝固点时，要往橙树上喷水？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "是的，相变中涉及能量传递。我们知道固体和液体中的原子和分子彼此束缚，因为我们知道要把它们分开需要力。所以在由固体变为液体、由液体变为气体的相变中，必须施加力，也许是通过碰撞，来使原子和分子分开。力作用一段距离就是功，所以由固体变为液体、由液体变为气体需要能量来做功。这与熔化冰或烧开水需要能量的直觉是一致的。反过来也成立。由气体变为液体或由液体变为固体，涉及原子和分子相互挤到一起，做功并释放能量。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1060374",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-diagrams",
+   "prompt": "高压锅里装有水和蒸汽，二者在高于大气压的压强下处于平衡。这个较大的压强如何提高烹饪速度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "查看水的相图中的汽化曲线。在 1.00 atm 时，液体和它的蒸气在 100 °C 共存，曲线向右稳步上升，所以在更高的压强下它们在更高的温度共存；例如在约 2 atm 时，水在 120 °C 附近沸腾。在密封的高压锅中，蒸汽无法逸出，它的压强升到大气压之上，水在远高于 100 °C 的温度下仍保持液态，而不会沸腾蒸发掉。因此，食物是在比任何敞口锅所能提供的更热的液态水中烹饪的，而烹饪所包含的化学变化在较高的温度下进行得更快。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "eip-id3197306",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vapor-pressure",
+   "prompt": "为什么凝结最快出现在房间里最冷的物体上——例如一杯冰水上？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "房间里的空气带有一定分压的水蒸气，在房间各处都相同。液体是否会在某个表面形成，取决于把这个分压与水在该表面温度下的蒸气压相比较，而蒸气压随温度降低急剧下降。在温暖的物体上，水的蒸气压高于空气中水蒸气的分压，所以形成的任何液滴都会再次蒸发。在冰水杯上，表面接近 0 °C，水的蒸气压在此仅约 0.006 atm，远低于普通室内空气中水蒸气的分压；在这里，撞击表面的分子凝结的速度快于离开的速度，于是液体聚集起来。物体越冷，它的蒸气压比空气中的分压低得越多，凝结就越快。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2808785",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sublimation-triple-point",
+   "figure": {
+    "src": "/media/ch13/Figure_14_05_08.jpg",
+    "alt": "二氧化碳的相图（压强对温度的图，显示三个相）。三相点为五点一一个大气压和负五十六点六摄氏度。临界点为七十三个大气压和三十一摄氏度。在一个大气压的标准压强下，由固体变为蒸气的相变发生在负七十八点五摄氏度。",
+    "caption": "二氧化碳的相图。坐标轴是非线性的，图不按比例。干冰是固态二氧化碳，其升华温度为 −78.5 °C。"
+   },
+   "prompt": "固态二氧化碳（干冰）在 −78.5 °C 时的蒸气压是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "固体的蒸气压是它与自己的气体共存时的压强，也就是相图上固体与蒸气的分界线。该图把 −78.5 °C 标为二氧化碳在标准大气压下的升华温度，所以分界线在该温度下经过 1 atm，因此干冰在 −78.5 °C 时的蒸气压是 1 atm，约 1.01 × 10⁵ Pa。这就是为什么干冰留在通常压强的敞开环境中，会变成气体而从不变成液体：它的三相点在 5.11 atm，高于大气压。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1847607",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pv-diagrams",
+   "figure": {
+    "src": "/media/ch13/Figure_14_05_08.jpg",
+    "alt": "二氧化碳的相图（压强对温度的图，显示三个相）。三相点为五点一一个大气压和负五十六点六摄氏度。临界点为七十三个大气压和三十一摄氏度。在一个大气压的标准压强下，由固体变为蒸气的相变发生在负七十八点五摄氏度。",
+    "caption": "二氧化碳的相图。坐标轴是非线性的，图不按比例。干冰是固态二氧化碳，其升华温度为 −78.5 °C。"
+   },
+   "prompt": "二氧化碳能在室温（20 °C）下液化吗？如果能，怎样做？如果不能，为什么？（见二氧化碳的相图。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能。二氧化碳的临界温度是 31.1 °C（表 13.3），20 °C 低于它，所以在这个温度下存在液相。在相图上，20 °C 处的竖直线穿过位于 5.11 atm 的三相点与位于 73 atm 的临界点之间的液体与蒸气的分界线，穿过处的压强约为 60 atm。在 20 °C 把气体压缩到高于这个值的压强，就使它越过分界线进入液体区，二氧化碳就是这样以液体形式储存在室温下的灭火器中的。高于 31.1 °C 时，无论压强多大，都做不到这一点。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1592769",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pv-diagrams",
+   "prompt": "无论施加多大的压强迫使氧分子靠拢，都不能在室温下使氧液化。解释这是为什么。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每种物质都有一个临界温度，高于它，在任何压强下都不存在液相，氧的临界温度是 −118.4 °C（表 13.3）。室温远高于这个温度。在 20 °C 压缩氧，在 PV 图上就是沿着一条高于临界等温线的等温线移动，这样的等温线没有平直部分。气体可以达到液体的密度，却始终不会凝结，因为在这一温度下，分子运动得太快，它们之间的相互吸引无法把它们保持为液体。要使氧液化，必须先把它冷却到 −118.4 °C 以下，然后足够大的压强才能做到。在大气压下，它在 −183 °C 变成液体。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2404335",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equilibrium",
+   "prompt": "气体和蒸气有什么区别？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "蒸气是物质在低于其沸点的温度下的气相，而气体是高于沸点的气相。20.0 °C 的水是标准的例子：水在大气压下于 100 °C 沸腾，所以它在室温下的气相是水蒸气。蒸气可以在蒸气压下与它自己的液体或固体共存，这就是空气中的水蒸气会在冷玻璃杯上凝结成露的原因。室温下的氧远高于它 −183 °C 的沸点，也高于它的临界温度，所以它是气体，任何压强都不能使它与液体共存。蒸气和气体的分子运动和碰撞的方式相同，当它们远离凝结时，二者都遵循理想气体定律。这两个词指的是沸点两侧的气相。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1893897",
+   "source_section": "13.6",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vapor-pressure",
+   "prompt": "干空气含 78.1% 的氮气。当大气压为 $1.01 \\times 10^{5}\\ \\text{N/m}^2$ 时，氮气的分压是多少？",
+   "answer": {
+    "type": "number",
+    "value": 78900,
+    "unit": "Pa",
+    "generated_by": "source",
+    "hint": "按照道尔顿分压定律，每种气体贡献的是它单独存在时所产生的压强，而根据理想气体定律，这个压强与它的分子数成正比。因此氮气的分压就是它所占分子的比例乘以总压强。",
+    "solution": "$7.89 \\times 10^{4}\\ \\text{Pa}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2377418",
+   "source_section": "13.6",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vapor-pressure",
+   "prompt": "深海潜水员应当呼吸的混合气体，其氧气的分压要与海平面处相同；海平面处的干空气含 20.9% 的氧气，总压强为 $1.01 \\times 10^{5}\\ \\text{N/m}^2$。（a）海平面处氧气的分压是多少？（b）如果潜水员呼吸的混合气体压强为 $2.00 \\times 10^{6}\\ \\text{N/m}^2$，那么它应含百分之几的氧气，才能使氧气的分压与海平面处相同？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 21200,
+      "unit": "Pa",
+      "hint": "氧气的分压就是它所占分子的比例乘以总压强。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.06,
+      "unit": "%",
+      "hint": "这种混合气体必须在大约大二十倍的总压强下给出同样的氧气分压，所以氧气所占的比例必须约为原来的二十分之一。"
+     }
+    ],
+    "solution": "（a）$2.12 \\times 10^{4}\\ \\text{Pa}$（b）$1.06\\ \\%$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "phase-equilibrium"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "phase-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "phase-equilibrium"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "real-gas-condensation",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "phase-diagram"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "phase-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "vapor-pressure"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "daltons-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "vapor-pressure"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "sublimation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "phase-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "phase-diagram",
+   "weight": 3
+  },
+  {
+   "exercise": "cq5",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "phase-equilibrium"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "critical-point",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "daltons-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p2",
+   "concept": "daltons-law"
+  },
+  {
+   "exercise": "p2",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  }
+ ]
+}

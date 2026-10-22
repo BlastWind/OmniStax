@@ -1,0 +1,848 @@
+{
+ "id": "13.2",
+ "module": "m42215",
+ "chapter": "13",
+ "title": "固体和液体的热膨胀",
+ "short": "热膨胀",
+ "lead": "几乎所有东西受热时都会略微膨胀，膨胀的比例取决于材料，也取决于<span data-concept=\"temperature\">温度</span>变化的大小。这个比例决定了<span data-concept=\"length\">长度</span>、<span data-concept=\"area\">面积</span>和<span data-concept=\"volume\">体积</span>如何增大，为什么接近 4 °C 的水表现不同，温暖的日子里加满油的油箱会溢出多少汽油，以及液体受热但不能膨胀时会施加多大的<span data-concept=\"pressure\">压强</span>。",
+ "objectives": [
+  "定义并描述热膨胀。",
+  "已知物体的初始长度、温度变化量和线胀系数，计算物体的线膨胀。",
+  "已知物体的初始体积、温度变化量和体胀系数，计算物体的体膨胀。",
+  "已知物体的原体积、温度变化量、体积变化量和体积模量，计算物体所受的热应力。"
+ ],
+ "summary_html": "<ul><li>热膨胀是指物体的大小（<span data-concept=\"length\">长度</span>、<span data-concept=\"area\">面积</span>或<span data-concept=\"volume\">体积</span>）因<span data-concept=\"temperature\">温度</span>的变化而增大或减小。</li><li>气体的热膨胀很大，液体和固体的热膨胀相对较小，但不可忽略。</li><li>线膨胀为 $$\\kdL = \\alpha L\\kdTemp,$$ 其中 $\\kdL$ 是<span data-concept=\"length\">长度</span> $L$ 的变化量，$\\kdTemp$ 是<span data-concept=\"temperature\">温度</span>的变化量，$\\alpha$ 是<span data-concept=\"coefficient-of-linear-expansion\">线胀系数</span>，它随<span data-concept=\"temperature\">温度</span>略有变化。</li><li>热膨胀引起的<span data-concept=\"area\">面积</span>变化量为 $$\\Delta A = 2\\alpha A\\kdTemp,$$ 其中 $\\Delta A$ 是<span data-concept=\"area\">面积</span>的变化量。</li><li>热膨胀引起的体积变化量为 $$\\Delta V = \\beta V\\kdTemp,$$ 其中 $\\beta$ 是<span data-concept=\"coefficient-of-volume-expansion\">体胀系数</span>，且 $\\beta \\approx 3\\alpha$。热膨胀受到约束时，就会产生热应力。</li></ul>",
+ "notes": "“加满油箱”注记中的油量表照片已略去；书中没有给出答案的七道习题也已略去，它们是埃菲尔铁塔、铁轨间隙、钢制米尺和因瓦合金米尺、海水柱、铜散热器、阻止冰膨胀所需的压强，以及来自 13.6 的铝棒。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。七道习题没有给出答案，已略去：埃菲尔铁塔、铁轨之间的膨胀间隙、钢制米尺和因瓦合金米尺、1.00 km 高的海水柱、铜散热器、阻止冰膨胀所需的压强，以及 13.6 中“不合理的结果”里铝发动机缸体中的铝棒一题，该题原本会设在这里。香港一题的答案取自 CNXML，因为转换器把它弄乱了；其答案按减少量的大小核对。要求证明 60.0 L 汽油变为 61.1 L 的一题，按这个数值核对，并附上书中的推导；要求证明 β ≈ 3α 的一题是开放题，附有书中的推导。13.6 中的“综合概念”一题，即铜块的重力有多大比例由冷水和热水中的浮力支撑，取决于水的体膨胀，设在这里，source_section 为 13.6，答案为 1.02；13.6 的说明中也这样写明。五道思考题的建议思路由 AI 撰写，并已标明。关于两个物块的理解检测有书中的答案，设在二维和三维膨胀那段之后，题卡上附有书中的图。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-expansion-joint",
+   "kind": "photo",
+   "number": "13.11",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-linear-expansion",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "position",
+    "temperature-coefficient"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "cooling label, note cut to one sentence through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-expanding-plate",
+   "kind": "sim",
+   "number": "13.12",
+   "originals": [
+    "/media/ch13/Figure_14_02_02.jpg"
+   ],
+   "original_caption": "一般来说，物体的温度升高时，会向各个方向膨胀。在这些图中，物体原来的边界用实线表示，膨胀后的边界用虚线表示。（a）面积增大，因为长度和宽度都增大。圆塞的面积也增大。（b）如果取出圆塞，它留下的孔会随温度升高而变大，就像膨胀的圆塞仍留在原处一样。（c）体积也增大，因为三个维度都增大。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "temperature",
+    "volume",
+    "temperature-coefficient"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to two sentences through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-water-density",
+   "kind": "sim",
+   "number": "13.13",
+   "originals": [
+    "/media/ch13/Figure_14_02_03.jpg"
+   ],
+   "original_caption": "水的密度随温度变化的函数关系。请注意，热膨胀实际上非常小。在 +4 °C 时的最大密度，只比 2 °C 时的密度大 0.0075%，比 0 °C 时的密度大 0.012%。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "temperature",
+    "density"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "densest label moved off the axis title, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tank-spill",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "volume",
+    "temperature-coefficient"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label clear of the break mark, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-thermal-stress",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "pressure",
+    "elastic-modulus",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-pothole",
+   "kind": "photo",
+   "number": "13.15",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "thermal-expansion",
+   "concept": "thermal-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-expansion",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-expansion",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-expansion",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-expansion",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-expansion",
+   "concept": "linear-thermal-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-expansion",
+   "concept": "thermal-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-expansion",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-expansion",
+   "concept": "coefficient-of-linear-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-and-three-dimensions",
+   "concept": "area-thermal-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-and-three-dimensions",
+   "concept": "holes-expand-too",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-and-three-dimensions",
+   "concept": "volume-thermal-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-and-three-dimensions",
+   "concept": "linear-thermal-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "two-and-three-dimensions",
+   "concept": "coefficient-of-volume-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "water",
+   "concept": "anomalous-expansion-of-water",
+   "verb": "introduces"
+  },
+  {
+   "span": "water",
+   "concept": "volume-thermal-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "water",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "water",
+   "concept": "average-density-decides-floating",
+   "verb": "uses"
+  },
+  {
+   "span": "filling-the-tank",
+   "concept": "differential-thermal-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "filling-the-tank",
+   "concept": "volume-thermal-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "filling-the-tank",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-stress",
+   "concept": "thermal-stress",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-stress",
+   "concept": "differential-thermal-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-stress",
+   "concept": "stress",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-stress",
+   "concept": "bulk-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-stress",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-stress",
+   "concept": "linear-thermal-expansion",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-264",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "two-and-three-dimensions"
+   },
+   "cite": "two-and-three-dimensions",
+   "figure": {
+    "src": "/media/ch13/Figure_14_02_04a.jpg",
+    "alt": "图中有两个长方体物块。物块 A 的尺寸标注为：长等于 L，宽等于 2 倍的 L，高等于 L。物块 B 的尺寸标注为：长、宽、高都等于 2 倍的 L。"
+   },
+   "prompt": "两个物块 A 和 B 由同一种材料制成。物块 A 的尺寸为 $l \\times w \\times h = L \\times 2L \\times L$，物块 B 的尺寸为 $2L \\times 2L \\times 2L$。如果温度改变，（a）两个物块体积之比（$V_{\\text{B}}/V_{\\text{A}}$）的变化是多少，（b）横截面积之比 $l_{\\text{B}} \\times w_{\\text{B}}/l_{\\text{A}} \\times w_{\\text{A}}$ 的变化是多少，（c）两个物块高度之比 $h_{\\text{B}}/h_{\\text{A}}$ 的变化是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）体积的变化量与原来的体积成正比。物块 A 的体积为 $L \\times 2L \\times L = 2L^3$。物块 B 的体积为 $2L \\times 2L \\times 2L = 8L^3$，是物块 A 的 4 倍。因此物块 B 的体积变化量应是物块 A 的体积变化量的 4 倍。（b）面积的变化量与面积成正比。物块 A 的横截面积为 $L \\times 2L = 2L^2$，而物块 B 的为 $2L \\times 2L = 4L^2$。因为物块 B 的横截面积是物块 A 的两倍，所以物块 B 横截面积的变化量是物块 A 的两倍。（c）高度的变化量与原来的高度成正比。因为物块 B 原来的高度是 A 的两倍，所以物块 B 高度的变化量是物块 A 的两倍。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2182761",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-stress",
+   "prompt": "不均匀冷却产生的热应力很容易使玻璃炊具破裂。请解释为什么线胀系数很小的玻璃 Pyrex® 不易破裂。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "热的玻璃盘冷却不均匀时，先冷却的部分收缩，仍然很热的部分则不收缩，两部分相互拉扯。收缩量的差决定了由此产生的应力，而由 $\\kdL = \\alpha L\\kdTemp$，这个差与线胀系数成正比。表 13.2 给出普通玻璃的 $\\alpha = 9 \\times 10^{-6}/^\\circ\\text{C}$，Pyrex 的为 $3 \\times 10^{-6}/^\\circ\\text{C}$。对于同样的不均匀冷却，在相同的温差下，Pyrex 盘的收缩量只有普通玻璃的三分之一。它的冷部分与热部分之间的不匹配只有三分之一那么大，所承受的热应力远小于会使普通玻璃破裂的热应力。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1806401",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-stress",
+   "prompt": "水结冰时会显著膨胀：体积约增大 9%。由于这种膨胀，以及水结冰时晶体的形成和生长，动物或植物材料被冷冻时，有 10% 到 30% 的生物细胞会破裂。请讨论这种细胞损伤对通过冷冻保存人体的设想有什么影响，这一设想是希望将来某个时候所有疾病都能治愈，到那时再把人体解冻。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "细胞是一个装满水的小而刚硬的容器，水结冰时体积试图增大约 9%。细胞壁不能被拉伸到那么大。膨胀的冰所产生的热应力，加上结冰时长出的锋利晶体，使很大一部分细胞破裂，就像冷冻食物中发生的那样。整个冷冻起来的人体，每一处组织都会受到同样的损伤。解冻后的不是冷冻前的那个人体，而是其中有十分之一到三分之一的细胞已经破裂的人体，大脑和器官里和别处一样。治愈这个人的疾病并不能修复这种损伤。通过冷冻来保存，还需要某种办法来防止膨胀造成的损伤，例如替换细胞中的水，或者冷冻得足够快，使大晶体来不及形成，同时还需要某种办法来修复残留的任何损伤。膨胀的物理学使这一设想比“冷冻”这个词所显示的要困难得多。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1803094",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-and-three-dimensions",
+   "prompt": "要使配合紧密，比如把一个金属栓装进金属块上的孔里，一种方法是把栓做得比孔稍大一点。然后在栓与金属块处于不同温度时把栓插入。插入时，金属块应该比栓更热还是更冷？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "金属块应该比栓更热。孔随温度升高而膨胀，与将要填入它的圆塞完全一样，所以加热金属块会使孔变大，冷却栓会使栓缩小。这两种变化之一，或者两者一起，都会腾出足够的空间，让偏大的栓滑进去。两者一旦达到相同的温度，孔就缩回去，栓就胀回来，金属块把栓紧紧箍住，这正是你想要的配合。制造商用的也是同样的思路：加热一个零件，把它套到另一个零件上，再让它冷却。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2233261",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-and-three-dimensions",
+   "prompt": "在尝试打开玻璃罐之前，用热水冲一冲罐上拧紧的金属盖，真的有用吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有用，原因有两个，都来自物体膨胀的方式。第一，盖子的金属比罐子的玻璃有更大的线胀系数，所以两者升高相同的温度时，盖子比它所箍住的罐口膨胀得更多，箍得就松了。第二，热水很快使薄薄的盖子升温，而较厚的玻璃升温较慢，所以在短时间内盖子比罐子升温更多，膨胀量的差就更大。盖子是一个圆环，圆环的膨胀与实心圆盘相同，所以它的开口随温度升高而变大，就像板上的孔一样。这个效应以毫米计很小，但螺纹盖的配合间隙也很小，稍稍松一点往往就够了。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1332028",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-expansion",
+   "prompt": "液体和固体随温度升高而膨胀，是因为物体中原子和分子的动能增大。请解释为什么有些材料会随温度升高而<em>收缩</em>。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "本节用原子振动得更剧烈、把相邻原子平均推得略远一些来解释膨胀，这假定了振动越大，平均间距总是越大。并非每种原子排布都是如此。在有些材料中，原子被固定在一种带有空隙的结构里，振动变大使它们落入那些空隙，所以沿某个方向的平均间距，或者整体的体积，会随温度升高而变小。0 °C 到 4 °C 之间的水就是本节给出的例子：随着水升温，冰留下的疏松结构的塌缩比通常的膨胀增长得更快，于是水收缩。当材料的结构随温度发生的重排超过了振动通常的推挤作用时，它就会收缩。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1469982",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-expansion",
+   "prompt": "在气温为 $35.0^\\circ\\text{C}$ 的一天，测得华盛顿纪念碑的高度为 170 m。当气温降到 $-10.0^\\circ\\text{C}$ 的一天，它的高度将是多少？虽然纪念碑是用石灰岩建造的，但假定它的热膨胀系数与大理石的相同。",
+   "answer": {
+    "type": "number",
+    "value": 169.98,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "气温下降 45.0 °C，所以 $\\kdL = \\alpha L\\kdTemp$ 为负，纪念碑变矮；用表 13.2 中大理石的 $\\alpha$，把这个变化量加到 170 m 上。",
+    "solution": "169.98 m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1945010",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-expansion",
+   "prompt": "一根 3.00 cm 长的汞柱，如果它的温度从 $37.0^\\circ\\text{C}$ 变为 $40.0^\\circ\\text{C}$，并假定汞不受约束，那么它的长度变化量是多少？",
+   "answer": {
+    "type": "number",
+    "value": 5.4e-06,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "表 13.2 只给出了汞的体胀系数；因为 $\\beta \\approx 3\\alpha$，它的线胀系数是体胀系数的三分之一，汞柱在升高 3.0 °C 的过程中变化 $\\kdL = \\alpha L\\kdTemp$。",
+    "solution": "$5.4 \\times 10^{-6}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1463358",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-and-three-dimensions",
+   "prompt": "你打算在香港购买一小块土地。价格“仅”为每平方米 ＄60,000！地契上写明的尺寸为 $20\\ \\text{m} \\times 30\\ \\text{m}$。如果在温度比正常高 $20^\\circ\\text{C}$ 的一天用钢卷尺测量这块地，总价会改变多少？",
+   "answer": {
+    "type": "number",
+    "value": 17000,
+    "unit": "$",
+    "generated_by": "source",
+    "hint": "卷尺已经膨胀，所以它标出的每一米都比真正的一米略长，这块地量出来就偏小。它读出的面积偏小 $\\Delta A = 2\\alpha A\\kdTemp$，其中 $\\alpha$ 取钢的值；把这个面积乘以每平方米的价格。",
+    "solution": "因为面积变小，所以地价减少 $\\sim$＄17,000。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1251302",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "filling-the-tank",
+   "prompt": "证明原来在 $15.0^\\circ\\text{C}$ 的 60.0 L 汽油升温到 $35.0^\\circ\\text{C}$ 时会膨胀到 61.1 L，如例题 13.4 中所述。",
+   "answer": {
+    "type": "number",
+    "value": 61.1,
+    "unit": "L",
+    "generated_by": "source",
+    "hint": "最终体积等于原体积加上它的变化量，$V = V_0 + \\Delta V = V_0(1 + \\beta\\kdTemp)$，其中 $\\beta$ 取表 13.2 中汽油的值，温度升高 20.0 °C。",
+    "solution": "$$\\begin{aligned}V &= V_0 + \\Delta V = V_0(1 + \\beta\\kdTemp)\\\\ &= (60.00\\ \\text{L})[1 + (950 \\times 10^{-6}/^\\circ\\text{C})(35.0^\\circ\\text{C} - 15.0^\\circ\\text{C})]\\\\ &= 61.1\\ \\text{L}\\end{aligned}$$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2192379",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "filling-the-tank",
+   "prompt": "（a）如果在 $5.00^\\circ\\text{C}$ 时把一个 500 mL 的玻璃烧杯用乙醇装满至杯口，当温度达到 $22.0^\\circ\\text{C}$ 时会溢出多少？（b）在相同条件下，水溢出的量会少多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 9.35,
+      "unit": "mL",
+      "hint": "溢出的量是两个体积变化量之差，$V_{\\text{spill}} = (\\beta_{\\text{alcohol}} - \\beta_{\\text{glass}})V\\kdTemp$，其中玻璃取普通玻璃，温度升高 17.0 °C。"
+     },
+     {
+      "part": "(b)",
+      "value": 7.56,
+      "unit": "mL",
+      "hint": "用水的 $\\beta$ 代替乙醇的 $\\beta$ 重复计算，再用较大的溢出量减去较小的溢出量。"
+     }
+    ],
+    "solution": "（a）9.35 mL（b）7.56 mL"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1378164",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "filling-the-tank",
+   "prompt": "一位物理学家冲了一杯速溶咖啡，注意到随着咖啡冷却，它在玻璃杯中的液面下降了 3.00 mm。请计算：如果 $350\\ \\text{cm}^3$ 的咖啡盛在直径 7.00 cm 的杯子里，温度从 $95.0^\\circ\\text{C}$ 降到 $45.0^\\circ\\text{C}$，液面会下降多少，以此证明这一下降不可能是热收缩造成的。（液面下降的大部分实际上是由逸出的气泡造成的。）",
+   "answer": {
+    "type": "number",
+    "value": 0.832,
+    "unit": "mm",
+    "generated_by": "source",
+    "hint": "把咖啡当作水，把杯子当作普通玻璃：咖啡收缩 $\\beta_{\\text{water}}V\\kdTemp$，杯子收缩 $\\beta_{\\text{glass}}V\\kdTemp$，使液面下降的是二者之差。把这个体积除以杯口的面积 $\\pi r^2$，得到液面下降的高度。",
+    "solution": "0.832 mm"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1565294",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-and-three-dimensions",
+   "prompt": "通过计算边长为 $L$ 的立方体的体积变化量 $\\Delta V$，证明 $\\beta \\approx 3\\alpha$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "我们知道长度如何随温度变化：$\\kdL = \\alpha L_0\\kdTemp$。我们还知道立方体的体积与它的边长的关系为 $V = L^3$，所以最终体积为 $V = V_0 + \\Delta V = (L_0 + \\kdL)^3$。代入 $\\kdL$ 得 $$V = (L_0 + \\alpha L_0\\kdTemp)^3 = L_0^3(1 + \\alpha\\kdTemp)^3.$$ 现在，因为 $\\alpha\\kdTemp$ 很小，我们可以使用二项式展开：$$V \\approx L_0^3(1 + 3\\alpha\\kdTemp) = L_0^3 + 3\\alpha L_0^3\\kdTemp.$$ 于是把长度项写成体积，得 $V = V_0 + \\Delta V \\approx V_0 + 3\\alpha V_0\\kdTemp$，所以 $$\\Delta V = \\beta V_0\\kdTemp \\approx 3\\alpha V_0\\kdTemp,\\ \\text{或}\\ \\beta \\approx 3\\alpha.$$"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1543836",
+   "source_section": "13.6",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "water",
+   "prompt": "为了体会温度对阿基米德原理的影响有多小，请计算铜块的重力中，由 $0^\\circ\\text{C}$ 水中的浮力所支撑的比例，并把这一比例与在 $95.0^\\circ\\text{C}$ 水中被支撑的比例相比较。",
+   "answer": {
+    "type": "number",
+    "value": 1.02,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "浮力所支撑的铜块重力的比例，等于水的密度与铜的密度之比。从 0 °C 到 95.0 °C，水膨胀了 $\\beta_{\\text{water}}\\kdTemp$，它的密度按同样的比例下降，而铜的变化要小得多；所求的答案是冷水与热水中这两个比例之比。",
+    "solution": "$\\dfrac{(F_{\\text{B}}/w_{\\text{Cu}})}{(F_{\\text{B}}/w_{\\text{Cu}})'} = 1.02$。在两种情况下，浮力对铜块所支撑的力几乎完全相同。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "volume-thermal-expansion"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "area-thermal-expansion",
+   "weight": 3
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "linear-thermal-expansion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "thermal-stress"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "linear-thermal-expansion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "thermal-stress"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "volume-thermal-expansion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "holes-expand-too"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "linear-thermal-expansion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "holes-expand-too"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "linear-thermal-expansion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "thermal-expansion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "linear-thermal-expansion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "linear-thermal-expansion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "volume-thermal-expansion",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "area-thermal-expansion"
+  },
+  {
+   "exercise": "p7",
+   "concept": "volume-thermal-expansion"
+  },
+  {
+   "exercise": "p9",
+   "concept": "differential-thermal-expansion"
+  },
+  {
+   "exercise": "p9",
+   "concept": "volume-thermal-expansion",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "differential-thermal-expansion"
+  },
+  {
+   "exercise": "p11",
+   "concept": "volume-thermal-expansion",
+   "weight": 3
+  },
+  {
+   "exercise": "p13",
+   "concept": "volume-thermal-expansion"
+  },
+  {
+   "exercise": "p14",
+   "concept": "volume-thermal-expansion"
+  },
+  {
+   "exercise": "p14",
+   "concept": "archimedes-principle",
+   "weight": 3
+  },
+  {
+   "exercise": "p14",
+   "concept": "density",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "span",
+   "label": "桥跨，即金门大桥的主跨（受载时）",
+   "figures": [
+    "sim-linear-expansion"
+   ]
+  },
+  {
+   "id": "plate",
+   "label": "金属板，带圆塞的和取出圆塞的",
+   "figures": [
+    "sim-expanding-plate"
+   ]
+  },
+  {
+   "id": "plug",
+   "label": "圆塞",
+   "figures": [
+    "sim-expanding-plate"
+   ]
+  },
+  {
+   "id": "hole",
+   "label": "圆塞留下的孔",
+   "figures": [
+    "sim-expanding-plate"
+   ]
+  },
+  {
+   "id": "box",
+   "label": "盒子",
+   "figures": [
+    "sim-expanding-plate"
+   ]
+  },
+  {
+   "id": "tank",
+   "label": "油箱，例题 13.4 中为钢制",
+   "figures": [
+    "sim-tank-spill",
+    "sim-thermal-stress"
+   ]
+  },
+  {
+   "id": "liquid",
+   "label": "装满油箱的液体，例题 13.4 中为汽油",
+   "figures": [
+    "sim-tank-spill",
+    "sim-thermal-stress"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-fig-density-percent",
+   "kind": "correction",
+   "html": "图注称 4 °C 时的密度比 2 °C 时高 0.0075%。水在 4 °C 时为 999.97 kg/m³，在 2 °C 时为 999.94 kg/m³，相差约 0.003%。",
+   "figure": "sim-water-density"
+  }
+ ]
+}

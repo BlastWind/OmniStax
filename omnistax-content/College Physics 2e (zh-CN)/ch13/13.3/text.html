@@ -1,0 +1,172 @@
+<section id="ideal-gas">
+<h2>为什么各种气体的膨胀都一样</h2>
+<p class="cite-target">在本节中，我们继续探讨气体的热行为。我们尤其要考察组成气体的<span data-concept="atom">原子</span>和分子的特性。（大多数气体，例如氮气 $\text{N}_2$ 和氧气 $\text{O}_2$，由两个或更多<span data-concept="atom">原子</span>组成。在讨论气体时，我们将主要使用“分子”一词，但请注意，这里的讨论同样适用于单原子气体，例如氦气。）</p>
+<p>气体很容易被压缩。我们可以在表 13.2 中看到这方面的证据：你会注意到，气体的<span data-concept="volume">体</span>膨胀系数<em>最大</em>。这些大的系数意味着，气体随<span data-concept="temperature">温度</span>变化膨胀和收缩得非常迅速。此外，你会注意到大多数气体以<em>相同</em>的速率膨胀，也就是具有相同的 $\kbeta$。这就引出了一个问题：既然液体和固体的膨胀率千差万别，为什么气体的表现却几乎都一样？</p>
+<p>答案在于，与气体中<span data-concept="atom">原子</span>和分子本身的大小相比，它们相隔很远，如图 13.18 所示。由于<span data-concept="atom">原子</span>和分子相隔很远，除了彼此碰撞的时刻，它们之间的<span data-concept="force">力</span>可以忽略。<span data-concept="atom">原子</span>和分子的<span data-concept="motion">运动</span>（在<span data-concept="temperature">温度</span>远高于沸点<span data-concept="temperature">温度</span>时）很快，因此气体充满所有可及的<span data-concept="volume">体积</span>，气体的膨胀也很迅速。相比之下，在液体和固体中，<span data-concept="atom">原子</span>和分子靠得更近，对它们之间的<span data-concept="force">力</span>相当敏感。</p>
+<figure class="sim" id="sim-gas-molecules" data-figure="13.18" data-original="/media/ch13/Figure_14_03_01.jpg" data-original-width="250" data-original-caption="气体中的原子和分子通常相隔很远，如图所示。由于在这样的距离上它们之间的力相当微弱，气体的性质更多地取决于单位体积内的原子数和温度，而不是原子的种类。">
+  <div class="sim-head"><span class="eyebrow">Figure 13.18</span><span>截面图中画出一盒气体，其中的分子彼此相隔若干个分子直径。把间距拖到一个直径，分子就像在液体中那样挤在一起。再把它拖回十个直径，同样的分子占据的<span data-concept="volume">体积</span>是原来的一千倍，所以气体的<span data-concept="density">密度</span>只有千分之一。选择氮、氧或氦：改变的只有分子的颜色和形状。气体的性质取决于给定<span data-concept="volume">体积</span>中有多少个分子以及<span data-concept="temperature">温度</span>，而不取决于分子是什么。</span></div>
+</figure>
+<div class="exercises" data-place="ideal-gas"></div>
+</section>
+
+<section id="ideal-gas-law">
+<h2>理想气体定律</h2>
+<p class="cite-target">为了大致了解气体的<span data-concept="pressure">压强</span>、<span data-concept="temperature">温度</span>和<span data-concept="volume">体积</span>是如何相互关联的，请想一想往<span data-ref="tire">一只原本没气的轮胎</span>里打气时会发生什么。<span data-type="volume">轮胎的体积</span>起初与注入的空气量成正比地增大，而<span data-type="pressure">轮胎<span data-concept="pressure">压强</span></span>增加不多。一旦<span data-ref="tire">轮胎</span>膨胀到接近<span data-ref="tire">它的</span>满尺寸，胎壁就限制了<span data-concept="volume">体积</span>的膨胀。如果我们继续向<span data-ref="tire">它</span>里打气，<span data-type="pressure"><span data-concept="pressure">压强</span></span>就会升高。汽车行驶、轮胎转动时，<span data-type="pressure"><span data-concept="pressure">压强</span></span>还会进一步升高。大多数制造商都规定了冷胎的最佳轮胎<span data-concept="pressure">压强</span>。（见图 13.19。）</p>
+<figure class="sim" id="sim-tire" data-figure="13.19" data-original="/media/ch13/Figure_14_03_02.jpg" data-original-width="500" data-original-caption="（a）向瘪了的轮胎里打气时，它的体积起初增大，而压强增加不多。（b）轮胎充到一定程度后，胎壁阻止它进一步膨胀，随着空气增多，压强升高。（c）轮胎充好气后，它的压强随温度升高。">
+  <div class="sim-head"><span class="eyebrow">Figure 13.19</span><span><span data-ref="tire">自行车轮胎的内胎</span>以截面画出，<span data-ref="tire">它</span>里面的空气分子四处运动并撞击<span data-ref="tire">它的</span>胎壁，<span data-ref="tire">它</span>旁边的压强计读出<span data-type="pressure">绝对压强</span>。用第一个滑块向里泵入分子：起初<span data-ref="tire">内胎</span>在<span data-type="pressure">大气压</span>下鼓起，一旦<span data-ref="tire">它</span>充满，胎壁就限定了<span data-type="volume">它的体积</span>，每多加一个分子，压强计的读数就上升。然后用第二个滑块升高<span data-type="temperature">温度</span>，观察分子加快、更频繁地撞击胎壁，把<span data-type="pressure">压强</span>推高，而<span data-type="volume">体积</span>和分子数都没有变化。左上角的计数给出最近一秒内撞击胎壁的次数，读数则用实时数值写出理想气体定律。</span></div>
+</figure>
+<p>在许多常见的情形下，例如<span data-concept="temperature">室温</span>下的空气，气体粒子的<span data-concept="volume">体积</span>可以忽略，并且除了完全<span data-concept="elastic-collision">弹性碰撞</span>以外，彼此之间没有相互作用。在这种情形下，气体称为理想气体，<span data-concept="pressure">压强</span>、<span data-concept="volume">体积</span>和<span data-concept="temperature">温度</span>之间的关系由称为<span data-concept="ideal-gas-law">理想气体定律</span>的方程给出。像<span data-concept="ideal-gas-law">理想气体定律</span>这样，用热力学性质来描述一个物理<span data-concept="system">系统</span>行为的方程，称为物态方程。</p>
+<div class="note">
+<div class="eyebrow">理想气体定律</div>
+<p><strong><span data-concept="ideal-gas-law">理想气体定律</span></strong>指出</p>
+$$\kPr \kvol = Nk\kTemp,$$
+<p>其中 $\kPr$ 是气体的<span data-concept="absolute-pressure">绝对压强</span>，$\kvol$ 是它所占的<span data-concept="volume">体积</span>，$N$ 是气体中<span data-concept="atom">原子</span>和分子的数目，$\kTemp$ 是它的<span data-concept="temperature">热力学温度</span>。常量 $k$ 称为<strong><span data-concept="boltzmann-constant">玻尔兹曼常量</span></strong>，以纪念奥地利物理学家路德维希·玻尔兹曼（1844–1906），其值为</p>
+$$k = 1.38\times10^{-23}\ \text{J/K}.$$
+</div>
+<p><span data-concept="ideal-gas-law">理想气体定律</span>可以由基本原理推导出来，但最初是根据实验测量得出的，这些测量就是查理<span data-concept="law">定律</span>（在<span data-concept="pressure">压强</span>固定时，气体所占的<span data-concept="volume">体积</span>与<span data-concept="temperature">温度</span>成正比）和玻意耳<span data-concept="law">定律</span>（<span data-concept="temperature">温度</span>固定时，乘积 $\kPr \kvol$ 为常量）。在理想气体<span data-concept="model">模型</span>中，其<span data-concept="atom">原子</span>和分子所占的<span data-concept="volume">体积</span>只是 $\kvol$ 中可以忽略的一小部分。<span data-concept="ideal-gas-law">理想气体定律</span>描述了实际气体在大多数条件下的行为。（例如，请注意 $N$ 是<span data-concept="atom">原子</span>和分子的总数，与气体的种类无关。）</p>
+<p>我们来看看，当<span data-ref="tire">轮胎</span>被缓慢打气且<span data-type="temperature"><span data-concept="temperature">温度</span></span>保持不变时，<span data-concept="ideal-gas-law">理想气体定律</span>如何与给<span data-ref="tire">它</span>充气的行为相一致。起初，<span data-type="pressure"><span data-concept="pressure">压强</span></span> $\kPr$ 基本上等于<span data-type="pressure"><span data-concept="pressure">大气压</span></span>，而<span data-type="volume">体积</span> $\kvol$ 与充入<span data-ref="tire">轮胎</span>的<span data-concept="atom">原子</span>和分子的数目 $N$ 成正比地增大。一旦<span data-type="volume">轮胎的体积</span>不再变化，方程 $\kPr \kvol = Nk\kTemp$ 就预言，<span data-type="pressure"><span data-concept="pressure">压强</span></span>应当与<em><span data-concept="atom">原子</span>和分子的数目 N</em> 成正比地增大。</p>
+</section>
+
+<section id="tire-pressure">
+<h2>例题 13.4：升温的轮胎</h2>
+<div class="example" id="ex-tire-pressure">
+<h3>例题 13.4 · 计算温度变化引起的压强变化：轮胎压强</h3>
+<p class="cite-target">假设<span data-ref="tire">你的自行车轮胎</span>已充满气，在<span data-type="temperature"><span data-concept="temperature">温度</span></span>为 $18.0^\circ\text{C}$ 时，<span data-type="pressure"><span data-concept="absolute-pressure">绝对压强</span></span>为 $7.00\times10^{5}\ \text{Pa}$（<span data-type="pressure"><span data-concept="gauge-pressure">表压强</span></span>略低于 $90.0\ \text{lb/in}^2$）。当<span data-type="temperature">它的<span data-concept="temperature">温度</span></span>升高到 $35.0^\circ\text{C}$ 之后，<span data-type="pressure"><span data-concept="pressure">压强</span></span>是多少？假设没有明显的漏气，<span data-concept="volume">体积</span>也没有变化。</p>
+<h4>思路</h4>
+<p><span data-type="pressure">轮胎中的<span data-concept="pressure">压强</span></span>变化只是由于<span data-concept="temperature">温度</span>的变化。首先我们需要找出已知量和所求量，然后找出一个可以求解未知量的方程。</p>
+<p>我们已知<span data-type="pressure">初<span data-concept="pressure">压强</span></span> $\kPro = 7.00\times10^{5}\ \text{Pa}$，<span data-type="temperature">初<span data-concept="temperature">温度</span></span> $\kTempo = 18.0^\circ\text{C}$，以及<span data-type="temperature">末<span data-concept="temperature">温度</span></span> $\kTempf = 35.0^\circ\text{C}$。我们必须求出<span data-type="pressure">末<span data-concept="pressure">压强</span></span> $\kPrf$。我们怎样才能用上方程 $\kPr \kvol = Nk\kTemp$ 呢？乍一看，似乎给出的信息不够，因为<span data-type="volume">体积</span> $\kvol$ 和<span data-concept="atom">原子</span>数 $N$ 都没有给定。我们可以做的是把这个方程用两次：$\kPro \kvolo = Nk\kTempo$ 和 $\kPrf \kvolf = Nk\kTempf$。如果我们用 $\kPro \kvolo$ 去除 $\kPrf \kvolf$，就能得到一个可以求解 $\kPrf$ 的方程。</p>
+$$\frac{\kPrf \kvolf}{\kPro \kvolo} = \frac{N_{\text{f}}k\kTempf}{N_0 k\kTempo}$$
+<p>由于<span data-type="volume">体积</span>是恒定的，$\kvolf$ 和 $\kvolo$ 相同，可以约去。$N_{\text{f}}$ 和 $N_0$ 也是如此，常量 $k$ 亦然。因此，</p>
+$$\frac{\kPrf}{\kPro} = \frac{\kTempf}{\kTempo}.$$
+<p>然后我们可以把它重新整理，以求解 $\kPrf$：</p>
+$$\kPrf = \kPro\frac{\kTempf}{\kTempo},$$
+<p>其中<span data-concept="temperature">温度</span>必须以开尔文为<span data-concept="units">单位</span>，因为 $\kTempo$ 和 $\kTempf$ 是<span data-concept="temperature">热力学温度</span>。</p>
+<h4>解</h4>
+<ol>
+<li>把<span data-concept="temperature">温度</span>从摄氏换算成开尔文。
+$$\begin{aligned}\kTempo &= (18.0 + 273)\ \text{K} = 291\ \text{K}\\ \kTempf &= (35.0 + 273)\ \text{K} = 308\ \text{K}\end{aligned}$$
+</li>
+<li>把已知值代入方程。
+$$\kPrf = \kPro\frac{\kTempf}{\kTempo} = 7.00\times10^{5}\ \text{Pa}\left(\frac{308\ \text{K}}{291\ \text{K}}\right) = 7.41\times10^{5}\ \text{Pa}$$
+</li>
+</ol>
+<h4>讨论</h4>
+<p><span data-type="temperature">末<span data-concept="temperature">温度</span></span>比<span data-type="temperature">原来的<span data-concept="temperature">温度</span></span>约高 6%，所以<span data-type="pressure">末<span data-concept="pressure">压强</span></span>也约高 6%。请注意，在<span data-concept="ideal-gas-law">理想气体定律</span>中必须使用<em>绝对</em><span data-concept="pressure">压强</span>和<em>热力学</em><span data-concept="temperature">温度</span>。</p>
+</div>
+<div class="note">
+<div class="eyebrow">建立联系：居家实验——冷藏气球</div>
+<p>在<span data-concept="temperature">室温</span>下给一个气球充气。把充好气的气球放在冰箱里过夜。气球会怎么样？为什么？</p>
+</div>
+</section>
+
+<section id="stp">
+<h2>例题 13.5：一立方米中有多少个分子</h2>
+<div class="example" id="ex-cubic-meter">
+<h3>例题 13.5 · 计算一立方米气体中的分子数</h3>
+<p class="cite-target">一个典型的物体，例如轮胎中的空气，里面有多少个分子？我们可以用<span data-concept="ideal-gas-law">理想气体定律</span>来大致了解 $N$ 通常有多大。</p>
+<p>计算在标准<span data-concept="temperature">温度</span>和<span data-concept="pressure">压强</span>（标准状况，STP）下，<span data-type="volume">一<span data-concept="meter">立方米</span></span>空气中的分子数，标准状况定义为 $0^\circ\text{C}$ 和<span data-type="pressure"><span data-concept="pressure">大气压</span></span>。</p>
+<h4>思路</h4>
+<p>因为<span data-concept="pressure">压强</span>、<span data-concept="volume">体积</span>和<span data-concept="temperature">温度</span>都已给定，我们可以用<span data-concept="ideal-gas-law">理想气体定律</span> $\kPr \kvol = Nk\kTemp$ 求出 $N$。</p>
+<h4>解</h4>
+<ol>
+<li>确定已知量。
+$$\begin{aligned}\kTemp &= 0^\circ\text{C} = 273\ \text{K}\\ \kPr &= 1.01\times10^{5}\ \text{Pa}\\ \kvol &= 1.00\ \text{m}^3\\ k &= 1.38\times10^{-23}\ \text{J/K}\end{aligned}$$
+</li>
+<li>确定未知量：分子数 $N$。</li>
+<li>把<span data-concept="ideal-gas-law">理想气体定律</span>重新整理，以求解 $N$。
+$$\begin{aligned}\kPr \kvol &= Nk\kTemp\\ N &= \frac{\kPr \kvol}{k\kTemp}\end{aligned}$$
+</li>
+<li>把已知值代入方程并求解 $N$。
+$$N = \frac{\kPr \kvol}{k\kTemp} = \frac{(1.01\times10^{5}\ \text{Pa})(1.00\ \text{m}^3)}{(1.38\times10^{-23}\ \text{J/K})(273\ \text{K})} = 2.68\times10^{25}\ \text{个分子}$$
+</li>
+</ol>
+<h4>讨论</h4>
+<p>考虑到气体大部分是空旷空间，这个数目大得不容否认。即使在很小的<span data-concept="volume">体积</span>中，$N$ 也是巨大的。例如，标准状况下 $1\ \text{cm}^3$ 的气体中有 $2.68\times10^{19}$ 个分子。再次请注意，对于各种气体或混合气体，$N$ 都是相同的。</p>
+</div>
+</section>
+
+<section id="moles">
+<h2>摩尔与阿伏伽德罗常量</h2>
+<p class="cite-target">在测量物质的量时，有时使用分子以外的单位会更方便。<strong><span data-concept="mole">摩尔</span></strong>（缩写为 mol）是物质的量的 SI 单位。这个数也称为<strong>阿伏伽德罗常量</strong> $(N_{\text{A}})$，以纪念意大利科学家阿梅代奥·阿伏伽德罗（1776–1856），他提出了<span data-concept="mole">摩尔</span>的概念，其依据是这样一个假说：在相同的<span data-concept="pressure">压强</span>和<span data-concept="temperature">温度</span>下，相同<span data-concept="volume">体积</span>的气体含有相同数目的分子，与气体的种类无关。这一假说已被证实。最初的定义（https://www.bipm.org/en/measurement-units）是 12 克碳-12 中的<span data-concept="atom">原子</span>数，自 2019 年起，一<span data-concept="mole">摩尔</span>被定义为恰好 6.02214076 × 10<sup>23</sup> 个基本单元，因此取三位<span data-concept="significant-figures">有效数字</span>时，阿伏伽德罗常量为</p>
+$$N_{\text{A}} = 6.02\times10^{23}\ \text{mol}^{-1}.$$
+<div class="note">
+<div class="eyebrow">阿伏伽德罗常量</div>
+<p>1 <span data-concept="mole">摩尔</span>总是含有 $6.02\times10^{23}$ 个粒子（<span data-concept="atom">原子</span>或分子），与元素或物质无关。任何物质的 1 <span data-concept="mole">摩尔</span>，其以克为单位的<span data-concept="mass">质量</span>等于它的分子（摩尔）<span data-concept="mass">质量</span>，这可以用该物质的<span data-concept="mole">物质的量</span>乘以它的<span data-concept="atomic-mass">原子质量</span>算出。各元素的<span data-concept="atomic-mass">原子质量</span>见元素周期表和附录 A</p>
+$$N_{\text{A}} = 6.02\times10^{23}\ \text{mol}^{-1}$$
+</div>
+<figure class="sim" id="sim-mole" data-figure="13.20" data-original="/media/ch13/Figure_14_03_03.jpg" data-original-width="400" data-original-caption="一摩尔有多大？在宏观层面上，一摩尔乒乓球可以把地球覆盖到约 40 km 的深度。">
+  <div class="sim-head"><span class="eyebrow">Figure 13.20</span><span>地球表面横贯画面底部，<span data-ref="everest">珠穆朗玛峰</span>按比例画出，其上标出<span data-type="position">客机巡航的高度</span>和太空边缘。<span data-ref="balls">一摩尔球</span>均匀地铺满整个行星，<span data-ref="balls">它们形成的球层</span>以同样的比例画出。改变<span data-type="position">球的直径</span>和相邻球之间留下的空隙，观察随着<span data-ref="balls">球</span>变大，<span data-ref="balls">球层</span>升过<span data-ref="everest">珠穆朗玛峰</span>并向太空边缘靠近，因为<span data-type="position">厚度</span>与<span data-type="position">直径</span>的立方成正比。</span></div>
+</figure>
+<div class="exercises" data-place="moles"></div>
+</section>
+
+<section id="molar-volume">
+<h2>例题 13.6：每立方米气体的物质的量与每摩尔气体的体积（升）</h2>
+<div class="example" id="ex-moles-per-cubic-meter">
+<h3>例题 13.6 · 计算每立方米气体的物质的量与每摩尔气体的体积（升）</h3>
+<p class="cite-target">计算：（a）标准状况下 $1.00\ \text{m}^3$ 气体的<span data-concept="mole">物质的量</span>，以及（b）标准状况下每<span data-concept="mole">摩尔</span>气体的<span data-concept="liter">升</span>数。</p>
+<h4>思路与解</h4>
+<p>（a）我们要求每<span data-concept="meter">立方米</span>的<span data-concept="mole">物质的量</span>，并且由例题 13.5 知道，标准状况下每<span data-concept="meter">立方米</span>的分子数为 $2.68\times10^{25}$。<span data-concept="mole">物质的量</span>可以用分子数除以阿伏伽德罗常量求得。我们用 $n$ 表示<span data-concept="mole">物质的量</span>，</p>
+$$n\ \text{mol/m}^3 = \frac{N\ \text{个分子/m}^3}{6.02\times10^{23}\ \text{个分子/mol}} = \frac{2.68\times10^{25}\ \text{个分子/m}^3}{6.02\times10^{23}\ \text{个分子/mol}} = 44.5\ \text{mol/m}^3.$$
+<p>（b）利用求得的一<span data-concept="meter">立方米</span>中的<span data-concept="mole">物质的量</span>，并把<span data-concept="meter">立方米</span>换算成<span data-concept="liter">升</span>，我们得到</p>
+$$\frac{(10^{3}\ \text{L/m}^3)}{44.5\ \text{mol/m}^3} = 22.5\ \text{L/mol}.$$
+<h4>讨论</h4>
+<p>这个值与公认值 22.4 L/mol 非常接近。微小的差异是由于使用三位数输入所造成的修约误差。同样，这个数对所有气体都相同。换句话说，它与气体种类无关。</p>
+<p>标准状况下干空气（约 80% $\text{N}_2$ 和 20% $\text{O}_2$）的（平均）摩尔质量为 $M = 28.8\ \text{g/mol}.$ 因此，<span data-type="mass">一<span data-concept="meter">立方米</span>空气的<span data-concept="mass">质量</span></span>为 <span data-type="mass">1.28 kg</span>。<span data-type="density">干燥的<span data-concept="temperature">室温</span>空气的<span data-concept="density">密度</span></span>约低 10%。如果一间客厅的尺寸为 $5\ \text{m}\times 5\ \text{m}\times 3\ \text{m},$ <span data-type="mass">房间内空气的<span data-concept="mass">质量</span></span>约为 <span data-type="mass">90 kg</span>，这就是<span data-type="mass">人的典型<span data-concept="mass">质量</span></span>。</p>
+</div>
+<div class="exercises" data-place="molar-volume"></div>
+</section>
+
+<section id="moles-form">
+<h2>用物质的量重新表述的理想气体定律</h2>
+<p class="cite-target"><span data-concept="ideal-gas-law">理想气体定律</span>有一种非常常见的表达式，它使用<span data-concept="mole">物质的量</span> $n$，而不是<span data-concept="atom">原子</span>和分子的数目 $N$。</p>
+<figure class="dv" id="drv-ideal-gas-law-moles"></figure>
+<div class="note">
+<div class="eyebrow">理想气体定律（用物质的量表示）</div>
+<p><span data-concept="ideal-gas-law">理想气体定律</span>（用<span data-concept="mole">物质的量</span>表示）为</p>
+$$\kPr \kvol = nR\kTemp.$$
+<p>$R$ 在<span data-concept="si-units">SI 单位</span>中的数值为</p>
+$$R = N_{\text{A}}k = (6.02\times10^{23}\ \text{mol}^{-1})(1.38\times10^{-23}\ \text{J/K}) = 8.31\ \text{J/(mol}\cdot\text{K)}.$$
+<p>在其他<span data-concept="units">单位</span>中，</p>
+$$\begin{aligned}R &= 1.99\ \text{cal/(mol}\cdot\text{K)}\\ R &= 0.0821\ \text{L}\cdot\text{atm/(mol}\cdot\text{K)}.\end{aligned}$$
+<p>对于具体问题，哪种形式的 $R$ 最方便，就可以用哪种。</p>
+</div>
+<div class="example" id="ex-bike-tire-moles">
+<h3>例题 13.7 · 计算物质的量：自行车轮胎中的气体</h3>
+<p><span data-ref="tire">一只自行车轮胎</span>的<span data-type="volume">体积</span>为 $2.00\times10^{-3}\ \text{m}^3$（<span data-type="volume">2.00 L</span>），<span data-type="pressure"><span data-concept="pressure">压强</span></span>为 $7.00\times10^{5}\ \text{Pa}$（<span data-type="pressure"><span data-concept="gauge-pressure">表压强</span></span>略低于 $90.0\ \text{lb/in}^2$），<span data-type="temperature"><span data-concept="temperature">温度</span></span>为 $18.0^\circ\text{C}$，其中有多少<span data-concept="mole">摩尔</span>气体？</p>
+<h4>思路</h4>
+<p>确定已知量和未知量，并选择一个方程来求解未知量。在本例中，我们对<span data-concept="ideal-gas-law">理想气体定律</span> $\kPr \kvol = nR\kTemp$ 求解<span data-concept="mole">物质的量</span> $n$。</p>
+<h4>解</h4>
+<ol>
+<li>确定已知量。
+$$\begin{aligned}\kPr &= 7.00\times10^{5}\ \text{Pa}\\ \kvol &= 2.00\times10^{-3}\ \text{m}^3\\ \kTemp &= 18.0^\circ\text{C} = 291\ \text{K}\\ R &= 8.31\ \text{J/mol}\cdot\text{K}\end{aligned}$$
+</li>
+<li>把方程重新整理以求解 $n$，并代入已知值。
+$$\begin{aligned}n &= \frac{\kPr \kvol}{R\kTemp} = \frac{(7.00\times10^{5}\ \text{Pa})(2.00\times10^{-3}\ \text{m}^3)}{(8.31\ \text{J/mol}\cdot\text{K})(291\ \text{K})}\\ &= 0.579\ \text{mol}\end{aligned}$$
+</li>
+</ol>
+<h4>讨论</h4>
+<p>在这种情形下，$R$ 最方便的取值是 $8.31\ \text{J/mol}\cdot\text{K},$ 因为我们的已知量都用<span data-concept="si-units">SI 单位</span>表示。<span data-type="pressure"><span data-concept="pressure">压强</span></span>和<span data-type="temperature"><span data-concept="temperature">温度</span></span>取自例题 13.4 中的初始条件，但如果我们用末值，也会得到同样的答案。</p>
+</div>
+<p><span data-concept="ideal-gas-law">理想气体定律</span>可以看作是<span data-concept="conservation-of-energy">能量守恒定律</span>的又一种表现（见“能量守恒”）。对气体所做的<span data-concept="work">功</span>会使它的<span data-concept="energy">能量</span>增加，从而使<span data-concept="pressure">压强</span>和/或<span data-concept="temperature">温度</span>升高。就这种气体的<span data-concept="atom">原子</span>和分子而言，这增加的<span data-concept="energy">能量</span>也可以看作<span data-concept="internal-kinetic-energy">内动能</span>的增加。</p>
+</section>
+
+<section id="energy">
+<h2>理想气体定律与能量</h2>
+<p class="cite-target">现在我们来考察<span data-concept="energy">能量</span>在气体行为中的作用。当你用手给自行车轮胎打气时，你反复地沿一段<span data-concept="distance">距离</span>施加<span data-concept="force">力</span>，从而做了<span data-concept="work">功</span>。这份<span data-concept="energy">能量</span>用于增大轮胎内空气的<span data-concept="pressure">压强</span>，并升高打气筒和空气的<span data-concept="temperature">温度</span>。</p>
+<p><span data-concept="ideal-gas-law">理想气体定律</span>与<span data-concept="energy">能量</span>密切相关：等号两边的量纲都是<span data-concept="energy">能量</span>的量纲，使用<span data-concept="si-units">SI 单位</span>时<span data-concept="units">单位</span>是<span data-concept="joule">焦耳</span>。$\kPr \kvol = Nk\kTemp$ 中<span data-concept="ideal-gas-law">理想气体定律</span>的右边是 $Nk\kTemp$。这一项与 $N$ 个<span data-concept="atom">原子</span>或分子在热力学<span data-concept="temperature">温度</span> $\kTemp$ 下的<span data-concept="kinetic-energy">平动动能</span>之和成正比，我们将在“气体动理论：压强和<span data-concept="temperature">温度</span>的原子与分子解释”中正式看到这一点。<span data-concept="ideal-gas-law">理想气体定律</span>的左边是 $\kPr \kvol$，它的<span data-concept="units">单位</span>也是<span data-concept="joule">焦耳</span>。<span data-concept="pressure">压强</span>是单位<span data-concept="area">面积</span>上的<span data-concept="force">力</span>，所以<span data-concept="pressure">压强</span>乘以<span data-concept="volume">体积</span>就是<span data-concept="force">力</span>乘以<span data-concept="displacement">位移</span>，即<span data-concept="energy">能量</span>。重要的一点是，气体中存在着与它的<span data-concept="pressure">压强</span>和<span data-concept="volume">体积</span>都有关的<span data-concept="energy">能量</span>。这种<span data-concept="energy">能量</span>在气体膨胀并做<span data-concept="work">功</span>时可以改变——我们将在“热量与热传递的方式”中探讨这一点——这与汽油机或蒸汽机及涡轮机中发生的情形类似。</p>
+</section>
+
+<section id="strategy">
+<h2>解题策略：理想气体定律</h2>
+<div class="note">
+<div class="eyebrow">解题策略：理想气体定律</div>
+<p><em>步骤 1</em> 审视情境，确定其中涉及理想气体。大多数气体都近似为理想气体。</p>
+<p><em>步骤 2</em> 列出已给出的量，或可以由题目的叙述推出的量（确定已知量）。把已知值换算成合适的<span data-concept="si-units">SI 单位</span>（<span data-concept="temperature">温度</span>用 K，<span data-concept="pressure">压强</span>用 Pa，<span data-concept="volume">体积</span>用 $\text{m}^3$，$N$ 以分子计，$n$ 以<span data-concept="mole">摩尔</span>计）。</p>
+<p><em>步骤 3</em> 确切地找出题目中需要求出的量（确定未知量）。列一张书面清单是有用的。</p>
+<p><em>步骤 4</em> 确定已知的是分子数还是<span data-concept="mole">物质的量</span>，以便决定使用<span data-concept="ideal-gas-law">理想气体定律</span>的哪种形式。第一种形式是 $\kPr \kvol = Nk\kTemp$，涉及 $N$，即<span data-concept="atom">原子</span>或分子的数目。第二种形式是 $\kPr \kvol = nR\kTemp$，涉及 $n$，即<span data-concept="mole">物质的量</span>。</p>
+<p><em>步骤 5</em> 对<span data-concept="ideal-gas-law">理想气体定律</span>求解待求的量（未知量）。你可能需要取末态与初态的比值，以消去保持不变的未知量。</p>
+<p><em>步骤 6</em> 把已知量连同它们的<span data-concept="units">单位</span>代入适当的方程，得出带<span data-concept="units">单位</span>的数值解。务必使用<span data-concept="temperature">热力学温度</span>和<span data-concept="absolute-pressure">绝对压强</span>。</p>
+<p><em>步骤 7</em> 检查答案是否合理：它说得通吗？</p>
+</div>
+</section>
