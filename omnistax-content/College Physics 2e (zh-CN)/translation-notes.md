@@ -1168,6 +1168,13 @@ Two forced-scenario rows of `ch17/config.md` changed their wording; no row was a
 | ch17/17.4/figures.js | sim-two-booms topline (aircraft beyond the observer): the ordinal words `['first', 'second', 'third']` and the order of `dGround`, the ordinal and `tLag` | the ordinal words become the display array `['一', '二', '三']` inside 飞机飞过第…名观察者头顶, and the three operands are written in the Chinese order (the ordinal, then `tLag`, then `dGround`); one line of code differs from the source | English ordinal words built by index in figure code, and the clause order (4.1) |
 | ch17/17.5/figures.js | sim-tube-resonance readout, small line: `n === 1 ? 'one-fourth' : n + ' fourths'` and `(n === 1 ? 'fundamental' : 'harmonic number ' + n)` | written `n + '/4'` inside 波长的 … and `(n === 1 ? '是它的基频。' : '对应的谐波次数为 ' + n + '。')`; the operand now follows its string and the fourths branch is gone; one line of code differs from the source | an English plural (“fourths”) and the clause “harmonic number n” built in code (4.1) |
 
+### ch18 review fixes
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch18/18.1/figures.js | sim-atom topline, a new helper `sp` | the topline writes a space between a digit count and 个 (and before it after 和) where `wd()` returns digits (7 to 10 protons, 7 to 12 electrons): `${wd(Np)}${sp(Np)}个质子和${sp(Ne)}${wd(Ne)}${sp(Ne)}个电子`, with `const sp = (n) => (n < WORDS.length ? '' : ' ')` added beside `wd` | a Latin-script number beside a Chinese measure word takes a space; the English source had spaces between words throughout, as 18.5 does for its line count (4.1) |
+| ch18/18.6/figures.js | sim-dna tally under the ion | the tally reads `LINES + ' 条线中有 ' + through + ' 条通过'` (8 条线中有 N 条通过), the operands in the opposite order to the source expression | English order of the count and the total has no natural Chinese form (4.1) |
+
 ## For the owner
 
 1. **`answer.unit` and `answer.parts[].part` stay English.** translate.md 5 lists both as kept byte for byte, so 1.2 (`length in feet`, `length in inches`, `width in feet`, `width in inches`) and 1.3 (`figures`, `pounds`, `beats`, `beats/min`, `(a) lowest`, `heart rate`, `volume`, `area`, `uncertainty`) keep their English words, although a reader may see them beside the answer box. The owner decides whether these become translatable fields; if they do, translate.md 5 and the content check change first, then these strings.

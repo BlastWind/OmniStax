@@ -45,7 +45,8 @@
     "ch14",
     "ch15",
     "ch16",
-    "ch17"
+    "ch17",
+    "ch18"
   ],
   "intro": {
     "module": "m42955",
@@ -15379,8 +15380,8 @@
       "id": "solenoid-inductance",
       "kind": "result",
       "section": "23.9",
-      "name": "Inductance of a solenoid",
-      "statement": "For most shapes the inductance is too hard to calculate and the book simply gives it. A solenoid, though, has a nearly uniform field inside, almost none outside and a simple shape, so you can work out its inductance from $B = \\mu_0 NI/\\ell$ and the relation above. The answer depends only on the solenoid's own geometry, as the definition of inductance says it must. It is proportional to the square of the number of turns, since more turns make more flux and more turns feel it.",
+      "name": "螺线管的电感",
+      "statement": "对大多数形状，电感太难计算，书中只是直接给出。但螺线管内部的磁场近乎均匀，外部几乎没有，形状又简单，所以你可以由 $B = \\mu_0 NI/\\ell$ 和上面的关系求出它的电感。答案只取决于螺线管自己的几何形状，这正是电感的定义所要求的。它与匝数的平方成正比，因为匝数越多产生的磁通量越多，而且感受到它的匝数也越多。",
       "forms": [
         {
           "id": "eq-solenoid-inductance",
@@ -15394,12 +15395,12 @@
       "id": "energy-stored-in-an-inductor",
       "kind": "result",
       "section": "23.9",
-      "name": "Energy stored in an inductor",
+      "name": "电感器中储存的能量",
       "terms": [
-        "energy stored in an inductor"
+        "电感器中储存的能量"
       ],
       "type": "energy",
-      "statement": "There is a second way to see why an inductor opposes a change in current: its magnetic field stores energy, and putting energy in and taking it out both take time. The stored energy is $\\frac{1}{2}LI^2$, the same shape as the energy in a capacitor, and it can make a spark when the current stops suddenly. It is also the energy the exponential decay of an RL circuit spends.",
+      "statement": "还有第二种方式可以看出电感器为什么反抗电流的变化：它的磁场储存能量，而把能量放进去和取出来都需要时间。储存的能量是 $\\frac{1}{2}LI^2$，与电容器中的能量形式相同，电流突然中断时它能产生火花。它也是 RL 电路中指数衰减所消耗的能量。",
       "forms": [
         {
           "id": "eq-inductor-energy",
@@ -15413,8 +15414,8 @@
       "id": "counterwinding-cancels-inductance",
       "kind": "skill",
       "section": "23.9",
-      "name": "Counterwinding a coil",
-      "statement": "The flux a coil makes depends on which way it is wound, so winding half the turns one way and half the other makes the two fields cancel, and the inductance with them. This keeps an appliance's heating element from inducing a dangerous emf on its case, and keeps a laboratory resistor from behaving like an inductor under alternating current. Knowing what makes inductance large is knowing how to make it small."
+      "name": "线圈的反向绕制",
+      "statement": "线圈产生的磁通量取决于它的绕向，所以一半匝数朝一个方向绕、另一半朝另一个方向绕，就使两个磁场抵消，电感也随之抵消。这使用电器的发热元件不会在它的外壳上感应出危险的电动势，也使实验室的电阻器在交流电下不会表现得像电感器。知道什么使电感变大，就是知道怎样使它变小。"
     },
     {
       "id": "inductor",
@@ -16300,12 +16301,12 @@
       "id": "solenoid",
       "kind": "definition",
       "section": "22.9",
-      "name": "Solenoid",
+      "name": "螺线管",
       "symbol": "n",
       "terms": [
-        "solenoid"
+        "螺线管"
       ],
-      "statement": "A solenoid is a thin wire wound into a long coil, and the number of loops per unit length, $n = N/l$, describes how tightly it is wound.",
+      "statement": "螺线管是绕成长线圈的细导线，单位长度上的圈数 $n = N/l$ 描述它绕得有多紧。",
       "forms": [
         {
           "id": "eq-turns-per-unit-length",
@@ -16318,18 +16319,18 @@
       "id": "biot-savart-law",
       "kind": "axiom",
       "section": "22.9",
-      "name": "Biot-Savart law",
+      "name": "毕奥-萨伐尔定律",
       "terms": [
-        "Biot-Savart law"
+        "毕奥-萨伐尔定律"
       ],
-      "statement": "The Biot-Savart law gives the magnetic field made by each small segment of a current, so that the field of any current is the sum of the fields of its segments."
+      "statement": "毕奥-萨伐尔定律给出电流的每一小段产生的磁场，因此任何电流的磁场都是其各段磁场之和。"
     },
     {
       "id": "force-between-parallel-currents",
       "kind": "result",
       "section": "22.10",
-      "name": "Force between parallel currents",
-      "statement": "Nothing new is needed for this result, only the two things the chapter already has: the first wire makes a field at the second, and the second wire feels a force in that field. Putting the straight-wire field into the force on a current and dividing by the length gives the force per unit length as the permeability times the two currents divided by two pi times the separation. By Newton's third law each wire feels the same size of force, which is why one number serves for both.",
+      "name": "平行电流之间的力",
+      "statement": "这一结果不需要任何新东西，只需要本章已有的两点：第一根导线在第二根导线处产生磁场，第二根导线在该磁场中受力。把长直导线的磁场代入电流所受的力并除以长度，得到单位长度所受的力，等于真空磁导率乘以两个电流，再除以二倍 π 乘以间距。根据牛顿第三定律，每根导线受到的力大小相同，所以一个数就适用于两根导线。",
       "forms": [
         {
           "id": "eq-force-per-length-parallel",
@@ -16655,25 +16656,25 @@
       "id": "electromagnetic-spectrum",
       "kind": "idea",
       "section": "24.3",
-      "name": "Electromagnetic spectrum",
+      "name": "电磁波谱",
       "terms": [
-        "electromagnetic spectrum"
+        "电磁波谱"
       ],
-      "statement": "All electromagnetic waves are the same phenomenon, and only frequency, and therefore wavelength, separates a radio wave from a gamma ray. Sorting them by frequency gives the named bands, radio, microwave, infrared, visible, ultraviolet, X-ray and gamma ray, over a remarkable range of frequencies and wavelengths. Some of the dividing lines are sharp and others are not. Where two bands overlap, the name of a wave depends on how it was made rather than on how fast it oscillates."
+      "statement": "所有电磁波都是同一种现象，区分无线电波与 γ射线的只是频率，从而是波长。按频率排序，就得到有名称的各个波段：无线电波、微波、红外线、可见光、紫外线、X 射线和 γ射线，频率和波长的范围大得惊人。有些分界线很清楚，有些则不然。两个波段重叠的地方，一列波叫什么名称，取决于它是怎样产生的，而不取决于它振荡得多快。"
     },
     {
       "id": "spectrum-rules-of-thumb",
       "kind": "idea",
       "section": "24.3",
-      "name": "Rules of thumb for the spectrum",
-      "statement": "Three statements hold across the whole spectrum and are worth carrying: a higher-frequency wave is more energetic and penetrates better, a higher-frequency wave carries more information in a given time, and the shorter the wavelength of a wave used to probe something, the smaller the detail it can resolve. Each has exceptions — magnetic resonance imaging uses 3 m radio waves to see detail smaller than a millimetre — and knowing that the rules are rules of thumb is part of knowing them."
+      "name": "电磁波谱的经验法则",
+      "statement": "有三条陈述适用于整个电磁波谱，值得记住：频率较高的波能量较大，穿透力也较好；频率较高的波在给定时间内携带的信息更多；用来探测某物的波，波长越短，所能分辨的细节越小。每一条都有例外——磁共振成像用 3 m 的无线电波去看小于一毫米的细节——而知道这些法则只是经验法则，也是认识它们的一部分。"
     },
     {
       "id": "transmission-reflection-absorption",
       "kind": "idea",
       "section": "24.3",
-      "name": "Transmission, reflection and absorption",
-      "statement": "When a wave meets a material, it may pass through, turn back, or be absorbed, and usually some of each happens. How a material behaves depends on the material and the frequency together, not on the material alone. Glass passes visible light and stops ultraviolet, and skin stops visible light and passes X-rays. A substance is transparent or opaque only for a named band."
+      "name": "透射、反射与吸收",
+      "statement": "波遇到一种材料时，可能穿过，可能折回，也可能被吸收，通常三者都会发生一部分。材料如何表现，取决于材料和频率两者，而不只是材料本身。玻璃让可见光通过而挡住紫外线，皮肤挡住可见光而让 X 射线通过。一种物质只有对某个指明的波段才是透明的或不透明的。"
     },
     {
       "id": "radio-waves-and-modulation",
@@ -16985,8 +16986,8 @@
       "id": "thin-lens-equations-for-the-eye",
       "kind": "result",
       "section": "26.1",
-      "name": "Thin lens equations for the eye",
-      "statement": "Written in terms of power, the thin lens equation for the eye is $P = 1/d_{\\text{o}} + 1/d_{\\text{i}}$, with the image distance fixed at the lens-to-retina distance, and the magnification is $h_{\\text{i}}/h_{\\text{o}} = -d_{\\text{i}}/d_{\\text{o}}$.",
+      "name": "眼睛的薄透镜公式",
+      "statement": "用光焦度表示，眼睛的薄透镜公式为 $P = 1/d_{\\text{o}} + 1/d_{\\text{i}}$，其中像距固定为晶状体到视网膜的距离，而放大率为 $h_{\\text{i}}/h_{\\text{o}} = -d_{\\text{i}}/d_{\\text{o}}$。",
       "forms": [
         {
           "id": "eq-power-of-the-eye",
@@ -17006,8 +17007,8 @@
       "id": "solve-for-an-image-on-the-retina",
       "kind": "skill",
       "section": "26.1",
-      "name": "Finding an image on the retina",
-      "statement": "To find the power the eye needs or the size of an image on the retina, set the image distance to the lens-to-retina distance, put every distance in meters, and apply the thin lens equations for the eye.",
+      "name": "求视网膜上的像",
+      "statement": "要求眼睛所需的光焦度或视网膜上像的大小，就把像距取为晶状体到视网膜的距离，把所有距离都用米表示，再应用眼睛的薄透镜公式。",
       "forms": [
         {
           "id": "eq-image-height-on-retina",
@@ -17021,11 +17022,11 @@
       "id": "presbyopia",
       "kind": "definition",
       "section": "26.1",
-      "name": "Presbyopia",
+      "name": "老视",
       "terms": [
-        "presbyopia"
+        "老视"
       ],
-      "statement": "Presbyopia is a condition in which the lens of the eye becomes progressively unable to focus on objects close to the viewer, as the ability to accommodate shrinks with age. It is a loss of added power for close vision, and a converging lens supplies the missing power."
+      "statement": "老视是这样一种状况：随着年龄增长，调节能力不断缩小，眼睛的晶状体逐渐无法对靠近观看者的物体聚焦。它是近距离视物时附加光焦度的丧失，而会聚透镜可以提供所缺少的光焦度。"
     },
     {
       "id": "myopia-and-hyperopia",
@@ -18716,13 +18717,13 @@
       "id": "speed-of-light-in-vacuum",
       "kind": "definition",
       "section": "25.3",
-      "name": "Speed of light in a vacuum",
+      "name": "真空中的光速",
       "symbol": "c",
       "terms": [
-        "speed of light"
+        "光速"
       ],
       "type": "velocity",
-      "statement": "The speed of light in a vacuum, $c = 2.99792458 \\times 10^{8}$ m/s, is fixed by definition and is one of the basic physical quantities. It does not depend on the motion of the source or the observer, and light never travels faster than this.",
+      "statement": "真空中的光速 $c = 2.99792458 \\times 10^{8}$ m/s 由定义确定，是基本物理量之一。它不依赖于光源或观察者的运动，光传播的速率也永远不会超过这个值。",
       "forms": [
         {
           "id": "eq-speed-of-light",
@@ -18736,12 +18737,12 @@
       "id": "index-of-refraction",
       "kind": "definition",
       "section": "25.3",
-      "name": "Index of refraction",
+      "name": "折射率",
       "symbol": "n",
       "terms": [
-        "index of refraction"
+        "折射率"
       ],
-      "statement": "The index of refraction of a material is the speed of light in a vacuum divided by its speed in the material, so a large index means a slow medium. Because light is never faster in matter than in a vacuum, the index is always one or greater, and the indices of gases are so close to one that we take them to be one.",
+      "statement": "材料的折射率是真空中的光速除以材料中的光速，所以折射率大意味着光在其中传播得慢。因为光在物质中从不比在真空中快，折射率总是大于或等于一，而气体的折射率非常接近一，我们就把它们取为一。",
       "forms": [
         {
           "id": "eq-index-of-refraction",
@@ -18755,8 +18756,8 @@
       "id": "speed-in-a-medium-from-the-index",
       "kind": "skill",
       "section": "25.3",
-      "name": "Finding the speed of light in a material",
-      "statement": "Rearranging $n = c/v$ into $v = c/n$ gives the speed of light in a material from its index of refraction, which tells how much slower light is in water or glass than in air.",
+      "name": "求材料中的光速",
+      "statement": "把 $n = c/v$ 改写成 $v = c/n$，就能由折射率得出光在材料中的速率，它说明光在水或玻璃中比在空气中慢多少。",
       "forms": [
         {
           "id": "eq-speed-from-index",

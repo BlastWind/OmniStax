@@ -1,0 +1,1364 @@
+{
+ "id": "18.7",
+ "module": "m42317",
+ "chapter": "18",
+ "title": "静电平衡中的导体与电场",
+ "short": "静电平衡中的导体",
+ "lead": "导体中有可以自由移动的电荷，只要还有东西推动它们，它们就会不停地移动。它们最终趋于的状态有其自身的性质，而这些性质决定了<span data-ref=\"positive-plate negative-plate\">两块板</span>之间的电场、<span data-type=\"electric-field\">地球自身的电场</span>，以及电荷在避雷针尖端聚集的方式。",
+ "objectives": [
+  "列出处于静电平衡的导体的三个性质。",
+  "解释电场对导体中自由电荷的作用。",
+  "解释为什么导体内部不能存在电场。",
+  "描述地球周围的电场。",
+  "解释施加在不规则导体上的电场会发生什么。",
+  "描述避雷针是如何工作的。",
+  "解释金属汽车如何能保护车内乘客，使其免受接触汽车的断落电线所产生的危险电场的伤害。"
+ ],
+ "summary_html": "<ul><li>导体允许自由电荷在其内部到处移动。</li><li>导体周围的<span data-concept=\"force\">电场力</span>会使自由电荷在导体内部移动，直到达到静电平衡。</li><li>任何过剩电荷都会聚集在导体的表面上。</li><li>有尖角或尖端的导体会在这些尖端处聚集更多电荷。</li><li>避雷针是一种具有尖锐端部的导体，它收集雷暴在建筑物上引起的过剩电荷，并使其消散回空气中。</li><li>当地球表面某些位置的电场因空气绝缘作用的变化而变得带电更强时，就会产生雷暴。</li><li>法拉第笼的作用像是围在物体周围的屏蔽，防止<span data-concept=\"electric-charge\">电荷</span>穿透到内部。</li></ul>",
+ "notes": "书中未给出答案的九道习题被略去：其中四道要求画出长圆形导体周围、两块倾斜板之间以及非均匀带电的绝缘棒周围的场线草图；位于 x 轴上 8.00 cm 处的电荷所受的力；x 轴上 5.00 cm 处的场（共五问）；正方形角上电荷所在位置的场；等边三角形角上的场；以及一道两问的题，问四个角上的电荷均为 ±7.50 μC 时，作用在正方形中心电荷上的力的方向和大小。书中对正方形中心电荷所受库仑合力的答案，末尾在文字之间留有三对空的独立公式，这是源文本的瑕疵，这里只保留文字。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均为 AI 生成。答案来自书后答案。十四道习题中有九道没有给出答案，已被略去，本节的说明指明了是哪几道。四道 AP 题中，问带电球体的场在何处最弱的一道有答案，设为有评分的选择题；问场的变化百分比的一道有答案，按数值核对；问两块平行板之间的场在何处最强的一道和密立根油滴题没有答案，作为开放题保留，前者的四个选项照书中印出的样子给出，各附一条 AI 撰写并已标明的建议思路。十六道思考题的建议思路均为 AI 撰写并已标明。关于范德格拉夫加速器的传送带能否是导体的思考题，18.8 对起电机的叙述也能回答，但回答它靠的是本节所述的导体性质，所以它仍留在这里，同时也标上了 18.8 的 van-de-graaff-generator。本节自己的内容没有留待后面的页面，也没有取自别的页面。本节没有印出“理解检测”框，所以每道习题都与习题集一起放在最后。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-parallel-component",
+   "kind": "sim",
+   "number": "18.26",
+   "originals": [
+    "/media/ch18/Figure_19_07_02a.jpg"
+   ],
+   "original_caption": "当电场 $\\text{E}$ 加在导体上时，导体内的自由电荷移动，直到场垂直于表面。（a）电场是矢量，既有平行分量，也有垂直分量。平行分量（${\\text{E}}_{∥}$）对自由电荷 $q$ 施加力（${\\text{F}}_{∥}$），使电荷移动，直到 ${\\text{F}}_{∥}=0$。（b）最后得到的场垂直于表面。自由电荷已被带到导体表面，使静电力处于平衡。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "force",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "force label states the live force; tiny component arrow hidden; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-sphere-in-field",
+   "kind": "sim",
+   "number": "18.27",
+   "originals": [
+    "/media/ch18/Figure_19_07_03a.jpg"
+   ],
+   "original_caption": "此图表示一个球形导体与原本均匀的电场处于静电平衡。自由电荷在导体内移动，使导体极化，直到电场线垂直于表面。电场线终止于表面某一部分的过剩负电荷上，又从相对一侧的过剩正电荷上重新开始。导体内部不存在电场，因为只要有任何场，导体中的自由电荷就会继续响应而移动，直到场被中和。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "electric-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "inside label only where the sphere holds it; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-charged-sphere",
+   "kind": "sim",
+   "number": "18.28",
+   "originals": [
+    "/media/ch18/Figure_19_07_04a.jpg"
+   ],
+   "original_caption": "球形导体上过剩正电荷的相互排斥使它们均匀分布在导体表面上。由此产生的电场垂直于表面，在内部为零。在导体外部，电场与位于球心、电荷量等于过剩电荷的点电荷的电场相同。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "probe label clear of its arrow; side tally and note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-parallel-plates",
+   "kind": "sim",
+   "number": "18.29",
+   "originals": [
+    "/media/ch18/Figure_19_07_05a.jpg"
+   ],
+   "original_caption": "两块金属板带有等量而异号的过剩电荷。除边缘附近外，两板之间的场在强度和方向上都是均匀的。这种场的一个用途是使两板之间的电荷产生匀加速，例如老式 CRT 电视（使用阴极射线管而非液晶屏的电视）的电子枪。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline measures the uniform share; marks on plates; layout; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-earths-field",
+   "kind": "photo",
+   "number": "18.30",
+   "originals": [
+    "/media/ch18/Figure_19_07_06a.jpg"
+   ],
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "sim-sharp-end",
+   "kind": "sim",
+   "number": "18.31",
+   "folds": [
+    "18.32"
+   ],
+   "originals": [
+    "/media/ch18/Figure_19_07_07a.jpg",
+    "/media/ch18/Figure_19_07_08a.jpg"
+   ],
+   "original_caption": "（图 18.31）不均匀导体上的过剩电荷在曲率最大处最为集中。（a）导体两端的相同电荷对之间的力是相同的，但这些力平行于表面的分量不同。电荷到达表面后，正是 ${\\text{F}}_{∥}$ 把电荷推开。（b）在较尖的一端 ${\\text{F}}_{∥}$ 最小，电荷被留得更近，产生图中所示的电场。（c）原本均匀的电场中的不带电导体被极化，最集中的电荷出现在它最尖的一端。（图 18.32）很尖的导体在尖端处有很大的电荷集中。尖端处的电场非常强，所能施加的力大到足以使电荷转移到导体上或离开导体。避雷针用来防止建筑物上积累大量过剩电荷，因此做成尖的。",
+   "widths": [
+    350,
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "force",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "force labels apart; notes cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-rod-and-sphere",
+   "kind": "photo",
+   "number": "18.33",
+   "originals": [
+    "/media/ch18/Figure_19_07_09a.jpg"
+   ],
+   "widths": [
+    350
+   ]
+  },
+  {
+   "id": "fig-square",
+   "kind": "figure",
+   "originals": [
+    "/media/ch18/Figure_19_07_12a.jpg"
+   ],
+   "original_caption": "四个点电荷 ${q}_{a}$、${q}_{b}$、${q}_{c}$ 和 ${q}_{d}$ 位于正方形的四个角上，$q$ 位于其中心。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "line that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "free-charges-and-equilibrium",
+   "concept": "electrostatic-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "free-charges-and-equilibrium",
+   "concept": "field-perpendicular-to-conductor",
+   "verb": "introduces"
+  },
+  {
+   "span": "free-charges-and-equilibrium",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "free-charges-and-equilibrium",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "free-charges-and-equilibrium",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "polarized-conductor",
+   "concept": "field-inside-conductor-zero",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarized-conductor",
+   "concept": "excess-charge-on-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarized-conductor",
+   "concept": "field-perpendicular-to-conductor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polarized-conductor",
+   "concept": "polarization",
+   "verb": "uses"
+  },
+  {
+   "span": "polarized-conductor",
+   "concept": "electric-field-lines",
+   "verb": "uses"
+  },
+  {
+   "span": "polarized-conductor",
+   "concept": "field-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "polarized-conductor",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel-plates",
+   "concept": "uniform-field-between-plates",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel-plates",
+   "concept": "excess-charge-on-surface",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel-plates",
+   "concept": "field-perpendicular-to-conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel-plates",
+   "concept": "field-line-properties",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-field",
+   "concept": "earths-electric-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "earths-field",
+   "concept": "uniform-field-between-plates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "earths-field",
+   "concept": "electric-field-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-field",
+   "concept": "ionosphere",
+   "verb": "introduces"
+  },
+  {
+   "span": "uneven-surfaces",
+   "concept": "charge-concentrates-at-points",
+   "verb": "introduces"
+  },
+  {
+   "span": "uneven-surfaces",
+   "concept": "excess-charge-on-surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "uneven-surfaces",
+   "concept": "field-perpendicular-to-conductor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "uneven-surfaces",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "uneven-surfaces",
+   "concept": "polarization",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "lightning-rod",
+   "verb": "introduces"
+  },
+  {
+   "span": "applications",
+   "concept": "faraday-cage",
+   "verb": "introduces"
+  },
+  {
+   "span": "applications",
+   "concept": "charge-concentrates-at-points",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "field-inside-conductor-zero",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "electrostatic-screening",
+   "verb": "uses"
+  },
+  {
+   "span": "four-charges",
+   "concept": "superposition-of-electric-fields",
+   "verb": "uses"
+  },
+  {
+   "span": "four-charges",
+   "concept": "superposition-of-coulomb-forces",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3201948",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarized-conductor",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_11a.jpg",
+    "alt": "外电场线从物体的一端进入，从另一端穿出，图中用线条表示。"
+   },
+   "prompt": "图中的物体是导体还是绝缘体？请说明你的理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是绝缘体。场线径直穿过该物体，并以到达时的任意角度与其表面相遇，而这两件事在处于静电平衡的导体上都不可能发生。在导体中，自由电荷会一直移动到内部不再有场为止，所以没有任何一条线能穿过物体；它们还会一直移动到紧靠表面外侧的场垂直于表面为止，所以每条线都以直角与表面相遇，并终止于一个电荷上。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2671695",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarized-conductor",
+   "prompt": "如果上图中的电场线垂直于该物体，它就一定是导体吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不一定。处于平衡的每个导体上，场线都以直角与其表面相遇，但其他物体也可能如此。表面电荷分布合适的绝缘体，在外部会给出同样的图样，形状对称的带电绝缘体也是如此。决定性的检验是物体内部是否还剩有场。处于静电平衡的导体内部没有场，因为那里只要有场，就会使它的自由电荷继续移动；而绝缘体内部想有多少场都可以。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3088694",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plates",
+   "prompt": "本节中关于两块平行导体板之间电场的讨论指出，板靠得很近时边缘效应就不那么重要。“靠得很近”是什么意思？也就是说，起决定作用的是板的实际间距，还是板间距与板面积之比？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "起决定作用的是比值，而不是单独的间距。场在板边缘约一个间距的范围内向外弯曲，所以被破坏的区域是一个宽度由间距决定的带，而整个场与板一样宽。相距一毫米、宽也是一毫米的两块板，并不是本文所说的“靠得很近”，而相距一厘米、宽一米的两块板则是。因此，“靠得很近”的意思是间距与板的尺寸相比很小，对于方形板，这等于说间距与其面积的平方根相比很小。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1871378",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "一个尖导体（例如避雷针）端部自身产生的电场，会把正电荷还是负电荷从导体上移走？在外部产生的类似电场作用下，同样符号的电荷会从一个电中性的尖导体上移走吗？（这两个问题的答案都与利用尖端转移电荷有关。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "自身产生的场移走的电荷，其符号与导体的过剩电荷相同；而且是的，类似的外部电场会从电中性的尖导体上移走相同符号的电荷。在带正电的棒的尖端，场指向外，离开导体，它把正电荷推离；在带负电的棒的尖端，场指向内，它赶走的电荷是负的。把一根电中性棒放在外部电场中，若该场在其尖端处指向外，就像带正电的棒的场那样，则其自由电子被推向远端，于是尖端留下正的感生电荷和很大的场，正电荷便像前面那样从那里离开。外部场反向，符号也随之反向。在电中性的情形下，棒最终带的净电荷与尖端放出的电荷符号相反，这正是尖端不仅可用来使物体放电，也可用来使物体带电的缘故。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1487810",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "为什么在空旷的球道上，肩上扛着金属球杆的高尔夫球手容易遭雷击？她躲到树下会安全一些吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在空旷的球道上，她是周围一段距离内最高的导体，球杆使她更高，而且顶端是一个金属尖。雷暴云在她身上感应出的电荷集中在那个尖端，那里的场很大，附近的空气最先被击穿，于是雷击就落到她身上。站在树下并不会让她更安全。树更高，雷击会落在树上，但电流的很大一部分会沿着树干湿的外表面流下，并可能跳过很短的间隙击中站在树旁的人，树周围的地面也带有危险的电流。安全的地方是建筑物或汽车，二者都起着法拉第笼的作用。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3228630",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarized-conductor",
+   "prompt": "范德格拉夫加速器的传送带可以是导体吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不可以。传送带必须把电荷输送到球上，并在途中把电荷留住，而导体做不到这一点。导体上的过剩电荷会立即移动，直到分布在整个表面上。导电传送带上的电荷会沿着传送带跑回去，并通过传送带接触的任何东西流走，而不会随带子上升到球上。这就是传送带是绝缘体的原因：喷到带子上的电荷留在原处，随带子机械地上升，到顶端再通过一排尖端取下来。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3286362",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "在汽车里面，你相对来说能避开雷击吗？给出两条理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能，只要你完全待在车内。第一条理由是，汽车的金属车身是法拉第笼：它所吸收的任何电荷都位于外表面上，金属壳内部没有电场，所以雷击到汽车上，影响是在车外感受到的，车内不受影响。第二条理由是，金属比人体的导电性好得多，所以雷击的电流是通过你周围的车身流入大地，而不是通过你。如果一根带电的导线落在汽车上，这两条理由同样成立。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2400128",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "讨论避雷针接地与只是固定在建筑物上各有什么利弊。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "接地的避雷针由一根粗导体与大地相连。雷暴云在建筑物上感应出电荷，避雷针把电荷引到尖端，并不断地泄放到空气中；如果真的发生雷击，电流有一条绕过建筑物通向大地的通路。它的代价是安装本身。接触不良或已锈蚀的连接比没有还糟，因为它招来雷击，却又无法承载电流。只是固定在建筑物上的避雷针，仍然可以在其尖端集中电荷并泄放一部分。它所移动的电荷必须来自建筑物这个不良导体，所以效果差得多。雷击到来时，电流必须自己寻路穿过建筑结构向下，火灾就是这样引起的。只要能安装妥当，就选择接地的避雷针。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3408279",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_12a.jpg",
+    "alt": "四个点电荷，第一个是 q a，第二个是 q b，第三个是 q c，第四个是 q d，位于一个正方形的四个角上。q 位于其中心。",
+    "caption": "四个点电荷 q_a、q_b、q_c 和 q_d 位于正方形的四个角上，q 位于其中心。"
+   },
+   "prompt": "利用这种布置的对称性，证明：如果四个角上的电荷完全相等，则作用在下面正方形中心的电荷 $\\kq$ 上的库仑合力为零。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "正方形的中心到四个角的距离相同，所以四个角上的相等电荷对中心电荷施加的力大小相同。把它们按两条对角线分成两对。每一对的两个电荷位于过中心的一条直线的两端，所以它们对中心电荷施加的力大小相等、方向相反，相互抵消。另一对也是如此，所以四个力全部抵消，库仑合力为零。这一论证不依赖电荷的符号或正方形的大小，只依赖于四个电荷相等以及中心到它们的距离相等。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id2678000",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "prompt": "（a）利用这种布置的对称性，证明：如果四个角上的电荷完全相等，则正方形中心处的电场为零。（b）证明对于任何满足 $\\kqa = \\kqd$ 且 $\\kqb = \\kqc$ 的电荷组合，这一结论同样成立。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）每个角上的电荷到中心的距离相同，所以各自在中心产生的场大小相同。一条对角线两端的电荷在中心产生的场沿该对角线、方向相反，所以每一对对角电荷相互抵消，总和为零。（b）电荷 $\\kqa$ 和 $\\kqd$ 位于一条对角线的两端，$\\kqb$ 和 $\\kqc$ 位于另一条对角线的两端。如果 $\\kqa = \\kqd$，它们在中心产生的两个场大小相等、方向相反，无论它们共同的值是多少，都会自行抵消；$\\kqb$ 和 $\\kqc$ 也是如此。这四个电荷不必彼此相等，只需在每一对对角电荷内部相等。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id3397088",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "prompt": "（a）如果 $\\kq$ 为负，$\\kqa = \\kqc$ 且两者都为负，$\\kqb = \\kqd$ 且两者都为正，那么作用在 $\\kq$ 上的库仑合力的方向如何？（b）在这种情形下，正方形中心处电场的方向如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两个负电荷 $\\kqa$ 和 $\\kqc$ 在左边的两个角上，两个正电荷 $\\kqb$ 和 $\\kqd$ 在右边的两个角上，所以这种布置关于过中心的水平线对称，一切竖直方向的量都相互抵消。（b）场背离正电荷、指向负电荷，所以中心处的场指向左，从带正电的右侧指向带负电的左侧。（a）负电荷所受的力与场的方向相反，所以作用在 $\\kq$ 上的库仑合力指向右，朝向那两个正电荷。两个答案都是水平的，而且都不随正方形的大小而改变。"
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id1368317",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "prompt": "假设 $\\kqa = \\kqd$ 且 $\\kqb = \\kqc$。首先证明 $\\kq$ 处于静态平衡。（你可以忽略重力。）然后讨论这个平衡是稳定的还是不稳定的，并注意这可能取决于电荷的符号以及 $\\kq$ 偏离正方形中心的方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电荷 $\\kqa$ 和 $\\kqd$ 是一条对角线的两端，$\\kqb$ 和 $\\kqc$ 是另一条对角线的两端。一条对角线两端的相等电荷到中心的距离相同，对那里的电荷施加的吸引或排斥力方向正好相反。每一对各自抵消，所以 $\\kq$ 所受的合力为零，处于静态平衡。平衡是否稳定取决于符号。如果角上的电荷与 $\\kq$ 同号，它们就排斥 $\\kq$。把 $\\kq$ 稍微移向某个角，它离那个角更近、离对角更远，于是近处的电荷推得更用力，把它推回去，这种位移是稳定的。如果角上的电荷与 $\\kq$ 异号，它们就吸引 $\\kq$，同样的小位移会增大，把电荷沿它移动的方向拉得更远，所以这种位移是不稳定的。一般说来，固定电荷的任何布置都不能使平衡对每个方向的位移都稳定。符号混合时，电荷沿一条对角线稳定，沿另一条对角线不稳定。"
+   }
+  },
+  {
+   "id": "cq13",
+   "source_id": "fs-id1383011",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "prompt": "如果 $\\kqa = 0$，在什么条件下作用在 $\\kq$ 上的库仑合力为零？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "角 $\\kqa$ 处没有电荷时，该对角线另一端的电荷 $\\kqd$ 就没有什么来抵消它，所以它也必须为零。于是另一条对角线只能自己抵消，这在 $\\kqb = \\kqc$ 时成立。所以条件是 $\\kqd = 0$ 且 $\\kqb = \\kqc$，共同的值任意，符号任意。使合力为零的唯一其他方式是 $\\kq$ 本身为零，而那根本不是角上电荷的布置。"
+   }
+  },
+  {
+   "id": "cq14",
+   "source_id": "fs-id2384303",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uneven-surfaces",
+   "prompt": "在湿度低的地区，人们在打开汽车门或触摸金属门把手时，会形成一种特殊的“握法”。这就是让尽可能多的手掌接触该装置，而不只是指尖。讨论其中的感生电荷，并解释为什么这样做。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在干燥的空气中，人会带上过剩电荷并保持住，当手靠近金属时，人身上的电荷在金属靠近的部分感应出相反的电荷。手上的电荷挤在它最尖的部分，也就是指尖，所以那里的场很大，空气在间隙还很宽时就被击穿：全部电荷在一个小火花中一次通过，这就是疼痛的来源。把整个手掌平放在金属上，呈现出的是半径大得多的表面，电荷被摊得很薄，附近的场保持很小，在任何火花开始之前就已经接触上了。于是电荷悄悄流过去，感觉不到放电。"
+   }
+  },
+  {
+   "id": "cq15",
+   "source_id": "fs-id1985635",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "公路和桥梁上的收费站前面，路面上通常嵌有一段导线，汽车驶近时会碰到它。为什么要这样做？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在路上行驶的汽车会带上过剩电荷，带电的汽车到了窗口，会通过收费员或经手的钱币、票据放电。路面中的导线是一根通入地下的导体。汽车碰到它时，车上的过剩电荷流入大地，无害，而且是在汽车到达收费亭之前。这与避雷针接入大地所起的接地作用相同，只是有意并提前做好了。"
+   }
+  },
+  {
+   "id": "cq16",
+   "source_id": "fs-id2603645",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "假设一个人带有过剩电荷。要保持其带电状态，他可以穿任何一双鞋站在地上吗？你将如何使他放电？如果他就这样走开，会有什么后果？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不可以。鞋必须是绝缘体，而且是干的。导电的或湿的鞋底会把人与地面连通，过剩电荷立刻跑掉，因为地面是一个大到足以接收任何给它的电荷的导体。要安全地使人放电，应当用某种能把电荷逐渐带走而不是在一个火花中放掉的东西把他接地。把手平放在接地的大金属表面上就行，或者用一根经电阻接地的导线。如果他就这样走开，他仍然带电，电荷会在他碰到的第一样东西上找到出路。那意味着指尖上的火花、一次电击，而在易燃物附近或精密电子设备附近，则是真正的损坏。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1329828",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarized-conductor",
+   "figure": {
+    "src": "/media/ch18/image040.jpg",
+    "alt": "一个金色的球体，球体外侧均匀排列着八个黑色的“+”，指向八个向外的蓝色箭头。其中四个箭头分别正指球体的上、右、下、左，另外四个箭头与这四个箭头成 45 度角，等间距分布在它们之间。左箭头与上箭头之间的箭头标为 A。上箭头与右箭头之间的箭头标为 B。右箭头与下箭头之间的箭头标为 C。",
+    "caption": "球形导体。"
+   },
+   "prompt": "上图表示带正电的球形导体所产生的电场。电场在哪里最弱？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A 点",
+     "B 点",
+     "C 点",
+     "各点相同"
+    ],
+    "correct": 2,
+    "hint": "带电球形导体的外部，场就是位于球心的点电荷的场，所以它只取决于到球心的距离。比较三个箭头的长度。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1773817",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/image042.jpg",
+    "alt": "图的上部有一个灰色的细长矩形，上面有黑色的加号。图的下部有一个同样大小的灰色细长矩形，带有位于加号下方的减号。有带箭头的蓝线把每个 + 与每个 − 连起来，箭头位于线的中间。左边的两个箭头从同一个第一个 + 出发，向左弯曲，落到下方第一个 − 上。右边的两条线向右弯曲，连接最后一个 + 和 −。中间的六个箭头是竖直的。第三条线与第四条线之间靠近 + 矩形处有一个 A。第四条线与第五条线之间靠近 − 矩形处有一个 B。C 位于 + 矩形与 − 矩形的正中间，在第六条线与第七条线之间。",
+    "caption": "两块平行金属板之间的电场。"
+   },
+   "prompt": "上图表示由两块平行金属板产生的电场。电场在哪里最强？（a）A 点（b）B 点（c）C 点（d）各点相同",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "三个点都位于场线笔直、平行、间隔均匀的区域内，这正是匀强电场的样子：区域内各处强度相同、方向相同。场线的疏密就是场的强弱，在靠近正极板的 A、靠近负极板的 B 和两板正中间的 C，场线疏密相同。三个点中没有哪一点的场更强，所以答案是（d），各点相同。在两板两端向外弯曲的场线是边缘效应，三个点都不在那里。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1909331",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarized-conductor",
+   "prompt": "假设一个带正电的小球形导体在某一距离处产生的电场为 $\\kEf$。如果导体上的电荷加倍，那么在三倍距离处的电场变化的百分比是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -77.78,
+    "unit": "%",
+    "hint": "导体外部的场是位于中心的点电荷的场，$\\kEf = k|\\kq|/r^{2}$。电荷加倍使它加倍，距离变为三倍使它除以九。",
+    "solution": "减小 77.78%。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2149406",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/image044.jpg",
+    "alt": "图中有一只眼睛、一架显微镜，然后是一根灰色的条，顶部有五个 +，五个箭头竖直向下指向灰色条中的五个 −。在 + 条和 − 条之间的中央有一个金色的小滴。",
+    "caption": "密立根油滴实验。"
+   },
+   "prompt": "上图表示经典的密立根油滴实验装置。在这个实验中，油滴在竖直电场中抵抗重力而悬浮，以测量它们的电荷。如果悬浮在强度为 1.18×10<sup>−4</sup> N/C 的电场中的一个带负电油滴的质量为 3.85×10<sup>−21</sup> g，求该油滴中过剩电子的个数。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "静止悬浮的油滴所受合力为零，所以作用在它上面的电场力与它的重力平衡：$\\kq\\kEf = m\\kg$。先把质量换算成千克，$3.85 \\times 10^{-21}\\ \\text{g} = 3.85 \\times 10^{-24}\\ \\text{kg}$，所以重力为 $(3.85 \\times 10^{-24})(9.80) = 3.77 \\times 10^{-23}\\ \\text{N}$。强度为 $1.18 \\times 10^{-4}\\ \\text{N/C}$ 的场要托住这个重力所需的电荷为 $\\kq = m\\kg/\\kEf = 3.77 \\times 10^{-23}/1.18 \\times 10^{-4} = 3.20 \\times 10^{-19}\\ \\text{C}$。每个过剩电子带电 $1.60 \\times 10^{-19}\\ \\text{C}$，所以这个油滴带有两个过剩电子。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id694467",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_17a.jpg",
+    "alt": "三个点电荷显示在刻度线上。第一个电荷正 q 位于三点零，第二个电荷负二 q 位于八点零，第三个电荷正 q 位于沿 x 轴十一点零厘米处。四个电荷放在一条刻度线上。第一个是负二 q，位于一点零，第二个是正 q，位于五点零，第三个是正三 q，位于八点零，第四个是负 q，放在沿 x 轴十四点零厘米处。",
+    "caption": "（a）位于 x 轴上 3.00、8.00 和 11.0 cm 处的点电荷。（b）位于 x 轴上 1.00、5.00、8.00 和 14.0 cm 处的点电荷。"
+   },
+   "prompt": "（a）求图（b）中 $x = 1.00$ cm 处的合电场，已知 $\\kq = 5.00$ nC。（b）求图（b）中 $x = 11.00$ cm 处的合电场，已知 $\\kq = 5.00$ nC。（c）如果让这些电荷自由移动，最后在摩擦作用下静止，最终的电荷构型将是什么？（也就是说，会是单个电荷、双电荷等等，其值是多少？）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 212000,
+    "unit": "N/C",
+    "part": "a",
+    "hint": "把四个电荷的场当作沿轴的矢量相加，每个的大小为 $k|\\kq|/r^{2}$，指向 $+x$ 方向的场记为正。第（c）问把各电荷加起来即可。",
+    "solution": "（a）$2\\text{.}\\text{12}\\times {\\text{10}}^{5}\\;\\text{N/C}$\n（b）一个电荷 $+\\kq$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id956458",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plates",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_17a.jpg",
+    "alt": "三个点电荷显示在刻度线上。第一个电荷正 q 位于三点零，第二个电荷负二 q 位于八点零，第三个电荷正 q 位于沿 x 轴十一点零厘米处。四个电荷放在一条刻度线上。第一个是负二 q，位于一点零，第二个是正 q，位于五点零，第三个是正三 q，位于八点零，第四个是负 q，放在沿 x 轴十四点零厘米处。",
+    "caption": "（a）位于 x 轴上 3.00、8.00 和 11.0 cm 处的点电荷。（b）位于 x 轴上 1.00、5.00、8.00 和 14.0 cm 处的点电荷。"
+   },
+   "prompt": "（a）求位于图（b）中 $x = 4.00$ cm 处的 2.00 nC 电荷所受的库仑合力，已知 $\\kq = 1.00\\ \\mu\\text{C}$。（b）求图（b）中电场为零处的 $x$ 位置。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.252,
+      "unit": "N",
+      "hint": "把四个库仑力当作沿轴的矢量相加。答案指向左边。"
+     },
+     {
+      "part": "b",
+      "value": 6.07,
+      "unit": "cm",
+      "hint": "看位于 5.00 cm 和 8.00 cm 处的两个正电荷之间，那里最近的两个电荷的场相互反向。"
+     }
+    ],
+    "solution": "（a）0.252 N，向左\n（b）$x = 6.07$ cm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3091835",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_12a.jpg",
+    "alt": "四个点电荷，第一个是 q a，第二个是 q b，第三个是 q c，第四个是 q d，位于一个正方形的四个角上。q 位于其中心。"
+   },
+   "prompt": "（a）利用这种布置的对称性，确定正方形中心处电场的方向，已知 $\\kqa = \\kqb = -1.00\\ \\mu\\text{C}$，$\\kqc = \\kqd = +1.00\\ \\mu\\text{C}$。（b）计算 $\\kq$ 所在位置的电场大小，已知正方形的边长为 5.00 cm。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 20400000,
+    "unit": "N/C",
+    "part": "b",
+    "hint": "每个角到中心的距离是对角线的一半，所以 $r = (5.00\\ \\text{cm})/\\sqrt{2}$ 再除以 2。把四个场当作矢量相加；水平分量抵消，竖直分量相加。",
+    "solution": "（a）正方形中心处的电场将竖直向上，因为 $\\kqa$ 和 $\\kqb$ 为正，$\\kqc$ 和 $\\kqd$ 为负，且大小都相同。\n（b）$2\\text{.}\\text{04}\\times {\\text{10}}^{7}\\;\\text{N/C}\\;(\\text{向上})$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3165180",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_12a.jpg",
+    "alt": "四个点电荷，第一个是 q a，第二个是 q b，第三个是 q c，第四个是 q d，位于一个正方形的四个角上。q 位于其中心。"
+   },
+   "prompt": "求作用在正方形中心的电荷 $\\kq$ 上的库仑合力，已知 $\\kq = 1.00\\ \\mu\\text{C}$，$\\kqa = 2.00\\ \\mu\\text{C}$，$\\kqb = -3.00\\ \\mu\\text{C}$，$\\kqc = -4.00\\ \\mu\\text{C}$，$\\kqd = +1.00\\ \\mu\\text{C}$。正方形的边长为 50.0 cm。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.102,
+    "unit": "N",
+    "hint": "每个角到中心的距离相同，$r = (50.0\\ \\text{cm})\\sqrt{2}/2$。算出四个力，沿两条对角线分解，再相加。",
+    "solution": "$0\\text{.}\\text{102}\\;\\text{N},$ 沿 $-y$ 方向"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2625961",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_07_18a.jpg",
+    "alt": "三个点电荷位于一个等边三角形的角上。",
+    "caption": "位于边长为 25.0 cm 的等边三角形各角上的点电荷。"
+   },
+   "prompt": "（a）求三角形电荷构型中心处的电场，已知 $\\kqa = +2.50$ nC，$\\kqb = -8.00$ nC，$\\kqc = +1.50$ nC。（b）除 $\\kqa = \\kqb = \\kqc$ 之外，是否存在其他电荷组合，能使三角形构型中心处的电场强度为零？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4360,
+    "unit": "N/C",
+    "part": "a",
+    "hint": "边长为 $d$ 的等边三角形的中心到每个角的距离为 $d/\\sqrt{3}$。把三个场当作矢量相加。",
+    "solution": "（a）$\\vec{E} = 4.36\\times {\\text{10}}^{3}\\;\\text{N/C}$，在水平方向下方 $35.0^\\circ$。\n（b）不存在"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "field-inside-conductor-zero"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "field-perpendicular-to-conductor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "insulator",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-perpendicular-to-conductor"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-inside-conductor-zero",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "uniform-field-between-plates"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "charge-concentrates-at-points"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "lightning-rod",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "lightning-rod"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "charge-concentrates-at-points",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "excess-charge-on-surface"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "van-de-graaff-generator",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "faraday-cage"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "field-inside-conductor-zero",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "lightning-rod"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "grounding",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "coulomb-force-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "electric-field-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "superposition-of-coulomb-forces",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "electric-field-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "coulomb-force-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq13",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "cq14",
+   "concept": "charge-concentrates-at-points"
+  },
+  {
+   "exercise": "cq14",
+   "concept": "polarization",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq15",
+   "concept": "grounding"
+  },
+  {
+   "exercise": "cq15",
+   "concept": "faraday-cage",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq16",
+   "concept": "grounding"
+  },
+  {
+   "exercise": "cq16",
+   "concept": "insulator",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "excess-charge-on-surface"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "field-of-point-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "uniform-field-between-plates"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "field-line-properties",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "excess-charge-on-surface"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "field-of-point-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "uniform-field-between-plates"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "force-from-electric-field",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "p1",
+   "concept": "field-of-point-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "p2",
+   "concept": "superposition-of-electric-fields",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electric-field-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "p4",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "p5",
+   "concept": "add-electric-fields",
+   "weight": 4,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "conductor",
+   "label": "侧视的导体",
+   "figures": [
+    "sim-parallel-component"
+   ]
+  },
+  {
+   "id": "free-charge",
+   "label": "沿表面被驱动的自由电荷 q",
+   "figures": [
+    "sim-parallel-component"
+   ]
+  },
+  {
+   "id": "sphere",
+   "label": "置于原本均匀电场中的球",
+   "figures": [
+    "sim-sphere-in-field"
+   ]
+  },
+  {
+   "id": "metal-sphere",
+   "label": "带有过剩电荷的金属球",
+   "figures": [
+    "sim-charged-sphere"
+   ]
+  },
+  {
+   "id": "probe",
+   "label": "读取电场的探针",
+   "figures": [
+    "sim-charged-sphere"
+   ]
+  },
+  {
+   "id": "positive-plate",
+   "label": "带有正过剩电荷的板",
+   "figures": [
+    "sim-parallel-plates"
+   ]
+  },
+  {
+   "id": "negative-plate",
+   "label": "带有负过剩电荷的板",
+   "figures": [
+    "sim-parallel-plates"
+   ]
+  },
+  {
+   "id": "pointed-conductor",
+   "label": "一端圆、一端尖的导体",
+   "figures": [
+    "sim-sharp-end"
+   ]
+  },
+  {
+   "id": "charge-a",
+   "label": "左上角的电荷 q_a",
+   "figures": [
+    "fig-square"
+   ]
+  },
+  {
+   "id": "charge-b",
+   "label": "右上角的电荷 q_b",
+   "figures": [
+    "fig-square"
+   ]
+  },
+  {
+   "id": "charge-c",
+   "label": "左下角的电荷 q_c",
+   "figures": [
+    "fig-square"
+   ]
+  },
+  {
+   "id": "charge-d",
+   "label": "右下角的电荷 q_d",
+   "figures": [
+    "fig-square"
+   ]
+  },
+  {
+   "id": "centre-charge",
+   "label": "正方形中心的电荷 q",
+   "figures": [
+    "fig-square"
+   ]
+  }
+ ]
+}

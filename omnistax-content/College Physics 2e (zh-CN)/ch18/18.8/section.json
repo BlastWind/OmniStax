@@ -1,0 +1,651 @@
+{
+ "id": "18.8",
+ "module": "m42329",
+ "chapter": "18",
+ "title": "静电学的应用",
+ "short": "静电学的应用",
+ "lead": "本章所建立的一切在这里派上了用场：导体外表面上的过剩电荷、这些电荷集中的尖端，以及电场对电荷施加的<span data-concept=\"force\">力</span>。范德格拉夫起电机、复印机、激光打印机、喷墨打印机和烟囱静电除尘器，都用到了这些物理，而一道例题把电场<span data-concept=\"force\">力</span>与牛顿定律联系起来。",
+ "objectives": [
+  "列举静电学研究在现实世界中的几种应用。"
+ ],
+ "summary_html": "<ul><li>静电学是研究处于静电平衡中的<span data-concept=\"electric-field\">电场</span>的学科。</li><li>除了使用范德格拉夫起电机等设备进行的研究之外，静电学还有许多实际应用，包括复印机、激光打印机、喷墨打印机和静电空气过滤器。</li></ul>",
+ "notes": "本书在“综合概念”下列出的六个章标题，以及例题中的章名，按本书各处写交叉引用的方式，只写书中的名称而不加链接。本节十八道习题中有十四道在书后答案中没有给出，因此略去，其中包括两道“自拟习题”、三道“不合理的结果”习题和七道“综合概念”习题中的六道；这些习题所带的五幅无编号图像也一并略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。答案来自书后答案，未经任何计算：书中在此设置的十八道习题里，只有四道附有答案，只保留这四道，其余十四道已略去，并在说明中列出。本节没有设置理解检测、思考题或 AP 备考练习，因此本页没有行内习题，也没有 AI 撰写的建议思路。没有任何内容取自其他节，也没有任何内容留待以后的页面。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-van-de-graaff",
+   "kind": "sim",
+   "number": "18.34",
+   "originals": [
+    "/media/ch18/Figure_19_08_02.jpg"
+   ],
+   "original_caption": "范德格拉夫起电机示意图。电池（A）向一个尖端导体提供过剩的正电荷，该导体的尖端把电荷喷到靠近底部的一条运动的绝缘传送带上。大球内顶部的尖端导体（B）把电荷取走。（尖端处感应出的电场非常大，以至于把电荷从传送带上移走。）之所以能这样做，是因为电荷不会留在导电球的内部，而是移到它的外表面。球内的离子源产生正离子，这些离子被带正电的球加速而远离它，获得很高的速度。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "field arrows clear of the labels; belt label below sphere; tally, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-xerography",
+   "kind": "sim",
+   "number": "18.35",
+   "folds": [
+    "18.36"
+   ],
+   "originals": [
+    "/media/ch18/Figure_19_08_03a.jpg",
+    "/media/ch18/Figure_19_08_04a.jpg"
+   ],
+   "original_caption": "（图 18.35）静电复印是一种基于静电学的干法复印过程。该过程的主要步骤是：给光电导的感光鼓充电，转移图像以产生一个正电荷的复制品，把墨粉吸引到感光鼓的带电部分，以及把墨粉转移到纸上。图中没有表示对纸的加热处理，以及为下一次复印而对感光鼓所做的清洁。（图 18.36）在激光打印机中，激光束扫过光电导的感光鼓，留下一个正电荷图像。给感光鼓充电和把图像转移到纸上的其他步骤，与静电复印中的相同。激光可以被控制得非常精确，使激光打印机能够产生高质量的图像。",
+   "widths": [
+    450,
+    450
+   ],
+   "draws": [
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the facts the caption lacks"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ink-jet",
+   "kind": "sim",
+   "number": "18.37",
+   "originals": [
+    "/media/ch18/Figure_19_08_05a.jpg"
+   ],
+   "original_caption": "喷墨打印机的喷嘴产生微小的墨滴，这些墨滴被喷上静电荷。然后用各种由计算机驱动的装置，把墨滴引导到纸页上的正确位置。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "no field lines or force label at zero field; scale unit moved; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-precipitator",
+   "kind": "sim",
+   "number": "18.38",
+   "originals": [
+    "/media/ch18/Figure_19_08_06a.jpg"
+   ],
+   "original_caption": "（a）静电除尘器示意图。空气通过带相反电荷的栅网。第一层栅网使空气中的颗粒带电，第二层栅网则吸引并收集它们。（b）从这座发电厂不见烟雾，可以看出静电除尘器的显著效果。（来源：Cmdalgleish, Wikimedia Commons）",
+   "widths": [
+    675
+   ],
+   "draws": [
+    "charge",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels apart and inside the frame; no lines at zero field; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-charged-drop",
+   "kind": "sim",
+   "draws": [
+    "charge",
+    "electric-field",
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "drop labels over the field lines; acceleration arrow clear; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "van-de-graaff",
+   "concept": "van-de-graaff-generator",
+   "verb": "introduces"
+  },
+  {
+   "span": "van-de-graaff",
+   "concept": "charge-concentrates-at-points",
+   "verb": "uses"
+  },
+  {
+   "span": "van-de-graaff",
+   "concept": "excess-charge-on-surface",
+   "verb": "uses"
+  },
+  {
+   "span": "xerography",
+   "concept": "xerography",
+   "verb": "introduces"
+  },
+  {
+   "span": "xerography",
+   "concept": "grounding",
+   "verb": "uses"
+  },
+  {
+   "span": "xerography",
+   "concept": "photoconductor",
+   "verb": "introduces"
+  },
+  {
+   "span": "laser-printers",
+   "concept": "xerography",
+   "verb": "reinforces"
+  },
+  {
+   "span": "laser-printers",
+   "concept": "laser-printer",
+   "verb": "introduces"
+  },
+  {
+   "span": "ink-jet",
+   "concept": "ink-jet-printer",
+   "verb": "introduces"
+  },
+  {
+   "span": "ink-jet",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "ink-jet",
+   "concept": "field-perpendicular-to-conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "precipitators",
+   "concept": "electrostatic-precipitator",
+   "verb": "introduces"
+  },
+  {
+   "span": "problem-solving",
+   "concept": "electrostatics-problem-solving",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrated-concepts",
+   "concept": "integrated-electrostatics",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrated-concepts",
+   "concept": "electrostatics-problem-solving",
+   "verb": "reinforces"
+  },
+  {
+   "span": "integrated-concepts",
+   "concept": "force-from-electric-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "what-electrostatics-is",
+   "concept": "electrostatics",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "p1",
+   "source_id": "fs-id3415155",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "（a）在地球表面附近，能托住一个自由电子重力的电场，其方向和大小各是多少？（b）讨论这个电场的数值很小，对引力与静电力的相对强度意味着什么。",
+   "answer": {
+    "type": "number",
+    "value": 5.58e-11,
+    "unit": "N/C",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "电场必须施加一个向上的、等于电子重力的力，所以令 $\\kq\\kEf$ 等于 $m\\kg$，其中取电子的质量和其电荷的大小。电子带负电，所以它所受的力与电场方向相反。",
+    "solution": "（a）$5.58 \\times 10^{-11}\\ \\text{N/C}$（b）库仑力比引力强得惊人"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3026125",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "地球带有净电荷，在其表面产生约 150 N/C、方向向下的电场。（a）注意导电球的电场等效于位于其球心的点电荷，那么过剩电荷的大小和符号是什么？（b）该电场会使地球表面附近的自由电子产生多大的加速度？（c）带有一个额外电子的、质量为多大的物体，其重力会被这个电场托住？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -676000,
+      "unit": "C",
+      "hint": "把点电荷的电场公式变形以求电荷，距离取地球的半径。指向下方、即指向球心的电场，属于负电荷。"
+     },
+     {
+      "part": "(b)",
+      "value": 26300000000000,
+      "unit": "m/s²",
+      "hint": "电子所受的力等于其电荷的大小乘以电场，加速度由牛顿第二定律和电子的质量得出。"
+     },
+     {
+      "part": "(c)",
+      "value": 2.45e-18,
+      "unit": "kg",
+      "hint": "令一个元电荷所受的电场力等于重力 $m\\kg$，解出质量。"
+     }
+    ],
+    "solution": "（a）$-6.76 \\times 10^{5}\\ \\text{C}$（b）$2.63 \\times 10^{13}\\ \\text{m/s}^2\\ (\\text{向上})$（c）$2.45 \\times 10^{-18}\\ \\text{kg}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3229403",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "problem-solving",
+   "prompt": "如果在从 $\\kqone$ 到 $\\kqtwo$ 的路程上四分之一处的电场为零，关于这两个电荷 $\\kqone$ 和 $\\kqtwo$ 你能说些什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "电荷 $\\kqtwo$ 是 $\\kqone$ 的 9 倍。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "exer-45678",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "一个直径为 4.00 m 的无摩擦圆形轨道，紧挨着它固定有两个质量各为 10.0 kg 的球。轨道的取向使其一条直径沿 <em>x</em> 轴。被固定的球就在轨道外侧。其中一个被固定的球在原点的左边，与原点相距 $1.00 \\times 10^{-15}\\ \\text{m}$；另一个在 <em>x</em> 轴上，位于轨道的右边，在 $(4,0)$ 点之外 $1.00 \\times 10^{-15}\\ \\text{m}$ 处。每个球所带的电荷为 $2.00 \\times 10^{-9}\\ \\text{C}$。（注：与轨道之间的微小距离是为了使这些粒子不会碰撞，对三位有效数字的计算没有影响。）（a）第三个球的质量为 10.00 kg，所带电荷为 $-1.00 \\times 10^{-9}\\ \\text{C}$。它可以在轨道上自由运动。起初把它放在与两个被固定的球等距的 $(2.00,2.00)$ 处。第三个球所受的合力是多少？（一定要包括球与球之间的引力。）（b）第三个球会运动吗？（c）把前两个球标为 A 和 B，可动的球标为 C。现在让球 C 从 $(1.00,2.00)$ 出发。球 C 所受的力是什么？（d）球 C 现在会运动吗？（e）如果会，它将在哪里停止运动并反向？如果不会运动，可以跳过这一部分。（f）轨道上有多少个平衡点，可动的球在这些点上会保持静止？它们在哪里？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）在 <em>x</em> 方向上各力平衡，因此合力是竖直的。它由库仑力和引力的竖直分量之和构成。$F_y = -2\\left(\\frac{k\\kqone\\kqtwo}{r^2} + G\\frac{m_1m_2}{r^2}\\right)\\cos 45^\\circ = -4.36 \\times 10^{-9}\\ \\text{N}$（b）不会，它处于亚稳位置。由于它不能沿水平方向运动，所以不能走过轨道的任何一部分。（c）$F_x = 2.60 \\times 10^{-9}\\ \\text{N}$ 和 $F_y = -6.36 \\times 10^{-9}\\ \\text{N}$，二者各是来自两个被固定的球的库仑力与引力沿坐标轴分解后之和。（d）会。（e）它将到达 $(1,-\\sqrt{3})$ 然后才改变方向。（f）在某一方向上没有分量的亚稳位置是 $(0,0)$、$(4,0)$、$(2,2)$ 和 $(2,-2)$。共有 4 个。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "p1",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "p1",
+   "concept": "integrated-electrostatics",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coulomb-versus-gravity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-of-point-charge"
+  },
+  {
+   "exercise": "p2",
+   "concept": "integrated-electrostatics",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "earths-electric-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electrostatics-problem-solving",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "field-of-point-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "p4",
+   "concept": "integrated-electrostatics",
+   "weight": 5,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "coulomb-versus-gravity",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "sphere",
+   "label": "范德格拉夫起电机的大金属球",
+   "figures": [
+    "sim-van-de-graaff"
+   ]
+  },
+  {
+   "id": "belt",
+   "label": "把电荷运送上去的绝缘传送带",
+   "figures": [
+    "sim-van-de-graaff"
+   ]
+  },
+  {
+   "id": "battery",
+   "label": "提供电荷的电池 A",
+   "figures": [
+    "sim-van-de-graaff"
+   ]
+  },
+  {
+   "id": "sprayer",
+   "label": "把电荷喷到传送带上的尖端导体",
+   "figures": [
+    "sim-van-de-graaff"
+   ]
+  },
+  {
+   "id": "collector",
+   "label": "在球内把电荷取下的尖端导体 B",
+   "figures": [
+    "sim-van-de-graaff"
+   ]
+  },
+  {
+   "id": "drum",
+   "label": "涂硒的铝鼓",
+   "figures": [
+    "sim-xerography"
+   ]
+  },
+  {
+   "id": "corotron",
+   "label": "给感光鼓喷上正电荷的电晕充电器",
+   "figures": [
+    "sim-xerography"
+   ]
+  },
+  {
+   "id": "paper",
+   "label": "接收墨粉的纸",
+   "figures": [
+    "sim-xerography"
+   ]
+  },
+  {
+   "id": "laser",
+   "label": "激光打印机的激光器",
+   "figures": [
+    "sim-xerography"
+   ]
+  },
+  {
+   "id": "original",
+   "label": "复印机的灯和原件",
+   "figures": [
+    "sim-xerography"
+   ]
+  },
+  {
+   "id": "nozzle",
+   "label": "喷墨打印机的喷嘴",
+   "figures": [
+    "sim-ink-jet"
+   ]
+  },
+  {
+   "id": "electrodes",
+   "label": "充电电极",
+   "figures": [
+    "sim-ink-jet"
+   ]
+  },
+  {
+   "id": "plates",
+   "label": "两块带电的偏转板",
+   "figures": [
+    "sim-ink-jet"
+   ]
+  },
+  {
+   "id": "page",
+   "label": "墨滴落在其上的纸页",
+   "figures": [
+    "sim-ink-jet"
+   ]
+  },
+  {
+   "id": "droplets",
+   "label": "射流中的墨滴",
+   "figures": [
+    "sim-ink-jet"
+   ]
+  },
+  {
+   "id": "charging-grid",
+   "label": "使颗粒带电的第一层栅网",
+   "figures": [
+    "sim-precipitator"
+   ]
+  },
+  {
+   "id": "collecting-grid",
+   "label": "收集颗粒的第二层栅网",
+   "figures": [
+    "sim-precipitator"
+   ]
+  },
+  {
+   "id": "particles",
+   "label": "空气中的烟尘颗粒",
+   "figures": [
+    "sim-precipitator"
+   ]
+  },
+  {
+   "id": "drop",
+   "label": "例题 18.5 中带电的汽油滴",
+   "figures": [
+    "sim-charged-drop"
+   ]
+  }
+ ]
+}

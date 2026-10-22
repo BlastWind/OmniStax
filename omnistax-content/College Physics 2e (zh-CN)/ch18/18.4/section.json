@@ -1,0 +1,662 @@
+{
+ "id": "18.4",
+ "module": "m42310",
+ "chapter": "18",
+ "title": "电场：再论场的概念",
+ "short": "电场",
+ "lead": "带电的梳子不用接触就能吸起小纸片，因为电荷使它周围的空间充满了场。<span data-concept=\"electric-field\">电场</span>被定义为单位正检验电荷所受的<span data-concept=\"force\">力</span>，由它可以得到放在已知场中的任何电荷所受的<span data-concept=\"force\">力</span>，以及单个点电荷的场。",
+ "objectives": [
+  "描述力场，并计算点电荷产生的电场的强度。",
+  "计算电场对检验电荷施加的力。",
+  "解释检验电荷所受电场力（F）与电场强度（E）之间的关系。"
+ ],
+ "summary_html": "<ul><li>带电体周围的静电力场向各个方向延伸到空间中。</li><li>点电荷对相距<span data-concept=\"distance\">距离</span> $r$ 处的检验电荷所施加的静电力，取决于两个电荷各自的电荷，也取决于两者之间的<span data-concept=\"distance\">距离</span>。</li><li><span data-concept=\"electric-field\">电场</span> $\\kEf$ 定义为 $$\\kEf = \\frac{\\kF}{\\kq,}$$ 其中 $\\kF$ 是作用在小的正检验电荷 $\\kq$ 上的库仑力或静电力。$\\kEf$ 的单位是 N/C。</li><li>点电荷 $\\kQch$ 产生的<span data-concept=\"electric-field\">电场</span> $\\kEf$ 的大小为 $$\\kEf = k\\frac{|\\kQch|}{r^2}.$$ 其中 $r$ 是到 $\\kQch$ 的<span data-concept=\"distance\">距离</span>。<span data-concept=\"electric-field\">电场</span> $\\kEf$ 是矢量，多个电荷产生的场按矢量相加。</li></ul>",
+ "notes": "PhET 模拟“Electric Field of Dreams”已省去，书中没有给出答案的三道习题也已省去：对 −1.75 μC 电荷施加 2.00 × 10⁻⁵ N 向上的力的电场，距 5.00 mC 点电荷 2.00 m 处的电场，以及质子在 5.00 × 10⁶ N/C 电场中的初始加速度。书中的两处疏漏照原样保留：例题 18.3 对例题 18.2 求得为 7.19 × 10⁵ N/C 的电场用了 7.20 × 10⁵ N/C，本节小结则把场的定义写成逗号落在分数之内。第一条目标中的“电场强度”（electrical field strength）和第二条目标中的“电场力”（electrical force）也是书中的用词。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案。六道习题中有三道没有给出答案，已省去：对 $-1.75\\ \\mu\\text{C}$ 电荷施加向上的力的电场，距 5.00 mC 点电荷 2.00 m 处的电场，以及质子在 $5.00 \\times 10^{6}$ N/C 电场中的加速度。七道 AP 题中有四道给出了答案：三道设为判分选择题，关于电子在未知强度电场中的那道题则核对书中给出的两个数，并在解中给出这两个方向的答案。三道没有答案的 AP 题是开放题，选项照书上印出的样子保留，书上要求给出数值的则不设选项，并附有标明为 AI 所作的建议思路。书中以“请利用这些信息回答第 31–32 题”引入的那道题之后，紧跟着一道依赖同一设定的题，这一设定在第二题自己的题干中重复了一遍，因为每道题各自独立成卡。两道思考题的建议思路由 AI 撰写并已标明。第一道思考题是对定义该场的段落所作的简短检查，设置在该段之后；其余都在末尾。没有取自其他小节的内容，也没有留给后面页面的内容。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-force-field",
+   "kind": "sim",
+   "number": "18.18",
+   "originals": [
+    "/media/ch18/Figure_19_04_02a.jpg"
+   ],
+   "original_caption": "图中显示正电荷 Q 产生的库仑力场作用在两个不同的电荷上。两个电荷与 Q 的距离相同。（a）由于 q₁ 为正，作用在它上的力 F₁ 是排斥力。（b）电荷 q₂ 为负，且大小大于 q₁，因此作用在它上的力 F₂ 是吸引力，并且比 F₁ 强。因此，库仑力场在空间中任何一点都不是唯一的，因为它既取决于检验电荷 q₁ 和 q₂，也取决于电荷 Q。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout substitutes the numbers; note through the macros, cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-point-charge-field",
+   "kind": "sim",
+   "draws": [
+    "charge",
+    "electric-field",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "probe line clear of the labels; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "force-field",
+   "concept": "coulomb-force-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "concept-of-a-field",
+   "concept": "coulomb-force-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "concept-of-a-field",
+   "concept": "test-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "electric-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "electric-field-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "force-from-electric-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "test-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-field-defined",
+   "concept": "point-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "field-of-point-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "force-from-electric-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "field-of-point-charge",
+   "concept": "electric-field-direction",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3047767",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "为什么电场定义中的检验电荷 $\\kq$ 必须小到可以忽略不计？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "某一点的电场应当只是产生它的那些电荷的性质，而不取决于别的任何东西。检验电荷本身也是电荷，所以它会对产生电场的那些电荷施加它自己的力，并可能把它们推得移动位置。这样，你测量到的电荷分布就不再是你原本要描述的那个分布了。检验电荷越小，这种扰动就越小，比值 $\\kF/\\kq$ 就越接近这些电荷在根本没有检验电荷时所具有的电场。比值本身并不取决于检验电荷的大小，因为力与它成正比。小到可以忽略不计的检验电荷保证了测量这一行为不会使任何东西移动。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2668714",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "concept-of-a-field",
+   "prompt": "库仑力在空间中某一给定点的方向和大小是唯一的吗？电场呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "空间中某一点的库仑力不是唯一的，因为它是作用在某个东西上的力，而在那里放入电荷之前，那一点什么也没有。放入更大的检验电荷，力就更大；放入符号相反的电荷，力就反向；不放电荷，就根本没有力。电场在每一点都是唯一的，因为它是力除以它所作用的电荷，而检验电荷在这个比值中被约去了。无论在该点放入什么电荷，那里的电场都有相同的大小和相同的方向，而力则由 $\\kF = \\kq\\kEf$ 得出。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1541667",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-of-point-charge",
+   "prompt": "两个粒子的电荷分别为 $+2q$ 和 $+q$，相距 $r$。$+2q$ 粒子在距离 $r$ 处产生的电场为 $E$，并对 $+q$ 粒子施加力 $F$。请利用这些信息回答第 31–32 题。$+q$ 粒子在同样距离处产生的电场是多少，它对 $+2q$ 粒子施加多大的力？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$E/2$, $F/2$",
+     "$E$, $F/2$",
+     "$E/2$, $F$",
+     "$E$, $F$"
+    ],
+    "correct": 2,
+    "hint": "点电荷的电场只与该电荷成正比，所以电荷减半，电场也减半。两个粒子之间的力与两个电荷的乘积成正比，而不论把哪一个称为场源，这个乘积都是一样的。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2454673",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-of-point-charge",
+   "prompt": "两个粒子的电荷分别为 $+2q$ 和 $+q$，相距 $r$。$+2q$ 粒子在距离 $r$ 处产生的电场为 $E$，并对 $+q$ 粒子施加力 $F$。当 $+q$ 粒子换成 $+3q$ 粒子时，$+3q$ 粒子所经受的、来自 $+2q$ 粒子的电场和力分别是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "选项为 $E/3$ 和 $3F$；$E$ 和 $3F$；$E/3$ 和 $F$；$E$ 和 $F$。仅 $+2q$ 粒子就产生了距离 $r$ 处的电场，而定义 $\\kEf = \\kF/\\kq$ 使电场与放入其中的电荷无关。因此，把 $+q$ 粒子换成 $+3q$ 粒子后，该点的电场仍等于 $E$。另一方面，力为 $\\kF = \\kq\\kEf$，所以场中的电荷变为三倍，力也变为三倍，即 $3F$。这就是第二个选项。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1451013",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "负电荷的电场方向是",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "对正电荷和负电荷都是向内的。",
+     "对正电荷和负电荷都是向外的。",
+     "对其他正电荷是向内的，对其他负电荷是向外的。",
+     "对其他正电荷是向外的，对其他负电荷是向内的。"
+    ],
+    "correct": 0,
+    "hint": "电场是用正检验电荷所受的力来定义的，它属于产生它的电荷，而不属于放入其中的任何东西。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1737728",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-field",
+   "prompt": "使原子保持在一起的力是",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电场力。原子是带正电的原子核，外面围着带负电的电子，把电子束缚在原子核上的是异号电荷之间的吸引，即库仑力。摩擦力是表面之间的接触力，它本身就是靠得很近的原子之间的电场力的结果，所以并不是它把单个原子保持在一起。万有引力也作用在这些相同的粒子之间，但例题 18.1 表明，氢原子中电子与质子之间的库仑力比它们之间的引力大 $2.27\\times 10^{39}$ 倍。磁力只作用于运动的电荷，并不是它把电子束缚在原子核上。在摩擦力、电场力、引力和磁力这四个选项中，使原子保持在一起的力是电场力。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2204572",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "当一个带正电的粒子对另一个粒子 $P$ 施加向内的力时，$P$ 带什么电荷？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "正电荷",
+     "负电荷",
+     "电中性",
+     "无法确定"
+    ],
+    "correct": 1,
+    "hint": "向内的力是指向施力电荷的力，也就是吸引力。同号电荷相斥，异号电荷相吸。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1105673",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "concept-of-a-field",
+   "prompt": "求带电荷 $3.2 \\times 10^{-19}$ C 的粒子对 5 cm 外另一个相同粒子所施加的力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这个力是排斥力，大小为 $3.7\\times 10^{-25}$ N。两个粒子都是点电荷，所以由库仑定律可直接得到大小，$\\kF = k|\\kqone\\kqtwo|/\\krad^2$。两个粒子相同，所以 $\\kqone = \\kqtwo = 3.2\\times 10^{-19}$ C，以米计的间距为 $\\krad = 5\\ \\text{cm} = 5.0\\times 10^{-2}$ m。于是 $\\kF = \\frac{(8.99\\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)(3.2\\times 10^{-19}\\ \\text{C})^2}{(5.0\\times 10^{-2}\\ \\text{m})^2} = \\frac{(8.99\\times 10^{9})(1.02\\times 10^{-37})}{2.5\\times 10^{-3}}\\ \\text{N} = 3.7\\times 10^{-25}\\ \\text{N}$。用电场也得到同样的数：第一个粒子在第二个粒子处产生的电场为 $\\kEf = k|\\kQch|/\\krad^2 = 1.15\\times 10^{-6}$ N/C，第二个粒子所受的力为 $\\kF = \\kq\\kEf = (3.2\\times 10^{-19}\\ \\text{C})(1.15\\times 10^{-6}\\ \\text{N/C}) = 3.7\\times 10^{-25}$ N。两个电荷同号，所以这个力沿直线把每个粒子推离另一个粒子。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1434631",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "设作用在一个电子上的力为 $5.6 \\times 10^{-17}$ N，方向向东。（a）求产生该力的电场的大小。（b）该电场的方向是什么？（c）如果把电子换成质子，所受力的大小是多少？（d）质子所受力的方向是什么？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 350,
+      "unit": "N/C",
+      "hint": "电场等于力除以它所作用的电荷，电子的电荷大小为 $1.60 \\times 10^{-19}$ C。"
+     },
+     {
+      "part": "(c)",
+      "value": 5.6e-17,
+      "unit": "N",
+      "hint": "质子所带的电荷量与电子相同，符号相反，同一个电场作用在它上面。"
+     }
+    ],
+    "solution": "（a）350 N/C，（b）向西，（c）5.6×10⁻¹⁷ N，（d）向西。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2989956",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "一个 $3.50\\ \\mu\\text{C}$ 的电荷在指向正东的 250 N/C 电场中，所受力的大小和方向是什么？",
+   "answer": {
+    "type": "number",
+    "value": 0.000875,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "已知场中电荷所受的力等于电荷乘以电场，这里的电荷为正，所以力沿着电场的方向。",
+    "solution": "$8.75 \\times 10^{-4}$ N，方向正东，因为电荷为正，正电荷所受的力沿电场的方向。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1537546",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-of-point-charge",
+   "prompt": "（a）多大的点电荷能在 0.250 m 处产生 10,000 N/C 的电场？（b）在 10.0 m 处电场有多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6.94e-08,
+      "unit": "C",
+      "hint": "把 $\\kEf = k|\\kQch|/r^2$ 变形，求出电荷，别忘了把距离平方。"
+     },
+     {
+      "part": "(b)",
+      "value": 6.25,
+      "unit": "N/C",
+      "hint": "距离大了四十倍，而电场按距离的平方下降。"
+     }
+    ],
+    "solution": "(a) $6.94 \\times 10^{-8}\\ \\text{C}$ (b) $6.25\\ \\text{N/C}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2937300",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-field-defined",
+   "prompt": "（a）求对一个电子施加 $4.80 \\times 10^{-17}\\ \\text{N}$ 向西的力的电场的大小和方向。（b）这个电场对质子施加的力的大小和方向是什么？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 300,
+      "unit": "N/C",
+      "hint": "用力除以电子电荷的大小，别忘了负电荷所受的力与电场方向相反。"
+     },
+     {
+      "part": "(b)",
+      "value": 4.8e-17,
+      "unit": "N",
+      "hint": "质子所带的电荷量相同、符号相反，所以它所受的力大小相同，方向与电场本身的方向相同。"
+     }
+    ],
+    "solution": "（a）$300\\ \\text{N/C}\\ (\\text{东})$ （b）$4.80 \\times 10^{-17}\\ \\text{N}\\ (\\text{东})$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "test-charge"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "coulomb-force-field"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "field-of-point-charge"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "force-from-electric-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-field-direction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "coulomb-force-field"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "electric-field-direction"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "coulomb-force-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "field-of-point-charge"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "coulomb-force-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-of-point-charge"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "p3",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "source-charge",
+   "label": "产生力场的正电荷 Q",
+   "figures": [
+    "sim-force-field"
+   ]
+  },
+  {
+   "id": "test-1",
+   "label": "第一个检验电荷 q₁",
+   "figures": [
+    "sim-force-field"
+   ]
+  },
+  {
+   "id": "test-2",
+   "label": "第二个检验电荷 q₂",
+   "figures": [
+    "sim-force-field"
+   ]
+  },
+  {
+   "id": "point-charge",
+   "label": "产生电场的点电荷 Q",
+   "figures": [
+    "sim-point-charge-field"
+   ]
+  },
+  {
+   "id": "probe",
+   "label": "探针，即求场的那一点",
+   "figures": [
+    "sim-point-charge-field"
+   ]
+  },
+  {
+   "id": "test-charge",
+   "label": "放在探针处的检验电荷 q",
+   "figures": [
+    "sim-point-charge-field"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "point-charge-field",
+   "what": "点电荷的电场",
+   "source": "大学物理（第2版），18.4 电场：再论场的概念",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF = k\\dfrac{|\\kq\\kQch|}{\\krad^2}",
+       "src": "18.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEf} = \\left|\\dfrac{\\mk{F}{\\kF}}{\\mk{q}{\\kq}}\\right|",
+      "src": "18.4",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEf} = \\mk{k}{k}\\left|\\dfrac{\\mk{qQ}{\\kq\\kQch}}{\\mk{q}{\\kq}\\,\\mk{r}{\\krad^2}}\\right|",
+       "uses": [
+        0
+       ],
+       "map": {
+        "F": [
+         "k",
+         "qQ",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{E}{\\kEf} = \\mk{k}{k}\\dfrac{\\mk{qQ}{|\\kQch|}}{\\mk{r}{\\krad^2}}",
+       "uses": [],
+       "map": {
+        "q": "qQ"
+       }
+      }
+     ],
+     "src": "18.4"
+    }
+   ]
+  }
+ ]
+}

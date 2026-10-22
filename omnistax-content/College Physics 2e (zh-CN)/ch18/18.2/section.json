@@ -1,0 +1,1133 @@
+{
+ "id": "18.2",
+ "module": "m42306",
+ "chapter": "18",
+ "title": "导体与绝缘体",
+ "short": "导体与绝缘体",
+ "lead": "有些材料让电荷在其中移动，另一些材料则把电荷留在它落下的地方，这就是<span data-concept=\"conductor\">导体</span>与<span data-concept=\"insulator\">绝缘体</span>的区别。这种区别决定了一个物体可以怎样起电：用带电体接触它，或者通过相互接触的<span data-ref=\"near-sphere far-sphere\">两个球</span>、通过<span data-ref=\"ground-wire\">一根导线</span>接到<span data-ref=\"earth\">大地</span>来感应起电；也决定了为什么带正电或带负电的物体都会吸引电中性的物体。",
+ "objectives": [
+  "定义导体和绝缘体，解释二者的区别，并各举例说明。",
+  "描述使物体起电的三种方法。",
+  "解释离源越远时电场力会发生什么变化。",
+  "定义极化。"
+ ],
+ "summary_html": "<ul><li>极化是电中性物体中正电荷和负电荷的分离。</li><li>导体是允许电荷在其原子结构中自由流动的物质。</li><li>绝缘体把电荷保持在其原子结构之内。</li><li>带同号电荷的物体相互排斥，而带异号电荷的物体相互吸引。</li><li>如果导电物体通过导体与大地相连，就称它被接地。接地允许电荷转移到大地巨大的电荷库中，或从中转移出来。</li><li>物体可以通过与另一个带电体接触而起电，并获得同号电荷。</li><li>如果物体被暂时接地，它可以通过感应起电，并获得异号电荷。</li><li>被极化的物体的正电荷和负电荷集中在不同区域，使它们具有不对称的电荷。</li><li>极性分子具有固有的电荷分离。</li></ul>",
+ "notes": "PhET 仿真“John Travoltage”未收入，书中印在本节开头的笔记本电脑电源适配器题图（图 18.10）也未收入。有两道习题在书后答案中没有答案，因而未收入：带有 1.00 × 10¹⁶ 个质子的变形虫，以及 100 g 硫块上的净电荷。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案：理解检测框、九道 AP 题中的三道和五道习题中的三道附有答案。有两道习题因没有书后答案而略去，即变形虫和硫块。六道无答案的思考题和五道无答案的 AP 题是开放题，其中 AP 题保留书中印出的选项，每道都附有由 AI 撰写的建议思路，而不是评分后的答案。关于气球和球的五道 AP 题共用一幅图和一个设定，因此该设定在每张需要它的卡片上重复出现，图则附在这五道题上。本节的五道习题要数电子和质子，这是 18.1 的技能，它们仍在书中印出的位置，并标有该技能。",
+ "figures": [
+  {
+   "id": "sim-conductor-insulator",
+   "kind": "sim",
+   "draws": [
+    "charge"
+   ],
+   "conventions": [
+    "Na",
+    "Cl",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout sums the two ends; repeating note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-electroscope",
+   "kind": "sim",
+   "number": "18.11",
+   "originals": [
+    "/media/ch18/Figure_19_02_02a.jpg"
+   ],
+   "widths": [
+    325
+   ],
+   "original_caption": "验电器是物理演示和学生实验室中最受欢迎的仪器。它通常用悬挂在（导电的）金属杆上的金箔片制成，并与室内空气隔绝，装在玻璃壁容器中。（a）将带正电的玻璃棒移近验电器的顶端，把电子吸引到顶部，使金箔片带上净正电荷。轻而柔软的金箔片中的同号电荷相互排斥，使它们分开。（b）当玻璃棒与金属球接触时，电子被吸引并发生转移，使玻璃棒上的净电荷减少，但验电器仍带正电。（c）移开玻璃棒后，过剩电荷均匀分布在验电器的杆和金箔片上。",
+   "draws": [
+    "charge",
+    "angle"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "top electrons leave on touch and spread when the rod goes; tally, notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-induction-spheres",
+   "kind": "sim",
+   "number": "18.12",
+   "originals": [
+    "/media/ch18/Figure_19_02_03a.jpg"
+   ],
+   "widths": [
+    200
+   ],
+   "original_caption": "感应起电。（a）两个不带电（电中性）的金属球相互接触，但与外界绝缘。（b）将带正电的玻璃棒移近左边的球，吸引负电荷，使另一个球带正电。（c）在移开棒之前把两个球分开，从而使负电荷和正电荷分开。（d）移开感应棒后，两个球保留净电荷——而它们从未被带电体接触过。",
+   "draws": [
+    "charge"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene total and repeating note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-induction-ground",
+   "kind": "sim",
+   "number": "18.13",
+   "originals": [
+    "/media/ch18/Figure_19_02_04a.jpg"
+   ],
+   "widths": [
+    300
+   ],
+   "original_caption": "使用接地连接的感应起电。（a）将带正电的棒移近电中性的金属球，使它极化。（b）使球接地，让电子从大地充足的供应中被吸引过来。（c）断开接地连接。（d）移走带正电的棒，球上留下感应的负电荷。",
+   "draws": [
+    "charge"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene tally dropped; note cut to the earth sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-polarization",
+   "kind": "sim",
+   "number": "18.14",
+   "originals": [
+    "/media/ch18/Figure_19_02_05a.jpg"
+   ],
+   "widths": [
+    200
+   ],
+   "original_caption": "正电和负电的物体都通过使电中性物体的分子极化而吸引它。（a）把带正电的物体移近电中性的绝缘体，使其分子极化。绕分子轨道运动的电子的分布发生轻微移动，异号电荷被拉近，同号电荷被移远。由于静电力随距离增大而减小，因此存在净吸引。（b）带负电的物体产生相反的极化，但同样吸引电中性物体。（c）导体也出现同样的效应；由于异号电荷离得更近，因此存在净吸引。",
+   "draws": [
+    "charge",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "molecules outlined as pairs; scene total and note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-water-stream",
+   "kind": "photo",
+   "number": "18.15",
+   "widths": [
+    200
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "conductors-and-insulators",
+   "concept": "conductor",
+   "verb": "introduces"
+  },
+  {
+   "span": "conductors-and-insulators",
+   "concept": "insulator",
+   "verb": "introduces"
+  },
+  {
+   "span": "conductors-and-insulators",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "conductors-and-insulators",
+   "concept": "charge-of-electron-and-proton",
+   "verb": "uses"
+  },
+  {
+   "span": "conductors-and-insulators",
+   "concept": "free-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "conductors-and-insulators",
+   "concept": "free-electron",
+   "verb": "introduces"
+  },
+  {
+   "span": "charging-by-contact",
+   "concept": "charging-by-contact",
+   "verb": "introduces"
+  },
+  {
+   "span": "charging-by-contact",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "charging-by-contact",
+   "concept": "insulator",
+   "verb": "uses"
+  },
+  {
+   "span": "charging-by-contact",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "charging-by-contact",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "charging-by-contact",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "charging-by-induction",
+   "concept": "charging-by-induction",
+   "verb": "introduces"
+  },
+  {
+   "span": "charging-by-induction",
+   "concept": "grounding",
+   "verb": "introduces"
+  },
+  {
+   "span": "charging-by-induction",
+   "concept": "polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "charging-by-induction",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "charging-by-induction",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "polarization-and-attraction",
+   "concept": "attraction-of-neutral-objects",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarization-and-attraction",
+   "concept": "polarization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polarization-and-attraction",
+   "concept": "insulator",
+   "verb": "uses"
+  },
+  {
+   "span": "polarization-and-attraction",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "polarization-and-attraction",
+   "concept": "charge-separation-by-rubbing",
+   "verb": "uses"
+  },
+  {
+   "span": "polarization-and-attraction",
+   "concept": "electrostatic-repulsion",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1824436",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "polarization-and-attraction"
+   },
+   "cite": "polarization-and-attraction",
+   "prompt": "你能解释图 18.15 中水被带电棒吸引的现象吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "水分子是极化的，一端略带正电，另一端略带负电。这使水更容易受到带电棒的吸引。此外，自来水中含有溶解的离子（正电荷和负电荷）。当水因重力向下流动时，带电的导体对水流中的异号电荷产生净吸引力，把水流拉得更近。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1882341",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-contact",
+   "prompt": "一位古怪的发明家试图靠悬浮升空：先在自己身上放置大量负电荷，再在他工作间的天花板上放置大量正电荷。结果，在他试图给自己放置大量负电荷时，他的衣服飞脱了。请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为他放在自己身上的电荷会散布到他全身和他穿的所有衣物上，而同号电荷相互排斥。他的身体和衣服相互接触，所以过剩的负电荷在二者之间分配，这些电荷的每一部分都在推开其余的每一部分。他的衣服松垂而轻，所以衬衫上的电荷与其下身体上的电荷之间的排斥力足以把衬衫掀起，而这远在他带有足以克服自身重力、把自己抬向天花板所需的电荷之前。两个电荷之间的力还随距离增大而减小，而天花板比他的衬衫离他远得多。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1927138",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-contact",
+   "prompt": "如果你已经通过与带正电的物体接触使验电器起电，请描述如何用它来判断其他物体所带的电荷。具体地说，当其他带电体被移近它的金属球时，验电器的金箔片会怎样？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "金箔片本来就是张开的，因为验电器带正电。把另一个带正电的物体移近金属球，它会把更多的正电荷向下推入金箔片，所以金箔片张得更开。把一个带负电的物体移近金属球，它会把正电荷从金箔片向上吸引，所以金箔片相互靠拢。使金箔片张得更开的物体所带电荷的符号与验电器相同，即为正；使金箔片靠拢的物体所带电荷的符号相反，即为负；不带电的物体只会使验电器略微极化，对金箔片的影响很小。已知电荷的验电器就是这样判断未知物体的电荷符号的。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1833841",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization-and-attraction",
+   "prompt": "用丝绸摩擦玻璃棒时，玻璃棒带正电，丝绸带负电——但两者都能吸引灰尘。灰尘是否带有第三种电荷，既被正电荷又被负电荷吸引？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不是。电荷只有两种，而灰尘两种都不需要：它是电中性的。任一种符号的带电体都会使一小粒电中性的灰尘极化，把其中的异号电荷拉近，把同号电荷推远。由于静电力随距离增大而减小，较近的异号电荷的吸引力强于较远的同号电荷的排斥力，所以净效果是吸引。把棒的符号反过来，灰尘的极化也随之反过来，吸引依然如故。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1969333",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization-and-attraction",
+   "prompt": "为什么汽车刚被抛光之后总会吸引灰尘？（请注意，汽车蜡和汽车轮胎都是绝缘体。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "抛光就是摩擦，而摩擦会使电荷分离。车上的蜡是绝缘体，所以布留在它上面的电荷停留在被放置的地方，而不会流走；轮胎也是绝缘体，所以电荷无法逃入大地。带电的蜡随后使任何靠近的电中性灰尘微粒极化，把其中的异号电荷拉近，把同号电荷推开，而由于力随距离增大而减小，吸引占上风。因此汽车会一直聚集灰尘，直到它的电荷漏入潮湿的空气中。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1982898",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "描述如何用一个带正电的物体使另一个物体带上负电。这一过程叫什么名称？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把带正电的物体移近第二个物体，但不接触它。它把负电荷吸引到第二个物体的近侧，在远侧留下正电荷，这就是极化。现在使第二个物体接地，即用导电通路把它与大地相连。带正电的物体把远侧的正电荷沿通路推下去，或者换个说法，把电子从大地充足的供应中吸引上来。在带正电的物体仍靠近时断开接地连接，然后才把那个物体移走。这时第二个物体带有净负电荷，尽管从没有带电体接触过它。这一过程叫感应起电。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2234608",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "什么是接地？它对带电的导体有什么影响？对带电的绝缘体呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "接地就是通过导体（通常是一根导线）把物体与大地相连。由于大地很大，而且大部分地面是良导体，它可以轻易地提供或接受过剩电荷。给带电的导体接地时，它的过剩电荷几乎立刻消失，因为电荷在其中自由移动并沿导线流走，使导体呈电中性。如果在接地时让另一个带电体停在附近，电荷则会向相反方向流动，而在断开连接时导体保留一份感生电荷。接地对带电的绝缘体几乎没有影响，因为它的电荷被束缚在结构中，无法移向导线。只有接触点处的电荷会离开，其余的留在原处。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1741542",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-contact",
+   "prompt": "一些学生用一个不带电的金属球做实验，想用一个带电的铝制馅饼盘使金属球带上净电荷。下列哪一步会使金属球带上与馅饼盘同号的净电荷？<ol type=\"a\"><li>把馅饼盘移近但不接触金属球，然后把馅饼盘移开。</li><li>把馅饼盘移近但不接触金属球，然后让接地线与金属球短暂接触。</li><li>把馅饼盘移近但不接触金属球，然后让接地线与馅饼盘短暂接触。</li><li>让馅饼盘与金属球接触。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对每一步都问一问，球最终是否带电，带什么符号的电。在（a）中没有电荷移动：盘在附近时使球极化，把盘拿走后球又恢复电中性。在（b）中球通过感应起电，而感应留下的电荷与盘异号，所以这不是目标。在（c）中接地线接触的是盘而不是球，改变的是盘，而不是球。在（d）中盘与球接触，接触起电使球分得盘自己的电荷，所以球最终带有与盘同号的电荷。要论证的是选项（d）。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2066915",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "当气球被移近球时，电荷会重新分布。这种现象叫什么？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "静电斥力",
+     "传导",
+     "极化",
+     "以上都不是"
+    ],
+    "correct": 2,
+    "generated_by": "source"
+   },
+   "figure": {
+    "src": "/media/ch18/Figure_Ch18_S01.jpg",
+    "alt": "一个椭圆形，带有三个加号，下面一条曲线，代表气球。第二个物体是基座上的球，左侧标有 X，右侧标有 Y。",
+    "caption": "气球和球。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2058933",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "一个带正电的气球被移近放在支架上的不带电金属球，球的近侧标为 X，远侧标为 Y。Y（即球上离气球最远的部分）上的电荷是什么？<ol type=\"a\"><li>正</li><li>负</li><li>零</li><li>可能为正也可能为负，取决于材料。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "气球带正电，所以它把球的负电荷吸引到近侧 X，使远侧 Y 带上剩下的电荷。这种电荷是正的，而且答案与材料无关，因为球是导体，其中的自由电荷可以移动。要论证的是选项（a）。球整体仍然是电中性的：X 得到多少，Y 就失去多少。"
+   },
+   "figure": {
+    "src": "/media/ch18/Figure_Ch18_S01.jpg",
+    "alt": "一个椭圆形，带有三个加号，下面一条曲线，代表气球。第二个物体是基座上的球，左侧标有 X，右侧标有 Y。",
+    "caption": "气球和球。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2026590",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "一个带正电的气球被移近放在支架上的不带电金属球，球的近侧标为 X，远侧标为 Y。球上的净电荷是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "正",
+     "负",
+     "零",
+     "可能为正也可能为负，取决于材料。"
+    ],
+    "correct": 2,
+    "generated_by": "source"
+   },
+   "figure": {
+    "src": "/media/ch18/Figure_Ch18_S01.jpg",
+    "alt": "一个椭圆形，带有三个加号，下面一条曲线，代表气球。第二个物体是基座上的球，左侧标有 X，右侧标有 Y。",
+    "caption": "气球和球。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2008081",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "一个带正电的气球被移近放在支架上的不带电金属球，球的近侧标为 X，远侧标为 Y。如果在气球仍靠近 X 时使 Y 接地，下列哪一项将成立？<ol type=\"a\"><li>电子将从球流向大地。</li><li>电子将从大地流向球。</li><li>质子将从球流向大地。</li><li>质子将从大地流向球。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有两点可以确定答案。第一，金属中只有电子移动：质子位于固定原子的原子核中，哪里也不去，这就排除了（c）和（d）。第二，带正电的气球把负电荷吸引向 X，在 Y 留下正电荷，而使 Y 接地为这些正电荷提供了被中和的来源。因此电子被吸引，从大地充足的供应中上来进入球。要论证的是选项（b）。"
+   },
+   "figure": {
+    "src": "/media/ch18/Figure_Ch18_S01.jpg",
+    "alt": "一个椭圆形，带有三个加号，下面一条曲线，代表气球。第二个物体是基座上的球，左侧标有 X，右侧标有 Y。",
+    "caption": "气球和球。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2143149",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "一个带正电的气球被移近放在支架上的不带电金属球，球的近侧标为 X，远侧标为 Y。如果在接地之后把气球移开，球上的净电荷是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "正",
+     "负",
+     "零",
+     "可能为正也可能为负，取决于材料。"
+    ],
+    "correct": 1,
+    "generated_by": "source"
+   },
+   "figure": {
+    "src": "/media/ch18/Figure_Ch18_S01.jpg",
+    "alt": "一个椭圆形，带有三个加号，下面一条曲线，代表气球。第二个物体是基座上的球，左侧标有 X，右侧标有 Y。",
+    "caption": "气球和球。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1737616",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "用一根带正电的棒通过感应使一个球起电。下列哪一项正确？<ol type=\"a\"><li>球必须是导体。</li><li>球必须是绝缘体。</li><li>球可以是导体或绝缘体，但必须与大地相连。</li><li>球可以是导体或绝缘体，但必须已经带电。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "感应起电的做法是让电荷在球内部移动，然后让其中一部分离开或进入，而电荷只能在允许它移动的材料内部移动：这正是物质成为导体的原因。绝缘体把电子留在原处，所以棒靠近时只能使它的分子略微极化，而不会留给它可保持的净电荷。要论证的是选项（a）。接地是完成这件事的一种方式，但不是唯一的方式：两个相互接触的导体球在棒靠近时被分开，无需任何接地线就通过感应起电了。"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1929188",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-induction",
+   "prompt": "如上图所示，两个金属球被悬挂着，一根带负电的棒被移近它们。（a）如果这两个球相互接触，每个球上的电荷是什么？（b）解释这两个球如何获得这些电荷。（c）如果在棒仍在附近时，第二个球（即离棒较远的球）被短暂接地，它的电荷会怎样？（d）如果（不接地，而是）把第二个球移开，然后把棒从第一个球旁移走，这两个球会带有感生电荷吗？如果会，电荷是什么？如果不会，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) 球 1 带正电，球 2 带负电。b) 带负电的棒吸引球 1 的正电荷。球 1 的电子转移到球 2，使它带负电。c) 如果在棒仍在时使球 2 接地，它会把它的负电荷丢给大地。d) 会，球 1 带正电，球 2 带负电。"
+   },
+   "figure": {
+    "src": "/media/ch18/Figure_Ch18_S02.jpg",
+    "alt": "一根棒画成一个长椭圆，一端有一个圆。棒上有六个负号。两个悬挂的球画在棒的右侧。",
+    "caption": "棒和金属球。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id1527236",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charging-by-contact",
+   "prompt": "用带正电的玻璃棒和电中性的验电器做两个实验。在第一个实验中，棒与验电器接触。在第二个实验中，棒只是靠近验电器而不接触。但是，在棒靠近时，验电器被短暂接地，然后棒被移走。在两个实验中，验电器的指针都发生偏转，这表明存在电荷。（a）两个实验各采用什么起电方法？（b）第一个实验中验电器上的净电荷是什么？解释验电器如何获得这些电荷。（c）第二个实验中验电器上的净电荷与第一个实验中的不同吗？解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）第一个实验通过接触起电，因为棒接触了验电器。第二个实验通过感应起电，因为棒从未接触它，起作用的是接地连接。（b）验电器最终带正电。带正电的棒把电子吸引到验电器的顶部，当棒接触它时，其中一些电子转移到棒上。验电器于是缺少电子，而棒的正电荷比原来少了。（c）是的，符号不同：第二个验电器最终带负电。在带正电的棒靠近时，接地使棒把电子从大地吸引上来。在移走棒之前断开这个连接，就把这些电子困住了。感应留下的电荷与棒的电荷异号，而接触留下的电荷与棒的电荷同号。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2853264",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conductors-and-insulators",
+   "prompt": "假设静电除尘器中的一粒灰尘含有 $1.0000 \\times 10^{12}$ 个质子，净电荷为 –5.00 nC（对一粒小灰尘来说是非常大的电荷）。它有多少个电子？",
+   "answer": {
+    "type": "number",
+    "value": 1030000000000.0,
+    "unit": "electrons",
+    "generated_by": "source",
+    "hint": "净电荷是质子的电荷减去电子的电荷，每个质子或电子所带的电荷为 $1.60 \\times 10^{-19}$ C。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1606617",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conductors-and-insulators",
+   "prompt": "一个 50.0 g 的铜球带有 $2.00\\ \\mu \\text{C}$ 的净电荷。铜的电子中有多大比例被移走了？（每个铜原子有 29 个质子，铜的原子质量为 63.5。）",
+   "answer": {
+    "type": "number",
+    "value": 9.09e-13,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "数出球在电中性时所含的电子数，每个原子 29 个，再与净电荷表明已被移走的电子数相比较。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-59",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conductors-and-insulators",
+   "prompt": "已知钚的原子质量为 244，每个钚原子有 94 个质子，4.00 kg 钚中有多少库仑的正电荷？",
+   "answer": {
+    "type": "number",
+    "value": 148000000.0,
+    "unit": "C",
+    "generated_by": "source",
+    "hint": "先算出 4.00 kg 钚含有多少个原子，再算出这是多少个质子，每个质子带 $1.60 \\times 10^{-19}$ C。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "attraction-of-neutral-objects"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "polarization",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "like-charges-repel"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "charging-by-contact",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "charging-by-contact"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "like-charges-repel",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "attraction-of-neutral-objects"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "polarization",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "attraction-of-neutral-objects"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "insulator",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "charge-separation-by-rubbing",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "charging-by-induction"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "grounding",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "polarization",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "grounding"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "conductor",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "insulator",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charging-by-contact"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charging-by-induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "grounding",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "polarization"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "charging-by-induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "polarization"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "charging-by-induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "polarization"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "charging-by-induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "grounding"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "charging-by-induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "charging-by-induction"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "grounding",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "charging-by-induction"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "conductor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "insulator",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "charging-by-induction"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "polarization",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "grounding",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "charging-by-contact"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "charging-by-induction",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "grounding",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "count-charges-from-charge"
+  },
+  {
+   "exercise": "p1",
+   "concept": "elementary-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "count-charges-from-charge"
+  },
+  {
+   "exercise": "p3",
+   "concept": "elementary-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "count-charges-from-charge"
+  },
+  {
+   "exercise": "p5",
+   "concept": "elementary-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "piece",
+   "label": "左端带有多余电荷的那块材料",
+   "figures": [
+    "sim-conductor-insulator"
+   ]
+  },
+  {
+   "id": "electroscope",
+   "label": "验电器：它的金属球和导电杆",
+   "figures": [
+    "sim-electroscope"
+   ]
+  },
+  {
+   "id": "leaves",
+   "label": "验电器的两片金箔",
+   "figures": [
+    "sim-electroscope"
+   ]
+  },
+  {
+   "id": "glass-rod",
+   "label": "移向验电器的带正电的玻璃棒",
+   "figures": [
+    "sim-electroscope"
+   ]
+  },
+  {
+   "id": "near-sphere",
+   "label": "离棒较近的金属球",
+   "figures": [
+    "sim-induction-spheres"
+   ]
+  },
+  {
+   "id": "far-sphere",
+   "label": "离棒较远的金属球",
+   "figures": [
+    "sim-induction-spheres"
+   ]
+  },
+  {
+   "id": "inducing-rod",
+   "label": "移近两个球的带正电的玻璃棒",
+   "figures": [
+    "sim-induction-spheres"
+   ]
+  },
+  {
+   "id": "sphere",
+   "label": "绝缘支架上的电中性金属球",
+   "figures": [
+    "sim-induction-ground"
+   ]
+  },
+  {
+   "id": "rod",
+   "label": "靠近球的带电棒",
+   "figures": [
+    "sim-induction-ground"
+   ]
+  },
+  {
+   "id": "ground-wire",
+   "label": "从球通向大地的接地线",
+   "figures": [
+    "sim-induction-ground"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "大地，即导线所通向的地面",
+   "figures": [
+    "sim-induction-ground"
+   ]
+  },
+  {
+   "id": "charged-rod",
+   "label": "靠近电中性物体的带电棒",
+   "figures": [
+    "sim-polarization"
+   ]
+  },
+  {
+   "id": "neutral-object",
+   "label": "被棒极化的电中性物体",
+   "figures": [
+    "sim-polarization"
+   ]
+  }
+ ]
+}
