@@ -1,0 +1,56 @@
+<section id="elastic">
+<h2>弹性碰撞与内动能</h2>
+<p class="cite-target">我们来考虑几种不同类型的两物体碰撞。这些碰撞最容易分析，并且能说明碰撞中涉及的许多物理原理。<span data-concept="conservation-of-momentum">动量守恒原理</span>在这里非常有用，只要<span data-concept="system">系统</span>所受的<span data-concept="net-external-force">合外力</span>为零，就可以使用它。</p>
+<p>我们从沿同一直线运动的两个物体的<span data-concept="elastic-collision">弹性碰撞</span>开始——这是一个一维问题。<strong><span data-concept="elastic-collision">弹性碰撞</span></strong>是指同时也使<span data-concept="internal-kinetic-energy">内动能</span>守恒的碰撞。<strong><span data-concept="internal-kinetic-energy">内动能</span></strong>是<span data-concept="system">系统</span>中各物体的<span data-concept="kinetic-energy">动能</span>之和。图 8.6 展示了一次<span data-type="energy"><span data-concept="internal-kinetic-energy">内动能</span></span>和<span data-type="momentum">动量</span>都守恒的<span data-concept="elastic-collision">弹性碰撞</span>。</p>
+<p>真正的<span data-concept="elastic-collision">弹性碰撞</span>只有在亚原子粒子之间才能实现，例如<span data-concept="electron">电子</span>撞击原子核。宏观碰撞可以非常接近弹性碰撞，但并不完全是弹性的——总有一部分<span data-concept="kinetic-energy">动能</span>转化为其他形式的<span data-concept="energy">能量</span>，例如由<span data-concept="friction">摩擦力</span>引起的<span data-concept="heat">热</span>传递和<span data-concept="sound">声音</span>。近乎弹性的宏观碰撞的一个例子，是冰面上两个钢块的碰撞。另一个近乎<span data-concept="elastic-collision">弹性碰撞</span>的例子，是气垫导轨上两辆带弹簧缓冲器的小车之间的碰撞。冰面和气垫导轨几乎没有摩擦，因此在它们上面更容易发生近乎<span data-concept="elastic-collision">弹性碰撞</span>。</p>
+<div class="note">
+<div class="eyebrow">弹性碰撞</div>
+<p><strong><span data-concept="elastic-collision">弹性碰撞</span></strong>是指使<span data-concept="internal-kinetic-energy">内动能</span>守恒的碰撞。</p>
+</div>
+<div class="note">
+<div class="eyebrow">内动能</div>
+<p><strong><span data-concept="internal-kinetic-energy">内动能</span></strong>是<span data-concept="system">系统</span>中各物体的<span data-concept="kinetic-energy">动能</span>之和。</p>
+</div>
+<figure class="sim" id="sim-elastic-collision" data-figure="8.6" data-original="/media/ch08/Figure_09_04_01a.jpg" data-original-width="300" data-original-caption="一次一维两物体弹性碰撞。动量和内动能都守恒。">
+  <div class="sim-head"><span class="eyebrow">Figure 8.6</span><span><span data-ref="object-1 object-2">两个物体</span>在无摩擦的表面上相向滑行，并发生弹性碰撞。<span data-ref="object-1 object-2">每个物体</span>在<span data-ref="object-1 object-2">自身</span>上方带有<span data-type="velocity">它的速度</span> $\kv$，在<span data-ref="object-1 object-2">自身</span>下方带有<span data-type="momentum">它的动量</span> $\kp$，两个箭头的<span data-concept="length">长度</span>不同，是因为<span data-type="mass">两个质量</span>不同。请看表面下方的那一对条形：无论你把<span data-type="mass">质量</span>和<span data-type="velocity">初速度</span>设为多少，<span data-type="momentum">系统的总动量</span>和<span data-type="energy">它的内动能</span>在碰撞后都与碰撞前相同。滑块的起始数值取自例题 8.4。</span></div>
+</figure>
+<div class="exercises" data-place="elastic"></div>
+</section>
+
+<section id="equations">
+<h2>求解弹性碰撞的两个方程</h2>
+<p class="cite-target">现在，要解决涉及两个物体的一维<span data-concept="elastic-collision">弹性碰撞</span>的问题，我们可以使用动量守恒方程和<span data-concept="internal-kinetic-energy">内动能</span>守恒方程。首先，一维碰撞中两个物体的动量守恒方程为</p>
+$$\kpone + \kptwo = \kponeprime + \kptwoprime \qquad (\kFnet = 0)$$
+<p>或</p>
+$$\kmone\kvone + \kmtwo\kvtwo = \kmone\kvoneprime + \kmtwo\kvtwoprime \qquad (\kFnet = 0),$$
+<p>其中撇号（'）表示碰撞后的值。根据定义，<span data-concept="elastic-collision">弹性碰撞</span>使<span data-concept="internal-kinetic-energy">内动能</span>守恒，因此碰撞前的<span data-concept="kinetic-energy">动能</span>之和等于碰撞后的动能之和。于是，</p>
+$$\tfrac{1}{2}\kmone{\kvone}^2 + \tfrac{1}{2}\kmtwo{\kvtwo}^2 = \tfrac{1}{2}\kmone{\kvoneprime}^2 + \tfrac{1}{2}\kmtwo{\kvtwoprime}^2 \quad \text{(两物体弹性碰撞)}$$
+<p>表示一维碰撞中<span data-concept="internal-kinetic-energy">内动能</span>守恒的方程。</p>
+</section>
+
+<section id="example">
+<h2>由两个方程求两个未知速度</h2>
+<div class="example" id="ex-velocities">
+<h3>例题 8.4 · 计算弹性碰撞后的速度</h3>
+<p>计算<span data-ref="object-1 object-2">两个物体</span>发生<span data-concept="elastic-collision">弹性碰撞</span>后的<span data-type="velocity"><span data-concept="velocity">速度</span></span>，已知</p>
+$$\kmone = 0.500\ \text{kg},\quad \kmtwo = 3.50\ \text{kg},\quad \kvone = 4.00\ \text{m/s, 且}\quad \kvtwo = 0.$$
+<h4>思路与概念</h4>
+<p>首先，想象一下初始条件意味着什么——<span data-ref="object-1">一个较小的物体</span>撞向初始静止的<span data-ref="object-2">一个较大的物体</span>。这种情形比图 8.6 所示<span data-ref="object-1 object-2">两个物体</span>最初都在运动的情形稍微简单一些。我们要求出两个未知量（<span data-type="velocity">末<span data-concept="velocity">速度</span></span> $\kvoneprime$ 和 $\kvtwoprime$）。要求出两个未知量，必须使用两个独立的方程。因为这次碰撞是弹性的，所以可以使用上面的两个方程。由于<span data-ref="object-2">物体 2</span> 最初静止，因此 $\kvtwo = 0$，两个方程都可以化简。化简这些方程之后，我们把它们用代数方法联立起来，求解未知量。</p>
+<h4>解</h4>
+<figure class="dv" id="drv-elastic-collision-velocities"></figure>
+<figure class="sim" id="sim-two-solutions">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>弹性碰撞的两个方程画在<span data-type="velocity">两个末速度</span>所构成的平面上，横轴是 $\kvoneprime$，纵轴是 $\kvtwoprime$。动量守恒是那条直线，<span data-concept="internal-kinetic-energy">内动能</span>守恒是那个椭圆，而<span data-type="velocity">一对末速度</span>必须同时位于两条曲线上，所以碰撞只可能在两条曲线相交处结束。它们恰好相交两次：空心的交点重复了初始条件，也就是碰撞前的情形，是例题舍去的那个根；实心的交点才是碰撞本身。改变<span data-type="mass">两个质量</span>或<span data-ref="object-1">第一个物体</span>的<span data-type="velocity">速率</span>，观察两个交点如何分开与靠拢。</span></div>
+</figure>
+<p>正如前面几章遇到二次方程时所指出的，两个解不一定都有意义。在这个例子中，第一个解与初始条件相同。因此，第一个解代表碰撞前的情形，应当舍去。第二个解 $(\kvoneprime = -3.00\ \text{m/s})$ 为负，意味着<span data-ref="object-1">第一个物体</span>向后弹回。将这个负的 $\kvoneprime$ 值用于求碰撞后<span data-ref="object-2">第二个物体</span>的<span data-type="velocity"><span data-concept="velocity">速度</span></span>，我们得到</p>
+$$\kvtwoprime = \frac{\kmone}{\kmtwo}(\kvone - \kvoneprime) = \frac{0.500\ \text{kg}}{3.50\ \text{kg}}(4.00 - (-3.00))\ \text{m/s}$$
+<p>或</p>
+$$\kvtwoprime = 1.00\ \text{m/s}.$$
+<h4>讨论</h4>
+<p>这个例子的结果在直觉上是合理的。<span data-ref="object-1">一个较小的物体</span>撞向静止的<span data-ref="object-2">一个较大的物体</span>，并向后弹回。<span data-ref="object-2">较大的物体</span>被撞得向前运动，但<span data-type="velocity">速率很低</span>。（这就像一辆紧凑型轿车撞上一辆静止的全尺寸 SUV 后向后弹回。）作为检验，可以试着计算碰撞前后的<span data-type="energy"><span data-concept="internal-kinetic-energy">内动能</span></span>。你会看到<span data-type="energy"><span data-concept="internal-kinetic-energy">内动能</span></span>保持不变，为 4.00 J。再检验碰撞前后的<span data-type="momentum">总动量</span>；你会发现它也保持不变。</p>
+<p>上面写出的动量守恒方程和<span data-concept="internal-kinetic-energy">内动能</span>守恒方程，可以用来描述任何两个物体的一维<span data-concept="elastic-collision">弹性碰撞</span>。如有需要，这些方程可以推广到更多的物体。</p>
+</div>
+<div class="note">
+<div class="eyebrow">建立联系：居家探究——冰块与弹性碰撞</div>
+<p>找几块大小差不多的冰块，以及一张光滑的厨房台面或玻璃桌面。把冰块放在表面上，彼此相隔几厘米。弹一块冰块去撞一块静止的冰块，观察碰撞后冰块的路径和<span data-concept="velocity">速度</span>。尽量避免边对边的碰撞，也避免有冰块发生旋转的碰撞。你制造出近似的<span data-concept="elastic-collision">弹性碰撞</span>了吗？用动量解释冰块的速率和<span data-concept="vector-direction">方向</span>。</p>
+</div>
+</section>

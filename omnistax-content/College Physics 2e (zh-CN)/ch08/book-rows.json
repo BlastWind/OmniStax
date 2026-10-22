@@ -1,0 +1,1089 @@
+{
+ "types": [
+  {
+   "id": "momentum",
+   "label": "动量、冲量",
+   "dimension": "kg·m/s"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "p",
+   "latex": "p",
+   "macro": "\\kp"
+  },
+  {
+   "sym": "Δp",
+   "latex": "\\Delta p",
+   "macro": "\\kdp"
+  },
+  {
+   "sym": "p_1",
+   "latex": "p_1",
+   "macro": "\\kpone"
+  },
+  {
+   "sym": "p_2",
+   "latex": "p_2",
+   "macro": "\\kptwo"
+  },
+  {
+   "sym": "p_1prime",
+   "latex": "{p'}_1",
+   "macro": "\\kponeprime"
+  },
+  {
+   "sym": "p_2prime",
+   "latex": "{p'}_2",
+   "macro": "\\kptwoprime"
+  },
+  {
+   "sym": "p_tot",
+   "latex": "p_{\\text{tot}}",
+   "macro": "\\kptot"
+  },
+  {
+   "sym": "p_totprime",
+   "latex": "{p'}_{\\text{tot}}",
+   "macro": "\\kptotprime"
+  },
+  {
+   "sym": "p_x",
+   "latex": "p_x",
+   "macro": "\\kpx"
+  },
+  {
+   "sym": "p_y",
+   "latex": "p_y",
+   "macro": "\\kpy"
+  },
+  {
+   "sym": "p_1x",
+   "latex": "p_{1x}",
+   "macro": "\\kponex"
+  },
+  {
+   "sym": "p_1y",
+   "latex": "p_{1y}",
+   "macro": "\\kponey"
+  },
+  {
+   "sym": "p_2x",
+   "latex": "p_{2x}",
+   "macro": "\\kptwox"
+  },
+  {
+   "sym": "p_2y",
+   "latex": "p_{2y}",
+   "macro": "\\kptwoy"
+  },
+  {
+   "sym": "p_player",
+   "latex": "p_{\\text{player}}",
+   "macro": "\\kpplayer"
+  },
+  {
+   "sym": "p_ball",
+   "latex": "p_{\\text{ball}}",
+   "macro": "\\kpball"
+  },
+  {
+   "sym": "v_1prime",
+   "latex": "{v'}_1",
+   "macro": "\\kvoneprime"
+  },
+  {
+   "sym": "v_2prime",
+   "latex": "{v'}_2",
+   "macro": "\\kvtwoprime"
+  },
+  {
+   "sym": "v_prime",
+   "latex": "v'",
+   "macro": "\\kvprime"
+  },
+  {
+   "sym": "v_cm",
+   "latex": "v_{\\text{cm}}",
+   "macro": "\\kvcm"
+  },
+  {
+   "sym": "v_i",
+   "latex": "v_i",
+   "macro": "\\kvi"
+  },
+  {
+   "sym": "v_e",
+   "latex": "v_{\\text{e}}",
+   "macro": "\\kve"
+  },
+  {
+   "sym": "u",
+   "latex": "u",
+   "macro": "\\ku"
+  },
+  {
+   "sym": "KE_int",
+   "latex": "\\text{KE}_{\\text{int}}",
+   "macro": "\\kKEint"
+  },
+  {
+   "sym": "KE_intprime",
+   "latex": "{\\text{KE}'}_{\\text{int}}",
+   "macro": "\\kKEintprime"
+  },
+  {
+   "sym": "F_eff",
+   "latex": "F_{\\text{eff}}",
+   "macro": "\\kFeff"
+  },
+  {
+   "sym": "F_thrust",
+   "latex": "F_{\\text{thrust}}",
+   "macro": "\\kFthrust"
+  },
+  {
+   "sym": "m_1",
+   "latex": "m_1",
+   "macro": "\\kmone"
+  },
+  {
+   "sym": "m_2",
+   "latex": "m_2",
+   "macro": "\\kmtwo"
+  },
+  {
+   "sym": "Δm",
+   "latex": "\\Delta m",
+   "macro": "\\kdm"
+  },
+  {
+   "sym": "m_0",
+   "latex": "m_0",
+   "macro": "\\kmo"
+  },
+  {
+   "sym": "m_r",
+   "latex": "m_{\\text{r}}",
+   "macro": "\\kmr"
+  },
+  {
+   "sym": "θ_1",
+   "latex": "\\theta_1",
+   "macro": "\\kthetaone"
+  },
+  {
+   "sym": "θ_2",
+   "latex": "\\theta_2",
+   "macro": "\\kthetatwo"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "linear-momentum",
+   "kind": "definition",
+   "section": "8.1",
+   "name": "线动量",
+   "symbol": "p",
+   "terms": [
+    "线动量"
+   ],
+   "type": "momentum",
+   "statement": "线动量是系统的质量与其速度的乘积，它是说明一个运动物体有多难被停下来的量。一个大而快的物体比一个小而慢的物体具有更大的动量。",
+   "forms": [
+    {
+     "id": "eq-momentum",
+     "latex": "p = m\\mathbf{v}",
+     "ktex": "\\kp = m\\mathbf{v}",
+     "anchor": "8.1-momentum"
+    },
+    {
+     "id": "eq-momentum-mag",
+     "latex": "p = mv",
+     "ktex": "\\kp = m\\kv",
+     "condition": "只考虑动量的大小",
+     "anchor": "8.1-calculating"
+    }
+   ]
+  },
+  {
+   "id": "calculate-momentum",
+   "kind": "skill",
+   "section": "8.1",
+   "name": "动量的计算",
+   "statement": "动量是一个矢量，方向与速度相同，其国际单位是千克米每秒。把质量乘以速度，保留方向和单位，就得到碰撞问题所由开始的动量。"
+  },
+  {
+   "id": "newtons-second-law-momentum",
+   "kind": "axiom",
+   "section": "8.1",
+   "name": "用动量表述的牛顿第二定律",
+   "terms": [
+    "牛顿第二定律"
+   ],
+   "statement": "牛顿把他的第二定律表述为：合外力等于系统动量的变化除以动量变化所用的时间。这是更一般的表述，因为它既适用于质量不断变化的系统（如火箭），也适用于质量不变的系统。",
+   "forms": [
+    {
+     "id": "eq-newton2-momentum",
+     "latex": "F_{\\text{net}} = \\frac{\\Delta p}{\\Delta t}",
+     "ktex": "\\kFnet = \\frac{\\kdp}{\\kdt}",
+     "anchor": "8.1-second-law"
+    }
+   ]
+  },
+  {
+   "id": "constant-mass-second-law",
+   "kind": "result",
+   "section": "8.1",
+   "name": "质量不变时的第二定律",
+   "statement": "当系统的质量不变时，动量的变化等于质量乘以速度的变化量，再除以时间就得到加速度。因此，我们熟悉的第二定律形式 $F_{\\text{net}} = ma$，是质量不变时动量形式的特例。",
+   "forms": [
+    {
+     "id": "eq-newton2-const-mass",
+     "latex": "F_{\\text{net}} = ma",
+     "ktex": "\\kFnet = m\\ka",
+     "condition": "系统的质量不变",
+     "anchor": "8.1-constant-mass"
+    }
+   ]
+  },
+  {
+   "id": "change-in-momentum",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "动量变化",
+   "symbol": "Δp",
+   "terms": [
+    "动量变化"
+   ],
+   "type": "momentum",
+   "statement": "动量变化是末动量与初动量之差，对于质量不变的情形，它等于质量乘以速度的变化。它是一个力作用一段时间所产生的量。",
+   "forms": [
+    {
+     "id": "eq-delta-p",
+     "latex": "\\Delta p = \\Delta(mv)",
+     "ktex": "\\kdp = \\Delta(m\\kv)",
+     "section": "8.1",
+     "anchor": "8.1-constant-mass"
+    },
+    {
+     "id": "eq-delta-p-const-mass",
+     "latex": "\\Delta p = m\\Delta v",
+     "ktex": "\\kdp = m\\kdv",
+     "condition": "系统的质量不变",
+     "section": "8.1",
+     "anchor": "8.1-constant-mass"
+    },
+    {
+     "id": "eq-delta-p-velocities",
+     "latex": "\\Delta p = m\\Delta v = m(v_{\\text{f}} - v_i)",
+     "ktex": "\\kdp = m\\kdv = m(\\kvf - \\kvi)",
+     "condition": "系统的质量不变",
+     "section": "8.1",
+     "anchor": "8.1-tennis"
+    }
+   ]
+  },
+  {
+   "id": "impulse",
+   "kind": "result",
+   "section": "8.2",
+   "name": "冲量",
+   "terms": [
+    "冲量"
+   ],
+   "statement": "把牛顿第二定律变形可知，动量的变化等于平均合外力乘以该力作用的时间，这个乘积称为冲量。冲量与动量变化相同，所以一个力的作用效果既取决于它有多大，也取决于它作用多久。",
+   "forms": [
+    {
+     "id": "eq-impulse",
+     "latex": "\\Delta p = F_{\\text{net}}\\Delta t",
+     "ktex": "\\kdp = \\kFnet\\kdt",
+     "anchor": "8.2-impulse"
+    },
+    {
+     "id": "eq-impulse-perpendicular",
+     "latex": "\\Delta p_x = -2mu",
+     "ktex": "\\Delta p_x = -2m\\ku",
+     "condition": "球沿垂线撞墙，并以相同的速率弹回",
+     "anchor": "8.2-billiard"
+    },
+    {
+     "id": "eq-impulse-at-angle",
+     "latex": "\\Delta p_x = -2mu\\;\\text{cos}\\;30^\\circ",
+     "ktex": "\\Delta p_x = -2m\\ku\\;\\text{cos}\\;30^\\circ",
+     "condition": "球以与垂线成 30° 的角撞墙，并以同一角度、相同的速率弹回",
+     "anchor": "8.2-billiard"
+    }
+   ]
+  },
+  {
+   "id": "extending-collision-time",
+   "kind": "idea",
+   "section": "8.2",
+   "name": "延长碰撞时间",
+   "statement": "一次停止所需的动量变化由质量和速率决定，所以如果把停止过程拉长到更长的时间，力就会更小。这就是为什么汽车有带衬垫的仪表板、安全气囊和会溃缩的部件，也是为什么你落地时要翻滚，而不是直着腿僵硬地着地。"
+  },
+  {
+   "id": "effective-force",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "平均等效力",
+   "symbol": "F_eff",
+   "type": "force",
+   "statement": "在碰撞的短暂时间内，真实的力并不是恒定的，但你总能找到一个产生同样结果的平均等效力。在力对时间的图像上，实际曲线下的面积就是冲量，而同一时间间隔上等效力所围成的矩形具有相同的面积。"
+  },
+  {
+   "id": "average-force-from-impulse",
+   "kind": "skill",
+   "section": "8.2",
+   "name": "由冲量求平均力",
+   "statement": "碰撞的平均力由质量以及碰撞前后的速度求得：先求出动量变化（保留其方向），再除以接触的时间。"
+  },
+  {
+   "id": "momentum-changes-cancel",
+   "kind": "result",
+   "section": "8.3",
+   "name": "大小相等、方向相反的动量变化",
+   "statement": "两辆车相互推挤的时间相同，而牛顿第三定律使这两个力大小相等、方向相反。因此两个冲量也大小相等、方向相反，所以一辆车失去的动量就是另一辆车得到的动量，这就是动量守恒的全部论证。",
+   "forms": [
+    {
+     "id": "eq-dp1-impulse",
+     "latex": "\\Delta p_1 = F_1\\Delta t",
+     "ktex": "\\Delta \\kpone = \\kFone\\kdt",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-dp2-impulse",
+     "latex": "\\Delta p_2 = F_2\\Delta t",
+     "ktex": "\\Delta \\kptwo = \\kFtwo\\kdt",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-dp2-newton3",
+     "latex": "\\Delta p_2 = -F_1\\Delta t = -\\Delta p_1",
+     "ktex": "\\Delta \\kptwo = -\\kFone\\kdt = -\\Delta \\kpone",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-dp-sum-zero",
+     "latex": "\\Delta p_1 + \\Delta p_2 = 0",
+     "ktex": "\\Delta \\kpone + \\Delta \\kptwo = 0",
+     "anchor": "8.3-two-cars"
+    }
+   ]
+  },
+  {
+   "id": "conservation-of-momentum",
+   "kind": "result",
+   "section": "8.3",
+   "name": "动量守恒",
+   "terms": [
+    "动量守恒原理"
+   ],
+   "statement": "孤立系统的总动量是恒定的，不论系统内部发生什么，也不论它包含多少个物体。动量是自然界守恒的少数几个量之一，本章其余的每一次碰撞，都是通过令碰撞前的总动量等于碰撞后的总动量来求解的。",
+   "forms": [
+    {
+     "id": "eq-ptot-constant",
+     "latex": "p_{\\text{tot}} = \\text{常量}",
+     "ktex": "\\kptot = \\text{常量}",
+     "anchor": "8.3-conservation"
+    },
+    {
+     "id": "eq-p-pair-constant",
+     "latex": "p_1 + p_2 = \\text{常量}",
+     "ktex": "\\kpone + \\kptwo = \\text{常量}",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-p-pair-conserved",
+     "latex": "p_1 + p_2 = {p'}_1 + {p'}_2",
+     "ktex": "\\kpone + \\kptwo = \\kponeprime + \\kptwoprime",
+     "anchor": "8.3-two-cars"
+    },
+    {
+     "id": "eq-ptot-conserved",
+     "latex": "p_{\\text{tot}} = {p'}_{\\text{tot}}",
+     "ktex": "\\kptot = \\kptotprime",
+     "condition": "系统是孤立的",
+     "anchor": "8.3-conservation"
+    },
+    {
+     "id": "eq-collision-momentum",
+     "latex": "m_1 v_1 + m_2 v_2 = m_1 {v'}_1 + m_2 {v'}_2",
+     "ktex": "m_1 \\kvone + m_2 \\kvtwo = m_1 \\kvoneprime + m_2 \\kvtwoprime",
+     "condition": "两物体系统所受的合外力为零",
+     "section": "8.4",
+     "anchor": "8.4-equations"
+    }
+   ]
+  },
+  {
+   "id": "isolated-system",
+   "kind": "definition",
+   "section": "8.3",
+   "name": "孤立系统",
+   "terms": [
+    "孤立系统"
+   ],
+   "statement": "孤立系统是合外力为零的系统，而这恰好是动量守恒所需的条件。在使用动量守恒之前，你必须选择一个足够大的系统，使得起作用的力都是它的内力。",
+   "forms": [
+    {
+     "id": "eq-isolated-system",
+     "latex": "F_{\\text{net}} = 0",
+     "ktex": "\\kFnet = 0",
+     "anchor": "8.3-conservation"
+    }
+   ]
+  },
+  {
+   "id": "recoil",
+   "kind": "definition",
+   "section": "8.3",
+   "name": "反冲",
+   "statement": "对另一物体施力的物体所感受到的向后的动量称为反冲。当橄榄球运动员撞上球门柱时，地球也会反冲，而由于地球的质量大得多，它的反冲小到无法测量，尽管它确实存在。"
+  },
+  {
+   "id": "momentum-conserved-by-direction",
+   "kind": "result",
+   "section": "8.3",
+   "name": "沿某一方向的动量守恒",
+   "statement": "空间的三个方向是相互独立的，所以动量可以沿其中一个方向守恒，而沿另一个方向不守恒。对于空气阻力可以忽略的抛体，水平方向的力为零，水平动量不变，而竖直方向的重力不为零，竖直动量不守恒。"
+  },
+  {
+   "id": "subatomic-momentum",
+   "kind": "idea",
+   "section": "8.3",
+   "name": "亚原子粒子的动量",
+   "statement": "动量守恒并不只是关于台球的规则。动量是每一个亚原子粒子的性质，包括光子这样没有质量的粒子，而对什么从什么上散射出来的分析，正是原子核以及质子内部的夸克得以被发现的方式。"
+  },
+  {
+   "id": "quark",
+   "kind": "definition",
+   "section": "8.3",
+   "name": "夸克",
+   "terms": [
+    "夸克"
+   ],
+   "statement": "夸克是物质的基本组成部分，是一种基本粒子。"
+  },
+  {
+   "id": "elastic-collision",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "弹性碰撞",
+   "terms": [
+    "弹性碰撞"
+   ],
+   "statement": "弹性碰撞是既保持动量守恒、也保持内动能守恒的碰撞。当两个末速度都未知时，第二个守恒定律就是你所需要的额外方程，所以知道一次碰撞是否为弹性碰撞，决定了你如何求解它。",
+   "forms": [
+    {
+     "id": "eq-elastic-kinetic-energy",
+     "latex": "\\frac{1}{2}m_1{v_1}^2 + \\frac{1}{2}m_2{v_2}^2 = \\frac{1}{2}m_1{{v'}_1}^2 + \\frac{1}{2}m_2{{v'}_2}^2",
+     "ktex": "\\frac{1}{2}m_1{\\kvone}^2 + \\frac{1}{2}m_2{\\kvtwo}^2 = \\frac{1}{2}m_1{\\kvoneprime}^2 + \\frac{1}{2}m_2{\\kvtwoprime}^2",
+     "condition": "碰撞是弹性的，所以内动能守恒",
+     "anchor": "8.4-equations"
+    }
+   ]
+  },
+  {
+   "id": "internal-kinetic-energy",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "内动能",
+   "symbol": "KE_int",
+   "terms": [
+    "内动能"
+   ],
+   "type": "energy",
+   "statement": "系统的内动能是系统中各物体动能之和。它是在弹性碰撞中守恒、在非弹性碰撞中改变的量，所以正是这笔账把两种碰撞区分开来。",
+   "forms": [
+    {
+     "id": "eq-internal-kinetic-energy",
+     "latex": "\\text{KE}_{\\text{int}} = \\frac{1}{2}m_1{v_1}^2 + \\frac{1}{2}m_2{v_2}^2",
+     "ktex": "\\kKEint = \\frac{1}{2}m_1{\\kvone}^2 + \\frac{1}{2}m_2{\\kvtwo}^2",
+     "anchor": "8.4-elastic"
+    }
+   ]
+  },
+  {
+   "id": "elastic-collision-1d",
+   "kind": "skill",
+   "section": "8.4",
+   "name": "求解一维弹性碰撞",
+   "statement": "两个未知的末速度需要两个独立的方程，而弹性碰撞提供了它们：动量守恒和内动能守恒。解这一对方程得到一个有两个根的二次方程，其中重复初始条件的那个根描述的是碰撞之前的情形，要舍去。",
+   "forms": [
+    {
+     "id": "eq-v2-from-momentum",
+     "latex": "{v'}_2 = \\frac{m_1}{m_2}(v_1 - {v'}_1)",
+     "ktex": "\\kvtwoprime = \\frac{m_1}{m_2}(\\kvone - \\kvoneprime)",
+     "condition": "第二个物体最初静止",
+     "anchor": "8.4-example"
+    }
+   ]
+  },
+  {
+   "id": "nearly-elastic-collisions",
+   "kind": "idea",
+   "section": "8.4",
+   "name": "近似弹性碰撞",
+   "statement": "只有亚原子粒子之间的碰撞才是真正弹性的。宏观的碰撞总会因摩擦把一部分动能转化为热传递，并转化为声音。冰上的两块钢块，或气垫导轨上带弹簧缓冲器的两辆小车，之所以算作弹性碰撞，是因为它们近似如此，而不是严格如此。"
+  },
+  {
+   "id": "inelastic-collision",
+   "kind": "definition",
+   "section": "8.5",
+   "name": "非弹性碰撞",
+   "terms": [
+    "非弹性碰撞"
+   ],
+   "statement": "非弹性碰撞是内动能发生变化的碰撞。碰撞物体之间的力所做的功可以把内动能转化为热传递，也可以把储存的能量转换为内动能，所以在这里只有动量是可以依靠的。"
+  },
+  {
+   "id": "perfectly-inelastic-collision",
+   "kind": "definition",
+   "section": "8.5",
+   "name": "完全非弹性碰撞",
+   "terms": [
+    "完全非弹性碰撞"
+   ],
+   "statement": "物体黏在一起的碰撞称为完全非弹性碰撞，因为在仍然保持动量守恒的前提下，它比任何其他种类的碰撞都更多地减少内动能。由于碰撞后两个物体共有一个末速度，仅靠动量守恒就足以求出它。",
+   "forms": [
+    {
+     "id": "eq-perfectly-inelastic-momentum",
+     "latex": "m_1 v_1 = (m_1 + m_2)v'",
+     "ktex": "m_1 \\kvone = (m_1 + m_2)\\kvprime",
+     "condition": "两个物体黏在一起，且第二个物体最初静止",
+     "anchor": "8.5-recoil"
+    }
+   ]
+  },
+  {
+   "id": "recoil-velocity",
+   "kind": "result",
+   "section": "8.5",
+   "name": "反冲速度",
+   "statement": "当一个运动的物体被一个静止的物体接住时，两者一起运动，其速度是入射速度乘以入射质量与总质量之比。因此，接住冰球的守门员只会以每秒几厘米的速度反冲，这就是为什么重物体的反冲那么容易被忽略。",
+   "forms": [
+    {
+     "id": "eq-recoil-velocity",
+     "latex": "v' = \\frac{m_1}{m_1 + m_2}v_1",
+     "ktex": "\\kvprime = \\frac{m_1}{m_1 + m_2}\\kvone",
+     "condition": "两个物体黏在一起，且第二个物体最初静止",
+     "anchor": "8.5-recoil"
+    }
+   ]
+  },
+  {
+   "id": "kinetic-energy-lost-in-collision",
+   "kind": "skill",
+   "section": "8.5",
+   "name": "求碰撞中损失的动能",
+   "statement": "一旦知道了末速度，你就可以把碰撞前和碰撞后的动能分别加起来，再相减。其差值就是损失给热能和声音的部分，而在完全非弹性碰撞中，它几乎是一开始所有动能的全部。",
+   "forms": [
+    {
+     "id": "eq-internal-kinetic-energy-after",
+     "latex": "{\\text{KE}'}_{\\text{int}} = \\frac{1}{2}m_1{{v'}_1}^2 + \\frac{1}{2}m_2{{v'}_2}^2",
+     "ktex": "\\kKEintprime = \\frac{1}{2}m_1{\\kvoneprime}^2 + \\frac{1}{2}m_2{\\kvtwoprime}^2",
+     "anchor": "8.5-released"
+    }
+   ]
+  },
+  {
+   "id": "energy-released-in-collision",
+   "kind": "idea",
+   "section": "8.5",
+   "name": "碰撞中释放的能量",
+   "statement": "非弹性碰撞不仅会减少内动能，它还可以增加内动能。当碰撞过程中一根被压缩的弹簧被释放时，或者当爆炸螺栓把卫星从其发射器上推开时，储存的能量被转化为内动能，系统最终得到的比开始时更多。"
+  },
+  {
+   "id": "two-dimensional-collision",
+   "kind": "idea",
+   "section": "8.6",
+   "name": "二维碰撞",
+   "statement": "当物体向侧面散射而不是沿一条直线散射时，你要选择一个方便的坐标系，把运动分解为沿相互垂直的坐标轴的分量。这样分解运动，就得到一对要一起求解的一维问题，这与把运动学和动力学引入平面时所用的方法相同。"
+  },
+  {
+   "id": "point-mass",
+   "kind": "definition",
+   "section": "8.6",
+   "name": "质点",
+   "terms": [
+    "质点"
+   ],
+   "statement": "两个偏离中心相碰的物体可能开始旋转，而转动要到后面才讨论。质点是不能转动或自旋的、没有结构的粒子，把分析限制在质点上，才使碰撞可以仅用速度来描述。"
+  },
+  {
+   "id": "momentum-conservation-x",
+   "kind": "result",
+   "section": "8.6",
+   "name": "沿 x 轴的动量",
+   "statement": "选取 x 轴平行于入射物体的速度，且第二个物体静止时，全部的初动量都沿 x 轴。于是沿该轴的动量守恒把一个初速率与两个末速率以及两个散射角联系起来。",
+   "forms": [
+    {
+     "id": "eq-momentum-x",
+     "latex": "m_1 v_1 = m_1 {v'}_1\\;\\text{cos}\\;\\theta_1 + m_2 {v'}_2\\;\\text{cos}\\;\\theta_2",
+     "ktex": "m_1 \\kvone = m_1 \\kvoneprime\\;\\text{cos}\\;\\theta_1 + m_2 \\kvtwoprime\\;\\text{cos}\\;\\theta_2",
+     "condition": "第二个物体最初静止，且 x 轴平行于入射物体的速度",
+     "anchor": "8.6-x-axis"
+    },
+    {
+     "id": "eq-momentum-x-components",
+     "latex": "p_{1x} + p_{2x} = {p'}_{1x} + {p'}_{2x}",
+     "ktex": "\\kponex + \\kptwox = {p'}_{1x} + {p'}_{2x}",
+     "anchor": "8.6-x-axis"
+    }
+   ]
+  },
+  {
+   "id": "momentum-conservation-y",
+   "kind": "result",
+   "section": "8.6",
+   "name": "沿 y 轴的动量",
+   "statement": "碰撞前两个物体沿 y 轴都没有动量，所以碰撞后的两个 y 分量必须加起来为零。这是两个独立方程中的第二个，也是把两个散射角彼此联系起来的那个。",
+   "forms": [
+    {
+     "id": "eq-momentum-y",
+     "latex": "0 = m_1 {v'}_1\\;\\text{sin}\\;\\theta_1 + m_2 {v'}_2\\;\\text{sin}\\;\\theta_2",
+     "ktex": "0 = m_1 \\kvoneprime\\;\\text{sin}\\;\\theta_1 + m_2 \\kvtwoprime\\;\\text{sin}\\;\\theta_2",
+     "condition": "第二个物体最初静止，且 x 轴平行于入射物体的速度",
+     "anchor": "8.6-y-axis"
+    },
+    {
+     "id": "eq-momentum-y-components",
+     "latex": "p_{1y} + p_{2y} = {p'}_{1y} + {p'}_{2y}",
+     "ktex": "\\kponey + \\kptwoy = {p'}_{1y} + {p'}_{2y}",
+     "anchor": "8.6-y-axis"
+    }
+   ]
+  },
+  {
+   "id": "scattering-to-find-unseen-object",
+   "kind": "skill",
+   "section": "8.6",
+   "name": "求看不见的物体的速度",
+   "statement": "两个方程可以解出两个未知量。取两个守恒方程之比，消去未知的速率而留下未知的角，然后任一方程都可以给出速率，所以对一次碰撞中飞出的东西做一次测量，就能告诉你关于进入时你看不见的东西的信息。",
+   "forms": [
+    {
+     "id": "eq-scattering-angle",
+     "latex": "\\text{tan}\\;\\theta_2 = \\frac{{v'}_1\\;\\text{sin}\\;\\theta_1}{{v'}_1\\;\\text{cos}\\;\\theta_1 - v_1}",
+     "ktex": "\\text{tan}\\;\\theta_2 = \\frac{\\kvoneprime\\;\\text{sin}\\;\\theta_1}{\\kvoneprime\\;\\text{cos}\\;\\theta_1 - \\kvone}",
+     "condition": "第二个物体最初静止",
+     "anchor": "8.6-unseen"
+    }
+   ]
+  },
+  {
+   "id": "equal-mass-elastic-2d",
+   "kind": "result",
+   "section": "8.6",
+   "name": "等质量物体的弹性碰撞",
+   "statement": "对于两个质量相等的物体，沿两个坐标轴的动量守恒给出初动能的一个表达式，它比弹性条件多出一项。这两个说法只有在多出的这一项为零时才可能同时成立，而由此得出的结论，就是台球手关于角度所知道的全部。",
+   "forms": [
+    {
+     "id": "eq-equal-mass-identity",
+     "latex": "\\frac{1}{2}m{v_1}^2 = \\frac{1}{2}m{{v'}_1}^2 + \\frac{1}{2}m{{v'}_2}^2 + m{v'}_1{v'}_2\\;\\text{cos}(\\theta_1 - \\theta_2)",
+     "ktex": "\\frac{1}{2}m{\\kvone}^2 = \\frac{1}{2}m{\\kvoneprime}^2 + \\frac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\;\\text{cos}(\\theta_1 - \\theta_2)",
+     "condition": "两个物体质量相等，且第二个物体最初静止",
+     "anchor": "8.6-equal-masses"
+    },
+    {
+     "id": "eq-equal-mass-kinetic-energy",
+     "latex": "\\frac{1}{2}m{v_1}^2 = \\frac{1}{2}m{{v'}_1}^2 + \\frac{1}{2}m{{v'}_2}^2",
+     "ktex": "\\frac{1}{2}m{\\kvone}^2 = \\frac{1}{2}m{\\kvoneprime}^2 + \\frac{1}{2}m{\\kvtwoprime}^2",
+     "condition": "两个物体质量相等，碰撞是弹性的，且第二个物体最初静止",
+     "anchor": "8.6-equal-masses"
+    }
+   ]
+  },
+  {
+   "id": "ninety-degree-separation",
+   "kind": "result",
+   "section": "8.6",
+   "name": "成 90° 角分离",
+   "statement": "多出的这一项可以通过三种方式为零：入射物体停下，入射物体没有碰上，或者分离角为 90°。这三种情形在台球桌上都很常见，而第三种让你无需任何进一步的计算就能求出第二个物体的方向。",
+   "forms": [
+    {
+     "id": "eq-separation-angle",
+     "latex": "\\theta_1 - \\theta_2 = 90^\\circ",
+     "condition": "两个物体质量相等，碰撞是弹性的，且碰撞后两者都在运动",
+     "anchor": "8.6-separation"
+    },
+    {
+     "id": "eq-separation-term-zero",
+     "latex": "m{v'}_1{v'}_2\\;\\text{cos}(\\theta_1 - \\theta_2) = 0",
+     "ktex": "m\\kvoneprime\\kvtwoprime\\;\\text{cos}(\\theta_1 - \\theta_2) = 0",
+     "anchor": "8.6-separation"
+    }
+   ]
+  },
+  {
+   "id": "rocket-propulsion",
+   "kind": "idea",
+   "section": "8.7",
+   "name": "火箭推进",
+   "statement": "火箭、喷气发动机、漏气的气球和乌贼的运动都出于同一个原因：物质被强力从系统中喷出，对留下的部分产生大小相等、方向相反的反作用。喷出的气体并不推地面，这就是为什么火箭的推力在外层空间比在发射台上更大。"
+  },
+  {
+   "id": "rocket-thrust",
+   "kind": "result",
+   "section": "8.7",
+   "name": "火箭的推力",
+   "statement": "排气速度乘以质量离开火箭的速率，是一个单位为牛顿的量，它就是喷出的气体对火箭施加的力。火箭燃烧燃料越快、气体离开越快，推力就越大。",
+   "forms": [
+    {
+     "id": "eq-rocket-thrust",
+     "latex": "F_{\\text{thrust}} = v_{\\text{e}}\\frac{\\Delta m}{\\Delta t}",
+     "ktex": "\\kFthrust = \\kve\\frac{\\Delta m}{\\kdt}",
+     "anchor": "8.7-factors"
+    }
+   ]
+  },
+  {
+   "id": "rocket-acceleration",
+   "kind": "result",
+   "section": "8.7",
+   "name": "火箭的加速度",
+   "statement": "令整个系统在短时间内的动量变化等于重力的冲量，就得到火箭剩余部分的加速度的一个良好近似，$a = (v_{\\text{e}}/m)(\\Delta m/\\Delta t) - g$。它描述的是质量随运动而变化的系统。",
+   "forms": [
+    {
+     "id": "eq-rocket-acceleration",
+     "latex": "a = \\frac{v_{\\text{e}}}{m}\\;\\frac{\\Delta m}{\\Delta t} - g",
+     "ktex": "\\ka = \\frac{\\kve}{m}\\;\\frac{\\Delta m}{\\kdt} - \\kg",
+     "anchor": "8.7-ejecting-mass"
+    }
+   ]
+  },
+  {
+   "id": "factors-affecting-rocket-acceleration",
+   "kind": "idea",
+   "section": "8.7",
+   "name": "火箭加速度的影响因素",
+   "statement": "这个方程说明，排气速度越大、燃料燃烧得越快、质量越小，火箭的加速度就越大。三者中的最后一个在火箭飞行时会改变，因为火箭的大部分一开始就是燃料，所以加速度不断增大，并在燃料耗尽之前达到最大值。"
+  },
+  {
+   "id": "rocket-velocity-mass-ratio",
+   "kind": "result",
+   "section": "8.7",
+   "name": "火箭的末速度",
+   "statement": "忽略空气阻力和重力，火箭获得的速度只取决于排气速度，以及它的初始质量与燃料耗尽后剩余质量之比的自然对数。由于这个比值是以对数的形式进入的，要跑得更快所需的燃料比你预想的多得多。",
+   "forms": [
+    {
+     "id": "eq-rocket-velocity",
+     "latex": "v = v_{\\text{e}}\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}}",
+     "ktex": "\\kv = \\kve\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}}",
+     "condition": "没有空气阻力，忽略重力，且火箭从静止开始",
+     "anchor": "8.7-mass-ratio"
+    }
+   ]
+  },
+  {
+   "id": "multistage-rocket",
+   "kind": "idea",
+   "section": "8.7",
+   "name": "火箭为什么要分级",
+   "statement": "一旦考虑空气阻力和重力，燃料耗尽时剩下的质量只能约为初始质量的一百八十分之一，而一枚燃料比其他一切都重 180 倍的火箭是很难制造的。解决办法是让每一级只承担末速度的一部分，并在其燃料用完时将它抛弃，这样后面的各级就可以更小。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "linear-momentum",
+   "prereq": "mass"
+  },
+  {
+   "concept": "linear-momentum",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "linear-momentum",
+   "prereq": "vector"
+  },
+  {
+   "concept": "calculate-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "calculate-momentum",
+   "prereq": "derived-units"
+  },
+  {
+   "concept": "newtons-second-law-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "newtons-second-law-momentum",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "newtons-second-law-momentum",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "constant-mass-second-law",
+   "prereq": "newtons-second-law-momentum"
+  },
+  {
+   "concept": "constant-mass-second-law",
+   "prereq": "average-acceleration"
+  },
+  {
+   "concept": "change-in-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "impulse",
+   "prereq": "change-in-momentum"
+  },
+  {
+   "concept": "impulse",
+   "prereq": "newtons-second-law-momentum"
+  },
+  {
+   "concept": "extending-collision-time",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "effective-force",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "effective-force",
+   "prereq": "interpret-motion-graph"
+  },
+  {
+   "concept": "average-force-from-impulse",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "average-force-from-impulse",
+   "prereq": "calculate-momentum"
+  },
+  {
+   "concept": "momentum-changes-cancel",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "momentum-changes-cancel",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "isolated-system",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "isolated-system",
+   "prereq": "internal-forces-cancel"
+  },
+  {
+   "concept": "isolated-system",
+   "prereq": "system-of-interest"
+  },
+  {
+   "concept": "conservation-of-momentum",
+   "prereq": "momentum-changes-cancel"
+  },
+  {
+   "concept": "conservation-of-momentum",
+   "prereq": "isolated-system"
+  },
+  {
+   "concept": "recoil",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "recoil",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "momentum-conserved-by-direction",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "momentum-conserved-by-direction",
+   "prereq": "independence-of-perpendicular-motions"
+  },
+  {
+   "concept": "momentum-conserved-by-direction",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "subatomic-momentum",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "internal-kinetic-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "elastic-collision",
+   "prereq": "internal-kinetic-energy"
+  },
+  {
+   "concept": "elastic-collision",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "elastic-collision-1d",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "elastic-collision-1d",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "elastic-collision-1d",
+   "prereq": "physical-solution"
+  },
+  {
+   "concept": "nearly-elastic-collisions",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "nearly-elastic-collisions",
+   "prereq": "friction"
+  },
+  {
+   "concept": "inelastic-collision",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "inelastic-collision",
+   "prereq": "internal-kinetic-energy"
+  },
+  {
+   "concept": "perfectly-inelastic-collision",
+   "prereq": "inelastic-collision"
+  },
+  {
+   "concept": "recoil-velocity",
+   "prereq": "perfectly-inelastic-collision"
+  },
+  {
+   "concept": "recoil-velocity",
+   "prereq": "recoil"
+  },
+  {
+   "concept": "kinetic-energy-lost-in-collision",
+   "prereq": "inelastic-collision"
+  },
+  {
+   "concept": "kinetic-energy-lost-in-collision",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "energy-released-in-collision",
+   "prereq": "inelastic-collision"
+  },
+  {
+   "concept": "energy-released-in-collision",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "energy-released-in-collision",
+   "prereq": "elastic-potential-energy"
+  },
+  {
+   "concept": "two-dimensional-collision",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "two-dimensional-collision",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "two-dimensional-collision",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "point-mass",
+   "prereq": "two-dimensional-collision"
+  },
+  {
+   "concept": "momentum-conservation-x",
+   "prereq": "two-dimensional-collision"
+  },
+  {
+   "concept": "momentum-conservation-x",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "momentum-conservation-y",
+   "prereq": "two-dimensional-collision"
+  },
+  {
+   "concept": "momentum-conservation-y",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "scattering-to-find-unseen-object",
+   "prereq": "momentum-conservation-x"
+  },
+  {
+   "concept": "scattering-to-find-unseen-object",
+   "prereq": "momentum-conservation-y"
+  },
+  {
+   "concept": "scattering-to-find-unseen-object",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "equal-mass-elastic-2d",
+   "prereq": "momentum-conservation-x"
+  },
+  {
+   "concept": "equal-mass-elastic-2d",
+   "prereq": "momentum-conservation-y"
+  },
+  {
+   "concept": "equal-mass-elastic-2d",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "ninety-degree-separation",
+   "prereq": "equal-mass-elastic-2d"
+  },
+  {
+   "concept": "rocket-propulsion",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "rocket-propulsion",
+   "prereq": "thrust"
+  },
+  {
+   "concept": "rocket-propulsion",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "rocket-thrust",
+   "prereq": "rocket-propulsion"
+  },
+  {
+   "concept": "rocket-thrust",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "rocket-acceleration",
+   "prereq": "rocket-thrust"
+  },
+  {
+   "concept": "rocket-acceleration",
+   "prereq": "newtons-second-law-momentum"
+  },
+  {
+   "concept": "rocket-acceleration",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "factors-affecting-rocket-acceleration",
+   "prereq": "rocket-acceleration"
+  },
+  {
+   "concept": "rocket-velocity-mass-ratio",
+   "prereq": "rocket-acceleration"
+  },
+  {
+   "concept": "multistage-rocket",
+   "prereq": "rocket-velocity-mass-ratio"
+  }
+ ]
+}

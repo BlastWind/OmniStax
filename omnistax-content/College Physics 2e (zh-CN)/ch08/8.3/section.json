@@ -1,0 +1,1053 @@
+{
+ "id": "8.3",
+ "module": "m42162",
+ "chapter": "8",
+ "title": "动量守恒",
+ "short": "动量守恒",
+ "lead": "当一个系统的各部分相互推动时，每一部分所携带的<span data-type=\"momentum\">动量</span>都会改变，问题在于总动量会怎样，以及这个系统必须划得多大。本节依次讨论<span data-ref=\"car-1\">一辆车</span>撞上<span data-ref=\"car-2\">另一辆</span>、<span data-ref=\"probe\">一个空间探测器</span>在飞行中分裂，以及一个粒子从靶上散射，从公路一直讲到原子核内部。",
+ "objectives": [
+  "描述动量守恒原理。",
+  "推导动量守恒的表达式。",
+  "用例子解释动量守恒。",
+  "解释动量守恒原理与原子和亚原子粒子的关系。"
+ ],
+ "summary_html": "<ul><li>动量守恒原理写作 $\\kptot = \\text{常量}$ 或 $\\kptot = \\kptotprime\\ \\ (\\text{孤立系统})$，$\\kptot$ 为初始总动量，$\\kptotprime$ 为此后某个<span data-concept=\"time\">时刻</span>的总动量。</li><li>孤立系统的定义是<span data-concept=\"net-external-force\">合外力</span>为零的系统 $(\\kFnet = 0)\\text{.}$</li><li>在抛体运动中，在空气阻力可以忽略的情况下，水平方向上动量守恒，因为水平<span data-concept=\"force\">力</span>为零。</li><li>只有当<span data-concept=\"net-external-force\">合外力</span>为零时，动量守恒才适用。</li><li>在考虑粒子系统时，动量守恒原理是成立的。</li></ul>",
+ "notes": "习题 2 和 4 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示，以及对思考题和无答案的 AP 题的建议思路，均由 AI 生成并已作标注；习题和三道有答案的 AP 题的答案来自书后答案，这里没有计算任何内容。习题 2（黏土考拉）和习题 4（汽车与鹿）在书后答案中没有给出答案，因而略去。本章没有“理解检测”栏目；其中最短的一道思考题问的是在什么情况下动量守恒，它被放在回答该问题的段落之后，其余各题都放在习题集中。没有任何内容取自其他小节，也没有任何内容留给后面的小节：本章各习题的互换发生在 8.4 与 8.5 之间，而这里要求求质心速度的两道题局限于它们所描述的那次碰撞，引用了本节中说明总动量就是质心动量的那一句话，并标注了 6.5 节的质心。第一道思考题是关于跳水与肚皮拍水的对比，它既依赖本节，也同样依赖 8.2 节的接触时间，并标注了该节的概念，但它印在这里，且它所需要的思想对读者来说是已学过的而不是尚未学到的，所以保留。",
+ "figures": [
+  {
+   "id": "sim-collision",
+   "kind": "sim",
+   "number": "8.3",
+   "originals": [
+    "/media/ch08/Figure_09_03_01a.jpg"
+   ],
+   "original_caption": "一辆质量为 m_1、速度为 v_1 的汽车撞上了它所跟随的另一辆质量为 m_2、速度为 v_2 的汽车。结果，第一辆车减速到速度 v′_1，第二辆车加速到速度 v′_2。每辆车的动量都发生了变化，但两辆车的总动量 p_tot 在碰撞前后是相同的（假设摩擦力可以忽略）。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "momentum",
+    "velocity",
+    "force",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "mass labels off the scale, curve names by height, note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-center-of-mass",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "velocity",
+    "momentum",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "curve names at their curves' ends, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-probe",
+   "kind": "sim",
+   "number": "8.4",
+   "originals": [
+    "/media/ch08/Figure_09_03_02a.jpg"
+   ],
+   "original_caption": "如果空气阻力可以忽略，抛体动量的水平分量就是守恒的，即使在空间探测器发生分离的这种情形中也是如此。造成分离的力属于系统内部，因此水平方向的合外力 F_x-net 仍然为零。动量的竖直分量不守恒，因为竖直方向的合力 F_y-net 不为零。在竖直方向上，需要考虑空间探测器-地球系统，此时我们发现总动量是守恒的。空间探测器的质心沿着与未发生分离时相同的路径运动。",
+   "widths": [
+    520
+   ],
+   "draws": [
+    "momentum",
+    "velocity",
+    "position",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: split probe on a fitted sky, momentum in a corner panel"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-scatter",
+   "kind": "sim",
+   "number": "8.5",
+   "originals": [
+    "/media/ch08/Figure_09_03_04a.jpg"
+   ],
+   "original_caption": "一个亚原子粒子从一个靶粒子上径直向后散射。在寻找夸克存在证据的实验中，观察到电子偶尔会从质子上径直向后散射。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "momentum",
+    "velocity"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels re-dealt clear of each other, note dropped, caption corrected"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-cart-graph",
+   "kind": "figure",
+   "originals": [
+    "/media/ch08/Figure_08_M3_Graph.jpg"
+   ],
+   "original_caption": "该图像显示了一幅坐标图，纵轴为以米为单位的位置，横轴为以秒为单位的时间。",
+   "draws": [
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "both carts shown where they meet; headline and readout dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "recoil",
+   "concept": "recoil",
+   "verb": "introduces"
+  },
+  {
+   "span": "recoil",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "recoil",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "two-cars",
+   "concept": "momentum-changes-cancel",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-cars",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "two-cars",
+   "concept": "change-in-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "two-cars",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "two-cars",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "conservation-of-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation",
+   "concept": "isolated-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation",
+   "concept": "momentum-changes-cancel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conservation",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "internal-forces-cancel",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "center-of-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "directions",
+   "concept": "momentum-conserved-by-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "directions",
+   "concept": "conservation-of-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "directions",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "directions",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "subatomic",
+   "concept": "subatomic-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "subatomic",
+   "concept": "conservation-of-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subatomic",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "subatomic",
+   "concept": "quark",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1422695",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "下列哪一项是开放系统的例子？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "两辆气垫小车在轨道上发生弹性碰撞。",
+     "两辆气垫小车在轨道上碰撞后黏在一起。",
+     "一颗子弹射入一块悬挂的木块并嵌在木块里，此后该系统成为一个弹道摆。",
+     "一颗子弹射入山坡并埋进土里。"
+    ],
+    "correct": 3,
+    "hint": "孤立系统是合外力为零的系统。问问这四种碰撞中，哪一种在所述物体之外还有别的东西在推它们。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1927054",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "一个 40 kg 的女孩以 5.0 m/s 的速率跑过垫子，跳上一个原来静止的 120 kg 悬挂平台，使女孩和平台在她跳上之后一起像摆一样来回摆动。女孩和平台跳上之后的共同速度是多少？碰撞前后，女孩和平台的总动量各是多少？一个 50 kg 的男孩以 6.0 m/s 的速率跑过垫子，撞上墙上的软屏障，从墙上反弹后落到地面。碰撞后男孩静止。男孩在碰撞前后的动量各是多少？这次碰撞中动量守恒吗？请解释。其中哪个是开放系统的例子，哪个是封闭系统的例子？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "女孩和平台一起以 1.3 m/s 的速度沿她奔跑的方向运动，跳上前后二者的总动量都是 $200\\ \\text{kg}\\cdot\\text{m/s}$。男孩在碰撞前的动量为朝向墙的 $300\\ \\text{kg}\\cdot\\text{m/s}$，碰撞后为零，所以他的动量不守恒。女孩落到平台上的过程中，没有任何外部的东西在水平方向上推它们，所以这一对是孤立系统，$\\kptot = \\kptotprime$。跳上之前，$\\kptot = (40\\ \\text{kg})(5.0\\ \\text{m/s}) + 0 = 200\\ \\text{kg}\\cdot\\text{m/s}$。跳上之后，两者一起运动，所以 $\\kvprime = (200\\ \\text{kg}\\cdot\\text{m/s})/(40\\ \\text{kg} + 120\\ \\text{kg}) = 1.25\\ \\text{m/s}$，约为 1.3 m/s。男孩带有 $(50\\ \\text{kg})(6.0\\ \\text{m/s}) = 300\\ \\text{kg}\\cdot\\text{m/s}$ 的动量，最后静止，这是因为屏障和墙在仅由男孩一人组成的系统之外，对他施加了合外力。把男孩、墙和地球一起取为系统，守恒就恢复了，因为地球接收了他所失去的动量。女孩和平台构成封闭系统；男孩单独看则是开放系统。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1468748",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "一名学生设置了一个实验，测量由两辆质量相等的气垫小车 A 和 B 组成的系统的动量，它们在一条直线形的无摩擦轨道上运动。碰撞前，小车 A 有一定的速率，小车 B 静止。关于两辆小车的总动量，下列哪一项是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "碰撞前较大。",
+     "碰撞前后相等。",
+     "碰撞后较大。",
+     "答案取决于碰撞是弹性的还是非弹性的。"
+    ],
+    "correct": 1,
+    "hint": "轨道无摩擦，两辆小车就是整个系统，所以问问该系统所受的合外力是多少。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1890741",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "prompt": "一组学生有两辆小车 A 和 B，车轮转动时的摩擦可以忽略。两辆小车可以沿一条笔直的水平轨道运动。小车 A 的质量 $m_A$ 已知。要求学生利用两辆小车之间的一维碰撞来测定小车 B 的质量。碰撞前，小车 A 向右运动，小车 B 最初静止。碰撞后，两辆小车黏在一起。（a）描述一个实验步骤，用来测定两辆小车在碰撞前后的速度，包括你需要的所有额外器材。你可以附上带标注的示意图，帮助说明你的装置。指出你要进行哪些测量以及如何测量。给出足够的细节，使另一名学生能够照着你的步骤去做。（b）在实验中，碰撞前和碰撞后所做的测量都会有误差来源。就你的实验步骤而言，小车 B 质量计算值的不确定度，是受碰撞前的测量误差影响更大，还是受碰撞后的测量误差影响更大，还是受两组测量的影响相同？请论证你的答案。一组学生对一次碰撞进行了测量。学生的数据图显示在两辆小车位置的图中。（c）已知 $m_A = 0.50$ kg，利用该图像计算小车 B 的质量。明确指出你的计算中所用的原理。（d）现在要求学生考虑非弹性碰撞中的动能变化，具体来说，是考虑某个物理量的初始值是否会影响碰撞中耗散的机械能所占的比例。你会如何修改实验来研究这个问题？务必明确描述你要进行的计算，写明你要用到的所有方程（但不要真的做任何代数或算术运算）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）把小车放在水平轨道上，在左端放一个正对小车 A 的运动传感器，在右端再放一个正对小车 B 的运动传感器（沿轨道间隔放置的光电门也可以）。记录每辆小车的位置随时间的变化，从碰撞前一直记录到两辆小车连在一起之后很久。每个速度都是这些读数中某一段直线的斜率：碰撞前小车 A 的斜率、碰撞前小车 B 的斜率（应当为零），以及碰撞后连在一起的两辆小车的共同斜率。用天平称出小车 A 的质量，以确认 $m_A$。（b）碰撞后的测量对结果的影响更大。动量守恒给出 $m_B = m_A(v_A - v')/v'$。连在一起的小车比小车 A 之前运动得更慢，所以读取位置和时间时同样大的不确定度，在 $v'$ 中所占的比例大于在 $v_A$ 中所占的比例，而且 $v'$ 既出现在差中，又出现在分母中。（c）小车 B 的质量为 0.75 kg。每辆小车的速度就是其位置—时间图像的斜率。碰撞前，小车 A 在 1.0 s 内从 0 m 运动到 1.5 m，所以 $v_A = 1.5\\ \\text{m/s}$，而小车 B 停在 1.5 m 处，所以它静止。1.0 s 之后，两辆小车处于同一位置，在 1.0 s 内从 1.5 m 运动到 2.1 m，所以 $v' = 0.60\\ \\text{m/s}$。轨道是水平的，摩擦可以忽略，所以两辆小车是孤立系统，动量守恒：$m_A v_A = (m_A + m_B)v'$，因此 $(0.50\\ \\text{kg})(1.5\\ \\text{m/s}) = (0.50\\ \\text{kg} + m_B)(0.60\\ \\text{m/s})$。由此得 $m_A + m_B = 1.25\\ \\text{kg}$，$m_B = 0.75\\ \\text{kg}$。（d）用同样的质量重复同样的黏合碰撞，同时在很大范围内改变小车 A 的初始速率。对每次运行，像（a）那样测出 $v_A$ 和 $v'$，并计算碰撞前的动能 $\\kKE = \\tfrac{1}{2}m_A v_A^2$ 和碰撞后的动能 $\\kKEprime = \\tfrac{1}{2}(m_A + m_B)v'^2$。耗散的机械能所占的比例为 $(\\kKE - \\kKEprime)/\\kKE$。如果这一比例对 $v_A$ 的图像是平的，则表明初始速率没有影响；用同样的步骤，给小车 B 加载不同的质量，则可检验质量是否有影响。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1943510",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "小车 A 以初速度 $+v$（沿正方向）朝最初静止的小车 B 运动。两辆小车质量相等，位于无摩擦的表面上。下列哪一项正确描述了该系统在碰撞前后的质心速度？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "碰撞前为 $\\frac{+v}{2}$，碰撞后为 $\\frac{-v}{2}$",
+     "碰撞前为 $\\frac{+v}{2}$，碰撞后为 0",
+     "碰撞前为 $\\frac{+v}{2}$，碰撞后为 $\\frac{+v}{2}$",
+     "碰撞前为 0，碰撞后为 0"
+    ],
+    "correct": 2,
+    "hint": "系统的总动量就是其质心的动量，而且两辆小车之外没有任何东西推它们。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2035171",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "小车 A 以 +10 m/s 的速度朝小车 B 运动，小车 B 的速度为 +4 m/s。两辆小车质量相等，在无摩擦的表面上运动。两辆小车发生非弹性碰撞，碰撞后黏在一起。计算该系统在碰撞前后的质心速度。如果这道题中存在摩擦力，这个外力会如何影响碰撞前后的质心速度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "质心在碰撞前后都以 +7 m/s 的速度运动。系统的总动量等于其总质量乘以质心的速度，所以 $\\kvcm = \\kptot/\\kmtot$。设每辆小车的质量为 $\\km$，则碰撞前 $\\kvcm = \\km(10\\ \\text{m/s} + 4\\ \\text{m/s})/2\\km = +7\\ \\text{m/s}$。表面无摩擦，所以两辆小车构成孤立系统，碰撞后 $\\kptot$ 与碰撞前相同；质心速度仍为 +7 m/s，这也就是黏在一起的小车的速度。若有摩擦，表面会施加一个与运动方向相反的合外力，于是系统不再孤立，$\\kptot$ 以 $\\kFnet = \\Delta \\kptot/\\kdt$ 的速率减小。这样，质心速度在碰撞前会不断下降，碰撞后仍继续下降，而不会保持在 7 m/s。碰撞本身仍不改变它，因为两辆小车之间的力是内力。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1749481",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "在什么情况下动量守恒？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只要系统是孤立的，即只要作用在它上面的合外力为零，动量就守恒。系统内部各物体之间的力成对出现，大小相等、方向相反，作用时间相同，因此它们所产生的动量变化相互抵消，总动量不变。只有来自系统外部的力才能改变总动量，而用动量表述的牛顿第二定律给出了改变多少：$\\kFnet = \\Delta \\kptot / \\kdt$。如果合外力不为零，往往可以找到一个更大的系统，把这个力的来源包括进来，这个系统的动量就守恒了。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1507984",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-cars",
+   "prompt": "如果你头朝下跳入水中，会比肚皮拍水到达更大的深度。请用能量守恒的概念解释这种深度上的差异。请用你在本章中学到的内容解释这种深度上的差异。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从能量的角度看，无论哪种方式，你入水时的动能都相同，水对你做功，直到这些能量耗尽。跳水时，水起初只接触你的双手和头部，因此需要很长的距离才能使你停下，你会潜得很深；肚皮拍水时，水一下子接触你的整个前身，在极短的距离内做同样多的功，使你在靠近水面处停下。从本章的角度看，无论哪种方式，你入水时的动量都相同，水必须从你身上取走全部动量，所以冲量 $\\kFnet\\kdt$ 在两种情形中相同。肚皮拍水使接触时间非常短，而冲量一定时，时间短意味着力大，这就是它会痛、你会立即停下的原因。跳水则把同样的冲量分散在长得多的时间里，力很小，你会继续运动更久，因而向下走得更远。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1640067",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "如果有外力作用在系统上，系统的动量还可能守恒吗？如果可能，需要什么条件？如果不可能，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "可以，但只在两种条件下。第一，外力之和可以为零，因为必须是合外力为零，而不是每一个力各自为零。在水平轨道上滚动的小车受到重力和轨道的法向力，由于这两个力抵消，它的动量保持不变。第二，动量可以沿一个方向守恒而沿另一个方向改变，因为空间的三个方向是相互独立的。抛体在水平方向不受力，保持其水平动量，即使重力在不断带走它的竖直动量。这两个条件都不满足时，答案是否定的，因为用动量表述的牛顿第二定律说明，合外力会使总动量以 $\\kFnet = \\Delta \\kptot / \\kdt$ 的速率改变。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1183915",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "directions",
+   "prompt": "一个系统的动量可以在一个方向上守恒，而在另一个方向上不守恒。这两个方向之间的夹角是多少？举一个例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "夹角是九十度，因为只有沿相互垂直的方向，运动才是独立的，因此可以分别处理。抛体就是一个例子。在空气阻力可以忽略时，它水平方向不受力，所以其水平动量在整个飞行过程中保持不变，而它的重力竖直向下，使其竖直动量越来越负。另一个例子是在水平溜冰场上滑行、被从侧面击打的冰球：沿击打方向的动量改变，与之成直角方向的动量则不变。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1251869",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "recoil",
+   "prompt": "请用动量和牛顿定律解释，汽车所受的空气阻力在一定程度上是由于它沿运动方向推动空气。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "汽车前方的空气是静止的，汽车必须把它推开，所以汽车对这部分空气施加一个向前的力，并使它获得原来没有的向前的动量。根据牛顿第三定律，空气对汽车施加一个大小相等、方向向后的力，这个向后的力就是空气阻力的一部分。用动量来写，汽车每秒使空气获得的动量变化为 $\\Delta \\kp$，产生它所需的力为 $\\kFnet = \\Delta \\kp / \\kdt$；同样大小的力反过来作用在汽车上使它减速，这就是发动机必须持续工作才能保持匀速的原因。汽车和空气一起构成孤立系统，其总动量不变：汽车失去的动量就是空气得到的动量。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1700412",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "当系统的动量为零时，系统中的物体可以具有动量吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "可以。系统的动量是其中各物体动量之和，而动量是矢量，所以大小相等、方向相反的两个动量相加为零。两个在水平冰面上互相推开的滑冰者就是最简单的例子：每个人都带着自己真实的动量离开，而由于两个动量大小相等、方向相反，总动量为零，这与他们推开之前一样。封闭房间里的空气分子也是如此：每个分子都在运动，而空气整体仍留在原处。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1222066",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "只要系统的动量守恒，它的总能量就一定守恒吗？请解释为什么是或为什么不是。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不一定，这两者是各自独立的陈述，谁也不蕴含谁。当系统所受合外力为零时动量守恒，而这并不能说明系统内部的能量去了哪里。两团相遇并黏在一起的黏土构成孤立系统，所以碰撞后的总动量等于碰撞前的总动量，但它们的大部分动能已经变成了黏土的形变和发热。孤立系统的总能量也是守恒的，只要把每一种形式都算进去，包括热；能改变的只是动能本身。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1511802",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "火车车厢是通过相互碰撞而连接在一起的。设两节满载的火车车厢相向运动，第一节的质量为 150,000 kg、速度为 0.300 m/s，第二节的质量为 110,000 kg、速度为 $-0.120$ m/s。（负号表示运动方向。）它们的末速度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.122,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "两节车厢连接在一起，所以它们一起运动。写出碰撞前的总动量，令它等于总质量乘以碰撞后的那一个速度，并注意第二节车厢速度的符号。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1759138",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-cars",
+   "prompt": "考虑下面的问题：一辆以 10 m/s 行驶的汽车撞上一棵树，在 0.26 s 内停下。计算安全带对车内乘客施加多大的力才能使他停下来。乘客的质量为 70 kg。如果载着这位 70 kg 乘客的汽车撞上的是一辆质量相等、方向相反、速率相同的汽车，这个问题的答案会不同吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "与一辆相同的汽车相撞时，动量守恒。碰撞后两辆车的 $v_{\\text{f}} = 0$。动量的变化与撞树时相同。然而，由于时间未知，作用在身体上的力无法确定。有衬垫的缓冲挡会减小对身体的伤害性的力。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1516164",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "一只 1.80 kg 的猎鹰在半空中从后面抓住一只 0.650 kg 的鸽子。如果猎鹰的初速度是 28.0 m/s，鸽子的速度是同方向的 7.00 m/s，那么撞击后它们的速度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 22.4,
+    "unit": "m/s",
+    "generated_by": "source",
+    "solution": "22.4 m/s，方向与原来的运动方向相同",
+    "hint": "猎鹰抓住了鸽子，所以二者以同一个速度运动。把抓住之前的两个动量相加，再除以总质量。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "isolated-system"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "system-of-interest",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "isolated-system"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "calculate-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "isolated-system",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "calculate-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "isolated-system",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "isolated-system",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "isolated-system",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "isolated-system"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "isolated-system"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "momentum-conserved-by-direction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "momentum-conserved-by-direction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "independence-of-perpendicular-motions",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "recoil"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "change-in-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "linear-momentum"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "isolated-system",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-force-from-impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-momentum",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "car-1",
+   "label": "1 号车，即后车",
+   "figures": [
+    "sim-collision"
+   ]
+  },
+  {
+   "id": "car-2",
+   "label": "2 号车，即前车",
+   "figures": [
+    "sim-collision"
+   ]
+  },
+  {
+   "id": "cart-1",
+   "label": "第一辆小车",
+   "figures": [
+    "sim-center-of-mass"
+   ]
+  },
+  {
+   "id": "cart-2",
+   "label": "第二辆小车",
+   "figures": [
+    "sim-center-of-mass"
+   ]
+  },
+  {
+   "id": "probe",
+   "label": "空间探测器及其两半",
+   "figures": [
+    "sim-probe"
+   ]
+  },
+  {
+   "id": "target",
+   "label": "靶粒子",
+   "figures": [
+    "sim-scatter"
+   ]
+  },
+  {
+   "id": "cart-a",
+   "label": "小车 A",
+   "figures": [
+    "fig-cart-graph"
+   ]
+  },
+  {
+   "id": "cart-b",
+   "label": "小车 B",
+   "figures": [
+    "fig-cart-graph"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "two-car-momentum",
+   "what": "两辆相撞汽车的动量守恒",
+   "source": "《大学物理（第2版）》，8.3 动量守恒",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "1 号车所受的唯一不平衡的力，是碰撞的力 $\\kFone$，由 2 号车施加。",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kdp} = \\mk{F}{\\kFnet}\\mk{t}{\\kdt}",
+      "src": "8.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\Delta\\kpone} = \\mk{F}{\\kFone}\\mk{t}{\\kdt}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "8.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "2 号车所受的唯一不平衡的力，是碰撞的力 $\\kFtwo$，由 1 号车施加。",
+       "src": "8.3"
+      },
+      {
+       "text": "在普通速度下，碰撞对两辆车持续的时间 $\\kdt$ 相同。",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kdp} = \\mk{F}{\\kFnet}\\mk{t}{\\kdt}",
+      "src": "8.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\Delta\\kptwo} = \\mk{F}{\\kFtwo}\\mk{t}{\\kdt}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "8.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kFtwo = -\\kFone",
+       "src": "4.4"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "撇号表示碰撞后的动量。",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p2}{\\Delta\\kptwo} = \\mk{F}{\\kFtwo}\\mk{t}{\\kdt}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p2}{\\Delta\\kptwo} = \\mk{F}{-\\kFone}\\mk{t}{\\kdt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{p2}{\\Delta\\kptwo} = \\mk{F}{-\\kFone}\\mk{t}{\\kdt} = \\mk{p1}{-\\Delta\\kpone}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p1}{\\Delta\\kpone} + \\mk{p2}{\\Delta\\kptwo} = \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p1}{\\kpone} + \\mk{p2}{\\kptwo} = \\mk{z}{\\text{常量}}",
+       "uses": [],
+       "cap": "两个变化之和为零，所以两个动量之和不变。"
+      },
+      {
+       "tex": "\\mk{p1}{\\kpone} + \\mk{p2}{\\kptwo} = \\mk{z}{\\kponeprime + \\kptwoprime}",
+       "uses": [
+        3
+       ],
+       "cap": "总量为常量，意味着碰撞后与碰撞前相同。"
+      }
+     ],
+     "src": "8.3"
+    }
+   ]
+  }
+ ]
+}

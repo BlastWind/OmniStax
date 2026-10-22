@@ -1,0 +1,82 @@
+<section id="two-dimensional">
+<h2>二维碰撞与质点</h2>
+<p class="cite-target">在前两节中，我们只考虑了一维碰撞；在这类碰撞中，入射和出射的<span data-concept="velocity">速度</span>都沿同一条直线。但是，像台球之间那样，物体向侧面散射的碰撞又如何呢？这些是二维碰撞，我们将会看到，对它们的研究是对前面已给出的一维分析的延伸。所采用的方法（与讨论二维<span data-concept="kinematics">运动学</span>和<span data-concept="dynamics">动力学</span>时的方法类似）是选取一个方便的坐标系，并把<span data-concept="motion">运动</span>沿相互垂直的坐标轴分解为<span data-concept="vector-components">分量</span>。分解<span data-concept="motion">运动</span>后，得到一对需要同时求解的一维问题。</p>
+<p>二维碰撞带来的一个复杂之处在于，物体在碰撞之前或之后可能会转动。例如，两名滑冰者在相互擦肩而过时挽住手臂，他们就会转起圈来。我们要到后面才考虑这种转动，所以现在先作这样的安排，使转动不可能发生。为了避免转动，我们只考虑<strong><span data-concept="point-mass">质点</span></strong>的散射——也就是不能转动或自旋的、无结构的粒子。</p>
+<p>我们先假设 $\kFnet = 0$，使得动量 $\kp$ 守恒。最简单的碰撞是其中一个粒子起初静止的碰撞。（见图 8.10。）坐标系的最佳选择是让一条坐标轴平行于<span data-ref="object-1">入射粒子</span>的<span data-type="velocity"><span data-concept="velocity">速度</span></span>，如图 8.10 所示。因为动量守恒，所以沿 $x$ 轴和 $y$ 轴的<span data-type="momentum">动量<span data-concept="vector-components">分量</span></span> $(\kpx\ \text{和}\ \kpy)$ 也将守恒，但在所选的坐标系中，$\kpy$ 起初为零，而 $\kpx$ 就是<span data-ref="object-1">入射粒子</span>的<span data-type="momentum">动量</span>。这两点都使分析得到简化。（即使有了<span data-concept="point-mass">质点</span>、一个粒子起初静止以及方便的坐标系这些简化假设，我们仍然能从对二维碰撞的分析中获得对自然的新认识。）</p>
+<figure class="sim" id="sim-scatter" data-figure="8.10" data-original="/media/ch08/Figure_09_06_02a.jpg" data-original-width="420" data-original-caption="一次二维碰撞，所选坐标系使 m_2 起初静止，且 v_1 平行于 x 轴。这个坐标系有时称为实验室坐标系，因为许多散射实验中的靶在实验室里是静止的，粒子从靶上被散射出去，借以确定组成靶的粒子以及它们是如何结合在一起的。这些粒子可能无法被直接观察到，但可以观察到它们的初速度和末速度。">
+  <div class="sim-head"><span class="eyebrow">Figure 8.10</span><span><span data-type="mass">质量</span>为 $\kmone$ 的<span data-ref="object-1">物体</span>沿 $x$ 轴滑入，撞上静止的、<span data-type="mass">质量</span>为 $\kmtwo$ 的<span data-ref="object-2">物体</span>，<span data-ref="object-1 object-2">二者</span>离开碰撞时，分别在该轴上方成<span data-type="angle">角</span> $\kthetaone$、在该轴下方成 $\kthetatwo$。<span data-ref="object-1 object-2">每个物体</span>的<span data-type="momentum">动量</span>都画成一个箭头，并标出它沿两条坐标轴的<span data-type="momentum">分量</span>，下方的条形把<span data-type="momentum">这些分量</span>加起来。设定<span data-type="angle">这两个角</span>，观察动量守恒所要求的<span data-type="velocity">两个末速率</span>，并注意到，因为一开始沿 $y$ 方向没有动量，所以沿 $y$ 方向的<span data-type="momentum">分量</span>总是大小相等、方向相反。</span></div>
+</figure>
+</section>
+
+<section id="x-axis">
+<h2>沿 <em>x</em> 轴的动量守恒</h2>
+<p class="cite-target">下标表示粒子和坐标轴，撇号表示碰撞之后的情形，$\kthetaone$ 和 $\kthetatwo$ 如图 8.10 所示。</p>
+<figure class="dv" id="drv-momentum-along-x"></figure>
+</section>
+
+<section id="y-axis">
+<h2>沿 <em>y</em> 轴的动量守恒</h2>
+<p class="cite-target">沿 $y$ 轴，$v_{1y}$ 为零，因为<span data-ref="object-1">粒子 1</span> 起初沿 $x$ 轴运动。因为<span data-ref="object-2">粒子 2</span> 起初静止，所以 $v_{2y}$ 也为零。</p>
+<figure class="dv" id="drv-momentum-along-y"></figure>
+</section>
+
+<section id="unseen">
+<h2>求你看不见的物体的速度</h2>
+<p class="cite-target">沿 <em>$x$</em> 轴和 $y$ 轴的动量守恒方程，在分析其中一个粒子原先静止的粒子二维碰撞（实验室里的常见情形）时非常有用。但是两个方程只能用来求出两个未知量，所以当碰撞实验被用来在亚原子层次上探索自然时，可能还需要其他数据。</p>
+<div class="example" id="ex-unseen">
+<h3>例题 8.7 · 由另一物体的散射求看不见的物体的末速度</h3>
+<p>假设进行如下实验。让<span data-ref="object-1">一个 0.250 kg 的物体</span> $(\kmone)$ 在无摩擦的表面上滑进<span data-ref="dark-room">一间暗室</span>，在那里<span data-ref="object-1">它</span>撞上<span data-ref="object-2">一个起初静止、<span data-concept="mass">质量</span>为 0.400 kg 的物体</span> $(\kmtwo)$。<span data-ref="object-1">这个 0.250 kg 的物体</span>从<span data-ref="dark-room">暗室</span>中出来时，与<span data-ref="object-1">其</span>入射<span data-concept="vector-direction">方向</span>所成的<span data-type="angle">角</span>为 $45.0^\circ$。</p>
+<p><span data-ref="object-1">0.250 kg 的物体</span>的<span data-type="velocity">速率</span>起初为 2.00 m/s，碰撞后为 1.50 m/s。计算碰撞后 <span data-ref="object-2">0.400 kg 的物体</span>的<span data-type="velocity"><span data-concept="velocity">速度</span>的<span data-concept="vector-magnitude">大小</span>和<span data-concept="vector-direction">方向</span></span> $(\kvtwoprime$ 和 $\kthetatwo)$。</p>
+<h4>思路</h4>
+<p>因为表面无摩擦，所以动量守恒。图 8.11 所示的坐标系，是 $\kmtwo$ 起初静止、<span data-type="velocity">初<span data-concept="velocity">速度</span></span>平行于 $x$ 轴的坐标系，因此可以应用沿 $x$ 轴和 <em>$y$</em> 轴的动量守恒。</p>
+<p>在这些方程中，除了 $\kvtwoprime$ 和 $\kthetatwo$ 之外，一切都是已知的，而它们恰恰就是我们想要求的量。我们能求出两个未知量，因为我们有两个独立的方程：描述 $x$ 方向和 $y$ 方向动量守恒的方程。</p>
+<h4>解</h4>
+<p>把 $\kmone\kvone = \kmone\kvoneprime\cos\kthetaone + \kmtwo\kvtwoprime\cos\kthetatwo$ 对 $\kvtwoprime\cos\kthetatwo$ 求解，把 $0 = \kmone\kvoneprime\sin\kthetaone + \kmtwo\kvtwoprime\sin\kthetatwo$ 对 $\kvtwoprime\sin\kthetatwo$ 求解，再取二者之比，就得到一个以 $\kthetatwo$ 为唯一未知量的方程。应用恒等式 $(\tan\ktheta = \frac{\sin\ktheta}{\cos\ktheta})$，我们得到：</p>
+$$\tan\kthetatwo = \frac{\kvoneprime\sin\kthetaone}{\kvoneprime\cos\kthetaone - \kvone}.$$
+<p>把已知数值代入上一个方程，得到</p>
+$$\tan\kthetatwo = \frac{(1.50\ \text{m/s})(0.7071)}{(1.50\ \text{m/s})(0.7071) - 2.00\ \text{m/s}} = -1.129.$$
+<p>于是，</p>
+$$\kthetatwo = \tan^{-1}(-1.129) = 311.5^\circ \approx 312^\circ.$$
+<p>规定<span data-concept="angle">角</span>以逆时针<span data-concept="vector-direction">方向</span>为正，所以<span data-type="angle">这个角</span>表明 $\kmtwo$ 如预期的那样向图 8.11 中的右侧散射（这个<span data-concept="angle">角</span>在第四象限）。现在，关于 $x$ 轴或 $y$ 轴的任一个方程都可以用来求解 $\kvtwoprime$，但后一个方程最容易，因为它的项数较少。</p>
+$$\kvtwoprime = -\frac{\kmone}{\kmtwo}\kvoneprime\frac{\sin\kthetaone}{\sin\kthetatwo}$$
+<p>把已知数值代入这个方程，得到</p>
+$$\kvtwoprime = -\left(\frac{0.250\ \text{kg}}{0.400\ \text{kg}}\right)(1.50\ \text{m/s})\left(\frac{0.7071}{-0.7485}\right).$$
+<p>于是，</p>
+$$\kvtwoprime = 0.886\ \text{m/s}.$$
+<h4>讨论</h4>
+<p>计算<span data-ref="object-1 object-2">这个两物体<span data-concept="system">系统</span></span>在碰撞前后的<span data-type="energy"><span data-concept="internal-kinetic-energy">内动能</span></span>很有启发性。（这个计算留作章末习题。）如果你做这个计算，就会发现碰撞后<span data-type="energy"><span data-concept="internal-kinetic-energy">内动能</span></span>变小了，所以这次碰撞是非弹性的。这类结果会让物理学家想要进一步探究这个<span data-concept="system">系统</span>。</p>
+</div>
+<figure class="sim" id="sim-dark-room" data-figure="8.11" data-original="/media/ch08/Figure_09_06_03a-9fe0.jpg" data-original-width="300" data-original-caption="例题 8.7 探讨了发生在暗室中的一次碰撞。入射物体 m_1 被一个起初静止的物体散射。只知道这个静止物体的质量 m_2。通过测量 m_1 从暗室中出来时的角度和速率，就能算出这个起初静止的物体在碰撞后的速度的大小和方向。">
+  <div class="sim-head"><span class="eyebrow">Figure 8.11</span><span><span data-ref="object-1">一个 0.250 kg 的物体</span>以 $\kvone$ 滑入<span data-ref="dark-room">一间暗室</span>，撞上里面<span data-ref="object-2">某个静止的东西</span>，然后以<span data-type="angle">角</span> $\kthetaone$、<span data-type="velocity">速率</span> $\kvoneprime$ 出来。这两个测量值，加上<span data-ref="object-2">这个看不见的物体</span>的<span data-type="mass">质量</span>，就是这两个守恒方程所需要的全部。由它们算出的、<span data-ref="object-2">看不见的物体</span>所具有的<span data-type="velocity">速度</span>，以虚线画在<span data-ref="dark-room">暗室</span>里，在那里你本来是看不到<span data-ref="object-2">它</span>的。滑块从例题 8.7 的数值开始，由此得到 $311.5^\circ$ 和 0.886 m/s，而且<span data-type="energy">内动能</span>减小，所以这次碰撞是非弹性的。</span></div>
+</figure>
+</section>
+
+<section id="equal-masses">
+<h2>两个等质量物体的弹性碰撞</h2>
+<p class="cite-target">当相互碰撞的两个物体<span data-concept="mass">质量</span>相等且碰撞是弹性的时，会出现一些有趣的情形。碰撞的台球几乎就是这种情形，而某些亚原子粒子的碰撞则恰好就是这种情形。因此，我们可以通过想一想台球（或称桌球），对亚原子粒子的碰撞形成一幅心理图像。（<span data-concept="mass">质量</span>和<span data-concept="angle">角</span>请参见图 8.10。）首先，<span data-concept="elastic-collision">弹性碰撞</span>保持<span data-concept="internal-kinetic-energy">内动能</span>守恒。我们仍然假设<span data-ref="object-2">物体 2</span> $(\kmtwo)$ 起初静止。那么，<span data-ref="object-1 object-2">两个<span data-concept="mass">质量</span>相等的物体</span>在碰撞前后的<span data-type="energy"><span data-concept="internal-kinetic-energy">内动能</span></span>为</p>
+$$\tfrac{1}{2}\km{\kvone}^2 = \tfrac{1}{2}\km{\kvoneprime}^2 + \tfrac{1}{2}\km{\kvtwoprime}^2.$$
+<p>因为<span data-type="mass">两个<span data-concept="mass">质量</span></span>相等，所以 $\kmone = \kmtwo = \km$。对 $x$ 方向和 <em>$y$</em> 方向的动量守恒作代数运算（留给读者）可以证明</p>
+$$\tfrac{1}{2}\km{\kvone}^2 = \tfrac{1}{2}\km{\kvoneprime}^2 + \tfrac{1}{2}\km{\kvtwoprime}^2 + \km\kvoneprime\kvtwoprime\cos(\kthetaone - \kthetatwo).$$
+<p>（记住，这里 $\kthetatwo$ 为负。）</p>
+<figure class="dv" id="drv-equal-mass-separation"></figure>
+</section>
+
+<section id="separation">
+<h2>两球为何成 90° 角分离</h2>
+<p class="cite-target">前面这两个方程只有在下式成立时才能同时成立：</p>
+$$\km\kvoneprime\kvtwoprime\cos(\kthetaone - \kthetatwo) = 0.$$
+<p>这一项为零有三种方式。它们是</p>
+<ul>
+<li>$\kvoneprime = 0$：对头碰撞；<span data-ref="object-1">入射球</span>停止</li>
+<li>$\kvtwoprime = 0$：没有碰撞；<span data-ref="object-1">入射球</span>不受影响地继续前进</li>
+<li>$\cos(\kthetaone - \kthetatwo) = 0$：碰撞后，<span data-type="angle">分离角</span> $(\kthetaone - \kthetatwo)$ 为 $90^\circ$</li>
+</ul>
+<p>这三种方式在台球和桌球中都是常见的情形，不过我们大多数人都想避免第二种。如果你打桌球打得足够多，就会注意到，碰撞后两球之间的<span data-concept="angle">角</span>非常接近 $90^\circ$，不过如果给球施加了很大的旋转，它就会偏离这个值。（很大的旋转会带入额外的<span data-concept="energy">能量</span>和一个叫作<em><span data-concept="angular-momentum">角动量</span></em>的量，而它也必须守恒。）台球的散射是弹性的这一假设是合理的，依据是它所给出的三个结果都是正确的。这一假设还意味着，在很好的<span data-concept="approximation-def">近似</span>下，台球和桌球中的两球<span data-concept="system">系统</span>的动量是守恒的。下面的习题探讨二维碰撞的这些特征和其他特征。</p>
+<figure class="sim" id="sim-billiards">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="object-1">一个母球</span>撞上<span data-ref="object-2">一个质量相同的静止球</span>，<span data-ref="object-1 object-2">二者</span>以<span data-type="angle">你设定的角</span>滚开。仅凭动量守恒就能确定<span data-type="velocity">两个速率</span>，所以碰撞后的<span data-type="energy">内动能</span>也随之确定，下方的图线会随着你张开和合拢<span data-type="angle">分离角</span>而描出它。只有在 $90^\circ$ 时，它才回到碰撞前的值，这就是等质量物体的弹性碰撞不可能以其他<span data-concept="angle">角</span>分离的原因。</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">与核物理和粒子物理的联系</div>
+<p>二维碰撞实验揭示了我们对亚原子粒子所了解的许多内容，我们将在“核物理的医学应用”和“粒子物理学”中看到这一点。例如，欧内斯特·卢瑟福就是通过这类实验发现了<span data-concept="nucleus">原子核</span>的本质。</p>
+</div>
+</section>

@@ -1,0 +1,914 @@
+{
+ "id": "8.6",
+ "module": "m42165",
+ "chapter": "8",
+ "title": "二维质点碰撞",
+ "short": "二维碰撞",
+ "lead": "台球很少正面相撞，当它们向侧面散射时，碰撞就是二维的。本节沿两条坐标轴分别写出动量守恒，用它在暗室中求出<span data-ref=\"object-2\">一个无人看见的物体</span>，然后转向台球桌，问两个相等的球能以什么<span data-concept=\"angle\">角</span>分开。",
+ "objectives": [
+  "把二维碰撞作为一维分析的延伸来讨论。",
+  "定义质点。",
+  "推导沿 x 轴和 y 轴的动量守恒表达式。",
+  "描述两个等质量物体的弹性碰撞。",
+  "已知初速度和散射角，确定末速度的大小和方向。"
+ ],
+ "summary_html": "<ul><li>处理二维碰撞的方法是选取一个方便的坐标系，并把运动沿相互垂直的坐标轴分解为分量。选取 $x$ 轴平行于入射粒子<span data-concept=\"velocity\">速度</span>的坐标系。</li><li><span data-concept=\"mass\">质量</span> 2 起初静止的质点二维碰撞，沿<span data-concept=\"mass\">质量</span> 1 的初始方向（$x$ 轴）动量守恒，表示为 $m_1\\kvone = m_1\\kvoneprime\\cos\\theta_1 + m_2\\kvtwoprime\\cos\\theta_2$；沿垂直于初始方向的方向（$y$ 轴）动量守恒，表示为 $0 = m_1{v'}_{1y} + m_2{v'}_{2y}$。</li><li>两个<span data-concept=\"mass\">质量</span>相等的物体，碰撞前后的内动能为 $\\tfrac{1}{2}m{\\kvone}^2 = \\tfrac{1}{2}m{\\kvoneprime}^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)$。</li><li>质点是不能自旋的无结构粒子。</li></ul>",
+ "notes": "习题 2、4、6 和 8 在书后答案中没有给出，因而略去；对“核物理的医学应用”和“粒子物理学”的交叉引用保留为纯文本，因为这些章节尚未制作。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6 和 8 没有给出答案，因而略去。第二道 AP 题要求求出两辆车碰撞前后的质心速度，它同样没有答案，因此作为开放题保留，并附有 AI 撰写的建议思路，已标明；本节唯一的一道思考题也是如此。两道 AP 题都取决于系统的质心速度，书中在“匀速圆周运动与引力”中定义了它，并在“动量守恒”中再次用到它，所以两道题除了本节自己的概念之外，都标注了这个概念；习题引用的是它所在小节的某一段文字，因此两道题在这里都引用开头一段，而它们的思路则指出读者需要的 8.3 中的那一句。没有从本章的其他小节拿来任何内容，本节的内容也没有留给其他小节，因为这里的每一道题都需要平面内的碰撞，而这只有本节才引入。",
+ "figures": [
+  {
+   "id": "sim-scatter",
+   "kind": "sim",
+   "number": "8.10",
+   "originals": [
+    "/media/ch08/Figure_09_06_02a.jpg"
+   ],
+   "original_caption": "一次二维碰撞，所选坐标系使 m_2 起初静止，且 v_1 平行于 x 轴。这个坐标系有时称为实验室坐标系，因为许多散射实验中的靶在实验室里是静止的，粒子从靶上被散射出去，借以确定组成靶的粒子以及它们是如何结合在一起的。这些粒子可能无法被直接观察到，但可以观察到它们的初速度和末速度。",
+   "widths": [
+    420
+   ],
+   "draws": [
+    "momentum",
+    "velocity",
+    "energy",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "y name off the headline, energy lines inside the stage, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dark-room",
+   "kind": "sim",
+   "number": "8.11",
+   "originals": [
+    "/media/ch08/Figure_09_06_03a-9fe0.jpg"
+   ],
+   "original_caption": "例题 8.7 探讨了发生在暗室中的一次碰撞。入射物体 m_1 被一个起初静止的物体散射。只知道这个静止物体的质量 m_2。通过测量 m_1 从暗室中出来时的角度和速率，就能算出这个起初静止的物体在碰撞后的速度的大小和方向。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one line through the macros; caption names the defaults"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-billiards",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "energy",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label off the ball, level named clear of curve, readout on one line, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "two-dimensional",
+   "concept": "two-dimensional-collision",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-dimensional",
+   "concept": "point-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-dimensional",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "two-dimensional",
+   "concept": "isolated-system",
+   "verb": "uses"
+  },
+  {
+   "span": "two-dimensional",
+   "concept": "vector-components",
+   "verb": "uses"
+  },
+  {
+   "span": "two-dimensional",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "x-axis",
+   "concept": "momentum-conservation-x",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-axis",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "x-axis",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "x-axis",
+   "concept": "two-dimensional-collision",
+   "verb": "reinforces"
+  },
+  {
+   "span": "y-axis",
+   "concept": "momentum-conservation-y",
+   "verb": "introduces"
+  },
+  {
+   "span": "y-axis",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "y-axis",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "unseen",
+   "concept": "scattering-to-find-unseen-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "unseen",
+   "concept": "momentum-conservation-x",
+   "verb": "uses"
+  },
+  {
+   "span": "unseen",
+   "concept": "momentum-conservation-y",
+   "verb": "uses"
+  },
+  {
+   "span": "unseen",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "unseen",
+   "concept": "internal-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "unseen",
+   "concept": "inelastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "equal-masses",
+   "concept": "equal-mass-elastic-2d",
+   "verb": "introduces"
+  },
+  {
+   "span": "equal-masses",
+   "concept": "elastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "equal-masses",
+   "concept": "internal-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "equal-masses",
+   "concept": "momentum-conservation-x",
+   "verb": "reinforces"
+  },
+  {
+   "span": "equal-masses",
+   "concept": "momentum-conservation-y",
+   "verb": "reinforces"
+  },
+  {
+   "span": "separation",
+   "concept": "ninety-degree-separation",
+   "verb": "introduces"
+  },
+  {
+   "span": "separation",
+   "concept": "equal-mass-elastic-2d",
+   "verb": "reinforces"
+  },
+  {
+   "span": "separation",
+   "concept": "elastic-collision",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2039335",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-dimensional",
+   "prompt": "两辆质量相等的汽车驶近一个十字路口。汽车 A 以 45 m/s 的速率向东行驶。汽车 B 以 35 m/s 的速率向南行驶。它们发生非弹性碰撞，碰后黏在一起，作为一个物体运动。关于这个系统的质心速度，下列哪种说法是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "碰撞后质心速度将因能量损失而减小（但不会降为零）。",
+     "碰撞后质心速度保持不变，因为动量守恒。",
+     "质心速度将降为零，因为两个物体黏在一起。",
+     "质心速度的大小保持不变，但速度的方向会改变。"
+    ],
+    "correct": 1,
+    "hint": "动量守恒指出，系统的总动量就是其质心的动量。两辆车相互施加的力对系统而言是内力，所以总动量不变，总质量也不变。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2218337",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-dimensional",
+   "prompt": "汽车 A 的质量为 2000 kg，以 38 m/s 的速度向东驶近一个十字路口。汽车 B 的质量为 3500 kg，以 53 m/s 的速度驶近该路口，方向为东偏北 $63^\\circ$。两车相撞，碰后黏在一起。碰撞会使质心速度改变吗？请说明为什么会或为什么不会。计算碰撞前后的质心速度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "质心速度不变；碰撞前后都是 42 m/s，方向东偏北 $46^\\circ$。质心的速度等于总动量除以总质量。两车之间的力是内力，碰撞期间合外力可以忽略，总质量仍为 5500 kg，所以碰撞后质心速度相同。取 $x$ 轴向东，$y$ 轴向北。沿 $x$ 方向，总动量为 $m_A v_A + m_B v_B \\cos 63^\\circ = (2000\\ \\text{kg})(38\\ \\text{m/s}) + (3500\\ \\text{kg})(53\\ \\text{m/s})(0.454) = 1.60 \\times 10^5\\ \\text{kg}\\cdot\\text{m/s}$。沿 $y$ 方向，总动量为 $m_B v_B \\sin 63^\\circ = (3500\\ \\text{kg})(53\\ \\text{m/s})(0.891) = 1.65 \\times 10^5\\ \\text{kg}\\cdot\\text{m/s}$。除以 5500 kg 得 $v_x = 29.1\\ \\text{m/s}$ 和 $v_y = 30.1\\ \\text{m/s}$，所以 $v = \\sqrt{{v_x}^2 + {v_y}^2} = 41.9\\ \\text{m/s}$，$\\theta = \\tan^{-1}(v_y / v_x) = 45.9^\\circ$，东偏北。碰撞后，黏在一起的两辆车作为一个 5500 kg 的物体，以恰好这一速度一起运动。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2093269",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-dimensional",
+   "figure": {
+    "src": "/media/ch08/Figure_09_06_05a.jpg",
+    "alt": "一个球 m 一水平向右运动，速率为 v 一。它将与一个静止的、标有大写 M 二的正方形相撞，该正方形旋转了约四十五度。撞击点在正方形的一个面上，位于正方形中心上方距离 b 处。碰撞后，球被画成以速率 v 一撇、沿水平线上方成 θ 一 的角度飞出。正方形基本保持静止（v 二撇 约等于零）。",
+    "caption": "一个小物体接近并将与一个质量大得多的立方体碰撞，碰撞后它的速度方向为 θ₁。小物体可能被散射的角度，由它所撞击的物体的形状和碰撞参数 b 决定。"
+   },
+   "prompt": "下图显示了一个静止的立方体和一个朝它运动的小物体。（a）描述小物体与立方体发生弹性碰撞后可能飞出的方向（角 $\\theta_1$）。$\\theta_1$ 如何依赖于 $b$，即所谓的碰撞参数？忽略碰撞后转动可能带来的任何影响，并假定立方体的质量比小物体大得多。（b）如果小物体改为与一个质量很大的球体碰撞，回答同样的问题。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）立方体的质量比小物体大得多，它几乎不动，所以 ${v'}_2 \\approx 0$，这次碰撞非常接近于从固定平面上的反弹。在平面上的弹性反弹会使垂直于该面的速度分量反向，而保持沿该面的分量不变，所以物体离开时与该面所成的角和它到达时相同。仅凭该面的倾斜程度就决定了 $\\theta_1$。改变碰撞参数 $b$ 只是让撞击点沿该面滑动，并不使该面转动，所以只要物体撞在同一个面上，$\\theta_1$ 就不依赖于 $b$。$b$ 唯一决定的是物体撞到哪一个面，而相邻的下一个面会给出非常不同的 $\\theta_1$。（b）球体表面的每一点都有不同的法线。撞击点处的法线从球心出发、穿过该点，并且随着 $b$ 的增大而连续转动，所以 $\\theta_1$ 现在随 $b$ 平滑变化。在 $b = 0$ 时的正面撞击会把物体直接弹回，而在 $b$ 接近球的半径时的擦边撞击几乎不使物体偏转。所以，小物体的散射能告诉你它所撞击的物体的形状，就像在亚原子粒子的实验中那样。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1596936",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation",
+   "prompt": "两个相同的冰球在气垫冰球桌上相撞。其中一个冰球起初静止。（a）如果入射冰球的速率为 6.00 m/s，并散射到 $30.0^\\circ$ 的角度，第二个冰球的速度（大小和方向）是多少？（你可以使用这一结果：$\\theta_1 - \\theta_2 = 90^\\circ$，它适用于质量相同的物体的弹性碰撞。）（b）确认这次碰撞是弹性的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) speed of the second puck",
+      "value": 3.0,
+      "unit": "m/s",
+      "hint": "两个冰球质量相同，所以分离角为 $90^\\circ$，第二个冰球以 $\\theta_2 = 30.0^\\circ - 90^\\circ$ 离开。然后，沿 $y$ 轴的动量守恒把两个末速率联系起来。"
+     },
+     {
+      "part": "(a) direction below the x-axis",
+      "value": 60.0,
+      "unit": "°"
+     }
+    ],
+    "solution": "（a）3.00 m/s，在 $x$ 轴下方 $60^\\circ$。（b）求碰撞后第一个冰球的速率：$0 = m{v'}_1\\sin 30^\\circ - m{v'}_2\\sin 60^\\circ$，所以 ${v'}_1 = {v'}_2\\frac{\\sin 60^\\circ}{\\sin 30^\\circ} = 5.196\\ \\text{m/s}$。验证初动能与末动能之比等于 1：$\\text{KE} = \\tfrac{1}{2}m{v_1}^2 = 18m\\ \\text{J}$，而 $\\text{KE}' = \\tfrac{1}{2}m{{v'}_1}^2 + \\tfrac{1}{2}m{{v'}_2}^2 = 18m\\ \\text{J}$，所以 $\\text{KE}/\\text{KE}' = 1.00$。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1284914",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-axis",
+   "prompt": "一门质量为 3000 kg 的火炮被安装成只能沿水平方向反冲。（a）当它以 480 m/s 的速度、与水平方向成 $20.0^\\circ$ 的仰角发射一枚 15.0 kg 的炮弹时，计算它的反冲速度。（b）这门火炮的动能是多少？这部分能量在使其停止反冲的减震器中以热传递的方式耗散掉。（c）发射时传给火炮的动量的竖直分量怎么样了？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) recoil velocity of the cannon",
+      "value": -2.26,
+      "unit": "m/s",
+      "hint": "火炮只与炮弹动量的水平分量相平衡，因为底座把火炮固定在地面上，所以对炮弹使用 $m_1 v_1 \\cos\\theta$。"
+     },
+     {
+      "part": "(b) kinetic energy of the cannon",
+      "value": 7630.0,
+      "unit": "J",
+      "hint": "对 3000 kg 的火炮，在 $\\kKE = \\tfrac{1}{2}m v^2$ 中代入（a）问得到的反冲速率。"
+     }
+    ],
+    "solution": "（a）$-2.26\\ \\text{m/s}$。（b）$7.63 \\times 10^{3}\\ \\text{J}$。（c）地面将施加一个法向力，阻止火炮在竖直方向上反冲。竖直方向上的动量传给了地球。能量传给了地面，在火炮所在之处留下一个凹痕。经过长时间的连续炮击之后，火炮的瞄准会失准，因为地面上满是坑洼。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2722872",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unseen",
+   "prompt": "欧内斯特·卢瑟福（第一位获得诺贝尔化学奖的新西兰人）通过让氦-4 原子核 $({}^{4}\\text{He})$ 从金-197 原子核 $({}^{197}\\text{Au})$ 上散射，证明了原子核很小而且密度很大。入射氦原子核的能量为 $8.00 \\times 10^{-13}\\ \\text{J}$，氦原子核和金原子核的质量分别为 $6.68 \\times 10^{-27}\\ \\text{kg}$ 和 $3.29 \\times 10^{-25}\\ \\text{kg}$（注意它们的质量比为 4 比 197）。（a）如果在与金原子核的弹性碰撞中，氦原子核散射到 $120^\\circ$ 的角度，计算氦原子核的末速率和金原子核的末速度（大小和方向）。（b）氦原子核的末动能是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) speed of the gold nucleus",
+      "value": 536000.0,
+      "unit": "m/s",
+      "hint": "先由氦原子核的动能求出它的入射速率，再写出沿 $x$ 轴和 $y$ 轴的动量守恒方程，并像例题 8.7 那样解这一对方程，求出两个未知量。弹性碰撞给出你求氦原子核末速率所需的第三个方程。"
+     },
+     {
+      "part": "(a) direction of the gold nucleus",
+      "value": -29.5,
+      "unit": "°"
+     },
+     {
+      "part": "(b) final kinetic energy of the helium nucleus",
+      "value": 7.52e-13,
+      "unit": "J"
+     }
+    ],
+    "solution": "（a）$5.36 \\times 10^{5}\\ \\text{m/s}$，方向 $-29.5^\\circ$。（b）$7.52 \\times 10^{-13}\\ \\text{J}$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2680898",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equal-masses",
+   "prompt": "从动量守恒在 $x$ 方向和 $y$ 方向的方程 $m_1\\kvone = m_1\\kvoneprime\\cos\\theta_1 + m_2\\kvtwoprime\\cos\\theta_2$ 和 $0 = m_1\\kvoneprime\\sin\\theta_1 + m_2\\kvtwoprime\\sin\\theta_2$ 出发，并假定一个物体起初静止，证明：对于两个质量相等的物体的弹性碰撞，有 $\\tfrac{1}{2}m{\\kvone}^2 = \\tfrac{1}{2}m{\\kvoneprime}^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)$，正如正文中所讨论的那样。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "已知 $m_1 = m_2 \\equiv m$。于是，给定的方程变为 $\\kvone = \\kvone\\cos\\theta_1 + \\kvtwo\\cos\\theta_2$ 和 $0 = \\kvoneprime\\sin\\theta_1 + \\kvtwoprime\\sin\\theta_2$。把每个方程两边平方，得到 ${\\kvone}^2 = {\\kvoneprime}^2\\cos^2\\theta_1 + {\\kvtwoprime}^2\\cos^2\\theta_2 + 2\\kvoneprime\\kvtwoprime\\cos\\theta_1\\cos\\theta_2$ 和 $0 = {\\kvoneprime}^2\\sin^2\\theta_1 + {\\kvtwoprime}^2\\sin^2\\theta_2 + 2\\kvoneprime\\kvtwoprime\\sin\\theta_1\\sin\\theta_2$。把这两个方程相加并化简：${\\kvone}^2 = {\\kvoneprime}^2 + {\\kvtwoprime}^2 + 2\\kvoneprime\\kvtwoprime(\\cos\\theta_1\\cos\\theta_2 + \\sin\\theta_1\\sin\\theta_2)$，即 ${\\kvone}^2 = {\\kvoneprime}^2 + {\\kvtwoprime}^2 + 2\\kvoneprime\\kvtwoprime\\left(\\tfrac{1}{2}\\cos(\\theta_1 - \\theta_2) + \\tfrac{1}{2}\\cos(\\theta_1 + \\theta_2) + \\tfrac{1}{2}\\cos(\\theta_1 - \\theta_2) - \\tfrac{1}{2}\\cos(\\theta_1 + \\theta_2)\\right)$，于是 ${\\kvone}^2 = {\\kvoneprime}^2 + {\\kvtwoprime}^2 + 2\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)$。把整个方程乘以 $\\tfrac{1}{2}m$，就恢复出动能：$\\tfrac{1}{2}m{\\kvone}^2 = \\tfrac{1}{2}m{\\kvoneprime}^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "two-dimensional-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "perfectly-inelastic-collision",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "two-dimensional-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "momentum-conservation-x",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "momentum-conservation-y",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "two-dimensional-collision"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "ninety-degree-separation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "momentum-conservation-y"
+  },
+  {
+   "exercise": "p1",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "momentum-conservation-x"
+  },
+  {
+   "exercise": "p3",
+   "concept": "recoil"
+  },
+  {
+   "exercise": "p3",
+   "concept": "momentum-conserved-by-direction",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "scattering-to-find-unseen-object"
+  },
+  {
+   "exercise": "p5",
+   "concept": "momentum-conservation-x"
+  },
+  {
+   "exercise": "p5",
+   "concept": "momentum-conservation-y"
+  },
+  {
+   "exercise": "p5",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "equal-mass-elastic-2d"
+  },
+  {
+   "exercise": "p7",
+   "concept": "momentum-conservation-x"
+  },
+  {
+   "exercise": "p7",
+   "concept": "momentum-conservation-y"
+  }
+ ],
+ "referents": [
+  {
+   "id": "object-1",
+   "label": "物体 1，即入射物体：例题 8.7 中 0.250 kg 的物体、母球",
+   "figures": [
+    "sim-scatter",
+    "sim-dark-room",
+    "sim-billiards"
+   ]
+  },
+  {
+   "id": "object-2",
+   "label": "物体 2，即静止的物体：看不见的 0.400 kg 物体、被击的球",
+   "figures": [
+    "sim-scatter",
+    "sim-dark-room",
+    "sim-billiards"
+   ]
+  },
+  {
+   "id": "dark-room",
+   "label": "暗室",
+   "figures": [
+    "sim-dark-room"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "momentum-along-x",
+   "what": "沿 x 轴的动量守恒",
+   "source": "《大学物理（第2版）》，8.6 二维质点碰撞",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      },
+      {
+       "text": "粒子 2 起初静止。",
+       "src": "8.6"
+      },
+      {
+       "text": "粒子 1 起初沿 $x$ 轴运动。",
+       "src": "8.6"
+      },
+      {
+       "text": "速度沿 $x$ 轴的分量具有 $v\\cos\\ktheta$ 的形式。",
+       "src": "8.6, Figure 8.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kponex} + \\mk{b}{\\kptwox} = \\mk{c}{{p'}_{1x}} + \\mk{d}{{p'}_{2x}}",
+      "src": "8.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kmone v_{1x}} + \\mk{b}{\\kmtwo v_{2x}} = \\mk{c}{\\kmone {v'}_{1x}} + \\mk{d}{\\kmtwo {v'}_{2x}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone v_{1x}} = \\mk{c}{\\kmone {v'}_{1x}} + \\mk{d}{\\kmtwo {v'}_{2x}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone {v'}_{1x}} + \\mk{d}{\\kmtwo {v'}_{2x}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\cos\\kthetatwo}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "8.6"
+    }
+   ]
+  },
+  {
+   "id": "momentum-along-y",
+   "what": "沿 y 轴的动量守恒",
+   "source": "《大学物理（第2版）》，8.6 二维质点碰撞",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      },
+      {
+       "text": "粒子 1 起初沿 $x$ 轴运动。",
+       "src": "8.6"
+      },
+      {
+       "text": "粒子 2 起初静止。",
+       "src": "8.6"
+      },
+      {
+       "text": "速度沿 $y$ 轴的分量具有 $v\\sin\\ktheta$ 的形式。",
+       "src": "8.6, Figure 8.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kponey} + \\mk{b}{\\kptwoy} = \\mk{c}{{p'}_{1y}} + \\mk{d}{{p'}_{2y}}",
+      "src": "8.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kmone v_{1y}} + \\mk{b}{\\kmtwo v_{2y}} = \\mk{c}{\\kmone {v'}_{1y}} + \\mk{d}{\\kmtwo {v'}_{2y}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\kmone {v'}_{1y}} + \\mk{d}{\\kmtwo {v'}_{2y}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\kmone\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\sin\\kthetatwo}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "8.6"
+    }
+   ]
+  },
+  {
+   "id": "equal-mass-separation",
+   "what": "为什么等质量物体成 90° 角分离",
+   "source": "《大学物理（第2版）》，8.6 二维质点碰撞",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "两个质量相等，$\\kmone = \\kmtwo = \\km$。",
+       "src": "8.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\cos\\kthetatwo}",
+      "src": "8.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\km\\kvone} = \\mk{c}{\\km\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\km\\kvtwoprime\\cos\\kthetatwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kvone} = \\mk{c}{\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\kvtwoprime\\cos\\kthetatwo}",
+       "uses": []
+      }
+     ],
+     "src": "8.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "两个质量相等，$\\kmone = \\kmtwo = \\km$。",
+       "src": "8.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{0} = \\mk{c}{\\kmone\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\sin\\kthetatwo}",
+      "src": "8.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\km\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\km\\kvtwoprime\\sin\\kthetatwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\kvtwoprime\\sin\\kthetatwo}",
+       "uses": []
+      }
+     ],
+     "src": "8.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvone} = \\mk{p}{\\kvoneprime\\cos\\kthetaone} + \\mk{q}{\\kvtwoprime\\cos\\kthetatwo}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{cx}{(\\kvoneprime\\cos\\kthetaone + \\kvtwoprime\\cos\\kthetatwo)^2}",
+       "uses": [],
+       "map": {
+        "p": "cx",
+        "q": "cx"
+       }
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{cx}{(\\kvoneprime\\cos\\kthetaone + \\kvtwoprime\\cos\\kthetatwo)^2} + \\mk{sy}{(\\kvoneprime\\sin\\kthetaone + \\kvtwoprime\\sin\\kthetatwo)^2}",
+       "uses": [
+        1
+       ],
+       "cap": "第二个括号为零，所以加上它的平方并不增加任何东西。"
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{cx}{{\\kvoneprime}^2\\cos^2\\kthetaone + 2\\kvoneprime\\kvtwoprime\\cos\\kthetaone\\cos\\kthetatwo + {\\kvtwoprime}^2\\cos^2\\kthetatwo} + \\mk{sy}{{\\kvoneprime}^2\\sin^2\\kthetaone + 2\\kvoneprime\\kvtwoprime\\sin\\kthetaone\\sin\\kthetatwo + {\\kvtwoprime}^2\\sin^2\\kthetatwo}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{a}{{\\kvoneprime}^2(\\cos^2\\kthetaone + \\sin^2\\kthetaone)} + \\mk{b}{{\\kvtwoprime}^2(\\cos^2\\kthetatwo + \\sin^2\\kthetatwo)} + \\mk{x}{2\\kvoneprime\\kvtwoprime(\\cos\\kthetaone\\cos\\kthetatwo + \\sin\\kthetaone\\sin\\kthetatwo)}",
+       "uses": [],
+       "map": {
+        "cx": [
+         "a",
+         "b",
+         "x"
+        ],
+        "sy": [
+         "a",
+         "b",
+         "x"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{a}{{\\kvoneprime}^2} + \\mk{b}{{\\kvtwoprime}^2} + \\mk{x}{2\\kvoneprime\\kvtwoprime(\\cos\\kthetaone\\cos\\kthetatwo + \\sin\\kthetaone\\sin\\kthetatwo)}",
+       "uses": [],
+       "cap": "对任意角，$\\cos^2\\ktheta + \\sin^2\\ktheta = 1$。"
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{a}{{\\kvoneprime}^2} + \\mk{b}{{\\kvtwoprime}^2} + \\mk{x}{2\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}",
+       "uses": [],
+       "cap": "三角恒等式：$\\cos(\\kthetaone - \\kthetatwo) = \\cos\\kthetaone\\cos\\kthetatwo + \\sin\\kthetaone\\sin\\kthetatwo$。"
+      },
+      {
+       "tex": "\\mk{v}{\\tfrac{1}{2}\\km{\\kvone}^2} = \\mk{a}{\\tfrac{1}{2}\\km{\\kvoneprime}^2} + \\mk{b}{\\tfrac{1}{2}\\km{\\kvtwoprime}^2} + \\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}",
+       "uses": []
+      }
+     ],
+     "src": "8.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\tfrac{1}{2}\\km{\\kvone}^2 = \\tfrac{1}{2}\\km{\\kvoneprime}^2 + \\tfrac{1}{2}\\km{\\kvtwoprime}^2",
+       "src": "8.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\tfrac{1}{2}\\km{\\kvone}^2} = \\mk{a}{\\tfrac{1}{2}\\km{\\kvoneprime}^2} + \\mk{b}{\\tfrac{1}{2}\\km{\\kvtwoprime}^2} + \\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\tfrac{1}{2}\\km{\\kvoneprime}^2 + \\tfrac{1}{2}\\km{\\kvtwoprime}^2} = \\mk{a}{\\tfrac{1}{2}\\km{\\kvoneprime}^2} + \\mk{b}{\\tfrac{1}{2}\\km{\\kvtwoprime}^2} + \\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "v": "z",
+        "a": "z",
+        "b": "z"
+       }
+      }
+     ],
+     "src": "8.6"
+    }
+   ]
+  }
+ ]
+}

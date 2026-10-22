@@ -1,0 +1,255 @@
+/* Figures for section 8.2 Impulse. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['8.2'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, strip, axes, nice, curve, fixed, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+const RAD = Math.PI / 180, TAU = 2 * Math.PI;
+/* a whole number with thousands separators, which is how this section's forces read */
+const whole = (x) => String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+/* the same inside TeX, where a bare comma is punctuation and takes a space after it */
+const wholeT = (x) => whole(x).replace(/,/g, '{,}');
+
+/* ---------- sprites drawn here ---------- */
+/* a seat facing right, its foot at (x, y): a cushion and a backrest, in the muted ink of the scene's furniture */
+function seat(ctx, x, y) {
+  ctx.save(); ctx.fillStyle = PAL.muted; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  ctx.fillRect(x - 34, y - 46, 46, 12);                       /* the cushion, under the hips */
+  ctx.fillRect(x - 40, y - 98, 10, 64);                        /* the backrest */
+  ctx.beginPath(); ctx.moveTo(x - 28, y - 34); ctx.lineTo(x - 28, y); ctx.moveTo(x + 6, y - 34); ctx.lineTo(x + 6, y); ctx.stroke();   /* the legs */
+  ctx.restore();
+}
+/* a billiard ball centered on (x, y) */
+function ball(ctx, x, y, color, r = 18) {
+  ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x - r * 0.3, y - r * 0.3, r * 0.28, 0, TAU); ctx.fill(); ctx.restore();
+}
+/* =====================================================================
+   SIM: the passenger brought to rest by the padding. The momentum has to
+   go whatever the padding is like, and the contact time is what sets the
+   force. The stop happens in time, so the figure runs a finite loop and
+   takes the transport; the contact is drawn in slow motion, since it is
+   over in a few hundredths of a second.
+===================================================================== */
+(function () {
+  const d = sim('sim-impulse', 860);
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 5, value: 75, unit: 'kg', dec: 0, onInput: reset, aria: '乘客的质量' });
+  const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 30, step: 0.5, value: 20, unit: 'm/s', dec: 1, onInput: reset, aria: '停下前的速率' });
+  const dt = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.02, max: 0.5, step: 0.01, value: 0.1, unit: 's', dec: 2, onInput: reset, aria: '接触时间' });
+  const APPROACH = 1.6, CONTACT = 1.8;            /* seconds of the drawing's own clock */
+  const cy = cycle(() => APPROACH + CONTACT, 1.2);
+  function reset() { cy.reset(); }
+  const DTMIN = 0.02;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const p = m.v * v.v, Fn = p / dt.v;
+    const tau = cy.now(), hit = tau >= APPROACH;
+    const c = hit ? Math.min(1, (tau - APPROACH) / CONTACT) : 0, done = c > 0.999;
+    const left = p * (1 - c), tin = c * dt.v;
+    const cp = C('momentum'), cf = C('force');
+    /* the scene: the strip, the padded barrier and the passenger */
+    const y = 300, wallX = 1000, depth = 70, startX = 250;
+    strip(ctx, 90, wallX, y + 22, 44);
+    const cpad = F.ref('padding');
+    const squash = c * c * (3 - 2 * c) * depth * 0.7, face = wallX + squash;
+    /* the padding gives as the passenger presses into it; the dashed line is where its face stood */
+    ctx.save(); ctx.fillStyle = alpha(cpad, 0.3); ctx.fillRect(face, 190, wallX + depth - face, 260); ctx.restore();
+    fixed(ctx, wallX + depth, 190, 110, 260);
+    line(ctx, wallX, 190, wallX, 450, cpad, 3, [10, 10]);
+    text(ctx, '衬垫', wallX + depth / 2, 474, cpad, { size: 17, align: 'center' });
+    const px = hit ? wallX - 44 + squash : startX + (wallX - 44 - startX) * (tau / APPROACH);
+    /* the passenger sits facing the padding, a filled body 0.85 of the library's height; the
+       shoulder, where the momentum is drawn from and where the padding's push is drawn to, is at
+       (px − 5, y − 78) in the sit pose at this scale */
+    seat(ctx, px, y);
+    F.silhouette(ctx, { x: px, y, s: 0.85, pose: 'sit', color: F.ref('passenger') });
+    const sx = px - 5, sy = y - 78;
+    text(ctx, fmt(m.v, 0) + ' kg', px - 50, y + 66, C('mass'), { size: 20, weight: 600, align: 'center' });
+    /* the momentum still to be taken away, and the force the padding pushes back with. Both arrows
+       are on scales fixed from the slider maxima and never move: 320 units at 3,600 kg·m/s, which is
+       120 kg at 30 m/s, and 250 units at 180,000 N, which is that momentum taken away in 0.02 s. */
+    const PMAX = 120 * 30, FMAX = PMAX / 0.02;
+    const len = (320 * left) / PMAX;
+    /* both arrows ride above the passenger and stop at the padding's face, so neither crosses it */
+    const pHead = Math.min(sx + len, face - 8);
+    if (left > 1) {
+      arrow(ctx, pHead - len, sy - 40, pHead, sy - 40, cp, 5);
+      F.label(ctx, 'p = ' + whole(left) + ' kg·m/s', pHead - len / 2, sy - 40, { side: 'above', color: cp, gap: 22, leader: false, H: 860 });
+    } else F.label(ctx, 'p = 0，乘客静止', sx, sy - 40, { side: 'above', color: cp, gap: 22, leader: false, H: 860 });
+    if (hit && !done) {
+      /* the padding's push, drawn from the padding into the passenger's chest */
+      const fl = 70 + 180 * Math.min(1, Fn / FMAX);
+      arrow(ctx, face - 8, sy - 110, face - 8 - fl, sy - 110, cf, 5);
+      F.label(ctx, 'F = ' + whole(Fn) + ' N', face - 8 - fl / 2, sy - 110, { side: 'above', color: cf, gap: 22, leader: false, H: 860 });
+    }
+    /* the graph: the force the stop needs against the time it is given */
+    const box = { l: 230, r: 1290, t: 560, b: 750 };
+    /* fixed axes: the time is the slider's own range, 0 to 0.5 s. The force could reach
+       120 kg × 30 m/s / 0.02 s = 180,000 N, but the default stop asks 15,000 N and would then lie
+       against the base line, so the force axis is fixed at 0 to 40,000 N, ticked every 10,000,
+       which holds the default stop comfortably; the curve is clipped where it leaves the top and a
+       harder stop is read off the pinned marker. Neither range moves. */
+    const FR = 40000;
+    const g = axes(ctx, box, [0, 0.5], [0, FR], { xl: 'Δt (s)', xc: C('time'), yl: 'F (N)', yc: cf, nx: 5, ny: 4, fx: (t) => fmt(t, 1), fy: (q) => whole(q) });
+    const FnC = Math.min(Fn, FR);
+    ctx.save(); ctx.fillStyle = alpha(cp, 0.24); ctx.fillRect(g.X(0), g.Y(FnC), g.X(dt.v) - g.X(0), g.Y(0) - g.Y(FnC)); ctx.restore();
+    curve(ctx, (t) => p / t, Math.max(DTMIN, p / FR), 0.5, g.X, g.Y, cf, 5, 200);
+    line(ctx, g.X(dt.v), g.Y(0), g.X(dt.v), g.Y(FnC), C('time'), 2, [4, 8]);
+    line(ctx, g.X(0), g.Y(FnC), g.X(dt.v), g.Y(FnC), cf, 2, [4, 8]);
+    pinned(ctx, box, g.X, g.Y, dt.v, Fn, PAL.ink, whole(Fn) + ' N');
+    text(ctx, '这条曲线下的每个矩形面积都相同，Δp = ' + whole(p) + ' kg·m/s。', box.l, box.b + 96, cp, { size: 21, weight: 600 });
+    topline(ctx, !hit
+      ? '乘客以 ' + fmt(v.v, 1) + ' m/s 的速率行进，带有 ' + whole(p) + ' kg·m/s 的动量。'
+      : !done
+        ? '接触 ' + fmt(tin, 3) + ' s 后，还剩 ' + whole(left) + ' kg·m/s，衬垫以 ' + whole(Fn) + ' N 的力推回。'
+        : '全部 ' + whole(p) + ' kg·m/s 在 ' + fmt(dt.v, 2) + ' s 内被消去，所需的力为 ' + whole(Fn) + ' N。');
+    readout(d.readout, `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{(${fmt(m.v, 0)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})}{${fmt(dt.v, 2)}\\ \\text{s}} = ${wholeT(Fn)}\\ \\text{N}`);
+  }
+  register(d.fig, { update: (s) => cy.step(s, () => 1), draw });
+})();
+
+/* =====================================================================
+   SIM: the billiard ball of Example 8.3 bouncing off the rigid wall. The
+   momentum along the wall is untouched and the momentum across it is
+   reversed, so the impulse is normal to the wall. The ball travels, so
+   the figure runs a finite loop and takes the transport. The scene is on
+   the left; on the right the two momenta are drawn from one tail and the
+   change between them closes the triangle.
+===================================================================== */
+(function () {
+  const d = sim('sim-billiard', 820);
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 60, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: '与垂线的夹角' });
+  const u = ctl(d.controls, { label: '\\ku', cls: 'velocity', min: 1, max: 10, step: 0.5, value: 5, unit: 'm/s', dec: 1, onInput: reset, aria: '球的速率' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 0.3, step: 0.01, value: 0.16, unit: 'kg', dec: 2, onInput: reset, aria: '球的质量' });
+  const IN = 1.8, OUT = 1.8;
+  const cy = cycle(() => IN + OUT, 1.2);
+  function reset() { cy.reset(); }
+  /* the momentum arrows are on one scale fixed from the slider maxima and never move: 80 units per
+     kg·m/s, so the largest momentum the sliders reach, 0.3 kg at 10 m/s, is 270 units, and the
+     largest change in momentum, twice that at the perpendicular, is 540 units, which the panel
+     between the wall's back (740) and the right edge holds. No arrow is capped. */
+  const K = 90;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const a = th.v * RAD, p = m.v * u.v, dp = 2 * p * Math.cos(a);
+    const tau = cy.now(), hit = tau >= IN, q = hit ? (tau - IN) / OUT : 1 - tau / IN;
+    const cp = C('momentum'), cf = C('force');
+    const lab = F.labeller(ctx, 820);
+    /* the scene: the wall, the perpendicular, and the two legs of the ball's path */
+    const cx = 640, cyy = 380, run = Math.min(560, 250 / Math.max(Math.sin(a), 0.02));
+    const cw = F.ref('wall'), ca = C('angle');
+    fixed(ctx, cx, 90, 100, 580);
+    line(ctx, cx, 90, cx, 670, cw, 4);
+    text(ctx, '一面刚性墙壁', cx + 50, 694, cw, { size: 17, align: 'center' });
+    line(ctx, cx - 560, cyy, cx, cyy, PAL.muted, 2, [10, 10]);
+    text(ctx, '墙壁的垂线', cx - 556, cyy - 30, PAL.muted, { size: 17 });
+    line(ctx, cx - run * Math.cos(a), cyy - run * Math.sin(a), cx, cyy, PAL.rule, 3, [8, 8]);
+    line(ctx, cx, cyy, cx - run * Math.cos(a), cyy + run * Math.sin(a), PAL.rule, 3, [8, 8]);
+    /* the momentum on the way in, drawn to the point of contact, and on the way out, drawn from it */
+    const L = p * K;
+    arrow(ctx, cx - L * Math.cos(a), cyy - L * Math.sin(a), cx - 22 * Math.cos(a), cyy - 22 * Math.sin(a), cp, 5);
+    if (hit) arrow(ctx, cx - 22 * Math.cos(a), cyy + 22 * Math.sin(a), cx - L * Math.cos(a), cyy + L * Math.sin(a), cp, 5);
+    /* the angle between each leg and the perpendicular, measured counterclockwise from +x on the page */
+    if (th.v > 4) {
+      F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + '°', lab, ca);
+      if (hit) F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + '°', lab, ca);
+    }
+    /* the ball, drawn last so that it rides over its own path */
+    ball(ctx, cx - (22 + q * (run - 22)) * Math.cos(a), cyy + (hit ? 1 : -1) * (22 + q * (run - 22)) * Math.sin(a), F.ref('ball'), 22);
+    if (hit) {
+      arrow(ctx, cx + 2, cyy, cx + 92, cyy, cf, 5);
+      F.label(ctx, '墙壁所受的力', cx + 50, cyy + 12, { side: 'below', color: cf, gap: 30, leader: false, H: 820 });
+    }
+    /* the triangle: both momenta from one tail, and the change from the head of one to the head of the other */
+    const ox = 1100, oy = 270;
+    text(ctx, '两个动量，以及它们之间的变化', ox, 140, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    const bx = ox + L * Math.cos(a), by = oy + L * Math.sin(a), ax = ox - L * Math.cos(a), ay = by;
+    dot(ctx, ox, oy, PAL.ink, true, 5);
+    arrow(ctx, ox, oy, bx, by, cp, 5);
+    lab.beside({ x1: ox, y1: oy, x2: bx, y2: by }, 'left', '碰撞前的 p = ' + fmt(p, 2) + ' kg·m/s', cp, 20);
+    if (hit) {
+      arrow(ctx, ox, oy, ax, ay, cp, 5);
+      lab.beside({ x1: ox, y1: oy, x2: ax, y2: ay }, 'right', '碰撞后的 p = ' + fmt(p, 2) + ' kg·m/s', cp, 20);
+      /* the change is drawn a row under the two heads, with a faint drop from each, so that it never
+         lies along the momenta themselves when the ball comes in along the perpendicular */
+      const dy = ay + 44;
+      line(ctx, bx, by + 8, bx, dy, alpha(PAL.ink, 0.4), 1.5, [4, 6]); line(ctx, ax, ay + 8, ax, dy, alpha(PAL.ink, 0.4), 1.5, [4, 6]);
+      arrow(ctx, bx, dy, ax, dy, cp, 7);
+      F.label(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s，径直背离墙壁', (ax + bx) / 2, dy + 8, { side: 'below', color: cp, gap: 22, leader: false, H: 820 });
+    }
+    lab.flush();
+    text(ctx, '沿墙壁方向的动量保持为 ' + fmt(p * Math.sin(a), 2) + ' kg·m/s，垂直于墙壁方向的 ' + fmt(p * Math.cos(a), 2) + ' kg·m/s 则反向。',
+      700, 780, PAL.ink, { size: 20, align: 'center' });
+    topline(ctx, !hit
+      ? '球以 ' + fmt(u.v, 1) + ' m/s 的速率入射，与垂线成 ' + fmt(th.v, 0) + '°。'
+      : '出射时速率不变，墙壁给球的冲量为 ' + fmt(dp, 2) + ' kg·m/s。');
+    readout(d.readout, `\\Delta p_x = -2\\km\\ku\\cos\\ktheta = -2(${fmt(m.v, 2)}\\ \\text{kg})(${fmt(u.v, 1)}\\ \\text{m/s})\\cos ${fmt(th.v, 0)}^\\circ = -${fmt(dp, 2)}\\ \\text{kg}\\cdot\\text{m/s}`,
+      th.v === 0
+        ? '垂直入射时，全部动量都反向，这是墙壁能给予这一速率的球的最大冲量。'
+        : '正面撞击的球获得更大的冲量：二者之比为 1/cos ' + fmt(th.v, 0) + '° = ' + fmt(1 / Math.cos(a), 3) + '。');
+  }
+  register(d.fig, { update: (s) => cy.step(s, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 8.2: the actual force on a bouncing ball and the effective
+   force that has the same area under it. The idea is one area against
+   another and no clock runs in it, so this is a still picture that
+   answers its sliders and carries no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-effective-force', 680);
+  const fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 200, max: 2000, step: 50, value: 1000, unit: 'N', dec: 0, aria: '实际的力的峰值' });
+  const dur = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.02, max: 0.3, step: 0.01, value: 0.1, unit: 's', dec: 2, aria: '接触的时长' });
+  const sh = ctl(d.controls, { label: '\\text{形状}', cls: '', min: 1, max: 6, step: 0.1, value: 1.6, unit: '', dec: 1, aria: '凸起的形状' });
+  const T1 = 0.05;
+  /* the mean of sin(πs) raised to the shape exponent: the fraction of the peak the effective force is */
+  const mean = (k) => { let a = 0; const N = 400; for (let i = 0; i < N; i++) a += Math.pow(Math.sin((Math.PI * (i + 0.5)) / N), k); return a / N; };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const D = dur.v, t2 = T1 + D, feff = fp.v * mean(sh.v), imp = feff * D;
+    const box = { l: 230, r: 1250, t: 150, b: 520 };
+    const cf = C('force'), ct = C('time'), cp = C('momentum');
+    const g = axes(ctx, box, [0, 0.4], [0, 2500], { xl: 't (s)', xc: ct, yl: 'F (N)', yc: cf, nx: 4, ny: 5, fx: (t) => fmt(t, 1), fy: (q) => whole(q) });
+    const Fa = (t) => (t <= T1 || t >= t2 ? 0 : fp.v * Math.pow(Math.sin((Math.PI * (t - T1)) / D), sh.v));
+    /* the area under the actual force is the impulse, so it is shaded as the momentum it is */
+    ctx.save(); ctx.fillStyle = alpha(cp, 0.28); ctx.beginPath(); ctx.moveTo(g.X(T1), g.Y(0));
+    for (let i = 0; i <= 200; i++) { const t = T1 + (D * i) / 200; ctx.lineTo(g.X(t), g.Y(Fa(t))); }
+    ctx.lineTo(g.X(t2), g.Y(0)); ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(cp, 0.12); ctx.fillRect(g.X(T1), g.Y(feff), g.X(t2) - g.X(T1), g.Y(0) - g.Y(feff)); ctx.restore();
+    ctx.save(); ctx.strokeStyle = cf; ctx.lineWidth = 3; ctx.setLineDash([10, 10]);
+    ctx.strokeRect(g.X(T1), g.Y(feff), g.X(t2) - g.X(T1), g.Y(0) - g.Y(feff)); ctx.restore();
+    curve(ctx, Fa, 0, 0.4, g.X, g.Y, cf, 5, 260);
+    text(ctx, 'F 实际', g.X(T1 + D / 2), g.Y(fp.v) - 28, cf, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'F 等效 = ' + whole(feff) + ' N', Math.min(g.X(t2) + 16, box.r - 250), g.Y(feff) - 26, cf, { size: 21, weight: 600 });
+    line(ctx, g.X(T1), g.Y(0) + 10, g.X(T1), g.Y(0) + 34, PAL.muted, 2);
+    line(ctx, g.X(t2), g.Y(0) + 10, g.X(t2), g.Y(0) + 34, PAL.muted, 2);
+    text(ctx, 't₁', g.X(T1), g.Y(0) + 54, PAL.ink, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 't₂', g.X(t2), g.Y(0) + 54, PAL.ink, { size: 21, weight: 600, align: 'center' });
+    text(ctx, '阴影凸起部分与虚线矩形的面积相同，为 ' + fmt(imp, 1) + ' kg·m/s。', box.l, box.b + 110, cp, { size: 21, weight: 600 });
+    topline(ctx, '最大 ' + whole(fp.v) + ' N 的推力作用 ' + fmt(D, 2) + ' s，所给的冲量与恒定的 ' + whole(feff) + ' N 相同。');
+    readout(d.readout, `\\kdp = \\kFeff\\kdt = (${wholeT(feff)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{s}) = ${fmt(imp, 1)}\\ \\text{kg}\\cdot\\text{m/s}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   The two graphs the test prep items are set on, copied over as the book
+   draws them: no sliders, and nothing moving.
+===================================================================== */
+function wallGraph(id, pts) {
+  const d = sim(id, 480);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const cf = C('force'), ct = C('time');
+    const g = axes(ctx, { l: 230, r: 1250, t: 70, b: 360 }, [0, 0.32], [0, 20], { xl: 't (s)', xc: ct, yl: 'F (N)', yc: cf, nx: 4, ny: 4, fx: (t) => fmt(t, 2), fy: (q) => fmt(q, 0) });
+    ctx.save(); ctx.strokeStyle = cf; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
+    pts.forEach(([t, f], i) => (i ? ctx.lineTo(g.X(t), g.Y(f)) : ctx.moveTo(g.X(t), g.Y(f))));
+    ctx.stroke(); ctx.restore();
+  }
+  register(d.fig, { update: () => {}, draw });
+}
+wallGraph('fig-bounce', [[0, 0], [0.08, 0], [0.08, 15], [0.24, 15], [0.24, 0], [0.32, 0]]);
+wallGraph('fig-collision', [[0, 0], [0.08, 15], [0.24, 15], [0.32, 0]]);
+};

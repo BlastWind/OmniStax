@@ -1,0 +1,430 @@
+/* Figures for section 8.3 Conservation of Momentum. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['8.3'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, nice, curve, car, block, strip, scale, pinned, hover } = F;
+const sim = (id, H) => F.sim(root, id, H);
+/* the hollow companion marker: an ordinary hollow dot while it is inside the box, and the
+   library's pinned marker once the fixed range can no longer hold it */
+function hollowOrPinned(ctx, box, X, Y, xv, yv, color, label) {
+  const py = Y(yv);
+  if (py >= box.t && py <= box.b && X(xv) >= box.l && X(xv) <= box.r) dot(ctx, X(xv), py, color, false, 9);
+  else pinned(ctx, box, X, Y, xv, yv, color, label);
+}
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the figures ---------- */
+const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
+const sgn = (v) => (v < 0 ? '−' : '');
+/* a whole number with thousands separators, for the canvas and for KaTeX */
+const groups = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const whole = (x) => sgn(x) + groups(Math.round(Math.abs(x)));
+const tnum = (x) => sgn(x) + groups(Math.round(Math.abs(x))).replace(/,/g, '{,}');
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+/* a cross in a circle marking the center of mass, as the book marks it */
+function cross(ctx, x, y, color, r) {
+  line(ctx, x - r, y, x + r, y, color, 3); line(ctx, x, y - r, x, y + r, color, 3);
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r * 0.55, 0, TAU); ctx.stroke(); ctx.restore();
+}
+/* one half of a probe split across its middle, the joint at (x, y), pointing along a: the front half
+   carries the nose, the rear half the fins */
+function probeHalf(ctx, x, y, a, color, front, s) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s); ctx.fillStyle = color; ctx.beginPath();
+  if (front) { ctx.moveTo(0, -8); ctx.lineTo(16, -8); ctx.lineTo(34, 0); ctx.lineTo(16, 8); ctx.lineTo(0, 8); }
+  else { ctx.moveTo(0, -8); ctx.lineTo(-26, -8); ctx.lineTo(-38, -17); ctx.lineTo(-33, 0); ctx.lineTo(-38, 17); ctx.lineTo(-26, 8); ctx.lineTo(0, 8); }
+  ctx.closePath(); ctx.fill(); ctx.restore();
+}
+/* a path given by its two coordinates in time, from t0 to t1 */
+function curveXY(ctx, fx, fy, t0, t1, color, w, dash) {
+  if (!(t1 > t0)) return;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.beginPath();
+  for (let i = 0; i <= 90; i++) { const t = t0 + ((t1 - t0) * i) / 90; if (i) ctx.lineTo(fx(t), fy(t)); else ctx.moveTo(fx(t), fy(t)); }
+  ctx.stroke(); ctx.restore();
+}
+/* a target particle: a soft disc with a firm edge */
+function particle(ctx, x, y, r, color) {
+  ctx.save(); ctx.fillStyle = alpha(color, 0.22); ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
+  ctx.strokeStyle = color; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.stroke(); ctx.restore();
+}
+/* a momentum measured off a scale, drawn as a bar from x1 to x2 */
+function bar(ctx, x1, x2, y, color, h) {
+  ctx.save(); ctx.fillStyle = alpha(color, 0.32); ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.rect(Math.min(x1, x2), y - h / 2, Math.max(2, Math.abs(x2 - x1)), h); ctx.fill(); ctx.stroke(); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 8.3: one car bumping into another. The trailing car catches the
+   lead car, the bumpers are in contact for a fifth of a second, and the
+   cars coast apart again. The bump is an event in time, so the figure
+   loops once per pass and takes the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-collision', 800);
+  const M2 = 1000, DT = 0.20, TC = 1.6, T = 4.0, LCAR = 4.5;
+  const m1 = ctl(d.controls, { label: '\\kmone', cls: 'mass', min: 600, max: 2000, step: 50, value: 1200, unit: 'kg', dec: 0, onInput: reset, aria: '后车的质量' });
+  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 6, max: 20, step: 0.5, value: 15, unit: 'm/s', dec: 1, onInput: reset, aria: '后车的速度' });
+  const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: 2, max: 14, step: 0.5, value: 8, unit: 'm/s', dec: 1, onInput: reset, aria: '前车的速度' });
+  const bo = ctl(d.controls, { label: 'c', cls: '', min: 0, max: 1, step: 0.05, value: 0.4, unit: '', dec: 2, detents: [{ v: 0, label: '0' }, { v: 1, label: '1' }], snap: true, onInput: reset, aria: '保险杠分离时的速率除以它们相碰时的速率' });
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  function model() {
+    const M1 = m1.v, u1 = v1.v, u2 = v2.v, e = bo.v, hits = u1 > u2 + 0.01;
+    const w1 = hits ? (M1 * u1 + M2 * u2 - M2 * e * (u1 - u2)) / (M1 + M2) : u1;
+    const w2 = hits ? (M1 * u1 + M2 * u2 + M1 * e * (u1 - u2)) / (M1 + M2) : u2;
+    const tc = hits ? TC : Infinity, gap = hits ? LCAR + (u1 - u2) * TC : LCAR + 12;
+    const ramp = (t, a, b) => (t <= tc ? a : t >= tc + DT ? b : a + ((b - a) * (t - tc)) / DT);
+    return {
+      M1, u1, u2, hits, w1, w2, tc, gap,
+      x1: (t) => (t < tc ? u1 * t : u1 * tc + w1 * (t - tc)),
+      x2: (t) => gap + (t < tc ? u2 * t : u2 * tc + w2 * (t - tc)),
+      p1: (t) => M1 * ramp(t, u1, w1), p2: (t) => M2 * ramp(t, u2, w2),
+      ptot: M1 * u1 + M2 * u2, dp: M1 * (w1 - u1), Fc: Math.abs(M1 * (w1 - u1)) / DT,
+    };
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = model(), tau = cy.now(), touching = f.hits && tau >= f.tc && tau <= f.tc + DT;
+    /* one fixed scale, 25 units to the meter, so a car is 112 units long; the picture rides with
+       the center of mass of the pair, which moves at one steady velocity whatever the bumpers do,
+       so the road and its marks slide under the cars while the cars stay in view and full size */
+    const SC = 25, xcm = (f.M1 * f.x1(tau) + M2 * f.x2(tau)) / (f.M1 + M2);
+    const X = (m) => 700 + (m - xcm) * SC, s = (LCAR * SC) / 82;
+    const yRoad = 265, PMAX = 40000;
+    strip(ctx, 70, 1340, yRoad + 26, 30);
+    const mk0 = Math.ceil((xcm - 26) / 10) * 10, mk1 = Math.floor((xcm + 26) / 10) * 10;
+    scale(ctx, X, mk0, mk1, 10, yRoad + 58, 'm', 1);
+    const px1 = X(f.x1(tau)), px2 = X(f.x2(tau)), P1 = f.p1(tau), P2 = f.p2(tau);
+    /* the momentum arrows are on a scale fixed from the slider maxima, 320 units at 40,000 kg·m/s */
+    const LP = (p) => 320 * (p / PMAX);
+    car(ctx, px1, yRoad, F.ref('car-1'), s); car(ctx, px2, yRoad, F.ref('car-2'), s);
+    /* the momentum each car carries, the lead car's on the upper row so the two never meet */
+    arrow(ctx, px2 - LP(P2) / 2, 120, px2 + LP(P2) / 2, 120, C('momentum'), 5);
+    F.label(ctx, 'p₂ = ' + whole(P2) + ' kg·m/s', px2, 120, { side: 'above', gap: 24, leader: false, color: C('momentum'), H: 800 });
+    /* each car's mass reads on its own arrow's row, just behind the arrow's tail */
+    text(ctx, 'm₂ = 1,000 kg', px2 - LP(P2) / 2 - 16, 120, C('mass'), { size: 19, align: 'right' });
+    arrow(ctx, px1 - LP(P1) / 2, 186, px1 + LP(P1) / 2, 186, C('momentum'), 5);
+    F.label(ctx, 'p₁ = ' + whole(P1) + ' kg·m/s', px1, 186, { side: 'above', gap: 24, leader: false, color: C('momentum'), H: 800 });
+    text(ctx, 'm₁ = ' + whole(f.M1) + ' kg', px1 - LP(P1) / 2 - 16, 186, C('mass'), { size: 19, align: 'right' });
+    /* while the bumpers touch, the two forces are drawn equal and opposite from the point of contact */
+    if (touching) {
+      const xm = (px1 + px2) / 2, yF = yRoad - 8;
+      arrow(ctx, xm - 6, yF, xm - 140, yF, C('force'), 5);
+      arrow(ctx, xm + 6, yF, xm + 140, yF, C('force'), 5);
+      F.label(ctx, 'F₁ = ' + whole(f.Fc) + ' N', xm - 148, yF, { side: 'left', gap: 8, leader: false, color: C('force'), size: 19, H: 800 });
+      F.label(ctx, 'F₂ = ' + whole(f.Fc) + ' N', xm + 148, yF, { side: 'right', gap: 8, leader: false, color: C('force'), size: 19, H: 800 });
+    }
+    /* the graph: the two momenta and their total against time */
+    const box = { l: 200, r: 1280, t: 440, b: 700 };
+    /* fixed axes: the pass lasts the same 4.0 s whatever the sliders say, and the largest total the
+       sliders can make is 2000 kg × 20 m/s + 1000 kg × 14 m/s = 54,000 kg·m/s, so the graph is
+       always 0 to 4 s by 0 to 60,000 kg·m/s, ticked every 15,000, and never rescales. */
+    const PR = 60000;
+    const { X: GX, Y: GY } = axes(ctx, box, [0, T], [0, PR], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
+    line(ctx, box.l, GY(f.ptot), box.r, GY(f.ptot), C('momentum'), 5);
+    curve(ctx, (t) => f.p1(t), 0, T, GX, GY, C('momentum'), 4, 320);
+    curve(ctx, (t) => f.p2(t), 0, T, GX, GY, C('momentum'), 4, 320);
+    text(ctx, 'p₁ + p₂ = ' + whole(f.ptot), box.r - 10, GY(f.ptot) - 24, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    /* the higher of the two ends is named above its line and the lower below, so neither name sits on the other line */
+    const up1 = f.p1(T) >= f.p2(T);
+    text(ctx, 'p₁', box.r - 10, GY(f.p1(T)) + (up1 ? -26 : 30), C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'p₂', box.r - 10, GY(f.p2(T)) + (up1 ? 30 : -26), C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    pinned(ctx, box, GX, GY, tau, P1, C('momentum'), whole(P1) + ' kg·m/s');
+    hollowOrPinned(ctx, box, GX, GY, tau, P2, C('momentum'), whole(P2) + ' kg·m/s');
+    topline(ctx, !f.hits ? '后车并不比前车快，所以永远追不上它。'
+      : tau < f.tc ? '两车相距 ' + fmt(f.x2(tau) - f.x1(tau) - LCAR, 1) + ' m 并在靠近，总动量为 ' + whole(f.ptot) + ' kg·m/s。'
+      : '1 号车失去了 ' + whole(-f.dp) + ' kg·m/s，2 号车获得了同样多，所以总动量仍为 ' + whole(f.ptot) + ' kg·m/s。');
+    readout(d.readout, `\\kpone + \\kptwo = \\kponeprime + \\kptwoprime:\\quad ${tnum(f.M1 * f.u1)} + ${tnum(M2 * f.u2)} = ${tnum(f.M1 * f.w1)} + ${tnum(M2 * f.w2)}\\ \\text{kg·m/s}`,
+      f.hits ? `每辆车受到的冲量为 $${tnum(f.Fc)}\\ \\text{N} \\times ${fmt(DT, 2)}\\ \\text{s} = ${tnum(-f.dp)}\\ \\text{kg·m/s}$，二者方向相反。`
+        : '让后车比前车快，两车就会相碰。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 6), draw });
+})();
+
+/* =====================================================================
+   FIGURE 8.4: a space probe separating in flight. The forces of the
+   separation are internal, so the horizontal momentum of the system is
+   the same after it as before; the vertical momentum falls all the while
+   under the weight of the probe. The flight has a time in it, so the
+   figure loops once per flight and takes the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-probe', 820);
+  const M = 1000, LEN = 4;                          /* the whole probe: 1000 kg and about 4 m long */
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 200, max: 800, step: 10, value: 500, unit: 'm/s', dec: 0, onInput: reset, aria: '发射速率' });
+  const th = ctl(d.controls, { label: '\\kthetao', cls: 'angle', min: 30, max: 80, step: 1, value: 60, unit: '°', dec: 0, detents: [{ v: 60, label: '60°' }], snap: true, onInput: reset, aria: '发射角' });
+  const dp = ctl(d.controls, { label: '\\kdp', cls: 'momentum', min: 0, max: 100000, step: 5000, value: 50000, unit: 'kg·m/s', dec: 0, onInput: reset, aria: '分离的冲量' });
+  function model() {
+    const vx = v0.v * Math.cos(th.v * RAD), vy = v0.v * Math.sin(th.v * RAD);
+    const T = (2 * vy) / G, ts = T / 2, dv = dp.v / (M / 2);
+    const half = Math.round((M / 2) * vx);          /* each half's share of the horizontal momentum, so the parts add to the whole as written */
+    return {
+      vx, vy, T, ts, dv, half, px: 2 * half,
+      x: (t) => vx * t, y: (t) => Math.max(0, vy * t - 0.5 * G * t * t),
+      gap: (t) => (t < ts ? 0 : dv * (t - ts)),
+      py: (t) => M * (vy - G * t),
+    };
+  }
+  const cy = cycle(() => model().T, 1.2);
+  function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = model(), tau = cy.now(), after = tau > f.ts;
+    /* the sky at one true scale fitted to the book's flight with headroom: 35 km across and 11 km
+       high on 1000 by 320 units. The default flight rises 9.6 km and its forward half lands at 26.5 km;
+       a flight the sky cannot hold is clipped at its edge and its center of mass pinned with its reading. */
+    const box = { l: 110, r: 1110, t: 120, b: 440 }, SK = (box.r - box.l) / 35000;
+    const X = (m) => box.l + m * SK, Y = (m) => box.b - m * SK;
+    const PS = 1.4, PROBE = 72 * PS, factor = Math.round(PROBE / (LEN * SK) / 10) * 10;
+    line(ctx, box.l - 60, box.b, box.r + 20, box.b, PAL.muted, 3);
+    scale(ctx, (km) => X(km * 1000), 0, 35, 5, box.b + 20, 'km', 1);
+    const cpr = F.ref('probe'), cm = { x: X(f.x(tau)), y: Y(f.y(tau)) };
+    const gx = f.gap(tau) * SK, ang = Math.atan2(-(f.vy - G * Math.min(tau, f.T)), f.vx);
+    const front = { x: cm.x + gx, y: cm.y }, rear = { x: cm.x - gx, y: cm.y };
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l - 60, box.t - 20, box.r - box.l + 80, box.b - box.t + 20); ctx.clip();
+    /* the parabola the whole probe would have followed, which is the path of the center of mass */
+    curveXY(ctx, (t) => X(f.x(t)), (t) => Y(f.y(t)), 0, f.T, PAL.muted, 3, [10, 10]);
+    curveXY(ctx, (t) => X(f.x(t)), (t) => Y(f.y(t)), 0, Math.min(tau, f.ts), cpr, 4);
+    if (after) {
+      curveXY(ctx, (t) => X(f.x(t)) + f.gap(t) * SK, (t) => Y(f.y(t)), f.ts, tau, cpr, 3);
+      curveXY(ctx, (t) => X(f.x(t)) - f.gap(t) * SK, (t) => Y(f.y(t)), f.ts, tau, cpr, 3);
+    }
+    const inSky = cm.x <= box.r && cm.y >= box.t;
+    if (inSky) { probeHalf(ctx, front.x, front.y, ang, cpr, true, PS); probeHalf(ctx, rear.x, rear.y, ang, cpr, false, PS); }
+    ctx.restore();
+    if (inSky) { cross(ctx, cm.x, cm.y, PAL.panel, 17); cross(ctx, cm.x, cm.y, C('position'), 14); }
+    else pinned(ctx, box, X, Y, f.x(tau), f.y(tau), C('position'), '质心，水平距离 ' + fmt(f.x(tau) / 1000, 1) + ' km，高 ' + fmt(f.y(tau) / 1000, 1) + ' km');
+    /* the momentum of the system in a corner panel, as the book draws it, on one scale fixed from the
+       maxima: 160 units at 800,000 kg·m/s, which neither component passes */
+    const pb = { l: 1130, r: 1385, t: 108, b: 456 }, tail = { x: 1170, y: 282 }, LP = 160 / 800000;
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.roundRect(pb.l, pb.t, pb.r - pb.l, pb.b - pb.t, 6); ctx.stroke(); ctx.restore();
+    text(ctx, '整个系统', pb.r - 12, pb.b - 18, PAL.muted, { size: 17, align: 'right' });
+    const pxEnd = { x: tail.x + f.px * LP, y: tail.y }, pyNow = f.py(Math.min(tau, f.T)), pyEnd = { x: tail.x, y: tail.y - pyNow * LP };
+    arrow(ctx, tail.x, tail.y, pxEnd.x, pxEnd.y, C('momentum'), 5);
+    if (Math.abs(pyNow * LP) > 6) arrow(ctx, tail.x, tail.y, pyEnd.x, pyEnd.y, C('momentum'), 5);
+    const lab = F.labeller(ctx, 820, { headline: 2 });
+    lab.block(pb.r - 150, pb.b - 32, pb.r, pb.b);
+    /* the probe's halves are bodies the labels step round */
+    for (const [p, k] of [[front, 1], [rear, -1]]) { const c = { x: p.x + k * 18 * PS * Math.cos(ang), y: p.y + k * 18 * PS * Math.sin(ang) }; lab.place({ l: c.x - 26, r: c.x + 26, t: c.y - 26, b: c.y + 26 }); }
+    lab.add('pₓ', pxEnd.x, pxEnd.y, 0.8, 0.6, C('momentum'), 22, 18);
+    if (Math.abs(pyNow * LP) > 6) lab.add('pᵧ', pyEnd.x, pyEnd.y, 0.8, pyNow > 0 ? -0.6 : 0.6, C('momentum'), 22, 18);
+    if (inSky) lab.add('质心', cm.x, cm.y, -0.7, -0.75, C('position'), 19, 34);
+    /* the graph: the two components of the system's momentum against time */
+    /* fixed axes: the probe masses 1000 kg and is launched at no more than 800 m/s, so neither
+       component of its momentum passes 800,000 kg·m/s, and the longest flight, 2 × 800 × sin 80° /
+       9.80, is 161 s. The graph is therefore always 0 to 200 s by −800,000 to 800,000 kg·m/s,
+       ticked every 50 s and every 400,000 kg·m/s, and neither range moves with the sliders. */
+    const gb = { l: 200, r: 1280, t: 556, b: 736 }, TR = 200, PR = 800000;
+    const { X: GX, Y: GY } = axes(ctx, gb, [0, TR], [-PR, PR], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
+    line(ctx, GX(f.ts), gb.t, GX(f.ts), gb.b, PAL.muted, 2, [4, 8]);
+    const sepX = GX(f.ts) + 10, sepW = F.measure(ctx, '探测器分离', { size: 17 });
+    text(ctx, '探测器分离', sepX, gb.b - 16, PAL.muted, { size: 17 });
+    lab.place({ l: sepX - 4, r: sepX + sepW + 4, t: gb.b - 28, b: gb.b - 4 });
+    line(ctx, gb.l, GY(f.px), gb.r, GY(f.px), C('momentum'), 5);
+    curve(ctx, (t) => f.py(t), 0, f.T, GX, GY, C('momentum'), 4, 120);
+    lab.add('水平动量', gb.r - 10, GY(f.px), -0.3, -1, C('momentum'), 19, 22);
+    lab.block(gb.l - 130, gb.b + 10, gb.r + 40, gb.b + 72);
+    lab.add('竖直动量', GX(f.T), GY(f.py(f.T)), 0.9, -0.5, C('momentum'), 19, 18);
+    pinned(ctx, gb, GX, GY, tau, f.px, C('momentum'));
+    hollowOrPinned(ctx, gb, GX, GY, tau, f.py(tau), C('momentum'), whole(f.py(tau)) + ' kg·m/s');
+    lab.flush();
+    const pyR = Math.round(pyNow / 100) * 100;
+    topline(ctx, !after
+      ? '整个探测器上升，其 $\\kpx$ = ' + whole(f.px) + ' kg·m/s，而 $\\kpy$ 在减小，现为 ' + whole(pyR) + ' kg·m/s。'
+      : '水平动量 $\\kpx$ 仍为 ' + whole(f.px) + ' kg·m/s；竖直动量 $\\kpy$ 已降至 ' + whole(pyR) + ' kg·m/s。');
+    const hf = f.half + dp.v, hr = f.half - dp.v;
+    readout(d.readout, after
+      ? `\\kpx = ${tnum(hf)} ${hr < 0 ? '-' : '+'} ${tnum(Math.abs(hr))} = ${tnum(f.px)}\\ \\text{kg·m/s}`
+      : `\\kpx = ${tnum(f.px)}\\ \\text{kg·m/s}`,
+      `探测器按其实际尺寸的 ${groups(factor)} 倍绘制；天空和两半之间的间隙则按比例绘制。`);
+    const pts = [];
+    for (let i = 1; i < 12; i++) { const t = (f.T * i) / 12; pts.push({ x: X(f.x(t)), y: Y(f.y(t)), r: 12, name: '质心的路径' }); }
+    hits = [
+      { x: cm.x, y: cm.y, r: 16, name: '质心' },
+      after ? { x: front.x + 17 * PS * Math.cos(ang), y: front.y + 17 * PS * Math.sin(ang), r: 26, name: '前半，向前 ' + whole(hf) + ' kg·m/s' } : { x: cm.x, y: cm.y, r: 36, name: '整个探测器，1000 kg' },
+      ...(after ? [{ x: rear.x - 19 * PS * Math.cos(ang), y: rear.y - 19 * PS * Math.sin(ang), r: 26, name: '后半，向前 ' + whole(hr) + ' kg·m/s' }] : []),
+      { x: (tail.x + pxEnd.x) / 2, y: tail.y, r: 18, name: '系统的水平动量' },
+      { x: tail.x, y: (tail.y + pyEnd.y) / 2, r: 18, name: '系统的竖直动量' },
+      ...pts,
+    ];
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 8.5: a subatomic particle scattering from a target. The reader
+   says what the electron does and conservation of momentum says what the
+   target must do. The encounter happens in time, so the figure loops and
+   takes the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-scatter', 710);
+  const T = 4.0, TC = 2.0, XT = 830, R = 46;
+  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 20, step: 0.5, value: 10, unit: 'Mm/s', dec: 1, onInput: reset, aria: '入射电子的速率' });
+  const rt = ctl(d.controls, { label: "{v'}_1 / v_1", cls: '', min: -1, max: 1, step: 0.05, value: -0.95, unit: '', dec: 2, onInput: reset, aria: '电子保留其速度的比例' });
+  const mr = ctl(d.controls, { label: 'm_2 / m_1', cls: '', min: 1, max: 2000, step: 1, value: 1836, unit: '', dec: 0, onInput: reset, aria: '以电子质量为单位的靶的质量' });
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  const model = () => {
+    const p1 = v1.v, w1 = rt.v * v1.v, p2p = p1 - w1;
+    return { p1, w1, p1p: w1, p2p, w2: p2p / mr.v };
+  };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = model(), tau = cy.now(), after = tau >= TC;
+    /* one scale for the ground the particles cover, fixed from the fastest the slider allows: 16.2
+       units per Mm/s of travel in one second of the loop, so that an electron at the top of the
+       range starts at the left-hand edge and every slower one starts nearer the target */
+    const K = 16.2, yIn = 252, yOut = 190;
+    line(ctx, 90, yIn, 1340, yIn, PAL.rule, 2, [12, 12]);
+    const xtn = clamp(XT + (after ? K * f.w2 * (tau - TC) : 0), XT, 1290);
+    const ctg = F.ref('target');
+    particle(ctx, xtn, yIn, R, ctg);
+    text(ctx, '靶，' + whole(mr.v) + ' 倍电子质量', clamp(xtn, 240, 1140), yIn + R + 58, ctg, { size: 19, align: 'center' });
+    const xe = clamp(after ? XT - R + K * f.w1 * (tau - TC) : XT - R - K * v1.v * (TC - tau), 80, 1340);
+    const ye = after ? yOut : yIn;
+    dot(ctx, xe, ye, F.el('e-'), true, 13);
+    text(ctx, 'e⁻', xe, ye - 36, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    /* the velocity arrows too are on a fixed scale, 6 units per Mm/s, from the same maximum */
+    const LV = 6;
+    const ve = after ? f.w1 : v1.v;
+    arrow(ctx, xe, ye + 32, xe + ve * LV, ye + 32, C('velocity'), 4);
+    F.label(ctx, (after ? "v′₁ = " : 'v₁ = ') + fmt(Math.abs(ve), 2) + ' Mm/s', xe + (ve * LV) / 2, ye + 32, { side: 'below', gap: 18, leader: false, color: C('velocity'), size: 18, H: 710 });
+    if (after) {
+      /* the target's arrow is held inside the canvas, and its speed is written whatever its length */
+      const L2 = Math.min(Math.sign(f.w2) * Math.max(8, Math.abs(f.w2) * LV), 1340 - xtn);
+      arrow(ctx, xtn, yIn - 74, xtn + L2, yIn - 74, C('velocity'), 4);
+      F.label(ctx, "v′₂ = " + fmt(f.w2, f.w2 < 0.1 ? 4 : 2) + ' Mm/s', xtn + L2 / 2, yIn - 74, { side: 'above', gap: 18, leader: false, color: C('velocity'), size: 18, H: 710 });
+    }
+    /* the momenta, all measured off one origin, so that the target's bar overshoots
+       the electron's original bar by exactly what the electron carries backward */
+    /* and the momentum bars, 21.5 units per unit of momentum, so the slider lengthens every bar */
+    const x0 = 500, S = 21.5, hB = 32;
+    const yB = 420, yA1 = 502, yA2 = 584;
+    line(ctx, x0, yB - 42, x0, yA2 + 40, PAL.rule, 2);
+    line(ctx, x0 + S * f.p1, yB - 42, x0 + S * f.p1, yA2 + 40, PAL.muted, 2, [7, 7]);
+    const lb = alpha(PAL.panel, 0.9);
+    bar(ctx, x0, x0 + S * f.p1, yB, C('momentum'), hB);
+    text(ctx, 'p₁ = ' + fmt(f.p1, 2) + '，碰撞前', x0 + 10, yB - 32, C('momentum'), { size: 19, weight: 600, bg: lb });
+    bar(ctx, x0, x0 + S * f.p1p, yA1, C('momentum'), hB);
+    text(ctx, "p'₁ = " + fmt(f.p1p, 2) + '，碰撞后的电子', f.p1p < 0 ? x0 - 10 : x0 + 10, yA1 - 32, C('momentum'), { size: 19, weight: 600, align: f.p1p < 0 ? 'right' : 'left', bg: lb });
+    bar(ctx, x0, x0 + S * f.p2p, yA2, C('momentum'), hB);
+    text(ctx, "p'₂ = " + fmt(f.p2p, 2) + '，碰撞后的靶', x0 + 10, yA2 - 32, C('momentum'), { size: 19, weight: 600, bg: lb });
+    text(ctx, '动量以 1 个电子质量乘以 1 Mm/s 为单位', 700, 674, PAL.muted, { size: 17, align: 'center' });
+    topline(ctx, !after
+      ? '电子以 ' + fmt(v1.v, 1) + ' Mm/s 的速率射入，携带的动量为 ' + fmt(f.p1, 2) + '。'
+      : f.w1 < 0
+        ? '电子以 ' + fmt(-f.w1, 2) + ' Mm/s 的速率径直弹回，靶以 ' + fmt(f.w2, 4) + ' Mm/s 的速率运动开去。'
+        : '电子以 ' + fmt(f.w1, 2) + ' Mm/s 的速率继续前进，靶以 ' + fmt(f.w2, 4) + ' Mm/s 的速率运动开去。');
+    readout(d.readout, `\\kp_1 = {\\kp'}_1 + {\\kp'}_{\\htmlData{ref=target}{2}}:\\quad ${fmt(f.p1, 2)} = ${fmt(f.p1p, 2)} + ${fmt(f.p2p, 2)}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
+})();
+
+/* =====================================================================
+   SIM: the center of mass of two colliding carts. The total momentum is
+   the momentum of the center of mass, so the cross between the carts
+   keeps one velocity through the collision, whatever the carts do to one
+   another. The motion has a time in it, so the figure loops and takes the
+   scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-center-of-mass', 810);
+  const LC = 0.8, X1 = 0.5, X2 = 6.0;
+  const m1 = ctl(d.controls, { label: '\\km_{\\htmlData{ref=cart-1}{1}}', cls: 'mass', min: 0.2, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: '第一辆小车的质量' });
+  const m2 = ctl(d.controls, { label: '\\km_{\\htmlData{ref=cart-2}{2}}', cls: 'mass', min: 0.2, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: '第二辆小车的质量' });
+  const v1 = ctl(d.controls, { label: '\\kv_{\\htmlData{ref=cart-1}{1}}', cls: 'velocity', min: 0, max: 10, step: 0.5, value: 6, unit: 'm/s', dec: 1, onInput: reset, aria: '第一辆小车的速度' });
+  const v2 = ctl(d.controls, { label: '\\kv_{\\htmlData{ref=cart-2}{2}}', cls: 'velocity', min: -6, max: 10, step: 0.5, value: 0, unit: 'm/s', dec: 1, onInput: reset, aria: '第二辆小车的速度' });
+  function model() {
+    const M1 = m1.v, M2 = m2.v, u1 = v1.v, u2 = v2.v, hits = u1 > u2 + 0.01;
+    const tc = hits ? (X2 - X1 - LC) / (u1 - u2) : Infinity;
+    const vcm = (M1 * u1 + M2 * u2) / (M1 + M2);
+    const e1 = ((M1 - M2) * u1 + 2 * M2 * u2) / (M1 + M2), e2 = ((M2 - M1) * u2 + 2 * M1 * u1) / (M1 + M2);
+    const T = hits ? Math.min(6.4, Math.ceil((tc * 1.9) / 0.8) * 0.8) : 2.4;
+    const leg = (t, x0, u, w) => (t < tc ? x0 + u * t : x0 + u * tc + w * (t - tc));
+    return {
+      M1, M2, u1, u2, hits, tc, vcm, T, ptot: M1 * u1 + M2 * u2,
+      s1: (t) => leg(t, X1, u1, vcm), s2: (t) => leg(t, X2, u2, vcm),
+      b1: (t) => leg(t, X1, u1, e1), b2: (t) => leg(t, X2, u2, e2),
+      cm: (t) => (M1 * (X1 + u1 * t) + M2 * (X2 + u2 * t)) / (M1 + M2),
+    };
+  }
+  const cy = cycle(() => model().T, 1.2);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = model(), tau = cy.now(), T = f.T;
+    const lo = Math.min(0, f.b1(T), f.s1(T)) - 0.8, hi = Math.max(X2 + 0.8, f.b2(T), f.s2(T)) + 0.8;
+    const SC = 1180 / (hi - lo), X = (m) => 110 + (m - lo) * SC, yT = 215;
+    strip(ctx, 80, 1340, yT + 40, 26);
+    const a = f.s1(tau), b = f.s2(tau), c = f.cm(tau);
+    /* a cart: a body no narrower than the eye can read, on two wheels that sit on the track */
+    const cart = (x, w, color) => {
+      const ww = Math.max(w, 44);
+      block(ctx, x, yT - 6, ww, 48, color);
+      ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x - ww / 2 + 10, yT + 20, 7, 0, TAU); ctx.arc(x + ww / 2 - 10, yT + 20, 7, 0, TAU); ctx.fill(); ctx.restore();
+    };
+    const c1 = F.ref('cart-1'), c2 = F.ref('cart-2');
+    cart(X(a), LC * SC, c1); cart(X(b), LC * SC, c2);
+    text(ctx, 'm₁', X(a), yT - 6, c1, { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'm₂', X(b), yT - 6, c2, { size: 19, weight: 600, align: 'center' });
+    /* the masses read above the velocity arrows, the second stepped up a row where the carts are close */
+    const close = Math.abs(X(b) - X(a)) < 200;
+    F.label(ctx, 'm₁ = ' + fmt(f.M1, 1) + ' kg', X(a), yT - 76, { side: 'above', gap: 10, leader: false, size: 18, weight: 400, color: C('mass'), H: 810 });
+    F.label(ctx, 'm₂ = ' + fmt(f.M2, 1) + ' kg', X(b), yT - (close ? 104 : 76), { side: 'above', gap: 10, leader: false, size: 18, weight: 400, color: C('mass'), H: 810 });
+    const LV = 13;
+    arrow(ctx, X(a), yT - 54, X(a) + (tau < f.tc ? f.u1 : f.vcm) * LV, yT - 54, C('velocity'), 4);
+    arrow(ctx, X(b), yT - 54, X(b) + (tau < f.tc ? f.u2 : f.vcm) * LV, yT - 54, C('velocity'), 4);
+    cross(ctx, X(c), yT + 90, C('position'), 16);
+    arrow(ctx, X(c), yT + 90, X(c) + f.vcm * LV, yT + 90, C('velocity'), 4);
+    text(ctx, '质心，速度为 ' + fmt(f.vcm, 2) + ' m/s', X(c), yT + 128, C('position'), { size: 19, weight: 600, align: 'center' });
+    /* the graph: where each cart is at every moment, and the straight line of the center of mass */
+    /* fixed axes: the run never lasts longer than 6.4 s, so the time axis is 0 to 6.4 s, ticked
+       every 1.6 s. The fastest pair could be 60 m down the track by then, but the default pair
+       stays between 0.5 m and 8.5 m and would be pressed against the base line on an axis that
+       long, so the position axis is fixed at −4 m to 12 m, ticked every 4 m, which holds the
+       default run comfortably; a faster cart is clipped at the top edge and read off its pinned
+       marker. Neither range moves. */
+    const box = { l: 200, r: 1280, t: 400, b: 710 }, TR = 6.4, XLO = -4, XHI = 12;
+    const { X: GX, Y: GY } = axes(ctx, box, [0, TR], [XLO, XHI], { xl: 't (s)', yl: 'x (m)', xc: C('time'), yc: C('position'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
+    const clx = (g) => (t) => Math.min(Math.max(g(t), XLO), XHI);                 /* drawn only where the box reaches */
+    const TE = Math.min(T, TR);
+    [[f.b1, c1], [f.b2, c2]].forEach(([g, c]) => curve(ctx, clx(g), 0, TE, GX, GY, alpha(c, 0.35), 3, 100));
+    [[f.s1, c1], [f.s2, c2]].forEach(([g, c]) => curve(ctx, clx(g), 0, TE, GX, GY, c, 4, 100));
+    curve(ctx, clx(f.cm), 0, TE, GX, GY, C('position'), 5, 8);
+    /* each curve is named where it ends, which is short of the frame's edge when the run is short */
+    text(ctx, '质心', GX(TE) + 12, GY(clx(f.cm)(TE)), C('position'), { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    if (f.hits) text(ctx, '如果小车改为弹开', GX(TE) + 12, GY(clx(f.b2)(TE)) - (Math.abs(GY(clx(f.b2)(TE)) - GY(clx(f.cm)(TE))) < 26 ? 26 : 0), alpha(PAL.ink, 0.6), { size: 18, bg: alpha(PAL.panel, 0.85) });
+    pinned(ctx, box, GX, GY, tau, a, c1, fmt(a, 1) + ' m');
+    hollowOrPinned(ctx, box, GX, GY, tau, b, c2, fmt(b, 1) + ' m');
+    pinned(ctx, box, GX, GY, tau, c, C('position'));
+    topline(ctx, !f.hits ? '两辆小车永远不会相遇，质心仍以 ' + fmt(f.vcm, 2) + ' m/s 的速度运动。'
+      : tau < f.tc ? '小车仍在靠近，质心正以 ' + fmt(f.vcm, 2) + ' m/s 的速度运动。'
+      : '小车已黏在一起，以 ' + fmt(f.vcm, 2) + ' m/s 的速度运动，这正是质心一直以来的速度。');
+    readout(d.readout, `\\kvcm = \\frac{\\kptot}{\\km_{\\htmlData{ref=cart-1}{1}} + \\km_{\\htmlData{ref=cart-2}{2}}} = \\frac{${fmt(f.ptot, 2)}\\ \\text{kg·m/s}}{${fmt(f.M1 + f.M2, 1)}\\ \\text{kg}} = ${fmt(f.vcm, 2)}\\ \\text{m/s}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE (no number): the measurements the fourth AP item is set on. It
+   is a page of readings and answers no slider, so it is a still picture
+   with no cycle and no transport.
+===================================================================== */
+(function () {
+  const d = sim('fig-cart-graph', 580);
+  const TS = [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0];
+  const A = [0, 0.35, 0.6, 1.0, 1.2, 1.5, 1.7, 1.75, 1.95, 2.0, 2.1];
+  const B = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.7, 1.75, 1.95, 2.0, 2.1];
+  function draw() {
+    const { ctx } = begin(d.c);
+    const box = { l: 210, r: 1220, t: 70, b: 440 };
+    const { X, Y } = axes(ctx, box, [0, 2], [0, 2.5], { xl: '时间（s）', yl: '位置（m）', xc: C('time'), yc: C('position'), nx: 10, ny: 5, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
+    const ca = F.ref('cart-a'), cb = F.ref('cart-b');
+    TS.forEach((t, i) => { dot(ctx, X(t), Y(B[i]), cb, false, 11); dot(ctx, X(t), Y(A[i]), ca, true, 7); });
+    dot(ctx, 270, 115, ca, true, 7); text(ctx, '小车 A', 292, 115, ca, { size: 19 });
+    dot(ctx, 270, 152, cb, false, 11); text(ctx, '小车 B', 292, 152, cb, { size: 19 });
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

@@ -1,0 +1,810 @@
+{
+ "id": "8",
+ "dir": "ch08",
+ "title": "线动量与碰撞",
+ "intro": {
+  "module": "m42155",
+  "slug": "8-introduction-to-linear-momentum-and-collisions"
+ },
+ "sections": [
+  {
+   "id": "8.1",
+   "module": "m42156",
+   "title": "线动量与力",
+   "slug": "8-1-linear-momentum-and-force"
+  },
+  {
+   "id": "8.2",
+   "module": "m42159",
+   "title": "冲量",
+   "slug": "8-2-impulse"
+  },
+  {
+   "id": "8.3",
+   "module": "m42162",
+   "title": "动量守恒",
+   "slug": "8-3-conservation-of-momentum"
+  },
+  {
+   "id": "8.4",
+   "module": "m42163",
+   "title": "一维弹性碰撞",
+   "slug": "8-4-elastic-collisions-in-one-dimension"
+  },
+  {
+   "id": "8.5",
+   "module": "m42164",
+   "title": "一维非弹性碰撞",
+   "slug": "8-5-inelastic-collisions-in-one-dimension"
+  },
+  {
+   "id": "8.6",
+   "module": "m42165",
+   "title": "二维质点碰撞",
+   "slug": "8-6-collisions-of-point-masses-in-two-dimensions"
+  },
+  {
+   "id": "8.7",
+   "module": "m42166",
+   "title": "火箭推进导论",
+   "slug": "8-7-introduction-to-rocket-propulsion"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "p",
+   "concept": "linear-momentum",
+   "meaning": "系统的线动量，即系统的质量与其速度的乘积",
+   "unit": "kg·m/s",
+   "section": "8.1",
+   "anchor": "8.1-momentum"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "系统的质量，动量与它成正比",
+   "unit": "kg",
+   "section": "8.1",
+   "anchor": "8.1-momentum"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "系统的速度，动量的方向与它相同",
+   "unit": "m/s",
+   "section": "8.1",
+   "anchor": "8.1-momentum"
+  },
+  {
+   "sym": "p_player",
+   "concept": "linear-momentum",
+   "meaning": "以 8.00 m/s 奔跑的 110 kg 橄榄球运动员的动量",
+   "unit": "kg·m/s",
+   "section": "8.1",
+   "anchor": "8.1-calculating",
+   "ref": "player"
+  },
+  {
+   "sym": "p_ball",
+   "concept": "linear-momentum",
+   "meaning": "被用力掷出的 0.410 kg 橄榄球的动量",
+   "unit": "kg·m/s",
+   "section": "8.1",
+   "anchor": "8.1-calculating",
+   "ref": "football"
+  },
+  {
+   "sym": "F_net",
+   "concept": "net-external-force",
+   "meaning": "系统所受的合外力，它等于动量的变化除以动量变化所用的时间",
+   "unit": "N",
+   "section": "8.1",
+   "anchor": "8.1-second-law"
+  },
+  {
+   "sym": "Δp",
+   "concept": "change-in-momentum",
+   "meaning": "系统动量的变化",
+   "unit": "kg·m/s",
+   "section": "8.1",
+   "anchor": "8.1-second-law"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "动量发生变化所用的时间",
+   "unit": "s",
+   "section": "8.1",
+   "anchor": "8.1-second-law"
+  },
+  {
+   "sym": "Δv",
+   "concept": "instantaneous-velocity",
+   "meaning": "系统速度的变化量，动量的变化是质量乘以它",
+   "unit": "m/s",
+   "section": "8.1",
+   "anchor": "8.1-constant-mass"
+  },
+  {
+   "sym": "v_i",
+   "concept": "instantaneous-velocity",
+   "meaning": "网球刚被球拍击中之前的速度",
+   "unit": "m/s",
+   "section": "8.1",
+   "anchor": "8.1-tennis"
+  },
+  {
+   "sym": "vf",
+   "concept": "instantaneous-velocity",
+   "meaning": "网球刚被球拍击中之后的速度",
+   "unit": "m/s",
+   "section": "8.1",
+   "anchor": "8.1-tennis"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "系统的加速度，即速度的变化量除以所用的时间",
+   "unit": "m/s²",
+   "section": "8.1",
+   "anchor": "8.1-constant-mass"
+  },
+  {
+   "sym": "Δp",
+   "concept": "change-in-momentum",
+   "meaning": "物体动量的变化，即合外力给予它的冲量",
+   "unit": "kg·m/s",
+   "section": "8.2",
+   "anchor": "8.2-impulse"
+  },
+  {
+   "sym": "F_net",
+   "concept": "net-external-force",
+   "meaning": "作用在物体上的平均合外力",
+   "unit": "N",
+   "section": "8.2",
+   "anchor": "8.2-impulse"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "力作用的时间",
+   "unit": "s",
+   "section": "8.2",
+   "anchor": "8.2-impulse"
+  },
+  {
+   "sym": "F_eff",
+   "concept": "effective-force",
+   "meaning": "平均等效力，即与实际随时间变化的力给出相同冲量的恒力",
+   "unit": "N",
+   "section": "8.2",
+   "anchor": "8.2-effective-force"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "力对时间的图像中沿横轴读出的时间",
+   "unit": "s",
+   "section": "8.2",
+   "anchor": "8.2-effective-force"
+  },
+  {
+   "sym": "u",
+   "concept": "instantaneous-velocity",
+   "meaning": "每只台球撞墙前后的速率",
+   "unit": "m/s",
+   "section": "8.2",
+   "anchor": "8.2-billiard"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "每只台球的质量",
+   "unit": "kg",
+   "section": "8.2",
+   "anchor": "8.2-billiard"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "力使物体停下之前物体的速度",
+   "unit": "m/s",
+   "section": "8.2",
+   "anchor": "8.2-impulse"
+  },
+  {
+   "sym": "p_1",
+   "concept": "linear-momentum",
+   "meaning": "第一辆车碰撞前的动量",
+   "unit": "kg·m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-1"
+  },
+  {
+   "sym": "p_2",
+   "concept": "linear-momentum",
+   "meaning": "第二辆车碰撞前的动量",
+   "unit": "kg·m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-2"
+  },
+  {
+   "sym": "p_1prime",
+   "concept": "linear-momentum",
+   "meaning": "第一辆车碰撞后的动量",
+   "unit": "kg·m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-1"
+  },
+  {
+   "sym": "p_2prime",
+   "concept": "linear-momentum",
+   "meaning": "第二辆车碰撞后的动量",
+   "unit": "kg·m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-2"
+  },
+  {
+   "sym": "p_tot",
+   "concept": "linear-momentum",
+   "meaning": "系统的总动量，即其中各物体的动量之和",
+   "unit": "kg·m/s",
+   "section": "8.3",
+   "anchor": "8.3-conservation"
+  },
+  {
+   "sym": "p_totprime",
+   "concept": "linear-momentum",
+   "meaning": "系统在一段时间之后的总动量",
+   "unit": "kg·m/s",
+   "section": "8.3",
+   "anchor": "8.3-conservation"
+  },
+  {
+   "sym": "Δp",
+   "concept": "change-in-momentum",
+   "meaning": "其中一辆相撞的车动量的变化，即碰撞的冲量给予它的",
+   "unit": "kg·m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars"
+  },
+  {
+   "sym": "F_1",
+   "concept": "force",
+   "meaning": "第一辆车所受到的第二辆车施加的力",
+   "unit": "N",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-1"
+  },
+  {
+   "sym": "F_2",
+   "concept": "force",
+   "meaning": "第二辆车所受到的第一辆车施加的力，牛顿第三定律使它与第一辆车所受的力大小相等、方向相反",
+   "unit": "N",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-2"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "相撞两车的动量发生变化所用的时间，两辆车相同",
+   "unit": "s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars"
+  },
+  {
+   "sym": "F_net",
+   "concept": "net-external-force",
+   "meaning": "系统所受的合外力，对孤立系统它为零",
+   "unit": "N",
+   "section": "8.3",
+   "anchor": "8.3-conservation"
+  },
+  {
+   "sym": "m_1",
+   "concept": "mass",
+   "meaning": "第一辆车的质量",
+   "unit": "kg",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-1"
+  },
+  {
+   "sym": "m_2",
+   "concept": "mass",
+   "meaning": "第二辆车的质量",
+   "unit": "kg",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-2"
+  },
+  {
+   "sym": "v_1",
+   "concept": "instantaneous-velocity",
+   "meaning": "第一辆车碰撞前的速度",
+   "unit": "m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-1"
+  },
+  {
+   "sym": "v_2",
+   "concept": "instantaneous-velocity",
+   "meaning": "第二辆车碰撞前的速度",
+   "unit": "m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-2"
+  },
+  {
+   "sym": "v_1prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "第一辆车碰撞后的速度",
+   "unit": "m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-1"
+  },
+  {
+   "sym": "v_2prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "第二辆车碰撞后的速度",
+   "unit": "m/s",
+   "section": "8.3",
+   "anchor": "8.3-two-cars",
+   "ref": "car-2"
+  },
+  {
+   "sym": "m_1",
+   "concept": "mass",
+   "meaning": "两个相撞物体中第一个物体的质量",
+   "unit": "kg",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-1"
+  },
+  {
+   "sym": "m_2",
+   "concept": "mass",
+   "meaning": "两个相撞物体中第二个物体的质量",
+   "unit": "kg",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-2"
+  },
+  {
+   "sym": "v_1",
+   "concept": "instantaneous-velocity",
+   "meaning": "第一个物体碰撞前的速度",
+   "unit": "m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-1"
+  },
+  {
+   "sym": "v_2",
+   "concept": "instantaneous-velocity",
+   "meaning": "第二个物体碰撞前的速度，在例题中它为零",
+   "unit": "m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-2"
+  },
+  {
+   "sym": "v_1prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "第一个物体碰撞后的速度",
+   "unit": "m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-1"
+  },
+  {
+   "sym": "v_2prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "第二个物体碰撞后的速度",
+   "unit": "m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-2"
+  },
+  {
+   "sym": "p_1",
+   "concept": "linear-momentum",
+   "meaning": "第一个物体碰撞前的动量",
+   "unit": "kg·m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-1"
+  },
+  {
+   "sym": "p_2",
+   "concept": "linear-momentum",
+   "meaning": "第二个物体碰撞前的动量",
+   "unit": "kg·m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-2"
+  },
+  {
+   "sym": "p_1prime",
+   "concept": "linear-momentum",
+   "meaning": "第一个物体碰撞后的动量",
+   "unit": "kg·m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-1"
+  },
+  {
+   "sym": "p_2prime",
+   "concept": "linear-momentum",
+   "meaning": "第二个物体碰撞后的动量",
+   "unit": "kg·m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations",
+   "ref": "object-2"
+  },
+  {
+   "sym": "KE_int",
+   "concept": "internal-kinetic-energy",
+   "meaning": "系统的内动能，即其中各物体的动能之和",
+   "unit": "J",
+   "section": "8.4",
+   "anchor": "8.4-elastic"
+  },
+  {
+   "sym": "F_net",
+   "concept": "net-external-force",
+   "meaning": "两物体系统所受的合外力，两物体在无摩擦表面上碰撞时它为零",
+   "unit": "N",
+   "section": "8.4",
+   "anchor": "8.4-equations"
+  },
+  {
+   "sym": "p_tot",
+   "concept": "linear-momentum",
+   "meaning": "两物体系统的总动量，碰撞前后相同",
+   "unit": "kg·m/s",
+   "section": "8.4",
+   "anchor": "8.4-equations"
+  },
+  {
+   "sym": "KE_intprime",
+   "concept": "internal-kinetic-energy",
+   "meaning": "系统碰撞后的内动能，弹性碰撞使它保持不变",
+   "unit": "J",
+   "section": "8.4",
+   "anchor": "8.4-equations"
+  },
+  {
+   "sym": "m_1",
+   "concept": "mass",
+   "meaning": "两个相撞物体中第一个物体的质量，即冰球或第一辆小车",
+   "unit": "kg",
+   "section": "8.5",
+   "anchor": "8.5-recoil",
+   "ref": "object-1"
+  },
+  {
+   "sym": "m_2",
+   "concept": "mass",
+   "meaning": "两个相撞物体中第二个物体的质量，即守门员或第二辆小车",
+   "unit": "kg",
+   "section": "8.5",
+   "anchor": "8.5-recoil",
+   "ref": "object-2"
+  },
+  {
+   "sym": "v_1",
+   "concept": "instantaneous-velocity",
+   "meaning": "第一个物体碰撞前的速度",
+   "unit": "m/s",
+   "section": "8.5",
+   "anchor": "8.5-recoil",
+   "ref": "object-1"
+  },
+  {
+   "sym": "v_2",
+   "concept": "instantaneous-velocity",
+   "meaning": "第二个物体碰撞前的速度",
+   "unit": "m/s",
+   "section": "8.5",
+   "anchor": "8.5-recoil",
+   "ref": "object-2"
+  },
+  {
+   "sym": "v_1prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "第一个物体碰撞后的速度",
+   "unit": "m/s",
+   "section": "8.5",
+   "anchor": "8.5-recoil",
+   "ref": "object-1"
+  },
+  {
+   "sym": "v_2prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "第二个物体碰撞后的速度",
+   "unit": "m/s",
+   "section": "8.5",
+   "anchor": "8.5-recoil",
+   "ref": "object-2"
+  },
+  {
+   "sym": "v_prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "两个物体在完全非弹性碰撞后共有的速度，因为它们黏在一起",
+   "unit": "m/s",
+   "section": "8.5",
+   "anchor": "8.5-recoil"
+  },
+  {
+   "sym": "KE_int",
+   "concept": "internal-kinetic-energy",
+   "meaning": "系统碰撞前的内动能",
+   "unit": "J",
+   "section": "8.5",
+   "anchor": "8.5-recoil"
+  },
+  {
+   "sym": "KE_intprime",
+   "concept": "internal-kinetic-energy",
+   "meaning": "系统碰撞后的内动能",
+   "unit": "J",
+   "section": "8.5",
+   "anchor": "8.5-recoil"
+  },
+  {
+   "sym": "m_1",
+   "concept": "mass",
+   "meaning": "入射物体的质量",
+   "unit": "kg",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-1"
+  },
+  {
+   "sym": "m_2",
+   "concept": "mass",
+   "meaning": "最初静止的物体的质量",
+   "unit": "kg",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-2"
+  },
+  {
+   "sym": "v_1",
+   "concept": "instantaneous-velocity",
+   "meaning": "入射物体的速度，x 轴选为与它平行",
+   "unit": "m/s",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-1"
+  },
+  {
+   "sym": "v_1prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "入射物体碰撞后的速率",
+   "unit": "m/s",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-1"
+  },
+  {
+   "sym": "v_2prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "最初静止的物体碰撞后的速率",
+   "unit": "m/s",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-2"
+  },
+  {
+   "sym": "θ_1",
+   "concept": "angle",
+   "meaning": "入射物体被散射到的角度，从 x 轴量起",
+   "unit": "°",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-1"
+  },
+  {
+   "sym": "θ_2",
+   "concept": "angle",
+   "meaning": "最初静止的物体离开时的角度，从 x 轴量起，逆时针方向为正",
+   "unit": "°",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-2"
+  },
+  {
+   "sym": "p_x",
+   "concept": "linear-momentum",
+   "meaning": "沿 x 轴的动量分量，它单独守恒",
+   "unit": "kg·m/s",
+   "section": "8.6",
+   "anchor": "8.6-two-dimensional"
+  },
+  {
+   "sym": "p_y",
+   "concept": "linear-momentum",
+   "meaning": "沿 y 轴的动量分量，它单独守恒，且在碰撞前为零",
+   "unit": "kg·m/s",
+   "section": "8.6",
+   "anchor": "8.6-two-dimensional"
+  },
+  {
+   "sym": "p_1x",
+   "concept": "linear-momentum",
+   "meaning": "入射物体碰撞前动量的 x 分量",
+   "unit": "kg·m/s",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-1"
+  },
+  {
+   "sym": "p_1y",
+   "concept": "linear-momentum",
+   "meaning": "入射物体碰撞前动量的 y 分量，它为零",
+   "unit": "kg·m/s",
+   "section": "8.6",
+   "anchor": "8.6-y-axis",
+   "ref": "object-1"
+  },
+  {
+   "sym": "p_2x",
+   "concept": "linear-momentum",
+   "meaning": "第二个物体碰撞前动量的 x 分量，它为零",
+   "unit": "kg·m/s",
+   "section": "8.6",
+   "anchor": "8.6-x-axis",
+   "ref": "object-2"
+  },
+  {
+   "sym": "p_2y",
+   "concept": "linear-momentum",
+   "meaning": "第二个物体碰撞前动量的 y 分量，它为零",
+   "unit": "kg·m/s",
+   "section": "8.6",
+   "anchor": "8.6-y-axis",
+   "ref": "object-2"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "火箭的加速度，即气体喷出后留下的那部分系统的加速度",
+   "unit": "m/s²",
+   "section": "8.7",
+   "anchor": "8.7-ejecting-mass"
+  },
+  {
+   "sym": "v_e",
+   "concept": "instantaneous-velocity",
+   "meaning": "气体相对于火箭的排气速度",
+   "unit": "m/s",
+   "section": "8.7",
+   "anchor": "8.7-ejecting-mass",
+   "ref": "gas"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "火箭及其尚未燃烧的燃料的质量",
+   "unit": "kg",
+   "section": "8.7",
+   "anchor": "8.7-ejecting-mass"
+  },
+  {
+   "sym": "Δm",
+   "concept": "mass",
+   "meaning": "火箭在时间 Δt 内喷出的炽热气体的质量",
+   "unit": "kg",
+   "section": "8.7",
+   "anchor": "8.7-ejecting-mass"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "气体被喷出所用的时间",
+   "unit": "s",
+   "section": "8.7",
+   "anchor": "8.7-ejecting-mass"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度的大小，火箭必须克服它",
+   "unit": "m/s²",
+   "section": "8.7",
+   "anchor": "8.7-ejecting-mass"
+  },
+  {
+   "sym": "F_thrust",
+   "concept": "thrust",
+   "meaning": "推力，即喷出的气体对火箭施加的力",
+   "unit": "N",
+   "section": "8.7",
+   "anchor": "8.7-factors"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "从静止开始的单级火箭的末速度",
+   "unit": "m/s",
+   "section": "8.7",
+   "anchor": "8.7-mass-ratio"
+  },
+  {
+   "sym": "m_0",
+   "concept": "mass",
+   "meaning": "火箭的初始质量，包括燃料",
+   "unit": "kg",
+   "section": "8.7",
+   "anchor": "8.7-mass-ratio"
+  },
+  {
+   "sym": "m_r",
+   "concept": "mass",
+   "meaning": "燃料全部耗尽后剩下的质量",
+   "unit": "kg",
+   "section": "8.7",
+   "anchor": "8.7-mass-ratio"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "台球撞墙并反弹时的角度，从墙的垂线量起",
+   "unit": "°",
+   "section": "8.2",
+   "anchor": "8.2-billiard"
+  },
+  {
+   "sym": "θ_0",
+   "concept": "angle",
+   "meaning": "空间探测器发射时高于水平方向的角度",
+   "unit": "°",
+   "section": "8.3",
+   "anchor": "8.3-directions"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "其中一个相撞物体的质量：图 8.7 中两个相等质量中的每一个，或冰球",
+   "unit": "kg",
+   "section": "8.5",
+   "anchor": "8.5-inelastic"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "接住冰球的守门员的质量",
+   "unit": "kg",
+   "section": "8.5",
+   "anchor": "8.5-recoil"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "两个相撞物体质量相等时，每个物体的质量",
+   "unit": "kg",
+   "section": "8.6",
+   "anchor": "8.6-equal-masses"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "速度与 x 轴所成的角，它决定了其分量 v cos θ 和 v sin θ",
+   "unit": "°",
+   "section": "8.6",
+   "anchor": "8.6-x-axis"
+  }
+ ]
+}

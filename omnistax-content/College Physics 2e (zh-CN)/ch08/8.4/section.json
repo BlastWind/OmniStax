@@ -1,0 +1,984 @@
+{
+ "id": "8.4",
+ "module": "m42163",
+ "chapter": "8",
+ "title": "一维弹性碰撞",
+ "short": "弹性碰撞",
+ "lead": "弹性碰撞是指碰撞物体的<span data-concept=\"kinetic-energy\">动能</span>没有任何一部分变成<span data-concept=\"heat\">热</span>传递、声音，或使它们变形所做的<span data-concept=\"work\">功</span>的碰撞。本节讨论沿一条直线相撞的两个物体，把这一事实与动量守恒放在一起，求出两个物体碰后如何分开。",
+ "objectives": [
+  "描述两个物体在一维中的弹性碰撞。",
+  "定义内动能。",
+  "推导一维碰撞中内动能守恒的表达式。",
+  "已知质量和初速度，求弹性碰撞中的末速度。"
+ ],
+ "summary_html": "<ul><li>弹性碰撞是指使<span data-concept=\"internal-kinetic-energy\">内动能</span>守恒的碰撞。</li><li>动能和动量同时守恒，就可以在一维两体碰撞中，用初<span data-concept=\"velocity\">速度</span>和<span data-concept=\"mass\">质量</span>算出末<span data-concept=\"velocity\">速度</span>。</li></ul>",
+ "notes": "略去了关于碰撞实验室的 PhET 模拟说明，也略去了书后答案中没有给出答案的习题 1 和习题 3。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案；习题 1（fs-id3102664，两个相同的物体）和习题 3（fs-id898804，守门员和冰球）在书后答案中没有给出答案，故略去。本节二十道 AP 题中，有九道涉及非弹性碰撞或完全非弹性碰撞，或涉及如何区分这两类碰撞，而这些内容要到 8.5 节才介绍，所以它们留给那一页，source_section 为 8.4：fs-id2208648、fs-id1342061、fs-id1442938、fs-id2332080、fs-id2494812、fs-id1862350、fs-id2389032、fs-id1741049 和 fs-id1971159。反过来也有同样的安排：8.5 节的 AP 题中有三道是关于弹性碰撞的，而弹性碰撞由本节引入，因此放在这里，source_section 为 8.5，即 fs-id2060437、fs-id1367751 和 fs-id1538341；8.5 节的说明里也写了这一点。那两道要求求两个冰球质心的速度或动量的题目，仍留在它们所描述的碰撞那里，并标注了 6.5 节的质心节点；书中只用一句话谈到这个概念，即在“动量守恒”一节中说，可以证明系统的总动量就是系统质心的动量，建议思路也依赖这句话。这里每一道没有给出答案的 AP 题，要求的都是用文字或数字作答，而不是选择，所以每道都保留为开放题，附有 AI 撰写的建议思路，并加了标注；思考题的建议思路同样由 AI 撰写，因为本章中书里没有给出任何思考题的答案。fs-id1165124579546 和 fs-id2378587 这两道题都要读的、两辆相碰气垫小车的位置图，两张卡片上都附了，因为第二道题写的是“对于上面的图”，每张卡片都必须能够独立成立。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-elastic-collision",
+   "kind": "sim",
+   "number": "8.6",
+   "originals": [
+    "/media/ch08/Figure_09_04_01a.jpg"
+   ],
+   "original_caption": "一次一维两物体弹性碰撞。动量和内动能都守恒。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "momentum",
+    "energy",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bars without a moving scale, one row per arrow, headline macros, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-solutions",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "momentum",
+    "energy",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "ellipse clipped, pinned label merged, headline and note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "elastic",
+   "concept": "elastic-collision",
+   "verb": "introduces"
+  },
+  {
+   "span": "elastic",
+   "concept": "internal-kinetic-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "elastic",
+   "concept": "nearly-elastic-collisions",
+   "verb": "introduces"
+  },
+  {
+   "span": "elastic",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic",
+   "concept": "isolated-system",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "elastic-collision-1d",
+   "verb": "introduces"
+  },
+  {
+   "span": "equations",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "elastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "equations",
+   "concept": "internal-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "elastic-collision-1d",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "internal-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "example",
+   "concept": "elastic-collision",
+   "verb": "reinforces"
+  },
+  {
+   "span": "example",
+   "concept": "nearly-elastic-collisions",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1478642",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "冰球 A（200 g）在无摩擦的表面上滑行，与初始静止的冰球 B（800 g）相撞。实验中测得每个冰球的速度如下：<table class=\"data\"><tr><th>时间</th><th>A 的速度</th><th>B 的速度</th></tr><tr><td>0</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>1.0 s</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>2.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr><tr><td>3.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr></table>碰撞使系统质心的动量发生了多大变化？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "+1.6 kg•m/s",
+     "+0.8 kg•m/s",
+     "0",
+     "−1.6 kg•m/s"
+    ],
+    "correct": 2,
+    "solution": "（c）",
+    "generated_by": "source",
+    "hint": "系统的总动量就是其质心的动量，而两个冰球在无摩擦的表面上滑行，所以先问问这一对冰球所受的合外力是多少。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1364045",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "<table class=\"data\"><tr><th>时间</th><th>A 的速度</th><th>B 的速度</th></tr><tr><td>0</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>1.0 s</td><td>+8.0 m/s</td><td>0</td></tr><tr><td>2.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr><tr><td>3.0 s</td><td>−2.0 m/s</td><td>+2.5 m/s</td></tr></table>对于上表，分别计算碰撞前后系统的质心速度，再分别计算碰撞前后系统的质心动量。由此确定碰撞使系统动量发生的变化。",
+   "answer": {
+    "type": "open",
+    "solution": "系统的总动量等于其质心的动量，所以把两个动量相加，再除以总质量 0.200 kg + 0.800 kg = 1.00 kg。碰撞前的总动量为 $(0.200\\ \\text{kg})(8.0\\ \\text{m/s}) + (0.800\\ \\text{kg})(0) = 1.6\\ \\text{kg}\\cdot\\text{m/s}$，所以质心以 $1.6\\ \\text{kg}\\cdot\\text{m/s} \\div 1.00\\ \\text{kg} = 1.6\\ \\text{m/s}$ 的速度沿正方向运动。碰撞后的总动量为 $(0.200\\ \\text{kg})(-2.0\\ \\text{m/s}) + (0.800\\ \\text{kg})(2.5\\ \\text{m/s}) = -0.4 + 2.0 = 1.6\\ \\text{kg}\\cdot\\text{m/s}$，所以质心仍以 1.6 m/s 的速度沿正方向运动。因此，系统动量的变化为零。这是可以预料的：两个冰球在无摩擦的表面上滑行，这一对冰球所受的合外力为零，而两个冰球相互施加的力是内力。它们改变每个冰球的动量，但不改变两个冰球合在一起的动量。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2432045",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "两辆质量相等的汽车（A 和 B）发生弹性碰撞。碰撞前，汽车 A 以 15 m/s 的速度沿 +<em>x</em> 方向运动，汽车 B 以 10 m/s 的速度沿 –<em>x</em> 方向运动。假设两辆汽车碰撞后都继续沿 <em>x</em> 轴运动，那么碰撞后汽车 A 的速度是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "与原来 15 m/s 的速率相同，方向相反",
+     "等于汽车 B 在碰撞前的速度",
+     "等于两个速度的平均值，方向与其原来的方向相同",
+     "等于两个速度的平均值，方向与其原来的方向相反"
+    ],
+    "correct": 1,
+    "solution": "（b）",
+    "generated_by": "source",
+    "hint": "把 $m_1 = m_2$ 代入弹性碰撞的两个方程，看看这一对末速度必须是什么。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3206663",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "两辆质量相等的汽车（A 和 B）发生弹性碰撞。碰撞前，汽车 A 以 20 m/s 的速度沿 +<em>x</em> 方向运动，汽车 B 以 10 m/s 的速度沿 –<em>x</em> 方向运动。假设两辆汽车碰撞后都继续沿 <em>x</em> 轴运动，那么碰撞后每辆汽车的速度各是多少？",
+   "answer": {
+    "type": "open",
+    "solution": "取 +<em>x</em> 方向为正，则 $\\kvone = 20\\ \\text{m/s}$，$\\kvtwo = -10\\ \\text{m/s}$，并在 $m_1 = m_2 = m$ 的条件下写出弹性碰撞的两个方程。动量守恒给出 $m(20) + m(-10) = m\\kvoneprime + m\\kvtwoprime$，所以 $\\kvoneprime + \\kvtwoprime = 10\\ \\text{m/s}$；内动能守恒给出 $\\tfrac{1}{2}m(20)^2 + \\tfrac{1}{2}m(-10)^2 = \\tfrac{1}{2}m{\\kvoneprime}^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2$，所以 ${\\kvoneprime}^2 + {\\kvtwoprime}^2 = 500\\ \\text{m}^2/\\text{s}^2$。除了两辆汽车原有的那一对速度之外，同时满足这两个方程的一对速度是 $\\kvoneprime = -10\\ \\text{m/s}$ 和 $\\kvtwoprime = 20\\ \\text{m/s}$。两个质量相等的物体沿一条直线发生弹性碰撞，只是交换了它们的速度：汽车 A 以 10 m/s 的速度沿 –<em>x</em> 方向离开，汽车 B 以 20 m/s 的速度沿 +<em>x</em> 方向离开。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1683789",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "elastic",
+   "prompt": "一个橡胶球从固定的高度由静止释放。它在坚硬的地板上弹起并向上反弹，但只达到原来固定高度的 90%。解释球在碰撞过程中损失动能的最佳方式是什么？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "在与地板碰撞时，需要能量使球的形状发生形变。",
+     "能量因球在碰撞过程中推地板所做的功而损失。",
+     "能量因球与地板之间的摩擦而损失。",
+     "能量因运动过程中重力所做的功而损失。"
+    ],
+    "correct": 0,
+    "solution": "（a）",
+    "generated_by": "source",
+    "hint": "只有当没有任何动能转变成其他形式时，碰撞才是弹性的，所以想一想：这个球做了什么，是冰面上的钢块所不会做的。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1514509",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "elastic",
+   "prompt": "一个网球以 15 m/s 的初速率撞向墙壁。球从墙上弹回，但碰撞后的速率略小（14 m/s）。解释（a）为了使总动量守恒，还有什么东西响应球的动量变化而改变了它的动量，以及（b）球的一部分动能是如何损失的。",
+   "answer": {
+    "type": "open",
+    "solution": "（a）动量守恒适用于合外力为零的系统，而球本身并不是这样的系统：墙在推它。把球和墙放在一起考虑。墙固定在建筑物上，并通过建筑物与地球相连，所以这个系统就是球和地球。接触期间，球推墙的力与墙推球的力一样大、作用时间一样长，所以地球获得的动量变化与球的动量变化大小相等、方向相反。地球的质量如此之大，以至于它的速度变化小到无法测量，但球和地球合在一起的动量在弹回之后与弹回之前相同。（b）这次碰撞不是弹性的。球在墙上被压扁时，功用于使橡胶和墙发生形变，而当球弹出时，这些功并没有全部以动能的形式返还。一部分以热传递的形式留在球和墙中，一部分则以撞击声的形式散失。因此，系统的内动能在弹回之后变小了，所以球离开时的速率是 14 m/s，而不是 15 m/s。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1321180",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "质量 A 是质量 B 的三倍。质量 A 最初以 12 m/s 的速度沿 +<em>x</em> 方向运动。质量 B 最初以 12 m/s 的速度沿 –<em>x</em> 方向运动。假设碰撞是弹性的，计算碰撞后两个质量的末速度。证明你的结果与动量守恒和动能守恒一致。",
+   "answer": {
+    "type": "open",
+    "solution": "设质量 B 为 $m$，则质量 A 为 $3m$，并取 +<em>x</em> 方向为正，于是 A 的 $\\kvone = 12\\ \\text{m/s}$，B 的 $\\kvtwo = -12\\ \\text{m/s}$。动量守恒给出 $3m(12) + m(-12) = 3m\\kvoneprime + m\\kvtwoprime$，所以 $3\\kvoneprime + \\kvtwoprime = 24\\ \\text{m/s}$；内动能守恒给出 $3{\\kvoneprime}^2 + {\\kvtwoprime}^2 = 3(12)^2 + (12)^2 = 576\\ \\text{m}^2/\\text{s}^2$。解出这一对方程，并像例题那样舍去重复初始条件的那个解。余下的是 $\\kvoneprime = 0$ 和 $\\kvtwoprime = 24\\ \\text{m/s}$：质量较大的物体当即停住，较轻的物体以 24 m/s 的速度沿 +<em>x</em> 方向离开。检验动量：碰撞前为 $3m(12) + m(-12) = 24m$，碰撞后为 $3m(0) + m(24) = 24m$，相同。检验动能：碰撞前为 $\\tfrac{1}{2}(3m)(12)^2 + \\tfrac{1}{2}m(12)^2 = 216m + 72m = 288m$，碰撞后为 $\\tfrac{1}{2}(3m)(0)^2 + \\tfrac{1}{2}m(24)^2 = 288m$，也相同。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1487248",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "两个质量相等的物体（A 和 B）发生弹性碰撞。碰撞前，质量 A 最初以 5.0 m/s 的速度沿 +<em>x</em> 方向运动。碰撞前，质量 B 最初以 3.0 m/s 的速度沿 –<em>x</em> 方向运动。碰撞后，质量 A 将以 3.0 m/s 的速度沿 –<em>x</em> 方向运动。碰撞后质量 B 的速度是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "3.0 m/s，沿 +<em>x</em> 方向",
+     "5.0 m/s，沿 +<em>x</em> 方向",
+     "3.0 m/s，沿 –<em>x</em> 方向",
+     "5.0 m/s，沿 –<em>x</em> 方向"
+    ],
+    "correct": 1,
+    "solution": "（b）",
+    "generated_by": "source",
+    "hint": "两个质量相等，所以写出动量守恒方程时把一个质量约去，再解出你不知道的那个速度。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id3182581",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "两个质量相等的物体（A 和 B）发生弹性碰撞。碰撞前，质量 A 最初以 4.0 m/s 的速度沿 +<em>x</em> 方向运动。碰撞前，质量 B 最初以 8.0 m/s 的速度沿 –<em>x</em> 方向运动。碰撞后，质量 A 将以 8.0 m/s 的速度沿 –<em>x</em> 方向运动。（a）利用动量守恒原理，预测碰撞后质量 B 的速度。（b）利用动能在弹性碰撞中守恒这一事实，预测碰撞后质量 B 的速度。",
+   "answer": {
+    "type": "open",
+    "solution": "取 +<em>x</em> 方向为正，并设每个质量为 $m$。（a）动量守恒给出 $m(4.0) + m(-8.0) = m(-8.0) + m\\kvtwoprime$，质量约去，得 $\\kvtwoprime = 4.0\\ \\text{m/s}$：质量 B 以 4.0 m/s 的速度沿 +<em>x</em> 方向离开。（b）内动能守恒给出 $\\tfrac{1}{2}m(4.0)^2 + \\tfrac{1}{2}m(8.0)^2 = \\tfrac{1}{2}m(8.0)^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2$，质量和因子 1/2 约去，得 ${\\kvtwoprime}^2 = 16\\ \\text{m}^2/\\text{s}^2$，所以 $\\kvtwoprime = \\pm 4.0\\ \\text{m/s}$。能量方程是一个二次方程，像例题中一样有两个根，只有正根与动量方程一致，所以质量 B 以 4.0 m/s 的速度沿 +<em>x</em> 方向离开。这两个方程是一致的，这正是可以同时使用它们的原因：动量确定了单靠能量无法确定的正负号。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1165124579546",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "figure": {
+    "src": "/media/ch08/CNX_APPhysics_08_M3_aircars.jpg",
+    "alt": "该图给出了两个物体 A 和 B 的位置（单位为米）随时间（单位为秒）变化的图像。时间轴从 0 到 1.2 秒。位置轴从 0 到 2.5 米。物体 A 在时间 0 时从位置 0 出发。它的位置线性增大，在时间 0.6 秒时到达 1.5 米。然后它的位置线性减小，在时间 1.2 秒时回到 0 米。物体 B 在时间 0 时从位置 2.0 米出发。它的位置线性减小，在时间 0.6 秒时到达 1.5 米。然后它的位置线性增大，在时间 1.2 秒时回到 2.0 米。",
+    "caption": "两个相碰物体在碰撞前、碰撞中和碰撞后测得的位置。"
+   },
+   "prompt": "该图给出了两个相碰物体在碰撞前、碰撞中和碰撞后测得的位置。质量 A 为 1.0 kg，质量 B 为 3.0 kg。下列哪一种说法是正确的？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "这是弹性碰撞，总动量为 0 kg • m/s。",
+     "这是弹性碰撞，总动量为 1.67 kg • m/s。",
+     "这是非弹性碰撞，总动量为 0 kg • m/s。",
+     "这是非弹性碰撞，总动量为 1.67 kg • m/s。"
+    ],
+    "correct": 0,
+    "solution": "（a）",
+    "generated_by": "source",
+    "hint": "每条直线的斜率就是该物体的速度，所以先从图上读出四个斜率，再算出碰撞前后的总动量和内动能。"
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id2378587",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "figure": {
+    "src": "/media/ch08/CNX_APPhysics_08_M3_aircars.jpg",
+    "alt": "该图给出了两个物体 A 和 B 的位置（单位为米）随时间（单位为秒）变化的图像。时间轴从 0 到 1.2 秒。位置轴从 0 到 2.5 米。物体 A 在时间 0 时从位置 0 出发。它的位置线性增大，在时间 0.6 秒时到达 1.5 米。然后它的位置线性减小，在时间 1.2 秒时回到 0 米。物体 B 在时间 0 时从位置 2.0 米出发。它的位置线性减小，在时间 0.6 秒时到达 1.5 米。然后它的位置线性增大，在时间 1.2 秒时回到 2.0 米。",
+    "caption": "两个相碰物体在碰撞前、碰撞中和碰撞后测得的位置。"
+   },
+   "prompt": "对于上图，设质量 A 为 1.0 kg，质量 B 为 3.0 kg，确定两个物体的初动量和末动量。同时，确定两个物体的初动能和末动能。根据你的结果，说明这次碰撞中动量是否守恒，并指出这次碰撞是弹性碰撞还是非弹性碰撞。",
+   "answer": {
+    "type": "open",
+    "solution": "位置对时间的图线的斜率就是该物体的速度，所以先读出四个斜率。物体 A 在 0.6 s 内从 0 m 运动到 1.5 m，速度为 $+2.5\\ \\text{m/s}$，碰撞后它在 0.6 s 内从 1.5 m 回到 0 m，速度为 $-2.5\\ \\text{m/s}$。物体 B 在 0.6 s 内从 2.0 m 运动到 1.5 m，速度为 $-0.83\\ \\text{m/s}$，之后从 1.5 m 回到 2.0 m，速度为 $+0.83\\ \\text{m/s}$。于是，碰撞前的动量为 $\\kpone = (1.0\\ \\text{kg})(2.5\\ \\text{m/s}) = +2.5\\ \\text{kg}\\cdot\\text{m/s}$ 和 $\\kptwo = (3.0\\ \\text{kg})(-0.83\\ \\text{m/s}) = -2.5\\ \\text{kg}\\cdot\\text{m/s}$，碰撞后的动量为 $\\kponeprime = -2.5\\ \\text{kg}\\cdot\\text{m/s}$ 和 $\\kptwoprime = +2.5\\ \\text{kg}\\cdot\\text{m/s}$。碰撞前后的总动量都为零，所以动量守恒，这对于两个无摩擦滑动、不受合外力的物体来说是必然的。动能为：A 的 $\\tfrac{1}{2}(1.0)(2.5)^2 = 3.1\\ \\text{J}$，B 的 $\\tfrac{1}{2}(3.0)(0.83)^2 = 1.0\\ \\text{J}$，而每个物体碰撞后的速率与碰撞前相同，所以每个物体的动能也相同。系统的内动能在碰撞前是 $4.1\\ \\text{J}$，碰撞后也是 $4.1\\ \\text{J}$，所以这次碰撞是弹性的。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "fs-id2060437",
+   "source_section": "8.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "质量 A（2.0 kg）的初速度为 4 m/s，沿 +<em>x</em> 方向。质量 B（2.0 kg）的初速度为 5 m/s，沿 –<em>x</em> 方向。如果这两个质量发生弹性碰撞，碰撞后两个质量的末速度各是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "两者都以 0.5 m/s 的速度沿 –<em>x</em> 方向运动。",
+     "质量 A 停止；质量 B 以 9 m/s 的速度沿 +<em>x</em> 方向运动。",
+     "质量 B 停止；质量 A 以 9 m/s 的速度沿 –<em>x</em> 方向运动。",
+     "质量 A 以 5 m/s 的速度沿 –<em>x</em> 方向运动；质量 B 以 4 m/s 的速度沿 +<em>x</em> 方向运动。"
+    ],
+    "correct": 3,
+    "solution": "（d）",
+    "generated_by": "source",
+    "hint": "两个质量相等，所以问一问，当 $m_1 = m_2$ 时，两个守恒方程会使这一对末速度变成什么。"
+   }
+  },
+  {
+   "id": "ap13",
+   "source_id": "fs-id1367751",
+   "source_section": "8.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "质量 A 的初速度为 22 m/s，沿 +<em>x</em> 方向。质量 B 的质量是质量 A 的三倍，初速度为 22 m/s，沿 –<em>x</em> 方向。如果这两个质量发生弹性碰撞，碰撞后两个质量的末速度各是多少？",
+   "answer": {
+    "type": "open",
+    "solution": "设质量 A 为 $m$，质量 B 为 $3m$，并取 +<em>x</em> 方向为正，于是 $\\kvone = 22\\ \\text{m/s}$，$\\kvtwo = -22\\ \\text{m/s}$。动量守恒给出 $m(22) + 3m(-22) = m\\kvoneprime + 3m\\kvtwoprime$，所以 $\\kvoneprime + 3\\kvtwoprime = -44\\ \\text{m/s}$；内动能守恒给出 ${\\kvoneprime}^2 + 3{\\kvtwoprime}^2 = (22)^2 + 3(22)^2 = 1936\\ \\text{m}^2/\\text{s}^2$。这一对方程的一个解重复了两个物体已有的速度，描述的是碰撞前的情形，所以舍去；另一个解是 $\\kvoneprime = -44\\ \\text{m/s}$ 和 $\\kvtwoprime = 0$。较轻的物体以 44 m/s 的速度沿 –<em>x</em> 方向弹回，较重的物体则静止。检验动量：碰撞前为 $22m - 66m = -44m$，碰撞后为 $-44m + 0 = -44m$。检验动能：碰撞前为 $\\tfrac{1}{2}m(22)^2 + \\tfrac{1}{2}(3m)(22)^2 = 968m$，碰撞后为 $\\tfrac{1}{2}m(44)^2 = 968m$。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "ap14",
+   "source_id": "fs-id1538341",
+   "source_section": "8.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "质量 A 最初以 2 m/s 的速度沿 +<em>x</em> 方向运动。质量 B 最初以 6 m/s 的速度沿 –<em>x</em> 方向运动。两个物体的质量相等。碰撞后，质量 A 以 4 m/s 的速率沿 –<em>x</em> 方向运动。碰撞后质量 B 的末速度是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "6 m/s，沿 +<em>x</em> 方向",
+     "4 m/s，沿 +<em>x</em> 方向",
+     "零",
+     "4 m/s，沿 –<em>x</em> 方向"
+    ],
+    "correct": 2,
+    "solution": "（c）",
+    "generated_by": "source",
+    "hint": "无论动能变成了什么，动量都是守恒的，所以在质量相等的条件下写出动量方程，并解出你不知道的那个速度。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3105556",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "elastic",
+   "prompt": "什么是弹性碰撞？",
+   "answer": {
+    "type": "open",
+    "solution": "弹性碰撞除动量守恒外，还使内动能守恒。系统的内动能是其中各物体的动能之和。在弹性碰撞中，这个和在碰撞后与碰撞前相同，其中没有任何一部分变成热传递、声音，或使物体变形所做的功。无论碰撞是否为弹性的，只要合外力为零，动量就守恒。使碰撞成为弹性碰撞的，是第二条守恒定律，而这第二个方程使你能够由质量和初速度求出两个末速度。",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1319285",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equations",
+   "prompt": "两颗载人卫星以 0.250 m/s 的相对速率相互接近，打算对接。第一颗的质量为 $4.00 \\times 10^{3}\\ \\text{kg}$，第二颗的质量为 $7.50 \\times 10^{3}\\ \\text{kg}$。如果两颗卫星不是对接，而是发生弹性碰撞，它们的末相对速度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.25,
+    "unit": "m/s",
+    "generated_by": "source",
+    "solution": "0.250 m/s",
+    "hint": "写出弹性碰撞的两个方程，看看它们对两个速度之差而不是对每个速度单独作了什么限制。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "nearly-elastic-collisions"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "nearly-elastic-collisions"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "internal-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "internal-kinetic-energy"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "physical-solution",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "internal-kinetic-energy"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap11",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "internal-kinetic-energy"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap12",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "physical-solution",
+   "weight": 2
+  },
+  {
+   "exercise": "ap14",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "ap14",
+   "concept": "elastic-collision",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "internal-kinetic-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "elastic-collision-1d"
+  },
+  {
+   "exercise": "p1",
+   "concept": "elastic-collision",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "object-1",
+   "label": "物体 1，即较小的物体",
+   "figures": [
+    "sim-elastic-collision"
+   ]
+  },
+  {
+   "id": "object-2",
+   "label": "物体 2，即较大的物体",
+   "figures": [
+    "sim-elastic-collision"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "elastic-collision-velocities",
+   "what": "弹性碰撞的末速度",
+   "source": "《大学物理（第2版）》，8.4 一维弹性碰撞，例题 8.4",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "物体 2 最初静止，$\\kvtwo = 0$。"
+      },
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kpone} + \\mk{b}{\\kptwo} = \\mk{c}{\\kponeprime} + \\mk{d}{\\kptwoprime}",
+      "src": "8.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kpone} = \\mk{c}{\\kponeprime} + \\mk{d}{\\kptwoprime}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone\\kvoneprime} + \\mk{d}{\\kmtwo\\kvtwoprime}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kmtwo\\kvtwoprime} = \\mk{a}{\\kmone\\kvone} - \\mk{c}{\\kmone\\kvoneprime}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kvtwoprime} = \\mk{a}{\\frac{\\kmone}{\\kmtwo}(\\kvone - \\kvoneprime)}",
+       "uses": [],
+       "map": {
+        "c": "a"
+       }
+      }
+     ],
+     "src": "例题 8.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "弹性碰撞使内动能守恒。",
+       "src": "8.4"
+      },
+      {
+       "text": "物体 2 最初静止，$\\kvtwo = 0$。"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} + \\mk{k2}{\\tfrac{1}{2}\\kmtwo{\\kvtwo}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo{\\kvtwoprime}^2}",
+      "src": "8.4",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo{\\kvtwoprime}^2}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "例题 8.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo{\\kvtwoprime}^2}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo\\left(\\frac{\\kmone}{\\kmtwo}(\\kvone - \\kvoneprime)\\right)^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k1}{\\kmtwo{\\kvone}^2} = \\mk{k1p}{\\kmtwo{\\kvoneprime}^2} + \\mk{k2p}{\\kmone(\\kvone - \\kvoneprime)^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k1}{\\kmtwo{\\kvone}^2} = \\mk{k1p}{\\kmtwo{\\kvoneprime}^2} + \\mk{k2p}{\\kmone{\\kvone}^2 - 2\\kmone\\kvone\\kvoneprime + \\kmone{\\kvoneprime}^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q2}{(\\kmone + \\kmtwo){\\kvoneprime}^2} \\mk{q1}{- 2\\kmone\\kvone\\kvoneprime} + \\mk{q0}{(\\kmone - \\kmtwo){\\kvone}^2} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "k1": "q0",
+        "k1p": "q2",
+        "k2p": [
+         "q2",
+         "q1",
+         "q0"
+        ]
+       }
+      }
+     ],
+     "src": "例题 8.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kmone = 0.500\\ \\text{kg},\\quad \\kmtwo = 3.50\\ \\text{kg},\\quad \\kvone = 4.00\\ \\text{m/s}"
+      },
+      {
+       "text": "二次方程 $ax^2 + bx + c = 0$ 有两个解 $x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$。",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{q2}{(\\kmone + \\kmtwo){\\kvoneprime}^2} \\mk{q1}{- 2\\kmone\\kvone\\kvoneprime} + \\mk{q0}{(\\kmone - \\kmtwo){\\kvone}^2} = \\mk{z}{0}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q2}{(0.500\\ \\text{kg} + 3.50\\ \\text{kg}){\\kvoneprime}^2} \\mk{q1}{- 2(0.500\\ \\text{kg})(4.00\\ \\text{m/s})\\kvoneprime} + \\mk{q0}{(0.500\\ \\text{kg} - 3.50\\ \\text{kg})(4.00\\ \\text{m/s})^2} = \\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{q2}{(4.00\\ \\text{kg}){\\kvoneprime}^2} \\mk{q1}{- (4.00\\ \\text{kg}\\cdot\\text{m/s})\\kvoneprime} \\mk{q0}{- 48.0\\ \\text{kg}\\cdot\\text{m}^2/\\text{s}^2} = \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q2}{{\\kvoneprime}^2} \\mk{q1}{- (1.00\\ \\text{m/s})\\kvoneprime} \\mk{q0}{- 12.0\\ \\text{m}^2/\\text{s}^2} = \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kvoneprime} = \\mk{r}{\\frac{1.00\\ \\text{m/s} \\pm \\sqrt{(1.00\\ \\text{m/s})^2 + 48.0\\ \\text{m}^2/\\text{s}^2}}{2}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "q2": [
+         "v",
+         "r"
+        ],
+        "q1": "r",
+        "q0": "r",
+        "z": "r"
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kvoneprime} = \\mk{r}{\\frac{1.00 \\pm 7.00}{2}\\ \\text{m/s}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kvoneprime} = \\mk{r}{4.00\\ \\text{m/s}} \\quad\\text{或}\\quad \\mk{v2}{\\kvoneprime} = \\mk{r2}{-3.00\\ \\text{m/s}}",
+       "uses": [],
+       "map": {
+        "r": [
+         "r",
+         "r2"
+        ],
+        "v": [
+         "v",
+         "v2"
+        ]
+       }
+      }
+     ],
+     "src": "例题 8.4"
+    }
+   ]
+  }
+ ]
+}

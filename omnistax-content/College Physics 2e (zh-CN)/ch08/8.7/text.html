@@ -1,0 +1,74 @@
+<section id="propulsion">
+<h2>牛顿第三定律与火箭的推进</h2>
+<p class="cite-target">火箭的大小不一，小到普通人也能使用的烟花，大到曾把庞大的有效载荷送往月球的巨型土星五号。所有火箭、喷气发动机、漏气的气球，甚至乌贼和章鱼的推进，都可以用同一条物理原理来解释——<span data-concept="newtons-third-law">牛顿第三定律</span>。物质被强力地从<span data-concept="system">系统</span>中喷出，对留下的部分产生大小相等、方向相反的反作用。另一个常见的例子是枪的反冲。枪对子弹施加一个<span data-concept="force">力</span>使其加速，因此枪也受到一个大小相等、方向相反的<span data-concept="force">力</span>，造成枪的反冲，也就是“后坐”。</p>
+<div class="note">
+<div class="eyebrow">建立联系：居家实验——气球的推进</div>
+<p>拿一个气球，把它吹满空气。然后松手让气球飞出去。空气从气球中朝哪个<span data-concept="vector-direction">方向</span>喷出，气球又朝哪个<span data-concept="vector-direction">方向</span>被推动？如果在气球里灌满水再松手，气球的<span data-concept="vector-direction">方向</span>会改变吗？请解释你的答案。</p>
+</div>
+</section>
+
+<section id="ejecting-mass">
+<h2>喷出质量与火箭的加速度</h2>
+<p class="cite-target">图 8.12 显示了<span data-ref="rocket">一枚火箭</span>正在竖直向上加速。在（a）部分中，<span data-ref="rocket">火箭</span>具有<span data-type="mass"><span data-concept="mass">质量</span></span> $\km$ 和相对于地球的<span data-type="velocity"><span data-concept="velocity">速度</span></span> $\kv$，因而具有<span data-type="momentum">动量</span> $\km\kv$。在（b）部分中，经过了<span data-type="time"><span data-concept="time">时间</span></span> $\kdt$，在此期间<span data-ref="rocket">火箭</span>以相对于<span data-ref="rocket">火箭</span>的<span data-type="velocity"><span data-concept="velocity">速度</span></span> $\kve$ 喷出了<span data-type="mass"><span data-concept="mass">质量</span></span>为 $\kdm$ 的<span data-ref="gas">炽热气体</span>。<span data-type="mass">其余部分的<span data-concept="mass">质量</span></span> $(\km - \kdm)$ 现在具有<span data-type="velocity">更大的<span data-concept="velocity">速度</span></span> $(\kv + \kdv)$。<span data-type="momentum">整个<span data-concept="system">系统</span>的动量</span>（<span data-ref="rocket gas">火箭加上喷出的气体</span>）实际上减小了，因为<span data-type="force"><span data-concept="force">重力</span></span>作用了<span data-type="time"><span data-concept="time">时间</span></span> $\kdt$，产生了<span data-type="momentum">负的<span data-concept="impulse">冲量</span></span> $\kdp = -\km\kg\kdt$。（请记住，<span data-concept="impulse">冲量</span>是作用在<span data-concept="system">系统</span>上的<span data-concept="net-external-force">合外力</span>与其作用<span data-concept="time">时间</span>的乘积，它等于该<span data-concept="system">系统</span>的<span data-concept="change-in-momentum">动量变化</span>。）因此，该<span data-concept="system">系统</span>的<span data-concept="center-of-mass">质心</span>处于自由落体运动，但是通过快速喷出<span data-concept="mass">质量</span>，<span data-concept="system">系统</span>的一部分可以向上加速。一种常见的误解是，火箭喷出的气体推着地面。如果我们考虑<span data-concept="thrust">推力</span>，也就是喷出的气体对火箭施加的<span data-concept="force">力</span>，那么火箭在外层空间的<span data-concept="thrust">推力</span>比在大气层中或发射台上更大。事实上，把气体喷入真空更容易。</p>
+<p>通过计算整个<span data-concept="system">系统</span>在 $\kdt$ 内的<span data-concept="change-in-momentum">动量变化</span>，并令这一变化等于<span data-concept="impulse">冲量</span>，就得到火箭<span data-concept="acceleration">加速度</span>的一个很好的<span data-concept="approximation-def">近似</span>。</p>
+<p>“火箭”指气体喷出后<span data-concept="system">系统</span>中留下的那一部分，$\kg$ 是<span data-concept="acceleration-due-to-gravity">重力加速度</span>。</p>
+<figure class="dv" id="drv-rocket-acceleration"></figure>
+<div class="note">
+<div class="eyebrow">火箭的加速度</div>
+<p>火箭的<span data-concept="acceleration">加速度</span>为</p>
+$$\ka = \frac{\kve}{\km}\;\frac{\kdm}{\kdt} - \kg,$$
+<p>其中 $\ka$ 是火箭的<span data-concept="acceleration">加速度</span>，$\kve$ 是<span data-concept="velocity">排气速度</span>，$\km$ 是火箭的<span data-concept="mass">质量</span>，$\kdm$ 是喷出气体的<span data-concept="mass">质量</span>，$\kdt$ 是气体喷出所用的<span data-concept="time">时间</span>。</p>
+</div>
+<figure class="sim" id="sim-rocket" data-figure="8.12" data-original="/media/ch08/Figure_09_07_01a.jpg" data-original-width="300" data-original-caption="（a）这枚火箭的质量为 m，向上的速度为 v。如果忽略空气阻力，系统所受的合外力为 −mg。（b）经过时间 Δt 后，系统有两个主要部分：喷出的气体和火箭的其余部分。火箭所受的反作用力克服了重力，使它向上加速。">
+  <div class="sim-head"><span class="eyebrow">Figure 8.12</span><span><span data-ref="rocket">一枚火箭</span>起飞并燃烧<span data-ref="rocket">自己的</span>燃料，以<span data-type="velocity">排气速度</span> $\kve$ 向下喷出<span data-ref="gas">炽热气体</span>，同时<span data-type="force">推力</span> $\kFthrust$ 推着<span data-ref="rocket">它</span>向上对抗<span data-type="force">自身的重力</span>。<span data-type="mass">起飞质量</span>的四分之三是燃料，所以燃烧会结束。请看<span data-type="force">重力</span>如何减小而<span data-type="force">推力</span>保持不变，<span data-type="acceleration">加速度</span>则在燃料耗尽前一刻攀升到最大值。改变<span data-type="velocity">排气速度</span>、气体喷出的速率或<span data-type="mass">起飞质量</span>，燃烧就会重新开始。初始数值取自例题 8.8 中的<span data-ref="rocket">土星五号</span>。</span></div>
+</figure>
+</section>
+
+<section id="factors">
+<h2>火箭加速度的三个因素</h2>
+<p class="cite-target">火箭的<span data-concept="acceleration">加速度</span>取决于三个主要因素，这与火箭<span data-concept="acceleration">加速度</span>的方程是一致的。第一，气体相对于火箭的<span data-concept="velocity">排气速度</span> $\kve$ 越大，<span data-concept="acceleration">加速度</span>就越大。对于传统的（非核）热气体推进系统，$\kve$ 的实际极限约为 $2.5 \times 10^3\ \text{m/s}$。第二个因素是<span data-concept="mass">质量</span>从火箭中喷出的速率，也就是方程中的 $\kdm / \kdt$ 这一项。量 $(\kdm / \kdt)\kve$ 的<span data-concept="units">单位</span>是牛顿，称为“<span data-concept="thrust">推力</span>”。火箭燃烧燃料越快，它的<span data-concept="thrust">推力</span>就越大，<span data-concept="acceleration">加速度</span>也就越大。第三个因素是火箭的<span data-concept="mass">质量</span> <em>$\km$</em>。（其他因素相同时）<span data-concept="mass">质量</span>越小，<span data-concept="acceleration">加速度</span>就越大。火箭的<span data-concept="mass">质量</span> <em>$\km$</em> 在飞行中急剧减小，因为火箭起初的大部分都是燃料，所以<span data-concept="acceleration">加速度</span>不断增大，在燃料耗尽前一刻达到最大值。</p>
+<div class="note">
+<div class="eyebrow">影响火箭加速度的因素</div>
+<ul>
+<li>气体相对于火箭的<span data-concept="velocity">排气速度</span> $\kve$ 越大，<span data-concept="acceleration">加速度</span>就越大。</li>
+<li>火箭燃烧燃料越快，<span data-concept="acceleration">加速度</span>就越大。</li>
+<li>（其他因素相同时）火箭的<span data-concept="mass">质量</span>越小，<span data-concept="acceleration">加速度</span>就越大。</li>
+</ul>
+</div>
+<div class="example" id="ex-saturn-v">
+<h3>例题 8.8 · 计算加速度：登月火箭发射时的初始加速度</h3>
+<p><span data-ref="rocket">土星五号</span><span data-type="mass">起飞时的<span data-concept="mass">质量</span></span>为 $2.80 \times 10^6\ \text{kg}$，<span data-ref="rocket">它的</span>燃料燃烧速率为 $1.40 \times 10^4\ \text{kg/s}$，<span data-type="velocity"><span data-concept="velocity">排气速度</span></span>为 $2.40 \times 10^3\ \text{m/s}$。计算<span data-ref="rocket">它的</span><span data-type="acceleration">初始<span data-concept="acceleration">加速度</span></span>。</p>
+<h4>思路</h4>
+<p>这个问题只需直接应用<span data-concept="acceleration">加速度</span>的表达式，因为 <em>$\ka$</em> 是未知量，而方程右边的各项都已给出。</p>
+<h4>解</h4>
+<p>将已知数值代入<span data-concept="acceleration">加速度</span>的方程，得</p>
+$$\begin{aligned}\ka &= \frac{\kve}{\km}\;\frac{\kdm}{\kdt} - \kg\\ &= \frac{2.40 \times 10^3\ \text{m/s}}{2.80 \times 10^6\ \text{kg}}(1.40 \times 10^4\ \text{kg/s}) - 9.80\ \text{m/s}^2\\ &= 2.20\ \text{m/s}^2.\end{aligned}$$
+<h4>讨论</h4>
+<p>这个值相当小，即使作为初始<span data-concept="acceleration">加速度</span>也是如此。随着<span data-ref="rocket">火箭</span>燃烧燃料，<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>确实在稳步增大，因为 $\km$ 减小，而 $\kve$ 和 $\frac{\kdm}{\kdt}$ 保持不变。知道了<span data-type="acceleration">这个<span data-concept="acceleration">加速度</span></span>和<span data-ref="rocket">火箭</span>的<span data-type="mass"><span data-concept="mass">质量</span></span>，你就可以证明，<span data-type="force">发动机的<span data-concept="thrust">推力</span></span>为 $3.36 \times 10^7\ \text{N}$。</p>
+</div>
+</section>
+
+<section id="mass-ratio">
+<h2>末速度与质量比</h2>
+<p class="cite-target">要达到跨越大洲、进入轨道，或者彻底摆脱地球重力所需的高速度，火箭除燃料之外的<span data-concept="mass">质量</span>必须尽可能小。可以证明，在没有<span data-concept="air-resistance">空气阻力</span>并忽略重力的情况下，初始静止的单级火箭的末<span data-concept="velocity">速度</span>为</p>
+$$\kv = \kve\;\text{ln}\;\frac{\kmo}{\kmr},$$
+<p>其中 $\text{ln}(\kmo / \kmr)$ 是火箭的初始<span data-concept="mass">质量</span> $(\kmo)$ 与燃料全部耗尽后所剩<span data-concept="mass">质量</span> $(\kmr)$ 之比的自然对数。（请注意，$\kv$ 实际上是<span data-concept="velocity">速度</span>的变化量，所以这个方程可用于飞行的任何一段。如果从静止开始，<span data-concept="velocity">速度</span>的变化量就等于末<span data-concept="velocity">速度</span>。）例如，让我们计算从静止出发摆脱地球重力所需的质量比，已知<span data-type="velocity">地球的<span data-concept="escape-velocity">逃逸速度</span></span>约为 $11.2 \times 10^3\ \text{m/s}$，并假设<span data-type="velocity"><span data-concept="velocity">排气速度</span></span> $\kve = 2.5 \times 10^3\ \text{m/s}$。</p>
+$$\text{ln}\;\frac{\kmo}{\kmr} = \frac{\kv}{\kve} = \frac{11.2 \times 10^3\ \text{m/s}}{2.5 \times 10^3\ \text{m/s}} = 4.48$$
+<p>解出 $\kmo / \kmr$，得</p>
+$$\frac{\kmo}{\kmr} = e^{4.48} = 88.$$
+<p>因此，<span data-ref="escape-rocket">火箭</span>的<span data-type="mass"><span data-concept="mass">质量</span></span>为</p>
+$$\kmr = \frac{\kmo}{88}.$$
+<figure class="sim" id="sim-mass-ratio">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>单级火箭所获得的<span data-concept="velocity">速度</span>只取决于它的<span data-concept="velocity">排气速度</span>，以及起飞<span data-concept="mass">质量</span>与燃料耗尽时所剩<span data-concept="mass">质量</span>之比。拖动<span data-concept="mass">质量</span>比，看着曲线变平：因为这个比值是通过对数进入公式的，所以每多获得一千米每秒的速度，所需的燃料都比前一个多得多。<span data-type="velocity">排气速度</span>和你起初设定的比值，就是本节算出的、从静止出发摆脱地球所用的那两个数值。</span></div>
+</figure>
+</section>
+
+<section id="stages">
+<h2>多级火箭与航天飞机</h2>
+<p class="cite-target">这个结果意味着，燃料燃尽时只剩下 $1/88$ 的<span data-type="mass"><span data-concept="mass">质量</span></span>，而初始<span data-type="mass"><span data-concept="mass">质量</span></span>的 $87/88$ 是燃料。用百分数表示，<span data-ref="escape-rocket">火箭</span>的 98.9% 是燃料，而有效载荷、发动机、燃料箱和其他部件只占 1.10%。考虑<span data-concept="air-resistance">空气阻力</span>和<span data-concept="force">重力</span>后，剩下的<span data-type="mass"><span data-concept="mass">质量</span></span> $\kmr$ 只能约为 $\kmo / 180$。要造出燃料的<span data-concept="mass">质量</span>是其余部分 180 倍的火箭是很困难的。解决办法是多级火箭。每一级只需达到最终<span data-concept="velocity">速度</span>的一部分，在燃料烧完后就被丢弃。结果是，相对于各自的燃料，后面的每一级都可以有更小的发动机和更多的有效载荷。一旦飞出大气层，有效载荷与燃料之比也会变得更有利。</p>
+<p>航天飞机是一次试图打造经济型飞行器的尝试，它有一些可重复使用的部分，例如固体火箭助推器和航天飞机本身。（见图 8.13。）然而，航天飞机需要由人驾驶，这使得它发射卫星的成本至少与一次性使用的无人驾驶火箭一样高。理想情况下，只有在任务成功需要人类活动时才应使用航天飞机，例如修理哈勃空间望远镜。携带卫星的火箭也可以从飞机上发射。使用飞机有双重好处：初始<span data-concept="velocity">速度</span>明显大于零，并且火箭可以避开大部分大气阻力。</p>
+<figure class="photo" id="fig-shuttle" data-figure="8.13">
+  <img src="/media/ch08/Figure_09_07_02a.jpg" alt="航天飞机发射升空。它由航天飞机轨道器、两枚固体火箭助推器和一个一次性使用的外储箱组成。它腾空而起，留下大量烟雾和火焰。" data-width="250">
+  <figcaption><span class="eyebrow">Figure 8.13</span><span>航天飞机有许多可重复使用的部分。两侧的固体火箭助推器在每次飞行后被回收并重新装填燃料，整个轨道器返回地球，用于以后的飞行。大型液体燃料箱则是一次性使用的。航天飞机是一套复杂的技术组合，同时采用固体燃料和液体燃料，并率先使用陶瓷瓦作为再入隔热罩。因此，与一次性使用的火箭相比，它可以多次发射。（来源：NASA）</span></figcaption>
+</figure>
+</section>
