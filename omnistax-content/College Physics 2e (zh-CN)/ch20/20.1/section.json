@@ -1,0 +1,1123 @@
+{
+ "id": "20.1",
+ "module": "m42341",
+ "chapter": "20",
+ "title": "电流",
+ "short": "电流",
+ "lead": "<span data-concept=\"electric-current\">电流</span>是电荷流动的速率，以安培计，并且无论载流子是什么，都按正电荷运动的方式来画。接着把两种容易混淆的速率区分开来，即沿导线传播的信号的速率和电荷本身缓慢的<span data-concept=\"drift-velocity\">漂移速度</span>，并通过计数一段导线中的自由电荷，把电流与这一漂移联系起来。",
+ "objectives": [
+  "定义电流、安培和漂移速度",
+  "描述约定电流中电荷流动的方向。",
+  "利用漂移速度计算电流，反之亦然。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"electric-current\">电流</span> $\\kIcur$ 是电荷流动的速率，由下式给出$$\\kIcur = \\frac{\\kdQch}{\\kdt},$$其中 $\\kdQch$ 是在<span data-concept=\"time\">时间</span> $\\kdt$ 内通过一个<span data-concept=\"area\">面积</span>的电荷量。</li><li>约定电流的方向取为正电荷运动的方向。</li><li><span data-concept=\"electric-current\">电流</span>的 SI 单位是安培（A），其中 $1\\ \\text{A} = 1\\ \\text{C/s.}$</li><li><span data-concept=\"electric-current\">电流</span>是自由电荷（如电子和离子）的流动。</li><li><span data-concept=\"drift-velocity\">漂移速度</span> $\\kvd$ 是这些电荷运动的平均速率。</li><li><span data-concept=\"electric-current\">电流</span> $\\kIcur$ 与<span data-concept=\"drift-velocity\">漂移速度</span> $\\kvd$ 成正比，其关系式为 $\\kIcur = n\\kq A\\kvd$。这里 $\\kIcur$ 是通过横截面积为 $A$ 的导线的<span data-concept=\"electric-current\">电流</span>。导线材料的自由电荷密度为 $n$，每个载流子的电荷为 $\\kq$，<span data-concept=\"drift-velocity\">漂移速度</span>为 $\\kvd$。</li><li>电信号的传播速率比自由电子的<span data-concept=\"drift-velocity\">漂移速度</span>大约大 $10^{12}$ 倍。</li></ul>",
+ "notes": "本书未给出答案的八道习题被省去：手电筒的平均电流、梳子与头发之间的电流、火花塞、心脏除颤器所需的电压、时钟电池、X 射线管的电子枪、银导线和 14 号铜线。询问通路电阻的那道除颤器习题放在“电功率与电能”一节，那里已经给出了欧姆定律。",
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。八道习题没有标注答案，故被省去：手电筒的平均电流、梳子与头发之间的电流、火花塞、心脏除颤器所需的电压、时钟电池、X 射线管的电子枪、银导线和 14 号铜线。询问通路电阻的那道除颤器习题留待“电功率与电能”一节，该节引入了它所涉及的功率，并在那里保留 source_section 20.1。两道 AP 题，即问 2.5 A 电流在 0.5 s 内输送多少电荷的那道和比较两名学生计算结果的那道，同样没有书后答案，所以各自作为开放题保留，附上本书自己的选项和带 AI 标记的建议思路，而不是作为评分选择题。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "figures": [
+  {
+   "id": "sim-current-in-a-wire",
+   "kind": "sim",
+   "number": "20.2",
+   "folds": [
+    "20.4"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_01_01a.jpg",
+    "/media/ch20/Figure_21_01_03a.jpg"
+   ],
+   "original_caption": "电荷流动的速率就是电流。一安培就是一库仑的电荷在一秒内流过一个面积。",
+   "widths": [
+    225,
+    225
+   ],
+   "draws": [
+    "current",
+    "charge",
+    "time",
+    "electric-field",
+    "area"
+   ],
+   "conventions": [
+    "p+",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-simple-circuit",
+   "kind": "sim",
+   "number": "20.3",
+   "originals": [
+    "/media/ch20/Figure_21_01_02a.jpg"
+   ],
+   "original_caption": "（a）一个简单电路。用导线把负载接到电池的接线端上，就为电流提供了一条可流过的闭合路径。（b）在这幅电路图中，电池用两条平行的红线表示，导线用直线表示，锯齿线表示负载。这幅电路图代表了多种类似的电路。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "current",
+    "charge",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "beam kept clear of the schematic; note dropped"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: charge carried round the picture and the schematic"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-drift-and-signal",
+   "kind": "sim",
+   "number": "20.5",
+   "folds": [
+    "20.6"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_01_04a.jpg",
+    "/media/ch20/Figure_21_01_05a.jpg"
+   ],
+   "original_caption": "当带电粒子被迫进入导体的这一体积时，同样数目的带电粒子很快被迫离开。同号电荷之间的排斥使得体积中的电荷数很难增加。因此，一个电荷进入时，另一个几乎立刻离开，从而把信号迅速向前传递。",
+   "widths": [
+    250,
+    400
+   ],
+   "draws": [
+    "velocity",
+    "current",
+    "electric-field"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "signal labels and lattice legend clear of atoms; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-drift-count",
+   "kind": "sim",
+   "number": "20.7",
+   "originals": [
+    "/media/ch20/Figure_21_01_06a.jpg"
+   ],
+   "original_caption": "这段导线阴影体积中的所有电荷都在时间 t 内移出，其漂移速度的大小为 v_d = x/t。进一步的讨论见正文。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "current",
+    "velocity",
+    "charge",
+    "area",
+    "position"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "diameter label moved off the wire; note dropped"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: free charges drifting out of the shaded segment in Δt"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "electric-current",
+   "concept": "electric-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-current",
+   "concept": "ampere",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-current",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-current",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "circuit-schematics",
+   "concept": "circuit-schematic",
+   "verb": "introduces"
+  },
+  {
+   "span": "circuit-schematics",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "circuit-schematics",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "conventional-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "charge-carriers",
+   "verb": "introduces"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "circuit-schematic",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "charge-of-electron-and-proton",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electrostatic-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "field-inside-conductor-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "electric-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conventional-current",
+   "concept": "count-charges-from-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "drift-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "signal-speed-versus-drift",
+   "verb": "introduces"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "charge-carriers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "conductor",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "insulator",
+   "verb": "uses"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "conventional-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "current-and-drift-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "electric-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "drift-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "charge-carriers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "current-from-drift",
+   "concept": "signal-speed-versus-drift",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drift-velocity",
+   "concept": "free-charge-density",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2221393",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "下列哪一项可以用由电池、电阻器和金属导线组成的闭合电路中的电荷守恒来解释？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "离开电池的电子数将等于进入电池的电子数。",
+     "离开电池的电子数将少于进入电池的电子数。",
+     "离开电池的质子数将等于进入电池的质子数。",
+     "离开电池的质子数将少于进入电池的质子数。"
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "hint": "先问金属导线中实际运动的是哪种粒子，再问电荷守恒对闭合回路有什么要求。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2408913",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "电池接到灯泡上时，电路中有 2.5 A 的电流。在 0.5 s 的时间内，将有多少电荷流过电路？本书给出的选项是（a）0.5 C、（b）1 C、（c）1.25 C 和（d）1.5 C。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "选项（c），1.25 C。电流是电荷流动的速率，$\\kIcur = \\kdQch/\\kdt$，所以在时间 $\\kdt$ 内流过的电荷为 $\\kdQch = \\kIcur\\kdt$。代入已知数值，$\\kdQch = (2.5\\ \\text{A})(0.5\\ \\text{s}) = 1.25\\ \\text{C}$，因为一安培就是每秒一库仑。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2826587",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "如果每秒有 0.625 × 10<sup>20</sup> 个电子流过一个电路，那么电路中的电流是多少？",
+   "answer": {
+    "type": "number",
+    "value": 10,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "把每秒的电子数乘以一个电子的电荷，得到每秒的电荷，这就是电流。",
+    "solution": "10 A"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3741390",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "两名学生计算流过某电路的电荷。第一名学生得出结论：1 分钟内流过 300 C 的电荷。第二名学生得出结论：每秒有 3.125 × 10<sup>19</sup> 个电子流过。如果在电路中测得的电流为 5 A，那么这两名学生中（如果有的话）谁的计算是正确的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两名学生都对。5 A 的电流每秒有 5 C 的电荷通过一点，因为一安培就是每秒一库仑。在一分钟内就是 $\\kdQch = \\kIcur\\kdt = (5\\ \\text{A})(60\\ \\text{s}) = 300\\ \\text{C}$，这正是第一名学生的数字。每秒的电子数等于每秒的电荷除以一个电子的电荷，$(5\\ \\text{C})/(1.60 \\times 10^{-19}\\ \\text{C}) = 3.125 \\times 10^{19}$ 个电子，这正是第二名学生的数字。这两个答案是用两种方式表述的同一个电流。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2392409",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "导线能否在载有电流的同时仍保持电中性——也就是总电荷为零？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "可以。电流是自由电荷在运动，而不是有额外的电荷停留在导线中。金属的每个原子都保留着它的原子核和内层电子，在晶格中漂移的自由电子，其数目恰好等于它们所脱离的正离子的数目。每秒从导线一端进入的电子数与从另一端离开的一样多，所以导线任何一段中的总电荷都不变，仍然为零。正如本节在谈到信号时所说，一个系统中电荷的密度不容易增大，而这与上述事实是同一个事实的另一种说法。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2600992",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "汽车蓄电池以安时（$\\text{A}\\cdot\\text{h}$）标定额定值。安时对应哪个物理量（电压、电荷、……），安时与所含能量有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一安时是电流乘以时间，而 $\\kdQch = \\kIcur\\kdt$，所以一安时是一个电荷量：一安培的电流流动一小时移动 $(1\\ \\text{A})(3600\\ \\text{s}) = 3600\\ \\text{C}$。因此，这个额定值说明了电池在耗尽之前能够移动多少电荷。电池所能输出的能量，等于这个电荷乘以它所移动电荷经过的电压，因为一个电荷从一个接线端到另一个接线端所损失的势能是 $\\kq\\kdV$。一块额定值为 50 A·h 的 12 V 电池可以移动 $1.8 \\times 10^{5}$ C 的电荷，因而能够输出约 $2.2 \\times 10^{6}$ J 的能量。额定安时相同但电压不同的两块电池，所含的能量并不相同。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1365959",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "current-from-drift",
+   "prompt": "如果两根横截面积相同的不同导线载有相同的电流，那么在导电性更好的导线中，漂移速度会更大还是更小？请根据方程 ${v}_{\\text{d}}=\\frac{I}{\\text{nqA}}$ 作出解释，其中要考虑载流子的密度 $n$ 与材料是不是良导体有什么关系。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在导电性更好的导线中会更小。良导体就是其中有大量自由电荷的导体，所以它的自由电荷密度 $n$ 很大。把式子变形，漂移速度为 $\\kvd = \\kIcur/(n\\kq A)$，而两根导线的 $\\kIcur$、$\\kq$ 和 $A$ 都相同，所以漂移速度与 $1/n$ 成正比。导电性更好的导线有更多的载流子来分担同样的电流，所以每个载流子只需更缓慢地蠕动前进。这与本节的观点相同：本节说过，因为自由电荷非常多，所以漂移速度相当小，并且密度越大，给定电流所需的速度越小。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1019372",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circuit-schematics",
+   "prompt": "为什么要使一个电学器件工作，需要有从电压源到该器件的两条导电通路？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为电流只能沿闭合路径流动。电荷在器件中不会被用掉，所以每秒返回电源的电荷必须与离开电源的一样多。只有一根导线时，电荷无处可去，不可能有稳定的电流流动。一条通路把电荷从电源送到器件，另一条通路把电荷送回，这就是图 20.3 的电路图为什么是一个闭合回路，电源在它的一边，负载在另一边。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2611504",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circuit-schematics",
+   "prompt": "在汽车中，电池的一个接线端与金属车身相连。这为什么能使一根导线而不是两根导线就向用电器供给电流？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "金属车身本身就是导体，把电池的一个接线端接到车身上，就使整个车身成为电路所需的两条导电通路之一。这样，车上任何地方的灯或电动机，只需从另一个接线端引出一根导线就能连通，返回的通路则经过它所固定在的金属。电路仍然是一个闭合回路，电路图仍然是图 20.3 的那个回路；只不过回路的一边被汽车车身取代了，这就节省了大量导线。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3154476",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circuit-schematics",
+   "prompt": "为什么停在高压输电线上的鸟不会被电死？请把这与大鸟用翅膀同时碰到两根导线的情形作对比。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两只脚都站在同一根导线上的鸟，不是任何闭合路径的一部分。它的两只脚在同一个导体上，所以没有一条穿过鸟、从电路的一侧通到另一侧的导电通路，因此几乎没有电流流过它，无论这根导线离地面有多高。用翅膀同时碰到两根导线的大鸟，则把两个不同的导体连接起来，于是电流就有了一条闭合路径，从一根导线出发，穿过鸟，到达另一根导线。这条路径所载的电流可以大到足以使它致死。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1599422",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "袖珍计算器的太阳电池中，有 4.00 C 的电荷在 4.00 h 内通过，产生的电流是多少毫安？",
+   "answer": {
+    "type": "number",
+    "value": 0.278,
+    "unit": "mA",
+    "generated_by": "source",
+    "hint": "先把时间换成秒再相除，因为一安培就是每秒一库仑。",
+    "solution": "0.278 mA"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2408383",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "当 $0.250\\ \\mu\\text{C}$ 的典型静电荷在 $1.00\\ \\mu\\text{s}$ 内从你的手指移到金属门把手时，电流是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.25,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "电荷和时间带有相同的词头，所以词头在比值中相消。",
+    "solution": "0.250 A"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3077567",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-current",
+   "prompt": "一道大闪电的电流为 20,000 A，移动了 30.0 C 的电荷。它的持续时间是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.0015,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "先把电流的定义式解出时间，再代入数值。",
+    "solution": "1.50 ms"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2660448",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "figure": {
+    "src": "/media/ch20/Figure_21_01_07a.jpg",
+    "alt": "图中表示用于患者的除颤器，同时也表示了其电路。图中显示一个电容器驱动电流通过患者的胸部。电容器的相对两个极板分别标为正 Q 和负 Q。从电容器到除颤器的连接导线中，电流的方向用导线上的箭头表示为顺时针方向，电子的方向则用箭头表示为与此方向相反。",
+    "caption": "除颤器中的电容器驱动电流通过患者的心脏。"
+   },
+   "prompt": "（a）除颤器使 12.0 A 的电流通过一个人的躯干，持续 0.0100 s。有多少电荷发生移动？（b）有多少个电子通过与患者相连的导线？（见下图。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.12,
+      "unit": "C",
+      "hint": "移动的电荷等于电流乘以电流流动的时间。"
+     },
+     {
+      "part": "b",
+      "value": 7.5e+17,
+      "unit": "electrons",
+      "hint": "用电荷除以一个电子的电荷的大小。"
+     }
+    ],
+    "solution": "（a）0.120 C\n（b）$7.50 \\times 10^{17}$ 个电子"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3008630",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "一艘潜航中的非核潜艇，其电池在全速前进时提供 1000 A 的电流。以这个速率移动阿伏伽德罗常量（$6.02 \\times 10^{23}$）个电子需要多长时间？",
+   "answer": {
+    "type": "number",
+    "value": 96.3,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "先把电子数换成电荷，再除以电流。",
+    "solution": "96.3 s"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1827821",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "prompt": "一台大型回旋加速器把一束 ${\\text{He}}^{++}$ 核射向靶，束流为 0.250 mA。（a）这相当于每秒多少个 ${\\text{He}}^{++}$ 核？（b）1.00 C 的电荷打到靶上需要多长时间？（c）要经过多长时间，才有 1.00 mol 的 ${\\text{He}}^{++}$ 核打到靶上？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 781000000000000.0,
+      "unit": "nuclei/s",
+      "hint": "每个核带有两倍的元电荷，所以用每秒的电荷除以 $2\\kqe$。"
+     },
+     {
+      "part": "b",
+      "value": 4000.0,
+      "unit": "s",
+      "hint": "把电流的定义式解出时间。"
+     },
+     {
+      "part": "c",
+      "value": 771000000.0,
+      "unit": "s",
+      "hint": "一摩尔就是阿伏伽德罗常量个核，而（a）问给出了每秒到达多少个。"
+     }
+    ],
+    "solution": "（a）$7.81 \\times 10^{14}$ 个 He$^{++}$ 核/s\n（b）$4.00 \\times 10^{3}$ s\n（c）$7.71 \\times 10^{8}$ s"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2041523",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "current-from-drift",
+   "prompt": "利用上面例题 20.3 的结果，求直径为其两倍、载有 20.0 A 电流的铜导线中的漂移速度。",
+   "answer": {
+    "type": "number",
+    "value": -0.000113,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "直径加倍使横截面积变为四倍，而漂移速度与 $1/A$ 成正比。",
+    "solution": "$-1.13 \\times 10^{-4}$ m/s"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1602358",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conventional-current",
+   "figure": {
+    "src": "/media/ch20/Figure_21_01_08a-2cfa.jpg",
+    "alt": "图中是一个名为 SPEAR 的甜甜圈形储存环。环的横截面标为 A，用虚线圆形截面表示。在直径两端相对的横截面之间量得的储存环直径为七十二米。环中的电流给定为二十安培。电流 I 的方向用箭头表示为与电子 e 的运动方向相反。",
+    "caption": "在名为 SPEAR 的储存环中循环的电子构成了 20.0 A 的电流。由于它们以接近光速的速率运动，每个电子每秒绕行许多圈。"
+   },
+   "prompt": "SPEAR 是斯坦福直线加速器中心的一个直径约 72.0 m 的储存环（2009 年关闭），其中有一束 20.0 A 的环绕电子束，电子以接近光速的速率运动。（见下图。）这束电子中有多少个电子？",
+   "answer": {
+    "type": "number",
+    "value": 94200000000000.0,
+    "unit": "electrons",
+    "generated_by": "source",
+    "hint": "算出一个电子以接近光速的速率绕行一圈需要多长时间，再问在这段时间内有多少电荷通过一点。",
+    "solution": "$9.42 \\times 10^{13}$ 个电子"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "conventional-current"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charge-carriers",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ampere",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "ampere"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "charge-carriers",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ampere"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "energy-from-potential-difference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "current-and-drift-velocity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "drift-velocity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "circuit-schematic"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "conventional-current"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "electric-current",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "circuit-schematic"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "conductor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "circuit-schematic"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "conventional-current"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "charge-carriers",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ampere",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p2",
+   "concept": "ampere",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p4",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p4",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p4",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p5",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p5",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p6",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p6",
+   "concept": "conventional-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "current-and-drift-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "drift-velocity"
+  },
+  {
+   "exercise": "p8",
+   "concept": "electric-current"
+  },
+  {
+   "exercise": "p8",
+   "concept": "charge-carriers"
+  },
+  {
+   "exercise": "p8",
+   "concept": "current-and-drift-velocity",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "truck-battery",
+   "label": "卡车电池",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "headlight",
+   "label": "卡车电池点亮的前照灯",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "small-battery",
+   "label": "小电池",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "penlight",
+   "label": "小电池点亮的笔形手电筒",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "segment",
+   "label": "导线上的阴影段",
+   "figures": [
+    "sim-drift-count"
+   ]
+  },
+  {
+   "id": "copper-wire",
+   "label": "例题 20.3 中的 12 号铜线",
+   "figures": [
+    "sim-drift-count"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "current-drift-velocity",
+   "what": "用漂移速度表示电流",
+   "source": "《大学物理（第2版）》，20.1 电流",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "自由电荷全都在时间 $\\kdt$ 内从阴影段中移出。",
+       "src": "20.1，图 20.7"
+      },
+      {
+       "tex": "\\kdQch = \\kq n\\karea\\kx",
+       "src": "20.1"
+      },
+      {
+       "text": "电荷在时间 $\\kdt$ 内移动的平均距离为 $\\kx$，所以 $\\kx/\\kdt$ 是漂移速度 $\\kvd$ 的大小。",
+       "src": "20.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIcur} = \\dfrac{\\mk{Q}{\\kdQch}}{\\mk{t}{\\kdt}}",
+      "src": "20.1",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\dfrac{\\mk{q}{\\kq}\\,\\mk{n}{n}\\,\\mk{A}{\\karea}\\,\\mk{x}{\\kx}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "Q": [
+         "q",
+         "n",
+         "A",
+         "x"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{n}{n}\\,\\mk{q}{\\kq}\\,\\mk{A}{\\karea}\\,\\mk{x}{\\kvd}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t": "x"
+       }
+      }
+     ],
+     "src": "20.1"
+    }
+   ]
+  }
+ ]
+}

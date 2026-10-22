@@ -1,0 +1,424 @@
+/* Figures for section 20.6 Electric Hazards and the Human Body. Boots against the
+   section's text article.
+
+   Four figures, every one of them still. A short that has been made, a fuse that
+   holds or does not, a body of a stated resistance touching a wire of a stated
+   voltage and a sensitivity curve of the nerves are all standing states: each
+   answers its sliders, none has a clock in it, so none registers a cycle and none
+   takes the app's transport (rule 14).
+
+   The figures colour current, voltage, resistance, power and frequency. The
+   toaster, the short and the cord of 20.18, the supply wires, the fuse and the
+   breaker of 20.19 + 20.20, and the person and the live wire of 20.21 are
+   referents and wear F.ref, and the bar of power for the toaster and for the
+   short each takes its referent's colour; the seven bands of Table 20.3 are
+   instances no referents row names and stay `F.cat(i)`; frames are ink. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['20.6'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, register, begin, line, arrow, dot, text, headline, hbracket, strip, fixed, silhouette, fist, axes, curve, scale, label } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- pieces of a schematic, each in the colour it is handed ---------- */
+/* a resistor as the zigzag the book draws, laid along the segment from a to b */
+function resistor(ctx, x1, y1, x2, y2, color) {
+  const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, nx = -uy, ny = ux;
+  const lead = Math.max(10, (L - 96) / 2), zig = L - 2 * lead, n = 6, amp = 15;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath();
+  ctx.moveTo(x1, y1); ctx.lineTo(x1 + ux * lead, y1 + uy * lead);
+  for (let i = 0; i < n; i++) {
+    const t = lead + (zig * (i + 0.5)) / n, s = i % 2 ? -1 : 1;
+    ctx.lineTo(x1 + ux * t + nx * amp * s, y1 + uy * t + ny * amp * s);
+  }
+  ctx.lineTo(x1 + ux * (L - lead), y1 + uy * (L - lead)); ctx.lineTo(x2, y2); ctx.stroke(); ctx.restore();
+}
+/* an alternating-voltage source: a circle with one period of a sine inside it */
+function acSource(ctx, x, y, r, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.fillStyle = PAL.panel;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+  ctx.lineWidth = 3.5; ctx.beginPath();
+  for (let i = 0; i <= 40; i++) { const t = i / 40, px = x - r * 0.62 + t * r * 1.24, py = y - Math.sin(t * 2 * Math.PI) * r * 0.42; if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+  ctx.stroke(); ctx.restore();
+}
+/* an arrowhead sitting on a wire at (x, y), pointing the way (ux, uy) runs */
+function flowHead(ctx, x, y, ux, uy, color) { arrow(ctx, x - ux * 26, y - uy * 26, x + ux * 10, y + uy * 10, color, 4.5); }
+/* a coil spring along a horizontal run, drawn in ink */
+function coil(ctx, x1, x2, y, color, turns) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x1, y);
+  const n = turns * 8;
+  for (let i = 1; i <= n; i++) { const t = i / n; ctx.lineTo(x1 + (x2 - x1) * t, y + Math.sin(t * turns * 2 * Math.PI) * 14); }
+  ctx.lineTo(x2, y); ctx.stroke(); ctx.restore();
+}
+/* a small burst of light where two conductors touch or a contact arcs over, in ink */
+function spark(ctx, x, y, r, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath();
+  for (let i = 0; i < 8; i++) { const a = (i / 8) * 2 * Math.PI, k = i % 2 ? 0.5 : 1; ctx.moveTo(x + r * 0.3 * Math.cos(a), y + r * 0.3 * Math.sin(a)); ctx.lineTo(x + r * k * Math.cos(a), y + r * k * Math.sin(a)); }
+  ctx.stroke(); ctx.restore();
+}
+/* a number in watts, kilowatts or milliwatts, whichever reads plainly */
+function watts(P) {
+  if (P >= 1e6) return fmt(P / 1e6, 2) + ' MW';
+  if (P >= 1000) return fmt(P / 1000, P >= 1e5 ? 0 : 1) + ' kW';
+  if (P >= 1) return fmt(P, P >= 100 ? 0 : 1) + ' W';
+  return fmt(P * 1000, 0) + ' mW';
+}
+/* a current in amperes or milliamperes, whichever reads plainly */
+function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 1000, I >= 0.01 ? 1 : 3) + ' mA'; }
+
+/* =====================================================================
+   FIGURE 20.18: the short circuit. The worn cord of a toaster at the left,
+   the schematic of what it has made at the right, and beneath them the two
+   powers on one logarithmic scale, because the whole point of the passage is
+   that they are orders of magnitude apart. Still: a short that has been made
+   is a steady state, and the question is only how much power it dissipates,
+   so the figure answers its sliders and registers no cycle.
+===================================================================== */
+(function () {
+  const d = sim('sim-short-circuit', 800);
+  const Vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 0, max: 480, step: 10, value: 120, unit: 'V', dec: 0, aria: '电源的电压' });
+  const rs = ctl(d.controls, { label: '\\krshort', cls: 'resistance', min: 0.02, max: 2, step: 0.01, value: 0.1, unit: 'Ω', dec: 3, aria: '短路处的电阻' });
+  const Rs = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 5, max: 40, step: 1, value: 15, unit: 'Ω', dec: 0, aria: '烤面包机的电阻' });
+  /* 0.1 kW to 1000 kW, four decades, fixed: the short at its default sits at 144 kW
+     and the toaster near 1 kW, and no slider setting leaves the frame. */
+  const BAR = { l: 250, r: 1300, t: 560, b: 720 }, P0 = -1, P1 = 3;
+  const XP = (kW) => BAR.l + ((Math.log10(Math.max(kW, 1e-4)) - P0) / (P1 - P0)) * (BAR.r - BAR.l);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const vc = C('voltage'), rc = C('resistance'), pc = C('power'), ic = C('current');
+    const V = Vs.v, r = rs.v, R = Rs.v;
+    const tc = F.ref('toaster'), sc = F.ref('short'), cc = F.ref('cord');
+    const Ps = (V * V) / r, Pr = (V * V) / R, Is = V / r, Ir = V / R;
+
+    /* ---- the worn cord, at the left ---- */
+    text(ctx, '磨损的电源线', 320, 118, cc, { size: 19, weight: 600, align: 'center' });
+    fixed(ctx, 90, 250, 46, 120);                                        /* the wall the cord is plugged into */
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.roundRect(136, 282, 54, 56, 8); ctx.fill(); ctx.stroke(); ctx.restore();
+    /* the toaster: a rounded body on two feet, two slots in its top with a slice of bread standing in each, the lever at the side */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = tc; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    for (const sx of [436, 512]) { ctx.beginPath(); ctx.moveTo(sx, 232); ctx.lineTo(sx + 4, 176); ctx.quadraticCurveTo(sx + 26, 162, sx + 48, 176); ctx.lineTo(sx + 52, 232); ctx.closePath(); ctx.fill(); ctx.stroke(); }
+    ctx.fillStyle = PAL.panel;
+    ctx.beginPath(); ctx.roundRect(400, 228, 190, 112, 16); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = PAL.ink;
+    ctx.beginPath(); ctx.roundRect(430, 236, 62, 10, 4); ctx.fill(); ctx.beginPath(); ctx.roundRect(506, 236, 62, 10, 4); ctx.fill();
+    ctx.fillRect(416, 340, 22, 8); ctx.fillRect(552, 340, 22, 8);
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(590, 262); ctx.lineTo(606, 262); ctx.lineTo(606, 300); ctx.stroke();
+    ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.roundRect(598, 296, 16, 12, 3); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2;
+    for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.moveTo(420, 268 + k * 16); ctx.lineTo(500, 268 + k * 16); ctx.stroke(); }
+    ctx.restore();
+    text(ctx, '烤面包机', 495, 372, tc, { size: 20, align: 'center', weight: 600 });
+    /* the cord: a sheath that has worn through in the middle, where the two bare conductors touch */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cc; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(190, 286, 78, 28, 6); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.roundRect(322, 286, 78, 28, 6); ctx.fill(); ctx.stroke(); ctx.restore();
+    for (const dy of [-7, 7]) { line(ctx, 268, 300 + dy, 290, 300 + dy * 0.4, PAL.ink, 3.5); line(ctx, 300, 300 + dy * 0.4, 322, 300 + dy, PAL.ink, 3.5); }
+    line(ctx, 290, 297, 300, 297, sc, 3.5); line(ctx, 290, 303, 300, 303, sc, 3.5);
+    spark(ctx, 295, 300, 30, sc);
+    label(ctx, '绝缘层已磨穿', 280, 318, { side: 'below', gap: 34, size: 18, color: PAL.ink });
+
+    /* ---- the schematic, at the right ---- */
+    text(ctx, '它所形成的回路', 1000, 118, PAL.muted, { size: 19, align: 'center' });
+    const L = 700, Rr = 1310, T = 180, B = 400, BR1 = 950, BR2 = 1180;
+    acSource(ctx, L, (T + B) / 2, 36, PAL.ink);
+    line(ctx, L, T, L, (T + B) / 2 - 36, PAL.ink, 4); line(ctx, L, (T + B) / 2 + 36, L, B, PAL.ink, 4);
+    line(ctx, L, T, Rr, T, PAL.ink, 4); line(ctx, L, B, Rr, B, PAL.ink, 4); line(ctx, Rr, T, Rr, B, PAL.ink, 4);
+    resistor(ctx, BR1, T, BR1, B, tc); resistor(ctx, BR2, T, BR2, B, sc);
+    text(ctx, 'V = ' + fmt(V, 0) + ' V', L, (T + B) / 2 + 74, vc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'R = ' + fmt(R, 0) + ' Ω', BR1 - 22, (T + B) / 2, rc, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, '烤面包机', BR1 - 22, (T + B) / 2 + 34, tc, { size: 18, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'r = ' + fmt(r, 3) + ' Ω', BR2 + 22, (T + B) / 2, rc, { size: 22, weight: 600, align: 'left', bg: PAL.panel });
+    text(ctx, '短路处', BR2 + 22, (T + B) / 2 + 34, sc, { size: 18, weight: 600, align: 'left', bg: PAL.panel });
+    if (V > 0) {
+      flowHead(ctx, 830, T, 1, 0, ic); flowHead(ctx, BR1, 244, 0, 1, ic); flowHead(ctx, BR2, 244, 0, 1, ic); flowHead(ctx, 830, B, -1, 0, ic);
+      text(ctx, amps(Ir), BR1 + 18, 232, ic, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+      text(ctx, amps(Is), BR2 + 18, 232, ic, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+    }
+
+    /* ---- the two powers, on one logarithmic scale ---- */
+    text(ctx, '各条通路耗散的功率', BAR.l, BAR.t - 46, pc, { size: 20, weight: 600, align: 'left' });
+    for (let k = P0; k <= P1; k++) {
+      const x = XP(Math.pow(10, k));
+      line(ctx, x, BAR.t, x, BAR.b, PAL.rule, 1.5);
+      text(ctx, (k < 0 ? fmt(Math.pow(10, k), 1) : fmt(Math.pow(10, k), 0)) + ' kW', x, BAR.b + 28, PAL.muted, { size: 17, align: 'center' });
+    }
+    line(ctx, BAR.l, BAR.t, BAR.l, BAR.b, PAL.muted, 2); line(ctx, BAR.l, BAR.b, BAR.r, BAR.b, PAL.muted, 2);
+    const rows = [{ P: Pr, y: BAR.t + 34, name: '烤面包机', c: tc }, { P: Ps, y: BAR.t + 100, name: '短路处', c: sc }];
+    for (const row of rows) {
+      const kW = row.P / 1000, x = Math.min(XP(kW), BAR.r), h = 40;
+      if (kW > 0.1) { ctx.save(); ctx.fillStyle = alpha(row.c, 0.35); ctx.fillRect(BAR.l, row.y - h / 2, x - BAR.l, h); ctx.restore(); line(ctx, BAR.l, row.y, x, row.y, row.c, 5); }
+      text(ctx, row.name, BAR.l - 14, row.y, row.c, { size: 20, weight: 600, align: 'right' });
+      text(ctx, watts(row.P), Math.max(x + 14, BAR.l + 14), row.y, pc, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
+    }
+
+    const times = Pr > 0 ? Ps / Pr : 0;
+    headline(ctx, V === 0 ? '电源关闭时，任何地方都不耗散功率，磨损的电源线是无害的。'
+      : 'r = ' + fmt(r, 3) + ' Ω 的短路跨接在 ' + fmt(V, 0) + ' V 两端，耗散 ' + watts(Ps) + '，约为烤面包机自身所取用功率的 ' + fmt(times, 0) + ' 倍。');
+    readout(d.readout, `\\kP = \\frac{\\kV^2}{\\krshort} = \\frac{(${fmt(V, 0)}\\ \\text{V})^2}{${fmt(r, 3)}\\ \\Omega} = ${watts(Ps).replace(/ (\w+)$/, '\\ \\text{$1}')}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURES 20.19 and 20.20, folded: the fuse and the circuit breaker, each in
+   the circuit it protects and opened up beside it. The book draws the two
+   devices under one number and the circuit they sit in under the next, and
+   one engine carries both, with the device as a choice (rule 26.1). Still:
+   a fuse holds or it does not, and the trip answers the current slider
+   rather than a clock.
+===================================================================== */
+(function () {
+  const d = sim('sim-fuse-breaker', 700);
+  const kind = choice(d.controls, { label: '\\text{装置}', options: [{ value: 'fuse', label: '保险丝' }, { value: 'breaker', label: '断路器' }], value: 'fuse', aria: '哪种装置保护电路' });
+  const rating = choice(d.controls, { label: '\\text{额定值}', options: [{ value: '15', label: '15 A' }, { value: '20', label: '20 A' }, { value: '30', label: '30 A' }], value: '15', aria: '装置的额定电流' });
+  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 40, step: 0.5, value: 10, unit: 'A', dec: 1, aria: '电路所取用的电流', specials: [{ at: () => +rating.value, label: '额定值' }] });
+  const Rw = ctl(d.controls, { label: '\\kRw', cls: 'resistance', min: 0.05, max: 3, step: 0.05, value: 2, unit: 'Ω', dec: 3, aria: '供电导线的电阻' });
+  const SC = { l: 240, r: 1220, y: 612 };                              /* 0 to 40 A, fixed */
+  const XI = (I) => SC.l + (I / 40) * (SC.r - SC.l);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ic = C('current'), rc = C('resistance'), pc = C('power');
+    const I = Is.v, Rww = Rw.v, rate = +rating.value, open = I > rate, P = I * I * Rww;
+    const fuse = kind.value === 'fuse';
+    const wc = F.ref('wires'), dc = kind.mixColor((v) => F.ref(v)), fc = F.ref('fuse'), bk = F.ref('breaker');
+
+    /* ---- the circuit, at the left ---- */
+    const L = 150, R = 620, T = 200, B = 440, DX = 400;
+    text(ctx, '它所保护的电路', (L + R) / 2, 122, PAL.muted, { size: 19, align: 'center' });
+    acSource(ctx, L, (T + B) / 2, 34, PAL.ink);
+    line(ctx, L, T, L, (T + B) / 2 - 34, PAL.ink, 5); line(ctx, L, (T + B) / 2 + 34, L, B, PAL.ink, 5);
+    line(ctx, L, T, DX - 46, T, wc, 5); line(ctx, DX + 46, T, R, T, wc, 5); line(ctx, L, B, R, B, wc, 5);
+    resistor(ctx, R, T + 40, R, B - 40, PAL.ink); line(ctx, R, T, R, T + 40, PAL.ink, 5); line(ctx, R, B - 40, R, B, PAL.ink, 5);
+    text(ctx, 'R', R + 22, (T + B) / 2, rc, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
+    /* the device in the top rail, drawn as the book's box symbol */
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = dc; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.roundRect(DX - 46, T - 22, 92, 44, 8); ctx.fill(); ctx.stroke(); ctx.restore();
+    if (open) { line(ctx, DX - 30, T, DX - 6, T, PAL.ink, 4); line(ctx, DX + 6, T, DX + 30, T, PAL.ink, 4); }
+    else line(ctx, DX - 30, T, DX + 30, T, PAL.ink, 4);
+    text(ctx, fuse ? '保险丝' : '断路器', DX, T - 48, dc, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    hbracket(ctx, L, R, B + 74, rc, '供电导线，R_w = ' + fmt(Rww, 3) + ' Ω');
+    if (!open && I > 0) { flowHead(ctx, 260, T, 1, 0, ic); flowHead(ctx, 540, T, 1, 0, ic); flowHead(ctx, 400, B, -1, 0, ic); text(ctx, fmt(I, 1) + ' A', 262, T + 40, ic, { size: 21, weight: 600, align: 'center', bg: PAL.panel }); }
+    else if (open) text(ctx, '电路已断开，没有电流通过', (L + R) / 2, T + 40, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
+
+    /* ---- the device, opened up, at the right ---- */
+    text(ctx, fuse ? '保险丝内部' : '断路器内部', 1040, 122, dc, { size: 19, weight: 600, align: 'center' });
+    if (fuse) {
+      const x1 = 800, x2 = 1300, yc = 290;
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(x1 + 60, yc - 54, x2 - x1 - 120, 108, 14); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = PAL.soft; ctx.strokeStyle = fc; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(x1, yc - 46, 64, 92, 8); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.roundRect(x2 - 64, yc - 46, 64, 92, 8); ctx.fill(); ctx.stroke(); ctx.restore();
+      if (open) {
+        line(ctx, x1 + 64, yc, 1010, yc, PAL.ink, 5); line(ctx, 1090, yc, x2 - 64, yc, PAL.ink, 5);
+        line(ctx, 1010, yc, 1026, yc - 18, PAL.ink, 5); line(ctx, 1090, yc, 1074, yc + 18, PAL.ink, 5);
+        label(ctx, '金属片已熔断', 1050, yc + 62, { side: 'below', gap: 6, size: 19, color: PAL.ink });
+      } else {
+        line(ctx, x1 + 64, yc, x2 - 64, yc, PAL.ink, 5);
+        label(ctx, '低熔点的金属片', 1050, yc + 62, { side: 'below', gap: 6, size: 19, color: PAL.ink });
+      }
+      text(ctx, '观察窗', 1050, yc - 92, PAL.muted, { size: 18, align: 'center' });
+    } else {
+      const yS = open ? 372 : 336, xA = 840, xB = 1200, floor = 470;
+      /* the housing the mechanism sits in */
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.04); ctx.strokeStyle = bk; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(790, 150, 500, 330, 14); ctx.fill(); ctx.stroke(); ctx.restore();
+      /* the movable strip, pivoted at its left end, and the coil spring that pulls it down to the floor */
+      const pivot = { x: xA, y: 336 };
+      line(ctx, pivot.x, pivot.y, xB, yS, PAL.ink, 6);
+      dot(ctx, pivot.x, pivot.y, PAL.panel, true, 8); dot(ctx, pivot.x, pivot.y, PAL.ink, false, 8);
+      const sx = xA + 150, sy0 = pivot.y + ((yS - pivot.y) * 150) / (xB - xA);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(sx, sy0);
+      const turns = 7, span = floor - 12 - sy0;
+      for (let i = 1; i <= turns * 8; i++) { const t = i / (turns * 8); ctx.lineTo(sx + Math.sin(t * turns * 2 * Math.PI) * 12, sy0 + span * t); }
+      ctx.lineTo(sx, floor); ctx.stroke(); ctx.restore();
+      line(ctx, 800, floor, 1280, floor, PAL.muted, 3);
+      /* the contacts: a pad on the strip's free end and a fixed pad above it on the terminal */
+      ctx.save(); ctx.fillStyle = PAL.ink;
+      ctx.fillRect(xB - 12, yS - 6, 24, 10); ctx.fillRect(xB - 12, 318, 24, 10); ctx.restore();
+      line(ctx, xB, 318, xB, 240, PAL.ink, 5); line(ctx, xB, 240, 1280, 240, PAL.ink, 5);
+      if (open) { spark(ctx, xB, (yS + 328) / 2, 22, PAL.ink); label(ctx, '触点已分开', xB, yS + 12, { side: 'below', gap: 14, size: 19, color: PAL.ink }); }
+      else label(ctx, '触点闭合', xB, yS + 12, { side: 'below', gap: 14, size: 19, color: PAL.ink });
+      /* the bimetallic strip, standing on the movable strip and bending to the right as it heats; at the rated current it clears the notch */
+      const bend = open ? 46 : Math.min(30, (I / rate) * 30), bx = 1010, by = pivot.y + ((yS - pivot.y) * (bx - xA)) / (xB - xA);
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(bx, by);
+      for (let i = 1; i <= 12; i++) { const t = i / 12; ctx.lineTo(bx + bend * t * t, by - 130 * t); }
+      ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(bx + 40, 178, 34, 40, 6); ctx.fill(); ctx.stroke(); ctx.restore();
+      line(ctx, bx + 74, 178, 1280, 178, PAL.muted, 3);
+      label(ctx, '缺口', bx + 57, 176, { side: 'above', gap: 6, size: 18, color: PAL.muted });
+      label(ctx, '双金属片', bx - 6, by - 70, { side: 'left', gap: 14, size: 19, color: PAL.ink });
+      label(ctx, '弹簧', sx - 14, (sy0 + floor) / 2, { side: 'left', gap: 14, size: 19, color: PAL.ink });
+    }
+
+    /* ---- the current, against the rating ---- */
+    line(ctx, SC.l, SC.y, SC.r, SC.y, PAL.muted, 3);
+    scale(ctx, XI, 0, 40, 5, SC.y, 'A');
+    line(ctx, XI(rate), SC.y - 46, XI(rate), SC.y + 14, PAL.ink, 3, [10, 10]);
+    text(ctx, '额定 ' + rate + ' A', XI(rate), SC.y - 62, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
+    dot(ctx, XI(I), SC.y, ic, true, 11);
+    text(ctx, fmt(I, 1) + ' A', XI(I), SC.y - 30, ic, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+
+    headline(ctx, open
+      ? fmt(I, 1) + ' A 超过了 ' + rate + ' A 的额定值，所以' + (fuse ? '保险丝已熔断' : '断路器已跳闸') + '，电路已断开。'
+      : fmt(I, 1) + ' A 通过 ' + fmt(Rww, 3) + ' Ω 的供电导线，仅在导线中就耗散 ' + watts(P) + '，而 ' + rate + ' A 的' + (fuse ? '保险丝' : '断路器') + '仍然保持接通。');
+    readout(d.readout, `\\kP = \\kIcur^2\\kRw = (${open ? '0' : fmt(I, 1)}\\ \\text{A})^2(${fmt(Rww, 3)}\\ \\Omega) = ${open ? '0\\ \\text{W}' : watts(P).replace(/ (\w+)$/, '\\ \\text{$1}')}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 20.21: what a shock does. A person touches a live wire, the current
+   runs down through the trunk to the earth, and the seven effects Table 20.3
+   lists are laid along one logarithmic current scale beneath. The two cases
+   the section works, 120 V through dry skin and through wet skin, are two
+   settings of the resistance slider. Still: a shock of the stated duration
+   is read off a table, and nothing here runs on a clock.
+===================================================================== */
+(function () {
+  const d = sim('sim-shock', 820);
+  const Vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 0, max: 480, step: 10, value: 120, unit: 'V', dec: 0, aria: '人体所接触的电压' });
+  /* the detents are the resistances the section names: wet grass, soaking wet, damp skin, dry skin, and a person on a rubber mat */
+  const Rs = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 1, max: 300, step: 0.5, value: 200, unit: 'kΩ', dec: 1, aria: '人体的电阻', detents: [4.5, 10, 100, 200, 300] });
+  /* the bands of Table 20.3, in milliamperes, and the scale they are laid on: 0.01 mA to 10 A, six decades, fixed */
+  const BANDS = [
+    { at: 1, name: '能被感觉到' },
+    { at: 5, name: '超出安全限度' },
+    { at: 10, name: '无法摆脱' },
+    { at: 50, name: '疼痛' },
+    { at: 100, name: '颤动' },
+    { at: 300, name: '烧伤' },
+    { at: 6000, name: '心跳和呼吸停止' },
+  ];
+  const SC = { l: 200, r: 1300, y: 648 }, D0 = -2, D1 = 4;
+  const XI = (mA) => SC.l + ((Math.log10(Math.max(mA, 1e-4)) - D0) / (D1 - D0)) * (SC.r - SC.l);
+  function effect(mA) {
+    if (mA < 1) return '通过人体而不被察觉';
+    if (mA < 5) return '能被感觉到，但在最大无害电流之内';
+    if (mA < 10) return '超过了安全规则取作所允许最大电击的 5 mA';
+    if (mA < 50) return '使肌肉持续收缩，因而手无法摆脱';
+    if (mA < 100) return '除收缩外还带来疼痛';
+    if (mA < 300) return '可能使心脏陷入心室颤动，这常常是致命的';
+    if (mA < 6000) return '除颤动外还能造成烧伤，取决于它有多集中';
+    return '使心脏和膈肌在电击持续期间收缩，除颤器就是这样起作用的';
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ic = C('current'), vc = C('voltage'), rc = C('resistance');
+    const V = Vs.v, Rk = Rs.v, I = V / (Rk * 1000), mA = I * 1000, held = mA >= 10;
+    const pc = F.ref('person'), wc = F.ref('wire');
+
+    /* ---- the person, the wire and the path to earth ---- */
+    const GY = 470, PX = 520, S = 2, WX = 637, WY = 187;
+    strip(ctx, 140, 1000, GY + 10, 44);
+    text(ctx, '大地，天然的电子汇', 880, GY - 26, PAL.muted, { size: 19, align: 'center' });
+    /* the live wire, on two insulators */
+    line(ctx, WX - 36, WY, 1000, WY, wc, 6);
+    for (const x of [860, 980]) { line(ctx, x, WY, x, WY - 44, PAL.muted, 4); dot(ctx, x, WY - 50, PAL.muted, true, 8); }
+    text(ctx, 'V = ' + fmt(V, 0) + ' V 的带电导线', 930, WY - 76, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    /* the path the current takes through the person, laid down before the body so that the
+       drawing of the person is read first and the band runs behind it */
+    const PATH = [[WX - 10, WY + 14], [PX + 30, GY - 250], [PX + 6, GY - 150], [PX + 12, GY - 20], [PX + 12, GY + 20]];
+    if (I > 0) {
+      ctx.save(); ctx.strokeStyle = alpha(ic, 0.34); ctx.lineWidth = 20; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(PATH[0][0], PATH[0][1]);
+      for (let i = 1; i < PATH.length; i++) ctx.lineTo(PATH[i][0], PATH[i][1]); ctx.stroke(); ctx.restore();
+    }
+    /* the person: standing and reaching while the shock can be let go of, braced and gripping once it cannot */
+    silhouette(ctx, held
+      ? { x: PX, y: GY, s: S, face: 1, pose: 'pull', hands: [{ x: (WX - PX) / S, y: (WY - GY) / S }, { x: (WX - PX) / S - 8, y: (WY - GY) / S + 8 }], color: pc }
+      : { x: PX, y: GY, s: S, face: 1, pose: 'reach', hands: [{ x: (WX - PX) / S, y: (WY - GY) / S }, { x: (WX - PX) / S - 10, y: (WY - GY) / S + 10 }], color: pc });
+    text(ctx, 'R = ' + fmt(Rk, 1) + ' kΩ', PX - 130, GY - 190, rc, { size: 22, weight: 600, align: 'center' });
+    text(ctx, '从手到脚', PX - 130, GY - 158, PAL.muted, { size: 18, align: 'center' });
+    /* the path the current takes: hand, arm, trunk, feet, earth */
+    if (I > 0) {
+      for (let i = 1; i < PATH.length; i++) {
+        const a = PATH[i - 1], b = PATH[i], dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1;
+        flowHead(ctx, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2, dx / L, dy / L, ic);
+      }
+      text(ctx, 'I = ' + amps(I), PX + 96, GY - 176, ic, { size: 22, weight: 600, align: 'left', bg: PAL.panel });
+    }
+    /* the hand, seen close, once the current holds it shut */
+    if (held) {
+      ctx.save(); ctx.strokeStyle = wc; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(1110, 300); ctx.lineTo(1290, 300); ctx.stroke(); ctx.restore();
+      fist(ctx, 1190, 300, -1, 0.35, 1.5, pc);
+      text(ctx, '合拢手指的肌肉比', 1190, 386, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, '张开手指的肌肉更强', 1190, 412, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, '手无法摆脱', 1190, 214, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    }
+
+    /* ---- the bands of Table 20.3, on a logarithmic current scale ---- */
+    text(ctx, '表 20.3 所列的效应，按通过躯干的电流排列', SC.l, SC.y - 138, PAL.ink, { size: 20, weight: 600, align: 'left' });
+    for (let i = 0; i < BANDS.length; i++) {
+      const x1 = XI(BANDS[i].at), x2 = i + 1 < BANDS.length ? XI(BANDS[i + 1].at) : SC.r;
+      ctx.save(); ctx.fillStyle = alpha(F.cat(i), 0.55); ctx.fillRect(x1, SC.y - 22, x2 - x1, 44); ctx.restore();
+      line(ctx, x1, SC.y - 22, x1, SC.y + 22, PAL.panel, 2);
+      const up = i % 2 === 0, last = i === BANDS.length - 1;
+      text(ctx, BANDS[i].name, last ? SC.r - 6 : x1 + 6, up ? SC.y - 46 : SC.y + 42, PAL.ink, { size: 17, align: last ? 'right' : 'left', bg: PAL.panel });
+      line(ctx, x1, SC.y + (up ? -22 : 22), x1, SC.y + (up ? -30 : 30), PAL.muted, 2);
+    }
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(SC.l, SC.y - 22, XI(1) - SC.l, 44); ctx.restore();
+    text(ctx, '感觉不到', SC.l + 6, SC.y + 42, PAL.muted, { size: 17, align: 'left' });
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(SC.l, SC.y - 22, SC.r - SC.l, 44); ctx.restore();
+    for (let k = D0; k <= D1; k++) { const x = XI(Math.pow(10, k)); line(ctx, x, SC.y + 22, x, SC.y + 34, PAL.muted, 2); text(ctx, (k < 0 ? Math.pow(10, k).toFixed(-k) : fmt(Math.pow(10, k), 0)) + ' mA', x, SC.y + 68, PAL.muted, { size: 17, align: 'center' }); }
+    if (I > 0) {
+      const xm = Math.min(Math.max(XI(mA), SC.l), SC.r);
+      line(ctx, xm, SC.y - 22, xm, SC.y + 22, ic, 4);
+      dot(ctx, xm, SC.y, ic, true, 11);
+      text(ctx, amps(I), xm, SC.y - 94, ic, { size: 22, weight: 600, align: xm > SC.r - 120 ? 'right' : xm < SC.l + 120 ? 'left' : 'center', bg: PAL.panel });
+    }
+
+    headline(ctx, V === 0 ? '人体两端没有电压时，根本没有电流通过，握住导线是安全的。'
+      : fmt(V, 0) + ' V 通过 ' + fmt(Rk, 1) + ' kΩ，使 ' + amps(I) + ' 的电流通过躯干，这个电流' + effect(mA) + '。');
+    readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 0)}\\ \\text{V}}{${fmt(Rk, 1)}\\ \\text{k}\\Omega} = ${amps(I).replace(/ (\w+)$/, '\\ \\text{$1}')}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 20.22: how the body's sensitivity depends on frequency. The graph
+   is the idea, so it stands alone. The frequency is a dropdown of the values
+   the section names rather than a slider, because the span is four decades
+   and a linear slider would leave the whole of the story in its first
+   hundredth (rule 26.1). Still: a sensitivity curve is a standing fact of
+   the body and has no time in it.
+===================================================================== */
+(function () {
+  const d = sim('sim-frequency-sensitivity', 640);
+  const fs = select(d.controls, {
+    label: '\\kf', value: '1.778', aria: '电流的频率',
+    options: [{ value: '0', label: '直流 (f = 0)' }, { value: '1', label: '10 Hz' }, { value: '1.699', label: '50 Hz' }, { value: '1.778', label: '60 Hz' }, { value: '2', label: '100 Hz' }, { value: '2.602', label: '400 Hz' }, { value: '3', label: '1 kHz' }, { value: '4', label: '10 kHz' }],
+  });
+  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 30, step: 0.5, value: 10, unit: 'mA', dec: 1, aria: '通过人体的电流' });
+  /* u is the decade of the frequency, 0 at direct current and 4 at 10 kHz; the axes are
+     fixed at 0 to 4 across and 0 to 30 mA up, and no setting leaves the frame. */
+  const BOX = { l: 220, r: 1280, t: 150, b: 470 };
+  const letGo = (u) => 10 * (u < 2 ? 1 + 0.2 * Math.pow(2 - u, 2) : 1 + 0.45 * Math.pow(u - 2, 2));
+  const sense = (u) => 2.2 * (u < 2 ? 1 + 0.2 * Math.pow(2 - u, 2) : 1 + 1.55 * Math.pow(u - 2, 2));
+  const NAME = { 0: '直流电', 1: '10 Hz', 1.699: '50 Hz', 1.778: '60 Hz', 2: '100 Hz', 2.602: '400 Hz', 3: '1 kHz', 4: '10 kHz' };
+  const TICK = ['直流', '10 Hz', '100 Hz', '1 kHz', '10 kHz'];
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ic = C('current'), fc = C('frequency');
+    const u = +fs.value, I = Is.v, lg = letGo(u), sn = sense(u), name = NAME[u];
+    const { X, Y } = axes(ctx, BOX, [0, 4], [0, 30], { nx: 4, ny: 6, xl: '电流的频率', xc: fc, yl: '通过人体的电流 (mA)', yc: ic, fx: (v) => TICK[Math.round(v)] });
+    /* the two curves: the one that can be felt at all, dashed, and the one that closes the hand, solid */
+    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, sense, 0, 4, X, Y, ic, 5, 160); ctx.restore();
+    curve(ctx, letGo, 0, 4, X, Y, ic, 5, 160);
+    text(ctx, '不可摆脱电流', X(1.2), Y(letGo(1.2)) - 34, ic, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, '感觉阈', X(1.6), Y(sense(1.6)) - 28, ic, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    /* the frequency chosen, and the current set against the two curves there */
+    line(ctx, X(u), BOX.t, X(u), BOX.b, alpha(fc, 0.5), 3, [4, 8]);
+    if (X(u) < BOX.l + 220) text(ctx, name, X(u) + 14, BOX.t + 22, fc, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+    else text(ctx, name, X(u), BOX.t - 24, fc, { size: 20, weight: 600, align: X(u) > BOX.r - 120 ? 'right' : 'center', bg: PAL.panel });
+    dot(ctx, X(u), Y(lg), ic, true, 10); dot(ctx, X(u), Y(sn), ic, false, 10);
+    line(ctx, BOX.l, Y(I), BOX.r, Y(I), ic, 4);
+    text(ctx, fmt(I, 1) + ' mA', BOX.r + 12, Y(I), ic, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
+    const felt = I >= sn, stuck = I >= lg;
+    headline(ctx, I === 0 ? '通过人体的电流为零时，在任何频率下都没有可感觉到的东西。'
+      : '在 ' + name + ' 时，' + fmt(I, 1) + ' mA ' + (stuck ? '高于 ' + fmt(lg, 1) + ' mA 的不可摆脱电流，所以手握紧了导线' : felt ? '高于能被感觉到的 ' + fmt(sn, 1) + ' mA，但低于使手握紧的 ' + fmt(lg, 1) + ' mA' : '低于感觉到任何东西所需的 ' + fmt(sn, 1) + ' mA') + '。');
+    readout(d.readout, `\\kIcur = ${fmt(I, 1)}\\ \\text{mA} ${stuck ? '\\geq' : '<'} ${fmt(lg, 1)}\\ \\text{mA}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

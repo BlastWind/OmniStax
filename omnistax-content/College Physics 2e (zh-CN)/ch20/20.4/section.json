@@ -1,0 +1,1021 @@
+{
+ "id": "20.4",
+ "module": "m42714",
+ "chapter": "20",
+ "title": "电功率与电能",
+ "short": "功率与电能",
+ "lead": "电<span data-concept=\"power\">功率</span>是电路转换<span data-concept=\"energy\">能量</span>的速率，可由器件的<span data-concept=\"electric-current\">电流</span>、<span data-concept=\"potential-difference\">电压</span>和<span data-concept=\"resistance\">电阻</span>求得。一段<span data-concept=\"time\">时间</span>内所用的功率，就成为电费账单上的千瓦时，以及如何少用千瓦时的问题。",
+ "objectives": [
+  "计算电阻器耗散的功率和电源供给的功率。",
+  "计算各种情形下用电的费用。"
+ ],
+ "summary_html": "<ul><li>电功率 $\\kP$ 是<span data-concept=\"energy\">能量</span>由电源供给或被器件耗散的速率（单位为瓦特）。</li><li>电<span data-concept=\"power\">功率</span>的三个表达式是 $\\kP = \\kIcur\\kV$、$\\kP = \\kV^{2}/\\kRes$ 和 $\\kP = \\kIcur^{2}\\kRes$。</li><li>使用<span data-concept=\"power\">功率</span> $\\kP$ 的器件在<span data-concept=\"time\">时间</span> $\\kt$ 内所用的<span data-concept=\"energy\">能量</span>为 $\\kE = \\kP\\kt$。</li></ul>",
+ "notes": "本书未给出答案的十八道习题已被略去：卡车的起动机、计算器的太阳电池、手电筒、要求求出伏安和安培平方欧姆之单位的两道题、X 射线管、烤面包机、6.00 V 系统中的前照灯、外科烧灼器、旧灯泡变细的灯丝、关于冷式蒸发器、奶瓶加热器、胡佛水坝发电机、轻轨列车、浸入式加热器和热水浴缸的综合概念习题、关于以 10.0 kV 输送 100 MW 的第二道不合理的结果习题，以及关于给一杯茶用的浸入式加热器的自拟习题一项。这些习题所涉及的照片也随之略去。第一道 AP 备考练习题把四个答案画成四幅小图，而一张卡片只带一幅图像，所以这四个答案按书中所画原样用文字写出，卡片保留电路及其能量图像。本模块没有印出理解检测框，也没有 PhET 模拟的链接。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十八道习题没有给出答案，已被略去，其中包括自拟习题一项和两道不合理的结果习题中的一道；本节的说明列出了它们。本书印在“电流”一节中的除颤器习题，改放在这里，因为它的后半部分可直接由 $\\kP = \\kIcur^{2}\\kRes$ 得出，而本书该节并未陈述这个方程，两节的说明均已注明。第一道 AP 备考练习题书中没有给出答案，保留为开放题，四个选项用文字写出，并附有 AI 标注的建议思路，而不是评分的选择题；两道思考题也是如此。",
+ "figures": [
+  {
+   "id": "fig-bulbs",
+   "kind": "photo",
+   "number": "20.13",
+   "originals": [
+    "/media/ch20/Figure_21_04_01a.jpg"
+   ],
+   "original_caption": "（a）这两只灯泡，25 W 的灯泡（左上）和 60 W 的灯泡（右上），哪一只的电阻更高？哪一只取用的电流更大？哪一只消耗的能量最多？你能从颜色看出 25 W 的灯丝温度较低吗？较亮的灯泡颜色不同吗？如果不同，是为什么？（来源：Dickbauch, Wikimedia Commons；Greg Westfall, Flickr）（b）这只紧凑型荧光灯（CFL）发出的光的强度与 60 W 灯泡相同，但输入功率只有后者的 1/4 到 1/10。（来源：dbgg1979, Flickr）",
+   "widths": [
+    200
+   ]
+  },
+  {
+   "id": "sim-power-in-a-circuit",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "current",
+    "voltage",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout states all three expressions; note dropped; graph title"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cost-of-lighting",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "energy",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "dollar signs no longer open a TeX run; bulb label off its line"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "electric-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "power-and-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "power-supplied-equals-dissipated",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "watt",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "ampere",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "simple-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-electric-circuits",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "cost-of-electricity",
+   "concept": "electrical-energy-and-cost",
+   "verb": "introduces"
+  },
+  {
+   "span": "cost-of-electricity",
+   "concept": "lighting-efficiency",
+   "verb": "introduces"
+  },
+  {
+   "span": "cost-of-electricity",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "cost-of-electricity",
+   "concept": "energy-from-power",
+   "verb": "uses"
+  },
+  {
+   "span": "cost-of-electricity",
+   "concept": "cost-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "cost-of-electricity",
+   "concept": "efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-hot-and-cold-power",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-hot-and-cold-power",
+   "concept": "power-and-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-hot-and-cold-power",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-hot-and-cold-power",
+   "concept": "resistance-and-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-cfl-cost-effectiveness",
+   "concept": "electrical-energy-and-cost",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-cfl-cost-effectiveness",
+   "concept": "lighting-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-cfl-cost-effectiveness",
+   "concept": "electric-power",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2409786",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cost-of-electricity",
+   "prompt": "为什么白炽灯泡在寿命晚期会变暗，尤其是在灯丝烧断之前？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "灯丝随着老化而变细，所以它的电阻增大，它从固定的市电电压中取用的功率减小。热灯丝中的钨缓慢蒸发，使玻璃内壁发黑，灯丝变细。导线变细，横截面积就变小，所以由 $\\kRes = \\krhomat\\kLlen/\\karea$，它的电阻增大；电压固定时，$\\kP = \\kV^{2}/\\kRes$ 减小。功率减小意味着光减少，而发黑的玻璃又使透出的光更少。灯丝最细的地方变细得最快，因为那里温度最高，所以电阻不断攀升，灯泡在灯丝断开前的最后几个小时里变暗得最快。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1401443",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "prompt": "电阻器中耗散的功率由 $\\kP = \\kV^{2}/\\kRes$ 给出，这意味着电阻增大则功率减小。然而这一功率也由 $\\kP = \\kIcur^{2}\\kRes$ 给出，这意味着电阻增大则功率增大。请解释这里为什么没有矛盾。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这两个表达式回答的是两个不同的问题，因为在电阻变化时，它们各自保持不变的量不同。当电阻器两端的电压固定时，例如接在市电上的灯，应当用 $\\kP = \\kV^{2}/\\kRes$：这时电阻增大会使电流减小，功率随之减小。当通过电阻器的电流固定时，例如输送给定电流的输电线，应当用 $\\kP = \\kIcur^{2}\\kRes$：这时电阻增大会使它两端的电压升高，功率随之增大。两者都来自 $\\kP = \\kIcur\\kV$ 代入欧姆定律，所以对任何一个电路，它们给出的瓦特数完全相同；不同的只是电路让这两个量中的哪一个保持不变。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id3270504",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "figure": {
+    "src": "/media/ch20/CNX_APPhysics_20_M4_S05_img.jpg",
+    "alt": "一个电路画成矩形，左边有一个电池，右边有一个标着 R 的锯齿线电阻器。旁边是一幅电阻所耗散的总能量 E 随时间 t 变化的图像，一条从原点出发的直线，在时刻 t 下标 1 处达到 E 下标 1。",
+    "caption": "一个接在电压源上的电阻器 R，以及它所耗散的总能量随时间的变化。"
+   },
+   "prompt": "图中所示的电路包含一个接在电压源上的电阻器 $\\kRes$。图像给出了电阻所耗散的总能量 $\\kE$ 随时间的变化。下列哪一幅给出了电阻加倍时，即 $\\kRes$ 换成 $2\\kRes$ 时的相应图像？（a）一条从原点出发、在 $\\kt_1$ 时到达 $2\\kE_1$ 的直线。（b）一条从原点出发、在 $\\kt_1$ 时到达 $\\kE_1$ 的直线。（c）一条从原点出发、在 $\\kt_1$ 时到达 $\\kE_1/2$ 的直线。（d）一条从原点出发、在 $\\kt_1$ 时到达 $\\kE_1/4$ 的直线。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（c）。电阻器接在固定的电源电压上，所以它耗散的功率为 $\\kP = \\kV^{2}/\\kRes$，电阻加倍，功率减半。耗散的能量为 $\\kE = \\kP\\kt$，所以由于功率恒定，图像仍是一条过原点的直线，但它的斜率是原来的一半，在时刻 $\\kt_1$ 它只达到一半的能量，即 $\\kE_1/2$。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2032037",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "prompt": "一只 120 W、220 V 的灯与一只 100 W、110 V 的灯，二者的电阻之比是多少？",
+   "answer": {
+    "type": "number",
+    "value": 3.33,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "每只灯都在固定的电压下工作，所以由 $\\kRes = \\kV^{2}/\\kP$ 分别求出各自的电阻，再把一个除以另一个。",
+    "solution": "10:3 或 3.33"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3223947",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "prompt": "一次电压为 $1.00 \\times 10^{2}\\ \\text{MV}$、电流为 $2.00 \\times 10^{4}\\ \\text{A}$ 的闪电，其功率是多少？",
+   "answer": {
+    "type": "number",
+    "value": 2000000000000.0,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "功率等于电流乘以电压，而一兆伏等于 $10^{6}$ V。",
+    "solution": "$2.00 \\times 10^{12}\\ \\text{W}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2023489",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "prompt": "求下列每根延长线中耗散的功率：（a）一根电阻为 $0.0600\\ \\Omega$、通过 5.00 A 电流的延长线；（b）一根使用较细导线、电阻为 $0.300\\ \\Omega$ 的较便宜的延长线。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.5,
+      "unit": "W",
+      "hint": "已知的是电流而不是电压，所以用 $\\kP = \\kIcur^{2}\\kRes$。"
+     },
+     {
+      "part": "(b)",
+      "value": 7.5,
+      "unit": "W",
+      "hint": "流过的电流相同，所以功率与电阻成正比地增大。"
+     }
+    ],
+    "solution": "（a）1.50 W （b）7.50 W"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1577565",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "prompt": "证明单位关系 $1\\ \\text{V}^{2}/\\Omega = 1\\ \\text{W}$，这是由方程 $\\kP = \\kV^{2}/\\kRes$ 所暗含的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\text{V}^{2}}{\\Omega} = \\frac{\\text{V}^{2}}{\\text{V/A}} = \\text{A}\\cdot\\text{V} = \\left(\\frac{\\text{C}}{\\text{s}}\\right)\\left(\\frac{\\text{J}}{\\text{C}}\\right) = \\frac{\\text{J}}{\\text{s}} = 1\\ \\text{W}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3244624",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cost-of-electricity",
+   "prompt": "验证能量单位的等价关系 $1\\ \\text{kW}\\cdot\\text{h} = 3.60 \\times 10^{6}\\ \\text{J}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1\\ \\text{kW}\\cdot\\text{h} = \\left(\\frac{1 \\times 10^{3}\\ \\text{J}}{1\\ \\text{s}}\\right)(1\\ \\text{h})\\left(\\frac{3600\\ \\text{s}}{1\\ \\text{h}}\\right) = 3.60 \\times 10^{6}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id2670173",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cost-of-electricity",
+   "figure": {
+    "src": "/media/ch20/Figure_21_04_03a.jpg",
+    "alt": "一台电热水器与电源和供水相连的照片。",
+    "caption": "即热式电热水器。只在需要时才向水供热。（来源：aviddavid, Flickr）"
+   },
+   "prompt": "一台电热水器每天耗电 5.00 kW，持续 2.00 h。如果电价是 12.0 美分/kW·h，运行一年的费用是多少？",
+   "answer": {
+    "type": "number",
+    "value": 438,
+    "unit": "dollars per year",
+    "generated_by": "source",
+    "hint": "由 $\\kE = \\kP\\kt$ 求出一天所用的千瓦时数，乘以 365 天，再乘以电价。",
+    "solution": "＄438/y"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3146477",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cost-of-electricity",
+   "prompt": "紧凑型荧光灯的费用最高为多少，才能使它与 60 W 白炽灯泡的总费用（投资加运行）相同？假设白炽灯泡的价格为 25 美分，电价为 10 美分/千瓦时。像紧凑型荧光灯成本效益那道例题一样，按 1000 小时计算。",
+   "answer": {
+    "type": "number",
+    "value": 6.25,
+    "unit": "dollars",
+    "generated_by": "source",
+    "hint": "先算出白炽灯泡 1000 小时的总费用，再算出 15 W 紧凑型荧光灯在这些小时内用电的电费。记住，1000 小时只用掉紧凑型荧光灯 10,000 小时寿命的十分之一，所以也只用掉它价格的十分之一。",
+    "solution": "＄6.25"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1616012",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cost-of-electricity",
+   "prompt": "碱性电池的优点是，直到寿命将近结束时仍输出恒定的电压。一节额定 $1.00\\ \\text{A}\\cdot\\text{h}$、1.58 V 的碱性电池，能让一只 1.00 W 的手电筒灯泡亮多久？",
+   "answer": {
+    "type": "number",
+    "value": 1.58,
+    "unit": "h",
+    "generated_by": "source",
+    "hint": "1.58 V 下的一安时是一份能量：把二者相乘得到瓦时，再除以灯泡的功率。",
+    "solution": "1.58 h"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id2383748",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cost-of-electricity",
+   "prompt": "据说普通电视机每天开机 6 小时。估算运行 1 亿台电视机的年电费，假设它们的功率消耗平均为 150 W，电价平均为 12.0 美分/kW·h。",
+   "answer": {
+    "type": "number",
+    "value": 3.94,
+    "unit": "billion dollars per year",
+    "generated_by": "source",
+    "hint": "由 $\\kE = \\kP\\kt$ 求出一台电视机一年所用的能量，乘以电价，再乘以一亿。",
+    "solution": "＄39.4 亿/年"
+   }
+  },
+  {
+   "id": "p19",
+   "source_id": "fs-id2409598",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "prompt": "00 号铜线的直径为 9.266 mm。当它通过 $1.00 \\times 10^{2}\\ \\text{A}$ 的电流时，计算 1 千米这样的导线中的功率损耗。",
+   "answer": {
+    "type": "number",
+    "value": 25.5,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "由 $\\kRes = \\rho L/A$ 和铜的电阻率求出这 1 千米导线的电阻，再用 $\\kP = \\kIcur^{2}\\kRes$，因为给出的是电流。",
+    "solution": "25.5 W"
+   }
+  },
+  {
+   "id": "p21",
+   "source_id": "fs-id2616676",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "tag": "综合概念",
+   "prompt": "（a）一次电流为 20,000 A、电压为 $1.00 \\times 10^{2}\\ \\text{MV}$、持续 1.00 ms 的闪电，耗散多少能量？（b）假设树液的热学性质与水相同，这些能量能把多少质量的树液从 $18.0\\ ^\\circ\\text{C}$ 加热到沸点，再使之蒸发？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2000000000.0,
+      "unit": "J",
+      "hint": "功率是 $\\kIcur\\kV$，能量是 $\\kP\\kt$，时间要用秒。"
+     },
+     {
+      "part": "(b)",
+      "value": 769,
+      "unit": "kg",
+      "hint": "这些能量要先使树液升温 82.0 °C，再使它沸腾蒸发掉，所以它同时用于 $mc\\kdTemp$ 和 $mL_{\\text{v}}$。"
+     }
+    ],
+    "solution": "（a）$2.00 \\times 10^{9}\\ \\text{J}$ （b）769 kg"
+   }
+  },
+  {
+   "id": "p23",
+   "source_id": "fs-id2382586",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "tag": "综合概念",
+   "prompt": "若外科烧灼器的输出为 15.0 kV、2.00 mA，要把 1.00 g 组织的温度从 $37.0\\ ^\\circ\\text{C}$ 升高到 $100\\ ^\\circ\\text{C}$，然后再使 0.500 g 的水沸腾蒸发掉，需要多长时间？忽略向周围环境的热传递。",
+   "answer": {
+    "type": "number",
+    "value": 45.0,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "把使组织升温所需的热量与使水沸腾蒸发所需的热量相加，再除以烧灼器输出的功率 $\\kIcur\\kV$。",
+    "solution": "45.0 s"
+   }
+  },
+  {
+   "id": "p25",
+   "source_id": "fs-id3149527",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "tag": "综合概念",
+   "figure": {
+    "src": "/media/ch20/OSX_CP2e_Figure_21_04_06.jpg",
+    "alt": "一辆电动汽车停在路边，正从城市街道上的一根柱子处充电。",
+    "caption": "这辆 REVAi 电动汽车正在伦敦的一条街道上充电。（来源：Frank Hebbert）"
+   },
+   "prompt": "假设电动机对电功率的转换效率为 95.0%，一辆 750 kg 电动汽车的 12.0 V 电池必须能供给多大的电流：（a）在 1.00 min 内由静止加速到 25.0 m/s？（b）以恒定的 25.0 m/s 速率，在 2.00 min 内爬上 $2.00 \\times 10^{2}$ m 高的山坡，同时施加 $5.00 \\times 10^{2}\\ \\text{N}$ 的力来克服空气阻力和摩擦力？（c）以恒定的 25.0 m/s 速率行驶，施加 $5.00 \\times 10^{2}\\ \\text{N}$ 的力来克服空气阻力和摩擦力？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 343,
+      "unit": "A",
+      "hint": "汽车在一分钟内获得 $\\frac{1}{2}m\\kv^{2}$ 的动能；除以时间得到功率，再除以效率，然后除以 12.0 V。"
+     },
+     {
+      "part": "(b)",
+      "value": 2170.0,
+      "unit": "A",
+      "hint": "爬坡需要 $mgh$，还需要在行驶路程上克服 500 N 阻力所做的功。"
+     },
+     {
+      "part": "(c)",
+      "value": 1100.0,
+      "unit": "A",
+      "hint": "在水平路面上以稳定速率行驶时，功率就是力乘以速率。"
+     }
+    ],
+    "solution": "（a）343 A （b）$2.17 \\times 10^{3}\\ \\text{A}$ （c）$1.10 \\times 10^{3}\\ \\text{A}$"
+   }
+  },
+  {
+   "id": "p27",
+   "source_id": "fs-id3233297",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "tag": "综合概念",
+   "prompt": "（a）一条铝制输电线的电阻为 $0.0580\\ \\Omega/\\text{km}$。它每千米的质量是多少？（b）电阻相同的铜制输电线，每千米的质量是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1230.0,
+      "unit": "kg",
+      "hint": "由 $\\kRes = \\rho L/A$ 和铝的电阻率求出横截面积，再由横截面积、长度和密度求出质量。"
+     },
+     {
+      "part": "(b)",
+      "value": 2640.0,
+      "unit": "kg",
+      "hint": "铜的电阻率较低，所需的横截面积较小，但它大得多的密度足以抵消这一点而有余。"
+     }
+    ],
+    "solution": "（a）$1.23 \\times 10^{3}\\ \\text{kg}$ （b）$2.64 \\times 10^{3}\\ \\text{kg}$"
+   }
+  },
+  {
+   "id": "p30",
+   "source_id": "fs-id1546272",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "tag": "不合理的结果",
+   "prompt": "（a）以 480 V 的电压传输 $1.00 \\times 10^{2}\\ \\text{MW}$ 的功率，需要多大的电流？（b）如果输电线的电阻为 $1.00\\ \\Omega$，输电线中耗散的功率是多少？（c）这个结果有什么不合理之处？（d）哪些假设不合理，或者哪些前提不一致？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 208000.0,
+      "unit": "A",
+      "hint": "所传输的功率和传输时的电压，由 $\\kP = \\kIcur\\kV$ 给出电流。"
+     },
+     {
+      "part": "(b)",
+      "value": 43300.0,
+      "unit": "MW",
+      "hint": "线路中的电流由（a）部分确定，所以损耗为 $\\kIcur^{2}\\kRes$。"
+     }
+    ],
+    "solution": "（a）$2.08 \\times 10^{5}\\ \\text{A}$ （b）$4.33 \\times 10^{4}\\ \\text{MW}$ （c）输电线耗散的功率比它们应当传输的功率还多。（d）480 V 作为输电电压低得不合理。长距离输电线路保持在高得多的电压（通常为数百千伏），以减少功率损耗。"
+   }
+  },
+  {
+   "id": "p31",
+   "source_id": "fs-id2397006",
+   "source_section": "20.1",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-electric-circuits",
+   "figure": {
+    "src": "/media/ch20/Figure_21_01_07a.jpg",
+    "alt": "对患者使用的除颤器，旁边画出它的电路：一个极板标为 +Q 和 −Q 的电容器驱动电流沿顺时针方向流过连接导线并穿过患者的胸部，电子则沿相反方向运动。",
+    "caption": "除颤器中的电容器驱动电流通过患者的心脏。"
+   },
+   "prompt": "（a）如下图所示，除颤器施加 10,000 V 的电势，使 6.00 A 的电流通过患者的胸部。这段路径的电阻是多少？（b）除颤器的电极板通过导电凝胶与患者接触，凝胶大大降低了路径电阻。讨论如果为了在患者体内产生同样的电流而使用更大的电压，但路径的电阻可能是原来的 50 倍，会带来哪些困难。（提示：电流必须大致相同，所以更高的电压意味着更大的功率。功率请用这个方程：$\\kP = \\kIcur^{2}\\kRes$。）",
+   "answer": {
+    "type": "number",
+    "value": 1.67,
+    "unit": "kΩ",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "（a）部分用欧姆定律；（b）部分用 $\\kP = \\kIcur^{2}\\kRes$，电流保持不变，电阻增大到 50 倍。",
+    "solution": "（a）$1.67\\ \\text{k}\\Omega$ （b）如果存在 50 倍大的电阻，而电流大致保持不变，则功率将增大约 50 倍（根据方程 $\\kP = \\kIcur^{2}\\kRes$），使传给皮肤的能量多得多，可能造成严重烧伤。所用的凝胶降低了电阻，因此降低了传给皮肤的功率。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "lighting-efficiency"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "power-and-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-power",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "electrical-energy-and-cost",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electric-power",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "electric-power"
+  },
+  {
+   "exercise": "p5",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "electric-power",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "p9",
+   "concept": "electrical-energy-and-cost"
+  },
+  {
+   "exercise": "p11",
+   "concept": "electrical-energy-and-cost"
+  },
+  {
+   "exercise": "p11",
+   "concept": "electric-power",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "lighting-efficiency"
+  },
+  {
+   "exercise": "p13",
+   "concept": "electrical-energy-and-cost",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "electrical-energy-and-cost"
+  },
+  {
+   "exercise": "p15",
+   "concept": "electric-power",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p17",
+   "concept": "electrical-energy-and-cost"
+  },
+  {
+   "exercise": "p17",
+   "concept": "electric-power",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p19",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "p19",
+   "concept": "electric-power",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p21",
+   "concept": "electric-power"
+  },
+  {
+   "exercise": "p21",
+   "concept": "electrical-energy-and-cost",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p23",
+   "concept": "electric-power"
+  },
+  {
+   "exercise": "p23",
+   "concept": "electrical-energy-and-cost",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p25",
+   "concept": "electric-power"
+  },
+  {
+   "exercise": "p25",
+   "concept": "electrical-energy-and-cost",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p27",
+   "concept": "electric-power"
+  },
+  {
+   "exercise": "p27",
+   "concept": "power-and-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p30",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "p30",
+   "concept": "power-supplied-equals-dissipated",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p31",
+   "concept": "power-and-resistance"
+  },
+  {
+   "exercise": "p31",
+   "concept": "electric-power",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "source",
+   "label": "电路的电源",
+   "figures": [
+    "sim-power-in-a-circuit"
+   ]
+  },
+  {
+   "id": "headlight",
+   "label": "汽车前照灯，画作电阻器",
+   "figures": [
+    "sim-power-in-a-circuit"
+   ]
+  },
+  {
+   "id": "bulb",
+   "label": "60 W 白炽灯泡",
+   "figures": [
+    "sim-cost-of-lighting"
+   ]
+  },
+  {
+   "id": "cfl",
+   "label": "15 W 紧凑型荧光灯",
+   "figures": [
+    "sim-cost-of-lighting"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "electric-power",
+   "what": "电功率的三个表达式",
+   "source": "《大学物理（第2版）》，20.4 电功率与电能",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kPEtot = \\kq\\kV",
+       "src": "20.4"
+      },
+      {
+       "tex": "\\kIcur = \\dfrac{\\kq}{\\kt}",
+       "src": "20.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kP} = \\dfrac{\\mk{E}{\\kPEtot}}{\\mk{t}{\\kt}}",
+      "src": "7.7",
+      "why": "功率是能量被转移的速率。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kP} = \\dfrac{\\mk{q}{\\kq}\\mk{E}{\\kV}}{\\mk{t}{\\kt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{\\kV}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "t": "q"
+       }
+      }
+     ],
+     "src": "20.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kIcur = \\dfrac{\\kV}{\\kRes}",
+       "src": "20.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{\\kV}",
+      "src": "20.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{q}{(\\kV/\\kRes)}\\mk{E}{\\kV}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\dfrac{\\mk{q}{\\kV^{2}}}{\\mk{R}{\\kRes}}",
+       "uses": [],
+       "map": {
+        "E": "q",
+        "q": [
+         "q",
+         "R"
+        ]
+       }
+      }
+     ],
+     "src": "20.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kV = \\kIcur\\kRes",
+       "src": "20.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{\\kV}",
+      "src": "20.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{(\\kIcur\\kRes)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur^{2}}\\mk{R}{\\kRes}",
+       "uses": [],
+       "map": {
+        "E": [
+         "q",
+         "R"
+        ]
+       }
+      }
+     ],
+     "src": "20.4"
+    }
+   ]
+  }
+ ]
+}

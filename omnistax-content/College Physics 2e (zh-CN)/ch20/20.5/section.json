@@ -1,0 +1,662 @@
+{
+ "id": "20.5",
+ "module": "m42348",
+ "chapter": "20",
+ "title": "交流电与直流电",
+ "short": "交流与直流",
+ "lead": "电池驱动的直流<span data-concept=\"electric-current\">电流</span>沿一个方向流动，而墙上的插座驱动的交流电则随其<span data-concept=\"potential-difference\">电压</span>的起伏每秒反向许多次。交流电用它的峰值和方均根值来描述，由这些值可以得出它所输送的平均<span data-concept=\"power\">功率</span>，以及为什么要把电力以高电压送往全国各地。",
+ "objectives": [
+  "解释交流电和直流电的异同。",
+  "计算方均根电压、电流和平均功率。",
+  "解释为什么输电采用交流电。"
+ ],
+ "summary_html": "<ul><li>直流电（DC）是<span data-concept=\"electric-current\">电流</span>只沿一个方向的流动。它指的是电源<span data-concept=\"potential-difference\">电压</span>恒定的系统。</li><li>交流电（AC）系统的<span data-concept=\"potential-difference\">电压</span>源输出 $\\kV = \\kVo\\sin 2\\pi \\kf\\kt$，其中 $\\kV$ 是<span data-concept=\"time\">时刻</span> $\\kt$ 的<span data-concept=\"potential-difference\">电压</span>，$\\kVo$ 是峰值<span data-concept=\"potential-difference\">电压</span>，$\\kf$ 是以赫兹为单位的<span data-concept=\"frequency\">频率</span>。</li><li>在简单电路中，$\\kIcur = \\kV/\\kRes$，交流电流为 $\\kIcur = \\kIocur\\sin 2\\pi \\kf\\kt$，其中 $\\kIcur$ 是<span data-concept=\"time\">时刻</span> $\\kt$ 的<span data-concept=\"electric-current\">电流</span>，$\\kIocur = \\kVo/\\kRes$ 是峰值<span data-concept=\"electric-current\">电流</span>。</li><li><span data-concept=\"ac-power\">交流电的平均功率</span>为 $\\kPave = \\frac{1}{2}\\kIocur\\kVo$。</li><li>平均（方均根）<span data-concept=\"electric-current\">电流</span> $\\kIrms$ 和平均（方均根）<span data-concept=\"potential-difference\">电压</span> $\\kVrms$ 分别为 $\\kIrms = \\frac{\\kIocur}{\\sqrt{2}}$ 和 $\\kVrms = \\frac{\\kVo}{\\sqrt{2}}$，其中 rms 代表“方均根”（root mean square）。</li><li>因此，$\\kPave = \\kIrms\\kVrms$。</li><li>交流电的欧姆定律为 $\\kIrms = \\frac{\\kVrms}{\\kRes}$。</li><li>交流电路的平均<span data-concept=\"power\">功率</span>的表达式为 $\\kPave = \\kIrms\\kVrms$、$\\kPave = \\frac{\\kVrms^{2}}{\\kRes}$ 和 $\\kPave = \\kIrms^{2}\\kRes$，与直流电路的表达式类似。</li></ul>",
+ "notes": "指向 PhET 模拟“发电机”的链接未收入，书中未给出答案的七道习题也未收入：25 W 灯泡的热态电阻及其低 100 度时的电阻，在 15.0 A 时跳闸的断路器的峰值电流，插在 240 V 上的剃须刀，空调的等效电阻和每月费用，500 W 加热器的峰值电流，镍铬合金辐射加热器，以及 60 Hz 电压等于方均根电压的两个时刻。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案，书中未给出答案的七道习题已略去，并在本节的说明中列出。三道思考题是开放题，附有由 AI 撰写的建议思路，并已标明。本节没有理解检测框，也没有 AP 备考练习题，本节没有任何内容留待以后的页面，也没有设置其他小节的内容。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-ac-versus-dc",
+   "kind": "sim",
+   "number": "20.14",
+   "folds": [
+    "20.15"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_05_01.jpg",
+    "/media/ch20/Figure_21_05_03.jpg"
+   ],
+   "original_caption": "（a）一旦电流建立起来，直流电的电压和电流就不随时间变化。（b）60 Hz 交流电的电压和电流随时间变化的图线。对于简单的电阻电路，电压和电流都是正弦的，并且同相。不同交流电源的频率和峰值电压相差很大。",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance",
+    "frequency",
+    "time"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "source choice label as text; DC note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ac-power",
+   "kind": "sim",
+   "number": "20.16",
+   "originals": [
+    "/media/ch20/Figure_21_05_04.jpg"
+   ],
+   "original_caption": "交流电功率随时间变化的函数。由于这里的电压和电流同相，它们的乘积非负，并在零与 I_0 V_0 之间起伏。平均功率为 (1/2) I_0 V_0。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "power",
+    "resistance",
+    "frequency",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "average label moved off the power curve"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-transmission",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "voltage",
+    "current",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout tells power sent from power lost; labels off towers; note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-transformers",
+   "kind": "photo",
+   "number": "20.17",
+   "widths": [
+    225
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "alternating-current",
+   "concept": "direct-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "alternating-current",
+   "concept": "alternating-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "alternating-current",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "alternating-current",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "alternating-current",
+   "concept": "ac-voltage",
+   "verb": "introduces"
+  },
+  {
+   "span": "ac-power",
+   "concept": "ac-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "ac-power",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "ac-power",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "rms-values",
+   "concept": "rms-values",
+   "verb": "introduces"
+  },
+  {
+   "span": "rms-values",
+   "concept": "ac-power",
+   "verb": "uses"
+  },
+  {
+   "span": "rms-values",
+   "concept": "rms-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "rms-values",
+   "concept": "rms-voltage",
+   "verb": "introduces"
+  },
+  {
+   "span": "ac-ohms-law",
+   "concept": "ac-ohms-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "ac-ohms-law",
+   "concept": "rms-values",
+   "verb": "uses"
+  },
+  {
+   "span": "ac-ohms-law",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ac-ohms-law",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "transmission",
+   "concept": "high-voltage-transmission",
+   "verb": "introduces"
+  },
+  {
+   "span": "transmission",
+   "concept": "ac-ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "transmission",
+   "concept": "power-and-resistance",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1687500",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-current",
+   "prompt": "给出一个除家庭之外使用交流电的例子。同样，给出一个除电池供电之外使用直流电的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "凡是由大型配电系统而不是由电池供电的东西，几乎都靠交流电运行：工厂的电动机，办公楼的照明和空调，自来水厂的水泵，以及许多电气化铁路的架空线。不来自电池的直流电在机器内部同样常见。计算机或电视机的电源把插座上的交流电整流，再把直流电送给各个电路，汽车的交流发电机对汽车的电气系统也是这样做的。太阳能电池板一开始输出的就是直流电。电镀和炼铝需要沿一个方向的稳恒电流，因为其中的化学过程取决于电荷运动的方向。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1913213",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ac-power",
+   "prompt": "对于 60 Hz 的交流电，为什么电压、电流和功率每秒经过零点 120 次？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电压是 $\\kV = \\kVo\\sin 2\\pi \\kf\\kt$，正弦函数在它的每个周期中两次经过零点，一次是在下降的途中，一次是在回升的途中。60 Hz 时，一秒内有 60 个周期，所以每秒有 120 次这样的穿越。电流是 $\\kV/\\kRes$，因此在同样的时刻为零，而功率是两者的乘积，也在那里为零。功率在这些时刻并不像电压和电流那样改变符号；它只是碰到零，然后重新上升，这就是荧光灯泡的光每秒变暗 120 次而不是 60 次的原因。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3131936",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ac-power",
+   "prompt": "你乘坐在火车上，透过车窗凝视远方。当近处的物体一闪而过时，你注意到附近的荧光灯拖出的是*虚线状*的条纹。请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "接在交流电上的荧光灯并不是稳定发光的。它的功率随正弦的平方起伏，所以在 60 Hz 的电源下它每秒变亮和变暗 120 次，每当电流经过零点时就短暂地熄灭一下。你静止不动时，眼睛会把这些闪光平均起来，灯看上去是稳定的。当火车在运动、灯从你的视野中扫过时，每次闪光落在视网膜的不同部位，它们之间的暗间隔也落在那里，所以你看到的是一排亮斑，亮斑之间有空隙，而不是连续的条纹。在同样的条件下，白炽前照灯拖出的是不间断的条纹，因为它的灯丝在电流为零的那些时刻仍然是热的。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1825974",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rms-values",
+   "prompt": "某些重型工业设备使用峰值电压为 679 V 的交流电。方均根电压是多少？",
+   "answer": {
+    "type": "number",
+    "value": 480,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "方均根电压等于峰值电压除以 $\\sqrt{2}$。",
+    "solution": "480 V"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id808814",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-current",
+   "prompt": "军用飞机使用 400 Hz 的交流电，因为在这种较高的频率下可以设计出重量更轻的设备。这种电力一个完整周期所需的时间是多少？",
+   "answer": {
+    "type": "number",
+    "value": 2.5,
+    "unit": "ms",
+    "generated_by": "source",
+    "hint": "频率是每秒的周期数，所以一个周期所需的时间是它的倒数。",
+    "solution": "2.50 ms"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1481055",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transmission",
+   "prompt": "在本题中，你将验证例题 20.10 的功率损耗部分末尾所作的陈述。（a）以 25.0 kV 的电压输送 100 MW 的功率需要多大的电流？（b）求电阻为 $1.00\\text{-}\\Omega$ 的输电线中的功率损耗。（c）这相当于百分之几的损耗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4,
+      "unit": "kA",
+      "hint": "把 $\\kPave = \\kIrms\\kVrms$ 变形以求出电流，功率用瓦特，电压用伏特。"
+     },
+     {
+      "part": "(b)",
+      "value": 16,
+      "unit": "MW",
+      "hint": "输电线把 $\\kPave = \\kIrms^{2}\\kRes$ 变成热量，其中的电流取你在（a）中求得的值。"
+     },
+     {
+      "part": "(c)",
+      "value": 16,
+      "unit": "%",
+      "hint": "取损失的功率与所输送的 100 MW 之比，再乘以 100。"
+     }
+    ],
+    "solution": "（a）4.00 kA（b）16.0 MW（c）16.0%"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2942325",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rms-values",
+   "prompt": "一台 120 V 交流电的微波炉取用 10.0 A 的电流，它的峰值功率消耗是多少？",
+   "answer": {
+    "type": "number",
+    "value": 2.4,
+    "unit": "kW",
+    "generated_by": "source",
+    "hint": "所给的值是方均根值，所以它们的乘积是平均功率，而峰值功率是平均功率的两倍。",
+    "solution": "2.40 kW"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1244041",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ac-ohms-law",
+   "prompt": "两个不同的电器功率消耗相同，但一个设计为使用 120 V 交流电，另一个设计为使用 240 V 交流电。（a）它们的电阻之比是多少？（b）它们的电流之比是多少？（c）假设电阻不受影响，如果把一个 120 V 交流电的电器接到 240 V 交流电上，功率会增大为原来的多少倍？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4,
+      "hint": "功率一定时，$\\kRes = \\kVrms^{2}/\\kPave$，所以电阻与电压的平方成正比。取 240 V 的电器与 120 V 的电器之比。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.5,
+      "hint": "功率一定时，$\\kIrms = \\kPave/\\kVrms$，所以电流与电压的倒数成正比。"
+     },
+     {
+      "part": "(c)",
+      "value": 4,
+      "hint": "电阻不变时，$\\kPave = \\kVrms^{2}/\\kRes$，所以电压加倍对功率的作用，就是把因子 2 平方。"
+     }
+    ],
+    "solution": "（a）4.0（b）0.50（c）4.0"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1993162",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-current",
+   "prompt": "求 $\\kt = 0$ 之后，60 Hz 交流电的瞬时电压首次达到下列值的时刻：（a）$\\kVo/2$（b）$\\kVo$（c）0。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.39,
+      "unit": "ms",
+      "hint": "令 $\\kVo\\sin 2\\pi \\kf\\kt$ 等于 $\\kVo/2$，求正弦首次等于二分之一的时刻。"
+     },
+     {
+      "part": "(b)",
+      "value": 4.17,
+      "unit": "ms",
+      "hint": "正弦在经过四分之一个周期时首次达到 1。"
+     },
+     {
+      "part": "(c)",
+      "value": 8.33,
+      "unit": "ms",
+      "hint": "过了峰值之后，正弦在起点之后半个周期再次回到零。"
+     }
+    ],
+    "solution": "（a）1.39 ms（b）4.17 ms（c）8.33 ms"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "alternating-current"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "direct-current"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ac-power"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "alternating-current",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "ac-power"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "alternating-current",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rms-values"
+  },
+  {
+   "exercise": "p2",
+   "concept": "alternating-current"
+  },
+  {
+   "exercise": "p3",
+   "concept": "high-voltage-transmission"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ac-ohms-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "ac-power"
+  },
+  {
+   "exercise": "p4",
+   "concept": "rms-values",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "ac-ohms-law"
+  },
+  {
+   "exercise": "p6",
+   "concept": "alternating-current"
+  }
+ ],
+ "referents": [
+  {
+   "id": "battery",
+   "label": "电池，即直流电源",
+   "figures": [
+    "sim-ac-versus-dc"
+   ]
+  },
+  {
+   "id": "ac-source",
+   "label": "交流电源",
+   "figures": [
+    "sim-ac-versus-dc"
+   ]
+  },
+  {
+   "id": "resistor",
+   "label": "电源所驱动的单个电阻器",
+   "figures": [
+    "sim-ac-versus-dc"
+   ]
+  },
+  {
+   "id": "plant",
+   "label": "发电厂",
+   "figures": [
+    "sim-transmission"
+   ]
+  },
+  {
+   "id": "line",
+   "label": "输电线",
+   "figures": [
+    "sim-transmission"
+   ]
+  },
+  {
+   "id": "city",
+   "label": "远方的城市",
+   "figures": [
+    "sim-transmission"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "average-power-rms",
+   "what": "由方均根值求平均功率",
+   "source": "《大学物理（第2版）》，20.5 交流电与直流电",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kIrms = \\dfrac{\\kIocur}{\\sqrt{2}}",
+       "src": "20.5"
+      },
+      {
+       "tex": "\\kVrms = \\dfrac{\\kVo}{\\sqrt{2}}",
+       "src": "20.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPave} = \\mk{I}{\\kIrms}\\mk{V}{\\kVrms}",
+      "src": "20.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPave} = \\mk{I}{\\dfrac{\\kIocur}{\\sqrt{2}}}\\cdot\\mk{V}{\\dfrac{\\kVo}{\\sqrt{2}}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kPave} = \\mk{h}{\\dfrac{1}{2}}\\mk{I}{\\kIocur}\\mk{V}{\\kVo}",
+       "uses": []
+      }
+     ],
+     "src": "20.5"
+    }
+   ]
+  }
+ ]
+}

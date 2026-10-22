@@ -1,0 +1,137 @@
+<section id="material-and-shape">
+<h2>电阻对材料和形状的依赖</h2>
+<p class="cite-target">物体的<span data-concept="resistance">电阻</span>取决于它的形状和构成它的材料。<span data-ref="cylinder">图 20.10 中的圆柱形<span data-concept="resistor">电阻器</span></span>便于分析，通过分析它，我们可以深入了解更复杂形状的<span data-concept="resistance">电阻</span>。正如你可能预料的，<span data-ref="cylinder">圆柱体的</span><span data-type="resistance"><span data-concept="resistance">电阻</span></span> $\kRes$ 与<span data-ref="cylinder">其</span><span data-type="position">长度</span> $\kLlen$ 成正比，这与管道对流体流动的<span data-concept="resistance">阻碍</span>相类似。圆柱体越长，电荷与其<span data-concept="atom">原子</span>发生的碰撞就越多。圆柱体的直径越大，它能载运的<span data-concept="electric-current">电流</span>就越大（这同样类似于流体流过管道）。事实上，$\kRes$ 与<span data-ref="cylinder">圆柱体的</span><span data-type="area">横截面积</span> $\karea$ 成反比。</p>
+<figure class="sim" id="sim-cylinder" data-figure="20.10" data-original="/media/ch20/Figure_21_03_01a.jpg" data-original-width="225" data-original-caption="长度为 L、横截面积为 A 的均匀圆柱体。它对电流流动的阻碍类似于管道对流体流动的阻碍。圆柱体越长，其电阻越大。其横截面积 A 越大，电阻越小。">
+  <div class="sim-head"><span class="eyebrow">Figure 20.10</span><span><span data-ref="cylinder">一个均匀圆柱体</span>的<span data-type="position">长度</span>为 $\kLlen$、<span data-type="position">直径</span>为 $\kD$，它与<span data-ref="cylinder">它</span>所构成的电阻器并排而立，<span data-ref="cylinder">其</span><span data-type="position">长度</span>沿<span data-ref="cylinder">它</span>用括号标出，<span data-ref="cylinder">其</span>横截面标在近端。选择<span data-ref="cylinder">圆柱体</span>用什么材料制成，然后拉长<span data-ref="cylinder">它</span>、变细<span data-ref="cylinder">它</span>，观察<span data-type="resistance">电阻</span> $\kRes$ 随<span data-type="position">长度</span>增大、随<span data-type="area">面积</span>减小。<span data-ref="cylinder">它</span>起初是例题 20.5 中的钨丝，<span data-type="position">长 4.00 cm</span>、<span data-type="position">粗 0.090 mm</span>。</span></div>
+</figure>
+<p>对于给定的形状，<span data-concept="resistance">电阻</span>取决于构成物体的材料。不同的材料对电荷的流动提供不同的<span data-concept="resistance">电阻</span>。我们这样来定义一种物质的<strong><span data-concept="resistivity">电阻率</span></strong> $\krhomat$：使物体的<strong><span data-concept="resistance">电阻</span></strong> $\kRes$ 与 $\krhomat$ 成正比。<span data-concept="resistivity">电阻率</span> $\krhomat$ 是材料的<em>固有</em>性质，与其形状和大小无关。<span data-concept="length">长度</span>为 $\kLlen$、<span data-concept="area">横截面积</span>为 $\karea$、由<span data-concept="resistivity">电阻率</span>为 $\krhomat$ 的材料制成的均匀圆柱体，其<span data-concept="resistance">电阻</span> $\kRes$ 为</p>
+$$\kRes = \frac{\krhomat \kLlen}{\karea}.$$
+</section>
+
+<section id="resistivity-table">
+<h2>导体、半导体和绝缘体</h2>
+<p class="cite-target">表 20.1 给出了 $\krhomat$ 的代表性数值。表中所列的材料根据<span data-concept="resistivity">电阻率</span>的大致分组，分为<span data-concept="conductor">导体</span>、半导体和<span data-concept="insulator">绝缘体</span>。<span data-concept="conductor">导体</span>的<span data-concept="resistivity">电阻率</span>最小，<span data-concept="insulator">绝缘体</span>的最大；半导体的<span data-concept="resistivity">电阻率</span>居中。<span data-concept="conductor">导体</span>的<span data-concept="free-charge">自由电荷</span><span data-concept="free-charge-density">密度</span>各不相同但都很大，而<span data-concept="insulator">绝缘体</span>中的大多数电荷束缚在<span data-concept="atom">原子</span>上，不能自由运动。半导体居中，其<span data-concept="free-charge">自由电荷</span>远少于<span data-concept="conductor">导体</span>，但其性质使得<span data-concept="free-charge">自由电荷</span>的数目强烈依赖于半导体中杂质的种类和数量。半导体的这些独特性质被应用于现代电子学，后面的各章将对此加以探讨。</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 20.1</span><span>各种材料在 $20^\circ\text{C}$ 时的<span data-concept="resistivity">电阻率</span> $\krhomat$</span></div>
+  <table>
+    <thead><tr><th>材料</th><th><span data-concept="resistivity">电阻率</span> $\krhomat$（$\Omega\cdot\text{m}$）</th></tr></thead>
+    <tbody>
+      <tr><th colspan="2"><em>导体</em></th></tr>
+      <tr><td>银</td><td class="num">$1.59\times 10^{-8}$</td></tr>
+      <tr><td>铜</td><td class="num">$1.72\times 10^{-8}$</td></tr>
+      <tr><td>金</td><td class="num">$2.44\times 10^{-8}$</td></tr>
+      <tr><td>铝</td><td class="num">$2.65\times 10^{-8}$</td></tr>
+      <tr><td>钨</td><td class="num">$5.6\times 10^{-8}$</td></tr>
+      <tr><td>铁</td><td class="num">$9.71\times 10^{-8}$</td></tr>
+      <tr><td>铂</td><td class="num">$10.6\times 10^{-8}$</td></tr>
+      <tr><td>钢</td><td class="num">$20\times 10^{-8}$</td></tr>
+      <tr><td>铅</td><td class="num">$22\times 10^{-8}$</td></tr>
+      <tr><td>锰铜（Cu、Mn、Ni 合金）</td><td class="num">$44\times 10^{-8}$</td></tr>
+      <tr><td>康铜（Cu、Ni 合金）</td><td class="num">$49\times 10^{-8}$</td></tr>
+      <tr><td>汞</td><td class="num">$96\times 10^{-8}$</td></tr>
+      <tr><td>镍铬合金（Ni、Fe、Cr 合金）</td><td class="num">$100\times 10^{-8}$</td></tr>
+      <tr><th colspan="2"><em>半导体</em><sup>1</sup></th></tr>
+      <tr><td>纯碳</td><td class="num">$3.5\times 10^{-5}$</td></tr>
+      <tr><td>碳</td><td class="num">$(3.5-60)\times 10^{-5}$</td></tr>
+      <tr><td>纯锗</td><td class="num">$600\times 10^{-3}$</td></tr>
+      <tr><td>锗</td><td class="num">$(1-600)\times 10^{-3}$</td></tr>
+      <tr><td>纯硅</td><td class="num">$2300$</td></tr>
+      <tr><td>硅</td><td class="num">$0.1-2300$</td></tr>
+      <tr><th colspan="2"><em>绝缘体</em></th></tr>
+      <tr><td>琥珀</td><td class="num">$5\times 10^{14}$</td></tr>
+      <tr><td>玻璃</td><td class="num">$10^{9}-10^{14}$</td></tr>
+      <tr><td>有机玻璃</td><td class="num">$>10^{13}$</td></tr>
+      <tr><td>云母</td><td class="num">$10^{11}-10^{15}$</td></tr>
+      <tr><td>熔融石英</td><td class="num">$75\times 10^{16}$</td></tr>
+      <tr><td>硬橡胶</td><td class="num">$10^{13}-10^{16}$</td></tr>
+      <tr><td>硫</td><td class="num">$10^{15}$</td></tr>
+      <tr><td>特氟龙</td><td class="num">$>10^{13}$</td></tr>
+      <tr><td>木材</td><td class="num">$10^{8}-10^{11}$</td></tr>
+    </tbody>
+  </table>
+  <p class="tnote"><sup>1</sup> 数值强烈依赖于杂质的数量和种类</p>
+</div>
+<p>表 20.1 中的数值相差极为悬殊，下图把整张表放在同一个标尺上，使三组材料之间的差距一目了然。</p>
+<figure class="sim" id="sim-resistivity-scale">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>表 20.1 中的每种材料都位于一个以 10 的因子为一级的标尺上，导体、半导体和绝缘体落在三个相距很远的区段内。选择一种材料，在标尺上找到它。然后设定横截面积为<span data-type="area">一平方毫米</span>的<span data-type="position">样品的长度</span>，查看<span data-type="resistance">它的电阻</span>，从银的不足一欧姆，到石英的超过 10<sup>23</sup> 欧姆。</span></div>
+</figure>
+<div class="example" id="ex-filament-diameter">
+<h3>例题 20.5 · 计算电阻器的直径：前照灯灯丝</h3>
+<p>汽车前照灯的灯丝由钨制成，其<span data-type="resistance">冷态<span data-concept="resistance">电阻</span></span>为 $0.350\;\Omega$。如果灯丝是一根长 <span data-type="position">4.00 cm</span> 的圆柱体（为节省空间，它可以绕成线圈），那么<span data-type="position">它的直径</span>是多少？</p>
+<h4>思路</h4>
+<p>我们可以将方程 $\kRes = \frac{\krhomat \kLlen}{\karea}$ 改写，由已知条件求出灯丝的<span data-type="area">横截面积</span> $\karea$。然后假设灯丝的横截面为圆形，即可求出<span data-type="position">它的直径</span>。</p>
+<h4>解</h4>
+<p>将 $\kRes = \frac{\krhomat \kLlen}{\karea}$ 中给出的圆柱体<span data-concept="resistance">电阻</span>表达式改写，即可求得<span data-type="area">横截面积</span>为</p>
+$$\karea = \frac{\krhomat \kLlen}{\kRes}.$$
+<p>代入已知数值，并从表 20.1 中取 $\krhomat$，得</p>
+$$\begin{aligned}\karea &= \frac{(5.6\times 10^{-8}\;\Omega\cdot\text{m})(4.00\times 10^{-2}\;\text{m})}{0.350\;\Omega}\\ &= 6.40\times 10^{-9}\;\text{m}^2.\end{aligned}$$
+<p>圆的<span data-concept="area">面积</span>与其直径 $\kD$ 的关系为</p>
+$$\karea = \frac{\pi \kD^2}{4}.$$
+<p>解出<span data-type="position">直径</span> $\kD$，并代入求得的 $\karea$ 值，得</p>
+$$\begin{aligned}\kD &= 2\left(\frac{\karea}{\pi}\right)^{\frac{1}{2}} = 2\left(\frac{6.40\times 10^{-9}\;\text{m}^2}{3.14}\right)^{\frac{1}{2}}\\ &= 9.0\times 10^{-5}\;\text{m.}\end{aligned}$$
+<h4>讨论</h4>
+<p><span data-type="position">直径</span>略小于十分之一毫米。结果只保留两位数字，因为 $\krhomat$ 只知道到两位数字。</p>
+</div>
+</section>
+
+<section id="temperature-variation">
+<h2>电阻随温度的变化</h2>
+<p class="cite-target">所有材料的<span data-concept="resistivity">电阻率</span>都取决于<span data-concept="temperature">温度</span>。有些材料在极低的<span data-concept="temperature">温度</span>下甚至会成为<span data-concept="superconductivity">超导体</span>（<span data-concept="resistivity">电阻率</span>为零）。（见图 20.11。）反过来，<span data-concept="conductor">导体</span>的<span data-concept="resistivity">电阻率</span>随<span data-concept="temperature">温度</span>升高而增大。由于<span data-concept="atom">原子</span>在较高<span data-concept="temperature">温度</span>下振动得更快，且振动经过的<span data-concept="distance">距离</span>更大，在金属中运动的<span data-concept="electron">电子</span>就会发生更多次碰撞，这实际上使<span data-concept="resistivity">电阻率</span>变高。在相对较小的<span data-concept="temperature">温度</span>变化范围内（约 $100^\circ\text{C}$ 或更小），<span data-concept="resistivity">电阻率</span> $\krhomat$ 随<span data-concept="temperature">温度</span>变化 $\kdTemp$ 的变化关系由下面的方程表示</p>
+$$\krhomat = \krhoores(1 + \kalphares\kdTemp),$$
+<p>其中 $\krhoores$ 是原<span data-concept="resistivity">电阻率</span>，$\kalphares$ 是<strong><span data-concept="temperature-coefficient-of-resistivity">电阻率温度系数</span></strong>。（$\kalphares$ 的值见下面的表 20.2。）对于较大的<span data-concept="temperature">温度</span>变化，$\kalphares$ 可能会变化，或者可能需要用非线性方程来求 $\krhomat$。注意，对金属而言 $\kalphares$ 为正，这意味着它们的<span data-concept="resistivity">电阻率</span>随<span data-concept="temperature">温度</span>升高而增大。人们已经研制出一些专门使<span data-concept="temperature">温度</span>依赖性很小的合金。例如，锰铜（由铜、锰和镍制成）的 $\kalphares$ 接近于零（按表 20.2 中的标度取到三位数字），因此其<span data-concept="resistivity">电阻率</span>随<span data-concept="temperature">温度</span>只有很小的变化。例如，这对于制作不随温度变化的标准<span data-concept="resistance">电阻</span>很有用。</p>
+<figure class="sim" id="sim-mercury-superconductor" data-figure="20.11" data-original="/media/ch20/Figure_21_03_02a.jpg" data-original-width="200" data-original-caption="汞样品的电阻在极低温度下为零——在约 4.2 K 以下它是超导体。超过该临界温度后，其电阻突然跃升，然后近似线性地随温度增大。">
+  <div class="sim-head"><span class="eyebrow">Figure 20.11</span><span>图中画出了<span data-ref="mercury">一块汞样品</span>的<span data-type="resistance">电阻</span>随<span data-ref="mercury">其</span><span data-type="temperature">温度</span>的变化。把<span data-ref="mercury">样品</span>冷却到<span data-type="temperature">约 4.2 K 的临界温度</span>以下，<span data-type="resistance">电阻</span>就降为零；把<span data-ref="mercury">它</span>加热到临界温度以上，<span data-type="resistance">电阻</span>就跃升到<span data-type="resistance">约 0.11 Ω</span>，然后近乎沿直线上升。虚线把这条直线的上升延续到<span data-type="temperature">临界温度</span>以下，这就是普通金属本应出现的情形。</span></div>
+</figure>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 20.2</span><span><span data-concept="resistivity">电阻率</span>温度系数 $\kalphares$</span></div>
+  <table>
+    <thead><tr><th>材料</th><th>系数 $\kalphares$（1/°C）<sup>1</sup></th></tr></thead>
+    <tbody>
+      <tr><th colspan="2"><em>导体</em></th></tr>
+      <tr><td>银</td><td class="num">$3.8\times 10^{-3}$</td></tr>
+      <tr><td>铜</td><td class="num">$3.9\times 10^{-3}$</td></tr>
+      <tr><td>金</td><td class="num">$3.4\times 10^{-3}$</td></tr>
+      <tr><td>铝</td><td class="num">$3.9\times 10^{-3}$</td></tr>
+      <tr><td>钨</td><td class="num">$4.5\times 10^{-3}$</td></tr>
+      <tr><td>铁</td><td class="num">$5.0\times 10^{-3}$</td></tr>
+      <tr><td>铂</td><td class="num">$3.93\times 10^{-3}$</td></tr>
+      <tr><td>铅</td><td class="num">$3.9\times 10^{-3}$</td></tr>
+      <tr><td>锰铜（Cu、Mn、Ni 合金）</td><td class="num">$0.000\times 10^{-3}$</td></tr>
+      <tr><td>康铜（Cu、Ni 合金）</td><td class="num">$0.002\times 10^{-3}$</td></tr>
+      <tr><td>汞</td><td class="num">$0.89\times 10^{-3}$</td></tr>
+      <tr><td>镍铬合金（Ni、Fe、Cr 合金）</td><td class="num">$0.4\times 10^{-3}$</td></tr>
+      <tr><th colspan="2"><em>半导体</em></th></tr>
+      <tr><td>纯碳</td><td class="num">$-0.5\times 10^{-3}$</td></tr>
+      <tr><td>纯锗</td><td class="num">$-50\times 10^{-3}$</td></tr>
+      <tr><td>纯硅</td><td class="num">$-70\times 10^{-3}$</td></tr>
+    </tbody>
+  </table>
+  <p class="tnote"><sup>1</sup> 20°C 时的值。</p>
+</div>
+<p>还要注意，对表 20.2 中所列的半导体，$\kalphares$ 为负，这意味着它们的<span data-concept="resistivity">电阻率</span>随<span data-concept="temperature">温度</span>升高而减小。它们在较高<span data-concept="temperature">温度</span>下成为更好的<span data-concept="conductor">导体</span>，因为增强的<span data-concept="thermal-agitation">热骚动</span>使可用于载运<span data-concept="electric-current">电流</span>的<span data-concept="free-charge">自由电荷</span>数目增多。$\krhomat$ 随<span data-concept="temperature">温度</span>减小的这一性质，也与半导体中所含杂质的种类和数量有关。</p>
+</section>
+
+<section id="resistance-with-temperature">
+<h2>物体的电阻随温度的变化</h2>
+<p class="cite-target">物体的<span data-concept="resistance">电阻</span>也取决于<span data-concept="temperature">温度</span>，因为 $\kReso$ 与 $\krhomat$ 成正比。对于圆柱体，我们知道 $\kRes = \krhomat \kLlen/\karea$，因此，如果 $\kLlen$ 和 $\karea$ 随<span data-concept="temperature">温度</span>变化不大，$\kRes$ 对<span data-concept="temperature">温度</span>的依赖关系就与 $\krhomat$ 相同。（对线胀系数的考察表明，它们比典型的<span data-concept="resistivity">电阻率</span><span data-concept="temperature">温度</span>系数小约两个<span data-concept="order-of-magnitude">数量级</span>，因此<span data-concept="temperature">温度</span>对 $\kLlen$ 和 $\karea$ 的影响比对 $\krhomat$ 的影响约小两个<span data-concept="order-of-magnitude">数量级</span>。）于是，</p>
+$$\kRes = \kReso(1 + \kalphares\kdTemp)$$
+<p>就是物体<span data-concept="resistance">电阻</span>对<span data-concept="temperature">温度</span>的依赖关系，其中 $\kReso$ 是原<span data-concept="resistance">电阻</span>，$\kRes$ 是<span data-concept="temperature">温度</span>变化 $\kdTemp$ 之后的<span data-concept="resistance">电阻</span>。许多温度计都基于<span data-concept="temperature">温度</span>对<span data-concept="resistance">电阻</span>的影响。（见图 20.12。）最常见的一种是热敏电阻，它是一块对<span data-concept="temperature">温度</span>有很强依赖性的半导体晶体，通过测量它的<span data-concept="resistance">电阻</span>来得到它的<span data-concept="temperature">温度</span>。该器件很小，因此它能很快与所接触的人体部位达到<span data-concept="thermal-equilibrium">热平衡</span>。</p>
+<figure class="photo" id="fig-thermometers" data-figure="20.12">
+  <img src="/media/ch20/Figure_21_03_03a.jpg" alt="一张照片，显示两支用于测量体温的数字温度计。" data-width="250">
+  <figcaption><span class="eyebrow">Figure 20.12</span><span>这些常见的温度计基于对热敏电阻随温度而变的<span data-concept="resistance">电阻</span>的自动测量。（来源：Biol, Wikimedia Commons）</span></figcaption>
+</figure>
+<figure class="sim" id="sim-temperature-resistance">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>加热或冷却一个样品，它在 <span data-type="temperature">20 °C</span> 时的<span data-type="resistance">电阻</span>为 $\kReso$，并在图上跟踪<span data-type="resistance">它的电阻</span>。从表 20.2 中选择材料，直线便转向新材料的斜率。钨和其他金属上升很陡，锰铜几乎是平的，这使它成为标准<span data-concept="resistance">电阻</span>，而半导体则随升温而下降。它起初是例题 20.6 中的前照灯灯丝，即 <span data-type="temperature">20 °C</span> 时 <span data-type="resistance">0.350 Ω</span> 的钨。</span></div>
+</figure>
+<div class="example" id="ex-hot-filament">
+<h3>例题 20.6 · 计算电阻：热灯丝的电阻</h3>
+<p>尽管对于大于 $100^\circ\text{C}$ 的<span data-concept="temperature">温度</span>变化，应用 $\krhomat = \krhoores(1 + \kalphares\kdTemp)$ 和 $\kRes = \kReso(1 + \kalphares\kdTemp)$ 时必须谨慎，但对于钨，这些方程在很大的<span data-concept="temperature">温度</span>变化下也相当可用。那么，如果钨丝的<span data-type="temperature"><span data-concept="temperature">温度</span></span>从<span data-type="temperature">室<span data-concept="temperature">温</span></span>（$20^\circ\text{C}$）升高到<span data-type="temperature">典型的工作<span data-concept="temperature">温度</span></span> $2850^\circ\text{C}$，前一个例题中钨丝的<span data-type="resistance"><span data-concept="resistance">电阻</span></span>是多少？</p>
+<h4>思路</h4>
+<p>这是 $\kRes = \kReso(1 + \kalphares\kdTemp)$ 的直接应用，因为已给定<span data-type="resistance">灯丝的原<span data-concept="resistance">电阻</span></span>为 $\kReso = 0.350\;\Omega$，<span data-type="temperature"><span data-concept="temperature">温度</span>变化</span>为 $\kdTemp = 2830^\circ\text{C}$。</p>
+<h4>解</h4>
+<p>把已知值代入上面的方程，即可得到<span data-type="resistance">热态<span data-concept="resistance">电阻</span></span> $\kRes$：</p>
+$$\begin{aligned}\kRes &= \kReso(1 + \kalphares\kdTemp)\\ &= (0.350\;\Omega)[1 + (4.5\times 10^{-3}/^\circ\text{C})(2830^\circ\text{C})]\\ &= 4.8\;\Omega.\end{aligned}$$
+<h4>讨论</h4>
+<p>这个值与“<span data-concept="ohms-law">欧姆定律</span>：电阻与<span data-concept="simple-circuit">简单电路</span>”中的前照灯<span data-concept="resistance">电阻</span>例题相符。</p>
+</div>
+</section>
