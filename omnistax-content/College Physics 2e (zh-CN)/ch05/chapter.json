@@ -1,0 +1,361 @@
+{
+ "id": "5",
+ "dir": "ch05",
+ "title": "牛顿定律的进一步应用：摩擦、阻力与弹性",
+ "intro": {
+  "module": "m42138",
+  "slug": "5-introduction-further-applications-of-newtons-laws"
+ },
+ "sections": [
+  {
+   "id": "5.1",
+   "module": "m42139",
+   "title": "摩擦力",
+   "slug": "5-1-friction"
+  },
+  {
+   "id": "5.2",
+   "module": "m42080",
+   "title": "阻力",
+   "slug": "5-2-drag-forces"
+  },
+  {
+   "id": "5.3",
+   "module": "m42081",
+   "title": "弹性：应力与应变",
+   "slug": "5-3-elasticity-stress-and-strain"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "f_fric",
+   "concept": "friction",
+   "meaning": "摩擦力的大小，它平行于接触面，并总是阻碍运动或运动趋势",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-characteristics"
+  },
+  {
+   "sym": "f_s",
+   "concept": "static-friction",
+   "meaning": "静摩擦力的大小，即两个相接触且相对静止的系统之间的力",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "f_smax",
+   "concept": "static-friction",
+   "meaning": "表面能提供的最大静摩擦力；外加力一旦超过它，物体就开始运动",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "f_k",
+   "concept": "kinetic-friction",
+   "meaning": "滑动摩擦力的大小，即两个相接触且相对运动的系统之间的力",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "N",
+   "concept": "normal-force",
+   "meaning": "法向力的大小，即垂直于系统之间接触面的力",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "平行于表面施加的力，静摩擦力以大小相等、方向相反的力回应它，直到物体开始滑动",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "μ_s",
+   "concept": "coefficient-of-friction",
+   "meaning": "静摩擦因数，它取决于相接触的两种材料，没有单位",
+   "unit": "",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "μ_k",
+   "concept": "coefficient-of-friction",
+   "meaning": "动摩擦因数，对同样的两种材料，它小于静摩擦因数",
+   "unit": "",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "滑雪者的重力，斜坡的坐标系把它分解为垂直于斜坡的分量和沿斜坡的分量",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-incline"
+  },
+  {
+   "sym": "w_perp",
+   "concept": "weight",
+   "meaning": "重力垂直于斜坡的分量，大小等于法向力，所以垂直于斜坡的方向没有运动",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-incline"
+  },
+  {
+   "sym": "w_par",
+   "concept": "weight",
+   "meaning": "重力沿斜坡的分量，它大于摩擦力，因此使滑雪者沿斜坡加速下滑",
+   "unit": "N",
+   "section": "5.1",
+   "anchor": "5.1-incline"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "斜坡与水平面所成的角",
+   "unit": "°",
+   "section": "5.1",
+   "anchor": "5.1-incline"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "其重力把两个表面压在一起的系统的质量",
+   "unit": "kg",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度，它把放在表面上的质量变成重力",
+   "unit": "m/s²",
+   "section": "5.1",
+   "anchor": "5.1-magnitudes"
+  },
+  {
+   "sym": "F_D",
+   "concept": "drag-force",
+   "meaning": "物体在流体中运动时所受阻力的大小，阻力总是阻碍运动",
+   "unit": "N",
+   "section": "5.2",
+   "anchor": "5.2-drag"
+  },
+  {
+   "sym": "C_drag",
+   "concept": "drag-coefficient",
+   "meaning": "阻力系数，在风洞中由实验确定的无量纲数，取决于物体的形状",
+   "unit": "",
+   "section": "5.2",
+   "anchor": "5.2-drag"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "物体的迎流面积",
+   "unit": "m²",
+   "section": "5.2",
+   "anchor": "5.2-drag"
+  },
+  {
+   "sym": "ρ",
+   "concept": "density",
+   "meaning": "物体在其中运动的流体的密度，空气的密度为 1.21 kg/m³",
+   "unit": "kg/m³",
+   "section": "5.2",
+   "anchor": "5.2-drag"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体穿过流体的速率，阻力取决于它",
+   "unit": "m/s",
+   "section": "5.2",
+   "anchor": "5.2-drag"
+  },
+  {
+   "sym": "v_t",
+   "concept": "terminal-velocity",
+   "meaning": "终极速度，即下落物体在阻力增大到与它的重力相等时达到的恒定速率",
+   "unit": "m/s",
+   "section": "5.2",
+   "anchor": "5.2-terminal"
+  },
+  {
+   "sym": "b",
+   "concept": "drag-force-equation",
+   "meaning": "常量 0.5CρA，它把形状、大小和流体汇集成一个数，使阻力为 bv²",
+   "unit": "kg/m",
+   "section": "5.2",
+   "anchor": "5.2-drag"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "下落物体的质量，阻力增大到与它的重力相等",
+   "unit": "kg",
+   "section": "5.2",
+   "anchor": "5.2-terminal"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度，它使下落物体具有重力 mg",
+   "unit": "m/s²",
+   "section": "5.2",
+   "anchor": "5.2-terminal"
+  },
+  {
+   "sym": "F_s",
+   "concept": "stokes-law",
+   "type": "force",
+   "meaning": "由斯托克斯定律给出的阻力的大小，它适用于运动得很慢的极小物体，或处在比空气更稠密介质中的物体",
+   "unit": "N",
+   "section": "5.2",
+   "anchor": "5.2-stokes"
+  },
+  {
+   "sym": "r",
+   "concept": "length",
+   "meaning": "斯托克斯定律所适用的小物体的半径",
+   "unit": "m",
+   "section": "5.2",
+   "anchor": "5.2-stokes"
+  },
+  {
+   "sym": "η",
+   "concept": "viscosity",
+   "meaning": "流体的黏度，单位为千克每米每秒",
+   "unit": "kg/(m·s)",
+   "section": "5.2",
+   "anchor": "5.2-stokes"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "施加在物体上的力，它改变物体的形状而不是运动",
+   "unit": "N",
+   "section": "5.3",
+   "anchor": "5.3-deformation"
+  },
+  {
+   "sym": "ΔL",
+   "concept": "deformation",
+   "meaning": "形变，即力产生的长度变化量",
+   "unit": "m",
+   "section": "5.3",
+   "anchor": "5.3-deformation"
+  },
+  {
+   "sym": "k",
+   "concept": "force-constant",
+   "meaning": "比例常量，取决于物体的形状和成分以及力的方向",
+   "unit": "N/m",
+   "section": "5.3",
+   "anchor": "5.3-deformation"
+  },
+  {
+   "sym": "L_0",
+   "concept": "youngs-modulus",
+   "type": "position",
+   "meaning": "施力之前金属丝或杆的原长",
+   "unit": "m",
+   "section": "5.3",
+   "anchor": "5.3-length"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "金属丝或杆的横截面积，对半径为 r 的圆柱体为 πr²",
+   "unit": "m²",
+   "section": "5.3",
+   "anchor": "5.3-length"
+  },
+  {
+   "sym": "Y",
+   "concept": "youngs-modulus",
+   "type": "elastic-modulus",
+   "meaning": "杨氏模量，即长度变化的弹性模量，取决于物质；Y 大的材料在给定的拉伸或压缩下形变很小",
+   "unit": "N/m²",
+   "section": "5.3",
+   "anchor": "5.3-length"
+  },
+  {
+   "sym": "S",
+   "concept": "shear-deformation",
+   "type": "elastic-modulus",
+   "meaning": "剪切模量，它决定切向力产生的侧向形变",
+   "unit": "N/m²",
+   "section": "5.3",
+   "anchor": "5.3-shear"
+  },
+  {
+   "sym": "B_bulk",
+   "concept": "bulk-deformation",
+   "type": "elastic-modulus",
+   "meaning": "体积模量，它决定在所有表面上均匀向内施加的单位面积上的力所产生的体积变化",
+   "unit": "N/m²",
+   "section": "5.3",
+   "anchor": "5.3-bulk"
+  },
+  {
+   "sym": "Δx",
+   "concept": "shear-deformation",
+   "type": "position",
+   "meaning": "切变，它垂直于原长而不是平行于原长",
+   "unit": "m",
+   "section": "5.3",
+   "anchor": "5.3-shear"
+  },
+  {
+   "sym": "ΔV",
+   "concept": "bulk-deformation",
+   "type": "volume",
+   "meaning": "在每个表面上均匀向内施加的力所产生的体积变化",
+   "unit": "m³",
+   "section": "5.3",
+   "anchor": "5.3-bulk"
+  },
+  {
+   "sym": "V_0",
+   "concept": "volume",
+   "meaning": "物体被压缩之前的原体积",
+   "unit": "m³",
+   "section": "5.3",
+   "anchor": "5.3-bulk"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "挂在吉他弦或钉子上的重物的重力，它是使其发生形变的力",
+   "redefines": true,
+   "unit": "N",
+   "section": "5.3",
+   "anchor": "5.3-k-depends"
+  },
+  {
+   "sym": "r",
+   "concept": "length",
+   "meaning": "杆、金属丝或钉子的半径，由它求出横截面积 πr²",
+   "unit": "m",
+   "section": "5.3",
+   "anchor": "5.3-tissues"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "其重力使物体发生形变的质量",
+   "unit": "kg",
+   "section": "5.3",
+   "anchor": "5.3-tissues"
+  }
+ ]
+}

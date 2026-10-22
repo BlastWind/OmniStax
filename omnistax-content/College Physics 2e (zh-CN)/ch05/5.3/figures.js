@@ -1,0 +1,557 @@
+/* Figures for section 5.3 Elasticity: Stress and Strain. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['5.3'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, hover, ctl, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed, view, face } = F;
+const sim = (id, H) => F.sim(root, id, H);
+const G = 9.80;
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- helpers shared by the figures ---------- */
+/* a rectangle outlined in a dashed line: the shape the object had before the force was applied */
+/* a face of a locked-view solid outlined in the colour given rather than in ink */
+function rface(ctx, pts, k, w, col) {
+  face(ctx, pts, k);
+  if (!w) return;
+  ctx.save(); ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+  ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.stroke(); ctx.restore();
+}
+function ghost(ctx, x, y, w, h) { line(ctx, x, y, x + w, y, PAL.muted, 2, [8, 8]); line(ctx, x + w, y, x + w, y + h, PAL.muted, 2, [8, 8]); line(ctx, x + w, y + h, x, y + h, PAL.muted, 2, [8, 8]); line(ctx, x, y + h, x, y, PAL.muted, 2, [8, 8]); }
+/* a value in units of 10^9, written the way the book writes a modulus */
+const giga = (v) => fmt(v, v < 10 ? 1 : 0) + ' × 10⁹ N/m²';
+/* a number in scientific form for a readout, "5.00 \times 10^{7}" */
+function sci(v, d) {
+  if (v === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e);
+  return `${fmt(m, d)} \\times 10^{${e}}`;
+}
+/* the same number for a headline or a note drawn on the canvas, "5.0 × 10⁷" */
+const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+function plain(v, d) {
+  if (v === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e);
+  if (e >= 0 && e <= 3) return fmt(v, Math.max(0, d - e));
+  return fmt(m, d) + ' × 10' + String(e).split('').map((ch) => SUP[ch] ?? ch).join('');
+}
+/* how many times larger than life a deformation is drawn: the units it takes on the canvas against the units the object itself takes */
+const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDrawn > 0 ? plain(unitsPerMetreDrawn / unitsPerMetreScene, 1) : '0');
+
+/* =====================================================================
+   FIGURE 5.11: deformation against applied force. A spring is pulled
+   along its length and the deformation it takes is plotted against the
+   force. While the graph is straight, Hooke's law holds; past the end of
+   the straight segment the stretch is still elastic, then permanent, and
+   at last the spring breaks. Still: the idea has no time in it.
+===================================================================== */
+(function () {
+  const d = sim('sim-hooke-graph', 700);
+  let Fh;
+  const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 600, step: 5, value: 90, unit: 'N', dec: 0, aria: '外加力',
+    specials: [{ at: () => (Fh ? Fh.v : null), label: '比例极限' }] });
+  const kk = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 50, max: 400, step: 10, value: 150, unit: 'N/m', dec: 0, aria: '劲度系数' });
+  const ro = F.readout(d);
+  Fh = ctl(d.controls, { label: '\\text{比例极限}', cls: 'force', min: 40, max: 300, step: 10, value: 120, unit: 'N', dec: 0, aria: '图像中直线段结束处的力' });
+  const elastic = () => 1.5 * Fh.v, fracture = () => 1.9 * Fh.v;
+  /* the deformation the force produces: proportional while Hooke's law holds, then steeper, then steeper again */
+  function dl(f) {
+    const k = kk.v, h = Fh.v, e = elastic(), fr = fracture(), top = Math.min(f, fr);
+    return Math.min(top, h) / k + Math.max(0, Math.min(top, e) - h) / (0.55 * k) + Math.max(0, top - e) / (0.18 * k);
+  }
+  const region = (f) => (f <= Fh.v ? 0 : f <= elastic() ? 1 : f <= fracture() ? 2 : 3);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = Fa.v, x = dl(f), reg = region(f);
+    /* the scene: a spring clamped at the left and pulled to the right */
+    /* fixed scene scale: the spring is drawn against the same 0 to 4 m the graph is ruled to, so a
+       stiffer spring is drawn shorter rather than filling the same span at every setting; a stretch
+       past 4 m is held at the end of the strip and the headline gives its true length */
+    const y = 175, wall = 170, nat = 250, SC = 130;
+    fixed(ctx, wall - 60, y - 80, 60, 160);
+    const end = wall + nat + Math.min(x, 4) * SC, csp = F.ref('spring');
+    strip(ctx, 120, Math.min(1320, end + 320), y, 50);
+    if (reg < 3) {
+      spring(ctx, wall, y, end, y, 11, 24, csp, 4);
+      line(ctx, end, y - 34, end, y + 34, csp, 7);
+      arrow(ctx, end + 24, y, end + 24 + Math.max(20, f * 0.5), y, C('force'), 5);
+      text(ctx, 'F = ' + fmt(f, 0) + ' N', end + 30, y - 34, C('force'), { weight: 600, size: 22 });
+    } else {
+      spring(ctx, wall, y, wall + nat * 0.55, y, 5, 24, csp, 4);
+      spring(ctx, end - nat * 0.55, y, end, y, 5, 24, csp, 4);
+      text(ctx, '弹簧已断裂', (wall + nat * 0.55 + end - nat * 0.55) / 2, y - 46, PAL.muted, { size: 20, align: 'center', weight: 600 });
+    }
+    line(ctx, wall + nat, y - 62, wall + nat, y + 62, PAL.muted, 2, [6, 6]);
+    text(ctx, '原长', wall + nat - 12, y - 46, PAL.muted, { size: 17, align: 'right' });
+    if (x * SC > 8 && reg < 3) hbracket(ctx, wall + nat, end, y + 96, C('position'), 'ΔL = ' + fmt(x, 3) + ' m');
+    /* the graph: the deformation against the force, with the three regions the book names */
+    /* The range is fixed. At the slider extremes (k = 50 N/m with the Hooke limit at 300 N) the
+       spring stretches about 25 m before it fractures, and an axis that tall would leave the default
+       state a sliver along the bottom, so the axis keeps a default-sized 0 to 4 m in ticks of 1 m and
+       never rescales; a deformation past 4 m is drawn with pinned(). */
+    const YHI = 4, YN = 4;
+    const box = { l: 190, r: 1290, t: 330, b: 620 };
+    const { X, Y } = axes(ctx, box, [0, 600], [0, YHI], { xl: '外加力 F (N)', xc: C('force'), yl: '形变 ΔL (m)', yc: C('position'), nx: 6, ny: YN, fy: (v) => fmt(v, 1) });
+    /* a region of the graph is not a quantity, so it is banded in ink and never in a type hue */
+    const band = (a, b) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(X(a), box.t, X(Math.min(b, 600)) - X(a), box.b - box.t); ctx.restore(); };
+    band(0, Fh.v); band(elastic(), fracture());
+    const seg = (a, b, w) => { if (b <= a) return; line(ctx, X(a), Y(dl(a)), X(Math.min(b, 600)), Y(dl(Math.min(b, 600))), C('position'), w); };
+    /* the curve is clipped to the box, so a segment that climbs past the fixed range leaves through the top rather than running over the scene */
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    seg(0, Fh.v, 5); seg(Fh.v, elastic(), 5); seg(elastic(), fracture(), 5);
+    ctx.restore();
+    if (fracture() <= 600 && dl(fracture()) <= YHI) {
+      const fx = X(fracture()), fy = Y(dl(fracture()));
+      line(ctx, fx - 14, fy - 14, fx + 14, fy + 14, C('force'), 4); line(ctx, fx - 14, fy + 14, fx + 14, fy - 14, C('force'), 4);
+      text(ctx, '断裂', fx + 22, fy - 14, C('force'), { size: 18, weight: 600 });
+    }
+    text(ctx, '胡克定律', X(Fh.v / 2), box.t + 22, PAL.muted, { size: 18, align: 'center' });
+    if (X(elastic()) - X(Fh.v) > 80) text(ctx, '仍是弹性', (X(Fh.v) + X(elastic())) / 2, box.t + 22, PAL.muted, { size: 18, align: 'center' });
+    if (X(Math.min(600, fracture())) - X(elastic()) > 110) text(ctx, '永久形变', (X(elastic()) + X(Math.min(600, fracture()))) / 2, box.t + 22, PAL.muted, { size: 18, align: 'center' });
+    if (reg < 3 && x <= YHI) { line(ctx, X(f), box.b, X(f), Y(x), C('force'), 2, [4, 8]); line(ctx, box.l, Y(x), X(f), Y(x), C('position'), 2, [4, 8]); dot(ctx, X(f), Y(x), PAL.ink, true, 10); }
+    else if (reg < 3) pinned(ctx, box, X, Y, f, x, C('position'), fmt(x, 1) + ' m');
+    headline(ctx, reg === 0 ? '一个 ' + fmt(f, 0) + ' N 的力使弹簧伸长了 ' + fmt(x, 3) + ' m，图像仍在直线段上，此处胡克定律成立'
+      : reg === 1 ? '一个 ' + fmt(f, 0) + ' N 的力使弹簧伸长了 ' + fmt(x, 3) + ' m，图像已离开直线段，但这个伸长仍是弹性的，撤去力后会恢复'
+        : reg === 2 ? '一个 ' + fmt(f, 0) + ' N 的力使弹簧伸长了 ' + fmt(x, 3) + ' m，并使它发生永久形变，所以它不会回到原长'
+          : '一个 ' + fmt(f, 0) + ' N 的力使弹簧断裂，这里的断裂发生在 ' + fmt(fracture(), 0) + ' N');
+    /* once it has fractured, the stretch it reached is set against the force that broke it */
+    const past = reg > 0, fe = reg === 3 ? fracture() : f;
+    ro.set(`\\mk{dL}{\\kdL} = \\mk{nx}{${fmt(x, 3)}}\\ \\text{m} \\mk{rel}{${past ? '>' : '='}} \\mk{Fk}{\\frac{\\kF}{\\kk}} = \\mk{fk}{\\frac{${fmt(fe, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}}} = \\mk{nfk}{${fmt(fe / kk.v, 3)}}\\ \\text{m}`, undefined, { form: past });
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 5.12: the same weight on three guitar strings of the same
+   length. The thicker string and the steel one have larger force
+   constants, so the same weight stretches them less. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-strings', 780);
+  const w = ctl(d.controls, { label: '\\kwgt', cls: 'force', min: 2, max: 40, step: 1, value: 20, unit: 'N', dec: 0, aria: '挂在每根弦上的重力' });
+  const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.2, max: 1.2, step: 0.05, value: 0.65, unit: 'm', dec: 2, aria: '弦的原长' });
+  const STR = [
+    { name: '细尼龙', id: 'string-thin', Y: 5e9, r: 0.5e-3 },
+    { name: '较粗的尼龙', id: 'string-thick', Y: 5e9, r: 1.0e-3 },
+    { name: '钢', id: 'string-steel', Y: 210e9, r: 0.5e-3 },
+  ];
+  const area = (s) => Math.PI * s.r * s.r;
+  const dl = (s, force) => (force * L0.v) / (s.Y * area(s));       /* metres */
+  function draw() {
+    const { ctx } = begin(d.c);
+    /* fixed exaggeration: seven thousand units per metre of stretch, whatever the sliders are set to,
+       so a longer string really is drawn stretching farther instead of the picture rescaling itself
+       around it. The longest stretch the sliders allow, 12.2 mm, still draws inside its 90 units. */
+    const MAG = 7000;
+    const yTop = 240, len = 130 + 200 * (L0.v / 1.2);
+    fixed(ctx, 200, yTop - 44, 560, 44);
+    STR.forEach((s, i) => {
+      const x = 270 + i * 190, dL = dl(s, w.v), grow = Math.min(90, dL * MAG);
+      line(ctx, x, yTop, x, yTop + len, F.ref(s.id), i === 1 ? 7 : 4);
+      line(ctx, x, yTop + len, x, yTop + len + grow, C('position'), i === 1 ? 7 : 4);
+      block(ctx, x, yTop + len + grow + 30, 74, 46, PAL.ink);
+      arrow(ctx, x, yTop + len + grow + 58, x, yTop + len + grow + 58 + 16 + w.v * 1.1, C('force'), 5);
+      /* the middle string's name and modulus sit a row higher, so the three moduli never run into one another */
+      const up = i === 1 ? 26 : 0;
+      text(ctx, s.name, x, yTop - 100 - up, F.ref(s.id), { size: 19, align: 'center', weight: 600 });
+      text(ctx, 'Y = ' + giga(s.Y / 1e9), x, yTop - 74 - up, C('elastic-modulus'), { size: 17, align: 'center' });
+      text(ctx, fmt(dL * 1000, 2) + ' mm', x + 46, yTop + len + grow / 2 - 12, C('position'), { size: 17, weight: 600 });
+    });
+    text(ctx, '每根弦上 w = ' + fmt(w.v, 0) + ' N', 830, 700, C('force'), { size: 20, weight: 600 });
+    text(ctx, '伸长量画得约为实际的 ' + timesLarger(MAG, len / L0.v) + ' 倍', 830, 728, PAL.muted, { size: 17 });
+    vbracket(ctx, 176, yTop, yTop + len, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' m', -1);
+    /* the graph beside the vertical scene: the stretch each string takes against the weight hung on it */
+    /* The range is fixed: at the slider maxima (w = 40 N and L₀ = 1.20 m) the thin nylon string, the
+       one that gives most, stretches 12.2 mm, so the axis holds 0 to 15 mm in ticks of 3 mm and never
+       rescales; a stretch past 15 mm is drawn with pinned(). */
+    const YHI = 15, YN = 5;
+    const box = { l: 830, r: 1310, t: 190, b: 600 };
+    const { X, Y } = axes(ctx, box, [0, 40], [0, YHI], { xl: '重力 w (N)', xc: C('force'), yl: '伸长量 ΔL (mm)', yc: C('position'), nx: 4, ny: YN, fy: (v) => fmt(v, 1) });
+    STR.forEach((s, i) => {
+      const e = Math.min(40, (YHI / 1000) * s.Y * area(s) / L0.v);
+      line(ctx, X(0), Y(0), X(e), Y(dl(s, e) * 1000), C('position'), i === 1 ? 5 : 3);
+      const yv = dl(s, w.v) * 1000;
+      if (yv <= YHI) dot(ctx, X(w.v), Y(yv), PAL.ink, true, 9); else pinned(ctx, box, X, Y, w.v, yv, C('position'), fmt(yv, 1) + ' mm');
+      text(ctx, s.name, X(e) - 10, Y(dl(s, e) * 1000) - 18, F.ref(s.id), { size: 17, align: 'right' });
+    });
+    headline(ctx, '一个 ' + fmt(w.v, 0) + ' N 的重力使细尼龙弦伸长 ' + fmt(dl(STR[0], w.v) * 1000, 2) + ' mm，使较粗的尼龙弦伸长 ' + fmt(dl(STR[1], w.v) * 1000, 2) + ' mm，使钢弦伸长 ' + fmt(dl(STR[2], w.v) * 1000, 2) + ' mm');
+    readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kwgt}{\\karea}\\kLo = \\frac{(${fmt(w.v, 0)}\\ \\text{N})(${fmt(L0.v, 2)}\\ \\text{m})}{(${sci(STR[0].Y, 0)}\\ \\text{N/m}^2)(${sci(area(STR[0]), 2)}\\ \\text{m}^2)} = ${sci(dl(STR[0], w.v), 2)}\\ \\text{m}`,
+      '较粗的尼龙弦的横截面积是细尼龙弦的四倍，钢弦的杨氏模量是它的四十二倍，所以它们分别只伸长四分之一和四十二分之一。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 5.13: the same rod in tension and in compression. The change in
+   length is proportional to the force and to the original length and
+   inversely proportional to the cross-sectional area. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-rod', 740);
+  const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 5000, step: 50, value: 1500, unit: 'N', dec: 0, aria: '施加在杆上的力' });
+  const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.2, max: 3, step: 0.1, value: 1, unit: 'm', dec: 1, aria: '杆的原长' });
+  const rr = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.5, max: 5, step: 0.1, value: 1, unit: 'cm', dec: 1, aria: '杆的半径' });
+  /* every Young's modulus Table 5.3 prints is a tick on the slider, and the whole number the slider
+     steps by lands on each of them exactly; two are named, and naming more would crowd the track */
+  const YDET = [1, 3, 5, 6, 9, 10, 15, 16, 20, 45, 60, { v: 70, label: '铝' }, 90, 100, { v: 210, label: '钢' }];
+  const YY = ctl(d.controls, { label: '\\kY', cls: 'elastic-modulus', min: 1, max: 210, step: 1, value: 70, unit: '× 10⁹ N/m²', dec: 0, aria: '杨氏模量', detents: YDET });
+  const OTHERS = [{ name: '钢', Y: 210 }, { name: '铝', Y: 70 }, { name: '骨——压缩', Y: 9 }, { name: '尼龙', Y: 5 }];
+  const area = () => Math.PI * Math.pow(rr.v / 100, 2);
+  const dl = (force, Yg) => (force * L0.v) / (Yg * 1e9 * area());   /* metres */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const x = dl(Fa.v, YY.v), len = 100 + 160 * (L0.v / 3), wRod = 26 + 44 * (rr.v / 5);
+    const MAG = x > 0 ? Math.min(90, x * 4e5) / x : 0;              /* units per metre of change, kept readable at every setting */
+    /* the rod, its stretch and the longest arrow all end above the notes at 640 and the captions at
+       CAPY, so neither is ever crossed by a force arrow: the longest rod with the largest stretch and
+       the largest force ends at 610 */
+    const grow = x * MAG, yTop = 170, aL = 24 + Fa.v * 0.010, CAPY = 700;
+    ['拉伸', '压缩'].forEach((mode, i) => {
+      const cx = 200 + i * 320, pull = mode === '拉伸' ? 1 : -1;
+      const bot = yTop + len + pull * grow;
+      ghost(ctx, cx - wRod / 2, yTop, wRod, len);
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('rod'); ctx.lineWidth = 4;
+      ctx.fillRect(cx - wRod / 2, yTop, wRod, bot - yTop); ctx.strokeRect(cx - wRod / 2, yTop, wRod, bot - yTop); ctx.restore();
+      if (pull > 0) { arrow(ctx, cx, yTop - 16, cx, yTop - 16 - aL, C('force'), 5); arrow(ctx, cx, bot + 16, cx, bot + 16 + aL, C('force'), 5); }
+      else { arrow(ctx, cx, yTop - 16 - aL, cx, yTop - 16, C('force'), 5); arrow(ctx, cx, bot + 16 + aL, cx, bot + 16, C('force'), 5); }
+      text(ctx, 'F', cx + wRod / 2 + 14, yTop - 16 - aL / 2, C('force'), { weight: 600, size: 22 });
+      text(ctx, 'F', cx + wRod / 2 + 14, bot + 16 + aL / 2, C('force'), { weight: 600, size: 22 });
+      if (grow > 4) vbracket(ctx, cx - wRod / 2 - 44, Math.min(yTop + len, bot), Math.max(yTop + len, bot), C('position'), 'ΔL', -1);
+    });
+    /* the captions last, so they sit above every arrow rather than under one */
+    ['拉伸', '压缩'].forEach((mode, i) => {
+      text(ctx, '（' + (i ? 'b' : 'a') + '）' + mode, 200 + i * 320, CAPY, PAL.ink, { size: 20, align: 'center', weight: 600, bg: PAL.panel });
+    });
+    text(ctx, x > 0 ? 'ΔL = ' + fmt(x * 1000, 3) + ' mm，画得约为实际的 ' + timesLarger(MAG, len / L0.v) + ' 倍' : '不施加力时，杆保持其原长', 110, 640, PAL.muted, { size: 18 });
+    text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m, r = ' + fmt(rr.v, 1) + ' cm, A = πr² = ' + plain(area(), 2) + ' m²', 110, 668, PAL.muted, { size: 18 });
+    /* the graph beside the two vertical rods: the change in length against the force, with four materials of Table 5.3 */
+    /* The range is fixed. At the slider extremes (L₀ = 3.0 m, r = 0.5 cm and Y = 1 × 10⁹ N/m²) a
+       5000 N force changes the length by 191 mm, and an axis that tall would press the default state
+       flat against the bottom, so the axis keeps a default-sized 0 to 0.5 mm in ticks of 0.1 mm and
+       never rescales; a change past 0.5 mm is drawn with pinned(). */
+    const YHI = 0.5, YN = 5;
+    const box = { l: 790, r: 1310, t: 150, b: 560 };
+    const { X, Y } = axes(ctx, box, [0, 5000], [0, YHI], { xl: '力 F (N)', xc: C('force'), yl: '长度的变化 ΔL (mm)', yc: C('position'), nx: 5, ny: YN, fy: (v) => fmt(v, 2) });
+    const names = [];
+    OTHERS.forEach((o, i) => {
+      const e = Math.min(5000, (YHI / 1000) * o.Y * 1e9 * area() / L0.v);
+      if (e < 120) return;
+      line(ctx, X(0), Y(0), X(e), Y(dl(e, o.Y) * 1000), PAL.rule, 3);
+      /* a line that leaves through the top of the box is named beside where it leaves, not above it, so the labels keep off the axis title;
+         the names go on panels after every line is drawn, so no other line runs through them */
+      if (e < 4980) names.push([o.name, X(e) + 10, box.t + 20 + i * 30, 'left']);
+      else names.push([o.name, X(e) - 8, Y(dl(e, o.Y) * 1000) - 16, 'right']);
+    });
+    const ec = Math.min(5000, (YHI / 1000) * YY.v * 1e9 * area() / L0.v);
+    line(ctx, X(0), Y(0), X(ec), Y(dl(ec, YY.v) * 1000), C('position'), 5);
+    if (x * 1000 <= YHI) { line(ctx, X(Fa.v), box.b, X(Fa.v), Y(x * 1000), C('force'), 2, [4, 8]); dot(ctx, X(Fa.v), Y(x * 1000), PAL.ink, true, 10); }
+    else pinned(ctx, box, X, Y, Fa.v, x * 1000, C('position'), fmt(x * 1000, 2) + ' mm');
+    names.forEach(([s, nx, ny, align]) => text(ctx, s, nx, ny, PAL.muted, { size: 16, align, bg: PAL.panel }));
+    headline(ctx, '一个 ' + fmt(Fa.v, 0) + ' N 的力使杆在拉伸时伸长 ' + fmt(x * 1000, 3) + ' mm，在压缩时缩短同样的量');
+    readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(YY.v * 1e9, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
+      '长度加倍，变化量也加倍；半径加倍，面积变为四倍，所以变化量降为四分之一。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 5.15: the stress a mammalian tendon carries against its strain.
+   The toe region gives easily, the linear region has the slope Table 5.3
+   gives for tendon, and in the failure region fibers break. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-tendon', 730);
+  const eps = ctl(d.controls, { label: '\\text{应变}', cls: '', min: 0, max: 0.1, step: 0.002, value: 0.04, unit: '', dec: 3, aria: '肌腱的应变' });
+  const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 5, max: 40, step: 1, value: 20, unit: 'cm', dec: 0, aria: '肌腱的原长' });
+  const Y = 1e9, TOE = 0.02, LIN = 0.06;                            /* Table 5.3 gives Young's modulus for tendon as 1 × 10⁹ N/m² */
+  const stress = (e) => (e <= TOE ? (Y * e * e) / (2 * TOE)
+    : e <= LIN ? (Y * TOE) / 2 + Y * (e - TOE)
+      : (Y * TOE) / 2 + Y * (LIN - TOE) + 0.5 * Y * (e - LIN) - 12 * Y * (e - LIN) * (e - LIN));
+  /* the slope of the curve at a strain; in the failure region it falls through zero and turns
+     negative, and the tangent drawn on the graph follows it down rather than lying flat */
+  const slope = (e) => (e <= TOE ? (Y * e) / TOE : e <= LIN ? Y : 0.5 * Y - 24 * Y * (e - LIN));
+  const TOP = 80e6;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const e = eps.v, s = stress(e), L = L0.v / 100, dL = e * L;
+    /* the scene: the tendon stretched along a strip */
+    const y = 160, x0 = 220, base = 260 + 460 * (L0.v / 40), grow = base * e;
+    strip(ctx, 120, 1320, y, 56);
+    fixed(ctx, x0 - 54, y - 60, 54, 120);
+    /* the tendon is a referent and wears its colour; the stress it carries keeps the type hue */
+    const ctd = F.ref('tendon');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x0, y - 20, base + grow, 40); ctx.restore();
+    line(ctx, x0, y - 20, x0 + base + grow, y - 20, ctd, 4); line(ctx, x0, y + 20, x0 + base + grow, y + 20, ctd, 4);
+    line(ctx, x0 + base, y - 46, x0 + base, y + 46, PAL.muted, 2, [6, 6]);
+    arrow(ctx, x0 + base + grow + 20, y, x0 + base + grow + 20 + 40 + s / 6e5, y, C('stress'), 5);
+    text(ctx, '应力 ' + fmt(s / 1e6, 1) + ' MN/m²', x0 + base + grow + 26, y - 34, C('stress'), { weight: 600, size: 20 });
+    if (grow > 6) hbracket(ctx, x0 + base, x0 + base + grow, y + 80, C('position'), 'ΔL = ' + fmt(dL * 1000, 1) + ' mm');
+    hbracket(ctx, x0, x0 + base, y + 80, C('position'), 'L₀ = ' + fmt(L0.v, 0) + ' cm');
+    /* the graph: the stress the tendon carries against its strain, with the three regions the book names */
+    const box = { l: 210, r: 1270, t: 340, b: 640 };
+    const { X, Y: Yg } = axes(ctx, box, [0, 0.1], [0, TOP / 1e6], { xl: '应变 ΔL / L₀', xc: PAL.ink, yl: '拉伸应力 (MN/m²)', yc: C('stress'), nx: 5, ny: 4, fx: (v) => fmt(v, 2) });
+    /* a region of the graph is not a quantity, so it is banded in ink and never in a type hue */
+    const band = (a, b) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(X(a), box.t, X(b) - X(a), box.b - box.t); ctx.restore(); };
+    band(0, TOE); band(LIN, 0.1);
+    F.curve(ctx, (t) => stress(t) / 1e6, 0, 0.1, X, Yg, C('stress'), 5, 120);
+    text(ctx, '（1）趾区', X(TOE / 2), box.t + 24, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, '（2）线性区', X((TOE + LIN) / 2), box.t + 24, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, '（3）失效区', X((LIN + 0.1) / 2), box.t + 24, PAL.muted, { size: 18, align: 'center' });
+    /* the tangent, which is the modulus at this strain */
+    const m = slope(e), half = 0.012;
+    line(ctx, X(Math.max(0, e - half)), Yg((s + m * (Math.max(0, e - half) - e)) / 1e6), X(Math.min(0.1, e + half)), Yg((s + m * (Math.min(0.1, e + half) - e)) / 1e6), C('elastic-modulus'), 3, [10, 10]);
+    line(ctx, X(e), box.b, X(e), Yg(s / 1e6), PAL.muted, 2, [4, 8]);
+    line(ctx, box.l, Yg(s / 1e6), X(e), Yg(s / 1e6), C('stress'), 2, [4, 8]);
+    dot(ctx, X(e), Yg(s / 1e6), PAL.ink, true, 10);
+    headline(ctx, '应变为 ' + fmt(e, 3) + ' 时，肌腱承受的应力为 ' + fmt(s / 1e6, 1) + ' MN/m²，此处曲线的斜率为 ' + plain(m, 1) + ' N/m²');
+    /* the book gives stress no letter of its own, so the readout writes the word; it is a bound type
+       here, so the word is set in the stress hue rather than left in ink */
+    readout(d.readout, `\\text{应变} = \\frac{\\kdL}{\\kLo} = \\frac{${fmt(dL * 1000, 1)}\\ \\text{mm}}{${fmt(L0.v, 0)}\\ \\text{cm}} = ${fmt(e, 3)}`,
+      '只有在线性区，应力 = $\\kY$ × 应变 才成立，其中 $\\kY = 1 \\times 10^9\\ \\text{N/m}^2$。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 5.16: a bookcase sheared sideways, drawn from the book's own viewpoint through the locked view() above. The deformation is
+   perpendicular to the length rather than parallel to it, and the
+   constant is the shear modulus. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-shear', 700);
+  const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 2000, step: 20, value: 800, unit: 'N', dec: 0, aria: '切向力' });
+  const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.3, max: 2.5, step: 0.1, value: 1.8, unit: 'm', dec: 1, aria: '书柜的高度' });
+  const AA = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.05, max: 1, step: 0.05, value: 0.3, unit: 'm²', dec: 2, aria: '横截面积' });
+  const MATS = [{ n: '铅', S: 5, l: 1 }, { n: '硬木', S: 10 }, { n: '玻璃、花岗岩、大理石', S: 20 }, { n: '铝', S: 25, l: '铝' }, { n: '黄铜', S: 35 }, { n: '铁', S: 40 }, { n: '骨，钢', S: 80, l: '钢' }];
+  /* every shear modulus Table 5.3 prints is a tick on the slider, and the whole number the slider
+     steps by lands on each of them exactly; two are named, and naming more would crowd the track */
+  const SDET = MATS.map((m) => (typeof m.l === 'string' ? { v: m.S, label: m.l } : m.S));
+  const SS = ctl(d.controls, { label: '\\kS', cls: 'elastic-modulus', min: 1, max: 80, step: 1, value: 10, unit: '× 10⁹ N/m²', dec: 0, aria: '剪切模量', detents: SDET });
+  const dx = (Sg) => (Fa.v * L0.v) / (Sg * 1e9 * AA.v);              /* metres */
+  let marks = [];
+  function draw() {
+    const { ctx } = begin(d.c);
+    const x = dx(SS.v), H = 120 + 300 * (L0.v / 2.5), W = 150 + 130 * AA.v, D = 0.5 * W;
+    const MAG = x > 0 ? Math.min(96, x * 1.6e8) / x : 0;
+    const lean = x * MAG;
+    /* the book's viewpoint: a little to the left of the bookcase and a little above it, so its left side and its top show */
+    const V = view({ yaw: -0.42, pitch: 0.2, dist: 2400, cx: 400, cy: 350 });
+    /* a point of the box in its own units (each of sx, sy, sz runs from -1 to 1; the origin is the centre of the box), sheared by sh at the top and not at all at the bottom */
+    const pt = (sx, sy, sz, sh) => V.P([sx * W / 2 + sh * (sy + 1) / 2, sy * H / 2, sz * D / 2]);
+    const quad = (a, b, c, e, sh) => [pt(...a, sh), pt(...b, sh), pt(...c, sh), pt(...e, sh)];
+    const cbk = F.ref('bookcase'), rf = (pts, k, w) => rface(ctx, pts, k, w, cbk);
+    const dashed = (pts) => pts.forEach((p, i) => { const q = pts[(i + 1) % pts.length]; line(ctx, p[0], p[1], q[0], q[1], PAL.muted, 2, [8, 8]); });
+    const kFront = V.shade([0, 0, 1]), kTop = V.shade([0, 1, 0]), kLeft = V.shade([-1, 0, 0]);
+    const t = 0.07, ty = t * W / H;                                    /* the thickness of the case's walls and shelves, in box units */
+    const floor = pt(-1, -1, 1, 0);
+    const floorY = Math.max(floor[1], pt(1, -1, 1, 0)[1]);
+    fixed(ctx, floor[0] - 60, floorY, W + 120, 34);
+    /* the solid case: its front, then the inside seen through the open front (back wall, right wall, shelves), then its left side and top */
+    rf(quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], lean), kFront, 3);
+    rf(quad([-1 + 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, -1], [1 - 2 * t, 1 - ty, -1], [-1 + 2 * t, 1 - ty, -1], lean), kFront + 0.2);
+    rf(quad([1 - 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [1 - 2 * t, 1 - ty, -1], lean), kLeft + 0.06);
+    for (let i = 0; i <= 3; i++) {
+      const yy = -1 + ty + (2 - 2 * ty) * i / 4;
+      rf(quad([-1 + 2 * t, yy, -1], [1 - 2 * t, yy, -1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kTop);
+      if (i) rf(quad([-1 + 2 * t, yy - ty, 1], [1 - 2 * t, yy - ty, 1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kFront, 1.5);
+    }
+    rf(quad([-1 + 2 * t, -1 + ty, 1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [-1 + 2 * t, 1 - ty, 1], lean), null, 1.5);
+    rf(quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], lean), kLeft, 3);
+    rf(quad([-1, 1, -1], [-1, 1, 1], [1, 1, 1], [1, 1, -1], lean), kTop, 3);
+    /* the dashed outline is the case before the forces were applied: the same box with no shear */
+    dashed(quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], 0));
+    dashed(quad([-1, 1, -1], [-1, 1, 1], [1, 1, 1], [1, 1, -1], 0));
+    dashed(quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], 0));
+    const tl = pt(-1, 1, 1, lean), tl0 = pt(-1, 1, 1, 0), br = pt(1, -1, 1, 0), bl = pt(-1, -1, 1, 0), topC = pt(0, 1, -1, lean);
+    const fl = 40 + Fa.v * 0.055;
+    /* the push meets the case at its left side, so the arrow stops short of the side face, and its name sits above it, clear of the case */
+    const xe = Math.min(tl[0], pt(-1, 1, -1, lean)[0]) - 12;
+    arrow(ctx, xe - fl, tl[1] + 30, xe, tl[1] + 30, C('force'), 5);
+    text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', Math.min(xe - 4, tl0[0] - 14), tl[1] - 26, C('force'), { align: 'right', weight: 600, size: 21, bg: PAL.panel });
+    arrow(ctx, br[0] + 24 + fl, br[1] - 14, br[0] + 24, br[1] - 14, C('force'), 5);
+    text(ctx, 'F', br[0] + 24 + fl + 12, br[1] - 14, C('force'), { weight: 600, size: 21 });
+    text(ctx, 'A = ' + fmt(AA.v, 2) + ' m²', topC[0] + 10, topC[1] - 30, C('area'), { weight: 600, size: 18 });
+    const lx = Math.min(tl0[0], bl[0]) - 50;
+    vbracket(ctx, lx, tl0[1], bl[1], C('position'), '', -1);
+    text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m', lx - 12, (tl0[1] + bl[1]) / 2, C('position'), { align: 'right', weight: 600, size: 20 });
+    if (lean > 5) hbracket(ctx, tl0[0], tl[0], tl0[1] - 40, C('position'), 'Δx');
+    text(ctx, x > 0 ? 'Δx = ' + fmt(x * 1e6, 3) + ' µm，画得约为实际的 ' + timesLarger(MAG, H / L0.v) + ' 倍' : '不施加力时，书柜保持端正', 110, Math.min(676, floorY + 66), PAL.muted, { size: 18 });
+    /* the graph beside the vertical scene: the deformation falls as 1/S, with the materials of Table 5.3 along it */
+    /* The range is fixed. At the slider extremes (F = 2000 N, L₀ = 2.5 m and A = 0.05 m²) a material
+       of shear modulus 1 × 10⁹ N/m² deforms by 100 µm, and an axis that tall would leave the default
+       state flat along the bottom, so the axis keeps a default-sized 0 to 10 µm in ticks of 2 µm and
+       never rescales; a deformation past 10 µm is drawn with pinned(). */
+    const YHI = 10, YN = 5;
+    const box = { l: 800, r: 1300, t: 170, b: 540 };
+    const { X, Y } = axes(ctx, box, [0, 80], [0, YHI], { xl: '剪切模量 S (× 10⁹ N/m²)', xc: C('elastic-modulus'), yl: '形变 Δx (µm)', yc: C('position'), nx: 4, ny: YN, fy: (v) => fmt(v, 1) });
+    F.curve(ctx, (t) => Math.min(YHI, dx(t) * 1e6), 1, 80, X, Y, C('position'), 5, 140);
+    marks = [];
+    MATS.forEach((m) => {
+      const yv = dx(m.S) * 1e6; if (yv > YHI) return;
+      dot(ctx, X(m.S), Y(yv), PAL.muted, false, 8);
+      /* the curve crowds its points together at the right, so only three of the seven are named on
+         the drawing; the other four give their names under the pointer (rule 26.6) */
+      if (m.l) text(ctx, m.n, X(m.S) + (m.S > 60 ? -10 : 12), Y(yv) - 20, PAL.muted, { size: 17, align: m.S > 60 ? 'right' : 'left' });
+      else marks.push({ x: X(m.S), y: Y(yv), r: 18, name: m.n + '，S = ' + giga(m.S) });
+    });
+    if (x * 1e6 <= YHI) { line(ctx, X(SS.v), box.b, X(SS.v), Y(x * 1e6), C('elastic-modulus'), 2, [4, 8]); dot(ctx, X(SS.v), Y(x * 1e6), PAL.ink, true, 10); }
+    else pinned(ctx, box, X, Y, SS.v, x * 1e6, C('position'), fmt(x * 1e6, 1) + ' µm');
+    headline(ctx, '一个 ' + fmt(Fa.v, 0) + ' N 的力使一个高 ' + fmt(L0.v, 1) + ' m、剪切模量为 ' + giga(SS.v) + ' 的书柜侧向切变了 ' + fmt(x * 1e6, 3) + ' µm');
+    readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(SS.v * 1e9, 1)}\\ \\text{N/m}^2)(${fmt(AA.v, 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
+      );
+  }
+  hover(d.stage, () => marks);
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 5.17: the nail a picture hangs from, seen from the side. The
+   weight shears the nail across the cross section where it leaves the
+   wall, and it flexes by an amount too small to see. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-nail', 690);
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.5, max: 20, step: 0.1, value: 5.2, unit: 'kg', dec: 1, aria: '画的质量' });
+  const rr = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.25, max: 2, step: 0.05, value: 0.75, unit: 'mm', dec: 2, aria: '钉子的半径' });
+  const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 2, max: 20, step: 0.5, value: 5, unit: 'mm', dec: 2, aria: '钉子露在墙外的长度' });
+  const S = 80e9;                                                     /* steel, from Table 5.3, as Example 5.5 takes it */
+  const area = () => Math.PI * Math.pow(rr.v / 1000, 2);
+  const force = () => mm.v * G;
+  const dx = () => (force() * (L0.v / 1000)) / (S * area());
+  function draw() {
+    const { ctx } = begin(d.c);
+    const x = dx(), w = force();
+    const len = 150 + 400 * (L0.v / 20), thick = 12 + 30 * (rr.v / 2);
+    const cn = F.ref('nail'), cw = F.ref('wall'), cpic = F.ref('picture');
+    const wallR = 420, y = 220, MAG = x > 0 ? Math.min(110, x * 2.2e7) / x : 0, flex = x * MAG;
+    /* the wall: a solid slab whose face is at wallR; the part of the nail driven into it shows through faintly */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(120, y - 140, 300, 360); ctx.restore();
+    line(ctx, wallR, y - 140, wallR, y + 220, cw, 3);
+    text(ctx, '墙', 270, y + 196, cw, { size: 17, align: 'center' });
+    /* the nail: a sharp point buried in the wall, a round shank that is straight inside the wall and
+       bends to its flex outside, a band of shading along its underside for its roundness, and a flat
+       head at the free end that the picture's wire cannot slip past */
+    const x0 = wallR - 150, half = thick / 2, taper = 3.2 * thick, hx0 = wallR + len;
+    const cen = (xx) => (xx <= wallR ? y : y + flex * Math.pow((xx - wallR) / len, 2));
+    const width = (xx) => (xx < x0 + taper ? half * ((xx - x0) / taper) : half);
+    const outline = (xa, xb) => {
+      const n = 40; ctx.beginPath();
+      for (let i = 0; i <= n; i++) { const xx = xa + ((xb - xa) * i) / n; if (i) ctx.lineTo(xx, cen(xx) - width(xx)); else ctx.moveTo(xx, cen(xx) - width(xx)); }
+      for (let i = n; i >= 0; i--) { const xx = xa + ((xb - xa) * i) / n; ctx.lineTo(xx, cen(xx) + width(xx)); }
+      ctx.closePath();
+    };
+    ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.globalAlpha = 0.45; ctx.fillStyle = PAL.panel; ctx.strokeStyle = cn; ctx.lineWidth = 3; outline(x0, wallR); ctx.fill(); ctx.stroke();
+    ctx.globalAlpha = 1; outline(wallR, hx0); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = alpha(cn, 0.22); ctx.lineWidth = Math.max(3, thick * 0.3);
+    ctx.beginPath(); for (let i = 0; i <= 40; i++) { const xx = wallR + 4 + ((hx0 - wallR - 8) * i) / 40; if (i) ctx.lineTo(xx, cen(xx) + half * 0.45); else ctx.moveTo(xx, cen(xx) + half * 0.45); } ctx.stroke();
+    const hy0 = cen(hx0), hh = Math.max(20, half * 2.6);
+    ctx.fillStyle = alpha(cn, 0.3); ctx.strokeStyle = cn; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(hx0 - 2, hy0 - hh, 10, 2 * hh, 3); ctx.fill(); ctx.stroke();
+    ctx.restore();
+    text(ctx, '钢钉', wallR + len / 2, y - 62, cn, { size: 18, align: 'center', weight: 600 });
+    line(ctx, wallR, y - 90, wallR + len, y - 90, PAL.muted, 2, [6, 6]);
+    hbracket(ctx, wallR, wallR + len, y - 112, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' mm');
+    text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 14, cen(wallR + 160) + half + 26, C('position'), { size: 18 });
+    /* the picture: a frame with its mat, hung from the nail by a wire that hooks over the shank just behind the head */
+    const wx = hx0 - 14, wy = cen(wx) + width(wx), ft = wy + 74, fw = 210, fh = 170;
+    line(ctx, wx, wy, wx - 80, ft + 12, PAL.muted, 2); line(ctx, wx, wy, wx + 80, ft + 12, PAL.muted, 2);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cpic; ctx.lineWidth = 4;
+    ctx.fillRect(wx - fw / 2, ft, fw, fh); ctx.strokeRect(wx - fw / 2, ft, fw, fh);
+    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(wx - fw / 2 + 22, ft + 22, fw - 44, fh - 44); ctx.restore();
+    text(ctx, fmt(mm.v, 1) + ' kg', wx, ft + fh / 2, C('mass'), { size: 22, align: 'center', weight: 600 });
+    /* the two equal and opposite forces on the nail: the picture's weight pulling down where the wire
+       hangs, and the wall pushing up where the nail leaves it */
+    const aL = 40 + 30 * (w / (20 * G));                               /* the heaviest picture the slider allows draws 70 units, clear of the bracket above and the notes below */
+    arrow(ctx, wx, wy + 2, wx, wy + 2 + aL, C('force'), 5);
+    text(ctx, 'w = ' + fmt(w, 1) + ' N', wx + 16, wy + 14 + Math.min(aL, 60) / 2, C('force'), { weight: 600, size: 20, bg: PAL.panel });
+    arrow(ctx, wallR + 6, y - half - 2, wallR + 6, y - half - 2 - aL, C('force'), 5);
+    text(ctx, 'w', wallR + 22, y - half - 2 - aL / 2, C('force'), { weight: 600, size: 20, bg: PAL.panel });
+    if (flex > 4) vbracket(ctx, hx0 + 40, y, hy0, C('position'), 'Δx', 1);
+    text(ctx, '弯曲量画得约为实际的 ' + timesLarger(MAG, len / (L0.v / 1000)) + ' 倍', 120, 630, PAL.muted, { size: 18 });
+    text(ctx, '钉子是钢的，所以它的剪切模量为 80 × 10⁹ N/m²', 120, 658, PAL.muted, { size: 18 });
+    headline(ctx, '一幅 ' + fmt(mm.v, 1) + ' kg 的画，重力为 ' + fmt(w, 0) + ' N，使钉子弯曲 ' + fmt(x * 1e6, 2) + ' µm，小得完全看不见');
+    readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(w, 1)}\\ \\text{N})(${sci(L0.v / 1000, 2)}\\ \\text{m})}{(${sci(S, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
+      '例题 5.5 反过来做，由 1.80 µm 的弯曲量解出 $\\kF = \\kS\\karea\\kdx/\\kLo$，得到 51 N 的重力。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 5.18: a cube squeezed by the same force per unit area on every
+   surface. The change in volume is proportional to the stress and to the
+   original volume, and the constant is the bulk modulus. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-cube', 700);
+  const st = ctl(d.controls, { label: '\\frac{\\kF}{\\karea}', cls: 'stress', min: 0, max: 100, step: 1, value: 50, unit: '× 10⁶ N/m²', dec: 0, aria: '施加在每个表面上的单位面积上的力' });
+  const V0 = ctl(d.controls, { label: '\\kvolo', cls: 'volume', min: 0.1, max: 10, step: 0.1, value: 1, unit: 'L', dec: 1, aria: '原体积' });
+  /* every bulk modulus Table 5.3 prints is a tick on the slider, and the tenth the slider steps by
+     lands on each of them exactly; two are named, and naming more would crowd the track */
+  const BDET = [0.7, 0.9, { v: 2.2, label: '水' }, 4.5, 8, 25, 30, 45, 50, 70, 75, 90, { v: 130, label: '钢' }];
+  const BB = ctl(d.controls, { label: '\\kBb', cls: 'elastic-modulus', min: 0.7, max: 130, step: 0.1, value: 2.2, unit: '× 10⁹ N/m²', dec: 1, aria: '体积模量', detents: BDET });
+  const LIQ = [{ n: '丙酮', B: 0.7 }, { n: '乙醇', B: 0.9 }, { n: '水', B: 2.2 }, { n: '丙三醇', B: 4.5 }, { n: '汞', B: 25 }];
+  const stress = () => st.v * 1e6;
+  const frac = (Bg) => Math.min(0.6, stress() / (Bg * 1e9));
+  const TOPY = 15;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = frac(BB.v), dV = f * V0.v;
+    const side = 170 + 130 * Math.cbrt(V0.v / 10), MAG = 20;
+    const shrink = Math.min(0.45, (1 - Math.pow(1 - f, 1 / 3)) * MAG);
+    /* the book's viewpoint for this cube: the same locked view the bookcase of Figure 5.16 uses, a little to the left of the solid and a little above it, so its left side, its top and its front all show */
+    const V = view({ yaw: -0.42, pitch: 0.2, dist: 2400, cx: 340, cy: 330 });
+    const h0 = side / 2, h2 = h0 * (1 - shrink);                      /* half the original edge and half the squeezed edge, in scene units */
+    /* the six faces of a cube, each as its outward normal and the four corners in units of the half-edge */
+    const FACES = [
+      { n: [0, 1, 0], q: [[-1, 1, -1], [1, 1, -1], [1, 1, 1], [-1, 1, 1]] },
+      { n: [0, -1, 0], q: [[-1, -1, -1], [1, -1, -1], [1, -1, 1], [-1, -1, 1]] },
+      { n: [-1, 0, 0], q: [[-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1]] },
+      { n: [1, 0, 0], q: [[1, -1, -1], [1, -1, 1], [1, 1, 1], [1, 1, -1]] },
+      { n: [0, 0, 1], q: [[-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]] },
+      { n: [0, 0, -1], q: [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1]] },
+    ];
+    const seen = (n) => n[1] > 0 || n[0] < 0 || n[2] > 0;             /* from this viewpoint the top, the left side and the front are the faces in view */
+    const pt = (h) => (c) => V.P([c[0] * h, c[1] * h, c[2] * h]);
+    /* the ghost of the original volume: the cube the material filled before the force was applied, left as a wireframe */
+    FACES.filter((g) => seen(g.n)).forEach((g) => face(ctx, g.q.map(pt(h0)), null, 2));
+    const far = pt(h0)([1, -1, -1]);
+    [[-1, -1, -1], [1, 1, -1], [1, -1, 1]].forEach((c) => { const e = pt(h0)(c); line(ctx, far[0], far[1], e[0], e[1], PAL.muted, 2, [8, 8]); });
+    /* an arrow pressing inward on the middle of a face, drawn in scene units so the perspective carries it */
+    const al = 26 + st.v * 0.55;
+    const push = (n, w) => {
+      const c = [n[0] * h2, n[1] * h2, n[2] * h2];
+      const tail = V.P([c[0] + n[0] * (al + 16), c[1] + n[1] * (al + 16), c[2] + n[2] * (al + 16)]);
+      const head = V.P([c[0] + n[0] * 10, c[1] + n[1] * 10, c[2] + n[2] * 10]);
+      arrow(ctx, tail[0], tail[1], head[0], head[1], w ? alpha(C('stress'), 0.45) : C('stress'), 5);
+      return tail;
+    };
+    FACES.filter((g) => !seen(g.n)).forEach((g) => push(g.n, 1));     /* the three faces turned away from us press inward too, so they are drawn muted and behind the solid */
+    /* the squeezed cube inside the ghost, each face in view lit by the lamp */
+    const ccu = F.ref('cube');
+    FACES.filter((g) => seen(g.n)).forEach((g) => rface(ctx, g.q.map(pt(h2)), V.shade(g.n), 3, ccu));
+    const tops = FACES.filter((g) => seen(g.n)).map((g) => push(g.n, 0));
+    const topTail = tops[0];
+    text(ctx, '每个表面上的 F/A', topTail[0], topTail[1] - 34, C('stress'), { size: 20, align: 'center', weight: 600 });
+    const lo = pt(h0)([-1, -1, 1]), ctr = pt(h2)([0, 0, 1]);   /* the ghost's front bottom left corner, whose foot has room for the volume label */
+    const aq = pt(h0)([-0.55, 1, -0.55]);
+    text(ctx, 'A', aq[0], aq[1] + 2, C('area'), { size: 20, align: 'center', weight: 600 });
+    text(ctx, 'V₀ = ' + fmt(V0.v, 1) + ' L', lo[0] - 6, lo[1] + 30, C('volume'), { size: 19, align: 'right' });
+    text(ctx, 'V₀ − ΔV', ctr[0], ctr[1] + 44, C('volume'), { size: 21, align: 'center', weight: 600 });   /* below the centre, off the arrow pressing on the hidden back face */
+    text(ctx, 'ΔV = ' + fmt(dV * 1000, 1) + ' mL，占体积的 ' + fmt(f * 100, 2) + '%', 120, 560, C('volume'), { size: 18 });
+    text(ctx, '收缩画得为实际的 ' + MAG + ' 倍', 120, 588, PAL.muted, { size: 18 });
+    /* the graph beside the scene: the fractional change against the force per unit area, for the five liquids of Table 5.3 */
+    const box = { l: 790, r: 1300, t: 160, b: 540 };
+    const { X, Y } = axes(ctx, box, [0, 100], [0, TOPY], { xl: '单位面积上的力 F/A (× 10⁶ N/m²)', xc: C('stress'), yl: '相对变化量 ΔV / V₀ (%)', yc: PAL.ink, nx: 4, ny: 3, fy: (v) => fmt(v, 0) });
+    LIQ.forEach((q) => {
+      const e = Math.min(100, (TOPY / 100) * q.B * 1e9 / 1e6);
+      line(ctx, X(0), Y(0), X(e), Y(Math.min(TOPY, (e * 1e6 / (q.B * 1e9)) * 100)), PAL.rule, 3);
+      text(ctx, q.n, X(e) - 10, Y(Math.min(TOPY, (e * 1e6 / (q.B * 1e9)) * 100)) - 16, PAL.muted, { size: 16, align: 'right' });
+    });
+    const ec = Math.min(100, (TOPY / 100) * BB.v * 1e9 / 1e6);
+    line(ctx, X(0), Y(0), X(ec), Y(Math.min(TOPY, (ec * 1e6 / (BB.v * 1e9)) * 100)), C('elastic-modulus'), 5);
+    if (f * 100 <= TOPY) { line(ctx, X(st.v), box.b, X(st.v), Y(f * 100), C('stress'), 2, [4, 8]); dot(ctx, X(st.v), Y(f * 100), PAL.ink, true, 10); }
+    headline(ctx, '单位面积上 ' + plain(stress(), 1) + ' N/m² 的力使体积模量为 ' + giga(BB.v) + ' 的材料的体积压缩了 ' + fmt(f * 100, 2) + '%');
+    readout(d.readout, `\\frac{\\kdvol}{\\kvolo} = \\frac{1}{\\kBb}\\frac{\\kF}{\\karea} = \\frac{${sci(stress(), 2)}\\ \\text{N/m}^2}{${sci(BB.v * 1e9, 1)}\\ \\text{N/m}^2} = ${fmt(f, 4)} = ${fmt(f * 100, 2)}\\%`,
+      '例题 5.6 就是水的那条直线在 5.00 × 10⁷ N/m² 处的情形，这是 5.00 km 深处的压强，它使海水被压缩 2.3%。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};
