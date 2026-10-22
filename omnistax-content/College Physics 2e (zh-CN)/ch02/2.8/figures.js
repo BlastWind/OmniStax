@@ -1,0 +1,287 @@
+/* Figures for section 2.8 Graphical Analysis of One-Dimensional Motion. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['2.8'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, dot, text, headline, topline, vbracket, axes, nice, curve, labeller } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+const sgn = (v) => (v < 0 ? '−' : '+');
+const neg = (s) => s.replace('-', '−');
+
+/* a dashed drop line in the hue of the axis it drops to */
+const drop = (ctx, x1, y1, x2, y2, color) => line(ctx, x1, y1, x2, y2, color, 3, [4, 8]);
+/* draw inside a graph box only */
+function clipped(ctx, box, f) { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); }
+/* the rise-and-run triangle between two points of a line: the run along the bottom, the rise up the right side */
+function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, box, lab) {
+  const x1 = X(p1[0]), x2 = X(p2[0]), y1 = Y(p1[1]), y2 = Y(p2[1]);
+  clipped(ctx, box, () => { drop(ctx, x1, y1, x2, y1, runColor); drop(ctx, x2, y1, x2, y2, riseColor); });
+  const inBox = (y) => Math.min(box.b - 14, Math.max(box.t + 14, y));
+  const right = x2 > (box.l + box.r) / 2 && x2 + 200 > box.r;
+  /* given a labeller the two labels queue on it and step clear of whatever else is near the corner */
+  if (lab) {
+    lab.add(runLabel, (x1 + x2) / 2, y1, 0, y2 < y1 ? 1 : -1, runColor, 22, 26);
+    lab.add(riseLabel, x2, (y1 + y2) / 2, right ? -1 : 1, 0, riseColor, 22, 16);
+    return;
+  }
+  text(ctx, runLabel, (x1 + x2) / 2, inBox(y1 + (y2 < y1 ? 26 : -26)), runColor, { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
+  text(ctx, riseLabel, x2 + (right ? -16 : 16), inBox((y1 + y2) / 2), riseColor, { align: right ? 'right' : 'left', weight: 600, bg: alpha(PAL.panel, 0.85) });
+}
+
+/* =====================================================================
+   FIGURE 2.44: the straight line y = mx + b. Two sliders, the slope and
+   the intercept; a rise-and-run triangle between x = 1 and x = 3 and a
+   bracket for the intercept on the vertical axis. Pure mathematics, all
+   in ink. A still picture: no cycle, no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-line', 520);
+  const M = ctl(d.controls, { label: 'm', cls: '', min: -2, max: 3, step: 0.1, value: 1.5, unit: '', dec: 1, aria: '斜率' });
+  const B = ctl(d.controls, { label: 'b', cls: '', min: -3, max: 4, step: 0.5, value: 1, unit: '', dec: 1, aria: '截距' });
+  const box = { l: 240, r: 1160, t: 100, b: 440 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const m = M.v, b = B.v, y = (x) => m * x + b;
+    const { X, Y } = axes(ctx, box, [-1, 5], [-4, 8], { xl: 'x', yl: 'y', nx: 6, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    clipped(ctx, box, () => line(ctx, X(-1), Y(y(-1)), X(5), Y(y(5)), PAL.ink, 5));
+    /* the rise and the run between x = 1 and x = 3 */
+    const rise = y(3) - y(1);
+    triangle(ctx, X, Y, [1, y(1)], [3, y(3)], '横向增量 = 2.0', '纵向增量 = ' + neg(fmt(rise, 1)), PAL.ink, PAL.ink, box);
+    clipped(ctx, box, () => { dot(ctx, X(1), Y(y(1)), PAL.ink, true, 8); dot(ctx, X(3), Y(y(3)), PAL.ink, true, 8); });
+    /* the intercept, bracketed on the vertical axis */
+    dot(ctx, X(0), Y(b), PAL.ink, false, 10);
+    if (Math.abs(b) >= 0.5) vbracket(ctx, X(0) - 40, Y(0), Y(b), PAL.ink);
+    text(ctx, 'b = ' + neg(fmt(b, 1)), X(0) - 58, Math.abs(b) >= 0.5 ? Y(b / 2) : Y(0) - 24, PAL.ink, { align: 'right', weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* the equation in whichever upper corner the line leaves free */
+    text(ctx, 'y = mx + b', m >= 0 ? box.l + 40 : box.r - 40, box.t + 40, PAL.ink, { align: m >= 0 ? 'left' : 'right', weight: 600, size: 24 });
+    const verb = rise > 0.05 ? '上升 ' + fmt(rise, 1) : rise < -0.05 ? '下降 ' + fmt(-rise, 1) : '保持水平，上升 0.0';
+    headline(ctx, '横向增量为 2.0 时，直线' + verb + '，所以它的斜率是 ' + neg(fmt(m, 1)) + '，它与 y轴相交于 ' + neg(fmt(b, 1)) + '。');
+    readout(d.readout, `y = mx + b = ${neg(fmt(m, 1))}x ${sgn(b)} ${fmt(Math.abs(b), 1)}\\qquad \\text{斜率} = \\frac{\\text{纵向增量}}{\\text{横向增量}} = \\frac{${neg(fmt(rise, 1))}}{2.0} = ${neg(fmt(m, 1))}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.45: the jet car's position against time at constant velocity.
+   A straight line with the intercept x₀ and the slope v̄ on sliders, and
+   two chosen times whose rise and run give the slope. Example 2.17's two
+   points are the defaults. A still picture.
+===================================================================== */
+(function () {
+  const d = sim('sim-jet-xt', 560);
+  const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 1000, step: 25, value: 400, unit: 'm', dec: 0, aria: '初位置' });
+  const vb = ctl(d.controls, { label: '\\kvb', cls: 'velocity', min: 50, max: 350, step: 5, value: 250, unit: 'm/s', dec: 0, aria: '平均速度' });
+  const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 4, step: 0.1, value: 0.5, unit: 's', dec: 2, aria: '第一个选定时刻' });
+  const t2 = ctl(d.controls, { label: '\\kt_{2}', cls: 'time', min: 4.5, max: 8, step: 0.1, value: 6.4, unit: 's', dec: 2, aria: '第二个选定时刻' });
+  const box = { l: 170, r: 1230, t: 100, b: 470 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pos = (t) => x0.v + vb.v * t, xa = pos(t1.v), xb = pos(t2.v), dx = xb - xa, dt = t2.v - t1.v;
+    /* the x axis is fixed at 0 to 4000 m, which holds the 3800 m the two sliders reach in 8 s, so a faster car
+       draws a steeper line instead of the axis stretching to keep the line at the same slant */
+    const { X, Y } = axes(ctx, box, [0, 8], [0, 4000], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    line(ctx, X(0), Y(pos(0)), X(8), Y(pos(8)), C('position'), 5);
+    /* the intercept, hollow, and the two chosen points, filled */
+    dot(ctx, X(0), Y(x0.v), C('position'), false, 10);
+    /* the intercept, the two chosen points and the triangle's sides all crowd the lower left corner when
+       the chosen times are small, so every label here goes through the labeller */
+    const lab = labeller(ctx, 560);
+    lab.block(box.l, box.b, box.r, box.b + 40); lab.block(box.l - 70, box.t - 30, box.l, box.b);
+    /* the intercept's label is dropped when a chosen point sits on the intercept and already names it */
+    if (Math.min(t1.v, t2.v) > 0.3) lab.add('x_0 = ' + fmt(x0.v, 0) + ' m', X(0), Y(x0.v), 0.4, -1, C('position'), 22, 30);
+    if (Math.abs(dt) > 0.05) {
+      triangle(ctx, X, Y, [t1.v, xa], [t2.v, xb], 'Δt = ' + neg(fmt(dt, 2)) + ' s', 'Δx = ' + neg(fmt(dx, 0)) + ' m', C('time'), C('position'), box, lab);
+      drop(ctx, X(t1.v), Y(xa), X(t1.v), box.b, C('time')); drop(ctx, X(t2.v), Y(xb), X(t2.v), box.b, C('time'));
+    }
+    for (const [t, x] of [[t1.v, xa], [t2.v, xb]]) {
+      dot(ctx, X(t), Y(x), C('position'), true, 10);
+      /* the earlier point is labelled under the line and the later one above it, so the two never meet */
+      const under = t === Math.min(t1.v, t2.v);
+      lab.add('(' + fmt(t, 2) + ' s, ' + fmt(x, 0) + ' m)', X(t), Y(x), under ? 0.6 : -0.6, under ? 1 : -1, PAL.ink, 20, 26);
+    }
+    /* the slope named on the line */
+    lab.add('斜率 = v̄ = Δx / Δt', X(3.6), Y(pos(3.6)), -0.3, -1, C('velocity'), 22, 30);
+    lab.flush();
+    if (Math.abs(dt) > 0.05) {
+      headline(ctx, '在 ' + fmt(t1.v, 2) + ' s 到 ' + fmt(t2.v, 2) + ' s 之间，汽车的位置从 ' + fmt(xa, 0) + ' m 变为 ' + fmt(xb, 0) + ' m，纵向增量为 ' + neg(fmt(dx, 0)) + ' m，对应的横向增量为 ' + neg(fmt(dt, 2)) + ' s，所以斜率是 ' + fmt(vb.v, 0) + ' m/s。');
+      readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{${fmt(xb, 0)}\\ \\text{m} - ${fmt(xa, 0)}\\ \\text{m}}{${fmt(t2.v, 2)}\\ \\text{s} - ${fmt(t1.v, 2)}\\ \\text{s}} = ${fmt(vb.v, 0)}\\ \\text{m/s}`,
+        '截距为 $\\kxo = ' + fmt(x0.v, 0) + '\\ \\text{m}$，所以图像表示 $\\kx = \\kxo + \\kvb\\kt$：任一时刻的位置等于 ' + fmt(x0.v, 0) + ' m 加上 ' + fmt(vb.v, 0) + ' m/s 乘以时间。');
+    } else {
+      headline(ctx, '选定的两个时刻相同，所以没有可供相除的横向增量。请把它们分开，移到直线上两个不同的点。');
+      readout(d.readout, `\\kvb = \\frac{\\kdx}{\\kdt}`, '直线上任意两点给出相同的斜率，而相距很远的两点给出的斜率最准确。');
+    }
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.46: position, velocity and acceleration of the jet car under
+   constant acceleration, on one time axis. As the clock runs a tangent
+   slides along the position curve and its slope is plotted as the next
+   point of the velocity graph; the slope of the velocity line is plotted
+   as the acceleration. Moving: one sweep of 30 s in about 5 real
+   seconds, then a hold.
+===================================================================== */
+(function () {
+  const d = sim('sim-jet-graphs', 880);
+  const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: 0, max: 500, step: 10, value: 200, unit: 'm', dec: 0, onInput: reset, aria: '初位置' });
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 60, step: 1, value: 15, unit: 'm/s', dec: 0, onInput: reset, aria: '初速度' });
+  const a = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0, max: 8, step: 0.1, value: 5, unit: 'm/s²', dec: 1, onInput: reset, aria: '加速度' });
+  const T = 30;
+  const cy = cycle(() => T, 1.4);
+  function reset() { cy.reset(); }
+  const pos = (t) => x0.v + v0.v * t + 0.5 * a.v * t * t, vel = (t) => v0.v + a.v * t;
+  const L = 190, R = 1230, b1 = { l: L, r: R, t: 100, b: 330 }, b2 = { l: L, r: R, t: 400, b: 580 }, b3 = { l: L, r: R, t: 650, b: 790 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), xt = pos(tau), vt = vel(tau), done = tau >= T - 1e-9;
+    /* the three ranges are fixed once from the slider maxima, 6000 m, 300 m/s and 8.0 m/s², so a
+       slider changes what is drawn and never the ticks */
+    const none = () => '';
+    const g1 = axes(ctx, b1, [0, 35], [0, 6000], { yl: 'x (m)', yc: C('position'), nx: 7, ny: 6, fx: none, fy: (v) => fmt(v, 0) });
+    const g2 = axes(ctx, b2, [0, 35], [0, 300], { yl: 'v (m/s)', yc: C('velocity'), nx: 7, ny: 6, fx: none, fy: (v) => fmt(v, 0) });
+    const g3 = axes(ctx, b3, [0, 35], [0, 8], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 7, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* (a) the whole position curve, the tangent at the moving point P */
+    clipped(ctx, b1, () => curve(ctx, pos, 0, T, g1.X, g1.Y, C('position'), 5));
+    clipped(ctx, b1, () => line(ctx, g1.X(tau - 6), g1.Y(xt - 6 * vt), g1.X(tau + 6), g1.Y(xt + 6 * vt), PAL.ink, 3));
+    /* the clock's drop line through all three graphs */
+    drop(ctx, g1.X(tau), b1.t, g1.X(tau), b3.b, C('time'));
+    dot(ctx, g1.X(tau), g1.Y(xt), PAL.ink, true, 9);
+    text(ctx, 'P', g1.X(tau) - 16, g1.Y(xt) - 26, PAL.ink, { align: 'right', weight: 600, size: 24 });
+    text(ctx, '斜率 = v = ' + fmt(vt, 0) + ' m/s', g1.X(tau) + 22, Math.max(b1.t + 20, g1.Y(xt) - 40), C('velocity'), { weight: 600, size: 20, align: tau > 24 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    /* (b) the velocity line, drawn as far as the tangents have been taken */
+    if (tau > 0) line(ctx, g2.X(0), g2.Y(v0.v), g2.X(tau), g2.Y(vt), C('velocity'), 5);
+    dot(ctx, g2.X(0), g2.Y(v0.v), C('velocity'), false, 9);
+    dot(ctx, g2.X(tau), g2.Y(vt), C('velocity'), true, 9);
+    text(ctx, 'v₀ = ' + fmt(v0.v, 0) + ' m/s', g2.X(0) + 18, g2.Y(v0.v) + (b2.b - g2.Y(v0.v) > 44 ? 28 : -30), C('velocity'), { weight: 600, size: 20 });
+    if (tau > 8) text(ctx, '斜率 = a', g2.X(tau / 2), g2.Y(vel(tau / 2)) - 30, C('acceleration'), { weight: 600, size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });   /* above the line, clear of the v₀ label under it */
+    /* (c) the acceleration, level, drawn as far as the velocity line has been plotted */
+    if (tau > 0) line(ctx, g3.X(0), g3.Y(a.v), g3.X(tau), g3.Y(a.v), C('acceleration'), 5);
+    dot(ctx, g3.X(tau), g3.Y(a.v), C('acceleration'), true, 9);
+    text(ctx, 'a = ' + fmt(a.v, 1) + ' m/s²', g3.X(tau) + 22, g3.Y(a.v) + 28, C('acceleration'), { weight: 600, size: 20, align: tau > 24 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    headline(ctx, done ? '位置曲线各点的斜率构成了速度线，速度线本身的斜率 ' + fmt(a.v, 1) + ' m/s² 就是加速度。'
+      : '经过 ' + fmt(tau, 1) + ' s 后，P 点处的切线斜率为 ' + fmt(vt, 0) + ' m/s，它作为速度画在下方，而速度线的斜率为 ' + fmt(a.v, 1) + ' m/s²。');
+    readout(d.readout, `\\kv = \\kvo + \\ka\\kt = ${fmt(v0.v, 0)} + (${fmt(a.v, 1)})(${fmt(tau, 1)}) = ${fmt(vt, 0)}\\ \\text{m/s}`,
+      '速度线是直的，因为它的斜率，即加速度，在每一点都相同；位置曲线是弯的，因为它的斜率不断增大。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.48: the tangent at Q. The position curve of Example 2.18 with
+   the book's table beside it; the point Q and the two endpoints of its
+   tangent are on sliders, and the slope is read between the endpoints.
+   A still picture.
+===================================================================== */
+(function () {
+  const d = sim('sim-tangent', 620);
+  const tQ = ctl(d.controls, { label: '\\kt_{Q}', cls: 'time', min: 2, max: 30, step: 0.5, value: 25, unit: 's', dec: 1, aria: '点 Q 的时刻' });
+  const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 30, step: 0.5, value: 19, unit: 's', dec: 1, aria: '切线的第一个端点' });
+  const t2 = ctl(d.controls, { label: '\\kt_{2}', cls: 'time', min: 2, max: 35, step: 0.5, value: 32, unit: 's', dec: 1, aria: '切线的第二个端点' });
+  const pos = (t) => 200 + 15 * t + 2.5 * t * t, vel = (t) => 15 + 5 * t;
+  const box = { l: 170, r: 990, t: 100, b: 520 };
+  const TABLE = [0, 5, 10, 15, 20, 25, 30];
+  function draw() {
+    const { ctx } = begin(d.c);
+    const xQ = pos(tQ.v), vQ = vel(tQ.v), x1 = xQ + vQ * (t1.v - tQ.v), x2 = xQ + vQ * (t2.v - tQ.v), dt = t2.v - t1.v, dx = x2 - x1;
+    const { X, Y } = axes(ctx, box, [0, 35], [0, 3500], { xl: 't (s)', xc: C('time'), yl: 'x (m)', yc: C('position'), nx: 7, ny: 7, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    curve(ctx, pos, 0, 30, X, Y, C('position'), 5);
+    for (const t of TABLE) dot(ctx, X(t), Y(pos(t)), C('position'), true, 5);
+    /* the tangent, drawn a little past its endpoints, and the endpoints themselves */
+    const lo = Math.min(t1.v, t2.v, tQ.v) - 1.5, hi = Math.max(t1.v, t2.v, tQ.v) + 1.5;
+    clipped(ctx, box, () => line(ctx, X(lo), Y(xQ + vQ * (lo - tQ.v)), X(hi), Y(xQ + vQ * (hi - tQ.v)), PAL.ink, 3));
+    const lab = labeller(ctx, 620);
+    lab.block(box.l, box.b, box.r, box.b + 40); lab.block(X(tQ.v) - 60, Y(xQ) - 50, X(tQ.v) + 16, Y(xQ) + 16);
+    if (Math.abs(dt) > 0.05) triangle(ctx, X, Y, [t1.v, x1], [t2.v, x2], 'Δt = ' + neg(fmt(dt, 1)) + ' s', 'Δx = ' + neg(fmt(dx, 0)) + ' m', C('time'), C('position'), box, lab);
+    lab.flush();
+    clipped(ctx, box, () => { dot(ctx, X(t1.v), Y(x1), PAL.ink, false, 8); dot(ctx, X(t2.v), Y(x2), PAL.ink, false, 8); });
+    dot(ctx, X(tQ.v), Y(xQ), F.ref('point-q'), true, 10);
+    text(ctx, 'Q', X(tQ.v) - 18, Y(xQ) - 26, F.ref('point-q'), { align: 'right', weight: 600, size: 24 });
+    text(ctx, '斜率 = v', box.l + 40, box.t + 40, C('velocity'), { weight: 600, size: 22 });
+    /* the book's table of positions, the row at Q's time in ink when Q sits on one */
+    const tx = 1090, ty = 150;
+    text(ctx, 't (s)', tx, ty, C('time'), { align: 'right', weight: 600, size: 20 }); text(ctx, 'x (m)', tx + 150, ty, C('position'), { align: 'right', weight: 600, size: 20 });
+    line(ctx, tx - 70, ty + 20, tx + 160, ty + 20, PAL.rule, 2); line(ctx, tx + 24, ty - 16, tx + 24, ty + 30 + 40 * TABLE.length, PAL.rule, 2);
+    TABLE.forEach((t, i) => {
+      const on = Math.abs(t - tQ.v) < 1e-9, y = ty + 50 + 40 * i;
+      text(ctx, fmt(t, 0), tx, y, on ? PAL.ink : PAL.muted, { align: 'right', weight: on ? 600 : 400, size: 20 });
+      text(ctx, fmt(pos(t), 0), tx + 150, y, on ? PAL.ink : PAL.muted, { align: 'right', weight: on ? 600 : 400, size: 20 });
+    });
+    if (Math.abs(dt) > 0.05) {
+      headline(ctx, 'Q 点处的切线从 (' + fmt(t1.v, 1) + ' s, ' + fmt(x1, 0) + ' m) 到 (' + fmt(t2.v, 1) + ' s, ' + fmt(x2, 0) + ' m)，所以它的斜率，即 ' + fmt(tQ.v, 1) + ' s 时的速度，是 ' + fmt(vQ, 0) + ' m/s。');
+      readout(d.readout, `\\kv_{Q} = \\frac{\\kdx_{Q}}{\\kdt_{Q}} = \\frac{${fmt(x2, 0)}\\ \\text{m} - ${fmt(x1, 0)}\\ \\text{m}}{${fmt(t2.v, 1)}\\ \\text{s} - ${fmt(t1.v, 1)}\\ \\text{s}} = ${fmt(vQ, 0)}\\ \\text{m/s}`,
+        '两端点之间的间隔越大，读图时的任何误差在比例上就越小。');
+    } else {
+      headline(ctx, '切线的两个端点是同一个点，所以没有可供相除的横向增量。请沿切线把它们分开。');
+      readout(d.readout, `\\kv_{Q} = \\frac{\\kdx_{Q}}{\\kdt_{Q}}`, 'Q 点处的速度就是该处切线的斜率，即 ' + fmt(vQ, 0) + ' m/s，无论端点怎样选取。');
+    }
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.49: the jet car reaching its top velocity. The velocity
+   levels out at 250 m/s while the acceleration below falls to zero; a
+   tangent at the chosen time is read between two endpoints, as in
+   Example 2.19. The acceleration is modelled as straight pieces through
+   (0, 5.0), (10, 3.0), (25, 1.0) and (55, 0) m/s², which reproduces the
+   book's velocities and the example's endpoints. A still picture.
+===================================================================== */
+(function () {
+  const d = sim('sim-jet-top', 800);
+  /* The chosen time stops at 55 s, where the velocity levels out and the acceleration reaches zero:
+     past that the curve draws nothing the reader has not already seen. The first endpoint stops at
+     40 s and the second starts at 10 s, so the two always straddle enough of the tangent to read. */
+  const tQ = ctl(d.controls, { label: '\\kt_{Q}', cls: 'time', min: 0, max: 55, step: 0.5, value: 25, unit: 's', dec: 1, aria: '选定时刻' });
+  const t1 = ctl(d.controls, { label: '\\kt_{1}', cls: 'time', min: 0, max: 40, step: 0.5, value: 1, unit: 's', dec: 1, aria: '切线的第一个端点' });
+  const t2 = ctl(d.controls, { label: '\\kt_{2}', cls: 'time', min: 10, max: 70, step: 0.5, value: 51, unit: 's', dec: 1, aria: '切线的第二个端点' });
+  const A = [[0, 5], [10, 3], [25, 1], [55, 0]];
+  function acc(t) {
+    if (t >= 55) return 0;
+    for (let i = 0; i < A.length - 1; i++) { const [ta, aa] = A[i], [tb, ab] = A[i + 1]; if (t <= tb) return aa + ((ab - aa) * (t - ta)) / (tb - ta); }
+    return 0;
+  }
+  function vel(t) {
+    let v = 165;
+    for (let i = 0; i < A.length - 1; i++) {
+      const [ta, aa] = A[i], [tb, ab] = A[i + 1]; if (t <= ta) break;
+      const s = Math.min(t, tb) - ta; v += aa * s + (0.5 * (ab - aa) * s * s) / (tb - ta);
+    }
+    return v;
+  }
+  const L = 190, R = 1230, b1 = { l: L, r: R, t: 100, b: 430 }, b2 = { l: L, r: R, t: 500, b: 700 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const vQ = vel(tQ.v), aQ = acc(tQ.v), v1 = vQ + aQ * (t1.v - tQ.v), v2 = vQ + aQ * (t2.v - tQ.v), dt = t2.v - t1.v, dv = v2 - v1;
+    const g1 = axes(ctx, b1, [0, 70], [160, 260], { yl: 'v (m/s)', yc: C('velocity'), nx: 7, ny: 5, fx: () => '', fy: (v) => fmt(v, 0) });
+    const g2 = axes(ctx, b2, [0, 70], [-1, 6], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 7, ny: 7, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* (a) the velocity curve and the tangent at the chosen time */
+    curve(ctx, vel, 0, 70, g1.X, g1.Y, C('velocity'), 5, 140);
+    const lo = Math.min(t1.v, t2.v) - 2, hi = Math.max(t1.v, t2.v) + 2;
+    clipped(ctx, b1, () => line(ctx, g1.X(lo), g1.Y(vQ + aQ * (lo - tQ.v)), g1.X(hi), g1.Y(vQ + aQ * (hi - tQ.v)), PAL.ink, 3));
+    const lab = labeller(ctx, 800);
+    lab.block(b1.l, b1.b, b1.r, b1.b + 40); lab.block(b1.l - 70, b1.t - 30, b1.l, b1.b); lab.block(g1.X(tQ.v) - 16, g1.Y(vQ) - 16, g1.X(tQ.v) + 16, g1.Y(vQ) + 16);
+    if (Math.abs(dt) > 0.05) triangle(ctx, g1.X, g1.Y, [t1.v, v1], [t2.v, v2], 'Δt = ' + neg(fmt(dt, 1)) + ' s', 'Δv = ' + neg(fmt(dv, 0)) + ' m/s', C('time'), C('velocity'), b1, lab);
+    clipped(ctx, b1, () => { dot(ctx, g1.X(t1.v), g1.Y(v1), PAL.ink, false, 8); dot(ctx, g1.X(t2.v), g1.Y(v2), PAL.ink, false, 8); });
+    drop(ctx, g1.X(tQ.v), b1.t, g1.X(tQ.v), b2.b, C('time'));
+    dot(ctx, g1.X(tQ.v), g1.Y(vQ), PAL.ink, true, 10);
+    lab.add('v = ' + fmt(vQ, 0) + ' m/s，' + fmt(tQ.v, 1) + ' s 时', g1.X(tQ.v), g1.Y(vQ), tQ.v > 45 ? -0.5 : 0.5, 1, C('velocity'), 20, 30);
+    lab.flush();
+    text(ctx, '斜率 = a', b1.r - 30, b1.b - 34, C('acceleration'), { align: 'right', weight: 600, size: 22 });
+    /* (b) the acceleration, falling to zero at 55 s */
+    curve(ctx, acc, 0, 70, g2.X, g2.Y, C('acceleration'), 5, 140);
+    dot(ctx, g2.X(tQ.v), g2.Y(aQ), C('acceleration'), true, 9);
+    text(ctx, 'a = ' + fmt(aQ, 1) + ' m/s²', g2.X(tQ.v) + (tQ.v > 45 ? -20 : 20), g2.Y(aQ) - 28, C('acceleration'), { weight: 600, size: 20, align: tQ.v > 45 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    if (tQ.v >= 55) {
+      headline(ctx, '在 ' + fmt(tQ.v, 1) + ' s 时速度已趋于平稳，保持在 250 m/s，所以切线是水平的，加速度为零。');
+      readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt} = \\frac{0\\ \\text{m/s}}{${fmt(Math.abs(dt), 1)}\\ \\text{s}} = 0\\ \\text{m/s}^2`);
+    } else if (Math.abs(dt) > 0.05) {
+      headline(ctx, '在 ' + fmt(tQ.v, 1) + ' s 处的切线从 (' + fmt(t1.v, 1) + ' s, ' + fmt(v1, 0) + ' m/s) 到 (' + fmt(t2.v, 1) + ' s, ' + fmt(v2, 0) + ' m/s)，所以 ' + fmt(tQ.v, 1) + ' s 时的加速度是 ' + fmt(aQ, 1) + ' m/s²。');
+      readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt} = \\frac{${fmt(v2, 0)}\\ \\text{m/s} - ${fmt(v1, 0)}\\ \\text{m/s}}{${fmt(t2.v, 1)}\\ \\text{s} - ${fmt(t1.v, 1)}\\ \\text{s}} = ${fmt(aQ, 1)}\\ \\text{m/s}^2`);
+    } else {
+      headline(ctx, '切线的两个端点是同一个点，所以没有可供相除的横向增量。请沿切线把它们分开。');
+      readout(d.readout, `\\ka = \\frac{\\kdv}{\\kdt}`, '在 ' + fmt(tQ.v, 1) + ' s 时的加速度就是该处切线的斜率，即 ' + fmt(aQ, 1) + ' m/s²，无论端点怎样选取。');
+    }
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

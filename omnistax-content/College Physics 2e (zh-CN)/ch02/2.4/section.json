@@ -1,0 +1,1047 @@
+{
+ "id": "2.4",
+ "module": "m42100",
+ "chapter": "2",
+ "title": "加速度",
+ "short": "加速度",
+ "lead": "<span data-concept=\"acceleration\">加速度</span>是<span data-concept=\"velocity\">速度</span>的变化率，所以速率、方向或两者的变化都是<span data-concept=\"acceleration\">加速度</span>。<span data-concept=\"average-acceleration\">平均加速度</span>由两个<span data-concept=\"velocity\">速度</span>和一段<span data-concept=\"time\">时间</span>得出，例如<span data-ref=\"horse\">一匹冲出起跑门的赛马</span>和<span data-ref=\"train\">一列地铁列车</span>在<span data-ref=\"train\">其</span>行程中的情形，而它的正负号给出它的方向。",
+ "objectives": [
+  "定义并区分瞬时加速度、平均加速度和减速度。",
+  "已知初时刻、初速度、末时刻和末速度，计算加速度。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"acceleration\">加速度</span>是<span data-concept=\"velocity\">速度</span>的变化率。用符号表示，<span data-concept=\"average-acceleration\">平均加速度</span> $\\kab$ 为 $\\kab = \\frac{\\kdv}{\\kdt} = \\frac{\\kvf - \\kvo}{\\ktf - \\kto}$。</li><li><span data-concept=\"acceleration\">加速度</span>的 SI 单位是 $\\text{m/s}^2$。</li><li><span data-concept=\"acceleration\">加速度</span>是矢量，因此既有大小又有方向。</li><li><span data-concept=\"acceleration\">加速度</span>可以由<span data-concept=\"velocity\">速度</span>的大小或方向的变化引起。</li><li><span data-concept=\"instantaneous-acceleration\">瞬时加速度</span> $\\ka$ 是在<span data-concept=\"time\">时间</span>上某一特定时刻的<span data-concept=\"acceleration\">加速度</span>。</li><li>减速度是方向与<span data-concept=\"velocity\">速度</span>相反的<span data-concept=\"acceleration\">加速度</span>。</li></ul>",
+ "notes": "本节开头飞机降落在圣马丁岛的照片和例题 2.1 旁边的赛马照片属于装饰，予以略去；Moving Man 模拟的链接也略去；习题 2 和 4 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2（Stapp 的火箭滑车）和习题 4（洲际弹道导弹）没有给出答案，因而略去。理解检测附有本书自己的答案。五道思考题以及关于小车速度—时间图像的 AP 题的建议思路由 AI 撰写，并已标明；这道 AP 题保留为开放式答案而不是评分选择题，因为本书没有给出答案。第二道 AP 题（一本书在桌面上被推着滑动，要求在两种正负号约定下画出位置和速度图像，fs-id1860126）考查 derive-motion-graphs，这是 2.8 的内容，留给 2.8，在 2.8 中它的 source_section 为 2.4。2.2 的思考题 3（加速度是矢量还是标量）在题目中就给出了定义，因而仍留在 2.2。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-average-acceleration",
+   "kind": "sim",
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of ticks, round v ticks, headline sums"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-turning",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "acceleration arrow off the car, exit arrow below headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-subway-photo",
+   "kind": "photo",
+   "number": "2.13",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-four-cars",
+   "kind": "sim",
+   "number": "2.14",
+   "originals": [
+    "/media/ch02/Figure_02_04_00b.jpg"
+   ],
+   "original_caption": "（a）这辆汽车向右运动并在加速。因此，在我们的坐标系中它具有正加速度。（b）这辆汽车向右运动并在减速。因此，在我们的坐标系中它具有负加速度，因为它的加速度指向左。这辆汽车同时也在做减速运动：其加速度的方向与其运动方向相反。（c）这辆汽车向左运动，但速度越来越慢。因此，在我们的坐标系中它的加速度为正，因为它指向右。然而，这辆汽车在做减速运动，因为其加速度与其运动方向相反。（d）这辆汽车向左运动并在加速。它具有负加速度，因为它的加速度指向左。然而，由于其加速度与其运动方向相同，它是在加速（而不是减速）。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rows below the headline, note no longer repeats caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-racehorse",
+   "kind": "sim",
+   "number": "2.16",
+   "originals": [
+    "/media/ch02/Figure_02_03_01a.jpg"
+   ],
+   "widths": [
+    350
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library horse, labels clear of headline and ticks, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-instantaneous",
+   "kind": "sim",
+   "number": "2.17",
+   "originals": [
+    "/media/ch02/Figure_02_03_02.jpg"
+   ],
+   "original_caption": "两种不同的一维运动的瞬时加速度—时间图像。（a）这里加速度只有很小的变化，并且始终沿同一方向，因为它为正。该时间间隔上的平均值与任一给定时刻的加速度几乎相同。（b）这里加速度变化很大，也许表示邮局传送带上的一个包裹，它在颠簸前进时被前后加速。在这种情况下，有必要考虑加速度恒定或近似恒定的小时间间隔（例如从 0 到 1.0 s）。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "curve under labels, typed slider labels, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subway-displacement",
+   "kind": "sim",
+   "number": "2.18",
+   "originals": [
+    "/media/ch02/Figure_02_03_03.jpg"
+   ],
+   "original_caption": "例题 2.2、例题 2.3、例题 2.4、例题 2.5、例题 2.6 和例题 2.7 中所考虑的地铁列车的一维运动。这里我们选取 x轴，使位移、速度和加速度的 + 表示向右，− 表示向左。（a）地铁列车从 x₀ 向右运动到 x_f。它的位移 Δx 为 +2.0 km。（b）列车从 x′₀ 向左运动到 x′_f。它的位移 Δx′ 为 −1.5 km。（请注意，撇号（′）只是用来区分两种不同情形下的位移。为了把所有内容放进图中，行驶的距离和车厢的大小采用了不同的比例。）",
+   "widths": [
+    600
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of ticks, note dropped, caption names arrow"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subway-speeding-up",
+   "kind": "sim",
+   "number": "2.19",
+   "originals": [
+    "/media/ch02/Figure_02_03_03c.jpg"
+   ],
+   "widths": [
+    300
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of headline and ticks, round t ticks"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subway-slowing-down",
+   "kind": "sim",
+   "number": "2.20",
+   "originals": [
+    "/media/ch02/Figure_02_03_03d.jpg"
+   ],
+   "widths": [
+    300
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of headline and ticks, round t ticks"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subway-graphs",
+   "kind": "sim",
+   "number": "2.21",
+   "originals": [
+    "/media/ch02/Figure_02_03_04.jpg"
+   ],
+   "original_caption": "（a）列车的位置随时间的变化。请注意，在行程开始时列车的位置变化很慢，然后随着它加速而越来越快。随后，在行程结束时它减速，位置的变化又变慢。在行程中段，速度保持不变，位置以恒定的速率变化。（b）列车的速度随时间的变化。在行程开始时，随着列车加速，它的速度增大。在行程中段它保持不变（这时没有加速度）。在行程结束时，随着列车减速，速度减小。（c）列车的加速度随时间的变化。在行程开始时，列车加速，具有正加速度。在行程中段，它以恒定速度行驶，没有加速度。在行程结束时，它减速，加速度为负。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "time",
+    "position",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "layout clear of ticks and headline, typed labels, readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subway-velocity",
+   "kind": "sim",
+   "number": "2.22",
+   "originals": [
+    "/media/ch02/Figure_02_03_04a.jpg"
+   ],
+   "widths": [
+    550
+   ],
+   "draws": [
+    "time",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "position labels clear of tick labels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subway-deceleration",
+   "kind": "sim",
+   "number": "2.23",
+   "originals": [
+    "/media/ch02/Figure_02_03_04b.jpg"
+   ],
+   "widths": [
+    300
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of headline and ticks, round t ticks"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "average-acceleration",
+   "concept": "acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-acceleration",
+   "concept": "average-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-acceleration",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "average-acceleration",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "vector",
+   "concept": "acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vector",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "deceleration",
+   "concept": "deceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "deceleration",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "negative-acceleration",
+   "concept": "acceleration-sign",
+   "verb": "introduces"
+  },
+  {
+   "span": "negative-acceleration",
+   "concept": "deceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "negative-acceleration",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-racehorse",
+   "concept": "calculate-average-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-racehorse",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-racehorse",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "instantaneous-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "subway",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-displacement",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-displacement",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-distance",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-distance",
+   "concept": "distance",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-distance",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "subway-acceleration",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "subway-acceleration",
+   "concept": "deceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subway-acceleration",
+   "concept": "instantaneous-acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-subway-speeding-up",
+   "concept": "calculate-average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-speeding-up",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-speeding-up",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "calculate-average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "deceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "acceleration-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-slowing-down",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-velocity",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-velocity",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-velocity",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "calculate-average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "deceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "acceleration-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-subway-deceleration",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "sign-direction",
+   "concept": "acceleration-sign",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sign-direction",
+   "concept": "deceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sign-direction",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id4121834",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "sign-direction"
+   },
+   "cite": "sign-direction",
+   "prompt": "一架飞机在跑道上向东着陆。描述它的加速度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "如果取东为正，那么飞机的加速度为负，因为它的加速度指向西。它同时也在减速：其加速度的方向与速度的方向相反。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1454119",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-acceleration",
+   "figure": {
+    "src": "/media/ch02/Figure_Ch2_M4_14.jpg",
+    "alt": "一辆小车的速度（单位 m/s）对时间（单位 s）的图像，图上有五个标出的点。A 在原点。B 在约三分之二秒、8 m/s 处，由一条先快速上升然后变圆缓的线到达。C 在 1.0 s、8 m/s 处，与 B 由一条水平线相连。D 在时间轴上，速度为零，刚过 1.0 s 之后的第一个刻度，与 C 由一条笔直的下降线相连。E 在 2.0 s、−4 m/s 处，与 D 由一条笔直的下降线相连。",
+    "caption": "小车的速度—时间图像。"
+   },
+   "prompt": "一辆小车被限制在一条直线上运动。沿运动方向对小车施加一个变化的合力。小车的速度 $v$ 随时间 $t$ 变化的函数如图所示。图中五个标出的点把图像分成四段。下列哪一项正确地排列了小车在图像四段中的平均加速度的大小？<ol type=\"a\"><li>$a_{CD} > a_{AB} > a_{BC} > a_{DE}$</li><li>$a_{BC} > a_{AB} > a_{CD} > a_{DE}$</li><li>$a_{AB} > a_{BC} > a_{DE} > a_{CD}$</li><li>$a_{CD} > a_{AB} > a_{DE} > a_{BC}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "平均加速度是速度的变化量除以变化所用的时间，所以对图像中的每一段直线，它就是速度的纵向增量除以时间的横向增量，其大小就是该段的陡峭程度，无论是上升还是下降。从 A 到 B，速度在约 0.7 s 内上升 8 m/s，平均加速度约为 $12\\ \\text{m/s}^2$。从 B 到 C，速度不变，所以平均加速度为零。从 C 到 D，速度在约 0.4 s 内下降 8 m/s，大小约为 $20\\ \\text{m/s}^2$。从 D 到 E，速度在约 0.6 s 内下降 4 m/s，约为 $7\\ \\text{m/s}^2$。把这些大小排序，CD 最大，其次是 AB，然后是 DE，BC 最小，这就是第四个选项。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3526394",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "速率能否保持恒定而加速度不为零？请举出这样一种情形的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能。加速度是速度的变化率，而速度是矢量，所以即使速率不变，仅方向的改变也是速度的变化。一辆汽车以 50 km/h 的恒定速率驶过弯道时具有加速度，因为在整个弯道上其速度的方向一直在变化，而且转弯越急，加速度越大。加速度的方向与速度的变化量的方向相同，指向弯道的内侧。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id4016173",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-acceleration",
+   "prompt": "速度能否保持恒定而加速度不为零？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。加速度定义为速度的变化量除以变化所用的时间。如果速度的大小和方向都恒定，那么在任何时间间隔内速度的变化量都为零，因此加速度为零。恒定的速率仍可以有加速度，因为方向仍然可以变化，但恒定的速度使加速度无从谈起。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3514238",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous",
+   "prompt": "举一个速度为零而加速度不为零的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "竖直向上抛出的球在飞行的最高点有一瞬间处于静止，但在那一瞬间它的速度在变化，从刚才的向上变为随后的向下，所以它的瞬时加速度不为零。例题 2.4 中的地铁列车在刚启动的时刻是另一个例子：它的速度为零，但在变化，而加速度就是它的变化率。摆在摆动到尽头时也是如此。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1765962",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sign-direction",
+   "prompt": "如果一列地铁列车向左行驶（速度为负）然后停下来，它的加速度方向如何？加速度是正的还是负的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "列车的速度为负并减小到零，所以速度的变化量，即末速度减去初速度，是零减去一个负数，结果为正。加速度的方向与速度的变化量的方向相同，所以它指向右，并且为正，就像例题 2.7 中那样，那里一列从 −20.0 km/h 减速到静止的列车，平均加速度为 $+0.556\\ \\text{m/s}^2$。由于加速度与速度相反，尽管加速度为正，列车仍在减速。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1780345",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sign-direction",
+   "prompt": "在一维运动中，用正负号表示方向。使负速度的大小减小的加速度，正负号是什么？使正速度的大小减小的加速度呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "使负速度的大小减小的加速度为正，因为速度从负值一侧向零靠近，速度的变化量为正。使正速度的大小减小的加速度为负，因为速度从正值一侧向零靠近。两种情形下，加速度的正负号都与速度相反，物体也都在减速：减速度就是方向与速度相反的加速度，不论在所选的坐标系中它的正负号是什么。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id4129901",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-racehorse",
+   "prompt": "一只猎豹能在 7.00 s 内从静止加速到 30.0 m/s 的速率。它的加速度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.29,
+    "unit": "m/s²",
+    "hint": "猎豹从静止开始，所以速度的变化量就是末速率本身，平均加速度就是这个变化量除以所用的时间。",
+    "solution": "$4.29\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2299988",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-racehorse",
+   "prompt": "一位通勤者以 $1.40\\ \\text{m/s}^2$ 的加速度把汽车倒出车库。（a）她需要多长时间才能达到 2.00 m/s 的速率？（b）如果她随后在 0.800 s 内刹车停下，她的减速度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.43,
+      "unit": "s",
+      "hint": "把平均加速度的定义式变形以求时间：速度的变化量除以加速度。"
+     },
+     {
+      "part": "(b)",
+      "value": -2.5,
+      "unit": "m/s²",
+      "hint": "速度的变化量是末速度零减去初速度 2.00 m/s，所以是负的，除以 0.800 s 后得到与运动方向相反的加速度。"
+     }
+    ],
+    "solution": "(a) $1.43\\ \\text{s}$ (b) $-2.50\\ \\text{m/s}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "acceleration-sign"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "deceleration"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-acceleration"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "calculate-average-acceleration",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "instantaneous-acceleration"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "acceleration-sign"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "deceleration"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "acceleration-sign"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "deceleration"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-average-acceleration"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-average-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "deceleration",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "car",
+   "label": "在笔直道路上加速的汽车",
+   "figures": [
+    "sim-average-acceleration"
+   ]
+  },
+  {
+   "id": "turning-car",
+   "label": "正在转弯的汽车",
+   "figures": [
+    "sim-turning"
+   ]
+  },
+  {
+   "id": "car-a",
+   "label": "汽车（a）",
+   "figures": [
+    "sim-four-cars"
+   ]
+  },
+  {
+   "id": "car-b",
+   "label": "汽车（b）",
+   "figures": [
+    "sim-four-cars"
+   ]
+  },
+  {
+   "id": "car-c",
+   "label": "汽车（c）",
+   "figures": [
+    "sim-four-cars"
+   ]
+  },
+  {
+   "id": "car-d",
+   "label": "汽车（d）",
+   "figures": [
+    "sim-four-cars"
+   ]
+  },
+  {
+   "id": "horse",
+   "label": "赛马",
+   "figures": [
+    "sim-racehorse"
+   ]
+  },
+  {
+   "id": "train",
+   "label": "地铁列车",
+   "figures": [
+    "sim-subway-displacement",
+    "sim-subway-speeding-up",
+    "sim-subway-slowing-down",
+    "sim-subway-graphs",
+    "sim-subway-velocity",
+    "sim-subway-deceleration"
+   ]
+  }
+ ]
+}

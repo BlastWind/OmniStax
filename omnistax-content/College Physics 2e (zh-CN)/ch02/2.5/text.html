@@ -1,0 +1,270 @@
+<p>我们可能知道，比如一辆汽车从停车标志处驶离，其<span data-concept="acceleration">加速度</span>越大，在给定<span data-concept="time">时间</span>内的<span data-concept="displacement">位移</span>就越大。但是我们还没有建立一个把<span data-concept="acceleration">加速度</span>和<span data-concept="displacement">位移</span>联系起来的具体方程。在本节中，我们从已经讲过的<span data-concept="displacement">位移</span>、<span data-concept="velocity">速度</span>和<span data-concept="acceleration">加速度</span>的定义出发，推导一些便于使用的运动学关系方程。</p>
+
+<section id="notation">
+<h2>记号：$\kt$、$\kx$、$\kv$、$\ka$</h2>
+<p class="cite-target">首先，我们对记号做一些简化。把初<span data-concept="time">时刻</span>取为零，就像用秒表计<span data-concept="time">时间</span>一样，是一个很大的简化。由于<span data-concept="elapsed-time">时间间隔</span>为 $\kdt = \ktf - \kto$，取 $\kto = 0$ 就意味着 $\kdt = \ktf$，即秒表上的末<span data-concept="time">时刻</span>。当初<span data-concept="time">时刻</span>取为零时，我们用下标 0 表示<span data-concept="position">位置</span>和<span data-concept="velocity">速度</span>的初值。也就是说，$\kxo$ <em>是初<span data-concept="position">位置</span></em>，$\kvo$ <em>是初<span data-concept="velocity">速度</span></em>。我们不给末值加下标。也就是说，$\kt$ <em>是末<span data-concept="time">时刻</span></em>，$\kx$ <em>是末<span data-concept="position">位置</span></em>，$\kv$ <em>是末<span data-concept="velocity">速度</span></em>。这样，<span data-concept="elapsed-time">时间间隔</span>的表达式更简单了——现在 $\kdt = \kt$。它也简化了<span data-concept="displacement">位移</span>的表达式，现在是 $\kdx = \kx - \kxo$。此外，它还简化了<span data-concept="velocity">速度</span>的变化量的表达式，现在是 $\kdv = \kv - \kvo$。总结一下，采用简化后的记号，并把初<span data-concept="time">时刻</span>取为零，</p>
+$$\begin{aligned}\kdt &= \kt\\ \kdx &= \kx - \kxo\\ \kdv &= \kv - \kvo\end{aligned}$$
+<p>其中，在所考虑的任何<span data-concept="motion">运动</span>中，<em>下标 0 表示初值，无下标表示末值</em>。</p>
+
+<figure class="sim" id="sim-notation">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>设定<span data-type="position">初位置</span>、<span data-type="position">末位置</span>和<span data-type="time">秒表上的时间</span>，看看简化后的记号是如何使用的。物体离开<span data-type="position">初位置</span>时，时钟从零开始计时，所以<span data-type="time">时间间隔</span>就是<span data-type="time">秒表的读数</span>。空心标记表示初值，实心标记表示末值。</span></div>
+</figure>
+</section>
+
+<section id="constant-a">
+<h2>恒定加速度</h2>
+<p class="cite-target">现在我们做一个重要的假设：<em><span data-concept="acceleration">加速度</span>是恒定的</em>。这个假设使我们不必用微积分来求<span data-concept="instantaneous-acceleration">瞬时加速度</span>。由于<span data-concept="acceleration">加速度</span>恒定，平均加速度和<span data-concept="instantaneous-acceleration">瞬时加速度</span>相等。也就是说，</p>
+$$\kab = \ka = \text{常量},$$
+<p>所以我们在任何时刻都用符号 $\ka$ 表示<span data-concept="acceleration">加速度</span>。假设<span data-concept="acceleration">加速度</span>恒定，既不会严重限制我们能够研究的情形，也不会降低我们处理的准确度。首先，在大量情形中，<span data-concept="acceleration">加速度</span><em>确实</em>是恒定的。其次，在许多其他情形中，我们可以假设一个恒定的<span data-concept="acceleration">加速度</span>，使它等于该<span data-concept="motion">运动</span>的<span data-concept="average-acceleration">平均加速度</span>，从而准确地描述<span data-concept="motion">运动</span>。最后，在<span data-concept="acceleration">加速度</span>变化剧烈的<span data-concept="motion">运动</span>中，例如汽车加速到最大速率然后制动直至停下，可以把这段<span data-concept="motion">运动</span>分成几个部分来考虑，每一部分都有各自恒定的<span data-concept="acceleration">加速度</span>。</p>
+</section>
+
+<section id="avg-velocity">
+<h2>由平均速度求位移</h2>
+<figure class="dv" id="drv-position-from-average-velocity"></figure>
+<p>这里，<span data-concept="average-velocity">平均速度</span>为</p>
+$$\kvb = \frac{\kvo + \kv}{2}\;(\text{恒定 }\ka).$$
+<p class="cite-target">方程 $\kvb = \frac{\kvo + \kv}{2}$ 反映了这样一个事实：当<span data-concept="acceleration">加速度</span>恒定时，$\kv$ 就是初、末<span data-concept="velocity">速度</span>的简单平均。例如，如果你把自己的<span data-type="velocity"><span data-concept="velocity">速度</span></span>平稳地从 30 增大到 60 km/h（即在恒定<span data-concept="acceleration">加速度</span>下），那么在这段平稳增大的过程中，你的<span data-type="velocity"><span data-concept="average-velocity">平均速度</span></span>是 45 km/h。用方程 $\kvb = \frac{\kvo + \kv}{2}$ 来验证，可以看到</p>
+$$\kvb = \frac{\kvo + \kv}{2} = \frac{30\ \text{km/h} + 60\ \text{km/h}}{2} = 45\ \text{km/h},$$
+<p>这看起来是合乎逻辑的。</p>
+
+<figure class="sim" id="sim-avg">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>当<span data-concept="acceleration">加速度</span>恒定时，<span data-concept="velocity">速度</span>—<span data-concept="time">时间</span>图像是一条直线，所以<span data-type="velocity">平均速度</span>位于<span data-type="velocity">初速度和末速度</span>的正中间。直线下方的阴影<span data-concept="area">面积</span>就是<span data-type="position">位移</span>。</span></div>
+</figure>
+
+<div class="example" id="ex-jogger">
+<h3>例题 2.8 · 计算位移：慢跑者跑了多远？</h3>
+<p><span data-ref="jogger">一名慢跑者</span>沿着一段笔直的道路跑步，<span data-type="velocity"><span data-concept="average-velocity">平均速度</span>为 4.00 m/s</span>，持续 <span data-type="time">2.00 min</span>。若取<span data-ref="jogger">他</span>的<span data-type="position">初<span data-concept="position">位置</span></span>为零，<span data-ref="jogger">他</span>的<span data-type="position">末<span data-concept="position">位置</span></span>是多少？</p>
+<h4>思路</h4>
+<p>画一幅草图。<span data-type="position">末<span data-concept="position">位置</span></span> $\kx$ 由方程给出</p>
+$$\kx = \kxo + \kvb\kt.$$
+<p>为了求 $\kx$，我们从题目的叙述中找出 $\kxo$、$\kvb$ 和 $\kt$ 的值，并把它们代入方程。</p>
+<h4>解</h4>
+<ol>
+<li>确定已知量。$\kvb = 4.00\ \text{m/s}$，$\kdt = 2.00\ \text{min}$，$\kxo = 0\ \text{m}$。</li>
+<li>把已知量代入方程。
+$$\kx = \kxo + \kvb\kt = 0 + (4.00\ \text{m/s})(120\ \text{s}) = 480\ \text{m}$$</li>
+</ol>
+<h4>讨论</h4>
+<p><span data-type="velocity"><span data-concept="velocity">速度</span></span>和<span data-type="position">最终<span data-concept="displacement">位移</span></span>都是正的，这意味着它们的<span data-concept="vector-direction">方向</span>相同。</p>
+</div>
+
+<figure class="sim" id="sim-jogger" data-figure="2.25 + 2.26" data-original="/media/ch02/Figure_02_05_00a.jpg,/media/ch02/Figure02_05_00b.jpg" data-original-width="400,300" data-original-caption="（图 2.26）位移与平均速度之间存在线性关系。对于给定的时间 t，运动速度是另一个物体两倍的物体，其位移也是另一个物体的两倍。">
+  <div class="sim-head"><span class="eyebrow">Figure 2.25 + 2.26</span><span><span data-ref="jogger">一名慢跑者</span>以<span data-type="velocity">恒定的平均速度 4.00 m/s</span> 跑了 <span data-type="time">2.00 min</span>，使<span data-ref="jogger">他</span>沿道路向前跑了 <span data-type="position">480 m</span>。改变<span data-type="velocity">平均速度</span>或<span data-type="time">时间</span>，观察<span data-type="position">末位置</span>如何变化。道路下方的图像画出了<span data-type="position">该末位置</span>随<span data-type="velocity">平均速度</span>变化的关系。这条直线以<span data-type="time">时间间隔</span>为斜率，所以在相同的<span data-concept="time">时间</span>内，速度为两倍的慢跑者跑到的距离也是两倍。</span></div>
+</figure>
+
+<p>方程 $\kx = \kxo + \kvb\kt$ 让我们深入了解<span data-concept="displacement">位移</span>、<span data-concept="average-velocity">平均速度</span>和<span data-concept="time">时间</span>之间的关系。例如，它表明<span data-concept="displacement">位移</span>是<span data-concept="average-velocity">平均速度</span>的线性函数。（所谓线性函数，是指<span data-concept="displacement">位移</span>取决于 $\kvb$，而不是取决于 $\kvb$ 的其他次幂，比如 $\kvb^2$。画成图像时，线性函数看起来是<span data-concept="slope">斜率</span>恒定的直线。）例如，在一次汽车旅行中，如果平均速度为 90 km/h，那么在给定的<span data-concept="time">时间</span>内，我们能走到的距离是平均速度为 45 km/h 时的两倍。</p>
+<div class="exercises" data-place="avg-velocity"></div>
+</section>
+
+<section id="final-velocity">
+<h2>末速度</h2>
+<figure class="dv" id="drv-final-velocity"></figure>
+
+<div class="example" id="ex-airplane">
+<h3>例题 2.9 · 计算末速度：着陆后减速的飞机</h3>
+<p><span data-ref="airplane">一架飞机</span>以<span data-type="velocity">初<span data-concept="velocity">速度</span> 70.0 m/s</span> 着陆，然后以 $1.50\ \text{m/s}^2$ 减速，持续 <span data-type="time">40.0 s</span>。<span data-ref="airplane">它</span>的<span data-type="velocity">末<span data-concept="velocity">速度</span></span>是多少？</p>
+<h4>思路</h4>
+<p>画一幅草图。因为<span data-ref="airplane">飞机</span>在减速，所以我们把<span data-type="acceleration"><span data-concept="acceleration">加速度</span><span data-concept="vector">矢量</span></span>画在与<span data-type="velocity"><span data-concept="velocity">速度</span><span data-concept="vector">矢量</span></span>相反的<span data-concept="vector-direction">方向</span>上。</p>
+<h4>解</h4>
+<ol>
+<li>确定已知量。$\kvo = 70.0\ \text{m/s}$，$\ka = -1.50\ \text{m/s}^2$，$\kt = 40.0\ \text{s}$。</li>
+<li>确定未知量。在本题中，它是<span data-type="velocity">末<span data-concept="velocity">速度</span></span> $\kvf$。</li>
+<li>确定使用哪个方程。我们可以用方程 $\kv = \kvo + \ka\kt$ 计算<span data-type="velocity">末<span data-concept="velocity">速度</span></span>。</li>
+<li>代入已知量并求解。
+$$\kv = \kvo + \ka\kt = 70.0\ \text{m/s} + (-1.50\ \text{m/s}^2)(40.0\ \text{s}) = 10.0\ \text{m/s}$$</li>
+</ol>
+<h4>讨论</h4>
+<p><span data-type="velocity">末<span data-concept="velocity">速度</span></span>比<span data-type="velocity">初<span data-concept="velocity">速度</span></span>小得多，这正是减速时所希望的，但仍然是正的。对于喷气发动机，<span data-type="force">反向<span data-concept="thrust">推力</span></span>可以维持足够长的时间，使<span data-ref="airplane">飞机</span>停下来，并使<span data-ref="airplane">它</span>开始向后运动。这会表现为<span data-type="velocity">负的末<span data-concept="velocity">速度</span></span>，而本题并非如此。</p>
+</div>
+
+<figure class="sim" id="sim-plane" data-figure="2.27 + 2.28" data-original="/media/ch02/Figure_02_05_00c.jpg,/media/ch02/Figure_02_04_01.jpg" data-original-width="350,600" data-original-caption="（图 2.28）飞机以 70.0 m/s 的初速度着陆，减速到 10.0 m/s 的末速度，然后驶向航站楼。请注意，加速度是负的，因为它的方向与速度的方向相反，而速度为正。">
+  <div class="sim-head"><span class="eyebrow">Figure 2.27 + 2.28</span><span><span data-ref="airplane">一架飞机</span>着陆并减速。<span data-type="velocity">速度</span>箭头随<span data-concept="time">时间</span>缩短，而指向相反方向的<span data-type="acceleration">加速度</span>箭头保持相同的<span data-concept="length">长度</span>，因为<span data-type="acceleration">加速度</span>恒定。</span></div>
+</figure>
+
+<p class="cite-target">方程 $\kv = \kvo + \ka\kt$ 除了在解题时有用，还让我们深入了解<span data-concept="velocity">速度</span>、<span data-concept="acceleration">加速度</span>和<span data-concept="time">时间</span>之间的关系。例如，从中我们可以看出，</p>
+<ul class="cite-target">
+<li>末<span data-concept="velocity">速度</span>取决于<span data-concept="acceleration">加速度</span>有多大以及持续多长时间</li>
+<li>如果<span data-concept="acceleration">加速度</span>为零，那么末<span data-concept="velocity">速度</span>等于初<span data-concept="velocity">速度</span> $(\kv = \kvo)$，这与预期一致（即<span data-concept="velocity">速度</span>是恒定的）</li>
+<li>如果 $\ka$ 为负，那么末<span data-concept="velocity">速度</span>小于初<span data-concept="velocity">速度</span></li>
+</ul>
+<p>（所有这些结论都符合我们的直觉，而且结合我们的直觉和经验来检验基本方程，以确认它们确实准确地描述了自然，总是有益的。）</p>
+
+<figure class="photo" id="fig-shuttle" data-figure="2.29">
+  <img src="/media/ch02/Figure_02_04_01a.jpg" alt="航天飞机在夜间发射升空。" data-width="300">
+  <figcaption><span class="eyebrow">Figure 2.29</span><span><em>“奋进”号</em>航天飞机于 2010 年 2 月从肯尼迪航天中心发射升空。（来源：Matthew Simantov, Flickr）</span></figcaption>
+</figure>
+<div class="note">
+<div class="eyebrow">建立联系：联系实际</div>
+<p>洲际弹道导弹（ICBM）比航天飞机具有<span data-type="acceleration">更大的<span data-concept="average-acceleration">平均加速度</span></span>，并在飞行的头一两分钟内达到<span data-type="velocity">更大的<span data-concept="velocity">速度</span></span>（洲际弹道导弹的实际燃烧<span data-concept="time">时间</span>属于机密——燃烧时间短的导弹更难被敌方摧毁）。但航天飞机获得<span data-type="velocity">更大的末<span data-concept="velocity">速度</span></span>，因此它能够绕地球轨道运行，而不像洲际弹道导弹那样直接落回地面。航天飞机是通过加速<span data-type="time">更长的<span data-concept="time">时间</span></span>来做到这一点的。</p>
+</div>
+<div class="exercises" data-place="final-velocity"></div>
+</section>
+
+<section id="position-quadratic">
+<h2>速度不恒定时的末位置</h2>
+<figure class="dv" id="drv-position-constant-acceleration"></figure>
+
+<div class="example" id="ex-dragster">
+<h3>例题 2.10 · 计算加速物体的位移：直线加速赛车</h3>
+<p>直线加速赛车的<span data-type="acceleration"><span data-concept="average-acceleration">平均加速度</span></span>可达 $26.0\ \text{m/s}^2$。假设<span data-ref="dragster">这样一辆直线加速赛车</span>以这一加速度从静止开始加速，持续 <span data-type="time">5.56 s</span>。<span data-ref="dragster">它</span>在<span data-type="time">这段<span data-concept="time">时间</span></span>内行驶了多远？</p>
+<h4>思路</h4>
+<p>画一幅草图。题目要我们求<span data-type="position"><span data-concept="displacement">位移</span></span>，如果取 $\kxo$ 为零，它就是 $\kx$。（可以把它想成比赛的起跑线。起跑线可以在任何地方，但我们把它叫作 0，并相对于它来测量所有其他<span data-concept="position">位置</span>。）一旦从题目的叙述中确定了 $\kvo$、$\ka$ 和 $\kt$，我们就可以使用方程 $\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2$。</p>
+<h4>解</h4>
+<ol>
+<li>确定已知量。从静止开始意味着 $\kvo = 0$，$\ka$ 给定为 $26.0\ \text{m/s}^2$，$\kt$ 给定为 5.56 s。</li>
+<li>把已知量代入方程，求未知量 $\kx$：
+$$\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2.$$
+由于<span data-type="position">初<span data-concept="position">位置</span></span>和<span data-type="velocity">初<span data-concept="velocity">速度</span></span>都为零，它简化为
+$$\kx = \tfrac{1}{2}\ka\kt^2.$$
+代入已确定的 $\ka$ 和 $\kt$ 的值，得到
+$$\kx = \tfrac{1}{2}(26.0\ \text{m/s}^2)(5.56\ \text{s})^2,$$
+即得
+$$\kx = 402\ \text{m}.$$</li>
+</ol>
+<h4>讨论</h4>
+<p>如果把 402 m 换算成英里，就会发现<span data-type="position">所行驶的<span data-concept="distance">距离</span></span>非常接近四分之一英里，这正是直线加速赛的标准<span data-concept="distance">距离</span>。所以这个答案是合理的。仅在 <span data-type="time">5.56 s</span> 内就有<span data-type="position">令人印象深刻的<span data-concept="displacement">位移</span></span>，但顶级的直线加速赛车跑完四分之一英里所用的<span data-concept="time">时间</span>甚至比这更短。</p>
+</div>
+
+<figure class="sim" id="sim-dragster" data-figure="2.31 + 2.32" data-original="/media/ch02/Figure_02_04_02a.jpg,/media/ch02/Figure_02_04_02b.jpg" data-original-width="350,350">
+  <div class="sim-head"><span class="eyebrow">Figure 2.31 + 2.32</span><span><span data-ref="dragster">一辆直线加速赛车</span>沿着四分之一英里长的赛道从静止开始加速。空心刻度标出<span data-ref="dragster">赛车</span>在<span data-type="time">经过一半时间</span>时所处的位置。请注意，<span data-ref="dragster">它</span>只行驶了<span data-type="position">四分之一的距离</span>，因为<span data-concept="displacement">位移</span>随<span data-concept="time">时间</span>的平方增长。从静止开始时，含 $\kxo$ 和 $\kvo\kt$ 的项消失，方程变为 $\kx = \tfrac{1}{2}\ka\kt^2$；若有助跑，这些项就会重新出现。</span></div>
+</figure>
+
+<p class="cite-target">通过研究方程 $\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2$，我们还能了解到什么？我们看到：</p>
+<ul class="cite-target">
+<li>当<span data-concept="acceleration">加速度</span>不为零时，<span data-concept="displacement">位移</span>取决于<span data-concept="elapsed-time">时间间隔</span>的平方。在例题 2.10 中，<span data-ref="dragster">直线加速赛车</span>在<span data-type="time">前一半<span data-concept="elapsed-time">时间间隔</span></span>内只行驶了<span data-type="position">总<span data-concept="distance">距离</span></span>的四分之一</li>
+<li>如果<span data-concept="acceleration">加速度</span>为零，那么初<span data-concept="velocity">速度</span>等于<span data-concept="average-velocity">平均速度</span>（$\kvo = \kvb$），而 $\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2$ 变为 $\kx = \kxo + \kvo\kt$</li>
+</ul>
+<div class="exercises" data-place="position-quadratic"></div>
+</section>
+
+<section id="velocity-squared">
+<h2>不含时间的末速度</h2>
+<figure class="dv" id="drv-velocity-without-time"></figure>
+
+<div class="example" id="ex-dragster2">
+<h3>例题 2.11 · 计算末速度：直线加速赛车</h3>
+<p>计算例题 2.10 中<span data-ref="dragster">直线加速赛车</span>的<span data-type="velocity">末<span data-concept="velocity">速度</span></span>，不使用有关<span data-concept="time">时间</span>的信息。</p>
+<h4>思路</h4>
+<p>画一幅草图。方程 $\kv^2 = \kvo^2 + 2\ka(\kx - \kxo)$ 最适合这项任务，因为它把<span data-concept="velocity">速度</span>、<span data-concept="acceleration">加速度</span>和<span data-concept="displacement">位移</span>联系起来，而且不需要<span data-concept="time">时间</span>信息。</p>
+<h4>解</h4>
+<ol>
+<li>确定已知量。因为<span data-ref="dragster">直线加速赛车</span>从静止开始，所以我们知道 $\kvo = 0$。然后我们注意到 $\kx - \kxo = 402\ \text{m}$（这是例题 2.10 的答案）。最后，<span data-type="acceleration"><span data-concept="average-acceleration">平均加速度</span></span>给定为 $\ka = 26.0\ \text{m/s}^2$。</li>
+<li>把已知量代入方程 $\kv^2 = \kvo^2 + 2\ka(\kx - \kxo)$，求解 $\kv$。
+$$\kv^2 = 0 + 2(26.0\ \text{m/s}^2)(402\ \text{m}).$$
+因此
+$$\kv^2 = 2.09 \times 10^4\ \text{m}^2\text{/s}^2.$$
+为了得到 $\kv$，我们取平方根：
+$$\kv = \sqrt{2.09 \times 10^4\ \text{m}^2\text{/s}^2} = 145\ \text{m/s}.$$</li>
+</ol>
+<h4>讨论</h4>
+<p>145 m/s 约合 522 km/h，或约合 324 mi/h，但即使是<span data-type="velocity">这个惊人的高速</span>，也还没有达到四分之一英里的纪录。另外请注意，平方根有两个值；我们取正值，表示<span data-type="velocity"><span data-concept="velocity">速度</span></span>的<span data-concept="vector-direction">方向</span>与<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>的方向相同。</p>
+</div>
+
+<p class="cite-target">研究方程 $\kv^2 = \kvo^2 + 2\ka(\kx - \kxo)$ 可以让我们对<span data-concept="physical-quantity">物理量</span>之间的一般关系有更多的认识：</p>
+<ul class="cite-target">
+<li>末<span data-concept="velocity">速度</span>取决于<span data-concept="acceleration">加速度</span>有多大，以及加速度作用的<span data-concept="distance">距离</span></li>
+<li>对于固定的<span data-concept="deceleration">减速度</span>，速度为两倍的汽车并不是简单地在两倍的<span data-concept="distance">距离</span>内停下来——它需要远得多的距离才能停下来。（这就是学校附近设有限速区的原因。）</li>
+</ul>
+<div class="exercises" data-place="velocity-squared"></div>
+</section>
+
+<section id="summary">
+<h2>把方程综合起来</h2>
+<p>在下面的例题中，我们将进一步探讨一维<span data-concept="motion">运动</span>，但涉及的情形需要稍多一些代数运算。这些例题还能让我们了解解题的技巧。下面的方框便于查阅所需的方程。</p>
+<div class="summary-box">
+<div class="eyebrow">运动学方程汇总（恒定 $\ka$）</div>
+$$\kx = \kxo + \kvb\kt$$
+$$\kvb = \frac{\kvo + \kv}{2}$$
+$$\kv = \kvo + \ka\kt$$
+$$\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2$$
+$$\kv^2 = \kvo^2 + 2\ka(\kx - \kxo)$$
+</div>
+</section>
+
+<section id="together">
+<div class="example" id="ex-braking">
+<h3>例题 2.12 · 计算位移：汽车停下来前行驶多远？</h3>
+<p>在干燥的混凝土路面上，<span data-ref="braking-car">汽车</span>可以以 $7.00\ \text{m/s}^2$ 的减速度减速，而在潮湿的混凝土路面上，<span data-ref="braking-car">它</span>只能以 $5.00\ \text{m/s}^2$ 减速。求使以 <span data-type="velocity">30.0 m/s（约 110 km/h）</span>行驶的<span data-ref="braking-car">汽车</span>停下来所需的<span data-type="position"><span data-concept="distance">距离</span></span>：（a）在干燥的混凝土路面上；（b）在潮湿的混凝土路面上。（c）重复这两项计算，求从驾驶员看到交通信号灯变红的那一点起的<span data-type="position"><span data-concept="displacement">位移</span></span>，并考虑他把脚踩到刹车踏板上所需的 <span data-type="time">0.500 s 的反应<span data-concept="time">时间</span></span>。</p>
+<h4>思路</h4>
+<p>画一幅草图。为了确定使用哪些方程最合适，我们需要列出所有已知量，并明确我们要求解的是什么。在接下来的几个例题中，我们将明确地做到这一点，并用表格把它们突出显示出来。</p>
+<h4>（a）的解</h4>
+<ol>
+<li>确定已知量和要求解的量。我们知道 $\kvo = 30.0\ \text{m/s}$；$\kv = 0$；$\ka = -7.00\ \text{m/s}^2$（$\ka$ 为负，因为它的<span data-concept="vector-direction">方向</span>与<span data-type="velocity"><span data-concept="velocity">速度</span></span>相反）。我们取 $\kxo$ 为 0。我们要求的是<span data-type="position"><span data-concept="displacement">位移</span></span> $\kdx$，即 $\kx - \kxo$。</li>
+<li>确定能帮助我们解决问题的方程。最合适的方程是
+$$\kv^2 = \kvo^2 + 2\ka(\kx - \kxo).$$
+这个方程最合适，因为它只含一个未知量 $\kx$。方程中所有其他变量的值我们都已知道。（还有其他方程也可以用来求 $\kx$，但它们要求我们知道<span data-type="time">制动<span data-concept="time">时间</span></span> $\kt$，而这是我们不知道的。我们也可以使用它们，但会增加额外的计算。）</li>
+<li>整理方程，求解 $\kx$。
+$$\kx - \kxo = \frac{\kv^2 - \kvo^2}{2\ka}$$</li>
+<li>代入已知值。
+$$\kx - 0 = \frac{0^2 - (30.0\ \text{m/s})^2}{2(-7.00\ \text{m/s}^2)}$$
+因此，
+$$\kx = 64.3\ \text{m（干燥混凝土路面）}.$$</li>
+</ol>
+<h4>（b）的解</h4>
+<p>这一问的解法与 A 部分完全相同。唯一的区别是<span data-type="acceleration"><span data-concept="deceleration">减速度</span></span>为 $-5.00\ \text{m/s}^2$。结果是</p>
+$$x_{\text{潮湿}} = 90.0\ \text{m（潮湿混凝土路面）}.$$
+<h4>（c）的解</h4>
+<p>驾驶员一旦做出反应，<span data-type="position">制动<span data-concept="distance">距离</span></span>就与 A、B 两部分中干燥和潮湿混凝土路面的情形相同。所以，要回答这个问题，我们需要计算<span data-ref="braking-car">汽车</span>在<span data-type="time">反应<span data-concept="time">时间</span></span>内行驶了多远，然后把它加到<span data-type="time">制动<span data-concept="time">时间</span></span>上。合理的假设是，在驾驶员的<span data-type="time">反应<span data-concept="time">时间</span></span>内，<span data-type="velocity"><span data-concept="velocity">速度</span></span>保持不变。</p>
+<ol>
+<li>确定已知量和要求解的量。我们知道 $\kvb = 30.0\ \text{m/s}$；$t_{\text{反应}} = 0.500\ \text{s}$；$a_{\text{反应}} = 0$。我们取 $x_{0\text{-反应}}$ 为 0。我们要求的是 $x_{\text{反应}}$。</li>
+<li>确定最合适的方程。$\kx = \kxo + \kvb\kt$ 很合适，因为唯一的未知量是 $\kx$，而这正是我们要求解的量。</li>
+<li>代入已知量，解方程。
+$$\kx = 0 + (30.0\ \text{m/s})(0.500\ \text{s}) = 15.0\ \text{m}.$$
+这意味着在驾驶员做出反应期间，<span data-ref="braking-car">汽车</span>行驶了 15.0 m，使得干燥和潮湿混凝土路面这两种情形下的<span data-type="position">总<span data-concept="displacement">位移</span></span>都比他立即做出反应时多 15.0 m。</li>
+<li>把<span data-type="time">反应<span data-concept="time">时间</span></span>内的<span data-type="position"><span data-concept="displacement">位移</span></span>与制动时的<span data-type="position"><span data-concept="displacement">位移</span></span>相加。
+$$x_{\text{制动}} + x_{\text{反应}} = x_{\text{总}}$$
+<ol type="a"><li>64.3 m + 15.0 m = 79.3 m（干燥时）</li><li>90.0 m + 15.0 m = 105 m（潮湿时）</li></ol></li>
+</ol>
+<h4>讨论</h4>
+<p>本例中求得的<span data-type="position"><span data-concept="displacement">位移</span></span>，对于使一辆高速行驶的汽车停下来来说，似乎是合理的。在潮湿路面上让汽车停下来，应该比在干燥路面上花更长的时间。有趣的是，<span data-type="time">反应<span data-concept="time">时间</span></span>会使<span data-type="position"><span data-concept="displacement">位移</span></span>显著增大。但更重要的是解决问题的一般方法。我们先确定已知量和待求量，然后找到合适的方程。解决一个问题往往不止一种方法。本例的各个部分实际上也可以用其他方法求解，但上面给出的解法是最简短的。</p>
+</div>
+
+<figure class="sim" id="sim-braking" data-figure="2.33 + 2.34" data-original="/media/ch02/Figure_02_04_02c.jpg,/media/ch02/Figure_02_04_03.jpg" data-original-width="350,600" data-original-caption="（图 2.34）使汽车停下来所需的距离变化很大，取决于路况和驾驶员的反应时间。这里显示的是按本例计算的、最初以 30.0 m/s 行驶的汽车在干燥和潮湿路面上的制动距离。图中还显示了从驾驶员第一次看到红灯亮起的那一点算起的总路程，假设反应时间为 0.500 s。">
+  <div class="sim-head"><span class="eyebrow">Figure 2.33 + 2.34</span><span>红灯亮起时，<span data-ref="braking-car">两辆相同的汽车</span>正以<span data-type="velocity">相同的速率</span>行驶。<span data-ref="braking-car">两辆汽车</span>和驾驶员都相同，只有路面不同；每个条形表示汽车在驾驶员做出反应期间，以及随后制动期间行驶了多远。</span></div>
+</figure>
+</section>
+
+<section id="merge">
+<div class="example" id="ex-merge">
+<h3>例题 2.13 · 计算时间：汽车汇入车流</h3>
+<p>假设<span data-ref="merging-car">一辆汽车</span>在一条 200 m 长的匝道上汇入高速公路车流。如果<span data-ref="merging-car">它</span>的<span data-type="velocity">初<span data-concept="velocity">速度</span></span>为 10.0 m/s，且<span data-ref="merging-car">它</span>以 $2.00\ \text{m/s}^2$ 的加速度加速，那么驶完匝道上的 <span data-type="position">200 m</span> 需要多长时间？（这类信息可能对交通工程师有用。）</p>
+<h4>思路</h4>
+<p>画一幅草图。题目要求我们求<span data-type="time"><span data-concept="time">时间</span></span> $\kt$。和前面一样，我们先确定已知量，以便选出一个方便的物理关系（也就是只含一个未知量 $\kt$ 的方程）。</p>
+<h4>解</h4>
+<ol>
+<li>确定已知量和要求解的量。我们知道 $\kvo = 10\ \text{m/s}$；$\ka = 2.00\ \text{m/s}^2$；$\kx = 200\ \text{m}$。</li>
+<li>我们需要求解 $\kt$。选择最合适的方程。$\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2$ 最合适，因为方程中唯一的未知量就是我们需要求解的变量 $\kt$。</li>
+<li>我们需要整理方程来求解 $\kt$。在这种情况下，先代入已知量会更容易。
+$$200\ \text{m} = 0\ \text{m} + (10.0\ \text{m/s})\kt + \tfrac{1}{2}(2.00\ \text{m/s}^2)\,\kt^2$$</li>
+<li>化简方程。<span data-concept="meter">米</span>（m）这个<span data-concept="units">单位</span>出现在每一项中，所以会相互抵消。取 $\kt = t\ \text{s}$，其中 $t$ 是<span data-concept="time">时间</span>的<span data-concept="vector-magnitude">大小</span>，s 是单位，就可以使<span data-concept="second">秒</span>（s）这个<span data-concept="units">单位</span>也抵消。这样做之后剩下
+$$200 = 10\kt + \kt^2.$$</li>
+<li>用二次方程求根公式求解 $\kt$。
+（a）整理方程，使方程的一侧为 0。
+$$\kt^2 + 10\kt - 200 = 0$$
+这是一个二次方程，其形式为
+$$a t^2 + b t + c = 0,$$
+其中常数为 $a = 1.00,\; b = 10.0,\; \text{和}\; c = -200$。
+（b）它的解由二次方程求根公式给出：
+$$t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.$$
+这样得到 $\kt$ 的两个解，它们是
+$$\kt = 10.0\ \text{和} -20.0.$$
+于是，<span data-type="time"><span data-concept="time">时间</span></span>为 $\kt = t$，以<span data-concept="second">秒</span>为单位，即
+$$\kt = 10.0\ \text{s}\ \text{和} -20.0\ \text{s}.$$
+<span data-type="time"><span data-concept="time">时间</span>取负值</span>是不合理的，因为这意味着事件发生在<span data-concept="motion">运动</span>开始之前 20 s。我们可以舍弃这个解。因此，
+$$\kt = 10.0\ \text{s}.$$</li>
+</ol>
+<h4>讨论</h4>
+<p>只要方程中含有未知量的平方，就会有两个解。在有些问题中，两个解都有意义，而在另一些问题中，比如上面这个，只有一个解是合理的。<span data-type="time">10.0 s</span> 这个答案对于典型的高速公路入口匝道来说似乎是合理的。</p>
+</div>
+
+<figure class="sim" id="sim-merge" data-figure="2.35" data-original="/media/ch02/Figure_02_04_03a.jpg" data-original-width="250">
+  <div class="sim-head"><span class="eyebrow">Figure 2.35</span><span>图中显示了二次方程的两个解。抛物线是<span data-ref="merging-car">汽车</span>的<span data-type="position">位置</span>随<span data-concept="time">时间</span>变化的函数，水平线是<span data-type="position">匝道的长度</span>。画了叉的标记是负解，它对应于<span data-ref="merging-car">汽车</span>驶入匝道之前的<span data-type="time">一个时刻</span>，因此是不合理的。</span></div>
+</figure>
+
+<p>有了<span data-concept="kinematics">运动学</span>的基础，我们就可以继续研究许多其他有趣的例子和应用。在建立<span data-concept="kinematics">运动学</span>的过程中，我们也初步领略了一种解决问题的一般方法，它既能得到正确的答案，又能加深对物理关系的认识。第 2.6 节“解题基础”讨论了解题的基础知识，并概述了一种能帮助你成功完成这项极其宝贵的任务的方法。</p>
+
+<div class="note">
+<div class="eyebrow">建立联系：居家实验——刹车实测</div>
+<p>我们一直在用 <span data-concept="si-units">SI 单位</span><span data-concept="meter">米</span>每二次方<span data-concept="second">秒</span>来描述汽车、跑步者和火车的一些<span data-concept="acceleration">加速度</span>或<span data-concept="deceleration">减速度</span>的例子。为了对这些数值有更好的体会，可以测量汽车缓慢（且安全）停车时的制动<span data-concept="deceleration">减速度</span>。回想一下，对于<span data-concept="average-acceleration">平均加速度</span>，$\kab = \kdv/\kdt$。乘车行驶时，在接近停车标志时缓慢踩下制动器。让一名乘客记下以英里每小时为单位的初速率，以及停下来所用的<span data-concept="time">时间</span>（以<span data-concept="second">秒</span>计）。据此计算以英里每小时每<span data-concept="second">秒</span>为单位的<span data-concept="deceleration">减速度</span>。把它换算成<span data-concept="meter">米</span>每二次方<span data-concept="second">秒</span>，并与本章提到的其他<span data-concept="deceleration">减速度</span>比较。计算制动时的<span data-concept="distance-traveled">路程</span>。</p>
+</div>
+</section>

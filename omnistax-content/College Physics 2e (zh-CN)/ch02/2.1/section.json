@@ -1,0 +1,494 @@
+{
+ "id": "2.1",
+ "module": "m42033",
+ "chapter": "2",
+ "title": "位移",
+ "short": "位移",
+ "lead": "要描述运动，我们首先需要说明物体在哪里，然后说明它的<span data-concept=\"position\">位置</span>如何变化。<span data-concept=\"position\">位置</span>、<span data-concept=\"displacement\">位移</span>和<span data-concept=\"distance\">距离</span>各自回答不同的问题，而<span data-concept=\"displacement\">位移</span>和<span data-concept=\"distance-traveled\">路程</span>并不是一回事。",
+ "objectives": [
+  "定义位置、位移、距离和路程。",
+  "解释位置与位移之间的关系。",
+  "区分位移与路程。",
+  "已知初位置、末位置以及两者之间的路径，计算位移和距离。"
+ ],
+ "summary_html": "<ul><li>运动学是在不考虑原因的情况下研究运动的学科。在本章中，它仅限于沿直线的运动，称为一维运动。</li><li><span data-concept=\"displacement\">位移</span>是物体<span data-concept=\"position\">位置</span>的变化量。</li><li>用符号表示，<span data-concept=\"displacement\">位移</span> $\\kdx$ 定义为 $\\kdx = \\kxf - \\kxo,$ 其中 $\\kxo$ 是初<span data-concept=\"position\">位置</span>，$\\kxf$ 是末<span data-concept=\"position\">位置</span>。在本教材中，希腊字母 $\\Delta$（德尔塔）总是表示其后所跟的任何量的“变化量”。<span data-concept=\"displacement\">位移</span>的 SI 单位是米（m）。<span data-concept=\"displacement\">位移</span>既有方向，也有大小。</li><li>开始解题时，要指定哪个方向为正。</li><li><span data-concept=\"distance\">距离</span>是两个<span data-concept=\"position\">位置</span>之间<span data-concept=\"displacement\">位移</span>的大小。</li><li><span data-concept=\"distance-traveled\">路程</span>是在两个<span data-concept=\"position\">位置</span>之间所经路径的总<span data-concept=\"length\">长度</span>。</li></ul>",
+ "notes": "习题 2 和习题 4 在书后答案中没有给出，因此略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级和概念标签由 AI 生成。答案来自书后答案；习题 2（路径 B）和习题 4（路径 D）没有给出答案，因此略去。开放式问题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-displacement",
+   "kind": "sim",
+   "number": "2.3",
+   "folds": [
+    "2.4"
+   ],
+   "originals": [
+    "/media/ch02/Figure_02_01_01.jpg",
+    "/media/ch02/Figure_02_01_02.jpg"
+   ],
+   "original_caption": "（图 2.3）一位教授在讲课时左右踱步。她相对于地球的位置由 x 给出。教授相对于地球的 +2.0 m 位移由一个指向右方的箭头表示。（图 2.4）一名乘客从座位走向飞机的机尾。他相对于飞机的位置由 x 给出。乘客相对于飞机的 -4.0 m 位移由一个朝向机尾的箭头表示。请注意，表示他的位移的箭头是图 2.3 中表示教授位移的箭头的两倍长（他移动的距离是教授的两倍）。",
+   "widths": [
+    300,
+    455
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-path",
+   "kind": "sim",
+   "number": "2.5",
+   "originals": [
+    "/media/ch02/Figure_02_01_03.jpg"
+   ],
+   "widths": [
+    350
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "straight-run headline, readout numbers, x_turn label"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: bicycle sprite with F.silhouette rider on a road, zero-ride headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-paths",
+   "kind": "figure",
+   "originals": [
+    "/media/ch02/Figure_02_01Sol_01.jpg"
+   ],
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "position",
+   "concept": "reference-frame",
+   "verb": "introduces"
+  },
+  {
+   "span": "position",
+   "concept": "position",
+   "verb": "introduces"
+  },
+  {
+   "span": "position",
+   "concept": "kinematics",
+   "verb": "introduces"
+  },
+  {
+   "span": "displacement",
+   "concept": "displacement",
+   "verb": "introduces"
+  },
+  {
+   "span": "displacement",
+   "concept": "position",
+   "verb": "uses"
+  },
+  {
+   "span": "sign",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "sign",
+   "concept": "position",
+   "verb": "uses"
+  },
+  {
+   "span": "distance",
+   "concept": "distance",
+   "verb": "introduces"
+  },
+  {
+   "span": "distance",
+   "concept": "distance-traveled",
+   "verb": "introduces"
+  },
+  {
+   "span": "distance",
+   "concept": "displacement",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu-cyclist",
+   "source_id": "fs-id3589986",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "distance"
+   },
+   "cite": "distance",
+   "prompt": "一位骑行者向西骑了 3 km，然后掉头向东骑了 2 km。（a） 其位移是多少？（b） 其骑行的距离是多少？（c） 其位移的大小是多少？取东为正。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -1,
+      "unit": "km",
+      "hint": "位移是末位置减去初位置，以东为正。"
+     },
+     {
+      "part": "(b)",
+      "value": 5,
+      "unit": "km",
+      "hint": "路程要把路径的每一段都加起来。"
+     },
+     {
+      "part": "(c)",
+      "value": 1,
+      "unit": "km",
+      "hint": "大小舍去正负号。"
+     }
+    ],
+    "solution": "（a） 这位骑行者的位移为 $\\kdx = \\kxf - \\kxo = -1\\ \\text{km}$。（位移为负，是因为我们取东为正、西为负。）（b） 路程为 $3\\ \\text{km} + 2\\ \\text{km} = 5\\ \\text{km}$。（c） 位移的大小为 $1\\ \\text{km}$。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1862594",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "下列关于位置、路程和位移的比较，哪一项是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "一个物体可以记录到为零的路程，同时记录到不为零的位移。",
+     "一个物体可以记录到不为零的路程，同时记录到为零的位移。",
+     "一个物体可以记录到不为零的路程，同时保持位置为零。",
+     "一个物体可以记录到不为零的位移，同时保持位置为零。"
+    ],
+    "correct": 1,
+    "hint": "想一想走出去再走回来：哪个量回到零，哪个量不断增大？"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1704056",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "举一个例子，使路程、位移和位移的大小之间有明显的区别。请在你的例子中明确指出每一个量。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何折返的路径都可以。例如，一位慢跑者向东跑 3 km，然后向西跑 1 km。路程为 4 km；若取东为正，位移为 +2 km，位移的大小为 2 km。这三个数不同，是因为路径改变了方向。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3147584",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "在什么情况下路程等于位移的大小？位移的大小与位移完全相同的唯一情形是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有当运动从不反向，使路径就是两个位置之间的直线段时，路程才等于位移的大小。只有当位移在所选的坐标系中为正或为零时，位移的大小才等于位移本身，因为大小舍去了正负号。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3563423",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "细菌借助鞭毛（看起来像小尾巴的结构）来回运动。人们观察到的速率高达 $50\\ \\mu\\text{m/s}\\ (50 \\times 10^{-6}\\ \\text{m/s})$。就其体型而言，细菌的总路程很大，而它的位移却很小。这是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "运动不断反向。每一次来回的一段都使路程增加，但这些段在位移中大体相互抵消，位移只度量从起点到终点位置的净变化。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1126076",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths",
+   "prompt": "求路径图中路径 A 的下列各量：（a） 路程。（b） 从起点到终点的位移的大小。（c） 从起点到终点的位移。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 7,
+      "unit": "m"
+     },
+     {
+      "part": "(b)",
+      "value": 7,
+      "unit": "m"
+     },
+     {
+      "part": "(c)",
+      "value": 7,
+      "unit": "m",
+      "hint": "路径 A 沿正方向从 0 到 7 m。"
+     }
+    ],
+    "solution": "（a） 7 m （b） 7 m （c） +7 m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id4292134",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths",
+   "prompt": "求路径图中路径 C 的下列各量：（a） 路程。（b） 从起点到终点的位移的大小。（c） 从起点到终点的位移。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 13,
+      "unit": "m",
+      "hint": "把每一段加起来：2 → 10，10 → 8，8 → 11。"
+     },
+     {
+      "part": "(b)",
+      "value": 9,
+      "unit": "m"
+     },
+     {
+      "part": "(c)",
+      "value": 9,
+      "unit": "m",
+      "hint": "末位置减去初位置：11 m − 2 m。"
+     }
+    ],
+    "solution": "（a） $8\\ \\text{m} + 2\\ \\text{m} + 3\\ \\text{m} = 13\\ \\text{m}$ （b） $9\\ \\text{m}$ （c） $\\kdx = 11\\ \\text{m} - 2\\ \\text{m} = 9\\ \\text{m}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu-cyclist",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "cyu-cyclist",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cyu-cyclist",
+   "concept": "distance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "position"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "distance"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "distance"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "p1",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "p1",
+   "concept": "distance"
+  },
+  {
+   "exercise": "p1",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "p3",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "p3",
+   "concept": "distance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "displacement"
+  }
+ ],
+ "referents": [
+  {
+   "id": "professor",
+   "label": "教授",
+   "figures": [
+    "sim-displacement"
+   ]
+  },
+  {
+   "id": "passenger",
+   "label": "飞机乘客",
+   "figures": [
+    "sim-displacement"
+   ]
+  },
+  {
+   "id": "cyclist",
+   "label": "骑行者",
+   "figures": [
+    "sim-path"
+   ]
+  }
+ ]
+}

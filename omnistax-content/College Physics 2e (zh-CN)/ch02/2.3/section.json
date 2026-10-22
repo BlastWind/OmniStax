@@ -1,0 +1,818 @@
+{
+ "id": "2.3",
+ "module": "m42096",
+ "chapter": "2",
+ "title": "时间、速度和速率",
+ "short": "时间、速度和速率",
+ "lead": "<span data-concept=\"motion\">运动</span>需要<span data-concept=\"time\">时间</span>，而要描述它，仅知道物体从哪里出发、到哪里结束是不够的。两次钟表读数之间的<span data-concept=\"elapsed-time\">时间间隔</span>，把一个<span data-concept=\"displacement\">位移</span>变成一次行程上的<span data-concept=\"average-velocity\">平均速度</span>和某一时刻的<span data-concept=\"instantaneous-velocity\">瞬时速度</span>，而速率说明有多快，却不说明朝哪个方向。",
+ "objectives": [
+  "解释瞬时速度、平均速度、瞬时速率、平均速率、位移和时间之间的关系。",
+  "已知初位置、初时刻、末位置和末时刻，计算速度和速率。",
+  "已知位置—时间图像，导出速度—时间图像。",
+  "解读速度—时间图像。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"time\">时间</span>是通过变化来度量的，其 SI 单位是秒（s）。一个事件的<span data-concept=\"elapsed-time\">时间间隔</span>为 $$\\kdt = \\ktf - \\kto,$$ 其中 $\\ktf$ 是<span data-concept=\"time\">末时刻</span>，$\\kto$ 是<span data-concept=\"time\">初时刻</span>。初<span data-concept=\"time\">时刻</span>常取为零，就像用秒表测量那样；这时<span data-concept=\"elapsed-time\">时间间隔</span>就是 $\\kt$。</li><li><span data-concept=\"average-velocity\">平均速度</span> $\\kvb$ 定义为<span data-concept=\"displacement\">位移</span>除以行进所用的<span data-concept=\"time\">时间</span>。用符号表示，<span data-concept=\"average-velocity\">平均速度</span>为 $$\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{\\kxf - \\kxo}{\\ktf - \\kto}.$$</li><li><span data-concept=\"velocity\">速度</span>的 SI 单位是 m/s。</li><li><span data-concept=\"velocity\">速度</span>是矢量，因此有方向。</li><li><span data-concept=\"instantaneous-velocity\">瞬时速度</span> $\\kv$ 是某一特定时刻的<span data-concept=\"velocity\">速度</span>，或无穷小间隔上的<span data-concept=\"average-velocity\">平均速度</span>。</li><li><span data-concept=\"instantaneous-speed\">瞬时速率</span>是<span data-concept=\"instantaneous-velocity\">瞬时速度</span>的大小。</li><li><span data-concept=\"instantaneous-speed\">瞬时速率</span>是标量，因为它没有指定方向。</li><li>平均速率是<span data-concept=\"distance-traveled\">路程</span>总量除以<span data-concept=\"elapsed-time\">时间间隔</span>。（平均速率<em>不是</em><span data-concept=\"average-velocity\">平均速度</span>的大小。）速率是标量；它不带有方向。</li></ul>",
+ "notes": "习题 2、4、6、8 和 10 在书后答案中没有答案，故略去；本节开头那张赛跑蜗牛的照片只是装饰，也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案；习题 2、4、6、8 和 10 没有给出答案，故略去。习题 3 的答案四舍五入到一位有效数字，即 2 × 10⁷ 年，因此作为开放式答案供对照，而不作为按 2% 校核的数值。习题 1 需要地球到太阳的距离和一年的秒数，两者都在 1.2 节的表 1.3 中。AP 题和“理解检测”框附有本书自己的解答。思考题的建议思路由 AI 撰写，并已标明。没有从其他小节取用任何内容，也没有为后面的小节留存任何内容。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-elapsed-time",
+   "kind": "sim",
+   "draws": [
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of the bracket and edge, note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-average-velocity",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "velocity label beside its arrow, slope label clear of ticks"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-segments",
+   "kind": "sim",
+   "number": "2.9",
+   "originals": [
+    "/media/ch02/Figure_02_02_01.jpg"
+   ],
+   "original_caption": "一名飞机乘客走向机尾的更详细记录，显示了他行程中更小的分段。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "velocity label beside its arrow, graph labels clear of the curve"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-store",
+   "kind": "sim",
+   "number": "2.10",
+   "originals": [
+    "/media/ch02/Figure_02_02_02.jpg"
+   ],
+   "original_caption": "在一次去商店的 30 分钟往返行程中，总路程为 6 km。平均速率为 12 km/h。往返行程的位移为零，因为位置没有净变化。因此平均速度为零。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "velocity label on a panel over the store"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-trip-graphs",
+   "kind": "sim",
+   "number": "2.11",
+   "originals": [
+    "/media/ch02/Figure_02_02_03.jpg"
+   ],
+   "original_caption": "一次行程中的位置—时间、速度—时间和速率—时间图像。请注意，返程的速度为负。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "negative label clear of ticks, readout shortened"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "time",
+   "concept": "time",
+   "verb": "introduces"
+  },
+  {
+   "span": "time",
+   "concept": "fundamental-units",
+   "verb": "uses"
+  },
+  {
+   "span": "elapsed-time",
+   "concept": "elapsed-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "elapsed-time",
+   "concept": "time",
+   "verb": "uses"
+  },
+  {
+   "span": "average-velocity",
+   "concept": "average-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-velocity",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "average-velocity",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "average-velocity",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "instantaneous-velocity",
+   "concept": "instantaneous-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "instantaneous-velocity",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "speed",
+   "concept": "instantaneous-speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "speed",
+   "concept": "average-speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "speed",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "speed",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "speed",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "store-trip",
+   "concept": "average-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "store-trip",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "store-trip",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "store-trip",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "store-trip",
+   "concept": "model",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id4173641",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "store-trip"
+   },
+   "cite": "store-trip",
+   "prompt": "一列通勤列车从巴尔的摩开到华盛顿特区再返回，用时 1 小时 45 分钟。两个车站之间的距离约为 40 英里。（a）列车的平均速度是多少？（b）列车的平均速率是多少（以 m/s 为单位）？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0,
+      "unit": "m/s",
+      "hint": "列车最后回到出发的车站，所以整个行程的位移为零。"
+     },
+     {
+      "part": "(b)",
+      "value": 20,
+      "unit": "m/s",
+      "hint": "列车去程 40 英里，回程 40 英里，共 80 英里，用时 105 分钟；把英里换算成米，把分钟换算成秒。"
+     }
+    ],
+    "solution": "（a）列车的平均速度为零，因为 $\\kxf = \\kxo$；列车最后回到了出发的地方。（b）列车的平均速率计算如下。请注意，列车去程 40 英里，回程 40 英里，总路程为 80 英里。 $$\\frac{\\text{距离}}{\\text{时间}} = \\frac{80\\ \\text{英里}}{105\\ \\text{分钟}}$$ $$\\frac{80\\ \\text{英里}}{105\\ \\text{分钟}} \\times \\frac{5280\\ \\text{英尺}}{1\\ \\text{英里}} \\times \\frac{1\\ \\text{米}}{3.28\\ \\text{英尺}} \\times \\frac{1\\ \\text{分钟}}{60\\ \\text{秒}} = 20\\ \\text{m/s}$$"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2172989",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-velocity",
+   "prompt": "一组学生有两辆小车 <em>A</em> 和 <em>B</em>，车轮转动时的摩擦可以忽略。两辆小车沿一条笔直的水平轨道运动，最终发生碰撞。碰撞前，小车 <em>A</em> 向右运动，小车 <em>B</em> 最初静止。碰撞后，两辆小车粘在一起。<ol><li>描述一个测定两辆小车碰撞前后速度的实验步骤，包括你需要的所有额外器材。你可以附上一张标注好的装置示意图，帮助说明你的描述。指出你要进行哪些测量以及如何测量。写得足够详细，以便另一名学生能够按你的步骤进行。</li><li>碰撞前后所做的测量都会存在误差来源。哪一个速度受这种误差的影响更大：碰撞前的速度还是碰撞后的速度？或者两组数据受到的影响相同？请说明理由。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）用胶带在轨道上标出两段距离——一段供碰撞前的小车 <em>A</em> 使用，一段供碰撞后粘在一起的小车使用。推动小车 <em>A</em>，使它获得一个初速率。用秒表测量小车通过所标出距离的时间。速率就是距离除以时间。（b）如果测量误差的大小相同，那么它们在碰撞后的影响更大。粘在一起的小车的速率会小于小车 <em>A</em> 的初速率。因此，这些误差在碰撞后会占实际速度值的更大百分比。（注：也可以恰当地提出其他论证，认为“碰撞前的误差更大”，或者误差“对两组测量的影响相同”。）"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id4081795",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time",
+   "prompt": "举一个例子（但不要取自正文），说明一种用来测量时间的装置，并指出这种装置中的什么变化表示时间的变化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何测量时间的装置，都是通过记录某个物理量的变化来实现的，所以举的例子应当既说出装置，也说出这个变化。例如，沙漏通过从上面的玻璃泡流到下面玻璃泡里的沙子来测量时间，这个变化就是沙子的高度。石英表对一小块晶体的振动计数，蜡烛钟通过蜡烛烧掉了多少来标记时间，水钟则通过容器中流出的水位来标记时间。在每一种情形里，是这个以秒这样的标准标定过的变化，表明时间已经过去；没有变化，就无从知道时间。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id4059976",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "store-trip",
+   "prompt": "平均速率与平均速度的大小是有区别的。请举一个例子说明这两个量的区别。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "平均速率是路程除以时间间隔，而平均速度是位移除以时间间隔，所以只要路径比从起点到终点的直线更长，两者就不同。任何折返的行程都可以作为例子。一名跑步者沿 400 m 的跑道跑一圈用时 100 s，她的平均速率为 4 m/s，但她最后回到了起点，所以她的位移为零，平均速度的大小也为零。开车 3 km 去商店再开 3 km 回来，用时半小时，平均速率为 12 km/h，而平均速度同样为零。只有当物体沿直线运动而没有折返，使得路程等于位移的大小时，这两个量才相等。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3539434",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous-velocity",
+   "prompt": "汽车的里程表测量的是路程还是位移？它的速度计测量的是速率还是速度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "里程表测量的是路程，因为无论方向如何，它都累计车轮滚过的每一千米；在汽车位移为零的往返行程中，它仍在继续计数。速度计测量的是速率，也就是瞬时速度的大小，因为它显示汽车在那一时刻运动得有多快，却不给出方向。这两种仪器都不记录方向，所以都不是在测量矢量。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id4033346",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "store-trip",
+   "prompt": "如果你用一次汽车行程的总路程（由里程表确定）除以行程的时间，你算出的是平均速率还是平均速度的大小？在什么情况下这两个量相同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "里程表的读数是路程，所以把它除以行程的时间，得到的是平均速率，而不是平均速度的大小，后者应当是位移除以时间。只有当路程等于位移的大小时，两者才相同，也就是汽车沿直线朝一个方向行驶而没有折返，其路径就是从出发地到终点的直线。在任何有拐弯或有返程的行程中，路程都大于位移的大小，平均速率也大于平均速度的大小。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1798382",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed",
+   "prompt": "瞬时速度和瞬时速率之间有什么联系？它们有什么不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "瞬时速率是瞬时速度的大小，所以两者在每一时刻大小相同。瞬时速度为 −3.0 m/s、朝向机尾的乘客，瞬时速率为 3.0 m/s。它们的不同在于，瞬时速度是矢量，有方向，在一维运动中由正负号给出，而瞬时速率是标量，没有方向，也没有正负号。两辆车以 40 km/h 的速率沿相反方向擦身而过，它们的瞬时速率相同，瞬时速度却不同。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id4131776",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed",
+   "prompt": "（a）计算地球相对于太阳的平均速率。（b）它在一年内的平均速度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 30000.0,
+      "unit": "m/s",
+      "hint": "一年为 $3.16 \\times 10^{7}$ s，地球绕一个半径等于地球到太阳距离的圆转一圈，由表 1.3 知该距离为 $1.5 \\times 10^{11}$ m，所以用周长除以时间。"
+     },
+     {
+      "part": "(b)",
+      "value": 0,
+      "unit": "m/s",
+      "hint": "一年之后地球回到了出发的位置，所以它在这一年的位移为零。"
+     }
+    ],
+    "solution": "(a) $3.0 \\times 10^{4}\\ \\text{m/s}$ (b) 0 m/s"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1438634",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed",
+   "prompt": "北美洲和欧洲大陆正以约 3 cm/y 的速率彼此远离。按这个速率，它们要漂移到比现在再远 500 km，需要多长时间？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2 \\times 10^{7}$ 年"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1403452",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed",
+   "prompt": "1934 年 5 月 26 日，一列名为“西风号”的流线型不锈钢柴油列车创造了列车不停车长途行驶的世界速度纪录。它从丹佛开到芝加哥用时 13 小时 4 分 58 秒，沿途有超过 100 万人目睹了这次行驶。总路程为 1633.8 km。它的平均速率是多少 km/h 和多少 m/s？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "in km/h",
+      "value": 124.88,
+      "unit": "km/h",
+      "hint": "先把时间间隔写成以小时为单位：13 小时 4 分 58 秒是 13.083 h。"
+     },
+     {
+      "part": "in m/s",
+      "value": 34.689,
+      "unit": "m/s",
+      "hint": "用以米为单位的路程除以以秒为单位的时间间隔，或者用千米换算成米、小时换算成秒的因子，把以 km/h 为单位的答案换算过来。"
+     }
+    ],
+    "solution": "$34.689\\ \\text{m/s} = 124.88\\ \\text{km/h}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1271475",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "store-trip",
+   "prompt": "一名学生从家驾车去大学，注意到汽车的里程表读数增加了 12.0 km。这次行程用时 18.0 min。（a）他的平均速率是多少？（b）如果从家到大学的直线距离是 10.3 km，方向为东偏南 $25.0º$，那么他的平均速度是多少？（c）如果他在出发 7 h 30 min 后沿同一路径回到家，那么整个行程的平均速率和平均速度各是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) average speed",
+      "value": 40.0,
+      "unit": "km/h",
+      "hint": "里程表给出的是路程；用它除以以小时为单位的时间。"
+     },
+     {
+      "part": "(b) magnitude of the average velocity",
+      "value": 34.3,
+      "unit": "km/h",
+      "hint": "位移是直线距离 10.3 km，方向为东偏南 $25.0º$；用它除以同样的时间，平均速度的方向就是位移的方向。"
+     },
+     {
+      "part": "(c) average speed",
+      "value": 3.2,
+      "unit": "km/h",
+      "hint": "整个行程在 7.50 h 内走过 24.0 km 的路。"
+     },
+     {
+      "part": "(c) average velocity",
+      "value": 0,
+      "unit": "km/h",
+      "hint": "这名学生回到了家，所以整个行程的位移为零。"
+     }
+    ],
+    "solution": "（a）$40.0\\ \\text{km/h}$ （b）34.3 km/h，东偏南 $25º$。（c）$\\text{平均速率} = 3.20\\ \\text{km/h},\\ \\kvb = 0.$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1638875",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed",
+   "prompt": "与月球表面航天员的通话有一种回声的特点：地球上那个人的声音在航天员的航天头盔里太响，以致被航天员的麦克风拾取并传回地球。可以合理地假设，回声时间等于无线电波从地球传到月球再传回来所需的时间（也就是忽略电子设备中的任何时间延迟）。已知回声时间为 2.56 s，无线电波以光速 $(3.00 \\times 10^{8}\\ \\text{m/s})$ 传播，计算地球到月球的距离。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 384000,
+    "unit": "km",
+    "hint": "无线电波在回声时间内走过的是地球到月球距离的两倍，所以这个距离等于速率乘以 2.56 s 的一半。",
+    "solution": "384,000 km"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id4047255",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed",
+   "prompt": "原子的行星模型把电子绕原子核的轨道运动描绘得像行星绕太阳运动一样。在这个模型中，你可以把最简单的原子氢看成有一个电子在直径为 $1.06 \\times 10^{-10}\\ \\text{m}$ 的圆轨道上运动。（a）如果已知电子在这个轨道上的平均速率为 $2.20 \\times 10^{6}\\ \\text{m/s}$，计算它每秒绕原子核转多少圈。（b）电子每转一圈的平均速度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6610000000000000.0,
+      "unit": "rev/s",
+      "hint": "一圈是轨道的周长，即直径的 $\\pi$ 倍；每秒转的圈数等于每秒走过的路程除以这个周长。"
+     },
+     {
+      "part": "(b)",
+      "value": 0,
+      "unit": "m/s",
+      "hint": "转满一整圈后，电子回到了出发的位置，所以它的位移为零。"
+     }
+    ],
+    "solution": "(a) $6.61 \\times 10^{15}\\ \\text{rev/s}$ (b) 0 m/s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "unit-conversion",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "time"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "instantaneous-speed"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "instantaneous-velocity"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "instantaneous-speed"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "distance-traveled",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "p3",
+   "concept": "unit-conversion",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "p5",
+   "concept": "elapsed-time",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "unit-conversion",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "p7",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "distance-traveled",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "displacement",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "p9",
+   "concept": "elapsed-time",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "average-speed"
+  },
+  {
+   "exercise": "p11",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "p11",
+   "concept": "distance-traveled",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "pendulum",
+   "label": "这个摆",
+   "figures": [
+    "sim-elapsed-time"
+   ]
+  },
+  {
+   "id": "passenger",
+   "label": "这名飞机乘客",
+   "figures": [
+    "sim-average-velocity",
+    "sim-segments"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "去商店往返行程中的汽车",
+   "figures": [
+    "sim-store",
+    "sim-trip-graphs"
+   ]
+  }
+ ]
+}

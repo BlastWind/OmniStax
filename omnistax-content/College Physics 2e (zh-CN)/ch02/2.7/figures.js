@@ -1,0 +1,453 @@
+/* Figures for section 2.7 Falling Objects. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['2.7'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, axes, nice, curve, fixed, topline, labeller, person: figure } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+const sgn = (v) => (v < 0 ? '−' : '+');
+/* a signed number for a label: "+3.20" or "−6.60" */
+const signed = (v, d) => (Math.abs(v) < Math.pow(10, -d) / 2 ? '0' : sgn(v) + fmt(Math.abs(v), d));
+/* a signed number in TeX, with the minus sign KaTeX draws */
+const stex = (v, d) => (v < 0 ? '-' + fmt(-v, d) : fmt(v, d));
+
+/* ---------- a vertical scale: an axis line at x with a tick and a label every step from lo to hi ---------- */
+function vscale(ctx, x, Y, lo, hi, step, unit) {
+  const dec = step >= 1 ? 0 : step >= 0.1 ? 1 : 2;
+  line(ctx, x, Y(hi), x, Y(lo), PAL.muted, 2);
+  for (let v = lo; v <= hi + 1e-9; v += step) {
+    line(ctx, x - 8, Y(v), x + 8, Y(v), PAL.muted, 2);
+    text(ctx, fmt(v, dec).replace('-', '−') + (unit ? ' ' + unit : ''), x - 14, Y(v), PAL.muted, { size: 17, align: 'right' });
+  }
+}
+
+/* ---------- sprites, in ink ---------- */
+/* a hammer hanging head up, its handle's end at (x, y) */
+function hammer(ctx, x, y, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineJoin = 'round';
+  /* the handle, tapered, a head with a flat face to the right and a split claw curving down to the left */
+  ctx.beginPath(); ctx.moveTo(-5, 0); ctx.lineTo(5, 0); ctx.lineTo(7, -74); ctx.lineTo(-7, -74); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(-14, -98, 44, 26, 4); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-14, -96); ctx.quadraticCurveTo(-40, -96, -44, -70); ctx.lineTo(-36, -68); ctx.quadraticCurveTo(-32, -82, -20, -84);
+  ctx.quadraticCurveTo(-30, -80, -30, -66); ctx.lineTo(-22, -64); ctx.quadraticCurveTo(-20, -78, -14, -74); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+/* a feather standing on its quill at (x, y) */
+function feather(ctx, x, y, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.strokeStyle = color; ctx.fillStyle = alpha(color, 0.22); ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(0, -90); ctx.quadraticCurveTo(30, -50, 4, -8); ctx.quadraticCurveTo(-30, -50, 0, -90); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, -90); ctx.lineTo(0, 0); ctx.stroke();
+  ctx.restore();
+}
+/* a stopwatch centred on (x, y) whose hand has turned the fraction f of one turn */
+function stopwatch(ctx, x, y, r, f) {
+  ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillRect(x - 10, y - r - 16, 20, 12); ctx.strokeRect(x - 10, y - r - 16, 20, 12);
+  for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; line(ctx, x + (r - 10) * Math.sin(a), y - (r - 10) * Math.cos(a), x + (r - 4) * Math.sin(a), y - (r - 4) * Math.cos(a), PAL.muted, i % 3 ? 2 : 4); }
+  ctx.restore();
+  const a = f * Math.PI * 2;
+  line(ctx, x, y, x + (r - 18) * Math.sin(a), y - (r - 18) * Math.cos(a), C('time'), 4); dot(ctx, x, y, C('time'), true, 6);
+}
+
+/* =====================================================================
+   FIGURE 2.37: the hammer and the feather. Two panels, in air and in a
+   vacuum; in the vacuum both fall together by y = -½gt², and in air the
+   feather drifts down slowly, drawn without a number since the book gives
+   none. Finite motion, one drop per loop, so it gets the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-hammer-feather', 580);
+  /* the two values the book works with are soft detents on the slider: the Moon's 1.67 m/s² and Earth's 9.80 */
+  const GDET = [{ v: 1.67, label: '月球' }, { v: 9.8, label: '地球' }];
+  const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.5, max: 10, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: '重力加速度', detents: GDET, snap: true });
+  const h = ctl(d.controls, { label: 'h', cls: 'position', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: '下落高度' });
+  const T = () => Math.sqrt((2 * h.v) / g.v);
+  const cy = cycle(T, 1.4);
+  function reset() { cy.reset(); }
+  /* A feather in air reaches a terminal speed within a few centimetres of falling and then drops at
+     that speed. Take 0.80 m/s for it in Earth's air, and scale it as the square root of g, which is
+     how a terminal speed goes: a lighter pull gives a slower drift. */
+  const vT = () => 0.8 * Math.sqrt(g.v / 9.8);
+  function airFall(t) { const tc = vT() / g.v; return t <= tc ? 0.5 * g.v * t * t : 0.5 * vT() * tc + vT() * (t - tc); }
+  /* the release line sits 180 down so that an object standing on it clears a two-line headline */
+  const floorY = 500, topY = 180, Y = (ht) => floorY - ((floorY - topY) * ht) / h.v;
+  function panel(ctx, x1, x2, label) {
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(x1, topY - 40, x2 - x1, floorY - topY + 40); ctx.restore();
+    line(ctx, x1, floorY, x2, floorY, PAL.ink, 4);
+    text(ctx, label, (x1 + x2) / 2, floorY + 34, PAL.ink, { size: 22, align: 'center', weight: 600 });
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), tEnd = T(), done = tau >= tEnd - 1e-9;
+    const fallen = Math.min(h.v, 0.5 * g.v * tau * tau), ht = h.v - fallen;
+    const drift = Math.min(h.v, airFall(tau)), htAir = h.v - drift;
+    /* the two panels and the release line */
+    panel(ctx, 150, 590, '在空气中'); panel(ctx, 780, 1220, '在真空中');
+    [[150, 590], [780, 1220]].forEach(([a, b]) => line(ctx, a, Y(h.v), b, Y(h.v), PAL.muted, 2, [8, 8]));
+    vscale(ctx, 120, Y, 0, Math.floor(h.v), 1, 'm');
+    /* in air: the hammer falls freely and the feather settles to its terminal speed */
+    hammer(ctx, 250, Y(ht), F.ref('hammer'), 0.8); feather(ctx, 510, Y(htAir), F.ref('feather'), 0.8);
+    text(ctx, '空气使羽毛的速率保持在 ' + fmt(vT(), 2) + ' m/s', 370, floorY + 62, PAL.muted, { size: 17, align: 'center' });
+    /* in a vacuum: both fall together */
+    hammer(ctx, 890, Y(ht), F.ref('hammer'), 0.8); feather(ctx, 1110, Y(ht), F.ref('feather'), 0.8);
+    text(ctx, 'h = ' + fmt(h.v, 1) + ' m', 380, Y(h.v) - 20, C('position'), { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, '没有空气，所以只有重力起作用', 1000, floorY + 62, PAL.muted, { size: 17, align: 'center' });
+    if (fallen > 0.02) vbracket(ctx, 1170, Y(h.v), Y(ht), C('position'), '已下落 ' + fmt(fallen, 2) + ' m', 1);
+    /* the acceleration due to gravity, the same for both */
+    const ax = 685, ay = 236, al = 60 + g.v * 9;
+    arrow(ctx, ax, ay, ax, ay + al, C('acceleration'), 5);
+    text(ctx, 'a = −g', ax, ay - 30, C('acceleration'), { size: 22, weight: 600, align: 'center' });
+    text(ctx, '= −' + fmt(g.v, 2) + ' m/s²', ax, ay + al + 30, C('acceleration'), { size: 18, weight: 600, align: 'center' });
+    text(ctx, 't = ' + fmt(tau, 2) + ' s', 685, 150, C('time'), { size: 24, weight: 600, align: 'center' });
+    topline(ctx, done ? '在真空中，两者在 t = ' + fmt(tEnd, 2) + ' s 时同时到达地面，下落了 ' + fmt(h.v, 1) + ' m，加速度同为 g = ' + fmt(g.v, 2) + ' m/s²。'
+      : '经过 ' + fmt(tau, 2) + ' s，真空中的锤子和羽毛一同下落了相同的 ' + fmt(fallen, 2) + ' m，而在空气中羽毛只飘落了 ' + fmt(drift, 2) + ' m。');
+    const other = g.v > 5 ? ['月球', 1.67] : ['地球', 9.8];
+    readout(d.readout, `\\ky = -\\tfrac{1}{2}\\kg\\kt^2 = -\\tfrac{1}{2}(${fmt(g.v, 2)}\\ \\text{m/s}^2)(${fmt(tau, 2)}\\ \\text{s})^2 = ${stex(-fallen, 2)}\\ \\text{m}`,
+      '在' + other[0] + '上，$\\kg = ' + fmt(other[1], 2) + '\\ \\text{m/s}^2$，同样下落 ' + fmt(h.v, 1) + ' m 需要 ' + fmt(Math.sqrt((2 * h.v) / other[1]), 2) + ' s。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.38 + 2.39: the rock thrown upward. A vertical scene at the
+   cliff, the rock leaving the thrower's hand, rising to its highest point
+   and falling past the edge, with y, v and a against t stacked beside it
+   as the book stacks them. Finite flight, so it gets the scrubber.
+===================================================================== */
+(function () {
+  const H = 820;
+  const d = sim('sim-rock-up', H);
+  /* v₀ starts at 1 m/s rather than 0, so the highest point is never the starting point. The two
+     values of g the chapter uses are soft detents. */
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 25, step: 0.1, value: 13, unit: 'm/s', dec: 1, onInput: reset });
+  const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.5, max: 10, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: '重力加速度', detents: [{ v: 1.67, label: '月球' }, { v: 9.8, label: '地球' }], snap: true });
+  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 6, step: 0.05, value: 3, unit: 's', dec: 2, onInput: reset, aria: '显示的时间', detents: [{ v: 3, label: '3.00 s' }], snap: true,
+    specials: [{ at: () => v0.v / g.v, label: '最高点' }] });
+  const cy = cycle(() => T.v, 1.4);
+  function reset() { cy.reset(); }
+  const pos = (s) => v0.v * s - 0.5 * g.v * s * s, vel = (s) => v0.v - g.v * s;
+  /* Every scale is fixed: height and velocity run −30 to 30 in tens, the acceleration −10 m/s² to 0
+     and the time 0 to 6 s, the time slider's range. A rock that flies higher or falls lower than a
+     scale holds is drawn hollow against its end and the headline says so. */
+  const YLO = -30, YHI = 30, VLO = -30, VHI = 30, ALO = -10, TMAX = 6;
+  const cl = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+  /* the scene column: the height scale at SX, the cliff, the thrower, and the rock's own column at RX,
+     the release point at y = 0 in the thrower's hand */
+  const sTop = 170, sBot = 720, SX = 80, RX = 360, PS = 0.7;
+  const Y = (m) => sBot - ((sBot - sTop) * (cl(m, YLO, YHI) - YLO)) / (YHI - YLO);
+  const HAND = { x: 54, y: -112 }, ground = Y(0) - HAND.y * PS, PX = RX - 13 - HAND.x * PS, EDGE = RX - 24;
+  /* the graph column: three boxes 150 tall, 80 apart so the tick labels clear the next title */
+  const GL = 800, GR = 1340;
+  const boxes = [134, 364, 594].map((t) => ({ l: GL, r: GR, t, b: t + 150 }));
+  const clipTo = (ctx, b, f) => { ctx.save(); ctx.beginPath(); ctx.rect(b.l, b.t, b.r - b.l, b.b - b.t); ctx.clip(); f(); ctx.restore(); };
+  const ptex = (v, dd) => (Math.abs(v) < Math.pow(10, -dd) / 2 ? '0' : (v < 0 ? '-' : '+') + fmt(Math.abs(v), dd));
+  let hits = [];
+  F.hover(d.stage, () => hits);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), ttop = v0.v / g.v, ytop = (v0.v * v0.v) / (2 * g.v);
+    const y = pos(tau), v = vel(tau), yOut = y > YHI || y < YLO;
+    const offScale = ytop > YHI || pos(T.v) < YLO || vel(T.v) < VLO;
+    /* the scene */
+    vscale(ctx, SX, Y, YLO, YHI, 10);
+    text(ctx, 'y (m)', SX - 14, sTop - 34, C('position'), { size: 20, weight: 600 });
+    fixed(ctx, 110, ground, EDGE - 110, H - 12 - ground);
+    line(ctx, RX, Y(YHI), RX, Y(YLO), PAL.rule, 1.5);
+    line(ctx, SX + 14, Y(0), RX + 40, Y(0), C('position'), 2, [8, 8]);
+    line(ctx, SX + 14, Y(ytop), RX + 40, Y(ytop), C('position'), 2, [8, 8]);
+    F.silhouette(ctx, { x: PX, y: ground, s: PS, face: 1, pose: 'stand', color: F.ref('thrower'),
+      hands: [HAND, { x: -6, y: -76 }], elbowSide: 1 });
+    dot(ctx, RX, Y(ytop), C('position'), false, 10);
+    if (ytop > YHI) arrow(ctx, RX, Y(YHI) - 12, RX, Y(YHI) - 44, C('position'), 3);
+    dot(ctx, RX, Y(y), F.ref('rock'), !yOut, 11);
+    const lab = labeller(ctx, H, { headline: 2 });
+    lab.block(0, sTop - 50, SX + 12, sBot + 20); lab.block(PX - 20, ground - 110, RX - 6, ground); lab.block(100, ground, EDGE, H); lab.block(RX - 16, sTop - 16, RX + 16, sBot + 16);
+    /* the graph column's tick labels are set wider than the labeller measures them, so its block starts well left of them */
+    lab.block(GL - 130, 96, 1400, H);
+    /* the velocity and acceleration arrows ride beside the rock on its column */
+    const vx = RX + 22, ax = RX + 48;
+    let vTip = null;
+    if (Math.abs(v) > 0.3) {
+      vTip = cl(Y(y) - Math.sign(v) * Math.min(150, Math.abs(v) * 4.5), Y(YHI) - 40, H - 40);
+      arrow(ctx, vx, Y(y), vx, vTip, C('velocity'), 5);
+      lab.block(vx - 8, Math.min(vTip, Y(y)), vx + 8, Math.max(vTip, Y(y)));
+    }
+    const aEnd = Math.min(H - 40, Y(y) + 20 + g.v * 5);
+    arrow(ctx, ax, Y(y), ax, aEnd, C('acceleration'), 5);
+    lab.block(ax - 8, Y(y), ax + 8, aEnd);
+    /* the two levels are named left of the column, the start beside the scale and the highest point above
+       the thrower, which leaves the right of the column to the arrow labels */
+    lab.add('y_0 = 0', SX + 80, Y(0), 0, -1, C('position'), 20, 18);
+    lab.add('最高点 ' + fmt(ytop, 2) + ' m', RX - 32, Y(ytop), -1, -0.3, C('position'), 18, 12);
+    lab.add('a = −' + fmt(g.v, 2) + ' m/s²', ax, (Y(y) + aEnd) / 2, 1, 0, C('acceleration'), 20, 14);
+    if (vTip !== null) lab.add('v = ' + signed(v, 2) + ' m/s', vx, vTip, v > 0 ? 1 : 0.8, v > 0 ? 0 : 0.6, C('velocity'), 20, 16);
+    else lab.add('v = 0', vx, Y(y), 1, -0.6, C('velocity'), 20, 16);
+    /* the three graphs on their fixed ranges */
+    const G1 = axes(ctx, boxes[0], [0, TMAX], [YLO, YHI], { yl: 'y (m)', yc: C('position'), nx: 6, ny: 6 });
+    const G2 = axes(ctx, boxes[1], [0, TMAX], [VLO, VHI], { yl: 'v (m/s)', yc: C('velocity'), nx: 6, ny: 6 });
+    const G3 = axes(ctx, boxes[2], [0, TMAX], [ALO, 0], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 6, ny: 5 });
+    clipTo(ctx, boxes[0], () => curve(ctx, pos, 0, T.v, G1.X, G1.Y, C('position'), 5));
+    clipTo(ctx, boxes[1], () => line(ctx, G2.X(0), G2.Y(v0.v), G2.X(T.v), G2.Y(vel(T.v)), C('velocity'), 5));
+    line(ctx, G3.X(0), G3.Y(-g.v), G3.X(T.v), G3.Y(-g.v), C('acceleration'), 5);
+    if (ttop <= T.v) { if (ytop <= YHI) dot(ctx, G1.X(ttop), G1.Y(ytop), C('position'), false, 9); dot(ctx, G2.X(ttop), G2.Y(0), C('velocity'), false, 9); }
+    dot(ctx, G2.X(0), G2.Y(v0.v), C('velocity'), false, 9);
+    const pts = [[G1, y, YLO, YHI], [G2, v, VLO, VHI], [G3, -g.v, ALO, 0]].map(([G, val, lo, hi], i) => {
+      const py = G.Y(cl(val, lo, hi)), px = G.X(tau);
+      line(ctx, px, boxes[i].b, px, py, C('time'), 2, [4, 8]); dot(ctx, px, py, PAL.ink, val >= lo && val <= hi, 9);
+      return { x: px, y: py };
+    });
+    /* the slope's name takes the corner of the velocity graph that the line and the moving point leave clear */
+    const sl = '斜率 = −g', sw = F.measure(ctx, sl, { size: 18, weight: 600 }) + 14, b1 = boxes[1];
+    const near = [...Array(25)].map((_, i) => { const t = (T.v * i) / 24; return { x: G2.X(t), y: G2.Y(cl(vel(t), VLO, VHI)) }; }).concat([pts[1]]);
+    const spots = [[b1.r - 10 - sw, b1.t + 8], [b1.l + 10, b1.b - 34], [b1.r - 10 - sw, b1.b - 34], [b1.l + 10, b1.t + 8]];
+    const [sx, sy] = spots.map((p) => [p, near.filter((q) => q.x > p[0] - 14 && q.x < p[0] + sw + 14 && q.y > p[1] - 14 && q.y < p[1] + 40).length]).reduce((a, b) => (b[1] < a[1] ? b : a))[0];
+    text(ctx, sl, sx + 7, sy + 13, C('acceleration'), { size: 18, weight: 600, bg: PAL.panel });
+    const missed = lab.flush();
+    if (missed.length) d.fig.dataset.missed = missed.join(' | '); else delete d.fig.dataset.missed;
+    hits = [{ x: RX, y: Y(y), r: 16, name: '石块' }, { x: PX, y: ground - 40, r: 40, name: '抛石块的人' }, { x: 210, y: ground + 80, r: 70, name: '悬崖' }, { x: G2.X(0), y: G2.Y(cl(v0.v, VLO, VHI)), r: 12, name: 'v₀，初速度' }, ...pts.map((p, i) => ({ x: p.x, y: p.y, r: 14, name: ['石块当前的位置', '石块当前的速度', '它当前的加速度'][i] }))];
+    /* what the numbers say */
+    const at = Math.abs(tau - ttop) < 0.012 * T.v && ttop <= T.v;
+    const run = '飞行超出了刻度的两端。';
+    topline(ctx, at
+      ? '在 t = ' + fmt(ttop, 2) + ' s 时，石块位于最高点 ' + fmt(ytop, 2) + ' m 处，此时它的速度为零，但加速度仍为 $\\ka = -' + fmt(g.v, 2) + '\\ \\text{m/s}^2$。' + (offScale ? '此时' + run : '')
+      : '经过 ' + fmt(tau, 2) + ' s，石块位于 $\\ky = ' + ptex(y, 2) + '\\ \\text{m}$ 处，速度为 $\\kv = ' + ptex(v, 2) + '\\ \\text{m/s}$，' + (y > 0.005 ? '在起点上方，并且' : y < -0.005 ? '在起点下方，并且' : '在起点，并且') + (v > 0 ? '仍在上升' : '正在下降')
+        + (offScale ? '；' + run : '，而 $\\ka = -' + fmt(g.v, 2) + '\\ \\text{m/s}^2$ 始终不变。'));
+    readout(d.readout, `\\begin{aligned} \\ky &= \\kyo + \\kvo\\kt - \\tfrac{1}{2}\\kg\\kt^2 = 0 + (${fmt(v0.v, 1)})(${fmt(tau, 2)}) - \\tfrac{1}{2}(${fmt(g.v, 2)})(${fmt(tau, 2)})^2 = ${stex(y, 2)}\\ \\text{m} \\\\ \\kv &= \\kvo - \\kg\\kt = ${fmt(v0.v, 1)} - (${fmt(g.v, 2)})(${fmt(tau, 2)}) = ${stex(v, 2)}\\ \\text{m/s} \\end{aligned}`,
+      '石块在 $\\kt = \\kvo/\\kg = ' + fmt(ttop, 2) + '\\ \\text{s}$ 时最高，此时 $\\kv = 0$，$\\ky = \\kvo^2/2\\kg = ' + fmt(ytop, 2) + '\\ \\text{m}$。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.41: a rock thrown up and a rock thrown down with the same
+   speed, both falling to the same level, and beside them v against y:
+   the one parabola v² = v0² − 2g(y − y0) that both rocks ride. Finite
+   flight, so it gets the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-rock-down', 720);
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 25, step: 0.1, value: 13, unit: 'm/s', dec: 1, onInput: reset, aria: '初速率' });
+  /* the level reached runs 1 m to 12 m below the start, which holds the 5.10 m of the example and
+     keeps the one height scale the scene and the graph share readable */
+  const yE = ctl(d.controls, { label: '\\ky', cls: 'position', min: -12, max: -1, step: 0.1, value: -5.1, unit: 'm', dec: 2, onInput: reset, aria: '到达的高度' });
+  const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.5, max: 10, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: '重力加速度', detents: [{ v: 1.67, label: '月球' }, { v: 9.8, label: '地球' }], snap: true });
+  const vmax = () => Math.sqrt(v0.v * v0.v - 2 * g.v * yE.v);
+  const tA = () => (v0.v + vmax()) / g.v, tB = () => (-v0.v + vmax()) / g.v;
+  const cy = cycle(tA, 1.4);
+  function reset() { cy.reset(); }
+  let hits = [];
+  F.hover(d.stage, () => hits);
+  /* The two scales are fixed from the slider ranges and never follow the flight: the height runs
+     −12 m to 14 m and the velocity −32 m/s to 32 m/s, which hold every value the sliders reach
+     except an apex thrown higher than 14 m, and that apex is drawn against the top of the scale. */
+  const YLO = -12, YHI = 16, VM = 32;
+  const clamp2 = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), ta = tA(), tb = tB(), vm = vmax(), ytop = (v0.v * v0.v) / (2 * g.v);
+    const yA = v0.v * tau - 0.5 * g.v * tau * tau, vA = v0.v - g.v * tau;
+    const tbb = Math.min(tau, tb), yB = -v0.v * tbb - 0.5 * g.v * tbb * tbb, vB = -v0.v - g.v * tbb, arrivedB = tau >= tb - 1e-9;
+    /* one height scale for the scene and the graph */
+    const yr = { lo: YLO, hi: YHI, n: 7 }, box = { l: 760, r: 1330, t: 140, b: 620 }, vr = { lo: -VM, hi: VM, n: 4 };
+    const { X: GX0, Y: Y0 } = axes(ctx, box, [vr.lo, vr.hi], [yr.lo, yr.hi], { xl: 'v (m/s)', xc: C('velocity'), yl: 'y (m)', yc: C('position'), nx: 4, ny: 7 });
+    const GX = (v) => GX0(clamp2(v, -VM, VM)), Y = (m) => Y0(clamp2(m, YLO, YHI));
+    /* the scene: the cliff, the person, the two rocks */
+    const ground = Y(0) + 96;
+    fixed(ctx, 60, ground, 140, Math.max(20, box.b + 60 - ground));
+    figure(ctx, 150, ground, F.ref('thrower'), { face: 1, reach: { x: 210, y: Y(0) + 10 } });
+    line(ctx, 200, Y(0), 640, Y(0), C('position'), 2, [8, 8]); text(ctx, 'y₀ = 0', 664, Y(0) - 18, C('position'), { size: 20, weight: 600, align: 'right' });
+    line(ctx, 200, Y(yE.v), 640, Y(yE.v), C('position'), 2, [8, 8]); text(ctx, 'y = ' + stex(yE.v, 2).replace('-', '−') + ' m', 664, Y(yE.v) + 22, C('position'), { size: 20, weight: 600, align: 'right' });
+    const xa = 320, xb = 480;
+    text(ctx, '向上抛', xa, Y(yr.hi) - 30, F.ref('rock'), { size: 17, align: 'center' }); text(ctx, '向下抛', xb, Y(yr.hi) - 30, F.ref('rock-down'), { size: 17, align: 'center' });
+    line(ctx, xa, Y(yr.hi), xa, Y(yr.lo), PAL.rule, 1.5); line(ctx, xb, Y(yr.hi), xb, Y(yr.lo), PAL.rule, 1.5);
+    /* The marks the rock thrown up leaves as it flies. A flight of many seconds would stack fifty
+       marks on one column, so the interval between marks is widened until at most eight are drawn,
+       and each is named on hover. */
+    const mstep = Math.max(1, Math.ceil(ta / 8));
+    const marks = [];
+    for (let k = 0; k <= Math.floor(tau + 1e-9) && k <= ta; k += mstep) {
+      const yk = v0.v * k - 0.5 * g.v * k * k, vk = v0.v - g.v * k;
+      dot(ctx, xa, Y(yk), C('position'), false, 7);
+      if (Math.abs(vk) > 0.3) arrow(ctx, xa - 26, Y(yk), xa - 26, Y(yk) - Math.sign(vk) * (16 + Math.abs(vk) * 4), C('velocity'), 3);
+      marks.push({ x: xa, y: Y(yk), r: 12, name: '抛出后 ' + k + ' s' });
+    }
+    hits = marks;
+    dot(ctx, xa, Y(yA), F.ref('rock'), true, 11);
+    if (Math.abs(vA) > 0.3) arrow(ctx, xa - 26, Y(yA), xa - 26, Y(yA) - Math.sign(vA) * (16 + Math.abs(vA) * 4), C('velocity'), 4);
+    dot(ctx, xb, Y(yB), F.ref('rock-down'), true, 11);
+    arrow(ctx, xb + 26, Y(yB), xb + 26, Y(yB) + 16 + Math.abs(vB) * 4, C('velocity'), 4);
+    const lab = labeller(ctx, 720);
+    lab.block(0, Y(yr.hi) - 50, 640, Y(yr.hi) - 10); lab.block(box.l - 70, box.t - 30, box.r, box.b + 60);
+    lab.block(xa - 40, Y(yr.hi), xa + 12, Y(yr.lo)); lab.block(xb - 12, Y(yr.hi), xb + 40, Y(yr.lo));
+    /* the two level names, blocked wide: a label is measured narrower than the page text it is set in */
+    lab.block(420, Y(0) - 34, 670, Y(0) - 2); lab.block(420, Y(yE.v) + 6, 670, Y(yE.v) + 38);
+    lab.add('v = ' + signed(vB, 1) + ' m/s', xb + 26, Y(yB), 0.6, arrivedB ? -0.7 : 0.7, C('velocity'), 18, 22);
+    lab.add('v = ' + signed(vA, 1) + ' m/s', xa + 12, Y(yA), 0.6, vA > 0 ? 0.7 : -0.7, C('velocity'), 18, 22);
+    lab.flush();
+    /* the graph: the single parabola both rocks ride, clipped to the fixed box */
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    curve(ctx, (v) => (v0.v * v0.v - v * v) / (2 * g.v), Math.max(-VM, -vm), Math.min(VM, vm), GX0, Y0, C('position'), 5, 160);
+    ctx.restore();
+    line(ctx, box.l, Y(yE.v), box.r, Y(yE.v), C('position'), 2, [8, 8]);
+    dot(ctx, GX(v0.v), Y(0), C('velocity'), false, 9); dot(ctx, GX(-v0.v), Y(0), C('velocity'), false, 9);
+    text(ctx, '+v₀', GX(v0.v) + 14, Y(0) - 20, C('velocity'), { size: 20, weight: 600 }); text(ctx, '−v₀', GX(-v0.v) - 14, Y(0) - 20, C('velocity'), { size: 20, weight: 600, align: 'right' });
+    dot(ctx, GX(-vm), Y(yE.v), C('velocity'), false, 9);
+    text(ctx, signed(-vm, 1) + ' m/s（在 y = ' + stex(yE.v, 2).replace('-', '−') + ' m 处）', GX(-vm) + 16, Y(yE.v) - 22, C('velocity'), { size: 17, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    dot(ctx, GX(vA), Y(yA), F.ref('rock'), true, 9); dot(ctx, GX(vB), Y(yB), F.ref('rock-down'), true, 9);
+    /* the equation names three types at once, so it is written in ink rather than in any one of their hues */
+    text(ctx, 'v² = v₀² − 2g(y − y₀)', box.r - 10, box.t + 26, PAL.ink, { size: 18, weight: 600, align: 'right' });
+    /* what the numbers say */
+    const yl = stex(yE.v, 2).replace('-', '−'), vl = signed(-vm, 1);
+    topline(ctx, tau >= ta - 1e-9 ? '经过 ' + fmt(ta, 2) + ' s，向上抛的石块到达 ' + yl + ' m 处，速度为 ' + vl + ' m/s，这正是向下抛的石块在 ' + fmt(tb, 2) + ' s 时在该处的速度。'
+      : arrivedB ? '向下抛的石块到达 ' + yl + ' m 处，速度为 ' + vl + ' m/s，用时 ' + fmt(tb, 2) + ' s，而在 ' + fmt(tau, 2) + ' s 时，向上抛的石块位于 ' + signed(yA, 2) + ' m 处，' + (vA > 0 ? '仍在上升。' : '正在下降。')
+      : '经过 ' + fmt(tau, 2) + ' s，向下抛的石块位于 ' + signed(yB, 2) + ' m 处，速度为 ' + signed(vB, 1) + ' m/s，而向上抛的石块位于 ' + signed(yA, 2) + ' m 处，正在上升。');
+    const v2 = v0.v * v0.v - 2 * g.v * yE.v;
+    readout(d.readout, `\\begin{aligned} \\kv^2 &= \\kvo^2 - 2\\kg(\\ky - \\kyo) = (${fmt(v0.v, 1)})^2 - 2(${fmt(g.v, 2)})(${stex(yE.v, 2)} - 0) = ${fmt(v2, 1)}\\ \\text{m}^2\\text{/s}^2 \\\\ \\kv &= -\\sqrt{${fmt(v2, 1)}} = ${stex(-vm, 1)}\\ \\text{m/s} \\end{aligned}`,
+      '向上抛的石块再次经过 $\\ky = 0$ 时的速度为 −' + fmt(v0.v, 1) + ' m/s，它的最高点在 $\\ky = ' + fmt(ytop, 2) + '\\ \\text{m}$。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => tA() / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.42: finding g from a falling ball. The ball is released from
+   rest and falls the measured distance in the measured time, leaving a
+   mark every 0.1 s; y, v and a against t beside it. Finite drop, so it
+   gets the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-drop', 760);
+  /* Both sliders are coarse enough to drag and carry a soft detent at the measurement the example
+     reports, the ball at −1.0000 m after 0.45173 s, which together give g = 9.8000 m/s². The time
+     slider's range is offset so that its detent sits exactly on the step grid. */
+  const yF = ctl(d.controls, { label: '\\ky', cls: 'position', min: -3, max: -0.2, step: 0.01, value: -1, unit: 'm', dec: 2, onInput: reset, aria: '下落结束时的位置', detents: [{ v: -1, label: '−1.00 m' }], snap: true });
+  const tF = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.20173, max: 1.00173, step: 0.0001, value: 0.45173, unit: 's', dec: 5, onInput: reset, aria: '下落所用的时间', detents: [{ v: 0.45173, label: '0.45173 s' }], snap: true });
+  const cy = cycle(() => tF.v, 1.4);
+  function reset() { cy.reset(); }
+  const acc = () => (2 * yF.v) / (tF.v * tF.v);
+  /* Fixed scales: the fall runs 0 to −3 m and 0 to 1 s, the two slider ranges, with the velocity
+     read on a −15 m/s to 0 axis and the acceleration on −25 m/s² to 0. A value past the end of one
+     of those two is drawn against it and the headline says so. */
+  const YLO = -3, TMAX = 1, VLO = -15, ALO = -25;
+  const cl = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), a = acc(), gg = -a, done = tau >= tF.v - 1e-9;
+    const pos = (s) => 0.5 * a * s * s, vel = (s) => a * s, y = pos(tau), v = vel(tau);
+    /* the scene: the ball on a vertical line below the hand, a height scale at its left, the strobe readings in a column at its right */
+    const yr = { lo: YLO, hi: 0, n: 6 }, sTop = 170, sBot = 690;
+    const Y = (m) => sBot - ((sBot - sTop) * (cl(m, YLO, 0) - yr.lo)) / (yr.hi - yr.lo);
+    const bx = 210;
+    fixed(ctx, bx - 60, Y(0) - 60, 120, 36); text(ctx, '从静止释放', bx, Y(0) - 78, PAL.muted, { size: 17, align: 'center' });
+    vscale(ctx, 130, Y, yr.lo, yr.hi, (yr.hi - yr.lo) / yr.n, 'm');
+    line(ctx, bx, Y(0), bx, Y(yr.lo), PAL.rule, 1.5);
+    line(ctx, bx - 40, Y(yF.v), bx + 40, Y(yF.v), C('position'), 3);
+    /* the strobe readings every 0.1 s, in a column as the book tabulates them */
+    const cols = [310, 400, 530];
+    text(ctx, 't (s)', cols[0], 118, C('time'), { size: 17, weight: 600, align: 'center' }); text(ctx, 'y (m)', cols[1], 118, C('position'), { size: 17, weight: 600, align: 'center' }); text(ctx, 'v (m/s)', cols[2], 118, C('velocity'), { size: 17, weight: 600, align: 'center' });
+    const n = Math.floor(tF.v / 0.1 + 1e-9), rowY = (k) => 150 + k * Math.min(48, 520 / Math.max(1, n));
+    for (let k = 0; k <= n; k++) {
+      const tk = 0.1 * k, on = tau >= tk - 1e-9;
+      if (on && k > 0) dot(ctx, bx, Y(pos(tk)), C('position'), false, 7);
+      text(ctx, fmt(tk, 1), cols[0], rowY(k), on ? C('time') : PAL.muted, { size: 17, align: 'center' });
+      text(ctx, stex(pos(tk), 3).replace('-', '−'), cols[1], rowY(k), on ? C('position') : PAL.muted, { size: 17, align: 'center' });
+      text(ctx, stex(vel(tk), 2).replace('-', '−'), cols[2], rowY(k), on ? C('velocity') : PAL.muted, { size: 17, align: 'center' });
+    }
+    dot(ctx, bx, Y(y), F.ref('ball'), true, 12);
+    if (Math.abs(v) > 0.05) { const L = 24 + Math.abs(v) * 10; arrow(ctx, bx + 30, Y(y), bx + 30, Y(y) + L, C('velocity'), 4); }
+    const aL = 30 + Math.min(gg, 25) * 5; arrow(ctx, 588, 300, 588, 300 + aL, C('acceleration'), 5); text(ctx, 'a = −g', 588, 270, C('acceleration'), { size: 20, weight: 600, align: 'center' });
+    /* the three graphs, y, v and a against t, on the fixed ranges */
+    const gx = { l: 700, r: 1330 };
+    const boxes = [{ t: 110, b: 250 }, { t: 320, b: 460 }, { t: 530, b: 670 }].map((b) => ({ ...gx, ...b }));
+    const G1 = axes(ctx, boxes[0], [0, TMAX], [YLO, 0], { yl: 'y (m)', yc: C('position'), nx: 5, ny: 3, fx: (x) => fmt(x, 1), fy: (x) => fmt(x, 1) });
+    const G2 = axes(ctx, boxes[1], [0, TMAX], [VLO, 0], { yl: 'v (m/s)', yc: C('velocity'), nx: 5, ny: 3, fx: (x) => fmt(x, 1) });
+    const G3 = axes(ctx, boxes[2], [0, TMAX], [ALO, 0], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 5, ny: 5, fx: (x) => fmt(x, 1) });
+    const G1Y = (m) => G1.Y(cl(m, YLO, 0)), G2Y = (m) => G2.Y(cl(m, VLO, 0)), G3Y = (m) => G3.Y(cl(m, ALO, 0));
+    const off = vel(tF.v) < VLO || a < ALO;
+    ctx.save(); ctx.beginPath(); ctx.rect(boxes[0].l, boxes[0].t, boxes[0].r - boxes[0].l, boxes[0].b - boxes[0].t); ctx.clip();
+    curve(ctx, pos, 0, tF.v, G1.X, G1.Y, C('position'), 5);
+    ctx.restore();
+    line(ctx, G2.X(0), G2Y(0), G2.X(tF.v), G2Y(vel(tF.v)), C('velocity'), 5);
+    line(ctx, G3.X(0), G3Y(a), G3.X(tF.v), G3Y(a), C('acceleration'), 5);
+    for (let k = 1; k <= n; k++) { const tk = 0.1 * k, on = tau >= tk - 1e-9; if (!on) continue; dot(ctx, G1.X(tk), G1Y(pos(tk)), C('position'), false, 6); dot(ctx, G2.X(tk), G2Y(vel(tk)), C('velocity'), false, 6); }
+    [[G1, G1Y(y)], [G2, G2Y(v)], [G3, G3Y(a)]].forEach(([G, yy], i) => { line(ctx, G.X(tau), boxes[i].b, G.X(tau), yy, C('time'), 2, [4, 8]); dot(ctx, G.X(tau), yy, PAL.ink, true, 9); });
+    text(ctx, 'a = ' + stex(a, 4).replace('-', '−') + ' m/s²', G3.X(tF.v / 2), G3Y(a) - 24, C('acceleration'), { size: 18, weight: 600, align: 'center' });
+    headline(ctx, (done ? '球下落 ' + fmt(-yF.v, 2) + ' m 用时 ' + fmt(tF.v, 5) + ' s，由此得出此处的 g = ' + fmt(gg, 4) + ' m/s²。'
+      : '经过 ' + fmt(tau, 2) + ' s，球已下落 ' + fmt(-y, 3) + ' m，正以 ' + stex(v, 2).replace('-', '−') + ' m/s 的速度运动。')
+      + (off ? '如此快的下落超出了速度刻度和加速度刻度的两端。' : ''));
+    readout(d.readout, `\\ka = \\frac{2(\\ky - \\kyo)}{\\kt^2} = \\frac{2(${stex(yF.v, 4)}\\ \\text{m} - 0)}{(${fmt(tF.v, 5)}\\ \\text{s})^2} = ${stex(a, 4)}\\ \\text{m/s}^2,\\qquad \\kg = ${fmt(gg, 4)}\\ \\text{m/s}^2`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => tF.v / 4), draw });
+})();
+
+/* =====================================================================
+   SIM: the depth of a mine shaft. A rock falls to the water and the
+   sound of the splash climbs back up; the clock reads the two legs, and
+   beside the shaft the height of the rock and then of the sound against
+   time. Finite round trip, so it gets the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-well', 640);
+  /* The depth of the shaft is a length of the scene, so it stays in ink, as the drop height in the
+     hammer-and-feather figure does. The speed of sound is not a slider: every value between 300 and
+     360 m/s moved the drawing by less than a line's width, so it is stated as the 340 m/s the
+     problem uses (rule 24.6). */
+  const D = ctl(d.controls, { label: 'd', cls: 'position', min: 5, max: 100, step: 1, value: 40, unit: 'm', dec: 0, onInput: reset, aria: '矿井的深度' });
+  const G = 9.8, VS = 340;
+  const tFall = () => Math.sqrt((2 * D.v) / G), tSound = () => D.v / VS, tTot = () => tFall() + tSound();
+  const cy = cycle(tTot, 1.4);
+  function reset() { cy.reset(); }
+  /* both scales are fixed from the depth slider's maximum: 100 m of shaft and the 5 s the deepest
+     shaft takes for the fall and the sound together */
+  const DMAX = 100, TMAX = 5;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), tf = tFall(), ts = tSound(), tt = tTot(), done = tau >= tt - 1e-9;
+    const falling = tau < tf, yRock = falling ? -0.5 * G * tau * tau : -D.v, ySound = falling ? null : Math.min(0, -D.v + VS * (tau - tf));
+    /* one height scale for the shaft and the graph */
+    const yr = { lo: -DMAX, hi: 0, n: 4 }, box = { l: 700, r: 1330, t: 200, b: 570 };
+    const { X: GX, Y } = axes(ctx, box, [0, TMAX], [yr.lo, yr.hi], { xl: 't (s)', xc: C('time'), yl: '高度 (m)', yc: C('position'), nx: 5, ny: 4, fx: (x) => fmt(x, 1) });
+    /* the shaft: two walls, water at the bottom, the listener at the top */
+    const sx = 330, wl = 250, wr = 410;
+    fixed(ctx, wl - 40, Y(0), 40, Y(-D.v) - Y(0) + 40); fixed(ctx, wr, Y(0), 40, Y(-D.v) - Y(0) + 40);
+    ctx.save(); ctx.fillStyle = alpha(C('position'), 0.15); ctx.fillRect(wl, Y(-D.v) - 10, wr - wl, 50); ctx.restore();
+    line(ctx, wl, Y(-D.v), wr, Y(-D.v), C('position'), 3);
+    line(ctx, 100, Y(0), wl - 40, Y(0), PAL.ink, 4); figure(ctx, 150, Y(0), F.ref('listener'), { face: 1, lean: 0.25, reach: { x: 215, y: Y(0) - 40 } });
+    vbracket(ctx, 500, Y(0), Y(-D.v), C('position'), 'd = ' + fmt(D.v, 0) + ' m', 1);
+    /* the rock, and after the splash the sound on its way up */
+    dot(ctx, sx, Y(yRock), F.ref('shaft-rock'), true, 10);
+    if (falling && tau > 0.05) arrow(ctx, sx + 26, Y(yRock), sx + 26, Y(yRock) + 20 + G * tau * 3, C('velocity'), 4);
+    if (ySound !== null && ySound < -0.01) {
+      ctx.save(); ctx.strokeStyle = C('velocity'); ctx.lineWidth = 3;
+      for (let k = 0; k < 3; k++) { const yy = Y(ySound) + k * 16; ctx.beginPath(); ctx.arc(sx, yy + 30, 34 - k * 8, Math.PI * 1.22, Math.PI * 1.78); ctx.stroke(); }
+      ctx.restore();
+      text(ctx, '声音以 ' + fmt(VS, 0) + ' m/s 传播', sx + 44, Y(ySound), C('velocity'), { size: 17, weight: 600 });
+    }
+    if (!falling) text(ctx, '溅水发生在 t = ' + fmt(tf, 2) + ' s', sx, Y(-D.v) + 62, PAL.muted, { size: 17, align: 'center' });
+    /* the clock */
+    stopwatch(ctx, 120, 520, 52, tau / tt);
+    text(ctx, 't = ' + fmt(tau, 2) + ' s', 120, 596, C('time'), { size: 22, weight: 600, align: 'center' });
+    /* the graph: the fall, then the sound's climb */
+    curve(ctx, (s) => -0.5 * G * s * s, 0, tf, GX, Y, C('position'), 5);
+    /* the sound's leg is a height against time like the fall, so it takes the position hue too and
+       is told from the fall by being dashed rather than by a hue that belongs to another type */
+    line(ctx, GX(tf), Y(-D.v), GX(tt), Y(0), C('position'), 5, [10, 10]);
+    line(ctx, GX(tf), box.b, GX(tf), Y(-D.v), PAL.muted, 2, [4, 8]);
+    /* the two legs are bracketed below the curve's start, where a shallow shaft leaves no room above it,
+       and a short leg takes its label beside the bracket rather than over it */
+    const by = Math.max(box.t + 70, Y(-D.v) + 40);
+    const fallLab = '下落，' + fmt(tf, 2) + ' s', roomy = GX(tf) - GX(0) > F.measure(ctx, fallLab, { size: 22, weight: 600 }) + 24;
+    hbracket(ctx, GX(0), GX(tf), by, C('position'), roomy ? fallLab : undefined);
+    if (!roomy) text(ctx, fallLab, GX(tf) + 12, by, C('position'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
+    hbracket(ctx, GX(tf), GX(tt), by + 44, C('position'));
+    text(ctx, '声音，' + fmt(ts, 2) + ' s', GX(tt) + 12, by + 44, C('position'), { size: 18, weight: 600, align: 'left' });
+    dot(ctx, GX(tau), Y(falling ? yRock : ySound), PAL.ink, true, 9);
+    topline(ctx, done ? '在落下 ' + fmt(tt, 2) + ' s 后听到溅水声，其中 ' + fmt(tf, 2) + ' s 是下落的时间，' + fmt(ts, 2) + ' s 是声音上传 ' + fmt(D.v, 0) + ' m 的时间。'
+      : falling ? '经过 ' + fmt(tau, 2) + ' s，石块仍在下落，距水面 ' + fmt(D.v + yRock, 1) + ' m。'
+      : '溅水发生在 ' + fmt(tf, 2) + ' s，在 ' + fmt(tau, 2) + ' s 时它的声音正在上传，位于听者下方 ' + fmt(-ySound, 1) + ' m 处。');
+    const naive = 0.5 * G * tt * tt;
+    readout(d.readout, `\\kt_{\\text{下落}} = \\sqrt{\\frac{2d}{\\kg}} = \\sqrt{\\frac{2(${fmt(D.v, 0)}\\ \\text{m})}{9.80\\ \\text{m/s}^2}} = ${fmt(tf, 2)}\\ \\text{s},\\qquad \\kt_{\\text{声音}} = \\frac{d}{\\kv_{\\text{s}}} = \\frac{${fmt(D.v, 0)}\\ \\text{m}}{${fmt(VS, 0)}\\ \\text{m/s}} = ${fmt(ts, 2)}\\ \\text{s}`,
+      '若把全部 ' + fmt(tt, 2) + ' s 当作下落的时间，得到的深度为 $\\tfrac{1}{2}\\kg\\kt^2$ = ' + fmt(naive, 1) + ' m，比 ' + fmt(D.v, 0) + ' m 高估了 ' + fmt(naive - D.v, 1) + ' m。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => tTot() / 5), draw });
+})();
+};

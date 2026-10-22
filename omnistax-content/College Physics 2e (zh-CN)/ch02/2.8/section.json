@@ -1,0 +1,846 @@
+{
+ "id": "2.8",
+ "module": "m42103",
+ "chapter": "2",
+ "title": "一维运动的图像分析",
+ "short": "图像分析",
+ "lead": "运动的图像可以读出运动本身。<span data-concept=\"position\">位置</span>图像和<span data-concept=\"velocity\">速度</span>图像随<span data-concept=\"time\">时间</span>变化的斜率，沿直线和沿曲线的切线求出，把运动从一幅图像传到下一幅图像。",
+ "objectives": [
+  "用斜率和纵截距（<em>y</em> 截距）描述直线图像。",
+  "由位置—时间图像求平均速度或瞬时速度。",
+  "由速度—时间图像求平均加速度或瞬时加速度。",
+  "由位置—时间图像导出速度—时间图像。",
+  "由速度—时间图像导出加速度—时间图像。"
+ ],
+ "summary_html": "<ul><li>运动图像可用来分析运动。</li><li>图像解法与推导运动学方程的数学方法得出相同的结果。</li><li><span data-concept=\"displacement\">位移</span> $\\kx$—<span data-concept=\"time\">时间</span> $\\kt$ 图像的斜率是<span data-concept=\"velocity\">速度</span> $\\kv$。</li><li><span data-concept=\"velocity\">速度</span> $\\kv$—<span data-concept=\"time\">时间</span> $\\kt$ 图像的斜率是<span data-concept=\"acceleration\">加速度</span> $\\ka$。</li><li><span data-concept=\"average-velocity\">平均速度</span>、<span data-concept=\"instantaneous-velocity\">瞬时速度</span>和<span data-concept=\"acceleration\">加速度</span>都可以通过分析图像得到。</li></ul>",
+ "notes": "习题 2、4、5、6 和 8 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "注：从图像中取得的数值总是带有不确定度。如果你的答案与预期值不同，请检查它们是否在你自己估计的数据提取不确定度范围之内。",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6 和 8 没有给出答案，因而略去；习题 5 要求画出地铁列车的位置图像，其答案为空，也略去。“批判性思考”一题在本书中没有标明类型，按其所在标题归为习题；它的答案和理解检测的答案沿用本书的图像。AP 一题（把书推过桌面）取自 2.4 节，因为它考查由一幅运动图像导出另一幅。思考题的建议思路由 AI 撰写，并已标明。数值答案允许 2% 的容差，本书本身也指出从图像中取得的数值带有一定的不确定度。",
+ "figures": [
+  {
+   "id": "sim-line",
+   "kind": "sim",
+   "number": "2.44",
+   "originals": [
+    "/media/ch02/Figure_02_07_01.jpg"
+   ],
+   "original_caption": "直线图像。直线的方程为 y = mx + b。",
+   "widths": [
+    300
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "points clipped to the graph, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-jet-xt",
+   "kind": "sim",
+   "number": "2.45",
+   "originals": [
+    "/media/ch02/Figure02_07_02.jpg"
+   ],
+   "original_caption": "喷气动力车在邦纳维尔盐滩上的位置—时间图像。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "time",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "round ticks, times split at 4 s, labels, note macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-jet-graphs",
+   "kind": "sim",
+   "number": "2.46",
+   "originals": [
+    "/media/ch02/Figure02_07_03.jpg"
+   ],
+   "original_caption": "喷气动力车在加速度恒定的那段时间内的运动图像。（a）x—t 图像的斜率是速度。图中在两个点处作了表示，得到的瞬时速度画在下一幅图中。任一点的瞬时速度就是该点切线的斜率。（b）在这一段运动中，v—t 图像的斜率是恒定的，表明加速度恒定。（c）在所画的时间间隔内，加速度有恒定值 5.0 m/s²。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "time",
+    "position",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "v0 label clear of the axis below"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-jet-car",
+   "kind": "photo",
+   "number": "2.47",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-tangent",
+   "kind": "sim",
+   "number": "2.48",
+   "originals": [
+    "/media/ch02/Figure02_07_03b.jpg"
+   ],
+   "original_caption": "x—t 图像的斜率是速度。图中在两个点处作了表示。任一点的瞬时速度就是该点切线的斜率。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "time",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "tangent reaches Q, labels off Q, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-jet-top",
+   "kind": "sim",
+   "number": "2.49",
+   "originals": [
+    "/media/ch02/Figure_02_07_04-4acf.jpg"
+   ],
+   "original_caption": "喷气动力车达到最大速度时的运动图像。这段运动从图 2.46 中的运动结束处开始。（a）速度逐渐趋近它的最大值。这幅图像的斜率是加速度，它画在最后一幅图中。（b）加速度逐渐减小到零，此时速度变为恒定。请注意，在这三幅图像中，加速度降到零，速度趋于平稳。这使得位置—时间图像几乎是线性的。位置—时间图像的局部放大图会显示出轻微的弯曲，如速度图像中所示。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes that repeated headline and caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "slopes",
+   "concept": "straight-line-graph",
+   "verb": "introduces"
+  },
+  {
+   "span": "slopes",
+   "concept": "independent-variable",
+   "verb": "introduces"
+  },
+  {
+   "span": "slopes",
+   "concept": "dependent-variable",
+   "verb": "introduces"
+  },
+  {
+   "span": "slopes",
+   "concept": "slope",
+   "verb": "introduces"
+  },
+  {
+   "span": "slopes",
+   "concept": "y-intercept",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-t",
+   "concept": "x-t-slope-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-t",
+   "concept": "straight-line-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "x-t",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-avg",
+   "concept": "x-t-slope-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-avg",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-a",
+   "concept": "tangent-slope",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-a",
+   "concept": "derive-motion-graphs",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-a",
+   "concept": "x-t-slope-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-a",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-tangent",
+   "concept": "tangent-slope",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-tangent",
+   "concept": "x-t-slope-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "v-t",
+   "concept": "v-t-slope-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "v-t",
+   "concept": "straight-line-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "v-t",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "not-constant",
+   "concept": "v-t-slope-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "not-constant",
+   "concept": "tangent-slope",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-accel",
+   "concept": "tangent-slope",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jet-accel",
+   "concept": "v-t-slope-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "reading-graphs",
+   "concept": "interpret-motion-graph",
+   "verb": "introduces"
+  },
+  {
+   "span": "reading-graphs",
+   "concept": "derive-motion-graphs",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1571006",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "reading-graphs"
+   },
+   "cite": "reading-graphs",
+   "figure": {
+    "src": "/media/ch02/Figure_02_07_04a-5e2c.jpg",
+    "alt": "速度—时间的折线图。折线分为三段。第一段是水平的。第二段斜率为负。第三段斜率也为负，但没有第二段那么负。",
+    "caption": "图 2.50"
+   },
+   "prompt": "下图是一艘船驶入港口时的速度—时间图像。（a）根据图像描述这艘船的运动。（b）这艘船的加速度图像会是什么样子？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）船先以恒定速度运动，然后开始以恒定的减速度减速。到某一时刻，它的减速度减小。它保持这个较小的减速度，直到停止运动。（b）加速度—时间图像会在第一段显示加速度为零，在第二段显示较大且恒定的负加速度，以及恒定的负加速度。<figure class=\"photo\"><img src=\"/media/ch02/Figure_02_07_04b.jpg\" alt=\"加速度—时间的折线图。图像分为三段。三段都是水平的直线。第一段表示恒定加速度为 0。第二段表示恒定的负加速度。第三段表示恒定的负加速度，但没有第二段那么负。\"><figcaption><span class=\"eyebrow\">Figure 2.51</span></figcaption></figure>"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1550042",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-t",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_01.jpg",
+    "alt": "位置—时间的折线图，标有 5 个点：a、b、c、d 和 e。折线的斜率在变化。它起初斜率为正，并随时间减小，直到大约 d 点处变为水平。此后斜率略为负。"
+   },
+   "prompt": "（a）说明如何利用下面的位置—时间图像来描述速度随时间的变化。指出（b）瞬时速度最大的时刻（$t_a$、$t_b$、$t_c$、$t_d$ 或 $t_e$），（c）瞬时速度为零的时刻，以及（d）瞬时速度为负的时刻。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）任一时刻的速度就是位置—时间图像在该时刻的斜率，因此观察曲线有多陡，就可以描述速度的变化。曲线在开头最陡，随着时间推移变得不那么陡，所以速度为正且在减小：物体沿正方向运动并在减速。在 $t_d$ 附近曲线是水平的，此后曲线略微下降，所以物体已经停下并开始往回运动。（b）瞬时速度在斜率最大处最大，也就是在 $t_a$，即标出的时刻中最早的一个。（c）它在 $t_d$ 为零，该处曲线的切线是水平的。（d）它在 $t_e$ 为负，该处曲线在下降。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id4168594",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-a",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_02.jpg",
+    "alt": "位置随时间变化的折线图，标有 a 到 l 共 12 个点。折线从 a 到 c 斜率为负，在 c 处转向，斜率为正，直到 e。它再次转向，斜率为负，直到 g。此后斜率又增大，直到 l 处变为水平。"
+   },
+   "prompt": "（a）画出与下面给出的位置—时间图像相对应的速度—时间图像。（b）指出瞬时速度最大的一个或几个时刻（$t_a$、$t_b$、$t_c$ 等）。（c）它在哪些时刻为零？（d）它在哪些时刻为负？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）每一时刻的速度就是位置图像的斜率，因此速度图像在 $t_a$ 处为负，那里位置急剧下降，然后升到 $t_c$ 处的零，即第一个低点。它在 $t_d$ 处升到最大值，那是上升最陡的部分，然后在高点 $t_e$ 处回落到零。它在 $t_f$ 附近再次为负，在低点 $t_g$ 处回到零。接着它升到第二个较低的峰值，位于 $t_i$ 和 $t_j$ 之间，那里第二段上升最陡，然后随着曲线在 $t_l$ 处趋于平缓而回落到接近零。（b）瞬时速度在 $t_d$ 最大，那里位置图像上升最陡。（c）它在 $t_c$、$t_e$、$t_g$ 和 $t_l$ 为零，这些时刻位置图像的切线是水平的。（d）它在 $t_a$、$t_b$ 和 $t_f$ 为负，这些时刻位置在减小，也就是在 $t_a$ 与 $t_c$ 之间以及 $t_e$ 与 $t_g$ 之间。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1549493",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "v-t",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_04.jpg",
+    "alt": "速度随时间变化的折线图，标有两个点。点 P 在 v 1 t 1 处。点 Q 在 v 2 t 2 处。折线的斜率为正，并随时间增大。"
+   },
+   "prompt": "（a）说明如何由类似下面这样的速度—时间图像确定加速度随时间的变化。（b）根据图像，加速度如何随时间变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）任一时刻的加速度就是速度—时间图像在该时刻的斜率。要求出它，就在所关注的时刻作曲线的切线，在切线上读出相距很远的两点的速度和时间，再用速度的变化量除以时间的变化量，$a = \\Delta v / \\Delta t$。在每一点都这样做，就得到加速度—时间图像。P 与 Q 之间的平均加速度是连接它们的直线的斜率，$(v_2 - v_1)/(t_2 - t_1)$。（b）曲线随着时间推移变得越来越陡，所以加速度为正且在增大：速度增长得越来越快。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id4131202",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "v-t",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_05.jpg",
+    "alt": "速度随时间变化的折线图，标有 a 到 l 共 12 个点。折线从原点处的 a 到 d 斜率为正，在 d 处转而向下倾斜到 e，然后再向上到 h。接着又向下倾斜，到达 v 等于 0 的点 l。"
+   },
+   "prompt": "（a）画出与下面给出的速度—时间图像相对应的加速度—时间图像。（b）指出加速度最大的一个或几个时刻（$t_a$、$t_b$、$t_c$ 等）。（c）它在哪些时刻为零？（d）它在哪些时刻为负？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）加速度图像就是速度图像的斜率所作的图像。从 $t_a$ 到 $t_d$，速度上升，起初很陡，后来较缓，所以加速度为正且在减小，在 $t_d$ 处降到零。从 $t_d$ 到 $t_e$，速度略微下降，所以加速度很小且为负，在 $t_e$ 处再次经过零。从 $t_e$ 到 $t_h$，速度再次上升，所以加速度为正，在峰值 $t_h$ 处降到零。从 $t_h$ 到 $t_l$，速度下降得越来越陡，所以加速度为负，且大小一直增大到末尾。（b）加速度在速度上升最陡处最大，也就是在最开始，$t_a$ 附近；最大的减速度在末尾，$t_l$ 附近。（c）它在 $t_d$、$t_e$ 和 $t_h$ 为零，这些时刻速度图像是瞬时水平的。（d）它在 $t_d$ 与 $t_e$ 之间以及从 $t_h$ 到 $t_l$ 为负，这些时间内速度在减小。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1365827",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "figure": {
+    "src": "/media/ch02/Figure_03_08Sol_07.jpg",
+    "alt": "速度—时间的折线图。折线从原点开始，斜率为正，直到 3 秒时达到每秒 3 米。此后斜率为零，直到 18 秒，随后变为负，直到 23 秒时速度降到 0。"
+   },
+   "prompt": "考虑下面所示的电梯中一个人的速度—时间图像。假设电梯起初静止。然后它加速 3 秒，以该速度保持 15 秒，再减速 5 秒直到停下。整个行程的加速度不是恒定的，所以我们不能对整个行程使用“一维恒定加速度运动的运动学方程”中的运动学方程。（不过，我们可以在加速度恒定的三个单独阶段中使用它们。）画出这次行程的（a）位置—时间图像和（b）加速度—时间图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）位置图像的斜率就是速度，所以要问每个时刻位置图像必须有多陡。在最初 3 秒内，速度从零开始增大，所以位置曲线起初是水平的，然后向上弯曲，越来越陡，就像加速的喷气动力车的位置图像。从 3 s 到 18 s，速度恒定为 3 m/s，所以位置沿一条斜率为 3 m/s 的直线上升，在这 15 秒内增加了 45 m。在最后 5 秒内，速度降到零，所以位置曲线向另一侧弯曲并趋于平缓。它最终在末位置处变平，末位置为 4.5 m 加 45 m 加 7.5 m，即比起点高 57 m。（b）加速度就是速度图像的斜率。它在最初 3 秒内恒定且为正，为 $1\\ \\text{m/s}^2$，在 15 秒的恒定速度期间为零，在最后 5 秒内恒定且为负，为 $-0.6\\ \\text{m/s}^2$。加速度—时间图像是三段水平线段，在 3 s 和 18 s 处从一段跳到另一段。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2576953",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "prompt": "推一下圆柱体，它就沿斜面向上滚动。如果以起点为原点，画出圆柱体在沿斜面上行和下行过程中的位置、速度和加速度随时间变化的图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取沿斜面向上为正方向，原点在起点。圆柱体开始时速度为正，上滚时变慢，在运动路径的顶端瞬间停下。然后它越滚越快地滚回来，经过原点时的速度大小与初速度相等、方向相反。因此，位置图像从原点上升，一边走一边向下弯，在圆柱体停下的那一刻达到最大值。然后它回落经过零，并继续降到零以下：这是一条开口向下的抛物线，就像向上抛出的球的高度图像。速度图像是一条斜率为负的直线，从正的初速度开始，在路径顶端穿过零，并继续取负值。加速度图像是一条取恒定负值的水平线，因为加速度始终沿斜面向下，而且在速度反向时并不改变。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id4088406",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-a",
+   "prompt": "（a）取下面第一幅图中曲线的斜率，验证喷气动力车在 $t = 20\\ \\text{s}$ 时的速度是 115 m/s。（b）取下面第二幅图中曲线上任一点的斜率，验证喷气动力车的加速度是 $5.0\\ \\text{m/s}^2$。<figure class=\"photo\"><img src=\"/media/ch02/Figure_02_08Sol_11-2370.jpg\" alt=\"位置随时间变化的折线图。折线的斜率为正，并随时间增大。\"></figure><figure class=\"photo\"><img src=\"/media/ch02/Figure_02_08Sol_12-313d.jpg\" alt=\"速度—时间的折线图。折线是直的，斜率为正。\"></figure>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 115,
+      "unit": "m/s",
+      "hint": "作位置曲线在 20 s 处的切线，在切线上读出相距很远的两个时刻的位置，再用位置的变化量除以时间的变化量。"
+     },
+     {
+      "part": "(b)",
+      "value": 5.0,
+      "unit": "m/s²",
+      "hint": "速度图像是一条直线，所以其上任意两点给出相同的斜率，而相距很远的两点给出的斜率最准确。"
+     }
+    ],
+    "solution": "（a）$115\\ \\text{m/s}$（b）$5.0\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1770908",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-a",
+   "figure": {
+    "src": "/media/ch02/Figure_02_08Sol_13-ecd0.jpg",
+    "alt": "位置随时间变化的折线图。折线是直的，斜率为正。"
+   },
+   "prompt": "利用近似值，计算下面曲线在 $t = 10.0\\ \\text{s}$ 和 $t = 30\\ \\text{s}$ 处的斜率，求这两个时刻的速度。（b）利用 a 部分的答案，求 $t = 20\\ \\text{s}$ 时的近似加速度。假设所有数值都精确到 2 位有效数字。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) velocity at 10.0 s",
+      "value": 0.208,
+      "unit": "m/s",
+      "hint": "作 10.0 s 处的切线，在切线上读出相距很远的两点之间的纵向增量和横向增量；这条曲线只是略微弯曲，所以切线紧贴曲线本身。"
+     },
+     {
+      "part": "(a) velocity at 30 s",
+      "value": 0.238,
+      "unit": "m/s",
+      "hint": "曲线在 30 s 处比在 10.0 s 处稍陡一些，所以那里的速度也稍大一些。"
+     },
+     {
+      "part": "(b) acceleration at 20 s",
+      "value": 0.0015,
+      "unit": "m/s²",
+      "hint": "20 s 时的加速度近似等于 10.0 s 到 30 s 之间速度的变化量除以它们相隔的 20 s。"
+     }
+    ],
+    "solution": "（a）在 $t = 10$ 时，$v = 0.208\\ \\text{m/s}$；在 $t = 30$ 时，$v = 0.238\\ \\text{m/s}$。（b）$0.0015\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3520768",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "figure": {
+    "src": "/media/ch02/Figure_02_08Sol_20-6a4a.jpg",
+    "alt": "速度—时间的折线图。折线分为两段。第一段斜率恒定且为正。第二段是水平的，斜率为 0。"
+   },
+   "prompt": "下图是一名世界级短跑运动员在 100 m 比赛中的 $v(t)$ 图像。（见下图。）（a）他最初 4 s 的平均速度是多少？（b）他在 $t = 5\\ \\text{s}$ 时的瞬时速度是多少？（c）他在 0 到 4 s 之间的平均加速度是多少？（d）他完成比赛用了多少时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6,
+      "unit": "m/s",
+      "hint": "在最初 4 s 内，速度沿一条直线从 0 上升到 12 m/s，所以这几秒内的平均速度正好在两者的中间。"
+     },
+     {
+      "part": "(b)",
+      "value": 12,
+      "unit": "m/s",
+      "hint": "4 s 之后图像是水平的，所以 5 s 时的速度可以直接从图上读出。"
+     },
+     {
+      "part": "(c)",
+      "value": 3,
+      "unit": "m/s²",
+      "hint": "平均加速度是速度线在 0 到 4 s 之间的斜率，即纵向增量 12 m/s 除以横向增量 4 s。"
+     },
+     {
+      "part": "(d)",
+      "value": 10,
+      "unit": "s",
+      "hint": "在最初 4 s 内，这名短跑运动员跑了 24 m，平均 6 m/s，持续 4 s，此后他每秒跑 12 m，所以要问还需要再多少秒才能使总路程达到 100 m。"
+     }
+    ],
+    "solution": "（a）6 m/s（b）12 m/s（c）$3\\ \\text{m/s}^2$（d）10 s"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "exer-12587",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "prompt": "两辆汽车并排在一条摩擦可以忽略的路径上。汽车 A 从静止开始，具有正的恒定加速度，而汽车 B 以恒定速率行驶。两辆车同时到达路上的同一个检查点。（a）在检查点，哪辆车行驶得更快？请简要说明你的理由。（b）根据实验数据，有人提出一个符合数据的方程，用来表示汽车 A 在检查点的速率 <em>V</em>，但它不一定正确：$V = KV_0$，其中 <em>K</em> 是一个带有适当单位的常量，$V_0$ 是汽车 B 的初速度。这个方程与你在 a 部分的回答一致吗？请说明为什么一致或不一致。这个方程有意义吗？请说明为什么有意义或没有意义。（c）从两辆车并排时开始，画出汽车 A 的速度和汽车 B 的速度随沿路径的距离变化的图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）汽车 A 在检查点行驶得更快，因为它必须超过汽车 B 的速率，才能到达同样的距离。（b）i. 是的，这个方程与答案一致，因为汽车 A 的速率与正确答案只差一个常量。ii. 是的，这个方程有意义，因为 $V = 2V_0$。（c）<figure class=\"photo\"><img src=\"/media/ch02/OSX_CP2e_Figure_02_08Sol_CTQ01c.jpg\" alt=\"图中画出速度 v 随位置 x 变化的图像。V sub A 的图像是线性的，斜率为正，从原点开始，到速度 v sub zero 处终止于最大速度 2 倍 v sub 0。V sub B 的图像是速度 v sub zero 处的常数。\"></figure>"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1860126",
+   "source_section": "2.4",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reading-graphs",
+   "prompt": "推着一本书在桌面上滑动，观察它慢慢停下来。如果取这本书的运动方向为正，画出书的位置—时间图像和速度—时间图像。如果取这本书的运动方向为负，再画出书的位置—时间图像和速度—时间图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "位置—时间图像应该用一条斜率为正的线表示，其斜率逐渐减小到零。图像的纵截距（<em>y</em> 截距）可以是任意值。速度—时间图像上的线应该有正的纵截距（<em>y</em> 截距）和负的斜率。由于书的末速度为零，这条线应该终止于<em>x</em>轴上。位置—时间图像应该用一条斜率为负的线表示，其斜率逐渐减小到零。图像的纵截距（<em>y</em> 截距）可以是任意值。速度—时间图像上的线应该有负的纵截距（<em>y</em> 截距）和正的斜率。由于书的末速度为零，这条线应该终止于<em>x</em>轴上。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "tangent-slope"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "p1",
+   "concept": "tangent-slope"
+  },
+  {
+   "exercise": "p1",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "p3",
+   "concept": "tangent-slope"
+  },
+  {
+   "exercise": "p3",
+   "concept": "x-t-slope-velocity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "v-t-slope-acceleration",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "interpret-motion-graph"
+  },
+  {
+   "exercise": "p7",
+   "concept": "v-t-slope-acceleration"
+  },
+  {
+   "exercise": "p7",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "vbar-midpoint"
+  },
+  {
+   "exercise": "p9",
+   "concept": "v-squared"
+  },
+  {
+   "exercise": "p9",
+   "concept": "derive-motion-graphs",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "derive-motion-graphs"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "acceleration-sign",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "point-q",
+   "label": "位置—时间曲线上的点 Q",
+   "figures": [
+    "sim-tangent"
+   ]
+  }
+ ]
+}
