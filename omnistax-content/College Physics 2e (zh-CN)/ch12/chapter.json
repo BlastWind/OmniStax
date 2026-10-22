@@ -1,0 +1,819 @@
+{
+ "id": "12",
+ "dir": "ch12",
+ "title": "流体动力学及其在生物学和医学中的应用",
+ "intro": {
+  "module": "m42204",
+  "slug": "12-introduction-to-fluid-dynamics-and-its-biological-and-medical-applications"
+ },
+ "sections": [
+  {
+   "id": "12.1",
+   "module": "m42205",
+   "title": "流量及其与速度的关系",
+   "slug": "12-1-flow-rate-and-its-relation-to-velocity"
+  },
+  {
+   "id": "12.2",
+   "module": "m42206",
+   "title": "伯努利方程",
+   "slug": "12-2-bernoullis-equation"
+  },
+  {
+   "id": "12.3",
+   "module": "m42208",
+   "title": "伯努利方程的最一般应用",
+   "slug": "12-3-the-most-general-applications-of-bernoullis-equation"
+  },
+  {
+   "id": "12.4",
+   "module": "m42209",
+   "title": "黏度与层流；泊肃叶定律",
+   "slug": "12-4-viscosity-and-laminar-flow-poiseuilles-law"
+  },
+  {
+   "id": "12.5",
+   "module": "m42210",
+   "title": "湍流的发生",
+   "slug": "12-5-the-onset-of-turbulence"
+  },
+  {
+   "id": "12.6",
+   "module": "m42211",
+   "title": "物体在黏性流体中的运动",
+   "slug": "12-6-motion-of-an-object-in-a-viscous-fluid"
+  },
+  {
+   "id": "12.7",
+   "module": "m42212",
+   "title": "分子输运现象：扩散、渗透及相关过程",
+   "slug": "12-7-molecular-transport-phenomena-diffusion-osmosis-and-related-processes"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "Q",
+   "concept": "flow-rate",
+   "meaning": "流量，即在一段时间内通过某一位置的某一面积的流体体积",
+   "unit": "m³/s",
+   "section": "12.1",
+   "anchor": "12.1-flow-rate"
+  },
+  {
+   "sym": "V",
+   "concept": "volume",
+   "meaning": "在经过的时间内通过该位置的流体体积",
+   "unit": "m³",
+   "section": "12.1",
+   "anchor": "12.1-flow-rate"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "体积通过该位置所经过的时间",
+   "unit": "s",
+   "section": "12.1",
+   "anchor": "12.1-flow-rate"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "流体流过的河流、管道或其他导管的横截面积",
+   "unit": "m²",
+   "section": "12.1",
+   "anchor": "12.1-flow-rate-velocity"
+  },
+  {
+   "sym": "v̄",
+   "concept": "average-velocity",
+   "meaning": "流体穿过该面积的平均速度，此后正文称之为速率",
+   "unit": "m/s",
+   "section": "12.1",
+   "anchor": "12.1-flow-rate-velocity"
+  },
+  {
+   "sym": "A_1",
+   "concept": "area",
+   "meaning": "管在点 1 处的横截面积",
+   "unit": "m²",
+   "section": "12.1",
+   "anchor": "12.1-continuity",
+   "ref": "point-1"
+  },
+  {
+   "sym": "A_2",
+   "concept": "area",
+   "meaning": "管在点 2 处的横截面积，管变窄的地方它较小",
+   "unit": "m²",
+   "section": "12.1",
+   "anchor": "12.1-continuity",
+   "ref": "point-2"
+  },
+  {
+   "sym": "v_bar1",
+   "concept": "average-velocity",
+   "meaning": "流体在点 1 处的平均速率",
+   "unit": "m/s",
+   "section": "12.1",
+   "anchor": "12.1-continuity",
+   "ref": "point-1"
+  },
+  {
+   "sym": "v_bar2",
+   "concept": "average-velocity",
+   "meaning": "流体在点 2 处的平均速率，为使同样的体积在同样的时间内通过，它必须更大",
+   "unit": "m/s",
+   "section": "12.1",
+   "anchor": "12.1-continuity",
+   "ref": "point-2"
+  },
+  {
+   "sym": "Q_1",
+   "concept": "flow-rate",
+   "meaning": "经过点 1 的流量",
+   "unit": "m³/s",
+   "section": "12.1",
+   "anchor": "12.1-continuity",
+   "ref": "point-1"
+  },
+  {
+   "sym": "Q_2",
+   "concept": "flow-rate",
+   "meaning": "经过点 2 的流量，因为流体是不可压缩的，所以它等于经过点 1 的流量",
+   "unit": "m³/s",
+   "section": "12.1",
+   "anchor": "12.1-continuity",
+   "ref": "point-2"
+  },
+  {
+   "sym": "n_1",
+   "concept": "continuity-branching",
+   "meaning": "管在点 1 处的分支数",
+   "section": "12.1",
+   "anchor": "12.1-branching"
+  },
+  {
+   "sym": "n_2",
+   "concept": "continuity-branching",
+   "meaning": "点 2 处的分支数，例如一条动脉分出的毛细血管",
+   "section": "12.1",
+   "anchor": "12.1-branching"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "软管、喷嘴或血管的半径，横截面积由它算出",
+   "unit": "m",
+   "section": "12.1",
+   "anchor": "12.1-continuity"
+  },
+  {
+   "sym": "P_press",
+   "concept": "pressure",
+   "meaning": "流体中的绝对压强，即伯努利方程的第一项",
+   "unit": "N/m²",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "ρ_dens",
+   "concept": "density",
+   "meaning": "流体的密度，伯努利方程认为它在每一点都相同",
+   "unit": "kg/m³",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "流体在该点的速度",
+   "unit": "m/s",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "h",
+   "concept": "position",
+   "meaning": "该点高出某一参考点的高度",
+   "unit": "m",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度，它使流体具有第三项所涉及的重力",
+   "unit": "m/s²",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "P_1",
+   "concept": "pressure",
+   "meaning": "一小块流体所经过的路径上点 1 处的压强",
+   "unit": "N/m²",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation",
+   "ref": "point-1"
+  },
+  {
+   "sym": "P_2",
+   "concept": "pressure",
+   "meaning": "同一路径上点 2 处的压强",
+   "unit": "N/m²",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation",
+   "ref": "point-2"
+  },
+  {
+   "sym": "v_1",
+   "concept": "instantaneous-velocity",
+   "meaning": "流体在点 1 处的速率",
+   "unit": "m/s",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation",
+   "ref": "point-1"
+  },
+  {
+   "sym": "v_2",
+   "concept": "instantaneous-velocity",
+   "meaning": "流体在点 2 处的速率",
+   "unit": "m/s",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation",
+   "ref": "point-2"
+  },
+  {
+   "sym": "h_1",
+   "concept": "position",
+   "meaning": "点 1 高出参考点的高度",
+   "unit": "m",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation",
+   "ref": "point-1"
+  },
+  {
+   "sym": "h_2",
+   "concept": "position",
+   "meaning": "点 2 高出参考点的高度，它常被取为零",
+   "unit": "m",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation",
+   "ref": "point-2"
+  },
+  {
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "meaning": "一定体积的流体的动能，它除以该体积就是伯努利方程的第二项",
+   "unit": "J",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "PE_g",
+   "concept": "gravitational-potential-energy",
+   "meaning": "一定体积的流体的重力势能，它除以该体积就是第三项",
+   "unit": "J",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "V",
+   "concept": "volume",
+   "meaning": "每一项能量所除以的那小块流体的体积",
+   "unit": "m³",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "W_net",
+   "concept": "net-work",
+   "meaning": "把流体推入较窄通道时对流体所做的合外力的功，增加的动能就来自于它",
+   "unit": "J",
+   "section": "12.2",
+   "anchor": "12.2-pressure-drop"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "那小块流体的质量，把每一项取为单位体积时由密度代替它",
+   "unit": "kg",
+   "section": "12.2",
+   "anchor": "12.2-pressure-drop"
+  },
+  {
+   "sym": "P_1",
+   "concept": "pressure",
+   "meaning": "第一点处的压强，对托里拆利定理而言就是水库的表面",
+   "unit": "N/m²",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem",
+   "ref": "surface"
+  },
+  {
+   "sym": "P_2",
+   "concept": "pressure",
+   "meaning": "第二点处的压强，对托里拆利定理而言就是出口，流出的水被大气包围",
+   "unit": "N/m²",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem",
+   "ref": "outlet"
+  },
+  {
+   "sym": "v_1",
+   "concept": "instantaneous-velocity",
+   "meaning": "流体在第一点处的速率",
+   "unit": "m/s",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem",
+   "ref": "surface"
+  },
+  {
+   "sym": "v_2",
+   "concept": "instantaneous-velocity",
+   "meaning": "流体在第二点处的速率",
+   "unit": "m/s",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem",
+   "ref": "outlet"
+  },
+  {
+   "sym": "h_1",
+   "concept": "position",
+   "meaning": "第一点的高度",
+   "unit": "m",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem",
+   "ref": "surface"
+  },
+  {
+   "sym": "h_2",
+   "concept": "position",
+   "meaning": "第二点的高度",
+   "unit": "m",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem",
+   "ref": "outlet"
+  },
+  {
+   "sym": "h",
+   "concept": "position",
+   "meaning": "水下降的高度，即两个高度之差",
+   "unit": "m",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem"
+  },
+  {
+   "sym": "ρ_dens",
+   "concept": "density",
+   "meaning": "流体的密度，因为流体是不可压缩的，所以它在托里拆利定理中消去",
+   "unit": "kg/m³",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度",
+   "unit": "m/s²",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem"
+  },
+  {
+   "sym": "Q",
+   "concept": "flow-rate",
+   "meaning": "流量，它乘以伯努利方程的每一项，就把单位体积的能量变成功率",
+   "unit": "m³/s",
+   "section": "12.3",
+   "anchor": "12.3-power-in-fluid-flow"
+  },
+  {
+   "sym": "P_press",
+   "concept": "pressure",
+   "meaning": "泵提供给流体的压强，因此压强与流量的乘积就是泵提供的功率",
+   "unit": "N/m²",
+   "section": "12.3",
+   "anchor": "12.3-power-in-fluid-flow"
+  },
+  {
+   "sym": "η_visc",
+   "concept": "viscosity",
+   "meaning": "黏度，即流体内部的摩擦，使流体受剪切所需的力越大，它就越大",
+   "unit": "Pa·s",
+   "section": "12.4",
+   "anchor": "12.4-laminar-viscosity"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "使上板克服流体的黏度、以恒定速度持续运动所需的力",
+   "unit": "N",
+   "section": "12.4",
+   "anchor": "12.4-laminar-viscosity"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "上板的速率，也是与它接触的那一层流体的速率",
+   "unit": "m/s",
+   "section": "12.4",
+   "anchor": "12.4-laminar-viscosity"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "板与流体接触的面积",
+   "unit": "m²",
+   "section": "12.4",
+   "anchor": "12.4-laminar-viscosity"
+  },
+  {
+   "sym": "L_len",
+   "concept": "position",
+   "meaning": "两块板之间的距离，流体的速率在这段距离上从上板的速率降到零",
+   "unit": "m",
+   "section": "12.4",
+   "anchor": "12.4-laminar-viscosity"
+  },
+  {
+   "sym": "Q",
+   "concept": "flow-rate",
+   "meaning": "通过管的流量，方向是从高压指向低压",
+   "unit": "m³/s",
+   "section": "12.4",
+   "anchor": "12.4-poiseuille"
+  },
+  {
+   "sym": "P_1",
+   "concept": "pressure",
+   "meaning": "管的低压端的压强",
+   "unit": "N/m²",
+   "section": "12.4",
+   "anchor": "12.4-poiseuille"
+  },
+  {
+   "sym": "P_2",
+   "concept": "pressure",
+   "meaning": "管的高压端的压强",
+   "unit": "N/m²",
+   "section": "12.4",
+   "anchor": "12.4-poiseuille"
+  },
+  {
+   "sym": "R_flow",
+   "concept": "flow-resistance",
+   "meaning": "流阻，包括除压强以外一切影响流量的因素",
+   "section": "12.4",
+   "anchor": "12.4-poiseuille"
+  },
+  {
+   "sym": "l",
+   "concept": "position",
+   "meaning": "管的长度，流阻与它成正比",
+   "unit": "m",
+   "section": "12.4",
+   "anchor": "12.4-poiseuille"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "管的半径，横截面积以及通过它的四次方而来的流阻都取决于它，所以它的微小变化就有很大的影响",
+   "unit": "m",
+   "section": "12.4",
+   "anchor": "12.4-poiseuille"
+  },
+  {
+   "sym": "N_R",
+   "concept": "reynolds-number",
+   "meaning": "管内流动的雷诺数，一个无量纲的量，它揭示流动是层流还是湍流",
+   "section": "12.5",
+   "anchor": "12.5-reynolds-number"
+  },
+  {
+   "sym": "ρ_dens",
+   "concept": "density",
+   "meaning": "流体的密度",
+   "unit": "kg/m³",
+   "section": "12.5",
+   "anchor": "12.5-reynolds-number"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "流体在管中的速率",
+   "unit": "m/s",
+   "section": "12.5",
+   "anchor": "12.5-reynolds-number"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "管的半径",
+   "unit": "m",
+   "section": "12.5",
+   "anchor": "12.5-reynolds-number"
+  },
+  {
+   "sym": "η_visc",
+   "concept": "viscosity",
+   "meaning": "流体的黏度，雷诺数与它成反比",
+   "unit": "Pa·s",
+   "section": "12.5",
+   "anchor": "12.5-reynolds-number"
+  },
+  {
+   "sym": "N_Rprime",
+   "concept": "reynolds-number-object",
+   "meaning": "在流体中运动的物体的雷诺数，它表明物体周围的流动是层流还是湍流",
+   "section": "12.6",
+   "anchor": "12.6-reynolds-object"
+  },
+  {
+   "sym": "ρ_dens",
+   "concept": "density",
+   "meaning": "物体所穿过的流体的密度",
+   "unit": "kg/m³",
+   "section": "12.6",
+   "anchor": "12.6-reynolds-object"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体在流体中的速率",
+   "unit": "m/s",
+   "section": "12.6",
+   "anchor": "12.6-reynolds-object"
+  },
+  {
+   "sym": "L_len",
+   "concept": "position",
+   "meaning": "物体的特征长度，例如球体的直径",
+   "redefines": true,
+   "unit": "m",
+   "section": "12.6",
+   "anchor": "12.6-reynolds-object"
+  },
+  {
+   "sym": "η_visc",
+   "concept": "viscosity",
+   "meaning": "流体的黏度",
+   "unit": "Pa·s",
+   "section": "12.6",
+   "anchor": "12.6-reynolds-object"
+  },
+  {
+   "sym": "F_V",
+   "concept": "viscous-drag",
+   "meaning": "黏性阻力，即流体的黏度作用在运动物体上的阻力，它随速率增大",
+   "unit": "N",
+   "section": "12.6",
+   "anchor": "12.6-viscous-drag"
+  },
+  {
+   "sym": "F_s",
+   "concept": "stokes-law",
+   "type": "force",
+   "meaning": "在流体中缓慢运动的小球所受的阻力，由斯托克斯定律给出",
+   "unit": "N",
+   "section": "12.6",
+   "anchor": "12.6-viscous-drag"
+  },
+  {
+   "sym": "R_sphere",
+   "concept": "position",
+   "meaning": "斯托克斯定律所适用的小球的半径",
+   "unit": "m",
+   "section": "12.6",
+   "anchor": "12.6-viscous-drag"
+  },
+  {
+   "sym": "F_B",
+   "concept": "buoyant-force",
+   "meaning": "下落物体所受的浮力，它取决于物体相对于流体的密度",
+   "unit": "N",
+   "section": "12.6",
+   "anchor": "12.6-terminal-speed"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "在流体中下落的物体的重力",
+   "unit": "N",
+   "section": "12.6",
+   "anchor": "12.6-terminal-speed"
+  },
+  {
+   "sym": "v_t",
+   "concept": "terminal-velocity",
+   "meaning": "终极速率，即阻力和浮力与重力平衡、加速度变为零之后，下落物体所达到的恒定速率",
+   "unit": "m/s",
+   "section": "12.6",
+   "anchor": "12.6-terminal-speed"
+  },
+  {
+   "sym": "x_rms",
+   "concept": "random-walk-distance",
+   "meaning": "方均根距离，即分子在给定时间内通过扩散所行进距离的统计平均值",
+   "unit": "m",
+   "section": "12.7",
+   "anchor": "12.7-diffusion"
+  },
+  {
+   "sym": "D_diff",
+   "concept": "diffusion-constant",
+   "meaning": "特定分子在特定介质中的扩散常量，分子越重它越小",
+   "unit": "m²/s",
+   "section": "12.7",
+   "anchor": "12.7-diffusion"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "分子进行扩散所用的时间",
+   "unit": "s",
+   "section": "12.7",
+   "anchor": "12.7-diffusion"
+  },
+  {
+   "sym": "r_1",
+   "concept": "position",
+   "ref": "point-1",
+   "meaning": "点 1 处的管半径：软管或主动脉",
+   "unit": "m",
+   "section": "12.1",
+   "anchor": "12.1-continuity"
+  },
+  {
+   "sym": "r_2",
+   "concept": "position",
+   "ref": "point-2",
+   "meaning": "点 2 处的管半径：喷嘴或毛细血管",
+   "unit": "m",
+   "section": "12.1",
+   "anchor": "12.1-continuity"
+  },
+  {
+   "sym": "d",
+   "concept": "position",
+   "meaning": "在时间 t 内通过点 P 的那段阴影圆柱形流体的长度",
+   "unit": "m",
+   "section": "12.1",
+   "anchor": "12.1-flow-rate-velocity"
+  },
+  {
+   "sym": "P_i",
+   "concept": "pressure",
+   "meaning": "车与卡车之间缝隙中空气的压强",
+   "unit": "N/m²",
+   "section": "12.2",
+   "anchor": "12.2-pressure-drop"
+  },
+  {
+   "sym": "P_o",
+   "concept": "pressure",
+   "meaning": "车与卡车外侧空气的压强",
+   "unit": "N/m²",
+   "section": "12.2",
+   "anchor": "12.2-pressure-drop"
+  },
+  {
+   "sym": "P_front",
+   "concept": "pressure",
+   "meaning": "帆前侧的压强",
+   "unit": "N/m²",
+   "section": "12.2",
+   "anchor": "12.2-wings-and-sails"
+  },
+  {
+   "sym": "P_back",
+   "concept": "pressure",
+   "meaning": "帆后侧的压强",
+   "unit": "N/m²",
+   "section": "12.2",
+   "anchor": "12.2-wings-and-sails"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "压强的力所作用的面积",
+   "unit": "m²",
+   "section": "12.2",
+   "anchor": "12.2-bernoullis-equation"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "水流出的开口的面积",
+   "unit": "m²",
+   "section": "12.3",
+   "anchor": "12.3-torricellis-theorem"
+  },
+  {
+   "sym": "A_1",
+   "concept": "area",
+   "ref": "base",
+   "meaning": "地面处水带的横截面积",
+   "unit": "m²",
+   "section": "12.3",
+   "anchor": "12.3-ex-fire-hose"
+  },
+  {
+   "sym": "V",
+   "concept": "volume",
+   "meaning": "一定体积的流体，单位体积的能量除以它，流量乘以它",
+   "unit": "m³",
+   "section": "12.3",
+   "anchor": "12.3-power-in-fluid-flow"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "流体的能量，在伯努利方程的每一项中取单位体积",
+   "unit": "J",
+   "section": "12.3",
+   "anchor": "12.3-power-in-fluid-flow"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "提供能量所用的时间",
+   "unit": "s",
+   "section": "12.3",
+   "anchor": "12.3-power-in-fluid-flow"
+  },
+  {
+   "sym": "r_1",
+   "concept": "position",
+   "meaning": "斑块沉积之前动脉的半径",
+   "unit": "m",
+   "section": "12.4",
+   "anchor": "12.4-ex-plaque"
+  },
+  {
+   "sym": "r_2",
+   "concept": "position",
+   "meaning": "斑块沉积之后动脉的半径",
+   "unit": "m",
+   "section": "12.4",
+   "anchor": "12.4-ex-plaque"
+  },
+  {
+   "sym": "r_2",
+   "concept": "position",
+   "meaning": "动脉被斑块变窄的那一段的半径",
+   "unit": "m",
+   "section": "12.5",
+   "anchor": "12.5-turbulence-in-circulation"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "针头的横截面积",
+   "unit": "m²",
+   "section": "12.5",
+   "anchor": "12.5-ex-laminar-check"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "正文最初写出斯托克斯定律时所用的球体半径",
+   "unit": "m",
+   "section": "12.6",
+   "anchor": "12.6-viscous-drag"
+  },
+  {
+   "sym": "V",
+   "concept": "volume",
+   "meaning": "弹珠的体积",
+   "unit": "m³",
+   "section": "12.6",
+   "anchor": "12.6-sim-terminal"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "分子的质量，出现在它的平均动能中",
+   "unit": "kg",
+   "section": "12.7",
+   "anchor": "12.7-diffusion-constant"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "物质沿之扩散的管的横截面积",
+   "unit": "m²",
+   "section": "12.7",
+   "anchor": "12.7-sim-concentration"
+  },
+  {
+   "sym": "Δx",
+   "concept": "position",
+   "meaning": "两个区域之间的薄片的宽度",
+   "unit": "m",
+   "section": "12.7",
+   "anchor": "12.7-sim-concentration"
+  }
+ ]
+}

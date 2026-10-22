@@ -1,0 +1,390 @@
+{
+ "id": "12.6",
+ "module": "m42211",
+ "chapter": "12",
+ "title": "物体在黏性流体中的运动",
+ "short": "黏性流体中的物体",
+ "lead": "在流体中运动的物体所感受到的流动，与固定的物体在流动的流体中所感受到的相同，所以层流和湍流的概念可以从管推广到球、雨滴和跳伞者身上。你将遇到适用于物体的雷诺数、物体所受的<span data-concept=\"viscous-drag\">黏性阻力</span>，以及下落的物体在流体中达到的<span data-concept=\"terminal-velocity\">终极速率</span>。",
+ "objectives": [
+  "计算在流体中运动的物体的雷诺数。",
+  "说明雷诺数表明的是层流还是湍流。",
+  "描述物体具有终极速率的条件。"
+ ],
+ "summary_html": "<ul><li>当物体在流体中运动时，雷诺数有另一种形式 ${N'}_{\\text{R}} = \\frac{\\krho\\kv L}{\\keta}\\ \\text{(流体中的物体),}$ 它表明流动是层流还是湍流。</li><li>当 ${N'}_{\\text{R}}$ 小于约 1 时，流动是层流。</li><li>当 ${N'}_{\\text{R}}$ 大于 $10^6$ 时，流动完全是湍流。</li></ul>",
+ "notes": "书中放在“黏度与层流；泊肃叶定律”一节、而属于本节的两道题——球的终极速率的推导和四肢张开的跳伞者——在书后答案中没有给出答案，因而略去；例题中空气黏度旁多出的 1.00，仍按书中印刷的样子保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。本节没有自己的习题集。“黏度与层流；泊肃叶定律”一节中有三道题讲的是物体在黏性流体中的运动，而不是泊肃叶定律，应属于本节；因此其中有答案的那道——由下落的钢球求机油的黏度——放在这里，source_section 为 12.4；它的提示载有它所指的推导题中的终极速率关系，因为那道题没有答案、已被略去，四肢张开的跳伞者一题也是如此。三道思考题的建议思路由 AI 撰写，并已标明。本节没有 AP 题，也没有理解检测框，所以每道题都放在末尾。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-wake",
+   "kind": "sim",
+   "number": "12.24",
+   "originals": [
+    "/media/ch12/Figure_13_06_01.jpg"
+   ],
+   "original_caption": "（a）这个球向右运动，等效于流体向左流动。此处的流动是层流，N′R 小于 1。由于流体的黏度，球受到一个向左的力，称为黏性阻力 F_V。（b）在较高的速率下，流动变得部分湍流，从流线脱离表面之处起形成一个尾流。尾流中的压强小于球前方的压强，因为那里流体的速率较小，由此产生向左的合力 F′_V，它比层流时大得多。此处 N′R 大于 10。（c）在高得多的速率下，即 N′R 大于 10⁶ 时，球表面各处和球的后面，流动都变成湍流。阻力急剧增大。",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "velocity",
+    "density",
+    "viscosity",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: drag laws in the notes typeset; caption names the bar across the ball"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-terminal",
+   "kind": "sim",
+   "number": "12.25",
+   "originals": [
+    "/media/ch12/Figure_13_06_02.jpg"
+   ],
+   "original_caption": "在黏性流体中下落的物体受到三个力：它的重力 w、黏性阻力 F_V 和浮力 F_B。",
+   "widths": [
+    232
+   ],
+   "draws": [
+    "force",
+    "density",
+    "viscosity",
+    "velocity",
+    "position",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: Reynolds number in the notes typeset through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "reynolds-object",
+   "concept": "reynolds-number-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "flow-regimes-around-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "reynolds-number",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "laminar-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-object",
+   "concept": "viscosity",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "viscous-drag",
+   "verb": "introduces"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "drag-force",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "drag-force-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "stokes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "viscous-drag",
+   "concept": "flow-regimes-around-object",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "sedimentation-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "terminal-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "viscous-drag",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "archimedes-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "size-and-terminal-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal-speed",
+   "concept": "centrifuge",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1576284",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "在一辆正在减速的汽车里，氦气球会向哪个方向运动——朝前还是朝后？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "朝后。车内的空气比气球里的氦气密度大得多，汽车减速时，车内的一切，包括空气，都倾向于继续向前运动。空气向车的前部聚集，所以那里的压强比后部大，正如在通常的重力作用下，房间底部的压强比顶部大一样。气球的密度比周围的空气小，所以这个压强差把它推向车后部压强较低的一侧，这与汽车静止时它朝上方压强较低处上升完全一样。在减速汽车的加速参考系中，等效重力指向前方，气球逆着它“向上”运动，也就是朝后。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1418508",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "如果忽略空气密度的任何差别，相同的雨滴在 5 °C 的空气中下落得更快，还是在 25 °C 的空气中下落得更快？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们在 5 °C 的空气中下落得更快。表 12.1 表明，空气的黏度随温度升高而增大，从 0 °C 时的 0.0171 mPa·s 增大到 40 °C 时的 0.0190 mPa·s，这与液体受热时的变化相反。雨滴在黏性阻力与很小的浮力一起同它的重力平衡时达到终极速率；由于给定速率下的阻力随空气黏度的增大而增大，在更暖、黏度更大的空气中，这一平衡在较低的速率下就达到了。若认为两种温度下空气的密度相同，较冷的空气提供的阻力较小，所以其中的雨滴下落得更快。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3068984",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "如果取两颗大小不同的弹珠，你预期会观察到它们的终极速度的大小之间有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "较大的弹珠达到的终极速度更大。它的重力随体积增大，即与半径的立方成正比，浮力也是如此，所以作用在它上面的向下的合力也与半径的立方成正比。黏性阻力增长得较慢：对于缓慢的层流，斯托克斯定律 $\\kFs = 6\\pi R\\keta\\kv$ 成立，阻力只与半径成正比；对于较快的流动，阻力与横截面积即半径的平方成正比。阻力必须增大到与较大的合力平衡，而这只有在较高的速率下才能做到，所以较大的弹珠下落得更快。在层流的情形中，终极速率与半径的平方成正比，所以宽度为两倍的弹珠，下沉的速率约为四倍。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1427261",
+   "source_section": "12.4",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal-speed",
+   "prompt": "利用上一题的方程，求机油的黏度：半径为 0.8 mm 的钢球在其中下落的终极速率为 4.32 cm/s。球和油的密度分别为 7.86 和 0.88 g/mL。",
+   "answer": {
+    "type": "number",
+    "value": 225,
+    "unit": "mPa·s",
+    "generated_by": "source",
+    "hint": "在终极速率下，球的重力与浮力和斯托克斯阻力相平衡，由此得到 $\\kvt = \\frac{2R^2\\kg}{9\\keta}(\\rho_{\\text{s}} - \\rho_{1})$，其中 $\\rho_{\\text{s}}$ 是球的密度，$\\rho_{1}$ 是油的密度。由它解出 $\\keta$，密度用 kg/m³，半径用米。",
+    "solution": "$\\keta = 225\\ \\text{mPa} \\cdot \\text{s}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "sedimentation-rate"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "buoyant-force",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "viscous-drag"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sedimentation-rate",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "viscosity",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "sedimentation-rate"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "viscous-drag",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "size-and-terminal-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "viscous-drag"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sedimentation-rate"
+  },
+  {
+   "exercise": "p1",
+   "concept": "buoyant-force",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "ball",
+   "label": "例题 12.10 中的球",
+   "figures": [
+    "sim-wake"
+   ]
+  },
+  {
+   "id": "marble",
+   "label": "弹珠",
+   "figures": [
+    "sim-terminal"
+   ]
+  },
+  {
+   "id": "glass",
+   "label": "盛有流体的高玻璃杯",
+   "figures": [
+    "sim-terminal"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-air-viscosity",
+   "kind": "correction",
+   "html": "书中给出空气的黏度为 $1.81 \\times 10^{-5}\\ 1.00\\ \\text{Pa}\\cdot\\text{s}$。其中的 1.00 是多余的：黏度应为 $1.81 \\times 10^{-5}\\ \\text{Pa}\\cdot\\text{s}$，这才是得出 $2.11 \\times 10^{5}$ 的值。"
+  }
+ ]
+}

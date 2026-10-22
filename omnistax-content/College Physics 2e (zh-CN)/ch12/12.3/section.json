@@ -1,0 +1,659 @@
+{
+ "id": "12.3",
+ "module": "m42208",
+ "chapter": "12",
+ "title": "伯努利方程的最一般应用",
+ "short": "伯努利方程的一般应用",
+ "lead": "你将在不作上一节那些简化的情形下使用伯努利方程：先是高度变化而两处<span data-concept=\"pressure\">压强</span>都是大气压的情形，如水从<span data-ref=\"dam\">水坝</span>上的<span data-ref=\"outlet\">一个孔</span>流出；然后是<span data-concept=\"pressure\">压强</span>、速率和高度同时变化的情形，如沿梯子铺上去的<span data-ref=\"hose\">消防水带</span>。把每一项都乘以<span data-concept=\"flow-rate\">流量</span>，方程就变成关于<span data-concept=\"power\">功率</span>的方程，并告诉你泵提供了多少功率。",
+ "objectives": [
+  "用托里拆利定理进行计算。",
+  "计算流体流动中的功率。"
+ ],
+ "summary_html": "<ul><li>流体流动中的功率由方程 $\\left(\\kProne + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{功率},$ 给出，其中第一项是与<span data-concept=\"pressure\">压强</span>有关的<span data-concept=\"power\">功率</span>，第二项是与<span data-concept=\"velocity\">速度</span>有关的<span data-concept=\"power\">功率</span>，第三项是与高度有关的<span data-concept=\"power\">功率</span>。</li></ul>",
+ "notes": "书中未给出答案的两道习题——机翼及其每平方米的升力，以及排空地下室积水的排水泵——已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。习题 2 和习题 4 没有给出答案，已略去：一是必须每平方米产生 1000 N 升力的机翼，二是软管要越过地基墙的排水泵。习题 1（胡佛水坝）的两问都有答案，设为两个数值题；习题 3（左心室）有一个答案。四道 AP 题中，第一道（水平管中的柱塞）和第三道（水面以下 5 m 处的孔）有答案，设为判分选择题；第二道（泵把水推上 21 m 高的楼）和第四道（锥形管）没有答案，保留为开放题，附有 AI 撰写的建议思路，并已标明。第一道 AP 题的答案给出（a）12 m/s；而由柱塞的压强和伯努利原理得到的是 19 m/s，所以习题卡片核对（b），并在解答上附有更正说明。四道思考题的建议思路由 AI 撰写并已标明；第三道的习题卡片上附有书中的图 12.13，漏水的靴子。本节没有理解检测框，所以没有设置行内题目，也没有从其他小节取来或为其他小节保留任何题目。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-torricelli",
+   "kind": "sim",
+   "number": "12.11",
+   "originals": [
+    "/media/ch12/Figure_13_03_01a.jpg"
+   ],
+   "original_caption": "（a）水从保加利亚 Studen Kladenetz 水坝的底部喷涌而出。（来源：Kiril Kapustin；http://www.ImagesFromBulgaria.com）（b）在没有显著阻力的情况下，水从水库流出的速率，与它无摩擦地下落距离 h 时所具有的速率相同。这是托里拆利定理的一个例子。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "position",
+    "acceleration",
+    "pressure",
+    "flow-rate",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: surface labels lifted off the line; note cut, typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fire-hose",
+   "kind": "sim",
+   "number": "12.12",
+   "originals": [
+    "/media/ch12/Figure_13_03_02a.jpg"
+   ],
+   "original_caption": "这条消防水带喷嘴中的压强比地面处小，原因有两个：水必须向上流才能到达喷嘴，而且喷嘴中速率增大。尽管压降低了，水凭借其动能，仍能对它所冲击的任何物体施加很大的力。水流一旦进入空气，其压强就变得等于大气压。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "pressure",
+    "density",
+    "velocity",
+    "position",
+    "acceleration",
+    "energy",
+    "flow-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: legend off the axis title, bars moved off h2 label, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fluid-power",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "pressure",
+    "flow-rate",
+    "velocity",
+    "position",
+    "density",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: h = 0 label off the speed arrow; note no longer repeats caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "torricellis-theorem",
+   "concept": "torricellis-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "bernoullis-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "free-fall-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "torricellis-theorem",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "general-application",
+   "concept": "bernoulli-general-application",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-application",
+   "concept": "bernoullis-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "general-application",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "general-application",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "power-in-fluid-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "bernoulli-energy-per-volume",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-fluid-flow",
+   "concept": "flow-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "pump-power",
+   "concept": "pump-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "pump-power",
+   "concept": "power-in-fluid-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "pump-power",
+   "concept": "calculate-power",
+   "verb": "uses"
+  },
+  {
+   "span": "pump-power",
+   "concept": "pressure",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2443622",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-fluid-flow",
+   "prompt": "根据伯努利方程，流体中的能量有哪三种形式？（请注意，这些形式是保守的，不同于热传递以及伯努利方程中未包括的其他耗散形式。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "伯努利方程的三项各是一种单位体积的能量，因此它们指明了这三种形式。$\\frac{1}{2}\\krho\\kv^2$ 是单位体积的动能，$\\krho\\kg\\kh$ 是单位体积的重力势能。压强 $\\kPr$ 是单位体积中与推动流体前进所做的功相联系的能量，这就是为什么只提高压强的泵仍然提供功率。这三者都是保守的，彼此转换而无损失，这正是方程所表达的；方程略去了黏度产生的热量。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1412050",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "从软管流入大气中的水，其表压强为零。为什么？当你把手放在流出的水流前面时，会感到有一个力，而水的表压强却为零。请从能量的角度解释这个力来自何处。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水一旦进入空气，大气就从四面八方包围着它，它的压强只能是大气压，所以它的表压强为零，正如消防水带例题中的 $\\kPrtwo$ 那样。你感到的力不是来自水流中的压强，而是来自它的动能，即单位体积的 $\\frac{1}{2}\\krho\\kv^2$。水高速到来，你的手使它几乎停止，使它停下所做的功等于你感到的力乘以它停下所经过的距离。用伯努利方程的话来说，你的手使水流减速，并把它所携带的动能重新转变为压强。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2401508",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torricellis-theorem",
+   "figure": {
+    "src": "/media/ch12/Figure_13_03_03a.jpg",
+    "alt": "图中是一只装满水的靴子。水从这只旧靴子的两处漏洞中流出，一处在前面，一处在后面。两处漏洞高度相同，分别标为漏洞 1 和漏洞 2。",
+    "caption": "图 12.13 水从一只旧靴子的两处漏洞中流出。"
+   },
+   "prompt": "图 12.13 所示的旧橡胶靴有两处漏洞。水从漏洞 1 最高能喷到多高？从漏洞 2 流出的水的速度与漏洞 1 的有何不同？请从能量的角度解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取点 1 在靴中水的表面，点 2 在一处漏洞，二者都处于大气压。托里拆利定理给出漏洞处的速率为 $\\kvtwo = \\sqrt{2\\kg\\kh}$，其中 $\\kh$ 是漏洞在水面以下的深度；以这一速率竖直向上喷出的水柱，会一直上升到它的动能重新转变为重力势能为止，也就是升到水面的高度，即漏洞以上 $\\kh$ 处。实际上它上升的高度会略小一些，因为有一些能量在漏洞处和空气中因摩擦而损失。漏洞 2 与漏洞 1 深度相同，所以水从那里流出的速率相同；只有水柱的方向不同，而托里拆利定理并不涉及方向。两处漏洞在水面处的单位体积的能量都是 $\\krho\\kg\\kh$，所以每处流出的都是相同的 $\\frac{1}{2}\\krho\\kvtwo^2$。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1389535",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "由于伯努利效应，软管喷嘴内的水压可以小于大气压。请从能量的角度解释，水怎样能够逆着相反的大气压从喷嘴中流出。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在喷嘴内水流动很快，而伯努利方程说，速率大的地方压强小，所以那里的压强可以降到大气压以下。水仍然能流出，是因为推动它的并不是喷嘴中的压强：水带着单位体积的动能 $\\frac{1}{2}\\krho\\kv^2$ 而来，这份动能是由软管更靠后处较高的压强所支付的，正是这份动能带着水逆着大气进入空气。一旦到了外面，大气从四面八方压着它，它的表压强为零，但它的速率，从而它的动能，仍是它在喷嘴中所具有的。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2174516",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "一根水平放置的管子直径为 5.6 cm，管内充满水。管子从一个最初静止的水库中取水。一个手动操作的柱塞在管中提供 440 N 的力。假设管子的另一端通向空气，水以多大的速率从管中流出？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "12 m/s",
+     "19 m/s",
+     "150 m/s",
+     "190 m/s"
+    ],
+    "correct": 1,
+    "hint": "柱塞的力分布在管子的横截面上就是一个压强。管子是水平的，水从静止开始，所以伯努利原理在开口端把这个压强转变为 $\\frac{1}{2}\\krho\\kv^2$。",
+    "solution": "（a）<sup class=\"fn\" data-note=\"c-ap1-key\"></sup>"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1527124",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "一根直径为 3.5 cm 的管子内有一个泵送机构，它提供 320 N 的力把水向上推入一栋高楼。水在进入活塞机构时，以 2.5 m/s 的速率流动。然后水被泵送到高出 21 m 的位置，管子的另一端在那里通向空气。水以多大的速率离开管子？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水以约 16 m/s 的速率离开管子。泵的 320 N 的力作用在管子的横截面上，$A = \\pi(1.75 \\times 10^{-2}\\ \\text{m})^2 = 9.62 \\times 10^{-4}\\ \\text{m}^2$，因此它使进入活塞的水的压强比开口端（即大气压）处高出 $\\kProne - \\kPrtwo = F/A = 3.33 \\times 10^5\\ \\text{N/m}^2$。取点 1 在活塞处、点 2 在高出 21 m 的开口端，伯努利方程为 $\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo$，其中 $\\khone = 0$、$\\khtwo = 21\\ \\text{m}$、$\\kvone = 2.5\\ \\text{m/s}$ 和 $\\krho = 1000\\ \\text{kg/m}^3$。对顶部单位体积的动能求解，$\\frac{1}{2}\\krho\\kvtwo^2 = (\\kProne - \\kPrtwo) + \\frac{1}{2}\\krho\\kvone^2 - \\krho\\kg\\khtwo = 3.33 \\times 10^5 + 3.1 \\times 10^3 - 2.06 \\times 10^5\\ \\text{N/m}^2 = 1.30 \\times 10^5\\ \\text{N/m}^2$，所以 $\\kvtwo = \\sqrt{2(1.30 \\times 10^5\\ \\text{N/m}^2)/(1000\\ \\text{kg/m}^3)} = 16\\ \\text{m/s}$。泵所提供的压强大部分用于把水提升 21 m，只有剩下的部分变成了速率。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2103327",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torricellis-theorem",
+   "prompt": "一个盛水的大容器向空气敞开，在水面以下 5 m 处出现了一个面积为 10 cm<sup>2</sup> 的孔。从这个孔流出的水的流量（m<sup>3</sup>⁄s）是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "99 m<sup>3</sup>⁄s",
+     "9.9 m<sup>3</sup>⁄s",
+     "0.099 m<sup>3</sup>⁄s",
+     "0.0099 m<sup>3</sup>⁄s"
+    ],
+    "correct": 3,
+    "hint": "托里拆利定理由 5 m 的深度给出孔处的速率，流量等于该速率乘以孔的面积，面积以平方米为单位。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1816086",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-application",
+   "prompt": "一根管子呈锥形，大端的直径是小端的两倍。若小端比管子的大端高 8 m，要使水以 12 m/s 的速率从小端流出，表压强（大端压强与小端压强之差）必须是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "设点 1 为大端，点 2 为小端。大端的直径是小端的两倍，因此面积是四倍，连续性方程 $A_1\\kvone = A_2\\kvtwo$ 给出 $\\kvone = \\kvtwo/4 = 3.0\\ \\text{m/s}$。再由伯努利方程，取 $\\khone = 0$ 和 $\\khtwo = 8\\ \\text{m}$，得到压强差：$\\kProne - \\kPrtwo = \\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2) + \\krho\\kg\\khtwo = \\frac{1}{2}(1000\\ \\text{kg/m}^3)[(12\\ \\text{m/s})^2 - (3.0\\ \\text{m/s})^2] + (1000\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(8\\ \\text{m}) = 6.75 \\times 10^4 + 7.84 \\times 10^4\\ \\text{N/m}^2$，约为 $1.46 \\times 10^5\\ \\text{N/m}^2$。这一差值的一半多一点用于把水提升 8 m，其余用于使水在窄端加速。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1404775",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-fluid-flow",
+   "prompt": "科罗拉多河上的胡佛水坝高 221 m，是美国最高的水坝，最大输出功率为 1300 MW。水坝利用取自 150 m 深处、平均流量为 $650\\ \\text{m}^3\\text{/s}$ 的水发电。（a）计算这股水流中的功率。（b）这一功率与该设施的平均值 680 MW 之比是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 956000000.0,
+      "unit": "W",
+      "hint": "只有高度项在起作用：这股水流中的功率为 $\\krho\\kg\\kh\\kQ$，其中 $\\kh$ 是水下落的 150 m，因为水的起点和终点都是静止的，且都处于大气压。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.41,
+      "hint": "用这股水流中的功率除以该设施的平均输出功率 680 MW，两者都以瓦特为单位。"
+     }
+    ],
+    "solution": "（a）$9.56 \\times 10^8\\ \\text{W}$（b）1.41"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2603396",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pump-power",
+   "prompt": "静息成年人心脏的左心室以 $83.0\\ \\text{cm}^3\\text{/s}$ 的流量泵出血液，使血液的压强增大 110 mm Hg，速率从零增大到 30.0 cm/s，高度升高 5.00 cm。（所有数值都是整个心搏周期内的平均值。）计算左心室的总输出功率。请注意，其中大部分功率用于增大血压。",
+   "answer": {
+    "type": "number",
+    "value": 1.26,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "把压强、$\\frac{1}{2}\\krho\\kv^2$ 和 $\\krho\\kg\\kh$ 这三项的增量各乘以以立方米每秒为单位的流量，然后相加。先把 110 mm Hg 换算成 N/m²（1.00 mm Hg 为 133 N/m²），并取血液的密度为 1050 kg/m³。",
+    "solution": "1.26 W"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "bernoulli-energy-per-volume"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "power-in-fluid-flow",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bernoulli-energy-per-volume",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "torricellis-theorem"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "bernoulli-energy-per-volume",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "bernoullis-principle",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torricellis-theorem"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "flow-rate-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "bernoulli-general-application"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "equation-of-continuity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "power-in-fluid-flow"
+  },
+  {
+   "exercise": "p3",
+   "concept": "power-in-fluid-flow"
+  },
+  {
+   "exercise": "p3",
+   "concept": "pump-power",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "surface",
+   "label": "点 1，水库的水面",
+   "figures": [
+    "sim-torricelli"
+   ]
+  },
+  {
+   "id": "outlet",
+   "label": "点 2，穿过水坝的开口",
+   "figures": [
+    "sim-torricelli"
+   ]
+  },
+  {
+   "id": "dam",
+   "label": "水坝",
+   "figures": [
+    "sim-torricelli"
+   ]
+  },
+  {
+   "id": "base",
+   "label": "点 1，软管在地面处的底部",
+   "figures": [
+    "sim-fire-hose"
+   ]
+  },
+  {
+   "id": "nozzle",
+   "label": "点 2，喷嘴",
+   "figures": [
+    "sim-fire-hose"
+   ]
+  },
+  {
+   "id": "hose",
+   "label": "消防水带",
+   "figures": [
+    "sim-fire-hose"
+   ]
+  },
+  {
+   "id": "pump",
+   "label": "泵",
+   "figures": [
+    "sim-fluid-power"
+   ]
+  },
+  {
+   "id": "hydrant",
+   "label": "消火栓",
+   "figures": [
+    "sim-fluid-power"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-ap1-key",
+   "kind": "correction",
+   "html": "书中给出的答案是（a），12 m/s。柱塞产生的压强为 $440\\ \\text{N}/\\pi(0.028\\ \\text{m})^2 = 1.79\\times 10^{5}\\ \\text{N/m}^2$，令 $\\frac{1}{2}\\rho v^2$ 等于它，得 $v = 19$ m/s，即选项（b），也就是这张习题卡片所核对的答案。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "torricelli",
+   "what": "托里拆利定理",
+   "source": "《大学物理（第2版）》，12.3 伯努利方程的最一般应用",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kProne$ 和 $\\kPrtwo$ 都等于大气压：点 1 是水库的顶面，在点 2 处流出的水被大气包围。",
+       "src": "12.3"
+      },
+      {
+       "text": "流体是不可压缩的，所以两点处的密度 $\\krho$ 相同。",
+       "src": "12.3"
+      },
+      {
+       "tex": "\\kh = \\khone - \\khtwo",
+       "src": "12.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P1}{\\kProne} + \\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2} + \\mk{g2}{\\krho\\kg\\khtwo}",
+      "uses": [],
+      "src": "12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2} + \\mk{g2}{\\krho\\kg\\khtwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{k1}{\\kvone^2} + \\mk{g1}{2\\kg\\khone} = \\mk{k2}{\\kvtwo^2} + \\mk{g2}{2\\kg\\khtwo}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k2}{\\kvtwo^2} = \\mk{k1}{\\kvone^2} + \\mk{g}{2\\kg(\\khone - \\khtwo)}",
+       "uses": [],
+       "map": {
+        "g1": "g",
+        "g2": "g"
+       }
+      },
+      {
+       "tex": "\\mk{k2}{\\kvtwo^2} = \\mk{k1}{\\kvone^2} + \\mk{g}{2\\kg\\kh}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "12.3"
+    }
+   ]
+  }
+ ]
+}

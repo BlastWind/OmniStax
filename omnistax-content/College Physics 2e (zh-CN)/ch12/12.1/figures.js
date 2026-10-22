@@ -1,0 +1,321 @@
+/* Figures for section 12.1 Flow Rate and Its Relation to Velocity. Boots against the section's text article.
+   The shaded cylinder's one transport is its story slider, the book's
+   derivation of Q = Av̄, not a clock; the branching vessel answers its sliders.
+   The narrowing tube moves, because the book's figure draws the flow along it. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['12.1'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, curve, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the figures ---------- */
+const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+const sup = (n) => String(n).split('').map((c) => SUP[c] ?? c).join('');
+/* a number in scientific notation to three significant figures, once for the canvas and once for KaTeX */
+function sci(v, sig = 3) {
+  if (v === 0) return { txt: '0', tex: '0' };
+  let e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e), ms = m.toFixed(sig - 1);
+  if (Math.abs(+ms) >= 10) { e += 1; ms = (m / 10).toFixed(sig - 1); }
+  return { txt: ms + ' × 10' + sup(e), tex: ms + '\\times 10^{' + e + '}' };
+}
+/* a positive number to three significant figures, written plainly */
+const sf = (v, sig = 3) => { if (v === 0) return '0'; const e = Math.floor(Math.log10(Math.abs(v))); return v.toFixed(Math.max(0, sig - 1 - e)); };
+/* a section through a tube on the canvas: the wall in ink and the fluid inside it in the flow-rate hue, from x1 to x2 about the axis y, of radius R */
+function tube(ctx, x1, x2, y, R, fc, wc = PAL.ink) {
+  /* drawn as a cylinder seen a little from one end: the body, an open mouth at the left and a rim at the right */
+  const rx = Math.max(8, R * 0.32);
+  ctx.save(); ctx.fillStyle = alpha(fc, 0.14); ctx.fillRect(x1, y - R, x2 - x1, 2 * R);
+  ctx.beginPath(); ctx.ellipse(x2, y, rx, R, 0, 0, 2 * Math.PI); ctx.fill();
+  ctx.fillStyle = alpha(fc, 0.22); ctx.beginPath(); ctx.ellipse(x1, y, rx, R, 0, 0, 2 * Math.PI); ctx.fill();
+  ctx.strokeStyle = wc; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(x1, y - R); ctx.lineTo(x2, y - R); ctx.moveTo(x1, y + R); ctx.lineTo(x2, y + R); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(x1, y, rx, R, 0, 0, 2 * Math.PI); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(x2, y, rx, R, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+  ctx.lineWidth = 2.5; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.ellipse(x2, y, rx, R, 0, Math.PI / 2, 3 * Math.PI / 2); ctx.stroke();
+  ctx.restore();
+}
+/* the cylinder of fluid that has passed P: its body and its two elliptical faces, the near half of each ruled */
+function slug(ctx, x, L, y, R, fc) {
+  const rx = Math.max(8, R * 0.32);
+  ctx.save(); ctx.fillStyle = alpha(fc, 0.42); ctx.fillRect(x, y - R + 2, L, 2 * R - 4);
+  ctx.beginPath(); ctx.ellipse(x + L, y, rx, R - 2, 0, -Math.PI / 2, Math.PI / 2); ctx.fill();
+  ctx.fillStyle = alpha(fc, 0.55); ctx.beginPath(); ctx.ellipse(x, y, rx, R - 2, 0, 0, 2 * Math.PI); ctx.fill();
+  ctx.strokeStyle = fc; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.ellipse(x, y, rx, R - 2, 0, 0, 2 * Math.PI); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(x + L, y, rx, R - 2, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+  ctx.restore();
+}
+/* a bar from x0 on a fixed cap: the value's share of the full width, its edge ruled, its label to the left and its value at the end */
+function bar(ctx, x0, y, w, share, color, label, value) {
+  ctx.save(); ctx.fillStyle = alpha(color, 0.3); ctx.fillRect(x0, y - 13, w * Math.min(1, share), 26); ctx.restore();
+  line(ctx, x0, y - 18, x0, y + 18, PAL.muted, 2);
+  line(ctx, x0 + w * Math.min(1, share), y - 13, x0 + w * Math.min(1, share), y + 13, color, 3);
+  text(ctx, label, x0 - 16, y, PAL.ink, { size: 20, weight: 600, align: 'right' });
+  text(ctx, value, x0 + w * Math.min(1, share) + 14, y, color, { size: 20, weight: 600 });
+}
+
+/* =====================================================================
+   FIGURE 12.2: the shaded cylinder of fluid that has passed the point P in
+   a uniform pipe, and the book's derivation on it as a story slider:
+   Q = V/t, then V = Ad makes Q = Ad/t, then d/t bends into v̄ and Q = Av̄.
+   At the last stop the length bracket of the shaded volume becomes the
+   speed arrow. Still otherwise: the time is a slider here, so the figure
+   exposes the clock without running one, and the reader's three sliders
+   work at every stop.
+===================================================================== */
+(function () {
+  const d = sim('sim-flow-cylinder', 640);
+  const vs = ctl(d.controls, { label: '\\kvb', cls: 'velocity', min: 0.2, max: 4, step: 0.02, value: 1.96, unit: 'm/s', dec: 2, aria: '流体的平均速率' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.3, max: 1.5, step: 0.01, value: 0.9, unit: 'cm', dec: 3, aria: '管子的半径' });
+  const ts = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.1, max: 2, step: 0.01, value: 1, unit: 's', dec: 2, aria: '时间间隔' });
+  const st = ctl(d.controls, { label: '\\text{步骤}', cls: 'k', min: 0, max: 2, step: 0.01, value: 0, unit: '', dec: 0, aria: '推导进行到哪一步' });
+  F.story(d, st, { stops: [{ v: 0, label: 'V/t' }, { v: 1, label: 'Ad/t' }, { v: 2, label: 'Av̄' }], ms: 1400 });
+  /* the radius is drawn at 60 units to the centimeter and the length at 110 to the meter: the slider maxima
+     give a pipe 180 tall and a cylinder 880 long, and neither scale ever follows a slider */
+  const KR = 60, KL = 110, KV = 40, PX = 400, CY = 250, X1 = 110, X2 = 1300;
+  const QCAP = 3, VCAP = 6, BX = 640, BW = 560;        /* the bars: 3.00 L/s and 6.00 L on 560 units */
+  /* the three steps of the derivation; V splits into A and d, and d over t bends together into v̄ */
+  const mk = (key, x) => '\\mk{' + key + '}{' + x + '}';
+  const L = (n) => n + '\\ \\text{L}';
+  const FORM = [
+    (n) => mk('Q', '\\kQ') + ' = \\frac{' + mk('V', '\\kvol') + '}{' + mk('t', '\\kt') + '} = \\frac{' + mk('Vn', L(n.V)) + '}{' + mk('tn', n.t + '\\ \\text{s}') + '} = ' + mk('Qn', n.Q + '\\ \\text{L/s}'),
+    (n) => mk('Q', '\\kQ') + ' = \\frac{' + mk('A', '\\karea') + mk('d', '\\kd') + '}{' + mk('t', '\\kt') + '} = \\frac{' + mk('An', '(' + n.A + '\\ \\text{cm}^2)') + mk('dn', '(' + n.d + '\\ \\text{m})') + '}{' + mk('tn', n.t + '\\ \\text{s}') + '} = ' + mk('Qn', n.Q + '\\ \\text{L/s}'),
+    (n) => mk('Q', '\\kQ') + ' = ' + mk('A', '\\karea') + mk('d', '\\kvb') + ' = ' + mk('An', '(' + n.A + '\\ \\text{cm}^2)') + mk('dn', '(' + n.v + '\\ \\text{m/s})') + ' = ' + mk('Qn', n.Q + '\\ \\text{L/s}'),
+  ];
+  const KEYS = [{ V: ['A', 'd'], Vn: ['An', 'dn'] }, { t: 'd', tn: 'dn' }];
+  const NOTE = [
+    '流量是单位时间内流过某一点的体积：阴影圆柱体在时间 $\\kt$ 内已流过点 P。',
+    '圆柱体的体积等于它的横截面乘以它的长度，$\\kvol = \\karea\\kd$，而它的长度为 $\\kd = \\kvb\\kt$。',
+    '长度除以时间就是平均速率，$\\kd/\\kt = \\kvb$，所以流量等于面积乘以平均速率。',
+  ];
+  const { formula: fx, note } = F.readout(d);
+  let said = '';
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('flow-rate'), vc = C('velocity'), tc = C('time'), pc = C('position'), ac = C('area'), oc = C('volume');
+    const pipe = F.ref('pipe'), cyl = F.ref('cylinder');
+    const v = vs.v, r = rs.v, t = ts.v, s = st.v, R = r * KR, dm = v * t;
+    const A = Math.PI * r * r, Q = A * 1e-4 * v, V = Q * t;          /* A in cm², Q in m³/s, V in m³ */
+    const QL = Q * 1000, VL = V * 1000;
+    /* the bracket's length becoming the speed arrow, over the second step */
+    const k = F.ease.smooth(Math.min(1, Math.max(0, s - 1)));
+    /* the pipe, the fluid in it and the cylinder that has passed P */
+    tube(ctx, X1, X2, CY, R, fc, pipe);
+    slug(ctx, PX, dm * KL, CY, R, cyl);
+    for (let x = X1 + 60; x < PX - 40; x += 90) arrow(ctx, x, CY, x + 40, CY, alpha(PAL.ink, 0.35), 2);
+    const yb = CY + R + 84, xe = F.lerp(PX + dm * KL, PX + v * KV, k), ye = F.lerp(yb, CY, k);
+    if (k < 1) {
+      ctx.save(); ctx.globalAlpha = 1 - k;
+      hbracket(ctx, PX, xe, ye, pc, k > 0 ? undefined : 'd = v̄t = ' + sf(dm) + ' m');
+      if (k === 0) text(ctx, '在 t = ' + fmt(t, 2) + ' s 内', PX + dm * KL + 44, yb + 30, tc, { size: 21, weight: 600 });
+      ctx.restore();
+    }
+    if (k > 0) {
+      ctx.save(); ctx.globalAlpha = k;
+      arrow(ctx, PX, ye, xe, ye, vc, 5);
+      if (k === 1) text(ctx, 'v̄ = ' + fmt(v, 2) + ' m/s', PX + Math.max(v * KV, 40) + 14, CY - R - 26, vc, { size: 21, weight: 600 });
+      ctx.restore();
+    }
+    dot(ctx, PX, CY, PAL.ink, true, 8);
+    text(ctx, 'P', PX - 14, CY + R + 24, PAL.ink, { size: 24, weight: 600, align: 'right' });
+    text(ctx, '管子', X2 - 40, CY - R - 26, pipe, { size: 19, align: 'right' });
+    /* the cross-section of the pipe at P, seen end on */
+    const ex = 200, ey = 500;
+    ctx.save(); ctx.fillStyle = alpha(ac, 0.2); ctx.strokeStyle = pipe; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(ex, ey, R, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
+    line(ctx, ex, ey, ex + R * Math.cos(-0.6), ey + R * Math.sin(-0.6), pc, 3);
+    dot(ctx, ex, ey, PAL.ink, true, 4);
+    text(ctx, 'r = ' + fmt(r, 3) + ' cm', ex + R + 16, ey - 30, pc, { size: 21, weight: 600 });
+    text(ctx, 'A = πr² = ' + sf(A) + ' cm²', ex + R + 16, ey + 8, ac, { size: 21, weight: 600 });
+    text(ctx, 'P 处的横截面', ex, ey + R + 30, PAL.muted, { size: 19, align: 'center' });
+    /* the flow rate and the volume that has passed, on fixed caps */
+    bar(ctx, BX, 470, BW, QL / QCAP, fc, 'Q = Av̄', sf(QL) + ' L/s');
+    bar(ctx, BX, 540, BW, VL / VCAP, oc, 'V = Ad', sf(VL) + ' L');
+    text(ctx, '条形按 3.00 L/s 和 6.00 L 的上限绘制', BX + BW, 590, PAL.muted, { size: 17, align: 'right' });
+    topline(ctx, '在 ' + fmt(t, 2) + ' s 内，一段长 ' + sf(dm) + ' m 的流体圆柱体流过点 P，因此通过这根 ' + fmt(r, 3) + ' cm 的管子的流量为 ' + sf(QL) + ' L/s。');
+    const n = { V: sf(VL), t: fmt(t, 2), Q: sf(QL), A: sf(A), d: sf(dm), v: fmt(v, 2) };
+    const i = Math.min(1, Math.floor(s)), at = Math.round(s);
+    if (Math.abs(s - at) < 1e-6) F.morph(fx, FORM[at](n));
+    else F.morphAt(fx, FORM[i](n), FORM[i + 1](n), s - i, { keyMap: KEYS[i] });
+    const line2 = NOTE[at] + '管子的半径和圆柱体的长度没有按同一比例绘出，因为一个以厘米计、一个以米计，无法放进同一幅图。';
+    if (said !== line2) { said = line2; note.textContent = line2; F.renderMath(note); }
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 12.3: the tube that narrows from point 1 to point 2. The same
+   2.00 cm³ of fluid is drawn to scale in both parts, so the slab in the
+   wide part becomes a long cylinder in the narrow one, and the speeds and
+   the graph beneath show the inverse square. Moving: the book draws the
+   fluid flowing along the tube, so the fluid, ruled into 2.00 cm³ parcels,
+   is carried from point 1 to point 2 at a constant flow rate, slowed down,
+   and the shaded parcel stretches as it enters the narrow part.
+===================================================================== */
+(function () {
+  const d = sim('sim-continuity', 810);
+  const Qs = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 0.05, max: 1, step: 0.005, value: 0.5, unit: 'L/s', dec: 3, aria: '通过管的流量',
+    detents: [{ v: 0.0833, label: '心脏' }, { v: 0.5, label: '软管' }], snap: true, onInput: reset });
+  const r1s = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.5, max: 1.2, step: 0.01, value: 0.9, unit: 'cm', dec: 3, onInput: reset, aria: '点 1 处管的半径' });
+  const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 0.25, max: 1.2, step: 0.01, value: 0.25, unit: 'cm', dec: 3, onInput: reset, aria: '点 2 处管的半径' });
+  /* one scale for radii and lengths, 60 units to the centimeter, so a 2.00 cm³ volume in a 0.25 cm tube is 611 units long and
+     fits the narrow part; the speed arrows are at 12 units per m/s, and the largest speed the sliders reach, 50.9 m/s, still fits */
+  const K = 60, KV = 12, VOL = 2, CY = 250, XA = 60, XT = 520, XN = 640, XB = 1340, P1 = 240, P2 = 700;
+  const box = { l: 200, r: 1300, t: 460, b: 710 };     /* v̄ against r: 0 to 1.20 cm across, 0 to 60 m/s up, never rescaled */
+  /* the shaded parcel's back face goes from point 1 to point 2 in T seconds at a constant flow rate */
+  const T = 6, cy = F.cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  /* the tube's radius in cm at x, and the volume in cm³ from XA to x on a 2-unit table, so a face at volume s sits at xAt(s) */
+  function flow(r1, r2) {
+    const rAt = (x) => (x <= XT ? r1 : x >= XN ? r2 : r1 + ((r2 - r1) * (x - XT)) / (XN - XT));
+    const n = (XB - XA) / 2, cum = [0];
+    for (let i = 1; i <= n; i++) { const r = rAt(XA + 2 * i - 1); cum.push(cum[i - 1] + (Math.PI * r * r * 2) / K); }
+    const xAt = (s) => { let lo = 0, hi = n; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (cum[m] <= s) lo = m; else hi = m; } return XA + 2 * (lo + (s - cum[lo]) / (cum[hi] - cum[lo])); };
+    return { rAt, xAt, at: (x) => cum[Math.round((x - XA) / 2)], total: cum[n] };
+  }
+  /* the parcel between two faces, following the wall through the taper */
+  function parcel(ctx, fl, xb, xf, fc) {
+    const R = (x) => fl.rAt(x) * K - 2, rx = (x) => Math.max(8, R(x) * 0.32), xs = [];
+    for (let x = xb; x < xf; x += 4) xs.push(x);
+    xs.push(xf);
+    ctx.save(); ctx.fillStyle = alpha(fc, 0.42); ctx.beginPath();
+    xs.forEach((x, i) => (i ? ctx.lineTo(x, CY - R(x)) : ctx.moveTo(x, CY - R(x))));
+    xs.slice().reverse().forEach((x) => ctx.lineTo(x, CY + R(x)));
+    ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(xf, CY, rx(xf), R(xf), 0, -Math.PI / 2, Math.PI / 2); ctx.fill();
+    ctx.fillStyle = alpha(fc, 0.55); ctx.beginPath(); ctx.ellipse(xb, CY, rx(xb), R(xb), 0, 0, 2 * Math.PI); ctx.fill();
+    ctx.strokeStyle = fc; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(xb, CY, rx(xb), R(xb), 0, 0, 2 * Math.PI); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(xf, CY, rx(xf), R(xf), 0, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+    ctx.restore();
+  }
+  /* where the parcel starts and where it ends, dashed */
+  function ghost(ctx, x, L, R, fc) {
+    const rx = Math.max(8, R * 0.32);
+    ctx.save(); ctx.strokeStyle = alpha(fc, 0.7); ctx.lineWidth = 2; ctx.setLineDash([6, 6]); ctx.beginPath();
+    ctx.ellipse(x, CY, rx, R - 2, 0, 0, 2 * Math.PI); ctx.moveTo(x, CY - R + 2); ctx.lineTo(x + L, CY - R + 2); ctx.moveTo(x, CY + R - 2); ctx.lineTo(x + L, CY + R - 2);
+    ctx.moveTo(x + L, CY - R + 2); ctx.ellipse(x + L, CY, rx, R - 2, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke(); ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('flow-rate'), vc = C('velocity'), pc = C('position'), oc = C('volume'), c1 = F.ref('point-1'), c2 = F.ref('point-2');
+    const Q = Qs.v, r1 = r1s.v, r2 = r2s.v, R1 = r1 * K, R2 = r2 * K;
+    const A1 = Math.PI * r1 * r1, A2 = Math.PI * r2 * r2;                      /* cm² */
+    const v1 = (Q * 1000) / A1 / 100, v2 = (Q * 1000) / A2 / 100;             /* m/s */
+    const d1 = VOL / A1, d2 = VOL / A2, tpass = (VOL / (Q * 1000)) * 1000;    /* cm, cm, ms */
+    const same = Math.abs(r1 - r2) < 0.005;
+    /* the tube: a wide part, a taper and a narrow part, and the fluid through all of it */
+    ctx.save(); ctx.fillStyle = alpha(fc, 0.14); ctx.beginPath();
+    ctx.moveTo(XA, CY - R1); ctx.lineTo(XT, CY - R1); ctx.lineTo(XN, CY - R2); ctx.lineTo(XB, CY - R2); ctx.lineTo(XB, CY + R2); ctx.lineTo(XN, CY + R2); ctx.lineTo(XT, CY + R1); ctx.lineTo(XA, CY + R1); ctx.closePath(); ctx.fill(); ctx.restore();
+    /* the wide part in point 1's colour, the narrow part in point 2's and the taper between in ink */
+    for (const [pts, col] of [[[[XA, -R1], [XT, -R1]], c1], [[[XT, -R1], [XN, -R2]], PAL.ink], [[[XN, -R2], [XB, -R2]], c2]]) {
+      ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.beginPath();
+      for (const s of [1, -1]) { ctx.moveTo(pts[0][0], CY + s * pts[0][1]); ctx.lineTo(pts[1][0], CY + s * pts[1][1]); }
+      ctx.stroke(); ctx.restore();
+    }
+    /* the fluid ruled into 2.00 cm³ parcels, carried along; the shaded one starts at point 1 and ends at point 2 */
+    const fl = flow(r1, r2), s1 = fl.at(P1), sb = s1 + (fl.at(P2) - s1) * (cy.now() / T);
+    for (let s = sb - Math.ceil(sb / VOL) * VOL; s < fl.total; s += VOL) {
+      if (s <= 0 || Math.abs(s - sb) < 1e-9 || Math.abs(s - sb - VOL) < 1e-9) continue;
+      const x = fl.xAt(s), R = fl.rAt(x) * K - 2;
+      ctx.save(); ctx.strokeStyle = alpha(fc, 0.45); ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(x, CY, Math.max(8, R * 0.32), R, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke(); ctx.restore();
+    }
+    ghost(ctx, P1, d1 * K, R1, fc);
+    ghost(ctx, P2, d2 * K, R2, fc);
+    parcel(ctx, fl, fl.xAt(sb), Math.min(XB, fl.xAt(sb + VOL)), fc);
+    arrow(ctx, P1, CY, P1 + v1 * KV, CY, vc, 5);
+    arrow(ctx, P2, CY, P2 + v2 * KV, CY, vc, 5);
+    text(ctx, 'v̄_1 = ' + sf(v1) + ' m/s', P1, CY - R1 - 26, vc, { size: 21, weight: 600 });
+    text(ctx, 'v̄_2 = ' + sf(v2) + ' m/s', P2, CY - R2 - 26, vc, { size: 21, weight: 600 });
+    for (const [x, R, nm, cp] of [[P1, R1, '1', c1], [P2, R2, '2', c2]]) { dot(ctx, x, CY, cp, true, 8); text(ctx, nm, x, CY + R + 26, cp, { size: 24, weight: 600, align: 'center' }); }
+    text(ctx, 'V = 2.00 cm³', P1 + (d1 * K) / 2 + 24, CY + R1 + 58, oc, { size: 20, align: 'center' });
+    text(ctx, 'V = 2.00 cm³', P2 + (d2 * K) / 2 + 60, CY + R2 + 58, oc, { size: 20, align: 'center' });
+    vbracket(ctx, 190, CY, CY + R1, pc); text(ctx, 'r_1 = ' + fmt(r1, 3) + ' cm', 196, CY + R1 + 26, pc, { size: 21, weight: 600, align: 'right' });
+    vbracket(ctx, 670, CY, CY + R2, pc); text(ctx, 'r_2 = ' + fmt(r2, 3) + ' cm', 676, CY + R2 + 58, pc, { size: 21, weight: 600, align: 'right' });
+    text(ctx, 'Q = ' + fmt(Q, 3) + ' L/s 流过整根管', XB, CY - R2 - 26, fc, { size: 21, weight: 600, align: 'right' });
+    /* the graph: speed against radius for this flow rate, both points on it */
+    const { X, Y } = axes(ctx, box, [0, 1.2], [0, 60], { xl: 'r (cm)', yl: 'v̄ (m/s)', xc: pc, yc: vc, nx: 6, ny: 3, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    const vOf = (r) => (Q * 1000) / (Math.PI * r * r) / 100, r0 = Math.sqrt((Q * 1000) / (Math.PI * 60 * 100));
+    curve(ctx, vOf, Math.max(r0, 0.02), 1.2, X, Y, vc, 4, 160);
+    for (const [r, v, nm, cp] of same ? [[r1, v1, '1, 2', vc]] : [[r1, v1, '1', c1], [r2, v2, '2', c2]]) {
+      line(ctx, X(r), Y(v), X(r), box.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+      line(ctx, box.l, Y(v), X(r), Y(v), alpha(PAL.ink, 0.35), 2, [4, 8]);
+      const p = pinned(ctx, box, X, Y, r, v, cp);
+      text(ctx, nm, p.x + 16, p.y - 16, cp, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    }
+    text(ctx, 'Q = ' + fmt(Q, 3) + ' L/s 时，v̄ = Q / πr²', box.r, box.t - 24, vc, { size: 20, weight: 600, align: 'right' });
+    topline(ctx, same
+      ? '管在两点处的半径相同，都是 ' + fmt(r1, 3) + ' cm，因此这 ' + fmt(Q, 3) + ' L/s 的流体在两点处都以 ' + sf(v1) + ' m/s 运动。'
+      : '同样的 ' + fmt(Q, 3) + ' L/s 流过两点，因此流体的速率为 ' + sf(v1) + ' m/s 处，半径是 ' + fmt(r1, 3) + ' cm；速率为 ' + sf(v2) + ' m/s 处，半径是 ' + fmt(r2, 3) + ' cm。');
+    readout(d.readout, `\\kQone = \\kQtwo:\\quad \\kareaone\\kvbone = \\kareatwo\\kvbtwo:\\quad (${sf(A1)}\\ \\text{cm}^2)(${sf(v1)}\\ \\text{m/s}) = (${sf(A2)}\\ \\text{cm}^2)(${sf(v2)}\\ \\text{m/s}) = ${fmt(Q, 3)}\\ \\text{L/s}`,
+      '阴影圆柱体是 2.00 cm³ 的流体，按比例绘出，流过任一点都需 ' + sf(tpass) + ' ms；图中的流动放慢了 ' + sf(T / ((fl.at(P2) - s1) / (Q * 1000)), 2) + ' 倍。两处速率之比为 $\\kvbtwo/\\kvbone = (\\krone/\\krtwo)^2 = ' + sf(v2 / v1) + '$，这就是半径减小时图像上升得如此陡峭的原因。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   SIM: a vessel that divides into branches. The book states the branching
+   form of continuity in one equation and works it once, for the aorta and
+   five billion capillaries; here a vessel divides into a few branches whose
+   number and radius the reader sets, and the total cross-section and the
+   speed in a branch answer. Still: it answers its sliders and nothing else.
+===================================================================== */
+(function () {
+  const d = sim('sim-branching', 740);
+  const Qs = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 2, max: 10, step: 0.1, value: 5, unit: 'L/min', dec: 1, aria: '通过血管的流量' });
+  const r1s = ctl(d.controls, { label: '\\krone', cls: 'position', min: 6, max: 15, step: 0.1, value: 10, unit: 'mm', dec: 1, aria: '血管的半径' });
+  const ns = ctl(d.controls, { label: 'n_2', cls: '', min: 2, max: 6, step: 1, value: 6, unit: '', dec: 0, aria: '分支的数目' });
+  const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 2, max: 8, step: 0.1, value: 5, unit: 'mm', dec: 1, aria: '每条分支的半径' });
+  /* radii at 4 units to the millimeter, so six branches of 8 mm fan across 444 units; speed arrows at 120 units
+     per m/s and pinned at 560 with a hollow head, which the largest speed the sliders reach, 6.6 m/s, overruns; the area bars sit on a cap of 12.5 cm² */
+  const K = 4, KV = 120, VMAX = 560, CY = 340, XA = 40, XJ = 520, XF = 680, XE = 1140, ACAP = 12.5, BX = 420, BW = 820;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('flow-rate'), vc = C('velocity'), pc = C('position'), ac = C('area'), cv1 = F.ref('vessel'), cbr = F.ref('branches');
+    const Q = Qs.v, r1 = r1s.v, n = ns.v, r2 = r2s.v, R1 = r1 * K, R2 = r2 * K;
+    const A1 = Math.PI * r1 * r1 / 100, A2 = Math.PI * r2 * r2 / 100, Atot = n * A2;       /* cm² */
+    const Qc = (Q * 1000) / 60;                                                             /* cm³/s */
+    const v1 = Qc / A1 / 100, v2 = Qc / Atot / 100;                                         /* m/s */
+    /* the branches fan out from the mouth of the vessel: their roots are spread across the mouth where they fit,
+       and where they do not the mouth flares to take them */
+    const sp = 2 * R2 + 12, spr = Math.min(sp, Math.max((2 * R1 - 2 * R2) / (n - 1), 2 * R2 + 2)), Mh = Math.max(R1, ((n - 1) * spr) / 2 + R2);
+    const ys = Array.from({ length: n }, (_, i) => CY + (i - (n - 1) / 2) * sp), yr = Array.from({ length: n }, (_, i) => CY + (i - (n - 1) / 2) * spr);
+    const fill = (path) => { ctx.save(); path(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(fc, 0.14); ctx.fill(); ctx.restore(); };
+    ys.forEach((y, i) => {
+      const y0 = yr[i];
+      const XM = (XJ + XF) / 2;
+      fill(() => { ctx.beginPath(); ctx.moveTo(XJ - 4, y0 - R2); ctx.bezierCurveTo(XM, y0 - R2, XM, y - R2, XF, y - R2); ctx.lineTo(XE, y - R2); ctx.lineTo(XE, y + R2); ctx.lineTo(XF, y + R2); ctx.bezierCurveTo(XM, y + R2, XM, y0 + R2, XJ - 4, y0 + R2); ctx.closePath(); });
+      ctx.save(); ctx.strokeStyle = cbr; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath();
+      ctx.moveTo(XJ, y0 - R2); ctx.bezierCurveTo(XM, y0 - R2, XM, y - R2, XF, y - R2); ctx.lineTo(XE, y - R2);
+      ctx.moveTo(XJ, y0 + R2); ctx.bezierCurveTo(XM, y0 + R2, XM, y - R2 + 2 * R2, XF, y + R2); ctx.lineTo(XE, y + R2); ctx.stroke(); ctx.restore();
+    });
+    /* the vessel, drawn over the roots of its branches */
+    fill(() => { ctx.beginPath(); ctx.moveTo(XA, CY - R1); ctx.lineTo(XJ - 60, CY - R1); ctx.lineTo(XJ, CY - Mh); ctx.lineTo(XJ, CY + Mh); ctx.lineTo(XJ - 60, CY + R1); ctx.lineTo(XA, CY + R1); ctx.closePath(); });
+    ctx.save(); ctx.strokeStyle = cv1; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath();
+    ctx.moveTo(XJ, CY - Mh); ctx.lineTo(XJ - 60, CY - R1); ctx.lineTo(XA, CY - R1); ctx.lineTo(XA, CY + R1); ctx.lineTo(XJ - 60, CY + R1); ctx.lineTo(XJ, CY + Mh); ctx.stroke(); ctx.restore();
+    /* the speeds, one arrow in the vessel and one in the last branch standing for all of them */
+    const yb = ys[n - 1];
+    for (const [x, y, v, nm] of [[260, CY, v1, 'v̄_1'], [700, yb, v2, 'v̄_2']]) {
+      const L = v * KV, over = L > VMAX, Ld = Math.min(L, VMAX);
+      arrow(ctx, x, y, x + Ld, y, vc, 5);
+      if (over) dot(ctx, x + Ld, y, vc, false, 8);
+      text(ctx, nm + ' = ' + sf(v) + ' m/s', x, y + (nm === 'v̄_1' ? R1 : R2) + 26, vc, { size: 21, weight: 600 });
+    }
+    vbracket(ctx, 200, CY, CY + R1, pc); text(ctx, 'r_1 = ' + fmt(r1, 1) + ' mm', 206, CY + R1 + 26, pc, { size: 21, weight: 600, align: 'right' });
+    vbracket(ctx, XE + 22, yb - R2, yb, pc, 'r_2 = ' + fmt(r2, 1) + ' mm', 1);
+    text(ctx, 'n_1 = 1 根血管', 260, CY - R1 - 26, cv1, { size: 20, weight: 600 });
+    text(ctx, 'n_2 = ' + n + ' 条分支，每条的半径为 r_2', 1000, yb + R2 + 26, cbr, { size: 20, weight: 600 });
+    /* the cross-section of the vessel against the total cross-section of its branches, on one cap */
+    bar(ctx, BX, 640, BW, A1 / ACAP, ac, 'A_1', sf(A1) + ' cm²');
+    bar(ctx, BX, 688, BW, Atot / ACAP, ac, 'n_{2}A_{2}', sf(Atot) + ' cm²');
+    text(ctx, '条形按 12.5 cm² 的上限绘制', BX + BW, 724, PAL.muted, { size: 17, align: 'right' });
+    const ratio = Atot / A1, same = Math.abs(ratio - 1) < 0.02;
+    topline(ctx, '半径为 ' + fmt(r1, 1) + ' mm 的一根血管分成 ' + n + ' 条 ' + fmt(r2, 1) + ' mm 的分支，因此总横截面' + (same
+      ? '不变，血液保持 ' + sf(v1) + ' m/s 的速率。'
+      : '是血管横截面的 ' + sf(ratio) + ' 倍，血流' + (ratio > 1 ? '减慢' : '加快') + '，由 ' + sf(v1) + ' m/s 变为 ' + sf(v2) + ' m/s。'));
+    readout(d.readout, `n_1\\kareaone\\kvbone = n_2\\kareatwo\\kvbtwo:\\quad (1)(${sf(A1)}\\ \\text{cm}^2)(${sf(v1)}\\ \\text{m/s}) = (${n})(${sf(A2)}\\ \\text{cm}^2)(${sf(v2)}\\ \\text{m/s}) = ${sf(Qc)}\\ \\text{cm}^3\\text{/s} = ${fmt(Q, 1)}\\ \\text{L/min}`,
+      '人体内 5 × 10⁹ 条半径为 4.0 μm 的毛细血管，总横截面约为 2500 cm²，约是主动脉 3.14 cm² 的 800 倍，因此在主动脉中以 0.27 m/s 流动的同样的 5.0 L/min，在毛细血管中以 0.33 mm/s 缓慢爬行，慢到足以与组织进行交换，又快到不致凝血。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};
