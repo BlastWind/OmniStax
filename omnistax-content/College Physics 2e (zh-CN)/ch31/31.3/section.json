@@ -1,0 +1,662 @@
+{
+ "id": "31.3",
+ "module": "m42631",
+ "chapter": "31",
+ "title": "原子核的子结构",
+ "short": "原子核",
+ "lead": "原子核由质子和中子构成，它们合称核子。本节用质子数和中子数来称呼一个原子核，介绍同位素和原子核尺度上使用的质量单位，探问原子核有多大、多致密以及什么力把它束缚在一起，并把所有原子核排布在核素图上。",
+ "objectives": [
+  "定义并讨论原子中的原子核。",
+  "定义原子序数。",
+  "定义并讨论同位素。",
+  "计算原子核的密度。",
+  "解释核力。"
+ ],
+ "summary_html": "<ul><li>原子核内有两种粒子，都称为核子。核子的两种类型是质子和中子；它们非常相似，只是质子带正电，而中子是电中性的。它们的一些特性见表 31.2，并与电子的特性作了比较。对原子和核过程方便的一种质量单位是原子质量单位（u），定义为$$1\\;\\text{u}=1.6605\\times10^{-27}\\;\\text{kg}=931.46\\;\\text{MeV}/c^{2}.$$</li><li>核素是质子和中子的一种特定组合，记作$${}^{A}_{Z}\\text{X}_{N}\\;\\text{或简记为}\\;{}^{A}\\text{X},$$ $Z$ 是质子数或原子序数，X 是元素符号，$N$ 是中子数，$A$ 是质量数，即质子和中子的总数，$$A=N+Z.$$</li><li>具有相同 $Z$ 而 $N$ 不同的核素是同一元素的同位素。</li><li><span data-type=\"position\">核半径</span> $\\krnuc$ 近似为$$\\krnuc=\\kronuc A^{1/3},$$ 其中 $\\kronuc=1.2\\;\\text{fm}$。核<span data-concept=\"volume\">体积</span>与 $A$ 成正比。有两种核力，弱核力和强核力。核稳定性在核素图上呈现的规律表明，当 $Z$ 和 $N$ 等于幻数时，原子核中存在壳层封闭，这对应于高度稳定的原子核。</li></ul>",
+ "notes": "正文中对“核物理学的医学应用”、卢瑟福发现原子核和附录 A 的引用，均按原样保留为纯文本，其中第一处带有未闭合的括号；图 31.11 中的质子和中子，采用本书赋予每个质子和中子的颜色来绘制，而不是原图的蓝色和绿色。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。本模块十二道习题中有六道没有给出答案，因而略去：1.0 kg 核物质所成立方体的边长、²³⁸Pu 的半径、1 u 全部转化后的能量、吸收 γ 射线束中除 0.100% 以外全部射线所需的铅的厚度、证明与 A 无关的原子核密度，以及 0.998c 时 β 射线的动能。31.7 中印出的两道有答案的习题被设置在这里，因为它们考查的是本节介绍的核半径和核密度：关于半径为 7.5 × 10⁻¹³ m 的原子核的“不合理的结果”一题，以及关于 ²³⁵U 及其裂变碎片密度的“批判性思考”一题，后者的答案取钡的质量数为 142，而题中印的是 ¹⁴¹Ba。AP 题有答案，设为判分选择题。三道思考题没有答案，各附有一条标明由 AI 给出的建议思路。本模块没有印出理解检测栏目，所以没有设置内嵌题。",
+ "figures": [
+  {
+   "id": "photo-coal-uranium-cesium",
+   "kind": "photo",
+   "number": "31.10",
+   "widths": [
+    325
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-nucleus-model",
+   "kind": "sim",
+   "number": "31.11",
+   "originals": [
+    "/media/ch31/Figure_32_03_02a.jpg"
+   ],
+   "original_caption": "原子核的模型。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position",
+    "density"
+   ],
+   "conventions": [
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-nuclide-chart",
+   "kind": "sim",
+   "number": "31.12",
+   "originals": [
+    "/media/ch31/Figure_32_03_03a.jpg"
+   ],
+   "original_caption": "核素图的简化版本，即已知核素的 N 对 Z 的图。稳定核素和不稳定核素的分布规律揭示了核力的特性。虚线表示 N = Z。沿对角线标注的数字为质量数 A。",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-goeppert-mayer",
+   "kind": "photo",
+   "number": "31.13",
+   "widths": [
+    185
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "inside-the-nucleus",
+   "concept": "nucleus",
+   "verb": "uses"
+  },
+  {
+   "span": "inside-the-nucleus",
+   "concept": "nuclear-radioactivity",
+   "verb": "uses"
+  },
+  {
+   "span": "inside-the-nucleus",
+   "concept": "alpha-beta-gamma-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "nucleons",
+   "concept": "nucleus",
+   "verb": "introduces"
+  },
+  {
+   "span": "nucleons",
+   "concept": "nucleons",
+   "verb": "introduces"
+  },
+  {
+   "span": "nucleons",
+   "concept": "neutron",
+   "verb": "introduces"
+  },
+  {
+   "span": "nucleons",
+   "concept": "atomic-mass-unit",
+   "verb": "introduces"
+  },
+  {
+   "span": "nucleons",
+   "concept": "proton",
+   "verb": "uses"
+  },
+  {
+   "span": "nucleons",
+   "concept": "rest-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "nucleons",
+   "concept": "electron-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclides",
+   "concept": "nuclide",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclides",
+   "concept": "nuclide-notation",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclides",
+   "concept": "mass-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclides",
+   "concept": "neutron-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclides",
+   "concept": "atomic-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclides",
+   "concept": "atomic-number",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclides",
+   "concept": "atomic-mass-unit",
+   "verb": "uses"
+  },
+  {
+   "span": "isotopes",
+   "concept": "isotopes",
+   "verb": "introduces"
+  },
+  {
+   "span": "isotopes",
+   "concept": "nuclide-notation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "nuclear-size",
+   "concept": "nuclear-radius",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-size",
+   "concept": "nucleons",
+   "verb": "reinforces"
+  },
+  {
+   "span": "nuclear-size",
+   "concept": "mass-number",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-size",
+   "concept": "volume",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-density",
+   "concept": "nuclear-density",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-density",
+   "concept": "nuclear-radius",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-density",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-density",
+   "concept": "atomic-mass-unit",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-forces",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-forces",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-forces",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "chart-of-the-nuclides",
+   "verb": "introduces"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "magic-numbers",
+   "verb": "introduces"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "nuclide",
+   "verb": "reinforces"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "isotopes",
+   "verb": "reinforces"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "mass-number",
+   "verb": "uses"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "neutron-number",
+   "verb": "uses"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "chart-of-the-nuclides",
+   "concept": "nuclear-shell",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2043798",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-forces",
+   "prompt": "一个典型的碳原子核含有 6 个中子和 6 个质子。这 6 个质子都带正电，彼此靠得非常近，间距的数量级为 10<sup>-15</sup> 米，这应当产生巨大的排斥力。是什么阻止原子核因电场力的排斥而自行瓦解？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "强核力的吸引作用压倒了电场力。",
+     "弱核力勉强抵消了电场力。",
+     "绕核运行的电子所产生的磁力形成了一个稳定的极小值，原子核中的带电粒子就处在其中。",
+     "周围电子的吸引性电场力在各个方向上相等并相互抵消，没有留下合电场力。"
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "hint": "想一想，本节说哪种力在这些距离上，其吸引作用约为质子之间排斥的 100 倍。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id954904",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-forces",
+   "prompt": "弱核力和强核力是物质结构的基础。我们为什么不能直接感受到它们？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两种核力的力程都极短：当核子相隔仅几 fm（约 $10^{-15}\\;\\text{m}$）时，它们的强度就降为零。我们接触或看到的一切，其尺寸至少是原子量级的，约 $10^{-10}\\;\\text{m}$，所以一个物体的核力永远到不了另一个物体。它们只在原子核内部起作用，我们通过物质的稳定性和核衰变的能量间接地遇到它们。引力和电磁力是长程力，这就是它们成为日常经验中的力的原因。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1613678",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclides",
+   "prompt": "定义中子、核子、原子核、核素和中微子这几个术语，并明确区分它们。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "中子是一种特定的粒子：电中性，质量几乎与质子相同，存在于原子核中。核子是存在于原子核中的粒子的统称，质子和中子都是核子。原子核是位于原子中心的、由核子紧密堆积而成的整个球。核素是原子核的一个种类，即 $Z$ 个质子和 $N$ 个中子的一种特定组合，写作 ${}^{A}_{Z}\\text{X}_{N}$，所以许多相同的原子核都是同一种核素。中微子根本不是原子核的组成部分：它是 $\\beta$ 衰变中放出的一种质量极小的电中性粒子，下一节将介绍它。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1860258",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isotopes",
+   "prompt": "什么是同位素？为什么同一元素的不同同位素具有相似的化学性质？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "同位素是质子数 $Z$ 相同而中子数 $N$ 不同的原子核，例如 ${}^{1}\\text{H}$、${}^{2}\\text{H}$ 和 ${}^{3}\\text{H}$。化学性质取决于原子中电子的行为，而中性原子中电子的数目和排布，由核电荷即 $Z$ 乘以质子的电荷决定。中子不带电，所以增加或减少中子会改变原子核的质量、稳定性和其他核性质，却几乎不改变电子，因而也几乎不改变化学性质。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1374452",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-density",
+   "prompt": "验证：在正常密度下，质量为 $2.3\\times10^{17}\\;\\text{kg}$ 的水将构成一个边长 60 km 的立方体，如例题 31.1 中所述。（这些质量在核密度下将构成一个边长 1.0 m 的立方体。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "the side of the cube of water",
+    "value": 61,
+    "unit": "km",
+    "hint": "把质量写成密度乘以体积，对于边长为 $a$ 的立方体，$\\km=\\krho a^{3}$，水的密度取 $1000\\;\\text{kg/m}^{3}$，然后解出 $a$。",
+    "solution": "$\\km=\\krho\\kvol=\\krho d^{3}\\Rightarrow a=\\left(\\frac{\\km}{\\krho}\\right)^{1/3}=\\left(\\frac{2.3\\times10^{17}\\;\\text{kg}}{1000\\;\\text{kg/m}^{3}}\\right)^{1/3}=61\\times10^{3}\\;\\text{m}=61\\;\\text{km}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2625182",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-size",
+   "prompt": "$\\alpha$ 粒子的半径是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.9,
+    "unit": "fm",
+    "hint": "$\\alpha$ 粒子就是 ${}^{4}\\text{He}$ 原子核，所以取 $A=4$、$\\kronuc=1.2\\;\\text{fm}$，用 $\\krnuc=\\kronuc A^{1/3}$。",
+    "solution": "$1.9\\;\\text{fm}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2595416",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-size",
+   "prompt": "（a）计算 ${}^{58}\\text{Ni}$ 的半径，它是束缚得最紧的稳定原子核之一。（b）${}^{58}\\text{Ni}$ 的半径与 ${}^{258}\\text{Ha}$ 的半径之比是多少？${}^{258}\\text{Ha}$ 是迄今制造出的最大的原子核之一。请注意，最大原子核的半径仍远小于原子的大小。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the radius of ${}^{58}\\text{Ni}$",
+      "value": 4.6,
+      "unit": "fm",
+      "hint": "取 $A=58$，用 $\\krnuc=\\kronuc A^{1/3}$。"
+     },
+     {
+      "part": "(b) the ratio of the radii",
+      "value": 0.61,
+      "hint": "由于 $\\kronuc$ 被约去，半径之比等于质量数之比的立方根。"
+     }
+    ],
+    "solution": "（a）$4.6\\;\\text{fm}$\n（b）$0.61$ 比 1"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3046141",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-forces",
+   "prompt": "如果 $\\beta$ 粒子和 $\\alpha$ 粒子具有相同的非相对论性动能，它们的速度之比是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "the ratio of the speeds",
+    "value": 85.4,
+    "hint": "两者的 $\\kKE=\\frac{1}{2}\\km\\kv^{2}$ 相同，故速率之比为 $\\sqrt{m_{\\alpha}/m_{\\beta}}$；质量取同一单位，$\\beta$ 粒子是电子，$\\alpha$ 粒子是 ${}^{4}\\text{He}$ 原子核。",
+    "solution": "85.4 比 1"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3258580",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-size",
+   "prompt": "用探针所能观察到的细节受其波长限制。计算波长为 $1\\times10^{-16}\\;\\text{m}$ 的 $\\gamma$ 射线光子的能量，这一波长小到足以探测大小约为核子十分之一的细节。请注意，具有这种能量的光子很难产生，而且与原子核的相互作用很弱，这限制了这种探针的实用性。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 12.4,
+    "unit": "GeV",
+    "hint": "用 $\\kE=h\\kc/\\klam$，其中 $h\\kc=1240\\;\\text{eV}\\cdot\\text{nm}$，$1\\;\\text{nm}=10^{-9}\\;\\text{m}$。",
+    "solution": "$12.4\\;\\text{GeV}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "eip-983",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-forces",
+   "prompt": "一条 5.00 MeV 的 $\\beta$ 射线与具有相同动能的 $\\alpha$ 粒子的速度之比是多少？这应当证实，即使考虑相对论，$\\beta$ 粒子的运动也比 $\\alpha$ 粒子快得多。（另见关于具有相同非相对论性动能的 $\\beta$ 粒子与 $\\alpha$ 粒子的速度之比的那道习题。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "the ratio of the speeds",
+    "value": 19.3,
+    "hint": "5.00 MeV 的电子远非经典的：由 $\\kKE=(\\gamma-1)\\km\\kc^{2}$（其中 $\\km\\kc^{2}=0.511\\;\\text{MeV}$）求出它的 $\\gamma$，再求它的速率。$\\alpha$ 粒子的 $\\km\\kc^{2}$ 接近 3727 MeV，可以按经典方法处理。",
+    "solution": "19.3 比 1"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "eip-467",
+   "source_section": "31.7",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-size",
+   "prompt": "不合理的结果。一位物理学家使 $\\gamma$ 射线在某种物质上发生散射，看到了半径为 $7.5\\times10^{-13}\\;\\text{m}$ 的原子核的证据。（a）求这种原子核的原子质量。（b）这一结果有什么不合理之处？（c）这一假设有什么不合理之处？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the atomic mass",
+    "value": 240000000.0,
+    "unit": "u",
+    "hint": "由 $\\krnuc=\\kronuc A^{1/3}$ 解出 $A=(\\krnuc/\\kronuc)^{3}$，其中 $\\kronuc=1.2\\;\\text{fm}=1.2\\times10^{-15}\\;\\text{m}$；以 u 为单位的质量接近 $A$。",
+    "solution": "（a）$2.4\\times10^{8}\\;\\text{u}$\n（b）已知的最大原子质量约为 260。（a）中求得的这一结果极其巨大。\n（c）所假设的半径大得过分，不合理。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "exer-00001",
+   "source_section": "31.7",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-density",
+   "prompt": "批判性思考。（a）以 $\\text{u/fm}^{3}$ 为单位，${}^{235}\\text{U}$ 的密度是多少？（b）如果 ${}^{235}\\text{U}$ 分裂为 ${}^{141}\\text{Ba}$ 和 ${}^{92}\\text{Kr}+3$ 个中子，那么 ${}^{235}\\text{U}$ 的密度与它所分裂成的每种元素的密度相比如何？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the density of ${}^{235}\\text{U}$",
+    "value": 0.14,
+    "unit": "u/fm³",
+    "hint": "由 $\\krnuc=\\kronuc A^{1/3}$ 求半径，再求该半径的球的体积，然后用质量（约 $A$ u）除以体积。",
+    "solution": "（a）$\\krnuc=\\kronuc A^{1/3}=1.2(235)^{1/3}=7.4\\;\\text{fm}$，$\\kvol=\\frac{4\\pi\\krnuc^{3}}{3}=1700\\;\\text{fm}^{3}$，$\\krho=\\frac{\\km}{\\kvol}=0.14\\;\\text{u/fm}^{3}$\n（b）对于钡：$\\krnuc=\\kronuc A^{1/3}=1.2(142)^{1/3}=6.3\\;\\text{fm}$<sup class=\"fn\" data-note=\"c-p8-barium\"></sup>，$\\kvol=\\frac{4\\pi\\krnuc^{3}}{3}=1047\\;\\text{fm}^{3}$，$\\krho=\\frac{\\km}{\\kvol}=0.14\\;\\text{u/fm}^{3}$。对于氪：$\\krnuc=\\kronuc A^{1/3}=1.2(92)^{1/3}=5.4\\;\\text{fm}$，$\\kvol=\\frac{4\\pi\\krnuc^{3}}{3}=660\\;\\text{fm}^{3}$，$\\krho=\\frac{\\km}{\\kvol}=0.14\\;\\text{u/fm}^{3}$。取两位有效数字，它们都相同。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "nucleons"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "nucleus"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "nuclide"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "neutron"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "isotopes"
+  },
+  {
+   "exercise": "p1",
+   "concept": "nuclear-density"
+  },
+  {
+   "exercise": "p2",
+   "concept": "nuclear-radius"
+  },
+  {
+   "exercise": "p3",
+   "concept": "nuclear-radius"
+  },
+  {
+   "exercise": "p4",
+   "concept": "alpha-beta-gamma-rays"
+  },
+  {
+   "exercise": "p4",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "photon-energy-from-wavelength"
+  },
+  {
+   "exercise": "p5",
+   "concept": "nucleons"
+  },
+  {
+   "exercise": "p6",
+   "concept": "alpha-beta-gamma-rays"
+  },
+  {
+   "exercise": "p6",
+   "concept": "relativistic-kinetic-energy"
+  },
+  {
+   "exercise": "p7",
+   "concept": "nuclear-radius"
+  },
+  {
+   "exercise": "p7",
+   "concept": "atomic-mass"
+  },
+  {
+   "exercise": "p8",
+   "concept": "nuclear-density"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-mass-ratio-chapter",
+   "kind": "correction",
+   "html": "本书引用的是后面一章“核物理学的医学应用”；$m_p = 1836\\,m_e$ 见“原子物理学”一章中的“原子组成部分的发现”。"
+  },
+  {
+   "id": "c-p8-barium",
+   "kind": "correction",
+   "html": "本书的答案取钡的质量数为 142；题中的原子核是 ${}^{141}\\text{Ba}$，其 $\\krnuc = 1.2(141)^{1/3} = 6.2$ fm。无论哪种取法，密度都是 $0.14\\ \\text{u/fm}^{3}$。"
+  }
+ ]
+}

@@ -616,7 +616,7 @@ const wavesOf = (nm) => clamp(1.6 + 1300 / nm, 2, 7.5);
     hits.push({ x: S.x, y: S.y, r: 22, name: '把光束分开的部分镀银镜' }, { x: M.x, y: M.y, r: 22, name: '反射镜' }, { x: LAS.x + 55, y: LAS.y + 20, r: 40, name: '激光器' });
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.25); ctx.fillRect(FX - 5, FT, 10, FB - FT); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.strokeRect(FX - 5, FT, 10, FB - FT); ctx.restore();
     hits.push({ x: FX, y: FC.y, r: 24, name: mode.value === 'rec' ? '照相胶片' : '显影后的全息图' });
-    text(ctx, mode.value === 'rec' ? '照相底片' : '全息图', FX, FB + 22, PAL.ink, { size: 18, align: 'center' });
+    text(ctx, mode.value === 'rec' ? '照相底板' : '全息图', FX, FB + 22, PAL.ink, { size: 18, align: 'center' });
     text(ctx, 'M', M.x + 26, M.y - 26, PAL.ink, { size: 18, weight: 600, align: 'left' });
 
     /* the reference wave, the same in both stages: from the mirror onto the film */

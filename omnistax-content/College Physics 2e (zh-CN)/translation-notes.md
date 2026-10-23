@@ -1907,7 +1907,7 @@ Merge of 2026-10-23. Decisions taken for the chapter (owner-directed; the glossa
 | File | Span or line | What was done | Why |
 |---|---|---|---|
 | ch31/31.4/text.html | #alpha-decay, #pu-239-alpha-energy, #beta-minus-decay, #co-60-beta-energy, #positron-decay, #beta-decay: “parent nucleus”, “parent nuclide”, “daughter nucleus”, “daughter nuclide”, each with a parent or daughter span and a nucleus or nuclide span | 母核 and 子核 are written with the parent (daughter) span on 母 (子) and the nucleus (nuclide) span on 核, the two source spans split over the two morphemes | the glossary renders all four phrases as the one word 母核 or 子核, so no span of the source can be dropped or merged (translate.md 5); as ch03/3.4 splits 分矢量 |
-| ch31/31.4/text.html | #decay-energy “Total mass–energy is also conserved”; #beta-minus-decay “most of the decay energy”; #co-60-beta-energy “the decay energy” | 质能 is written 总 + the mass span on 质 + the energy span on 能, and 衰变能 is written with the decay span on 衰变 and the energy span on 能 | the glossary fixes 质能 and 衰变能 as single words while the source marks mass and energy (decay and energy) as separate spans |
+| ch31/31.4/text.html | #decay-energy “Total mass–energy is also conserved”; #beta-minus-decay “most of the decay energy”; #co-60-beta-energy “the decay energy” | 质能 is written 总 + the mass span on 质 + the energy span on 能, and 衰变能量 is written with the decay span on 衰变 and the energy span on 能量 (衰变能 until the ch31 review fixes) | the glossary fixes 质能 and 衰变能量 as single words while the source marks mass and energy (decay and energy) as separate spans |
 | ch31/31.4/text.html | #beta-decay, the sentence on the name of the neutrino: “gave neutrinos their name, meaning little neutral ones” | written 给中微子起了名字（neutrino），意思是“中性的小家伙”, the word neutrino kept in parentheses | a sentence about the origin of an English word (4.3) |
 | ch31/31.4/text.html | #electron-family: “where ν is the Greek letter nu” | written 其中 $\nu$ 是希腊字母 nu, the letter’s spoken name kept in Latin letters | a sentence about how a symbol is read; kept as ch01/1.3 keeps delta (4.3) |
 | ch31/31.4/text.html | #positron-decay: “a positive electron” and “This is antielectron or positron decay” | written 带正电的电子 (the em wraps 带正电的) and 这就是反电子衰变，即正电子衰变 (the strong spans on 反电子 and 正电子衰变) | the glossary renders positron as 正电子 and antielectron as 反电子, so 正电子 for “positive electron” would name the term by itself (a collision, 4.5) |
@@ -1949,6 +1949,16 @@ No forced scenario is created or removed, so the `config.md` table is unchanged.
 #### Row text updated (no new scenario)
 
 The ch30/30.2 sim-rutherford topline row (nucleus model, singular/plural branch) now reads 到目前为止的 n 个 α 粒子中，有 nB 个朝放射源折回。 in place of …有 nB 个折回了放射源。 (config.md already updated; the same row in translation-notes.md should follow).
+
+### ch31 review fixes
+
+Decisions of the ch31 review fixes (2026-10-23). The glossary row decay energy is 衰变能量 (ch29 merge, the later decision), so the five places of 31.4 that read 衰变能 now read 衰变能量 and the forced-scenario row of 31.4 below replaces the earlier one, which claimed that the glossary fixes 衰变能. The concept row finding a decay energy now reads 求衰变能量 (its statement too). The six glossary rows whose targets still read 衰变能 (the 31.4 headings and the concept name) are proposed for change in `glossary-new.json`. PhET simulation titles in the section notes are written PhET 模拟“标题” with the title translated (31.1, 31.2, 31.5, 31.6, 31.7).
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch31/31.4/text.html | #decay-energy “Total mass–energy is also conserved”; #beta-minus-decay “most of the decay energy”; #co-60-beta-energy “the decay energy” | 质能 is written 总 + the mass span on 质 + the energy span on 能, and 衰变能量 is written with the decay span on 衰变 and the energy span on 能量 | the glossary fixes 质能 and 衰变能量 as single words while the source marks mass and energy (decay and energy) as separate spans |
+| ch31/31.5/text.html | #activity, “most radioactive sources” (a radioactive span) | 放射源 is written with the radioactive span on 放射 | the glossary row radioactive source → 放射源 is one word, while the source puts its span on radioactive alone |
+| ch31/31.2/text.html | #detecting-radiation, “radiation sickness” (an ionizing-radiation span on radiation) | 放射病 is written with the ionizing-radiation span on 放射 | the glossary row radiation sickness → 放射病 is one word, while the source puts its span on radiation alone |
 
 ## For the owner
 

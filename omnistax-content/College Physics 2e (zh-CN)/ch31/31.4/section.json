@@ -1,0 +1,1329 @@
+{
+ "id": "31.4",
+ "module": "m42633",
+ "chapter": "31",
+ "title": "核衰变与守恒定律",
+ "short": "核衰变",
+ "lead": "不稳定的原子核，即母核，通过发射一个 α 粒子、一个 β 粒子或一条 γ 射线而衰变为子核，有些母核还会开始一长串衰变。每一种衰变都遵守守恒定律，其中两条是新的，并且从它所消灭的质量中释放出能量。",
+ "objectives": [
+  "定义并讨论核衰变。",
+  "陈述守恒定律。",
+  "解释母核和子核。",
+  "计算核衰变过程中放出的能量。"
+ ],
+ "summary_html": "<ul><li>当母核衰变时，它按照一定的规则和守恒定律产生子核。核衰变有三种主要类型，称为阿尔法 $(\\alpha)$ 衰变、贝塔 $(\\beta)$ 衰变和伽马 $(\\gamma)$ 衰变。$\\alpha$ 衰变方程为 $${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z-2}^{A-4}\\text{Y}_{N-2}+{}_{2}^{4}\\text{He}_{2}.$$</li><li>核衰变释放的能量 $\\kE$ 与所消灭的质量 $\\kdm$ 之间的关系为 $$\\kE=(\\kdm)\\kc^{2}.$$</li><li>β 衰变有三种形式。$\\beta^{-}$ 衰变方程为 $${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z+1}^{A}\\text{Y}_{N-1}+\\beta^{-}+\\bar{\\nu}_{e}.$$</li><li>$\\beta^{+}$ 衰变方程为 $${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z-1}^{A}\\text{Y}_{N+1}+\\beta^{+}+\\nu_{e}.$$</li><li>电子俘获方程为 $${}_{Z}^{A}\\text{X}_{N}+e^{-}\\to {}_{Z-1}^{A}\\text{Y}_{N+1}+\\nu_{e}.$$</li><li>$\\beta^{-}$ 是电子，$\\beta^{+}$ 是反电子或正电子，$\\nu_{e}$ 代表电子中微子，$\\bar{\\nu}_{e}$ 是电子反中微子。除了此前已知的所有守恒定律之外，又出现了两条新的守恒定律——电子轻子数守恒和总核子数守恒。$\\gamma$ 衰变方程为 $${}_{Z}^{A}\\text{X}_{N}^{*}\\to {}_{Z}^{A}\\text{X}_{N}+\\gamma_{1}+\\gamma_{2}+\\cdots$$ $\\gamma$ 是起源于原子核的高能光子。</li></ul>",
+ "notes": "本模块中的 PhET 链接被略去，如同全书中指向出版方互动内容的链接一样。按原文印出的样子保留的有：关于碳-14 的 AP 题的题干，开头一句回答了它前面那道镅题的 β 部分；关于缺失粒子的 AP 题，把 ¹²₆C 同时印作（c）和（d）；⁵⁰Mn 的 β⁺ 衰变的答案把母核写成 M；质子衰变习题的答案写成“conversation laws”。源文本中被压平的核素，写成书中的 ᴬ_Z X_N 记法。有十三道习题没有给出答案而被略去：⁴⁰K 的 β⁻ 衰变、⁹⁰Y 的 β⁻ 母核、²⁰⁸Pb 的 α 母核、⁵²Fe 的 β⁺ 衰变、¹⁰⁶In 的电子俘获、²²⁶Ra 的 α 衰变、α 衰变与 β⁺ 规律的两个守恒检验、²²²Ra 的 ¹⁴C 发射、²⁴⁹Cf、⁹⁰Sr 和 ¹¹C 的衰变，以及 ⁷Be 电子俘获的能量。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。有十三道习题没有给出答案而被略去：fs-id1907192、fs-id1860601、fs-id1917574、fs-id3010127、fs-id3418134、fs-id3033134、fs-id2442449、fs-id2460264（它把 β⁻ 的标签印在了 β⁺ 规律上）、fs-id2590538、fs-id1893984、fs-id1116905、fs-id1441536 和 fs-id3121887。三道 AP 题的答案在原文中被注释掉了（γ 射线的频率、碳-14 释放的电荷和缺失的粒子），而从 31.1 移到这里的关于铀 α 衰变的 AP 题没有答案；这四道题都设为开放式题目，其中的选择题附有选项，每道都附有标明为 AI 撰写的建议思路，不予评分。镅的 AP 题只给出了 α 部分的答案。思考题没有答案，附有标明为 AI 撰写的建议思路。原书印在 31.7 中、在这里设置的有：²³⁵U 的 α 衰变和关于质子衰变的“不合理的结果”习题，因为两者都依赖本节的衰变方程和 E = (Δm)c²。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-decay-series",
+   "kind": "sim",
+   "number": "31.14",
+   "originals": [
+    "/media/ch31/Figure_32_04_01a.jpg"
+   ],
+   "original_caption": "由最常见的铀同位素 ²³⁸U 产生的衰变系。核素的作图方式与核素图相同。图中标出了衰变系中每个成员的衰变类型以及半衰期。请注意，有些核素以不止一种方式衰变。你可以看出为什么镭和钋会存在于铀矿石中。铅的一种稳定同位素是该衰变系的最终产物。",
+   "widths": [
+    360
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-decay-modes",
+   "kind": "sim",
+   "number": "31.15",
+   "folds": [
+    "31.17",
+    "31.18"
+   ],
+   "originals": [
+    "/media/ch31/Figure_32_04_02a.jpg",
+    "/media/ch31/Figure_32_04_04a.jpg",
+    "/media/ch31/Figure_32_04_05a.jpg"
+   ],
+   "original_caption": "（图 31.15）α 衰变是一个 ⁴He 原子核从母核中分离出去。子核比母核少两个质子和两个中子。只有当子核与 ⁴He 原子核的总质量小于母核时，α 衰变才会自发发生。（图 31.17）在 β⁻ 衰变中，母核发射一个电子和一个反中微子。子核比其母核多一个质子、少一个中子。中微子的相互作用极其微弱，几乎从未被直接观测到，但它们在粒子物理学中起着根本性的作用。（图 31.18）β⁺ 衰变是发射一个正电子，该正电子最终遇到一个电子而湮没，其特征是产生沿相反方向运动的 γ 射线。",
+   "widths": [
+    200,
+    200,
+    200
+   ],
+   "draws": [
+    "momentum",
+    "energy",
+    "mass",
+    "velocity"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-",
+    "e+",
+    "nu",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-fermi-wu",
+   "kind": "photo",
+   "number": "31.16",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "nuclear-decay",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-series",
+   "concept": "parent-nuclide",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "daughter-nuclide",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "decay-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "parent-daughter-decay-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "nuclear-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-series",
+   "concept": "chart-of-the-nuclides",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-series",
+   "concept": "alpha-beta-gamma-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "alpha-decay-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "alpha-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "nuclide-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "atomic-number",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "mass-number",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "neutron-number",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "alpha-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "parent-nuclide",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "daughter-nuclide",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "nuclear-reaction-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "alpha-decay",
+   "verb": "reinforces"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "decay-energy-from-atomic-masses",
+   "verb": "introduces"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "nuclear-reaction-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "atomic-mass-unit",
+   "verb": "uses"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "atomic-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "beta-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "neutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "beta-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-family",
+   "concept": "conservation-of-electron-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-family",
+   "concept": "electron-antineutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-family",
+   "concept": "antimatter",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-family",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "conservation-of-nucleon-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "atomic-number",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "daughter-nuclide",
+   "verb": "uses"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "decay-energy-from-atomic-masses",
+   "verb": "reinforces"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "nuclear-reaction-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "verb": "reinforces"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "electron-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "positron-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "positron",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "electron-neutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "electron-capture",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "beta-plus-decay-and-electron-capture",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "antimatter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "conservation-of-electron-family-number",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "conservation-of-nucleon-number",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "decay-energy-from-atomic-masses",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "electron-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "chart-of-the-nuclides",
+   "verb": "uses"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "gamma-decay",
+   "concept": "gamma-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "gamma-decay",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "gamma-decay",
+   "concept": "decay-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "nuclear-decay",
+   "concept": "nuclear-decay",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1505280",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gamma-decay",
+   "prompt": "一个处于激发态的原子核发生 $\\gamma$ 衰变，在发射一条 $\\gamma$ 射线时损失 1.33 MeV。为使这一反应中能量守恒，这条 $\\gamma$ 射线必须具有多大的频率？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这条 $\\gamma$ 射线的频率必须为 $3.21\\times 10^{20}\\;\\text{Hz}$。它恰好带走原子核损失的能量，所以它的光子能量为 $\\kE = 1.33\\;\\text{MeV} = (1.33)(1.60\\times 10^{-13}\\;\\text{J}) = 2.13\\times 10^{-13}\\;\\text{J}$。光子能量为 $\\kE = h\\kf$，所以 $\\kf = \\kE/h = (2.13\\times 10^{-13}\\;\\text{J})/(6.63\\times 10^{-34}\\;\\text{J}\\cdot\\text{s}) = 3.21\\times 10^{20}\\;\\text{Hz}$，远高于可见光的频率，这与 $\\gamma$ 射线相称。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2639645",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "${}^{241}_{95}\\text{Am}$ 常用于烟雾探测器，因为它的 α 衰变过程为探测烟雾颗粒的存在提供了一种有用的工具。当 ${}^{241}_{95}\\text{Am}$ 发生 α 衰变时，生成的原子核是什么？如果 ${}^{241}_{95}\\text{Am}$ 发生 β 衰变，生成的原子核又会是什么？请解释每个答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "当 ${}^{241}_{95}\\text{Am}$ 发生 α 衰变时，它失去 2 个中子和 2 个质子。因此生成的原子核是 ${}^{237}_{93}\\text{Np}$。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1278852",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "对于 β 衰变，原子核释放出负电荷。为使总体上电荷守恒，原子核必须获得正电荷，使其原子序数增加 1，从而得到 ${}^{241}_{96}\\text{Cm}$。\n一个 ${}^{14}_{6}\\text{C}$ 原子核发生一种衰变过程，生成的原子核是 ${}^{14}_{7}\\text{N}$。原来的原子核所释放的电荷是多少？\n（a）+1\n（b）0\n（c）−1\n（d）−2",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（c），电荷为 $-1$。原子核从 $Z = 6$ 变为 $Z = 7$，而 $A = 14$ 保持不变，所以一个中子变成了质子，原子核获得了一个单位的正电荷。电荷是守恒的，所以原子核所发射的东西必须带一个单位的负电荷：这就是 $\\beta^{-}$ 衰变，${}^{14}_{6}\\text{C} \\to {}^{14}_{7}\\text{N} + \\beta^{-} + \\bar{\\nu}_{e}$。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2007406",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "解释为什么在 β 衰变过程中，原子核的总电荷会增加 +1。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "在这一过程中，原子核发射一个带 −1 电荷的粒子。为了使系统的总电荷保持不变，原子核的电荷因此必须增加 +1。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1615174",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "根据守恒原理，确定缺失的粒子：\n${}^{14}_{7}\\text{N} + {}^{4}_{2}\\text{He} \\to X + {}^{17}_{8}\\text{O}$\n（a）${}^{2}_{1}\\text{H}$\n（b）${}^{1}_{1}\\text{H}$\n（c）${}^{12}_{6}\\text{C}$\n（d）${}^{12}_{6}\\text{C}$\n（e）${}^{8}_{4}\\text{Be}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（b），${}^{1}_{1}\\text{H}$，即一个质子。总核子数守恒，所以 $14 + 4 = A + 17$，缺失的粒子的 $A = 1$。电荷守恒，所以 $7 + 2 = Z + 8$，它的 $Z = 1$。$A = 1$ 且 $Z = 1$ 的粒子是质子，即原子核 ${}^{1}_{1}\\text{H}$。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2736223",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "下列反应是否可能？对每一个反应，请解释其可能或不可能的原因。\n（a）${}^{238}_{92}\\text{U} \\to {}^{234}_{88}\\text{Ra} + {}^{4}_{2}\\text{He}$\n（b）${}^{223}_{88}\\text{Ra} \\to {}^{209}_{82}\\text{Pb} + {}^{14}_{6}\\text{C}$\n（c）${}^{14}_{6}\\text{C} \\to {}^{14}_{7}\\text{N} + e^{-} + \\bar{v}_{\\text{e}}$\n（d）${}^{24}_{12}\\text{Mg} \\to {}^{23}_{11}\\text{Na} + e^{+} + v_{\\text{e}}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）不可能。核子数守恒（238 = 234 + 4），但原子序数或电荷不守恒（92 ≠ 88+2）。\n（b）可能。核子数守恒（223 = 209 + 14），原子序数也守恒（88 = 82 + 6）。\n（c）可能。核子数守恒（14 = 14），而且如果正确地计入电子的电荷，则电荷守恒（6 = 7 + (-1)）。\n（d）不可能。核子数不守恒（24 ≠ 23）。释放出的正电子算作一份电荷，用以使电荷守恒，但它不算作核子。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id3282097",
+   "source_section": "31.1",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "一个铀原子核发射一个 α 粒子。假设电荷守恒，生成的原子核一定是\n（a）钍\n（b）钚\n（c）镭\n（d）锔",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（a），钍。$\\alpha$ 粒子是 ${}^{4}\\text{He}$ 原子核，带有两个质子。铀的 $Z = 92$，所以由电荷守恒，子核的 $Z = 92 - 2 = 90$，而原子序数为 90 的元素是钍，如衰变 ${}^{238}\\text{U} \\to {}^{234}\\text{Th} + {}^{4}\\text{He}$ 那样。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2209498",
+   "kind": "conceptual-question",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "《星际迷航》的粉丝常听到“反物质驱动器”这个术语。请描述你如何能用磁场捕获反物质（例如核衰变产生的反物质），并在以后让它与物质结合以产生能量。请具体说明反物质的类型、真空储存的必要性，以及物质转化为能量的比例。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "核衰变产生的反物质是正电子，它在 $\\beta^{+}$ 衰变中发射。正电子带电，所以磁场会使它沿场线弯曲成圆或螺旋线，而形状合适的磁场（磁瓶，两端的场更强）能把正电子束缚在其中绕圈运动，而不碰到任何器壁。这个阱必须是高真空，因为正电子一旦遇到任何气体原子或器壁的电子就会立即湮没。要产生能量，就让正电子释放到普通物质上，每个正电子与一个电子湮没，$e^{+}+e^{-}\\to\\gamma+\\gamma$。在湮没中，这一对粒子的全部质量都被转化，所以由 $\\kE = (\\kdm)\\kc^{2}$，转化为能量的质量比例是 100%，远远多于任何衰变中所转化的那一小部分。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1485777",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "在电子俘获中，哪条守恒定律要求产生一个电子中微子？请注意，电子被原子核俘获之后就不再存在了。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电子轻子数守恒。俘获之前有电子族的一个成员，即电子，其电子轻子数为 $+1$。俘获之后电子不见了，而原子核没有电子轻子数，所以必须产生某个电子轻子数为 $+1$ 的粒子，使总数保持不变。这个粒子就是电子中微子 $\\nu_{e}$，它离开原子核。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1576428",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-decay",
+   "prompt": "实验测定中微子的质量极其微小。超新星中会产生大量中微子，与此同时首次产生大量的光。1987A 超新星出现在大麦哲伦云中，它主要在南半球可见，距地球约 100,000 光年，来自这次爆发的中微子与爆炸发出的光几乎是同时被观测到的。如何利用中微子和光到达时间的相对关系，对中微子的质量设定限制？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有质量的粒子总是比光运动得慢，而且在能量给定时，质量越大，运动得越慢。在 100,000 光年的距离上，哪怕速率只有极小的不足，也会使中微子比与它们一同出发的光到达得晚到可以测量的程度。既然中微子差不多同时到达，它们的速率与 $\\kc$ 之差就必定不大于用距离去除到达时间的不确定度所得之值。已知中微子的能量后，相对论就给出与如此小的速率差相一致的最大质量，这就是中微子质量的上限。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2006022",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "三种 β 衰变有什么共同点，是与 α 衰变明显不同的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在每一种 β 衰变中，核子数 $A$ 保持不变，而 $Z$ 改变 1：在 $\\beta^{-}$ 衰变中一个中子变成质子，在 $\\beta^{+}$ 衰变和电子俘获中一个质子变成中子。每一种还都涉及电子族的成员——发射出电子或正电子，或者俘获一个电子——以及一个中微子或反中微子，并且是由弱核力引起的。相比之下，在 α 衰变中，没有任何核子改变其身份：一个 ${}^{4}\\text{He}$ 原子核脱离出去，$A$ 减少 4，$Z$ 和 $N$ 各减少 2，不涉及电子或中微子。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2405551",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "${}^{3}\\text{H}$（氚）的 $\\beta^{-}$ 衰变，氚是氢的一种人造同位素，用于某些数字手表的显示屏，主要为用于氢弹而制造。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{3}_{1}\\text{H}_{2}\\to {}^{3}_{2}\\text{He}_{1}+\\beta^{-}+\\bar{\\nu}_{e}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2670256",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "${}^{50}\\text{Mn}$ 的 $\\beta^{+}$ 衰变。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{50}_{25}\\text{M}_{25}\\to {}^{50}_{24}\\text{Cr}_{26}+\\beta^{+}+\\nu_{e}$<sup class=\"fn\" data-note=\"c-p2-mn\"></sup>"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2640350",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "${}^{7}\\text{Be}$ 的电子俘获。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{7}_{4}\\text{Be}_{3}+e^{-}\\to {}^{7}_{3}\\text{Li}_{4}+\\nu_{e}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2626117",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "${}^{210}\\text{Po}$ 的 $\\alpha$ 衰变，它是 ${}^{238}\\text{U}$ 衰变系中的钋同位素，由居里夫妇发现。它是物理实验室中备受青睐的同位素，因为它的半衰期短，并衰变为稳定的核素。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{210}_{84}\\text{Po}_{126}\\to {}^{206}_{82}\\text{Pb}_{124}+{}^{4}_{2}\\text{He}_{2}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1473021",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "产生 ${}^{137}\\text{Ba}$ 的 $\\beta^{-}$ 衰变。母核是反应堆的一种主要废物，其化学性质与钾和钠相似，因此如果被摄入，会在你的细胞中浓集。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{137}_{55}\\text{Cs}_{82}\\to {}^{137}_{56}\\text{Ba}_{81}+\\beta^{-}+\\bar{\\nu}_{e}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2011306",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "产生 ${}^{228}\\text{Ra}$ 的 $\\alpha$ 衰变。母核几乎占天然元素的 100%，存在于汽灯纱罩和喷气式飞机所用的金属合金中（${}^{228}\\text{Ra}$ 也具有放射性）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{232}_{90}\\text{Th}_{142}\\to {}^{228}_{88}\\text{Ra}_{140}+{}^{4}_{2}\\text{He}_{2}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3164080",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "当一个电子和一个正电子湮没时，它们的质量都被消灭，产生两个能量相等的光子，以使动量守恒。（a）确认湮没方程 $e^{+}+e^{-}\\to \\gamma+\\gamma$ 使电荷、电子轻子数和总核子数守恒。为此，请找出湮没前后每一个量的值。（b）假设电子和正电子最初几乎静止，求每条 $\\gamma$ 射线的能量。（c）解释为什么如果电子–正电子系统的质心最初是静止的，两条 $\\gamma$ 射线会沿完全相反的方向运动。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.511,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "每个光子取走两个粒子之一的静能 $\\kme\\kc^{2}$。",
+    "solution": "（a）$\\text{电荷:}(+1)+(-1)=0;\\;\\;\\;\\text{电子轻子数:}\\;(+1)+(-1)=0;\\;\\;\\;A: 0+0=0$\n（b）0.511 MeV\n（c）两条 $\\gamma$ 射线必须沿完全相反的方向运动，才能使动量守恒，因为如果质心最初静止，则最初的动量为零。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3291026",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "确认由方程 ${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z+1}^{A}\\text{Y}_{N-1}+\\beta^{-}+\\bar{\\nu}_{e}$ 给出的 $\\beta^{-}$ 衰变规律使电荷、电子轻子数和总核子数都守恒。为此，请找出衰变前后每一个量的值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$Z=(Z+1)-1;\\;\\;\\;A=A;\\;\\;\\;\\text{efn : }0=(+1)+(-1)$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3178618",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "确认由方程 ${}_{Z}^{A}\\text{X}_{N}+e^{-}\\to {}_{Z-1}^{A}\\text{Y}_{N+1}+\\nu_{e}$ 给出的电子俘获规律使电荷、电子轻子数和总核子数都守恒。为此，请找出俘获前后每一个量的值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$Z-1=Z-1;\\;\\;\\;A=A;\\;\\;\\;\\text{efn :}(+1)=(+1)$"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id2062598",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pu-239-alpha-energy",
+   "prompt": "（a）写出 ${}^{226}\\text{Ra}$ 的完整 $\\alpha$ 衰变方程。\n（b）求这次衰变中释放的能量。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.87,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "由附录 A 中 ${}^{226}\\text{Ra}$、${}^{222}\\text{Rn}$ 和 ${}^{4}\\text{He}$ 的原子质量求出 $\\kdm$，然后利用 $1\\;\\text{u} = 931.5\\;\\text{MeV}/\\kc^{2}$。",
+    "solution": "（a）${}^{226}_{88}\\text{Ra}_{138}\\to {}^{222}_{86}\\text{Rn}_{136}+{}^{4}_{2}\\text{He}_{2}$\n（b）4.87 MeV"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1871366",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "co-60-beta-energy",
+   "prompt": "（a）写出中子的完整 $\\beta^{-}$ 衰变方程。（b）求这次衰变中释放的能量。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.783,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "$\\kdm$ 是中子的质量减去氢原子的质量，氢原子的质量中包括所产生的那个电子的质量。",
+    "solution": "（a）$\\text{n}\\to \\text{p}+\\beta^{-}+\\bar{\\nu}_{e}$\n（b）0.783 MeV"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id3028069",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "计算 ${}^{22}\\text{Na}$ 的 $\\beta^{+}$ 衰变中释放的能量，其方程已在正文中给出。${}^{22}\\text{Na}$ 和 ${}^{22}\\text{Ne}$ 的质量分别为 21.994434 和 21.991383 u。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.82,
+    "unit": "MeV",
+    "hint": "用原子质量时，$\\kdm = m(\\text{母核}) - [m(\\text{子核}) + 2\\kme]$。",
+    "solution": "1.82 MeV"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3402996",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pu-239-alpha-energy",
+   "prompt": "（a）计算 ${}^{238}\\text{U}$ 的 $\\alpha$ 衰变中释放的能量。\n（b）单个 ${}^{238}\\text{U}$ 的质量有多大比例在衰变中被消灭？${}^{234}\\text{Th}$ 的质量为 234.043593 u。\n（c）虽然对单个原子核来说质量损失的比例很大，但对整块宏观的铀样品来说却很难观察到。这是为什么？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.274,
+      "unit": "MeV",
+      "hint": "产物是 ${}^{234}\\text{Th}$ 和 ${}^{4}\\text{He}$；求出 $\\kdm$，再乘以 931.5 MeV/u。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.927e-05,
+      "hint": "用 ${}^{238}\\text{U}$ 的质量去除 $\\kdm$。"
+     }
+    ],
+    "solution": "（a）4.274 MeV\n（b）$1.927\\times 10^{-5}$\n（c）由于 U-238 是衰变缓慢的物质，在人类的时间尺度上只有极少数原子核发生衰变；因此，尽管发生衰变的那些原子核损失了可观的一部分质量，但对宏观样品来说，样品总质量的变化是无法探测的。"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id2600565",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "（a）写出 ${}^{15}\\text{O}$ 俘获电子的完整反应方程。\n（b）计算释放的能量。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.754,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "用原子质量时，被俘获的电子已经计入母核的质量中，所以 $\\kdm = m({}^{15}\\text{O}) - m({}^{15}\\text{N})$。",
+    "solution": "（a）${}^{15}_{8}\\text{O}_{7}+e^{-}\\to {}^{15}_{7}\\text{N}_{8}+\\nu_{e}$\n（b）2.754 MeV"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2659160",
+   "source_section": "31.7",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pu-239-alpha-energy",
+   "prompt": "（a）写出 ${}^{235}\\text{U}$ 的 $\\alpha$ 衰变的衰变方程。（b）这次衰变释放多少能量？子核的质量为 231.036298 u。（c）假设剩余核是在基态下形成的，有多少能量给了 $\\alpha$ 粒子？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(b)",
+      "value": 4.679,
+      "unit": "MeV"
+     },
+     {
+      "part": "(c)",
+      "value": 4.599,
+      "unit": "MeV",
+      "hint": "α 粒子和子核带着大小相等、方向相反的动量离开，所以它们的动能与质量成反比。"
+     }
+    ],
+    "solution": "（a）${}^{235}_{92}\\text{U}_{143}\\to {}^{231}_{90}\\text{Th}_{141}+{}^{4}_{2}\\text{He}_{2}$\n（b）4.679 MeV\n（c）4.599 MeV"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id3137818",
+   "source_section": "31.7",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "不合理的结果\n一位精疲力竭的理论物理学家认为，在质子衰变为中子、正电子和中微子的过程中（如原子核的 $\\beta^{+}$ 衰变），所有守恒定律都得到遵守，于是向一家期刊投去一篇论文，宣布这个反应可能因质子的自发衰变而导致宇宙的终结。（a）这次衰变释放多少能量？（b）这个结果有什么不合理之处？（c）哪个假设是造成这一结果的原因？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1.805,
+    "unit": "MeV",
+    "part": "(a)",
+    "hint": "$\\kdm$ 是质子的质量减去中子和正电子的质量。",
+    "solution": "（a）−1.805 MeV\n（b）负的能量意味着必须输入能量，反应不可能是自发的。\n（c）尽管所有“conversation laws”都得到遵守，但必须供给能量，所以自发衰变的假设是不正确的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "gamma-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "photon-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-nucleon-number",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-nucleon-number",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "antimatter",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "positron"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "positron-decay"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-electron-family-number",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electron-capture"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electron-neutrino"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rest-energy"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "beta-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "alpha-decay-process"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "nuclide-notation"
+  },
+  {
+   "exercise": "p2",
+   "concept": "beta-plus-decay-and-electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "nuclide-notation"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "exercise": "p4",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "nuclide-notation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "parent-nuclide"
+  },
+  {
+   "exercise": "p6",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "parent-nuclide"
+  },
+  {
+   "exercise": "p7",
+   "concept": "positron",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rest-energy"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "p8",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p8",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p8",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "p9",
+   "concept": "electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "p10",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "p10",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p11",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "exercise": "p11",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p12",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "exercise": "p12",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p13",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p13",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "p14",
+   "concept": "electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "decay-energy-from-atomic-masses"
+  },
+  {
+   "exercise": "p14",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p15",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "p15",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "p15",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p16",
+   "concept": "nuclear-reaction-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "positron-decay"
+  },
+  {
+   "exercise": "p16",
+   "concept": "decay-energy-from-atomic-masses"
+  }
+ ],
+ "referents": [
+  {
+   "id": "pu-239",
+   "label": "钚-239 原子核，即 α 衰变的母核",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "u-235",
+   "label": "α 衰变的子核铀-235",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "co-60",
+   "label": "钴-60 原子核，即 β⁻ 衰变的母核",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "ni-60",
+   "label": "β⁻ 衰变的子核镍-60，处于激发态或基态",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "na-22",
+   "label": "钠-22 原子核，即 β⁺ 衰变和电子俘获的母核",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "ne-22",
+   "label": "β⁺ 衰变和电子俘获的子核氖-22",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p2-mn",
+   "kind": "correction",
+   "html": "书中的答案把母核印成 $\\text{M}$。这种核素是锰，${}^{50}_{25}\\text{Mn}_{25}$。"
+  }
+ ]
+}
