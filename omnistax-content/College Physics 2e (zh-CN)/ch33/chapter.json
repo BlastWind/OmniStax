@@ -1,0 +1,392 @@
+{
+ "id": "33",
+ "dir": "ch33",
+ "title": "粒子物理学",
+ "intro": {
+  "module": "m42667",
+  "slug": "33-introduction-to-particle-physics"
+ },
+ "sections": [
+  {
+   "id": "33.1",
+   "module": "m42669",
+   "title": "再论汤川粒子与海森伯不确定性原理",
+   "slug": "33-1-the-yukawa-particle-and-the-heisenberg-uncertainty-principle-revisited"
+  },
+  {
+   "id": "33.2",
+   "module": "m42671",
+   "title": "四种基本力",
+   "slug": "33-2-the-four-basic-forces"
+  },
+  {
+   "id": "33.3",
+   "module": "m42718",
+   "title": "加速器由能量创造物质",
+   "slug": "33-3-accelerators-create-matter-from-energy"
+  },
+  {
+   "id": "33.4",
+   "module": "m42674",
+   "title": "粒子、规律与守恒定律",
+   "slug": "33-4-particles-patterns-and-conservation-laws"
+  },
+  {
+   "id": "33.5",
+   "module": "m42678",
+   "title": "夸克：就这些了吗？",
+   "slug": "33-5-quarks-is-that-all-there-is"
+  },
+  {
+   "id": "33.6",
+   "module": "m42680",
+   "title": "大统一理论：力的统一",
+   "slug": "33-6-guts-the-unification-of-forces"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "ΔE",
+   "concept": "energy",
+   "meaning": "为产生一个虚粒子而借用的能量，暂时违反质能守恒",
+   "unit": "J",
+   "section": "33.1",
+   "anchor": "33.1-virtual-particles"
+  },
+  {
+   "sym": "Δt",
+   "concept": "time",
+   "meaning": "虚粒子能够存在的时间",
+   "unit": "s",
+   "section": "33.1",
+   "anchor": "33.1-virtual-particles"
+  },
+  {
+   "sym": "h_planck",
+   "concept": "plancks-constant",
+   "meaning": "普朗克常量，$6.63 \\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$",
+   "section": "33.1",
+   "anchor": "33.1-virtual-particles"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "媒介粒子的质量，以 $\\text{MeV}/c^{2}$ 为单位",
+   "section": "33.1",
+   "anchor": "33.1-virtual-particles"
+  },
+  {
+   "sym": "d",
+   "concept": "distance",
+   "meaning": "力程，即媒介粒子在时间 $\\Delta t$ 内所能传播的最大距离",
+   "unit": "m",
+   "section": "33.1",
+   "anchor": "33.1-virtual-particles"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，近似等于媒介粒子的速率",
+   "unit": "m/s",
+   "section": "33.1",
+   "anchor": "33.1-virtual-particles"
+  },
+  {
+   "sym": "ΔE",
+   "concept": "energy",
+   "meaning": "输入碰撞的能量，新的物质可由它产生",
+   "unit": "J",
+   "section": "33.3",
+   "anchor": "33.3-matter-from-energy"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "可由能量 $\\Delta E$ 产生的质量",
+   "section": "33.3",
+   "anchor": "33.3-matter-from-energy"
+  },
+  {
+   "sym": "PE_el",
+   "concept": "electric-potential-energy",
+   "meaning": "粒子在两根加速管之间的一个间隙中获得的能量",
+   "unit": "J",
+   "section": "33.3",
+   "anchor": "33.3-gap-voltage"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "被加速粒子的电荷",
+   "unit": "C",
+   "section": "33.3",
+   "anchor": "33.3-gap-voltage"
+  },
+  {
+   "sym": "V_gap",
+   "concept": "potential-difference",
+   "meaning": "两根加速管之间一个间隙两端的电压",
+   "unit": "V",
+   "section": "33.3",
+   "anchor": "33.3-gap-voltage"
+  },
+  {
+   "sym": "B_bary",
+   "concept": "baryon-number",
+   "meaning": "重子数，重子为 $+1$，反重子为 $-1$，介子和轻子为 0",
+   "section": "33.4",
+   "anchor": "33.4-mesons-and-baryons"
+  },
+  {
+   "sym": "L_e",
+   "concept": "electron-family-number",
+   "meaning": "电子轻子数",
+   "section": "33.4",
+   "anchor": "33.4-lepton-families"
+  },
+  {
+   "sym": "L_mu",
+   "concept": "muon-family-number",
+   "meaning": "μ 子轻子数",
+   "section": "33.4",
+   "anchor": "33.4-lepton-families"
+  },
+  {
+   "sym": "L_tau",
+   "concept": "tau-family-number",
+   "meaning": "τ 子轻子数",
+   "section": "33.4",
+   "anchor": "33.4-lepton-families"
+  },
+  {
+   "sym": "S_str",
+   "concept": "strangeness",
+   "meaning": "奇异数，在强力作用下守恒，在弱力作用下不守恒",
+   "section": "33.4",
+   "anchor": "33.4-forces-reactions"
+  },
+  {
+   "sym": "q_e",
+   "concept": "electric-charge",
+   "meaning": "质子的电荷，夸克的电荷以它为单位取分数",
+   "unit": "C",
+   "section": "33.5",
+   "anchor": "33.5-conception-of-quarks"
+  },
+  {
+   "sym": "B_bary",
+   "concept": "baryon-number",
+   "meaning": "重子数，每个夸克或反夸克为 $\\pm\\frac{1}{3}$",
+   "section": "33.5",
+   "anchor": "33.5-how-does-it-work"
+  },
+  {
+   "sym": "S_str",
+   "concept": "strangeness",
+   "meaning": "奇异数，每个奇夸克为 $-1$",
+   "section": "33.5",
+   "anchor": "33.5-how-does-it-work"
+  },
+  {
+   "sym": "d",
+   "concept": "distance",
+   "meaning": "两个粒子之间的间距，媒介粒子必须在时间 $\\Delta t$ 内跨越它",
+   "unit": "m",
+   "section": "33.2",
+   "anchor": "33.2-carrier-exchange",
+   "redefines": true
+  },
+  {
+   "sym": "Δt",
+   "concept": "time",
+   "meaning": "虚粒子能够存在的时间",
+   "unit": "s",
+   "section": "33.2",
+   "anchor": "33.2-carrier-exchange"
+  },
+  {
+   "sym": "ΔE",
+   "concept": "energy",
+   "meaning": "为产生一个虚粒子而借用的能量，暂时违反质能守恒",
+   "unit": "J",
+   "section": "33.2",
+   "anchor": "33.2-carrier-exchange"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，近似等于媒介粒子的速率",
+   "unit": "m/s",
+   "section": "33.2",
+   "anchor": "33.2-carrier-exchange"
+  },
+  {
+   "sym": "E_0rest",
+   "concept": "rest-energy",
+   "meaning": "媒介粒子的静能，光子为零，$\\pi^{+}$ 为 139.6 MeV",
+   "unit": "MeV",
+   "section": "33.2",
+   "anchor": "33.2-carrier-exchange"
+  },
+  {
+   "sym": "h_planck",
+   "concept": "plancks-constant",
+   "meaning": "普朗克常量，$6.63 \\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$",
+   "section": "33.2",
+   "anchor": "33.2-carrier-exchange"
+  },
+  {
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "meaning": "间隙两端的电势差，它使电荷为 $q$ 的粒子获得能量 $qV$",
+   "unit": "V",
+   "section": "33.3",
+   "anchor": "33.3-gap-voltage"
+  },
+  {
+   "sym": "q_e",
+   "concept": "electric-charge",
+   "meaning": "质子的电荷，$1.6\\times 10^{-19}\\;\\text{C}$",
+   "unit": "C",
+   "section": "33.3",
+   "anchor": "33.3-gap-voltage"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，其平方把输入碰撞的能量换算成所产生的质量",
+   "unit": "m/s",
+   "section": "33.3",
+   "anchor": "33.3-matter-from-energy"
+  },
+  {
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "meaning": "回旋加速器中质子的动能，每穿过一次间隙增加 $qV_{\\text{gap}}$",
+   "unit": "MeV",
+   "section": "33.3",
+   "anchor": "33.3-early-accelerators"
+  },
+  {
+   "sym": "B_mag",
+   "concept": "magnetic-field",
+   "meaning": "使质子在回旋加速器中转弯、或把质子约束在同步加速器环上的磁感应强度",
+   "unit": "T",
+   "section": "33.3",
+   "anchor": "33.3-early-accelerators"
+  },
+  {
+   "sym": "r",
+   "concept": "radius-of-curvature",
+   "meaning": "同步加速器环的半径",
+   "unit": "m",
+   "section": "33.3",
+   "anchor": "33.3-early-accelerators"
+  },
+  {
+   "sym": "v",
+   "concept": "velocity",
+   "meaning": "质子在同步加速器环上的速率",
+   "unit": "m/s",
+   "section": "33.3",
+   "anchor": "33.3-early-accelerators"
+  },
+  {
+   "sym": "γ_rel",
+   "concept": "relativistic-factor",
+   "meaning": "相对论因子，1/√(1 − v²/c²)，静止时为 1，当 v 趋近 c 时无限增大",
+   "section": "33.3",
+   "anchor": "33.3-early-accelerators"
+  },
+  {
+   "sym": "E_0rest",
+   "concept": "rest-energy",
+   "meaning": "电子或正电子的静能，0.511 MeV",
+   "unit": "MeV",
+   "section": "33.4",
+   "anchor": "33.4-matter-and-antimatter",
+   "redefines": true
+  },
+  {
+   "sym": "E_gamma",
+   "concept": "photon-energy",
+   "meaning": "一个电子和一个正电子湮没成的两个光子中每个光子的能量",
+   "unit": "MeV",
+   "section": "33.4",
+   "anchor": "33.4-matter-and-antimatter",
+   "type": "energy"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "强子的电荷，等于其各夸克电荷之和",
+   "unit": "C",
+   "section": "33.5",
+   "anchor": "33.5-fundamental-particles"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "探测质子的电子的波长",
+   "unit": "m",
+   "section": "33.5",
+   "anchor": "33.5-direct-evidence"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "探测质子的电子的能量",
+   "unit": "GeV",
+   "section": "33.5",
+   "anchor": "33.5-direct-evidence"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，近似等于探测电子的速率",
+   "unit": "m/s",
+   "section": "33.5",
+   "anchor": "33.5-direct-evidence"
+  },
+  {
+   "sym": "h_planck",
+   "concept": "plancks-constant",
+   "meaning": "普朗克常量，$6.63 \\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$",
+   "section": "33.5",
+   "anchor": "33.5-direct-evidence"
+  },
+  {
+   "sym": "ΔE",
+   "concept": "energy",
+   "meaning": "为探测距离 $d$ 而输入系统的能量",
+   "unit": "GeV",
+   "section": "33.6",
+   "anchor": "33.6-forces-converge",
+   "redefines": true
+  },
+  {
+   "sym": "d",
+   "concept": "distance",
+   "meaning": "能量 $\\Delta E$ 所探测的距离",
+   "unit": "m",
+   "section": "33.6",
+   "anchor": "33.6-forces-converge",
+   "redefines": true
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，近似等于以其能量探测距离 $d$ 的那些粒子的速率",
+   "unit": "m/s",
+   "section": "33.6",
+   "anchor": "33.6-forces-converge"
+  },
+  {
+   "sym": "h_planck",
+   "concept": "plancks-constant",
+   "meaning": "普朗克常量，$6.63 \\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$",
+   "section": "33.6",
+   "anchor": "33.6-forces-converge"
+  }
+ ]
+}
