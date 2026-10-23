@@ -1,0 +1,869 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "f_obj",
+   "latex": "f_{\\text{o}}",
+   "macro": "\\kfobj"
+  },
+  {
+   "sym": "f_eye",
+   "latex": "f_{\\text{e}}",
+   "macro": "\\kfeye"
+  },
+  {
+   "sym": "d_objp",
+   "latex": "d_{\\text{o}}'",
+   "macro": "\\kdobjp"
+  },
+  {
+   "sym": "d_imgp",
+   "latex": "d_{\\text{i}}'",
+   "macro": "\\kdimgp"
+  },
+  {
+   "sym": "m_obj",
+   "latex": "m_{\\text{o}}"
+  },
+  {
+   "sym": "m_eye",
+   "latex": "m_{\\text{e}}"
+  },
+  {
+   "sym": "NA",
+   "latex": "\\text{NA}"
+  },
+  {
+   "sym": "α_half",
+   "latex": "\\alpha",
+   "macro": "\\kalphahalf"
+  },
+  {
+   "sym": "θ_prime",
+   "latex": "\\theta'",
+   "macro": "\\kthetaprime"
+  },
+  {
+   "sym": "α_max",
+   "latex": "\\alpha_{\\text{max}}",
+   "macro": "\\kalphamax"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "eye-as-a-single-thin-lens",
+   "kind": "idea",
+   "section": "26.1",
+   "name": "单个薄透镜式的眼睛",
+   "statement": "眼睛的角膜和晶状体可以看作单个薄会聚透镜，它与视网膜相距固定的距离，并在视网膜上形成倒立的实像。于是薄透镜公式就描述了眼睛，而每一种缺陷及其矫正都成了关于这一个透镜的问题。"
+  },
+  {
+   "id": "cornea-supplies-most-of-the-power",
+   "kind": "idea",
+   "section": "26.1",
+   "name": "角膜的光焦度",
+   "statement": "折射率变化最大、因而光线弯折最厉害的地方，是光从空气进入角膜之处，所以角膜提供了眼睛约三分之二的光焦度，晶状体提供其余部分。这就是为什么改变角膜的形状可以矫正视力。"
+  },
+  {
+   "id": "accommodation",
+   "kind": "definition",
+   "section": "26.1",
+   "name": "调节",
+   "terms": [
+    "调节"
+   ],
+   "statement": "调节是眼睛调整其焦距的能力。由于晶状体到视网膜的距离是固定的，眼睛通过改变其晶状体的光焦度来对不同距离的物体聚焦。"
+  },
+  {
+   "id": "thin-lens-equations-for-the-eye",
+   "kind": "result",
+   "section": "26.1",
+   "name": "眼睛的薄透镜公式",
+   "statement": "用光焦度表示，眼睛的薄透镜公式为 $P = 1/d_{\\text{o}} + 1/d_{\\text{i}}$，其中像距固定为晶状体到视网膜的距离，而放大率为 $h_{\\text{i}}/h_{\\text{o}} = -d_{\\text{i}}/d_{\\text{o}}$。",
+   "forms": [
+    {
+     "id": "eq-power-of-the-eye",
+     "latex": "P = \\frac{1}{d_{\\text{o}}} + \\frac{1}{d_{\\text{i}}}",
+     "ktex": "P = \\frac{1}{\\kdobj} + \\frac{1}{\\kdimg}",
+     "anchor": "26.1-thin-lens-equations-for-the-eye"
+    },
+    {
+     "id": "eq-magnification-of-the-eye",
+     "latex": "\\frac{h_{\\text{i}}}{h_{\\text{o}}} = -\\frac{d_{\\text{i}}}{d_{\\text{o}}} = m",
+     "ktex": "\\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = m",
+     "anchor": "26.1-thin-lens-equations-for-the-eye"
+    }
+   ]
+  },
+  {
+   "id": "solve-for-an-image-on-the-retina",
+   "kind": "skill",
+   "section": "26.1",
+   "name": "求视网膜上的像",
+   "statement": "要求眼睛所需的光焦度或视网膜上像的大小，就把像距取为晶状体到视网膜的距离，把所有距离都用米表示，再应用眼睛的薄透镜公式。",
+   "forms": [
+    {
+     "id": "eq-image-height-on-retina",
+     "latex": "h_{\\text{i}} = -h_{\\text{o}} \\cdot \\frac{d_{\\text{i}}}{d_{\\text{o}}}",
+     "ktex": "\\khimg = -\\khobj \\cdot \\frac{\\kdimg}{\\kdobj}",
+     "anchor": "26.1-thin-lens-equations-for-the-eye"
+    }
+   ]
+  },
+  {
+   "id": "presbyopia",
+   "kind": "definition",
+   "section": "26.1",
+   "name": "老视",
+   "terms": [
+    "老视"
+   ],
+   "statement": "老视是这样一种状况：随着年龄增长，调节能力不断缩小，眼睛的晶状体逐渐无法对靠近观看者的物体聚焦。它是近距离视物时附加光焦度的丧失，而会聚透镜可以提供所缺少的光焦度。"
+  },
+  {
+   "id": "myopia-and-hyperopia",
+   "kind": "definition",
+   "section": "26.2",
+   "name": "近视与远视",
+   "statement": "近视是一种视觉缺陷，其中远处的物体显得模糊，因为它们的像聚焦在视网膜之前；眼睛的光焦度过大。远视是这样一种状况：入射光线在会聚成清晰的像之前就到达了视网膜；对于近处的物体，眼睛的光焦度过小。"
+  },
+  {
+   "id": "near-point-and-far-point",
+   "kind": "definition",
+   "section": "26.2",
+   "name": "近点与远点",
+   "statement": "远点是未经调节的眼睛在视网膜上成像的物点，通常在无穷远处。近点是在充分调节时，物体能在视网膜上准确聚焦的、离眼睛最近的点，通常在 25 cm 远处。"
+  },
+  {
+   "id": "correct-nearsightedness",
+   "kind": "skill",
+   "section": "26.2",
+   "name": "近视的矫正",
+   "statement": "发散透镜通过在人的远点处形成远处物体的像来矫正近视。它的光焦度由薄透镜公式得出，其中像距为负，并从眼镜片量起。"
+  },
+  {
+   "id": "correct-farsightedness",
+   "kind": "skill",
+   "section": "26.2",
+   "name": "远视的矫正",
+   "statement": "会聚透镜通过在人的近点处形成近处物体的像来矫正远视，这个像比物体本身更远。两个距离都从眼镜片量起，并让像距取负号。"
+  },
+  {
+   "id": "astigmatism",
+   "kind": "definition",
+   "section": "26.2",
+   "name": "散光",
+   "terms": [
+    "散光"
+   ],
+   "statement": "散光是角膜无法将像正确聚焦到视网膜上的结果，即眼睛沿不同轴的光焦度有差别。它用柱面透镜而不是球面透镜来矫正。"
+  },
+  {
+   "id": "powers-of-close-lenses-add",
+   "kind": "result",
+   "section": "26.2",
+   "name": "密接透镜的光焦度",
+   "statement": "紧靠在一起的薄透镜的光焦度近似等于各透镜光焦度之和。这使得角膜接触镜、泪膜或改变形状后的角膜都可以看作眼睛光焦度的一个附加量。"
+  },
+  {
+   "id": "laser-vision-correction",
+   "kind": "idea",
+   "section": "26.2",
+   "name": "激光视力矫正",
+   "terms": [
+    "激光视力矫正"
+   ],
+   "statement": "激光视力矫正是一种医疗手术，它通过改变角膜的形状来矫正近视、远视和散光，而角膜提供了眼睛的大部分光焦度。激光使用紫外线，角膜对它吸收很强。"
+  },
+  {
+   "id": "myopia",
+   "kind": "definition",
+   "section": "26.2",
+   "name": "近视",
+   "terms": [
+    "近视",
+    "近视"
+   ],
+   "statement": "近视是一种视觉缺陷，其中远处的物体显得模糊，因为它们的像聚焦在视网膜之前而不是视网膜上。"
+  },
+  {
+   "id": "hyperopia",
+   "kind": "definition",
+   "section": "26.2",
+   "name": "远视",
+   "terms": [
+    "远视",
+    "远视"
+   ],
+   "statement": "远视是眼睛的这样一种状况：入射光线在会聚成清晰的像之前就到达了视网膜，因此近处的物体显得模糊。"
+  },
+  {
+   "id": "near-point",
+   "kind": "definition",
+   "section": "26.2",
+   "name": "近点",
+   "terms": [
+    "近点"
+   ],
+   "statement": "近点是在充分调节时，物体能在视网膜上准确聚焦的、离眼睛最近的点，通常在 25 cm 远处。"
+  },
+  {
+   "id": "far-point",
+   "kind": "definition",
+   "section": "26.2",
+   "name": "远点",
+   "terms": [
+    "远点"
+   ],
+   "statement": "远点是未经调节的眼睛在视网膜上成像的物点，通常在无穷远处。"
+  },
+  {
+   "id": "rods-and-cones",
+   "kind": "definition",
+   "section": "26.3",
+   "name": "视杆细胞和视锥细胞",
+   "terms": [
+    "视杆细胞和视锥细胞"
+   ],
+   "statement": "视杆细胞和视锥细胞是人类视网膜中两种光感受器。视杆细胞灵敏而无色，用于弱光下的视觉；视锥细胞在较强的光下起作用，给出颜色和精细的细节，并密集分布在中央凹。"
+  },
+  {
+   "id": "simplified-theory-of-color-vision",
+   "kind": "idea",
+   "section": "26.3",
+   "name": "简化色觉理论",
+   "terms": [
+    "简化色觉理论"
+   ],
+   "statement": "简化色觉理论指出，有三种原色，它们对应于三种视锥细胞，每种对不同范围的波长敏感。它解释了三种颜色的光如何能产生成千上万种色调，不过有些证据表明它并不完备。"
+  },
+  {
+   "id": "true-color-of-an-object",
+   "kind": "idea",
+   "section": "26.3",
+   "name": "物体的真实颜色",
+   "statement": "物体的真实颜色由它吸收和反射的波长决定，是物体本身的性质，而不是照在它上面的光的性质。由它我们可以预言，有色物体在非白光下看起来是什么样。"
+  },
+  {
+   "id": "color-of-a-light-source",
+   "kind": "idea",
+   "section": "26.3",
+   "name": "光源的颜色",
+   "statement": "光源的颜色由它发出的波长谱决定，从激光的尖锐谱线到太阳的宽广光谱。"
+  },
+  {
+   "id": "color-constancy",
+   "kind": "definition",
+   "section": "26.3",
+   "name": "颜色恒常性",
+   "terms": [
+    "颜色恒常性"
+   ],
+   "statement": "颜色恒常性是视觉感知系统的一部分，它使人们能在各种条件下一致地感知颜色，所以白色桌布在阳光下和烛光下看起来都是白的。眼睛和大脑通过把物体与其周围环境相比较来做到这一点。"
+  },
+  {
+   "id": "hue",
+   "kind": "definition",
+   "section": "26.3",
+   "name": "色调",
+   "terms": [
+    "色调"
+   ],
+   "statement": "一种颜色的色调是它与光谱特定相关的特征，例如红、橙或蓝。"
+  },
+  {
+   "id": "retinex-theory",
+   "kind": "idea",
+   "section": "26.3",
+   "name": "视网膜皮层理论",
+   "terms": [
+    "视网膜皮层系统",
+    "视网膜皮层色觉理论"
+   ],
+   "statement": "视网膜皮层理论把颜色和亮度的感知及其恒常性解释为视网膜（retina）和皮层（cortex）共同作用的结果，这两个名称合在一起就成了它自己的名称（retinex）。它说明了在环境色背景中感知颜色的能力。"
+  },
+  {
+   "id": "compound-microscope",
+   "kind": "definition",
+   "section": "26.4",
+   "name": "复显微镜",
+   "terms": [
+    "复式显微镜"
+   ],
+   "statement": "复显微镜由两个凸透镜构成，即物镜和目镜。物镜形成一个放大的实像，这个像又是目镜的物，目镜像放大镜那样把它进一步放大。"
+  },
+  {
+   "id": "overall-magnification",
+   "kind": "result",
+   "section": "26.4",
+   "name": "总放大率",
+   "statement": "由薄透镜和面镜组成的系统的总放大率是其各元件放大率的乘积，$m = m_{\\text{o}}m_{\\text{e}}$，因为每个元件都把送给它的像高乘以一个倍数。",
+   "forms": [
+    {
+     "id": "eq-overall-magnification",
+     "latex": "m = m_{\\text{o}} m_{\\text{e}}",
+     "anchor": "26.4-compound-microscope"
+    }
+   ]
+  },
+  {
+   "id": "solve-a-multiple-element-system",
+   "kind": "skill",
+   "section": "26.4",
+   "name": "求解双透镜系统",
+   "statement": "要求由两个或更多透镜组成的系统的像和放大率，先找出第一个透镜所成的像，把它到第二个透镜的距离作为第二个透镜的物距，由此求得最终像和总放大率。",
+   "forms": [
+    {
+     "id": "eq-objective-magnification",
+     "latex": "m_{\\text{o}} = -\\frac{d_{\\text{i}}}{d_{\\text{o}}}",
+     "ktex": "m_{\\text{o}} = -\\frac{\\kdimg}{\\kdobj}",
+     "anchor": "26.4-microscope-magnification"
+    },
+    {
+     "id": "eq-objective-image-distance",
+     "latex": "\\frac{1}{d_{\\text{i}}} = \\frac{1}{f_{\\text{o}}} - \\frac{1}{d_{\\text{o}}}",
+     "ktex": "\\frac{1}{\\kdimg} = \\frac{1}{\\kfobj} - \\frac{1}{\\kdobj}",
+     "anchor": "26.4-microscope-magnification"
+    },
+    {
+     "id": "eq-eyepiece-magnification",
+     "latex": "m_{\\text{e}} = -\\frac{d_{\\text{i}}'}{d_{\\text{o}}'}",
+     "ktex": "m_{\\text{e}} = -\\frac{\\kdimgp}{\\kdobjp}",
+     "anchor": "26.4-microscope-magnification"
+    }
+   ]
+  },
+  {
+   "id": "numerical-aperture",
+   "kind": "definition",
+   "section": "26.4",
+   "name": "数值孔径",
+   "symbol": "NA",
+   "terms": [
+    "数值孔径"
+   ],
+   "statement": "透镜的数值孔径 $\\text{NA} = n \\sin\\alpha$ 表示它聚集光和分辨精细细节的能力，其中 $n$ 是透镜与标本之间介质的折射率，$\\alpha$ 是接收角的一半。",
+   "forms": [
+    {
+     "id": "eq-numerical-aperture",
+     "latex": "\\text{NA} = n \\sin \\alpha",
+     "anchor": "26.4-numerical-aperture"
+    },
+    {
+     "id": "eq-numerical-aperture-27",
+     "latex": "\\text{NA} = n\\sin\\alpha",
+     "section": "27.6",
+     "anchor": "27.6-resolving-power"
+    }
+   ]
+  },
+  {
+   "id": "f-number",
+   "kind": "definition",
+   "section": "26.4",
+   "name": "F 数",
+   "statement": "照相机镜头的 $f$ 数是它的焦距除以其孔径的直径，$f/\\# = f/D \\approx 1/(2\\,\\text{NA})$。$f$ 数越小，表示孔径越宽、光越多。",
+   "forms": [
+    {
+     "id": "eq-f-number",
+     "latex": "f/\\# = \\frac{f}{D} \\approx \\frac{1}{2\\,\\text{NA}}",
+     "ktex": "f/\\# = \\frac{\\kffoc}{\\kD} \\approx \\frac{1}{2\\,\\text{NA}}",
+     "anchor": "26.4-f-number"
+    }
+   ]
+  },
+  {
+   "id": "immersion-objectives",
+   "kind": "idea",
+   "section": "26.4",
+   "name": "浸液物镜",
+   "statement": "用油或水填满标本与物镜之间的空隙，会让本来会被折射掉的光线进入透镜，这使数值孔径大于一。"
+  },
+  {
+   "id": "microscopes-beyond-visible-light",
+   "kind": "idea",
+   "section": "26.4",
+   "name": "可见光之外的显微镜",
+   "statement": "标本必须通过透射、散射或反射来照明，而用 X 射线或电子代替光的显微镜，凭借同样的聚焦物理，可以分辨细得多的细节。"
+  },
+  {
+   "id": "objective-lens",
+   "kind": "definition",
+   "section": "26.4",
+   "name": "物镜",
+   "terms": [
+    "物镜"
+   ],
+   "statement": "光学仪器的物镜是最靠近被检查物体的透镜。"
+  },
+  {
+   "id": "eyepiece",
+   "kind": "definition",
+   "section": "26.4",
+   "name": "目镜",
+   "terms": [
+    "目镜"
+   ],
+   "statement": "光学仪器的目镜是最靠近观察者眼睛的透镜或透镜组合。"
+  },
+  {
+   "id": "distant-image-at-the-focal-length",
+   "kind": "result",
+   "section": "26.5",
+   "name": "远处物体的像",
+   "statement": "对于极远处的物体，薄透镜公式把像放在物镜后一倍焦距处，这就确定了望远镜的目镜该放的位置。",
+   "forms": [
+    {
+     "id": "eq-distant-image-at-focal-length",
+     "latex": "\\frac{1}{d_{\\text{i}}} = \\frac{1}{f_{\\text{o}}} - \\frac{1}{\\infty} = \\frac{1}{f_{\\text{o}}}",
+     "ktex": "\\frac{1}{\\kdimg} = \\frac{1}{\\kfobj} - \\frac{1}{\\infty} = \\frac{1}{\\kfobj}",
+     "anchor": "26.5-two-lens-telescopes"
+    }
+   ]
+  },
+  {
+   "id": "angular-magnification-of-a-telescope",
+   "kind": "result",
+   "section": "26.5",
+   "name": "望远镜的角放大率",
+   "statement": "由两个凸透镜组成的望远镜的角放大率为 $M = \\theta'/\\theta = -f_{\\text{o}}/f_{\\text{e}}$，所以要得到大的放大率，需要焦距长的物镜和焦距短的目镜。",
+   "forms": [
+    {
+     "id": "eq-angular-magnification",
+     "latex": "M = \\frac{\\theta'}{\\theta} = -\\frac{f_{\\text{o}}}{f_{\\text{e}}}",
+     "ktex": "M = \\frac{\\theta'}{\\theta} = -\\frac{\\kfobj}{\\kfeye}",
+     "anchor": "26.5-angular-magnification"
+    }
+   ]
+  },
+  {
+   "id": "upright-and-inverted-telescopes",
+   "kind": "idea",
+   "section": "26.5",
+   "name": "成正立像与成倒立像的望远镜",
+   "statement": "由两个凸透镜组成的望远镜形成倒立的像。伽利略的凹透镜目镜，或再加一个使像再次倒转的凸透镜，会给出正立的像。"
+  },
+  {
+   "id": "reflecting-telescopes",
+   "kind": "idea",
+   "section": "26.5",
+   "name": "反射望远镜",
+   "statement": "凹面镜可以充当望远镜的物镜。面镜可以做得比透镜大得多，能聚集更多的光，能达到很长的焦距，而且不存在色差。"
+  },
+  {
+   "id": "telescopes-across-the-spectrum",
+   "kind": "idea",
+   "section": "26.5",
+   "name": "跨越电磁波谱的望远镜",
+   "statement": "望远镜并不限于可见光：射电天线和掠入射 X 射线面镜把它们扩展到整个电磁波谱。"
+  },
+  {
+   "id": "angular-magnification",
+   "kind": "definition",
+   "section": "26.5",
+   "name": "角放大率",
+   "symbol": "M",
+   "terms": [
+    "角放大率"
+   ],
+   "statement": "仪器的角放大率是像对眼睛所张的角与肉眼观看时物体所张的角之比。",
+   "forms": [
+    {
+     "id": "eq-angular-magnification-2",
+     "latex": "M = \\theta'/\\theta"
+    }
+   ]
+  },
+  {
+   "id": "adaptive-optics",
+   "kind": "idea",
+   "section": "26.5",
+   "name": "自适应光学",
+   "terms": [
+    "自适应光学"
+   ],
+   "statement": "自适应光学是一种光学技术，其中由计算机调整装置的透镜和面镜，以校正像的迅速变化的畸变，例如大气在望远镜中造成的畸变。"
+  },
+  {
+   "id": "chromatic-aberration",
+   "kind": "definition",
+   "section": "26.6",
+   "name": "色差",
+   "statement": "色差是透镜的焦距对光的颜色的依赖。由于折射率依赖于波长，单个透镜使紫光聚焦的位置比红光更近。面镜没有色差，而用两种玻璃做成的双合透镜可以部分校正它。"
+  },
+  {
+   "id": "coma-and-spherical-aberration",
+   "kind": "definition",
+   "section": "26.6",
+   "name": "彗差与球差",
+   "statement": "彗差是离轴物体发出的光线不能会聚于一点。球差是穿过透镜边缘的光线比靠近其轴的光线聚焦得更近。两者即使在单色光中也会出现。"
+  },
+  {
+   "id": "correcting-aberrations",
+   "kind": "idea",
+   "section": "26.6",
+   "name": "减小像差",
+   "statement": "减小像差的办法有：缩小孔径、采用成形的表面、采用由多个元件组成的系统、采用梯度折射率透镜，以及用计算机校正像，其代价是亮度的损失或复杂性的增加。"
+  },
+  {
+   "id": "aberration",
+   "kind": "definition",
+   "section": "26.6",
+   "name": "像差",
+   "terms": [
+    "像差"
+   ],
+   "statement": "像差是由于透镜或面镜的局限或缺陷，光线不能会聚于一个焦点。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "eye-as-a-single-thin-lens",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "eye-as-a-single-thin-lens",
+   "prereq": "real-and-virtual-images"
+  },
+  {
+   "concept": "eye-as-a-single-thin-lens",
+   "prereq": "three-cases-of-lens-images"
+  },
+  {
+   "concept": "cornea-supplies-most-of-the-power",
+   "prereq": "refraction"
+  },
+  {
+   "concept": "cornea-supplies-most-of-the-power",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "cornea-supplies-most-of-the-power",
+   "prereq": "eye-as-a-single-thin-lens"
+  },
+  {
+   "concept": "accommodation",
+   "prereq": "eye-as-a-single-thin-lens"
+  },
+  {
+   "concept": "accommodation",
+   "prereq": "power-of-a-lens"
+  },
+  {
+   "concept": "thin-lens-equations-for-the-eye",
+   "prereq": "thin-lens-equation"
+  },
+  {
+   "concept": "thin-lens-equations-for-the-eye",
+   "prereq": "power-of-a-lens"
+  },
+  {
+   "concept": "thin-lens-equations-for-the-eye",
+   "prereq": "magnification"
+  },
+  {
+   "concept": "thin-lens-equations-for-the-eye",
+   "prereq": "accommodation"
+  },
+  {
+   "concept": "solve-for-an-image-on-the-retina",
+   "prereq": "thin-lens-equations-for-the-eye"
+  },
+  {
+   "concept": "solve-for-an-image-on-the-retina",
+   "prereq": "solve-with-the-thin-lens-equations"
+  },
+  {
+   "concept": "presbyopia",
+   "prereq": "accommodation"
+  },
+  {
+   "concept": "myopia-and-hyperopia",
+   "prereq": "accommodation"
+  },
+  {
+   "concept": "myopia-and-hyperopia",
+   "prereq": "eye-as-a-single-thin-lens"
+  },
+  {
+   "concept": "near-point-and-far-point",
+   "prereq": "accommodation"
+  },
+  {
+   "concept": "near-point-and-far-point",
+   "prereq": "myopia-and-hyperopia"
+  },
+  {
+   "concept": "correct-nearsightedness",
+   "prereq": "near-point-and-far-point"
+  },
+  {
+   "concept": "correct-nearsightedness",
+   "prereq": "thin-lens-equations-for-the-eye"
+  },
+  {
+   "concept": "correct-nearsightedness",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "correct-farsightedness",
+   "prereq": "near-point-and-far-point"
+  },
+  {
+   "concept": "correct-farsightedness",
+   "prereq": "thin-lens-equations-for-the-eye"
+  },
+  {
+   "concept": "correct-farsightedness",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "astigmatism",
+   "prereq": "eye-as-a-single-thin-lens"
+  },
+  {
+   "concept": "powers-of-close-lenses-add",
+   "prereq": "power-of-a-lens"
+  },
+  {
+   "concept": "laser-vision-correction",
+   "prereq": "cornea-supplies-most-of-the-power"
+  },
+  {
+   "concept": "laser-vision-correction",
+   "prereq": "powers-of-close-lenses-add"
+  },
+  {
+   "concept": "laser-vision-correction",
+   "prereq": "myopia-and-hyperopia"
+  },
+  {
+   "concept": "laser-vision-correction",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "rods-and-cones",
+   "prereq": "eye-as-a-single-thin-lens"
+  },
+  {
+   "concept": "simplified-theory-of-color-vision",
+   "prereq": "rods-and-cones"
+  },
+  {
+   "concept": "simplified-theory-of-color-vision",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "true-color-of-an-object",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "true-color-of-an-object",
+   "prereq": "transmission-reflection-absorption"
+  },
+  {
+   "concept": "color-of-a-light-source",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "color-constancy",
+   "prereq": "true-color-of-an-object"
+  },
+  {
+   "concept": "color-constancy",
+   "prereq": "color-of-a-light-source"
+  },
+  {
+   "concept": "color-constancy",
+   "prereq": "simplified-theory-of-color-vision"
+  },
+  {
+   "concept": "compound-microscope",
+   "prereq": "three-cases-of-lens-images"
+  },
+  {
+   "concept": "compound-microscope",
+   "prereq": "ray-tracing-rules-for-lenses"
+  },
+  {
+   "concept": "overall-magnification",
+   "prereq": "compound-microscope"
+  },
+  {
+   "concept": "overall-magnification",
+   "prereq": "magnification"
+  },
+  {
+   "concept": "solve-a-multiple-element-system",
+   "prereq": "overall-magnification"
+  },
+  {
+   "concept": "solve-a-multiple-element-system",
+   "prereq": "solve-with-the-thin-lens-equations"
+  },
+  {
+   "concept": "numerical-aperture",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "numerical-aperture",
+   "prereq": "compound-microscope"
+  },
+  {
+   "concept": "f-number",
+   "prereq": "numerical-aperture"
+  },
+  {
+   "concept": "f-number",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "immersion-objectives",
+   "prereq": "numerical-aperture"
+  },
+  {
+   "concept": "immersion-objectives",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "microscopes-beyond-visible-light",
+   "prereq": "compound-microscope"
+  },
+  {
+   "concept": "microscopes-beyond-visible-light",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "distant-image-at-the-focal-length",
+   "prereq": "thin-lens-equation"
+  },
+  {
+   "concept": "distant-image-at-the-focal-length",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "angular-magnification-of-a-telescope",
+   "prereq": "distant-image-at-the-focal-length"
+  },
+  {
+   "concept": "angular-magnification-of-a-telescope",
+   "prereq": "compound-microscope"
+  },
+  {
+   "concept": "upright-and-inverted-telescopes",
+   "prereq": "angular-magnification-of-a-telescope"
+  },
+  {
+   "concept": "upright-and-inverted-telescopes",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "reflecting-telescopes",
+   "prereq": "mirrors-and-lenses-are-analogous"
+  },
+  {
+   "concept": "reflecting-telescopes",
+   "prereq": "angular-magnification-of-a-telescope"
+  },
+  {
+   "concept": "telescopes-across-the-spectrum",
+   "prereq": "reflecting-telescopes"
+  },
+  {
+   "concept": "telescopes-across-the-spectrum",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "chromatic-aberration",
+   "prereq": "index-depends-on-wavelength"
+  },
+  {
+   "concept": "chromatic-aberration",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "coma-and-spherical-aberration",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "coma-and-spherical-aberration",
+   "prereq": "ray-tracing-rules-for-lenses"
+  },
+  {
+   "concept": "correcting-aberrations",
+   "prereq": "chromatic-aberration"
+  },
+  {
+   "concept": "correcting-aberrations",
+   "prereq": "coma-and-spherical-aberration"
+  },
+  {
+   "concept": "correcting-aberrations",
+   "prereq": "astigmatism"
+  },
+  {
+   "concept": "distant-image-at-the-focal-length",
+   "prereq": "focal-length"
+  },
+  {
+   "concept": "hue",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "retinex-theory",
+   "prereq": "color-constancy"
+  },
+  {
+   "concept": "retinex-theory",
+   "prereq": "rods-and-cones"
+  },
+  {
+   "concept": "objective-lens",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "eyepiece",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "angular-magnification",
+   "prereq": "angle"
+  },
+  {
+   "concept": "adaptive-optics",
+   "prereq": "reflecting-telescopes"
+  },
+  {
+   "concept": "aberration",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "myopia",
+   "prereq": "myopia-and-hyperopia"
+  },
+  {
+   "concept": "hyperopia",
+   "prereq": "myopia-and-hyperopia"
+  },
+  {
+   "concept": "near-point",
+   "prereq": "near-point-and-far-point"
+  },
+  {
+   "concept": "near-point",
+   "prereq": "accommodation"
+  },
+  {
+   "concept": "far-point",
+   "prereq": "near-point-and-far-point"
+  },
+  {
+   "concept": "angular-magnification-of-a-telescope",
+   "prereq": "angular-magnification"
+  },
+  {
+   "concept": "correcting-aberrations",
+   "prereq": "aberration"
+  }
+ ]
+}

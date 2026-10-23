@@ -1,0 +1,218 @@
+/* Figures for section 26.2 Vision Correction. The figures colour position and
+   angle: the far point, the near point and the distances from the spectacle lens
+   share position's hue and are told apart by their brackets, and the axis of the
+   astigmatism is an angle. The spectacle lens and the retina are referents and wear
+   F.ref; every power in diopters, the strength of the astigmatism, the rest of the
+   eye and the chart are ink. The rays take F.cat(4), past the two referents' places.
+   Nothing here moves: a defect and its correction are states, so every figure
+   registers no cycle and redraws on its controls alone (root rule 14). */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['26.2'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, begin, line, dot, text, topline, hbracket, hover } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+function sig3(x) {
+  const a = Math.abs(x);
+  return a >= 100 ? fmt(x, 0) : a >= 10 ? fmt(x, 1) : a >= 1 ? fmt(x, 2) : fmt(x, 3);
+}
+const minus = (s) => s.replace('-', '−');
+
+/* the outline of an eye centred at (ex, y) with radius R, as 26.1 draws it */
+function eye(ctx, ex, y, R) {
+  const a = (150 * Math.PI) / 180, jx = ex + R * Math.cos(a), jy = R * Math.sin(a);
+  const apex = ex - R - 0.26 * R, cx = (jx * jx + jy * jy - apex * apex) / (2 * (jx - apex)), cr = cx - apex;
+  const ca = Math.atan2(jy, jx - cx);
+  ctx.save(); ctx.lineWidth = 2.5; ctx.strokeStyle = alpha(PAL.ink, 0.75);
+  ctx.fillStyle = alpha(PAL.ink, 0.04);
+  ctx.beginPath(); ctx.arc(ex, y, R, -a, a); ctx.arc(cx, y, cr, ca, 2 * Math.PI - ca); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.restore();
+  ctx.save(); ctx.strokeStyle = F.ref('retina'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(ex, y, R - 7, -1.9, 1.9); ctx.stroke(); ctx.restore();
+  const ix = jx + 18;
+  line(ctx, ix, y - Math.sqrt(R * R - (ix - ex) ** 2) + 4, ix, y - 0.3 * R, PAL.ink, 6);
+  line(ctx, ix, y + 0.3 * R, ix, y + Math.sqrt(R * R - (ix - ex) ** 2) - 4, PAL.ink, 6);
+  return { apex, ix, retina: ex + R - 7 };
+}
+function eyeLens(ctx, x, y, rx, ry) {
+  ctx.save(); ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+  ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.8); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+}
+/* a spectacle lens at x, half-height h: thick at the middle when converging, thin
+   there when diverging */
+function spectacle(ctx, x, y, h, converging) {
+  const w = 16, b = converging ? 12 : -12;
+  ctx.save(); ctx.beginPath();
+  ctx.moveTo(x - w / 2, y - h); ctx.lineTo(x + w / 2, y - h);
+  ctx.quadraticCurveTo(x + w / 2 + 2 * b, y, x + w / 2, y + h);
+  ctx.lineTo(x - w / 2, y + h);
+  ctx.quadraticCurveTo(x - w / 2 - 2 * b, y, x - w / 2, y - h);
+  ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = F.ref('spectacle-lens'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 26.5 + 26.6 + 26.7 · sim-vision-correction · still · flat, not to scale
+   An eye whose retina is 2.00 cm behind its lens, with a spectacle lens 1.50 cm in
+   front of it. Distances from the eye are drawn on a logarithmic run, 0.10 m at
+   x = 900 and 3.00 m at x = 100. The nearsighted eye looks at a distant object and
+   relaxes to the power 1/far point + 50.0 D; the farsighted eye looks at an object
+   25.0 cm away and reaches at most 1/near point + 50.0 D. Where the rays meet is
+   drawn three times the true distance from the retina. With spectacles on, the
+   rays leave the spectacle lens as if from the far or near point, and the eye
+   brings them together on the retina.
+===================================================================== */
+(function () {
+  const d = sim('sim-vision-correction', 560);
+  const RANGES = {
+    near: { min: 0.15, max: 2, step: 0.005, unit: 'm', dec: 3 },
+    far: { min: 0.4, max: 3, step: 0.01, unit: 'm', dec: 2 },
+  };
+  const kept = { near: 0.3, far: 1 };
+  let pt = null;
+  const defect = choice(d.controls, { label: '\\text{眼睛}', value: 'near', aria: '眼睛的缺陷',
+    options: [{ value: 'near', label: '近视的' }, { value: 'far', label: '远视的' }],
+    onInput: (v) => {
+      const was = v === 'near' ? 'far' : 'near';
+      kept[was] = pt.v;
+      pt.relabel(v === 'near' ? '\\text{远点}' : '\\text{近点}', v === 'near' ? '眼睛的远点' : '眼睛的近点');
+      pt.range({ ...RANGES[v], value: kept[v] });
+    } });
+  const specs = choice(d.controls, { label: '\\text{眼镜}', value: 'off', aria: '是否戴眼镜片',
+    options: [{ value: 'off', label: '不戴' }, { value: 'on', label: '戴' }] });
+  pt = ctl(d.controls, { label: '\\text{远点}', cls: 'position', min: 0.15, max: 2, step: 0.005, value: 0.3, unit: 'm', dec: 3, aria: '眼睛的远点' });
+
+  const Y = 250, EX = 1170, R = 140, DI = 0.02, GAP = 0.015, NEAR = 0.25;
+  const xOf = (v) => 900 - (Math.log(v / 0.1) / Math.log(30)) * 800;
+  const HS = [-36, -12, 12, 36];
+  let g = null, XL = 0, SX = 0;
+
+  function toRetina(p, q) {
+    const dx = q[0] - p[0], dy = q[1] - p[1], ex = p[0] - EX, ey = p[1] - Y, r = R - 7;
+    const qa = dx * dx + dy * dy, qb = 2 * (ex * dx + ey * dy), qc = ex * ex + ey * ey - r * r;
+    const t = (-qb + Math.sqrt(qb * qb - 4 * qa * qc)) / (2 * qa);
+    return { t, at: [p[0] + dx * t, p[1] + dy * t] };
+  }
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const near = defect.value === 'near', on = specs.value === 'on', v = pt.v;
+    const Peye = 1 / v + 1 / DI;
+    const dI = on ? DI : near ? 1 / Peye : 1 / (Peye - 1 / NEAR);
+    const PC = C('position'), ray = cat(4), SL = F.ref('spectacle-lens');
+
+    line(ctx, 30, Y, 1370, Y, alpha(PAL.ink, 0.3), 2, [10, 10]);
+    g = eye(ctx, EX, Y, R);
+    XL = g.ix + 32; SX = g.apex - 64;
+    eyeLens(ctx, XL, Y, 12 + (Peye - 50) * 4, 62);
+    if (on) spectacle(ctx, SX, Y, 80, !near);
+
+    const xv = xOf(v), xo = xOf(NEAR);
+    const xm = XL + (g.retina - XL) * (1 + (3 * (dI - DI)) / DI);
+    const M = [xm, Y];
+    ctx.save(); ctx.setLineDash([5, 7]); ctx.strokeStyle = alpha(PC, 0.7); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(xv, Y - 62); ctx.lineTo(xv, Y + 62); ctx.stroke(); ctx.restore();
+    text(ctx, near ? '远点' : '近点', xv, Y - 80, PC, { size: 19, align: 'center', bg: PAL.panel });
+
+    const hits = [];
+    for (const h of HS) {
+      let atEye;
+      if (on) {
+        /* heights at the spectacle lens chosen so every ray still passes the pupil */
+        const hs = near ? h * Math.min(1, (SX - xv) / (XL - xv)) : h * ((SX - xo) / (XL - xo));
+        const from = near ? [30, Y + hs] : [xo, Y];
+        const ys = Y + hs;
+        line(ctx, from[0], from[1], SX, ys, ray, 3);
+        line(ctx, SX, ys, xv, Y, alpha(ray, 0.45), 2, [6, 8]);
+        atEye = [XL, Y + hs * ((XL - xv) / (SX - xv))];
+        line(ctx, SX, ys, atEye[0], atEye[1], ray, 3);
+      } else {
+        atEye = [XL, Y + h];
+        line(ctx, near ? 30 : xo, near ? Y + h : Y, atEye[0], atEye[1], ray, 3);
+      }
+      const r = toRetina(atEye, M);
+      line(ctx, atEye[0], atEye[1], r.at[0], r.at[1], ray, 3);
+      if (r.t > 1.0001) line(ctx, r.at[0], r.at[1], M[0], M[1], ray, 2.5, [6, 8]);
+      hits.push(r.at[1]);
+    }
+    const clear = Math.abs(dI - DI) < 1e-6;
+    if (clear) dot(ctx, g.retina, Y, ray, true, 7);
+    else line(ctx, g.retina + 2, Math.min(...hits), g.retina + 2, Math.max(...hits), ray, 9);
+
+    if (near) text(ctx, '来自远处物体', 40, Y + 86, PAL.muted, { size: 18, align: 'left' });
+    else {
+      dot(ctx, xo, Y, PAL.ink, true, 7);
+      text(ctx, '物体', xo, Y + 84, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+    }
+    if (on) {
+      dot(ctx, xv, Y, ray, false, 7);
+      text(ctx, '像', xv + 12, Y + 30, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+      text(ctx, '眼镜片', SX, Y - 100, SL, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    }
+    text(ctx, '晶状体', XL, Y + 90, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+    text(ctx, '视网膜', EX + R + 12, Y - 110, F.ref('retina'), { size: 18, weight: 600, align: 'left' });
+
+    const cm = (x) => sig3(x * 100) + ' cm';
+    if (on) {
+      hbracket(ctx, xv, SX, Y + 170, PC, 'd_i = ' + minus('-' + cm(v - GAP)), { side: 'below' });
+      if (!near) hbracket(ctx, xo, SX, Y + 130, PC, 'd_o = ' + cm(NEAR - GAP), { side: 'below' });
+    } else {
+      hbracket(ctx, xv, XL, Y + 170, PC, (near ? '远点 ' : '近点 ') + cm(v), { side: 'below' });
+    }
+    text(ctx, '未按比例', 30, 540, PAL.muted, { size: 17, align: 'left' });
+
+    const m = (x) => minus(sig3(x)) + '\\ \\text{m}';
+    if (on) {
+      const P = (near ? 0 : 1 / (NEAR - GAP)) - 1 / (v - GAP);
+      topline(ctx, `光焦度为 ${minus(sig3(P))} D 的${near ? '发散' : '会聚'}透镜使像成在${near ? '远' : '近'}点处，眼睛再把它聚焦在视网膜上。`);
+      readout(d.readout, `P = \\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{${near ? '\\infty' : m(NEAR - GAP)}} + \\frac{1}{${m(-(v - GAP))}} = ${minus(sig3(P))}\\ \\text{D}`,
+        `眼镜片位于眼前 1.50 cm 处，所以${near ? '远' : '近'}点距眼镜片 ${cm(v - GAP)}。`);
+    } else if (near) {
+      topline(ctx, `放松的眼睛光焦度为 ${sig3(Peye)} D，来自远处物体的光线会聚在视网膜前面。`);
+      readout(d.readout, `P = \\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{\\infty} + \\frac{1}{${fmt(dI, 4)}\\ \\text{m}} = ${sig3(Peye)}\\ \\text{D}`,
+        `光线会聚在晶状体后 ${sig3(dI * 100)} cm 处，未到达晶状体后 2.00 cm 处的视网膜，所以像是模糊的。`);
+    } else {
+      topline(ctx, `眼睛的光焦度只能达到 ${sig3(Peye)} D，来自 25.0 cm 远处物体的光线会聚在视网膜后面。`);
+      readout(d.readout, `P = \\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{0.250\\ \\text{m}} + \\frac{1}{${fmt(dI, 4)}\\ \\text{m}} = ${sig3(Peye)}\\ \\text{D}`,
+        `光线本会聚在晶状体后 ${sig3(dI * 100)} cm 处，越过了晶状体后 2.00 cm 处的视网膜，所以像是模糊的。`);
+    }
+  }
+  hover(d.stage, () => (g ? [
+    { x: XL, y: Y + 40, r: 22, name: defect.value === 'near' ? '光焦度过大的透镜，或过长的眼球' : '光焦度过小的透镜，或过短的眼球' },
+    ...(specs.value === 'on' ? [{ x: SX, y: Y + 50, r: 20, name: defect.value === 'near' ? '发散眼镜片' : '会聚眼镜片' }] : []),
+  ] : []));
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 26.8 · sim-astigmatism-chart · still · flat
+   The book's chart: twelve spokes of three parallel lines every 30°, about a
+   center cross. An astigmatic eye blurs lines according to their direction; a
+   line at angle φ to the axis is widened and faded by the astigmatism times
+   |sin φ|, so lines along the axis stay sharp and those across it look faint.
+===================================================================== */
+(function () {
+  const d = sim('sim-astigmatism-chart', 540);
+  const s = ctl(d.controls, { label: '\\text{散光}', cls: '', min: 0, max: 2, step: 0.05, value: 0, unit: 'D', dec: 2, aria: '散光的程度' });
+  const ax = ctl(d.controls, { label: '\\text{轴}', cls: 'angle', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, aria: '线条保持清晰所沿的轴', detents: [0, 45, 90, 135, 180] });
+  const CX = 700, CY = 290, R0 = 70, R1 = 225;
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const k = s.v / 2, a = (ax.v * Math.PI) / 180;
+    for (let i = 0; i < 12; i++) {
+      const phi = (i * Math.PI) / 6, ux = Math.cos(phi), uy = -Math.sin(phi);
+      const b = k * Math.abs(Math.sin(phi - a));
+      for (const off of [-9, 0, 9]) {
+        const px = -uy * off, py = ux * off;
+        line(ctx, CX + ux * R0 + px, CY + uy * R0 + py, CX + ux * R1 + px, CY + uy * R1 + py, alpha(PAL.ink, 1 - 0.8 * b), 3 + 7 * b);
+      }
+    }
+    line(ctx, CX - 18, CY, CX + 18, CY, PAL.ink, 3);
+    line(ctx, CX, CY - 18, CX, CY + 18, PAL.ink, 3);
+    if (s.v > 0) {
+      const across = Math.round((ax.v + 90) % 180);
+      topline(ctx, `${Math.round(ax.v)}° 附近的线条保持清晰，${across}° 附近的线条显得暗淡。`);
+    }
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

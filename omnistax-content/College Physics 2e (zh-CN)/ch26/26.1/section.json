@@ -1,0 +1,460 @@
+{
+ "id": "26.1",
+ "module": "m42482",
+ "chapter": "26",
+ "title": "眼睛的物理学",
+ "short": "眼睛的物理学",
+ "lead": "<span data-ref=\"cornea lens\">眼睛的角膜和晶状体</span>共同起到单个薄透镜的作用，在<span data-ref=\"retina\">视网膜</span>上形成一个实像。随着物体靠近，眼睛改变它的<span data-concept=\"power-of-a-lens\">光焦度</span>，使这个像始终落在<span data-ref=\"retina\">视网膜</span>上，而薄透镜公式描述的就是这一<span data-concept=\"power-of-a-lens\">光焦度</span>以及像的大小。",
+ "objectives": [
+  "解释眼睛的成像。",
+  "解释为什么周边的像缺乏细节和颜色。",
+  "定义折射率。",
+  "分析眼睛对远视觉和近视觉的调节。"
+ ],
+ "summary_html": "<ul><li>眼睛的成像可以用薄透镜公式作充分的描述：$P = \\frac{1}{\\kdobj} + \\frac{1}{\\kdimg}$ 和 $\\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = m$。</li><li>眼睛通过在称为调节的过程中调整其<span data-concept=\"focal-length\">焦距</span>和<span data-concept=\"power-of-a-lens\">光焦度</span>，在视网膜上产生实像。</li><li>看近处时，眼睛处于完全调节状态，<span data-concept=\"power-of-a-lens\">光焦度</span>最大；而看远处时，眼睛完全放松，<span data-concept=\"power-of-a-lens\">光焦度</span>最小。</li><li>随年龄增长而丧失调节能力称为老视，可以用会聚透镜为看近处增加<span data-concept=\"power-of-a-lens\">光焦度</span>来矫正。</li></ul>",
+ "notes": "本节的五道习题中有两道在书后答案中没有给出，因而略去：眼睛观看 3.00 m 远处物体时的光焦度，以及视力能达到 4.00 μm 的像的人在飞机上能读出 75.0 cm 高字母的最大距离。对“几何光学”的引用是纯文本，书中的“$p=1/f$”保留印刷时的小写 p。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。五道习题中有两道没有给出答案，因而略去，它们在本节的说明中已列出；某道有答案的习题若在最后一问要求讨论，书中对该问的原话放在解中。AP 备考练习的第一题有答案，设为判分选择题；第二题带有出版方在原文中注释掉的解，因此保留为开放题，并附有标明由 AI 撰写的建议思路。每道思考题都没有答案，并附有标明由 AI 撰写的建议思路。本节没有印出理解检测框，因此没有设置内嵌题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-eye-anatomy",
+   "kind": "sim",
+   "number": "26.2",
+   "originals": [
+    "/media/ch26/Figure_27_01_01.jpg"
+   ],
+   "original_caption": "眼睛的角膜和晶状体共同作用，在感光的视网膜上形成一个实像；视网膜的感受器在中央凹处最为密集，并在视神经上方有一个盲点。眼睛晶状体的光焦度可以调节，以便为不同的物距在视网膜上提供像。晶状体中折射率各不相同的组织层在这里画了出来。不过，为了清晰起见，其他图中略去了它们。",
+   "widths": [
+    325
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "optic disc label names the blind spot"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-eye-accommodation",
+   "kind": "sim",
+   "number": "26.3",
+   "folds": [
+    "26.4"
+   ],
+   "originals": [
+    "/media/ch26/Figure_27_01_02.jpg",
+    "/media/ch26/Figure_27_01_03.jpg"
+   ],
+   "original_caption": "（图 26.3）像形成在视网膜上，光线在角膜处以及进入和离开晶状体时会聚得最多。图中追迹了来自物体顶端和底端的光线，它们在视网膜上产生一个倒立的实像。图中到物体的距离画得比实际比例小。（图 26.4）看远处和近处物体时的放松视觉与已调节视觉。（a）来自远处物体上同一点的光线进入眼睛时必须几乎平行，也更容易会聚而在视网膜上形成像。（b）来自近处物体的光线可以发散得更多而仍能进入眼睛。与光线平行时相比，需要光焦度更大的晶状体才能把它们会聚在视网膜上。",
+   "widths": [
+    350,
+    450
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "fir tree, rays kept to the pupil, cornea label, d_i bracket when blurred"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "eye-as-a-lens",
+   "concept": "eye-as-a-single-thin-lens",
+   "verb": "introduces"
+  },
+  {
+   "span": "refraction-in-the-eye",
+   "concept": "cornea-supplies-most-of-the-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "refraction-in-the-eye",
+   "concept": "eye-as-a-single-thin-lens",
+   "verb": "reinforces"
+  },
+  {
+   "span": "accommodation",
+   "concept": "accommodation",
+   "verb": "introduces"
+  },
+  {
+   "span": "thin-lens-equations-for-the-eye",
+   "concept": "thin-lens-equations-for-the-eye",
+   "verb": "introduces"
+  },
+  {
+   "span": "thin-lens-equations-for-the-eye",
+   "concept": "solve-for-an-image-on-the-retina",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-range",
+   "concept": "presbyopia",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-range",
+   "concept": "accommodation",
+   "verb": "uses"
+  },
+  {
+   "span": "power-range",
+   "concept": "thin-lens-equations-for-the-eye",
+   "verb": "uses"
+  },
+  {
+   "span": "power-range",
+   "concept": "solve-for-an-image-on-the-retina",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1416775",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thin-lens-equations-for-the-eye",
+   "prompt": "一棵 3 m 高的树从 25 m 远处观看。如果理想眼睛的角膜到视网膜的距离为 2 cm，这棵树在观察者视网膜上的像有多高？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0.24 cm",
+     "0.5 cm",
+     "0.5 m",
+     "0.08 cm"
+    ],
+    "correct": 0,
+    "hint": "像距就是角膜到视网膜的距离，所以 $\\khimg = -\\khobj\\kdimg/\\kdobj$；每个长度都要用同一单位。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2177521",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "accommodation",
+   "prompt": "晶状体到视网膜的距离小于 2 cm 的人，常常买眼镜戴在眼前。（a）解释为什么晶状体到视网膜的距离小于 2 cm 的人需要眼镜。（b）解释眼镜应当由会聚透镜还是发散透镜构成。（c）画一张光线图，说明戴眼镜与不戴眼镜时的视物能力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）这样的眼睛的角膜和晶状体使光聚焦于晶状体后约 2 cm 处，但视网膜比这更近，所以光线在相遇之前就到达了视网膜，视网膜上的像是模糊的。（b）眼睛需要更强的会聚能力，使光线更早地会聚，所以眼镜应当是会聚透镜，它在角膜和晶状体的光焦度之上再增加正的光焦度。（c）不戴眼镜时，画出来自物体上一点的光线，它们穿过眼睛，在视网膜后面相交，到达视网膜时散成一小片。戴眼镜时，画出同样的光线，先被会聚透镜向内偏折，使得它们经过角膜和晶状体之后恰好在视网膜上相交。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3396946",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "refraction-in-the-eye",
+   "prompt": "如果因为白内障而摘除一个人眼睛的晶状体（自古以来就是这样做的），你为什么会预期要配一块约 16 D 的眼镜片？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "角膜提供眼睛约三分之二的光焦度，晶状体提供其余的三分之一。对于光焦度约为 50 D 的眼睛，晶状体提供其中大约三分之一，即约 16 D。摘除晶状体后，眼睛缺少这部分光焦度，所以需要一块约 16 D 的会聚眼镜片，才能使像回到视网膜上。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2590986",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eye-as-a-lens",
+   "prompt": "白内障是眼睛晶状体的混浊。光被它色散了还是漫射了？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "光被漫射了。混浊使光向许多方向散射，所以来自物体上一点的光线不再会聚于视网膜上的一点，像是模糊的。色散是由于折射率依赖于波长而使光分散成各种颜色，而这不是白内障所起的作用。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "eip-399",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "accommodation",
+   "prompt": "用激光照射处于放松状态的正常视力眼睛，通过把视网膜点焊到眼球后部来修复撕裂时，进入眼睛的光线必须是平行的。为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "放松的正常眼睛聚焦于非常远的物体，来自这些物体的光线是平行到达的，所以它把平行光线会聚到视网膜上的一点。因此，平行的激光会聚成恰好落在视网膜上的一个小而强的光斑，而这正是需要焊接之处。不平行的光线会在视网膜前方或后方相交，把能量散布在视网膜上更大的一片区域。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3135255",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "refraction-in-the-eye",
+   "prompt": "干燥的角膜接触镜的光焦度，与它放在眼睛泪膜上时的光焦度相比如何？解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "干燥的角膜接触镜两侧都是空气，镜片的折射率与空气的折射率之间的巨大差别，使光线在它的表面处强烈偏折。在眼睛上时，它的后表面贴着泪膜，泪膜的折射率与水和角膜的折射率相近，所以光线在该表面处几乎不偏折。因此，角膜接触镜在眼睛上的有效光焦度与它干燥地放在空气中时不同，而且更小，它的配镜处方已把这一点考虑在内。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1398675",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "refraction-in-the-eye",
+   "prompt": "为什么你在游泳时于水下睁开眼睛，视觉会如此模糊？面罩怎样使视觉变得清晰？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "角膜提供眼睛的大部分光焦度，因为光从空气（$n = 1.0$）进入角膜（$n = 1.38$）时速率大大减小。水的折射率 $n = 1.33$，与角膜几乎相同，所以在水下，光在角膜处几乎不偏折，眼睛失去大部分光焦度，像形成在远在视网膜后面的地方。面罩在眼前保留一层空气，所以光又从空气进入角膜，角膜重新获得它的光焦度。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2070233",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thin-lens-equations-for-the-eye",
+   "prompt": "眼睛观看 50.0 cm 远处的物体时，光焦度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 52.0,
+    "unit": "D",
+    "hint": "用 $P = 1/\\kdobj + 1/\\kdimg$，两个距离都用米，$\\kdimg = 0.0200$ m。",
+    "solution": "52.0 D"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3356592",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thin-lens-equations-for-the-eye",
+   "prompt": "（a）许多书中印刷字的高度平均为 3.50 mm。书离眼睛 30.0 cm 时，印刷字在视网膜上的像有多高？（b）把印刷字的大小与中央凹中视杆细胞和视锥细胞的大小相比，并讨论在字母中可能观察到的细节。（眼脑系统由于相互连接和更高阶的图像处理，可以表现得更好。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the height of the image on the retina",
+      "value": -0.233,
+      "unit": "mm",
+      "hint": "用 $\\khimg = -\\khobj\\kdimg/\\kdobj$，晶状体到视网膜的距离取 2.00 cm。"
+     }
+    ],
+    "solution": "（a）$-0.233\\ \\text{mm}$（b）视杆细胞和视锥细胞的大小比像高小，所以我们能够分辨页面上的字母。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2766503",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-range",
+   "prompt": "从事近距离精细工作的人，如珠宝商，常常能在比正常的 25 cm 近得多的距离上看清物体。（a）一位女士在仅 8.00 cm 的距离处就能看清物体，她眼睛的光焦度是多少？（b）把一个 1.00 mm 大的物体（例如戒指内侧的刻字）放在这个距离处，它的像有多大？（c）如果把这个物体放在正常的 25.0 cm 距离处，像会有多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the power of her eyes",
+      "value": 62.5,
+      "unit": "D",
+      "hint": "她的近点是 8.00 cm，所以这就是她光焦度最大时的物距。"
+     },
+     {
+      "part": "(b) the image size at 8.00 cm",
+      "value": -0.25,
+      "unit": "mm",
+      "hint": "用 $\\khimg = -\\khobj\\kdimg/\\kdobj$，$\\kdimg = 2.00$ cm。"
+     },
+     {
+      "part": "(c) the image size at 25.0 cm",
+      "value": -0.08,
+      "unit": "mm",
+      "hint": "只有物距改变；像距仍是 2.00 cm。"
+     }
+    ],
+    "solution": "（a）$+62.5\\ \\text{D}$（b）$-0.250\\ \\text{mm}$（c）$-0.0800\\ \\text{mm}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "solve-for-an-image-on-the-retina"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "thin-lens-equations-for-the-eye"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "accommodation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "eye-as-a-single-thin-lens"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "cornea-supplies-most-of-the-power"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "eye-as-a-single-thin-lens"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "accommodation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "eye-as-a-single-thin-lens"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "cornea-supplies-most-of-the-power"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "cornea-supplies-most-of-the-power"
+  },
+  {
+   "exercise": "p1",
+   "concept": "solve-for-an-image-on-the-retina"
+  },
+  {
+   "exercise": "p1",
+   "concept": "thin-lens-equations-for-the-eye"
+  },
+  {
+   "exercise": "p2",
+   "concept": "solve-for-an-image-on-the-retina"
+  },
+  {
+   "exercise": "p3",
+   "concept": "solve-for-an-image-on-the-retina"
+  },
+  {
+   "exercise": "p3",
+   "concept": "accommodation"
+  }
+ ],
+ "referents": [
+  {
+   "id": "cornea",
+   "label": "眼睛的角膜，负责大部分偏折",
+   "figures": [
+    "sim-eye-accommodation",
+    "sim-eye-anatomy"
+   ]
+  },
+  {
+   "id": "lens",
+   "label": "眼睛的晶状体，变厚以进行调节",
+   "figures": [
+    "sim-eye-accommodation",
+    "sim-eye-anatomy"
+   ]
+  },
+  {
+   "id": "retina",
+   "label": "视网膜，像必须落在其上",
+   "figures": [
+    "sim-eye-accommodation",
+    "sim-eye-anatomy"
+   ]
+  },
+  {
+   "id": "tree",
+   "label": "眼睛所看的树",
+   "figures": [
+    "sim-eye-accommodation"
+   ]
+  }
+ ]
+}

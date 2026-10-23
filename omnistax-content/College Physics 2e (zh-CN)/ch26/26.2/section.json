@@ -1,0 +1,662 @@
+{
+ "id": "26.2",
+ "module": "m42484",
+ "chapter": "26",
+ "title": "视力矫正",
+ "short": "视力矫正",
+ "lead": "近视和远视是眼睛最常见的两种缺陷，<span data-ref=\"spectacle-lens\">眼镜片</span>的<span data-concept=\"power-of-a-lens\">光焦度</span>由此人的远点或近点决定，可以分别矫正二者。散光需要专门的透镜，而角膜接触镜和激光视力矫正则在眼睛本身改变<span data-concept=\"power-of-a-lens\">光焦度</span>。",
+ "objectives": [
+  "识别并讨论常见的视力缺陷。",
+  "解释近视和远视的矫正。",
+  "解释激光视力矫正。"
+ ],
+ "summary_html": "<ul><li>近视（myopia）是无法看清远处的物体，用发散透镜来降低<span data-concept=\"power-of-a-lens\">光焦度</span>以矫正。</li><li>远视（hyperopia）是无法看清近处的物体，用会聚透镜来增大<span data-concept=\"power-of-a-lens\">光焦度</span>以矫正。</li><li>对于近视和远视，矫正镜片所成的像位于此人能看清的<span data-concept=\"distance\">距离</span>处——分别是远点和近点。</li></ul>",
+ "notes": "本模块的二十道习题中，有十道没有书后答案，已略去：调节后光焦度为 53.5 D 的眼睛的近点；LASIK 矫正增加 3.00 D 之前的近点；远点为 5.00 cm 时的矫正；光焦度为 53.0 D 的眼睛所检查的距离；远点为 50.0 cm 的管理人员的放松时光焦度和最近物体；三道重复前一题、但眼镜与眼睛相距 1.50 cm、1.75 cm 和 2.20 cm 的习题；对着镜子刮胡子的近视男子；以及关于 −4.00 D 透镜的“不合理的结果”习题。关于 LASIK 一个脉冲串所烧蚀的角膜深度的“综合概念”习题印在 26.6 中，这里放在讲授 LASIK 的地方；其中的温度在书中印有序数符号，这里写作 °C。对“几何光学”的引用是纯文本。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。二十道习题中有十道没有书后答案，已略去，并列在本节的说明中；有书后答案的习题若最后一问要求讨论，则该问书中的原话在解中。有一道习题取自 26.6：关于 LASIK 烧蚀的综合概念习题，它还用到第 14 章的热量和汽化热。第一道 AP 题有书后答案，设为判分选择题；第二道带有出版方在源文本中注释掉的解，所以保留为开放题，并附有标明由 AI 撰写的建议思路。每道思考题都没有书后答案，并附有标明由 AI 撰写的建议思路。本模块没有印出“理解检测”框，所以没有设置内嵌题。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-vision-correction",
+   "kind": "sim",
+   "number": "26.5",
+   "folds": [
+    "26.6",
+    "26.7"
+   ],
+   "originals": [
+    "/media/ch26/Figure_27_02_01.jpg",
+    "/media/ch26/Figure_27_02_02.jpg",
+    "/media/ch26/Figure_27_02_03.jpg"
+   ],
+   "original_caption": "（图 26.5）（a）近视（myopic）眼把来自远处物体的光线会聚在视网膜前面；因此光线射到视网膜时已在发散，产生模糊的像。这可能是由于眼睛的晶状体光焦度过大，或眼球过长。（b）远视（hyperopic）眼在光线射到视网膜时仍不能把来自近处物体的光线会聚，造成近视觉模糊。这可能是由于晶状体的光焦度不足，或眼球过短。（图 26.6）近视的矫正需要一块发散透镜，以补偿眼睛的过度会聚。发散透镜所成的像比物体更靠近眼睛，因此近视的人可以看清它。（图 26.7）远视的矫正使用会聚透镜，以补偿眼睛的会聚不足。会聚透镜所成的像比物体离眼睛更远，因此远视的人可以看清它。",
+   "widths": [
+    400,
+    300,
+    300
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rays kept to the pupil, ray colour apart from the position brackets"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-astigmatism-chart",
+   "kind": "sim",
+   "number": "26.8",
+   "originals": [
+    "/media/ch26/Figure_27_02_04.jpg"
+   ],
+   "original_caption": "此图表可以检测散光，即眼睛聚焦的不均匀。分别检查你的每只眼睛，注视中心的十字（如果你戴眼镜，请摘下眼镜）。如果沿某些轴向的线条比其他线条显得更暗或更清晰，你就有散光。",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-lasik",
+   "kind": "photo",
+   "number": "26.9",
+   "widths": [
+    150
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "myopia-and-hyperopia",
+   "concept": "myopia-and-hyperopia",
+   "verb": "introduces"
+  },
+  {
+   "span": "myopia-and-hyperopia",
+   "concept": "near-point-and-far-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "myopia-and-hyperopia",
+   "concept": "myopia",
+   "verb": "introduces"
+  },
+  {
+   "span": "myopia-and-hyperopia",
+   "concept": "hyperopia",
+   "verb": "introduces"
+  },
+  {
+   "span": "myopia-and-hyperopia",
+   "concept": "near-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "myopia-and-hyperopia",
+   "concept": "far-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "correcting-nearsightedness",
+   "concept": "correct-nearsightedness",
+   "verb": "introduces"
+  },
+  {
+   "span": "correcting-nearsightedness",
+   "concept": "near-point-and-far-point",
+   "verb": "uses"
+  },
+  {
+   "span": "correcting-nearsightedness",
+   "concept": "myopia-and-hyperopia",
+   "verb": "uses"
+  },
+  {
+   "span": "correcting-farsightedness",
+   "concept": "correct-farsightedness",
+   "verb": "introduces"
+  },
+  {
+   "span": "correcting-farsightedness",
+   "concept": "near-point-and-far-point",
+   "verb": "uses"
+  },
+  {
+   "span": "correcting-farsightedness",
+   "concept": "myopia-and-hyperopia",
+   "verb": "uses"
+  },
+  {
+   "span": "astigmatism",
+   "concept": "astigmatism",
+   "verb": "introduces"
+  },
+  {
+   "span": "astigmatism",
+   "concept": "powers-of-close-lenses-add",
+   "verb": "uses"
+  },
+  {
+   "span": "laser-vision-correction",
+   "concept": "powers-of-close-lenses-add",
+   "verb": "introduces"
+  },
+  {
+   "span": "laser-vision-correction",
+   "concept": "laser-vision-correction",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1741949",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "下列哪些类型的光，波长大于可见光？（I）γ 射线，（II）红外线，（III）无线电波，（IV）紫外线。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "I、II 和 III",
+     "仅 I 和 IV",
+     "仅 II 和 III",
+     "仅 III"
+    ],
+    "correct": 2,
+    "hint": "回想第 24 章中电磁波谱的顺序：波长从 γ 射线经紫外线、可见光和红外线，一直增大到无线电波。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1383676",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "在 LASIK 手术中，把 193 nm 的相干紫外线聚焦在角膜组织上。（a）说明使用波长全部相同的光的重要性。（b）说明为什么紫外线比红外线更有效地蒸发角膜组织。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）透镜使同一波长的光的每一部分偏折相同的量，所以能把这束光聚焦成一个小而明确的光斑，角膜对它的吸收也各处相同。于是每个脉冲串所去除的组织深度是可预测的，外科医生因而能精确控制重塑。（b）紫外线的频率比红外线高，所以每个光子携带的能量更大，而角膜很薄的表层对 193 nm 的光吸收极强。它的能量进入很薄的一层使之蒸发，而不是作为热量扩散到组织深处。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "eip-398",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "correcting-nearsightedness",
+   "prompt": "现在，用一块内置透镜取代被白内障弄浑浊的眼睛晶状体已很普遍。这块人工晶状体可以这样选择，使此人获得完美的远视觉。此人不戴眼镜能阅读吗？如果此人原本近视，人工晶状体的光焦度比被取出的晶状体大还是小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。人工晶状体的光焦度固定，不能调节，所以为完美远视觉设定的眼睛无法再增加近视觉所需的光焦度，此人需要戴老花镜。近视眼的光焦度原本过大，所以要获得完美的远视觉，所选人工晶状体的光焦度要比它所取代的晶状体小。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1613374",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "如果要重塑角膜（可以用手术，也可以用角膜接触镜）来矫正近视，它的曲率应当变大还是变小？请解释。同时解释远视如何矫正。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "近视眼的光焦度过大，而角膜提供其中约三分之二，所以应使它的曲率变小：更平的角膜对光线的偏折更小，从而降低眼睛的光焦度。远视则相反，是眼睛的光焦度过小，所以要通过增大角膜的曲率来矫正，这会提高眼睛的光焦度。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3123974",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "如果 LASIK 角膜重塑存在固定的百分不确定度，为什么你预期矫正量最大的人在手术后获得正常远视觉的机会更小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "固定的百分不确定度意味着，矫正量越大，以屈光度计的不确定度越大。例如，2.00 D 矫正量的 5% 是 0.10 D，眼睛几乎觉察不到；而 10.0 D 矫正量的 5% 是 0.50 D，足以使远视觉仍然模糊。因此矫正量最大的人最有可能留下明显的误差。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2684060",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "老视患者已经部分或完全丧失了调节眼睛光焦度的能力。如果这样的人用 LASIK 矫正了远视觉，她还需要老花镜吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "需要。LASIK 改变的是角膜固定的光焦度，使放松的眼睛把远处物体聚焦在视网膜上，但并不能恢复晶状体为近处物体增大光焦度的能力。老视正是丧失了这种能力，所以她仍无法增加近视觉所需的光焦度，必须由会聚的老花镜来提供。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1119156",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "myopia-and-hyperopia",
+   "prompt": "一个人的眼睛放松时光焦度为 50.5 D，他的远点是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.0,
+    "unit": "m",
+    "hint": "放松的眼睛把它的远点聚焦在视网膜上，所以用 $P = 1/\\kdobj + 1/\\kdimg$，取 $\\kdimg = 0.0200$ m，解出 $\\kdobj$。",
+    "solution": "2.00 m"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2409234",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "（a）激光视力矫正重塑一位近视患者的角膜，使他眼睛的光焦度降低 9.00 D，最终矫正量有 $\\pm 5.0\\%$ 的不确定度。这个人在 LASIK 手术后可能需要的眼镜片，屈光度的范围是多少？（b）此人手术前是近视还是远视？你怎么知道？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the size of the range either side of zero, ±",
+      "value": 0.45,
+      "unit": "D",
+      "hint": "不确定度是 9.00 D 矫正量的 5.0%，眼镜片需要补偿它。"
+     }
+    ],
+    "solution": "（a）$\\pm 0.45\\ \\text{D}$（b）此人是近视，因为该患者近视，而且光焦度被降低了。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "eip-id2423615",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "一位患者接受了激光视力矫正，使她眼睛的光焦度降低了 7.00 D，使她获得正常的远视觉。她之前的远点是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.143,
+    "unit": "m",
+    "hint": "矫正前，她放松的眼睛比聚焦远处物体所需的 50.0 D 多出 7.00 D，这多出的光焦度就是她远点对应的 $1/\\kdobj$。",
+    "solution": "0.143 m"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "eip-id2655113",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "myopia-and-hyperopia",
+   "prompt": "一位学生阅读黑板时，眼睛的光焦度为 51.0 D。黑板离他的眼睛多远？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "unit": "m",
+    "hint": "用 $P = 1/\\kdobj + 1/\\kdimg$，取 $\\kdimg = 0.0200$ m。",
+    "solution": "1.00 m"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-id2392306",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "myopia-and-hyperopia",
+   "prompt": "一位远视觉正常的年轻女子，调节（即增大）眼睛光焦度的能力为 10.0%。她能看清的最近物体有多远？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 20.0,
+    "unit": "cm",
+    "hint": "她放松时的光焦度为 50.0 D，所以她的最大光焦度比它大 10.0%；多出的光焦度就是她近点对应的 $1/\\kdobj$。",
+    "solution": "20.0 cm"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "eip-id2344835",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "correcting-nearsightedness",
+   "prompt": "一位高度近视的男子，远点为 20.0 cm。戴在眼上的角膜接触镜光焦度为多大，才能矫正他的远视觉？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -5.0,
+    "unit": "D",
+    "hint": "角膜接触镜贴在眼上，所以它必须使远处物体的像成在其前方 20.0 cm 处：$\\kdobj = \\infty$，$\\kdimg = -0.200$ m。",
+    "solution": "$-5.00\\ \\text{D}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "eip-id1335264",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "correcting-nearsightedness",
+   "prompt": "一位近视的人看到自己的角膜接触镜处方是 $-4.00\\ \\text{D}$。他的远点是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 25.0,
+    "unit": "cm",
+    "hint": "透镜使远处物体的像成在远点处，所以 $P = 1/\\infty + 1/\\kdimg$；远点就是距离 $|\\kdimg|$。",
+    "solution": "25.0 cm"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "eip-id1658675",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "astigmatism",
+   "prompt": "一位轻度远视的人，角膜接触镜处方是 0.750 D，近点为 29.0 cm。若矫正是理想的，并考虑角膜接触镜与角膜之间的泪膜，泪膜的光焦度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.198,
+    "unit": "D",
+    "hint": "求出使 25.0 cm 远处的物体的像成在同侧 29.0 cm 处所需的光焦度；角膜接触镜和泪膜共同提供它，二者的光焦度相加。",
+    "solution": "$-0.198\\ \\text{D}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "eip-id1289701",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "correcting-farsightedness",
+   "prompt": "一位教师看到一个孩子的角膜接触镜处方是 0.750 D。这个孩子的近点是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 30.8,
+    "unit": "cm",
+    "hint": "角膜接触镜把 25.0 cm 处的物体的像成在近点处：$P = 1/0.250\\ \\text{m} + 1/\\kdimg$，近点就是 $|\\kdimg|$。",
+    "solution": "30.8 cm"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "eip-id2642030",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "astigmatism",
+   "prompt": "一位近视的人，角膜接触镜处方是 $-4.00\\ \\text{D}$，远点为 22.5 cm。若矫正是理想的，并考虑角膜接触镜与角膜之间的泪膜，泪膜的光焦度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.444,
+    "unit": "D",
+    "hint": "理想的矫正使远处物体的像成在 22.5 cm 处，这需要 $-1/0.225\\ \\text{m}$；角膜接触镜和泪膜共同提供它，二者的光焦度相加。",
+    "solution": "$-0.444\\ \\text{D}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3069158",
+   "source_section": "26.6",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-vision-correction",
+   "prompt": "<strong>综合概念</strong>（a）激光视力矫正时，一个 193 nm 的紫外线短脉冲串投射到患者的角膜上。它形成一个直径 1.00 mm 的光斑，沉积 0.500 mJ 的能量。假设角膜组织的性质与水相同，初温为 34.0°C，计算被烧蚀层的深度。组织的温度升高到 100°C 并蒸发，蒸发时温度不再升高。（b）你的答案是否表明角膜的形状可以被精细控制？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the depth of the layer ablated",
+      "value": 0.251,
+      "unit": "μm",
+      "hint": "能量先把质量为 $m$ 的水从 34.0°C 加热到 100°C，再使它蒸发，$Q = mc\\Delta T + mL_{\\text{v}}$；质量等于密度乘以光斑的面积再乘以深度。"
+     }
+    ],
+    "solution": "（a）$0.251\\ \\mu\\text{m}$（b）是的，这一厚度表明角膜的形状可以被非常精细地控制，使超过 90% 的患者获得正常的远视觉。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "correct-nearsightedness"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "powers-of-close-lenses-add"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "myopia-and-hyperopia"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "near-point-and-far-point"
+  },
+  {
+   "exercise": "p1",
+   "concept": "near-point-and-far-point"
+  },
+  {
+   "exercise": "p2",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "p2",
+   "concept": "powers-of-close-lenses-add"
+  },
+  {
+   "exercise": "p2",
+   "concept": "myopia-and-hyperopia"
+  },
+  {
+   "exercise": "p3",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "p3",
+   "concept": "near-point-and-far-point"
+  },
+  {
+   "exercise": "p4",
+   "concept": "near-point-and-far-point"
+  },
+  {
+   "exercise": "p5",
+   "concept": "near-point-and-far-point"
+  },
+  {
+   "exercise": "p6",
+   "concept": "correct-nearsightedness"
+  },
+  {
+   "exercise": "p7",
+   "concept": "correct-nearsightedness"
+  },
+  {
+   "exercise": "p7",
+   "concept": "near-point-and-far-point"
+  },
+  {
+   "exercise": "p8",
+   "concept": "correct-farsightedness"
+  },
+  {
+   "exercise": "p8",
+   "concept": "powers-of-close-lenses-add"
+  },
+  {
+   "exercise": "p9",
+   "concept": "correct-farsightedness"
+  },
+  {
+   "exercise": "p9",
+   "concept": "near-point-and-far-point"
+  },
+  {
+   "exercise": "p10",
+   "concept": "correct-nearsightedness"
+  },
+  {
+   "exercise": "p10",
+   "concept": "powers-of-close-lenses-add"
+  },
+  {
+   "exercise": "p11",
+   "concept": "laser-vision-correction"
+  },
+  {
+   "exercise": "p11",
+   "concept": "heat-and-temperature-change"
+  },
+  {
+   "exercise": "p11",
+   "concept": "heat-of-vaporization"
+  }
+ ],
+ "referents": [
+  {
+   "id": "spectacle-lens",
+   "label": "置于眼前 1.50 cm 处的眼镜片",
+   "figures": [
+    "sim-vision-correction"
+   ]
+  },
+  {
+   "id": "retina",
+   "label": "近视眼或远视眼的视网膜",
+   "figures": [
+    "sim-vision-correction"
+   ]
+  }
+ ]
+}

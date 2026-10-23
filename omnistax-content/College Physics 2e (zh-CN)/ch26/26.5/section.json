@@ -1,0 +1,612 @@
+{
+ "id": "26.5",
+ "module": "m42493",
+ "chapter": "26",
+ "title": "望远镜",
+ "short": "望远镜",
+ "lead": "望远镜聚集的光比眼睛多得多，并使远处的物体张出更大的<span data-concept=\"angle\">角</span>，因此你能看到它更多的细节。两块透镜，或一个面镜加一块透镜，形成它的像，还有一些望远镜利用无线电波和 X 射线而不是光来工作。",
+ "objectives": [
+  "概述望远镜的发明。",
+  "描述望远镜的工作原理。"
+ ],
+ "summary_html": "<ul><li>简单的望远镜可以用两块透镜制成。它们用于观察远处的物体，并利用整个电磁波谱。</li><li>望远镜的角放大率 $M$ 由下式给出：$$M=\\frac{\\theta '}{\\theta}=-\\frac{\\kfobj}{\\kfeye}\\text{,}$$其中 $\\theta$ 是物体被肉眼观察时所张的<span data-concept=\"angle\">角</span>，$\\theta '$ 是放大后的像所张的<span data-concept=\"angle\">角</span>，$\\kfobj$ 和 $\\kfeye$ 是物镜和目镜的<span data-concept=\"focal-length\">焦距</span>。</li></ul>",
+ "notes": "本模块的六道习题中有三道没有给出答案，因而略去：第一题中望远镜两透镜之间的距离（要求最终像在极远处）；曲率半径为 2.00 m 的面镜的小型望远镜的角放大率，以及一个太阳黑子及其像的角；还有关于伽利略望远镜的“自拟习题”。本书印在本模块习题之上的“除非另有说明，晶状体到视网膜的距离为 2.00 cm”一行，属于 26.1 的习题，在此略去。关于两块凹透镜的 AP 题按书中所印设置，尽管两块凹透镜构不成望远镜；其答案为 (c)。关于球面镜望远镜的 AP 题只显示其 (a) 部分的图。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。六道习题中有三道没有给出答案，因而略去，并已在本节的说明中列出。第一道和第三道 AP 题有答案，设为判分选择题；第二道带有出版方在源文件中注释掉的解答，因此保留为开放式题目，并附有标明由 AI 撰写的建议思路。思考题没有答案，附有标明由 AI 撰写的建议思路。本模块没有印出“理解检测”框，因此没有设置内嵌题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-telescope",
+   "kind": "sim",
+   "number": "26.23",
+   "folds": [
+    "26.24"
+   ],
+   "originals": [
+    "/media/ch26/Figure_27_05_01.jpg",
+    "/media/ch26/Figure_27_05_02.jpg"
+   ],
+   "original_caption": "（图 26.23）（a）伽利略制作的望远镜以凸透镜为物镜、凹透镜为目镜。它们产生正立的像，用于单筒望远镜。（b）大多数简单望远镜有两块凸透镜。物镜形成情形 1 的像，这个像是目镜的物。目镜形成情形 2 的最终像，这个像是放大的。（图 26.24）望远镜中这种由三块透镜构成的布置产生正立的最终像。前两块透镜相距足够远，使第二块透镜把第一块透镜所成的像再倒转一次。第三块透镜起放大镜的作用，使像保持正立，并位于便于观察的位置。",
+   "widths": [
+    450,
+    550
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "eye at the exit pupil, rays end there, scale and drawn angle, F_o label"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-reflecting-telescope",
+   "kind": "sim",
+   "number": "26.25",
+   "originals": [
+    "/media/ch26/Figure_27_05_03.jpg"
+   ],
+   "original_caption": "图中所示的两元件望远镜，以面镜为物镜、透镜为目镜。这种望远镜形成像的方式与前面讨论过的双凸透镜望远镜相同，但不存在色差。这样的望远镜能聚集更多的光，因为面镜可以造得比透镜更大。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "flat mirror sized to its cone, R from 3.00 m, labels moved"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-radio-and-x-ray-telescopes",
+   "kind": "photo",
+   "number": "26.26",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "photo-square-kilometre-array",
+   "kind": "photo",
+   "number": "26.27",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "two-lens-telescopes",
+   "concept": "distant-image-at-the-focal-length",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-magnification",
+   "concept": "angular-magnification-of-a-telescope",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-magnification",
+   "concept": "distant-image-at-the-focal-length",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-magnification",
+   "concept": "angular-magnification",
+   "verb": "introduces"
+  },
+  {
+   "span": "upright-images",
+   "concept": "upright-and-inverted-telescopes",
+   "verb": "introduces"
+  },
+  {
+   "span": "reflecting-telescopes",
+   "concept": "reflecting-telescopes",
+   "verb": "introduces"
+  },
+  {
+   "span": "reflecting-telescopes",
+   "concept": "angular-magnification-of-a-telescope",
+   "verb": "uses"
+  },
+  {
+   "span": "telescopes-across-the-spectrum",
+   "concept": "telescopes-across-the-spectrum",
+   "verb": "introduces"
+  },
+  {
+   "span": "telescopes-across-the-spectrum",
+   "concept": "adaptive-optics",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1787084",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reflecting-telescopes",
+   "prompt": "下列哪一项是在望远镜的构造中使用凹面镜的优点？（I）该望远镜比使用透镜的望远镜能聚集更多的光。（II）该望远镜不存在色差。（III）该望远镜能提供比使用透镜的望远镜更大的放大率。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "仅 I 和 III",
+     "仅 II",
+     "仅 I 和 II",
+     "I、II 和 III"
+    ],
+    "correct": 3,
+    "hint": "面镜可以造得比透镜大得多，面镜对各种颜色的光反射得一样，而大而相对平坦的面镜焦距很长。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2542348",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reflecting-telescopes",
+   "figure": {
+    "src": "/media/ch26/Figure_27_05_06.jpg",
+    "alt": "图中有三个形状。左下方是一个长轴水平的椭圆。椭圆上方是一块小的倾斜平面。右侧是一个竖直的弯曲形状（一面凹，一面凸）。"
+   },
+   "prompt": "用一个球面镜制作一架望远镜。（a）利用下图，画出射到物镜面镜上的两条光线，并画出它们穿过目镜透镜的路径。（b）把平面镜换成凹透镜。利用下图，画出两条入射光线的路径。（c）利用凹透镜的这种装置，描述凹透镜所成的最终像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）画出两条平行于轴射到凹面镜上的光线。每条光线都向面镜的焦点反射，但小平面镜在它们相遇之前截住这些会聚的光线，并把它们向下转向目镜透镜。它们在像处相交，该处刚好在目镜透镜的焦距之内，透镜再把它们送入眼睛。（b）画出同样的两条平行光线，从凹面镜向其焦点反射。凹透镜位于轴上面镜与该焦点之间，因此在光线相遇之前就截住这些会聚的光线。凹透镜放在比面镜焦点近一个自身焦距的位置，它使光线折射后彼此几乎平行地射出，并继续传向眼睛。（c）最终像是虚像、正立且放大的。与伽利略的凹透镜目镜一样，透镜在面镜形成实的倒立像之前就截住了光线，所以光线从不相交，像也就从不翻转。几乎平行的光线看上去像是来自远处的一个虚像，其角放大率 $M=-\\kfobj/\\kfeye$ 为正，因为发散透镜的 $\\kfeye$ 为负。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id3539800",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-magnification",
+   "prompt": "两块凹透镜<sup class=\"fn\" data-note=\"c-ap3-concave\"></sup>，焦距分别为 500 mm 和 20 mm，用于制作一架望远镜。在任何可能的布置下，这架望远镜可能具有的最大放大率是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "100×",
+     "10,000×",
+     "25×",
+     "4×"
+    ],
+    "correct": 2,
+    "hint": "角放大率是焦距之比，焦距较长的作物镜，较短的作目镜。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3130527",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-magnification",
+   "prompt": "如果你想让显微镜或望远镜把实像投射到屏上，应如何改变目镜相对于物镜的位置？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把目镜移到离物镜更远的位置。观察时，第一个像位于目镜焦距之内一点，所以目镜形成放大的虚像（情形 2）。把目镜移远，直到第一个像位于它的焦距之外，目镜就对这个像起情形 1 的透镜的作用，在另一侧形成实像，屏可以接住这个实像。第一个像越是远在焦点之外，投影出的像就越近、越小。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2971842",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-magnification",
+   "prompt": "物镜焦距为 100 cm、目镜焦距为 2.50 cm 的望远镜，其角放大率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -40.0,
+    "hint": "用 $M = -\\kfobj/\\kfeye$；符号说明像是否倒立。",
+    "solution": "$-40.0$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1206958",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reflecting-telescopes",
+   "prompt": "一架大型反射望远镜的物镜面镜曲率半径为 $10.0\\ \\text{m}$。使用焦距为 3.00 cm 的目镜时，它产生的角放大率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -167,
+    "hint": "球面镜的焦距是其曲率半径的一半；然后用 $M = -\\kfobj/\\kfeye$，两个长度要用相同的单位。",
+    "solution": "$-167$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3305807",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angular-magnification",
+   "prompt": "一架 $7.5\\times$ 的双筒望远镜产生 $-7.50$ 的角放大率，其作用类似望远镜。（用面镜使像成为正立。）如果这架双筒望远镜的物镜焦距为 75.0 cm，目镜的焦距是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10.0,
+    "unit": "cm",
+    "hint": "由 $M = -\\kfobj/\\kfeye$ 解出 $\\kfeye$。",
+    "solution": "$+10.0\\ \\text{cm}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "reflecting-telescopes",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "reflecting-telescopes",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "upright-and-inverted-telescopes",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "angular-magnification-of-a-telescope",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "distant-image-at-the-focal-length",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "angular-magnification-of-a-telescope",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "angular-magnification-of-a-telescope",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "reflecting-telescopes",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "angular-magnification-of-a-telescope",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "angular-magnification-of-a-telescope",
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "objective",
+   "label": "望远镜的物镜",
+   "figures": [
+    "sim-telescope"
+   ]
+  },
+  {
+   "id": "eyepiece",
+   "label": "折射望远镜的目镜，伽利略式为凹透镜，其余为凸透镜",
+   "figures": [
+    "sim-telescope"
+   ]
+  },
+  {
+   "id": "erecting-lens",
+   "label": "使像变为正立的正像透镜",
+   "figures": [
+    "sim-telescope"
+   ]
+  },
+  {
+   "id": "first-image",
+   "label": "第一个像，形成于物镜的焦点处",
+   "figures": [
+    "sim-telescope"
+   ]
+  },
+  {
+   "id": "mirror",
+   "label": "凹面镜，即反射望远镜的物镜",
+   "figures": [
+    "sim-reflecting-telescope"
+   ]
+  },
+  {
+   "id": "mirror-eyepiece",
+   "label": "反射望远镜的目镜",
+   "figures": [
+    "sim-reflecting-telescope"
+   ]
+  },
+  {
+   "id": "flat-mirror",
+   "label": "使光线转向一侧的小平面镜",
+   "figures": [
+    "sim-reflecting-telescope"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-ap3-concave",
+   "kind": "correction",
+   "html": "两块凹（发散）透镜构不成望远镜。答案中的 25× 是焦距之比 $500\\ \\text{mm}/20\\ \\text{mm}$，即具有这两个焦距的两块凸透镜所能给出的放大率。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "first-image-at-focal-length",
+   "what": "远处物体的第一个像位于焦距处",
+   "source": "《大学物理（第2版）》，26.5 望远镜",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kdobj\\approx \\infty",
+       "src": "26.5"
+      },
+      {
+       "tex": "1/\\infty = 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{o}{\\frac{1}{\\kdobj}} + \\mk{i}{\\frac{1}{\\kdimg}} = \\mk{f}{\\frac{1}{\\kfobj}}",
+      "uses": [],
+      "src": "25.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\frac{1}{\\kdimg}}=\\mk{f}{\\frac{1}{\\kfobj}}\\mk{o}{-\\frac{1}{\\kdobj}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{i}{\\frac{1}{\\kdimg}}=\\mk{f}{\\frac{1}{\\kfobj}}\\mk{o}{-\\frac{1}{\\kdobj}}=\\mk{f2}{\\frac{1}{\\kfobj}}\\mk{z}{-\\frac{1}{\\infty}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{i}{\\frac{1}{\\kdimg}}=\\mk{f}{\\frac{1}{\\kfobj}}",
+       "uses": [
+        1
+       ],
+       "cap": "当 $\\kdobj$ 无限增大时，$1/\\kdobj$ 趋于零。"
+      },
+      {
+       "tex": "\\mk{i}{\\kdimg}=\\mk{f}{\\kfobj}",
+       "uses": []
+      }
+     ],
+     "src": "26.5"
+    }
+   ]
+  },
+  {
+   "id": "telescope-angular-magnification",
+   "what": "望远镜的角放大率",
+   "source": "《大学物理（第2版）》，26.5 望远镜",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "物镜在其焦距处形成大小为 $h$ 的第一个像：$\\kdimg = \\kfobj$。",
+       "src": "26.5"
+      },
+      {
+       "text": "穿过透镜中心的光线不改变方向。",
+       "src": "25.6"
+      },
+      {
+       "tex": "\\tan\\ktheta \\approx \\ktheta",
+       "src": "27.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\tan\\ktheta} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kdimg}}",
+      "uses": [
+       1
+      ],
+      "why": "从远处物体顶端穿过物镜中心的光线保持角 $\\ktheta$，并到达第一个像的顶端。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\tan\\ktheta} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfobj}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktheta} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfobj}}",
+       "uses": [
+        2
+       ],
+       "cap": "这个角很小，任何远处的物体都是如此。"
+      }
+     ],
+     "src": "26.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "第一个像刚好位于目镜的焦距之内：$\\kdobjp \\approx \\kfeye$。",
+       "src": "26.5"
+      },
+      {
+       "text": "穿过透镜中心的光线不改变方向。",
+       "src": "25.6"
+      },
+      {
+       "tex": "\\tan\\ktheta \\approx \\ktheta",
+       "src": "27.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\tan\\kthetaprime} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kdobjp}}",
+      "uses": [
+       1
+      ],
+      "why": "从第一个像顶端穿过目镜中心的光线以角 $\\kthetaprime$ 射出，这就是最终像所张的角。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\tan\\kthetaprime} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfeye}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\kthetaprime} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfeye}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "26.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "望远镜的像是倒立的，$M$ 的负号表明了这一点。",
+       "src": "26.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{M}{|M|}=\\frac{\\mk{p}{\\kthetaprime}}{\\mk{q}{\\ktheta}}",
+      "uses": [],
+      "src": "26.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{M}{|M|}=\\frac{\\mk{p}{h/\\kfeye}}{\\mk{q}{h/\\kfobj}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{M}{|M|}=\\frac{\\mk{q}{\\kfobj}}{\\mk{p}{\\kfeye}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{M}{M}=\\frac{\\mk{p}{\\kthetaprime}}{\\mk{q}{\\ktheta}}=\\mk{f}{-\\frac{\\kfobj}{\\kfeye}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "p": [
+         "p",
+         "f"
+        ],
+        "q": [
+         "q",
+         "f"
+        ]
+       }
+      }
+     ],
+     "src": "26.5"
+    }
+   ]
+  }
+ ]
+}

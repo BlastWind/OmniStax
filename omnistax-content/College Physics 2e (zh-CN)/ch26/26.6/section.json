@@ -1,0 +1,189 @@
+{
+ "id": "26.6",
+ "module": "m42292",
+ "chapter": "26",
+ "title": "像差",
+ "short": "像差",
+ "lead": "真实的透镜并不像薄透镜公式所说的那样，把每条光线都会聚到同一个焦点。色差、彗差和球差都会破坏聚焦，光学系统会设法减小它们，同时仍要收集足够的光，以得到明亮的像。",
+ "objectives": [
+  "描述光学像差。"
+ ],
+ "summary_html": "<ul><li>像差或像的畸变，可能源于光学仪器的有限厚度、光学元件的不完善，以及元件使用方式的限制。</li><li>校正像差的手段，从更好的元件到计算技术，不一而足。</li></ul>",
+ "notes": "本模块的两道习题，分别配在讲授其所需知识的小节中，来源小节均为 26.6：关于 LASIK 脉冲串烧蚀角膜深度的综合概念题（fs-id3069158）配在讲授激光视力矫正的 26.2，其中以序数符号印出的温度写作 °C；关于移动复显微镜物镜的批判性思考题（exer-00001）配在讲授显微镜的 26.4，其中的印刷错误“移到距物镜 5.00 mm 处”照印刷原样保留。对 26.2 中散光图表（图 26.8）的提及为纯文本。书中句子“Such aberrations and can also be an issue with manufactured lenses”的语病无法在中文中保留，按语义译出。图 26.29 和图 26.30 合并为一幅实时图，因为球差就是光落在轴上时的彗差图。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和建议思路均为 AI 生成。唯一的思考题没有书后答案，附有标明由 AI 撰写的建议思路。本模块的两道习题都有书后答案，并配在别处，来源小节均为 26.6：LASIK 烧蚀习题（fs-id3069158）配在 26.2，显微镜习题（exer-00001）配在 26.4。本模块没有印出理解检测框，因此没有设置内嵌题。",
+ "figures": [
+  {
+   "id": "sim-chromatic",
+   "kind": "sim",
+   "number": "26.28",
+   "originals": [
+    "/media/ch26/Figure_27_06_01.jpg"
+   ],
+   "original_caption": "（a）色差是由透镜的折射率取决于颜色（波长）而引起的。透镜对紫光（V）的光焦度比对红光（R）的更大，因而所成的像位置和放大率各不相同。（b）多透镜系统可以部分校正色差，但可能需要用不同材料的透镜，并增加照相机等光学系统的费用。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position"
+   ],
+   "facts": [
+    "#a600e5",
+    "#f70000",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline spread to the bracket's two decimals"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-coma-spherical",
+   "kind": "sim",
+   "number": "26.29",
+   "folds": [
+    "26.30"
+   ],
+   "originals": [
+    "/media/ch26/Figure_27_06_02.jpg",
+    "/media/ch26/Figure_27_06_03.jpg"
+   ],
+   "original_caption": "（图 26.29）彗差是由偏离中心的物体引起的一种像差，常使像呈梨形。这些光线发自不在光轴上的点，它们不会聚于同一个共同的焦点。（图 26.30）球差是由于光线聚焦在离透镜不同距离处而引起的。",
+   "widths": [
+    225,
+    225
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "chromatic-aberration",
+   "concept": "chromatic-aberration",
+   "verb": "introduces"
+  },
+  {
+   "span": "chromatic-aberration",
+   "concept": "correcting-aberrations",
+   "verb": "uses"
+  },
+  {
+   "span": "chromatic-aberration",
+   "concept": "aberration",
+   "verb": "introduces"
+  },
+  {
+   "span": "coma-and-spherical-aberration",
+   "concept": "coma-and-spherical-aberration",
+   "verb": "introduces"
+  },
+  {
+   "span": "brightness-and-correction",
+   "concept": "correcting-aberrations",
+   "verb": "introduces"
+  },
+  {
+   "span": "brightness-and-correction",
+   "concept": "coma-and-spherical-aberration",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2932047",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chromatic-aberration",
+   "prompt": "列出各种类型的像差。它们是由什么引起的？各自如何减小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "色差来自折射率对波长的依赖，因此透镜把紫光聚焦在比红光更近的位置。由冕牌玻璃和火石玻璃制成的消色差双合透镜可以减小色差，面镜则不会产生色差。彗差来自不在轴上的物体，其光线通过透镜的不同部分时不会交于一点。球差来自通过球面透镜外缘的光线比靠近轴线的光线聚焦得更近。像散来自透镜在不同方向上焦点不一致。特殊形状的表面、梯度折射率透镜、彼此校正的多个元件，以及只使用透镜中心的较小孔径，都可以减小这些像差，其中最后一种以牺牲亮度为代价。照相机采集图像之后，还可以用计算来校正图像。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "chromatic-aberration"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "coma-and-spherical-aberration"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "correcting-aberrations"
+  }
+ ],
+ "referents": [
+  {
+   "id": "crown-lens",
+   "label": "冕牌玻璃制的会聚透镜，单独使用或用于双合透镜中",
+   "figures": [
+    "sim-chromatic"
+   ]
+  },
+  {
+   "id": "flint-lens",
+   "label": "消色差双合透镜中火石玻璃制的发散透镜",
+   "figures": [
+    "sim-chromatic"
+   ]
+  }
+ ]
+}
