@@ -1,0 +1,1157 @@
+{
+ "types": [
+  {
+   "id": "lens-power",
+   "label": "光焦度",
+   "dimension": "D"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "θ_i",
+   "latex": "\\theta_{\\text{i}}",
+   "macro": "\\kthetai"
+  },
+  {
+   "sym": "θ_r",
+   "latex": "\\theta_{\\text{r}}",
+   "macro": "\\kthetar"
+  },
+  {
+   "sym": "θ_c",
+   "latex": "\\theta_{\\text{c}}",
+   "macro": "\\kthetac"
+  },
+  {
+   "sym": "P_lens",
+   "latex": "P"
+  },
+  {
+   "sym": "f_focal",
+   "latex": "f",
+   "macro": "\\kffoc"
+  },
+  {
+   "sym": "d_obj",
+   "latex": "d_{\\text{o}}",
+   "macro": "\\kdobj"
+  },
+  {
+   "sym": "d_img",
+   "latex": "d_{\\text{i}}",
+   "macro": "\\kdimg"
+  },
+  {
+   "sym": "h_obj",
+   "latex": "h_{\\text{o}}",
+   "macro": "\\khobj"
+  },
+  {
+   "sym": "h_img",
+   "latex": "h_{\\text{i}}",
+   "macro": "\\khimg"
+  },
+  {
+   "sym": "R_curv",
+   "latex": "R",
+   "macro": "\\kRcur"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "ray",
+   "kind": "definition",
+   "section": "25.1",
+   "name": "光线",
+   "terms": [
+    "光线"
+   ],
+   "statement": "光线是从某一点出发的一条直线。光沿直线传播，把它看作一束光线来建模，我们只用几何和简单的三角学就能描述面镜、透镜和像。"
+  },
+  {
+   "id": "three-paths-of-light",
+   "kind": "idea",
+   "section": "25.1",
+   "name": "光的三种传播路径",
+   "statement": "光可以通过三种方式从光源传到另一处：直接穿过真空，穿过空气或玻璃等介质，或者在某物上反射之后。几何光学中的每一种情形都是这三种之一，或是它们的组合。"
+  },
+  {
+   "id": "ray-approximation",
+   "kind": "idea",
+   "section": "25.1",
+   "name": "光线近似",
+   "statement": "当光与大小为其波长几倍的物体相互作用时，光的行为像光线。可见光的波长不到一微米，所以这几乎涵盖了我们用肉眼所能看到的一切。对于更小的物体，光的波动特性占主导。"
+  },
+  {
+   "id": "geometric-optics",
+   "kind": "definition",
+   "section": "25.1",
+   "name": "几何光学",
+   "terms": [
+    "几何光学"
+   ],
+   "statement": "几何光学是光学中光的光线模型占主导的那一部分，因此几何和简单的三角学就能完整地描述光。它受两条定律支配：反射定律，适用于从物质上弹回的光；折射定律，适用于穿过物质的光。"
+  },
+  {
+   "id": "law-of-reflection",
+   "kind": "axiom",
+   "section": "25.2",
+   "name": "反射定律",
+   "terms": [
+    "反射定律"
+   ],
+   "statement": "反射角等于入射角。两个角都是从光线射到表面处的法线量起的，而不是从表面本身量起。",
+   "forms": [
+    {
+     "id": "eq-law-of-reflection",
+     "latex": "\\theta_{\\text{r}} = \\theta_{\\text{i}}",
+     "anchor": "25.2-law-of-reflection"
+    }
+   ]
+  },
+  {
+   "id": "specular-and-diffuse-reflection",
+   "kind": "idea",
+   "section": "25.2",
+   "name": "镜面反射与漫反射",
+   "statement": "反射定律在每个表面的每一点上都成立，然而面镜和一张纸看起来却毫不相像。区别在于表面。面镜相对于光的波长是光滑的，把平行光线朝同一个方向送走，而粗糙表面在每一条光线处的角度都不同，把它们散射到许多方向。这就是为什么你只能从特定的角度看到面镜，而从任何角度都能看到一张纸，也是我们周围的世界大部分都可见的原因。"
+  },
+  {
+   "id": "image-behind-a-flat-mirror",
+   "kind": "result",
+   "section": "25.2",
+   "name": "平面镜中的像距",
+   "statement": "当我们照平面镜时，像显得在镜后，而反射定律恰好说明了它在哪里。到达眼睛的光线来自由该定律确定的方向，把它们向后延长，就把像放在镜后与物体在镜前同样远的地方。这是本书中的第一个像，也是光只是看起来来自某处的第一种情形，25.6 和 25.7 以它为基础。"
+  },
+  {
+   "id": "mirror",
+   "kind": "definition",
+   "section": "25.2",
+   "name": "面镜",
+   "terms": [
+    "面镜"
+   ],
+   "statement": "面镜是一个光滑的表面，它按特定的角度反射光，在其前方的人或物体处形成像。"
+  },
+  {
+   "id": "angle-of-incidence",
+   "kind": "definition",
+   "section": "25.2",
+   "name": "入射角",
+   "symbol": "θ_i",
+   "type": "angle",
+   "statement": "入射角是入射光线与光线射到表面处的法线之间的夹角。"
+  },
+  {
+   "id": "angle-of-reflection",
+   "kind": "definition",
+   "section": "25.2",
+   "name": "反射角",
+   "symbol": "θ_r",
+   "type": "angle",
+   "statement": "反射角是反射光线与光线射到表面处的法线之间的夹角。"
+  },
+  {
+   "id": "refraction",
+   "kind": "definition",
+   "section": "25.3",
+   "name": "折射",
+   "terms": [
+    "折射"
+   ],
+   "statement": "折射是光线穿过物质的变化时方向发生的改变。它使鱼看起来同时处于两个位置，使水池看起来比实际浅，也使透镜得以工作。"
+  },
+  {
+   "id": "speed-of-light-in-vacuum",
+   "kind": "definition",
+   "section": "25.3",
+   "name": "真空中的光速",
+   "symbol": "c",
+   "terms": [
+    "光速"
+   ],
+   "type": "velocity",
+   "statement": "真空中的光速 $c = 2.99792458 \\times 10^{8}$ m/s 由定义确定，是基本物理量之一。它不依赖于光源或观察者的运动，光传播的速率也永远不会超过这个值。",
+   "forms": [
+    {
+     "id": "eq-speed-of-light",
+     "latex": "c = 2.99792458 \\times 10^{8}\\;\\text{m/s} \\approx 3.00 \\times 10^{8}\\;\\text{m/s}",
+     "ktex": "\\kc = 2.99792458 \\times 10^{8}\\;\\text{m/s} \\approx 3.00 \\times 10^{8}\\;\\text{m/s}",
+     "anchor": "25.3-speed-of-light"
+    }
+   ]
+  },
+  {
+   "id": "index-of-refraction",
+   "kind": "definition",
+   "section": "25.3",
+   "name": "折射率",
+   "symbol": "n",
+   "terms": [
+    "折射率"
+   ],
+   "statement": "材料的折射率是真空中的光速除以材料中的光速，所以折射率大意味着光在其中传播得慢。因为光在物质中从不比在真空中快，折射率总是大于或等于一，而气体的折射率非常接近一，我们就把它们取为一。",
+   "forms": [
+    {
+     "id": "eq-index-of-refraction",
+     "latex": "n = \\frac{c}{v}",
+     "ktex": "n = \\frac{\\kc}{\\kv}",
+     "anchor": "25.3-speed-of-light"
+    }
+   ]
+  },
+  {
+   "id": "speed-in-a-medium-from-the-index",
+   "kind": "skill",
+   "section": "25.3",
+   "name": "求材料中的光速",
+   "statement": "把 $n = c/v$ 改写成 $v = c/n$，就能由折射率得出光在材料中的速率，它说明光在水或玻璃中比在空气中慢多少。",
+   "forms": [
+    {
+     "id": "eq-speed-from-index",
+     "latex": "v = \\frac{c}{n}",
+     "ktex": "\\kv = \\frac{\\kc}{n}",
+     "anchor": "25.3-speed-of-light"
+    }
+   ]
+  },
+  {
+   "id": "snells-law",
+   "kind": "axiom",
+   "section": "25.3",
+   "name": "折射定律",
+   "statement": "折射定律，即斯涅耳定律，把光线与法线所成的两个角同两种介质的折射率联系起来，$n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2$，因此四个量中的任意三个可以给出第四个。",
+   "forms": [
+    {
+     "id": "eq-snells-law",
+     "latex": "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
+     "anchor": "25.3-law-of-refraction"
+    },
+    {
+     "id": "eq-index-from-angles",
+     "latex": "n_2 = n_1 \\frac{\\sin\\theta_1}{\\sin\\theta_2}",
+     "anchor": "25.3-law-of-refraction"
+    },
+    {
+     "id": "eq-refracted-angle",
+     "latex": "\\sin\\theta_2 = \\frac{n_1}{n_2}\\sin\\theta_1",
+     "anchor": "25.3-law-of-refraction"
+    }
+   ]
+  },
+  {
+   "id": "bending-toward-or-away-from-the-normal",
+   "kind": "result",
+   "section": "25.3",
+   "name": "朝法线偏折或背离法线偏折",
+   "statement": "光进入较慢的介质时朝法线偏折，进入较快的介质时背离法线偏折。速率的变化越大，方向的变化越大。"
+  },
+  {
+   "id": "find-an-index-or-an-angle",
+   "kind": "skill",
+   "section": "25.3",
+   "name": "应用斯涅耳定律",
+   "statement": "已知两个角，斯涅耳定律给出未知介质的折射率，测量就是这样识别物质的。已知两个折射率和入射角，它给出折射角。"
+  },
+  {
+   "id": "angle-of-refraction",
+   "kind": "definition",
+   "section": "25.3",
+   "name": "折射角",
+   "symbol": "θ_2",
+   "type": "angle",
+   "statement": "折射角是折射光线与表面法线之间的夹角，在光线进入的那种介质中。"
+  },
+  {
+   "id": "critical-angle",
+   "kind": "definition",
+   "section": "25.4",
+   "name": "临界角",
+   "symbol": "θ_c",
+   "terms": [
+    "临界角"
+   ],
+   "type": "angle",
+   "statement": "临界角是产生 90° 折射角的入射角。它只存在于光从折射率较大的介质进入折射率较小的介质的情形，此时光线背离法线偏折。"
+  },
+  {
+   "id": "critical-angle-from-the-indices",
+   "kind": "result",
+   "section": "25.4",
+   "name": "由折射率求临界角",
+   "statement": "把 90° 的折射角代入斯涅耳定律，剩下 $n_1 \\sin\\theta_1 = n_2$，所以临界角为 $\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)$，并且仅当 $n_1$ 大于 $n_2$ 时才存在。临界角是一对材料的性质，而不是单个材料的性质。",
+   "forms": [
+    {
+     "id": "eq-critical-angle",
+     "latex": "\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)\\;\\text{当}\\;n_1 > n_2",
+     "anchor": "25.4-critical-angle"
+    },
+    {
+     "id": "eq-critical-angle-condition",
+     "latex": "n_1 \\sin\\theta_1 = n_2",
+     "anchor": "25.4-critical-angle"
+    }
+   ]
+  },
+  {
+   "id": "total-internal-reflection",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "全反射",
+   "statement": "超过临界角后，没有光穿过边界：每一条光线都被反射回第一种介质。全反射是完美的面镜，比任何镀银的表面都好，镀银的表面会吸收落在它上面的一部分光。"
+  },
+  {
+   "id": "find-a-critical-angle",
+   "kind": "skill",
+   "section": "25.4",
+   "name": "求临界角",
+   "statement": "要求临界角，把光传播所在的介质取作介质 1，查出或测出两个折射率，再取 $n_2/n_1$ 的反正弦。反过来，同样的步骤能把测得的临界角变成未知物质的折射率。"
+  },
+  {
+   "id": "fiber-optics",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "光纤光学",
+   "terms": [
+    "纤维光学"
+   ],
+   "statement": "光纤光学是借助全反射让光沿塑料或玻璃纤维传输。进入细纤维的光以大于临界角的角度射到纤维的内表面，即使绕过拐角也沿着纤维前进，而折射率较低的包层使一根纤维中的光不会进入相邻的纤维。"
+  },
+  {
+   "id": "corner-reflector",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "角反射器",
+   "terms": [
+    "角反射器"
+   ],
+   "statement": "角反射器是两个互相垂直的反射面，无论入射角多大，它都使光恰好平行于来时的方向返回。它由玻璃而不是镀银的面镜制成，效率完美，因为其中的反射是全反射。"
+  },
+  {
+   "id": "sparkle-of-diamond",
+   "kind": "idea",
+   "section": "25.4",
+   "name": "钻石的闪光",
+   "statement": "钻石的折射率非常大，它与空气的临界角只有 24.4°，所以进入其中的光很难再出来。琢面被切成使光只能朝少数几个方向射出，光就集中在那几处出来。"
+  },
+  {
+   "id": "zircon",
+   "kind": "definition",
+   "section": "25.4",
+   "name": "锆石",
+   "terms": [
+    "锆石"
+   ],
+   "statement": "锆石是一种折射率很大（约 1.9）的天然宝石，这使它像钻石一样闪光。"
+  },
+  {
+   "id": "dispersion",
+   "kind": "definition",
+   "section": "25.5",
+   "name": "色散",
+   "terms": [
+    "色散"
+   ],
+   "statement": "色散是白光展开成其全部波长的光谱。更一般地说，只要某个过程使光的方向改变的方式依赖于波长，就会出现色散，而且它可以发生在任何一种波上。"
+  },
+  {
+   "id": "color-and-wavelength",
+   "kind": "idea",
+   "section": "25.5",
+   "name": "颜色与波长",
+   "statement": "我们把每一种单一波长的可见光看作约六种颜色之一，从长波端的红色到短波端的紫色，而白光是所有这些颜色近乎均匀的混合。因此按波长展开就是展开成各种颜色。"
+  },
+  {
+   "id": "index-depends-on-wavelength",
+   "kind": "axiom",
+   "section": "25.5",
+   "name": "折射率与波长",
+   "statement": "对于给定的介质，折射率取决于波长，随波长减小而缓慢增大，所以在同一块玻璃中紫光遇到的折射率比红光大，折射时被偏折得更多。"
+  },
+  {
+   "id": "rainbow-formation",
+   "kind": "idea",
+   "section": "25.5",
+   "name": "彩虹的形成",
+   "statement": "彩虹是在阳光进入水滴时折射、在水滴背面反射、离开时再次折射而形成的。因为折射率取决于波长，各种颜色以略有不同的角度射出，而且只有位于离观察者与太阳连线正确角度的水滴，才会把某一给定的颜色送到眼中，所以各种颜色形成一道弧。"
+  },
+  {
+   "id": "rainbow",
+   "kind": "idea",
+   "section": "25.5",
+   "name": "彩虹",
+   "terms": [
+    "彩虹"
+   ],
+   "statement": "彩虹是阳光按波长色散成连续分布的颜色，由天空中水滴对阳光的折射和反射产生。"
+  },
+  {
+   "id": "converging-and-diverging-lenses",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "会聚透镜与发散透镜",
+   "statement": "会聚透镜是凸透镜，中间较厚，它使平行于其光轴进入的光线在另一侧会聚于一点。发散透镜是凹透镜，边缘较厚，它使这样的光线偏离其光轴。"
+  },
+  {
+   "id": "focal-point-and-focal-length",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "焦点与焦距",
+   "statement": "会聚透镜或面镜的焦点是平行于光轴到达的光线相交的点；对于发散透镜或面镜，它是这些光线看起来发出的点。焦距是从透镜或面镜的中心到其焦点的距离，会聚透镜为正，发散透镜为负。"
+  },
+  {
+   "id": "power-of-a-lens",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "光焦度",
+   "symbol": "P_lens",
+   "terms": [
+    "光焦度"
+   ],
+   "statement": "透镜的光焦度是其焦距的倒数，$P = 1/f$，焦距以米为单位时，光焦度以屈光度计量。焦距短的透镜光焦度大，对光的偏折强。这里的光焦度与第 7 章中以瓦为单位的功率无关。",
+   "forms": [
+    {
+     "id": "eq-lens-power",
+     "latex": "P = \\frac{1}{f}",
+     "ktex": "P = \\frac{1}{\\kffoc}",
+     "anchor": "25.6-lens-power"
+    }
+   ],
+   "type": "lens-power"
+  },
+  {
+   "id": "ray-tracing-rules-for-lenses",
+   "kind": "skill",
+   "section": "25.6",
+   "name": "光线穿过薄透镜的追迹",
+   "statement": "光线追迹只用一把直尺就能求出像。平行于光轴到达的光线经焦点射出，过中心的光线沿直线前进，过近侧焦点的光线平行于光轴射出。两条光线就能确定一个像，第三条用来检验。"
+  },
+  {
+   "id": "real-and-virtual-images",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "实像与虚像",
+   "statement": "实像是可以被投影的像：来自物体上一点的光线真的会相交，所以屏、一片胶片或视网膜能接住它。虚像不能被投影：光线只是看起来来自一个公共点，放在那里的屏什么也接不到。"
+  },
+  {
+   "id": "thin-lens-equation",
+   "kind": "result",
+   "section": "25.6",
+   "name": "薄透镜公式",
+   "statement": "薄透镜公式把物距、像距和焦距联系起来，因此三者中的任意一个都可由另外两个得出。像距为负意味着像是虚像，并且与物体在同一侧。",
+   "forms": [
+    {
+     "id": "eq-thin-lens",
+     "latex": "\\frac{1}{d_{\\text{o}}} + \\frac{1}{d_{\\text{i}}} = \\frac{1}{f}",
+     "ktex": "\\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{\\kffoc}",
+     "anchor": "25.6-thin-lens-equations"
+    },
+    {
+     "id": "eq-thin-lens-rearranged",
+     "latex": "\\frac{1}{d_{\\text{i}}} = \\frac{1}{f} - \\frac{1}{d_{\\text{o}}}",
+     "ktex": "\\frac{1}{\\kdimg} = \\frac{1}{\\kffoc} - \\frac{1}{\\kdobj}",
+     "anchor": "25.6-thin-lens-equations"
+    },
+    {
+     "id": "eq-image-distance-solved",
+     "latex": "d_{\\text{i}} = \\frac{f d_{\\text{o}}}{d_{\\text{o}} - f}",
+     "ktex": "\\kdimg = \\frac{\\kffoc \\kdobj}{\\kdobj - \\kffoc}",
+     "anchor": "25.6-thin-lens-equations"
+    }
+   ]
+  },
+  {
+   "id": "magnification",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "放大率",
+   "symbol": "m",
+   "terms": [
+    "放大率"
+   ],
+   "statement": "放大率是像高与物高之比，它等于负的像距与物距之比。放大率为负意味着像是倒立的，其绝对值大于一或小于一，则说明像是被放大还是被缩小。",
+   "forms": [
+    {
+     "id": "eq-magnification",
+     "latex": "\\frac{h_{\\text{i}}}{h_{\\text{o}}} = -\\frac{d_{\\text{i}}}{d_{\\text{o}}} = m",
+     "ktex": "\\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = m",
+     "anchor": "25.6-thin-lens-equations"
+    }
+   ]
+  },
+  {
+   "id": "three-cases-of-lens-images",
+   "kind": "result",
+   "section": "25.6",
+   "name": "薄透镜成像的三种情形",
+   "statement": "物体比焦距远时，会聚透镜形成倒立的实像。同一透镜在物体更近时，形成放大的、直立的虚像，放大镜就是这样工作的。发散透镜无论物距多大，总是形成缩小的、直立的虚像。"
+  },
+  {
+   "id": "solve-with-the-thin-lens-equations",
+   "kind": "skill",
+   "section": "25.6",
+   "name": "求解透镜问题",
+   "statement": "根据焦距和物距的符号判断属于哪种情形。对未知的距离解薄透镜公式，记得最后要把 $1/d_{\\text{i}}$ 取倒数，然后由这两个距离求放大率。最后，用该情形检验答案：情形 2 的像必须是虚的、直立的、放大的，如果不是，那是算术上的错误，而不是什么发现。"
+  },
+  {
+   "id": "object-distance",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "物距",
+   "symbol": "d_obj",
+   "type": "position",
+   "statement": "物距是物体到透镜或面镜中心的距离。"
+  },
+  {
+   "id": "image-distance",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "像距",
+   "symbol": "d_img",
+   "type": "position",
+   "statement": "像距是像到透镜或面镜中心的距离。实像为正，虚像为负。"
+  },
+  {
+   "id": "converging-lens",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "会聚透镜",
+   "terms": [
+    "会聚透镜"
+   ],
+   "statement": "会聚透镜是一种凸透镜，平行于其光轴进入的光线在另一侧会聚于一点。"
+  },
+  {
+   "id": "diverging-lens",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "发散透镜",
+   "terms": [
+    "发散透镜"
+   ],
+   "statement": "发散透镜是一种凹透镜，平行于其光轴进入的光线偏离其光轴，即发散。"
+  },
+  {
+   "id": "focal-point",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "焦点",
+   "terms": [
+    "焦点"
+   ],
+   "statement": "对于会聚透镜或面镜，焦点是会聚的光线相交的点；对于发散透镜或面镜，它是发散的光线看起来发出的点。"
+  },
+  {
+   "id": "focal-length",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "焦距",
+   "symbol": "f_focal",
+   "terms": [
+    "焦距"
+   ],
+   "type": "position",
+   "statement": "焦距是从透镜或曲面镜的中心到其焦点的距离。会聚透镜或面镜的焦距为正，发散透镜或面镜的焦距为负。"
+  },
+  {
+   "id": "real-image",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "实像",
+   "terms": [
+    "实像"
+   ],
+   "statement": "实像是可以被投影的像：来自物体上一点的光线真的在那里相交，所以屏能接住它。"
+  },
+  {
+   "id": "virtual-image",
+   "kind": "definition",
+   "section": "25.6",
+   "name": "虚像",
+   "terms": [
+    "虚像"
+   ],
+   "statement": "虚像是不能被投影的像：来自物体上一点的光线只是看起来来自那里。"
+  },
+  {
+   "id": "image-in-a-flat-mirror",
+   "kind": "result",
+   "section": "25.7",
+   "name": "平面镜中的像",
+   "statement": "平面镜中的像是虚的、直立的，与物体一样大，并且位于镜后，与物体在镜前一样远。用薄透镜公式的语言说，$d_{\\text{i}} = -d_{\\text{o}}$，这给出恰好为一的放大率，以及焦距无穷大的面镜。"
+  },
+  {
+   "id": "focal-length-of-a-spherical-mirror",
+   "kind": "result",
+   "section": "25.7",
+   "name": "球面镜的焦距",
+   "statement": "与其曲率半径相比很小的球面镜，使平行光线会聚于其表面与曲率中心正中间的焦点，所以它的焦距是半径的一半，$f = R/2$。光焦度 $P = 1/f$ 对面镜的定义与对透镜完全相同。",
+   "forms": [
+    {
+     "id": "eq-mirror-focal-length",
+     "latex": "f = \\frac{R}{2}",
+     "ktex": "\\kffoc = \\frac{\\kRcur}{2}",
+     "anchor": "25.7-mirror-focal-length"
+    }
+   ]
+  },
+  {
+   "id": "converging-and-diverging-mirrors",
+   "kind": "definition",
+   "section": "25.7",
+   "name": "会聚面镜与发散面镜",
+   "statement": "会聚面镜是凹面镜，它使平行于其光轴射到它上面的光线在其前方会聚，焦距为正。发散面镜是凸面镜，它使这样的光线散开，看起来来自其后的一点，焦距为负。"
+  },
+  {
+   "id": "ray-tracing-rules-for-mirrors",
+   "kind": "skill",
+   "section": "25.7",
+   "name": "面镜处的光线追迹",
+   "statement": "面镜处光线追迹的规则就是透镜的规则，只是光沿来时的路被送了回去。平行于光轴到达的光线经焦点射出，或看起来来自焦点。射到中心的光线以与光轴相同的夹角射出。过焦点的光线平行于光轴射出。"
+  },
+  {
+   "id": "three-cases-of-mirror-images",
+   "kind": "result",
+   "section": "25.7",
+   "name": "面镜成像的三种情形",
+   "statement": "物体比焦距远时，凹面镜在与物体同一侧形成倒立的实像。同一面镜在物体更近时，在镜后形成放大的、直立的虚像，化妆镜就是这样工作的。凸面镜总是形成缩小的、直立的虚像，安防凸面镜就是这样工作的。"
+  },
+  {
+   "id": "solve-mirror-problems",
+   "kind": "skill",
+   "section": "25.7",
+   "name": "求解面镜问题",
+   "statement": "对于与其曲率半径相比很小的面镜，薄透镜公式和放大率不变地成立，焦距等于曲率半径的一半，并按面镜的种类取正负号。求出焦距，解出未知的距离，求出放大率，并用该情形检验答案。"
+  },
+  {
+   "id": "mirrors-and-lenses-are-analogous",
+   "kind": "idea",
+   "section": "25.7",
+   "name": "面镜与透镜的类比",
+   "statement": "面镜形成与透镜完全相同的三种像，符号和条件也相同：凹面镜的作用像凸透镜，凸面镜的作用像凹透镜。"
+  },
+  {
+   "id": "radius-of-curvature-of-a-mirror",
+   "kind": "definition",
+   "section": "25.7",
+   "name": "面镜的曲率半径",
+   "symbol": "R_curv",
+   "type": "position",
+   "statement": "球面镜的曲率半径是以该面镜为其一部分的那个球的半径，即从面镜表面到其曲率中心的距离。"
+  },
+  {
+   "id": "converging-mirror",
+   "kind": "definition",
+   "section": "25.7",
+   "name": "会聚面镜",
+   "terms": [
+    "会聚面镜"
+   ],
+   "statement": "会聚面镜是一种凹面镜，平行于其光轴射到它上面的光线在光轴上的一个或多个点会聚。"
+  },
+  {
+   "id": "diverging-mirror",
+   "kind": "definition",
+   "section": "25.7",
+   "name": "发散面镜",
+   "terms": [
+    "发散面镜"
+   ],
+   "statement": "发散面镜是一种凸面镜，平行于其光轴射到它上面的光线偏离其光轴，即发散。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "ray",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "ray",
+   "prereq": "wave"
+  },
+  {
+   "concept": "three-paths-of-light",
+   "prereq": "ray"
+  },
+  {
+   "concept": "ray-approximation",
+   "prereq": "ray"
+  },
+  {
+   "concept": "ray-approximation",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "ray-approximation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "geometric-optics",
+   "prereq": "ray"
+  },
+  {
+   "concept": "geometric-optics",
+   "prereq": "ray-approximation"
+  },
+  {
+   "concept": "law-of-reflection",
+   "prereq": "ray"
+  },
+  {
+   "concept": "law-of-reflection",
+   "prereq": "geometric-optics"
+  },
+  {
+   "concept": "specular-and-diffuse-reflection",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "specular-and-diffuse-reflection",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "image-behind-a-flat-mirror",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "image-behind-a-flat-mirror",
+   "prereq": "three-paths-of-light"
+  },
+  {
+   "concept": "refraction",
+   "prereq": "ray"
+  },
+  {
+   "concept": "refraction",
+   "prereq": "three-paths-of-light"
+  },
+  {
+   "concept": "refraction",
+   "prereq": "wave-speed-wavelength-frequency"
+  },
+  {
+   "concept": "speed-of-light-in-vacuum",
+   "prereq": "speed-of-light-from-constants"
+  },
+  {
+   "concept": "speed-of-light-in-vacuum",
+   "prereq": "average-speed"
+  },
+  {
+   "concept": "index-of-refraction",
+   "prereq": "speed-of-light-in-vacuum"
+  },
+  {
+   "concept": "index-of-refraction",
+   "prereq": "em-wave-in-a-medium"
+  },
+  {
+   "concept": "index-of-refraction",
+   "prereq": "refraction"
+  },
+  {
+   "concept": "speed-in-a-medium-from-the-index",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "speed-in-a-medium-from-the-index",
+   "prereq": "average-speed"
+  },
+  {
+   "concept": "snells-law",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "snells-law",
+   "prereq": "refraction"
+  },
+  {
+   "concept": "snells-law",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "bending-toward-or-away-from-the-normal",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "bending-toward-or-away-from-the-normal",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "find-an-index-or-an-angle",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "find-an-index-or-an-angle",
+   "prereq": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "concept": "critical-angle",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "critical-angle",
+   "prereq": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "concept": "critical-angle-from-the-indices",
+   "prereq": "critical-angle"
+  },
+  {
+   "concept": "critical-angle-from-the-indices",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "total-internal-reflection",
+   "prereq": "critical-angle-from-the-indices"
+  },
+  {
+   "concept": "total-internal-reflection",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "find-a-critical-angle",
+   "prereq": "critical-angle-from-the-indices"
+  },
+  {
+   "concept": "find-a-critical-angle",
+   "prereq": "find-an-index-or-an-angle"
+  },
+  {
+   "concept": "fiber-optics",
+   "prereq": "total-internal-reflection"
+  },
+  {
+   "concept": "fiber-optics",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "corner-reflector",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "corner-reflector",
+   "prereq": "total-internal-reflection"
+  },
+  {
+   "concept": "sparkle-of-diamond",
+   "prereq": "total-internal-reflection"
+  },
+  {
+   "concept": "sparkle-of-diamond",
+   "prereq": "find-a-critical-angle"
+  },
+  {
+   "concept": "color-and-wavelength",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "color-and-wavelength",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "color-and-wavelength",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "dispersion",
+   "prereq": "refraction"
+  },
+  {
+   "concept": "dispersion",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "index-depends-on-wavelength",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "index-depends-on-wavelength",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "index-depends-on-wavelength",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "index-depends-on-wavelength",
+   "prereq": "dispersion"
+  },
+  {
+   "concept": "rainbow-formation",
+   "prereq": "index-depends-on-wavelength"
+  },
+  {
+   "concept": "rainbow-formation",
+   "prereq": "total-internal-reflection"
+  },
+  {
+   "concept": "rainbow-formation",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "rainbow-formation",
+   "prereq": "dispersion"
+  },
+  {
+   "concept": "converging-and-diverging-lenses",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "converging-and-diverging-lenses",
+   "prereq": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "concept": "focal-point-and-focal-length",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "power-of-a-lens",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "ray-tracing-rules-for-lenses",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "ray-tracing-rules-for-lenses",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "ray-tracing-rules-for-lenses",
+   "prereq": "ray"
+  },
+  {
+   "concept": "real-and-virtual-images",
+   "prereq": "ray-tracing-rules-for-lenses"
+  },
+  {
+   "concept": "real-and-virtual-images",
+   "prereq": "image-behind-a-flat-mirror"
+  },
+  {
+   "concept": "thin-lens-equation",
+   "prereq": "ray-tracing-rules-for-lenses"
+  },
+  {
+   "concept": "thin-lens-equation",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "magnification",
+   "prereq": "thin-lens-equation"
+  },
+  {
+   "concept": "magnification",
+   "prereq": "real-and-virtual-images"
+  },
+  {
+   "concept": "three-cases-of-lens-images",
+   "prereq": "thin-lens-equation"
+  },
+  {
+   "concept": "three-cases-of-lens-images",
+   "prereq": "magnification"
+  },
+  {
+   "concept": "three-cases-of-lens-images",
+   "prereq": "real-and-virtual-images"
+  },
+  {
+   "concept": "solve-with-the-thin-lens-equations",
+   "prereq": "thin-lens-equation"
+  },
+  {
+   "concept": "solve-with-the-thin-lens-equations",
+   "prereq": "magnification"
+  },
+  {
+   "concept": "solve-with-the-thin-lens-equations",
+   "prereq": "three-cases-of-lens-images"
+  },
+  {
+   "concept": "solve-with-the-thin-lens-equations",
+   "prereq": "power-of-a-lens"
+  },
+  {
+   "concept": "image-in-a-flat-mirror",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "image-in-a-flat-mirror",
+   "prereq": "image-behind-a-flat-mirror"
+  },
+  {
+   "concept": "image-in-a-flat-mirror",
+   "prereq": "real-and-virtual-images"
+  },
+  {
+   "concept": "focal-length-of-a-spherical-mirror",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "focal-length-of-a-spherical-mirror",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "focal-length-of-a-spherical-mirror",
+   "prereq": "power-of-a-lens"
+  },
+  {
+   "concept": "converging-and-diverging-mirrors",
+   "prereq": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "concept": "converging-and-diverging-mirrors",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "ray-tracing-rules-for-mirrors",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "ray-tracing-rules-for-mirrors",
+   "prereq": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "concept": "ray-tracing-rules-for-mirrors",
+   "prereq": "ray-tracing-rules-for-lenses"
+  },
+  {
+   "concept": "three-cases-of-mirror-images",
+   "prereq": "ray-tracing-rules-for-mirrors"
+  },
+  {
+   "concept": "three-cases-of-mirror-images",
+   "prereq": "three-cases-of-lens-images"
+  },
+  {
+   "concept": "three-cases-of-mirror-images",
+   "prereq": "converging-and-diverging-mirrors"
+  },
+  {
+   "concept": "solve-mirror-problems",
+   "prereq": "thin-lens-equation"
+  },
+  {
+   "concept": "solve-mirror-problems",
+   "prereq": "magnification"
+  },
+  {
+   "concept": "solve-mirror-problems",
+   "prereq": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "concept": "solve-mirror-problems",
+   "prereq": "solve-with-the-thin-lens-equations"
+  },
+  {
+   "concept": "solve-mirror-problems",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "mirrors-and-lenses-are-analogous",
+   "prereq": "three-cases-of-mirror-images"
+  },
+  {
+   "concept": "mirrors-and-lenses-are-analogous",
+   "prereq": "three-cases-of-lens-images"
+  },
+  {
+   "concept": "mirror",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "mirror",
+   "prereq": "specular-and-diffuse-reflection"
+  },
+  {
+   "concept": "angle-of-incidence",
+   "prereq": "ray"
+  },
+  {
+   "concept": "angle-of-reflection",
+   "prereq": "ray"
+  },
+  {
+   "concept": "angle-of-refraction",
+   "prereq": "ray"
+  },
+  {
+   "concept": "angle-of-refraction",
+   "prereq": "refraction"
+  },
+  {
+   "concept": "zircon",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "image-distance",
+   "prereq": "real-and-virtual-images"
+  },
+  {
+   "concept": "radius-of-curvature-of-a-mirror",
+   "prereq": "mirror"
+  },
+  {
+   "concept": "rainbow",
+   "prereq": "rainbow-formation"
+  },
+  {
+   "concept": "rainbow",
+   "prereq": "dispersion"
+  },
+  {
+   "concept": "converging-lens",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "diverging-lens",
+   "prereq": "converging-and-diverging-lenses"
+  },
+  {
+   "concept": "focal-point",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "focal-length",
+   "prereq": "focal-point-and-focal-length"
+  },
+  {
+   "concept": "focal-length",
+   "prereq": "focal-point"
+  },
+  {
+   "concept": "real-image",
+   "prereq": "real-and-virtual-images"
+  },
+  {
+   "concept": "virtual-image",
+   "prereq": "real-and-virtual-images"
+  },
+  {
+   "concept": "converging-mirror",
+   "prereq": "converging-and-diverging-mirrors"
+  },
+  {
+   "concept": "diverging-mirror",
+   "prereq": "converging-and-diverging-mirrors"
+  },
+  {
+   "concept": "image-behind-a-flat-mirror",
+   "prereq": "mirror"
+  },
+  {
+   "concept": "ray-tracing-rules-for-mirrors",
+   "prereq": "mirror"
+  },
+  {
+   "concept": "focal-length-of-a-spherical-mirror",
+   "prereq": "focal-length"
+  },
+  {
+   "concept": "focal-length-of-a-spherical-mirror",
+   "prereq": "radius-of-curvature-of-a-mirror"
+  }
+ ]
+}

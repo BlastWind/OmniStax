@@ -1,0 +1,657 @@
+{
+ "id": "25.4",
+ "module": "m42462",
+ "chapter": "25",
+ "title": "全反射",
+ "short": "全反射",
+ "lead": "在一种材料中传播的光，可能以很大的角度射到折射率较小的材料上，以致没有一丝光穿过边界。这种完全的反射把光沿光纤导出，使光从双筒望远镜中和月球上的角反射器原路返回，也使切割过的钻石闪光。",
+ "objectives": [
+  "解释全反射现象。",
+  "描述光纤光学的工作原理和应用。",
+  "分析钻石闪光的原因。"
+ ],
+ "summary_html": "<ul><li>使折射角为 $90^\\circ$ 的入射<span data-concept=\"angle\">角</span>称为<span data-concept=\"critical-angle\">临界角</span>。</li><li>全反射是发生在两种介质的边界上的一种现象：如果第一种介质中的入射<span data-concept=\"angle\">角</span>大于<span data-concept=\"critical-angle\">临界角</span>，那么所有的光都被反射回该介质中。</li><li>光纤光学涉及光沿塑料或玻璃光纤的传输，应用的是全反射原理。</li><li>内窥镜用来经各种孔道或微小切口探查人体，它基于光在光纤中的传输。</li><li>包层防止光在光纤束中的光纤之间传输。</li><li>钻石闪光，是由于全反射加上很大的折射率。</li></ul>",
+ "notes": "PhET 模拟“Bending Light”的链接已略去，与书中其他处对出版方交互内容的链接一样；本模块八道习题中有五道没有给出答案，连同它们一并略去（水到空气的临界角，金刚石和锆石到空气的临界角，水到冰的临界角，在水中临界角为 68.4° 的物质，以及最后一题的冕牌玻璃光纤，其图未予复制）；例题 25.4 在一份参考资料中查聚苯乙烯的折射率，而书中误把图 25.14 指为该资料，正文改指表 25.1，数值就在那里。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。八道习题中有五道没有给出答案，已略去，本节的说明中列出了它们。AP 题的解答被出版方在源文件中注释掉了，所以书中没有印出，它作为开放题保留，附有标注为 AI 生成的建议思路。本节设置的三道思考题都附有标注为 AI 生成的建议思路。第四道思考题问的是全反射在彩虹中是否起作用，它与它所指的双彩虹照片一起，设在讲解彩虹的 25.5 节中。",
+ "figures": [
+  {
+   "id": "sim-critical-angle",
+   "kind": "sim",
+   "number": "25.13",
+   "originals": [
+    "/media/ch25/Figure_26_04_01.jpg"
+   ],
+   "original_caption": "（a）一条光线穿过边界，在边界另一侧光速增大，折射率减小。也就是说，$n_2 < n_1$。光线偏离法线。（b）临界角 $\\theta_{c}$ 是使折射角为 90° 的入射角。（c）入射角大于临界角时，发生全反射。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the critical angle, symbols through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-light-pipe",
+   "kind": "sim",
+   "number": "25.14",
+   "folds": [
+    "25.16"
+   ],
+   "originals": [
+    "/media/ch25/Figure_26_04_02.jpg",
+    "/media/ch25/Figure_26_04_04.jpg"
+   ],
+   "original_caption": "（图 25.14）射入细光纤的光，可能以大角度或掠射角射到内表面，只要这些角超过临界角，就被完全反射。这样的光线沿光纤继续前进，甚至绕过拐角，因为反射角和入射角仍然很大。（图 25.16）成束的光纤外面包有折射率比纤芯低的材料，以保证即使光纤彼此接触，也发生全反射。图中画的是一根带包层的光纤。",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "cladding traced as its own medium in air; equal angles to two places"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-image-bundle",
+   "kind": "sim",
+   "number": "25.15",
+   "originals": [
+    "/media/ch25/Figure_26_04_03.jpg"
+   ],
+   "original_caption": "（a）由一束光纤传送一幅图像，这些光纤的相邻光纤保持不变。（b）内窥镜用来探查人体，既把光传到体内，又送回图中所示那样的图像。（来源：Med_Chaos, Wikimedia Commons）",
+   "widths": [
+    250
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes that repeated headline and readout dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-endoscope",
+   "kind": "photo",
+   "number": "25.15",
+   "originals": [
+    "/media/ch25/Figure_26_04_03.jpg"
+   ],
+   "original_caption": "（a）由一束光纤传送一幅图像，这些光纤的相邻光纤保持不变。（b）内窥镜用来探查人体，既把光传到体内，又送回图中所示那样的图像。（来源：Med_Chaos, Wikimedia Commons）",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "photo-corner-reflectors",
+   "kind": "photo",
+   "number": "25.17",
+   "originals": [
+    "/media/ch25/Figure_26_04_05.jpg"
+   ],
+   "original_caption": "（a）航天员在月球上放置了一个角反射器，用来测量月球逐渐增大的轨道距离。（来源：NASA）（b）这些自行车安全反射器上的亮点，是拍摄这张照片的照相机闪光灯在黑夜里的反射。（来源：Julo, Wikimedia Commons）",
+   "widths": [
+    200
+   ]
+  },
+  {
+   "id": "sim-porro-prisms",
+   "kind": "sim",
+   "number": "25.18",
+   "originals": [
+    "/media/ch25/Figure_26_04_06.jpg"
+   ],
+   "original_caption": "这副双筒望远镜利用角反射器的全反射，把光送到观察者的眼睛里。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note for a leak caused by tilt"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-diamond",
+   "kind": "sim",
+   "number": "25.19",
+   "originals": [
+    "/media/ch25/Figure_26_04_07.jpg"
+   ],
+   "original_caption": "光不容易从钻石中逸出，因为它对空气的临界角这么小。大多数反射都是全反射，刻面的位置使光只能以特定方式射出，于是光被集中起来，使钻石闪光。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "critical-angle",
+   "concept": "critical-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-angle",
+   "concept": "critical-angle-from-the-indices",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-angle",
+   "concept": "total-internal-reflection",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-angle",
+   "concept": "find-a-critical-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-angle",
+   "concept": "snells-law",
+   "verb": "uses"
+  },
+  {
+   "span": "critical-angle",
+   "concept": "index-of-refraction",
+   "verb": "uses"
+  },
+  {
+   "span": "critical-angle",
+   "concept": "bending-toward-or-away-from-the-normal",
+   "verb": "uses"
+  },
+  {
+   "span": "fiber-optics",
+   "concept": "fiber-optics",
+   "verb": "introduces"
+  },
+  {
+   "span": "fiber-optics",
+   "concept": "total-internal-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "corner-reflectors",
+   "concept": "corner-reflector",
+   "verb": "introduces"
+  },
+  {
+   "span": "corner-reflectors",
+   "concept": "total-internal-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "corner-reflectors",
+   "concept": "critical-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "corner-reflectors",
+   "concept": "law-of-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "diamond-sparkle",
+   "concept": "sparkle-of-diamond",
+   "verb": "introduces"
+  },
+  {
+   "span": "diamond-sparkle",
+   "concept": "critical-angle-from-the-indices",
+   "verb": "uses"
+  },
+  {
+   "span": "diamond-sparkle",
+   "concept": "zircon",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "place": {
+    "at": "end"
+   },
+   "id": "ap1",
+   "source_id": "fs-id2269119",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "cite": "critical-angle",
+   "prompt": "光从空气进入水中时，光的频率会发生什么变化？考虑波长和光速如何变化，然后运用波的速率、波长和频率之间的关系。从水面反射的光又如何呢？它的波长、速率和频率会发生什么变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "频率不变。在水中，光的传播速率为 $v = c/n$，比在空气中慢，慢的倍数是 $n = 1.33$，它的波长也以同样的倍数变短，$\\lambda_n = \\lambda/n$。频率等于速率除以波长，由于两者都除以了 $n$，它们的比值在水中与在空气中相同。必然如此，因为从空气中到达水面的波峰，就是从水面进入水中的波峰，水面不可能每秒传出比到达它的更多或更少的波峰。从水面反射的光根本没有进入水中，它折回空气，以与原来相同的速率传播，所以它的波长和频率也都不变。"
+   }
+  },
+  {
+   "place": {
+    "at": "end"
+   },
+   "id": "cq1",
+   "source_id": "fs-id1279267",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "diamond-sparkle",
+   "prompt": "一枚镶有无色宝石的戒指掉进水里。宝石浸没后变得看不见了。它可能是钻石吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不可能。一块透明的石头之所以看得见，只是因为光在它的表面上发生折射和反射，而这两者的出现，都是因为它的折射率与周围物质的折射率不同。在水中消失的石头，其折射率必定非常接近水的折射率 1.33，使光几乎不发生折射或反射就穿过它的表面。金刚石的折射率为 2.419，远高于水。从金刚石进入水的临界角为 $\\sin^{-1}(1.33/2.419) = 33.4^\\circ$，仍然很小，所以水下的钻石仍会强烈折射，仍会把它内部的大部分光全反射，它还会继续闪光。这块石头更可能是玻璃或折射率与水相近的塑料。"
+   }
+  },
+  {
+   "place": {
+    "at": "end"
+   },
+   "id": "cq2",
+   "source_id": "fs-id1217783",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "diamond-sparkle",
+   "prompt": "一颗高品质的钻石可以非常清澈无色，让所有可见光波长几乎不被吸收地透过。请解释，在白光照射下它如何能闪出绚丽色彩的光。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这些颜色来自色散，而不是来自石头本身。金刚石的折射率对不同波长略有不同，对紫光比对红光大。白光每次在进入或离开钻石时发生折射，各种颜色偏折的量略有不同，于是散开。因为金刚石的临界角只有 $24.4^\\circ$，大部分光在石头内部被全反射许多次，只能从少数几个刻面以少数几个角度射出。石头内部的长路径使各种颜色分得更开，而少数几个出口又把每种颜色集中成一束窄光。石头或眼睛一动，眼睛先捕捉到其中一束，再捕捉到另一束，就看到单一颜色的短暂而强烈的闪光。"
+   }
+  },
+  {
+   "place": {
+    "at": "end"
+   },
+   "id": "cq3",
+   "source_id": "fs-id3100229",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "critical-angle",
+   "prompt": "最常见的蜃景，是一种远处物体的光被一池其实并不存在的水反射的错觉。蜃景通常在沙漠中，在近地面有一层热空气时观察到。已知空气温度较高时折射率较低，请解释蜃景是如何形成的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从天空或远处物体射向地面的光，从较冷的空气进入越来越热的空气，也就是从较大的折射率进入较小的折射率。每次这样的变化中，光线都偏离法线，对于一条向下倾斜得很平缓的光线，这就意味着它变得更接近水平。以掠射角到达的光线，射到某一层时的角度，大于这两层之间折射率的微小差别所对应的临界角，于是被全反射而转向上方。它向上进入眼睛，就像是从前方地面上的一点射来的，所以观察者看到路面或沙地上有一幅倒立的天空的像。在地平线以下看到的一片闪亮的天空，看上去就像一片水，而且观察者走近时它会后退，因为发生反射所需的角度总是出现在更远的前方。"
+   }
+  },
+  {
+   "place": {
+    "at": "end"
+   },
+   "id": "p1",
+   "source_id": "fs-id1857932",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "critical-angle",
+   "prompt": "一根光纤用火石玻璃外包冕牌玻璃。临界角是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 66.3,
+    "unit": "°",
+    "hint": "光在火石玻璃的纤芯中传播，所以 $n_1 = 1.66$ 是火石玻璃的折射率，$n_2 = 1.52$ 是冕牌玻璃的折射率，两者都取自表 25.1；然后 $\\theta_{\\text{c}} = \\sin^{-1}(n_2/n_1)$。",
+    "solution": "$66.3^\\circ$"
+   }
+  },
+  {
+   "place": {
+    "at": "end"
+   },
+   "id": "p2",
+   "source_id": "fs-id2033416",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "corner-reflectors",
+   "prompt": "假设你要利用全反射做一个高效的角反射器。如果外面是空气，入射角为 $45.0^\\circ$，制作反射器的材料的折射率最小必须是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.414,
+    "hint": "入射角至少等于临界角时反射才是全反射，所以令 $\\theta_{\\text{c}} = 45.0^\\circ$，$n_2 = 1.00$ 为空气的折射率，从 $n_1 \\sin\\theta_{\\text{c}} = n_2$ 解出 $n_1$。",
+    "solution": "$>1.414$"
+   }
+  },
+  {
+   "place": {
+    "at": "end"
+   },
+   "id": "p3",
+   "source_id": "fs-id1826801",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "cite": "critical-angle",
+   "figure": {
+    "src": "/media/ch25/Figure_26_04_09.jpg",
+    "alt": "一条光线从置于折射率为 n1 的较密介质中的一个物体射出，该物体距边界 15.0 厘米，光线射到边界上发生全反射，θc 为临界角。物体与入射点之间的水平距离为 13.4 厘米。",
+    "caption": "液体内的一条光线以临界角射到液面并发生全反射。"
+   },
+   "prompt": "一条光线从一种未知液体表面下射出，液体上方是空气，如图所示发生了全反射。这种液体的折射率是多少？它可能是什么液体？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5,
+    "hint": "图中光线下降 15.0 cm 的深度，对应 13.4 cm 的水平行程，由此可以通过正切定出临界角。然后上方是空气，$n_1 = n_2/\\sin\\theta_{\\text{c}}$，再由表 25.1 查出是哪种液体。",
+    "solution": "1.50，苯"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "find-wavelength-or-frequency",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "index-of-refraction"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "total-internal-reflection",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "sparkle-of-diamond"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "critical-angle-from-the-indices",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sparkle-of-diamond"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "total-internal-reflection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "total-internal-reflection"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "bending-toward-or-away-from-the-normal",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "find-a-critical-angle"
+  },
+  {
+   "exercise": "p1",
+   "concept": "critical-angle-from-the-indices"
+  },
+  {
+   "exercise": "p1",
+   "concept": "fiber-optics",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "find-a-critical-angle"
+  },
+  {
+   "exercise": "p2",
+   "concept": "corner-reflector",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "find-a-critical-angle"
+  },
+  {
+   "exercise": "p3",
+   "concept": "critical-angle",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "medium-1",
+   "label": "介质 1，光线所在的光密介质",
+   "figures": [
+    "sim-critical-angle"
+   ]
+  },
+  {
+   "id": "medium-2",
+   "label": "介质 2，界面另一侧折射率较小的介质",
+   "figures": [
+    "sim-critical-angle"
+   ]
+  },
+  {
+   "id": "fiber",
+   "label": "火石玻璃光纤及其纤芯",
+   "figures": [
+    "sim-light-pipe"
+   ]
+  },
+  {
+   "id": "cladding",
+   "label": "冕牌玻璃包层",
+   "figures": [
+    "sim-light-pipe"
+   ]
+  },
+  {
+   "id": "second-fiber",
+   "label": "与之接触的裸光纤",
+   "figures": [
+    "sim-light-pipe"
+   ]
+  },
+  {
+   "id": "near-face",
+   "label": "光纤束被照亮的近端",
+   "figures": [
+    "sim-image-bundle"
+   ]
+  },
+  {
+   "id": "far-face",
+   "label": "光纤束的远端",
+   "figures": [
+    "sim-image-bundle"
+   ]
+  },
+  {
+   "id": "prism-1",
+   "label": "物镜上方的第一块棱镜",
+   "figures": [
+    "sim-porro-prisms"
+   ]
+  },
+  {
+   "id": "prism-2",
+   "label": "目镜下方的第二块棱镜",
+   "figures": [
+    "sim-porro-prisms"
+   ]
+  },
+  {
+   "id": "gem",
+   "label": "切割过的宝石",
+   "figures": [
+    "sim-diamond"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-table-ref",
+   "kind": "correction",
+   "html": "关于聚苯乙烯的折射率，本书指向图 25.14。数值 1.49 列在第 25.3 节的表 25.1 中。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "critical-angle",
+   "what": "临界角",
+   "source": "《大学物理（第2版）》，25.4 全反射",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "在临界角处，折射角为 $90^\\circ$：当 $\\kthetaone = \\kthetac$ 时，$\\kthetatwo = 90^\\circ$。",
+       "src": "25.4"
+      },
+      {
+       "tex": "\\sin 90^\\circ = 1"
+      },
+      {
+       "tex": "n_1 > n_2",
+       "src": "25.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n1}{n_1} \\mk{s1}{\\sin\\kthetaone} = \\mk{n2}{n_2} \\mk{s2}{\\sin\\kthetatwo}",
+      "uses": [],
+      "src": "25.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n1}{n_1} \\mk{s1}{\\sin\\kthetaone} = \\mk{n2}{n_2} \\mk{s2}{\\sin 90^\\circ}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{n1}{n_1} \\mk{s1}{\\sin\\kthetaone} = \\mk{n2}{n_2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s1}{\\sin\\kthetac} = \\frac{\\mk{n2}{n_2}}{\\mk{n1}{n_1}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s1}{\\kthetac} = \\mk{q}{\\sin^{-1}(n_2/n_1)}\\;\\mk{c}{\\text{当}\\;n_1 > n_2}",
+       "uses": [
+        2
+       ],
+       "cap": "反正弦抵消正弦；只有当 $n_2/n_1$ 小于 1，即 $n_1 > n_2$ 时，它才存在。",
+       "map": {
+        "n2": "q",
+        "n1": "q"
+       }
+      }
+     ],
+     "src": "25.4"
+    }
+   ]
+  }
+ ]
+}

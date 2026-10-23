@@ -1,0 +1,1322 @@
+{
+ "id": "25.7",
+ "module": "m42474",
+ "chapter": "25",
+ "title": "面镜成像",
+ "short": "面镜",
+ "lead": "无论是墙上的平面镜，还是化妆镜或安防凸面镜的曲面玻璃，面镜都仅凭反射定律成像。像对透镜那样，在面镜处追迹几条光线，就能看出它的像在哪里，是哪一种像。",
+ "objectives": [
+  "说明平面镜中像的形成。",
+  "用光线图解释球面镜成像。",
+  "已知曲率半径以及物体和像的距离，确定焦距和放大率。"
+ ],
+ "summary_html": "<ul><li>平面镜所成的像的特征是：（a）像和物体到面镜的<span data-concept=\"distance\">距离</span>相同，（b）像是虚像，（c）像位于面镜后面。</li><li>像的<span data-concept=\"length\">长度</span><sup class=\"fn\" data-note=\"c-focal-length\"></sup>是<span data-concept=\"radius-of-curvature-of-a-mirror\">曲率半径</span>的一半。 $$\\kffoc = \\frac{\\kRcur}{2}$$</li><li>凸面镜是发散面镜，只形成一种像，即虚像。</li></ul>",
+ "notes": "本模块十三道习题中有六道没有给出答案，已省去：用面镜代替 800 mm 镜头的长焦面镜、例题 25.9 中取暖器的放大率、购物者与安防凸面镜、平面镜的焦距和光焦度、证明 f = R/2，以及关于浴室取暖灯的“自拟习题”一项。关于冕牌玻璃中紫光和橙光的“批判性思考”题与 25.5 放在一起，25.2 的第二道 AP 题则放在本节。小结的第二行写的是“像的长度”，而所指应是焦距；例题 25.11 写出 R = 2|f| = −0.800 cm，其符号是绝对值给不出的；两处都保持书中所印的样子。图 25.43 和图 25.44 保持完整，各自的光线图与照片并排，它们的光线图也可从图 25.41 到达。例题 25.10 和最后一道习题，除本节外，还要用到第 14 章的热量和第 16 章的强度。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 撰写。答案取自书后答案。十三道习题中有六道没有给出答案，已省去，它们在本节的说明中列出；“批判性思考”题考查的是折射率和色散而不是面镜，与 25.5 放在一起。25.2 的第二道 AP 题比较平面镜与凸面镜，放在本节。十二道思考题以及第二、第四道 AP 题都没有给出答案，附有 AI 给出的建议思路。第三道 AP 题在书中的答案是（b），10 cm，但是对于离物体 10 cm 处的、两倍大的正立像，焦距应为 20 cm，所以习题卡片核对的是（c），并在解答上附有一条指出书中答案的更正。勺子一题在原书中没有标明类型，按其标题归为习题。",
+ "figures": [
+  {
+   "id": "sim-flat-mirror",
+   "kind": "sim",
+   "number": "25.38",
+   "originals": [
+    "/media/ch25/Figure_26_07_01.jpg"
+   ],
+   "original_caption": "来自物体上同一点的两组光线被平面镜反射进观察者的眼睛。反射光线看起来像是从面镜后面发出的，由此确定了虚像的位置。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "eye kept above the bottle so rays clear h_o; note no longer repeats caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mirror-focus",
+   "kind": "sim",
+   "number": "25.39",
+   "folds": [
+    "25.40"
+   ],
+   "originals": [
+    "/media/ch25/Figure_26_07_02.jpg",
+    "/media/ch25/Figure_26_07_03.jpg"
+   ],
+   "original_caption": "（a）平行光线被大球面镜反射后，并不全都相交于同一点。（b）如果球面镜相对于其曲率半径很小，平行光线就会聚焦到同一点。焦点到面镜中心的距离就是它的焦距 $f$。由于这个面镜是会聚的，它的焦距为正。平行光线从凸球面镜（尺寸相对于其曲率半径很小）反射后，看起来像是从面镜后面、距离为焦距 $f$ 处的一个确定的焦点发出的。凸面镜使光线发散，因而焦距为负。",
+   "widths": [
+    450,
+    250
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rim rays stop at the glass; R bracket spaced; notes through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mirror-images",
+   "kind": "sim",
+   "number": "25.41",
+   "originals": [
+    "/media/ch25/Figure_26_07_04.jpg"
+   ],
+   "original_caption": "面镜情形 1 的像。物体离会聚面镜比其焦距更远。用正文中的规则追迹来自物体上同一点的光线。光线 1 平行于光轴射来，光线 2 射到面镜中心，光线 3 在射向面镜的途中经过焦点。三条光线反射后相交于同一点，由此确定了倒立实像的位置。图中虽然画了三条光线，但确定像的位置和高度只需要其中两条。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "magnification note set as math; ray 2 and 3 names apart"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-trough",
+   "kind": "photo",
+   "number": "25.42",
+   "widths": [
+    285
+   ],
+   "draws": []
+  },
+  {
+   "id": "photo-makeup-mirror",
+   "kind": "photo",
+   "number": "25.43",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "photo-security-mirror",
+   "kind": "photo",
+   "number": "25.44",
+   "widths": [
+    275
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "flat-mirror",
+   "concept": "image-in-a-flat-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "flat-mirror",
+   "concept": "law-of-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "focal-length-of-a-spherical-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "converging-and-diverging-mirrors",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "power-of-a-lens",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "radius-of-curvature-of-a-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "converging-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-focal-length",
+   "concept": "diverging-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-ray-tracing",
+   "concept": "ray-tracing-rules-for-mirrors",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-ray-tracing",
+   "concept": "solve-mirror-problems",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-ray-tracing",
+   "concept": "thin-lens-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "three-cases-of-mirror-images",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "ray-tracing-rules-for-mirrors",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "focal-length-of-a-spherical-mirror",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "converging-and-diverging-mirrors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "solve-mirror-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "mirrors-and-lenses-are-analogous",
+   "verb": "introduces"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "magnification",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-cases",
+   "concept": "real-and-virtual-images",
+   "verb": "uses"
+  },
+  {
+   "span": "mirror-strategy",
+   "concept": "solve-mirror-problems",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1998480",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "一名学生在测试一面曲率半径未知的面镜的性质。该学生注意到，无论物体放在离面镜多远的地方，在面镜中看到的像总是正立的，并且比物体小。关于这面镜，这名学生能推断出什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "该面镜是凸的。",
+     "该面镜是平的。",
+     "该面镜是凹的。",
+     "需要更多信息才能推断面镜的形状。"
+    ],
+    "correct": 0,
+    "hint": "平面镜总是给出同样大小的像，凹面镜只有在物体位于焦距以内时才给出正立的像，而此时像是放大的。哪一种面镜只形成一种像？",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2381022",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "一名学生注意到她汽车驾驶员一侧的后视镜底部印着一小行字，写的是：“镜中的物体比它们看起来的更近。”这是哪一种面镜（凸面镜、凹面镜还是平面镜）？你如何通过实验来确认这面镜的形状？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这面镜是凸的。凸面镜是发散面镜，只形成情形 3 的像，这种像是正立的、比物体小，位于面镜后面，到面镜的距离比焦距小。由于汽车的像比平面镜显示的更小，眼睛就会判断这辆车比实际更远，所以才有这条警告。要确认这面镜的形状，可以在镜中看一个近处的物体，并使它从远处移到近处。在凸面镜中，无论距离多远，像始终正立且更小。凹面镜对远处的物体会给出倒立的像，对近处的物体给出放大的正立像，平面镜则给出同样大小的像。另一种检验是把平行光（例如阳光）射到面镜上，找一个反射光线会聚成焦点的亮斑；凸面镜使光线发散，不会形成这样的亮斑。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1560818",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "当物体离面镜 10 cm 时，一面镜显示出一个正立的、大小为物体两倍的像。这面镜的焦距是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "−10 cm",
+     "10 cm",
+     "20 cm",
+     "40 cm"
+    ],
+    "correct": 2,
+    "hint": "正立的放大像意味着这是一面凹面镜，且物体位于焦距以内；先由放大率求出像距。",
+    "solution": "（b）<sup class=\"fn\" data-note=\"c-ap3-key\"></sup>"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1859234",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "当物体离面镜 20 cm 时，一面镜显示出与物体等大的倒立像。如果把这个物体移到离面镜 5 cm 处，描述所形成的像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "等大的倒立像意味着放大率为 $-1$，所以像距等于物距，$\\kdimg = \\kdobj = 20$ cm。这面镜必定是凹的，由薄透镜公式得 $1/\\kffoc = 1/(20\\text{ cm}) + 1/(20\\text{ cm})$，所以 $\\kffoc = 10$ cm：物体原先位于焦距的两倍处，即曲率中心。把物体移到 5 cm 处，它就在焦距以内，这是情形 2 的像。于是 $1/\\kdimg = 1/(10\\text{ cm}) - 1/(5\\text{ cm})$，所以 $\\kdimg = -10$ cm，且 $m = -\\kdimg/\\kdobj = +2$。像是虚像，位于面镜后面 10 cm 处，正立，高度是物体的两倍，就像在化妆镜中那样。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1448298",
+   "source_section": "25.2",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "两条光线从物体 A 发出，A 在平面镜前 50 cm 处，两条光线以 10° 的角度发散。两条光线都射到平面镜上并被反射。另有两条光线从物体 B 发出，B 在凸面镜前 50 cm 处，两条光线以 10° 的角度发散。两条光线都射到凸面镜上并被反射。对于哪个物体，反射光线看起来会聚在面镜后面更靠近镜面的地方，从而形成更近的（更大的）像？请借助草图或图示加以解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "物体 B 在凸面镜中的像更近。在平面镜处，反射定律使两条光线仍以 10° 发散地离开，向后追溯，它们在面镜后面 50 cm 处相交，与物体 A 在面镜前的距离一样远。在凸面镜处，中心两侧的表面都向背离光轴的方向倾斜，因此每条光线都从一个朝外转的表面反射，这一对光线离开时发散的角度大于 10°。画出两对反射光线并把它们在各自面镜后面延长的草图，可以看出，发散得更厉害的光线向后追溯时会更早相交，所以 B 的像位于面镜与其焦点之间，比 50 cm 近得多。这个像是情形 3 的像，正立且比物体小，这就是凸面镜使物体看起来比实际更远的原因。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1487938",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "实像和虚像有什么区别？怎样才能通过观察来判断单个透镜或面镜所成的像是实像还是虚像？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "实像形成在来自物体上一点的光线真正相交的地方，所以那里确实有光，把屏放在那个位置就能显示出像。虚像形成在向后追溯光线时它们看起来所来自的地方，所以没有光穿过它，把屏放在那里什么也显示不出来。对于单个透镜或面镜，看一看像就能区分二者：实像是倒立的，虚像是正立的。实像还位于光所去往的一侧（透镜的后方，面镜的前方），而虚像位于另一侧，即面镜后面，或透镜靠近物体的一侧。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1502616",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "你能看到虚像吗？你能给虚像拍照吗？能否借助另外的透镜或面镜把虚像投射到屏上？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "三个问题的答案都是肯定的。离开面镜或透镜的光线，其行为与它们来自虚像时完全一样，所以眼睛的晶状体会把它们聚焦到视网膜上，就像聚焦来自实物的光那样。你在平面镜中看到自己，就是这样。照相机用自己的透镜做同样的事，所以它能给虚像拍照。你做不到的，是把屏放在虚像本身所在之处，因为没有光到那里去。但是，放在发散光线路径上的另一个透镜或面镜，可以把虚像当作它的物体，形成它的实像，而这个实像可以落在屏上。眼睛和照相机正是这样的例子。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1622392",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "实像要存在，是否必须把它投射到屏上？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不必。凡是来自物体各点的光线真正相交的地方，就存在实像，不论那里有没有放置什么东西来接住光。屏只是通过散射已经在那里会聚的光，使像可以从许多方向被看见。没有屏时，光线穿过像点后又重新发散，放在它们路径更远处的眼睛仍然可以看到悬在空中的像，就像从实像之外观察凹面镜时那样。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1677882",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "像总是位于哪一个距离处——$\\kdobj$、$\\kdimg$ 还是 $\\kffoc$？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "像总是位于像距 $\\kdimg$ 处。这正是像距的含义：像到透镜或面镜的距离，由薄透镜公式 $1/\\kdobj + 1/\\kdimg = 1/\\kffoc$ 求得。物体位于 $\\kdobj$ 处，只有在物体非常远这一特殊情形下，像才与焦距 $\\kffoc$ 重合。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2785853",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "在什么情况下，像会位于透镜或面镜的焦点上？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "当物体非常远，使得从它上面任一点射来的光线都是平行的时候。在薄透镜公式中，当 $\\kdobj$ 变得非常大时，$1/\\kdobj$ 趋于零，剩下 $1/\\kdimg = 1/\\kffoc$，于是 $\\kdimg = \\kffoc$。焦点最初就是这样定义的：沿光轴的平行光线相交，或看起来相交，于焦点。放大镜或凹面镜所成的太阳的像位于焦点上，正是这个缘故。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1281672",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "负的放大率是什么意思？绝对值小于 1 的放大率又是什么意思？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "放大率 $m = \\khimg/\\khobj$ 既有符号，也有大小。负的放大率意味着像高与物高符号相反，所以像是倒立的，每个情形 1 的像都是如此。绝对值小于 1 的放大率意味着像比物体小，不论它的朝向如何；凸面镜的情形 3 的像，放大率为小于 1 的正数，正立而缩小，而离凹面镜很远处的情形 1 的像，放大率为绝对值小于 1 的负数，倒立而缩小。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1362775",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "情形 1 的像，虽然放大率总是负的，它能不能比物体大？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能。放大率的负号只说明情形 1 的像是倒立的；它的大小由 $m = -\\kdimg/\\kdobj$ 的绝对值给出。当物体位于一倍焦距和两倍焦距之间时，像距大于物距，所以 $m$ 的绝对值大于 1，倒立的像比物体大。例题 25.9 中的电取暖器就是这样的情形：位于 27.3 cm 处的线圈在 3.00 m 远处形成像，放大率约为 $-11$。只有当物体在两倍焦距之外时，情形 1 的像才比物体小。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2016225",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "下图显示了位于两面镜之间的一只灯泡。其中一面镜产生由平行光线组成的光束；另一面镜则不让光漏掉，而是把它并入光束。灯丝相对于每面镜的焦点或曲率半径位于何处？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "灯丝位于大面镜的焦点上。经过焦点射向凹面镜的光线被反射后平行于光轴，所以从灯丝射到大面镜上的每条光线，都作为平行光束的一部分射出。灯丝位于小面镜的曲率中心，与它的距离等于其曲率半径，即其焦距的两倍。从曲率中心射出的光线沿法线射到球面镜上，并沿原路直接反射回去。因此，本来会向前漏掉的光，穿过灯丝回到大面镜，并入光束。"
+   },
+   "figure": {
+    "src": "/media/ch25/Figure_26_07_08.jpg",
+    "alt": "两面大小不同的凹面镜相对放置。一只灯丝灯泡放在较大面镜的焦点上。光线经较大面镜反射后彼此平行地行进。射到较小面镜上的光线沿原路返回。",
+    "caption": "这两面镜截住了灯泡的大部分光，形成定向光束，就像在前照灯中那样。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1534293",
+   "kind": "conceptual-question",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "设计一种面镜的布置，使你能看到自己的后脑勺。完成这一任务最少需要几面镜？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "至少需要两面平面镜。面对一面镜站着，再拿第二面镜放在你头的后面、稍偏一侧，把它倾斜到使它所映出的后脑勺朝向第一面镜。来自后脑勺的光从手持的面镜反射到墙上的面镜，再进入你的眼睛，按反射定律，墙上面镜中的像是像的像，所以它显示的是你的后脑勺。一面平面镜做不到，因为它只能把光送回它来的那一侧，而后脑勺和眼睛朝向相反的方向。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id2677030",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "如果你希望在平面镜中看到自己的整个身体（从头到脚），面镜应该多高？它的大小与你离面镜的距离有关吗？请画一张草图。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "面镜只需要你身高的一半。画出你站在一面竖直的面镜前的草图，再画一条来自头顶的光线和一条来自脚的光线，它们各按反射定律反射进你的眼睛。来自头顶的光线射在眼睛与头顶之间的中点处的镜面上，来自脚的光线射在眼睛与脚之间的中点处的镜面上。面镜被用到的部分就在这两点之间，其长度是你身高的一半，上边缘位于眼睛和头顶的中点。面镜的大小与你离面镜的距离无关。往后退使每个角度都变小，但每个反射点仍恰好在中间的高度，因为像总是在镜后与你在镜前一样远的地方。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id919971",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "可以论证平面镜的焦距是无穷大。如果是这样，它在何处成像？也就是说，$\\kdimg$ 与 $\\kdobj$ 有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "如果焦距是无穷大，那么 $1/\\kffoc = 0$，薄透镜公式变为 $1/\\kdobj + 1/\\kdimg = 0$，所以 $\\kdimg = -\\kdobj$。像在面镜后面的距离与物体在面镜前面的距离相同，负号表明它是虚像，这正是用反射定律对平面镜进行光线追迹所得的结果。放大率于是为 $m = -\\kdimg/\\kdobj = 1$，是同样大小的正立像。"
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id3166876",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "为什么车辆的后视镜常常使用发散面镜？与平面镜相比，使用这种面镜的主要缺点是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "发散（凸）面镜形成情形 3 的像，正立且比物体小，所以给定大小的面镜，比平面镜显示的视场宽得多，能容纳更多车道、减少盲区，就像安防凸面镜能对商店的更大区域成像一样。缺点是像被缩小了：汽车看起来比在平面镜中更小，所以驾驶员会判断它们比实际更远，距离和接近速率也更难估计。这就是这种面镜带有“物体比它们看起来的更近”的警告的原因。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1429754",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-focal-length",
+   "prompt": "光焦度为 1.50 D 的化妆镜，焦距是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.667,
+    "unit": "m",
+    "hint": "面镜的光焦度是以米为单位的焦距的倒数，与透镜一样。",
+    "solution": "+0.667 m"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3039111",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-focal-length",
+   "prompt": "（a）计算由勺子的光亮背面所形成的面镜的焦距，勺子背面的曲率半径为 3.00 cm。（b）它的光焦度是多少屈光度？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -0.015,
+      "unit": "m",
+      "hint": "勺子的背面是凸的，所以焦距是曲率半径的一半，且为负。"
+     },
+     {
+      "part": "(b)",
+      "value": -66.7,
+      "unit": "D",
+      "hint": "光焦度是以米为单位的焦距的倒数，并保持发散面镜的负号。"
+     }
+    ],
+    "solution": "（a）$-1.5\\times10^{-2}\\text{ m}$ （b）$-66.7\\text{ D}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1946589",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "当一个人的脸离化妆镜 12.0 cm 时，化妆镜产生 1.50 的放大率，它的焦距是多少？请明确展示你是如何遵循“面镜问题的解题策略”中的各步骤的。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.36,
+    "unit": "m",
+    "hint": "先由放大率求出像距，注意化妆镜中正立的放大像是虚像，然后用薄透镜公式。",
+    "solution": "+0.360 m（凹面镜）"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1777792",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "一个高 1.50 cm 的物体被放在离某人角膜 3.00 cm 处，测得它的反射像高 0.167 cm。（a）放大率是多少？（b）像在哪里？（c）求角膜所形成的凸面镜的曲率半径。（请注意，验光师用这种技术测量角膜的曲率，以验配角膜接触镜。所用仪器叫作角膜曲率计，或曲率测量仪。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.111,
+      "hint": "放大率是像高与物高之比，凸面镜中的像是正立的。"
+     },
+     {
+      "part": "(b)",
+      "value": -0.334,
+      "unit": "cm",
+      "hint": "放大率也等于像距与物距之比的负值。"
+     },
+     {
+      "part": "(c)",
+      "value": 0.752,
+      "unit": "cm",
+      "hint": "由薄透镜公式求出焦距，再把它的大小加倍，如例题 25.11 中那样。"
+     }
+    ],
+    "solution": "（a）+0.111 （b）−0.334 cm（在“面镜”后面） （c）0.752 cm"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2725085",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flat-mirror",
+   "prompt": "证明对于平面镜 $\\khimg = \\khobj$，已知像在镜后的距离与物体到镜的距离大小相等。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$m = \\frac{\\khimg}{\\khobj} = -\\frac{\\kdimg}{\\kdobj} = -\\frac{-\\kdobj}{\\kdobj} = \\frac{\\kdobj}{\\kdobj} = 1 \\Rightarrow \\khimg = \\khobj$$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2681152",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mirror-cases",
+   "prompt": "参照本节第一个例题中考虑的电取暖器，计算凹面镜投射到 3.00 m 外一个人身上的红外辐射强度，单位为 $\\text{W/m}^2$。假设发热元件辐射 1500 W，面积为 $100\\text{ cm}^2$，并且辐射功率的一半被面镜反射并聚焦。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.82,
+    "unit": "kW/m²",
+    "hint": "求出例题 25.9 中取暖器的放大率；发热元件的像的面积按放大率的平方增大，一半的功率落在这个面积上。",
+    "solution": "6.82 kW/m²"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "converging-and-diverging-mirrors"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "converging-and-diverging-mirrors"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "ray-tracing-rules-for-mirrors"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "law-of-reflection"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "real-and-virtual-images"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "real-and-virtual-images"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "real-and-virtual-images"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "thin-lens-equation"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "focal-point-and-focal-length"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "ray-tracing-rules-for-mirrors"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "law-of-reflection"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "law-of-reflection"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "three-cases-of-mirror-images"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "mirrors-and-lenses-are-analogous"
+  },
+  {
+   "exercise": "p1",
+   "concept": "power-of-a-lens"
+  },
+  {
+   "exercise": "p1",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "p2",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "p2",
+   "concept": "converging-and-diverging-mirrors"
+  },
+  {
+   "exercise": "p2",
+   "concept": "power-of-a-lens"
+  },
+  {
+   "exercise": "p3",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "p3",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p4",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "p4",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p4",
+   "concept": "focal-length-of-a-spherical-mirror"
+  },
+  {
+   "exercise": "p5",
+   "concept": "image-in-a-flat-mirror"
+  },
+  {
+   "exercise": "p5",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p6",
+   "concept": "solve-mirror-problems"
+  },
+  {
+   "exercise": "p6",
+   "concept": "magnification"
+  },
+  {
+   "exercise": "p6",
+   "concept": "intensity"
+  }
+ ],
+ "referents": [
+  {
+   "id": "bottle",
+   "label": "瓶子，即物体",
+   "figures": [
+    "sim-flat-mirror"
+   ]
+  },
+  {
+   "id": "bottle-image",
+   "label": "瓶子的虚像",
+   "figures": [
+    "sim-flat-mirror"
+   ]
+  },
+  {
+   "id": "flat-mirror",
+   "label": "平面镜",
+   "figures": [
+    "sim-flat-mirror"
+   ]
+  },
+  {
+   "id": "eye",
+   "label": "观察者的眼睛",
+   "figures": [
+    "sim-flat-mirror"
+   ]
+  },
+  {
+   "id": "spherical-mirror",
+   "label": "球面镜，凹的或凸的",
+   "figures": [
+    "sim-mirror-focus"
+   ]
+  },
+  {
+   "id": "object",
+   "label": "物体",
+   "figures": [
+    "sim-mirror-images"
+   ]
+  },
+  {
+   "id": "object-image",
+   "label": "物体的像",
+   "figures": [
+    "sim-mirror-images"
+   ]
+  },
+  {
+   "id": "curved-mirror",
+   "label": "凹面镜或凸面镜",
+   "figures": [
+    "sim-mirror-images"
+   ]
+  },
+  {
+   "id": "mirror-ray-1",
+   "label": "光线 1，平行于光轴",
+   "figures": [
+    "sim-mirror-images"
+   ]
+  },
+  {
+   "id": "mirror-ray-2",
+   "label": "光线 2，射向面镜中心",
+   "figures": [
+    "sim-mirror-images"
+   ]
+  },
+  {
+   "id": "mirror-ray-3",
+   "label": "光线 3，沿过焦点的直线",
+   "figures": [
+    "sim-mirror-images"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-r-sign",
+   "kind": "correction",
+   "html": "书中印的是 $\\kRcur = 2|\\kffoc| = -0.800$ cm，但绝对值不可能为负。对凸的角膜，$\\kRcur = 2\\kffoc = -0.800$ cm，或 $|\\kRcur| = 2|\\kffoc| = 0.800$ cm。"
+  },
+  {
+   "id": "c-focal-length",
+   "kind": "correction",
+   "html": "书中印的是“像的长度”。曲率半径的一半是焦距，$\\kffoc = \\kRcur/2$。"
+  },
+  {
+   "id": "c-ap3-key",
+   "kind": "correction",
+   "html": "书中的答案是（b），10 cm。物体两倍大的正立像需要 $\\kdimg = -20$ cm，而 $1/\\kffoc = 1/(10\\ \\text{cm}) - 1/(20\\ \\text{cm})$ 给出 $\\kffoc = +20$ cm，即选项（c），也就是习题卡片所核对的答案。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "mirror-focal-length",
+   "what": "球面镜的焦距",
+   "source": "《大学物理（第2版）》，25.7 面镜成像",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "一条平行于光轴的光线射到面镜上的 P 点。从曲率中心 C 作出的半径 $CP$ 在该处与面镜垂直，所以入射光线与它所成的角为 $\\kthetai$，而反射光线 $PF$ 与它所成的角为 $\\kthetar = \\angle CPF$。"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kthetar} = \\mk{i}{\\kthetai}",
+      "uses": [],
+      "src": "25.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\angle CPF} = \\mk{i}{\\kthetai}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "25.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "入射光线平行于通过 C 和顶点 V 的光轴。",
+       "src": "图 25.39"
+      },
+      {
+       "text": "面镜相对于其曲率半径很小，所以 P 离 V 非常近，使得 $FP = FV$。",
+       "src": "25.7"
+      },
+      {
+       "tex": "CF + FV = \\kRcur"
+      },
+      {
+       "text": "焦距是从面镜到 F 的距离：$\\kffoc = FV$。",
+       "src": "25.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\angle PCF} = \\mk{t}{\\kthetai}",
+      "uses": [
+       1
+      ],
+      "why": "直线 $CP$ 与入射光线和光轴相交，而这两者是平行的，所以它与它们所成的内错角相等。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\angle PCF} = \\mk{t}{\\angle CPF}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{CF} = \\mk{t}{FP}",
+       "uses": [],
+       "cap": "三角形 $CPF$ 有两个角相等，所以它们的对边也相等。"
+      },
+      {
+       "tex": "\\mk{a}{CF} = \\mk{t}{FV}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kRcur - FV} = \\mk{t}{FV}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kRcur} = \\mk{t}{2FV}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{FV} = \\frac{\\mk{a}{\\kRcur}}{2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{\\kffoc} = \\frac{\\mk{a}{\\kRcur}}{2}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "25.7"
+    }
+   ]
+  },
+  {
+   "id": "solar-trough",
+   "what": "太阳能槽中油的加热",
+   "source": "《大学物理（第2版）》，25.7 面镜成像，例题 25.10",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kffoc = 40.0\\text{ cm}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kffoc} = \\frac{\\mk{R}{\\kRcur}}{2}",
+      "uses": [],
+      "src": "25.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kRcur} = \\mk{f}{2\\kffoc}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\kRcur} = \\mk{f}{2\\kffoc = 80.0\\text{ cm}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "例题 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "面镜是半径为 $\\kRcur$、长度为 $\\kLlen$ 的整个圆柱体的四分之一。"
+      },
+      {
+       "tex": "\\kLlen = 1.00\\text{ m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{1}{4}(2\\pi \\kRcur)}\\mk{L}{\\kLlen}",
+      "uses": [
+       1
+      ],
+      "why": "面镜的宽度是周长 $2\\pi\\kRcur$ 的四分之一。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{\\pi}{2}\\kRcur}\\mk{L}{\\kLlen}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{\\pi}{2}\\kRcur}\\mk{L}{(1.00\\text{ m})}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{(3.14)}{2}(0.800\\text{ m})}\\mk{L}{(1.00\\text{ m})}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{v}{1.26\\text{ m}^2}",
+       "uses": [],
+       "map": {
+        "q": "v",
+        "L": "v"
+       }
+      }
+     ],
+     "src": "例题 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kIntens = 9.00\\times10^{2}\\ \\text{W/m}^2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIntens} = \\frac{\\mk{P}{\\kP}}{\\mk{A}{\\karea}}",
+      "uses": [],
+      "src": "24.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{I}{\\kIntens}\\mk{A}{\\karea}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{I}{\\left(9.00\\times10^{2}\\ \\frac{\\text{W}}{\\text{m}^2}\\right)}\\mk{A}{\\karea}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{I}{\\left(9.00\\times10^{2}\\ \\frac{\\text{W}}{\\text{m}^2}\\right)}\\mk{A}{(1.26\\text{ m}^2)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{v}{1130\\text{ W}}",
+       "uses": [],
+       "map": {
+        "I": "v",
+        "A": "v"
+       }
+      }
+     ],
+     "src": "例题 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\krho = 8.00\\times10^{2}\\text{ kg/m}^3"
+      },
+      {
+       "text": "油充满一根直径 $\\kd = 2.00\\text{ cm}$ 的管道，长度为 $1.00\\text{ m}$。"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\frac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\kvol}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\pi\\left(\\frac{\\kd}{2}\\right)^2(1.00\\text{ m})}",
+       "uses": [
+        1
+       ],
+       "cap": "油是半径为 $\\kd/2$ 的圆柱体，其体积是 $\\pi(\\kd/2)^2$ 乘以它的长度。"
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{(8.00\\times10^{2}\\text{ kg/m}^3)}\\mk{V}{(3.14)(0.0100\\text{ m})^2(1.00\\text{ m})}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{v}{0.251\\text{ kg}}",
+       "uses": [],
+       "map": {
+        "r": "v",
+        "V": "v"
+       }
+      }
+     ],
+     "src": "例题 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "text": "射到反射器上的全部阳光都被管道吸收，持续 $\\kt = 60.0\\text{ s}$。"
+      },
+      {
+       "tex": "\\kQh = \\kP\\kt",
+       "src": "7.7"
+      },
+      {
+       "tex": "\\kcspec = 1670\\ \\text{J/(kg}\\cdot{}^\\circ\\text{C)}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{\\kcspec}\\mk{T}{\\kdTemp}",
+      "uses": [],
+      "src": "14.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\mk{Q}{\\kQh}/\\mk{m}{\\km}\\mk{c}{\\kcspec}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\frac{\\mk{Q}{\\kP\\kt}}{\\mk{m}{\\km}\\mk{c}{\\kcspec}}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "管道吸收的功率持续 $\\kt$ 这么长时间，就是它吸入的热量。"
+      },
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\frac{\\mk{Q}{(1130\\text{ W})(60.0\\text{ s})}}{\\mk{m}{(0.251\\text{ kg})}\\mk{c}{(1670\\ \\text{J/(kg}\\cdot{}^\\circ\\text{C)})}}",
+       "uses": [
+        0,
+        1,
+        2,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\mk{v}{162^\\circ\\text{C}}",
+       "uses": [],
+       "map": {
+        "Q": "v",
+        "m": "v",
+        "c": "v"
+       }
+      }
+     ],
+     "src": "例题 25.10",
+     "note": "书中把矿物油的比热容印成 1670 J·kg/°C；其单位应为 J/(kg·°C)。"
+    }
+   ]
+  }
+ ]
+}

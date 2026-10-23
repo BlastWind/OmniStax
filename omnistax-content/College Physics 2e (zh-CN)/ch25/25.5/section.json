@@ -1,0 +1,514 @@
+{
+ "id": "25.5",
+ "module": "m42466",
+ "chapter": "25",
+ "title": "色散：彩虹与棱镜",
+ "short": "色散与彩虹",
+ "lead": "白光是所有可见<span data-concept=\"wavelength\">波长</span>的混合，棱镜或一个水滴都能把它展开成各种颜色。顺着阳光进入雨滴再离开的路径，就能明白彩虹为什么出现在天空中的那个位置。",
+ "objectives": [
+  "解释色散现象，并讨论其利与弊。"
+ ],
+ "summary_html": "<ul><li>白光展开成包含其全部<span data-concept=\"wavelength\">波长</span>的完整光谱，称为色散。</li><li>彩虹由折射和反射共同产生，并涉及阳光被色散成连续分布的颜色。</li><li>色散可以产生美丽的彩虹，但也会给某些光学系统带来问题。</li></ul>",
+ "notes": "指向 PhET 模拟“几何光学”的链接略去，与全书各处略去出版方互动内容的链接一样，源文本在其中携带的空图像标记也一并略去。本模块八道习题中有四道没有给出答案，因而略去：金刚石和聚苯乙烯中红光与紫光的速率之比，金刚石中红光与紫光临界角之差，橙光和紫光以 60.0° 从熔融石英进入水中，以及红光和蓝光穿过 1.00 cm 厚的冕牌玻璃板。以“折射是”开头的那一段在“见表 25.2”之前开了一个括号却始终没有闭合，按原样保留。图 25.24 是一幅图像，内含两幅示意图和一张双彩虹的照片，所以这张照片随图的原图一并给出。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。八道习题中有四道没有给出答案，因而略去，它们已在本节的说明中列出。有两道题取自其他小节，因为它们检验的是本节的色散：关于全反射在彩虹中是否起作用的思考题，印在 25.4 节，并附双彩虹的照片；以及关于冕牌玻璃中紫光和橙光的“批判性思考”习题，印在 25.7 节。书后答案对该习题第（a）问把冕牌玻璃的两个折射率写反了，610 nm 处写成 1.530，410 nm 处写成 1.514；它求得的差值 2.07 × 10⁶ m/s 的大小是对的，而且是橙光而不是紫光传播得更快。这里按原样保留，第（b）至（d）问则按书后答案的作法在解答中作答。思考题没有书后答案，其建议思路标明为 AI 所写。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-rainbow-and-prism",
+   "kind": "photo",
+   "number": "25.20",
+   "widths": [
+    225
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-spectrum-index",
+   "kind": "sim",
+   "number": "25.21",
+   "originals": [
+    "/media/ch25/Figure_26_05_02.jpg"
+   ],
+   "original_caption": "尽管彩虹被认为有七种颜色，但彩虹其实是颜色按波长的连续分布。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "position"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "index label set above right of the point, off the curve"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-prism",
+   "kind": "sim",
+   "number": "25.22",
+   "originals": [
+    "/media/ch25/Figure_26_05_03.jpg"
+   ],
+   "original_caption": "（a）单一波长的光射到棱镜上，在两个表面处发生折射。（b）白光被棱镜色散（图中经过夸大）。由于折射率随波长而变，折射角也随波长而变。由于折射率随波长减小而稳步增大，于是产生了从红到紫的顺序。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#f4d35e",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "fan labels past the ray ends; caption and note no longer claim a lower view"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-drop",
+   "kind": "sim",
+   "number": "25.23",
+   "originals": [
+    "/media/ch25/Figure_26_05_04.jpg"
+   ],
+   "original_caption": "落在这个水滴上的光，有一部分进入水滴并从水滴背面被反射。这部分光在进入和离开水滴时都发生折射和色散。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#f4d35e",
+    "#ff0000",
+    "#7e00db"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of the sunlight at the center and with two reflections"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rainbow-arc",
+   "kind": "sim",
+   "number": "25.24",
+   "originals": [
+    "/media/ch25/Figure_26_05_05.jpg"
+   ],
+   "original_caption": "（a）不同的颜色朝不同的方向射出，因此你必须看向不同的位置，才能看到彩虹的各种颜色。（b）彩虹呈弧形，是因为观察者与弧上任一点之间的连线，必须与平行的阳光光线成正确的角度，才能接收到折射光线。（c）双彩虹。（来源：Nicholas, Wikimedia Commons）",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#f4d35e",
+    "#ff0000",
+    "#7e00db",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "colors-of-light",
+   "concept": "color-and-wavelength",
+   "verb": "introduces"
+  },
+  {
+   "span": "colors-of-light",
+   "concept": "dispersion",
+   "verb": "introduces"
+  },
+  {
+   "span": "index-and-wavelength",
+   "concept": "index-depends-on-wavelength",
+   "verb": "introduces"
+  },
+  {
+   "span": "index-and-wavelength",
+   "concept": "color-and-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "index-and-wavelength",
+   "concept": "dispersion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "index-and-wavelength",
+   "concept": "snells-law",
+   "verb": "uses"
+  },
+  {
+   "span": "index-and-wavelength",
+   "concept": "index-of-refraction",
+   "verb": "uses"
+  },
+  {
+   "span": "rainbows",
+   "concept": "rainbow-formation",
+   "verb": "introduces"
+  },
+  {
+   "span": "rainbows",
+   "concept": "index-depends-on-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "rainbows",
+   "concept": "law-of-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "rainbows",
+   "concept": "total-internal-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "rainbows",
+   "concept": "rainbow",
+   "verb": "introduces"
+  },
+  {
+   "span": "dispersion-help-and-nuisance",
+   "concept": "dispersion",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "p1",
+   "source_id": "fs-id2576344",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "index-and-wavelength",
+   "prompt": "一束白光以 $75.0^\\circ$ 的入射角从空气进入水中。光中的红光（660 nm）和紫光（410 nm）部分的折射角各是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the red part",
+      "value": 46.5,
+      "unit": "°",
+      "hint": "表 25.2 给出水在 660 nm 处的折射率为 1.331；取 $n_1 = 1.00$，用 $n_1\\sin\\theta_1 = n_2\\sin\\theta_2$。"
+     },
+     {
+      "part": "the violet part",
+      "value": 46.0,
+      "unit": "°",
+      "hint": "同样，只是水在 410 nm 处的折射率为 1.342。"
+     }
+    ],
+    "solution": "$\\sin\\theta_{\\text{R}} = \\frac{\\sin 75.0^\\circ}{1.331} = 0.7257$，所以 $\\theta_{\\text{R}} = 46.5^\\circ$；$\\sin\\theta_{\\text{V}} = \\frac{\\sin 75.0^\\circ}{1.342} = 0.7198$，所以 $\\theta_{\\text{V}} = 46.0^\\circ$。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2756320",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "index-and-wavelength",
+   "prompt": "（a）一束窄光束含有黄色（580 nm）和绿色（550 nm）两种波长，从聚苯乙烯进入空气，以 $30.0^\\circ$ 的入射角射到界面上。两种颜色射出时它们之间的夹角是多少？（b）它们要传播多远，才能相隔 1.00 mm？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angle between the colors",
+      "value": 0.043,
+      "unit": "°",
+      "hint": "聚苯乙烯的折射率在 580 nm 处为 1.492，在 550 nm 处为 1.493；由 $n\\sin 30.0^\\circ = \\sin\\theta_2$ 求出各自在空气中的角度，再相减。"
+     },
+     {
+      "part": "(b) the distance",
+      "value": 1.33,
+      "unit": "m",
+      "hint": "角度这样小，间隔等于距离乘以以弧度计的角度。"
+     }
+    ],
+    "solution": "（a）$\\sin\\theta_{\\text{Y}} = 1.492\\sin 30.0^\\circ = 0.7460$，$\\theta_{\\text{Y}} = 48.25^\\circ$；$\\sin\\theta_{\\text{G}} = 1.493\\sin 30.0^\\circ = 0.7465$，$\\theta_{\\text{G}} = 48.29^\\circ$；它们之间的夹角为 $0.043^\\circ$。\n\n（b）$0.043^\\circ = 7.5\\times 10^{-4}$ rad，$\\frac{1.00\\times 10^{-3}\\ \\text{m}}{7.5\\times 10^{-4}} = 1.33\\ \\text{m}$。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3088366",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "index-and-wavelength",
+   "prompt": "一束 610 nm 的光线以 $55.0^\\circ$ 的入射角从空气进入熔融石英。470 nm 的光要以多大的入射角进入火石玻璃，才能有相同的折射角？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 71.3,
+    "unit": "°",
+    "hint": "先求熔融石英中的折射角（610 nm 处 n = 1.456），再在火石玻璃中（470 nm 处 n = 1.684）把斯涅耳定律倒过来用。",
+    "solution": "$\\sin\\theta_2 = \\frac{\\sin 55.0^\\circ}{1.456} = 0.5626$；然后 $\\sin\\theta_1 = 1.684 \\times 0.5626 = 0.9474$，所以 $\\theta_1 = 71.3^\\circ$。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1341681",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "index-and-wavelength",
+   "figure": {
+    "src": "/media/ch25/Figure_26_05_06.jpg",
+    "alt": "一束蓝色入射光线，入射角为 45 度，射到一个每个角都为 60 度的等边三角形棱镜上。射到第一个表面时，光线发生折射并分裂成红色和紫色光线。这两束光线射到第二个表面上，并从棱镜射出。红光为 660 纳米，紫光为 410 纳米。",
+    "caption": "这块棱镜会把白光色散成彩虹般的各种颜色。入射角为 45.0°，红光和紫光射出的角度为 θ_R 和 θ_V。"
+   },
+   "prompt": "一束窄白光以 $45.0^\\circ$ 的入射角射入一块冕牌玻璃制成的棱镜，如图所示。光中的红光（660 nm）和紫光（410 nm）成分从棱镜射出时的角度 $\\theta_{\\text{R}}$ 和 $\\theta_{\\text{V}}$ 各是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "θ_R, red",
+      "value": 53.5,
+      "unit": "°",
+      "hint": "在第一个面上以 n = 1.512 折射；第二个面上的入射角等于 60.0° 减去第一个面上的折射角。"
+     },
+     {
+      "part": "θ_V, violet",
+      "value": 55.2,
+      "unit": "°",
+      "hint": "同样，只是 n = 1.530。"
+     }
+    ],
+    "solution": "红光：$\\sin\\theta_2 = \\frac{\\sin 45.0^\\circ}{1.512}$，$\\theta_2 = 27.9^\\circ$；在第二个面上的角度为 $60.0^\\circ - 27.9^\\circ = 32.1^\\circ$，由 $\\sin\\theta_{\\text{R}} = 1.512\\sin 32.1^\\circ$ 得 $\\theta_{\\text{R}} = 53.5^\\circ$。紫光：$\\theta_2 = 27.5^\\circ$，在第二个面上的角度为 $32.5^\\circ$，由 $\\sin\\theta_{\\text{V}} = 1.530\\sin 32.5^\\circ$ 得 $\\theta_{\\text{V}} = 55.2^\\circ$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "exer-00001",
+   "source_section": "25.7",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "index-and-wavelength",
+   "prompt": "批判性思考。由多种频率组成的光穿过冕牌玻璃。（a）在冕牌玻璃中，波长为 410 nm 的紫光成分比波长为 610 nm 的橙光成分传播得快多少？（b）在有摩擦的力学情形中，一个表面相对于另一个表面运动的时间越长，摩擦力作用得越多，在这一过程中使相对运动变慢。光在介质中也是这样吗？（c）在力学情形中，只要路径足够长，摩擦力就有可能使运动停下来。光在介质中也是这样吗？（d）在力学的摩擦情形中，物体一旦变慢，摩擦力不再作用后，除非有另一个力存在，它不会再加快。如果一束光线从介质射入真空，那么即使这意味着速率增大而又不是由额外的力引起的，它也会回到速率 $c$ 吗？",
+   "answer": {
+    "type": "number",
+    "part": "(a) the difference in speed",
+    "generated_by": "source",
+    "value": 2070000.0,
+    "unit": "m/s",
+    "hint": "表 25.2 给出冕牌玻璃在 410 nm 处为 1.530，在 610 nm 处为 1.514，介质中的速率为 $\\kv = \\kc/n$。",
+    "solution": "（a）$\\kv_{610} = \\frac{3.00\\times 10^{8}}{1.530}\\ \\text{m/s}$，$\\kv_{410} = \\frac{3.00\\times 10^{8}}{1.514}\\ \\text{m/s}$，并且 $3.00\\times 10^{8}\\left(\\frac{1}{1.514} - \\frac{1}{1.530}\\right)\\ \\text{m/s} = 2.07\\times 10^{6}\\ \\text{m/s}$。<sup class=\"fn\" data-note=\"c-p5-indices\"></sup>\n\n（b）不是。\n\n（c）不是。\n\n（d）是。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1333608",
+   "source_section": "25.4",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rainbows",
+   "figure": {
+    "src": "/media/ch25/Figure_26_04_08.jpg",
+    "alt": "一道双彩虹，有七种颜色的壮观色带。",
+    "caption": "双彩虹并不常见。（来源：InvictusOU812, Flickr）"
+   },
+   "prompt": "全反射有可能在彩虹中起作用吗？请用折射率和角度来解释，也许可以参考图。我们有些人见过双彩虹的形成。观察到三重彩虹在物理上有可能吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "全反射在彩虹中不起作用。进入水滴的光朝着法线方向折射，所以在水滴内部，它到达背面时的角度，恰好就是它进入时折射后的角度。这个角度总是小于水的临界角，约 48.8°。因此水滴背面的反射只是部分反射：大部分光从背面穿出去，反射回来的那部分形成彩虹，这就是彩虹很淡的原因。光在水滴内每多一次反射，就会在它自己的角度上送出另一道彩虹，所以三重彩虹在物理上是可能的。但每次反射都会损失大部分光，而经三次反射形成的第三道彩虹，位于天空中朝向太阳的一侧，被太阳周围明亮的天空淹没。它是如此之淡，几乎没有人看见过。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "p1",
+   "concept": "index-depends-on-wavelength"
+  },
+  {
+   "exercise": "p1",
+   "concept": "snells-law",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "index-depends-on-wavelength"
+  },
+  {
+   "exercise": "p2",
+   "concept": "dispersion",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "index-depends-on-wavelength"
+  },
+  {
+   "exercise": "p3",
+   "concept": "snells-law",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "dispersion"
+  },
+  {
+   "exercise": "p4",
+   "concept": "index-depends-on-wavelength",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "index-depends-on-wavelength"
+  },
+  {
+   "exercise": "p5",
+   "concept": "speed-in-a-medium-from-the-index",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rainbow-formation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "total-internal-reflection",
+   "weight": 1,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "prism",
+   "label": "顶角为 60° 的棱镜",
+   "figures": [
+    "sim-prism"
+   ]
+  },
+  {
+   "id": "drop",
+   "label": "水滴",
+   "figures": [
+    "sim-drop"
+   ]
+  },
+  {
+   "id": "observer",
+   "label": "背对太阳的观察者",
+   "figures": [
+    "sim-rainbow-arc"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p5-indices",
+   "kind": "correction",
+   "html": "书后答案把冕牌玻璃的两个折射率弄反了。表 25.2 给出 410 nm 处 $n = 1.530$，610 nm 处 $n = 1.514$，所以 $\\kv_{410} = c/1.530$，$\\kv_{610} = c/1.514$：速率相差 $2.07\\times 10^{6}\\ \\text{m/s}$，橙光更快。"
+  }
+ ]
+}
