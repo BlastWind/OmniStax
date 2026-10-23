@@ -1,0 +1,425 @@
+{
+ "id": "22.9",
+ "module": "m42382",
+ "chapter": "22",
+ "title": "电流产生的磁场：安培环路定理",
+ "short": "电流产生的磁场",
+ "lead": "<span data-concept=\"electric-current\">电流</span>产生<span data-concept=\"magnetic-field\">磁场</span>，而导线的形状决定这个磁场的形状。本节先用右手定则 2 画出长直导线的磁场，然后把导线弯成线圈，再把线圈叠成螺线管，即 MRI 磁体核心的线圈。",
+ "objectives": [
+  "计算产生磁场的电流。",
+  "用右手定则 2 确定电流的方向或磁场环路的方向。"
+ ],
+ "summary_html": "<ul><li>长直导线中<span data-concept=\"electric-current\">电流</span>所产生的<span data-concept=\"magnetic-field\">磁场</span>的强度由 $\\kBmag = \\frac{\\mu_0\\kIcur}{2\\pi\\kr}(\\text{长直导线})$ 给出，其中 $\\kIcur$ 为<span data-concept=\"electric-current\">电流</span>，$\\kr$ 为到导线的最短<span data-concept=\"distance\">距离</span>，常量 $\\mu_0 = 4\\pi\\times10^{-7}\\;\\text{T}\\cdot\\text{m/A}$ 为真空磁导率。</li><li>长直导线所产生的<span data-concept=\"magnetic-field\">磁场</span>的方向由右手定则 2（RHR-2）给出：<em>让右手拇指指向<span data-concept=\"electric-current\">电流</span>的方向，四指弯曲的方向就是它所产生的<span data-concept=\"magnetic-field\">磁场</span>环路的方向</em>。</li><li>沿任意路径流动的<span data-concept=\"electric-current\">电流</span>所产生的<span data-concept=\"magnetic-field\">磁场</span>，等于沿该路径各段所产生的磁场之和（或积分）（大小和方向与直导线的情形相同），由此得出电流与磁场之间的一般关系，称为安培环路定理。</li><li>圆形线圈中心的磁感应强度为 $\\kBmag = \\frac{\\mu_0\\kIcur}{2\\kR} (\\text{线圈中心处})$，其中 $\\kR$ 为线圈的半径。对于由 $N$ 匝组成的平面线圈，这个方程变为 $\\kBmag = \\mu_0 n\\kIcur/(2\\kR)$<sup class=\"fn\" data-note=\"c-coil-n\"></sup>。RHR-2 给出了线圈周围磁场的方向。长线圈称为螺线管。</li><li>螺线管内部的磁感应强度为 $\\kBmag = \\mu_0 n\\kIcur\\;\\;(\\text{螺线管内部})$，其中 $n$ 为螺线管单位<span data-concept=\"length\">长度</span>上的匝数。内部的磁场在大小和方向上都非常均匀。</li></ul>",
+ "notes": "指向出版方发电机模拟的链接已略去。本节的思考题在书的原文中没有标明题型，因其印在“思考题”标题之下，故按思考题处理；摘要中平面线圈磁场的形式 $\\kBmag = \\mu_0 n\\kIcur/(2\\kR)$ 按书中印出的样子保留，尽管本节正文用 $N$ 写出了同一结果。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。本模块没有印出“习题”部分，也没有“理解检测”框，所以本页把本节的四道 AP 题和一道思考题都放在末尾。书中给出答案的两道 AP 题，即沿载流导线射出的电子束，以及沿 y 轴的导线旁的磁场方向，设为判分选择题。另外两道在原文中没有答案，保留为开放题，并附有 AI 撰写的、已标明的建议思路：一道是经 240 V 加速后射入螺线管磁场的电子，另一道是要求画出沿 z 轴的导线周围磁场的那一题。书中印出的第三道 AP 题，开头有一段关于左手定则的文字，它回答的是上一题的第二问，而不是在提问，题干按书中印出的样子保留。思考题在原文中没有题型，按其所在的标题归类，其建议思路由 AI 撰写并已标明。本节没有任何内容留待以后的页面。",
+ "figures": [
+  {
+   "id": "sim-field-of-a-current",
+   "kind": "sim",
+   "number": "22.37",
+   "folds": [
+    "22.38",
+    "22.39"
+   ],
+   "originals": [
+    "/media/ch22/Figure_23_09_01a.jpg",
+    "/media/ch22/Figure_23_09_02a.jpg",
+    "/media/ch22/Figure_23_09_03a.jpg"
+   ],
+   "original_caption": "（图 22.37）（a）放在长直载流导线附近的指南针表明，磁感线形成以导线为圆心的圆环。（b）右手定则 2 指出，如果右手拇指指向电流的方向，四指就沿磁场的方向弯曲。该定则与所描绘出的长直导线的磁场一致，适用于任何一段电流。（图 22.38）（a）RHR-2 给出了载流线圈内外磁场的方向。（b）用指南针或霍尔探针做更细致的描绘，使图像更加完整。该磁场与条形磁铁的磁场相似。（图 22.39）（a）由于形状的缘故，长度为 l 的螺线管内部的磁场在大小和方向上都非常均匀，如笔直且间距均匀的磁感线所示。线圈外部的磁场几乎为零。（b）这幅剖视图显示了螺线管中的电流所产生的磁场。",
+   "widths": [
+    250,
+    450,
+    550
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "camera pulled back, names on panels, notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-toroid",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "current",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "mean radius into the note, canvas and readout notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "shapes-of-current",
+   "concept": "magnetic-field",
+   "verb": "uses"
+  },
+  {
+   "span": "shapes-of-current",
+   "concept": "current-is-the-source-of-magnetism",
+   "verb": "uses"
+  },
+  {
+   "span": "straight-wire",
+   "concept": "right-hand-rule-2",
+   "verb": "introduces"
+  },
+  {
+   "span": "straight-wire",
+   "concept": "field-of-a-long-straight-wire",
+   "verb": "introduces"
+  },
+  {
+   "span": "straight-wire",
+   "concept": "permeability-of-free-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "straight-wire",
+   "concept": "direction-of-field-lines",
+   "verb": "uses"
+  },
+  {
+   "span": "amperes-law",
+   "concept": "amperes-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "amperes-law",
+   "concept": "field-of-a-long-straight-wire",
+   "verb": "reinforces"
+  },
+  {
+   "span": "amperes-law",
+   "concept": "rules-for-magnetic-field-lines",
+   "verb": "uses"
+  },
+  {
+   "span": "amperes-law",
+   "concept": "biot-savart-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "loop",
+   "concept": "field-at-the-centre-of-a-loop",
+   "verb": "introduces"
+  },
+  {
+   "span": "loop",
+   "concept": "right-hand-rule-2",
+   "verb": "uses"
+  },
+  {
+   "span": "loop",
+   "concept": "electromagnet",
+   "verb": "uses"
+  },
+  {
+   "span": "solenoid",
+   "concept": "field-inside-a-solenoid",
+   "verb": "introduces"
+  },
+  {
+   "span": "solenoid",
+   "concept": "right-hand-rule-2",
+   "verb": "uses"
+  },
+  {
+   "span": "solenoid",
+   "concept": "permeability-of-free-space",
+   "verb": "uses"
+  },
+  {
+   "span": "solenoid",
+   "concept": "solenoid",
+   "verb": "introduces"
+  },
+  {
+   "span": "toroid",
+   "concept": "field-inside-a-solenoid",
+   "verb": "reinforces"
+  },
+  {
+   "span": "toroid",
+   "concept": "magnetic-confinement",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1555420",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "straight-wire",
+   "prompt": "一位实验者发射一束电子，在空气中形成可测量的可见径迹。电子束沿平行于载流导线的方向射出，电子在导线磁场的作用下沿圆形路径运动。假设电子的质量和电荷已知，要推断导线中的电流，需要测量哪些量？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "圆形路径的半径",
+     "电子与导线之间的平均距离",
+     "电子的速度",
+     "以上两项",
+     "以上全部"
+    ],
+    "correct": 4,
+    "hint": "写下这一情境所服从的两个关系：电荷在磁场中所做圆周运动的半径，以及长直导线在给定距离处产生的磁场。然后看，在已知电子的质量和电荷之后，还有哪些符号是未知的。",
+    "solution": "（e）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1892424",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solenoid",
+   "prompt": "电子从静止开始经 240 V 的电势差加速，射入由一个大螺线管产生的 3.5 mT 匀强磁场区域。电子进入磁场时最初沿 +<em>x</em> 方向运动，磁场方向垂直纸面向里。求：（a）电子在该匀强磁场中做圆周运动的半径；（b）电子刚进入螺线管的匀强磁场时所受磁力的初始方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "分两步依次求解。电势差对电子所做的全部功都变成了动能，所以 $\\kqe\\kV = \\frac{1}{2}m_{\\text{e}}\\kv^2$，进入磁场时的速率为 $\\kv = \\sqrt{2\\kqe\\kV/m_{\\text{e}}} = \\sqrt{2(1.60\\times10^{-19}\\ \\text{C})(240\\ \\text{V})/(9.11\\times10^{-31}\\ \\text{kg})} = 9.2\\times10^{6}\\ \\text{m/s}$。（a）螺线管内部的磁场是均匀的，磁力总与速度垂直，所以路径是一个圆，其半径为 $\\kr = m_{\\text{e}}\\kv/\\kqe\\kBmag = (9.11\\times10^{-31}\\ \\text{kg})(9.2\\times10^{6}\\ \\text{m/s})/[(1.60\\times10^{-19}\\ \\text{C})(3.5\\times10^{-3}\\ \\text{T})] = 1.5\\times10^{-2}\\ \\text{m}$，约为 15 mm。（b）让右手拇指沿 $+x$ 方向指向速度的方向，四指沿磁场指向纸面里：手掌向纸面上方推，这就是正电荷在该处所受力的方向。电子带负电，所以被推向相反的方向，即纸面下方，沿 $-y$ 方向。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2346142",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "straight-wire",
+   "prompt": "<p>就力的方向而言，我们使用左手定则。让左手拇指沿 +<em>x</em> 方向指向速度的方向，四指指向纸面里，可知磁力指向纸面下方，即沿 –<em>y</em> 方向。</p><p>一根沿 <em>y</em> 轴的导线通有沿 +<em>y</em> 方向的电流。在 +<em>x</em> 轴上靠近导线的一点，磁场的方向是什么？</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "背离导线",
+     "竖直向上",
+     "垂直纸面向里",
+     "垂直纸面向外"
+    ],
+    "correct": 2,
+    "hint": "直导线的磁场并不指向背离导线的方向，而是绕着导线环绕。让右手拇指沿电流的方向，看四指在 $+x$ 轴上的一点是沿哪个方向穿过的。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3324784",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "straight-wire",
+   "prompt": "设 <em>xy</em> 坐标平面为纸面。一根沿 <em>z</em> 轴的导线通有沿 +<em>z</em> 方向的电流（垂直纸面向外，即 $\\odot$）。画出这根导线附近的磁场图，标明磁场的方向。同时说明磁场的强度如何随到 <em>z</em> 轴的距离而变化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "导线在原点处垂直于纸面穿出，所以让右手拇指沿电流指向纸面外，四指逆时针弯曲。因此磁感线是以原点为圆心的圆，沿逆时针方向。在 $+x$ 轴上的一点，磁场指向 $+y$ 方向；在 $+y$ 轴上的一点，磁场指向 $-x$ 方向；依此绕一圈。画几个到原点的距离逐渐增大的这样的圆，并在每个圆上画一个箭头表示逆时针的方向。任一点的磁场与过该点的圆相切，而不是背离导线。至于强度，长直导线的磁场为 $\\kBmag = \\mu_0\\kIcur/2\\pi\\kr$，所以它与到 $z$ 轴的距离 $\\kr$ 成反比：距离加倍，磁场减半；距离变为三倍，磁场变为三分之一。离得越远，圆上的箭头画得越短，而在原点处不画，因为在那里长直导线的公式不再适用。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "eip-401",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "loop",
+   "prompt": "画一幅图，用 RHR-2 求出电动机中载流线圈的磁场方向（如图 22.33 中的线圈）。然后证明，线圈所受力矩的方向与同名磁极相斥、异名磁极相吸所产生的力矩方向相同。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把电动机的线圈画在永磁体的两极之间，让磁体的磁场在纸面上从其北极指向南极，并标出电流绕线圈的方向。现在对线圈本身应用 RHR-2。让右手拇指沿线圈一边的电流方向，四指弯曲的方向就是这一边磁场的方向。绕线圈一周都这样做，可知线圈自身的磁场从线圈的一个面穿出，从另一个面穿入。因此线圈是一块小磁体，磁场穿出的那个面是它的北极，另一个面是它的南极。再来比较这两块磁体。除正对的位置外，在任何位置上，线圈的北极都部分地朝向永磁体的北极，南极部分地朝向永磁体的南极。同名磁极相斥，异名磁极相吸，所以线圈会转动，直到它的北极正对着永磁体的南极。到了那里，正对着时，推力和拉力相平衡，转动随之停止。力矩 $\\ktau = N\\kIcur \\karea\\kBmag\\sin\\ktheta$ 的方向正是如此：线圈与磁场平行（侧向）时它最大，线圈正对磁场时降为零，并且总是使线圈趋向于正对。这两种说法其实是同一种说法，因为线圈自身的电流产生了它的磁极。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "field-of-a-long-straight-wire"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "radius-of-curvature",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "circular-motion-in-a-magnetic-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "field-inside-a-solenoid",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "right-hand-rule-1",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "right-hand-rule-2"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "field-of-a-long-straight-wire",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "right-hand-rule-2"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "field-of-a-long-straight-wire"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "right-hand-rule-2"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "field-at-the-centre-of-a-loop",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "torque-on-a-current-loop",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "wire",
+   "label": "先是直的、后被弯成线圈的导线",
+   "figures": [
+    "sim-field-of-a-current"
+   ]
+  },
+  {
+   "id": "solenoid",
+   "label": "例题 22.7 中的螺线管",
+   "figures": [
+    "sim-field-of-a-current",
+    "sim-toroid"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "右手",
+   "figures": [
+    "sim-field-of-a-current"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-coil-n",
+   "kind": "correction",
+   "html": "书中印出的是 $\\kBmag = \\mu_0 n\\kIcur/(2\\kR)$，其中 $n$ 是书中沿用的、表示螺线管单位长度上匝数的符号。对于由 $N$ 匝组成的平面线圈，中心处的磁场为 $\\kBmag = \\mu_0 N\\kIcur/(2\\kR)$。"
+  }
+ ]
+}

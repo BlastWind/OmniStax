@@ -1,0 +1,641 @@
+{
+ "id": "22.7",
+ "module": "m42398",
+ "chapter": "22",
+ "title": "载流导体所受的磁力",
+ "short": "载流导体所受的力",
+ "lead": "<span data-concept=\"magnetic-field\">磁场</span>会把穿过其中运动的电荷推向一侧，而导线中的电荷无法离开导线，所以磁场对电荷所起的作用，也就是对导线所起的作用。本节把这个推力累加到一段<span data-concept=\"length\">长度</span>导线内的每一个载流子上，得到整个导体所受的<span data-concept=\"force\">力</span>，用右手定则找出它的方向，并利用它沿着一根管子抽送流体，而无需运动部件。",
+ "objectives": [
+  "描述磁力对载流导体的作用。",
+  "计算载流导体所受的磁力。"
+ ],
+ "summary_html": "<ul><li>载流导体所受的磁力为 $\\kF = \\kIcur l\\kBmag\\sin\\theta,$ 其中 $\\kIcur$ 为<span data-concept=\"electric-current\">电流</span>，$l$ 为均匀<span data-concept=\"magnetic-field\">磁场</span> $\\kBmag$ 中一段直导体的<span data-concept=\"length\">长度</span>，$\\theta$ 为 $\\kIcur$ 与 $\\kBmag$ 之间的<span data-concept=\"angle\">夹角</span>。<span data-concept=\"force\">力</span>的方向遵循 RHR-1，拇指指向 $\\kIcur$ 的方向。</li></ul>",
+ "notes": "书中没有给出答案的五道习题已略去：已知电流所受的力、求电流的三种情形，赤道上一道闪电每米所受的力，25.0 cm 磁流体动力驱动装置中的水所受的力，与地磁场成 60° 角放置的汽车起动机电缆中的电流，以及用来测量磁感应强度的矩形线圈。本模块中其余内容均未略去：它的四幅图都重绘为交互式图形，书中的原图保留在旁边，泵和潜艇管道合为一幅图，因为它们是同一机构的两次绘制；两道保留的习题所引用的两幅图则复制到它们的习题卡片上。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。本节的四道思考题没有给出答案，因此它们的建议思路由 AI 撰写并已标明。有五道习题没有给出答案，已略去：已知电流所受的力、求电流的三种情形，赤道上的闪电，磁流体动力管，汽车起动机电缆，以及用来测量磁感应强度的矩形线圈。书中的原图复制到保留下来的两道方向题的习题卡片上。本节设置的 AP 题是书中在“磁场中运动电荷所受的力：实例与应用”一节中印出的那一道，它问的是地磁场中导线所受力的方向；它以 source_section 22.5 保留，因为导线所受的力是在本节而不是在那里引入的，22.5 自己的说明也这样写明。关于指南针附近的交流电和直流电的思考题仍留在这里，即书中安排它的位置，并标记到电流所产生的磁场。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-wire-in-field",
+   "kind": "sim",
+   "number": "22.29",
+   "originals": [
+    "/media/ch22/Figure_23_07_01a.jpg"
+   ],
+   "original_caption": "磁场对载流导线施加力，其方向由右手定则 1 给出（与作用在各个运动电荷上的力的方向相同）。这个力很容易大到足以使导线运动，因为典型的电流由数量极其庞大的运动电荷组成。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-angle-and-force",
+   "kind": "sim",
+   "number": "22.30",
+   "originals": [
+    "/media/ch22/Figure_22_07_02.jpg"
+   ],
+   "original_caption": "磁场中载流导线所受的力为 F = IlB sin θ，其方向由 RHR-1 给出。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "force",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "canvas, graph and readout notes dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mhd-pump",
+   "kind": "sim",
+   "number": "22.31",
+   "folds": [
+    "22.32"
+   ],
+   "originals": [
+    "/media/ch22/Figure_23_07_03a.jpg",
+    "/media/ch22/Figure_23_07_04a.jpg"
+   ],
+   "original_caption": "（图 22.31）磁流体动力学。通过这种流体的电流所受的磁力可以用作非机械泵。（图 22.32）核潜艇上的磁流体动力推进系统产生的湍流可以比螺旋桨少得多，并使潜艇运行得更安静。静音驱动潜艇的发展在书和电影《猎杀红色十月》中被戏剧化地表现出来。",
+   "widths": [
+    350,
+    450
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene lowered under the headline, choices as dropdowns, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "force-on-a-wire",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-on-a-wire",
+   "concept": "force-per-unit-length-on-a-wire",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-on-a-wire",
+   "concept": "direction-of-force-on-a-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-on-a-wire",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "force-on-a-wire",
+   "concept": "right-hand-rule-1",
+   "verb": "uses"
+  },
+  {
+   "span": "force-on-a-wire",
+   "concept": "drift-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "force-on-a-wire",
+   "concept": "current-and-drift-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "pumping-a-fluid",
+   "concept": "magnetohydrodynamic-pump",
+   "verb": "introduces"
+  },
+  {
+   "span": "pumping-a-fluid",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pumping-a-fluid",
+   "concept": "direction-of-force-on-a-current",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1476046",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-on-a-wire",
+   "prompt": "画一幅图 22.29 中情形的草图，标出载有电流的电子的运动方向，并用 RHR-1 验证导线所受力的方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "约定电流从纸面中朝着你流出，所以带负电荷的电子朝相反的方向漂移，即垂直纸面向里。对其中一个电子应用 RHR-1：它的速度垂直纸面向里，磁场从北极指向南极、横穿导线，所以手指沿着磁场，拇指垂直纸面向里，垂直于手掌的方向便朝下。这是一个垂直纸面向里运动的正电荷所受的力，而电子的电荷为负，所以电子所受的力与之相反，朝上。导线中的每一个载流子都被推向上方，又因为载流子无法离开导线，导线也就被推向上方；如果改让拇指沿着约定电流，RHR-1 一下子就给出这个方向。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1159784",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pumping-a-fluid",
+   "prompt": "验证磁流体动力驱动装置（例如图 22.31 中的那个）中力的方向与横穿流体传导电流的电荷的正负无关。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先取正载流子。它们沿约定电流的方向漂移，横穿管道，从一个电极到另一个电极，而用 RHR-1，拇指沿着这一漂移方向、手指沿着磁场，得到一个沿管道方向的力。再取负载流子。它们朝相反的方向漂移，所以力的定律中的速度反向；但它们的电荷也是负的，所以力第二次反向。两次反向使方向恢复原样，负载流子与正载流子一样，被沿着管道推动。这就是为什么像海水这样同时载有两种电荷的流体，会作为一个整体朝一个方向被驱动，而不是被拉开，也是为什么无论恰好是哪一种电荷承载了大部分电流，泵都能工作。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1582258",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pumping-a-fluid",
+   "prompt": "为什么磁流体动力驱动装置在海水中比在淡水中工作得更好？另外，为什么超导磁体是可取的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "流体所受的力等于横穿管道的电流乘以管道的宽度再乘以磁场，所以一切都取决于能否让很大的电流通过流体。海水中溶有大量的盐，每立方厘米里都有极多的离子，正是这些离子携带电荷。淡水中的离子少得多，所以在电极之间电压相同时，它所载的电流小得多，所受的力也小得多。超导磁体提供了乘积中的另一个因子。强磁场使这个力值得一用，但强到足以产生它的普通电磁铁会在自己的绕组中以热的形式耗散大量功率，并且需要冷却。超导绕组载流时没有电阻，所以它能稳定地保持强磁场而没有这种损耗。这在潜艇中尤其重要，因为那里的功率来自反应堆，而安静正是这种驱动的意义所在。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1747346",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-on-a-wire",
+   "prompt": "冰箱中的交流电流和起动汽车时的直流电流，哪一个更可能干扰指南针的读数？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "起动汽车的直流电流，是两者中更可能使指南针指针移动的。它非常大，有几百安培，并且在起动机转动的一两秒钟内沿一个方向稳定地流动，所以它产生的磁场也是稳定的，能使指针偏离北方足够长的时间而被看到。冰箱中的交流电流较小，并且每秒反向 120 次，即它每秒 60 个周期中的每个周期两次，所以它产生的磁场也随之反向。指南针的指针惯性太大，跟不上变化这么快的磁场，它所感受到的是两个方向的平均，也就是什么都没有。一个给定大小的稳定磁场会使指南针偏转；同样大小的快速交变磁场则让它仍然指向北方。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1636984",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-wire-in-field",
+   "figure": {
+    "src": "/media/ch22/Figure_23_07_05a-19c6.jpg",
+    "alt": "图 a 中磁场 B 垂直纸面向外，电流 I 向下。图 b 中 B 向右，I 向上。图 c 中 B 垂直纸面向里，I 向右。图 d 中 B 向右，I 向左。图 e 中 B 向上，I 垂直纸面向里。图 f 中 B 向左，I 垂直纸面向外。",
+    "caption": ""
+   },
+   "prompt": "在下图所示的六种情形中，电流所受磁力的方向各是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）西（左）\n（b）垂直纸面向里\n（c）北（上）\n（d）没有力\n（e）东（右）\n（f）南（下）"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1627441",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-wire-in-field",
+   "figure": {
+    "src": "/media/ch22/Figure_23_07_07a-ea79.jpg",
+    "alt": "图 a 中电流 I 矢量向上，力 F 矢量向左。图 b 中电流矢量向下，F 垂直纸面向里。图 c 中电流向左，力向上。",
+    "caption": ""
+   },
+   "prompt": "在下图所示的三种情形中，产生图示的、作用在电流上的磁力的磁场，其方向各是什么？假设 $\\kBmag$ 垂直于 $\\kIcur$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）垂直纸面向里\n（b）西（左）\n（c）垂直纸面向外"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2040654",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-angle-and-force",
+   "prompt": "（a）一条轻轨系统的直流输电线载有 1000 A 的电流，与地球 $\\text{5.00}\\times {\\text{10}}^{-5}\\;\\text{-T}$ 的磁场成 $30.0^\\circ$ 角。这条线路 100 m 长的一段所受的力是多大？（b）讨论这带来的实际问题（如果有的话）。",
+   "answer": {
+    "type": "number",
+    "value": 2.5,
+    "unit": "N",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "整个 100 m 都处在磁场中，所以用一段导线所受力的公式，其中 30.0° 的正弦为二分之一。",
+    "solution": "（a）2.50 N\n（b）每 100 m 导线所受的力约为半磅，远小于导线本身的重力。因此，它不会引起任何特别的问题。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2031126",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-wire-in-field",
+   "prompt": "一根载有 30.0 A 电流的导线从一块强磁体的两极之间穿过，与磁场垂直，处于磁场中的 4.00 cm 导线受到 2.16 N 的力。平均磁感应强度是多大？",
+   "answer": {
+    "type": "number",
+    "value": 1.8,
+    "unit": "T",
+    "generated_by": "source",
+    "hint": "由一段导线所受的力求解磁场，记住导线横跨磁场，所以正弦为 1，并且 4.00 cm 即 0.0400 m。",
+    "solution": "1.80 T"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1545547",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-angle-and-force",
+   "prompt": "（a）一根载有 8.00 A 电流的导线处在 1.20 T 的磁场中，如果其中 50.0 cm 长的导线受到 2.40 N 的磁力，导线与磁场之间的夹角是多大？（b）如果把导线转到与磁场成 $90^\\circ$ 角，导线所受的力是多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 30,
+      "unit": "°",
+      "hint": "由一段导线所受的力求解夹角的正弦，并取 0 到 90 度之间的角。"
+     },
+     {
+      "part": "(b)",
+      "value": 4.8,
+      "unit": "N",
+      "hint": "在 90 度时正弦为 1，所以力就是电流、长度和磁场三者的完整乘积。"
+     }
+    ],
+    "solution": "（a）30°\n（b）4.80 N"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id3182557",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-wire-in-field",
+   "source_section": "22.5",
+   "prompt": "一根南北走向的导线载有向南的电流。导线浸没在地磁场中，该磁场也是南北走向（水平分量指向北）。地磁场还有一个向下的竖直分量。导线所受磁力的方向是什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "西",
+     "东",
+     "上",
+     "北"
+    ],
+    "correct": 1,
+    "hint": "沿导线方向的那部分磁场不起作用，所以只剩下地磁场的竖直分量来推电流。让拇指指向南，手指向下。",
+    "solution": "（b）"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "direction-of-force-on-a-current"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "force-reverses-with-sign-of-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "magnetohydrodynamic-pump"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "direction-of-force-on-a-current"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "force-reverses-with-sign-of-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnetohydrodynamic-pump"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "current-is-the-source-of-magnetism"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "magnetic-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "direction-of-force-on-a-current"
+  },
+  {
+   "exercise": "p1",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "direction-of-force-on-a-current"
+  },
+  {
+   "exercise": "p5",
+   "concept": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "exercise": "p5",
+   "concept": "force-per-unit-length-on-a-wire",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "exercise": "p9",
+   "concept": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "exercise": "p9",
+   "concept": "direction-of-force-on-a-current",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "direction-of-force-on-a-current"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "wire",
+   "label": "导线",
+   "figures": [
+    "sim-wire-in-field"
+   ]
+  },
+  {
+   "id": "magnet",
+   "label": "磁体",
+   "figures": [
+    "sim-wire-in-field"
+   ]
+  },
+  {
+   "id": "duct",
+   "label": "管道",
+   "figures": [
+    "sim-mhd-pump"
+   ]
+  },
+  {
+   "id": "lab-magnet",
+   "label": "实验室磁体",
+   "figures": [
+    "sim-mhd-pump"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "force-on-wire",
+   "what": "载流导线所受的磁力",
+   "source": "《大学物理（第2版）》，22.7 载流导体所受的磁力",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "各个电荷所受的力可以相加，因为它们的方向相同。",
+       "src": "22.7"
+      },
+      {
+       "text": "$\\kBmag$ 在长度为 $\\kl$ 的一段导线上是均匀的，在其他地方为零，该段导线内有 $N$ 个载流子。",
+       "src": "22.7"
+      },
+      {
+       "tex": "N = n\\kvol",
+       "src": "22.7"
+      },
+      {
+       "tex": "\\kvol = \\karea\\kl",
+       "src": "22.7"
+      },
+      {
+       "tex": "n\\kq\\karea\\kvd = \\kIcur",
+       "src": "20.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{f}{\\kq\\kvd\\kBmag\\sin\\ktheta}",
+      "src": "22.4",
+      "why": "以漂移速度运动的单个电荷所受的力。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{f}{(\\kq\\kvd\\kBmag\\sin\\ktheta)}\\mk{N}{(N)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{f}{(\\kq\\kvd\\kBmag\\sin\\ktheta)}\\mk{N}{(n\\kvol)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{f}{(\\kq\\kvd\\kBmag\\sin\\ktheta)}\\mk{N}{(n\\karea\\kl)}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{(n\\kq\\karea\\kvd)}\\mk{l}{\\kl}\\mk{B}{\\kBmag\\sin\\ktheta}",
+       "uses": [],
+       "map": {
+        "f": [
+         "I",
+         "B"
+        ],
+        "N": [
+         "I",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcur}\\mk{l}{\\kl}\\mk{B}{\\kBmag\\sin\\ktheta}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "22.7"
+    }
+   ]
+  }
+ ]
+}

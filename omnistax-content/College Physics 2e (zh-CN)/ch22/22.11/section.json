@@ -1,0 +1,1305 @@
+{
+ "id": "22.11",
+ "module": "m42388",
+ "chapter": "22",
+ "title": "磁学的更多应用",
+ "short": "磁学的更多应用",
+ "lead": "本章以其结论所造就的仪器作结。本节依次讲述质谱仪及与之衔接的正交场、阴极射线管中电子束的偏转、使磁共振成像能够判断信号来自身体何处的变化磁场，以及跳动的心脏和工作中的脑所产生的微弱磁场。",
+ "objectives": [
+  "描述磁学的一些应用。"
+ ],
+ "summary_html": "<ul><li>相互正交（垂直）的电场和<span data-concept=\"magnetic-field\">磁场</span>起着<span data-concept=\"velocity\">速度</span>选择器的作用，对任何电荷产生大小相等、方向相反的<span data-concept=\"force\">力</span>，这些电荷的<span data-concept=\"velocity\">速度</span>垂直于这两个场，且速度的大小为$$\\kv = \\frac{\\kEf}{\\kBmag}.$$</li></ul>",
+ "notes": "本节的三十五道习题中，有十七道因书中未给出答案而被略去，其中包括书中的两道自拟习题。PhET 模拟“磁体与指南针”（Magnet and Compass）的链接与本章的另外三个一并略去。“批判性思考”习题的答案按书中印刷的原样保留，尽管其中的演算除以的是 $9.11 \\times 10^{-11}$，而它本意是电子质量 $9.11 \\times 10^{-31}$ kg，这就是它给出的时间如此之大的原因。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案来自书后答案。书中在此处印出的四十一道习题是本章的复习题，而不是本节自己的习题，因此每道题所标注的概念，涵盖“磁场中运动电荷所受的力”、“霍尔效应”、“载流导体所受的磁力”、“载流线圈所受的力矩”、“电流产生的磁场”和“两根平行导体之间的磁力”各节，且没有一道被移到别的小节。六道思考题在书中没有答案，因此每道都保留为开放题，并附有 AI 撰写的建议思路。十七道习题没有给出答案，因而被略去：圆环和两个线圈中的磁场方向、电动机线圈中心处的磁场、每米 10,000 匝的螺线管内的磁场、汽车起动机电缆的距离、接触圆环的导线、两道矢量加法题中的第二道、输电线下方的磁场、把电子加速到给定速率的电压、非机械式水表、电流计线圈上的力矩、圆轨道的周期、弯曲飞行的棒球、靠排斥力托起的导线、带有不合理电荷的氦离子、血管中的霍尔电压，以及两道自拟习题。有三道保留下来的习题要用到一个被略去的或位于另一小节的题目，因此每道都在自己的题干中用书中的原话引出要用的螺线管、周期或磁流体动力驱动装置。",
+ "figures": [
+  {
+   "id": "sim-mass-spectrometer",
+   "kind": "sim",
+   "number": "22.41",
+   "originals": [
+    "/media/ch22/Figure_23_11_01a.jpg"
+   ],
+   "original_caption": "这台质谱仪用速度选择器来固定 $v$，使路径的半径与质量成正比。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "magnetic-field",
+    "electric-field",
+    "velocity",
+    "position",
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes dropped, legend and brackets clear of the chamber"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-velocity-selector",
+   "kind": "sim",
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "velocity",
+    "force",
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "force and speed labels apart, notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-crt-steering",
+   "kind": "sim",
+   "number": "22.42",
+   "originals": [
+    "/media/ch22/Figure_23_11_02a.jpg"
+   ],
+   "original_caption": "阴极射线管（CRT）之所以得名，是因为电子射线起源于电子枪中的阴极。许多 CRT 用磁线圈使电子束偏转。在这个例子中，电子束向下移动。另一对水平线圈则会使电子束沿水平方向偏转。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "voltage",
+    "velocity",
+    "magnetic-field",
+    "force",
+    "position",
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "canvas note dropped, readout note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mri-gradient",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library silhouette patient, readout summed at zero gradient, note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-field-scale",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "heart label kept on the stage, notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "spectrometry",
+   "concept": "mass-spectrometry",
+   "verb": "introduces"
+  },
+  {
+   "span": "spectrometry",
+   "concept": "velocity-selector",
+   "verb": "introduces"
+  },
+  {
+   "span": "spectrometry",
+   "concept": "radius-of-curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "spectrometry",
+   "concept": "circular-motion-in-a-magnetic-field",
+   "verb": "uses"
+  },
+  {
+   "span": "spectrometry",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "spectrometry",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "spectrometry",
+   "concept": "uniform-field-between-plates",
+   "verb": "uses"
+  },
+  {
+   "span": "crt",
+   "concept": "steering-an-electron-beam",
+   "verb": "introduces"
+  },
+  {
+   "span": "crt",
+   "concept": "right-hand-rule-1",
+   "verb": "reinforces"
+  },
+  {
+   "span": "crt",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "reinforces"
+  },
+  {
+   "span": "crt",
+   "concept": "speed-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "crt",
+   "concept": "radius-of-curvature",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mri",
+   "concept": "magnetic-resonance-imaging",
+   "verb": "introduces"
+  },
+  {
+   "span": "mri",
+   "concept": "torque-on-a-current-loop",
+   "verb": "uses"
+  },
+  {
+   "span": "mri",
+   "concept": "current-is-the-source-of-magnetism",
+   "verb": "uses"
+  },
+  {
+   "span": "mri",
+   "concept": "field-inside-a-solenoid",
+   "verb": "uses"
+  },
+  {
+   "span": "mri",
+   "concept": "the-tesla",
+   "verb": "uses"
+  },
+  {
+   "span": "mri",
+   "concept": "nuclear-magnetic-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "biomagnetic",
+   "concept": "biomagnetic-measurement",
+   "verb": "introduces"
+  },
+  {
+   "span": "biomagnetic",
+   "concept": "current-is-the-source-of-magnetism",
+   "verb": "reinforces"
+  },
+  {
+   "span": "biomagnetic",
+   "concept": "the-tesla",
+   "verb": "reinforces"
+  },
+  {
+   "span": "biomagnetic",
+   "concept": "magnetocardiogram",
+   "verb": "introduces"
+  },
+  {
+   "span": "biomagnetic",
+   "concept": "magnetoencephalogram",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2020144",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biomagnetic",
+   "prompt": "对与脑活动相关的微弱而起伏的磁场所作的测量称为脑磁图（MEG）。脑的磁场意味着神经冲动是协调的还是不协调的？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们意味着神经冲动是协调的。每个神经冲动都是一股电流，而电流产生磁场；但神经冲动在脑中沿各个方向传播，一个神经冲动的磁场，与沿相反方向传播的神经冲动的磁场方向相反。如果神经冲动是不协调的，各个电流的磁场就会在很大程度上相互抵消，头部之外就没有什么留下来可供测量。能够检测到磁场，哪怕这个磁场如此微弱，也说明许多神经细胞正在同步地、沿同一方向传导它们的电流，因而它们的磁场是相加而不是抵消。这也是 MEG 反映的是活动而不是结构的原因：它所看到的是一同放电的细胞。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2125883",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mri",
+   "prompt": "讨论在 MRI 成像过程中，患者运动着的心脏上产生霍尔电压的可能性。并讨论起搏器导线上的同样效应。（起搏器患者不接受 MRI 检查，这一事实意义重大。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在心脏中运动的血液两端可以出现几毫伏的霍尔电压，起搏器的导线上也会出现同类的电压。血液是导体，而心脏使它横穿磁体的磁场运动。磁场把血液中的正离子和负离子分别推向血管的相对两壁，直到它们之间的电场与磁力平衡，于是血管两端出现霍尔电动势 $\\kemfhall = \\kBmag\\kl\\kv$。取 $\\kBmag = 1.5\\;\\text{T}$，主动脉直径 $\\kl = 2.0\\;\\text{cm}$，血液流速 $\\kv = 0.30\\;\\text{m/s}$，则 $\\kemfhall = (1.5\\;\\text{T})(0.020\\;\\text{m})(0.30\\;\\text{m/s}) = 9\\;\\text{mV}$，是心电图从心脏上拾取的毫伏级信号的几倍。起搏器的导线是随心脏一起运动的良导体，所以同样的效应会在导线上驱动出电压。起搏器感知心脏自己的电信号，并据此刺激心脏，而这样大小的感应电压可能被误当作心跳，或者作为心跳被送到心脏。强磁场还会对装置中的任何磁性材料施加力。这些就是起搏器患者不接受 MRI 检查的原因。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1911084",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mri",
+   "prompt": "一位患者在 MRI 设备中快速把头转向一侧，感到片刻头晕，嘴里还有一种奇怪的味道。讨论可能的原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "快速转头使头部的导电液体横穿 1 至 2 T 的磁场运动，而导体横穿磁场运动时，两端会产生电压，这与霍尔探针所读出的霍尔电动势 $\\kemfhall = \\kBmag\\kl\\kv$ 相同。内耳半规管中的液体是身体用来感知转动的，出现在它两端的电压，或者作用在其中离子上的力，会被脑解读为并未发生的运动，这就是头晕。舌头湿润、带盐，并且神经丰富，其上的小电压会直接刺激味觉感受器，感觉就是金属味。这两种效应都只在头部运动时持续，因为产生电压的是横穿磁场的运动，而不是磁场本身。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1998017",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spectrometry",
+   "prompt": "有人告诉你，在某个区域中存在均匀的电场或磁场。你可以做什么测量或观察来确定是哪一种？（忽略地磁场。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把一个电荷放在该区域中并让它静止。电场对电荷施加力 $\\kq\\kEf$，无论电荷是否在运动，所以电荷会沿着电场方向被推动，做直线运动。磁场施加的力是 $\\kq\\kv\\kBmag\\sin\\ktheta$，在速率为零时它为零，所以静止的电荷保持静止。如果静止的电荷不动，就让一个电荷穿过该区域：电场可以沿运动方向作用并改变速率，而磁力总是垂直于速度，不做功，并使路径弯成圆，速率不变。还有一种检验也能区分二者：沿磁场方向射入的电荷根本不受力，而不存在使电荷不受电场作用的方向。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1503005",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spectrometry",
+   "prompt": "磁流体动力学（MHD）的一个例子来自河流（盐水）的流动。这种流体与地磁场相互作用，在河的两岸之间产生电势差。你将如何计算这个电势差？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电势差就是霍尔电动势 $\\kemfhall = \\kBmag\\kl\\kv$，其中河流是运动的导体。水流带着溶解的离子以速率 $\\kv$ 前进，地磁场中同时垂直于水流方向和横穿河流连线的分量，把正离子推向一岸，把负离子推向另一岸。离子聚集在两岸，直到它们建立的电场与磁力平衡，两岸之间的电势差就是 $\\kemfhall = \\kBmag\\kl\\kv$，其中 $\\kl$ 是河的宽度。对于一条水平的河，水流方向和横穿河流的连线都是水平的，所以起作用的磁场分量是竖直分量，不论河流朝哪个方向流。测出河的宽度和水流的平均速率，并取该处地磁场的竖直分量即可。一条 100 m 宽的河以 1.0 m/s 的速率流过竖直分量为 $5.0 \\times 10^{-5}\\;\\text{T}$ 的磁场，两岸之间的电势差为 $\\kemfhall = (5.0 \\times 10^{-5}\\;\\text{T})(100\\;\\text{m})(1.0\\;\\text{m/s}) = 5.0\\;\\text{mV}$。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1485030",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "画出两个质量之间的引力场线、正电荷与负电荷之间的电场线、两个正电荷之间的电场线，以及磁体周围的磁感线。定性地描述这些场之间的差异，以及产生这些场线的实体之间的差异。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两个质量之间的引力场线从每个质量指向另一个，并终止于它们，因为引力永远是吸引的，而且质量只有一种符号。这幅图看上去与两个异号电荷的电场线相似，而任何质量的排列都给不出第二幅图。正电荷与负电荷之间的电场线从正电荷出发，在两者之间的空隙中弯曲，终止于负电荷，因为电场线始于正电荷，止于负电荷。两个正电荷之间的电场线从两者出发，并相互弯曲着离开。在两电荷连线中点处有一个空点，两者的贡献在那里抵消，没有一条线从一个电荷穿到另一个电荷。条形磁铁周围的磁感线既不起始也不终止。在磁体之外，它们从北极出发，弯曲着绕向南极，在磁体之内它们从南极继续到北极，所以每条线都是闭合的回线。最后这一差异才是最重要的。电荷可以单独存在，所以电场线有端点。磁极不能单独存在，因为把磁体切成两半得到的是两个磁体，而不是一个北极和一个南极，所以磁感线没有端点。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2626487",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_06a.jpg",
+    "alt": "图 a 显示电流 I 由下向上流动。图 b 显示一个电子以速度 v 由下向上运动。图 c 显示电流 I 由上向下流动。"
+   },
+   "prompt": "指出下图所示三种情形中，电流左侧和右侧所产生的磁场是垂直于纸面向里还是向外。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）右侧——垂直纸面向里，左侧——垂直纸面向外（b）右侧——垂直纸面向外，左侧——垂直纸面向里（c）右侧——垂直纸面向外，左侧——垂直纸面向里"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "eip-906",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_08a.jpg",
+    "alt": "图 a 显示圆环中央的磁场垂直于纸面向里。图 b 显示线圈内的磁场由左向右。图 c 显示线圈内的 B 由右向左。"
+   },
+   "prompt": "下图所示的圆环和线圈中，电流的方向各是怎样的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）顺时针（b）从左侧看为顺时针（c）从右侧看为顺时针"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2755434",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "为了弄清 MRI 为什么要用铁来增强线圈所产生的磁场，计算在没有铁的情况下，要在一个每米 400 匝、半径为 0.660 m 的圆形线圈的中心产生 1.20 T 的磁场（典型的 MRI 仪器的磁场）所需的电流。质子的磁场近似于一个半径为 $0.650 \\times 10^{-15}\\ \\text{m}$、载有 $1.05 \\times 10^{4}\\ \\text{A}$ 电流的圆形载流线圈的磁场。这样一个线圈中心处的磁场是多少？",
+   "answer": {
+    "type": "number",
+    "value": 10100000000000.0,
+    "unit": "T",
+    "part": "the field at the center of the proton’s loop",
+    "generated_by": "source",
+    "hint": "单个圆环中心处的磁场是 $\\kBmag = \\mu_0\\kIcur/2\\kR$。对于这个线圈（每米有许多匝），则改用 $\\kBmag = \\mu_0 n\\kIcur$，并据此解出电流。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2227976",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "非核动力潜艇在潜航时使用蓄电池供电。（a）求距一根载有 1200 A 电流、从蓄电池通向潜艇驱动机构的直线导线 50.0 cm 处的磁场。（b）如果往返于驱动机构的两根导线并排放置，磁场是多少？（c）讨论这可能对潜艇上没有屏蔽的指南针产生的影响。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.00048,
+      "unit": "T",
+      "hint": "长直导线的磁场是 $\\kBmag = \\mu_0\\kIcur/2\\pi\\kr$，其中 $\\mu_0 = 4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 0,
+      "unit": "T",
+      "hint": "两根导线载有大小相同、方向相反的电流。求出在这对导线旁一点处，每根导线把它的磁场推向哪个方向，再把两个贡献相加。"
+     }
+    ],
+    "solution": "（a）$4.80 \\times 10^{-4}\\ \\text{T}$（b）零（c）如果导线不成对放置，磁场比地磁场强约 10 倍，因而可能严重干扰指南针的使用。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1844426",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "上一题所描述的螺线管——“一个每米 10,000 匝、载有 20.0 A 电流的螺线管内部的磁场有多强？”——中需要多大的电流，才能产生地磁场 $5.00 \\times 10^{-5}\\ \\text{T}$ 的 $10^{4}$ 倍的磁场？",
+   "answer": {
+    "type": "number",
+    "value": 39.8,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "螺线管内部的磁场是 $\\kBmag = \\mu_0 n\\kIcur$，其中 $n$ 是每米的匝数。先算出所需的磁场，再解出电流。"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1572959",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "测量会影响被测量的系统，例如“载流导体所受的磁力”一节中的载流线圈。（a）通过计算一个直径 20.0 cm、载有 5.00 A 电流的圆形线圈中心处的磁场，估算该线圈产生的磁场。（b）如果这个线圈自身的磁场使被测磁场的改变必须小于 0.0100%，则用这个线圈能测量的最小磁感应强度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.14e-05,
+      "unit": "T",
+      "hint": "在单个圆环的中心，磁场为 $\\kBmag = \\mu_0\\kIcur/2\\kR$，而 $\\kR$ 是直径的一半。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.314,
+      "unit": "T",
+      "hint": "线圈自身的磁场必须小于被测磁场的 0.0100%，所以用（a）的答案除以写成小数的这个分数。"
+     }
+    ],
+    "solution": "（a）$3.14 \\times 10^{-5}\\ \\text{T}$（b）0.314 T"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1869627",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_10a-c140.jpg",
+    "alt": "图 a 显示三根相互平行、排成等边三角形的导线的横截面。左下方的导线载有十点零安培的电流，垂直于纸面向里。右下方的导线载有二十点零安培的电流，同样垂直于纸面向里。三角形顶端的导线载有五点零安培的电流，垂直于纸面向外。这些导线构成的三角形每边长十点零厘米。图 b 显示四根平行导线排成边长为二十点零厘米的正方形。上方的两根导线载有十点零安培的电流，垂直于纸面向外。下方的两根导线载有五点零安培的电流，垂直于纸面向里。"
+   },
+   "prompt": "利用矢量加法的法则对每根导线的贡献求和，求下图（a）中到各导线等距的那一点处磁场的大小和方向。",
+   "answer": {
+    "type": "number",
+    "value": 7.55e-05,
+    "unit": "T",
+    "part": "the magnitude",
+    "generated_by": "source",
+    "solution": "$7.55 \\times 10^{-5}\\ \\text{T}$，角度为 $23.4^\\circ$",
+    "hint": "到三根导线等距的点是三角形的中心，与每根导线的距离为 $\\kr = a/\\sqrt{3}$，其中 $a$ 是边长。对每根导线求出 $\\mu_0\\kIcur/2\\pi\\kr$，用右手定则 2 使每个贡献垂直于该导线到该点的连线，再把这三个贡献按矢量相加。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1206969",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_10a-c140.jpg",
+    "alt": "图 a 显示三根相互平行、排成等边三角形的导线的横截面。左下方的导线载有十点零安培的电流，垂直于纸面向里。右下方的导线载有二十点零安培的电流，同样垂直于纸面向里。三角形顶端的导线载有五点零安培的电流，垂直于纸面向外。这些导线构成的三角形每边长十点零厘米。图 b 显示四根平行导线排成边长为二十点零厘米的正方形。上方的两根导线载有十点零安培的电流，垂直于纸面向外。下方的两根导线载有五点零安培的电流，垂直于纸面向里。"
+   },
+   "prompt": "如果下方两根导线中的电流都是 10.0 A、垂直于纸面向里，则上图（a）中顶端的导线需要多大的电流，才能使到各导线等距的那一点处的磁场为零？",
+   "answer": {
+    "type": "number",
+    "value": 10.0,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "三根导线到该点的距离相同，所以每根导线贡献的磁场都与它自己的电流成正比。先把下方两根导线的两个相等的贡献按矢量相加，再问第三根导线必须提供多大的磁场才能抵消这个结果。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1582417",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_11a.jpg",
+    "alt": "示意图：一个摆在磁体的两极之间摆动。磁场 B 由北极指向南极。"
+   },
+   "prompt": "（a）如下图所示，装置一个摆，使其摆锤（一块薄铜盘）在永磁体的两极之间摆动。如果摆锤带有 $0.250\\ \\mu\\text{C}$ 的正电荷，并从比其最低点高 30.0 cm 处释放，那么它在路径最低点所受磁力的大小和方向是什么？磁感应强度为 1.50 T。（b）如果摆锤的质量为 30.0 克，并挂在一根柔软的细绳上，那么它在摆动最低处的加速度是多少？分析中务必包含一幅受力图。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 9.09e-07,
+      "unit": "N",
+      "hint": "由能量守恒得到最低处的速率 $\\kv = \\sqrt{2\\kg\\kh}$，于是力为 $\\kF = \\kq\\kv\\kBmag$，因为最低点的速度垂直于磁场。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.03e-05,
+      "unit": "m/s²",
+      "hint": "细绳是柔软的，所以它在磁力的方向上不能提供力。沿该方向应用牛顿第二定律，得到加速度等于磁力除以质量。"
+     }
+    ],
+    "solution": "（a）$9.09 \\times 10^{-7}\\ \\text{N}$，向上（b）$3.03 \\times 10^{-5}\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1533546",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "求一个 25.0 MeV 的质子垂直于回旋加速器的 1.20 T 磁场运动时，其路径的曲率半径。",
+   "answer": {
+    "type": "number",
+    "value": 60.2,
+    "unit": "cm",
+    "generated_by": "source",
+    "hint": "先把能量换算成速率：1 MeV 为 $1.60 \\times 10^{-13}$ J，质量为 $1.67 \\times 10^{-27}$ kg 的质子满足 $\\kKE = \\tfrac{1}{2}m\\kv^2$。然后用 $\\kr = m\\kv/\\kq\\kBmag$。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id2077062",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）利用“载流导体所受的磁力”一节中给出的磁流体动力驱动装置的数值——“在一个使用直径 25.0 cm 的管子的磁流体动力驱动装置中，如果有 100 A 的电流横穿管子并垂直于 2.00 T 的磁场，那么水受到多大的力？”——并假设该力均匀地作用于流体，计算所产生的压强，单位为 $\\text{N/m}^{2}$。（b）这是否占一个标准大气压的相当大一部分？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1020.0,
+      "unit": "N/m²",
+      "hint": "流体所受的力为 $\\kF = \\kIcur\\ell\\kBmag$，其中 $\\ell$ 是管的直径；压强是力除以它所作用的面积，这里即管的横截面。"
+     }
+    ],
+    "solution": "（a）$1.02 \\times 10^{3}\\ \\text{N/m}^2$（b）不占一个标准大气压的相当大一部分"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id1426709",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "用来定义安培的电流天平，其设计使通过它的电流保持恒定，导线之间的距离也是如此。即便如此，如果导线的长度随温度变化，它们之间的力也会改变。如果导线是铜的，每度的力会有百分之几的变化？",
+   "answer": {
+    "type": "number",
+    "value": 0.0017,
+    "unit": "%/°C",
+    "generated_by": "source",
+    "solution": "$17.0 \\times 10^{-4}\\ \\text{\\%/}^\\circ\\text{C}$",
+    "hint": "电流和间距保持不变时，力与处于磁场中的导线长度成正比，所以力的相对变化就是长度的相对变化，$\\Delta L/L = \\alpha\\Delta T$，式中取铜的线胀系数。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1376808",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_14a-7734.jpg",
+    "alt": "回旋加速器示意图。",
+    "caption": "回旋加速器通过在金属 D 形盒上施加交流电压来加速在磁场中绕行的带电粒子，粒子在两个 D 形盒之间运动，因此每绕一圈能量增加两次。频率是恒定的，因为它与粒子的能量无关——轨道半径只是随能量增大，直到粒子接近边缘，被引出用于各种实验和应用。"
+   },
+   "prompt": "回旋加速器按下图所示加速带电粒子。利用上一题的结果——垂直于匀强磁场运动的带电粒子做圆周运动的周期为 $T = 2\\pi m/(qB)$——计算质子在 1.20 T 的磁场中所需的加速电压的频率。",
+   "answer": {
+    "type": "number",
+    "value": 18.3,
+    "unit": "MHz",
+    "generated_by": "source",
+    "hint": "频率是周期的倒数，所以 $f = \\kq\\kBmag/2\\pi m$。质子的质量为 $1.67 \\times 10^{-27}$ kg，电荷为 $1.60 \\times 10^{-19}$ C，而速率和轨道半径都不出现在其中。"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1895114",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）在地磁场指向正北的地方，一根载有正东方向电流的导线所受的力是什么方向？两者都平行于地面。（b）如果导线载有 20.0 A 的电流，磁感应强度为 $3.00 \\times 10^{-5}\\ \\text{T}$，计算每米所受的力。（c）直径为多大的铜导线，其重力能被这个力支撑？（d）计算所需的每米电阻和每米电压。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(b)",
+      "value": 0.0006,
+      "unit": "N/m",
+      "hint": "电流和磁场相互垂直，所以单位长度上的力为 $\\kF/\\ell = \\kIcur\\kBmag$。"
+     },
+     {
+      "part": "(c)",
+      "value": 94.1,
+      "unit": "μm",
+      "hint": "令一米导线的重力——即密度乘以横截面积乘以 $\\kg$——等于（b）中每米所受的力，解出直径。"
+     },
+     {
+      "part": "(d) the resistance per meter",
+      "value": 2.47,
+      "unit": "Ω/m",
+      "hint": "用 $\\kRes = \\rho L/A$，其中取铜的电阻率和（c）中所求直径对应的横截面积。"
+     },
+     {
+      "part": "(d) the voltage per meter",
+      "value": 49.4,
+      "unit": "V/m",
+      "hint": "对一米导线应用欧姆定律：每米电压等于电流乘以每米电阻。"
+     }
+    ],
+    "solution": "（a）竖直向上（b）$6.00 \\times 10^{-4}\\ \\text{N/m}$（c）$94.1\\ \\mu\\text{m}$（d）2.47 Ω/m，49.4 V/m"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "eip-655",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）一个以 35.0 m/s 的速率垂直于地球 $5.00 \\times 10^{-5}\\ \\text{T}$ 磁场抛出的棒球，受到 1.00 N 的磁力，求它所带的电荷。（b）这个结果有什么不合理之处？（c）是哪个假设或前提导致的？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 571,
+      "unit": "C",
+      "hint": "解 $\\kF = \\kq\\kv\\kBmag\\sin\\theta$ 求电荷，其中夹角为直角，所以正弦等于 1。"
+     }
+    ],
+    "solution": "（a）571 C（b）不可能在这么小的物体上有如此大量的分离电荷。（c）在地磁场中，1.00 N 的力太大了，不现实。"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id2854755",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一位发明家想通过使一根 1.00 m 长的导线垂直于地球 $5.00 \\times 10^{-5}\\ \\text{T}$ 的磁场运动，来产生 120 V 的电。（a）求导线必须运动的速率。（b）这个结果有什么不合理之处？（c）是哪个假设导致的？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2400000.0,
+      "unit": "m/s",
+      "hint": "长度为 $\\ell$ 的导体以速率 $\\kv$ 横穿磁场 $\\kBmag$ 运动时，其两端产生 $\\kemfhall = \\kBmag\\ell\\kv$。据此解出速率。"
+     }
+    ],
+    "solution": "（a）$2.40 \\times 10^{6}\\ \\text{m/s}$（b）这个速率太高，不切实际，因为它超过了光速的 1%。（c）认为可以用地磁场中的一根导线合理地产生这样的电压，这一假设是不合理的。"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id2126149",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一位测量员在距一条长直的 200 kV 直流输电线 100 m 处，怀疑它的磁场可能与地磁场相当，并影响指南针的读数。（a）计算在这个距离上产生 $5.00 \\times 10^{-5}\\ \\text{T}$ 的磁场所需的导线电流。（b）这个结果有什么不合理之处？（c）是哪个假设或前提导致的？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 25.0,
+      "unit": "kA",
+      "hint": "解长直导线的磁场公式 $\\kBmag = \\mu_0\\kIcur/2\\pi\\kr$，求电流。"
+     }
+    ],
+    "solution": "（a）25.0 kA（b）这个电流高得不合理。它意味着输电线中输送的总功率为 $50.0 \\times 10^{9}$ W，对于标准输电线来说实在太高。（c）100 米对于获得所需的磁感应强度来说是很远的距离。此外，输电线使用同轴电缆，因此由于相反电流的抵消，直流输电线几乎没有磁场。测量员的担忧对他的磁场测量不构成问题。"
+   }
+  },
+  {
+   "id": "p18",
+   "source_id": "exer-14759",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "存在一个沿 <em>x</em> 轴正方向的磁场，大小为 $2.00 \\times 10^{-7}\\ \\text{T}$。三个电子逐个通过原点，每个电子的速度为 $5.00 \\times 10^{7}\\ \\text{m/s}$。第一个电子沿 <em>x</em> 轴通过原点，第二个电子沿 <em>y</em> 轴通过原点，第三个电子在<em>yz</em> 平面内与 <em>y</em> 轴和 <em>z</em> 轴都成 $45^\\circ$ 角。（a）每个电子所受的力是多少？（b）每个电子路径的形状是什么？（c）每个电子何时（如果会的话）回到原点？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$F = qvB\\sin\\theta$。因为 $\\sin\\theta = 0$，所以第一个电子的 $F = 0$。对于第二个和第三个电子，$\\sin\\theta = 1$。所以 $F = (1.60 \\times 10^{-19}\\ \\text{C})(5.00 \\times 10^{7}\\ \\text{m/s})(2.00 \\times 10^{-7}\\ \\text{T}) = 1.60 \\times 10^{-18}\\ \\text{N}$。（b）第一个电子沿直线运动。另外两个电子沿圆形路径运动。（c）第一个电子永远不会回到原点。另外两个会回到原点。 $$r = \\frac{(9.11 \\times 10^{-11})(5.00 \\times 10^{7})}{(1.60 \\times 10^{-19})(2.00 \\times 10^{-7})}\\ \\text{m}, \\qquad v = \\frac{r}{t}, \\qquad t = \\frac{(9.11 \\times 10^{-11})}{(1.60 \\times 10^{-19})(2.00 \\times 10^{-7})}\\ \\text{s} = 2.85 \\times 10^{15}\\ \\text{s}$$<sup class=\"fn\" data-note=\"c-p18-mass\"></sup>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "biomagnetic-measurement"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "current-is-the-source-of-magnetism",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "magnetic-resonance-imaging",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "hall-effect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnetic-resonance-imaging",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "velocity-selector"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "magnetic-force-does-no-work",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "hall-probe-and-flow-measurement",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "magnetohydrodynamic-pump",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "rules-for-magnetic-field-lines"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "no-magnetic-monopoles"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "field-line-properties",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "universal-gravitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "right-hand-rule-2"
+  },
+  {
+   "exercise": "p1",
+   "concept": "field-of-a-long-straight-wire",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conventional-current",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "right-hand-rule-2"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-at-the-centre-of-a-loop",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-inside-a-solenoid",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "field-inside-a-solenoid"
+  },
+  {
+   "exercise": "p3",
+   "concept": "field-at-the-centre-of-a-loop"
+  },
+  {
+   "exercise": "p3",
+   "concept": "magnetic-resonance-imaging",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "field-of-a-long-straight-wire"
+  },
+  {
+   "exercise": "p4",
+   "concept": "right-hand-rule-2",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "field-inside-a-solenoid"
+  },
+  {
+   "exercise": "p5",
+   "concept": "permeability-of-free-space",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "field-at-the-centre-of-a-loop"
+  },
+  {
+   "exercise": "p6",
+   "concept": "meter-and-galvanometer",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "field-of-a-long-straight-wire"
+  },
+  {
+   "exercise": "p7",
+   "concept": "right-hand-rule-2",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "field-of-a-long-straight-wire"
+  },
+  {
+   "exercise": "p8",
+   "concept": "right-hand-rule-2",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "p9",
+   "concept": "right-hand-rule-1",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-mechanical-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-second-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "p10",
+   "concept": "kinetic-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "magnetohydrodynamic-pump"
+  },
+  {
+   "exercise": "p11",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "pressure",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "force-between-parallel-currents"
+  },
+  {
+   "exercise": "p12",
+   "concept": "definition-of-the-ampere",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "linear-thermal-expansion",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "circular-motion-in-a-magnetic-field"
+  },
+  {
+   "exercise": "p13",
+   "concept": "radius-of-curvature",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "period-frequency",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "force-per-unit-length-on-a-wire"
+  },
+  {
+   "exercise": "p14",
+   "concept": "direction-of-force-on-a-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "resistance-of-cylinder",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "ohms-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "p15",
+   "concept": "magnetic-field-strength-defined",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "p16",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p17",
+   "concept": "field-of-a-long-straight-wire"
+  },
+  {
+   "exercise": "p17",
+   "concept": "electric-power",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p18",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "p18",
+   "concept": "right-hand-rule-1",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p18",
+   "concept": "circular-motion-in-a-magnetic-field"
+  },
+  {
+   "exercise": "p18",
+   "concept": "radius-of-curvature",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "oxygen-16",
+   "label": "氧-16 离子",
+   "figures": [
+    "sim-mass-spectrometer"
+   ]
+  },
+  {
+   "id": "oxygen-18",
+   "label": "氧-18 离子",
+   "figures": [
+    "sim-mass-spectrometer"
+   ]
+  },
+  {
+   "id": "source",
+   "label": "离子源",
+   "figures": [
+    "sim-mass-spectrometer"
+   ]
+  },
+  {
+   "id": "selector",
+   "label": "速度选择器",
+   "figures": [
+    "sim-mass-spectrometer"
+   ]
+  },
+  {
+   "id": "detector",
+   "label": "探测壁",
+   "figures": [
+    "sim-mass-spectrometer"
+   ]
+  },
+  {
+   "id": "gun",
+   "label": "电子枪",
+   "figures": [
+    "sim-crt-steering"
+   ]
+  },
+  {
+   "id": "coil",
+   "label": "偏转线圈",
+   "figures": [
+    "sim-crt-steering"
+   ]
+  },
+  {
+   "id": "screen",
+   "label": "屏幕",
+   "figures": [
+    "sim-crt-steering"
+   ]
+  },
+  {
+   "id": "patient",
+   "label": "患者",
+   "figures": [
+    "sim-mri-gradient"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-field-scale"
+   ]
+  },
+  {
+   "id": "heart-brain",
+   "label": "心脏和脑",
+   "figures": [
+    "sim-field-scale"
+   ]
+  },
+  {
+   "id": "mri-magnet",
+   "label": "MRI 磁体",
+   "figures": [
+    "sim-field-scale",
+    "sim-mri-gradient"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p18-mass",
+   "kind": "correction",
+   "html": "书后答案在两个分式中都把电子的质量印成 $9.11 \\times 10^{-11}$；它应为 $9.11 \\times 10^{-31}\\ \\text{kg}$，由此得到 $t = m/(qB) = 2.85 \\times 10^{-5}\\ \\text{s}$。"
+  }
+ ]
+}
