@@ -1,0 +1,860 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "γ_rel",
+   "latex": "\\gamma"
+  },
+  {
+   "sym": "Δt_0",
+   "latex": "\\Delta t_0",
+   "macro": "\\kdto"
+  },
+  {
+   "sym": "L_rel",
+   "latex": "L",
+   "macro": "\\kLrel"
+  },
+  {
+   "sym": "u_prime",
+   "latex": "u'",
+   "macro": "\\kuprime"
+  },
+  {
+   "sym": "λ_s",
+   "latex": "\\lambda_{\\text{s}}",
+   "macro": "\\klams"
+  },
+  {
+   "sym": "λ_obs",
+   "latex": "\\lambda_{\\text{obs}}",
+   "macro": "\\klamobs"
+  },
+  {
+   "sym": "E_0rest",
+   "latex": "E_0",
+   "macro": "\\kErest"
+  },
+  {
+   "sym": "KE_rel",
+   "latex": "\\text{KE}_{\\text{rel}}",
+   "macro": "\\kKErel"
+  },
+  {
+   "sym": "KE_class",
+   "latex": "\\text{KE}_{\\text{class}}",
+   "macro": "\\kKEclass"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "relativity",
+   "kind": "definition",
+   "section": "28.1",
+   "name": "相对论",
+   "terms": [
+    "相对论"
+   ],
+   "statement": "相对论研究不同观察者如何测量同一个事件。伽利略和牛顿给出了经典的答案，爱因斯坦给出了现代的答案，现代的答案分为适用于作匀速运动的观察者的狭义相对论，和适用于作加速运动的观察者的广义相对论。"
+  },
+  {
+   "id": "first-postulate",
+   "kind": "axiom",
+   "section": "28.1",
+   "name": "狭义相对论第一公设",
+   "terms": [
+    "狭义相对论第一公设"
+   ],
+   "statement": "狭义相对论第一公设指出，物理定律在所有惯性参考系中都相同，并且都可以表述为最简单的形式。不存在特殊的参考系，也不存在绝对运动。"
+  },
+  {
+   "id": "michelson-morley-experiment",
+   "kind": "idea",
+   "section": "28.1",
+   "name": "迈克耳孙-莫雷实验",
+   "terms": [
+    "迈克耳孙-莫雷实验"
+   ],
+   "statement": "1887年，迈克耳孙和莫雷寻找光速因地球穿过某种假想的光介质而产生的变化，结果一无所获。这一结果表明，光不需要介质，而且真空中的光速在所有参考系中都相同。"
+  },
+  {
+   "id": "second-postulate",
+   "kind": "axiom",
+   "section": "28.1",
+   "name": "狭义相对论第二公设",
+   "terms": [
+    "狭义相对论第二公设"
+   ],
+   "statement": "狭义相对论第二公设指出，无论光源或观察者如何运动，真空中的光速对每个观察者都具有相同的值 $\\kc$。"
+  },
+  {
+   "id": "special-relativity",
+   "kind": "definition",
+   "section": "28.1",
+   "name": "狭义相对论",
+   "terms": [
+    "狭义相对论"
+   ],
+   "statement": "狭义相对论是关于惯性参考系中相互作匀速相对运动的观察者如何测量同一些事件的理论。爱因斯坦以两条公设为基础建立了它。"
+  },
+  {
+   "id": "relativity-of-simultaneity",
+   "kind": "result",
+   "section": "28.2",
+   "name": "同时性的相对性",
+   "statement": "对一个观察者同时发生的两个事件，对相对于他运动的另一个观察者来说不一定同时。因此，两个事件之间的时间间隔可能取决于由谁来测量。"
+  },
+  {
+   "id": "time-dilation",
+   "kind": "result",
+   "section": "28.2",
+   "name": "时间延缓",
+   "terms": [
+    "时间延缓"
+   ],
+   "statement": "时间延缓是指，对于相对另一观察者运动的观察者，时间过得更慢的现象。光穿过一艘运动的飞船时，在地球上观察者的参考系中走过的是一条更长的斜线路径，而光速在两个参考系中相同，所以该观察者对同一过程测得的时间更长。相对于观察者运动的所有时钟，包括生物钟在内，都被观察到走得慢。"
+  },
+  {
+   "id": "proper-time",
+   "kind": "definition",
+   "section": "28.2",
+   "name": "固有时",
+   "symbol": "Δt_0",
+   "terms": [
+    "固有时"
+   ],
+   "type": "time",
+   "statement": "固有时 $\\Delta t_0$ 是相对于被观察事件静止的观察者所测得的时间。它是任何观察者对该事件测得的最短时间间隔。"
+  },
+  {
+   "id": "relativistic-factor",
+   "kind": "definition",
+   "section": "28.2",
+   "name": "相对论因子",
+   "symbol": "γ_rel",
+   "statement": "相对论因子是 $\\gamma = 1/\\sqrt{1 - v^2/c^2}$。它在静止时为 1，在日常速率下非常接近 1，当 $v$ 趋近于 $c$ 时无限增大，并决定每一种相对论效应的大小。",
+   "forms": [
+    {
+     "id": "eq-gamma",
+     "latex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}}",
+     "ktex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}",
+     "anchor": "28.2-time-dilation"
+    },
+    {
+     "id": "eq-gamma-u",
+     "latex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{u^{2}}{c^{2}}}}",
+     "ktex": "\\gamma = \\frac{1}{\\sqrt{1-\\frac{\\ku^{2}}{\\kc^{2}}}}",
+     "section": "28.5",
+     "anchor": "28.5-relativistic-momentum"
+    }
+   ]
+  },
+  {
+   "id": "time-dilation-equation",
+   "kind": "result",
+   "section": "28.2",
+   "name": "时间延缓公式",
+   "statement": "相对于事件运动的观察者对该事件测得的时间，等于固有时乘以相对论因子，$\\Delta t = \\Delta t_0/\\sqrt{1 - v^2/c^2} = \\gamma\\Delta t_0$。在低速度下，这两个时间几乎相等。",
+   "forms": [
+    {
+     "id": "eq-time-dilation",
+     "latex": "\\Delta t = \\frac{\\Delta t_0}{\\sqrt{1-\\frac{v^{2}}{c^{2}}}} = \\gamma \\Delta t_0",
+     "ktex": "\\kdt = \\frac{\\kdto}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}} = \\gamma \\kdto",
+     "anchor": "28.2-time-dilation"
+    },
+    {
+     "id": "eq-proper-time-light-clock",
+     "latex": "\\Delta t_0 = \\frac{2D}{c}",
+     "ktex": "\\kdto = \\frac{2\\kD}{\\kc}",
+     "anchor": "28.2-time-dilation"
+    },
+    {
+     "id": "eq-earth-time-light-clock",
+     "latex": "\\Delta t = \\frac{2s}{c}",
+     "ktex": "\\kdt = \\frac{2\\ks}{\\kc}",
+     "anchor": "28.2-time-dilation"
+    }
+   ]
+  },
+  {
+   "id": "calculate-time-dilation",
+   "kind": "skill",
+   "section": "28.2",
+   "name": "计算时间延缓",
+   "statement": "要求出延缓后的时间，先判断哪个时间是固有时，由速率求出 $\\gamma$，再相乘。反过来，该公式可由两个测得的时间给出相对速率。",
+   "forms": [
+    {
+     "id": "eq-calculate-time-dilation",
+     "latex": "\\Delta t = \\gamma\\Delta t_0",
+     "ktex": "\\kdt = \\gamma\\kdto"
+    }
+   ]
+  },
+  {
+   "id": "twin-paradox",
+   "kind": "idea",
+   "section": "28.2",
+   "name": "双生子佯谬",
+   "terms": [
+    "双生子佯谬"
+   ],
+   "statement": "双生子佯谬问的是：一个以相对论速率离开地球再返回的双生子，为什么比留在家里的双生子衰老得少，而从旅行者的参考系看，地球似乎在运动。这一前提是有缺陷的：旅行者作加速运动而留在家里的不加速，而狭义相对论不适用于加速参考系。"
+  },
+  {
+   "id": "observers-agree-on-relative-speed",
+   "kind": "idea",
+   "section": "28.3",
+   "name": "对相对速率的一致看法",
+   "statement": "两个对时间间隔看法不一致的观察者，对他们相对彼此运动得多快仍然看法一致。由于速率是距离除以时间，对时间的看法不一致就迫使他们对距离的看法也不一致。"
+  },
+  {
+   "id": "proper-length",
+   "kind": "definition",
+   "section": "28.3",
+   "name": "固有长度",
+   "symbol": "L_0",
+   "terms": [
+    "固有长度"
+   ],
+   "type": "position",
+   "statement": "固有长度 $L_0$ 是相对于两点都静止的观察者所测得的这两点之间的距离。地球上的观察者在测量地球上两个静止点之间的距离时，测得的就是固有长度。"
+  },
+  {
+   "id": "length-contraction-equation",
+   "kind": "result",
+   "section": "28.3",
+   "name": "长度收缩公式",
+   "type": "position",
+   "statement": "长度收缩是指相对于观察者的参考系运动的物体，其测得长度沿运动方向变短，$L = L_0\\sqrt{1 - v^2/c^2} = L_0/\\gamma$。它只发生在运动方向上。",
+   "forms": [
+    {
+     "id": "eq-length-contraction",
+     "latex": "L = L_0\\sqrt{1-\\frac{v^{2}}{c^{2}}}",
+     "ktex": "\\kLrel = \\kLo\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}",
+     "anchor": "28.3-length-contraction"
+    },
+    {
+     "id": "eq-length-contraction-gamma",
+     "latex": "L = \\frac{L_0}{\\gamma}",
+     "ktex": "\\kLrel = \\frac{\\kLo}{\\gamma}",
+     "anchor": "28.3-length-contraction"
+    }
+   ]
+  },
+  {
+   "id": "calculate-length-contraction",
+   "kind": "skill",
+   "section": "28.3",
+   "name": "计算长度收缩",
+   "statement": "要求出收缩后的长度，先指明固有长度，求出 $\\gamma$，再相除。反过来，该公式可给出使给定长度显得更短的速率。",
+   "forms": [
+    {
+     "id": "eq-calculate-length-contraction",
+     "latex": "L = L_0/\\gamma",
+     "ktex": "\\kLrel = \\kLo/\\gamma"
+    }
+   ]
+  },
+  {
+   "id": "relativity-at-everyday-speeds",
+   "kind": "idea",
+   "section": "28.3",
+   "name": "日常速率下的相对论",
+   "statement": "在远小于 $\\kc$ 的速率下，$\\gamma$ 非常接近 1，以致固有时与延缓后的时间、固有长度与收缩后的长度，在比任何人所能测量的更多位数上都一致。这就是经典物理学适用于日常运动的原因，尽管这些效应始终存在。"
+  },
+  {
+   "id": "length-contraction",
+   "kind": "result",
+   "section": "28.3",
+   "name": "长度收缩",
+   "terms": [
+    "长度收缩"
+   ],
+   "statement": "长度收缩是指相对于观察者的参考系运动的物体，其测得长度沿运动方向变短。"
+  },
+  {
+   "id": "classical-velocity-addition-1d",
+   "kind": "result",
+   "section": "28.4",
+   "name": "经典速度合成",
+   "terms": [
+    "经典速度合成"
+   ],
+   "statement": "当 $v \\ll c$ 时，一维中的速度像普通数一样相加，用正负号表示方向：$u = v + u'$，其中 $v$ 是两个观察者之间的速度，$u$ 和 $u'$ 是物体相对于各观察者的速度。",
+   "forms": [
+    {
+     "id": "eq-classical-velocity-addition",
+     "latex": "u = v + u'",
+     "ktex": "\\ku = \\kv + \\kuprime",
+     "anchor": "28.4-classical-velocity-addition"
+    }
+   ]
+  },
+  {
+   "id": "relativistic-velocity-addition",
+   "kind": "result",
+   "section": "28.4",
+   "name": "相对论速度合成",
+   "terms": [
+    "相对论速度合成"
+   ],
+   "statement": "相对论速率下的速度按 $u = (v + u')/(1 + vu'/c^2)$ 合成。分母在低速下近似为 1，所以该规则在低速下与经典合成一致；当任一速度为 $\\kc$ 时，结果恰好为 $\\kc$，而小于 $\\kc$ 的速度合成后绝不会大于 $\\kc$。",
+   "forms": [
+    {
+     "id": "eq-relativistic-velocity-addition",
+     "latex": "u = \\frac{v + u'}{1 + \\frac{vu'}{c^{2}}}",
+     "ktex": "\\ku = \\frac{\\kv + \\kuprime}{1 + \\frac{\\kv\\kuprime}{\\kc^{2}}}",
+     "anchor": "28.4-relativistic-velocity-addition"
+    }
+   ]
+  },
+  {
+   "id": "calculate-relativistic-velocity-addition",
+   "kind": "skill",
+   "section": "28.4",
+   "name": "相对论速度的合成",
+   "statement": "要相对论地合成速度，先设定两个参考系，选定表示方向的正负号，然后无论怎样都可应用该公式，当 $u'$ 或相对速度 $v$ 为未知量时，就对它求解该公式。"
+  },
+  {
+   "id": "relativistic-doppler-effect",
+   "kind": "result",
+   "section": "28.4",
+   "name": "波长的相对论多普勒频移",
+   "terms": [
+    "相对论多普勒效应"
+   ],
+   "statement": "相对论多普勒效应是指，相对于观察者运动的光源所发出辐射的波长发生变化。光源远离时，波长变长，称为红移；光源朝向观察者运动时，波长变短，称为蓝移，$\\lambda_{\\text{obs}} = \\lambda_{\\text{s}}\\sqrt{(1 + u/c)/(1 - u/c)}$。",
+   "forms": [
+    {
+     "id": "eq-relativistic-doppler-wavelength",
+     "latex": "\\lambda_{\\text{obs}} = \\lambda_{\\text{s}}\\sqrt{\\frac{1+\\frac{u}{c}}{1-\\frac{u}{c}}}",
+     "ktex": "\\klamobs = \\klams\\sqrt{\\frac{1+\\frac{\\ku}{\\kc}}{1-\\frac{\\ku}{\\kc}}}",
+     "anchor": "28.4-doppler-shift"
+    }
+   ]
+  },
+  {
+   "id": "relativistic-doppler-frequency",
+   "kind": "result",
+   "section": "28.4",
+   "name": "频率的相对论多普勒频移",
+   "statement": "由于每一种电磁波都满足 $c = f\\lambda$，更长的波长意味着更低的频率，所以相对论多普勒频移的频率形式的正负号正好相反，$f_{\\text{obs}} = f_{\\text{s}}\\sqrt{(1 - u/c)/(1 + u/c)}$。",
+   "forms": [
+    {
+     "id": "eq-relativistic-doppler-frequency",
+     "latex": "f_{\\text{obs}} = f_{\\text{s}}\\sqrt{\\frac{1-\\frac{u}{c}}{1+\\frac{u}{c}}}",
+     "ktex": "\\kfobs = \\kfsrc\\sqrt{\\frac{1-\\frac{\\ku}{\\kc}}{1+\\frac{\\ku}{\\kc}}}",
+     "anchor": "28.4-doppler-shift"
+    }
+   ]
+  },
+  {
+   "id": "relativistic-momentum",
+   "kind": "definition",
+   "section": "28.5",
+   "name": "相对论动量",
+   "symbol": "p",
+   "terms": [
+    "相对论动量"
+   ],
+   "type": "momentum",
+   "statement": "相对论动量为 $p = \\gamma m u$，其中 $m$ 是物体的静质量，$u$ 是它相对于观察者的速度。在低速度下它就是经典的 $mu$；接近光速时它无限增大。",
+   "forms": [
+    {
+     "id": "eq-relativistic-momentum",
+     "latex": "p = \\gamma m u",
+     "ktex": "\\kp = \\gamma m \\ku",
+     "anchor": "28.5-relativistic-momentum"
+    }
+   ]
+  },
+  {
+   "id": "rest-mass",
+   "kind": "definition",
+   "section": "28.5",
+   "name": "静质量",
+   "symbol": "m",
+   "terms": [
+    "静质量"
+   ],
+   "type": "mass",
+   "statement": "物体的静质量是相对于它静止的观察者所测得的它的质量。由于运动物体的质量只能通过涉及动量的过程求得，静质量是唯一有意义的质量，而 $m$ 指的就是静质量。"
+  },
+  {
+   "id": "relativistic-momentum-conserved",
+   "kind": "axiom",
+   "section": "28.5",
+   "name": "相对论动量守恒",
+   "statement": "只要系统所受的合外力为零，其总相对论动量在每一个惯性参考系中都守恒。"
+  },
+  {
+   "id": "total-energy",
+   "kind": "definition",
+   "section": "28.6",
+   "name": "总能量",
+   "symbol": "E",
+   "terms": [
+    "总能量"
+   ],
+   "type": "energy",
+   "statement": "物体的总能量定义为 $E = \\gamma mc^2$，这一定义使能量在每个惯性参考系中都守恒。静止时，$\\gamma = 1$，总能量不为零。",
+   "forms": [
+    {
+     "id": "eq-total-energy",
+     "latex": "E = \\gamma mc^{2}",
+     "ktex": "\\kE = \\gamma m\\kc^{2}",
+     "anchor": "28.6-total-rest-energy"
+    }
+   ]
+  },
+  {
+   "id": "rest-energy",
+   "kind": "result",
+   "section": "28.6",
+   "name": "静能",
+   "terms": [
+    "静能"
+   ],
+   "type": "energy",
+   "statement": "静止的物体具有静能 $E_0 = mc^2$。由于 $c^2$ 是一个非常大的数，即使一克物质的静能也是巨大的。",
+   "forms": [
+    {
+     "id": "eq-rest-energy",
+     "latex": "E_0 = mc^{2}",
+     "ktex": "\\kErest = m\\kc^{2}",
+     "anchor": "28.6-total-rest-energy"
+    },
+    {
+     "id": "eq-mass-from-energy",
+     "latex": "\\Delta m = \\frac{E}{c^2}",
+     "ktex": "\\Delta m = \\frac{\\kE}{\\kc^2}",
+     "section": "18.1",
+     "anchor": "18.1-pair-creation"
+    },
+    {
+     "id": "eq-virtual-particle-energy",
+     "latex": "\\Delta E = mc^{2}",
+     "ktex": "\\kdE = \\km\\kc^{2}",
+     "section": "33.1",
+     "anchor": "33.1-virtual-particles"
+    }
+   ]
+  },
+  {
+   "id": "mass-energy-equivalence",
+   "kind": "idea",
+   "section": "28.6",
+   "name": "质能等价性",
+   "statement": "质量是能量的一种形式，而不是某种分立的东西。储存在充电电池或压缩弹簧中的能量会增大它的静质量，而在核过程中，可测量的一部分质量被消灭，其能量被释放出来。"
+  },
+  {
+   "id": "find-mass-change-from-energy",
+   "kind": "skill",
+   "section": "28.6",
+   "name": "由能量求质量变化",
+   "statement": "静质量的变化由储存或释放的能量按 $\\Delta m = \\Delta E/c^2$ 求出，而比值 $\\Delta m/m$ 表明这一变化是否可能被注意到。",
+   "forms": [
+    {
+     "id": "eq-find-mass-change-from-energy",
+     "latex": "\\Delta m = \\DeltaE/c^2",
+     "ktex": "\\Delta m = \\Delta\\kE/\\kc^2"
+    }
+   ]
+  },
+  {
+   "id": "relativistic-kinetic-energy",
+   "kind": "result",
+   "section": "28.6",
+   "name": "相对论动能",
+   "symbol": "KE_rel",
+   "terms": [
+    "相对论动能"
+   ],
+   "type": "energy",
+   "statement": "对从静止开始的物体所做的合外力的功，把它的能量从 $mc^2$ 提高到 $\\gamma mc^2$，二者之差就是它的相对论动能，$\\text{KE}_{\\text{rel}} = (\\gamma - 1)mc^2$。接近光速时，它远大于经典值。",
+   "forms": [
+    {
+     "id": "eq-relativistic-kinetic-energy",
+     "latex": "\\text{KE}_{\\text{rel}} = (\\gamma - 1)mc^{2}",
+     "ktex": "\\kKErel = (\\gamma - 1)m\\kc^{2}",
+     "anchor": "28.6-kinetic-energy"
+    },
+    {
+     "id": "eq-relativistic-work-energy",
+     "latex": "W_{\\text{net}} = E - E_0 = \\gamma mc^{2} - mc^{2} = (\\gamma - 1)mc^{2}",
+     "ktex": "\\kWnet = \\kE - \\kErest = \\gamma m\\kc^{2} - m\\kc^{2} = (\\gamma - 1)m\\kc^{2}",
+     "anchor": "28.6-kinetic-energy"
+    }
+   ]
+  },
+  {
+   "id": "relativistic-ke-classical-limit",
+   "kind": "result",
+   "section": "28.6",
+   "name": "相对论动能的经典极限",
+   "statement": "在低速度下，二项式展开给出 $\\gamma \\approx 1 + \\frac{1}{2}v^2/c^2$，代入后 $(\\gamma - 1)mc^2$ 变为经典动能 $\\frac{1}{2}mv^2$。",
+   "forms": [
+    {
+     "id": "eq-gamma-low-velocity",
+     "latex": "\\gamma = 1 + \\frac{1}{2}\\frac{v^{2}}{c^{2}}",
+     "ktex": "\\gamma = 1 + \\frac{1}{2}\\frac{\\kv^{2}}{\\kc^{2}}",
+     "anchor": "28.6-kinetic-energy"
+    }
+   ]
+  },
+  {
+   "id": "no-mass-reaches-c",
+   "kind": "result",
+   "section": "28.6",
+   "name": "光速作为极限",
+   "statement": "当 $v$ 趋近于 $c$ 时，$\\gamma$ 以及动能无限增大，所以要使一个有质量的物体达到光速，需要做无限多的功。无论输入多少能量，有质量物体的速度都只能趋近于 $c$。"
+  },
+  {
+   "id": "energy-momentum-relation",
+   "kind": "result",
+   "section": "28.6",
+   "name": "相对论能量与动量",
+   "statement": "相对论能量与动量之间的关系为 $E^2 = (pc)^2 + (mc^2)^2$。静止时它给出静能，而在非常高的速度下静能变得可以忽略，于是 $E \\approx pc$。",
+   "forms": [
+    {
+     "id": "eq-energy-momentum",
+     "latex": "E^{2} = (pc)^{2} + (mc^{2})^{2}",
+     "ktex": "\\kE^{2} = (\\kp\\kc)^{2} + (m\\kc^{2})^{2}",
+     "anchor": "28.6-energy-momentum"
+    }
+   ]
+  },
+  {
+   "id": "massless-particles",
+   "kind": "result",
+   "section": "28.6",
+   "name": "无质量粒子",
+   "statement": "在能量-动量关系中令 $m = 0$，剩下 $E = pc$，所以没有质量的粒子仍然可以有动量，并且它必须以光速运动，而且只能以光速运动。光子就是这样的粒子。",
+   "forms": [
+    {
+     "id": "eq-massless-particles",
+     "latex": "p = E/c",
+     "ktex": "\\kp = \\kE/\\kc"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "relativity",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "relativity",
+   "prereq": "classical-relativity"
+  },
+  {
+   "concept": "relativity",
+   "prereq": "inertial-frame"
+  },
+  {
+   "concept": "first-postulate",
+   "prereq": "relativity"
+  },
+  {
+   "concept": "first-postulate",
+   "prereq": "inertial-frame"
+  },
+  {
+   "concept": "first-postulate",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "michelson-morley-experiment",
+   "prereq": "speed-of-light-in-vacuum"
+  },
+  {
+   "concept": "michelson-morley-experiment",
+   "prereq": "wave"
+  },
+  {
+   "concept": "michelson-morley-experiment",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "second-postulate",
+   "prereq": "michelson-morley-experiment"
+  },
+  {
+   "concept": "second-postulate",
+   "prereq": "maxwells-equations"
+  },
+  {
+   "concept": "second-postulate",
+   "prereq": "speed-of-light-in-vacuum"
+  },
+  {
+   "concept": "second-postulate",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "relativity-of-simultaneity",
+   "prereq": "second-postulate"
+  },
+  {
+   "concept": "relativity-of-simultaneity",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "time-dilation",
+   "prereq": "relativity-of-simultaneity"
+  },
+  {
+   "concept": "time-dilation",
+   "prereq": "second-postulate"
+  },
+  {
+   "concept": "proper-time",
+   "prereq": "time-dilation"
+  },
+  {
+   "concept": "relativistic-factor",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "relativistic-factor",
+   "prereq": "speed-of-light-in-vacuum"
+  },
+  {
+   "concept": "time-dilation-equation",
+   "prereq": "proper-time"
+  },
+  {
+   "concept": "time-dilation-equation",
+   "prereq": "relativistic-factor"
+  },
+  {
+   "concept": "time-dilation-equation",
+   "prereq": "right-triangle-resultant"
+  },
+  {
+   "concept": "calculate-time-dilation",
+   "prereq": "time-dilation-equation"
+  },
+  {
+   "concept": "twin-paradox",
+   "prereq": "time-dilation-equation"
+  },
+  {
+   "concept": "twin-paradox",
+   "prereq": "non-inertial-frame"
+  },
+  {
+   "concept": "twin-paradox",
+   "prereq": "inertial-frame"
+  },
+  {
+   "concept": "observers-agree-on-relative-speed",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "observers-agree-on-relative-speed",
+   "prereq": "time-dilation"
+  },
+  {
+   "concept": "proper-length",
+   "prereq": "observers-agree-on-relative-speed"
+  },
+  {
+   "concept": "length-contraction-equation",
+   "prereq": "proper-length"
+  },
+  {
+   "concept": "length-contraction-equation",
+   "prereq": "time-dilation-equation"
+  },
+  {
+   "concept": "calculate-length-contraction",
+   "prereq": "length-contraction-equation"
+  },
+  {
+   "concept": "calculate-length-contraction",
+   "prereq": "relativistic-factor"
+  },
+  {
+   "concept": "relativity-at-everyday-speeds",
+   "prereq": "length-contraction-equation"
+  },
+  {
+   "concept": "relativity-at-everyday-speeds",
+   "prereq": "relativistic-factor"
+  },
+  {
+   "concept": "classical-velocity-addition-1d",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "classical-velocity-addition-1d",
+   "prereq": "velocity-addition"
+  },
+  {
+   "concept": "relativistic-velocity-addition",
+   "prereq": "classical-velocity-addition-1d"
+  },
+  {
+   "concept": "relativistic-velocity-addition",
+   "prereq": "second-postulate"
+  },
+  {
+   "concept": "calculate-relativistic-velocity-addition",
+   "prereq": "relativistic-velocity-addition"
+  },
+  {
+   "concept": "relativistic-doppler-effect",
+   "prereq": "doppler-effect"
+  },
+  {
+   "concept": "relativistic-doppler-effect",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "relativistic-doppler-effect",
+   "prereq": "second-postulate"
+  },
+  {
+   "concept": "relativistic-doppler-frequency",
+   "prereq": "relativistic-doppler-effect"
+  },
+  {
+   "concept": "relativistic-doppler-frequency",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "relativistic-momentum",
+   "prereq": "linear-momentum"
+  },
+  {
+   "concept": "relativistic-momentum",
+   "prereq": "relativistic-factor"
+  },
+  {
+   "concept": "rest-mass",
+   "prereq": "relativistic-momentum"
+  },
+  {
+   "concept": "rest-mass",
+   "prereq": "mass"
+  },
+  {
+   "concept": "relativistic-momentum-conserved",
+   "prereq": "relativistic-momentum"
+  },
+  {
+   "concept": "relativistic-momentum-conserved",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "relativistic-momentum-conserved",
+   "prereq": "first-postulate"
+  },
+  {
+   "concept": "total-energy",
+   "prereq": "relativistic-factor"
+  },
+  {
+   "concept": "total-energy",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "total-energy",
+   "prereq": "first-postulate"
+  },
+  {
+   "concept": "rest-energy",
+   "prereq": "total-energy"
+  },
+  {
+   "concept": "rest-energy",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "mass-energy-equivalence",
+   "prereq": "rest-energy"
+  },
+  {
+   "concept": "mass-energy-equivalence",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "mass-energy-equivalence",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "find-mass-change-from-energy",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "find-mass-change-from-energy",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "relativistic-kinetic-energy",
+   "prereq": "total-energy"
+  },
+  {
+   "concept": "relativistic-kinetic-energy",
+   "prereq": "rest-energy"
+  },
+  {
+   "concept": "relativistic-kinetic-energy",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "relativistic-ke-classical-limit",
+   "prereq": "relativistic-kinetic-energy"
+  },
+  {
+   "concept": "relativistic-ke-classical-limit",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "no-mass-reaches-c",
+   "prereq": "relativistic-kinetic-energy"
+  },
+  {
+   "concept": "no-mass-reaches-c",
+   "prereq": "relativistic-momentum"
+  },
+  {
+   "concept": "energy-momentum-relation",
+   "prereq": "total-energy"
+  },
+  {
+   "concept": "energy-momentum-relation",
+   "prereq": "relativistic-momentum"
+  },
+  {
+   "concept": "massless-particles",
+   "prereq": "energy-momentum-relation"
+  },
+  {
+   "concept": "special-relativity",
+   "prereq": "relativity"
+  },
+  {
+   "concept": "special-relativity",
+   "prereq": "inertial-frame"
+  },
+  {
+   "concept": "length-contraction",
+   "prereq": "proper-length"
+  },
+  {
+   "concept": "length-contraction",
+   "prereq": "observers-agree-on-relative-speed"
+  },
+  {
+   "concept": "length-contraction-equation",
+   "prereq": "length-contraction"
+  },
+  {
+   "concept": "calculate-length-contraction",
+   "prereq": "length-contraction"
+  }
+ ]
+}

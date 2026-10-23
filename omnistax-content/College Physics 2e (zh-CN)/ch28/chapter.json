@@ -1,0 +1,318 @@
+{
+ "id": "28",
+ "dir": "ch28",
+ "title": "狭义相对论",
+ "intro": {
+  "module": "m42525",
+  "slug": "28-introduction-to-special-relativity"
+ },
+ "sections": [
+  {
+   "id": "28.1",
+   "module": "m42528",
+   "title": "爱因斯坦的公设",
+   "slug": "28-1-einsteins-postulates"
+  },
+  {
+   "id": "28.2",
+   "module": "m42531",
+   "title": "同时性与时间延缓",
+   "slug": "28-2-simultaneity-and-time-dilation"
+  },
+  {
+   "id": "28.3",
+   "module": "m42535",
+   "title": "长度收缩",
+   "slug": "28-3-length-contraction"
+  },
+  {
+   "id": "28.4",
+   "module": "m42540",
+   "title": "速度的相对论合成",
+   "slug": "28-4-relativistic-addition-of-velocities"
+  },
+  {
+   "id": "28.5",
+   "module": "m42542",
+   "title": "相对论动量",
+   "slug": "28-5-relativistic-momentum"
+  },
+  {
+   "id": "28.6",
+   "module": "m42546",
+   "title": "相对论能量",
+   "slug": "28-6-relativistic-energy"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "真空中的光速，3.00 × 10⁸ m/s，无论光源如何运动，对每个观察者都相同",
+   "unit": "m/s",
+   "section": "28.1",
+   "anchor": "28.1-second-postulate"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "两个观察者之间的相对速度，或运动的时钟、飞船、粒子相对于观察者的速度",
+   "unit": "m/s",
+   "section": "28.2",
+   "anchor": "28.2-time-dilation"
+  },
+  {
+   "sym": "γ_rel",
+   "concept": "relativistic-factor",
+   "meaning": "相对论因子，1/√(1 − v²/c²)，静止时为 1，当 v 趋近于 c 时无限增大",
+   "unit": "",
+   "section": "28.2",
+   "anchor": "28.2-time-dilation"
+  },
+  {
+   "sym": "Δt_0",
+   "concept": "proper-time",
+   "meaning": "固有时，即相对于被观察事件静止的观察者所测得的时间间隔",
+   "unit": "s",
+   "section": "28.2",
+   "anchor": "28.2-time-dilation"
+  },
+  {
+   "sym": "Δt",
+   "concept": "time",
+   "meaning": "相对于该事件运动的观察者对同一事件测得的时间间隔，比固有时更长",
+   "unit": "s",
+   "section": "28.2",
+   "anchor": "28.2-time-dilation"
+  },
+  {
+   "sym": "D",
+   "concept": "length",
+   "meaning": "航天员飞船的宽度，在她的参考系中光沿两个方向各穿过一次",
+   "unit": "m",
+   "section": "28.2",
+   "anchor": "28.2-time-dilation"
+  },
+  {
+   "sym": "s",
+   "concept": "length",
+   "meaning": "从地球上看，光路径中一条倾斜边的长度",
+   "unit": "m",
+   "section": "28.2",
+   "anchor": "28.2-time-dilation"
+  },
+  {
+   "sym": "L_0",
+   "concept": "proper-length",
+   "meaning": "固有长度，即相对于两点都静止的观察者所测得的两点之间的距离",
+   "unit": "m",
+   "section": "28.3",
+   "anchor": "28.3-proper-length"
+  },
+  {
+   "sym": "L_rel",
+   "concept": "length-contraction-equation",
+   "meaning": "收缩后的长度，即相对于物体运动的观察者所测得的长度，比固有长度更短",
+   "unit": "m",
+   "section": "28.3",
+   "anchor": "28.3-length-contraction"
+  },
+  {
+   "sym": "u",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体相对于其中一个观察者的速度",
+   "unit": "m/s",
+   "section": "28.4",
+   "anchor": "28.4-classical-velocity-addition"
+  },
+  {
+   "sym": "u_prime",
+   "concept": "instantaneous-velocity",
+   "meaning": "同一物体相对于另一个观察者的速度，该观察者相对于第一个观察者以 v 运动",
+   "unit": "m/s",
+   "section": "28.4",
+   "anchor": "28.4-classical-velocity-addition"
+  },
+  {
+   "sym": "λ_s",
+   "concept": "wavelength",
+   "meaning": "电磁辐射在其光源处发出时的波长",
+   "unit": "m",
+   "section": "28.4",
+   "anchor": "28.4-doppler-shift",
+   "ref": "source"
+  },
+  {
+   "sym": "λ_obs",
+   "concept": "wavelength",
+   "meaning": "相对于光源运动的观察者所接收到的同一辐射的波长",
+   "unit": "m",
+   "section": "28.4",
+   "anchor": "28.4-doppler-shift",
+   "ref": "receiver"
+  },
+  {
+   "sym": "f_src",
+   "concept": "frequency",
+   "meaning": "辐射在其光源处发出时的频率",
+   "unit": "Hz",
+   "section": "28.4",
+   "anchor": "28.4-doppler-shift",
+   "ref": "source"
+  },
+  {
+   "sym": "f_obs",
+   "concept": "frequency",
+   "meaning": "观察者接收到的辐射频率",
+   "unit": "Hz",
+   "section": "28.4",
+   "anchor": "28.4-doppler-shift",
+   "ref": "receiver"
+  },
+  {
+   "sym": "m",
+   "concept": "rest-mass",
+   "meaning": "物体的静质量，即相对于它静止的观察者所测得的质量",
+   "unit": "kg",
+   "section": "28.5",
+   "anchor": "28.5-rest-mass"
+  },
+  {
+   "sym": "p",
+   "concept": "relativistic-momentum",
+   "meaning": "相对论动量 γmu，u 趋近 c 时趋于无穷大",
+   "unit": "kg·m/s",
+   "section": "28.5",
+   "anchor": "28.5-relativistic-momentum"
+  },
+  {
+   "sym": "E",
+   "concept": "total-energy",
+   "meaning": "物体的总能量 γmc²",
+   "unit": "J",
+   "section": "28.6",
+   "anchor": "28.6-total-rest-energy"
+  },
+  {
+   "sym": "E_0rest",
+   "concept": "rest-energy",
+   "meaning": "物体的静能 mc²，即它不运动时具有的能量",
+   "unit": "J",
+   "section": "28.6",
+   "anchor": "28.6-total-rest-energy"
+  },
+  {
+   "sym": "KE_rel",
+   "concept": "relativistic-kinetic-energy",
+   "meaning": "相对论动能 (γ − 1)mc²，即总能量中由运动产生的部分",
+   "unit": "J",
+   "section": "28.6",
+   "anchor": "28.6-kinetic-energy"
+  },
+  {
+   "sym": "KE_class",
+   "concept": "kinetic-energy",
+   "meaning": "经典动能 ½mv²，仅在低速时与相对论值一致",
+   "unit": "J",
+   "section": "28.6",
+   "anchor": "28.6-kinetic-energy"
+  },
+  {
+   "sym": "W_net",
+   "concept": "work",
+   "meaning": "对物体所做的合外力的功，它转化为物体的动能",
+   "unit": "J",
+   "section": "28.6",
+   "anchor": "28.6-kinetic-energy"
+  },
+  {
+   "sym": "Δm",
+   "concept": "rest-mass",
+   "meaning": "静质量的变化，储存能量时增加的质量，或释放能量时被消灭的质量",
+   "unit": "kg",
+   "section": "28.6",
+   "anchor": "28.6-stored-energy"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "物体所受的合力，在加速参考系中它不等于 ma",
+   "unit": "N",
+   "section": "28.1",
+   "anchor": "28.1-first-postulate"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "物体的质量",
+   "unit": "kg",
+   "section": "28.1",
+   "anchor": "28.1-first-postulate"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "物体的加速度",
+   "unit": "m/s²",
+   "section": "28.1",
+   "anchor": "28.1-first-postulate"
+  },
+  {
+   "sym": "E",
+   "concept": "rest-energy",
+   "meaning": "质量 m 的等价能量，出自著名的方程 E = mc²",
+   "unit": "J",
+   "section": "28.1",
+   "anchor": "28.1-first-postulate"
+  },
+  {
+   "sym": "L_len",
+   "concept": "position",
+   "meaning": "光穿过飞船期间航天员移动的距离，按地球上的观察者测得",
+   "unit": "m",
+   "section": "28.2",
+   "anchor": "28.2-time-dilation"
+  },
+  {
+   "sym": "m",
+   "concept": "rest-mass",
+   "meaning": "物体的静质量，即出现在其总能量、静能和动能中的质量",
+   "unit": "kg",
+   "section": "28.6",
+   "anchor": "28.6-total-rest-energy",
+   "redefines": true
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "汽车蓄电池所移动的电荷，等于电流与时间的乘积",
+   "unit": "C",
+   "section": "28.6",
+   "anchor": "28.6-stored-energy"
+  },
+  {
+   "sym": "I",
+   "concept": "electric-current",
+   "meaning": "电池提供的电流",
+   "unit": "A",
+   "section": "28.6",
+   "anchor": "28.6-stored-energy"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "电池提供该电流的时间",
+   "unit": "s",
+   "section": "28.6",
+   "anchor": "28.6-stored-energy"
+  },
+  {
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "meaning": "电池的电压，12.0 V",
+   "unit": "V",
+   "section": "28.6",
+   "anchor": "28.6-stored-energy"
+  }
+ ]
+}

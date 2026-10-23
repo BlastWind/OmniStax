@@ -1,0 +1,802 @@
+{
+ "id": "28.4",
+ "module": "m42540",
+ "chapter": "28",
+ "title": "速度的相对论合成",
+ "short": "相对论速度合成",
+ "lead": "在经典理论中，沿同一直线的<span data-concept=\"velocity\">速度</span>像普通的数一样相加，$\\ku = \\kv + \\kuprime$，但光不可能如此，因为每个观察者测得的光速都是 $\\kc$。相对论速度合成取代了经典的和，适用于从<span data-ref=\"canister\">一个容器</span>射向<span data-ref=\"earth\">地球</span>到一束光的一切情形，同样的推理还给出了运动光源所发光的相对论多普勒频移。",
+ "objectives": [
+  "计算相对论速度合成。",
+  "说明何时应当使用相对论速度合成而不是经典速度合成。",
+  "计算相对论多普勒频移。"
+ ],
+ "summary_html": "<ul><li>在经典速度合成中，一维运动里的<span data-concept=\"velocity\">速度</span>像普通的数一样相加：$\\ku = \\kv + \\kuprime$，其中 $\\kv$ 是两个观察者之间的<span data-concept=\"velocity\">速度</span>，$\\ku$ 是一个物体相对于其中一个观察者的<span data-concept=\"velocity\">速度</span>，$\\kuprime$ 是相对于另一个观察者的<span data-concept=\"velocity\">速度</span>。</li><li><span data-concept=\"velocity\">速度</span>相加不可能大于<span data-concept=\"speed-of-light-in-vacuum\">光速</span>。相对论速度合成描述了以相对论性速率运动的物体的<span data-concept=\"velocity\">速度</span>：$$\\ku = \\frac{\\kv + \\kuprime}{1 + \\frac{\\kv\\kuprime}{\\kc^{2}}}$$</li><li>如果电磁辐射的光源相对于观察者运动，观察者就会看到相对论多普勒效应。当光源远离观察者运动时，辐射的<span data-concept=\"wavelength\">波长</span>比光源发射的更长（称为红移）；当光源朝向观察者运动时则更短（称为蓝移）。移动后的<span data-concept=\"wavelength\">波长</span>由下式描述 $$\\klamobs = \\klams\\sqrt{\\frac{1 + \\frac{\\ku}{\\kc}}{1 - \\frac{\\ku}{\\kc}}}$$ $\\klamobs$ 是观测<span data-concept=\"wavelength\">波长</span>，$\\klams$ 是光源<span data-concept=\"wavelength\">波长</span>，$\\ku$ 是光源相对于观察者的相对速度。</li></ul>",
+ "notes": "本节开头德菲尔德河（Deerfield River）上皮划艇的照片（图 28.13）略去。图 28.16 和图 28.17 在书中没有印出图注，合并为一幅图，其原图注按书中的做法留空。方框中的多普勒公式在书的标记中带有一个多余的起首等号，已去掉。本模块十五道习题中有七道没有给出答案，因而略去：背离地球飞行的飞船、光速为 3000 m/s 时的喷气式战斗机、以 1.00 GHz 发射信号的空间探测器、相向而行的两颗行星、以 0.950c 观测到的导弹、公路巡警雷达，以及背离观察者射出的光束。习题 fs-id1566424 把星系的速率印作“0.0.900c”，照印不改。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十五道习题中有七道没有给出答案，因而略去，它们在本节的说明中列出。每道思考题都没有书后答案，并附有一个标明由 AI 撰写的建议思路。理解检测设在多普勒频移一段的末尾。询问 F = ma 是否适用于接近光速的运动的那道 AP 题印在这里，但考查的是相对论动量，因此放在相对论动量（28.5）中。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-sled-snowball",
+   "kind": "sim",
+   "number": "28.14",
+   "originals": [
+    "/media/ch28/Figure_28_04_02.jpg"
+   ],
+   "original_caption": "在经典理论中，一维运动里的速度像普通的数一样相加。图中女孩从滑橇上先向前、再向后投出一个雪球。滑橇相对于地球的速度为 v = 1.0 m/s。雪球相对于滑橇的速度为 u′，相对于地球的速度为 u。经典地，u = v + u′。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "choice name set as text; headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-headlights",
+   "kind": "sim",
+   "number": "28.15",
+   "originals": [
+    "/media/ch28/Figure_29_04_03a.jpg"
+   ],
+   "original_caption": "根据实验和相对论的第二公设，汽车前照灯发出的光以速率 c 远离汽车，并以速率 c 朝人行道上的观察者运动。经典速度合成不成立。",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset, and says at rest what holds at v = 0"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ship-canister",
+   "kind": "sim",
+   "number": "28.16",
+   "folds": [
+    "28.17"
+   ],
+   "originals": [
+    "/media/ch28/Figure_29_04_04a.jpg",
+    "/media/ch28/Figure_29_04_05a.jpg"
+   ],
+   "original_caption": "",
+   "widths": [
+    350,
+    450
+   ],
+   "draws": [
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "u' row lifted off the v row; canister labelled; headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-relativistic-doppler",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "velocity",
+    "frequency"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "choice name set as text; headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "classical-velocity-addition",
+   "concept": "classical-velocity-addition-1d",
+   "verb": "introduces"
+  },
+  {
+   "span": "relativistic-velocity-addition",
+   "concept": "classical-velocity-addition-1d",
+   "verb": "uses"
+  },
+  {
+   "span": "relativistic-velocity-addition",
+   "concept": "second-postulate",
+   "verb": "uses"
+  },
+  {
+   "span": "relativistic-velocity-addition",
+   "concept": "relativistic-velocity-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "relativistic-velocity-addition",
+   "concept": "calculate-relativistic-velocity-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler-shift",
+   "concept": "doppler-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler-shift",
+   "concept": "relativistic-doppler-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler-shift",
+   "concept": "relativistic-doppler-frequency",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-254",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "doppler-shift"
+   },
+   "cite": "doppler-shift",
+   "prompt": "设一个空间探测器以 $0.350c$ 的速率远离地球。它以 1.50 GHz 的频率向地球发回无线电波信息。该信息在地球上接收到的频率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.04,
+    "unit": "GHz",
+    "hint": "探测器远离，所以 $\\ku$ 为正，接收到的频率低于发出的频率。",
+    "solution": "$$\\kfobs = \\kfsrc\\sqrt{\\frac{1 - \\frac{\\ku}{\\kc}}{1 + \\frac{\\ku}{\\kc}}} = (1.50\\;\\text{GHz})\\sqrt{\\frac{1 - \\frac{0.350c}{c}}{1 + \\frac{0.350c}{c}}} = 1.04\\;\\text{GHz}$$"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2630419",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "相对论多普勒效应与经典多普勒效应有何不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "相对论多普勒效应考虑了狭义相对论的时间延缓概念，并且不需要以传播介质作为参考点（光的传播不需要介质）。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1493354",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "解释“红移”和“蓝移”这两个术语在相对论多普勒效应中的含义。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "红移是观测到的电磁辐射波长变大，发生在光源远离观察者运动时；波长向可见光谱中偏红的长波一端移动。蓝移是观测波长变小，发生在光源朝向观察者运动时，波长向偏蓝的一端移动。在公式 $\\klamobs = \\klams\\sqrt{(1 + \\ku/\\kc)/(1 - \\ku/\\kc)}$ 中，$\\ku$ 为正时，$\\klamobs$ 大于 $\\klams$；$\\ku$ 为负时，则小于 $\\klams$。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2679250",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "相对速度为零时，相对论多普勒效应会怎样？这是预期的结果吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "当 $\\ku = 0$ 时，平方根变为 $\\sqrt{1/1} = 1$，所以 $\\klamobs = \\klams$，$\\kfobs = \\kfsrc$。完全没有频移。这是预期的结果，因为多普勒频移只来自光源与观察者之间的相对运动。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2683301",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "就运动远离时 ${\\lambda}_{\\text{obs}}$ 更大这一点而言，相对论多普勒效应与经典多普勒效应是否一致？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一致。对于声，远离听者运动的声源使其波峰彼此相隔更远，观测波长更长。在相对论公式中，$\\ku$ 为正（运动远离）使分子 $1 + \\ku/\\kc$ 大于分母 $1 - \\ku/\\kc$，所以 $\\klamobs$ 同样大于 $\\klams$。两种效应在方向上一致；它们的差别在于高速时频移的大小，以及相对论效应不需要介质。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2209137",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "所有比约 $50\\times 10^{6}\\;\\text{ly}$ 更远的星系，其发射的光都表现出与距离成正比的红移，距离越来越远的星系红移也逐渐增大。假设红移的唯一来源是相对运动，这意味着什么？（提示：在这样大的距离上，膨胀的是空间本身，但对光的效应是相同的。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "红移意味着星系正在远离我们，红移越大意味着远离的速率越大。由于红移与距离成正比，星系越远，退行得越快。这意味着宇宙在膨胀：遥远星系之间的每一段距离都在增大，因此从任何一个星系看去，其他星系都在以与其距离成正比的速率远离。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1357569",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativistic-velocity-addition",
+   "prompt": "设一艘宇宙飞船以 $0.750c$ 径直驶向地球，它能够射出一个相对于飞船速率为 $0.500c$ 的容器。（a）如果容器径直射向地球，容器相对于地球的速度是多少？（b）如果它径直背离地球射出呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) shot directly at the Earth",
+      "value": 0.909,
+      "unit": "c",
+      "hint": "取朝向地球为正，所以 $\\kv$ 和 $\\kuprime$ 都为正。"
+     },
+     {
+      "part": "(b) shot directly away from the Earth",
+      "value": 0.4,
+      "unit": "c",
+      "hint": "现在 $\\kuprime$ 为负，而飞船仍朝向地球运动。"
+     }
+    ],
+    "solution": "（a）$0.909c$\n（b）$0.400c$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1512938",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativistic-velocity-addition",
+   "prompt": "如果一艘宇宙飞船以 $0.100c$ 接近地球，并且一个信息舱以相对于地球 $0.100c$ 的速率朝它发出，那么信息舱相对于飞船的速率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.198,
+    "unit": "c",
+    "hint": "在飞船的参考系中，地球以 $0.100c$ 接近，而信息舱以 $0.100c$ 离开地球射向飞船，所以这两个速度要按相对论合成。",
+    "solution": "$0.198c$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2835463",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "如果一个远离地球运动的星系的速率为 $1000\\;\\text{km/s}$，并发射氢（宇宙中最常见的元素）特征的 $656\\;\\text{nm}$ 光。（a）我们在地球上将观测到什么波长？（b）这是哪一类电磁辐射？（c）为什么在这里地球在其轨道上的速率可以忽略？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the observed wavelength",
+    "value": 658,
+    "unit": "nm",
+    "hint": "先把星系的速率写成 $c$ 的分数；它在远离，所以 $\\ku$ 为正。",
+    "solution": "（a）658 nm\n（b）红光\n（c）$v/c = 9.92\\times 10^{-5}$（可以忽略）"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1419574",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativistic-velocity-addition",
+   "prompt": "如果两艘宇宙飞船以 $0.800c$ 径直相向飞行，那么必须以多大的速率从第一艘飞船射出一个容器，才能在第二艘飞船看来，容器以 $0.999c$ 接近第二艘飞船？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.991,
+    "unit": "c",
+    "hint": "在第二艘飞船的参考系中，$\\ku = 0.999c$，$\\kv = 0.800c$；对合成公式求解 $\\kuprime$。",
+    "solution": "$0.991c$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2733177",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativistic-velocity-addition",
+   "prompt": "当一枚导弹从一艘宇宙飞船射向另一艘时，它以 $0.950c$ 离开第一艘，并以 $0.750c$ 接近另一艘。两艘飞船的相对速度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.696,
+    "unit": "c",
+    "hint": "在第一艘飞船的参考系中取 $\\kuprime = 0.950c$，在第二艘飞船的参考系中取 $\\ku = 0.750c$，然后对合成公式求解 $\\kv$。",
+    "solution": "$-0.696c$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2772904",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "在我们银河系的中心附近，氢气在绕黑洞的轨道上径直远离我们运动。我们接收到 1900 nm 的电磁辐射，并且知道它被氢气发射时是 1875 nm。气体的速率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.01324,
+    "unit": "c",
+    "hint": "把比值 $\\klamobs/\\klams$ 平方，再求解 $\\ku/\\kc$。",
+    "solution": "$0.01324c$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2651524",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativistic-velocity-addition",
+   "prompt": "证明：对两个观察者之间的任何相对速度 $v$，从一个观察者射向另一个观察者的光束都将以速率 $c$ 接近（当然，前提是 $v$ 小于 $c$）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u' = c$，所以\n$$u = \\frac{v + u'}{1 + (vu'/c^{2})} = \\frac{v + c}{1 + (vc/c^{2})} = \\frac{v + c}{1 + (v/c)} = \\frac{c(v + c)}{c + v} = c$$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1566424",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativistic-velocity-addition",
+   "prompt": "（a）除最近的几个星系外，所有星系都在相对于我们自己的银河系退行。如果一个相距 $12.0\\times 10^{9}\\;\\text{ly}$ ly 的星系正以 0.0.900c 的速度退行，我们必须以相对于我们多大的速度发射一个探测器，才能使它以 $0.990c$（在该星系上测得）接近那个星系？（b）在地球上测量，探测器需要多长时间才能到达那个星系？可以假定那个星系的速度保持不变。（c）那么，一个无线电信号被发回需要多长时间？（所有这些原则上都是可能的，但并不实际。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the probe’s velocity relative to us",
+      "value": 0.99947,
+      "unit": "c",
+      "hint": "在那个星系的参考系中，探测器以 $0.990c$ 接近，而星系以 $0.900c$ 远离我们。"
+     },
+     {
+      "part": "(b) the travel time measured from the Earth",
+      "value": 120640000000.0,
+      "unit": "y",
+      "hint": "探测器追赶星系的速率，是在地球上测得的二者速率之差。"
+     },
+     {
+      "part": "(c) the time for the radio signal to come back",
+      "value": 120580000000.0,
+      "unit": "y",
+      "hint": "信号以 $c$ 的速率返回，所跨越的是星系届时已到达的距离。"
+     }
+    ],
+    "solution": "（a）$0.99947c$\n（b）$1.2064\\times 10^{11}\\;\\text{y}$\n（c）$1.2058\\times 10^{11}\\;\\text{y}$（所有数值保留足够多的位数，以显示各种效应）"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "relativistic-doppler-frequency",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "relativistic-doppler-effect",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "relativistic-doppler-effect",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "relativistic-doppler-effect",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "relativistic-doppler-effect",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "relativistic-doppler-effect",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-relativistic-velocity-addition",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "calculate-relativistic-velocity-addition",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "relativistic-doppler-effect",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "calculate-relativistic-velocity-addition",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-relativistic-velocity-addition",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "relativistic-doppler-effect",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "relativistic-velocity-addition",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "calculate-relativistic-velocity-addition",
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "girl",
+   "label": "女孩",
+   "figures": [
+    "sim-sled-snowball"
+   ]
+  },
+  {
+   "id": "sled",
+   "label": "滑橇",
+   "figures": [
+    "sim-sled-snowball"
+   ]
+  },
+  {
+   "id": "snowball",
+   "label": "雪球",
+   "figures": [
+    "sim-sled-snowball"
+   ]
+  },
+  {
+   "id": "boy",
+   "label": "男孩，地球上的观察者",
+   "figures": [
+    "sim-sled-snowball"
+   ]
+  },
+  {
+   "id": "man",
+   "label": "拉滑橇的男子",
+   "figures": [
+    "sim-sled-snowball"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "汽车",
+   "figures": [
+    "sim-headlights"
+   ]
+  },
+  {
+   "id": "driver",
+   "label": "司机",
+   "figures": [
+    "sim-headlights"
+   ]
+  },
+  {
+   "id": "sidewalk-observer",
+   "label": "人行道上的观察者",
+   "figures": [
+    "sim-headlights"
+   ]
+  },
+  {
+   "id": "spaceship",
+   "label": "宇宙飞船",
+   "figures": [
+    "sim-ship-canister"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-ship-canister"
+   ]
+  },
+  {
+   "id": "canister",
+   "label": "容器",
+   "figures": [
+    "sim-ship-canister"
+   ]
+  },
+  {
+   "id": "source",
+   "label": "光源，即星系或氢气",
+   "figures": [
+    "sim-relativistic-doppler"
+   ]
+  },
+  {
+   "id": "receiver",
+   "label": "接收电磁波的地球",
+   "figures": [
+    "sim-relativistic-doppler"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "relativistic-doppler",
+   "what": "相对论多普勒频移",
+   "source": "《大学物理（第2版）》，28.4 速度的相对论合成",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "在光源自己的参考系中，光源每隔 $1/\\kfsrc$ 发出一个波峰；这个间隔是固有时。",
+       "src": "28.4"
+      },
+      {
+       "tex": "\\kdt = \\gamma\\kdto",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\kdto} = \\mk{f}{\\frac{1}{\\kfsrc}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kdt} = \\mk{f}{\\frac{\\gamma}{\\kfsrc}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "28.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "在两次发射之间，光源远离观察者运动 $\\ku\\kdt$，而较早的那个波峰朝观察者传播 $\\kc\\kdt$，所以相邻波峰相距 $(\\kc + \\ku)\\kdt$。",
+       "src": "17.4"
+      },
+      {
+       "tex": "\\kc = \\kfsrc\\klams",
+       "src": "24.3"
+      },
+      {
+       "tex": "\\gamma = \\frac{1}{\\sqrt{1 - \\frac{\\ku^{2}}{\\kc^{2}}}}",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\klamobs} = \\mk{u}{(\\kc + \\ku)}\\mk{t}{\\kdt}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{u}{(\\kc + \\ku)}\\mk{t}{\\frac{\\gamma}{\\kfsrc}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\frac{\\kc}{\\kfsrc}}\\,\\mk{u}{\\gamma\\left(1 + \\frac{\\ku}{\\kc}\\right)}",
+       "uses": [],
+       "map": {
+        "t": [
+         "s",
+         "u"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\,\\mk{u}{\\gamma\\left(1 + \\frac{\\ku}{\\kc}\\right)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\,\\mk{u}{\\frac{1 + \\frac{\\ku}{\\kc}}{\\sqrt{1 - \\frac{\\ku^{2}}{\\kc^{2}}}}}",
+       "uses": [
+        3
+       ],
+       "cap": "这里的相对速率是 $\\ku$。"
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\,\\mk{u}{\\frac{1 + \\frac{\\ku}{\\kc}}{\\sqrt{\\left(1 - \\frac{\\ku}{\\kc}\\right)\\left(1 + \\frac{\\ku}{\\kc}\\right)}}}",
+       "uses": [],
+       "cap": "平方差：$1 - \\ku^{2}/\\kc^{2} = (1 - \\ku/\\kc)(1 + \\ku/\\kc)$。"
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\mk{u}{\\sqrt{\\frac{1 + \\frac{\\ku}{\\kc}}{1 - \\frac{\\ku}{\\kc}}}}",
+       "uses": [],
+       "cap": "因为 $1 + \\ku/\\kc = \\sqrt{1 + \\ku/\\kc}\\,\\sqrt{1 + \\ku/\\kc}$，所以有一个 $\\sqrt{1 + \\ku/\\kc}$ 因子被约去。"
+      }
+     ],
+     "src": "28.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "对两者而言，光的速率都保持为 $\\kc$，所以 $\\kc = \\kfobs\\klamobs = \\kfsrc\\klams$。",
+       "src": "24.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfobs} = \\frac{\\mk{c}{\\kc}}{\\mk{l}{\\klamobs}}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\frac{\\mk{c}{\\kc}}{\\mk{l}{\\klams\\sqrt{\\frac{1 + \\frac{\\ku}{\\kc}}{1 - \\frac{\\ku}{\\kc}}}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{c}{\\kfsrc}\\,\\frac{1}{\\mk{l}{\\sqrt{\\frac{1 + \\frac{\\ku}{\\kc}}{1 - \\frac{\\ku}{\\kc}}}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{c}{\\kfsrc}\\mk{l}{\\sqrt{\\frac{1 - \\frac{\\ku}{\\kc}}{1 + \\frac{\\ku}{\\kc}}}}",
+       "uses": [],
+       "cap": "分数的平方根的倒数，等于把分数上下颠倒后的平方根。"
+      }
+     ],
+     "src": "28.4"
+    }
+   ]
+  }
+ ]
+}
