@@ -196,7 +196,7 @@ function coil(ctx, x, y1, y2, n, side, color) {
     /* the names of the conductors, and the voltages the three-wire system holds
        them at */
     tag(ctx, three ? '火线' : '来自电源的导线', three ? 640 : 430, LIVE - 38, LIVE_C());
-    tag(ctx, three ? '零线' : '返回导线', 430, NEUT - 38, NEUT_C());
+    tag(ctx, three ? '中性线' : '返回导线', 430, NEUT - 38, NEUT_C());
     tag(ctx, '用电器', 1060, 300, F.ref('appliance'), { align: 'right' });
     tag(ctx, ohms(R, 1), 1060, 340, cR, { align: 'right', weight: 400 });
 
@@ -219,14 +219,14 @@ function coil(ctx, x, y1, y2, n, side, color) {
     topline(ctx, three
       ? open
         ? '用电器要取用 ' + amps(I) + '，电源为 ' + fmt(VS, 0) + ' V，这超过了 ' + fmt(rate, 0) + ' A 断路器所能承载的电流，所以断路器已断开，完全没有电流流动。'
-        : '用电器取用 ' + amps(I) + '，电源为 ' + fmt(VS, 0) + ' V，' + fmt(rate, 0) + ' A 断路器承载得了它，零线和外壳都保持在零伏。'
+        : '用电器取用 ' + amps(I) + '，电源为 ' + fmt(VS, 0) + ' V，' + fmt(rate, 0) + ' A 断路器承载得了它，中性线和外壳都保持在零伏。'
       : '用电器取用 ' + amps(I) + '，电源为 ' + fmt(VS, 0) + ' V，这个电路中没有任何东西限制这个电流，也没有东西使用电器的外壳不处在电流之中。');
     readout(d.readout,
       `\\kIcur = \\dfrac{\\kVrms}{\\kRes} = \\dfrac{${fmt(VS, 0)}\\ \\text{V}}{${ohmsTex(R, 1)}} = ${ampsTex(I)}${three && open ? `\\ > ${fmt(rate, 0)}\\ \\text{A，所以断路器断开}` : ''}`,
       three
         ? open
           ? '断路器串联在火线上，所以它一断开，整个电路中的电流就都没有了，这正是保护导线不致过热的原因。'
-          : '零线上的两处与地的连接迫使它处于零伏，第三处则迫使外壳也处于零伏，所以触摸其中任何一个的人都不在电路中。'
+          : '中性线上的两处与地的连接迫使它处于零伏，第三处则迫使外壳也处于零伏，所以触摸其中任何一个的人都不在电路中。'
         : '如果用电器取用的电流超过导线所能承载的，没有断路器可断开，也没有地线把用电器的外壳保持在零伏。');
   }
   register(d.fig, { update: () => {}, draw });
@@ -300,7 +300,7 @@ function coil(ctx, x, y1, y2, n, side, color) {
     tag(ctx, '插座', 582, 136, PAL.ink, { size: 20 });
     tag(ctx, '插头', 725, 530, F.ref('plug'), { size: 20 });
     tag(ctx, '火线', 895, LIVE - 36, LIVE_C(), { size: 20 });
-    tag(ctx, '零线', 895, NEUT + 38, NEUT_C(), { size: 20 });
+    tag(ctx, '中性线', 895, NEUT + 38, NEUT_C(), { size: 20 });
     F.faded(ctx, a3, [0, 0], () => tag(ctx, '地线', 905, GND + 40, EARTH_C(), { size: 20 }));
     F.faded(ctx, a2, [0, 0], () => tag(ctx, '没有地线；外壳不导电', 1120, GND + 46, PAL.muted, { size: 20, weight: 400 }));
     F.faded(ctx, aCut, [0, 0], () => tag(ctx, '地线，未接到任何大地', 990, GND + 40, PAL.muted, { size: 20, weight: 400 }));
@@ -308,7 +308,7 @@ function coil(ctx, x, y1, y2, n, side, color) {
     tag(ctx, '用电器', 1145, 250, F.ref('appliance'), { align: 'right' });
 
     topline(ctx, three
-      ? '三脚插头把火线、零线和地线都送到用电器，其中第三根使金属外壳保持在零伏。'
+      ? '三脚插头把火线、中性线和地线都送到用电器，其中第三根使金属外壳保持在零伏。'
       : two
         ? '双重绝缘用电器的外壳不导电，所以不需要地线，它的插头只有两个插脚。'
         : '第三个插脚已被剪掉，所以地线仍然通到用电器的外壳，却没有接到大地，外壳没有被保持在任何电压上。');
@@ -597,7 +597,7 @@ function coil(ctx, x, y1, y2, n, side, color) {
     flow(ctx, 760, NEUT, -1, 0);
     tag(ctx, '火线', 700, LIVE - 38, LIVE_C(), { size: 20 });
     tag(ctx, fmt(I, 3) + ' A', 890, LIVE - 38, cI);
-    tag(ctx, '零线', 700, NEUT + 40, NEUT_C(), { size: 20 });
+    tag(ctx, '中性线', 700, NEUT + 40, NEUT_C(), { size: 20 });
     tag(ctx, fmt(back, 3) + ' A', 890, NEUT + 40, cI);
 
     F.faded(ctx, path.a('person'), [0, 0], () => {
@@ -617,8 +617,8 @@ function coil(ctx, x, y1, y2, n, side, color) {
     });
 
     topline(ctx, leak > 1e-6
-      ? '火线中的电流为 ' + fmt(I, 3) + ' A，零线中为 ' + fmt(back, 3) + ' A，差值为 ' + amps(leak) + '，所以铁芯中出现磁场，保护器' + (trips ? '切断电路' : '尚未达到动作的设定值') + '。'
-      : '从火线流出的每一安培电流都从零线返回，所以线圈中的两个电动势恰好抵消，铁芯中没有磁场，什么也不会发生。');
+      ? '火线中的电流为 ' + fmt(I, 3) + ' A，中性线中为 ' + fmt(back, 3) + ' A，差值为 ' + amps(leak) + '，所以铁芯中出现磁场，保护器' + (trips ? '切断电路' : '尚未达到动作的设定值') + '。'
+      : '从火线流出的每一安培电流都从中性线返回，所以线圈中的两个电动势恰好抵消，铁芯中没有磁场，什么也不会发生。');
     readout(d.readout,
       `\\kIcur_{\\text{live}} - \\kIcur_{\\text{neutral}} = ${fmt(I, 3)}\\ \\text{A} - ${fmt(back, 3)}\\ \\text{A} = ${ampsTex(leak)}`,
       leak > 1e-6

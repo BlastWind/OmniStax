@@ -51,7 +51,7 @@ function galaxy(ctx, x, y, rx, tilt, fill, a) {
   const d = sim('sim-hubble-expansion', H);
   const HOME = { mw: [0, 0], far: [100, 0] };
   const homeC = choice(d.controls, { label: '\\text{观察点}', options: [{ value: 'mw', label: '银河系' }, { value: 'far', label: '那个遥远的星系' }], value: 'mw', aria: '观察膨胀时所在的星系', onInput: () => cy.reset() });
-  const hS = ctl(d.controls, { label: 'H_{0}', cls: '', min: 10, max: 30, step: 0.5, value: 20, unit: '(km/s)/Mly', dec: 1, aria: '哈勃常量，单位为千米每秒每百万光年', onInput: () => cy.reset() });
+  const hS = ctl(d.controls, { label: 'H_{0}', cls: '', min: 10, max: 30, step: 0.5, value: 20, unit: '(km/s)/Mly', dec: 1, aria: '哈勃常数，单位为千米每秒每百万光年', onInput: () => cy.reset() });
   const cy = cycle(() => T_LOOP, 1.2);
   let hits = [];
   hover(d.stage, () => hits);

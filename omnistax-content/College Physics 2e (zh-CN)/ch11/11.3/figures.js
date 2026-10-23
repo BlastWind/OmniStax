@@ -258,7 +258,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     const va = where.a('valve');
     if (va > 0) { ctx.save(); ctx.globalAlpha = va; text(ctx, '这一小块是气门芯的端面', IX, IY + IR + 30, PAL.muted, { size: 17, align: 'center' }); ctx.restore(); }
     const Fs = (Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)) + ' N';
-    topline(ctx, Pk === 0 ? '轮胎内部没有空气压强时，没有什么东西推着轮胎的壁。'
+    topline(ctx, Pk === 0 ? '轮胎内部没有气压时，没有什么东西推着轮胎的壁。'
       : w === 'tread' ? '在 ' + fmt(Pk, 0) + ' kPa 时，空气推着胎面上 ' + fmt(As.v, 1) + ' cm² 的一小块，力为 ' + Fs + '，径直向外穿过胎壁。'
       : w === 'rim' ? '在 ' + fmt(Pk, 0) + ' kPa 时，空气推着轮辋上 ' + fmt(As.v, 1) + ' cm² 的一小块，力为 ' + Fs + '，径直向内朝向轮毂，这个力与胎面上的力相同。'
       : '在 ' + fmt(Pk, 0) + ' kPa 时，空气推着气门芯上 ' + fmt(As.v, 1) + ' cm² 的端面，力为 ' + Fs + '，这正是使气门保持关闭的原因。');
