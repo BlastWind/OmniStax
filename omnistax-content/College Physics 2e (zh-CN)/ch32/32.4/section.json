@@ -1,0 +1,257 @@
+{
+ "id": "32.4",
+ "module": "m42656",
+ "chapter": "32",
+ "title": "食品辐照",
+ "short": "食品辐照",
+ "lead": "电离辐射被用来处理食品，以防治虫害、延缓变质，并杀灭引起疾病的微生物。本节介绍食品辐照所用的辐射和<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>，探讨经辐照的食品是否带有放射性，并追踪辐射在食品和在它所要杀灭的生物体中产生的自由基。",
+ "objectives": [
+  "定义食品辐照、小剂量和自由基。"
+ ],
+ "summary_html": "<ul><li>食品辐照是用电离辐射处理食品。</li><li>对食品进行辐照，可以通过产生自由基和辐解产物来杀灭昆虫和细菌，这些产物能够破坏细胞膜。</li><li>食品辐照尚未产生任何可观察到的对人体的负面短期影响，但其长期效应尚不清楚。</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。关于皮波光子的习题印在 32.2 中，在这里作为题目给出，因为食品辐照是在这里讲的。三道思考题没有书后答案，附有标为 AI 生成的建议思路。本节没有印出理解检测框，因此没有设置行内题。",
+ "figures": [
+  {
+   "id": "sim-irradiation-plant",
+   "kind": "sim",
+   "number": "32.10",
+   "originals": [
+    "/media/ch32/Figure_33_04_01a.jpg"
+   ],
+   "original_caption": "食品辐照装置设有输送机系统，使物品通过厚厚屏蔽墙后面的强辐射场。不使用时，$\\gamma$ 射线源被降入深水池中安全储存。长达一小时的照射时间，使食品受到高达 ${10}^{4}\\;\\text{Gy}$ 的剂量。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "dose",
+    "time",
+    "energy"
+   ],
+   "conventions": [
+    "Co",
+    "Cs",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "food-irradiation",
+   "concept": "food-irradiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "food-irradiation",
+   "concept": "ionizing-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "irradiation-sources",
+   "concept": "irradiated-food-is-not-radioactive",
+   "verb": "introduces"
+  },
+  {
+   "span": "irradiation-sources",
+   "concept": "alpha-beta-gamma-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "irradiation-sources",
+   "concept": "gamma-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "irradiation-sources",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "irradiation-sources",
+   "concept": "absorbed-dose-rad-and-gray",
+   "verb": "uses"
+  },
+  {
+   "span": "food-doses",
+   "concept": "food-irradiation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "food-doses",
+   "concept": "absorbed-dose-rad-and-gray",
+   "verb": "uses"
+  },
+  {
+   "span": "food-doses",
+   "concept": "gray",
+   "verb": "uses"
+  },
+  {
+   "span": "food-doses",
+   "concept": "immediate-effects-and-dose-levels",
+   "verb": "uses"
+  },
+  {
+   "span": "free-radicals",
+   "concept": "free-radicals",
+   "verb": "introduces"
+  },
+  {
+   "span": "free-radicals",
+   "concept": "radiolytic-products",
+   "verb": "introduces"
+  },
+  {
+   "span": "free-radicals",
+   "concept": "free-radicals-and-radiolytic-products",
+   "verb": "introduces"
+  },
+  {
+   "span": "free-radicals",
+   "concept": "ionizing-radiation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3090754",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "food-doses",
+   "prompt": "食品辐照会使食品带上放射性吗？在食品辐照的小剂量和大剂量下，食品的化学成分在多大程度上发生了改变？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不会，辐照不会使食品带上放射性。用来处理食品的 $\\gamma$ 射线、X 射线和电子不会引发核反应，所以食品中没有任何原子核发生改变，也就没有放射性留下。发生的是化学变化：电离使分子断裂并产生自由基，自由基再反应生成辐解产物。在小剂量下，即最高 1000 Gy，这些化合物生成的量小到无法测出，香料以及许多水果和蔬菜的味道和营养价值都没有损失。在大剂量下，这些变化是可以测出的：约 15% 的营养成分和 25% 的维生素损失，味道也发生改变，这些损失与冷冻和烹饪造成的相近。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3044197",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "food-doses",
+   "prompt": "把对人的小剂量辐射与食品处理中所用的小剂量辐射作一比较。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "食品辐照中的小剂量约为对人的小剂量的一万倍。对人的小剂量低于 100 mSv，对 $\\gamma$ 射线来说低于 0.1 Gy。食品辐照中的小剂量最高为 1000 Gy，远高于能使一半受照者死亡的 4.5 Sv。两者都称为小剂量，但理由不同：一个是对人而言小，另一个是足以阻止许多微生物生长的最低剂量，而微生物是较简单的生物，比人能耐受多得多的辐射。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3079618",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "irradiation-sources",
+   "prompt": "假设一座食品辐照装置使用 ${}^{137}\\text{Cs}$ 源，而另一座使用活度相等的 ${}^{60}\\text{Co}$ 源。假定两个源发出的 $\\gamma$ 射线被吸收的比例相等，为什么用 ${}^{137}\\text{Cs}$ 源要得到同样的剂量需要更多的时间？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "${}^{137}\\text{Cs}$ 源每秒在食品中沉积的能量较少，所以积累到同样的剂量，即每千克吸收的能量，需要更长的时间。活度相等意味着每秒的衰变数相等，而且被吸收的 $\\gamma$ 射线的比例相等，所以差别在于每次衰变以 $\\gamma$ 射线形式放出的能量。一次 ${}^{137}\\text{Cs}$ 衰变至多给出一条 0.67 MeV 的 $\\gamma$ 射线，而一次 ${}^{60}\\text{Co}$ 衰变给出两条，平均为 1.25 MeV，合计约 2.5 MeV。因此钴源每秒沉积的能量约为铯源的四倍，铯源要得到同样的剂量，所需时间约为四倍。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3119418",
+   "source_section": "32.2",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "irradiation-sources",
+   "prompt": "20 世纪 80 年代，人们用“皮波”一词来描述食品辐照，借助微波辐射广为人知的安全性来化解公众的抵触。求波长为一皮米的光子的能量，以 MeV 为单位。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.24,
+    "unit": "MeV",
+    "hint": "使用 $\\kE = hc/\\lambda$，其中 $hc = 1240\\;\\text{eV}\\cdot\\text{nm}$，把 1 pm 写成 $10^{-3}\\;\\text{nm}$。",
+    "solution": "1.24 MeV"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "irradiated-food-is-not-radioactive"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "radiolytic-products"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "food-irradiation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "food-irradiation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "low-dose"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "food-irradiation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "exercise": "p1",
+   "concept": "photon-energy-from-wavelength"
+  },
+  {
+   "exercise": "p1",
+   "concept": "food-irradiation"
+  }
+ ]
+}

@@ -206,9 +206,9 @@ const sig2 = (x) => x >= 10 ? fmt(x, 1) : x >= 1 ? fmt(x, 1) : x >= 0.1 ? fmt(x,
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(X(m.rin), WB.t, X(m.rout) - X(m.rin), WB.b - WB.t); ctx.restore();
     [m.rin, m.rout].forEach((r) => line(ctx, X(r), Y(m.e), X(r), WB.b, alpha(PAL.ink, 0.35), 2, [4, 8]));
     curve(ctx, V, 0, 70, X, Y, EN, 5, 400);
-    hits.push({ x: X(4), y: Y(-30), r: 22, name: '核势阱：在原子核内，吸引性的核力束缚住 α 粒子' });
+    hits.push({ x: X(4), y: Y(-30), r: 22, name: '核势阱：在原子核内，吸引性核力束缚住 α 粒子' });
     hits.push({ x: X(30), y: Y(V(30)), r: 22, name: '势垒：在原子核外，α 粒子受到库仑斥力' });
-    label(ctx, '吸引性的核力', X(R) + 4, Y(-24), { side: 'right', size: 18, color: PAL.ink, gap: 50 });
+    label(ctx, '吸引性核力', X(R) + 4, Y(-24), { side: 'right', size: 18, color: PAL.ink, gap: 50 });
     label(ctx, '库仑斥力', X(24), Y(V(24)) - 2, { side: 'above', size: 18, color: PAL.ink, gap: 40 });
 
     /* the α's energy above, and the wave function beneath on the same r */

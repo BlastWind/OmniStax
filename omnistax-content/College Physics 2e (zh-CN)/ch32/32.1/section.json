@@ -1,0 +1,502 @@
+{
+ "id": "32.1",
+ "module": "m42649",
+ "chapter": "32",
+ "title": "诊断与医学成像",
+ "short": "医学成像",
+ "lead": "用放射性核素标记的化合物会去往身体输送它的地方，它所发出的 γ 射线可以在体外读取。锝-99m 等放射性药物可用安格照相机、SPECT 和 PET 成像，其中 PET 探测正电子与电子湮没时产生的两条 γ 射线。",
+ "objectives": [
+  "解释安格照相机的工作原理。",
+  "描述 SPECT 和 PET 成像技术。"
+ ],
+ "summary_html": "<ul><li>放射性药物是用于医学成像和治疗的化合物。</li><li>附着放射性物质的过程称为标记。</li><li>表 32.1 列出了放射性药物的某些诊断用途，包括诊断中通常使用的同位素和活度。</li><li>一种常见的成像装置是安格照相机，它由铅准直器、辐射探测器和分析用计算机组成。</li><li>用发射 $\\gamma$ 射线的放射性药物进行的断层成像称为 SPECT，它兼有 X 射线 CT 扫描的优点，并结合了针对特定器官和功能的药物。</li><li>PET 是一种类似的技术，它使用 $\\beta^{+}$ 发射体，并探测湮没产生的两条 $\\gamma$ 射线，这有助于确定放射源的位置。</li></ul>",
+ "notes": "指向 PhET 模拟 Simplified MRI 的链接被略去，与全书略去出版方互动内容的链接一样。本模块七道习题中有三道没有给出答案而被略去：钼-98 的中子俘获所释放的能量、两条 PET γ 射线到达时间之差，以及甲状腺扫描中碘-131 和碘-123 的质量。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。七道习题中有三道没有给出答案而被略去：${}^{98}\\text{Mo}+n\\to{}^{99}\\text{Mo}+\\gamma$ 的能量输出、两条 PET γ 射线到达时间之差（以及 1.00 mm 分辨率所需的计时精度），以及甲状腺扫描中 ${}^{131}\\text{I}$ 和 ${}^{123}\\text{I}$ 的质量；它们在本节的说明中已列出。关于 ${}^{99}\\text{Mo}$ 的 $\\beta^{-}$ 衰变的那道题，书后答案给出的是一个衰变方程，所以作为开放题设置，附书后答案。32.7 节印出的关于 $\\beta^{+}$ 靶的批判性思考题，设在这里，即讲授 PET 的地方，32.7 节的说明也这样写明。两道思考题没有答案，带有 AI 标注的建议思路。本模块没有印出理解检测框，也没有 AP 题，所以没有内嵌任何题目。数值答案接受各题卡片给出的容差，未给出时为 2%。",
+ "figures": [
+  {
+   "id": "photo-alzheimers-brain",
+   "kind": "photo",
+   "number": "32.2",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-anger-camera",
+   "kind": "sim",
+   "number": "32.3",
+   "originals": [
+    "/media/ch32/Figure_33_01_02.jpg"
+   ],
+   "original_caption": "安格照相机或 γ 照相机由一块铅准直器和一组探测器构成。γ 射线在闪烁体中产生闪光。光电倍增管把光输出转换成电信号。计算机根据探测器的输出构建图像。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "position",
+    "activity"
+   ],
+   "conventions": [
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-spect",
+   "kind": "photo",
+   "number": "32.4",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-pet",
+   "kind": "sim",
+   "number": "32.5",
+   "originals": [
+    "/media/ch32/Figure_33_01_05.jpg"
+   ],
+   "original_caption": "PET 系统利用正电子–电子湮没产生的两个相同的 γ 射线光子。这些 γ 射线沿相反方向发射，因此每一对射线发射所沿的直线就被确定下来。计算机再对若干对探测器探测到的各种事件进行分析，形成准确的图像。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "conventions": [
+    "gamma",
+    "e+",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "radioactive-tags",
+   "concept": "tagged-compound",
+   "verb": "introduces"
+  },
+  {
+   "span": "radioactive-tags",
+   "concept": "radiopharmaceuticals-and-tagging",
+   "verb": "introduces"
+  },
+  {
+   "span": "radioactive-tags",
+   "concept": "gamma-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "radioactive-tags",
+   "concept": "range-of-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "radioactive-tags",
+   "concept": "nuclide",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "technetium-99m",
+   "verb": "introduces"
+  },
+  {
+   "span": "medical-application",
+   "concept": "mass-from-activity",
+   "verb": "introduces"
+  },
+  {
+   "span": "medical-application",
+   "concept": "radiopharmaceuticals-and-tagging",
+   "verb": "reinforces"
+  },
+  {
+   "span": "medical-application",
+   "concept": "activity",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "curie",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "becquerel",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "beta-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "isotopes",
+   "verb": "uses"
+  },
+  {
+   "span": "anger-camera",
+   "concept": "anger-camera",
+   "verb": "introduces"
+  },
+  {
+   "span": "anger-camera",
+   "concept": "radiopharmaceuticals-and-tagging",
+   "verb": "uses"
+  },
+  {
+   "span": "anger-camera",
+   "concept": "scintillator-and-photomultiplier",
+   "verb": "uses"
+  },
+  {
+   "span": "spect",
+   "concept": "spect-imaging",
+   "verb": "introduces"
+  },
+  {
+   "span": "spect",
+   "concept": "anger-camera",
+   "verb": "uses"
+  },
+  {
+   "span": "spect",
+   "concept": "x-ray-imaging",
+   "verb": "uses"
+  },
+  {
+   "span": "pet",
+   "concept": "pet-annihilation-pair",
+   "verb": "introduces"
+  },
+  {
+   "span": "pet",
+   "concept": "spect-imaging",
+   "verb": "uses"
+  },
+  {
+   "span": "pet",
+   "concept": "positron",
+   "verb": "uses"
+  },
+  {
+   "span": "pet",
+   "concept": "beta-plus-decay-and-electron-capture",
+   "verb": "uses"
+  },
+  {
+   "span": "pet",
+   "concept": "rest-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "pet",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1132453",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radioactive-tags",
+   "prompt": "从辐射剂量来看，医学诊断用途与医学治疗用途的主要区别是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "诊断用途只需要足够的辐射离开身体并被探测到，所以给患者的剂量是仍能得到有用图像或测量结果的最小剂量，辐射大体上是作为探针穿过组织。治疗用途则是要损伤组织：它给出有意加大的剂量，集中在被治疗的肿瘤或器官上，使那里的细胞被杀死。因此，诊断剂量小而分散，治疗剂量则大得多而且有明确指向。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2968635",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "medical-application",
+   "prompt": "限制医学成像中患者所受辐射剂量的方法之一，是采用半衰期较短的同位素。这怎样能限制剂量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "成像需要在扫描期间有一定的活度，即每秒一定数目的衰变。活度为 $\\kRact = 0.693N/\\kthalf$，所以半衰期短，就能以体内较少的放射性核数目 $N$ 得到这个活度。核数目较少，总的衰变次数就较少；扫描一结束，活度又很快下降，因此在辐射不再有用之后沉积在患者体内的辐射很少。若用长寿命的同位素得到同样的活度，则会对患者持续照射数天或数周。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2654437",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "medical-application",
+   "prompt": "中子发生器用 $\\alpha$ 源（如镭）轰击铍，引发反应 ${}^{4}\\text{He}+{}^{9}\\text{Be}\\to {}^{12}\\text{C}+n$。这类中子源称为 RaBe 源；如果用钚来产生 $\\alpha$ 粒子，则称为 PuBe 源。计算该反应以 MeV 为单位的能量输出。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.701,
+    "unit": "MeV",
+    "tol": 0.005,
+    "hint": "用 ${}^{4}\\text{He}$ 和 ${}^{9}\\text{Be}$ 的质量减去 ${}^{12}\\text{C}$ 和中子的质量，全部以 u 为单位，再把差值乘以 931.5 MeV/u。",
+    "solution": "5.701 MeV"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2688305",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "medical-application",
+   "prompt": "生产 ${}^{99}\\text{Mo}$（通常如上一题那样，用中子活化天然钼）的目的是得到 ${}^{99m}\\text{Tc}$。请利用规则验证 ${}^{99}\\text{Mo}$ 的 $\\beta^{-}$ 衰变产生 ${}^{99m}\\text{Tc}$。（这一衰变产生的大多数 ${}^{99m}\\text{Tc}$ 核处于亚稳激发态，记作 ${}^{99m}\\text{Tc}$。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}_{42}^{99}\\text{Mo}_{57}\\to {}_{43}^{99}\\text{Tc}_{56}+\\beta^{-}+\\bar{v}_{e}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2688094",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "medical-application",
+   "prompt": "表 32.1 表明，脑扫描使用 7.50 mCi 的 ${}^{99m}\\text{Tc}$。锝的质量是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.43e-09,
+    "unit": "g",
+    "tol": 0.02,
+    "hint": "把活度换算成贝可勒尔，由 $N = \\kRact\\kthalf/0.693$ 求核的数目（半衰期 6.0 h 要换算成秒），再用阿伏伽德罗常量和 99 g/mol 把这个数目换算成克。",
+    "solution": "$1.43\\times 10^{-9}\\ \\text{g}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2973764",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "medical-application",
+   "prompt": "（a）对钠（100% 为 ${}^{23}\\text{Na}$）进行中子活化，产生 ${}^{24}\\text{Na}$，如表 32.1 所示，它用于某些心脏扫描。反应方程为 ${}^{23}\\text{Na}+n\\to {}^{24}\\text{Na}+\\gamma$。已知 ${}^{24}\\text{Na}$ 的质量为 23.990962 u，求其能量输出。\n（b）已知半衰期为 15.0 h，要产生所需的 5.0 mCi 活度，需要多大质量的 ${}^{24}\\text{Na}$？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）6.958 MeV\n（b）$5.7\\times 10^{-10}\\ \\text{g}$",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6.958,
+      "unit": "MeV",
+      "tol": 0.005,
+      "hint": "能量输出等于 ${}^{23}\\text{Na}$ 与中子的质量之和减去 ${}^{24}\\text{Na}$ 的质量，再乘以 931.5 MeV/u。"
+     },
+     {
+      "part": "(b)",
+      "value": 5.7e-10,
+      "unit": "g",
+      "tol": 0.03,
+      "hint": "先由活度（以贝可勒尔计）和半衰期（以秒计）求 $N = \\kRact\\kthalf/0.693$，再乘以 24 g/mol 并除以阿伏伽德罗常量。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "exer-00001",
+   "source_section": "32.7",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pet",
+   "prompt": "体内的一个球形靶正受到 $\\beta^{+}$ 辐射。靶的中心位于网格上的 (0.00, 2.00, 3.00)，网格以厘米为单位。靶的半径为 0.500 厘米。（a）正电子与电子湮没的位置，在 $x$ 轴上的两个极端点是哪两点？（b）正电子与电子湮没的位置，在 $y$ 轴上的两个极端点是哪两点？（c）对于这些湮没所产生的一对 γ 射线的方向，能说些什么？（d）使用 $\\beta^{+}$ 能给出三维信息吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）(−0.500, 2.00, 3.00) 和 (0.500, 2.00, 3.00)\n（b）(0.000, 1.50, 3.00) 和 (0.000, 2.50, 3.00)\n（c）它们沿同一条直线、朝相反方向运动。\n（d）能。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "radiopharmaceuticals-and-tagging",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "technetium-99m"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "half-life",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p1",
+   "concept": "nuclear-reaction-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "decay-energy-from-atomic-masses"
+  },
+  {
+   "exercise": "p2",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "technetium-99m"
+  },
+  {
+   "exercise": "p3",
+   "concept": "mass-from-activity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "technetium-99m"
+  },
+  {
+   "exercise": "p3",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p4",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p4",
+   "concept": "mass-from-activity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pet-annihilation-pair",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "conservation-of-momentum"
+  }
+ ],
+ "referents": [
+  {
+   "id": "tumor",
+   "label": "肿瘤",
+   "figures": [
+    "sim-anger-camera"
+   ]
+  }
+ ]
+}

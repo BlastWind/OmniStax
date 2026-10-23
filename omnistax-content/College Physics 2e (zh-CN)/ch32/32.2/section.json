@@ -1,0 +1,701 @@
+{
+ "id": "32.2",
+ "module": "m42652",
+ "chapter": "32",
+ "title": "电离辐射的生物效应",
+ "short": "生物效应",
+ "lead": "电离辐射通过损伤细胞中的 DNA 来伤害活组织。本节定义了度量辐射<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>的单位，解释为什么在沉积的<span data-concept=\"energy\">能量</span>相同的情况下，某些种类的辐射比另一些造成更大的危害，并概述剂量的即时效应和长期效应、每个人都会受到的本底辐射，以及限制剂量的方法。",
+ "objectives": [
+  "定义各种辐射单位。",
+  "描述 RBE。"
+ ],
+ "summary_html": "<ul><li>电离辐射的生物效应源于它对细胞的两种作用：干扰细胞增殖，以及破坏细胞功能。</li><li>一种称为拉德的辐射<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>单位，是按每千克组织中沉积的电离<span data-concept=\"energy\">能量</span>来定义的：$$1\\;\\text{rad}=0.01\\;\\text{J/kg}.$$</li><li>辐射<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>的 SI 单位是戈瑞（Gy），其定义为 $1\\;\\text{Gy}=1\\;\\text{J/kg}=100\\;\\text{rad}.$</li><li>为了考虑产生电离的粒子类型的影响，我们使用表 32.2 中给出的相对生物效能（RBE）或品质因数（QF），并把一个称为雷姆（rem，即伦琴当量人）的单位定义为 $$\\text{rem}=\\text{rad}\\times\\text{RBE}.$$</li><li>射程短或产生的电离密度大的粒子，其 RBE 大于 1。雷姆的 SI 对应单位是希沃特（Sv），其定义为 $$\\text{Sv}=\\text{Gy}\\times\\text{RBE}\\;\\text{和}\\;1\\;\\text{Sv}=100\\;\\text{rem}.$$</li><li>全身、单次照射的<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>，<span data-type=\"dose\">0.1 Sv 或更小</span>的为小<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>，<span data-type=\"dose\">0.1 至 1 Sv</span> 的为中等剂量，<span data-type=\"dose\">超过 1 Sv</span> 的为大<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>。表 32.4 给出了一些即时的辐射效应。小<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>所致的效应观察不到，但其风险被假定与大<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>的风险成正比，这一假定称为线性假说。长期效应是癌症死亡，其发生率为 $10/10^{6}\\;\\text{rem}\\cdot\\text{y}$，以及遗传缺陷，其发生率约为该值的三分之一。表 32.5 给出了本底辐射的<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>和来源。来自天然源（包括氡）的全世界平均辐射照射量<span data-type=\"dose\">约为 3 mSv，即 300 mrem</span>。辐射防护利用屏蔽、<span data-concept=\"distance\">距离</span>和<span data-concept=\"time\">时间</span>来限制照射。</li></ul>",
+ "notes": "PhET 模拟 Alpha Decay（讲 α 粒子从钋原子核中逸出）被略去。表 32.3 把贝可勒尔的符号印成小写的 bq，照原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。关于波长 1 pm 的“picowave”（皮波）光子能量的习题在本模块中印出，但安排在讲授食品辐照的 32.4 中。有四道没有答案的习题被略去：一系列荧光透视的剂量（以 Gy 计）、皮肤上的 α 发射体的剂量以及体内 ⁴⁰K 的剂量；200 Gy γ 治疗的剂量（以 Sv 计）；一位管道工 30 mSv 剂量的癌症风险和遗传风险；以及活度为 1.00 μCi 的 ²³⁹Pu 的质量。七道思考题和关于一位 90 kg 的人受到 50 mrem α 剂量的 AP 题没有答案，附有标明由 AI 撰写的建议思路。该模块没有印出理解检测框，因此没有设置随文的题目。",
+ "figures": [
+  {
+   "id": "sim-ionization",
+   "kind": "sim",
+   "number": "32.6",
+   "originals": [
+    "/media/ch32/Figure_33_02_01a.jpg"
+   ],
+   "original_caption": "图中显示了 α 辐射和 γ 辐射在细胞中产生的电离。由于射程较短，α 粒子产生的电离和损伤更为集中，生物体更难以修复。因此，α 粒子的 RBE 大于 γ 射线的 RBE，尽管在能量相同时它们产生的电离量是一样的。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "dose"
+   ],
+   "conventions": [
+    "gamma",
+    "e-",
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dose",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "mass",
+    "dose"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-protection",
+   "kind": "sim",
+   "number": "32.7",
+   "originals": [
+    "/media/ch32/Figure_33_02_02a.jpg"
+   ],
+   "original_caption": "牙科患者身上盖着铅围裙，X 射线管周围有屏蔽，以限制对被成像组织之外的组织的照射。快速胶片缩短了获得图像所需的时间，从而减少了对被成像组织的照射。技师站在几米之外一扇内衬铅、带有铅玻璃窗的门后面，从而减少了她的职业照射。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "time",
+    "position",
+    "dose"
+   ],
+   "conventions": [
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "radiation-and-cells",
+   "concept": "radiation-damages-dna",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiation-and-cells",
+   "concept": "ionizing-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "absorbed-dose-rad-and-gray",
+   "verb": "introduces"
+  },
+  {
+   "span": "dose-units",
+   "concept": "rad",
+   "verb": "introduces"
+  },
+  {
+   "span": "dose-units",
+   "concept": "gray",
+   "verb": "introduces"
+  },
+  {
+   "span": "dose-units",
+   "concept": "energy",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "kilogram",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "ionization-energy-to-count",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "relative-biological-effectiveness",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "dose-equivalent-rem-and-sievert",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "rem",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "sievert",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "range-of-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "alpha-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "beta-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "gamma-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "neutron",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "activity",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "exponential-decay-law",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "becquerel",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "curie",
+   "verb": "uses"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "immediate-effects-and-dose-levels",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "low-dose",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "moderate-dose",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "high-dose",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "sievert",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term-effects",
+   "concept": "linear-hypothesis-and-long-term-risk",
+   "verb": "introduces"
+  },
+  {
+   "span": "long-term-effects",
+   "concept": "hormesis",
+   "verb": "introduces"
+  },
+  {
+   "span": "long-term-effects",
+   "concept": "ultraviolet-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "background",
+   "concept": "background-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "background",
+   "concept": "nuclear-radioactivity",
+   "verb": "uses"
+  },
+  {
+   "span": "background",
+   "concept": "becquerel",
+   "verb": "uses"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "radiation-protection",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "shielding",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "intensity-area-ratio",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "dose-from-a-source",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "activity",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "curie",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "relative-biological-effectiveness",
+   "verb": "uses"
+  },
+  {
+   "span": "risk-versus-benefit",
+   "concept": "half-life",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1541499",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "一位患者在治疗中受到 $A$ 拉德的辐射，吸收了 $E$ J 的能量。辐射粒子的 RBE 为 $R$。如果 RBE 增大为 $1.5R$，患者吸收的能量将是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "$1.5E$ J",
+     "$E$ J",
+     "$0.75E$ J",
+     "$0.67E$ J"
+    ],
+    "correct": 1,
+    "generated_by": "source",
+    "hint": "以拉德计的剂量是每千克吸收的能量。想一想 RBE 进入的是哪一个剂量：以拉德计的剂量，还是以雷姆计的剂量。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1556618",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "如果一位 90 kg 的人受到 50 mrem 的 α 粒子照射（RBE 为 16），计算这个人受到的剂量（以拉德计）。这个人吸收的能量是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "剂量约为 3.1 mrad，这个人吸收的能量约为 $2.8\\times10^{-3}\\;\\text{J}$。以雷姆计的剂量等于以拉德计的剂量乘以 RBE，所以以拉德计的剂量等于 50 mrem，即 0.050 雷姆，除以 RBE 16：$0.050\\;\\text{rem}/16=3.1\\times10^{-3}\\;\\text{rad}$。一拉德是每千克的能量，$1\\;\\text{rad}=0.01\\;\\text{J/kg}$，所以这个剂量为 $3.1\\times10^{-5}\\;\\text{J/kg}$。取整个 90 kg 的身体都受到照射，则吸收的能量为 $(3.1\\times10^{-5}\\;\\text{J/kg})(90\\;\\text{kg})=2.8\\times10^{-3}\\;\\text{J}$。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3105443",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "发射 $\\alpha$ 辐射的同位素在体外相对安全，在体内却格外危险。然而发射 $\\gamma$ 辐射的同位素无论在体外还是体内都是危险的。请解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个 $\\alpha$ 粒子的射程很短：几厘米的空气或皮肤死去的外层就能把它挡住，所以体外的放射源几乎不会在活细胞中沉积能量。在体内，放射源与活组织之间没有任何阻隔，$\\alpha$ 粒子把它的全部能量沉积在沿一条短而电离密集的径迹上的少数几个细胞中，这种损伤很难修复，这就是它的 RBE 为 10 到 20 的原因。$\\gamma$ 射线的射程很长，能穿过皮肤深入体内，所以无论从体外还是从体内，它都能到达活细胞。它的电离分布稀疏，所以它的 RBE 为 1，但单靠距离绝不能把它挡在外面。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2449112",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "background",
+   "prompt": "为什么与其他类型的癌症相比，氡与诱发肺癌的关系更为密切？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "氡是一种气体，所以会被吸入，它和它的短寿命放射性子核（附着在尘埃上）滞留在肺里。它们是 $\\alpha$ 发射体，而 $\\alpha$ 粒子的射程很短，其能量沉积在肺内壁的细胞中，几乎不会沉积在别处。因此剂量集中在肺组织，并带有 $\\alpha$ 辐射的大 RBE，而其他器官几乎不受照射。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1931641",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "低能 $\\beta$ 粒子的 RBE 为 1.7，而较高能量的 $\\beta$ 粒子仅为 1。请考虑辐射的射程如何取决于其能量，解释其原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\beta$ 粒子的能量越低，射程越短，而且低能 $\\beta$ 粒子运动得也更慢，所以每单位长度电离得更频繁。能量低于 32 keV 的 $\\beta$ 粒子把它的全部能量沉积在大约一个细胞的宽度之内，所以它的损伤是集中的，细胞更难修复。能量较高的 $\\beta$ 粒子把同样数量的电离分散在毫米长的径迹上，穿过许多细胞，对每个细胞只造成轻微损伤。集中的损伤具有更大的生物效应，所以低能 $\\beta$ 粒子的 RBE 更大。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1357684",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radiation-protection",
+   "figure": {
+    "src": "/media/ch32/Figure_33_02_03a.jpg",
+    "alt": "图 A 显示一台“试鞋 X 射线装置”。图 B 显示一群身穿白色防护服的人站在一个黄色的辐射危险标志附近。",
+    "caption": "（a）这台 X 射线荧光机是鞋店里数以千计用来给脚拍摄图像、以检查鞋是否合脚的机器之一。它们没有屏蔽，只要脚还在里面就一直开着，产生的剂量比医学成像大得多。孩子们对它们着迷。这些机器在鞋店里一直使用到 20 世纪 50 年代，当时出台了法律，禁止这种毫无理由的辐射照射。（来源：Andrew Kuchling）（b）如今我们已经知道接触放射性物质的影响，安全是头等大事。（来源：U.S. Navy）"
+   },
+   "prompt": "第一张照片所示的装置使用了哪些辐射防护方法？第二张照片所示的情形中使用了哪些？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "三种方法是屏蔽、距离和时间。试鞋 X 射线装置几乎一种也没有用上：它没有屏蔽，脚就放在 X 射线管旁边，而且只要脚还在里面它就一直开着，所以照射时间是由好奇心而不是由需要决定的。在第二张照片中，工作人员穿着防护服，防护服屏蔽了 $\\alpha$ 粒子和一部分 $\\beta$ 粒子，并使放射性物质不接触皮肤，危险标志使其他人保持距离；快速工作和轮流作业限制了每个人受照射的时间。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2595406",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "background",
+   "prompt": "在用铀矿尾矿制成的煤渣砌块建造的住宅中，什么放射性同位素可能成为问题？（某些地区靠近铀矿的住宅和学校就是这种情况。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "氡，${}^{222}\\text{Rn}$。铀矿尾矿中仍含有铀衰变系的镭 ${}^{226}\\text{Ra}$，镭衰变成氡，这是一种气体，会从砌块中扩散到房间的空气里。它在那里被吸入，它发射的 $\\alpha$ 粒子使肺受到照射，在建筑物与外界空气交换很少的地方尤其如此。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1548365",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radiation-and-cells",
+   "prompt": "某些类型的癌症比另一些对辐射更敏感吗？如果是，是什么使它们更敏感？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的。辐射主要通过损伤 DNA 起作用，而这种损伤对正在分裂的细胞影响最大，所以细胞增殖迅速的癌症最敏感。细胞分裂缓慢的癌症，或者血液供应差因而缺氧的癌症，反应较弱。敏感性还取决于细胞修复 DNA 损伤的好坏：修复能力差的肿瘤细胞，比它们周围的正常组织更容易被杀死。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2589205",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "假设一个人不小心吞下了一些放射性物质。要能评估可能的损伤，需要什么信息？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "需要知道同位素的种类、吞入的活度、它在体内停留多久，以及它在体内聚集在什么部位。同位素决定了辐射的类型，从而决定了 RBE，也决定了每次衰变的能量和半衰期。活度以及物质在体内停留的时间（由它的半衰期和人体排出它的快慢决定），给出衰变的次数，从而给出释放的能量。它聚集的器官及其质量也很重要，因为剂量是沉积的能量除以吸收这些能量的组织的质量。这个人的年龄和健康状况也很重要，因为年轻人快速分裂的组织更敏感。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3398507",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "以 mSv 为单位，下列情形的剂量是多少：（a）0.1 Gy 的 X 射线？（b）眼睛受到 2.5 mGy 的中子照射？（c）1.5 mGy 的 $\\alpha$ 粒子照射？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）100 mSv（b）80 mSv（c）~30 mSv",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 100,
+      "unit": "mSv",
+      "hint": "用以 Gy 计的剂量乘以表 32.2 中 X 射线的 RBE，再换算成 mSv。"
+     },
+     {
+      "part": "(b)",
+      "value": 80,
+      "unit": "mSv",
+      "hint": "采用表 32.2 中眼睛受快中子照射时给出的 RBE。"
+     },
+     {
+      "part": "(c)",
+      "value": 30,
+      "unit": "mSv",
+      "tol": 0.05,
+      "hint": "采用表 32.2 中 $\\alpha$ 射线 RBE 的较高值。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id744946",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "要给一个癌性肿瘤 40 Sv 的剂量，如果它受到的是 $\\alpha$ 放射性的照射，需要多少 Gy 的照射？",
+   "answer": {
+    "type": "number",
+    "value": 2,
+    "unit": "Gy",
+    "tol": 0.05,
+    "generated_by": "source",
+    "hint": "用以 Sv 计的剂量除以 $\\alpha$ 射线的 RBE，取表 32.2 中的较高值。",
+    "solution": "~2 Gy"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3402426",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radiation-protection",
+   "prompt": "来自 ${}^{99\\text{m}}\\text{Tc}$ 的 $\\gamma$ 射线有一半被 0.170 mm 厚的铅屏蔽吸收。穿过第一层铅的 $\\gamma$ 射线，又有一半被厚度相同的第二层吸收。要吸收这些 $\\gamma$ 射线中除千分之一之外的全部，需要多厚的铅？",
+   "answer": {
+    "type": "number",
+    "value": 1.69,
+    "unit": "mm",
+    "generated_by": "source",
+    "hint": "每一层 0.170 mm 的铅让到达它的射线通过一半，所以 $n$ 层让 $(1/2)^{n}$ 通过。求使它等于 $1/1000$ 的 $n$。",
+    "solution": "1.69 mm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "rem"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "rad"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "background-radiation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "radiation-protection"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "shielding"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "background-radiation"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "radiation-damages-dna"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "dose-from-a-source"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sievert"
+  },
+  {
+   "exercise": "p1",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "p2",
+   "concept": "sievert"
+  },
+  {
+   "exercise": "p2",
+   "concept": "gray"
+  },
+  {
+   "exercise": "p2",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "p3",
+   "concept": "shielding"
+  }
+ ]
+}
