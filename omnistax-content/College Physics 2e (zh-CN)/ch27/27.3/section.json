@@ -1,0 +1,947 @@
+{
+ "id": "27.3",
+ "module": "m42508",
+ "chapter": "27",
+ "title": "杨氏双缝实验",
+ "short": "杨氏双缝实验",
+ "lead": "光通过两条狭窄且靠得很近的狭缝后，在屏上形成的不是两条亮线，而是一整排亮线，正是这一图样使物理学家确信光是波。这一图样要由从狭缝到屏上各点的两条路径的<span data-concept=\"length\">长度</span>之差来解读。",
+ "objectives": [
+  "解释干涉现象。",
+  "给出双缝相长干涉和双缝相消干涉的定义。"
+ ],
+ "summary_html": "<ul><li>杨氏双缝实验为光的波动性提供了确凿的证据。</li><li>两条狭缝发出的光叠加，得到干涉图样。</li><li>当 $\\kd\\;\\text{sin}\\;\\theta = m\\klam\\;\\text{(对于}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots)$ 时发生相长干涉，其中 $\\kd$ 是狭缝之间的<span data-concept=\"distance\">距离</span>，$\\theta$ 是相对于入射方向的<span data-concept=\"angle\">角度</span>，$m$ 是干涉的级次。</li><li>当 $\\kd\\;\\text{sin}\\;\\theta = \\left(m+\\frac{1}{2}\\right)\\klam\\;\\text{(对于}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots)$ 时发生相消干涉。</li></ul>",
+ "notes": "关于红色光点图样的思考题（该图样既显示单缝衍射，也显示双缝干涉）及其照片，放在讲授单缝的 27.5 节。本模块十五道习题中有七道没有给出答案，已略去：580 nm 光的三级极大；410 nm 光在 45.0° 处的一级极小；缝间距为 2.00 μm 时 60.0° 处的三级极大；400 nm 光、缝间距为 25.0 μm 时的最高级次；720 nm 光的二级极大所需的最小缝间距；由 10.0° 处的一级极大推出的各个角度；633 nm 光在 3.00 m 远的屏上的条纹间距。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十五道习题中有七道没有给出答案，已略去，这些习题在本节的说明中列出。六道 AP 题中有三道有答案，设为判分选择题，但要求给出两个答案的那一道除外，它设为开放题并附书中的答案；另外三道没有给出答案，保留为开放题，附上标明由 AI 生成的建议思路。保留在这里的三道思考题都附有标明由 AI 生成的建议思路，第四道移到 27.5 节。本模块没有印出“理解检测”框，因此没有行内题。推导条纹间距的那道习题连同书中的推导一并保留，它和下一道习题的习题卡片上都带有书中的示意图。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-young-apparatus",
+   "kind": "sim",
+   "number": "27.10",
+   "originals": [
+    "/media/ch27/Figure_28_03_01a.jpg"
+   ],
+   "original_caption": "杨氏双缝实验。这里，单一波长的光通过一对竖直狭缝后发生衍射，在屏上形成沿水平方向展开的许多竖直线条构成的图样。如果没有衍射和干涉，光在屏上只会形成两条线。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene lowered clear of the headline; wavelength detent labels unclashed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-waves",
+   "kind": "sim",
+   "number": "27.11",
+   "originals": [
+    "/media/ch27/Figure_28_03_02a.jpg"
+   ],
+   "original_caption": "波的振幅相加。（a）完全相同的波同相时，得到完全相长干涉。（b）完全相同的波恰好不同相，即移动了半个波长时，发生完全相消干涉。",
+   "widths": [
+    275
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "panels sized for the largest amplitude; repeating note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ripple-tank",
+   "kind": "sim",
+   "number": "27.12",
+   "originals": [
+    "/media/ch27/Figure_28_03_03a.jpg"
+   ],
+   "original_caption": "双缝产生两个会发生干涉的相干波源。（a）因为狭缝很窄，光从每条狭缝向外扩展（衍射）。这些波相互叠加，发生相长干涉（亮线）和相消干涉（暗区）。只有当光落在屏上并被散射进入我们的眼睛时，我们才能看到这一点。（b）水波的双缝干涉图样与光的几乎完全相同。在相长干涉的区域，波的作用最强；在相消干涉的区域，波的作用最弱。（c）通过双缝的光落在屏上时，我们看到的就是这样一种图样。（来源：PASCO）",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-double-slit-pattern",
+   "kind": "photo",
+   "number": "27.12",
+   "originals": [
+    "/media/ch27/Figure_28_03_03a.jpg"
+   ],
+   "original_caption": "双缝产生两个会发生干涉的相干波源。（a）因为狭缝很窄，光从每条狭缝向外扩展（衍射）。这些波相互叠加，发生相长干涉（亮线）和相消干涉（暗区）。只有当光落在屏上并被散射进入我们的眼睛时，我们才能看到这一点。（b）水波的双缝干涉图样与光的几乎完全相同。在相长干涉的区域，波的作用最强；在相消干涉的区域，波的作用最弱。（c）通过双缝的光落在屏上时，我们看到的就是这样一种图样。（来源：PASCO）",
+   "widths": [
+    500
+   ]
+  },
+  {
+   "id": "sim-path-difference",
+   "kind": "sim",
+   "number": "27.13",
+   "folds": [
+    "27.14"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_03_04a.jpg",
+    "/media/ch27/Figure_28_03_05a.jpg"
+   ],
+   "original_caption": "（图 27.13）波沿不同的路径从狭缝传到屏上的同一点。（a）这里发生相消干涉，因为一条路径比另一条长半个波长。两个波同相出发，却不同相到达。（b）这里发生相长干涉，因为一条路径比另一条长一个整波长。两个波出发时和到达时都同相。（图 27.14）假设到屏的距离远大于狭缝之间的距离（此处未按比例绘制），从每条狭缝到屏上同一点的路径相差 $d\\sin\\theta$。",
+   "widths": [
+    300,
+    225
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "screen label moved off the graph labels; headline theta typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fringe-pattern",
+   "kind": "sim",
+   "number": "27.15",
+   "originals": [
+    "/media/ch27/Figure_28_03_06a.jpg"
+   ],
+   "original_caption": "双缝的干涉图样，其强度随角度增大而减小。照片显示了光通过双缝后形成的多条亮线和暗线，即条纹。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#000000",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "angle label kept off the curve; note set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "double-slit-experiment",
+   "concept": "youngs-double-slit",
+   "verb": "introduces"
+  },
+  {
+   "span": "double-slit-experiment",
+   "concept": "coherent-sources",
+   "verb": "introduces"
+  },
+  {
+   "span": "double-slit-experiment",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "waves-from-two-slits",
+   "concept": "youngs-double-slit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "waves-from-two-slits",
+   "concept": "coherent-sources",
+   "verb": "reinforces"
+  },
+  {
+   "span": "waves-from-two-slits",
+   "concept": "coherent",
+   "verb": "introduces"
+  },
+  {
+   "span": "waves-from-two-slits",
+   "concept": "incoherent",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "path-length-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "double-slit-constructive",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "double-slit-destructive",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "order-of-interference",
+   "verb": "introduces"
+  },
+  {
+   "span": "interference-fringes",
+   "concept": "fringe-spacing",
+   "verb": "introduces"
+  },
+  {
+   "span": "interference-fringes",
+   "concept": "double-slit-constructive",
+   "verb": "reinforces"
+  },
+  {
+   "span": "measuring-wavelength",
+   "concept": "find-wavelength-from-a-pattern",
+   "verb": "introduces"
+  },
+  {
+   "span": "measuring-wavelength",
+   "concept": "highest-order",
+   "verb": "introduces"
+  },
+  {
+   "span": "measuring-wavelength",
+   "concept": "double-slit-constructive",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2431746",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "下列哪些光波的叠加可能产生干涉条纹？选择<em>两个</em>答案。<br>波<sub>1</sub> = A<sub>1</sub>sin(2<em>ωt</em>)<br>波<sub>2</sub> = A<sub>2</sub>sin(4<em>ωt</em>)<br>波<sub>3</sub> = A<sub>3</sub>sin(2<em>ωt</em> + <em>θ</em>)<br>波<sub>4</sub> = A<sub>4</sub>sin(4<em>ωt</em> + <em>θ</em>)<ol type=\"a\"><li>波<sub>1</sub>和波<sub>2</sub></li><li>波<sub>2</sub>和波<sub>4</sub></li><li>波<sub>3</sub>和波<sub>1</sub></li><li>波<sub>4</sub>和波<sub>3</sub></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(b) 和 (c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2013916",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "prompt": "在一个使用单色光的双缝实验中，两条狭缝的间距为 2 mm。如果把屏朝狭缝移动 100 mm，中央亮线与第二条亮线之间的距离改变了 32 μm。计算实验所用光的波长。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对于小角度，条纹是等间距的，$\\kdy = \\kx\\klam/\\kd$，所以第二条亮线到中心的距离为 $\\ky_2 = 2\\kx\\klam/\\kd$。移动屏会改变 $\\kx$，而 $\\klam$ 和 $\\kd$ 保持不变，所以这一距离的改变量为 $2\\klam(\\Delta\\kx)/\\kd$。令它等于 32 μm，取 $\\Delta\\kx = 100$ mm，$\\kd = 2$ mm，得 $\\klam = (32\\;\\mu\\text{m})(2\\;\\text{mm})/(2 \\times 100\\;\\text{mm}) = 3.2\\times 10^{-7}$ m，即 320 nm。请注意，到屏的距离本身并不需要，只需要知道屏移动了多远。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2427771",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "在双缝实验中，一名学生使用两个振幅相等的波，测量最大强度和最小强度。然后这名学生把两个波的振幅都加倍，再次进行测量。下列哪一项将保持不变？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "明条纹的强度",
+     "暗条纹的强度",
+     "相邻明条纹和暗条纹的强度之差",
+     "以上都不是"
+    ],
+    "correct": 1,
+    "hint": "两个相等的波若从波峰到波谷到达，则无论振幅多大都会完全抵消。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1741687",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "画一幅图，表示两个相干波（振幅都等于 <em>x</em>）同相叠加时产生的合成波。合成波的振幅是多少？如果两个相干波之间的相位差变为 60°，新的振幅是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把两个波上下排列，使它们的波峰和波谷对齐，在它们下方画第三个波，波长相同，波峰的高度是它们的两倍；同相时振幅直接相加，所以合成波的振幅为 $2x$。当其中一个波移动了相位 $\\phi$ 时，两个振幅像夹角为 $\\phi$ 的两个箭头那样相加，合成波的振幅为 $\\sqrt{x^2 + x^2 + 2x^2\\cos\\phi} = 2x\\cos(\\phi/2)$。对于 $\\phi = 60^\\circ$，它等于 $2x\\cos 30^\\circ = \\sqrt{3}\\,x$，约为 $1.73x$，比同相时小，但仍比单独一个波的振幅大。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1924302",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "在双缝实验中，如果两个波的振幅分别为 <em>a</em> 和 3<em>a</em>，中央条纹的振幅是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "2<em>a</em>",
+     "4<em>a</em>",
+     "8<em>a</em><sup>2</sup>",
+     "16<em>a</em><sup>2</sup>"
+    ],
+    "correct": 1,
+    "hint": "在中央条纹处，两条路径相等，所以两个波同相到达，振幅相加。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id3276560",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "prompt": "如果双缝实验中两个波的振幅之比为 3:4，计算最小强度（暗条纹）与最大强度（明条纹）之比。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在明条纹处，两个波同相到达，振幅相加，按比值的单位为 $3 + 4 = 7$；在暗条纹处，它们不同相到达，振幅相减，为 $4 - 3 = 1$。强度与振幅的平方成正比，所以最小强度与最大强度之比为 $1^2 : 7^2$，即 $1 : 49$。因此暗条纹并不是完全黑暗的，因为不相等的波永远不可能完全抵消。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738220186",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-slit-experiment",
+   "prompt": "杨氏双缝实验把一束光分成两个光源。对于两个独立的光源，例如远处一辆汽车的两只前照灯，会得到同样的图样吗？请说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不会。图样取决于两个光源是相干的，这样两个光源的波在屏上每一点的相位差才保持不变。两条狭缝由同一束光照亮，所以从它们射出的波保持固定的相位关系，明条纹和暗条纹的位置保持不动。两只前照灯是独立的光源，它们的相位随机且变化极快，所以在屏上任意一点，两个波有时从波峰到波峰，有时从波峰到波谷，条纹移动得太快，根本看不见。看到的只是两个强度之和，没有条纹。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738011450",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "假设你用同一个双缝在空气中做杨氏双缝实验，然后在水中重复这个实验。干涉图样中同一部分对应的角度变大还是变小？光的颜色会变吗？请说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "角度变小。在水中波长较短，$\\klamn = \\klam/n$，明条纹出现在 $\\kd\\sin\\theta = m\\klamn$ 处，所以对于同一个双缝、同一级次，波长较短就使 $\\sin\\theta$ 较小、角度较小，图样向中心收缩。颜色不变。颜色由光的频率决定，光进入介质时频率不变，变化的只是速率和波长。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738013588",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "waves-from-two-slits",
+   "prompt": "能否造成只有相消干涉的情形？请说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不可能处处如此。能量守恒，所以在一处相互抵消的两个波的能量必定出现在别处；干涉只是把能量重新分配，使一些区域变暗，另一些区域变亮。在双缝图样中，每一条暗条纹都位于明条纹之间，而两条路径相等的中央条纹总是明的。相消干涉可以安排在特定的位置或特定的方向上，就像薄膜使其反射的光相互抵消那样，但这时能量转而进入透射光。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737757694",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "波长为 450 nm 的蓝光照射在相距 0.0500 mm 的双缝上，一级极大在什么角度？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.516,
+    "unit": "°",
+    "hint": "在 $\\kd\\sin\\theta = m\\klam$ 中取 $m = 1$，解出 $\\theta$。",
+    "solution": "$0.516^\\circ$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738091525",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "要使 610 nm 的橙光的一级极大出现在 30.0° 的角度，两条狭缝的间距应是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.22e-06,
+    "unit": "m",
+    "hint": "取 $m = 1$，由 $\\kd\\sin\\theta = m\\klam$ 解出 $\\kd$。",
+    "solution": "$1.22\\times 10^{-6}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737758071",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "计算这样一种光的波长：它照射在相距 3.00 μm 的双缝上时，三级极小出现在 30.0° 的角度。请明确写出你是如何按照“波动光学的解题策略”中的步骤求解的。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 600,
+    "unit": "nm",
+    "hint": "在 $\\kd\\sin\\theta = (m + \\tfrac{1}{2})\\klam$ 中，一级极小对应 $m = 0$，所以第三个对应 $m = 2$。",
+    "solution": "600 nm"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169738090862",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-difference",
+   "prompt": "在本组第一道习题所述的情形中，即 450 nm 的光照射在相距 0.0500 mm 的双缝上，四级极大在什么角度？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.06,
+    "unit": "°",
+    "hint": "取 $m = 4$，利用 $\\kd\\sin\\theta = m\\klam$。",
+    "solution": "$2.06^\\circ$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737739465",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "measuring-wavelength",
+   "prompt": "求照射在相距 1.20 μm 的双缝上、且存在一级极大的光的最大波长。它位于光谱的可见光部分吗？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1200,
+    "unit": "nm",
+    "hint": "存在一级极大的最大波长，使该极大出现在 $\\sin\\theta = 1$ 处。",
+    "solution": "1200 nm（不可见）"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169738094750",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "measuring-wavelength",
+   "prompt": "（a）两条狭缝的间距最小为多少，才能对任一可见光产生二级极大？（b）对所有可见光呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) for any visible light",
+      "value": 760,
+      "unit": "nm",
+      "hint": "二级极大要求 $\\kd \\ge 2\\klam$，最容易满足这一条件的可见光波长是最短的 380 nm。"
+     },
+     {
+      "part": "(b) for all visible light",
+      "value": 1520,
+      "unit": "nm",
+      "hint": "要使每个可见光波长都有二级极大，这一条件必须对最长的 760 nm 成立。"
+     }
+    ],
+    "solution": "（a）760 nm\n\n（b）1520 nm"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737762724",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "figure": {
+    "src": "/media/ch27/Figure_28_03_08a.jpg",
+    "alt": "左边是一个双缝，右边是一块屏。两条狭缝相距 d；一条水平线 x 从狭缝通到屏，另一条与水平线成角 theta 的线向上通到屏，图中还标出了沿屏的距离 y 和条纹间距 delta y。",
+    "caption": "相邻条纹之间的距离为 $\\Delta y = x\\lambda/d$，假定缝间距 $d$ 与 $\\lambda$ 相比很大。"
+   },
+   "prompt": "图中的双缝位于距屏 <em>x</em> 处，到屏中心的距离用 <em>y</em> 表示。当狭缝之间的距离 <em>d</em> 比较大时，会出现许多亮斑，称为条纹。证明：对于小角度（此时 $\\sin\\theta \\approx \\theta$，$\\theta$ 以弧度为单位），条纹之间的距离为 $\\Delta y = x\\lambda/d$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "对于小角度，$\\sin\\theta \\approx \\tan\\theta \\approx \\theta$（以弧度为单位）。对于两条相邻的条纹，有 $\\kd\\sin\\theta_{\\text{m}} = m\\klam$ 和 $\\kd\\sin\\theta_{\\text{m}+1} = (m+1)\\klam$。两式相减，得 $\\kd(\\sin\\theta_{\\text{m}+1} - \\sin\\theta_{\\text{m}}) = [(m+1) - m]\\klam$，所以 $\\kd(\\theta_{\\text{m}+1} - \\theta_{\\text{m}}) = \\klam$。由于 $\\tan\\theta_{\\text{m}} = \\ky_{\\text{m}}/\\kx \\approx \\theta_{\\text{m}}$，上式即 $\\kd\\left(\\frac{\\ky_{\\text{m}+1}}{\\kx} - \\frac{\\ky_{\\text{m}}}{\\kx}\\right) = \\klam$，所以 $\\kd\\frac{\\kdy}{\\kx} = \\klam$，$\\kdy = \\frac{\\kx\\klam}{\\kd}$。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169737790043",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference-fringes",
+   "figure": {
+    "src": "/media/ch27/Figure_28_03_08a.jpg",
+    "alt": "左边是一个双缝，右边是一块屏。两条狭缝相距 d；一条水平线 x 从狭缝通到屏，另一条与水平线成角 theta 的线向上通到屏，图中还标出了沿屏的距离 y 和条纹间距 delta y。",
+    "caption": "相邻条纹之间的距离为 $\\Delta y = x\\lambda/d$，假定缝间距 $d$ 与 $\\lambda$ 相比很大。"
+   },
+   "prompt": "利用上一道习题的结果，求这样一种光的波长：在距相距 0.120 mm 的双缝 2.00 m 的屏上，它产生的条纹相隔 7.50 mm（见图）。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 450,
+    "unit": "nm",
+    "hint": "由 $\\kdy = \\kx\\klam/\\kd$ 解出 $\\klam$。",
+    "solution": "450 nm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "coherent-sources"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "superposition",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "double-slit-constructive",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "superposition",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "coherent-sources",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "superposition",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "double-slit-constructive",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "coherent-sources"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "youngs-double-slit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "wavelength-in-a-medium",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "color-follows-frequency",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "youngs-double-slit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "p2",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "p2",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "double-slit-destructive"
+  },
+  {
+   "exercise": "p3",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "double-slit-constructive"
+  },
+  {
+   "exercise": "p4",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "highest-order"
+  },
+  {
+   "exercise": "p5",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "highest-order"
+  },
+  {
+   "exercise": "p6",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "p7",
+   "concept": "double-slit-constructive",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "p8",
+   "concept": "find-wavelength-from-a-pattern",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "slits",
+   "label": "双缝",
+   "figures": [
+    "sim-path-difference",
+    "sim-young-apparatus",
+    "sim-ripple-tank",
+    "sim-fringe-pattern"
+   ]
+  },
+  {
+   "id": "screen",
+   "label": "屏",
+   "figures": [
+    "sim-path-difference",
+    "sim-young-apparatus",
+    "sim-ripple-tank",
+    "sim-fringe-pattern"
+   ]
+  },
+  {
+   "id": "wave-1",
+   "label": "波 1",
+   "figures": [
+    "sim-two-waves"
+   ]
+  },
+  {
+   "id": "wave-2",
+   "label": "波 2",
+   "figures": [
+    "sim-two-waves"
+   ]
+  },
+  {
+   "id": "resultant",
+   "label": "合成波",
+   "figures": [
+    "sim-two-waves"
+   ]
+  },
+  {
+   "id": "path-1",
+   "label": "路径 1，来自上方的狭缝",
+   "figures": [
+    "sim-path-difference"
+   ]
+  },
+  {
+   "id": "path-2",
+   "label": "路径 2，来自下方的狭缝",
+   "figures": [
+    "sim-path-difference"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "double-slit-conditions",
+   "what": "双缝干涉的条件",
+   "source": "《大学物理（第2版）》，27.3 杨氏双缝实验",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "与狭缝之间的距离 $\\kd$ 相比，屏很远，所以两条路径几乎平行，长度相差 $\\kd\\;\\text{sin}\\;\\ktheta$。",
+       "src": "图 27.14"
+      },
+      {
+       "text": "两个同相出发的波，当它们的路径相差整数个波长时，同相到达，发生相长干涉。",
+       "src": "27.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\text{波程差}} = \\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta} = \\mk{p}{m\\klam},\\;\\mk{c}{\\text{对于}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots\\;\\;\\text{(相长)}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "27.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "与狭缝之间的距离 $\\kd$ 相比，屏很远，所以两条路径几乎平行，长度相差 $\\kd\\;\\text{sin}\\;\\ktheta$。",
+       "src": "图 27.14"
+      },
+      {
+       "text": "两个同相出发的波，当它们的路径相差半整数个波长时，不同相到达，发生相消干涉。",
+       "src": "27.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\text{波程差}} = \\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta} = \\mk{p}{\\left(m+\\frac{1}{2}\\right)\\klam},\\;\\mk{c}{\\text{对于}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots\\;\\;\\text{(相消)}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "27.3"
+    }
+   ]
+  }
+ ]
+}

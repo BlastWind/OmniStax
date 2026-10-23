@@ -1,0 +1,842 @@
+{
+ "id": "27.4",
+ "module": "m42512",
+ "chapter": "27",
+ "title": "多缝衍射",
+ "short": "多缝衍射",
+ "lead": "衍射光栅是大量等间距排列的平行狭缝，光通过它会形成一组亮线图样，很像双缝的图样。光栅把白光展开成它的各种颜色，因此成为测量<span data-concept=\"wavelength\">波长</span>的光谱仪的工作部件。",
+ "objectives": [
+  "讨论衍射光栅产生的图样。",
+  "解释衍射光栅的效应。"
+ ],
+ "summary_html": "<ul><li>衍射光栅是大量等间距排列的平行狭缝，它产生的干涉图样与双缝的相似，但更锐利。</li><li>衍射光栅发生相长干涉的条件是 $\\kd\\;\\text{sin}\\;\\theta = m\\klam\\;\\text{(对于}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots)$，其中 $\\kd$ 是光栅中狭缝之间的<span data-concept=\"distance\">距离</span>，$\\klam$ 是光的<span data-concept=\"wavelength\">波长</span>，$m$ 是极大的级次。</li></ul>",
+ "notes": "开篇一段所说的“本章开篇照片中的光盘”照原样保留，尽管本章开篇是凯瑟琳·伯尔·布洛杰特（Katharine Burr Blodgett）的照片。关于没有极小的单缝的思考题，与讲授单缝的第 27.5 节放在一起；第 27.8 节中印出的“批判性思考”光栅习题则放在本节，它的答案把线间距取为 1.00 × 10⁻⁶ m，尽管 10.00 mm 内的 1000 条刻线相距 1.00 × 10⁻⁵ m，答案照原样保留并附有更正，习题卡片检验的是 $10^{-5}$ m 的数值。例题 27.3 印出 $\\ky_{\\text{V}} = 0.815\\;\\text{m}$，而 $(2.00\\;\\text{m})\\tan 22.33^\\circ$ 是 0.822 m；该例题照原样保留，计算其中各距离的图 27.16 + 27.20 给出 0.822 m。关于每厘米 30,000 条刻线光栅的习题，其答案把（c）的结果写成了厘米，而它的意思是每厘米的刻线数。本模块二十二道习题中有十一道没有给出答案而被略去：每厘米 1500 条刻线上 580 nm 光的三级极大、760 nm 光的二级极大在 60.0° 时的线间距、氢的波长、完整一级光谱所允许的每厘米最多刻线数、30.0° 处 525 nm 光所需的羽毛间距、蛋白石的红光和蓝光角度、二级极大要求一级极大低于 30.0° 的证明、可见光最短波长出现极大时每厘米最多的刻线数、光盘的刻槽间距、相距 400 nm 的双缝对 700 nm 光的问题，以及要制作的光谱仪。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。二十二道习题中有十一道没有给出答案，因而略去，并已在本节的说明中列出。第 27.8 节中印出的有答案的“批判性思考”光栅习题放在本节，因为本节讲授光栅条件。一道 AP 题有答案，作为判分选择题给出；另一道没有答案，保留为开放题，附有标明由 AI 生成的建议思路。此处保留的六道思考题带有标明由 AI 生成的建议思路，第七道关于没有极小的单缝的思考题移到第 27.5 节。本模块没有印出“理解检测”框，因此没有行内题。条纹间距习题的习题卡片上附有书中的示意图。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-grating-spectrum",
+   "kind": "sim",
+   "number": "27.16",
+   "folds": [
+    "27.20"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_04_01a.jpg",
+    "/media/ch27/Figure_28_04_05a.jpg"
+   ],
+   "original_caption": "（图 27.16）衍射光栅是大量等间距排列的平行狭缝。（a）穿过光栅的光被衍射，形成与双缝相似的图样，在不同角度上有亮区。（b）白光入射到光栅上得到的图样。中央极大是白色的，高级次极大把白光色散成彩虹般的颜色。（图 27.20）本例题中的衍射光栅在距光栅 $x=2.00\\;\\text{m}$ 的屏上产生彩虹般的颜色。屏上的距离沿垂直于 $x$ 方向的方向度量。换句话说，彩虹图样延伸到纸面之外。",
+   "widths": [
+    300,
+    241
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#000000",
+    "#ffffff",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "light as a dropdown; small brackets and angles left to the readout; notes"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-opal-butterfly",
+   "kind": "photo",
+   "number": "27.17",
+   "originals": [
+    "/media/ch27/Figure_28_04_02a.jpg"
+   ],
+   "original_caption": "（a）这块澳大利亚蛋白石和（b）蝴蝶翅膀都有成排的反射体，起着反射光栅的作用，在不同的角度上反射不同的颜色。（来源：(a) Opals-On-Black.com, via Flickr; (b) whologwhy, Flickr）",
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "sim-grating-sharpness",
+   "kind": "sim",
+   "number": "27.18",
+   "originals": [
+    "/media/ch27/Figure_28_04_03a.jpg"
+   ],
+   "original_caption": "单色光通过双缝（a）和衍射光栅（b）的光强的理想化图线。两者可以在相同的角度上产生极大，但衍射光栅的极大更窄，因而更锐利。随着狭缝数目增加，极大变得更窄，极大之间的区域更暗。",
+   "widths": [
+    180
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-grating-rays",
+   "kind": "sim",
+   "number": "27.19",
+   "originals": [
+    "/media/ch27/Figure_28_04_04a.jpg"
+   ],
+   "original_caption": "衍射光栅，图中画出了从每条狭缝沿同一方向传播的光线。每条光线到屏（图中未画出）上同一点所走的距离各不相同。每条光线比相邻的光线多走一段距离 $d\\sin\\theta$。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "screen label kept under the rays; headline theta typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "diffraction-grating",
+   "concept": "diffraction-grating",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffraction-grating",
+   "concept": "grating-maxima-are-sharper",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffraction-grating",
+   "concept": "youngs-double-slit",
+   "verb": "uses"
+  },
+  {
+   "span": "grating-condition",
+   "concept": "grating-constructive-condition",
+   "verb": "introduces"
+  },
+  {
+   "span": "grating-condition",
+   "concept": "path-length-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "grating-condition",
+   "concept": "double-slit-constructive",
+   "verb": "uses"
+  },
+  {
+   "span": "grating-spectrum",
+   "concept": "grating-spectrum-on-a-screen",
+   "verb": "introduces"
+  },
+  {
+   "span": "grating-spectrum",
+   "concept": "grating-constructive-condition",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1817479",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction-grating",
+   "prompt": "下列哪一项不可能是白光通过几条等间距平行狭缝的结果？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "中央极大将是白色的，但高级次极大将色散成彩虹般的颜色。",
+     "中央极大和高级次极大的宽度相等。",
+     "除中央极大外，对所有极大而言，波长较短的光分量比波长较长的光分量衍射得少。",
+     "以上都不是。"
+    ],
+    "correct": 1,
+    "hint": "白光在除中央级次之外的每一级次中都展开成彩虹，所以高级次的极大比中央极大更宽。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2315626",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "白光通过一块衍射光栅，射到远处的屏上。最长波长（760 nm）的第 <em>n</em> 级衍射角为 53.13°。求最短波长（380 nm）的第 <em>n</em> 级衍射角。如果屏与光栅之间的距离加倍，这两个角度将有什么变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在同一级次、同一光栅下，$\\kd\\sin\\theta = m\\klam$ 使 $\\sin\\theta$ 与波长成正比。对 760 nm，$\\sin 53.13^\\circ = 0.800$，所以对波长为一半的 380 nm，$\\sin\\theta = 0.400$，$\\theta = 23.6^\\circ$。这些角度只取决于 $\\kd$、$\\klam$ 和 $m$，与屏放在何处无关，所以屏的距离加倍时，两个角度都不变；变的只是沿屏的距离 $\\ky = \\kx\\tan\\theta$，它加倍。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737977593",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction-grating",
+   "prompt": "在把光色散成光谱方面，衍射光栅比双缝有什么优点？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "光栅形成的图样要锐利得多。它的亮区与双缝的亮区位于相同的角度上，但更窄更亮，亮区之间的区域也更暗，所以两种波长几乎相等的光会形成两条分开的线，而不是两个相互重叠的宽带。由于光栅的狭缝通常靠得更近，它还会把各种波长展开到更大的角度上。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737738322",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "在为光谱分析而色散光时，衍射光栅比棱镜有什么优点？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "光栅的角度由 $\\kd\\sin\\theta = m\\klam$ 得出，其中只含线间距和波长，所以由测得的角度可以直接算出波长。棱镜的色散取决于其折射率随波长变化的情况，这种变化很小，而且每种玻璃都必须单独测量。刻线靠得很近的光栅还能把各种颜色展开得远得多，并且对玻璃会吸收的波长，例如紫外线，也同样适用。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737961204",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "衍射光栅的刻线会不会靠得太近，以致不能用作可见光的光谱学工具？如果会，这样的光栅适用于哪种电磁辐射？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会。一级极大需要 $\\sin\\theta = \\klam/\\kd$，而它不能超过 1，所以如果刻线靠得比波长还近，即 $\\kd$ 小于 $\\klam$，那么除中央极大之外就没有极大，光根本不会被色散。这样的光栅仍然适用于比其间距更短的波长，例如紫外辐射，或者对于极细的间距，适用于 X 射线。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169736863864",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "如果一束白光通过刻线竖直的衍射光栅，光就会在右侧和左侧被色散成彩虹般的颜色。如果玻璃棱镜把白光向右色散成彩虹，那么它的颜色次序与衍射光栅在右侧产生的颜色次序相比如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两种次序相反。光栅使较长的波长偏折得更多，因为 $\\sin\\theta = m\\klam/\\kd$ 随 $\\klam$ 增大，所以红光离中心最远，紫光最近。棱镜使较短的波长偏折得更多，因为玻璃对紫光的折射率更大，所以紫光偏折得最远，红光最少。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737796597",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "假设单一波长的光射到衍射光栅上。如果同样的光射到每厘米刻线更多的光栅上，干涉图样会怎样？如果波长较长的光射到同一光栅上，干涉图样会怎样？请就波长与狭缝之间距离的关系，解释这两种效应是怎样一致的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每厘米刻线更多，意味着间距 $\\kd$ 更小，所以 $\\sin\\theta = m\\klam/\\kd$ 更大，极大展开到更大的角度，而且极大的个数更少。较长的波长射到同一光栅上，也使 $\\sin\\theta$ 更大，并以同样的方式展开图样。这两种效应是一致的，因为角度只取决于比值 $\\klam/\\kd$：使 $\\kd$ 变小或使 $\\klam$ 变大，都会使这个比值增大。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169737875290",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction-grating",
+   "prompt": "假设一根羽毛看上去是绿色的，却没有绿色色素。请用衍射解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "羽毛上有微小而规则排列的结构，起着反射光栅的作用。从这些结构反射的光在 $\\kd\\sin\\theta = m\\klam$ 的方向上发生相长干涉，对于这些结构的间距和观察羽毛的角度，绿色波长满足这个条件。因此羽毛从那个方向看上去是绿色的，转动它时颜色就会改变，这就是本节所描述的虹彩。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738090029",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "一块衍射光栅每厘米有 2000 条刻线。对于波长为 520 nm 的绿光，一级极大在什么角度？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.97,
+    "unit": "°",
+    "hint": "线间距为 $\\kd = (1\\;\\text{cm})/2000$；然后在 $\\kd\\sin\\theta = m\\klam$ 中取 $m = 1$。",
+    "solution": "$5.97^\\circ$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737927226",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "一块衍射光栅使 470 nm 的蓝光在 25.0° 的角度上产生一级极大，它每厘米有多少条刻线？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8990,
+    "unit": "lines/cm",
+    "hint": "由 $\\kd\\sin\\theta = m\\klam$ 解出 $\\kd$，再求一厘米内有多少个间距。",
+    "solution": "$8.99\\times 10^{3}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738090158",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "波长为多少的光，射到每厘米有 5000 条刻线的衍射光栅上时，二级极大在 45.0° 处？请计算这一波长。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 707,
+    "unit": "nm",
+    "hint": "由 $\\kd\\sin\\theta = m\\klam$ 解出 $\\klam$，取 $m = 2$，$\\kd = (1\\;\\text{cm})/5000$。",
+    "solution": "707 nm"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169737995146",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "（a）如果改用每厘米 5000 条刻线的衍射光栅，本组习题氢问题中的四个角度（在每厘米 10,000 条刻线的光栅上，一级极大分别在 24.2°、25.7°、29.1° 和 41.0°）会变成多少？（b）用这块光栅，二级极大的角度会是多少？（c）讨论每厘米刻线数按整数倍减少与各级极大的新角度之间的关系。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$11.8^\\circ,\\;12.5^\\circ,\\;14.1^\\circ,\\;19.2^\\circ$\n\n（b）$24.2^\\circ,\\;25.7^\\circ,\\;29.1^\\circ,\\;41.0^\\circ$\n\n（c）把每厘米的刻线数减少为原来的 1/x，意味着 x 级极大的角度与原来一级极大的角度相同。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169736684764",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "钠蒸气灯发出的黄光<em>似乎</em>是单一波长，但把它投射到每厘米 10,000 条刻线的衍射光栅上时，产生了两个一级极大，分别在 36.093° 和 36.129°。这两个波长各是多少，精确到 0.1 nm？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the wavelength of the maximum at 36.093°",
+      "value": 589.1,
+      "unit": "nm",
+      "hint": "取 $\\kd = 1.00\\;\\mu\\text{m}$ 和 $m = 1$，则 $\\klam = \\kd\\sin\\theta$。"
+     },
+     {
+      "part": "the wavelength of the maximum at 36.129°",
+      "value": 589.6,
+      "unit": "nm",
+      "hint": "在第二个角度上用同一关系；保留足够多的位数，才能把两者区分开。"
+     }
+    ],
+    "solution": "589.1 nm 和 589.6 nm"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169737713486",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "鸟类羽毛上的结构起着反射光栅的作用，每厘米有 8000 条刻线。对于 600 nm 的光，一级极大的角度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 28.7,
+    "unit": "°",
+    "hint": "反射光栅服从同样的条件 $\\kd\\sin\\theta = m\\klam$，其中 $\\kd = (1\\;\\text{cm})/8000$。",
+    "solution": "$28.7^\\circ$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737728088",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "对于一级极大在 20.0° 处的光，衍射光栅在什么角度产生二级极大？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 43.2,
+    "unit": "°",
+    "hint": "对同一光栅和同一波长，二级的 $\\sin\\theta$ 是一级的两倍。",
+    "solution": "$43.2^\\circ$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169738060610",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "如果衍射光栅使可见光最短波长的一级极大出现在 30.0°，那么可见光最长波长的一级极大在什么角度？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 90.0,
+    "unit": "°",
+    "hint": "可见光最长波长 760 nm 是最短波长 380 nm 的两倍，所以 $\\sin\\theta$ 加倍。",
+    "solution": "$90.0^\\circ$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738186583",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "prompt": "（a）证明每厘米 30,000 条刻线的光栅不会对可见光产生极大。（b）它能产生一级极大的最长波长是多少？（c）要对可见光产生完整的二级光谱，衍射光栅每厘米最多可以有多少条刻线？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(b) the longest wavelength with a first-order maximum",
+      "value": 333,
+      "unit": "nm",
+      "hint": "最长波长使一级极大位于 $\\sin\\theta = 1$ 处，所以 $\\klam = \\kd$。"
+     },
+     {
+      "part": "(c) the greatest number of lines per centimeter",
+      "value": 6580,
+      "unit": "lines/cm",
+      "hint": "完整的二级光谱要求 $\\kd \\ge 2(760\\;\\text{nm})$。"
+     }
+    ],
+    "solution": "（a）最长波长是 333.3 nm，不是可见光。\n\n（b）333 nm（紫外线）\n\n（c）$6.58\\times 10^{3}\\;\\text{cm}$<sup class=\"fn\" data-note=\"c-p9-unit\"></sup>"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1169738080654",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-spectrum",
+   "figure": {
+    "src": "/media/ch27/Figure_28_04_06a-4339.jpg",
+    "alt": "左侧是双缝，右侧是屏。两条狭缝相距 d；一条水平线 x 从狭缝通到屏，一条与它成角度 theta 的线向上通到屏，图中标出了沿屏的距离 y 和条纹间距 delta y。",
+    "caption": "相邻条纹之间的距离是 $\\Delta y = x\\lambda/d$，假设狭缝间距 $d$ 比 $\\lambda$ 大得多。"
+   },
+   "prompt": "下图所示的分析也适用于刻线间距为 $d$ 的衍射光栅。对于每厘米有 125 条刻线的衍射光栅，600 nm 的光，如果屏在 1.50 m 远处，条纹之间的距离是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0113,
+    "unit": "m",
+    "hint": "用 $\\kdy = \\kx\\klam/\\kd$，其中 $\\kd = (1\\;\\text{cm})/125$。",
+    "solution": "$1.13\\times 10^{-2}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169738214765",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "（a）可见光中什么波长，投射到每厘米 25,000 条刻线的衍射光栅上时，四级极大在 25.0° 的角度处？（b）这个结果有什么不合理之处？（c）哪些假设不合理或不一致？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 42.3,
+    "unit": "nm",
+    "hint": "由 $\\kd\\sin\\theta = m\\klam$ 解出 $\\klam$，取 $m = 4$，然后把结果与可见光的范围比较。",
+    "solution": "（a）42.3 nm\n\n（b）不是可见光的波长\n\n这块衍射光栅的狭缝数目太多了。集成电路上的刻蚀可以达到 50 nm 的分辨率，所以 400 nm 的狭缝间距已是我们今天所能做到的极限。这样的线间距太小，不能使光发生衍射。"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "exer-00001",
+   "source_section": "27.8",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grating-condition",
+   "prompt": "一台半导体激光器发出 400.0 nm 的光。光通过一块光栅，其中在 10.00 mm 的范围内刻有 1,000 条刻线。光直接射向光栅。（a）一级衍射时，光束衍射的角度是多少？（b）二级衍射时，光束衍射的角度是多少？（c）换掉激光器。现在一级衍射角为 23.9°。它产生的光的波长是多少？（d）如果换用一块刻线间距加倍的新光栅，（a）部分的新角度会是多少？（e）向左衍射的角度大小与向右的会不同吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the first-order angle",
+      "value": 2.29,
+      "unit": "°",
+      "hint": "在 $\\kd\\sin\\theta = m\\klam$ 中取 $m = 1$。"
+     },
+     {
+      "part": "(b) the second-order angle",
+      "value": 4.59,
+      "unit": "°",
+      "hint": "取 $m = 2$，间距不变。"
+     },
+     {
+      "part": "(c) the new wavelength",
+      "value": 4050,
+      "unit": "nm",
+      "hint": "在 23.9° 处由 $\\kd\\sin\\theta = \\klam$ 解出 $\\klam$。"
+     },
+     {
+      "part": "(d) the first-order angle with the spacing doubled",
+      "value": 1.15,
+      "unit": "°",
+      "hint": "$\\kd$ 加倍，则 $\\sin\\theta$ 减半。"
+     }
+    ],
+    "solution": "（a）$\\sin\\theta = \\frac{4.00\\times 10^{-7}}{10^{-6}} = 0.400$，$\\theta = 23.6^\\circ$<sup class=\"fn\" data-note=\"c-p12-spacing\"></sup>\n\n（b）$\\sin\\theta = \\frac{(2)(4.00\\times 10^{-7})}{10^{-6}} = 0.800$，$\\theta = 53.1^\\circ$\n\n（c）$\\sin 23.9^\\circ = \\frac{\\lambda}{10^{-6}}$，$\\lambda = 4.05\\times 10^{-7} = 405\\;\\text{nm}$\n\n（d）$\\sin\\theta = \\frac{4.00\\times 10^{-7}}{2.00\\times 10^{-6}} = 0.200$，$\\theta = 11.5^\\circ$\n\n（e）不会。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "grating-spectrum-on-a-screen"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "grating-maxima-are-sharper",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "grating-spectrum-on-a-screen",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "grating-maxima-are-sharper"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "diffraction-grating",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "diffraction-grating"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "dispersion",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "electromagnetic-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "grating-spectrum-on-a-screen"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "dispersion",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "diffraction-grating"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "grating-constructive-condition",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p2",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p3",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p4",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p4",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p5",
+   "concept": "grating-maxima-are-sharper",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p6",
+   "concept": "diffraction-grating",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p7",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "grating-spectrum-on-a-screen"
+  },
+  {
+   "exercise": "p9",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p9",
+   "concept": "grating-spectrum-on-a-screen",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "fringe-spacing"
+  },
+  {
+   "exercise": "p10",
+   "concept": "diffraction-grating",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p12",
+   "concept": "grating-constructive-condition"
+  },
+  {
+   "exercise": "p12",
+   "concept": "order-of-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "screen",
+   "label": "屏",
+   "figures": [
+    "sim-grating-spectrum"
+   ]
+  },
+  {
+   "id": "double-slit",
+   "label": "双缝",
+   "figures": [
+    "sim-grating-sharpness"
+   ]
+  },
+  {
+   "id": "grating",
+   "label": "光栅",
+   "figures": [
+    "sim-grating-sharpness",
+    "sim-grating-spectrum",
+    "sim-grating-rays"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-cd-photo",
+   "kind": "correction",
+   "html": "书中提到本章开篇照片里有一张光盘。本章开篇是图 27.1，即凯瑟琳·伯尔·布洛杰特的照片，那里并没有光盘。"
+  },
+  {
+   "id": "c-yv",
+   "kind": "correction",
+   "html": "书中印出 $0.815$ m。取 $\\kx = 2.00$ m 时，$(2.00\\;\\text{m})(\\tan 22.33^\\circ) = 0.822$ m。"
+  },
+  {
+   "id": "c-p12-spacing",
+   "kind": "correction",
+   "html": "书中的答案把线间距取为 $10^{-6}$ m。10.00 mm 内的一千条刻线彼此相距 $\\kd = 1.00\\times 10^{-5}\\ \\text{m}$，由此得到（a）中的 $2.29^\\circ$、（b）中的 $4.59^\\circ$、（c）中的 $4050\\ \\text{nm}$ 和（d）中的 $1.15^\\circ$，这些就是习题卡片检验的数值。"
+  },
+  {
+   "id": "c-p9-unit",
+   "kind": "correction",
+   "html": "书中的答案以厘米给出。它其实是每厘米的刻线数：$6.58\\times 10^{3}$ 条刻线/厘米。"
+  }
+ ]
+}

@@ -1,0 +1,321 @@
+{
+ "id": "27.1",
+ "module": "m42501",
+ "chapter": "27",
+ "title": "光的波动特性：干涉",
+ "short": "光的波动特性",
+ "lead": "光经过比其<span data-concept=\"wavelength\">波长</span>大得多的物体时像光线一样传播，而遇到与其<span data-concept=\"wavelength\">波长</span>相近的小物体时则显示出波动特性，其中最主要的是干涉。作为一种波，光有速率、<span data-concept=\"wavelength\">波长</span>和<span data-concept=\"frequency\">频率</span>，光从真空进入介质时，这些量有的改变，有的保持不变。",
+ "objectives": [
+  "讨论光的波动特性。",
+  "指出光进入介质时发生的变化。"
+ ],
+ "summary_html": "<ul><li>波动光学是光学的一个分支，当光与小物体相互作用，或者凡是考虑光的波动特性时，都必须使用它。</li><li>波动特性是与干涉和衍射相关的那些特性。</li><li>可见光是我们的眼睛能够感受到的那一类电磁波，其<span data-concept=\"wavelength\">波长</span>范围为 380 至 760 nm。</li><li>和所有电磁波一样，下面的关系在真空中成立：$\\kc=\\kf\\klam$，其中 $\\kc=3\\times 10^{8}\\;\\text{m/s}$ 是<span data-concept=\"speed-of-light-in-vacuum\">光速</span>，$\\kf$ 是电磁波的<span data-concept=\"frequency\">频率</span>，$\\klam$ 是其在真空中的<span data-concept=\"wavelength\">波长</span>。</li><li>光在折射率为 $n$ 的介质中的<span data-concept=\"wavelength\">波长</span> $\\klamn$ 为 $\\klamn=\\klam/n$。它的<span data-concept=\"frequency\">频率</span>与在真空中相同。</li></ul>",
+ "notes": "本模块的五道习题中有两道没有给出答案，已略去：冕牌玻璃中可见光的波长范围，以及在其中 633 nm 的光波长为 329 nm 的固体是锆石还是金刚石。“建立联系”框按原书所印，把物质波指向狭义相对论，尽管物质波在后面的章节中才讨论。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。五道习题中有两道没有给出答案，已略去，并列在本节的说明中。每道思考题都没有给出答案，并附有标明由 AI 生成的建议思路。第三道思考题，即光的波长在介质中为什么减小，印在 27.2 节，这里放在介绍介质中波长的地方。本模块没有印出“理解检测”框，所以没有行内题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-paranal-and-slits",
+   "kind": "photo",
+   "number": "27.3",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-wavelength-in-medium",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "velocity",
+    "frequency"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline at n = 1 and note set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "wave-character",
+   "concept": "wave-optics",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-character",
+   "concept": "interference-is-the-hallmark-of-a-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "wavelength-in-a-medium",
+   "concept": "wavelength-in-a-medium",
+   "verb": "introduces"
+  },
+  {
+   "span": "wavelength-in-a-medium",
+   "concept": "color-follows-frequency",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737952222",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-character",
+   "prompt": "什么类型的实验证据表明光是一种波？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "干涉是波最确凿的标志。当光通过尺寸接近其波长的狭缝时，它会展开成由相长干涉和相消干涉造成的明暗区域图样，如图 27.3（b）所示。而光线流或粒子流则会继续沿直线向前，不会形成这样的图样。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169736877469",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-character",
+   "prompt": "举一个在实验室之外也很容易观察到的光的波动特性的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "肥皂泡的颜色或湿路面上油膜的颜色就是一个很好的例子。薄膜上表面和下表面反射的光发生干涉，对于每一种厚度，有些颜色相长叠加，有些则相互抵消。在光盘表面看到的彩虹般的颜色是另一个例子，那里的光在间距很小的光道上反射。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737980797",
+   "source_section": "27.2",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wavelength-in-a-medium",
+   "prompt": "光从真空进入介质时，为什么波长会减小？说明哪些量改变、哪些量保持不变，因而要求波长减小。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "光的频率保持不变，因为光的行为像受迫振动，保持其光源的频率。它的速率改变，从 $\\kc$ 降到 $\\kv = \\kc/n$。由于 $\\kv = \\kf\\klamn$ 且 $\\kf$ 固定，较小的速率要求较小的波长，$\\klamn = \\klam/n$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737777372",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wavelength-in-a-medium",
+   "prompt": "证明光从空气进入水中时，其波长减小到原来数值的 0.750 倍。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.75,
+    "hint": "比值 $\\klamn/\\klam$ 为 $1/n$，水的 $n = 1.333$。",
+    "solution": "$1/1.333=0.750$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737818795",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wavelength-in-a-medium",
+   "prompt": "对于光的波长为其真空中数值的 0.671 倍的材料，其折射率是多少？指出可能是哪种物质。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.49,
+    "part": "the index of refraction",
+    "hint": "由于 $\\klamn = \\klam/n$，折射率就是比值 $\\klam/\\klamn$；把结果与第 25 章表中的折射率比较。",
+    "solution": "1.49，聚苯乙烯"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738089979",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wavelength-in-a-medium",
+   "prompt": "含有相同数目光波长的冕牌玻璃与水的厚度之比是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.877,
+    "hint": "含有相同数目的波长，意味着每个厚度都与 $\\klamn = \\klam/n$ 成正比，所以厚度之比等于折射率之比的倒数，冕牌玻璃的 $n = 1.52$，水的为 $1.333$。",
+    "solution": "0.877，玻璃比水"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "interference-is-the-hallmark-of-a-wave"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "interference-is-the-hallmark-of-a-wave"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "wave-optics"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "wavelength-in-a-medium"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "color-follows-frequency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "wavelength-in-a-medium"
+  },
+  {
+   "exercise": "p2",
+   "concept": "wavelength-in-a-medium"
+  },
+  {
+   "exercise": "p3",
+   "concept": "wavelength-in-a-medium"
+  }
+ ],
+ "referents": [
+  {
+   "id": "vacuum",
+   "label": "真空",
+   "figures": [
+    "sim-wavelength-in-medium"
+   ]
+  },
+  {
+   "id": "medium",
+   "label": "介质",
+   "figures": [
+    "sim-wavelength-in-medium"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-matter-waves",
+   "kind": "correction",
+   "html": "书中此处指向狭义相对论。物质波的干涉，例如被晶体散射的电子，在“物质的波动性”（29.6 节）中讨论。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "wavelength-in-a-medium",
+   "what": "光在介质中的波长",
+   "source": "《大学物理（第2版）》，27.1 光的波动特性：干涉",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv=\\kc/n",
+       "src": "25.3"
+      },
+      {
+       "text": "在介质中，光以速率 $\\kv$ 传播，波长为 $\\klamn$，所以 $\\kv=\\kf\\klamn$。",
+       "src": "16.9"
+      },
+      {
+       "text": "介质中的频率 $\\kf$ 与真空中的相同。",
+       "src": "27.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\kc}=\\mk{f}{\\kf\\klam}",
+      "uses": [],
+      "src": "24.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\kc/n}=\\mk{f}{\\kf\\klam/n}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{\\kc/n=\\kv}=\\mk{f}{\\kf\\klam/n}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\kf\\klamn}=\\mk{f}{\\kf\\klam/n}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\klamn}=\\mk{f}{\\frac{\\klam}{n}}",
+       "uses": [],
+       "cap": "两边都有相同的频率 $\\kf$，可以约去。"
+      }
+     ],
+     "src": "27.1"
+    }
+   ]
+  }
+ ]
+}

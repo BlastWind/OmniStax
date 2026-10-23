@@ -1,0 +1,677 @@
+{
+ "id": "27.7",
+ "module": "m42519",
+ "chapter": "27",
+ "title": "薄膜干涉",
+ "short": "薄膜干涉",
+ "lead": "肥皂泡或油膜的颜色，来自薄膜上、下表面反射的光。同样的干涉使透镜镀膜不反光，并在很薄的空气劈尖上铺开明暗相间的条纹。",
+ "objectives": [
+  "讨论薄膜形成彩虹的现象。"
+ ],
+ "summary_html": "<ul><li>薄膜干涉发生在从薄膜上、下表面反射的光之间。除了<span data-concept=\"path-length-difference\">波程差</span>之外，还可能有半波损失。</li><li>当光在折射率大于其传播所在介质折射率的介质上反射时，会发生 $180^\\circ$ 的相位变化（或 $\\klam/2$ 的位移）。</li></ul>",
+ "notes": "图 27.32 是章引言（图 27.2）中的肥皂泡照片，换了编号再印一次，这里保留它是因为正文两次指向它。在例题 27.7（b）中，书上印的是 $\\frac{\\lambda n}{2}$，而它的本意是 $\\lambda_n/2$；本页照原样保留。关于 $45^\\circ$ 角入射的油膜的有答案习题，要求读者重做一道没有答案的习题，所以它的题干写出了那道习题的数据，以代替对它的引用。本模块十四道习题中，有七道没有给出答案，已略去：120 nm 油膜的颜色，呈红色的最薄肥皂泡，有机玻璃上三种厚度的肥皂水，保持暗色的最厚肥皂泡，0.100 mm 头发下的条纹间距，在 $45^\\circ$ 下重做的肥皂泡，以及“不合理的结果”中的雷达涂层。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十四道习题中有七道没有给出答案，已略去，并列在本节的说明中。一道 AP 题有答案，设为判分选择题；另一道没有给出答案，保留为开放题，并附有标明由 AI 生成的建议思路。九道思考题都没有给出答案，并附有标明由 AI 生成的建议思路。$45^\\circ$ 下的油膜题，其答案是用文字给出的，设为开放题并附书中的答案。本模块没有印出“理解检测”框，所以没有行内题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "photo-soap-bubbles",
+   "kind": "photo",
+   "number": "27.32",
+   "originals": [
+    "/media/ch27/Figure_28_00_02a.jpg"
+   ],
+   "original_caption": "这些肥皂泡在阳光照射下呈现出绚丽的颜色。（来源：Scott Robinson, Flickr）",
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "sim-thin-film",
+   "kind": "sim",
+   "number": "27.33",
+   "originals": [
+    "/media/ch27/Figure_28_07_01a.jpg"
+   ],
+   "original_caption": "光射到薄膜上时，一部分在上表面被反射（光线 1），一部分被折射。折射光线在下表面又有一部分被反射，并作为光线 2 射出。这两条光线发生干涉的方式，取决于薄膜的厚度和各种介质的折射率。",
+   "widths": [
+    216
+   ],
+   "draws": [
+    "position"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "film dropdown, thin-film labels kept at the film, note macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-air-wedge",
+   "kind": "sim",
+   "number": "27.34",
+   "originals": [
+    "/media/ch27/Figure_28_07_02a.jpg"
+   ],
+   "original_caption": "（a）彩虹色条纹是由两块玻璃载玻片之间空气中的薄膜干涉产生的。（b）光线在载玻片之间的空气劈尖中所走路径的示意图。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "position"
+   ],
+   "facts": [
+    "#000000",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated headline and readout cut to the scale"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-newtons-rings",
+   "kind": "photo",
+   "number": "27.35",
+   "originals": [
+    "/media/ch27/Figure_28_07_03a.jpg"
+   ],
+   "original_caption": "“牛顿环”干涉条纹，由两块平凸透镜平面接触放在一起时产生。两个表面之间有微小间隙，从两个表面反射的光发生干涉，形成这些环，这表明这两个表面并不是严格的平面，而是略微凸起。（来源：Ulf Seifert, Wikimedia Commons）",
+   "widths": [
+    200
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "thin-films",
+   "concept": "thin-film-interference",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-change",
+   "concept": "phase-change-on-reflection",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-change",
+   "concept": "thin-film-interference",
+   "verb": "reinforces"
+  },
+  {
+   "span": "path-difference",
+   "concept": "thin-film-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "coating-example",
+   "concept": "nonreflective-coating",
+   "verb": "introduces"
+  },
+  {
+   "span": "coating-example",
+   "concept": "thin-film-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "coating-example",
+   "concept": "phase-change-on-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "film-conditions",
+   "concept": "thin-film-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "film-conditions",
+   "concept": "phase-change-on-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "wedges",
+   "concept": "wedges-and-newtons-rings",
+   "verb": "introduces"
+  },
+  {
+   "span": "wedges",
+   "concept": "thin-film-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "strategies",
+   "concept": "thin-film-conditions",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1823519",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "下列哪一项最能说明薄膜干涉的成因？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "光从折射率小于其传播所在介质折射率的介质上反射。",
+     "光从折射率大于其传播所在介质折射率的介质上反射。",
+     "光在反射后改变了波长和速率。",
+     "光从薄膜的上、下表面反射。"
+    ],
+    "correct": 3,
+    "hint": "想一想，当你看到薄膜的颜色时，是哪两列波相遇并发生干涉。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3157586",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coating-example",
+   "prompt": "用氟化镁薄膜（<em>n</em> = 1.38）镀在玻璃照相机透镜（<em>n</em> = 1.52）上。如果薄膜的厚度为 105 nm，求反射受到最大限制的可见光的波长。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "反射受到最大限制的光，其波长为 $\\klam = 580\\;\\text{nm}$，是可见光范围中间的黄绿色。两条光线在反射时都有 $\\klam/2$ 的位移，因为光在上表面从空气（$n_1 = 1.00$）射向氟化镁（$n_2 = 1.38$），在下表面从氟化镁射向玻璃（$n_3 = 1.52$），所以两个位移相互抵消。要在垂直入射时产生相消干涉，波程差必须是膜中的半个波长，即 $2\\ktfilm = \\klam_{n_2}/2$，其中 $\\klam_{n_2} = \\klam/n_2$。解出真空中的波长，得 $\\klam = 4n_2\\ktfilm = 4(1.38)(105\\;\\text{nm}) = 580\\;\\text{nm}$。下一个半整数条件 $2\\ktfilm = 3\\klam_{n_2}/2$ 给出 $\\klam = 4n_2\\ktfilm/3 = 193\\;\\text{nm}$，属于紫外线，所以 580 nm 是唯一被抵消的可见光波长。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737725267",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wedges",
+   "prompt": "增大劈尖角对干涉条纹的间距有什么影响？如果劈尖角太大，就观察不到条纹。为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "相邻两条暗条纹所在处的空气厚度相差半个波长，所以更陡的劈尖在更短的距离内就达到这一额外厚度，条纹挤得更近。如果劈尖角太大，条纹会变得非常密，眼睛无法分辨，而且厚度很快就达到许多个波长，此时入射角的微小变化就会使波程差改变很多，把图样冲淡。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738110184",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "film-conditions",
+   "prompt": "两列原本同相的光波所走路径之差，与它们发生相长干涉还是相消干涉有什么关系？反射会怎样影响这一点？折射呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "起初同相的两列波，当它们的波程差是整数个波长时发生相长干涉，即波峰遇波峰；是半整数个波长时发生相消干涉，即波峰遇波谷。在折射率更大的介质上反射，会使其中一列波增加 $\\klam/2$ 的位移，把相长变为相消，反之亦然。折射进入折射率为 $n$ 的介质时，波长缩短为 $\\klamn = \\klam/n$，所以介质中给定的路径包含更多的波长，波程差必须按该介质中的波长来计数。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737935684",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "漂浮在人的泪膜上的角膜接触镜，从它的任一表面反射的光是否有半波损失？镜片的折射率约为 1.5，其上表面是干的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有，只在上表面。在干燥的上表面，光从空气（$n = 1.00$）射向镜片（$n \\approx 1.5$），镜片的折射率更大，所以反射光有 $\\klam/2$ 的相位变化。在下表面，镜片内的光在泪膜上反射，泪膜主要是水，$n \\approx 1.33$，折射率更小，所以在那里反射的光没有相位变化。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738006717",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "把样品放在显微镜载玻片上时，要在载玻片上的一滴水上盖一块盖玻片。从上方入射的光可以在盖玻片的上、下表面以及水滴下方的载玻片上反射。在哪些表面上，反射光会有半波损失？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在盖玻片的上表面和载玻片的上表面有半波损失，在盖玻片的下表面没有。光从折射率更大的介质上反射时有 $\\klam/2$ 的位移，从折射率更小的介质上反射时则没有。取玻璃约为 1.52，水为 1.333：在盖玻片的上表面，空气中的光在折射率更大的玻璃上反射，所以相位发生变化；在盖玻片的下表面，玻璃中的光在折射率更小的水上反射，所以没有；在载玻片的上表面，水中的光在折射率更大的玻璃上反射，所以又发生相位变化。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169736581954",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "如果两块冕牌玻璃之间的液体是二硫化碳，请回答上面的问题。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "二硫化碳的折射率约为 1.63，大于冕牌玻璃的约 1.52。在盖玻片的上表面，空气中的光在玻璃上反射，所以仍然有半波损失。在盖玻片的下表面，玻璃中的光现在在折射率更大的液体上反射，所以那里也有半波损失。在载玻片的上表面，二硫化碳中的光在折射率更小的玻璃上反射，所以没有半波损失。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169736606633",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "film-conditions",
+   "prompt": "你一边思考一片火腿的食物价值，一边注意到它湿润的表面反射出一道彩虹般的颜色。解释它的来源。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "湿润的表面覆有一层薄薄的水膜，也可能有脂肪膜，其厚度各处不同。从薄膜上、下表面反射的光发生干涉，在每一种厚度处，都有不同的波长发生相长干涉。因此，白光在厚度变化的地方反射成一条由不同颜色组成的带，就像肥皂泡那样。部分颜色也可能来自肉纤维的规则结构，它们起着衍射光栅的作用。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169736772198",
+   "kind": "conceptual-question",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coating-example",
+   "prompt": "一位发明家注意到，肥皂泡最薄处是暗的，意识到那里所有波长都发生相消干涉。她怎样才能利用这一认识，制造出对所有波长都有效的透镜增透膜？也就是说，对这种膜的折射率和厚度会有什么限制？这在实际中可能会有什么不切实际之处？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "肥皂泡在所有波长上都是暗的，是因为它的两次反射中只有一次带有 $\\klam/2$ 的位移，而且波程差可以忽略。增透膜也需要这样。折射率大于空气而小于玻璃的膜，会使两次反射都发生位移。增透膜反而需要折射率大于透镜的折射率，这样只有上表面的反射才发生位移，而且厚度要远小于波长，至多几十纳米。这样的膜很难制作，也很难保持均匀。两次反射还必须强度大致相等才能完全抵消，而如果厚度不恰好合适，顶层的高折射率层本身就会强烈反射。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169738045669",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coating-example",
+   "prompt": "像例题 27.6 中所述的增透膜，在单一波长和垂直入射时效果最理想。对于其他波长和其他入射方向会怎样？请具体说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这层膜只对一种波长恰好是膜中的四分之一波长厚。对于更短或更长的波长，多走的路程 $2\\ktfilm$ 不再恰好是膜中的半个波长，所以两次反射只能部分抵消，仍有一些光被反射。光谱两端的紫光和红光反射最多，这就是镀膜透镜看上去略带紫色的原因。对于斜射的光，膜内的光线走过更长的倾斜路径。波程差改变，抵消得最好的波长发生移动，增透膜的效果变差。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169737777453",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "film-conditions",
+   "prompt": "为什么从一块厚玻璃反射的光，其干涉条纹比从薄膜反射的光难看到得多？如果使用单色光，会不会容易些？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在厚玻璃中，波程差有成千上万个波长，所以厚度、波长或入射角的微小变化，就会使图样从相长变为相消。在白光中，每一种波长都有自己的图样，在如此大的波程差下，这些图样重叠起来，平均成均匀的亮度；来自扩展光源的不同角度也会使条纹模糊。单色光消除了不同波长的混杂，因此有帮助，但条纹仍会随入射角的微小变化而大幅移动，而且普通光在这样长的路径上不是相干的，所以条纹仍然很难看到。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738246614",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "film-conditions",
+   "prompt": "一个肥皂泡厚 100 nm，用垂直于其表面入射的白光照射。假设其折射率与水相同，那么相长反射最强的可见光的波长和颜色是什么？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 532,
+    "unit": "nm",
+    "hint": "只有上表面的反射有位移，所以相长干涉要求 $2\\ktfilm = \\klamn/2$，其中 $\\klamn = \\klam/n$。",
+    "solution": "532 nm（绿色）"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738077420",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "film-conditions",
+   "prompt": "计算水面上的油膜在垂直于其表面入射的白光照射下呈蓝色的最小厚度。取蓝光的波长为 470 nm，油的折射率为 1.40。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 83.9,
+    "unit": "nm",
+    "hint": "空气到油的反射有位移，油到水的反射没有，所以最薄的相长膜满足 $2\\ktfilm = \\klamn/2$。",
+    "solution": "83.9 nm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169736675909",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "film-conditions",
+   "prompt": "塑料砧板上有一层肥皂水膜（$n=1.33$），厚度为 233 nm。如果光垂直于其表面照射，反射最强的是什么颜色？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 620,
+    "unit": "nm",
+    "hint": "设塑料的折射率大于肥皂水的折射率，则两次反射都有位移，相长干涉要求 $2\\ktfilm$ 是膜中波长的整数倍。",
+    "solution": "620 nm（橙色）"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169738247055",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coating-example",
+   "prompt": "假设有一套主要用于 700 nm 红光的透镜系统。对这一波长不反射的氟化镁镀膜，第二薄的厚度是多少？折射率见表 25.1。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 380,
+    "unit": "nm",
+    "hint": "与例题 27.6 一样，两次反射都有位移；第二个相消厚度满足 $2\\ktfilm = 3\\klamn/2$。",
+    "solution": "380 nm"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737802684",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "油膜在水面上很薄时看起来是暗的，因为波程差与光的波长相比变得很小，而且上表面有相移。如果当波程差小于四分之一波长时它变暗，那么油膜最厚能有多厚，才能对所有可见光波长都呈暗色？油的折射率为 1.40。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 33.9,
+    "unit": "nm",
+    "hint": "令 $2\\ktfilm$ 等于油中最短可见光波长的四分之一，取其在真空中为 380 nm。",
+    "solution": "33.9 nm"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169738246205",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wedges",
+   "prompt": "图 27.34 表示两块长 7.50 cm 的玻璃载玻片，被波长为 589 nm 的单一波长光垂直照射。上方的载玻片一端与下方的载玻片接触，另一端搁在一些碎屑上，形成一个空气劈尖。如果暗条纹相距 1.00 mm，碎屑有多厚？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.42e-05,
+    "unit": "m",
+    "hint": "从一条暗条纹到下一条，空气厚度增加 $\\klam/2$；沿整块载玻片数一数条纹。",
+    "solution": "$4.42\\times 10^{-5}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169736660356",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "film-conditions",
+   "prompt": "水面上的油膜厚 120 nm，用白光照射，其折射率为 1.40。如果光以 $45^\\circ$ 角入射，油膜呈现什么颜色（相长反射最强的波长是多少）？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "油膜将呈黑色，因为反射光不在光谱的可见部分。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "thin-film-interference"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "nonreflective-coating"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "phase-change-on-reflection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "wedges-and-newtons-rings"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "thin-film-conditions"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "phase-change-on-reflection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "phase-change-on-reflection"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "phase-change-on-reflection"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "phase-change-on-reflection"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "thin-film-interference"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "nonreflective-coating"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "phase-change-on-reflection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "nonreflective-coating"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "thin-film-interference"
+  },
+  {
+   "exercise": "p1",
+   "concept": "thin-film-conditions"
+  },
+  {
+   "exercise": "p1",
+   "concept": "phase-change-on-reflection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "thin-film-conditions"
+  },
+  {
+   "exercise": "p2",
+   "concept": "phase-change-on-reflection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "thin-film-conditions"
+  },
+  {
+   "exercise": "p4",
+   "concept": "nonreflective-coating"
+  },
+  {
+   "exercise": "p5",
+   "concept": "thin-film-conditions"
+  },
+  {
+   "exercise": "p5",
+   "concept": "phase-change-on-reflection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "wedges-and-newtons-rings"
+  },
+  {
+   "exercise": "p7",
+   "concept": "thin-film-conditions"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ray-1",
+   "label": "光线 1",
+   "figures": [
+    "sim-thin-film"
+   ]
+  },
+  {
+   "id": "ray-2",
+   "label": "光线 2",
+   "figures": [
+    "sim-thin-film"
+   ]
+  },
+  {
+   "id": "film",
+   "label": "薄膜",
+   "figures": [
+    "sim-thin-film"
+   ]
+  },
+  {
+   "id": "top-slide",
+   "label": "上方的载玻片",
+   "figures": [
+    "sim-air-wedge"
+   ]
+  },
+  {
+   "id": "bottom-slide",
+   "label": "下方的载玻片",
+   "figures": [
+    "sim-air-wedge"
+   ]
+  },
+  {
+   "id": "spacer",
+   "label": "垫片",
+   "figures": [
+    "sim-air-wedge"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-lambda-n",
+   "kind": "correction",
+   "html": "书中印的是 $\\frac{\\klam n}{2}$，即 $\\klam$ 与 $n$ 的乘积。此处指的是膜中的波长，$\\frac{\\klamn}{2} = \\frac{\\klam/n}{2}$，本行其余部分的计算也是如此。"
+  }
+ ]
+}

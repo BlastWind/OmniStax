@@ -1,0 +1,1045 @@
+{
+ "id": "27.8",
+ "module": "m42522",
+ "chapter": "27",
+ "title": "偏振",
+ "short": "偏振",
+ "lead": "光是横波，所以它的<span data-concept=\"electric-field\">电场</span>在横跨其传播路线的某个确定方向上振动，这个方向就是它的偏振。偏振片、反射、散射、液晶和某些晶体都作用于这个方向，太阳镜就是这样削弱眩光的，液晶显示器也是这样工作的。",
+ "objectives": [
+  "讨论偏振的含义。",
+  "讨论某些材料的旋光性这一性质。"
+ ],
+ "summary_html": "<ul><li>偏振是指波的振动相对于波的传播方向有确定方向这一属性。</li><li>电磁波是可以偏振的横波。</li><li>偏振方向定义为与电磁波的<span data-concept=\"electric-field\">电场</span>平行的方向。</li><li>非偏振光由许多偏振方向随机的光线组成。</li><li>光通过偏振片或其他起偏材料，就可以被偏振。偏振光通过偏振片后的<span data-concept=\"intensity\">强度</span> $\\kIntens$ 为 $\\kIntens = \\kIopol\\;\\cos^{2}\\;\\theta,$ 其中 $\\kIopol$ 是原来的<span data-concept=\"intensity\">强度</span>，$\\theta$ 是偏振方向与偏振片透振方向之间的<span data-concept=\"angle\">夹角</span>。</li><li>偏振也可由反射产生。</li><li>布儒斯特定律指出，反射光在<span data-concept=\"angle-of-reflection\">反射角</span> $\\theta_{\\text{b}}$ 处是完全偏振的，这个角称为<span data-concept=\"brewsters-angle\">布儒斯特角</span>，由一个称为布儒斯特定律的表述给出：$\\tan\\;\\theta_{\\text{b}} = \\frac{n_{2}}{n_{1}}$，其中 $n_{1}$ 是入射光和反射光传播所在的介质，$n_{2}$ 是构成反射光的界面的介质的折射率。</li><li>偏振也可由散射产生。</li><li>有多种旋光物质，能使通过它们的光的偏振方向转动。</li></ul>",
+ "notes": "本模块十八道习题中有八道没有给出答案，因而略去：45.0° 的第二块偏振片、把 1.00 kW/m² 减弱到 10.0 W/m² 的偏振片、成 45° 和 90.0° 的三块偏振片、金刚石反射的光、潜水员、55.6° 的窗户、证明同一界面的两个布儒斯特角之和为 90.0°，以及两副成 15.0° 的太阳镜。关于衍射光栅的批判性思考习题放在 27.4，因为该节引入了光栅。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十八道习题中有八道没有给出答案，故被略去，它们已在本节的说明中列出；有答案的关于光栅的批判性思考习题已移到 27.4，因为该节引入了它所考查的内容。第一道 AP 题有答案，设为判分选择题；第二道没有答案，保留为开放题，附有其表格和图像，并附有标明由 AI 生成的建议思路。七道思考题没有答案，附有标明由 AI 生成的建议思路。证明两个强度之和为 $\\kIopol$ 的习题设为开放题，附有书中的答案。本模块没有印出“理解检测”框，因此没有行内题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "photo-river",
+   "kind": "photo",
+   "number": "27.36",
+   "originals": [
+    "/media/ch27/Figure_28_08_01a.jpg"
+   ],
+   "original_caption": "这两张河流照片显示了偏振片在减弱水面反射光的眩光方面的作用。本图的（b）部分是用偏振片拍摄的，（a）部分则没有。因此，（a）中看到的云和天空的倒影，在（b）中看不到。偏光太阳镜在雪地和水面上尤其有用。（来源：Amithshs, Wikimedia Commons）",
+   "widths": [
+    400
+   ]
+  },
+  {
+   "id": "fig-em-wave",
+   "kind": "photo",
+   "number": "27.37",
+   "originals": [
+    "/media/ch27/Figure_28_08_02a.jpg"
+   ],
+   "original_caption": "电磁波（例如光）是横波。电场和磁场都垂直于传播方向。",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-rope-slit",
+   "kind": "sim",
+   "number": "27.38",
+   "originals": [
+    "/media/ch27/Figure_28_08_03a.jpg"
+   ],
+   "original_caption": "一根绳上的横向振动在竖直平面内，另一根绳上的横向振动在水平面内。第一根称为竖直偏振的，另一根称为水平偏振的。竖直狭缝让竖直偏振的波通过，挡住水平偏振的波。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-filter-chain",
+   "kind": "sim",
+   "number": "27.39",
+   "folds": [
+    "27.40",
+    "27.41",
+    "27.42"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_08_04a.jpg",
+    "/media/ch27/Figure_28_08_05a.jpg",
+    "/media/ch27/Figure_28_08_06a.jpg",
+    "/media/ch27/Figure_28_08_07a.jpg"
+   ],
+   "original_caption": "（图 27.39）细箭头表示一束非偏振光的光线。粗箭头表示组成该光线的各个波的偏振方向。由于光是非偏振的，这些箭头指向各个方向。（图 27.40）偏振片有一个起狭缝作用的透振方向，让平行于该方向的电场通过。电磁波的偏振方向定义为其电场的方向。（图 27.41）转动两块偏振片的效果，其中第一块使光偏振。（a）全部偏振光都通过第二块偏振片，因为它的透振方向与第一块平行。（b）转动第二块时，只有一部分光通过。（c）第二块与第一块垂直时，没有光通过。（d）在这张照片中，一块偏振片放在另外两块之上。它的透振方向与右边的偏振片（暗区）垂直，与左边的偏振片（较亮的区域）平行。（来源：P.P. Urone）（图 27.42）偏振片只透射波中平行于其透振方向的分量 $E\\;\\cos\\;\\theta$，从而减弱任何不平行于其透振方向偏振的光的强度。",
+   "widths": [
+    200,
+    350,
+    500,
+    215
+   ],
+   "draws": [
+    "electric-field",
+    "intensity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "inset title lifted off the axis label; note through the macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: a pulse of light runs the ray through both filters"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-brewster",
+   "kind": "sim",
+   "number": "27.43",
+   "originals": [
+    "/media/ch27/Figure_28_08_08a.jpg"
+   ],
+   "original_caption": "反射起偏。非偏振光中竖直偏振和水平偏振的量相等。与表面相互作用后，竖直分量优先被吸收或折射，使反射光更偏水平偏振。这类似于侧面击中表面的箭弹开，而尖端击中表面的箭则扎入表面。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "electric-field",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "ray labels kept below the headline and apart from each other"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-filter-molecules",
+   "kind": "sim",
+   "number": "27.44",
+   "folds": [
+    "27.45"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_08_09a.jpg",
+    "/media/ch27/Figure_28_08_10a.jpg"
+   ],
+   "original_caption": "（图 27.44）长分子垂直于偏振片的透振方向排列。电磁波的电场中垂直于这些分子的分量通过偏振片，而平行于分子的分量被吸收。（图 27.45）艺术家绘制的构想图，表示长分子中的一个电子平行于分子振动。电子的振动吸收能量，并减弱电磁波中平行于分子的那个分量的强度。",
+   "widths": [
+    300,
+    300
+   ],
+   "draws": [
+    "electric-field",
+    "angle"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-scattering",
+   "kind": "sim",
+   "number": "27.46",
+   "originals": [
+    "/media/ch27/Figure_28_08_11a.jpg"
+   ],
+   "original_caption": "散射起偏。非偏振光被空气分子散射时，使其电子在垂直于原光线方向的方向上振动。因此散射光的偏振垂直于原来的方向，而没有平行于原来方向的偏振。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "electric-field",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout magnitude, observer label clear of the ray, note macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rotator",
+   "kind": "sim",
+   "number": "27.47",
+   "folds": [
+    "27.48"
+   ],
+   "originals": [
+    "/media/ch27/OSX_CP2e_Figure_28_08_12.jpg",
+    "/media/ch27/Figure_28_08_13a.jpg"
+   ],
+   "original_caption": "（图 27.47）（a）偏振光被液晶转动 $90^\\circ$，然后通过一块偏振片，该偏振片的透振方向垂直于原来的偏振方向。（b）对液晶施加电压时，偏振光不被转动，被偏振片挡住，使该区域与周围相比显得暗。（c）LCD 可以做成专色的、小型的，而且速度快到可用于计算机显示器屏幕。（来源：Idaho National Laboratory）（图 27.48）旋光性是某些物质使通过它们的光的偏振面转动的能力。这种转动用偏振片或检偏器检测。",
+   "widths": [
+    261,
+    350
+   ],
+   "draws": [
+    "electric-field",
+    "intensity",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note theta through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-stressed-lens",
+   "kind": "photo",
+   "number": "27.49",
+   "originals": [
+    "/media/ch27/Figure_28_08_14a.jpg"
+   ],
+   "original_caption": "置于正交起偏器之间的塑料透镜的光测应力分析。（来源：Infopro, Wikimedia Commons）",
+   "widths": [
+    200
+   ]
+  },
+  {
+   "id": "fig-birefringence",
+   "kind": "photo",
+   "number": "27.50",
+   "originals": [
+    "/media/ch27/Figure_28_08_15a.jpg"
+   ],
+   "original_caption": "双折射材料，例如常见矿物方解石，会把非偏振光束分成两束。寻常光线的行为符合预期，而非寻常光线不遵守斯涅耳定律。",
+   "widths": [
+    300
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "polarization",
+   "concept": "light-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarization",
+   "concept": "direction-of-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarization",
+   "concept": "horizontal-and-vertical-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarizing-filters",
+   "concept": "polarizing-filters",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarizing-filters",
+   "concept": "light-polarization",
+   "verb": "uses"
+  },
+  {
+   "span": "polarizing-filters",
+   "concept": "axis-of-a-polarizing-filter",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarizing-filters",
+   "concept": "unpolarized-light",
+   "verb": "introduces"
+  },
+  {
+   "span": "malus-law",
+   "concept": "malus-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "malus-law",
+   "concept": "intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "malus-example",
+   "concept": "malus-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reflection",
+   "concept": "polarization-by-reflection",
+   "verb": "introduces"
+  },
+  {
+   "span": "brewster",
+   "concept": "brewsters-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "brewster",
+   "concept": "polarization-by-reflection",
+   "verb": "reinforces"
+  },
+  {
+   "span": "brewster",
+   "concept": "brewsters-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "brewster",
+   "concept": "completely-polarized-reflected-light",
+   "verb": "introduces"
+  },
+  {
+   "span": "filter-molecules",
+   "concept": "polarizing-filters",
+   "verb": "reinforces"
+  },
+  {
+   "span": "brewster-example",
+   "concept": "brewsters-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "scattering",
+   "concept": "polarization-by-scattering",
+   "verb": "introduces"
+  },
+  {
+   "span": "liquid-crystals",
+   "concept": "optical-activity",
+   "verb": "introduces"
+  },
+  {
+   "span": "liquid-crystals",
+   "concept": "polarizing-filters",
+   "verb": "uses"
+  },
+  {
+   "span": "liquid-crystals",
+   "concept": "optically-active",
+   "verb": "introduces"
+  },
+  {
+   "span": "stress-and-birefringence",
+   "concept": "optical-activity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "stress-and-birefringence",
+   "concept": "birefringence",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2504352",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "下列关于偏振光波的偏振方向的说法，哪一项是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "它平行于传播方向，垂直于电场方向。",
+     "它垂直于传播方向，平行于电场方向。",
+     "它平行于传播方向和电场方向。",
+     "它垂直于传播方向和电场方向。"
+    ],
+    "correct": 1,
+    "hint": "光是横波，偏振方向由它的两个场之一来确定。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2717829",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "figure": {
+    "src": "/media/ch27/Figure_28_08_16a.jpg",
+    "alt": "一个箭头表示光从图示 E 出发，图中的箭头指向各个方向，然后经过一块偏振片，片上有一个竖直方向的箭头，标为“透振方向”（Axis）。偏振片右侧的光示意图中只有一条竖直线，箭头指向上下两端。",
+    "caption": ""
+   },
+   "prompt": "在一个实验中，光通过两块偏振片。下图显示了第一块偏振片及其透振方向。通过第一块偏振片之后得到的光的强度记为 <em>I</em>。为第二块偏振片设置三种配置（角度不同），并记录每种配置下的光强。结果见下表：<table class=\"data\"><tr><th>设置</th><th>第二块偏振片与第一块偏振片之间的夹角</th><th>通过第二块偏振片后的光强</th></tr><tr><td>配置 A</td><td><em>θ</em><sub>1</sub></td><td><em>I</em></td></tr><tr><td>配置 B</td><td><em>θ</em><sub>2</sub></td><td>0.5<em>I</em></td></tr><tr><td>配置 C</td><td><em>θ</em><sub>3</sub></td><td>0</td></tr></table>通过计算 <em>θ</em><sub>1</sub>、<em>θ</em><sub>2</sub> 和 <em>θ</em><sub>3</sub> 来完成这张表。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "由马吕斯定律，通过第二块偏振片后的强度为 $\\kIntens = \\kIopol\\cos^2\\theta$，这里 $\\kIopol$ 是通过第一块偏振片后的强度 $I$。在配置 A 中，全部强度都通过，所以 $\\cos^2\\theta_1 = 1$，$\\theta_1 = 0^\\circ$：透振方向平行。在配置 B 中，$\\cos^2\\theta_2 = 0.5$，所以 $\\cos\\theta_2 = 0.707$，$\\theta_2 = 45^\\circ$。在配置 C 中没有光通过，所以 $\\cos\\theta_3 = 0$，$\\theta_3 = 90^\\circ$：透振方向垂直。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737764823",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reflection",
+   "prompt": "在什么情况下，光的相位会因反射而改变？相位与偏振有关吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "光从折射率比它所在介质大的介质反射时，其相位改变半个波长；从折射率较小的介质反射时，则没有相位改变。相位和偏振是不同的性质。相位表明波处在其周期中的什么位置，而偏振是电场振动的方向。任何偏振的波，其相位都可能因反射而改变，而相位的改变并不会使偏振方向转动。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738239443",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "空气中的声波能被偏振吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。偏振是指波的振动相对于其传播方向有确定方向这一属性，它只存在于横波，因为横波的振动可以指向横跨传播路线的不同方向。空气中的声波是纵波：空气沿波传播的方向来回振动，所以它的振动只可能有一个方向，没有什么可以偏振的。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169736821483",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "没有光能通过两块透振方向相互垂直的理想偏振片。然而，如果在原来的两块之间再放入第三块偏振片，就会有一些光通过。这是为什么？在什么情况下通过的光最多？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每块偏振片只让沿它自己透振方向的电场分量通过。只有那两块正交的偏振片时，来自第一块的光恰好偏振在垂直于第二块透振方向的方向上，第二块一点也不让它通过。与第一块成角 $\\theta$ 的中间那块偏振片，会让沿它自己透振方向偏振的分量 $\\kEf\\cos\\theta$ 通过，而这个新的偏振方向与最后一块成 $90^\\circ - \\theta$ 角，最后一块又会让其中一部分通过。通过的强度为 $\\kIopol\\cos^2\\theta\\cos^2(90^\\circ - \\theta)$，当中间那块与前后两块都成 $45^\\circ$ 时最大，此时离开第一块的光有四分之一通过。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738214502",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "filter-molecules",
+   "prompt": "请解释：光通过两块正交偏振片而变暗时，光所携带的能量发生了什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能量被偏振片吸收了。电场沿偏振片长分子方向的分量驱动这些分子中的电子来回运动，电子在振动时从波中取得能量。这些能量最终成为热能，所以偏振片会略微变热。没有任何能量被消灭；只是不再由光向前携带。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737727403",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scattering",
+   "prompt": "当散射光的粒子比光的波长小得多时，散射量与 $1/\\klam^4$ 成正比。这是否意味着对小的 $\\klam$ 比对大的 $\\klam$ 散射更多？这与天空是蓝色的事实有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的。因为散射按 $1/\\klam^4$ 变化，空气对较短的波长散射强得多：约 450 nm 的蓝光被散射的量约是 700 nm 红光的 $(700/450)^4 \\approx 6$ 倍。空气分子比光的波长小得多，所以阳光穿过大气时，它的短波长成分被散射出光束，从天空各处射向我们。因此，从背离太阳的方向到达我们的光，大多是被散射的短波长光，天空看起来就是蓝色的。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169737861781",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scattering",
+   "prompt": "利用上一个问题中给出的信息，解释为什么日落是红色的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "日落时，来自太阳的光几乎沿地平线射入，在大气中经过长得多的路径才到达我们。沿着这条路径，短波长成分被散射出光束，因为散射按 $1/\\klam^4$ 变化，而长波长成分被散射得最少，继续径直前进。因此，仍然直接从太阳到达我们并照亮云的光，大多是红色和橙色的。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169738232889",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster-example",
+   "prompt": "光在布儒斯特角从光滑表面反射时，它是 $100\\%$ 平行于表面偏振的。一部分光会折射进表面。请描述你将如何做实验来确定折射光的偏振。你预期它的偏振是什么方向，你预期它是 $100\\%$ 偏振的吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "让非偏振光以布儒斯特角射到一块玻璃块上，透过一块偏振片观察折射光束，无论是在透明块内部，还是在光束从远端面射出之处。转动偏振片，记下透射光最亮时偏振片透振方向的角度和最暗时的角度。最亮时，透振方向应在入射面内，对水平表面来说就是竖直方向，因为反射带走了一部分平行于表面偏振的光。它不会是 100% 偏振的：只有一小部分入射光被反射，所以大部分平行于表面偏振的光仍然被折射，偏振片会使光束变暗，但绝不会使它变黑。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738130392",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "偏振光的方向与偏振片的透振方向之间需要成多大的角，才能使其强度减半？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 45.0,
+    "unit": "°",
+    "hint": "在 $\\kIntens = \\kIopol\\cos^2\\theta$ 中令 $\\kIntens = 0.500\\kIopol$，解出 $\\theta$。",
+    "solution": "$45.0^\\circ$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737702299",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "如果你有强度为 $150\\;\\text{W/m}^2$ 的完全偏振光，那么它通过一块透振方向与光的偏振方向成 $89.0^\\circ$ 角的偏振片之后，强度会是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 45.7,
+    "unit": "mW/m²",
+    "hint": "用 $\\kIntens = \\kIopol\\cos^2\\theta$，其中 $\\theta = 89.0^\\circ$。",
+    "solution": "$45.7\\;\\text{mW/m}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169736656969",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-example",
+   "prompt": "在例题 27.8 的末尾，曾经说过，偏振光通过一块透振方向与偏振方向成 $18.4^\\circ$ 角的偏振片后，强度减为原来数值的 $90.0\\%$。验证这一说法。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 90.0,
+    "unit": "%",
+    "hint": "计算 $\\cos^2 18.4^\\circ$。",
+    "solution": "$90.0\\%$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169737138684",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "证明：如果 $\\kIntens$ 是透射过两块透振方向成 $\\theta$ 角的偏振片的光的强度，而 $I'$ 是透振方向成 $90.0^\\circ - \\theta$ 角时的强度，那么 $\\kIntens + I' = \\kIopol$，即原来的强度。（提示：利用三角恒等式 $\\cos(90.0^\\circ - \\theta) = \\sin\\theta$ 和 $\\cos^2\\theta + \\sin^2\\theta = 1$。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kIopol$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738014837",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster",
+   "prompt": "光在水中传播，从冕牌玻璃反射，布儒斯特角是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 48.8,
+    "unit": "°",
+    "hint": "这里 $n_1$ 是水的折射率 1.333，$n_2$ 是冕牌玻璃的折射率 1.52；用 $\\tan\\theta_{\\text{b}} = n_2/n_1$。",
+    "solution": "$48.8^\\circ$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169736619449",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster",
+   "prompt": "冕牌玻璃内部的光从水面反射时，在什么角度是完全偏振的，如同鱼缸中的情形？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 41.2,
+    "unit": "°",
+    "hint": "光在冕牌玻璃中传播，所以 $n_1 = 1.52$，反射介质是水，$n_2 = 1.333$。",
+    "solution": "$41.2^\\circ$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738134393",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "brewster",
+   "prompt": "（a）戒指上的宝石以 $62.5^\\circ$ 角反射的光是完全偏振的。这块宝石可能是金刚石吗？（b）如果宝石在水中，光在什么角度会是完全偏振的？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the index of refraction of the gem",
+      "value": 1.92,
+      "unit": "",
+      "hint": "取 $n_1 = 1.00$，由 $\\tan\\theta_{\\text{b}} = n_2/n_1$ 解出 $n_2$，并与金刚石的 2.419 比较。"
+     },
+     {
+      "part": "(b) Brewster’s angle in water",
+      "value": 55.2,
+      "unit": "°",
+      "hint": "以宝石的折射率作 $n_2$，以水的折射率 1.333 作 $n_1$。"
+     }
+    ],
+    "solution": "（a）1.92，不是金刚石（锆石）\n\n（b）$55.2^\\circ$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169738176566",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "<strong>综合概念</strong> 如果一块偏振片把偏振光的强度减小到原来数值的 $50.0\\%$，那么电场和磁场各减小多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.707,
+    "unit": "",
+    "part": "the ratio of each field after the filter to its value before",
+    "hint": "强度与场的平方成正比，所以每个场按强度比的平方根减小。",
+    "solution": "$B_2 = 0.707\\;B_1$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169736971075",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "malus-law",
+   "prompt": "<strong>综合概念</strong> （a）在阳光强度为 $1.00\\;\\text{kW/m}^2$ 的一天，一块直径 0.200 m 的圆透镜把光聚焦到黑色铝烧杯中的水上。两片塑料偏振片放在透镜前面，透振方向成 $20.0^\\circ$ 角。假设阳光是非偏振的，偏振片的效率为 $100\\%$，那么水的初始升温速率是多少，单位为 $^\\circ\\text{C/s}$？假设 $80.0\\%$ 被吸收。铝烧杯的质量为 30.0 克，盛有 250 克水。（b）偏振片会变热吗？请解释。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0207,
+    "unit": "°C/s",
+    "part": "(a) the initial rate of heating",
+    "hint": "第一片让一半非偏振光通过，第二片让其中的 $\\cos^2 20.0^\\circ$ 通过；乘以透镜面积和 80.0%，再除以水和烧杯的热容。",
+    "solution": "（a）$2.07\\times 10^{-2}\\;^\\circ\\text{C/s}$\n\n（b）会，偏振片会变热，因为它们吸收了阳光中损失的一部分能量。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "light-polarization"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "phase-change-on-reflection"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "light-polarization"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "light-polarization"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "malus-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "polarization-by-scattering"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "polarization-by-scattering"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "polarization-by-reflection"
+  },
+  {
+   "exercise": "p1",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p2",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p4",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "p6",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "brewsters-law"
+  },
+  {
+   "exercise": "p8",
+   "concept": "malus-law"
+  },
+  {
+   "exercise": "p8",
+   "concept": "intensity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "malus-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "polarizing-filters"
+  },
+  {
+   "exercise": "p9",
+   "concept": "specific-heat"
+  }
+ ],
+ "referents": [
+  {
+   "id": "rope",
+   "label": "绳",
+   "figures": [
+    "sim-rope-slit"
+   ]
+  },
+  {
+   "id": "slit",
+   "label": "木板上的狭缝",
+   "figures": [
+    "sim-rope-slit"
+   ]
+  },
+  {
+   "id": "filter-1",
+   "label": "第一块偏振片",
+   "figures": [
+    "sim-filter-chain"
+   ]
+  },
+  {
+   "id": "filter-2",
+   "label": "第二块偏振片",
+   "figures": [
+    "sim-filter-chain"
+   ]
+  },
+  {
+   "id": "surface",
+   "label": "反射面",
+   "figures": [
+    "sim-brewster"
+   ]
+  },
+  {
+   "id": "incident-ray",
+   "label": "入射光",
+   "figures": [
+    "sim-brewster"
+   ]
+  },
+  {
+   "id": "reflected-ray",
+   "label": "反射光",
+   "figures": [
+    "sim-brewster"
+   ]
+  },
+  {
+   "id": "refracted-ray",
+   "label": "折射光",
+   "figures": [
+    "sim-brewster"
+   ]
+  },
+  {
+   "id": "filter",
+   "label": "正对着看的偏振片",
+   "figures": [
+    "sim-filter-molecules"
+   ]
+  },
+  {
+   "id": "molecules",
+   "label": "长分子",
+   "figures": [
+    "sim-filter-molecules"
+   ]
+  },
+  {
+   "id": "electron",
+   "label": "分子中的电子",
+   "figures": [
+    "sim-filter-molecules"
+   ]
+  },
+  {
+   "id": "sunlight",
+   "label": "阳光，即原来的光线",
+   "figures": [
+    "sim-scattering"
+   ]
+  },
+  {
+   "id": "molecule",
+   "label": "空气分子",
+   "figures": [
+    "sim-scattering"
+   ]
+  },
+  {
+   "id": "polarizer",
+   "label": "第一块偏振片",
+   "figures": [
+    "sim-rotator"
+   ]
+  },
+  {
+   "id": "layer",
+   "label": "液晶层或样品层",
+   "figures": [
+    "sim-rotator"
+   ]
+  },
+  {
+   "id": "analyzer",
+   "label": "检偏器",
+   "figures": [
+    "sim-rotator"
+   ]
+  },
+  {
+   "id": "pixel",
+   "label": "像素",
+   "figures": [
+    "sim-rotator"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "malus-law",
+   "what": "马吕斯定律",
+   "source": "《大学物理（第2版）》，27.8 偏振",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "只有平行于偏振片透振方向的场分量能通过；对于振幅为 $\\kEf$、与透振方向成角 $\\ktheta$ 的波，该分量为 $\\kEf\\;\\cos\\;\\ktheta$。",
+       "src": "27.8"
+      },
+      {
+       "text": "波的强度与其振幅的平方成正比。",
+       "src": "24.4"
+      },
+      {
+       "text": "$\\kIopol$ 是偏振波在通过偏振片之前的强度，此时它的振幅为 $\\kEf$。",
+       "src": "27.8"
+      }
+     ],
+     "then": {
+      "tex": "\\frac{\\mk{I}{\\kIntens}}{\\mk{o}{\\kIopol}} = \\frac{\\mk{t}{(\\kEf\\;\\cos\\;\\ktheta)^2}}{\\mk{e}{\\kEf^2}}",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "两个强度之比，等于偏振片之后与之前振幅平方之比。"
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{I}{\\kIntens}}{\\mk{o}{\\kIopol}} = \\mk{t}{\\cos^{2}\\;\\ktheta}",
+       "uses": [],
+       "map": {
+        "e": "t"
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\kIntens} = \\mk{o}{\\kIopol}\\mk{t}{\\;\\cos^{2}\\;\\ktheta}",
+       "uses": []
+      }
+     ],
+     "src": "27.8"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,465 @@
+{
+ "id": "27",
+ "dir": "ch27",
+ "title": "波动光学",
+ "intro": {
+  "module": "m42496",
+  "slug": "27-introduction-to-wave-optics"
+ },
+ "sections": [
+  {
+   "id": "27.1",
+   "module": "m42501",
+   "title": "光的波动特性：干涉",
+   "slug": "27-1-the-wave-aspect-of-light-interference"
+  },
+  {
+   "id": "27.2",
+   "module": "m42505",
+   "title": "惠更斯原理：衍射",
+   "slug": "27-2-huygenss-principle-diffraction"
+  },
+  {
+   "id": "27.3",
+   "module": "m42508",
+   "title": "杨氏双缝实验",
+   "slug": "27-3-youngs-double-slit-experiment"
+  },
+  {
+   "id": "27.4",
+   "module": "m42512",
+   "title": "多缝衍射",
+   "slug": "27-4-multiple-slit-diffraction"
+  },
+  {
+   "id": "27.5",
+   "module": "m42515",
+   "title": "单缝衍射",
+   "slug": "27-5-single-slit-diffraction"
+  },
+  {
+   "id": "27.6",
+   "module": "m42517",
+   "title": "分辨极限：瑞利判据",
+   "slug": "27-6-limits-of-resolution-the-rayleigh-criterion"
+  },
+  {
+   "id": "27.7",
+   "module": "m42519",
+   "title": "薄膜干涉",
+   "slug": "27-7-thin-film-interference"
+  },
+  {
+   "id": "27.8",
+   "module": "m42522",
+   "title": "偏振",
+   "slug": "27-8-polarization"
+  },
+  {
+   "id": "27.9",
+   "module": "m42290",
+   "title": "*拓展专题* 利用光的波动特性增强的显微术",
+   "slug": "27-9-extended-topic-microscopy-enhanced-by-the-wave-characteristics-of-light"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "真空中的光速",
+   "unit": "m/s",
+   "section": "27.1",
+   "anchor": "27.1-wave-character"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "光的频率，在每种介质中都相同",
+   "unit": "Hz",
+   "section": "27.1",
+   "anchor": "27.1-wave-character"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "光在真空中的波长",
+   "unit": "m",
+   "section": "27.1",
+   "anchor": "27.1-wave-character"
+  },
+  {
+   "sym": "n",
+   "concept": "index-of-refraction",
+   "meaning": "介质的折射率",
+   "section": "27.1",
+   "anchor": "27.1-wavelength-in-a-medium"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-speed",
+   "meaning": "光在介质中的速率",
+   "unit": "m/s",
+   "section": "27.1",
+   "anchor": "27.1-wavelength-in-a-medium"
+  },
+  {
+   "sym": "λ_n",
+   "concept": "wavelength",
+   "meaning": "光在介质中的波长，比真空中的短，缩短的因子为 n",
+   "unit": "m",
+   "section": "27.1",
+   "anchor": "27.1-wavelength-in-a-medium"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-speed",
+   "meaning": "子波扩展的速率，与波的速率相同",
+   "unit": "m/s",
+   "section": "27.2",
+   "anchor": "27.2-huygens-principle"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "画出子波时所经过的时间",
+   "unit": "s",
+   "section": "27.2",
+   "anchor": "27.2-huygens-principle"
+  },
+  {
+   "sym": "s",
+   "concept": "distance",
+   "meaning": "子波在时间 t 内传播的距离",
+   "unit": "m",
+   "section": "27.2",
+   "anchor": "27.2-huygens-principle"
+  },
+  {
+   "sym": "d",
+   "concept": "length",
+   "meaning": "两条缝之间的距离",
+   "unit": "m",
+   "section": "27.3",
+   "anchor": "27.3-path-difference"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "从光束原方向到屏上某一点的角度",
+   "unit": "°",
+   "section": "27.3",
+   "anchor": "27.3-path-difference"
+  },
+  {
+   "sym": "m",
+   "concept": "order-of-interference",
+   "meaning": "干涉的级次，为整数",
+   "section": "27.3",
+   "anchor": "27.3-path-difference"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "光的波长",
+   "unit": "m",
+   "section": "27.3",
+   "anchor": "27.3-path-difference"
+  },
+  {
+   "sym": "Δl",
+   "concept": "path-length-difference",
+   "meaning": "从两条缝到屏上某一点的两条路径的长度之差",
+   "unit": "m",
+   "section": "27.3",
+   "anchor": "27.3-path-difference"
+  },
+  {
+   "sym": "x",
+   "concept": "length",
+   "meaning": "从缝到屏的距离",
+   "unit": "m",
+   "section": "27.3",
+   "anchor": "27.3-interference-fringes"
+  },
+  {
+   "sym": "y",
+   "concept": "length",
+   "meaning": "沿屏从其中心到某条条纹的距离",
+   "unit": "m",
+   "section": "27.3",
+   "anchor": "27.3-interference-fringes"
+  },
+  {
+   "sym": "Δy",
+   "concept": "fringe-spacing",
+   "meaning": "屏上相邻条纹之间的距离",
+   "unit": "m",
+   "section": "27.3",
+   "anchor": "27.3-interference-fringes"
+  },
+  {
+   "sym": "d",
+   "concept": "length",
+   "meaning": "光栅相邻缝之间的距离",
+   "unit": "m",
+   "section": "27.4",
+   "anchor": "27.4-grating-condition"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "极大与入射方向之间的角度",
+   "unit": "°",
+   "section": "27.4",
+   "anchor": "27.4-grating-condition"
+  },
+  {
+   "sym": "m",
+   "concept": "order-of-interference",
+   "meaning": "极大的级次",
+   "section": "27.4",
+   "anchor": "27.4-grating-condition"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "光的波长",
+   "unit": "m",
+   "section": "27.4",
+   "anchor": "27.4-grating-condition"
+  },
+  {
+   "sym": "x",
+   "concept": "length",
+   "meaning": "从光栅到屏的距离",
+   "unit": "m",
+   "section": "27.4",
+   "anchor": "27.4-grating-spectrum"
+  },
+  {
+   "sym": "y",
+   "concept": "length",
+   "meaning": "沿屏从中央极大开始的距离",
+   "unit": "m",
+   "section": "27.4",
+   "anchor": "27.4-grating-spectrum"
+  },
+  {
+   "sym": "D_slit",
+   "concept": "length",
+   "meaning": "单缝的宽度",
+   "unit": "m",
+   "section": "27.5",
+   "anchor": "27.5-single-slit-minima"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "极小与光的原方向之间的角度",
+   "unit": "°",
+   "section": "27.5",
+   "anchor": "27.5-single-slit-minima"
+  },
+  {
+   "sym": "m",
+   "concept": "order-of-interference",
+   "meaning": "极小的级次，不能为零",
+   "section": "27.5",
+   "anchor": "27.5-single-slit-minima"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "光的波长",
+   "unit": "m",
+   "section": "27.5",
+   "anchor": "27.5-single-slit-minima"
+  },
+  {
+   "sym": "θ",
+   "concept": "rayleigh-criterion",
+   "type": "angle",
+   "meaning": "刚好能分辨的两个点物体之间的最小角度，单位为弧度",
+   "unit": "rad",
+   "section": "27.6",
+   "anchor": "27.6-rayleigh"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "光或其他电磁辐射的波长",
+   "unit": "m",
+   "section": "27.6",
+   "anchor": "27.6-rayleigh"
+  },
+  {
+   "sym": "D_ap",
+   "concept": "length",
+   "meaning": "孔径、透镜或面镜的直径",
+   "unit": "m",
+   "section": "27.6",
+   "anchor": "27.6-rayleigh"
+  },
+  {
+   "sym": "s",
+   "concept": "length",
+   "meaning": "相距角度为 θ 的两个物体之间的距离",
+   "unit": "m",
+   "section": "27.6",
+   "anchor": "27.6-hubble-example"
+  },
+  {
+   "sym": "r",
+   "concept": "length",
+   "meaning": "观察者到这两个物体的距离",
+   "unit": "m",
+   "section": "27.6",
+   "anchor": "27.6-hubble-example"
+  },
+  {
+   "sym": "x",
+   "concept": "resolving-power-of-a-lens",
+   "meaning": "分辨本领，即仍能被看作相互分开的两个物体之间的最小距离",
+   "unit": "m",
+   "section": "27.6",
+   "anchor": "27.6-resolving-power"
+  },
+  {
+   "sym": "d",
+   "concept": "length",
+   "meaning": "标本与物镜之间的距离",
+   "unit": "m",
+   "section": "27.6",
+   "anchor": "27.6-resolving-power"
+  },
+  {
+   "sym": "α_half",
+   "concept": "angle",
+   "meaning": "透镜接收角的一半",
+   "unit": "°",
+   "section": "27.6",
+   "anchor": "27.6-resolving-power"
+  },
+  {
+   "sym": "NA",
+   "concept": "numerical-aperture",
+   "meaning": "透镜的数值孔径",
+   "section": "27.6",
+   "anchor": "27.6-resolving-power"
+  },
+  {
+   "sym": "n",
+   "concept": "index-of-refraction",
+   "meaning": "物镜与物体之间介质的折射率",
+   "section": "27.6",
+   "anchor": "27.6-resolving-power"
+  },
+  {
+   "sym": "t_film",
+   "concept": "length",
+   "meaning": "薄膜的厚度",
+   "unit": "m",
+   "section": "27.7",
+   "anchor": "27.7-phase-change"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "光在真空中的波长",
+   "unit": "m",
+   "section": "27.7",
+   "anchor": "27.7-phase-change"
+  },
+  {
+   "sym": "λ_n",
+   "concept": "wavelength",
+   "meaning": "光在薄膜中的波长",
+   "unit": "m",
+   "section": "27.7",
+   "anchor": "27.7-phase-change"
+  },
+  {
+   "sym": "n_1",
+   "concept": "index-of-refraction",
+   "meaning": "薄膜上方介质的折射率",
+   "section": "27.7",
+   "anchor": "27.7-phase-change"
+  },
+  {
+   "sym": "n_2",
+   "concept": "index-of-refraction",
+   "meaning": "薄膜的折射率",
+   "section": "27.7",
+   "anchor": "27.7-phase-change"
+  },
+  {
+   "sym": "n_3",
+   "concept": "index-of-refraction",
+   "meaning": "薄膜下方介质的折射率",
+   "section": "27.7",
+   "anchor": "27.7-phase-change"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "偏振波的电场的振幅",
+   "unit": "N/C",
+   "section": "27.8",
+   "anchor": "27.8-malus-law"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "偏振方向与偏振片透振方向之间的夹角",
+   "unit": "°",
+   "section": "27.8",
+   "anchor": "27.8-malus-law"
+  },
+  {
+   "sym": "I_intens",
+   "concept": "intensity",
+   "meaning": "波通过偏振片之后的强度",
+   "unit": "W/m²",
+   "section": "27.8",
+   "anchor": "27.8-malus-law"
+  },
+  {
+   "sym": "I_0pol",
+   "concept": "intensity",
+   "meaning": "偏振波通过偏振片之前的强度",
+   "unit": "W/m²",
+   "section": "27.8",
+   "anchor": "27.8-malus-law"
+  },
+  {
+   "sym": "θ_b",
+   "concept": "brewsters-angle",
+   "meaning": "布儒斯特角，即使反射光完全偏振的反射角",
+   "unit": "°",
+   "section": "27.8",
+   "anchor": "27.8-brewster"
+  },
+  {
+   "sym": "n_1",
+   "concept": "index-of-refraction",
+   "meaning": "入射光和反射光所在介质的折射率",
+   "section": "27.8",
+   "anchor": "27.8-brewster"
+  },
+  {
+   "sym": "n_2",
+   "concept": "index-of-refraction",
+   "meaning": "构成反射光的界面的介质的折射率",
+   "section": "27.8",
+   "anchor": "27.8-brewster"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "光的波长，小于该波长的细节难以观察到",
+   "unit": "m",
+   "section": "27.9",
+   "anchor": "27.9-wavelength-limit"
+  }
+ ]
+}

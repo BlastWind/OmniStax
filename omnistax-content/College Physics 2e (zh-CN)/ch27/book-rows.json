@@ -1,0 +1,1185 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "λ_n",
+   "latex": "\\lambda_{n}",
+   "macro": "\\klamn"
+  },
+  {
+   "sym": "Δl",
+   "latex": "\\Delta l",
+   "macro": "\\kdl"
+  },
+  {
+   "sym": "Δy",
+   "latex": "\\Delta y",
+   "macro": "\\kdy"
+  },
+  {
+   "sym": "D_slit",
+   "latex": "D",
+   "macro": "\\kDslit"
+  },
+  {
+   "sym": "D_ap",
+   "latex": "D",
+   "macro": "\\kDap"
+  },
+  {
+   "sym": "t_film",
+   "latex": "t",
+   "macro": "\\ktfilm"
+  },
+  {
+   "sym": "I_0pol",
+   "latex": "I_0",
+   "macro": "\\kIopol"
+  },
+  {
+   "sym": "n_3",
+   "latex": "n_3"
+  },
+  {
+   "sym": "θ_b",
+   "latex": "\\theta_{\\text{b}}",
+   "macro": "\\kthetab"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "wave-optics",
+   "kind": "definition",
+   "section": "27.1",
+   "name": "波动光学",
+   "terms": [
+    "波动光学"
+   ],
+   "statement": "波动光学是光学的一个分支，研究光表现出波动特性时的行为，特别是光与尺寸不比其波长大多少的物体（例如狭缝）相互作用时的行为。只有波才能解释肥皂泡或油膜的颜色这类效应。"
+  },
+  {
+   "id": "interference-is-the-hallmark-of-a-wave",
+   "kind": "idea",
+   "section": "27.1",
+   "name": "干涉是波的标志",
+   "statement": "光线穿过狭缝后会继续笔直向前，而波则会向四周扩展，并通过干涉形成明暗相间的图样。这样的图样是某物为波的最确凿的标志，无论它是水波、声波、光，还是物质。"
+  },
+  {
+   "id": "wavelength-in-a-medium",
+   "kind": "result",
+   "section": "27.1",
+   "name": "介质中的波长",
+   "terms": [
+    "介质中的波长"
+   ],
+   "statement": "光进入介质时，其速率降为 $c/n$，而频率保持不变，因此波长按同一因子缩短：$\\lambda_n = \\lambda/n$。",
+   "forms": [
+    {
+     "id": "eq-wavelength-in-medium",
+     "latex": "\\lambda_{n} = \\frac{\\lambda}{n}",
+     "ktex": "\\klamn = \\frac{\\klam}{n}",
+     "anchor": "27.1-wavelength-in-a-medium"
+    },
+    {
+     "id": "eq-speed-in-medium-27",
+     "latex": "v = \\frac{c}{n} = f\\lambda_{n}",
+     "ktex": "\\kv = \\frac{\\kc}{n} = \\kf\\klamn",
+     "anchor": "27.1-wavelength-in-a-medium"
+    }
+   ]
+  },
+  {
+   "id": "color-follows-frequency",
+   "kind": "idea",
+   "section": "27.1",
+   "name": "介质中的颜色",
+   "statement": "介质中的光表现得像一种保持其光源频率的受迫振动。它的速率和波长会改变，但颜色不会，因为颜色取决于频率。红光进入水中并不会变成蓝光。"
+  },
+  {
+   "id": "huygens-principle",
+   "kind": "axiom",
+   "section": "27.2",
+   "name": "惠更斯原理",
+   "terms": [
+    "惠更斯原理"
+   ],
+   "statement": "惠更斯原理指出，波前上的每一点都是子波的波源，子波以与波本身相同的速率向前扩展。新的波前是与所有子波相切的一条线。这一个作图法就能解释反射、折射和衍射。",
+   "forms": [
+    {
+     "id": "eq-wavelet-distance",
+     "latex": "s = vt",
+     "ktex": "\\ks = \\kv\\kt",
+     "anchor": "27.2-huygens-principle"
+    }
+   ]
+  },
+  {
+   "id": "huygens-reflection-and-refraction",
+   "kind": "result",
+   "section": "27.2",
+   "name": "由惠更斯原理得出反射和折射",
+   "statement": "反射定律和折射定律在上一章中是针对光线陈述的。惠更斯作图法说明了它们为什么成立：来自面镜的子波依次发出，构成一个与入射波前夹角相等的波前；而在较慢介质中的子波传播得较近，因此波前向垂线方向偏转。"
+  },
+  {
+   "id": "diffraction",
+   "kind": "definition",
+   "section": "27.2",
+   "name": "衍射",
+   "terms": [
+    "衍射"
+   ],
+   "statement": "衍射是波绕过开口或障碍物的边缘而弯曲的现象。声音可以通过敞开的门传满整个房间，而光却在门口投下清晰的影子，因为弯曲的程度取决于波长与开口之比。"
+  },
+  {
+   "id": "diffraction-depends-on-opening-size",
+   "kind": "idea",
+   "section": "27.2",
+   "name": "衍射与开口大小",
+   "statement": "波弯曲的程度取决于开口的大小与其波长的比较。宽的开口让波前几乎笔直地通过，窄的开口则使它大幅扩展。这就是光在日常生活中表现得像光线、而在窄缝中表现得像波的原因。"
+  },
+  {
+   "id": "coherent-sources",
+   "kind": "definition",
+   "section": "27.3",
+   "name": "相干光与非相干光",
+   "statement": "相干波同相或具有确定的相位关系，它们产生稳定的干涉图样。非相干波的相位关系是随机的，不产生干涉图样，汽车的两只前灯就是如此。"
+  },
+  {
+   "id": "youngs-double-slit",
+   "kind": "idea",
+   "section": "27.3",
+   "name": "杨氏双缝实验",
+   "terms": [
+    "双缝干涉"
+   ],
+   "statement": "1801 年，托马斯·杨让光通过两条窄缝，发现的不是两条亮线，而是由许多明暗线条构成的图样。来自两条缝的波相互叠加并发生干涉，这一实验为光的波动性提供了确凿的证明。"
+  },
+  {
+   "id": "path-length-difference",
+   "kind": "result",
+   "section": "27.3",
+   "name": "波程差",
+   "type": "position",
+   "statement": "对于远处的屏，来自相距为 $d$ 的两条缝的路径几乎平行，它们到屏上与原方向成 $\\theta$ 角的一点的长度之差为 $\\Delta l = d\\sin\\theta$。",
+   "forms": [
+    {
+     "id": "eq-path-difference",
+     "latex": "\\Delta l = d\\sin\\theta",
+     "ktex": "\\kdl = \\kd\\sin\\theta",
+     "anchor": "27.3-path-difference"
+    }
+   ]
+  },
+  {
+   "id": "double-slit-constructive",
+   "kind": "result",
+   "section": "27.3",
+   "name": "双缝相长干涉",
+   "terms": [
+    "双缝相长干涉"
+   ],
+   "statement": "双缝的明条纹出现在波程差为波长的整数倍之处，即 $d\\sin\\theta = m\\lambda$。缝间距越小，每条条纹的角度越大。",
+   "forms": [
+    {
+     "id": "eq-double-slit-constructive",
+     "latex": "d\\sin\\theta = m\\lambda,\\;\\text{对于}\\;m = 0, 1, -1, 2, -2, \\ldots",
+     "ktex": "\\kd\\sin\\theta = m\\klam,\\;\\text{对于}\\;m = 0, 1, -1, 2, -2, \\ldots",
+     "anchor": "27.3-path-difference"
+    }
+   ]
+  },
+  {
+   "id": "double-slit-destructive",
+   "kind": "result",
+   "section": "27.3",
+   "name": "双缝相消干涉",
+   "terms": [
+    "双缝相消干涉"
+   ],
+   "statement": "双缝的暗条纹出现在波程差为波长的半整数倍之处，即 $d\\sin\\theta = (m + \\tfrac{1}{2})\\lambda$，此时波峰与波谷相遇。",
+   "forms": [
+    {
+     "id": "eq-double-slit-destructive",
+     "latex": "d\\sin\\theta = \\left(m + \\tfrac{1}{2}\\right)\\lambda,\\;\\text{对于}\\;m = 0, 1, -1, 2, -2, \\ldots",
+     "ktex": "\\kd\\sin\\theta = \\left(m + \\tfrac{1}{2}\\right)\\klam,\\;\\text{对于}\\;m = 0, 1, -1, 2, -2, \\ldots",
+     "anchor": "27.3-path-difference"
+    }
+   ]
+  },
+  {
+   "id": "order-of-interference",
+   "kind": "definition",
+   "section": "27.3",
+   "name": "干涉级",
+   "symbol": "m",
+   "terms": [
+    "级次"
+   ],
+   "statement": "干涉条纹的级次是相长干涉和相消干涉条件中的整数 $m$，即其两条路径相差的整波长数。中央条纹的级次为零。"
+  },
+  {
+   "id": "find-wavelength-from-a-pattern",
+   "kind": "skill",
+   "section": "27.3",
+   "name": "由双缝图样求波长",
+   "statement": "干涉图样可用来测量波长：对 $d\\sin\\theta = m\\lambda$ 求解未知的那个量，就可由测得的角度得到波长，或由已知的波长得到缝间距。",
+   "forms": [
+    {
+     "id": "eq-wavelength-from-pattern",
+     "latex": "\\lambda = \\frac{d\\sin\\theta}{m}",
+     "ktex": "\\klam = \\frac{\\kd\\sin\\theta}{m}",
+     "anchor": "27.3-measuring-wavelength"
+    }
+   ]
+  },
+  {
+   "id": "highest-order",
+   "kind": "skill",
+   "section": "27.3",
+   "name": "求最高级次",
+   "statement": "由于 $\\sin\\theta$ 不能大于 1，在干涉条件中令 $\\sin\\theta = 1$，就得到能到达屏上的最大级次。",
+   "forms": [
+    {
+     "id": "eq-highest-order",
+     "latex": "m = \\frac{d\\sin\\theta}{\\lambda}",
+     "ktex": "m = \\frac{\\kd\\sin\\theta}{\\klam}",
+     "anchor": "27.3-measuring-wavelength"
+    }
+   ]
+  },
+  {
+   "id": "fringe-spacing",
+   "kind": "result",
+   "section": "27.3",
+   "name": "条纹间距",
+   "type": "position",
+   "statement": "在小角度下，双缝的条纹在距离为 $x$ 的屏上是等间距的，间距为 $\\Delta y = x\\lambda/d$，它随到屏的距离和波长的增大而增大，随缝间距的增大而减小。",
+   "forms": [
+    {
+     "id": "eq-fringe-spacing",
+     "latex": "\\Delta y = \\frac{x\\lambda}{d}",
+     "ktex": "\\kdy = \\frac{\\kx\\klam}{\\kd}",
+     "anchor": "27.3-interference-fringes"
+    }
+   ]
+  },
+  {
+   "id": "coherent",
+   "kind": "definition",
+   "section": "27.3",
+   "name": "相干光",
+   "terms": [
+    "相干的"
+   ],
+   "statement": "波同相或具有确定的相位关系时是相干的。"
+  },
+  {
+   "id": "incoherent",
+   "kind": "definition",
+   "section": "27.3",
+   "name": "非相干光",
+   "terms": [
+    "非相干的"
+   ],
+   "statement": "波的相位关系是随机的时，是非相干的。"
+  },
+  {
+   "id": "diffraction-grating",
+   "kind": "definition",
+   "section": "27.4",
+   "name": "衍射光栅",
+   "terms": [
+    "衍射光栅"
+   ],
+   "statement": "衍射光栅是大量等间距的平行狭缝。它在与双缝相同的角度处形成亮区，光栅既可以透射工作，也可以反射工作。蛋白石、蝴蝶翅膀和鸟类羽毛的颜色都来自天然光栅。"
+  },
+  {
+   "id": "grating-constructive-condition",
+   "kind": "result",
+   "section": "27.4",
+   "name": "光栅相长干涉",
+   "terms": [
+    "光栅相长干涉"
+   ],
+   "statement": "来自光栅的每条光线比相邻光线多传播 $d\\sin\\theta$，因此当 $d\\sin\\theta = m\\lambda$ 时，所有光线同相到达，这与双缝的条件相同。光栅的缝更密，因而极大更少，出现在更大的角度处。",
+   "forms": [
+    {
+     "id": "eq-grating-constructive",
+     "latex": "d\\sin\\theta = m\\lambda,\\;\\text{对于}\\;m = 0, 1, -1, 2, -2, \\ldots",
+     "ktex": "\\kd\\sin\\theta = m\\klam,\\;\\text{对于}\\;m = 0, 1, -1, 2, -2, \\ldots",
+     "anchor": "27.4-grating-condition"
+    }
+   ]
+  },
+  {
+   "id": "grating-maxima-are-sharper",
+   "kind": "idea",
+   "section": "27.4",
+   "name": "光栅极大的锐度",
+   "statement": "与双缝相比，光栅的亮区更窄更亮，暗区更暗。缝越多，极大越锐，这就是光栅能够分开相距很近的波长的原因。"
+  },
+  {
+   "id": "grating-spectrum-on-a-screen",
+   "kind": "skill",
+   "section": "27.4",
+   "name": "求光栅的光谱",
+   "statement": "白光通过光栅后，在除中央级次以外的每个级次中展开成彩虹，紫光最靠近中心。由 $d\\sin\\theta = m\\lambda$ 求出每种波长的角度，再由 $y = x\\tan\\theta$ 求出它在屏上的位置。",
+   "forms": [
+    {
+     "id": "eq-screen-position",
+     "latex": "y = x\\tan\\theta",
+     "ktex": "\\ky = \\kx\\tan\\theta",
+     "anchor": "27.4-grating-spectrum"
+    }
+   ]
+  },
+  {
+   "id": "single-slit-pattern",
+   "kind": "idea",
+   "section": "27.5",
+   "name": "单缝衍射图样",
+   "statement": "来自同一条缝不同部分的光与自身发生干涉。结果是这样一种图样：其中央极大比两侧较暗的极大更宽、亮得多，这不同于光栅的等间距亮线。缝越窄，图样扩展得越开。"
+  },
+  {
+   "id": "single-slit-minima",
+   "kind": "result",
+   "section": "27.5",
+   "name": "单缝相消干涉",
+   "terms": [
+    "单缝相消干涉"
+   ],
+   "statement": "宽度为 $D$ 的单缝在其顶部和底部射出的光线的波程差为整数个波长处出现极小，即 $D\\sin\\theta = m\\lambda$，因为此时来自缝的一半的每条光线都在另一半有一条与它相互抵消的光线。不存在零级的极小。",
+   "forms": [
+    {
+     "id": "eq-single-slit-minima",
+     "latex": "D\\sin\\theta = m\\lambda,\\;\\text{对于}\\;m = 1, -1, 2, -2, 3, \\ldots",
+     "ktex": "\\kDslit\\sin\\theta = m\\klam,\\;\\text{对于}\\;m = 1, -1, 2, -2, 3, \\ldots",
+     "anchor": "27.5-single-slit-minima"
+    }
+   ]
+  },
+  {
+   "id": "single-slit-calculations",
+   "kind": "skill",
+   "section": "27.5",
+   "name": "求解单缝问题",
+   "statement": "求解 D sin θ = mλ，可由某个极小的角度得到缝的宽度，或在已知宽度时得到任何其他极小的角度。同一条件也适用于声音通过门，以及海浪通过港口开口。"
+  },
+  {
+   "id": "diffraction-limits-resolution",
+   "kind": "idea",
+   "section": "27.6",
+   "name": "衍射对分辨率的限制",
+   "statement": "光通过圆孔后扩展成一个周围带有环的模糊光斑，两个相近点光源的像因此重叠。每一个透镜、面镜和瞳孔的直径都是有限的，所以这一对分辨率的限制是光的波动性不可避免的结果。"
+  },
+  {
+   "id": "rayleigh-criterion",
+   "kind": "result",
+   "section": "27.6",
+   "name": "瑞利判据",
+   "terms": [
+    "瑞利判据"
+   ],
+   "statement": "按照瑞利判据，当一个像的衍射图样的中心落在另一个像的一级极小上时，两个像刚好可以分辨。对于直径为 $D$ 的圆孔，这发生在 $\\theta = 1.22\\lambda/D$（单位为弧度）处，因此孔径越大或波长越短，能分辨的细节越精细。",
+   "forms": [
+    {
+     "id": "eq-rayleigh-criterion",
+     "latex": "\\theta = 1.22\\frac{\\lambda}{D}",
+     "ktex": "\\theta = 1.22\\frac{\\klam}{\\kDap}",
+     "anchor": "27.6-rayleigh"
+    }
+   ]
+  },
+  {
+   "id": "find-a-resolvable-separation",
+   "kind": "skill",
+   "section": "27.6",
+   "name": "求可分辨的间距",
+   "statement": "一旦知道了最小可分辨角，刚好能区分开的两个物体之间的距离就等于该角乘以它们的距离，即 $s = r\\theta$。",
+   "forms": [
+    {
+     "id": "eq-arc-separation",
+     "latex": "s = r\\theta",
+     "ktex": "\\ks = r\\theta",
+     "anchor": "27.6-hubble-example"
+    }
+   ]
+  },
+  {
+   "id": "diffraction-spreading-of-a-beam",
+   "kind": "idea",
+   "section": "27.6",
+   "name": "光束的衍射扩展",
+   "statement": "即使是尽可能做成平行的光线束，由于其直径有限，也会以约 $1.22\\lambda/D$ 的角度扩展。只有把光束做得更宽才能减小这种扩展，这就是射向月球的激光要先经过望远镜扩束的原因。"
+  },
+  {
+   "id": "resolving-power-of-a-lens",
+   "kind": "result",
+   "section": "27.6",
+   "name": "透镜的分辨本领",
+   "type": "position",
+   "statement": "透镜的分辨本领是仍能被看作相互分开的两点之间的最小距离。瑞利角加上小角近似给出它为 $x = 1.22\\lambda d/D$，它越小，分辨率越高。",
+   "forms": [
+    {
+     "id": "eq-resolving-power",
+     "latex": "x = 1.22\\frac{\\lambda d}{D}",
+     "ktex": "\\kx = 1.22\\frac{\\klam\\kd}{\\kDap}",
+     "anchor": "27.6-resolving-power"
+    }
+   ]
+  },
+  {
+   "id": "resolution-and-numerical-aperture",
+   "kind": "idea",
+   "section": "27.6",
+   "name": "分辨率与数值孔径",
+   "statement": "数值孔径更大的透镜收集的光更多，成像更亮，也能分辨更精细的细节：它的分辨本领为 $x = 0.61\\lambda n/\\text{NA}$。更大的数值孔径还使聚焦光斑更小，而在波动光学中，光斑永远不是一个真正的点。",
+   "forms": [
+    {
+     "id": "eq-half-angle",
+     "latex": "\\sin\\alpha = \\frac{D/2}{d} = \\frac{D}{2d}",
+     "ktex": "\\sin\\alpha = \\frac{\\kDap/2}{\\kd} = \\frac{\\kDap}{2\\kd}",
+     "anchor": "27.6-resolving-power"
+    },
+    {
+     "id": "eq-resolving-power-na",
+     "latex": "x = 1.22\\frac{\\lambda d}{D} = 1.22\\frac{\\lambda}{2\\sin\\alpha} = 0.61\\frac{\\lambda n}{\\text{NA}}",
+     "ktex": "\\kx = 1.22\\frac{\\klam\\kd}{\\kDap} = 1.22\\frac{\\klam}{2\\sin\\alpha} = 0.61\\frac{\\klam n}{\\text{NA}}",
+     "anchor": "27.6-resolving-power"
+    }
+   ]
+  },
+  {
+   "id": "thin-film-interference",
+   "kind": "definition",
+   "section": "27.7",
+   "name": "薄膜干涉",
+   "terms": [
+    "薄膜干涉"
+   ],
+   "statement": "薄膜干涉是从薄膜上表面和下表面反射的光之间的干涉。进入薄膜的光线传播得更远，返回时可能与在上表面反射的光线同相或不同相，因此不同的厚度有利于不同的颜色，肥皂泡或油膜就是如此。"
+  },
+  {
+   "id": "phase-change-on-reflection",
+   "kind": "axiom",
+   "section": "27.7",
+   "name": "半波损失",
+   "statement": "光从折射率比其所在介质更大的介质上反射时，会发生 180° 的相位变化，即 $\\lambda/2$ 的移动。光从折射率较小的介质上反射时则没有。"
+  },
+  {
+   "id": "thin-film-conditions",
+   "kind": "skill",
+   "section": "27.7",
+   "name": "应用薄膜干涉条件",
+   "statement": "对于垂直入射的光，从薄膜底部反射的光线多传播约 $2t$，以薄膜中的波长为单位来度量。把这个波程差与两个表面上的半波损失结合起来：总的移动为整数个波长时是相长干涉，为半整数个波长时是相消干涉。",
+   "forms": [
+    {
+     "id": "eq-thin-film-constructive",
+     "latex": "2t = \\lambda_{n},\\; 2\\lambda_{n},\\; 3\\lambda_{n}, \\ldots",
+     "ktex": "2\\ktfilm = \\klamn,\\; 2\\klamn,\\; 3\\klamn, \\ldots",
+     "anchor": "27.7-film-conditions"
+    },
+    {
+     "id": "eq-thin-film-destructive",
+     "latex": "2t = \\lambda_{n}/2,\\; 3\\lambda_{n}/2,\\; 5\\lambda_{n}/2, \\ldots",
+     "ktex": "2\\ktfilm = \\klamn/2,\\; 3\\klamn/2,\\; 5\\klamn/2, \\ldots",
+     "anchor": "27.7-film-conditions"
+    }
+   ]
+  },
+  {
+   "id": "nonreflective-coating",
+   "kind": "skill",
+   "section": "27.7",
+   "name": "设计增透膜",
+   "statement": "透镜上的一层薄膜可以使从其两个表面反射的光相互抵消。当两次反射都带有相位变化时，最薄的这种膜的厚度是薄膜中波长的四分之一，$t = (\\lambda/n_2)/4$。",
+   "forms": [
+    {
+     "id": "eq-coating-thickness",
+     "latex": "t = \\frac{\\lambda/n_{2}}{4}",
+     "ktex": "\\ktfilm = \\frac{\\klam/n_{2}}{4}",
+     "anchor": "27.7-coating-example"
+    }
+   ]
+  },
+  {
+   "id": "wedges-and-newtons-rings",
+   "kind": "idea",
+   "section": "27.7",
+   "name": "空气劈尖与牛顿环",
+   "statement": "厚度均匀变化的薄膜，每变化一个波长就出现一条彩色带，在纯色光中则是一条明暗带。两块中间夹着一根头发的显微镜载玻片，或是压在平板上的透镜，都会显示这些带，这使得透镜能够磨制到优于一个波长的精度。"
+  },
+  {
+   "id": "light-polarization",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "光的偏振",
+   "terms": [
+    "偏振",
+    "偏振的"
+   ],
+   "statement": "偏振是指波的振动相对于其传播方向具有确定的方向这一属性。光是横波，偏振光的电场和磁场的振动沿确定的方向。只有横波才能被偏振。"
+  },
+  {
+   "id": "polarizing-filters",
+   "kind": "idea",
+   "section": "27.8",
+   "name": "偏振片",
+   "statement": "偏振片只让平行于其透振方向的电场分量通过，因此从中射出的光是偏振的。两块透振方向正交的偏振片什么也不能通过。"
+  },
+  {
+   "id": "malus-law",
+   "kind": "result",
+   "section": "27.8",
+   "name": "马吕斯定律",
+   "statement": "偏振片只让偏振波的场的分量 $E\\cos\\theta$ 通过，而由于强度与振幅的平方成正比，透射强度为 $I = I_0\\cos^2\\theta$，其中 $\\theta$ 是偏振方向与偏振片透振方向之间的夹角。",
+   "forms": [
+    {
+     "id": "eq-malus-law",
+     "latex": "I = I_{0}\\cos^{2}\\theta",
+     "ktex": "\\kIntens = \\kIopol\\cos^{2}\\theta",
+     "anchor": "27.8-malus-law"
+    },
+    {
+     "id": "eq-transmitted-amplitude",
+     "latex": "E\\cos\\theta",
+     "ktex": "\\kEf\\cos\\theta",
+     "anchor": "27.8-malus-law"
+    }
+   ]
+  },
+  {
+   "id": "polarization-by-reflection",
+   "kind": "idea",
+   "section": "27.8",
+   "name": "反射起偏",
+   "statement": "从水或玻璃反射的光是部分偏振的，水平偏振多于竖直偏振，因为竖直偏振的部分更容易被折射。因此透振方向竖直的偏光太阳镜可以减少眩光。"
+  },
+  {
+   "id": "brewsters-law",
+   "kind": "axiom",
+   "section": "27.8",
+   "name": "布儒斯特定律",
+   "terms": [
+    "布儒斯特定律"
+   ],
+   "statement": "布儒斯特定律指出，当反射角为布儒斯特角时，反射光是完全偏振的，$\\tan\\theta_{\\text{b}} = n_2/n_1$，其中 $n_1$ 是入射光和反射光所在介质的折射率，$n_2$ 是反射光的介质的折射率。",
+   "forms": [
+    {
+     "id": "eq-brewsters-law",
+     "latex": "\\tan\\theta_{\\text{b}} = \\frac{n_{2}}{n_{1}}",
+     "anchor": "27.8-brewster"
+    }
+   ]
+  },
+  {
+   "id": "polarization-by-scattering",
+   "kind": "idea",
+   "section": "27.8",
+   "name": "散射起偏",
+   "statement": "阳光使空气分子的电子沿垂直于其传播方向的方向振动，它们像小天线一样辐射，因此沿与原光线成直角的方向散射的光是偏振的。这就是透过旋转的偏光太阳镜看时，蓝天忽亮忽暗的原因。"
+  },
+  {
+   "id": "optical-activity",
+   "kind": "idea",
+   "section": "27.8",
+   "name": "液晶、旋光性与双折射",
+   "statement": "有些材料会作用于偏振方向本身。液晶会使它旋转 90°，除非施加电压，液晶显示器的像素就是这样工作的；糖水等旋光物质会使它旋转；受应力的塑料在正交的偏振片之间显示出彩色图样；而双折射晶体会把一束光分成两束。"
+  },
+  {
+   "id": "axis-of-a-polarizing-filter",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "偏振片的透振方向",
+   "terms": [
+    "偏振片的透振方向"
+   ],
+   "statement": "偏振片的透振方向是偏振片让电磁波的电场通过所沿的方向。"
+  },
+  {
+   "id": "direction-of-polarization",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "偏振方向",
+   "terms": [
+    "偏振方向"
+   ],
+   "statement": "电磁波的偏振方向定义为平行于其电场的方向。"
+  },
+  {
+   "id": "horizontal-and-vertical-polarization",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "水平偏振与竖直偏振",
+   "terms": [
+    "水平偏振的",
+    "竖直偏振的"
+   ],
+   "statement": "光的振动在水平面内时是水平偏振的，在竖直面内时是竖直偏振的。"
+  },
+  {
+   "id": "unpolarized-light",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "非偏振光",
+   "terms": [
+    "非偏振的"
+   ],
+   "statement": "非偏振光由随机偏振的波组成，具有所有的偏振方向。太阳和大多数其他光源产生非偏振光。"
+  },
+  {
+   "id": "brewsters-angle",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "布儒斯特角",
+   "symbol": "θ_b",
+   "terms": [
+    "布儒斯特角"
+   ],
+   "type": "angle",
+   "statement": "布儒斯特角是使反射光完全偏振的反射角，$\\theta_{\\text{b}} = \\tan^{-1}(n_2/n_1)$。"
+  },
+  {
+   "id": "optically-active",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "旋光物质",
+   "terms": [
+    "旋光的"
+   ],
+   "statement": "旋光物质会使通过它的光的偏振面旋转。糖水就是一个例子，旋转的量可以度量其浓度。"
+  },
+  {
+   "id": "birefringence",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "双折射",
+   "terms": [
+    "双折射的"
+   ],
+   "statement": "双折射晶体把一束非偏振光分成两束光，它们沿不同的方向偏振。"
+  },
+  {
+   "id": "completely-polarized-reflected-light",
+   "kind": "definition",
+   "section": "27.8",
+   "name": "完全偏振的反射光",
+   "terms": [
+    "完全偏振的反射光"
+   ],
+   "statement": "反射光在布儒斯特角 $\\theta_{\\text{b}}$ 处反射时是完全偏振的。"
+  },
+  {
+   "id": "wavelength-limits-microscopy",
+   "kind": "idea",
+   "section": "27.9",
+   "name": "显微术的波长极限",
+   "statement": "由于光会绕过小物体发生衍射，任何使用光的显微镜都不能显示比其波长小很多的细节。波长更短，如紫外显微镜，能显示更精细的细节。"
+  },
+  {
+   "id": "contrast-by-interference",
+   "kind": "idea",
+   "section": "27.9",
+   "name": "干涉显微术与相衬显微术",
+   "statement": "光通过折射率不同的物体后，与来自背景的光不同相地射出，把两者叠加就使这种差异以衬度的形式显现出来。干涉显微镜和相衬显微镜就以这种方式增强近乎透明的物体的衬度。"
+  },
+  {
+   "id": "confocal-microscopy",
+   "kind": "idea",
+   "section": "27.9",
+   "name": "共焦显微镜",
+   "terms": [
+    "共焦显微镜"
+   ],
+   "statement": "共焦显微镜利用波动光学的扩展焦区和一个挡住离焦点发出的光的针孔。让针孔先横向再上下扫描，就能建立厚标本的三维图像，甚至是运动中的活细胞的三维图像。"
+  },
+  {
+   "id": "contrast",
+   "kind": "definition",
+   "section": "27.9",
+   "name": "衬度",
+   "terms": [
+    "衬度"
+   ],
+   "statement": "衬度是物体与其所处背景之间的强度差。"
+  },
+  {
+   "id": "polarization-microscope",
+   "kind": "idea",
+   "section": "27.9",
+   "name": "偏光显微镜",
+   "terms": [
+    "偏光显微镜"
+   ],
+   "statement": "偏光显微镜利用光的偏振来增强衬度，这使它适用于旋光的物体。"
+  },
+  {
+   "id": "ultraviolet-microscope",
+   "kind": "idea",
+   "section": "27.9",
+   "name": "紫外显微镜",
+   "terms": [
+    "紫外（UV）显微镜"
+   ],
+   "statement": "紫外显微镜用能透过紫外线的特殊透镜制成，并以照相或电子的方式记录图像。它的波长较短，能显示可见光所不能显示的更精细的细节。"
+  },
+  {
+   "id": "interference-microscope",
+   "kind": "definition",
+   "section": "27.9",
+   "name": "干涉显微镜",
+   "terms": [
+    "干涉显微镜"
+   ],
+   "statement": "干涉显微镜通过把一束参考光叠加到从样品射出的光上，来增强物体与背景之间的衬度。"
+  },
+  {
+   "id": "phase-contrast-microscope",
+   "kind": "definition",
+   "section": "27.9",
+   "name": "相衬显微镜",
+   "terms": [
+    "相衬显微镜"
+   ],
+   "statement": "相衬显微镜利用波的干涉和相位差来增强衬度。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "wave-optics",
+   "prereq": "ray-approximation"
+  },
+  {
+   "concept": "wave-optics",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "wave-optics",
+   "prereq": "geometric-optics"
+  },
+  {
+   "concept": "interference-is-the-hallmark-of-a-wave",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "interference-is-the-hallmark-of-a-wave",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "interference-is-the-hallmark-of-a-wave",
+   "prereq": "wave"
+  },
+  {
+   "concept": "wavelength-in-a-medium",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "wavelength-in-a-medium",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "wavelength-in-a-medium",
+   "prereq": "speed-in-a-medium-from-the-index"
+  },
+  {
+   "concept": "color-follows-frequency",
+   "prereq": "wavelength-in-a-medium"
+  },
+  {
+   "concept": "color-follows-frequency",
+   "prereq": "frequency-fixed-across-media"
+  },
+  {
+   "concept": "huygens-principle",
+   "prereq": "wave"
+  },
+  {
+   "concept": "huygens-principle",
+   "prereq": "wave-velocity"
+  },
+  {
+   "concept": "huygens-principle",
+   "prereq": "transverse-wave"
+  },
+  {
+   "concept": "huygens-reflection-and-refraction",
+   "prereq": "huygens-principle"
+  },
+  {
+   "concept": "huygens-reflection-and-refraction",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "huygens-reflection-and-refraction",
+   "prereq": "snells-law"
+  },
+  {
+   "concept": "huygens-reflection-and-refraction",
+   "prereq": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "concept": "diffraction",
+   "prereq": "huygens-principle"
+  },
+  {
+   "concept": "diffraction",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "diffraction-depends-on-opening-size",
+   "prereq": "diffraction"
+  },
+  {
+   "concept": "coherent-sources",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "coherent-sources",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "coherent-sources",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "youngs-double-slit",
+   "prereq": "coherent-sources"
+  },
+  {
+   "concept": "youngs-double-slit",
+   "prereq": "diffraction"
+  },
+  {
+   "concept": "youngs-double-slit",
+   "prereq": "interference-is-the-hallmark-of-a-wave"
+  },
+  {
+   "concept": "path-length-difference",
+   "prereq": "youngs-double-slit"
+  },
+  {
+   "concept": "double-slit-constructive",
+   "prereq": "path-length-difference"
+  },
+  {
+   "concept": "double-slit-constructive",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "double-slit-destructive",
+   "prereq": "path-length-difference"
+  },
+  {
+   "concept": "double-slit-destructive",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "order-of-interference",
+   "prereq": "double-slit-constructive"
+  },
+  {
+   "concept": "find-wavelength-from-a-pattern",
+   "prereq": "double-slit-constructive"
+  },
+  {
+   "concept": "find-wavelength-from-a-pattern",
+   "prereq": "double-slit-destructive"
+  },
+  {
+   "concept": "find-wavelength-from-a-pattern",
+   "prereq": "order-of-interference"
+  },
+  {
+   "concept": "highest-order",
+   "prereq": "double-slit-constructive"
+  },
+  {
+   "concept": "fringe-spacing",
+   "prereq": "double-slit-constructive"
+  },
+  {
+   "concept": "diffraction-grating",
+   "prereq": "youngs-double-slit"
+  },
+  {
+   "concept": "grating-constructive-condition",
+   "prereq": "diffraction-grating"
+  },
+  {
+   "concept": "grating-constructive-condition",
+   "prereq": "double-slit-constructive"
+  },
+  {
+   "concept": "grating-maxima-are-sharper",
+   "prereq": "diffraction-grating"
+  },
+  {
+   "concept": "grating-spectrum-on-a-screen",
+   "prereq": "grating-constructive-condition"
+  },
+  {
+   "concept": "grating-spectrum-on-a-screen",
+   "prereq": "color-and-wavelength"
+  },
+  {
+   "concept": "single-slit-pattern",
+   "prereq": "diffraction"
+  },
+  {
+   "concept": "single-slit-pattern",
+   "prereq": "huygens-principle"
+  },
+  {
+   "concept": "single-slit-minima",
+   "prereq": "single-slit-pattern"
+  },
+  {
+   "concept": "single-slit-minima",
+   "prereq": "path-length-difference"
+  },
+  {
+   "concept": "single-slit-calculations",
+   "prereq": "single-slit-minima"
+  },
+  {
+   "concept": "diffraction-limits-resolution",
+   "prereq": "single-slit-pattern"
+  },
+  {
+   "concept": "diffraction-limits-resolution",
+   "prereq": "diffraction-depends-on-opening-size"
+  },
+  {
+   "concept": "rayleigh-criterion",
+   "prereq": "diffraction-limits-resolution"
+  },
+  {
+   "concept": "find-a-resolvable-separation",
+   "prereq": "rayleigh-criterion"
+  },
+  {
+   "concept": "find-a-resolvable-separation",
+   "prereq": "arc-length"
+  },
+  {
+   "concept": "diffraction-spreading-of-a-beam",
+   "prereq": "rayleigh-criterion"
+  },
+  {
+   "concept": "resolving-power-of-a-lens",
+   "prereq": "rayleigh-criterion"
+  },
+  {
+   "concept": "resolution-and-numerical-aperture",
+   "prereq": "resolving-power-of-a-lens"
+  },
+  {
+   "concept": "resolution-and-numerical-aperture",
+   "prereq": "numerical-aperture"
+  },
+  {
+   "concept": "thin-film-interference",
+   "prereq": "wavelength-in-a-medium"
+  },
+  {
+   "concept": "thin-film-interference",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "thin-film-interference",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "phase-change-on-reflection",
+   "prereq": "thin-film-interference"
+  },
+  {
+   "concept": "thin-film-conditions",
+   "prereq": "phase-change-on-reflection"
+  },
+  {
+   "concept": "thin-film-conditions",
+   "prereq": "wavelength-in-a-medium"
+  },
+  {
+   "concept": "nonreflective-coating",
+   "prereq": "thin-film-conditions"
+  },
+  {
+   "concept": "wedges-and-newtons-rings",
+   "prereq": "thin-film-conditions"
+  },
+  {
+   "concept": "light-polarization",
+   "prereq": "em-wave-is-transverse"
+  },
+  {
+   "concept": "light-polarization",
+   "prereq": "transverse-wave"
+  },
+  {
+   "concept": "polarizing-filters",
+   "prereq": "light-polarization"
+  },
+  {
+   "concept": "malus-law",
+   "prereq": "polarizing-filters"
+  },
+  {
+   "concept": "malus-law",
+   "prereq": "wave-energy-from-field-amplitude"
+  },
+  {
+   "concept": "polarization-by-reflection",
+   "prereq": "polarizing-filters"
+  },
+  {
+   "concept": "polarization-by-reflection",
+   "prereq": "law-of-reflection"
+  },
+  {
+   "concept": "polarization-by-reflection",
+   "prereq": "refraction"
+  },
+  {
+   "concept": "brewsters-law",
+   "prereq": "polarization-by-reflection"
+  },
+  {
+   "concept": "brewsters-law",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "polarization-by-scattering",
+   "prereq": "light-polarization"
+  },
+  {
+   "concept": "polarization-by-scattering",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "optical-activity",
+   "prereq": "polarizing-filters"
+  },
+  {
+   "concept": "wavelength-limits-microscopy",
+   "prereq": "diffraction-limits-resolution"
+  },
+  {
+   "concept": "contrast-by-interference",
+   "prereq": "wavelength-in-a-medium"
+  },
+  {
+   "concept": "contrast-by-interference",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "contrast-by-interference",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "confocal-microscopy",
+   "prereq": "resolution-and-numerical-aperture"
+  },
+  {
+   "concept": "axis-of-a-polarizing-filter",
+   "prereq": "light-polarization"
+  },
+  {
+   "concept": "axis-of-a-polarizing-filter",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "direction-of-polarization",
+   "prereq": "light-polarization"
+  },
+  {
+   "concept": "direction-of-polarization",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "horizontal-and-vertical-polarization",
+   "prereq": "direction-of-polarization"
+  },
+  {
+   "concept": "unpolarized-light",
+   "prereq": "light-polarization"
+  },
+  {
+   "concept": "brewsters-angle",
+   "prereq": "angle-of-reflection"
+  },
+  {
+   "concept": "brewsters-angle",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "brewsters-angle",
+   "prereq": "light-polarization"
+  },
+  {
+   "concept": "optically-active",
+   "prereq": "direction-of-polarization"
+  },
+  {
+   "concept": "birefringence",
+   "prereq": "unpolarized-light"
+  },
+  {
+   "concept": "birefringence",
+   "prereq": "index-of-refraction"
+  },
+  {
+   "concept": "contrast",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "polarization-microscope",
+   "prereq": "contrast"
+  },
+  {
+   "concept": "polarization-microscope",
+   "prereq": "optically-active"
+  },
+  {
+   "concept": "ultraviolet-microscope",
+   "prereq": "wavelength-limits-microscopy"
+  },
+  {
+   "concept": "coherent",
+   "prereq": "coherent-sources"
+  },
+  {
+   "concept": "incoherent",
+   "prereq": "coherent-sources"
+  },
+  {
+   "concept": "completely-polarized-reflected-light",
+   "prereq": "brewsters-law"
+  },
+  {
+   "concept": "completely-polarized-reflected-light",
+   "prereq": "brewsters-angle"
+  },
+  {
+   "concept": "interference-microscope",
+   "prereq": "contrast-by-interference"
+  },
+  {
+   "concept": "interference-microscope",
+   "prereq": "contrast"
+  },
+  {
+   "concept": "phase-contrast-microscope",
+   "prereq": "contrast-by-interference"
+  },
+  {
+   "concept": "phase-contrast-microscope",
+   "prereq": "contrast"
+  },
+  {
+   "concept": "contrast-by-interference",
+   "prereq": "contrast"
+  }
+ ]
+}
