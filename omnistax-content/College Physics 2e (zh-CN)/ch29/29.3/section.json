@@ -1,0 +1,819 @@
+{
+ "id": "29.3",
+ "module": "m42563",
+ "chapter": "29",
+ "title": "光子能量与电磁波谱",
+ "short": "光子能量",
+ "lead": "每一种电磁辐射都由光子组成，辐射能做什么，取决于每个光子携带多少<span data-concept=\"energy\">能量</span>。电磁波谱从 $\\gamma$ 射线和 X 射线出发，经过紫外线和可见光，直到红外线和微波，而 X 射线管则显示了波谱高端的光子是如何产生的。",
+ "objectives": [
+  "说明以焦耳或电子伏表示的光子能量与其波长或频率之间的关系。",
+  "计算具有特定波长和功率的单色光源每秒发射的光子数。"
+ ],
+ "summary_html": "<ul><li>光子能量决定了电磁辐射的许多特性，在高<span data-concept=\"frequency\">频率</span>处尤为明显。</li><li>光子既有波动特性，也有粒子特性。</li></ul>",
+ "notes": "关于 PhET 模拟“色觉”的链接被略去，如同全书中指向出版方交互内容的链接一样。第一道 AP 题问的是波长，但给出的选项却是频率，这里照原样保留，并采用书中的答案（b）。本模块十七道习题中有八道没有给出答案，因而略去：调频电台的光子、1.00 eV 的光子、可见光的光子能量、以 eV·s 表示的普朗克常量、最短波长为 0.0103 nm 的管、微波炉每秒的光子数、650 kHz 电台的光子，以及每秒每平方米一个光子所对应的距离；没有答案的“自拟习题”也一并略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十七道习题中有九道没有给出答案（八道习题和“自拟习题”），因而略去，并已在本节的说明中列出。第一道 AP 题有答案，设为判分选择题，照原样印出，尽管它问的是波长而选项给出的是频率；第二道的解在原文中被注释掉，因此书中没有给出，保留为开放式题目，附有标明为 AI 撰写的建议思路。八道思考题没有答案，附有标明为 AI 撰写的建议思路。本模块没有“理解检测”框，因此没有设置内嵌题目。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-em-spectrum",
+   "kind": "sim",
+   "number": "29.9",
+   "originals": [
+    "/media/ch29/Figure_30_03_01a-ad02.jpg"
+   ],
+   "original_caption": "电磁波谱，按以 eV 为单位的光子能量以及波长和频率给出了各主要类别。电磁辐射的某些特性完全可归因于光子能量。",
+   "widths": [],
+   "draws": [
+    "energy",
+    "frequency",
+    "position"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "photon line under the tick labels; scale names clear; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-rontgen-hand",
+   "kind": "photo",
+   "number": "29.10",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-x-ray-tube",
+   "kind": "sim",
+   "number": "29.11",
+   "folds": [
+    "29.12"
+   ],
+   "originals": [
+    "/media/ch29/Figure_30_03_03a.jpg",
+    "/media/ch29/Figure_30_03_04a.jpg"
+   ],
+   "original_caption": "（图 29.11）当高能电子撞击这个阴极射线管（CRT）的铜阳极时，就会产生 X 射线。电子（此处显示为单独的粒子）与它们所撞击的材料逐个相互作用，有时产生电磁辐射的光子。（图 29.12）高能电子撞击某种材料时得到的 X 射线谱。谱中平滑的部分是轫致辐射，而峰则是阳极材料的特征。两者都是产生高能光子的原子过程，这些光子称为 X 射线光子。",
+   "widths": [
+    250,
+    300
+   ],
+   "draws": [
+    "energy",
+    "frequency",
+    "voltage",
+    "charge"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "characteristic lines drawn; photon label off the electrons; note macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-faded-poster",
+   "kind": "photo",
+   "number": "29.13",
+   "widths": [
+    250
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "ionizing-radiation",
+   "concept": "photon-energy-in-ev",
+   "verb": "introduces"
+  },
+  {
+   "span": "ionizing-radiation",
+   "concept": "photon-energy-and-radiation-effects",
+   "verb": "introduces"
+  },
+  {
+   "span": "ionizing-radiation",
+   "concept": "photon-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ionizing-radiation",
+   "concept": "electromagnetic-spectrum",
+   "verb": "uses"
+  },
+  {
+   "span": "gamma-rays-and-x-rays",
+   "concept": "ionizing-photons",
+   "verb": "introduces"
+  },
+  {
+   "span": "gamma-rays-and-x-rays",
+   "concept": "photon-energy-and-radiation-effects",
+   "verb": "reinforces"
+  },
+  {
+   "span": "x-ray-tube",
+   "concept": "x-ray-tube-maximum-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "x-ray-photon-energy",
+   "concept": "x-ray-tube-maximum-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-ray-photon-energy",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "x-ray-photon-energy",
+   "concept": "photon-energy-in-ev",
+   "verb": "uses"
+  },
+  {
+   "span": "x-ray-spectrum",
+   "concept": "x-ray-tube-spectrum",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-ray-spectrum",
+   "concept": "x-ray-tube-maximum-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "x-ray-spectrum",
+   "concept": "bremsstrahlung",
+   "verb": "introduces"
+  },
+  {
+   "span": "x-ray-spectrum",
+   "concept": "characteristic-x-rays",
+   "verb": "introduces"
+  },
+  {
+   "span": "ultraviolet",
+   "concept": "ionizing-photons",
+   "verb": "reinforces"
+  },
+  {
+   "span": "uv-photon-energy",
+   "concept": "photon-energy-in-ev",
+   "verb": "uses"
+  },
+  {
+   "span": "uv-photon-energy",
+   "concept": "photon-energy-from-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "uv-photon-energy",
+   "concept": "ionizing-photons",
+   "verb": "reinforces"
+  },
+  {
+   "span": "visible-light",
+   "concept": "photon-energy-and-radiation-effects",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bulb-photons",
+   "concept": "photons-per-second",
+   "verb": "introduces"
+  },
+  {
+   "span": "bulb-photons",
+   "concept": "photon-energy-from-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "lower-energy-photons",
+   "concept": "photon-energy-and-radiation-effects",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lower-energy-photons",
+   "concept": "microwaves",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2345857",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lower-energy-photons",
+   "prompt": "微波炉产生的是处于波谱无线电部分的电磁辐射。这些微波光子被水分子吸收，使分子的转动能增大。这部分增加的能量通过热传递给周围的食物，食物因此很快变热。如果一个水分子吸收的能量为 $1.0\\times 10^{-5}$ eV，那么这些微波光子对应的波长<sup class=\"fn\" data-note=\"c-ap1-frequency\"></sup>是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1.22 GHz",
+     "2.45 GHz",
+     "4.90 GHz",
+     "9.80 Hz"
+    ],
+    "correct": 1,
+    "hint": "选项都是频率，所以求 $\\kf = \\kE/h$，其中 $h = 4.14\\times 10^{-15}$ eV·s。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3440661",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-ray-spectrum",
+   "prompt": "在 X 射线的强度对频率曲线（图 29.12）中，强度大部分是一条与<em>轫致辐射</em>（“制动辐射”）相联系的平滑曲线。然而，有两个尖峰（特征 X 射线）表现出很高的强度输出。请说明为什么平滑的曲线可以用经典电动力学来描述，而这些峰却需要用量子力学来解释。（回想一下，电荷的加速或减速会引起电磁辐射的发射。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "平滑的曲线来自在阳极原子附近经过时减速的电子。电子可以通过这种方式损失任意多的动能，从零直到全部的 $\\kq\\kV$，而被减速的电荷会辐射，所以发射出的光子的能量分布在一个连续的范围内，这正是经典电动力学对制动电荷所作的预言。峰出现在由阳极材料决定的几个确定的频率上。束中的一个电子把阳极原子的一个内层电子撞出去，该原子的另一个电子落入这个空位，发射出一个光子，其能量等于两个允许能级之差。只有某些特定的能量是可能的，这是一个量子结果。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1439156",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gamma-rays-and-x-rays",
+   "prompt": "为什么 UV、X 射线和 $\\gamma$ 射线被称为电离辐射？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们的光子携带的能量超过了从原子或分子中移走一个电子所需的大约 10 至 1000 eV。由于一个光子与一个原子或分子相互作用，单个 UV、X 射线或 $\\gamma$ 射线光子就能使吸收它的物质电离，而可见光、IR 或微波的光子所携带的能量太少，做不到这一点。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1573950",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gamma-rays-and-x-rays",
+   "prompt": "用电离辐射处理食物，怎样有助于防止它变质？UV 的穿透力不强。还可以用什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电离辐射会拆散食物中细菌、霉菌和昆虫的分子，杀死它们或使它们不能繁殖，所以食物变质得更慢。UV 在表面附近就被吸收，只能处理食物的外层。X 射线或 $\\gamma$ 射线的光子能量更高，穿透得远得多，因此能处理食物的整个体积。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1579323",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-ray-photon-energy",
+   "prompt": "有些电视显像管是 CRT。它们用大约 30 kV 的加速电势把电子送到屏幕上，电子在那里激发荧光粉发光，形成我们所看的画面。你认为也会产生 X 射线吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会。每个电子到达屏幕时带有大约 30 keV 的能量，它在减速时最多可以把这么多能量交给单个光子。能量为几 keV 到 30 keV 的光子是 X 射线，因此 CRT 电视会产生一些 X 射线，这就是其屏幕玻璃之所以被做成能吸收它们的原因。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1320422",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ultraviolet",
+   "prompt": "日光浴沙龙使用“安全的”UV，其波长比阳光中的某些 UV 更长。这种“安全的”UV 的光子能量足以触发晒黑机制。长时间照射下，它是否有可能造成细胞损伤并诱发癌症？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的。晒黑本身就是对皮肤中分子变化的一种反应，所以能触发晒黑的光子有足够的能量改变分子。具有这种能量的光子也能改变 DNA，长时间照射下，许多这样的光子造成的损伤会累积起来，因此即使每个光子的能量低于阳光中较短波长的 UV，细胞损伤和癌症仍然是可能的。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1311496",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ultraviolet",
+   "prompt": "当可见光强度减弱时，你的瞳孔会扩大。戴没有 UV 阻挡层的太阳镜，会使 UV 对你眼睛的危害增大还是减小？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会增大危害。深色镜片挡掉了可见光，所以瞳孔张得更大，但 UV 几乎不变地穿过镜片。瞳孔变大后，进入眼睛的 UV 光子比不戴太阳镜时更多，而每个光子都有足够的能量损伤眼睛中的分子。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1254818",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lower-energy-photons",
+   "prompt": "在距你 75 km 的大气中引爆一颗大型核弹，你能感到以红外辐射形式传来的热传递。然而，大量发射的 X 射线或 $\\gamma$ 射线却一个也到不了你这里。请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "X 射线和 $\\gamma$ 射线的光子有足够的能量使空气分子电离，所以它们被空气吸收，传不到 75 km 远。红外光子的能量太小，不能使空气电离，而且空气对许多 IR 频率几乎是透明的，所以红外辐射能越过这段距离，被感觉为热。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1564950",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lower-energy-photons",
+   "prompt": "单个微波光子能造成细胞损伤吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。微波光子只携带大约 $10^{-5}$ eV 的能量，远小于打断分子的键所需的大约 1 至 10 eV，也远小于使其电离所需的 10 eV 或更多。只有当巨大数量的光子共同作用时，微波才能损伤细胞，例如通过加热组织。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2673559",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-ray-photon-energy",
+   "prompt": "在 X 射线管中，最大光子能量由 $h\\kf = \\kq\\kV$ 给出。在技术上，说成 $h\\kf = \\kq\\kV + \\kBE$，其中 BE 是靶阳极中电子的结合能，是否会更准确？为什么能量不按后一种方式表述？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "原则上是的：落入阳极并在那里被束缚的电子，除了动能之外还要放出它的结合能，所以能量最高的光子可以携带 $\\kq\\kV + \\kBE$。结合能只有几 eV，而 $\\kq\\kV$ 是几万 eV，所以这一修正远小于数值的精度，于是被略去。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2700906",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ionizing-radiation",
+   "prompt": "一个调幅（AM）电台的广播频率为 1530 kHz，其无线电波中一个光子的能量是多少焦耳、多少 eV？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the energy in eV",
+      "value": 6.34e-09,
+      "unit": "eV",
+      "hint": "利用 $\\kE = h\\kf$，其中 $h = 4.14\\times 10^{-15}$ eV·s。"
+     },
+     {
+      "part": "the energy in joules",
+      "value": 1.01e-27,
+      "unit": "J",
+      "hint": "利用 $\\kE = h\\kf$，其中 $h = 6.63\\times 10^{-34}$ J·s。"
+     }
+    ],
+    "solution": "$6.34\\times 10^{-9}\\;\\text{eV}$, $1.01\\times 10^{-27}\\;\\text{J}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1444344",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gamma-rays-and-x-rays",
+   "prompt": "计算一个 1.00 MeV 的 $\\gamma$ 射线光子的频率（以赫兹为单位）。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.42e+20,
+    "unit": "Hz",
+    "hint": "由 $\\kE = h\\kf$ 解出 $\\kf$，其中能量以 eV 为单位，$h = 4.14\\times 10^{-15}$ eV·s。",
+    "solution": "$2.42\\times 10^{20}\\;\\text{Hz}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "eip-876",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ionizing-radiation",
+   "prompt": "进行必要的单位换算，证明 $h\\kc = 1240\\;\\text{eV}\\cdot\\text{nm},$ 正如正文中所述。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1240,
+    "unit": "eV·nm",
+    "hint": "把以 J·s 为单位的 $h$ 乘以以 m/s 为单位的 $\\kc$，然后把米换算成纳米，把焦耳换算成电子伏。",
+    "solution": "$h\\kc = (6.62607\\times 10^{-34}\\;\\text{J}\\cdot\\text{s})(2.99792\\times 10^{8}\\;\\text{m/s})\\left(\\frac{10^{9}\\;\\text{nm}}{1\\;\\text{m}}\\right)\\left(\\frac{1.00000\\;\\text{eV}}{1.60218\\times 10^{-19}\\;\\text{J}}\\right) = 1239.84\\;\\text{eV}\\cdot\\text{nm} \\approx 1240\\;\\text{eV}\\cdot\\text{nm}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2352714",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lower-energy-photons",
+   "prompt": "（a）计算频率为 $2.00\\times 10^{13}\\;\\text{Hz}$ 的 IR 光子的能量（以 eV 为单位）。（b）一个束缚较紧的分子需要同时吸收多少个这样的光子才会被拆散？（c）频率为 $3.00\\times 10^{20}\\;\\text{Hz}$ 的 $\\gamma$ 射线的能量是多少 eV？（d）单个这样的 $\\gamma$ 射线能拆散多少个束缚较紧的分子？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the IR photon’s energy",
+      "value": 0.0829,
+      "unit": "eV",
+      "hint": "利用 $\\kE = h\\kf$，其中 $h = 4.14\\times 10^{-15}$ eV·s。"
+     },
+     {
+      "part": "(b) the number of IR photons",
+      "value": 121,
+      "unit": "",
+      "hint": "一个束缚较紧的分子的结合能约为 10 eV（表 29.1）；用它除以一个光子的能量。"
+     },
+     {
+      "part": "(c) the $\\gamma$ ray’s energy",
+      "value": 1.24,
+      "unit": "MeV",
+      "hint": "再次利用 $\\kE = h\\kf$，并把 eV 换算成 MeV。"
+     },
+     {
+      "part": "(d) the number of molecules",
+      "value": 124000,
+      "unit": "",
+      "hint": "用 $\\gamma$ 射线的能量除以每个分子的 10 eV。"
+     }
+    ],
+    "solution": "（a）0.0829 eV\n\n（b）121\n\n（c）1.24 MeV\n\n（d）$1.24\\times 10^{5}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2655394",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-ray-photon-energy",
+   "prompt": "（a）在使用 25.0 kV 加速电势的 CRT（例如彩色电视机）中，所产生光子的最大能量是多少 eV？（b）它们的频率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the maximum photon energy",
+      "value": 25000,
+      "unit": "eV",
+      "hint": "电子经 $\\kV$ 伏加速后获得 $\\kq\\kV$，即同样数值的 eV，并且可以把它全部交给一个光子。"
+     },
+     {
+      "part": "(b) the frequency",
+      "value": 6.04e+18,
+      "unit": "Hz",
+      "hint": "由 $h\\kf = \\kq\\kV$ 解出 $\\kf$，其中 $h = 4.14\\times 10^{-15}$ eV·s。"
+     }
+    ],
+    "solution": "（a）$25.0\\times 10^{3}\\;\\text{eV}$\n\n（b）$6.04\\times 10^{18}\\;\\text{Hz}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2673466",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulb-photons",
+   "prompt": "（a）两台微波炉的频率分别为 950 MHz 和 2560 MHz，如果它们每秒发射的光子数相同，它们的输出功率之比是多少？（b）如果它们的输出功率相同，每秒发射的光子数之比是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the ratio of power outputs",
+      "value": 2.69,
+      "unit": "",
+      "hint": "每秒的光子数相同时，功率与每个光子的能量 $h\\kf$ 成正比。"
+     },
+     {
+      "part": "(b) the ratio of photons per second",
+      "value": 0.371,
+      "unit": "",
+      "hint": "功率相同时，每秒的光子数与每个光子的能量成反比。"
+     }
+    ],
+    "solution": "（a）2.69\n\n（b）0.371"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2299312",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulb-photons",
+   "prompt": "有些卫星使用核动力。（a）如果这样的卫星发射功率为 1.00 W 的 $\\gamma$ 射线通量，其平均能量为 0.500 MeV，那么每秒发射多少个？（b）这些 $\\gamma$ 射线会影响其他卫星。另一颗卫星必须离它多远，才会每秒每平方米只接收到一个 $\\gamma$ 射线？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the photons emitted per second",
+      "value": 12500000000000.0,
+      "unit": "photons/s",
+      "hint": "把 0.500 MeV 换算成焦耳，再用功率除以它。"
+     },
+     {
+      "part": "(b) the distance",
+      "value": 997,
+      "unit": "km",
+      "hint": "光子散布在面积为 $4\\pi r^2$ 的球面上；令每秒的个数除以这个面积等于每平方米一个。"
+     }
+    ],
+    "solution": "（a）$1.25\\times 10^{13}\\;\\text{光子/s}$\n\n（b）997 km"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1437653",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulb-photons",
+   "prompt": "一个 X 射线管产生功率为 1.00 W 的 X 射线通量，它每秒产生多少个 X 射线光子？假设每个光子的平均能量为 75.0 keV。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 83300000000000.0,
+    "unit": "photons/s",
+    "hint": "把 75.0 keV 换算成焦耳，再用功率除以一个光子的能量。",
+    "solution": "$8.33\\times 10^{13}\\;\\text{光子/s}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2352550",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulb-photons",
+   "prompt": "假设一只 100 W 灯泡输出能量的 10.0% 在可见光范围内（这对白炽灯泡是典型的），平均波长为 580 nm，并假设光子均匀散开且不被大气吸收，那么如果每秒有 500 个光子进入你眼睛直径为 3.00 mm 的瞳孔，你离灯泡有多远？（这个数目很容易刺激视网膜。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 181,
+    "unit": "km",
+    "hint": "从例题 29.4 的每秒 $2.92\\times 10^{19}$ 个光子出发，把它们散布在面积为 $4\\pi r^2$ 的球面上，求瞳孔的面积每秒接收 500 个光子时的 $r$。",
+    "solution": "181 km"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "photon-energy-in-ev"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "photon-energy-and-radiation-effects",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "x-ray-tube-spectrum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ionizing-photons"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "photon-energy-and-radiation-effects",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ionizing-photons"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "x-ray-tube-maximum-energy"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "ionizing-photons"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "photon-energy-and-radiation-effects",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "ionizing-photons"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "photon-energy-and-radiation-effects"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "ionizing-photons",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "photon-energy-and-radiation-effects"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "x-ray-tube-maximum-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "photon-energy-in-ev"
+  },
+  {
+   "exercise": "p1",
+   "concept": "photon-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "photon-energy-in-ev"
+  },
+  {
+   "exercise": "p3",
+   "concept": "photon-energy-in-ev"
+  },
+  {
+   "exercise": "p4",
+   "concept": "photon-energy-in-ev"
+  },
+  {
+   "exercise": "p4",
+   "concept": "photon-energy-and-radiation-effects",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "x-ray-tube-maximum-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "photon-energy-in-ev",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "photons-per-second"
+  },
+  {
+   "exercise": "p7",
+   "concept": "photons-per-second"
+  },
+  {
+   "exercise": "p8",
+   "concept": "photons-per-second"
+  },
+  {
+   "exercise": "p9",
+   "concept": "photons-per-second"
+  },
+  {
+   "exercise": "p9",
+   "concept": "photon-energy-from-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "tube",
+   "label": "X 射线管",
+   "figures": [
+    "sim-x-ray-tube"
+   ]
+  },
+  {
+   "id": "filament",
+   "label": "热灯丝，即阴极",
+   "figures": [
+    "sim-x-ray-tube"
+   ]
+  },
+  {
+   "id": "anode",
+   "label": "阳极",
+   "figures": [
+    "sim-x-ray-tube"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-ap1-frequency",
+   "kind": "correction",
+   "html": "题目问的是波长，但选项给出的是频率。频率为 $f = E/h = 2.4\\ \\text{GHz}$，即选项（b）；波长为 $12\\ \\text{cm}$。"
+  }
+ ]
+}

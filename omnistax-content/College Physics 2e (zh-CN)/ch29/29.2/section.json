@@ -1,0 +1,622 @@
+{
+ "id": "29.2",
+ "module": "m42558",
+ "chapter": "29",
+ "title": "光电效应",
+ "short": "光电效应",
+ "lead": "当光落在金属上时，它可以使电子逸出，而只有以量子形式存在的光才能解释这一效应的细节。光电实验针对每种<span data-concept=\"frequency\">频率</span>的光，测量<span data-type=\"energy\">逸出电子的动能</span>，其中以紫光照射钙的情形作了详细演算。",
+ "objectives": [
+  "描述一个典型的光电效应实验。",
+  "已知光电子在另一种光子能量或波长下的最大动能，确定由某一种光子能量或波长的光子激发而逸出的光电子的最大动能。"
+ ],
+ "summary_html": "<ul><li>光电效应是电磁辐射使电子从材料中逸出的过程。</li><li>爱因斯坦提出，光子是电磁辐射的量子，其<span data-concept=\"energy\">能量</span>为 $\\kE = h\\kf$，其中 $\\kf$ 是辐射的<span data-concept=\"frequency\">频率</span>。</li><li>所有电磁辐射都由光子组成。正如爱因斯坦所解释的，光电效应的所有特征都源于单个光子与单个电子的相互作用。</li><li>逸出电子（光电子）的最大<span data-concept=\"kinetic-energy\">动能</span> $\\kKEe$ 由 $\\kKEe = h\\kf - \\kBE$ 给出，其中 $h\\kf$ 是光子能量，BE 是该电子在特定材料中的<span data-concept=\"binding-energy\">结合能</span>（或<span data-concept=\"work-function\">逸出功</span>）。</li></ul>",
+ "notes": "关于 PhET 模拟“光电效应”的链接被略去，如同全书中指向出版方交互内容的链接一样。本模块十六道习题中有八道在书后答案中没有给出，因而略去：使钾逸出电子的最长波长、铝的结合能、120 nm 紫外线照射金、300 nm 紫外线照射铀、使钾逸出 0.100 eV 电子的光子、光电子行进 2.50 cm 所需的时间、阳光照射一平方毫米的钠，以及第二道“不合理的结果”习题。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十六道习题中有八道没有给出答案，因而略去，并已在本节的说明中列出。第一道 AP 题有答案，设为判分选择题；第二道的解在原文中被注释掉，因此书中没有给出，保留为开放式题目，附有标明为 AI 撰写的建议思路。五道思考题没有答案，附有标明为 AI 撰写的建议思路。本模块没有“理解检测”框，因此没有设置内嵌题目。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "photo-photoelectric-tube",
+   "kind": "photo",
+   "number": "29.6",
+   "widths": [
+    150
+   ]
+  },
+  {
+   "id": "sim-photoelectric",
+   "kind": "sim",
+   "number": "29.7",
+   "folds": [
+    "29.8"
+   ],
+   "originals": [
+    "/media/ch29/Figure_30_02_02a.jpg",
+    "/media/ch29/Figure_30_02_03a.jpg"
+   ],
+   "original_caption": "（图 29.7）频率为 f 的电磁波由光子，即电磁辐射的单个量子组成。每个光子的能量为 E = hf，其中 h 是普朗克常量，f 是电磁辐射的频率。强度越高，意味着单位面积上的光子越多。手电筒发射大量频率各不相同的光子，因此其他光子的能量为 E′ = hf′，依此类推。（图 29.8）光电效应。这是逸出电子的动能 KEₑ 与照射在某种材料上的电磁辐射的频率的关系图像。存在一个阈值频率，低于它就没有电子逸出，因为与单个电子相互作用的单个光子的能量不足以使其脱离。高于截止能量时，KEₑ 随 f 线性增大，与 KEₑ = hf − BE 一致。这条直线的斜率是 h——这些数据可用来通过实验测定普朗克常量。爱因斯坦通过提出光子，即电磁辐射的量子这一观念，首次成功地解释了这类数据。",
+   "widths": [
+    400,
+    250
+   ],
+   "draws": [
+    "energy",
+    "frequency",
+    "position"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "photon label moved off the lamp; note symbols through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "light-ejects-electrons",
+   "concept": "photoelectric-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "light-ejects-electrons",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "photons",
+   "concept": "photon-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "photons",
+   "concept": "quantum-energy-step",
+   "verb": "uses"
+  },
+  {
+   "span": "photons",
+   "concept": "photon",
+   "verb": "introduces"
+  },
+  {
+   "span": "photoelectric-properties",
+   "concept": "photoelectric-properties",
+   "verb": "introduces"
+  },
+  {
+   "span": "photoelectric-properties",
+   "concept": "photoelectric-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "photoelectric-properties",
+   "concept": "binding-energy-threshold",
+   "verb": "introduces"
+  },
+  {
+   "span": "photoelectric-properties",
+   "concept": "photoelectric-effect",
+   "verb": "reinforces"
+  },
+  {
+   "span": "photoelectric-properties",
+   "concept": "photon-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "photoelectric-properties",
+   "concept": "work-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "violet-light-on-calcium",
+   "concept": "photon-energy-from-wavelength",
+   "verb": "introduces"
+  },
+  {
+   "span": "violet-light-on-calcium",
+   "concept": "photon-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "violet-light-on-calcium",
+   "concept": "photoelectric-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "violet-light-on-calcium",
+   "concept": "binding-energy-threshold",
+   "verb": "reinforces"
+  },
+  {
+   "span": "violet-light-on-calcium",
+   "concept": "c-equals-f-lambda",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1705205",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photons",
+   "prompt": "一块金属受到波长等于或短于某一特定波长的光束照射时会发射电子。按照对黑体辐射的量子解释，光的什么性质导致了这一光电过程？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "光的能量随其速率增大而增大。",
+     "光的能量随其强度增大而增大。",
+     "光的能量随其频率增大而增大。",
+     "光的能量随其波长增大而增大。"
+    ],
+    "correct": 2,
+    "hint": "光子携带的能量为 $\\kE = h\\kf$，而波长越短意味着频率越高。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1766785",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "海因里希·赫兹在证实电磁波存在的实验中，利用两个电极之间间隙上的火花来提供迅速变化的电流，从而产生电磁波。然而他注意到，在光线充足的实验室里产生火花所需的电压，比房间黑暗时的低。请描述如何用光电效应的量子解释来说明这一奇特现象。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "实验室里的光含有光子，其中频率足够高的光子所携带的能量大于电极金属的结合能。每个被吸收的这样的光子会立即使金属逸出一个电子。这些自由电子在加上电压时就已经在间隙中了，所以较小的电压就足以加速它们并引发火花。在黑暗中，没有光子使电子逸出，只能靠电压本身把电子从金属中拉出来，这需要更大的电压。这种效应取决于光的频率，而不仅仅取决于光有多亮，这正是光子图景所预言的。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id874567",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "可见光是唯一能引起光电效应的电磁辐射吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不是。任何光子，只要其能量 $h\\kf$ 大于材料的结合能，就能使电子逸出。紫外线、X 射线和 γ 射线的频率高于可见光，所以它们的光子能使每一种金属逸出电子。红外线和无线电波的光子能量远低于束缚金属中电子的几个电子伏，所以不能。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1559465",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "光电效应的哪些方面没有光子就无法解释？哪些方面不用光子也能解释？后者与光子的存在是否不一致？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "存在一个阈值频率，低于它，无论光多强都没有电子逸出；电子的逸出没有延迟；最大动能与强度无关；以及 $\\kKEe$ 随频率线性上升，这些都需要光子。光能使电子逸出这件事本身，以及更强的光使更多电子逸出，则可以用携带能量的波来解释。后面这两点与光子并不矛盾：更强的光就是更多的光子，而每个光子可以使一个电子逸出。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1565970",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photons",
+   "prompt": "光电效应是电磁辐射的波动性的直接结果，还是电磁辐射的粒子性的直接结果？请简要解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它是粒子性的结果。这一效应的解释是：一个光子把它的全部能量 $h\\kf$ 交给一个电子。简单的波会逐渐沉积能量，并会使更亮的光给电子更多的能量，而这与观察到的情形不符。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1631189",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "绝缘体（非金属）的 BE 比金属的高，光子更难使绝缘体逸出电子。讨论这与使金属成为良导体的金属中的自由电荷有何关系。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在金属中，有些电子可以在整块材料中自由运动，这就是金属能导电的原因。这些电子只是松散地被束缚着，所以光子只需很小的能量就能把一个电子从表面提出来，结合能很小。在绝缘体中，每个电子都被紧紧束缚在自己的原子上，因此没有电子能自由运动而载运电流，光子必须提供大得多的能量才能把一个电子拉走。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1545718",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "如果你拿起并摇晃一块其中有可以像电流那样自由运动的电子的金属，没有电子会掉出来。然而，如果你加热这块金属，电子就可以被“煮”出来。就摇晃物体与加热物体所涉及的能量的多少和分布，解释这两个事实。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "摇晃金属使每个电子都获得与金属本身相同的微小运动，每个电子得到的动能远小于它几个电子伏的结合能，所以没有电子逸出。加热则把能量输入无规热运动，由各粒子分享，而且这些能量的分布是不均匀的：在高温下，有一小部分电子的能量远高于平均值，足以超过结合能，这些电子就离开了表面。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1556226",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "已知结合能为 4.73 eV，能使银逸出光电子的最长波长的电磁辐射是多少？这在可见光范围内吗？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 263,
+    "unit": "nm",
+    "hint": "在最长波长处，光子能量刚好等于结合能，所以 $h\\kc/\\klam = \\kBE$。",
+    "solution": "263 nm"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1408238",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "如果能使镁中电子逸出的光子的最长波长为 337 nm，镁中电子的结合能是多少 eV？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.69,
+    "unit": "eV",
+    "hint": "最长波长就是阈值波长，此处 $\\kBE = h\\kc/\\klam$。",
+    "solution": "3.69 eV"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1260430",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "violet-light-on-calcium",
+   "prompt": "已知结合能为 2.28 eV，450 nm 的电磁辐射使钠金属逸出的电子的最大动能是多少 eV？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.483,
+    "unit": "eV",
+    "hint": "先由 $\\kE = h\\kc/\\klam$ 求出以 eV 为单位的光子能量，再减去结合能。",
+    "solution": "0.483 eV"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1471553",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "violet-light-on-calcium",
+   "prompt": "波长为 400 nm 的紫光使钠金属逸出的电子的最大动能为 0.860 eV。钠金属中电子的结合能是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.25,
+    "unit": "eV",
+    "hint": "把 $\\kKEe = h\\kf - \\kBE$ 改写为 $\\kBE = h\\kf - \\kKEe$。",
+    "solution": "2.25 eV"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1451351",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "violet-light-on-calcium",
+   "prompt": "已知结合能为 2.71 eV，能使钙金属逸出 2.00 eV 电子的电磁辐射的波长是多少？这是哪一类电磁辐射？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 264,
+    "unit": "nm",
+    "hint": "光子必须携带结合能加动能，$h\\kf = \\kKEe + \\kBE$；然后 $\\klam = h\\kc/\\kE$。",
+    "solution": "（a）264 nm\n\n（b）紫外线"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1284461",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "violet-light-on-calcium",
+   "prompt": "如果电子与材料的结合能为 4.73 eV，80 nm 的光子使电子从该材料中逸出，电子的最大速度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1950000,
+    "unit": "m/s",
+    "hint": "求出以 eV 为单位的 $\\kKEe$，把它换算成焦耳，并令其等于 $\\frac{1}{2}mv^2$，其中 $m$ 取电子的质量。",
+    "solution": "$1.95\\times 10^{6}\\;\\text{m/s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1309710",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "把输出功率为 2.00 mW、波长为 400 nm 的激光投射到钙金属上。（a）每秒逸出多少个电子？（b）已知结合能为 2.71 eV，电子带走的功率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the electrons ejected per second",
+      "value": 4020000000000000.0,
+      "unit": "/s",
+      "hint": "每个光子使一个电子逸出，所以用功率除以一个光子的能量。"
+     },
+     {
+      "part": "(b) the power carried away",
+      "value": 0.256,
+      "unit": "mW",
+      "hint": "把每秒逸出的电子数乘以每个电子的动能 $h\\kf - \\kBE$（以焦耳计）。"
+     }
+    ],
+    "solution": "（a）$4.02\\times 10^{15}\\;\\text{/s}$\n\n（b）0.256 mW"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1555510",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "photoelectric-properties",
+   "prompt": "<strong>不合理的结果</strong> 把波长为 700 nm 的红光投射到镁金属上，电子与镁的结合能为 3.68 eV。（a）用 $\\kKEe = h\\kf - \\kBE$ 计算逸出电子的动能。（b）这个结果有什么不合理之处？（c）哪些假设不合理或自相矛盾？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": -1.9,
+    "unit": "eV",
+    "hint": "求出 700 nm 光的光子能量（以 eV 计），减去结合能，然后想一想这个结果能不能是动能。",
+    "solution": "（a）$-1.90\\;\\text{eV}$\n\n（b）动能为负\n\n（c）认为电子会被打出。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "photon-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "binding-energy-threshold",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "photoelectric-properties"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "photon-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "binding-energy-threshold"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "photon-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "photoelectric-properties"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "photon-energy"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "photoelectric-properties",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "binding-energy-threshold"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "binding-energy-threshold"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "photoelectric-effect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "binding-energy-threshold"
+  },
+  {
+   "exercise": "p1",
+   "concept": "photon-energy-from-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "binding-energy-threshold"
+  },
+  {
+   "exercise": "p2",
+   "concept": "photon-energy-from-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "photoelectric-equation"
+  },
+  {
+   "exercise": "p3",
+   "concept": "photon-energy-from-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "photoelectric-equation"
+  },
+  {
+   "exercise": "p4",
+   "concept": "photon-energy-from-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "photoelectric-equation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "photon-energy-from-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "photoelectric-equation"
+  },
+  {
+   "exercise": "p6",
+   "concept": "kinetic-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "photoelectric-equation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "photon-energy-from-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "photoelectric-equation"
+  },
+  {
+   "exercise": "p8",
+   "concept": "binding-energy-threshold",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "lamp",
+   "label": "灯",
+   "figures": [
+    "sim-photoelectric"
+   ]
+  },
+  {
+   "id": "plate",
+   "label": "金属板",
+   "figures": [
+    "sim-photoelectric"
+   ]
+  }
+ ]
+}

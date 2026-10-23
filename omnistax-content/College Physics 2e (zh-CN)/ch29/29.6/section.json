@@ -1,0 +1,670 @@
+{
+ "id": "29.6",
+ "module": "m42576",
+ "chapter": "29",
+ "title": "物质的波动性",
+ "short": "物质的波动性",
+ "lead": "如果长期以来被认为是波的光也是粒子，那么物质也可能是波。电子被晶体衍射的实验检验了这一设想，电子显微镜和晶体结构的研究都依赖于它。",
+ "objectives": [
+  "描述戴维孙–革末实验，并解释它如何为电子的波动性提供证据。"
+ ],
+ "summary_html": "<ul><li>物质粒子也有<span data-concept=\"wavelength\">波长</span>，称为德布罗意波长，由 $\\klam = \\frac{h}{\\kp}$ 给出，其中 $\\kp$ 是动量。</li><li>物质被发现具有与任何其他波相同的<em>干涉特性</em>。</li></ul>",
+ "notes": "本模块的十三道习题中有六道没有答案，已略去：速率为光速 3.00% 的电子，波长为 7.50 cm 的 0.400 kg 台球，速率为 1.00 m/s 的超冷中子，经 30.0 kV 加速的电子，波长为 1.00 μm 的电子，以及 X 射线管中 100 keV 的电子。关于波长为 1.00 m 的电子那道习题，答案把它的速度的单位给成了米，照印刷原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十三道习题中有六道没有答案，已略去，它们在本节的说明中已列出。第一道和第三道 AP 题有答案，设为判分选择题；第二道和第四道在书中没有解答，保留为开放题，并附有标明为 AI 撰写的建议思路。三道思考题没有答案，并附有标明为 AI 撰写的建议思路；第三道问的是电磁辐射的粒子性，并且还标注了前面各节的光电效应和康普顿效应。本模块没有印出“理解检测”框，所以没有设置任何内联内容。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-de-broglie",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "momentum",
+    "velocity",
+    "energy",
+    "mass"
+   ],
+   "conventions": [
+    "e-",
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-silicon-diffraction",
+   "kind": "photo",
+   "number": "29.18",
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "photo-sem",
+   "kind": "photo",
+   "number": "29.19",
+   "widths": [
+    600
+   ]
+  },
+  {
+   "id": "sim-bragg",
+   "kind": "sim",
+   "number": "29.20",
+   "originals": [
+    "/media/ch29/Figure_30_06_03a.jpg"
+   ],
+   "original_caption": "左上方的衍射图样是电子从晶体上散射产生的，并画成相对于晶体中原子规则阵列的入射角的函数，如下方所示。从第二层原子散射的电子比从顶层散射的电子走得更远。如果波程差（PLD）是波长的整数倍，就会发生相长干涉。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "angle",
+    "mass"
+   ],
+   "conventions": [
+    "Ni",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "PLD reading moved under the graph; A, C and order labels kept clear"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "de-broglie-wavelength",
+   "concept": "de-broglie-wavelength",
+   "verb": "introduces"
+  },
+  {
+   "span": "de-broglie-wavelength",
+   "concept": "wave-effects-need-matching-size",
+   "verb": "introduces"
+  },
+  {
+   "span": "de-broglie-wavelength",
+   "concept": "electron-diffraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "de-broglie-wavelength",
+   "concept": "photon-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-wavelength-example",
+   "concept": "electron-wavelength-and-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-wavelength-example",
+   "concept": "de-broglie-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-microscopes",
+   "concept": "electron-microscope",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-microscopes",
+   "concept": "wave-effects-need-matching-size",
+   "verb": "reinforces"
+  },
+  {
+   "span": "electron-microscopes",
+   "concept": "electron-wavelength-and-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "bragg-reflection",
+   "concept": "bragg-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "bragg-reflection",
+   "concept": "electron-diffraction",
+   "verb": "uses"
+  },
+  {
+   "span": "bragg-reflection",
+   "concept": "de-broglie-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "bragg-reflection",
+   "concept": "wave-effects-need-matching-size",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id954132",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "de-broglie-wavelength",
+   "prompt": "已知质量最小的粒子是电子中微子。尽管科学家们曾相信它像光子一样没有质量，现在却已确定这种粒子的质量极小，相当于几个电子伏。假设其质量为 2.2 eV/c<sup>2</sup>（即 3.9 × 10<sup>–36</sup> kg），速率为 4.4 × 10<sup>6</sup> m/s，下列哪个值等于该中微子的德布罗意波长？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "3.8 × 10<sup>–5</sup> m",
+     "4.7 × 10<sup>–7</sup> m",
+     "1.7 × 10<sup>–10</sup> m",
+     "8.9 × 10<sup>–14</sup> m"
+    ],
+    "correct": 0,
+    "hint": "中微子的速率比光速小得多，所以 $\\kp = m\\kv$，$\\klam = h/m\\kv$。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1355894",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "de-broglie-wavelength",
+   "prompt": "利用德布罗意波长的定义，解释物质的波动性为何随质量减小或速率减小而增强。以速率为 5.0 × 10<sup>6</sup> m/s 的电子（质量 = 9.11 × 10<sup>–31</sup> kg）和速率为 8.0 × 10<sup>6</sup> m/s 的质子（质量 = 1.67 × 10<sup>–27</sup> kg）为例。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "德布罗意波长为 $\\klam = h/\\kp = h/m\\kv$，所以质量越小或速率越小，波长越长。干涉等波动性质在波长与粒子遇到的物体的大小相当时才会显现，所以波长越长，这些性质就越容易看到。对于电子，$\\klam = (6.63\\times 10^{-34}\\;\\text{J}\\cdot\\text{s})/[(9.11\\times 10^{-31}\\;\\text{kg})(5.0\\times 10^{6}\\;\\text{m/s})]$，约为 $1.5\\times 10^{-10}\\;\\text{m}$，即晶体中原子的间距。对于质子，$\\klam = (6.63\\times 10^{-34}\\;\\text{J}\\cdot\\text{s})/[(1.67\\times 10^{-27}\\;\\text{kg})(8.0\\times 10^{6}\\;\\text{m/s})]$，约为 $5.0\\times 10^{-14}\\;\\text{m}$，短了大约三千倍，所以电子的波动性要容易表现得多。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2690805",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bragg-reflection",
+   "prompt": "在戴维孙–革末型实验中，一个平行平面间距（<em>d</em>）为 9.1 × 10<sup>–2</sup> nm 的晶体，使电子束在 <em>θ</em> = 50° 的角度上产生相长干涉。下列哪个是这些电子的最大德布罗意波长？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0.07nm",
+     "0.09 nm",
+     "0.14 nm",
+     "0.21 nm"
+    ],
+    "correct": 2,
+    "hint": "满足 $n\\klam = 2\\kd\\sin\\theta$ 的最长波长对应于 $n = 1$。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3561365",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bragg-reflection",
+   "prompt": "在戴维孙–革末实验中，速率为 6.5 × 10<sup>6</sup> m/s 的电子，对平面间距 <em>d</em> 未知的晶体表现出三级（<em>n</em> = 3）相长干涉。已知入射角为 <em>θ</em> = 45°，计算 <em>d</em> 的值。把该德布罗意波长与具有相同波长的电磁辐射作比较。（回忆一下，电子的质量为 9.11 × 10<sup>–31</sup> kg。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "平面间距为 $\\kd = 0.238\\;\\text{nm}$，具有相同波长 0.112 nm 的电磁辐射是 X 射线。电子的德布罗意波长为 $\\klam = h/m\\kv = (6.63\\times 10^{-34}\\;\\text{J}\\cdot\\text{s})/[(9.11\\times 10^{-31}\\;\\text{kg})(6.5\\times 10^{6}\\;\\text{m/s})] = 1.12\\times 10^{-10}\\;\\text{m}$。相长干涉要求 $n\\klam = 2\\kd\\sin\\ktheta$，所以取 $n = 3$、$\\ktheta = 45^\\circ$，得 $\\kd = 3\\klam/(2\\sin 45^\\circ) = 3(0.112\\;\\text{nm})/(2 \\times 0.707) = 0.238\\;\\text{nm}$。波长为 0.112 nm 的 X 射线光子与这些电子的波长相同，这就是 X 射线和这种速率的电子从晶体上得到相似衍射图样的原因，尽管光子没有质量，并以 $\\kc$ 的速率传播。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2731532",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "de-broglie-wavelength",
+   "prompt": "水波的干涉与电子的干涉有何不同？它们又如何类似？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们之所以类似，是因为二者都是波：当两条路径相差整数个波长时，波相长叠加；相差半个波长时，波相互抵消，所以二者都产生强弱相间的图样。它们的不同在于振动的是什么以及尺度。水波是水的扰动，我们可以看到它，波长为几厘米或几米，而电子的德布罗意波长与原子的大小相当，所以它的干涉只有在遇到晶体中的原子面这样的物体时才会显现。而且每个电子都是作为粒子在一个点上被探测到的；只有当许多电子到达之后，图样才会出现。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1306355",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "de-broglie-wavelength",
+   "prompt": "描述物质具有波动性的一种证据。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电子从晶体上散射会产生衍射图样，戴维孙和革末以及 G. P. 汤姆孙都发现了这一点。图样中的明区和暗区，正是具有德布罗意波长 $\\klam = h/\\kp$ 的波从规则排列的原子面散射后发生干涉所预期的。只有波才会表现出干涉，所以这种图样证明了电子具有波动性。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1278570",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "de-broglie-wavelength",
+   "prompt": "描述电磁辐射具有粒子性的一种证据。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在光电效应中，无论光多么强，只有当光的频率高于某个阈值时，光才能从金属中打出电子，而且被打出的电子的动能取决于频率，而不是强度。如果光是以能量为 $\\kE = h\\kf$ 的光子的形式存在，每个光子把它的全部能量交给一个电子，这就得到了解释。康普顿效应是另一个例子：X 射线光子从电子上散射，就像一个粒子与另一个粒子碰撞，能量和动量守恒。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1308269",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-wavelength-example",
+   "prompt": "电子在什么速度下波长为 1.00 m？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.000728,
+    "unit": "m/s",
+    "hint": "用 $\\kv = h/m\\klam$，其中 $m$ 取电子的质量。",
+    "solution": "$7.28\\times 10^{-4}\\;\\text{m}$<sup class=\"fn\" data-note=\"c-p1-unit\"></sup>"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1208943",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-wavelength-example",
+   "prompt": "质子在什么速度下波长为 6.00 fm（约为原子核的大小）？假设质子是非相对论性的。（1 飞米 = $10^{-15}\\;\\text{m}$。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 66200000.0,
+    "unit": "m/s",
+    "hint": "用 $\\kv = h/m\\klam$，其中 $m$ 取质子的质量，波长以米为单位。",
+    "solution": "$6.62\\times 10^{7}\\;\\text{m/s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1655339",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "de-broglie-wavelength",
+   "prompt": "求以光速的 1.00% 运动的质子的波长。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.32e-13,
+    "unit": "m",
+    "hint": "质子的速率为 $3.00\\times 10^{6}$ m/s，所以 $\\kp = m\\kv$，$\\klam = h/\\kp$。",
+    "solution": "$1.32\\times 10^{-13}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1678654",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-wavelength-example",
+   "prompt": "（a）求波长为 6.00 fm（约为原子核的大小）的中子的速度。假设中子是非相对论性的。（b）该中子的动能是多少 MeV？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the velocity",
+      "value": 66200000.0,
+      "unit": "m/s",
+      "hint": "用 $\\kv = h/m\\klam$，其中 $m$ 取中子的质量。"
+     },
+     {
+      "part": "(b) the kinetic energy",
+      "value": 22.9,
+      "unit": "MeV",
+      "hint": "用 $\\kKE = \\frac{1}{2}m\\kv^{2}$，并把焦耳换算成 MeV。"
+     }
+    ],
+    "solution": "（a）$6.62\\times 10^{7}\\;\\text{m/s}$\n\n（b）22.9 MeV"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1680080",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-microscopes",
+   "prompt": "在 TEM 中，波长为 0.0100 nm 的电子的动能是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 15.1,
+    "unit": "keV",
+    "hint": "由 $\\kv = h/m\\klam$ 求出速率，再以电子伏为单位求 $\\kKE = \\frac{1}{2}m\\kv^{2}$。",
+    "solution": "15.1 keV"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1518860",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-wavelength-example",
+   "prompt": "从范德格拉夫加速器射出的质子的速度是光速的 25.0%。（a）该质子的波长是多少？（b）假设它是非相对论性的，它的动能是多少？（c）它是经过多大的等效电压加速的？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the wavelength",
+      "value": 5.29,
+      "unit": "fm",
+      "hint": "用 $\\klam = h/m\\kv$，其中 $\\kv = 7.50\\times 10^{7}$ m/s。"
+     },
+     {
+      "part": "(b) the kinetic energy",
+      "value": 4.7e-12,
+      "unit": "J",
+      "hint": "用 $\\kKE = \\frac{1}{2}m\\kv^{2}$。"
+     },
+     {
+      "part": "(c) the voltage",
+      "value": 29.4,
+      "unit": "MV",
+      "hint": "质子的动能等于 $q\\kV$，其中 $q = 1.60\\times 10^{-19}$ C。"
+     }
+    ],
+    "solution": "（a）5.29 fm\n\n（b）$4.70\\times 10^{-12}\\;\\text{J}$\n\n（c）29.4 MV"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2684892",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-wavelength-example",
+   "prompt": "<strong>不合理的结果</strong>（a）假设是非相对论性的，计算波长为 0.100 fm（小到足以探测原子核的细节）的电子的速度。（b）这一结果有什么不合理之处？（c）哪些假设是不合理的或自相矛盾的？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 7280000000000.0,
+    "unit": "m/s",
+    "hint": "用 $\\kv = h/m\\klam$，然后把结果与光速比较。",
+    "solution": "（a）$7.28\\times 10^{12}\\;\\text{m/s}$\n\n（b）这是光速的数千倍（不可能）。\n\n（c）在这个波长下，电子是非相对论性的这一假设不合理。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "de-broglie-wavelength"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "de-broglie-wavelength"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "wave-effects-need-matching-size",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "bragg-equation"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "bragg-equation"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electron-wavelength-and-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electron-diffraction"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "wave-effects-need-matching-size",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electron-diffraction"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "photoelectric-effect"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "compton-effect",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "electron-wavelength-and-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "electron-wavelength-and-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "de-broglie-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "de-broglie-wavelength"
+  },
+  {
+   "exercise": "p4",
+   "concept": "electron-wavelength-and-energy"
+  },
+  {
+   "exercise": "p4",
+   "concept": "de-broglie-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "electron-wavelength-and-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "electron-microscope",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "de-broglie-wavelength"
+  },
+  {
+   "exercise": "p6",
+   "concept": "electron-wavelength-and-energy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "electron-wavelength-and-energy"
+  }
+ ],
+ "referents": [
+  {
+   "id": "bowling-ball",
+   "label": "3 kg 的保龄球",
+   "figures": [
+    "sim-de-broglie"
+   ]
+  },
+  {
+   "id": "electron",
+   "label": "例题 29.7 中的电子",
+   "figures": [
+    "sim-de-broglie"
+   ]
+  },
+  {
+   "id": "top-ray",
+   "label": "从顶部平面散射的电子",
+   "figures": [
+    "sim-bragg"
+   ]
+  },
+  {
+   "id": "second-ray",
+   "label": "从第二个平面散射的电子",
+   "figures": [
+    "sim-bragg"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p1-unit",
+   "kind": "correction",
+   "html": "书中的答案把单位给成了 m。答案是一个速度，$7.28\\times 10^{-4}$ m/s。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "bragg-equation",
+   "what": "布拉格方程",
+   "source": "《大学物理（第2版）》，29.6 物质的波动性",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "从第二个平面散射的电子多走了路程 $\\text{AB} + \\text{BC}$，且 $\\text{AB} = \\text{BC} = \\kd\\sin\\ktheta$。",
+       "src": "图 29.20"
+      },
+      {
+       "text": "当波程差为波长的整数倍时，散射波发生相长干涉：$\\text{PLD} = n\\klam\\;(n = 1, 2, 3, \\ldots)$。",
+       "src": "29.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\text{PLD}} = \\mk{a}{\\text{AB} + \\text{BC}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\text{PLD}} = \\mk{a}{2\\kd\\sin\\ktheta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{P}{n\\klam} = \\mk{a}{2\\kd\\sin\\ktheta}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "29.6"
+    }
+   ]
+  }
+ ]
+}

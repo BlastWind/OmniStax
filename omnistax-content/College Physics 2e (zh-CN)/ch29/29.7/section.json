@@ -1,0 +1,575 @@
+{
+ "id": "29.7",
+ "module": "m42579",
+ "chapter": "29",
+ "title": "概率：海森伯不确定性原理",
+ "short": "海森伯不确定性原理",
+ "lead": "由于每个粒子都是波，没有人能预测单个电子会落在何处，只能预测大量电子所建立起的图样。海森伯不确定性原理限制了<span data-concept=\"position\">位置</span>与动量、<span data-concept=\"energy\">能量</span>与<span data-concept=\"time\">时间</span>能够被同时知道得多精确。",
+ "objectives": [
+  "使用海森伯不确定性原理的两种形式进行计算。",
+  "解释海森伯不确定性原理对测量的意义。"
+ ],
+ "summary_html": "<ul><li>物质被发现具有与任何其他波相同的干涉特性。</li><li>现在，描述粒子位置的是一个概率分布，而不是一个确定的<span data-concept=\"position\">位置</span>。</li><li>所有粒子的波动特性的另一个后果是海森伯不确定性原理，它限制了某些物理量能够被同时知道的精密度。对于<span data-concept=\"position\">位置</span>和动量，不确定性原理为 $\\kdx\\,\\kdp \\ge \\frac{h}{4\\pi}$，其中 $\\kdx$ 是<span data-concept=\"uncertainty-in-position\">位置的不确定度</span>，$\\kdp$ 是<span data-concept=\"uncertainty-in-momentum\">动量的不确定度</span>。</li><li>对于<span data-concept=\"energy\">能量</span>和<span data-concept=\"time\">时间</span>，不确定性原理为 $\\kdE\\,\\kdt \\ge \\frac{h}{4\\pi}$，其中 $\\kdE$ 是<span data-concept=\"uncertainty-in-energy\">能量的不确定度</span>，$\\kdt$ 是<span data-concept=\"uncertainty-in-time\">时间的不确定度</span>。</li><li>这些微小的极限在量子力学尺度上具有根本的重要性。</li></ul>",
+ "notes": "本模块十道习题中有五道没有给出答案，因而略去：定位到 1.00 μm 的氯离子、速度已知到光速的 0.250% 的质子、寿命为 10⁻²⁰ s 的原子核、不确定度为 2.0 eV 的原子核激发态，以及 ΔEΔt ≈ h 的推导。正文说双缝方程是在“光子能量与电磁波谱”中得出的，而实际上它是在“波动光学”中得出的，这里保持原文所印。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十道习题中有五道没有给出答案，因而略去，它们已在本节的说明中列出。那道思考题没有给出答案，附有标明为 AI 撰写的建议思路。本模块没有印出“理解检测”框和 AP 备考练习，因此没有设置内嵌题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-buildup",
+   "kind": "sim",
+   "number": "29.21",
+   "folds": [
+    "29.22"
+   ],
+   "originals": [
+    "/media/ch29/Figure_30_07_01a-43db.jpg",
+    "/media/ch29/Figure_30_07_02a-0d6a.jpg"
+   ],
+   "original_caption": "（图 29.21）电子从晶体表面散射后衍射图样的逐步形成。每个电子都到达一个确定的位置，而这个位置无法精确预测。底部所示的整体分布可以预测为具有这些电子德布罗意波长的波的衍射。（图 29.22）电子（a）和光子（b）的双缝干涉，在波长相等、缝间距相等时是相同的。这两种图样都是概率分布，其意义在于它们是由单个粒子穿过装置逐步形成的，而每个粒子的路径无法单独预测。",
+   "widths": [
+    350,
+    400
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note symbols through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-heisenberg",
+   "kind": "photo",
+   "number": "29.23"
+  },
+  {
+   "id": "sim-position-momentum",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "momentum",
+    "velocity"
+   ],
+   "conventions": [
+    "e-",
+    "p+"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note no longer repeats the headline's Δv"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-energy-time",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "ruled-out label set over the drop line"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "probability-distribution",
+   "concept": "probability-distribution",
+   "verb": "introduces"
+  },
+  {
+   "span": "probability-distribution",
+   "concept": "measurement-affects-the-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "probability-distribution",
+   "concept": "de-broglie-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "probability-distribution",
+   "concept": "double-slit-constructive",
+   "verb": "uses"
+  },
+  {
+   "span": "probability-distribution",
+   "concept": "single-slit-pattern",
+   "verb": "uses"
+  },
+  {
+   "span": "heisenberg-uncertainty",
+   "concept": "position-momentum-uncertainty",
+   "verb": "introduces"
+  },
+  {
+   "span": "heisenberg-uncertainty",
+   "concept": "measurement-affects-the-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heisenberg-uncertainty",
+   "concept": "de-broglie-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "heisenberg-uncertainty",
+   "concept": "heisenberg-uncertainty-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "heisenberg-uncertainty",
+   "concept": "uncertainty-in-position",
+   "verb": "introduces"
+  },
+  {
+   "span": "heisenberg-uncertainty",
+   "concept": "uncertainty-in-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "uncertainty-example-atom",
+   "concept": "uncertainty-principle-calculation",
+   "verb": "introduces"
+  },
+  {
+   "span": "uncertainty-example-atom",
+   "concept": "position-momentum-uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "large-objects",
+   "concept": "uncertainty-negligible-for-large-objects",
+   "verb": "introduces"
+  },
+  {
+   "span": "large-objects",
+   "concept": "correspondence-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-time-uncertainty",
+   "concept": "energy-time-uncertainty",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-time-uncertainty",
+   "concept": "uncertainty-in-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-time-uncertainty",
+   "concept": "uncertainty-in-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-time-example",
+   "concept": "energy-time-uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-time-example",
+   "concept": "uncertainty-principle-calculation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "energy-time-consequences",
+   "concept": "energy-time-uncertainty",
+   "verb": "reinforces"
+  },
+  {
+   "span": "energy-time-consequences",
+   "concept": "probability-distribution",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1252921",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heisenberg-uncertainty",
+   "prompt": "什么是海森伯不确定性原理？它是否对可知的内容设置了限制？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "海森伯不确定性原理指出，某些成对的量不能同时都测到精确的程度。对于位置和动量，$\\kdx\\,\\kdp \\ge h/4\\pi$；对于能量和时间，$\\kdE\\,\\kdt \\ge h/4\\pi$。它确实限制了任何人能够知道的内容，即使在原理上也是如此。要定位一个粒子，你必须用波长很短的东西去探测它，而这个探针带有很大的动量，会使粒子的动量发生一个不可知的改变。任何一个不确定度都不能为零，使其中一个变小就会使另一个变大。由于 $h$ 非常小，这一限制只在原子及更小的尺度上才有意义；对大物体而言，它可以忽略不计。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1651737",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uncertainty-example-atom",
+   "prompt": "（a）如果测得膜中一个电子的位置，准确度为 $1.00\\;\\mu\\text{m}$，那么该电子的速度的最小不确定度是多少？（b）如果该电子具有这一速度，它的动能是多少 eV？（c）把这个能量与典型的分子结合能相比，意味着什么？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the minimum uncertainty in velocity",
+      "value": 57.9,
+      "unit": "m/s",
+      "hint": "取 $\\kdx = 1.00\\times 10^{-6}$ m，求出 $\\kdp = h/4\\pi\\kdx$，再求 $\\kdv = \\kdp/m$。"
+     },
+     {
+      "part": "(b) the kinetic energy",
+      "value": 9.55e-09,
+      "unit": "eV",
+      "hint": "用（a）中的速率代入 $\\frac{1}{2}m\\kv^{2}$，再除以 $1.60\\times 10^{-19}$ J/eV。"
+     }
+    ],
+    "solution": "（a）57.9 m/s （b）$9.55\\times 10^{-9}\\;\\text{eV}$ （c）由表 29.1，典型的分子结合能约为 1 eV 到 10 eV，因此（b）问的结果比典型的分子结合能小约 9 个数量级。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1569524",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uncertainty-example-atom",
+   "prompt": "假设已知原子中一个电子的速度，准确度为 $2.0\\times 10^{3}\\;\\text{m/s}$（与轨道速度相比相当准确）。该电子的位置的最小不确定度是多少？它与原子约 0.1 nm 的大小相比如何？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the minimum uncertainty in position",
+      "value": 29,
+      "unit": "nm",
+      "hint": "先求 $\\kdp = m\\kdv$，再求 $\\kdx = h/4\\pi\\kdp$。"
+     },
+     {
+      "part": "how many times the size of the atom",
+      "value": 290,
+      "hint": "用位置的不确定度除以 0.1 nm。"
+     }
+    ],
+    "solution": "29 nm，大 290 倍"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2322092",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-time-example",
+   "prompt": "原子的一个相对长寿命的激发态，寿命为 3.00 ms。其能量的最小不确定度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.1e-13,
+    "unit": "eV",
+    "hint": "取 $\\kdt = 3.00\\times 10^{-3}$ s，用 $\\kdE = h/4\\pi\\kdt$ 求出，并换算成 eV。",
+    "solution": "$1.10\\times 10^{-13}\\;\\text{eV}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1548241",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-time-consequences",
+   "prompt": "一个短寿命粒子的衰变能量，由于其寿命很短，有 1.0 MeV 的不确定度。它的寿命最小可以是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.3e-22,
+    "unit": "s",
+    "hint": "取以焦耳表示的 $\\kdE = 1.0\\times 10^{6}$ eV，用 $\\kdt = h/4\\pi\\kdE$ 求出。",
+    "solution": "$3.3\\times 10^{-22}\\;\\text{s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2682306",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-time-consequences",
+   "prompt": "由 μ 子的衰变寿命确定的 μ 子质量的不确定度大约是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.66e-46,
+    "unit": "kg",
+    "hint": "μ 子的寿命约为 $2.2\\times 10^{-6}$ s。先求 $\\kdE = h/4\\pi\\kdt$，则质量的不确定度为 $\\kdE/c^{2}$。",
+    "solution": "$2.66\\times 10^{-46}\\;\\text{kg}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "position-momentum-uncertainty"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "energy-time-uncertainty"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "measurement-affects-the-system"
+  },
+  {
+   "exercise": "p1",
+   "concept": "uncertainty-principle-calculation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "position-momentum-uncertainty"
+  },
+  {
+   "exercise": "p2",
+   "concept": "uncertainty-principle-calculation"
+  },
+  {
+   "exercise": "p2",
+   "concept": "position-momentum-uncertainty"
+  },
+  {
+   "exercise": "p3",
+   "concept": "uncertainty-principle-calculation"
+  },
+  {
+   "exercise": "p3",
+   "concept": "energy-time-uncertainty"
+  },
+  {
+   "exercise": "p4",
+   "concept": "uncertainty-principle-calculation"
+  },
+  {
+   "exercise": "p4",
+   "concept": "energy-time-uncertainty"
+  },
+  {
+   "exercise": "p5",
+   "concept": "energy-time-uncertainty"
+  },
+  {
+   "exercise": "p5",
+   "concept": "uncertainty-principle-calculation"
+  }
+ ],
+ "referents": [
+  {
+   "id": "source",
+   "label": "粒子源",
+   "figures": [
+    "sim-buildup"
+   ]
+  },
+  {
+   "id": "slits",
+   "label": "双缝",
+   "figures": [
+    "sim-buildup"
+   ]
+  },
+  {
+   "id": "screen",
+   "label": "屏幕",
+   "figures": [
+    "sim-buildup"
+   ]
+  },
+  {
+   "id": "coils",
+   "label": "缝周围的线圈",
+   "figures": [
+    "sim-buildup"
+   ]
+  },
+  {
+   "id": "atom",
+   "label": "例题 29.8 中的原子",
+   "figures": [
+    "sim-position-momentum"
+   ]
+  },
+  {
+   "id": "electron",
+   "label": "例题 29.8 中的电子",
+   "figures": [
+    "sim-position-momentum"
+   ]
+  },
+  {
+   "id": "excited-state",
+   "label": "例题 29.9 中的激发态",
+   "figures": [
+    "sim-energy-time"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-double-slit-chapter",
+   "kind": "correction",
+   "html": "本书引用的是“光子能量与电磁波谱”；双缝关系式 $d\\sin\\theta = m\\lambda$ 是在“波动光学”中得出的。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "uncertainty-estimate",
+   "what": "位置的不确定度与动量的不确定度之积",
+   "source": "《大学物理（第2版）》，29.7 概率：海森伯不确定性原理",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "探测粒子需要一次碰撞，在碰撞中它可能损失从接近零到全部的动量。",
+       "src": "29.7"
+      },
+      {
+       "tex": "\\kp = h/\\klam",
+       "src": "29.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kdp} \\approx \\mk{p}{\\kp}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kdp} \\approx \\mk{p}{\\frac{h}{\\klam}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "29.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "波并不位于空间中的某一点，所以位置的不确定度约等于粒子的波长。",
+       "src": "29.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kdx} \\approx \\mk{l}{\\klam}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kdx}\\,\\mk{p}{\\kdp} \\approx \\mk{l}{\\klam}\\cdot\\mk{q}{\\frac{h}{\\klam}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kdx}\\,\\mk{p}{\\kdp} \\approx \\mk{q}{h}",
+       "uses": [],
+       "map": {
+        "l": "q"
+       }
+      }
+     ],
+     "src": "29.7"
+    }
+   ]
+  }
+ ]
+}
