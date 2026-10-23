@@ -1,0 +1,770 @@
+{
+ "id": "34.2",
+ "module": "m42689",
+ "chapter": "34",
+ "title": "广义相对论与量子引力",
+ "short": "广义相对论",
+ "lead": "广义相对论把爱因斯坦的思想推广到加速运动和引力，它的预言从被太阳偏折的星光，一直延伸到黑洞和空间本身的波。本节依次讲述这些预言及其证据，最后讲到量子引力，这一理论仍在探寻之中，用于引力在量子尺度上起作用的场合。",
+ "objectives": [
+  "解释引力对光的影响。",
+  "讨论黑洞。",
+  "解释量子引力。"
+ ],
+ "summary_html": "<ul><li>爱因斯坦的<span data-concept=\"general-relativity\">广义相对论</span>理论包括加速参考系，因而包容了<span data-concept=\"special-relativity\">狭义相对论</span>和引力。它借助仔细的<span data-concept=\"thought-experiment\">思想实验</span>创立，并已被真实的实验反复验证。</li><li>自然界这种行为的一个直接结果，是大质量天体（例如星系）对光的<span data-concept=\"gravitational-lensing\">引力透镜效应</span>，在我们银河系中较小天体对光的微引力透镜效应中也能看到。</li><li>另一个预言是<span data-concept=\"black-hole\">黑洞</span>的存在，这类天体的<span data-concept=\"escape-velocity\">逃逸速度</span>大于<span data-concept=\"speed-of-light-in-vacuum\">光速</span>，没有任何东西能从中逃脱。</li><li><span data-concept=\"event-horizon\">事件视界</span>是距天体的这样一个<span data-concept=\"distance\">距离</span>：在该处<span data-concept=\"escape-velocity\">逃逸速度</span>等于<span data-concept=\"speed-of-light-in-vacuum\">光速</span> $\\kc$。它称为<span data-concept=\"schwarzschild-radius\">施瓦西半径</span> $\\kRS$，由下式给出：$$\\kRS = \\frac{2G\\kM}{\\kc^{2}}\\text{,}$$ 其中 $G$ 是<span data-concept=\"gravitational-constant\">引力常量</span>，$\\kM$ 是物体的<span data-concept=\"mass\">质量</span>。</li><li><span data-concept=\"event-horizon\">事件视界</span>之内的物理学是未知的，虫洞和<span data-concept=\"time\">时间</span>旅行的可能性正在被研究。</li><li><span data-concept=\"black-hole\">黑洞</span>候选体可能为<span data-concept=\"quasar\">类星体</span>极其高能的辐射提供动力，类星体是遥远的天体，似乎处于星系演化的早期阶段。</li><li><span data-concept=\"neutron-stars\">中子星</span>是恒星遗迹，具有原子核的<span data-concept=\"density\">密度</span>，它们暗示<span data-concept=\"black-hole\">黑洞</span>也可能由超新星形成。</li><li><span data-concept=\"gravitational-waves\">引力波</span>是空间中的皱褶，由<span data-concept=\"general-relativity\">广义相对论</span>预言，但尚未被观测到<sup class=\"fn\" data-note=\"c-ligo\"></sup>，由质量极大的物体的变化引起。</li><li><span data-concept=\"quantum-gravity\">量子引力</span>是一种尚未完全发展的理论，力求包含<span data-concept=\"general-relativity\">广义相对论</span>、量子力学以及力的统一（因而是一种 TOE）。</li><li><span data-concept=\"general-relativity\">广义相对论</span>与量子力学之间一个未经证实的联系，是对紧靠<span data-concept=\"black-hole\">黑洞</span>外侧发出的特征辐射的预言。</li></ul>",
+ "notes": "按本书所印原样保留：学习目标“讨论黑洞”、关于 M87 吸积盘的第二处“见图 34.13”（该吸积盘由图 34.14 显示）、小结中说引力波“尚未被观测到”而正文却报道了 LIGO 在 2015 年的探测、“斯蒂芬·霍金（生于 1942 年）”，以及中子星质量上限约八个太阳质量。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、提示以及六道思考题的建议思路由 AI 生成。答案取自书后答案。关于质量等于地球质量的黑洞的、没有给出答案的习题，以及关于超大质量黑洞的“自拟习题”，均略去。关于超新星中形成的中子星自转的习题，来自第 34.1 节，本书把它放在那里，现在设在这里，因为中子星在这里引入。本模块没有印出“理解检测”框，因此没有设置行内题。",
+ "figures": [
+  {
+   "id": "sim-elevator",
+   "kind": "sim",
+   "number": "34.10",
+   "originals": [
+    "/media/ch34/Figure_35_02_01.jpg"
+   ],
+   "original_caption": "（a）一束光从一部向上加速的电梯里的手电筒射出。由于电梯在光到达墙壁所需的时间内向上运动，光束射到的位置比电梯不加速时更低。（b）引力对光有同样的效应，因为无法判断电梯是在向上加速，还是受到引力的作用。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "acceleration",
+    "position",
+    "time"
+   ],
+   "facts": [
+    "#E8A317",
+    "#7A9A5A"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-starlight",
+   "kind": "sim",
+   "number": "34.11",
+   "originals": [
+    "/media/ch34/Figure_35_02_02.jpg"
+   ],
+   "original_caption": "这幅示意图显示了从太阳这样的大质量天体附近经过的光如何向它弯曲。到达地球的光于是看上去来自与发光恒星的已知位置不同的地方。这一效应不仅被观测到了，偏折的大小也恰好是爱因斯坦在他的广义相对论中所预言的。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#F5A524",
+    "#F2C230",
+    "#3A7BC8"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-lensing",
+   "kind": "photo",
+   "number": "34.12",
+   "widths": [
+    500
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-companion-star",
+   "kind": "photo",
+   "number": "34.13",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-ngc-4261",
+   "kind": "photo",
+   "number": "34.14",
+   "widths": [
+    350
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-ligo",
+   "kind": "photo",
+   "number": "34.15",
+   "widths": [
+    300
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-hawking",
+   "kind": "photo",
+   "number": "34.16",
+   "widths": [
+    300
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-black-hole",
+   "kind": "sim",
+   "number": "34.17",
+   "originals": [
+    "/media/ch34/Figure_35_02_08.jpg"
+   ],
+   "original_caption": "当黑洞由其引力场中的能量产生一对粒子—反粒子时，引力和量子力学就开始起作用。这对粒子中的一个落入黑洞，另一个逃逸，带走能量，使黑洞缩小。人们正在寻找这种特征能量。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "mass",
+    "velocity"
+   ],
+   "conventions": [
+    "p+",
+    "e-",
+    "e+",
+    "gamma"
+   ],
+   "facts": [
+    "#000000"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "elevator-accelerated",
+   "label": "向上加速的电梯",
+   "figures": [
+    "sim-elevator"
+   ]
+  },
+  {
+   "id": "elevator-at-rest",
+   "label": "静止在引力场中的电梯",
+   "figures": [
+    "sim-elevator"
+   ]
+  },
+  {
+   "id": "sun",
+   "label": "太阳",
+   "figures": [
+    "sim-starlight"
+   ]
+  },
+  {
+   "id": "star",
+   "label": "光线被太阳偏折的那颗恒星",
+   "figures": [
+    "sim-starlight"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "beyond-special-relativity",
+   "concept": "general-relativity",
+   "verb": "introduces"
+  },
+  {
+   "span": "beyond-special-relativity",
+   "concept": "quantum-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "beyond-special-relativity",
+   "concept": "relativity",
+   "verb": "uses"
+  },
+  {
+   "span": "beyond-special-relativity",
+   "concept": "special-relativity",
+   "verb": "uses"
+  },
+  {
+   "span": "beyond-special-relativity",
+   "concept": "classical-relativity",
+   "verb": "uses"
+  },
+  {
+   "span": "general-relativity",
+   "concept": "thought-experiment",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-relativity",
+   "concept": "equivalence-of-acceleration-and-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-relativity",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "general-relativity",
+   "concept": "non-inertial-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "general-relativity",
+   "concept": "massless-particles",
+   "verb": "uses"
+  },
+  {
+   "span": "general-relativity",
+   "concept": "general-relativity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "light-bent-by-the-sun",
+   "concept": "gravity-bends-light",
+   "verb": "introduces"
+  },
+  {
+   "span": "light-bent-by-the-sun",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "gravitational-lensing",
+   "concept": "gravitational-lensing",
+   "verb": "introduces"
+  },
+  {
+   "span": "gravitational-lensing",
+   "concept": "converging-lens",
+   "verb": "uses"
+  },
+  {
+   "span": "gravitational-lensing",
+   "concept": "cosmological-red-shift",
+   "verb": "uses"
+  },
+  {
+   "span": "gravitational-lensing",
+   "concept": "gravity-bends-light",
+   "verb": "reinforces"
+  },
+  {
+   "span": "black-holes",
+   "concept": "black-hole",
+   "verb": "introduces"
+  },
+  {
+   "span": "black-holes",
+   "concept": "escape-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "black-holes",
+   "concept": "event-horizon",
+   "verb": "introduces"
+  },
+  {
+   "span": "black-holes",
+   "concept": "black-holes-and-event-horizon",
+   "verb": "introduces"
+  },
+  {
+   "span": "black-holes",
+   "concept": "schwarzschild-radius",
+   "verb": "introduces"
+  },
+  {
+   "span": "black-holes",
+   "concept": "find-schwarzschild-radius",
+   "verb": "introduces"
+  },
+  {
+   "span": "black-holes",
+   "concept": "speed-of-light-in-vacuum",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes",
+   "concept": "gravitational-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes",
+   "concept": "youngs-double-slit",
+   "verb": "uses"
+  },
+  {
+   "span": "observing-black-holes",
+   "concept": "neutron-stars",
+   "verb": "introduces"
+  },
+  {
+   "span": "observing-black-holes",
+   "concept": "quasar",
+   "verb": "introduces"
+  },
+  {
+   "span": "observing-black-holes",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "observing-black-holes",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "observing-black-holes",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "gravitational-waves",
+   "concept": "gravitational-waves",
+   "verb": "introduces"
+  },
+  {
+   "span": "gravitational-waves",
+   "concept": "neutron-stars",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes-radiate",
+   "concept": "quantum-gravity-and-black-hole-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "black-holes-radiate",
+   "concept": "antimatter",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes-radiate",
+   "concept": "rest-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes-radiate",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "black-holes-radiate",
+   "concept": "quantum-gravity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "black-holes-radiate",
+   "concept": "event-horizon",
+   "verb": "reinforces"
+  },
+  {
+   "span": "black-holes-radiate",
+   "concept": "schwarzschild-radius",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wormholes-and-time-travel",
+   "concept": "black-hole",
+   "verb": "uses"
+  },
+  {
+   "span": "wormholes-and-time-travel",
+   "concept": "quantum-gravity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shortest-time",
+   "concept": "grand-unified-theories",
+   "verb": "uses"
+  },
+  {
+   "span": "shortest-time",
+   "concept": "quantum-gravity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "future-of-quantum-gravity",
+   "concept": "quantum-gravity",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737941131",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beyond-special-relativity",
+   "prompt": "量子引力如果得以建立，将是对广义相对论和量子力学两者的改进，但在数学上更为困难。在什么情况下需要使用量子引力？同样，在什么情况下可以使用广义相对论？什么时候可以使用狭义相对论、量子力学或经典物理学？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有在引力强到在量子尺度上起作用的地方才需要量子引力：宇宙最初的时刻，以及黑洞事件视界的外侧附近，那里会产生粒子—反粒子对。凡是引力很强或存在加速度、但量子效应无关紧要的地方，就用广义相对论：被太阳偏折的光、星系造成的透镜效应、事件视界本身、引力波。没有加速度、引力很弱、但相对速率接近光速的地方，用狭义相对论。在原子和亚原子尺度上用量子力学，那里引力可以忽略。速率与光速相比很小、物体与原子相比很大、引力很弱的地方，用经典物理学。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737778086",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gravitational-lensing",
+   "prompt": "观测到的引力透镜效应对应的是会聚透镜还是发散透镜？请简要说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会聚透镜。引力使光向质量偏折，所以从居间星系两侧经过的光线都向内偏折，彼此靠拢，就像会聚透镜使光线向它的轴线偏折那样。远处星系的光就是这样沿着几条路径到达地球，形成几个像。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169736899663",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gravitational-lensing",
+   "prompt": "假设你测量了引力透镜效应产生的所有像的红移，例如图 34.12 中的那些。你发现中央的像的红移小于外围的像，而外围的像红移都相同。讨论这一点如何不仅说明这些像是同一个天体的像，而且还意味着红移不受光穿过空间时所走的不同路径的影响。它是否意味着宇宙学红移不是由穿越空间引起的（也许是光“疲倦”了）？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "光谱相同、红移相同、并且亮度同时增减的那些像，是沿几条路径看到的同一个天体。中央的像是较近的居间星系，它较小的红移与它较小的距离相符。外围的像沿不同的路径到达我们，经过那个星系的不同侧，却以相同的红移到达，所以光所走的路径不会改变红移：红移由光源决定。这与光在途中“疲倦”的设想相悖，但只是微弱地相悖，因为各条路径的长度之差只占全部距离的极小一部分；它与宇宙膨胀引起的红移相符，但仅凭这一点还不能排除另一种解释。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737870048",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gravitational-waves",
+   "prompt": "什么是引力波？它们是否已经被直接或间接地观测到？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "引力波是由运动的质量产生的空间畸变，由广义相对论预言，以光速传播。泰勒和赫尔斯间接观测到了它们：他们发现一个双中子星系统的轨道变化，恰好符合广义相对论对一个辐射引力波能量的系统所作的预言。2015 年 9 月 14 日，LIGO 的一对孪生探测器直接观测到了它们，2016 年 LIGO 和 VIRGO 宣布首次确认观测到来自碰撞黑洞的引力波。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737922778",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "black-holes",
+   "prompt": "黑洞的事件视界是该天体实际的物理表面吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不是。事件视界是距天体这样一个距离，在该处逃逸速度等于光速，其半径为 $R_{\\text{S}} = 2GM/c^{2}$。它是一个边界，边界之内什么也出不来，连光也不例外；它不是物质的表面：天体本身位于事件视界之内。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169736815120",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "black-holes-radiate",
+   "prompt": "假设黑洞把自己的质量辐射掉，由超新星产生的黑洞的寿命约为 $10^{67}$ 年。这一寿命与公认的宇宙年龄相比如何？我们没有观测到所预言的特征辐射，这令人惊讶吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "宇宙的年龄大约是 $10^{10}$ 年，所以 $10^{67}$ 年的寿命要长约 $10^{57}$ 倍：超新星中形成的黑洞才刚刚开始蒸发。它的辐射极其微弱，最后的爆发还在难以想象的遥远将来，所以没有观测到特征辐射并不令人惊讶。只有小得多的黑洞（也许是大爆炸的遗留物）现在才可能正在蒸发，而对它们特征性的 γ 射线暴的搜寻，迄今发现的都是更平凡的来源。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169736627768",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "black-holes",
+   "prompt": "一个质量为我们太阳八倍的黑洞，其施瓦西半径是多少？请注意，恒星必须比太阳的质量更大，才能在超新星之后形成黑洞。",
+   "answer": {
+    "type": "number",
+    "value": 23.6,
+    "unit": "km",
+    "generated_by": "source",
+    "solution": "23.6 km",
+    "hint": "把太阳质量 $1.99\\times 10^{30}\\;\\text{kg}$ 的八倍代入 $R_{\\text{S}} = 2GM/c^{2}$。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737955676",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "black-holes",
+   "prompt": "人们认为许多星系的中心存在超大质量黑洞。（a）如果这样一个天体的质量为 $10^{9}$ 个太阳，它的半径是多少？（b）这个半径以光年计是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）$2.95\\times 10^{12}\\;\\text{m}$（b）$3.12\\times 10^{-4}\\;\\text{ly}$",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2950000000000.0,
+      "unit": "m",
+      "hint": "用 $R_{\\text{S}} = 2GM/c^{2}$，其中 $M = 10^{9}$ 乘以 $1.99\\times 10^{30}\\;\\text{kg}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.000312,
+      "unit": "ly",
+      "hint": "一光年是光在一年内传播的距离，约为 $9.46\\times 10^{15}\\;\\text{m}$。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738012582",
+   "source_section": "34.1",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "observing-black-holes",
+   "prompt": "恒星的核心在超新星爆发时坍缩，形成一颗中子星。核心的角动量守恒，所以中子星快速自转。如果核心最初的半径为 $5.0\\times 10^{5}\\;\\text{km}$，坍缩到 10.0 km，求中子星的角速度，以转每秒为单位，已知核心最初的角速度为每 30.0 天转 1 圈。",
+   "answer": {
+    "type": "number",
+    "value": 960,
+    "unit": "rev/s",
+    "generated_by": "source",
+    "solution": "960 rev/s",
+    "hint": "把坍缩前后的核心都当作均匀球体，$I = \\tfrac{2}{5}MR^{2}$，并令坍缩前的 $I\\omega$ 等于坍缩后的 $I\\omega$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "quantum-gravity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "general-relativity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "special-relativity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "gravitational-lensing"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "gravity-bends-light"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "converging-lens"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "gravitational-lensing"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "cosmological-red-shift"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "gravitational-waves"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "event-horizon"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "black-holes-and-event-horizon"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "quantum-gravity-and-black-hole-radiation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "find-schwarzschild-radius"
+  },
+  {
+   "exercise": "p1",
+   "concept": "schwarzschild-radius"
+  },
+  {
+   "exercise": "p2",
+   "concept": "find-schwarzschild-radius"
+  },
+  {
+   "exercise": "p2",
+   "concept": "schwarzschild-radius"
+  },
+  {
+   "exercise": "p3",
+   "concept": "neutron-stars"
+  },
+  {
+   "exercise": "p3",
+   "concept": "conservation-of-angular-momentum"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-m87-figure",
+   "kind": "correction",
+   "html": "图 34.13 是一个正在从伴星吸取物质的黑洞，它并没有显示 M87 的吸积盘。"
+  },
+  {
+   "id": "c-neutron-star-limit",
+   "kind": "correction",
+   "html": "本书印的是约八个太阳质量。中子星质量的上限约为二到三个太阳质量。"
+  },
+  {
+   "id": "c-ligo",
+   "kind": "correction",
+   "html": "本书的小结说引力波尚未被观测到。正文则报道了 LIGO 在 2015 年对它们的探测。"
+  }
+ ]
+}
