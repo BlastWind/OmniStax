@@ -1,0 +1,502 @@
+{
+ "id": "23.2",
+ "module": "m42392",
+ "chapter": "23",
+ "title": "法拉第电磁感应定律：楞次定律",
+ "short": "法拉第电磁感应定律与楞次定律",
+ "lead": "穿过线圈的变化<span data-concept=\"magnetic-flux\">磁通量</span>会驱动一个电动势，本节陈述给出该电动势大小的法拉第电磁感应定律，以及给出其方向的楞次定律。随后转向借助感应工作的装置，从在磁带上记录的磁头到人工耳蜗。",
+ "objectives": [
+  "利用法拉第定律计算电动势、电流和磁场。",
+  "解释楞次定律的物理结果"
+ ],
+ "summary_html": "<ul><li>法拉第电磁感应定律指出，当磁通量在<span data-concept=\"time\">时间</span> $\\kdt$ 内改变 $\\kdPhi$ 时，由<span data-concept=\"magnetic-flux\">磁通量</span>的变化所感应的电动势为 $\\kemf = -N\\frac{\\kdPhi}{\\kdt}$。</li><li>如果在线圈中感应出电动势，$N$ 就是它的匝数。</li><li>负号表示，该电动势产生的<span data-concept=\"electric-current\">电流</span> $\\kIcur$ 和<span data-concept=\"magnetic-field\">磁场</span> $\\kBmag$ <em>阻碍磁通量的变化</em> $\\kdPhi$——这种阻碍称为楞次定律。</li></ul>",
+ "notes": "音频和视频磁带所用的记录磁头与回放磁头的照片，对于读者并不熟悉的一项技术而言只是装饰，因此略去，指向它的括号也一并略去。指向 PhET 模拟“法拉第电磁实验室” 的链接也略去，与书中其他互动链接的处理相同。本模块的第 9 道习题，即在地磁场中转动的 1000 匝线圈，在书的原文中没有标明题型，因其印在“习题”标题之下而按习题处理。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案，从不由计算得出。有七道习题没有给出答案，因而略去：长直导线旁的线圈中感应电流的方向；电池反接后三线圈习题的重复题；验证 1 特斯拉·平方米每秒等于 1 伏特；50 匝线圈在 0.100 s 内被拉伸到面积为零；综合概念题，要求给出 MRI 技师戒指中的电流、功率、感应磁场及其方向；500 匝线圈转过四分之一圈，求能产生 10,000 V 的磁场；综合概念题，涉及雷击在 50.0 m 外的线圈中感应出的电压。关于 MRI 技师婚戒的习题只给出（a）问的答案，因此该卡片核对这一数值，并在解中附上书中对（b）问的答案。两道思考题在书中没有答案，所以它们的建议思路由 AI 撰写并作了标注。本节没有 AP 题，本节自己的内容也没有留待后面某一页的，不过 23.5 让读者回头去看这里布置的两道峰值电动势习题，它们保留各自的编号。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-faraday",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the example's numbers, set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-lenz",
+   "kind": "sim",
+   "number": "23.7",
+   "originals": [
+    "/media/ch23/Figure_24_02_01_new.jpg"
+   ],
+   "original_caption": "（a）当这根条形磁铁被推入线圈时，线圈内的磁感应强度增大。线圈中感应的电流产生另一个磁场，其方向与条形磁铁的磁场方向相反，以阻碍这种增大。这是楞次定律的一个方面——感应阻碍磁通量的任何变化。（b）和（c）是另外两种情形。请你自己验证：图中所示感应的 B_线圈 的方向确实阻碍磁通量的变化，且图中所示的电流方向与右手定则 2 一致。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "current",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "B_coil and I off the windings; readout adds up; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-cochlear",
+   "kind": "photo",
+   "number": "23.9",
+   "widths": [
+    200
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "faradays-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "turns-multiply-emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "lenzs-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "apply-lenzs-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "ways-to-change-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "right-hand-rule-2",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "magnetic-field",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "faradays-and-lenzs-law",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "lenz-from-energy-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "applications",
+   "concept": "induction-applications",
+   "verb": "introduces"
+  },
+  {
+   "span": "applications",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "flux-and-orientation",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "faradays-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "lenzs-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "magnetic-flux",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736588278",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "一位经常接触大型磁体的人，有时会把头放进强磁场中。她报告说，当她快速转头时感到头晕。这可能与感应有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "快速转头，会使头内一切物质相对于磁场的取向发生改变，而由 $\\kPhi = \\kBmag A\\cos\\theta$ 可知，取向的改变就是磁通量的改变。头部的液体和组织能够导电，所以头内任何一条闭合路径上都有变化的磁通量穿过。由法拉第定律，沿这条路径出现一个电动势，并有微小的电流流过。她转头越快，$\\kdt$ 就越小，感应电动势就越大，这就是快速转头会引起头晕而缓慢转头不会的原因。内耳液体中以及报告头部位置的神经中的电流，足以被感觉为头晕。当她把头保持不动时，无论磁场多强，都不会感应出任何东西。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738061771",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "粒子加速器把高速带电粒子送入一根抽成真空的管道。缠绕在管道外的线圈，能否通过感应电动势探测到单个粒子的通过？如果能，请画出单个粒子穿过线圈时，线圈输出电压的图像。如果不能，请确定线圈取什么取向才能探测到粒子，并解释为什么需要这一取向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。线圈绕在管道外，管道沿着它的轴线延伸，粒子通过时，线圈中不会感应出电动势。运动的电荷就是沿管道的电流，由右手定则 2，它的磁感线是以其运动路线所在直线为中心的圆。这些圆位于线圈每一匝所在的平面内，所以没有一条磁感线穿过一匝所围的面积。粒子通过之前、通过期间和通过之后，穿过线圈的磁通量都为零，而磁通量没有变化，法拉第定律就给不出电动势。要探测到粒子，线圈必须转动，使环绕的磁场穿过它：它的平面必须包含管道的轴线，例如把线圈放在管道旁，使其平面沿着管道，或者把一圈这样的线匝绕在包围管道的甜甜圈上。这样，穿过每一匝的磁通量在粒子靠近时增大，在粒子离开时减小，变化的磁通量就感应出电动势，先是朝一个方向的脉冲，随后是朝另一个方向的脉冲。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737817529",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "figure": {
+    "src": "/media/ch23/Figure_24_02_04-3a94.jpg",
+    "alt": "图的 a 部分显示两个单匝线圈。线圈一和线圈二竖直放置。线圈一中有沿逆时针方向的电流 I。图的 b 部分显示一根竖直放置的导线，电流向上流动。它旁边有一个竖直放置的单匝线圈。",
+    "caption": "（a）两个线圈位于同一平面内。（b）导线位于线圈所在的平面内"
+   },
+   "prompt": "参照下图（a）部分，线圈 2 中感应电流的方向是什么：（a）如果线圈 1 中的电流增大？（b）如果线圈 1 中的电流减小？（c）如果线圈 1 中的电流不变？请明确说明你是如何按照楞次定律的解题策略中的步骤来做的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）逆时针（b）顺时针（c）没有感应电流"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738076252",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "figure": {
+    "src": "/media/ch23/Figure_24_02_05.jpg",
+    "alt": "图中是一个闭合电路，由一个有许多匝的主线圈通过开关与一个电池相连组成。图中还显示了三个单匝线圈，分别称为一、二和三。线圈一在主线圈的左边，线圈二在右边，线圈三在主线圈的上方。"
+   },
+   "prompt": "参照下图，线圈 1、2 和 3 中的电流方向各是什么（假定这些线圈位于电路所在的平面内）：（a）开关刚闭合时？（b）开关闭合很长时间后？（c）开关刚断开之后？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）1 逆时针，2 逆时针，3 顺时针（b）1、2 和 3 中都没有感应电流（c）1 顺时针，2 顺时针，3 逆时针"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738034098",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "（a）一位 MRI 技师把手从磁感应强度很低的区域移入 MRI 扫描仪 2.00 T 的磁场中，手指指向磁场的方向。已知他的婚戒直径为 2.20 cm，并假定把它移入磁场需要 0.250 s，求戒指中感应的平均电动势。（b）讨论这一电流是否会显著改变戒指的温度。",
+   "answer": {
+    "type": "number",
+    "value": 3.04,
+    "unit": "mV",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "戒指起初所在之处的磁场几乎为零，最后处于 2.00 T 的磁场中，且戒指的平面与磁场垂直，所以穿过它的磁通量从近乎为零变为 $\\kBmag A$。由直径算出面积，再用磁通量的变化除以时间；戒指只有一匝，所以 $N = 1$。",
+    "solution": "（a）3.04 mV（b）作为戒指电阻的下限，估计 R = 1.00 mΩ。传递的热量将为 2.31 mJ。这不是一个显著的热量。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738060612",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "prompt": "在地球 $5.00\\times 10^{-5}\\ \\text{T}$ 的磁场中转动一个 1000 匝、直径 20.0 cm 的线圈，从而感应出电动势。已知线圈平面起初与地磁场垂直，并在 10.0 ms 内转到与磁场平行，求感应的平均电动势。",
+   "answer": {
+    "type": "number",
+    "value": 0.157,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "线圈起初平面与磁场垂直，所以穿过它的磁通量为 $\\kBmag A$，最后平面与磁场平行，此时磁通量为零。因此全部这些磁通量在 10.0 ms 内消失，而 1000 匝中的每一匝都贡献各自的电动势。",
+    "solution": "0.157 V"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169737806468",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "faradays-and-lenzs-law",
+   "figure": {
+    "src": "/media/ch23/Figure_24_02_04-3a94.jpg",
+    "alt": "图的 a 部分显示两个单匝线圈。线圈一和线圈二竖直放置。线圈一中有沿逆时针方向的电流 I。图的 b 部分显示一根竖直放置的导线，电流向上流动。它旁边有一个竖直放置的单匝线圈。",
+    "caption": "（a）两个线圈位于同一平面内。（b）导线位于线圈所在的平面内"
+   },
+   "prompt": "下图（b）部分中线圈里感应的电动势，大致与线圈中心到导线的距离有怎样的关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "与 $\\frac{1}{r}$ 成正比"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ways-to-change-flux",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "induction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "right-hand-rule-2",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "apply-lenzs-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "lenzs-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "right-hand-rule-2",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "apply-lenzs-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "lenzs-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "right-hand-rule-2",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "magnetic-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "turns-multiply-emf",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "flux-and-orientation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "p11",
+   "concept": "magnetic-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "faraday-loop",
+   "label": "单匝线圈",
+   "figures": [
+    "sim-faraday"
+   ]
+  },
+  {
+   "id": "lenz-magnet",
+   "label": "条形磁铁",
+   "figures": [
+    "sim-lenz"
+   ]
+  },
+  {
+   "id": "lenz-coil",
+   "label": "线圈",
+   "figures": [
+    "sim-lenz"
+   ]
+  }
+ ]
+}

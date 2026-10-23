@@ -1,0 +1,432 @@
+/* Figures for section 23.3 Motional Emf. The page binds magnetic-field,
+   magnetic-flux, voltage, current, velocity, force, position, time and power,
+   which is what ch23/COLOR.md gives the page together with the two the plan
+   argues for, the time on the axis of a graph that has a clock in it and the
+   power the tether takes out of the shuttle's orbit. The field lines drawn in
+   space wear the field's hue and the count of them that passes through the
+   circuit wears the flux's, since the whole difficulty of the chapter is that
+   the two are not the same quantity. The rod, the rails and the resistor, and
+   the tether, the shuttle, the satellite and the ionosphere, are the section's
+   referents and are drawn in their referent colours through F.ref; the rail
+   separation and the tether's length wear the position hue and the tether's
+   angle the angle hue, and the number of turns stays in ink. The two rail figures stand on one locked view (root rule 28.2): the
+   rails lie flat like a table top and the field runs straight down through
+   them, so that B, ℓ and v are seen to be mutually perpendicular. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['23.3'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, label, hbracket, vbracket, axes, curve, pinned, angleArc, hover, view } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+const RAD = Math.PI / 180;
+
+/* ---------- the locked view the two rail figures share ----------
+   One viewpoint, from above and to the right, fixed for both figures and never
+   turned by the reader: the rails run away to the right along x, the rod lies
+   across them along z, and the field runs straight down the y axis. 560 canvas
+   units to the metre for both figures, which is the one scale every length in
+   them is drawn on, so the swept area can be read off the drawing at any
+   setting of the sliders. */
+const U = 560;
+const V3 = view({ yaw: 0.36, pitch: 0.60, dist: 3400, cx: 700, cy: 384 });
+/* a point of the apparatus: x along the rails and z across them, both in metres,
+   y in canvas units above the plane; the drawing is centred on x = 0.8 m and on
+   the middle of the rails, so widening the rails does not walk the scene off */
+const P3 = (x, z, y, L) => V3.P([(x - 0.8) * U, y || 0, (z - L / 2) * U]);
+const seg = (ctx, a, b, color, w, dash) => line(ctx, a[0], a[1], b[0], b[1], color, w, dash);
+const arr = (ctx, a, b, color, w) => arrow(ctx, a[0], a[1], b[0], b[1], color, w);
+/* the lattice a uniform field is drawn on: the same spacing everywhere, so that
+   widening the rails or advancing the rod really does put more lines through the
+   circuit, which is what the flux counts */
+const FX = [0.075, 0.325, 0.575, 0.825, 1.075, 1.325, 1.575];
+const FZ = [-0.06, 0.09, 0.24, 0.39, 0.54];
+/* the lines are kept thin and short, so the rails, the rod and the labels read
+   through the lattice; the strength is told by the width and the depth of tone */
+const fieldWidth = (B) => Math.max(1.2, Math.min(3, 1.2 + 0.9 * B));
+const FTOP = 104;
+
+/* The apparatus on its locked view: the face the circuit encloses, shaded in the
+   flux hue and pierced by the field lines that pass through it, the rails, the
+   resistor and the rod. `xa` is where the resistor stands and `xr` the rod, both
+   in metres; `ox` slides the field's own lattice, for the figure in which the
+   field moves instead of the rod. */
+function apparatus(ctx, o) {
+  const { L, xa, xr, B, ox, hits } = o;
+  const cB = C('magnetic-field'), cPhi = C('magnetic-flux');
+  const p = (x, z, y) => P3(x, z, y, L);
+  const lo = Math.min(xa, xr), hi = Math.max(xa, xr);
+  /* the flux through the circuit: the face it encloses, deepening as the field
+     strengthens, and one marker on every field line that crosses that face */
+  if (hi - lo > 0.004 && B > 0.001) {
+    const q = [p(lo, 0, 0), p(hi, 0, 0), p(hi, L, 0), p(lo, L, 0)];
+    ctx.save(); ctx.beginPath(); q.forEach((c, i) => (i ? ctx.lineTo(c[0], c[1]) : ctx.moveTo(c[0], c[1]))); ctx.closePath();
+    ctx.fillStyle = alpha(cPhi, 0.12 + 0.26 * Math.min(1, B / 2)); ctx.fill(); ctx.restore();
+  }
+  /* the rails, the resistor and the rod, each in its referent colour */
+  const railA = o.rails[0], railB = o.rails[1];
+  [0, L].forEach((z) => seg(ctx, p(railA, z, 0), p(railB, z, 0), F.ref('rails'), 4));
+  /* the resistor: four teeth across the rails, the way a circuit diagram draws one */
+  const rw = 0.05;
+  const zig = [];
+  for (let i = 0; i <= 8; i++) { const t = i / 8, side = i === 0 || i === 8 ? 0 : (i % 2 ? 1 : -1); zig.push(p(xa + side * rw, L * t, 0)); }
+  ctx.save(); ctx.strokeStyle = F.ref('resistor'); ctx.lineWidth = 4; ctx.beginPath();
+  zig.forEach((c, i) => (i ? ctx.lineTo(c[0], c[1]) : ctx.moveTo(c[0], c[1]))); ctx.stroke(); ctx.restore();
+  /* the rod, drawn thicker than the rails because it is the source */
+  seg(ctx, p(xr, -0.02, 0), p(xr, L + 0.02, 0), F.ref('rod'), 8);
+  /* the field: one line straight down onto the plane at every point of the
+     lattice, and a marker in the flux hue where a line pierces the circuit */
+  const w = fieldWidth(B), pierced = [];
+  if (B > 0.001) {
+    FX.forEach((fx0) => {
+      const fx = fx0 + (ox || 0);
+      FZ.forEach((fz) => {
+        const top = p(fx, fz, FTOP), foot = p(fx, fz, 10);
+        arr(ctx, top, foot, alpha(cB, 0.45 + 0.25 * Math.min(1, B / 2)), w);
+        if (fx > lo && fx < hi && fz > 0 && fz < L) pierced.push(p(fx, fz, 0));
+      });
+    });
+    pierced.forEach((c) => dot(ctx, c[0], c[1], cPhi, true, 7));
+  }
+  if (hits) {
+    const mid = p((lo + hi) / 2, L / 2, 0), rod = p(xr, L / 2, 0), res = p(xa, L / 2, 0);
+    hits.push({ x: rod[0], y: rod[1], r: 48, name: '杆，沿导轨滑动，是电动势的来源' });
+    hits.push({ x: res[0], y: res[1], r: 42, name: '导轨所接的电阻器，可以是灯泡或电压表' });
+    hits.push({ x: mid[0], y: mid[1], r: 60, name: '杆、导轨和电阻器围成的面积，以及磁场穿过它的磁通量' });
+  }
+  return { pierced, p };
+}
+
+/* =====================================================================
+   FIGURE 23.10: the rod on its rails. The rails lie flat and the field
+   runs down through them, so the three perpendicular directions the
+   result depends on are there to be seen rather than asserted. The rod
+   slides the length of the rails once every loop and the flux grows as
+   it goes, so the figure has a clock in it and takes the transport. The
+   book's two panels are one drawing: the area swept and the polarity of
+   the rod of (a) are there from the start, and the induced current, the
+   field it raises and the drag of (b) grow in as the rod gets under way.
+   The graph below is the flux against time, and
+   its slope is the emf. The figure opens on the 1.50 T, 30.0 cm and
+   2.22 m/s of the section's fifth problem, so it reads 1.00 V on load.
+===================================================================== */
+(function () {
+  const H = 900;
+  const d = sim('sim-rod-rails', H);
+  const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 2, step: 0.05, value: 1.5, unit: 'T', dec: 2, onInput: reset, aria: '穿过导轨的磁场的磁感应强度' });
+  const lS = ctl(d.controls, { label: '\\ell', cls: 'position', min: 0.1, max: 0.6, step: 0.02, value: 0.3, unit: 'm', dec: 2, onInput: reset, aria: '两导轨之间的距离' });
+  const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.8, max: 3, step: 0.02, value: 2.22, unit: 'm/s', dec: 2, onInput: reset, aria: '杆沿导轨运动的速率' });
+
+  const X0 = 0.20, XEND = 1.40;                 /* where the rod starts and where it leaves the rails */
+  const TRAV = XEND - X0;
+  /* Fixed ranges, taken from the slider maxima and never rescaled: the slowest
+     rod, 0.80 m/s, takes 1.50 s to cross, and the greatest flux the sliders can
+     enclose, 2.00 T across 0.60 m rails at the far end, is 1.68 Wb. */
+  const TMAX = 1.5, PHIMAX = 1.8;
+  const cy = cycle(() => TRAV / vS.v, 1.2);
+  function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const B = bS.v, L = lS.v, v = vS.v;
+    const T = TRAV / v, tau = cy.now(), xr = X0 + v * tau, dx = xr - X0;
+    const emf = B * L * v, phi = B * L * xr, phi0 = B * L * X0, dA = L * dx;
+    const cB = C('magnetic-field'), cPhi = C('magnetic-flux'), cV = C('velocity'), cI = C('current'), cF = C('force'), cX = C('position'), cE = C('voltage'), cT = C('time');
+
+    hits = [];
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 92, 1400, 480); ctx.clip();
+    const { p } = apparatus(ctx, { L, xa: 0, xr, B, ox: 0, hits, rails: [-0.12, 1.62] });
+    /* where the rod started, and how far it has come */
+    if (dx > 0.005) {
+      seg(ctx, p(X0, -0.02, 0), p(X0, L + 0.02, 0), alpha(PAL.ink, 0.45), 4, [10, 10]);
+    }
+    const yA = 26;                                 /* the arrows ride a little above the plane so the shading reads under them */
+    const rodMid = p(xr, L / 2, yA), rodFront = p(xr, 0, yA), rodBack = p(xr, L, yA);
+    /* the velocity of the rod, which both states carry */
+    const vHead = p(Math.min(xr + 0.26, 1.58), L / 2, yA);
+    if (v > 0) arr(ctx, rodMid, vHead, cV, 5);
+    /* (a) the polarity of the rod */
+    const signs = [];
+    if (emf > 1e-6) {
+      const eF = p(xr, -0.13, yA), eB = p(xr, L + 0.13, yA);
+      signs.push(eF, eB);
+      text(ctx, '+', eF[0], eF[1] - 4, PAL.ink, { size: 30, weight: 700, align: 'center', bg: PAL.panel });
+      text(ctx, '−', eB[0], eB[1] - 4, PAL.ink, { size: 30, weight: 700, align: 'center', bg: PAL.panel });
+    }
+    {
+      /* (b) the induced current round the circuit, the field it raises inside the
+         loop and the drag the field lays on the rod, all of which vanish with the
+         emf; the current runs the way Lenz's law asks, so that the field it makes
+         inside the circuit points back up against a flux that is growing downward.
+         They grow from their tails over the rod's first 15 cm, the current first. */
+      if (emf > 1e-6 && dx > 0.02) {
+        const g = F.ease.smooth(Math.min(1, (dx - 0.02) / 0.15));
+        const grow = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k];
+        const cur = (x1, z1, x2, z2) => { const a = p(x1, z1, yA), k = F.stagger(g, 0, 3); if (k > 0) arr(ctx, a, grow(a, p(x2, z2, yA), k), cI, 5); };
+        cur(xr, L * 0.82, xr, L * 0.18);                       /* along the rod, toward its positive end */
+        cur(xr - 0.04, 0, X0 + (xr - X0) * 0.30, 0);            /* back along the near rail */
+        cur(0, L * 0.2, 0, L * 0.8);                            /* up through the resistor */
+        cur(X0 * 0.6, L, xr - 0.06, L);                         /* out along the far rail */
+        /* the field the induced current raises inside the circuit, out of the plane */
+        [0.35, 0.65].forEach((k) => {
+          const b0 = p(X0 + (xr - X0) * k, L / 2, 6), b1 = p(X0 + (xr - X0) * k, L / 2, 118), q = F.stagger(g, 1, 3);
+          if (q > 0) arr(ctx, b0, grow(b0, b1, q), cB, 4.5);
+        });
+        /* the drag: the field pushes the current-carrying rod back the way it came */
+        const fTail = p(xr, L / 2, yA), fHead = p(Math.max(xr - 0.24, 0.06), L / 2, yA), q = F.stagger(g, 2, 3);
+        if (q > 0) arr(ctx, fTail, grow(fTail, fHead, q), cF, 5);
+      }
+    }
+    ctx.restore();
+
+    /* the names, each beside its own thing (rule 26.7); the area swept rides on the bracket of the distance */
+    const labs = [];
+    const fieldAt = P3(1.575, -0.075, FTOP, L);
+    labs.push(['B = ' + fmt(B, 2) + ' T', fieldAt[0], fieldAt[1], 'right', cB]);
+    const resAt = p(0, L / 2, 0);
+    labs.push(['R', resAt[0], resAt[1] - 10, 'above', F.ref('resistor')]);
+    if (v > 0) labs.push(['v = ' + fmt(v, 2) + ' m/s', vHead[0], vHead[1], 'above', cV]);
+    if (emf > 1e-6 && dx > 0.17) {
+      const iAt = p((X0 * 0.6 + xr) / 2, L, yA), bAt = p(X0 + (xr - X0) * 0.5, L / 2, 118), fAt = p(Math.max(xr - 0.24, 0.06), L / 2, yA);
+      labs.push(['感应电流', iAt[0], iAt[1], 'below', cI, 64]);
+      labs.push(['感应磁场', bAt[0], bAt[1], 'above', cB, 24]);
+      labs.push(['杆所受的阻力', fAt[0], fAt[1], 'below', cF, 96]);
+    }
+    if (dx > 0.01) {
+      const a1 = p(X0, L / 2, 0), a2 = p(xr, L / 2, 0);
+      hbracket(ctx, a1[0], a2[0], 548, cX, 'Δx = ' + fmt(dx, 2) + ' m' + (dA > 0.004 ? ',  ΔA = ℓΔx = ' + fmt(dA, 2) + ' m²' : ''), { side: 'below', H });
+    }
+    const lAt1 = p(0.02, 0, 0), lAt2 = p(0.02, L, 0);
+    vbracket(ctx, Math.min(lAt1[0], lAt2[0]) - 34, lAt1[1], lAt2[1], cX, 'ℓ = ' + fmt(L, 2) + ' m', -1, { side: 'left', H });
+    const lab = F.labeller(ctx, H, { headline: 2 }), DIR = { above: [0, -1], below: [0, 1], left: [-1, 0], right: [1, 0] };
+    signs.forEach((q) => lab.block(q[0] - 14, q[1] - 22, q[0] + 14, q[1] + 14));
+    labs.forEach(([s, x, y, side, col, gap]) => lab.add(s, x, y, DIR[side][0], DIR[side][1], col, 21, gap || 20));
+    lab.flush();
+
+    /* the graph: the flux against time, whose slope is the emf */
+    const box = { l: 230, r: 1230, t: 622, b: 828 };
+    const { X, Y } = axes(ctx, box, [0, TMAX], [0, PHIMAX], { xl: '时间 t (s)', xc: cT, yl: '磁通量 Φ (Wb)', yc: cPhi, nx: 5, ny: 3, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 1) });
+    if (B > 0.001) {
+      curve(ctx, (t) => phi0 + B * L * v * t, 0, T, X, Y, alpha(cPhi, 0.4), 3, 2);
+      curve(ctx, (t) => phi0 + B * L * v * t, 0, Math.max(tau, 0), X, Y, cPhi, 5, 2);
+      pinned(ctx, box, X, Y, tau, phi, cPhi, fmt(phi, 2) + ' Wb');
+      line(ctx, X(tau), Y(phi), X(tau), box.b, alpha(cPhi, 0.4), 2, [4, 8]);
+    }
+    text(ctx, '这条直线的斜率就是电动势，' + fmt(emf, 2) + ' V', box.r - 12, box.t + 22, cE, { size: 17, align: 'right', bg: PAL.panel });
+
+    topline(ctx, tau < 1e-9
+      ? '杆静止在导轨上，虽然穿过回路的磁场为 ' + fmt(B, 2) + ' T，但磁通量没有变化，所以没有电动势。'
+      : '杆在 ' + fmt(tau, 2) + ' s 内运动了 ' + fmt(dx, 2) + ' m，扫过 ' + fmt(dA, 2) + ' m² 的新面积，所以通过回路的磁通量增加了 ' + fmt(B * dA, 2) + ' Wb。');
+    readout(d.readout,
+      `\\kemf = \\kBmag\\ell\\kv = (${fmt(B, 2)}\\ \\text{T})(${fmt(L, 3)}\\ \\text{m})(${fmt(v, 2)}\\ \\text{m/s}) = ${fmt(emf, 2)}\\ \\text{V}`,
+      tau < 1e-9
+        ? '杆还没有开始运动，所以通过回路的磁通量保持为 ' + fmt(phi0, 2) + ' Wb，什么也没有被感应出来。'
+        : '自开始运动以来的 ' + fmt(tau, 2) + ' s 内，磁通量从 ' + fmt(phi0, 2) + ' Wb 增大到 ' + fmt(phi, 2) + ' Wb，' + fmt(B * dA, 2) + ' Wb 除以 ' + fmt(tau, 2) + ' s，就是杆产生的 ' + fmt(emf, 2) + ' V。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => (TRAV / vS.v) / 4.8), draw });
+})();
+
+/* =====================================================================
+   SIM: what has to be moving. The same rails and the same field, with a
+   choice of which part carries the speed. The rod on stationary rails and
+   the rails carried the other way under a stationary rod give the same
+   emf, because the circuit encloses new area at the same rate in both;
+   the whole apparatus carried together gives none at all. Moving, since
+   the figure is a comparison of three motions and the third one is the
+   exception that makes the point. The graph below holds all three.
+===================================================================== */
+(function () {
+  const H = 820;
+  const d = sim('sim-relative-motion', H);
+  const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.5, max: 3, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: '装置中运动部分的速率' });
+  const whatC = select(d.controls, {   /* three states in a row that wraps beside the slider, so a dropdown (rule 26.1) */
+    label: '\\text{运动的是}',
+    options: [{ value: 'rod', label: '杆' }, { value: 'field', label: '导轨和磁场' }, { value: 'both', label: '两者一起' }],
+    value: 'rod', aria: '装置中哪一部分在运动',
+  });
+
+  const B = 1.5, L = 0.3, GAP = 0.30, TRAV = 0.85;      /* the field and the rails are fixed here; only the motion is in question */
+  const TMAX = 1.8, PHIMAX = 0.6;                       /* 0.85 m at 0.50 m/s takes 1.70 s, and the widest loop holds 0.52 Wb */
+  const cy = cycle(() => TRAV / vS.v, 1.2);
+  function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
+
+  /* where the resistor and the rod stand at the model time tau, and how fast
+     they are separating, which is the only speed the emf knows about */
+  function state(w, tau) {
+    const v = vS.v, s = v * tau;
+    if (w === 'rod') return { xa: 0.25, xr: 0.55 + s, ox: 0, vRod: v, vRail: 0 };
+    if (w === 'field') return { xa: 0.90 - s, xr: 1.20, ox: -s, vRod: 0, vRail: v };
+    return { xa: 0.25 + s, xr: 0.55 + s, ox: 0, vRod: v, vRail: 0 };
+  }
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    /* a change of what moves carries the rod, the rails and the field from one motion to the other */
+    const v = vS.v, w = whatC.value, T = TRAV / v, tau = cy.now(), st = whatC.mix((m) => state(m, tau));
+    const rel = whatC.mix((m) => (m === 'both' ? 0 : v)), emf = B * L * rel, width = st.xr - st.xa, phi = B * L * width;
+    const cV = C('velocity'), cPhi = C('magnetic-flux'), cE = C('voltage'), cT = C('time');
+    hits = [];
+
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 92, 1400, 420); ctx.clip();
+    const { p } = apparatus(ctx, { L, xa: st.xa, xr: st.xr, B, ox: st.ox, hits, rails: [st.xa - 0.35, st.xa + 1.28] });
+    const yA = 26;
+    /* the velocity of whatever is moving: one arrow on the rod, one on the rails */
+    const aRod = whatC.mix((m) => (m === 'field' ? 0 : 1)), aBack = whatC.a('field'), aWith = whatC.a('both');
+    if (aRod > 0) {
+      const a = p(st.xr, L / 2, yA), b = p(st.xr + 0.26, L / 2, yA);
+      arr(ctx, a, b, alpha(cV, aRod), 5);
+      label(ctx, '杆，' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'right', size: 21, color: alpha(cV, aRod), H });
+    }
+    if (aBack > 0) {
+      const a = p(st.xa - 0.10, L + 0.12, yA), b = p(st.xa - 0.36, L + 0.12, yA);
+      arr(ctx, a, b, alpha(cV, aBack), 5);
+      label(ctx, '导轨和磁场，' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: alpha(cV, aBack), H });
+    }
+    if (aWith > 0) {
+      const a = p(st.xa - 0.10, L + 0.12, yA), b = p(st.xa + 0.16, L + 0.12, yA);
+      arr(ctx, a, b, alpha(cV, aWith), 5);
+      label(ctx, '导轨，' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'below', size: 21, color: alpha(cV, aWith), H });
+    }
+    /* the width of the loop, which is what the flux follows */
+    ctx.restore();
+    const g1 = p(st.xa, L / 2, 0), g2 = p(st.xr, L / 2, 0);
+    hbracket(ctx, g1[0], g2[0], 512, C('position'), '所围导轨长度 ' + fmt(width, 2) + ' m', { side: 'below', H });
+
+    const fieldAt = P3(1.575 + st.ox, -0.075, FTOP, L);
+    label(ctx, 'B = ' + fmt(B, 2) + ' T', fieldAt[0], fieldAt[1], { side: 'right', size: 21, color: C('magnetic-field'), H });
+
+    const box = { l: 230, r: 1200, t: 606, b: 748 };
+    const { X, Y } = axes(ctx, box, [0, TMAX], [0, PHIMAX], { xl: '时间 t (s)', xc: cT, yl: '磁通量 Φ (Wb)', yc: cPhi, nx: 6, ny: 3, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 1) });
+    const phi0 = B * L * GAP;
+    curve(ctx, (t) => phi0 + B * L * rel * t, 0, T, X, Y, alpha(cPhi, 0.4), 3, 2);
+    curve(ctx, (t) => phi0 + B * L * rel * t, 0, Math.max(tau, 0), X, Y, cPhi, 5, 2);
+    pinned(ctx, box, X, Y, tau, phi, cPhi, fmt(phi, 2) + ' Wb');
+    text(ctx, w === 'both' ? '磁通量不变，所以不出现电动势' : '这条直线的斜率就是电动势，' + fmt(emf, 2) + ' V',
+      box.r - 12, box.t + 22, cE, { size: 17, align: 'right', bg: PAL.panel });
+
+    topline(ctx, w === 'both'
+      ? '杆和导轨一起以 ' + fmt(v, 2) + ' m/s 的速率运动，所以回路始终围住同样 ' + fmt(GAP, 2) + ' m 长的导轨，不出现电动势。'
+      : '杆与电阻器正以 ' + fmt(rel, 2) + ' m/s 的速率相互分离，所以回路围住 ' + fmt(width, 2) + ' m 长的导轨，电动势为 ' + fmt(emf, 2) + ' V。');
+    readout(d.readout,
+      `\\kemf = \\kBmag\\ell\\kv = (${fmt(B, 2)}\\ \\text{T})(${fmt(L, 3)}\\ \\text{m})(${fmt(rel, 2)}\\ \\text{m/s}) = ${fmt(emf, 2)}\\ \\text{V}`,
+      w === 'rod' ? '导轨和磁场静止不动，杆则沿着导轨被推动。'
+        : w === 'field' ? '现在杆静止不动，导轨和磁场朝相反方向运动，因为杆与磁场相互分离的速率仍与之前相同，为 ' + fmt(rel, 2) + ' m/s，所以电动势相同。'
+          : '一切都在运动，但没有哪个部分相对于其他部分运动，所以回路所围的面积始终不变，表达式中的速率为零。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => (TRAV / vS.v) / 4.8), draw });
+})();
+
+/* =====================================================================
+   FIGURE 23.11: the Tethered Satellite. The tether, the shuttle and the
+   return path through the ionosphere are drawn flat, since the whole
+   arrangement is a length, a velocity and a field in one plane, and the
+   angle between the velocity and the field, which the section states but
+   does not draw, is carried in a small view from along the tether. Still:
+   an orbiting tether develops a steady emf and nothing here has a clock,
+   so there is no cycle and no transport. One fixed scale, 15 canvas units
+   to the kilometre, so that the 20.0 km of the worked example stands 300
+   units tall and the couple of hundred metres the first flight managed is
+   the stub it really was. The figure opens on the example and reads
+   7.80 kV.
+===================================================================== */
+(function () {
+  const H = 700;
+  const d = sim('sim-tether', H);
+  const lS = ctl(d.controls, { label: '\\ell', cls: 'position', min: 0.25, max: 20, step: 0.25, value: 20, unit: 'km', dec: 2, aria: '从航天飞机放出的系绳长度' });
+  const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 8, step: 0.05, value: 7.8, unit: 'km/s', dec: 2, aria: '航天飞机的轨道速率' });
+  const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 1, value: 90, unit: '°', dec: 0, aria: '航天飞机的速度与地磁场之间的夹角' });
+
+  const BE = 5.0e-5;                 /* the Earth's field, the one number the section fixes */
+  const I0 = 10.0;                   /* the current the experiment expected to draw, which the section's last problem uses */
+  const SC = 15;                     /* canvas units to the kilometre of tether, fixed */
+  const XS = 430, YS = 460;          /* where the shuttle flies */
+  let hits = [];
+  hover(d.stage, () => hits);
+
+  /* the shuttle, nose to the right, its wings and fin about 110 by 70 at s = 1 */
+  function shuttle(ctx, x, y, s, color) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color;
+    ctx.beginPath(); ctx.moveTo(54, 0); ctx.lineTo(18, -13); ctx.lineTo(-42, -14); ctx.lineTo(-54, -4); ctx.lineTo(-54, 9); ctx.lineTo(-8, 13); ctx.lineTo(34, 6); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-4, 8); ctx.lineTo(-46, 32); ctx.lineTo(-16, 32); ctx.lineTo(8, 9); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-28, -13); ctx.lineTo(-46, -40); ctx.lineTo(-54, -40); ctx.lineTo(-50, -13); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const l = lS.v * 1000, v = vS.v * 1000, th = thS.v, sn = th === 0 ? 0 : Math.sin(th * RAD);
+    const emf = BE * l * v * sn, drag = I0 * l * BE * sn, power = emf * I0;
+    const cV = C('velocity'), cB = C('magnetic-field'), cI = C('current'), cF = C('force'), cE = C('voltage');
+    const yTop = YS - lS.v * SC, mid = (YS + yTop) / 2;
+    hits = [];
+
+    /* the Earth below and the ionosphere over it, which is the return path */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(700, 2300, 1720, -Math.PI / 2 - 0.42, -Math.PI / 2 + 0.42); ctx.stroke(); ctx.restore();
+    const cIo = F.ref('ionosphere'), cTe = F.ref('tether'), cSh = F.ref('shuttle'), cSa = F.ref('satellite');
+    ctx.save(); ctx.strokeStyle = alpha(cIo, 0.6); ctx.lineWidth = 2; ctx.setLineDash([12, 10]); ctx.beginPath(); ctx.arc(700, 2300, 1790, -Math.PI / 2 - 0.40, -Math.PI / 2 + 0.40); ctx.stroke(); ctx.restore();
+    text(ctx, '地球', 700, 654, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, '电离层，导电并把电流送回', 700, 574, cIo, { size: 17, align: 'center' });
+
+    /* the tether, the shuttle at its foot and the satellite at its head */
+    line(ctx, XS, YS - 10, XS, yTop, cTe, 4);
+    shuttle(ctx, XS, YS + 14, 1, cSh);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cSa; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(XS, yTop - 15, 15, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+    [-1, 1].forEach((s) => { ctx.beginPath(); ctx.rect(XS + s * 44 - 14, yTop - 24, 28, 17); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(XS + s * 15, yTop - 15); ctx.lineTo(XS + s * 30, yTop - 15); ctx.stroke(); });
+    ctx.restore();
+    label(ctx, '卫星', XS, yTop - 38, { side: 'above', size: 20, color: cSa, H });
+    label(ctx, '航天飞机', XS - 66, YS + 10, { side: 'left', size: 20, color: cSh, H });
+    vbracket(ctx, XS + 66, yTop, YS, C('position'), 'ℓ = ' + fmt(lS.v, 2) + ' km', 1, { side: 'right', H });
+
+    /* the circuit: up the tether, out at the top and back through the ionosphere */
+    if (emf > 1e-9) {
+      arrow(ctx, XS + 18, YS - 30, XS + 18, yTop + 26, cI, 4.5);
+      ctx.save(); ctx.strokeStyle = cI; ctx.lineWidth = 3; ctx.setLineDash([11, 9]); ctx.beginPath();
+      ctx.moveTo(XS + 18, yTop + 14); ctx.lineTo(880, yTop + 14); ctx.lineTo(880, 544); ctx.lineTo(XS + 6, 544); ctx.lineTo(XS + 6, YS + 34); ctx.stroke(); ctx.restore();
+      arrow(ctx, 700, 544, 620, 544, cI, 4);
+      label(ctx, 'I = 10.0 A', 880, 510, { side: 'right', size: 21, color: cI, H });
+      /* the drag on the current, which is the work that pays for the electrical energy;
+         it is held clear of the shuttle so that a short tether's labels do not pile up */
+      const yF = Math.min(YS - 46, mid);
+      arrow(ctx, XS - 10, yF, XS - 150, yF, cF, 5);
+      label(ctx, 'F = ' + fmt(drag, 1) + ' N', XS - 150, yF, { side: 'above', size: 21, color: cF, H });
+    }
+    /* the velocity, along the orbit */
+    arrow(ctx, XS + 24, YS + 62, XS + 224, YS + 62, cV, 5);
+    label(ctx, 'v = ' + fmt(vS.v, 2) + ' km/s', XS + 224, YS + 62, { side: 'right', size: 21, color: cV, H });
+
+    /* the view from along the tether: the angle between the velocity and the
+       field is the whole of the sine in the result, and no flat drawing of the
+       orbit can carry it, since the field there stands across the page */
+    const bx = { l: 960, r: 1340, t: 170, b: 470 }, cx0 = 1046, cy0 = 380;
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(bx.l, bx.t, bx.r - bx.l, bx.b - bx.t); ctx.restore();
+    text(ctx, '沿系绳方向看', bx.r - 16, bx.t + 24, PAL.muted, { size: 17, align: 'right' });
+    arrow(ctx, cx0, cy0, cx0 + 178, cy0, cV, 5);
+    text(ctx, 'v', cx0 + 190, cy0 + 2, cV, { size: 24, weight: 600 });
+    const bl = 162, bxh = cx0 + bl * Math.cos(th * RAD), byh = cy0 - bl * Math.sin(th * RAD);
+    arrow(ctx, cx0, cy0, bxh, byh, cB, 5);
+    text(ctx, 'B', bxh + (th > 60 ? -14 : 8), byh - (th > 60 ? 8 : 16), cB, { size: 24, weight: 600, align: th > 60 ? 'right' : 'left' });
+    if (th > 3) angleArc(ctx, { x: cx0, y: cy0 }, 66, 0, th * RAD, 'θ = ' + fmt(th, 0) + '°', undefined, C('angle'));
+    dot(ctx, cx0, cy0, cTe, false, 9);
+    text(ctx, '系绳，正对端面', cx0, cy0 + 56, cTe, { size: 17, align: 'center' });
+
+    hits.push({ x: XS, y: mid, r: 56, name: '导电系绳，长 ' + fmt(lS.v, 2) + ' km，正横切地磁场运动' });
+    hits.push({ x: XS, y: YS + 14, r: 52, name: '航天飞机，在系绳下端' });
+    hits.push({ x: XS, y: yTop - 15, r: 44, name: '绳系卫星，在上端' });
+
+    const still = vS.v < 0.001;
+    topline(ctx, emf < 1e-9
+      ? still ? '系绳没有运动，所以无论它多长，两端之间都不出现电动势。' : '系绳是沿着地磁场运动而不是横切地磁场运动，所以无论它多长，两端之间都不出现电动势。'
+      : '一根 ' + fmt(lS.v, 2) + ' km 长的系绳以 ' + fmt(vS.v, 2) + ' km/s 的速率横切地球 5.00 × 10⁻⁵ T 的磁场运动，两端之间产生 ' + fmt(emf / 1000, 2) + ' kV 的电动势。');
+    readout(d.readout,
+      `\\kemf = \\kBmag\\ell\\kv\\sin\\ktheta = (5.00 \\times 10^{-5}\\ \\text{T})(${fmt(l, 0)}\\ \\text{m})(${fmt(v, 0)}\\ \\text{m/s})\\sin ${fmt(th, 0)}^\\circ = ${fmt(emf, 0)}\\ \\text{V}`,
+      emf < 1e-9
+        ? still ? '没有任何东西在运动，就没有什么可以驱动电流，系绳也不会从轨道中取走能量。' : '速度沿着磁场方向，就没有什么可以驱动电流，航天飞机也不会把它的任何轨道能量交给系绳。'
+        : '按实验预期的 ' + fmt(I0, 1) + ' A 电流，系绳所受的磁力为 ' + fmt(drag, 1) + ' N，方向与运动相反，该磁力从航天飞机轨道中取走的功率为 ' + fmt(power / 1000, 1) + ' kW，这就是系绳输出的电功率。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

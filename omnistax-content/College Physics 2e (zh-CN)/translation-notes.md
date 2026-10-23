@@ -1576,7 +1576,7 @@ Merge of 2026-10-23. Decisions taken for the chapter (orchestrator-directed; the
 | File | Span or line | What was done | Why |
 |---|---|---|---|
 | ch25/25.2/figures.js | sim-rough-and-smooth readout small line: the observer counts with the plural branches `st.seenA === 1 ? 'reaches' : 'reach'` and the same for `seenB` | both branches removed; the sentence is one Chinese form (九条光线中有 N 条到达 … 处的观察者) | English grammar in figure code (4.1) |
-| ch25/25.2/figures.js | sim-rough-and-smooth readout `\text{…}`: the clause “, tilted N° at the middle patch”, which sits in a template literal nested in the TeX | the words are translated in place (`\text{ 在中间那一小块处${tilt >= 0.5 ? `, 倾斜 ${fmt(tilt, 0)}°` : ''}}`); the parity tool reports the line as a code change | words of a readout's `\text{…}` (translate.md 5, figures.js item 4) inside a nested template literal, which the checker reads as code rather than as a changed string |
+| ch25/25.2/figures.js | sim-rough-and-smooth readout `\text{…}`: the clause “, tilted N° at the middle patch”, which sits in a template literal nested in the TeX | the words are translated in place (`\text{ 在中间那一小块处${tilt >= 0.5 ? `，倾斜 ${fmt(tilt, 0)}°` : ''}}`); the parity tool reports the line as a code change | words of a readout's `\text{…}` (translate.md 5, figures.js item 4) inside a nested template literal, which the checker reads as code rather than as a changed string |
 
 ### ch25/25.3
 
@@ -1617,6 +1617,111 @@ Merge of 2026-10-23. Decisions taken for the chapter (orchestrator-directed; the
 | ch25/25.7/text.html | #ex-solar-trough, Example 25.10 Strategy: “Part (a) is related to the current topic” | the span data-concept="electric-current" is kept around the word that translates current: <span>当前</span>主题 | the source's span tags the ordinary adjective current (present) as the concept electric-current, a tagging slip; a span is never dropped (translate.md 5), so it wraps the Chinese word that renders current |
 | ch25/25.7/text.html | Figure 25.44 caption: “(b) Security mirrors are convex, producing a smaller, upright image” | written （b）安防凸面镜产生较小的正立的像, “are convex” not repeated | the glossary term security mirror is 安防凸面镜, which already says convex, so the predicate would repeat the term's own morpheme (a collision of a term with its predicate, 4.5) |
 | ch25/25.7/figures.js | sim-mirror-images toplines of cases 1 to 3: “… ${m} times as tall” | written 像高是物高的 N 倍 | the English comparison leaves its referent (the object) implicit; Chinese needs it stated, and 像高 and 物高 are glossary rows (4.1, grammar built in code) |
+
+## Chapter 29 sections
+
+Merge of 2026-10-23. Decisions taken for the chapter: the introduction is titled 量子物理学导论 on the page, in the glossary row and in 14.7’s citation (the earlier row read 引论); modern physics is 近代物理学 (the introduction read 现代物理学); threshold frequency stays 截止频率 and the wavelength counterpart is 截止波长 (物理学名词 lists 阈值频率 and cutoff wavelength 截止波长; 红限 is the old name); the work function is 逸出功 beside the binding energy 结合能; the stopping voltage is 遏止电压; uncertainty is 不确定度 and the principle 海森伯不确定性原理; the solar cell is 太阳电池; the source of light is 光源 and of particles 粒子源 (sense rows); the book’s space sail stays 太空帆 while a solar sail is 太阳帆; headlights are 前照灯 (29.4 read 车头灯); the heat lamp is 加热灯 (29.3 read 取暖灯); the photographic plate is 感光板 (29.4 and 29.6 read 照相底片), the CCD camera 照相机 (29.4 read 相机); the rung of the oscillator ladder is 梯级 as the glossary row rung (29.1 read 横档/档); planes of atoms are 原子面 (29.6 read 原子平面); Louis-Victor is 维克多 (29.6 read 维克托); sterilization by weak UV is 灭菌 beside the glossary sterilize 消毒 (sterilizer); bremsstrahlung stays 轫致辐射 with 制动辐射 as its German gloss braking radiation; decay energy is 衰变能量 (the row read 衰变能); the unused candidate rows matter wave and wave function are dropped. UV and IR stay as printed where the source abbreviates them (29.3, 29.2’s UV photon) and the words are 紫外线, 红外线 and 紫外辐射, 红外辐射 where the source spells them. The photo credits are printed as in the source with （来源：…）; the two credits of 29.6 had a full-width comma and now read as printed. The exercise notes of every page use the book’s apparatus labels (判分选择题, 书后答案, 建议思路, 布鲁姆层级, 概念标签, 容差), the part labels in prose and in solutions are full-width （a）（b）, and the next section cited in 29.2 is in “”. The part labels of `answer.parts[].part` and the unit photons/s stay English (owner item 1); “threshold energy” in the Figure 29.7 + 29.8 caption is the book’s slip for the threshold frequency and is kept as printed.
+
+### ch29/29.1
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch29/29.1/text.html | photo-planck alt: the book’s misspelling “Max Plank” | rendered 马克斯·普朗克, the glossary row Max Planck | a misspelling of an English name has no Chinese equivalent; the person’s standard rendering is used (translate.md 4.3) |
+
+### ch29/29.2
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch29/29.2/text.html | #light-ejects-electrons, first paragraph: “meaning that light (<em>photo</em>) produces electricity” | the Greek prefix kept in English in the parentheses: 意思是光（<em>photo</em>）产生电 | a sentence about the root of an English word (translate.md 4.3) |
+| ch29/29.2/figures.js | sim-photoelectric topline, the branch where no electron leaves: “Each E-eV photon carries less than the BE-eV binding energy of M, so no electron leaves.” | the operands of the concatenation stand in another order (M.name before fmt(M.BE, 2)): 每个 E eV 的光子所携带的能量小于 M 的 BE eV 结合能，所以没有电子逸出。 | English sentence frame assembled in figure code; the possessive “of M” becomes 的 before the noun it modifies (4.1) |
+
+### ch29/29.3
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch29/29.3/figures.js | sim-em-spectrum topline | the sentence “A <E> photon of <band> carries …” is written “一个 <E> 的<band>光子带有…”, the band word (bandOf returns 无线电波, 微波, 红外线, 可见光, 紫外线, X 射线, γ 射线) a modifier of 光子, and the two branches carry the whole predicate | Chinese word order of a sentence built from English fragments in code (4.1) |
+| ch29/29.3/figures.js | sim-x-ray-tube note (both branches) | the leading literal “The ” is dropped so each branch begins with A.name (铜在 … keV 处的峰出现了 / 铜的峰没有出现), and the closing literals are reworded without the hyphenated “-keV energy” | English article and word order built in code that Chinese lacks (4.1) |
+| ch29/29.3/figures.js | sim-x-ray-tube counter text | counted + ' photons counted' is written counted + ' 个光子已被计数', the measure word 个 added | Chinese needs a classifier after a numeral (4.1) |
+| ch29/29.3/section.json | exercises[ap2].prompt | the book’s slip “breaking radiation” (for braking radiation) is rendered “制动辐射”, the meaning of bremsstrahlung | a typo of the English that has no Chinese equivalent; the meaning is unchanged (as ch01/1.3 cyu3) |
+| ch29/29.3/text.html | #gamma-rays-and-x-rays, #ultraviolet, #visible-light, #x-ray-photon-energy | inside some sentences the order of data-concept and data-type spans differs from the source (photon and energy spans, the maximum-energy span inside data-type energy) | Chinese word order; every span stays in its block with the same multiset (3.3, as ch08/8.3) |
+
+### ch29/29.4
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch29/29.4/figures.js | sim-photon-electron hover name and topline | “a ” + ph.name + “ photon” is rebuilt as “一个 ” + ph.name + “光子” (the article collapsed to 一个, the band phrase placed before 光子); the topline “A … photon and an electron moving at …” is “一个 ” + ph.name + “光子和一个速率为 … 的电子携带相同的动量，…。” | English article and word order built in code (4.1); the PH names are noun phrases such as 4.00 cm 的微波, so 的 cannot follow them |
+| ch29/29.4/figures.js | sim-compton topline | “A ” + fmt(E, 0) + “-keV photon …” is rebuilt as “一个 ” + fmt(E, 0) + “ keV 的光子 …” | a hyphenated compound modifier built in code becomes number + unit + 的 (4.1) |
+
+### ch29/29.7
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch29/29.7/figures.js | sim-buildup topline | the plural branch (n === 1 ? who + ' has' : plural + ' have') collapses to the one form n + ' 个' + who + '到达' | English plural grammar in figure code (4.1) |
+| ch29/29.7/figures.js | sim-position-momentum topline and the readout small line | the article choice (P.name === 'electron' ? 'an electron' : 'a proton') collapses to the bare name P.name (电子 / 质子); the comparison against the English name is gone and PARTS[].name now holds the Chinese name | English articles a/an have no Chinese form (4.1) |
+
+### ch29/29.8
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch29/29.8/text.html | #ex-dust-recoil question (b) and the #sim-dust-recoil sim-head | the order of data-ref and data-type spans differs from the source (the dust span, the 它 span and the velocity span of (b); the wavelength, mass and photon spans of the sim-head follow the Chinese clause order) | Chinese word order; every span stays in its block with the same multiset (3.3) |
+| ch29/29.8/figures.js | sim-dust-recoil hover name and topline (before) | the leading English article literals ('a ', 'A ') become the empty string '' so the concatenation of the code is unchanged | English articles have no Chinese form (4.1) |
+
+## Chapter 27 sections
+
+Merge of 2026-10-23. Decisions taken for the chapter (owner-directed): the title of 27.1 is 光的波动特性：干涉 and its short 光的波动特性 (the glossary and chapter.json rows changed from 波动性; the prose wave nature of light stays 光的波动性); the path difference is 波程差 in 27.3 to 27.5 (the concept single-slit-minima read 路径差; 长度之差 stays for the variable Δl, “the difference in length”); the order is 级次; bright and dark fringes are 明条纹 and 暗条纹 (the row bright fringe and the concept double-slit-constructive read 亮条纹; the bands of 27.7 are read as fringes) and bright and dark lines 亮线 and 暗线; polarization by reflection and by scattering are 反射起偏 and 散射起偏 (the headings and example title of 27.8 already read so; the two concept names and three glossary rows changed from 反射偏振, 散射偏振, 计算反射偏振); the phase change on reflection is 半波损失 in the concept name and 相位变化 in the prose (the concept statements of phase-change-on-reflection and nonreflective-coating read 相位突变); the mirror of an optical system is 面镜 (27.2 read 镜子 three times for the apparatus mirror; the concept statement of diffraction-limits-resolution and the variable meaning of D_ap read 反射镜) and the household mirror stays 镜子; the specimen is 标本 and the sample 样品 (27.6 read 样品 for the specimen in the prose, the referent label, three figure labels and the variable meaning of d, and 27.9 in three places and in the confocal summary and statement); the shift of the wave in the 27.3 figure is 位移 as the glossary row shift and 27.7 (the page read 移动量); out of phase is 不同相 as the glossary (27.9 read 相位不同); the word “for” of an enumeration is `\text{对于}` (27.3 and 27.4 read `\text{对}`); the two-photograph credit of 27.4 is as printed in English (“via Flickr” was 经由 Flickr); the figure citations and the part labels of the solutions are full-width （a）（b） (图 27.3(b) and the like); the apparatus words of the notes follow the chapter decisions: 书后答案 (the notes read 标准答案 and 本书自己的答案), 判分选择题 (six wordings), 布鲁姆层级 (布卢姆), 建议思路 (建议解法, 参考思路), 习题卡片 (题卡), 容差 (误差), 说明 (备注, 注记) and 概念标签 (概念标注). The pending term shift (移动量) was not added, and the pending templates of 27.9 with … in them are figure strings built from numbers, not terms. `ch27/config.md` holds 9 rows (27.1: 1, 27.2: 1, 27.4: 1, 27.6: 4, 27.7: 1, 27.8: 1) in one table; this file splits them by page. The page translators had listed 15; the merge dropped the word-order choices of 27.1 and 27.2, the cited titles of 27.6, the `answer.parts[].part` labels of 27.6 (a standing decision) and the `src` of the 27.6 derivation (translated, not a deviation), and merged the two 27.4 rows and the two 27.6 million rows.
+
+### ch27/27.1
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch27/27.1/figures.js | sim-wavelength-in-medium readout, the `small` line (colorName) | the display words 'violet', 'blue', … are written with the glossary words 紫, 蓝, 绿, 黄, 橙, 红 and 色 is appended in the sentence (光仍呈…色) | English uses a colour word as a predicate adjective; Chinese needs 色 after the single-character word, and the sentence is built in code (4.1) |
+
+### ch27/27.2
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch27/27.2/figures.js | sim-doorway light topline: `${fmt(ratio / 1e6, 1)} million times smaller` | written `小 ${fmt(ratio / 1e4, 0)} 万倍`, the value unchanged (million becomes 万) | Chinese counts in 万 and 亿 and has no word for million (4.4) |
+
+### ch27/27.4
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch27/27.4/figures.js | sim-grating-spectrum topline: the `lines` constant and the `mMax === 1` branch (`${n} lines per centimeter`, 'makes one bright line' / `makes a bright line in each of ${mMax} orders`) | `每厘米 ${n} 条刻线` stands before 的光栅 and the plural 'lines' collapses to the one form 条刻线; the place phrase 在中心两侧 comes first and the one/N branch is kept (只产生一条亮线 / 的 N 个级次中各产生一条亮线) | English plural and word order built in figure code (4.1); Chinese needs the measure word 条 and puts the quantity and the place before what they qualify; the parity tool reports the changed branch as code |
+
+### ch27/27.6
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch27/27.6/section.json | notes, the problem on laser printer dots | the module's misspelling “Raleigh’s” kept in English inside the Chinese quotation marks | a sentence about how English spells a name (4.3) |
+| ch27/27.6/text.html | #hubble-example, the paragraph after the M82 figure: “its light takes 2 million years for its light to reach us” | the repeated 'its light' written once: 其光需要 200 万年才能到达我们这里 | a slip of the English wording that Chinese cannot repeat; the meaning is unchanged (as ch01/1.3) |
+| ch27/27.6/text.html, ch27/27.6/section.json | sim-resolving-power data-original-caption and figures[sim-resolving-power].original_caption, part (a): “separated by at distance x and a positioned a distance d away” | rendered 相距 x，并位于距物镜 d 远处 | a grammatical slip of the English with no Chinese equivalent; the meaning is unchanged |
+| ch27/27.6/text.html, ch27/27.6/section.json | ex-hubble (the Andromeda distance, the p1 prompt) and the photo-arecibo caption: “2 million light year” | written 200 万光年 (and 200 万年) | Chinese counts in 万, it has no word for million (4.4); the value is unchanged |
+
+### ch27/27.7
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch27/27.7/figures.js | sim-thin-film topline (FILMS names 'A soap bubble', 'A magnesium fluoride coating', 'An oil film') | the indefinite article of each film name is dropped (肥皂泡, 氟化镁涂层, 油膜) and the name stands after '厚 t nm 的' in the three topline sentences | English grammar in figure code: the names carry 'A' / 'An' because they begin the English sentence (4.1) |
+
+### ch27/27.8
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch27/27.8/figures.js | sim-rotator, label under the pixel: `fmt(100 * c2, 1) + '% of I₀'` | the concatenation order is reversed: '占 I₀ 的 ' + fmt(100 * c2, 1) + '%' | English puts the percentage before 'of I₀', Chinese puts 占 I₀ 的 before the number (4.1, grammar built in code); the parity tool reports the changed line as code |
+
+### ch23 review fixes
+
+Rows added to the forced-scenario table of `ch23/config.md` (translate.md item 4):
+
+| ch23/23.1/text.html | #changing-field, paragraph 1: “a magnetic field is produced in the coil on the top part of the iron ring” | written 铁环上方的线圈中产生磁场, the spans in the order iron-ring, top-coil, magnetic-field; every span stays in its own block | Chinese word order, the place before the verb (3.3) |
+| ch23/23.6/figures.js | sim-dimming-lights readout small line: “The lamp turns P W into light and heat, against the P_full W it takes at the full V V.” | the operands are taken in Chinese order: 灯把 P W 转化为光和热，而在完整的 V V 下它取用 P_full W，the voltage before the full power | Chinese word order in a string built from operands in code (4.1) |
+
+Other entries for this section:
+
+- 23.3 exercises[cq2].prompt: “Why might the cylinder get live/hot” is the book's find-and-replace artefact for “hot” (the AI solution explains heating only). Kept as printed, 带电/发热, and recorded as a source slip.
+- 23.12 exercises[p16], footnote c-p16-quarter: the book's key takes Δt = 1/100 s as the quarter cycle; the footnote and notes now say the key divides by 100 (the quarter cycle is 1/1600 s).
+- PhET simulation names (23.2, 23.7, 23.12): one policy, PhET 模拟 followed by the translated name in “”; the links themselves stay omitted.
+- Apparatus labels unified chapter-wide: 书后答案, “理解检测”框, PhET 模拟.
 
 ## For the owner
 
@@ -1784,3 +1889,20 @@ Merge of 2026-10-23. Decisions taken for the chapter (orchestrator-directed; the
 154. **Forced scenarios of chapter 25.** `ch25/config.md` holds 17 rows (25.2: 2, 25.3: 3, 25.4: 2, 25.5: 1, 25.6: 4, 25.7: 5) in one table, as in chapters 8 to 28; `notes-section.md` splits them by page. The page translators had listed 21; the merge dropped six plain choices (the fish-tank side word, the light-ray span and pronoun of 25.3, the articles inside ref spans, the span order and the “Image length” and credit remarks of 25.7) and added two (the colour predicate 色 of 25.5, which the 26.3 precedent records, and “times as tall” of 25.6). The checker shows one `figures.js: code` line, in 25.2 (the nested template of the readout), and `untranslated?` lines only for pure-math answers.
 155. **Harvest rows that differ from the pages in wording only** (six rows listed in `change`): the observer at 78° (78° 处的观察者), the observer along the direction of the law of reflection (沿反射定律所定方向的观察者), the roughness of the surface (表面的粗糙度), intensity of IR radiation (红外辐射强度), and the notes of the rows diamond and screen, which now point to their sense rows. The rows specular reflection, negative index of refraction and two eighths do not occur on a page as they stand and are left as they are.
 156. **Colour and optics wording to confirm.** 副虹 and 主虹 stand for the book's “secondary” and primary rainbow (the 25.5 sim head says “the first” rainbow for the primary and reads 第一道彩虹 as printed); 太阳高度角 (the readout of Figure 25.24, termonline 航天科学技术名词 solar elevation) was confirmed; 弯月形 names the meniscus lens shape (termonline lists 弯月透镜); 光焦度 for the power of a lens stays beside 功率 (the Example 25.5 discussion keeps the English word with both terms, a forced scenario of 25.6); the colour names of the diamonds are 香槟色 and 干邑色.
+157. Chapter 29: `answer.parts[].part` of 29.1 (p1, p2), 29.3 (p1, p4–p7), 29.7 (p1, p2) and the unit `photons/s` of 29.3 stay English, as translate.md 5 keeps them byte for byte (the same as item 1). They were not recorded as forced scenarios; decide with item 1.
+158. Chapter 29: threshold frequency stays 截止频率 and threshold wavelength 截止波长 (chapter decision). termonline (物理学名词, 2026-10-23) lists 阈值频率 for threshold frequency and 截止波长 for cutoff wavelength; 红限 is the old name, 阈频率 and 极限频率 compete. Confirm 截止频率 or switch to 阈值频率 (a glossary change first, then 29.2, chapter.json and the concept rows).
+159. Chapter 29: bremsstrahlung stays 轫致辐射 (glossary 24.3, 物理学名词); the brief's “bremsstrahlung 制动辐射” was read as the gloss “braking radiation”, so 29.3 reads 轫致辐射（德语意为制动辐射）and the new row braking radiation is 制动辐射. If the intention was to change the term itself to 制动辐射, chapters 24, 29 and 30 and the concept row all change.
+160. Chapter 29: decay energy is 衰变能量 (glossary row changed from 衰变能, 物理学名词) so that both source spans (decay, energy) have their own words; confirm or revert the pages to 衰变能.
+161. Chapter 29: Figure 29.7 + 29.8 caption says “threshold energy” where the threshold frequency is meant (source slip, kept as printed: 截止能量, row threshold energy). Source slip also: the concept binding-energy-threshold (and the 29.2 text) say a longest wavelength “below which” no electrons are ejected, which should be “above” (kept as printed). Source slips: “Max Plank” (29.1 alt), “breaking radiation” (29.3 ap2).
+162. Chapter 29: glossary wins over the translators' words in 29.1, 29.3, 29.4, 29.6: rung 梯级 (not 横档), photographic plate 感光板 (not 照相底片), camera 照相机 in CCD 照相机, heat lamp 加热灯, planes of atoms 原子面, Louis-Victor 维克多, sterilization 灭菌 against sterilize/sterilizer 消毒, headlights 前照灯. Confirm 灭菌 and 消毒 side by side in 29.3.
+163. Chapter 29: new sense rows: source (of particles) 粒子源, heat source (any source of heat) 热源 beside the glossary heat source 热库 (14.2), solar sail 太阳帆 beside the book's space sail 太空帆, threshold energy 截止能量 (the book's slip). Primary beam is 一次电子束 (paired with the glossary 二次电子), while 物理学名词 lists 原初电子 for primary electron; confirm.
+164. Chapter 29: new provisional rows (termonline checked 2026-10-23 and not listed or not looked up): 量子间隔, 自动光圈, 可变电压源, 受体分子, UV 阻挡层, 晒黑, 人口统计学研究, 制动辐射, 放电 (electric discharge), 核爆炸, 生物组织, 暗室, 镀铝 Mylar (Mylar kept in Latin), CCD 照相机, 金属箔, 沙粒, 灵敏区域, 探测系统, 线动量守恒, 氦核, 晶格结构, 亚纳米, 双缝图样, 单缝图样, 计数图, 缝间距, 永恒, 无穷 (Blake's Infinity, beside the glossary 无穷大). Confirmed with entry URLs: 经典电动力学, 康普顿波长, 静电势, 波动方程, 矩阵, 奇异粒子 (天文学名词).
+165. Chapter 29: apparatus labels and the book's own wordings with `confirm: owner`: 板的金属, 光子入射，电子逸出, 量子波干涉（PhET title), the photo credits kept in English, Himipristis. The exercise notes of 29.1–29.8 now use 判分选择题, 书后答案, 建议思路, 布鲁姆层级, 概念标签 and 容差 as the earlier chapters do.
+166. Chapter 29: two candidate rows are removed from the glossary as unused on any page: matter wave 物质波 and wave function 波函数 (the second to be re-added by the chapter that uses it). The introduction's title row (量子物理学导论) now agrees with the page and with 14.7's citation; item 51's “to be settled” can be closed.
+167. **Term decisions of the chapter 27 merge (2026-10-23, owner-directed)** to confirm. 27.1 is 光的波动特性：干涉 (short 光的波动特性; the prose wave nature of light stays 光的波动性). The path difference is 波程差 (27.3 to 27.5; the concept single-slit-minima read 路径差; 长度之差 stays for the variable Δl, “the difference in length”). The order is 级次. Bright and dark fringes are 明条纹 and 暗条纹, bright and dark lines 亮线 and 暗线; the 27.7 “bands” are read as fringes (the glossary bright fringe read 亮条纹). Reflection and scattering polarization are 反射起偏 and 散射起偏 (concept names, glossary rows and the example title 计算反射起偏). The phase change on reflection is 半波损失 as the concept name and 相位变化 in the prose (the concept statements read 相位突变). The mirror of an optical system is 面镜 (27.2 apparatus, the diffraction-limit statement and D_ap read 镜子 or 反射镜) and the household mirror 镜子. Specimen is 标本 and sample 样品 (27.6 and 27.9 read 样品 for the specimen; the confocal concept statement and summary now 厚标本). Out of phase is 不同相 (27.9 read 相位不同), polarized in optics 偏振的 (the glossary polarized 极化的 stays for dielectrics), the lines per centimetre 每厘米刻线数, contrast 衬度, confocal 共焦, thin film 薄膜. The axis of a polarizing filter is 透振方向 (the glossary row; 偏振化方向 and 透光轴 compete).
+168. **Rows added at the chapter 27 merge** (75; `confirm: termonline` except the book's own labels, which are `confirm: owner`; not looked up on termonline). The least certain: 澳元钞票 (the “dollar bills” of the security-features paragraph are Australian), 束腰 (waist of a beam), 毛坯 and 样板 (lens blank, optical master), 刻蚀 (etching), 极大线 (lines of maxima), 弯曲聚焦碟面 (curved focusing dish), 眼白 (the whites of their eyes), 一级极小 (first minimum), 高级次极大 (higher-order maxima), 半圆形的波 (the pending form 半圆形波 does not occur on the page), 波动 (the option “wave” of the 27.6 control) and the senses 相位变化 (phase change of a wave, beside 相变), 薄膜 (the film of 27.7, beside 胶片 and 液膜), 油 (the film material, beside 石油) and 偏振的 (polarized, beside 极化的). Pending terms not added: shift 移动量 (the page follows the glossary shift 位移, which the 27.3 slider label now reads; 位移 may be mistaken for the displacement of the wave, and the owner may want a sense row), coherent light source, diffraction modes and polarize / a polarizing slit forms that no page uses, and the templates of 27.9 with … in them (figure strings built from numbers).
+169. **Glossary rows changed at the chapter 27 merge** (9, with `old_target`): bright fringe, Polarization by Reflection, Polarization by Scattering, Calculating polarization by reflection, The Wave Aspect of Light: Interference, The wave aspect of light, the specimen, the distance from the specimen to the objective lens, the specimen near P, magnified.
+170. **Pages and rows edited at the chapter 27 merge.** 27.2 (镜子 to 面镜, 3), 27.3 and 27.4 (`\text{对}` to `\text{对于}`), 27.3 figures.js (移动量 to 位移), 27.4 (the credit of the two-photograph figure as printed: “(a) Opals-On-Black.com, via Flickr; (b) whologwhy, Flickr”), 27.6 (样品 to 标本 in 3 spans, 1 sentence, 3 figure labels and the referent label), 27.7 (亮条纹 to 明条纹, 3), 27.9 (不同相, 4; 标本, 3 and the summary), the figure citations and solution part labels of 27.1, 27.3, 27.5, 27.6, 27.7, 27.9 to full-width （a）（b）, the `notes` and `exercise_notes` of all pages to one wording (书后答案, 判分选择题, 布鲁姆层级, 建议思路, 习题卡片, 容差, 说明, 概念标签), and 11 `ost` writes (sections 27.1; concepts double-slit-constructive, single-slit-minima, diffraction-limits-resolution, phase-change-on-reflection, nonreflective-coating, polarization-by-reflection, polarization-by-scattering, confocal-microscopy; variables 27.6/D_ap and 27.6/d). The choice keys “(b)”, “(b) 和 (c)” of the solutions and the `answer.parts[].part` labels stay as printed (a standing decision).
+171. **Left as the pages have it.** 27.2 keeps 亮带 for the bright band of the wave figure (a band of light, not a fringe); cross-references to sections read both 第 27.1 节 and 27.1 节 (the chapters differ among themselves); 27.6 derivation `src` reads 图 27.30（b）, translated (ch20 20.1 kept “Figure 20.7” there; the owner may want the two made alike); the intro title is 波动光学导论 per the chapter decision.
+172. **Source slips noticed in chapter 27, kept as printed** (already named in the section notes): the 27.4 answer that takes the line spacing as 1.00 × 10⁻⁶ m for 1000 lines in 10.00 mm; Example 27.3 prints y = 0.815 m where the arithmetic gives 0.822 m; the 30,000 lines/cm exercise answer writes lines per centimetre as a length in (c); the 27.7 Example 27.7(b) prints λn/2 for λ_n/2; the 27.6 laser printer problem spells “Raleigh’s”; the 27.6 captions “separated by at distance x and a positioned a distance d away” and “2 million years for its light to reach us” (the latter written once, a forced scenario).
+173. **Forced scenarios of chapter 27.** `ch27/config.md` holds 9 rows (27.1: 1, 27.2: 1, 27.4: 1, 27.6: 4, 27.7: 1, 27.8: 1); the page translators had listed 15, and the merge dropped the word-order choices, the cited titles, the `answer.parts[].part` labels and the translated `src` strings (see the lead of the chapter 27 section).

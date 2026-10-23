@@ -1,0 +1,467 @@
+{
+ "id": "23.4",
+ "module": "m42404",
+ "chapter": "23",
+ "title": "涡流与磁阻尼",
+ "short": "涡流",
+ "lead": "一整块在<span data-concept=\"magnetic-field\">磁场</span>中运动的金属带有它自身的感应<span data-concept=\"electric-current\">电流</span>，即在金属内部环绕的涡流。本节考察它们施加在运动金属上的阻力，给金属开槽如何改变这种阻力，以及利用它们的天平、分选机、探测器和刹车。",
+ "objectives": [
+  "解释感应涡流的大小和方向，以及它对被感应出它的物体将产生什么影响。",
+  "描述磁阻尼的几种应用。"
+ ],
+ "summary_html": "<ul><li>在运动的导体中感应出的环形<span data-concept=\"electric-current\">电流</span>称为涡流。</li><li>它们能产生显著的阻力，称为磁阻尼。</li></ul>",
+ "notes": "书后答案没有给出本节两道习题的答案，因此两道题都被略去，同时略去的还有第二题所参照的、线圈移入和移出匀强磁场区域的图。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。答案来自书后答案，而本节的两道习题没有答案，因此两道题都被略去。两道思考题予以保留，其建议思路由 AI 撰写并作了标注。",
+ "figures": [
+  {
+   "id": "sim-magnetic-damping",
+   "kind": "sim",
+   "number": "23.12",
+   "originals": [
+    "/media/ch23/Figure_24_04_01.jpg"
+   ],
+   "original_caption": "一种用于探究涡流和磁阻尼的常见物理演示装置。（a）金属摆锤在磁体两极之间摆动，其运动因涡流的作用而很快被阻尼。（b）开槽金属摆锤的运动几乎不受影响，这意味着涡流变得不那么有效。（c）不导电的摆锤也没有磁阻尼，因为涡流极小。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "current",
+    "force",
+    "magnetic-field",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "near pole redrawn see-through over the bob"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-eddy-currents-in-a-plate",
+   "kind": "sim",
+   "number": "23.13",
+   "folds": [
+    "23.14"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_04_02.jpg",
+    "/media/ch23/Figure_24_04_03.jpg"
+   ],
+   "original_caption": "（图 23.13）对从磁体两极之间穿过的导体板的更详细的观察。它进入和离开磁场时，磁通量的变化产生涡流。作用在环形电流上的磁力阻碍运动。当金属板完全处于匀强磁场内时，没有电流，也没有磁阻力。（图 23.14）在进入磁场的开槽金属板中感应出的涡流形成小环路，作用在它们上的力趋于抵消，从而使磁阻力几乎为零。",
+   "widths": [
+    300,
+    300
+   ],
+   "draws": [
+    "current",
+    "force",
+    "magnetic-field",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph note dropped, readout note cut, caption names insulator"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-damped-balance",
+   "kind": "sim",
+   "number": "23.15",
+   "originals": [
+    "/media/ch23/Figure_24_04_04.jpg"
+   ],
+   "original_caption": "这台灵敏天平的磁阻尼使其振动减慢。由于法拉第电磁感应定律对变化最快时给出最大的效应，阻尼在振动幅度大时最大，在运动停止时趋于零。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "current",
+    "force",
+    "magnetic-field",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "drag arrow on the disc rim, field markers and label moved"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-recycling-ramp",
+   "kind": "sim",
+   "number": "23.16",
+   "originals": [
+    "/media/ch23/Figure_24_04_05.jpg"
+   ],
+   "original_caption": "借助磁阻力可以把金属从其他垃圾中分离出来。沿这个斜面送下的金属中，下方的强力磁体产生涡流和磁阻力。非金属则继续前进。",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "current",
+    "force",
+    "magnetic-field",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-metal-detector",
+   "kind": "photo",
+   "number": "23.17",
+   "widths": [
+    325
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-coaster-magnets",
+   "kind": "photo",
+   "number": "23.18",
+   "widths": [
+    325
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "eddy-currents",
+   "concept": "eddy-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "magnetic-damping",
+   "verb": "introduces"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "slotting-reduces-eddy-currents",
+   "verb": "introduces"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "motional-emf",
+   "verb": "uses"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "right-hand-rule-1",
+   "verb": "uses"
+  },
+  {
+   "span": "eddy-currents",
+   "concept": "damped-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "applications-of-magnetic-damping",
+   "verb": "introduces"
+  },
+  {
+   "span": "applications",
+   "concept": "magnetic-damping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "eddy-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "slotting-reduces-eddy-currents",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736687515",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eddy-currents",
+   "prompt": "解释为什么磁阻尼对由多层被绝缘层隔开的薄导电层构成的物体可能不起作用。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "层与层之间的绝缘层使电流无法从一层进入下一层，所以涡流不可能沿一个包住整个厚度的环路流动。每个环路都被关在它所在的那一薄层之内，只围住很小的面积，而且必须沿狭窄的路径流动，这条路径对电流有很大的电阻，因此电流很小。磁场中的电流所受的力与该电流成正比，所以物体受到的阻力也很小。各层之间还会像图 23.14 中的槽缝那样互相对抗：相邻的环路中电流沿相反方向，作用在它们上的力几乎完全抵消。因此，这样构成的物体几乎不受阻尼，这正是变压器和电动机的铁芯用薄的绝缘片叠成而不用整块金属的原因。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737772157",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "解释如何利用电磁感应来探测金属？这项技术对于探测埋藏的地雷以便排除、对于地球物理勘探以及在机场尤为重要。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "交流电通过探测器的原线圈，建立起一个磁场，该磁场的变化与电流的变化一样快。任何离得足够近、处于这个磁场中的导体，其中的磁通量都在变化，因此根据法拉第定律，其中会出现电动势。导体自身提供闭合路径，所以这个电动势驱使涡流在导体内部流动。这些涡流建立的磁场阻碍产生它们的变化，该磁场传回探测器，改变副线圈中感应出的电流。仪器监视次级电流，一有变化就报告出来，或是发出一声刺耳的噪声，或是使指针摆动。这一整条链条并不要求被埋的物体有磁性，只要求它导电，所以探测器发现铝和铜与发现铁一样容易。因此，同一种方法既能用于带金属部件的地雷，也能用于地下的矿体和机场的安检门。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "slotting-reduces-eddy-currents"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "eddy-current",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "applications-of-magnetic-damping"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "eddy-current",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "solid-bob",
+   "label": "实心金属摆锤",
+   "figures": [
+    "sim-magnetic-damping"
+   ]
+  },
+  {
+   "id": "slotted-bob",
+   "label": "开槽金属摆锤",
+   "figures": [
+    "sim-magnetic-damping"
+   ]
+  },
+  {
+   "id": "insulating-bob",
+   "label": "绝缘摆锤",
+   "figures": [
+    "sim-magnetic-damping"
+   ]
+  },
+  {
+   "id": "pendulum-magnet",
+   "label": "磁体",
+   "figures": [
+    "sim-magnetic-damping"
+   ]
+  },
+  {
+   "id": "plate",
+   "label": "金属板",
+   "figures": [
+    "sim-eddy-currents-in-a-plate"
+   ]
+  },
+  {
+   "id": "balance",
+   "label": "天平的横梁",
+   "figures": [
+    "sim-damped-balance"
+   ]
+  },
+  {
+   "id": "disc",
+   "label": "导电圆盘",
+   "figures": [
+    "sim-damped-balance"
+   ]
+  },
+  {
+   "id": "can",
+   "label": "铝罐",
+   "figures": [
+    "sim-recycling-ramp"
+   ]
+  },
+  {
+   "id": "fitting",
+   "label": "铜管件",
+   "figures": [
+    "sim-recycling-ramp"
+   ]
+  },
+  {
+   "id": "bottle",
+   "label": "塑料瓶",
+   "figures": [
+    "sim-recycling-ramp"
+   ]
+  },
+  {
+   "id": "ramp",
+   "label": "斜面",
+   "figures": [
+    "sim-recycling-ramp"
+   ]
+  },
+  {
+   "id": "ramp-magnet",
+   "label": "斜面下方的磁体",
+   "figures": [
+    "sim-recycling-ramp"
+   ]
+  }
+ ]
+}

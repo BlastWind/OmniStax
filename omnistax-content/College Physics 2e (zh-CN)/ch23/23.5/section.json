@@ -1,0 +1,682 @@
+{
+ "id": "23.5",
+ "module": "m42408",
+ "chapter": "23",
+ "title": "发电机",
+ "short": "发电机",
+ "lead": "用手转动电动机的转轴，这台机器就反过来运行，把运动变成电动势：它成了发电机。本节求出<span data-ref=\"generator-coil\">一个线圈</span>在<span data-concept=\"magnetic-field\">磁场</span>中转动时的平均电动势和瞬时电动势，以及<span data-ref=\"slip-rings\">滑环</span>或换向环如何把这个电动势交给电路。",
+ "objectives": [
+  "计算发电机中感应的电动势。",
+  "计算某一特定发电机系统中所能感应出的峰值电动势。"
+ ],
+ "summary_html": "<ul><li>发电机使线圈在<span data-concept=\"magnetic-field\">磁场</span>中转动，从而感应出电动势，电动势作为<span data-concept=\"time\">时间</span>的函数由 $\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt ,$ 给出，其中 $A$ 是 $N$ 匝线圈的<span data-concept=\"area\">面积</span>，该线圈以恒定的<span data-concept=\"angular-velocity\">角速度</span> $\\kw$ 在匀强<span data-concept=\"magnetic-field\">磁场</span> $\\kBmag$ 中转动。</li><li>发电机的<span data-concept=\"peak-emf\">峰值电动势</span> $\\kemfo$ 为 $\\kemfo = NA\\kBmag\\kw .$</li></ul>",
+ "notes": "书中未给出答案的五道习题被略去：500 匝线圈要给出 480 V 峰值电动势所需的以转每分计的角速度；“法拉第电磁感应定律：楞次定律”中某道习题里转动线圈的峰值电动势；关于驱动自行车发电机的车轮的综合概念习题；证明输出的周期为 $2\\pi/\\kw$；以及电动势在 0.100 ms 时首次达到峰值的线圈。本模块的其余内容均未略去。书中的四幅图被重绘为一台转动的发电机，并与书中自己的图片并排放置，因为书中把同一台机器画了四遍；汽轮机则保留为照片，因为它所在的那段文字讲的就是它。本节第二道 AP 题在原文中的解答已被注释掉，所以把它作为开放题保留，附有标明由 AI 撰写的建议思路，而不是判分答案。本模块没有印出“理解检测”框，也没有 PhET 模拟的链接。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十一道习题中有六道给出了答案，在此设置；其余五道略去，已在本节的说明中点明。书中只给出某道习题数值部分的答案、而该题还要求讨论时，设置已给出答案的部分，书中的讨论则保留在详解中。两道思考题都附有标明由 AI 撰写的建议思路，而不是判分答案，因为书中两题都没有给出答案。两道 AP 题中的第一道是四选一的选择题，原书答案为（c），按判分选择题设置；第二道没有给出答案，因为其解答在原文中已被注释掉，所以作为开放题保留，附有标明由 AI 撰写的建议思路。没有任何习题留待后面的小节，也没有来自前面小节的习题，不过本节第四道习题指回书中印在“法拉第电磁感应定律：楞次定律”中的一道习题，该题仍留在书中原处。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-generator",
+   "kind": "sim",
+   "number": "23.19",
+   "folds": [
+    "23.20",
+    "23.21",
+    "23.22"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_05_01.jpg",
+    "/media/ch23/Figure_24_05_02.jpg",
+    "/media/ch23/Figure_24_05_03.jpg",
+    "/media/ch23/Figure_24_05_04.jpg"
+   ],
+   "original_caption": "（图 23.19）这个发电机线圈转过四分之一圈时，磁通量 Φ 从最大值变为零，从而感应出电动势。（图 23.20）单个矩形线圈在匀强磁场中以恒定角速度转动的发电机，产生随时间按正弦变化的电动势。请注意，这台发电机与电动机相似，只不过这里是转动转轴来产生电流，而不是反过来。（图 23.21）发电机的电动势通过图中所示的滑环和电刷系统送到灯泡。图线给出发电机的电动势随时间的变化。emf₀ 是峰值电动势。周期为 T = 1/f = 2π/ω，其中 f 是频率。请注意，花体 E 表示电动势。（图 23.22）在这种配置中，称为换向器的换向环产生脉动的直流电动势输出。",
+   "widths": [
+    250,
+    225,
+    350,
+    225
+   ],
+   "draws": [
+    "magnetic-flux",
+    "magnetic-field",
+    "voltage",
+    "velocity",
+    "angular-rate",
+    "time",
+    "area",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "split-ring headline sentence dropped; note cut to the slow-motion factor"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-average-emf",
+   "kind": "sim",
+   "draws": [
+    "magnetic-flux",
+    "voltage",
+    "angular-rate",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph notes dropped, average label kept inside; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-steam-turbine",
+   "kind": "photo",
+   "number": "23.23",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "a-generator-induces-an-emf",
+   "concept": "electric-generator",
+   "verb": "introduces"
+  },
+  {
+   "span": "a-generator-induces-an-emf",
+   "concept": "average-emf-of-a-generator",
+   "verb": "introduces"
+  },
+  {
+   "span": "a-generator-induces-an-emf",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "a-generator-induces-an-emf",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "a-generator-induces-an-emf",
+   "concept": "ways-to-change-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "a-generator-induces-an-emf",
+   "concept": "turns-multiply-emf",
+   "verb": "uses"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "generator-emf-versus-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "peak-emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "commutator-pulsed-dc",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "average-emf-of-a-generator",
+   "verb": "reinforces"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "motional-emf",
+   "verb": "uses"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "the-emf-at-each-instant",
+   "concept": "brushes-reverse-the-current",
+   "verb": "uses"
+  },
+  {
+   "span": "generators-in-the-world",
+   "concept": "electric-generator",
+   "verb": "reinforces"
+  },
+  {
+   "span": "generators-in-the-world",
+   "concept": "motional-emf-power-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "generators-in-the-world",
+   "concept": "torque-on-a-current-loop",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736737112",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "用右手定则 1 证明，图 23.22 中发电机线圈两侧的电动势方向相同，因而相加。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两根侧边导线沿相反方向运动，所以由右手定则 1 得到作用在它们电荷上的力在空间中方向相反，一侧向上，另一侧向下，而这就是绕线圈一周的同一方向。设磁场由左边的北极指向右边的南极，转轴竖直，从上方看线圈沿逆时针方向转动。在线圈平面沿磁场方向的那一时刻，左侧导线朝你运动，右侧导线远离你运动，因为两侧位于转轴的两边。对于左侧导线，让右手拇指沿 $\\kv$ 指向你，四指沿 $\\kBmag$ 指向右方；手掌朝上，所以作用在正电荷上的力把它沿导线向上推。对于右侧导线，在同一磁场中 $\\kv$ 背离你，力沿导线向下。一个电荷被推着沿左侧向上，越过顶边，沿右侧向下，再越过底边返回，它沿线圈朝同一个方向绕行，所以两个电动势驱动电流的方向相同。每一侧贡献 $\\kBmag\\ell\\kv\\sin\\ktheta$，二者相加为 $\\kemf = 2\\kBmag\\ell\\kv\\sin\\ktheta$。在任何其他角度，两个速度一同转动并保持方向相反，所以电动势仍然相加。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738117063",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "the-emf-at-each-instant",
+   "prompt": "发电机输出电能的来源，是使其线圈转动所做的功。转动发电机所需的功与楞次定律有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "楞次定律指出，线圈中感应出的电流要反抗产生它的磁通量变化。这个电流在线圈处于磁场中时流过线圈，所以磁场对它施加一个力，而这个力的方向恰好是反抗线圈运动的方向。因此，发电机抵抗转动。你转得越快，或者它必须提供的电流越大，它的反推就越用力。转动转轴的人要克服这个反抗的力矩做功，这份功就是发电机所输出电能的来源。如果楞次定律的方向反过来，感应电流就会帮助线圈转动，发电机就会越转越快，凭空输出能量。楞次定律就是为电磁感应写出的能量守恒。这也是为什么自行车发电机在灯关着时很容易转动，而灯亮着时很难转动。没有电流，就没有反抗的力，也不做功；有了电流，克服反抗的力所做的功就点亮了灯。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1518306",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "在磁场中转动的线圈内感应出的电动势，将在下列情形达到最大：",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "磁通量最大。",
+     "磁通量最小。",
+     "磁通量的变化最大。",
+     "磁通量的变化最小。"
+    ],
+    "correct": 2,
+    "hint": "法拉第电磁感应定律把电动势定为磁通量的变化率，而不是磁通量本身。想一想余弦曲线上哪里的值变化最快，并注意那恰好是值本身经过零的地方。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1448465",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "一个横截面为圆形、共 20 匝的线圈，在磁体的两极之间以 400 转每分的转速转动。若磁感应强度为 0.6 T，峰值电压为 0.2 V，线圈的半径是多少？若线圈的电动势在 $\\kt = 0\\;\\text{s}$ 时为零，它何时达到峰值电动势？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "半径为 $1.1\\;\\text{cm}$，电动势首次达到峰值是在 $\\kt = 0.0375\\;\\text{s}$。峰值电动势为 $\\kemfo = N\\karea\\kBmag\\kw$。以弧度每秒计的转动速率为 $\\kw = (400\\;\\text{rev/min})(2\\pi\\;\\text{rad/rev})/(60\\;\\text{s/min}) = 41.9\\;\\text{rad/s}$。解出面积，$\\karea = \\kemfo/N\\kBmag\\kw = (0.2\\;\\text{V})/[(20)(0.6\\;\\text{T})(41.9\\;\\text{rad/s})] = 3.98\\times 10^{-4}\\;\\text{m}^2$。横截面是圆形，所以 $\\karea = \\pi r^2$，$r = \\sqrt{(3.98\\times 10^{-4}\\;\\text{m}^2)/\\pi} = 1.13\\times 10^{-2}\\;\\text{m}$，约为 1.1 cm。由于电动势在 $\\kt = 0$ 时为零，可知 $\\kemf = \\kemfo\\sin\\kw\\kt$，它在 $\\kw\\kt = \\pi/2$ 时首次达到峰值。于是 $\\kt = \\pi/2\\kw = (1.571\\;\\text{rad})/(41.9\\;\\text{rad/s}) = 0.0375\\;\\text{s}$。这是周期 $\\kT = 2\\pi/\\kw = 0.150\\;\\text{s}$ 的四分之一，即线圈从正对磁场转到侧对磁场的那四分之一圈。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169736999795",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "计算发电机的峰值电压，该发电机使其 200 匝、直径为 0.100 m 的线圈在 0.800 T 的磁场中以 3600 转每分的转速转动。",
+   "answer": {
+    "type": "number",
+    "value": 474,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "用 $\\kemfo = NA\\kBmag\\kw$。线圈是直径 0.100 m 的圆形，所以它的面积为 $\\pi r^2$，其中 $r = 0.0500\\;\\text{m}$，并且必须先把 3600 转每分换算成弧度每秒。",
+    "solution": "474 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738080660",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "使一个 1000 匝、直径 20.0 cm 的线圈在地球的 $5\\text{.}\\text{00}\\times {\\text{10}}^{-5}\\;\\text{T}$ 磁场中转动，线圈平面起初垂直于地磁场，并在 10.0 ms 内转到与磁场平行，所产生的峰值电动势是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.247,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "线圈在 10.0 ms 内转过四分之一圈，所以角速度是 $(\\pi/2)$ 弧度除以这段时间；然后用 $\\kemfo = NA\\kBmag\\kw$，面积取半径 10.0 cm 的圆的面积。",
+    "solution": "0.247 V"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737905343",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "（a）一台自行车发电机以 1875 rad/s 的角速度转动，产生 18.0 V 的峰值电动势。它的矩形线圈为 1.00 cm × 3.00 cm，处于 0.640 T 的磁场中。线圈有多少匝？（b）对于 1.00 cm × 3.00 cm 的线圈，这个匝数的导线实用吗？",
+   "answer": {
+    "type": "number",
+    "value": 50,
+    "unit": "turns",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "由 $\\kemfo = NA\\kBmag\\kw$ 解出 $N$，面积取矩形两边（以米为单位）的乘积。",
+    "solution": "（a）50\n（b）是的"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169736729580",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "（a）发动机怠速时，汽车发电机以 400 转每分的转速转动。它的 300 匝、5.00 cm × 8.00 cm 的矩形线圈在可调的磁场中转动，使它即使在低转速下也能产生足够的电压。产生 24.0 V 峰值电动势所需的磁感应强度是多少？（b）讨论这一所需的磁感应强度与永磁体和电磁铁所能提供的磁感应强度相比如何。",
+   "answer": {
+    "type": "number",
+    "value": 0.477,
+    "unit": "T",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "由 $\\kemfo = NA\\kBmag\\kw$ 解出磁感应强度，先把 400 转每分换算成弧度每秒，面积取 5.00 cm 乘 8.00 cm（换算成米）。",
+    "solution": "（a）0.477 T\n（b）这个磁感应强度足够小，用永磁体或电磁铁都可以得到。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737719383",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-average-emf",
+   "prompt": "一个 75 匝、直径 10.0 cm 的线圈在 1.25 T 的磁场中以 8.00 rad/s 的角速度转动，开始时线圈平面与磁场平行。（a）峰值电动势是多少？（b）峰值电动势在什么时刻首次达到？（c）电动势在什么时刻首次取最负值？（d）交流电压输出的周期是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 5.89,
+      "unit": "V",
+      "hint": "用 $\\kemfo = NA\\kBmag\\kw$，面积取半径 5.00 cm 的圆的面积。"
+     },
+     {
+      "part": "(b)",
+      "value": 0,
+      "unit": "s",
+      "hint": "线圈开始时其平面沿磁场方向，这是线圈侧对磁场的位置，此时电动势已经处在峰值，所以根本不需要经过任何时间。"
+     },
+     {
+      "part": "(c)",
+      "value": 0.393,
+      "unit": "s",
+      "hint": "电动势在达到峰值之后半个周期取最负值，而周期为 $2\\pi/\\kw$。"
+     },
+     {
+      "part": "(d)",
+      "value": 0.785,
+      "unit": "s",
+      "hint": "输出的周期为 $\\kT = 2\\pi/\\kw$。"
+     }
+    ],
+    "solution": "（a）5.89 V\n（b）在 t=0 时\n（c）0.393 s\n（d）0.785 s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169738092977",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-generator",
+   "prompt": "**不合理的结果** 一个面积为 $0\\text{.}\\text{250}\\;{\\text{m}}^{2}$ 的 500 匝线圈，在地球的 $5\\text{.}\\text{00}\\times {\\text{10}}^{-5}\\;\\text{T}$ 磁场中旋转，产生 12.0 kV 的最大电动势。（a）必须以多大的角速度转动线圈？（b）这个结果有什么不合理之处？（c）是哪个假设或前提造成的？",
+   "answer": {
+    "type": "number",
+    "value": 1920000,
+    "unit": "rad/s",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "由 $\\kemfo = NA\\kBmag\\kw$ 解出角速度，并让磁场以特斯拉计、电动势以伏特计。",
+    "solution": "（a）$1\\text{.}\\text{92}\\times {\\text{10}}^{6}\\;\\text{rad/s}$\n（b）这个角速度高得不合理，高于任何机械系统所能达到的角速度。\n（c）认为能够得到高达 12.0 kV 的电压，这一假设是不合理的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "generator-emf-versus-time"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "motional-emf",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-generator"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "lenzs-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "lenz-from-energy-conservation",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "generator-emf-versus-time"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "faradays-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "peak-emf"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "generator-emf-versus-time",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "peak-emf"
+  },
+  {
+   "exercise": "p3",
+   "concept": "peak-emf"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-emf-of-a-generator",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "peak-emf"
+  },
+  {
+   "exercise": "p7",
+   "concept": "peak-emf"
+  },
+  {
+   "exercise": "p9",
+   "concept": "generator-emf-versus-time"
+  },
+  {
+   "exercise": "p9",
+   "concept": "peak-emf",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "peak-emf"
+  }
+ ],
+ "referents": [
+  {
+   "id": "generator-coil",
+   "label": "发电机线圈",
+   "figures": [
+    "sim-generator"
+   ]
+  },
+  {
+   "id": "generator-magnet",
+   "label": "磁体的两极",
+   "figures": [
+    "sim-generator"
+   ]
+  },
+  {
+   "id": "slip-rings",
+   "label": "滑环",
+   "figures": [
+    "sim-generator"
+   ]
+  },
+  {
+   "id": "split-ring",
+   "label": "换向环",
+   "figures": [
+    "sim-generator"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "generator-emf",
+   "what": "发电机线圈的电动势",
+   "source": "《大学物理（第2版）》，23.5 发电机",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "每根侧边导线的速度与 $\\kBmag$ 成 $\\ktheta$ 角，所以它垂直于 $\\kBmag$ 的分量为 $\\kv\\sin\\ktheta$。",
+       "src": "23.5，图 23.20"
+      },
+      {
+       "text": "两根侧边导线上感应出的电动势方向相同；顶边和底边不增加电动势。",
+       "src": "23.5"
+      },
+      {
+       "text": "线圈以恒定的角速度 $\\kw$ 转动。",
+       "src": "23.5"
+      },
+      {
+       "tex": "\\ktheta = \\kw\\kt",
+       "src": "23.5"
+      },
+      {
+       "tex": "\\kv = \\krad\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\krad = \\kwloop/2",
+       "src": "23.5"
+      },
+      {
+       "tex": "\\karea = \\ell\\kwloop",
+       "src": "23.5"
+      },
+      {
+       "text": "$N$ 匝线圈的电动势是单匝线圈的 $N$ 倍。",
+       "src": "23.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv}",
+      "src": "23.3",
+      "why": "动生电动势，其中 $\\kv$ 垂直于 $\\kBmag$。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv\\sin\\ktheta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{two}{2}\\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv\\sin\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{two}{2}\\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv\\sin\\kw\\kt}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{two}{2}\\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\dfrac{\\kwloop}{2}\\kw\\sin\\kw\\kt}",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{l}{(\\ell \\kwloop)}\\mk{B}{\\kBmag}\\mk{v}{\\kw\\sin\\kw\\kt}",
+       "uses": [],
+       "map": {
+        "two": "v"
+       }
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{l}{\\karea}\\mk{B}{\\kBmag}\\mk{v}{\\kw\\sin\\kw\\kt}",
+       "uses": [
+        6
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{N}{N}\\mk{l}{\\karea}\\mk{B}{\\kBmag}\\mk{v}{\\kw\\sin\\kw\\kt}",
+       "uses": [
+        7
+       ]
+      }
+     ],
+     "src": "23.5"
+    }
+   ]
+  }
+ ]
+}

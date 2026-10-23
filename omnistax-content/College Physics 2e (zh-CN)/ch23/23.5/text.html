@@ -1,0 +1,66 @@
+<section id="a-generator-induces-an-emf">
+<h2>发电机感应出电动势</h2>
+<p><strong><span data-concept="electric-generator">发电机</span></strong>通过使线圈在<span data-concept="magnetic-field">磁场</span>中转动来感应出电动势，这一点在“感应电动势与<span data-concept="magnetic-flux">磁通量</span>”中已作过简要讨论。现在我们来更详细地探讨发电机。请看下面的例题。</p>
+<figure class="sim" id="sim-generator" data-figure="23.19 + 23.20 + 23.21 + 23.22" data-original="/media/ch23/Figure_24_05_01.jpg,/media/ch23/Figure_24_05_02.jpg,/media/ch23/Figure_24_05_03.jpg,/media/ch23/Figure_24_05_04.jpg" data-original-width="250,225,350,225" data-original-caption="（图 23.19）这个发电机线圈转过四分之一圈时，磁通量 Φ 从最大值变为零，从而感应出电动势。（图 23.20）单个矩形线圈在匀强磁场中以恒定角速度转动的发电机，产生随时间按正弦变化的电动势。请注意，这台发电机与电动机相似，只不过这里是转动转轴来产生电流，而不是反过来。（图 23.21）发电机的电动势通过图中所示的滑环和电刷系统送到灯泡。图线给出发电机的电动势随时间的变化。emf₀ 是峰值电动势。周期为 T = 1/f = 2π/ω，其中 f 是频率。请注意，花体 E 表示电动势。（图 23.22）在这种配置中，称为换向器的换向环产生脉动的直流电动势输出。">
+  <div class="sim-head"><span class="eyebrow">Figure 23.19 + 23.20 + 23.21 + 23.22</span><span><span data-ref="generator-coil">一个线圈</span>在<span data-ref="generator-magnet">磁体的两极</span>之间绕转轴转动，每有一条磁感线穿过它的平面，那里就有一个标记。穿过<span data-ref="generator-coil">线圈</span>的<span data-type="magnetic-flux">磁通量</span>，在<span data-ref="generator-coil">线圈</span>转到侧对磁场时逐渐减小到零，<span data-ref="generator-coil">它</span>转回来时又逐渐增大。设定匝数、<span data-ref="generator-coil">线圈</span>的<span data-type="area">面积</span>、<span data-type="magnetic-field">磁感应强度</span>和<span data-type="angular-rate">角速度</span>，观察<span data-type="voltage">电动势</span>如何随<span data-type="angle">转过的角度</span>沿曲线变化。把<span data-ref="slip-rings">两个滑环</span>换成<span data-ref="split-ring">一个换向环</span>，<span data-ref="generator-coil">同一个线圈</span>输出的就不再是正弦曲线，而是一串正脉冲。让<span data-ref="generator-coil">线圈</span>停在任意<span data-concept="angle">角度</span>，从上方或<span data-type="magnetic-field">沿磁场方向</span>观察<span data-ref="generator-coil">它</span>，其平面就会显示出<span data-type="magnetic-flux">磁通量本身</span>。</span></div>
+</figure>
+<div class="example" id="ex-emf-in-a-generator-coil">
+<h3>例题 23.3 · 计算发电机线圈中感应的电动势</h3>
+<p><span data-ref="generator-coil">图 23.19 中所示的发电机线圈</span>在 <span data-type="time">15.0 ms</span> 内转过四分之一圈（从 $\ktheta = 0^\circ$ 到 $\ktheta = 90^\circ$）。<span data-ref="generator-coil">这个 200 匝的圆形线圈</span>，<span data-type="position">半径为 5.00 cm</span>，处于 <span data-type="magnetic-field">1.25 T 的匀强<span data-concept="magnetic-field">磁场</span></span>中。<span data-type="voltage">感应出的平均电动势</span>是多少？</p>
+<h4>思路</h4>
+<p>我们用<span data-concept="faradays-law">法拉第电磁感应定律</span>求在<span data-type="time">一段<span data-concept="time">时间</span></span> $\kdt$ 内感应出的<span data-type="voltage">平均电动势</span>：</p>
+$$\kemf = -N\frac{\kdPhi}{\kdt}\text{.}$$
+<p>已知 $N = 200$，$\kdt = 15.0\;\text{ms}$，所以要求出电动势，必须先确定<span data-type="magnetic-flux">磁通量的变化</span> $\kdPhi$。</p>
+<h4>解</h4>
+<p>由于<span data-ref="generator-coil">线圈</span>的<span data-type="area">面积</span>和<span data-type="magnetic-field"><span data-concept="magnetic-field-strength-defined">磁感应强度</span></span>都是常量，可见</p>
+$$\kdPhi = \Delta(\kBmag \karea\cos\ktheta) = \karea\kBmag\Delta(\cos\ktheta)\text{.}$$
+<p>现在，$\Delta(\cos\ktheta) = -1.0$，因为题中给出 $\ktheta$ 从 $0^\circ$ 变到 $90^\circ$。于是 $\kdPhi = -\karea\kBmag$，而</p>
+$$\kemf = N\frac{\karea\kBmag}{\kdt}.$$
+<p><span data-ref="generator-coil">线圈</span>的<span data-type="area">面积</span>为 $\karea = \pi \krad^{2} = (3.14\ldots)(0.0500\;\text{m})^{2} = 7.85\times {10}^{-3}\;{\text{m}}^{2}$。代入这个值，得</p>
+$$\kemf = 200\frac{(7.85\times {10}^{-3}\;{\text{m}}^{2})(1.25\;\text{T})}{15.0\times {10}^{-3}\;\text{s}} = 131\;\text{V.}$$
+<h4>讨论</h4>
+<p>这是一个<span data-type="voltage">实用的平均值</span>，与家用<span data-concept="power">电源</span>所用的 120 V 相近。</p>
+</div>
+</section>
+
+<section id="the-emf-at-each-instant">
+<h2>每一时刻的电动势</h2>
+<p><span data-type="voltage">例题 23.3 中算出的电动势</span>是四分之一圈内的平均值。那么，在任意给定的时刻，电动势是多少？它随<span data-type="angle">角度</span>变化，这个角是<span data-type="magnetic-field"><span data-concept="magnetic-field">磁场</span></span>与<span data-ref="generator-coil">线圈</span>的法线之间的夹角。考虑<span data-ref="generator-coil">一个旋转的矩形线圈</span>（<span data-type="position">宽度</span>为 $\kwloop$，<span data-type="position">高度</span>为 $\ell$）在<span data-type="magnetic-field">匀强<span data-concept="magnetic-field">磁场</span></span>中的动生电动势，如图 23.20 所示，就能得到电动势作为<span data-concept="time">时间</span>的函数的表达式。</p>
+<p><span data-ref="generator-coil">线圈</span>导线中的电荷受到<span data-type="force"><span data-concept="magnetic-force-on-a-moving-charge">磁力</span></span>，因为它们在<span data-concept="magnetic-field">磁场</span>中运动。<span data-ref="generator-coil">竖直导线</span>中的电荷受到平行于导线的<span data-type="force"><span data-concept="force">力</span></span>，从而形成<span data-type="current"><span data-concept="electric-current">电流</span></span>。但顶边和底边中的电荷所受的<span data-type="force"><span data-concept="force">力</span></span>垂直于导线，不会引起<span data-concept="electric-current">电流</span>。因此，我们只需考虑<span data-ref="generator-coil">侧边导线</span>，就能求出<span data-type="voltage">感应电动势</span>。动生电动势由 $\kemf = \kBmag\ell\kv$ 给出，其中<span data-concept="velocity">速度</span> $\kv$ 垂直于<span data-concept="magnetic-field">磁场</span> $\kBmag$。</p>
+<figure class="dv" id="drv-generator-emf"></figure>
+<p>这就是 $N$ 匝、<span data-concept="area">面积</span>为 $\karea$ 的线圈，以恒定的<span data-concept="angular-velocity">角速度</span> $\kw$ 在匀强<span data-concept="magnetic-field">磁场</span> $\kBmag$ 中转动时，<strong><span data-concept="generator-emf-versus-time">发电机线圈中感应的电动势</span></strong>。它也可以表示为</p>
+$$\kemf = \kemfo\sin\kw\kt\text{,}$$
+<p>其中</p>
+$$\kemfo = N\karea\kBmag\kw$$
+<p>是最大的<strong>（峰值）电动势</strong>。请注意，振荡的<span data-concept="frequency">频率</span>为 $\kf = \kw/2\pi$，<span data-concept="period">周期</span>为 $\kT = 1/\kf = 2\pi/\kw$。图 23.21 给出了电动势作为<span data-concept="time">时间</span>的函数的图线，现在看来，<span data-concept="ac-voltage">交流电压</span>是正弦的，就显得合情合理了。</p>
+<p><span data-concept="peak-emf">峰值电动势</span> $\kemfo = N\karea\kBmag\kw$ 这一事实很说得通。线圈的数目越多，它们的<span data-concept="area">面积</span>越大，<span data-concept="force-field">场</span>越强，输出的<span data-concept="potential-difference">电压</span>就越大。有趣的是，发电机转得越快（$\kw$ 越大），电动势就越大。这一点在自行车发电机上很明显——至少在较便宜的那几种上是如此。本书的一位作者年少时，觉得把自行车骑得飞快、直到把车灯烧坏很好玩，结果有一天夜里天很黑，他不得不摸黑骑车回家。</p>
+<p>图 23.22 给出了一种使发电机产生脉动直流电的方案。由多个线圈和换向环构成的更精巧的装置可以产生更平滑的直流电，不过要得到无纹波的直流电，通常用的是电子手段，而不是机械手段。</p>
+<div class="example" id="ex-maximum-emf-of-a-generator">
+<h3>例题 23.4 · 计算发电机的最大电动势</h3>
+<p>计算例题 23.3 中那台发电机的<span data-type="voltage">最大电动势</span> $\kemfo$。</p>
+<h4>思路</h4>
+<p>一旦确定了 $\kw$，即<span data-type="angular-rate"><span data-concept="angular-velocity">角速度</span></span>，就可以用 $\kemfo = N\karea\kBmag\kw$ 求出 $\kemfo$。所有其他量都是已知的。</p>
+<h4>解</h4>
+<p><span data-concept="angular-velocity">角速度</span>定义为单位<span data-concept="time">时间</span>内<span data-concept="angle">角度</span>的变化：</p>
+$$\kw = \frac{\kdtheta}{\kdt}\text{.}$$
+<p><span data-type="angle">四分之一圈</span>是 $\pi/2$ <span data-concept="radian">弧度</span>，<span data-type="time"><span data-concept="time">时间</span></span>为 0.0150 s；因此，</p>
+$$\begin{array}{lll}\kw & = & \frac{\pi /2\;\text{rad}}{0.0150\;\text{s}} \\ & = & 104.7\;\text{rad/s}\text{.}\end{array}$$
+<p>104.7 rad/s 恰好是 1000 转每分。我们把这个值代入 $\kw$，并把上一个例题中的信息一并代入 $\kemfo = N\karea\kBmag\kw$，得到</p>
+$$\begin{array}{lll}\kemfo & = & N\karea\kBmag\kw \\ & = & 200(7.85\times {10}^{-3}\;{\text{m}}^{2})(1.25\;\text{T})(104.7\;\text{rad/s}) \\ & = & 206\;\text{V}\end{array}\text{.}$$
+<h4>讨论</h4>
+<p><span data-type="voltage">最大电动势</span>大于上一个例题中求得的 <span data-type="voltage">131 V 的平均电动势</span>，这正是应有的结果。</p>
+</div>
+<figure class="sim" id="sim-average-emf">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="generator-coil">同一个线圈</span>，穿过<span data-ref="generator-coil">它</span>的<span data-type="magnetic-flux">磁通量</span>和<span data-ref="generator-coil">它</span>感应出的<span data-type="voltage">电动势</span>都画成随<span data-type="angle">转过的角度</span>变化的图线。选择<span data-type="angle">转动从哪里开始</span>以及<span data-type="angle">转到多远</span>。横跨磁通量曲线的弦，就是法拉第电磁感应定律所取的斜率；下方阴影区间上的虚线水平线，就是该斜率给出的<span data-type="voltage">平均电动势</span>。把<span data-type="angle">区间</span>设为从<span data-ref="generator-coil">线圈</span>正对<span data-type="magnetic-field">磁场</span>的<span data-concept="position">位置</span>起转四分之一圈，这条水平线就落在<span data-type="voltage">例题 23.3 的 131 V</span> 处，略低于<span data-type="voltage">峰值</span>的三分之二。把<span data-type="angle">区间</span>的起点设在 90°，并把它张开到半圈，<span data-type="voltage">平均值</span>就降为零，所以不指明所涉及的时间间隔，平均电动势就毫无意义。</span></div>
+</figure>
+</section>
+
+<section id="generators-in-the-world">
+<h2>现实世界中的发电机</h2>
+<p>在现实中，<span data-concept="electric-generator">发电机</span>的外观与本节的图中大不相同，但原理是一样的。使线圈转动的<span data-concept="mechanical-energy">机械能</span>的来源，可以是落下的水（水力发电）、燃烧<span data-concept="fossil-fuels">化石燃料</span>产生的蒸汽，或者风的<span data-concept="kinetic-energy">动能</span>。图 23.23 给出了汽轮机的剖视图；蒸汽流过与转轴相连的叶片，使发电机内的线圈转动。</p>
+<figure class="photo" id="fig-steam-turbine" data-figure="23.23">
+  <img src="/media/ch23/Figure_24_05_05.jpg" data-width="300" alt="与发电机相连的汽轮机的照片。">
+  <figcaption><span class="eyebrow">Figure 23.23</span><span>汽轮机/发电机。燃煤产生的蒸汽冲击汽轮机叶片，使与发电机相连的转轴转动。（来源：Nabonaco, Wikimedia Commons）</span></figcaption>
+</figure>
+<p>本节所图示的发电机，看起来与前面所图示的<span data-concept="electric-motor">电动机</span>非常相似。这并非巧合。事实上，<span data-concept="electric-motor">电动机</span>的转轴转动时，它就成了发电机。某些早期的汽车把<span data-concept="electric-motor">起动机</span>用作发电机。在“<span data-concept="back-emf">反电动势</span>”中，我们将进一步探讨<span data-concept="electric-motor">电动机</span>作为发电机的作用。</p>
+</section>

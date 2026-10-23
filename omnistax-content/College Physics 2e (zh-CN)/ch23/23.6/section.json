@@ -1,0 +1,376 @@
+{
+ "id": "23.6",
+ "module": "m42411",
+ "chapter": "23",
+ "title": "反电动势",
+ "short": "反电动势",
+ "lead": "电动机和发电机是同一种机器，所以转轴在转动的电动机也会产生电动势，这个电动势与驱动它的<span data-concept=\"potential-difference\">电压</span>相对抗。本节考察这种反电动势，以及它对电动机在启动和运转时所吸取的<span data-concept=\"electric-current\">电流</span>意味着什么。",
+ "objectives": [
+  "说明什么是反电动势，以及它是如何感应出来的。"
+ ],
+ "summary_html": "<ul><li>任何转动的线圈都会有感应电动势——在电动机中，这称为反电动势，因为它阻碍输入电动机的电动势。</li></ul>",
+ "notes": "书中没有附答案的两道习题已略去：反电动势为 180 V 的 240 V 电动机，以及正常转速下电动机吸取 3.00 A 的玩具车。书中第三段把工作转速下的功率写成 (20 A)/(8.0 V)，本页改为同一句话所点明的乘积 P = IV，即书中接着给出的 160 W。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。答案取自书后答案：五道习题中有三道附有答案，已在此给出；另外两道没有答案，即反电动势为 180 V 的 240 V 电动机和玩具车的电动机，已略去。本节唯一的思考题涉及皮带传动断裂的电动机，书中没有给出答案，因此保留为开放题，附有一个由 AI 撰写并如此标注的建议思路。本节没有 AP 题，也没有“理解检测”框，所以全部放在末尾。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-back-emf",
+   "kind": "sim",
+   "number": "23.24",
+   "originals": [
+    "/media/ch23/Figure_24_06_01.jpg"
+   ],
+   "original_caption": "在这张电路图中，直流电动机的线圈用一个电阻器表示。反电动势用一个可变电动势表示，它与驱动电动机的电动势相对抗。电动机不转动时，反电动势为零；它随电动机的角速度成正比增大。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance",
+    "power",
+    "angular-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph note dropped, it repeated the readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dimming-lights",
+   "kind": "sim",
+   "draws": [
+    "voltage",
+    "current",
+    "resistance",
+    "power",
+    "angular-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "motor name moved off the back-emf arrow"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "motor-as-generator",
+   "concept": "motor-is-a-generator",
+   "verb": "introduces"
+  },
+  {
+   "span": "motor-as-generator",
+   "concept": "electric-generator",
+   "verb": "uses"
+  },
+  {
+   "span": "motor-as-generator",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "motor-as-generator",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "motor-as-generator",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "back-emf-and-speed",
+   "concept": "back-emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "back-emf-and-speed",
+   "concept": "generator-emf-versus-time",
+   "verb": "uses"
+  },
+  {
+   "span": "back-emf-and-speed",
+   "concept": "ir-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "back-emf-and-speed",
+   "concept": "wire-resistance-ir-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "back-emf-and-speed",
+   "concept": "power-and-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "stalled-motor",
+   "concept": "back-emf-and-current-drawn",
+   "verb": "introduces"
+  },
+  {
+   "span": "stalled-motor",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "stalled-motor",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "stalled-motor",
+   "concept": "back-emf",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738051900",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "back-emf-and-speed",
+   "prompt": "假设你发现，把一台大功率电动机与空调机组连接起来的皮带传动已经断裂，电动机正在空转。你是否应当担心电动机在毫无用处地消耗大量能量？请解释为什么应该担心，或为什么不必担心。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不必为能量担心，尽管断裂的皮带本身当然需要处理。皮带没了，转轴上就没有机械负载，于是电动机越转越快，直到它的反电动势几乎等于驱动它的电动势。线圈两端只剩下两者之间的微小差值。按欧姆定律，电流就是这个微小差值除以线圈的电阻，所以空转的电动机吸取的电流远小于它带动压缩机时的电流。它从电源取得的功率就是这个微小电流乘以驱动电压，而且这些功率消耗在摩擦和风阻上，而不是用在空调上。真正需要担心的是被负载拖慢或拖停的电动机。它几乎没有反电动势，吸取的电流最大，会过热。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737728029",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stalled-motor",
+   "prompt": "假设一台接在 120 V 电源上的电动机刚启动时吸取 10.0 A 的电流。（a）它的电阻是多少？（b）在正常工作转速下，当它产生 100 V 的反电动势时，吸取多大的电流？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 12.0,
+      "unit": "Ω",
+      "hint": "刚启动的电动机还没有转动，所以没有反电动势，整个 120 V 都加在它的线圈两端。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.67,
+      "unit": "A",
+      "hint": "在工作转速下，线圈两端只剩下驱动电动势与反电动势之差。"
+     }
+    ],
+    "solution": "（a）$12.00\\ \\Omega$（b）1.67 A"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737781410",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stalled-motor",
+   "prompt": "一台 120 V 的电动机在正常转速下吸取 8.00 A，刚启动时吸取 20.0 A，它的反电动势是多少？",
+   "answer": {
+    "type": "number",
+    "value": 72.0,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "启动电流和完整的 120 V 给出线圈的电阻，因为尚未转动的电动机没有反电动势。于是，正常转速下 8.00 A 的电流所对应的，就是线圈两端剩下的电压。",
+    "solution": "72.0 V"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737854685",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stalled-motor",
+   "tag": "综合概念",
+   "prompt": "<strong>综合概念</strong> 玩具车中的电动机由四节串联的电池供电，它们产生的总电动势为 6.00 V。电动机在正常转速下吸取 3.00 A，并产生 4.50 V 的反电动势。每节电池的内阻为 $0.100\\ \\Omega$。电动机的电阻是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.1,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "在电池产生的 6.00 V 与零之间有三个电压：四个内阻上的压降、反电动势，以及你要求的那个电阻上的压降。",
+    "solution": "$0.100\\ \\Omega$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "back-emf"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "back-emf-and-current-drawn",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "back-emf-and-current-drawn"
+  },
+  {
+   "exercise": "p1",
+   "concept": "back-emf",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "back-emf-and-current-drawn"
+  },
+  {
+   "exercise": "p3",
+   "concept": "back-emf",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "back-emf-and-current-drawn"
+  },
+  {
+   "exercise": "p5",
+   "concept": "back-emf",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "internal-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "motor",
+   "label": "电动机",
+   "figures": [
+    "sim-back-emf"
+   ]
+  },
+  {
+   "id": "coils",
+   "label": "电动机的线圈",
+   "figures": [
+    "sim-back-emf"
+   ]
+  },
+  {
+   "id": "lamp",
+   "label": "灯",
+   "figures": [
+    "sim-dimming-lights"
+   ]
+  },
+  {
+   "id": "feeder-lines",
+   "label": "供电线路",
+   "figures": [
+    "sim-dimming-lights"
+   ]
+  },
+  {
+   "id": "vacuum-motor",
+   "label": "吸尘器的电动机",
+   "figures": [
+    "sim-dimming-lights"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-power-product",
+   "kind": "correction",
+   "html": "书中把功率印成商的形式 $(20\\ \\text{A})/(8.0\\ \\text{V})$。功率是乘积 $\\kP = \\kIcur\\kV = (20\\ \\text{A})(8.0\\ \\text{V}) = 160\\ \\text{W}$，即书中给出的值。"
+  }
+ ]
+}

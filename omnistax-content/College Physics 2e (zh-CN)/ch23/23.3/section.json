@@ -1,0 +1,607 @@
+{
+ "id": "23.3",
+ "module": "m42400",
+ "chapter": "23",
+ "title": "动生电动势",
+ "short": "动生电动势",
+ "lead": "横切<span data-concept=\"magnetic-field\">磁场</span>运动的导体上会有电动势，即使磁场本身没有任何变化。本节借助法拉第定律求出在导轨上滑动的杆中的这一电动势，并把它应用于从航天飞机上拖出、穿过地磁场的<span data-ref=\"tether\">一根系绳</span>。",
+ "objectives": [
+  "计算物体在磁场中运动所产生的电动势、力、磁场和功。"
+ ],
+ "summary_html": "<ul><li>由相对于<span data-concept=\"magnetic-field\">磁场</span> $\\kBmag$ 的运动所感应的电动势称为<em>动生电动势</em>，其表达式为 $$\\kemf = \\kBmag\\ell\\kv \\qquad (\\kBmag\\text{, } \\ell \\text{ 和 } \\kv \\text{ 相互垂直),}$$ 其中 $\\ell$ 是物体的<span data-concept=\"length\">长度</span>，该物体相对于磁场以速率 $\\kv$ 运动。</li></ul>",
+ "notes": "书后答案中没有答案的八道习题被略去：两道要求读者证明杆和系绳所受的磁力与速度方向相反的题，一道证明三者并不相互垂直时电动势为 $B\\ell v\\sin\\theta$ 的题，螺丝刀一题，沿滑动杆的磁感应强度一题，1992 年 8 月那次飞行的运动角度一题，以及两道关于导轨中的电流和缆绳伸长的综合概念题。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十一道习题中有八道没有标准答案，已略去，其中包括要求证明磁力与速度方向相反的两道题和 $B\\ell v\\sin\\theta$ 的证明；保留下来的三道题采用书中自己的数值。四道思考题均没有标准答案，每道都作为开放题保留，并附有标明由 AI 生成的建议思路。本模块没有“理解检测”框，因此没有设置行内题，也没有留待后面章节的习题，或取自前面章节的习题。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-rod-rails",
+   "kind": "sim",
+   "number": "23.10",
+   "originals": [
+    "/media/ch23/Figure_23_03_01.jpg"
+   ],
+   "original_caption": "（a）当这根杆在匀强磁场中向右运动时，两导轨之间感应出动生电动势 = Bℓv。磁场 B 垂直纸面向里，垂直于运动的杆和导轨，因而也垂直于它们所围成的面积。（b）楞次定律给出感应磁场和电流的方向，以及感应电动势的极性。由于磁通量在增大，感应磁场的方向与之相反，即垂直纸面向外。右手定则 2 给出图中所示的电流方向，杆的极性将驱动这样的电流。右手定则 1 也指出杆具有同样的极性。（请注意，（b）部分底部的等效电路中所用的花体 E 符号表示电动势。）",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "current",
+    "velocity",
+    "force",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels through the labeller, clear of each other and the signs"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-relative-motion",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "velocity",
+    "time",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "speed labels off the rails and resistor; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tether",
+   "kind": "sim",
+   "number": "23.11",
+   "originals": [
+    "/media/ch23/Figure_24_03_02.jpg"
+   ],
+   "original_caption": "把动生电动势用于航天飞机的电力转换，是绳系卫星实验的动机。据预测，在地磁场中以轨道速率运动时，20 km 长的系绳中将感应出 5 kV 的电动势。回路由经过静止电离层的返回路径完成。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "magnetic-field",
+    "voltage",
+    "current",
+    "velocity",
+    "force",
+    "power",
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline and note for a tether at rest; current label moved"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "motion-induces",
+   "concept": "relative-motion-induces",
+   "verb": "introduces"
+  },
+  {
+   "span": "motion-induces",
+   "concept": "motional-emf",
+   "verb": "uses"
+  },
+  {
+   "span": "motion-induces",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "motional-emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "motional-emf-from-faradays-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "rod-on-rails",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "relative-motion-induces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "motional-emf",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "apply-lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-field",
+   "concept": "motional-emf-power-conversion",
+   "verb": "introduces"
+  },
+  {
+   "span": "earths-field",
+   "concept": "motional-emf",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736729392",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relative-motion",
+   "prompt": "为什么电路的一部分必须相对于其他部分运动，才能得到可用的动生电动势？例如，考虑图 23.10 中的导轨相对于磁场静止，而杆在运动。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电动势来自电路所围磁通量的变化，而在匀强磁场中，只有所围的面积改变，这个磁通量才能改变。如果杆、导轨和电阻器一起运动，则无论它们运动得多快，它们之间的面积都保持不变，磁通量也随之不变，不会出现电动势。因此，杆必须相对于导轨运动，这样在每个时间间隔 $\\kdt$ 内面积增加 $\\ell\\kv\\kdt$，磁通量增加 $\\kBmag\\ell\\kv\\kdt$，这就是电动势为 $\\kBmag\\ell\\kv$ 的原因。起作用的是电路的一部分与其余部分的分离，而不是电路整体的运动。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737862143",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-induces",
+   "prompt": "把一个金属圆柱体放进螺线管线圈内，可以做成一门威力很大的感应炮。当螺线管中的电流被迅速接通时，圆柱体会被猛烈地弹出。请用法拉第定律和楞次定律解释其原理。发射时，圆柱体为什么会带电/发热？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "迅速接通螺线管中的电流，会使内部的磁场在极短的时间内从零升到全值。穿过金属圆柱体的磁通量以极大的速率变化，所以根据法拉第定律，圆柱体周围会出现很大的电动势。根据楞次定律，它所驱动的电流必须反抗这一增加，所以它的环绕方向与螺线管中的电流相反。方向相反的两个电流相互排斥，圆柱体就被抛出线圈。圆柱体是电阻很小的导体，所以感应电动势驱动很大的电流通过它，该电流耗散的功率 $\\kIcur^2\\kRes$ 在磁场上升期间使金属发热。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737756419",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-induces",
+   "prompt": "电磁炉用位于锅下方、通有交流电的线圈加热锅（并且没有发热的表面）。炉面可以是导体吗？为什么通有直流电的线圈不行？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "线圈与锅之间的表面不应是导体。变化的磁场会穿过线圈上方的任何东西，导电的表面就会像锅一样在其中感应出电动势。电流随即在表面中流动并使之发热，而这正是设计必须避免的。线圈中的恒定电流则完全不行，因为它产生恒定的磁场，穿过锅的磁通量也恒定。只有变化的磁通量才会感应出电动势，所以锅中既没有电动势，也不会发热。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738016005",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-induces",
+   "prompt": "请解释如何通过在冻住的水管外绕上通有交流电的线圈来使它解冻。水管是不是导体有关系吗？请说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "通有交流电的线圈沿着其内部的水管送出交变的磁通量。根据法拉第定律，管子周围会感应出电动势；如果管子导电，该电动势就在金属中驱动电流，电流以热的形式耗散功率，使冰从管壁向内解冻。水管是不是导体确实有关系：塑料管中没有可供电流流动的东西，而管内的冰导电性很差，也几乎没有电流被驱动通过，所以这种方法对塑料管无济于事，管子仍和原来一样冻着。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737770436",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rod-on-rails",
+   "prompt": "（a）一架翼展为 75.0 m 的喷气式飞机以 280 m/s 的速率飞行。如果地磁场的竖直分量为 $3.00 \\times 10^{-5}\\ \\text{T}$，两翼尖之间感应出的电动势是多少？（b）这样大小的电动势可能产生任何后果吗？请说明。",
+   "answer": {
+    "type": "number",
+    "value": 0.63,
+    "unit": "V",
+    "part": "a",
+    "generated_by": "source",
+    "hint": "翼展就是横切磁场运动的长度，所以电动势为 $\\kBmag\\ell\\kv$，其中取磁场的竖直分量。",
+    "solution": "（a）0.630 V\n（b）不会，这是一个很小的电动势。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738010396",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rod-on-rails",
+   "prompt": "已知杆的长度为 30.0 cm，图 23.10 中的滑动杆必须以多大的速率运动，才能在 1.50 T 的磁场中产生 1.00 V 的电动势？",
+   "answer": {
+    "type": "number",
+    "value": 2.22,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "把 $\\kemf = \\kBmag\\ell\\kv$ 变形，解出速率，并把杆的长度换算成米。",
+    "solution": "2.22 m/s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169736667005",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "earths-field",
+   "prompt": "<strong>综合概念</strong> 本模块中讨论的绳系卫星产生 5.00 kV 的电动势，有 10.0 A 的电流流过。（a）如果该系统以 7.80 km/s 的速率运动，这会产生多大的磁阻力？（b）忽略这段时间内高度或速度的任何变化，1.00 h 内系统损失了多少动能？（c）如果系统的质量为 100,000 kg，速度的变化是多少？（d）讨论（比如一次为期一周的任务）对航天飞机轨道的长期影响，指出速度减小会产生什么效果，并评估这一效果的大小。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 10.0,
+      "unit": "N",
+      "hint": "系绳输出的功率为 $\\kemf\\kIcur$，而阻力乘以速率正是同一个功率。"
+     },
+     {
+      "part": "b",
+      "value": 281000000.0,
+      "unit": "J",
+      "hint": "一小时内取走的能量等于功率乘以 3600 s。"
+     },
+     {
+      "part": "c",
+      "value": 0.36,
+      "unit": "m/s",
+      "hint": "令所取走的能量等于 $\\tfrac{1}{2}m\\kv^2$ 的变化量，解出速率的微小变化。"
+     }
+    ],
+    "solution": "（a）10.0 N\n（b）$2.81 \\times 10^{8}\\ \\text{J}$\n（c）0.36 m/s\n（d）对于为期一周（168 小时）的任务，速度的变化将为 60 m/s，约为 1%。一般而言，速度减小会使轨道开始向内盘旋，因为速度将不再足以维持圆轨道。长期的后果是，航天飞机需要多一点燃料来维持所需的速率，否则轨道会略微向内盘旋。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "relative-motion-induces"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "motional-emf",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "lenzs-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "induction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "induction-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "motional-emf"
+  },
+  {
+   "exercise": "p5",
+   "concept": "motional-emf"
+  },
+  {
+   "exercise": "p5",
+   "concept": "motional-emf-from-faradays-law",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "motional-emf-power-conversion"
+  },
+  {
+   "exercise": "p11",
+   "concept": "motional-emf",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "rod",
+   "label": "杆",
+   "figures": [
+    "sim-rod-rails",
+    "sim-relative-motion"
+   ]
+  },
+  {
+   "id": "rails",
+   "label": "导轨",
+   "figures": [
+    "sim-rod-rails"
+   ]
+  },
+  {
+   "id": "resistor",
+   "label": "电阻器",
+   "figures": [
+    "sim-rod-rails"
+   ]
+  },
+  {
+   "id": "tether",
+   "label": "系绳",
+   "figures": [
+    "sim-tether"
+   ]
+  },
+  {
+   "id": "shuttle",
+   "label": "航天飞机",
+   "figures": [
+    "sim-tether"
+   ]
+  },
+  {
+   "id": "satellite",
+   "label": "卫星",
+   "figures": [
+    "sim-tether"
+   ]
+  },
+  {
+   "id": "ionosphere",
+   "label": "电离层",
+   "figures": [
+    "sim-tether"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "motional-emf",
+   "what": "沿导轨运动的杆的动生电动势",
+   "source": "《大学物理（第2版）》，23.3 动生电动势",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "N = 1",
+       "src": "23.3"
+      },
+      {
+       "tex": "\\kPhi = \\kBmag \\karea\\cos\\ktheta",
+       "src": "23.1"
+      },
+      {
+       "text": "$\\kBmag$ 垂直于 $\\karea$，所以 $\\ktheta = 0^\\circ$，$\\cos\\ktheta = 1$。",
+       "src": "23.3"
+      },
+      {
+       "text": "$\\kBmag$ 是均匀的。",
+       "src": "23.3"
+      },
+      {
+       "tex": "\\kdarea = \\ell\\kdx",
+       "src": "23.3"
+      },
+      {
+       "tex": "\\dfrac{\\kdx}{\\kdt} = \\kv",
+       "src": "23.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kemf} = \\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}}",
+      "src": "23.2",
+      "why": "不带符号的法拉第电磁感应定律：这里“电动势”指电动势的大小。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\Delta(\\kBmag\\karea\\cos\\ktheta)}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\Delta(\\kBmag\\karea)}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\kBmag\\kdarea}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\dfrac{\\mk{P}{\\ell\\kdx}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        4
+       ],
+       "map": {
+        "P": [
+         "B",
+         "P"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\mk{P}{\\ell\\kv} \\qquad (\\kBmag\\text{, } \\ell \\text{ 和 } \\kv \\text{ 相互垂直})",
+       "uses": [
+        5
+       ],
+       "map": {
+        "t": "P"
+       }
+      }
+     ],
+     "src": "23.3"
+    }
+   ]
+  }
+ ]
+}

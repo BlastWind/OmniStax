@@ -1,0 +1,759 @@
+{
+ "id": "23.7",
+ "module": "m42414",
+ "chapter": "23",
+ "title": "变压器",
+ "short": "变压器",
+ "lead": "变压器是绕在<span data-ref=\"core\">同一个铁芯</span>上的<span data-ref=\"primary secondary\">两个线圈</span>，它通过电磁感应改变<span data-concept=\"potential-difference\">电压</span>。本节求出两个线圈的<span data-concept=\"potential-difference\">电压</span>和<span data-concept=\"electric-current\">电流</span>如何比较，以及为什么电<span data-concept=\"power\">功率</span>要以高<span data-concept=\"potential-difference\">电压</span>远距离输送。",
+ "objectives": [
+  "解释变压器如何工作。",
+  "在已知其他量的条件下，计算电压、电流和/或匝数。"
+ ],
+ "summary_html": "<ul><li>变压器利用电磁感应把<span data-concept=\"potential-difference\">电压</span>从一个值变换为另一个值。</li><li>对于变压器，原线圈和副线圈两端的<span data-concept=\"potential-difference\">电压</span>满足 $$\\frac{\\kVsec}{\\kVprim} = \\frac{N_{\\text{s}}}{N_{\\text{p}}}\\text{,}$$ 其中 $\\kVprim$ 和 $\\kVsec$ 是匝数分别为 $N_{\\text{p}}$ 和 $N_{\\text{s}}$ 的原线圈和副线圈两端的<span data-concept=\"potential-difference\">电压</span>。</li><li>原线圈和副线圈中的<span data-concept=\"electric-current\">电流</span> $\\kIprim$ 和 $\\kIsec$ 满足 $\\frac{\\kIsec}{\\kIprim} = \\frac{N_{\\text{p}}}{N_{\\text{s}}}$。</li><li>升压变压器使<span data-concept=\"potential-difference\">电压</span>升高、<span data-concept=\"electric-current\">电流</span>减小，而降压变压器使<span data-concept=\"potential-difference\">电压</span>降低、<span data-concept=\"electric-current\">电流</span>增大。</li></ul>",
+ "notes": "该模块在例题之后印出的 PhET 模拟“发电机”的链接已略去。书后答案中没有给出答案的五道习题也已略去：旅行者用的 240 V 与 120 V 转换器、手电筒充电器、带三个输出的多用途变压器、发电厂新副线圈之后的线路损耗，以及关于双变压器的“自拟习题”。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十道习题中有五道没有给出答案，因而略去，其中包括多用途变压器和关于双变压器的“自拟习题”；保留下来的五道沿用本书自己的数值。唯一的思考题问的是变压器为什么以两倍于电源的频率振动，它没有给出答案，作为开放式题目保留，并附有标明由 AI 撰写的建议思路。两道 AP 题中，第一道在 CNXML 中给出了答案，并带有本书自己的答案，但它要求在四个选项中选出两个，因此设为开放式题目，而不是判分选择题，因为判分选择题只接受一个答案；第二道的解答在 CNXML 中被注释掉了，作为开放式题目保留，并附有标明由 AI 撰写的建议思路。本模块没有印出“理解检测”框，因此没有设置内嵌题目，也没有把任何习题留给后面的小节，或取自前面的小节。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-plug-in",
+   "kind": "photo",
+   "number": "23.25",
+   "originals": [
+    "/media/ch23/Figure_24_07_01.jpg"
+   ],
+   "original_caption": "插接式变压器用于照明等低电压场合，也用于让美国产品（插座电压为 120 V）在欧洲（电压为 230 V）使用，反之亦然。变压器也是消费类电子设备中的重要部件。（来源：Tamar More）",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-power-line",
+   "kind": "sim",
+   "number": "23.26",
+   "originals": [
+    "/media/ch23/Figure_24_07_02.jpg"
+   ],
+   "original_caption": "变压器在配电系统的多个环节改变电压。电功率通常在高于 10 kV 的电压下产生，并以超过 200 kV（有时高达 700 kV）的电压远距离输送，以限制能量损耗。向居民区或工业区的本地配电要经过变电站，并以 5 至 13 kV 的电压短距离输送。为了安全，在各个用户处再把它降低到 120 V、240 V 或 480 V。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "power",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "off-scale loss labelled clear of the axis; graph note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-transformer",
+   "kind": "sim",
+   "number": "23.27",
+   "originals": [
+    "/media/ch23/Figure_24_07_03.jpg"
+   ],
+   "original_caption": "简单变压器的典型构造是把两个线圈绕在铁磁性铁芯上，铁芯做成叠片的，以使涡流减到最小。原线圈产生的磁场大部分被约束在铁芯中并被铁芯增强，铁芯再把它传给副线圈。原线圈中电流的任何变化都会在副线圈中感应出电流。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "magnetic-flux",
+    "voltage",
+    "current",
+    "power"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dc-ac",
+   "kind": "sim",
+   "number": "23.28",
+   "originals": [
+    "/media/ch23/Figure_24_07_04.jpg"
+   ],
+   "original_caption": "变压器对纯直流电压输入不起作用，但如果像上图那样把它接通和断开，输出看起来就会像下图那样。这不是大多数交流用电器所需要的正弦交流电。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph notes dropped; dropdown fits; switched readout given numbers"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "how-a-transformer-works",
+   "concept": "transformer",
+   "verb": "introduces"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "high-voltage-transmission",
+   "verb": "uses"
+  },
+  {
+   "span": "how-a-transformer-works",
+   "concept": "power-and-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "transformer-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "turns-multiply-emf",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "transformer",
+   "verb": "reinforces"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "step-up-transformer",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-transformer-equation",
+   "concept": "step-down-transformer",
+   "verb": "introduces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "transformer-current-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "step-up-and-step-down",
+   "verb": "introduces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "transformer-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "currents-and-power",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "transformers-need-ac",
+   "verb": "introduces"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "transformer-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "step-up-and-step-down",
+   "verb": "reinforces"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "direct-current",
+   "verb": "uses"
+  },
+  {
+   "span": "why-transformers-need-ac",
+   "concept": "alternating-current",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737771745",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "how-a-transformer-works",
+   "prompt": "解释是什么引起了变压器中频率为所涉交流电频率两倍的物理振动。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "变压器内部的力只取决于磁通量有多大，而与它沿哪个方向无关。铁芯先沿一个方向磁化，再沿另一个方向磁化，而无论磁通量指向哪边，铁在磁化时都会缩短一点。叠片和线圈的各匝也受到与电流平方成正比的力，而平方量在电流为负时与为正时一样大。因此，铁芯在电源的每个周期里收紧和放松两次，而不是一次，于是它以电源频率的两倍发声。所以，工作在 60 Hz 上的变压器会以 120 Hz 嗡嗡作响。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1645806",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "下列关于降压变压器的说法，哪些是正确的？选出<em>两个</em>答案。<ol type=\"a\"><li>初级电压高于次级电压。</li><li>初级电压低于次级电压。</li><li>初级电流大于次级电流。</li><li>初级电流小于次级电流。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）、（d）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1313520",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "一台匝数比为 1:30 的理想升压变压器的输入功率为 120 W。若输出电压为 210 V，求输出功率和输入电流。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "理想变压器不浪费任何能量，所以从 $\\kPprim = \\kPsec$ 出发：输出功率就是输入的那 120 W。1:30 的匝数比意味着副线圈的匝数是原线圈的三十倍，所以由变压器方程，输出电压是输入电压的三十倍，输入电压就是 $210\\ \\text{V}/30 = 7.00\\ \\text{V}$。输入电流则由进入原线圈的功率得出，$\\kIprim = \\kPprim/\\kVprim = (120\\ \\text{W})/(7.00\\ \\text{V}) = 17.1\\ \\text{A}$。再用电流比核对一下：输出电流是 $(120\\ \\text{W})/(210\\ \\text{V}) = 0.571\\ \\text{A}$，它的三十倍同样是 17.1 A，这正是 $\\kIsec/\\kIprim = N_{\\text{p}}/N_{\\text{s}}$ 所要求的。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738257565",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "插接式变压器（如图 23.25 中的那个）向一台电子游戏机供给 9.00 V 的电压。（a）若其输入电压为 120 V，原线圈有 400 匝，则它的副线圈有多少匝？（b）当输出为 1.30 A 时，它的输入电流是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 30,
+      "unit": "turns",
+      "hint": "匝数之比等于电压之比，所以由 $\\kVsec/\\kVprim = N_{\\text{s}}/N_{\\text{p}}$ 解出副线圈的匝数。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.0975,
+      "unit": "A",
+      "hint": "电流之比是匝数之比反过来，所以输入电流等于输出电流乘以副线圈的匝数再除以原线圈的匝数。"
+     }
+    ],
+    "solution": "（a）30.0（b）$9.75\\times {10}^{-2}\\ \\text{A}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738198223",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "一台盒式录音机使用插接式变压器把 120 V 变换为 12.0 V，最大输出电流为 200 mA。（a）输入电流是多少？（b）输入功率是多少？（c）对一台小型用电器来说，这个功率合理吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 20,
+      "unit": "mA",
+      "hint": "电压被降低为原来的十分之一，所以电流被升高同样的倍数，输入电流是两者中较小的。"
+     },
+     {
+      "part": "(b)",
+      "value": 2.4,
+      "unit": "W",
+      "hint": "进入原线圈的功率等于输入电流乘以输入电压，对性能良好的变压器，它也等于输出功率。"
+     }
+    ],
+    "solution": "（a）20.0 mA（b）2.40 W（c）是的，这个功率对一台小型用电器来说相当合理。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737995226",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "（a）一台笔记本电脑的插接式变压器输出 7.50 V，最大可提供 2.00 A 的电流。若输入电压为 240 V，最大输入电流是多少？假设效率为 100%。（b）如果实际效率低于 100%，输入电流需要更大还是更小？请解释。",
+   "answer": {
+    "type": "number",
+    "value": 0.063,
+    "unit": "A",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "没有损耗时，输入功率等于输出功率，所以先算出变压器输出的功率，再除以输入电压。",
+    "solution": "（a）0.063 A（b）需要更大的输入电流。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737965228",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "currents-and-power",
+   "prompt": "一座大型发电厂以 12.0 kV 的电压发电。它原来的变压器曾把电压变换为 335 kV。现在正在更换这台变压器的副线圈，使其输出可达 750 kV，以便在升级后的输电线上更高效地远距离输电。（a）新副线圈的匝数与旧副线圈之比是多少？（b）在功率相同的情况下，新的输出电流与旧的输出电流（335 kV 时）之比是多少？（c）如果升级后的输电线电阻不变，新的线路功率损耗与旧的之比是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.2,
+      "unit": "",
+      "hint": "原线圈没有变，所以两个副线圈的匝数之比等于两个输出电压之比。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.45,
+      "unit": "",
+      "hint": "相同的功率在更高的电压下需要更小的电流，电流与电压成反比。"
+     },
+     {
+      "part": "(c)",
+      "value": 0.2,
+      "unit": "",
+      "hint": "电阻一定的线路所损耗的功率等于电流的平方乘以电阻，所以损耗之比等于电流之比的平方。"
+     }
+    ],
+    "solution": "（a）2.2（b）0.45（c）0.20，即 20.0%"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737727403",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "the-transformer-equation",
+   "prompt": "<strong>不合理的结果</strong> 来自输电线的 335 kV 交流电被输入变压器的原线圈。副线圈与原线圈的匝数之比为 $N_{\\text{s}}/N_{\\text{p}} = 1000$。（a）副线圈中感应出的电压是多少？（b）这个结果有什么不合理之处？（c）是哪个假设或前提造成的？",
+   "answer": {
+    "type": "number",
+    "value": 335,
+    "unit": "MV",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "变压器方程直接给出输出电压：把输入电压乘以匝数之比。",
+    "solution": "（a）335 MV（b）高得离谱，远超过空气在合理距离上的击穿电压（c）输入电压过高"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "transformer"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "transformers-need-ac",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "step-up-and-step-down"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "transformer-current-ratio",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "transformer-current-ratio"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "step-up-and-step-down",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "transformer-equation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "transformer-current-ratio",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "transformer-current-ratio"
+  },
+  {
+   "exercise": "p3",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "transformer-current-ratio"
+  },
+  {
+   "exercise": "p5",
+   "concept": "transformer-equation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "transformer-equation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "transformer-current-ratio",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "step-up-and-step-down",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "transformer-equation"
+  },
+  {
+   "exercise": "p9",
+   "concept": "step-up-and-step-down",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "plant",
+   "label": "发电厂",
+   "figures": [
+    "sim-power-line"
+   ]
+  },
+  {
+   "id": "step-up",
+   "label": "升压变压器",
+   "figures": [
+    "sim-power-line"
+   ]
+  },
+  {
+   "id": "power-line",
+   "label": "输电线",
+   "figures": [
+    "sim-power-line"
+   ]
+  },
+  {
+   "id": "substation",
+   "label": "变电站",
+   "figures": [
+    "sim-power-line"
+   ]
+  },
+  {
+   "id": "pole-transformer",
+   "label": "杆上变压器",
+   "figures": [
+    "sim-power-line"
+   ]
+  },
+  {
+   "id": "house",
+   "label": "住宅",
+   "figures": [
+    "sim-power-line"
+   ]
+  },
+  {
+   "id": "primary",
+   "label": "原线圈",
+   "figures": [
+    "sim-transformer"
+   ]
+  },
+  {
+   "id": "secondary",
+   "label": "副线圈",
+   "figures": [
+    "sim-transformer"
+   ]
+  },
+  {
+   "id": "core",
+   "label": "铁芯",
+   "figures": [
+    "sim-transformer"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "transformer-equation",
+   "what": "变压器方程",
+   "source": "《大学物理（第2版）》，23.7 变压器",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "线圈电阻很小，所以输出电压等于感应电动势，$\\kVsec = {\\text{emf}}_{\\text{s}}$。",
+       "src": "23.7"
+      },
+      {
+       "text": "线圈电阻可以忽略时，由基尔霍夫回路定则，原线圈中感应的电动势恰好等于输入电压，并且由楞次定律，它反抗磁通量的变化。",
+       "src": "23.7"
+      },
+      {
+       "tex": "\\kVprim = -N_{\\text{p}}\\dfrac{\\kdPhi}{\\kdt}",
+       "src": "23.7"
+      },
+      {
+       "text": "两侧线圈的横截面积和磁感应强度相同，所以两侧的 $\\kdPhi/\\kdt$ 相同。",
+       "src": "23.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVsec} = -\\mk{N}{N_{\\text{s}}}\\mk{P}{\\dfrac{\\kdPhi}{\\kdt}}",
+      "src": "23.2",
+      "uses": [
+       0
+      ],
+      "why": "副线圈的法拉第电磁感应定律。"
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{V}{\\kVsec}}{\\mk{Vp}{\\kVprim}} = \\dfrac{-\\mk{N}{N_{\\text{s}}}\\mk{P}{\\dfrac{\\kdPhi}{\\kdt}}}{-\\mk{Np}{N_{\\text{p}}}\\mk{Pp}{\\dfrac{\\kdPhi}{\\kdt}}}",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{V}{\\kVsec}}{\\mk{Vp}{\\kVprim}} = \\dfrac{\\mk{N}{N_{\\text{s}}}}{\\mk{Np}{N_{\\text{p}}}}",
+       "uses": []
+      }
+     ],
+     "src": "23.7"
+    }
+   ]
+  },
+  {
+   "id": "transformer-currents",
+   "what": "变压器的电流之比",
+   "source": "《大学物理（第2版）》，23.7 变压器",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "电阻可以忽略时，变压器输出的电功率等于其输入。",
+       "src": "23.7"
+      },
+      {
+       "tex": "\\kP = \\kIcur\\kV",
+       "src": "20.4"
+      },
+      {
+       "tex": "\\dfrac{\\kVsec}{\\kVprim} = \\dfrac{N_{\\text{s}}}{N_{\\text{p}}}",
+       "src": "23.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Pp}{\\kPprim} = \\mk{Ps}{\\kPsec}",
+      "src": "23.7",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Pp}{\\kPprim} = \\mk{IpVp}{\\kIprim\\kVprim} = \\mk{IsVs}{\\kIsec\\kVsec} = \\mk{Ps}{\\kPsec}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{Vs}{\\kVsec}}{\\mk{Vp}{\\kVprim}} = \\dfrac{\\mk{Ip}{\\kIprim}}{\\mk{Is}{\\kIsec}}",
+       "uses": [],
+       "map": {
+        "IpVp": [
+         "Ip",
+         "Vp"
+        ],
+        "IsVs": [
+         "Is",
+         "Vs"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Vs}{\\dfrac{N_{\\text{s}}}{N_{\\text{p}}}} = \\dfrac{\\mk{Ip}{\\kIprim}}{\\mk{Is}{\\kIsec}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "Vp": "Vs"
+       }
+      },
+      {
+       "tex": "\\dfrac{\\mk{Is}{\\kIsec}}{\\mk{Ip}{\\kIprim}} = \\mk{Vs}{\\dfrac{N_{\\text{p}}}{N_{\\text{s}}}}",
+       "uses": []
+      }
+     ],
+     "src": "23.7"
+    }
+   ]
+  }
+ ]
+}
