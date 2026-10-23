@@ -1829,7 +1829,7 @@ Merge of 2026-10-23. Decisions taken for the chapter (orchestrator-directed; the
 |---|---|---|---|
 | ch30/30.2/figures.js | sim-thomson-tube hover name of the glowing spot and readout note: “the glowing spot, X cm above/below the center” and “The spot lands X cm above/below the center of the screen.”, each built from a prefix, a number, a unit and an above/below ternary | the ternary is placed before the number (亮斑，位于荧光屏中心上方/下方 X cm 处; 亮斑落在荧光屏中心上方/下方 X cm 处。), so the operands of the concatenations are reordered | English word order built in code (4.1) |
 | ch30/30.2/figures.js | sim-millikan hover name of the oil drop: the plural branch `' extra electron' + (n > 1 ? 's' : '')` | collapsed to the one form 带有 n 个多余电子; the ternary is removed | English plural grammar in figure code (4.1) |
-| ch30/30.2/figures.js | sim-rutherford topline, nucleus model: the singular branch `nB === 1 ? '1 of the n alphas …' : nB + ' of the n alphas …'` | collapsed to the one sentence 到目前为止的 n 个 α 粒子中，有 nB 个折回了放射源。 | English singular/plural grammar in figure code (4.1) |
+| ch30/30.2/figures.js | sim-rutherford topline, nucleus model: the singular branch `nB === 1 ? '1 of the n alphas …' : nB + ' of the n alphas …'` | collapsed to the one sentence 到目前为止的 n 个 α 粒子中，有 nB 个朝放射源折回。 | English singular/plural grammar in figure code (4.1) |
 | ch30/30.2/figures.js | sim-planetary-model hover name of an electron: “an electron on the [inner\|middle\|outer] orbit, once round in T s of this picture”, an ordinal word array spliced into the sentence | rebuilt with the array first ([内层\|中层\|外层]轨道上的一个电子，在本图中绕一圈用时 T s); the array words are translated | English word order and ordinal words built in code (4.1) |
 
 ### ch30/30.3
@@ -1937,6 +1937,18 @@ No forced scenario is created or removed, so the `config.md` table is unchanged.
 | File | Span or line | What was done | Why |
 |---|---|---|---|
 | ch33/33.5/text.html | #three-families, second paragraph: the book's “GUTs: The Unification of Forces..” (double period) | written “大统一理论：力的统一”中所讨论的力的统一探索的一部分。。; the cited title stands intact inside the quotation marks and the book's doubled full stop is kept at the end of the sentence, outside the marks; `section.json` `notes` names the slip as “一部分。。” | an error of the book stays (translate.md 3.2); the earlier rendering put the two periods inside the title quotes, which departed from the standing row 大统一理论：力的统一 |
+
+### ch30 review fixes
+
+#### ch30/30.8
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch30/30.8/text.html | #direction-of-angular-momentum, the paragraph after the $L_z$ equation (“其中 $L_z$ 是…”), and #intrinsic-spin, the summary paragraph (“总结一下…”): “angular momentum projection quantum number”, with the angular-momentum span on “angular momentum” | written 磁量子数 with the span `<span data-concept="angular-momentum">磁量子数</span>` wrapping the whole term; no span is dropped or moved | the glossary term 磁量子数 (the standard name of m_l) has no part that names angular momentum, so the angular-momentum span wraps the whole term; wording a longer form would add words the source does not have (translate.md 5) |
+
+#### Row text updated (no new scenario)
+
+The ch30/30.2 sim-rutherford topline row (nucleus model, singular/plural branch) now reads 到目前为止的 n 个 α 粒子中，有 nB 个朝放射源折回。 in place of …有 nB 个折回了放射源。 (config.md already updated; the same row in translation-notes.md should follow).
 
 ## For the owner
 

@@ -1,0 +1,756 @@
+{
+ "id": "30.2",
+ "module": "m42592",
+ "chapter": "30",
+ "title": "原子组成部分的发现：电子与原子核",
+ "short": "原子的组成部分",
+ "lead": "电子和原子核是通过一些实验发现的，这些实验用到了前面各章中的<span data-concept=\"force\">电场力和磁力</span>。汤姆孙使阴极射线束发生弯曲，密立根使带电的油滴静止地悬在金属板之间，卢瑟福则用 α 粒子轰击一片薄金箔，他们的结果引出了原子的行星模型。",
+ "objectives": [
+  "描述电子是如何被发现的。",
+  "解释密立根油滴实验。",
+  "描述卢瑟福的金箔实验。",
+  "描述卢瑟福的原子的行星模型。"
+ ],
+ "summary_html": "<ul><li>原子由带负电的电子和带正电的原子核组成，其中电子最早是在阴极射线管实验中被证明存在的。</li><li>所有电子都是全同的，其荷质比为$$\\frac{\\kqe}{\\kme}=-1.76\\times 10^{11}\\;\\text{C/kg.}$$</li><li>原子核中的正<span data-concept=\"electric-charge\">电荷</span>由称为质子的粒子携带，质子的荷质比为$$\\frac{\\kqp}{\\kmp}=9.57\\times 10^{7}\\;\\text{C/kg.}$$<sup class=\"fn\" data-note=\"c-proton-ratio\"></sup></li><li><span data-type=\"mass\">电子的质量</span>，$$\\kme=9.11\\times 10^{-31}\\;\\text{kg.}$$</li><li><span data-type=\"mass\">质子的质量</span>，$$\\kmp=1.67\\times 10^{-27}\\;\\text{kg.}$$</li><li>原子的行星模型把电子描绘成绕原子核运行，就像行星绕太阳运行一样。</li></ul>",
+ "notes": "关于 PhET 模拟“卢瑟福散射”（Rutherford Scattering）的链接已略去，正如全书中指向出版方互动内容的链接都已略去一样。质子的荷质比在正文中印作 9.58 × 10⁷ C/kg，在小结中印作 9.57 × 10⁷ C/kg，二者均按原样保留。有一道习题没有给出答案，已略去：两块相距 2.00 cm 的极板之间、被 2033 V 电压悬停不动的油滴所带的电荷。关于电子和行星的允许轨道以及对应原理的思考题，在 30.3 和 30.5 中再次印出，只在 30.3 中设置一次。书中在 30.1 印出的两道习题和在 30.9 印出的三道习题被设置在这里，因为它们考查的是本节内容。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。第一道 AP 题的答案为（a）和（d），要求给出两个答案，因此保留为开放题，附有选项和书中的答案；第二道题的解答在原书中被注释掉了，所以书中没有印出，保留为开放题，附有 AI 撰写并加以标明的建议思路。思考题印有三个选项而没有答案，保留为开放题，附有选项和 AI 撰写并加以标明的建议思路。对应原理的思考题在此略去，因为 30.3 已设置了它重印的那一份。有一道习题没有给出答案，因而略去（被 2033 V 悬停不动的油滴）。这里还设置了来自本章其他小节的五道有答案的习题：来自 30.1 的质子与电子的质量比，以及原子核直径为 1.00 m 的比例模型；来自 30.9 的汤姆孙管中各力的方向、带有两个多余电子的油滴，以及由 6.80 cm 的半径求汤姆孙的比值。本模块没有印出“理解检测”框，所以没有设置内嵌题。数值答案允许 2% 的容差，金的一位有效数字的密度允许 10%。",
+ "figures": [
+  {
+   "id": "photo-discharge-tube",
+   "kind": "photo",
+   "number": "30.4",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-thomson",
+   "kind": "photo",
+   "number": "30.5",
+   "widths": [
+    175
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-thomson-tube",
+   "kind": "sim",
+   "number": "30.6",
+   "folds": [
+    "30.7"
+   ],
+   "originals": [
+    "/media/ch30/Figure_31_02_02a1.jpg",
+    "/media/ch30/Figure_31_02_02b1.jpg"
+   ],
+   "original_caption": "（图 30.6）汤姆孙的 CRT 示意图。（来源：Kurzon, Wikimedia Commons）（图 30.7）此示意图显示 CRT 中的电子束穿过正交的电场和磁场，并在撞击管端时使荧光粉发光。",
+   "widths": [
+    300,
+    500
+   ],
+   "draws": [
+    "velocity",
+    "acceleration",
+    "electric-field",
+    "magnetic-field",
+    "charge",
+    "mass",
+    "force",
+    "position"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-millikan",
+   "kind": "photo",
+   "number": "30.8",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-millikan",
+   "kind": "sim",
+   "number": "30.9",
+   "originals": [
+    "/media/ch30/Figure_31_02_03b1.jpg"
+   ],
+   "original_caption": "密立根油滴实验首次对电子的电荷做出了准确的直接测量，电子电荷是自然界最基本的常量之一。细小的油滴在喷出时带电。人们在金属板之间观察它们的运动，板间所加的电势与重力相对抗。重力与电场力的平衡使我们能够计算油滴上的电荷。发现电荷以 −1.6 × 10⁻¹⁹ C 为单位量子化，从而直接确定了油滴上多余电子和缺失电子的电荷。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "electric-field",
+    "voltage",
+    "charge",
+    "mass",
+    "force",
+    "position",
+    "acceleration"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rutherford",
+   "kind": "sim",
+   "number": "30.10",
+   "folds": [
+    "30.11"
+   ],
+   "originals": [
+    "/media/ch30/Figure_31_02_04a.jpg",
+    "/media/ch30/Figure_31_02_05a.jpg"
+   ],
+   "original_caption": "（图 30.10）卢瑟福的实验通过让 α 粒子从一片薄金箔上散射，给出了关于原子核的大小和质量的直接证据。能量约为 5 MeV 的 α 粒子从放射源（它是一个小金属容器，其中密封着特定量的放射性物质）发射出来，被准直成一束，落在金箔上。穿透金箔的粒子数以及散射到各个角度的粒子数表明，金的原子核非常小，并且包含了金原子几乎全部的质量。散射到非常大角度的 α 粒子尤其说明了这一点，这就像足球从守门员的头上弹回一样。（图 30.11）卢瑟福实验中金箔里原子的放大视图。圆圈表示原子（直径约 10⁻¹⁰ m），圆点表示原子核（直径约 10⁻¹⁵ m）。为了能看见，圆点被画得比实际比例大得多。大多数 α 粒子因其能量很高、电子的质量又很小，而径直穿过，几乎不受影响。然而，有些 α 粒子径直射向一个原子核，被径直散射回来。详细的分析给出了原子核的大小和质量。",
+   "widths": [
+    450,
+    225
+   ],
+   "draws": [
+    "position"
+   ],
+   "conventions": [
+    "He",
+    "Au",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-planetary-model",
+   "kind": "sim",
+   "number": "30.12",
+   "originals": [
+    "/media/ch30/Figure_31_02_06a.jpg"
+   ],
+   "original_caption": "卢瑟福的原子的行星模型包含了原子核、电子以及原子大小的特征。这个模型首次认识到了原子的结构：小质量的电子沿轨道绕一个很小而质量很大的原子核运行，轨道比原子核大得多。原子内部大部分是空的，类似于我们的行星系统。",
+   "widths": [
+    250
+   ],
+   "draws": [],
+   "conventions": [
+    "e-",
+    "p+"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "the-electron",
+   "concept": "cathode-ray-tube-device",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-electron",
+   "concept": "cathode-ray-tube",
+   "verb": "introduces"
+  },
+  {
+   "span": "thomson-charge-to-mass",
+   "concept": "electron-charge-to-mass-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "millikan-oil-drop",
+   "concept": "millikan-oil-drop",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-mass",
+   "concept": "electron-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-mass",
+   "concept": "identical-particles",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-nucleus",
+   "concept": "rutherford-scattering",
+   "verb": "introduces"
+  },
+  {
+   "span": "planetary-model",
+   "concept": "planetary-model",
+   "verb": "introduces"
+  },
+  {
+   "span": "thomson-charge-to-mass",
+   "concept": "cathode-ray-tube",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-mass",
+   "concept": "electron-charge-to-mass-ratio",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-mass",
+   "concept": "millikan-oil-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "planetary-model",
+   "concept": "rutherford-scattering",
+   "verb": "uses"
+  },
+  {
+   "span": "parts-of-the-atom",
+   "concept": "electron",
+   "verb": "uses"
+  },
+  {
+   "span": "parts-of-the-atom",
+   "concept": "charge-of-electron-and-proton",
+   "verb": "uses"
+  },
+  {
+   "span": "the-electron",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "thomson-charge-to-mass",
+   "concept": "velocity-selector",
+   "verb": "uses"
+  },
+  {
+   "span": "thomson-charge-to-mass",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "thomson-charge-to-mass",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "millikan-oil-drop",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "millikan-oil-drop",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "millikan-oil-drop",
+   "concept": "voltage-across-uniform-field",
+   "verb": "uses"
+  },
+  {
+   "span": "the-nucleus",
+   "concept": "size-of-atoms",
+   "verb": "uses"
+  },
+  {
+   "span": "the-nucleus",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "the-nucleus",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "planetary-model",
+   "concept": "gravity-as-centripetal-force",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id3938770",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "millikan-oil-drop",
+   "prompt": "在一次实验中，三个微观乳胶球被喷入一个腔室，分别带上 +3<em>e</em>、+5<em>e</em> 和 −3<em>e</em> 的电荷。随后，这三个球同时发生碰撞，然后分开。下列哪些是这些球最终电荷的可能值？选出两个答案。<ol type=\"a\"><li>+4<em>e</em>，−4<em>e</em>，+5<em>e</em></li><li>−4<em>e</em>，+4.5<em>e</em>，+4.5<em>e</em></li><li>+5<em>e</em>，−8<em>e</em>，+7<em>e</em></li><li>+6<em>e</em>，+6<em>e</em>，−7<em>e</em></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）、（d）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1104906",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "millikan-oil-drop",
+   "prompt": "在密立根油滴实验中，他在两块极板之间试验了各种不同的电势差，以确定需要多大的电压才能使一颗油滴保持静止。他推断，令油滴所受的重力（方向向下）等于电场力（方向向上），就可以求出油滴上的电荷：\n\n$\\kmdrop\\kg=\\kq\\kEf$，\n\n其中 $\\kmdrop$ 是油滴的质量，$\\kg$ 是重力加速度（9.8 m/s²），$\\kq$ 是油滴的净电荷，$\\kEf$ 是极板之间的电场。密立根推断出，电子的电荷 <em>e</em> 为 1.6 × 10⁻¹⁹ C。\n\n对于一个由质量相等（1.0 × 10⁻¹⁵ 千克）的油滴组成的体系，说明电场取什么值或哪些值才能使这些油滴保持静止。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有电场取 $\\kEf = 6.1\\times 10^{4}$ N/C、$3.1\\times 10^{4}$ N/C、$2.0\\times 10^{4}$ N/C、$1.5\\times 10^{4}$ N/C 等值时，油滴才能保持静止，这些值就是最大值除以 1、2、3、4、……，而在这些值之间的任何电场都不行。对电场解这个平衡式，得 $\\kEf = \\kmdrop\\kg/\\kq$。每颗油滴的质量相同，所以使一颗油滴保持静止的电场只取决于它的电荷，而油滴上的电荷总是电子电荷的整数倍，$\\kq = Ne$，$N = 1, 2, 3, \\ldots$。带有一个多余电子的油滴需要 $\\kEf = (1.0\\times 10^{-15}\\ \\text{kg})(9.8\\ \\text{m/s}^2)/(1.6\\times 10^{-19}\\ \\text{C}) = 6.1\\times 10^{4}$ N/C。带有 $N$ 个电子的油滴需要上述电场的 $1/N$，即 $\\kEf = (6.1\\times 10^{4}\\ \\text{N/C})/N$，所以能起作用的电场构成一个分立的集合。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3028270",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-mass",
+   "prompt": "哪两项证据使人们得以首次计算出 $\\kme$，即电子的质量？<ol type=\"a\"><li>比值 $\\kqe/\\kme$ 和 $\\kqp/\\kmp$。</li><li>$\\kqe$ 和 $E_{B}$ 的值。</li><li>比值 $\\kqe/\\kme$ 和 $\\kqe$。</li></ol>请说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（c），即比值 $\\kqe/\\kme$ 和电荷 $\\kqe$。汤姆孙的正交电场和磁场给出了比值 $\\kqe/\\kme$，却不能单独给出其中任何一个量，而密立根的油滴给出了电荷 $\\kqe$ 本身。用电荷除以比值，$\\kme = \\kqe/(\\kqe/\\kme)$，就得到质量。选项（a）的两个比值只是把电子与质子相比较，不能单独给出任何一个质量，而选项（b）不含任何涉及电子质量的测量。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3119625",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "the-nucleus",
+   "prompt": "卢瑟福发现原子核的大小约为 $10^{-15}\\;\\text{m}$。这意味着密度极大。对金来说，这一密度会是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6e+20,
+    "unit": "kg/m³",
+    "tol": 0.1,
+    "hint": "把金的原子核看作一个直径为 $10^{-15}$ m 的球，它几乎包含了金原子的全部质量，即 197 u。",
+    "solution": "$6\\times 10^{20}\\;\\text{kg/m}^{3}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "eip-200",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "the-nucleus",
+   "prompt": "（a）一位有抱负的物理学家想为她的科学展览项目制作一个氢原子的比例模型。如果原子的直径为 1.00 m，她应当把原子核做得多大？\n\n（b）做到这一点会有多容易？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the diameter of the nucleus",
+    "value": 10.0,
+    "unit": "μm",
+    "hint": "原子核的直径约为 $10^{-15}$ m，原子的直径约为 $10^{-10}$ m，所以原子核比原子小 100,000 倍。",
+    "solution": "（a）$10.0\\;\\mu\\text{m}$\n\n（b）做一个大小大致如此的原子核并不难。要把它做得恰好是 $10.0\\;\\mu\\text{m}$ 就要难一些。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2398973",
+   "source_section": "30.1",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thomson-charge-to-mass",
+   "prompt": "利用给出的电子和质子的荷质比，并已知它们的电荷大小相等，质子的质量与电子的质量之比是多少？（请注意，由于荷质比只给出了三位数字的准确度，你的答案与公认的比值可能在第四位数字上有所不同。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1840,
+    "hint": "由于 $|\\kqp| = |\\kqe|$，质量之比是荷质比之比的倒数。",
+    "solution": "$1.84\\times 10^{3}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1577658",
+   "source_section": "30.1",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "planetary-model",
+   "prompt": "如果有人想制作一个原子的比例模型，其中原子核的直径为 1.00 m，那么最近的电子需要在多远的地方？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 50,
+    "unit": "km",
+    "hint": "原子的直径约为 $10^{-10}$ m，其原子核的直径约为 $10^{-15}$ m，小了 100,000 倍；最近的电子离原子核大约是原子的半径。",
+    "solution": "50 km"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2378469",
+   "source_section": "30.9",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thomson-charge-to-mass",
+   "figure": {
+    "src": "/media/ch30/Figure_31_02_02b1.jpg",
+    "alt": "一支阴极射线管位于一块磁体的北极和南极之间，管内有带电极板。在放大图中，一个电子以速度 v 向右运动，上方是正极板，下方是负极板；电场 E 从正极板指向下方，磁场 B 从北极指向南极，横穿电子束。力 F_E 向上，力 F_B 向下。",
+    "caption": "图 30.7"
+   },
+   "prompt": "<strong>综合概念</strong> 图 30.7 中 CRT 内电子所受的电场力和磁力应当方向相反。请针对图示情形确定每个力的方向，以验证这一点。说明你是如何得到这些方向的（也就是说，指出所用的法则）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "电子所受的电场力向上（指向带正电的极板）。磁力向下（由右手定则得出）。"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3188615",
+   "source_section": "30.9",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "millikan-oil-drop",
+   "prompt": "<strong>综合概念</strong> 在使用类似图 30.9 的装置的密立根油滴实验中，对相距 2.50 cm 的极板加上 500 V 的电势差。（a）一颗带有两个多余电子、被极板间的电场悬停不动的油滴，质量是多少？（b）假设它是一个密度等于橄榄油密度的球，这颗油滴的直径是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the mass of the drop",
+      "value": 6.54e-16,
+      "unit": "kg",
+      "hint": "令 $\\kmdrop\\kg = \\kq\\kV/\\kd$，其中 $\\kq$ 为两个电子的电荷。"
+     },
+     {
+      "part": "(b) the diameter of the drop",
+      "value": 5.54e-07,
+      "unit": "m",
+      "hint": "用质量除以橄榄油的密度 920 kg/m³ 得到体积，再求出具有该体积的球的直径。"
+     }
+    ],
+    "solution": "（a）$6.54\\times 10^{-16}\\;\\text{kg}$\n\n（b）$5.54\\times 10^{-7}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3450401",
+   "source_section": "30.9",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thomson-charge-to-mass",
+   "prompt": "<strong>综合概念</strong> 在一次旨在重复汤姆孙测定 $\\kqe/\\kme$ 的实验室实验中，一束速度为 $6.00\\times 10^{7}\\;\\text{m/s}$ 的电子进入 $5.00\\times 10^{-3}\\;\\text{T}$ 的磁场。电子束垂直于磁场运动，路径的曲率半径为 6.80 cm。根据这些观测结果确定 $\\kqe/\\kme$，并将结果与已知值比较。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 176000000000.0,
+    "unit": "C/kg",
+    "hint": "磁力就是向心力，$|\\kqe|\\kv\\kBmag = \\kme\\kv^2/r$，所以 $|\\kqe|/\\kme = \\kv/(r\\kBmag)$。",
+    "solution": "$1.76\\times 10^{11}\\;\\text{C/kg}$，在测量精密度范围内与已知值 $1.759\\times 10^{11}\\;\\text{C/kg}$ 相符"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "millikan-oil-drop"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "millikan-oil-drop"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electron-mass"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rutherford-scattering"
+  },
+  {
+   "exercise": "p1",
+   "concept": "density"
+  },
+  {
+   "exercise": "p2",
+   "concept": "rutherford-scattering"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electron-charge-to-mass-ratio"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electron-mass"
+  },
+  {
+   "exercise": "p4",
+   "concept": "rutherford-scattering"
+  },
+  {
+   "exercise": "p4",
+   "concept": "planetary-model"
+  },
+  {
+   "exercise": "p5",
+   "concept": "cathode-ray-tube"
+  },
+  {
+   "exercise": "p5",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "p6",
+   "concept": "millikan-oil-drop"
+  },
+  {
+   "exercise": "p6",
+   "concept": "density"
+  },
+  {
+   "exercise": "p7",
+   "concept": "electron-charge-to-mass-ratio"
+  },
+  {
+   "exercise": "p7",
+   "concept": "magnetic-force-on-a-moving-charge"
+  }
+ ],
+ "referents": [
+  {
+   "id": "thomson-tube",
+   "label": "汤姆孙的阴极射线管",
+   "figures": [
+    "sim-thomson-tube"
+   ]
+  },
+  {
+   "id": "oil-drop",
+   "label": "悬停在极板之间的油滴",
+   "figures": [
+    "sim-millikan"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-proton-ratio",
+   "kind": "correction",
+   "html": "小结中印的是 $9.57\times10^{7}$ C/kg；质子的荷质比是 $9.58\times10^{7}$ C/kg，正如本节所给出的。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "electron-charge-to-mass",
+   "what": "由偏转求电子的荷质比",
+   "source": "《大学物理（第2版）》，30.2 原子组成部分的发现：电子与原子核",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF=\\kqe\\kEf",
+       "src": "18.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\ka}=\\frac{\\mk{F}{\\kF}}{\\mk{m}{\\kme}}",
+      "uses": [],
+      "src": "4.3",
+      "why": "电子的牛顿第二定律。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\ka}=\\frac{\\kF}{\\kme}=\\frac{\\mk{F}{\\kqe\\kEf}}{\\mk{m}{\\kme}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\frac{\\mk{F}{\\kqe}}{\\mk{m}{\\kme}}=\\frac{\\mk{a}{\\ka}}{\\mk{E}{\\kEf}}",
+       "uses": [],
+       "map": {
+        "F": [
+         "F",
+         "E"
+        ]
+       }
+      }
+     ],
+     "src": "30.2"
+    }
+   ]
+  },
+  {
+   "id": "oil-drop-charge",
+   "what": "悬浮油滴上的电荷",
+   "source": "《大学物理（第2版）》，30.2 原子组成部分的发现：电子与原子核",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "油滴悬停不动，所以它的重力 $\\kmdrop\\kg$ 与它所受的电场力 $\\kq\\kEf$ 平衡。",
+       "src": "30.2"
+      },
+      {
+       "tex": "\\kEf=\\kV/\\kd",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kmdrop\\kg}=\\mk{q}{\\kq}\\mk{E}{\\kEf}",
+      "uses": [
+       0
+      ],
+      "src": "30.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q}{\\kq}=\\frac{\\mk{w}{\\kmdrop\\kg}}{\\mk{E}{\\kEf}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q}{\\kq}=\\frac{\\kmdrop\\kg}{\\kEf}=\\frac{\\mk{w}{\\kmdrop\\kg}\\mk{E}{\\kd}}{\\mk{V}{\\kV}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "E": [
+         "E",
+         "V"
+        ]
+       }
+      }
+     ],
+     "src": "30.2",
+     "note": "书中把这个平衡写作 $\\kmdrop\\kg = \\kqe\\kEf$，用的是电子的电荷；与重力平衡的电荷是油滴的电荷 $\\kq$，它是电子电荷的整数倍，正如书中下一行所说。"
+    }
+   ]
+  }
+ ]
+}

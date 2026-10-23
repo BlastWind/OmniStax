@@ -1,0 +1,569 @@
+{
+ "id": "30.8",
+ "module": "m42614",
+ "chapter": "30",
+ "title": "量子数及其规则",
+ "short": "量子数",
+ "lead": "原子中一个电子的量子化性质，即它的<span data-concept=\"energy\">能量</span>、轨道<span data-concept=\"angular-momentum\">角动量</span>和内禀自旋，各由一个量子数标记。本节给出这些量子数的名称，并说明每个量子数的取值规则，既包括大小，也包括方向。",
+ "objectives": [
+  "定义量子数。",
+  "计算角动量矢量与某一轴的夹角。",
+  "定义自旋量子数。"
+ ],
+ "summary_html": "<ul><li>量子数用来表示量子化的实体的允许值。主量子数 $n$ 标记系统的基本状态，由下式给出 $$n = 1, 2, 3, \\ldots.$$</li><li><span data-concept=\"angular-momentum\">角动量</span>的大小由下式给出 $$\\kL = \\sqrt{l(l+1)}\\frac{h}{2\\pi}\\;(l = 0, 1, 2, \\ldots, n-1),$$ 其中 $l$ 是角量子数。<span data-concept=\"angular-momentum\">角动量</span>的方向是量子化的，即它沿由<span data-concept=\"magnetic-field\">磁场</span>定义的轴（称为 $z$ 轴）的分量由下式给出 $$\\kLz = m_l\\frac{h}{2\\pi}\\;(m_l = -l, -l+1, \\ldots, -1, 0, 1, \\ldots, l-1, l)\\text{,}$$ $\\kLz$ 是<span data-concept=\"angular-momentum\">角动量</span>的 $z$ 分量，$m_l$ 是磁量子数。同样，电子的内禀自旋角动量 $s$ 由下式给出 $$\\kSspin = \\sqrt{s(s+1)}\\frac{h}{2\\pi}\\;(s = 1/2\\;\\text{对电子而言}),$$ $s$ 被定义为自旋量子数。最后，电子的自旋沿 $z$ 轴的方向由下式给出 $$\\kSz = m_s\\frac{h}{2\\pi}\\;\\left(m_s = -\\frac{1}{2}, +\\frac{1}{2}\\right)\\text{,}$$ 其中 $\\kSz$ 是自旋角动量的 $z$ 分量，$m_s$ 是自旋磁量子数。自旋磁量子数 $m_s = +1/2$ 称为自旋向上，而 $m_s = -1/2$ 称为自旋向下。表 30.1 概括了原子的量子数及其允许值。</li></ul>",
+ "notes": "按原文保留：例题 30.3 中的“对应于 m_l = 0 的最大值，即 m_l = l”（最大值是 m_l = l）、小结段中的“l = 1, 2, 3, …, n − 1”（该规则从 0 开始）、图 30.53 的图注把基态写成 (0, 0, 0) 而不是 (1, 0, 0)，以及正文和小结中用 s 表示自旋角动量的大小 S。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案来自书后答案。九道习题中有四道没有给出答案，已略去：m_l = 2 的电子的最小 n，m_l = 1 对其他量子数施加的限制，l = 1 的电子的轨道角动量和自旋角动量及其比值，以及 l = 2 时 L 与 z 轴可以形成的夹角个数及其中最小的夹角。要求对 l = 3 重复那道被略去的习题的有答案习题，已完整写出。四道思考题没有答案，附有标注为 AI 的建议思路。本模块没有印出“理解检测”框，也没有 AP 题，没有任何习题移入或移出。",
+ "figures": [
+  {
+   "id": "sim-allowed-directions",
+   "kind": "sim",
+   "number": "30.52",
+   "originals": [
+    "/media/ch30/Figure_31_08_00a.jpg"
+   ],
+   "original_caption": "给定角动量沿 z 轴（由磁场的方向定义）的分量只能取某些特定的值；这里给出的是 l = 1 的情形，此时 m_l = −1、0 和 +1。L 的方向是量子化的，意思是它相对于 z 轴只能有某些特定的角度。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "angular-momentum",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-probability-clouds",
+   "kind": "sim",
+   "number": "30.53",
+   "originals": [
+    "/media/ch30/Figure_31_08_01a.jpg"
+   ],
+   "original_caption": "氢的基态和几个激发态中电子的概率云。这些状态的性质由它们的量子数组决定，这里给出为 (n, l, m_l)。基态为 (0, 0, 0)；第二激发态的可能性之一是 (3, 2, 1)。发现电子的概率用颜色的深浅表示；颜色越深，发现电子的机会越大。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "position",
+    "angular-momentum"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "quantum-numbers",
+   "concept": "quantum-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantum-numbers",
+   "concept": "principal-quantum-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantum-numbers",
+   "concept": "quantized",
+   "verb": "uses"
+  },
+  {
+   "span": "quantum-numbers",
+   "concept": "hydrogen-like-energies",
+   "verb": "uses"
+  },
+  {
+   "span": "quantum-numbers",
+   "concept": "bohr-orbit-radii",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude-of-angular-momentum",
+   "concept": "orbital-angular-momentum-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitude-of-angular-momentum",
+   "concept": "angular-momentum-quantum-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitude-of-angular-momentum",
+   "concept": "orbital-angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude-of-angular-momentum",
+   "concept": "bohr-angular-momentum-quantization",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude-of-angular-momentum",
+   "concept": "probability-cloud",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitude-of-angular-momentum",
+   "concept": "heisenberg-uncertainty-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "direction-of-angular-momentum",
+   "concept": "z-component-of-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "direction-of-angular-momentum",
+   "concept": "space-quantization",
+   "verb": "uses"
+  },
+  {
+   "span": "direction-of-angular-momentum",
+   "concept": "zeeman-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "allowed-directions",
+   "concept": "angle-of-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "allowed-directions",
+   "concept": "z-component-of-angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "allowed-directions",
+   "concept": "orbital-angular-momentum-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "allowed-directions",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "allowed-directions",
+   "concept": "correspondence-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "spin-quantum-numbers",
+   "verb": "introduces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "spin-quantum-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "spin-projection-quantum-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "spin-angular-momentum-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "spin-angular-momentum-z-component",
+   "verb": "introduces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "allowed-quantum-numbers",
+   "verb": "introduces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "principal-quantum-number",
+   "verb": "reinforces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "angular-momentum-quantum-number",
+   "verb": "reinforces"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "intrinsic-spin",
+   "verb": "uses"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "fine-structure",
+   "verb": "uses"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "probability-cloud",
+   "verb": "uses"
+  },
+  {
+   "span": "intrinsic-spin",
+   "concept": "heisenberg-uncertainty-principle",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3259487",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intrinsic-spin",
+   "prompt": "定义量子数 $n, l, m_l, s$ 和 $m_s$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$n$ 是主量子数，$n = 1, 2, 3, \\ldots$，它标记原子的基本状态并决定它们的能量。$l$ 是角量子数，取 $0$ 到 $n - 1$，它决定轨道角动量的大小，$\\kL = \\sqrt{l(l+1)}\\,h/2\\pi$。$m_l$ 是磁量子数，取 $-l$ 到 $l$，以 1 为间隔，它决定 $z$ 分量 $\\kLz = m_l h/2\\pi$，从而决定 $\\kL$ 的方向。$s$ 是自旋量子数，对电子为 $1/2$，它决定内禀自旋的大小，$\\kSspin = \\sqrt{s(s+1)}\\,h/2\\pi$。$m_s$ 是自旋磁量子数，为 $+1/2$（自旋向上）或 $-1/2$（自旋向下），它决定 $\\kSz = m_s h/2\\pi$。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1859624",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude-of-angular-momentum",
+   "prompt": "对于给定的 $n$ 值，$l$ 的允许值是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$l$ 可以是从 0 到 $n - 1$ 的任意整数，所以共有 $n$ 个允许值：$l = 0, 1, 2, \\ldots, n - 1$。对于 $n = 1$，只允许 $l = 0$；对于 $n = 3$，$l$ 可以是 0、1 或 2。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3033126",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-of-angular-momentum",
+   "prompt": "对于给定的 $l$ 值，$m_l$ 的允许值是什么？对于给定的 $n$ 值，$m_l$ 的允许值又是什么？请在每种情形下各举一例。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对于给定的 $l$，$m_l$ 从 $-l$ 到 $l$，以 1 为间隔，共 $2l + 1$ 个值；对于 $l = 2$，它们是 $-2, -1, 0, 1, 2$。对于给定的 $n$，$l$ 最大可以是 $n - 1$，所以 $m_l$ 可以是从 $-(n - 1)$ 到 $n - 1$ 的任意整数；对于 $n = 3$，$m_l$ 可以是 $-2, -1, 0, 1$ 或 $2$，其中 $\\pm 2$ 只属于 $l = 2$。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3224054",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intrinsic-spin",
+   "prompt": "列出电子的 $s$ 和 $m_s$ 的所有可能值。是否有些粒子的这些值与电子不同？是否有些粒子的这些值与电子相同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对于电子，$s$ 总是 $1/2$，而 $m_s = +1/2$ 或 $-1/2$。质子和中子的值与此相同，$s = 1/2$，$m_s = \\pm 1/2$。其他粒子则不同：光子的 $s = 1$，π 介子的 $s = 0$，对它们而言，$m_s$ 取其他值，例如自旋为 1 时取 $-1, 0, 1$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1599368",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-of-angular-momentum",
+   "prompt": "如果一个原子中有一个处于 $n = 5$ 态、$m_l = 3$ 的电子，$l$ 的可能值是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$l = 4, 3$ 是可能的，因为 $l < n$ 且 $|m_l| \\le l$。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3354859",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-of-angular-momentum",
+   "prompt": "处于 $n = 4$ 态的电子，$m_l$ 的可能值是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$n = 4 \\Rightarrow l = 3, 2, 1, 0 \\Rightarrow m_l = \\pm 3, \\pm 2, \\pm 1, 0$ 都是可能的。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2663083",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude-of-angular-momentum",
+   "prompt": "（a）计算 $l = 1$ 的电子的角动量大小。（b）将你的答案与玻尔为 $n = 1$ 态所提出的值作比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the magnitude of the angular momentum",
+      "value": 1.49e-34,
+      "unit": "J·s",
+      "hint": "$\\kL = \\sqrt{l(l+1)}\\,h/2\\pi$，取 $l = 1$，得 $\\sqrt{2}\\,h/2\\pi$。"
+     },
+     {
+      "part": "(b) Bohr’s value for n = 1",
+      "value": 1.06e-34,
+      "unit": "J·s",
+      "hint": "玻尔提出 $\\kL = n h/2\\pi$，所以对 $n = 1$ 为 $h/2\\pi$。"
+     }
+    ],
+    "solution": "（a）$1.49\\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$（b）$1.06\\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id957081",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intrinsic-spin",
+   "prompt": "（a）$l = 3$ 的电子的角动量大小是多少？（b）计算该电子的自旋角动量的大小。（c）这两个角动量之比是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the orbital angular momentum",
+      "value": 3.66e-34,
+      "unit": "J·s",
+      "hint": "$\\kL = \\sqrt{l(l+1)}\\,h/2\\pi$，取 $l = 3$，得 $\\sqrt{12}\\,h/2\\pi$。"
+     },
+     {
+      "part": "(b) the spin angular momentum",
+      "value": 9.13e-35,
+      "unit": "J·s",
+      "hint": "$\\kSspin = \\sqrt{s(s+1)}\\,h/2\\pi$，取 $s = 1/2$，得 $\\sqrt{3/4}\\,h/2\\pi$。"
+     },
+     {
+      "part": "(c) the ratio L/S",
+      "value": 4,
+      "hint": "$h/2\\pi$ 的因子相消，剩下 $\\sqrt{12}/\\sqrt{3/4}$。"
+     }
+    ],
+    "solution": "（a）$3.66\\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$（b）$\\kSspin = 9.13\\times 10^{-35}\\;\\text{J}\\cdot\\text{s}$（c）$\\frac{\\kL}{\\kSspin} = \\frac{\\sqrt{12}}{\\sqrt{3/4}} = 4$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2991428",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intrinsic-spin",
+   "prompt": "电子的自旋 $s$ 与 $z$ 轴可以形成哪些夹角？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the angle for spin up",
+      "value": 54.7,
+      "unit": "°",
+      "tol": 0.005,
+      "hint": "$\\cos\\ktheta = \\kSz/\\kSspin = m_s/\\sqrt{s(s+1)}$，其中 $m_s = +1/2$，$s = 1/2$。"
+     },
+     {
+      "part": "the angle for spin down",
+      "value": 125.3,
+      "unit": "°",
+      "tol": 0.005,
+      "hint": "同样，只是 $m_s = -1/2$。"
+     }
+    ],
+    "solution": "$\\ktheta = 54.7^\\circ, 125.3^\\circ$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "principal-quantum-number"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "angular-momentum-quantum-number"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "z-component-of-angular-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "spin-quantum-number"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "spin-projection-quantum-number"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "angular-momentum-quantum-number"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "allowed-quantum-numbers"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "z-component-of-angular-momentum"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "allowed-quantum-numbers"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "spin-quantum-number"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "spin-projection-quantum-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "allowed-quantum-numbers"
+  },
+  {
+   "exercise": "p2",
+   "concept": "allowed-quantum-numbers"
+  },
+  {
+   "exercise": "p2",
+   "concept": "z-component-of-angular-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "orbital-angular-momentum-magnitude"
+  },
+  {
+   "exercise": "p3",
+   "concept": "bohr-angular-momentum-quantization"
+  },
+  {
+   "exercise": "p4",
+   "concept": "orbital-angular-momentum-magnitude"
+  },
+  {
+   "exercise": "p4",
+   "concept": "spin-angular-momentum-magnitude"
+  },
+  {
+   "exercise": "p5",
+   "concept": "spin-angular-momentum-z-component"
+  },
+  {
+   "exercise": "p5",
+   "concept": "angle-of-angular-momentum"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ml-plus-one",
+   "label": "m_l = +1 时 L 的方向",
+   "figures": [
+    "sim-allowed-directions"
+   ]
+  },
+  {
+   "id": "ml-zero",
+   "label": "m_l = 0 时 L 的方向",
+   "figures": [
+    "sim-allowed-directions"
+   ]
+  },
+  {
+   "id": "ml-minus-one",
+   "label": "m_l = −1 时 L 的方向",
+   "figures": [
+    "sim-allowed-directions"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-l-from-zero",
+   "kind": "correction",
+   "html": "原书印的是 $l = 1, 2, 3, \\ldots, n-1$；角量子数从零开始，$l = 0, 1, 2, \\ldots, n-1$，如本节中的规则所给出的那样。"
+  },
+  {
+   "id": "c-ground-state",
+   "kind": "correction",
+   "html": "图注把基态写成 (0, 0, 0)；当 $n = 1$ 时，它是 (1, 0, 0)。"
+  }
+ ]
+}
