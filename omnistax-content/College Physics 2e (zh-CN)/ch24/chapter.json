@@ -1,0 +1,423 @@
+{
+ "id": "24",
+ "dir": "ch24",
+ "title": "电磁波",
+ "intro": {
+  "module": "m42434",
+  "slug": "24-introduction-to-electromagnetic-waves"
+ },
+ "sections": [
+  {
+   "id": "24.1",
+   "module": "m42437",
+   "title": "麦克斯韦方程组：电磁波的预言与观测",
+   "slug": "24-1-maxwells-equations-electromagnetic-waves-predicted-and-observed"
+  },
+  {
+   "id": "24.2",
+   "module": "m42440",
+   "title": "电磁波的产生",
+   "slug": "24-2-production-of-electromagnetic-waves"
+  },
+  {
+   "id": "24.3",
+   "module": "m42444",
+   "title": "电磁波谱",
+   "slug": "24-3-the-electromagnetic-spectrum"
+  },
+  {
+   "id": "24.4",
+   "module": "m42446",
+   "title": "电磁波中的能量",
+   "slug": "24-4-energy-in-electromagnetic-waves"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "真空中的光速，即所有电磁波的传播速率，3.00 × 10⁸ m/s",
+   "unit": "m/s",
+   "section": "24.1",
+   "anchor": "24.1-prediction"
+  },
+  {
+   "sym": "μ_0",
+   "concept": "permeability-of-free-space",
+   "meaning": "真空磁导率，4π × 10⁻⁷ T·m/A，决定磁力强度的常量",
+   "unit": "T·m/A",
+   "section": "24.1",
+   "anchor": "24.1-prediction"
+  },
+  {
+   "sym": "ε_0",
+   "concept": "permittivity-of-free-space",
+   "meaning": "真空电容率，8.85 × 10⁻¹² C²/N·m²，决定电力强度的常量",
+   "unit": "C²/N·m²",
+   "section": "24.1",
+   "anchor": "24.1-prediction"
+  },
+  {
+   "sym": "f_0",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "meaning": "赫兹用来产生和检测电磁波的 RLC 电路的共振频率",
+   "unit": "Hz",
+   "section": "24.1",
+   "anchor": "24.1-hertz"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "波在某一点的电场强度，由天线上的电荷分布产生",
+   "unit": "V/m",
+   "section": "24.2",
+   "anchor": "24.2-varying-current"
+  },
+  {
+   "sym": "B_mag",
+   "concept": "magnetic-field-strength-defined",
+   "meaning": "波在同一点的磁感应强度，由天线中的电流产生",
+   "unit": "T",
+   "section": "24.2",
+   "anchor": "24.2-e-and-b-together"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，也是真空中任何电磁波的电场强度与磁感应强度之比",
+   "unit": "m/s",
+   "section": "24.2",
+   "anchor": "24.2-varying-current"
+  },
+  {
+   "sym": "T",
+   "concept": "period",
+   "meaning": "驱动天线的振荡的周期，也是它发出的波的周期",
+   "unit": "s",
+   "section": "24.2",
+   "anchor": "24.2-one-cycle"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "波的频率，即天线中电荷振荡的频率",
+   "unit": "Hz",
+   "section": "24.2",
+   "anchor": "24.2-one-cycle"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "波的波长，与振荡的周期成正比，因此频率越高波长越短",
+   "unit": "m",
+   "section": "24.2",
+   "anchor": "24.2-one-cycle"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "电磁波在介质中的速率，小于真空中的光速",
+   "unit": "m/s",
+   "section": "24.2",
+   "anchor": "24.2-field-ratio"
+  },
+  {
+   "sym": "n",
+   "concept": "index-of-refraction",
+   "meaning": "介质的折射率，即它使电磁波变慢的倍数",
+   "section": "24.2",
+   "anchor": "24.2-field-ratio"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，即所有电磁波在真空中的传播速率",
+   "unit": "m/s",
+   "section": "24.3",
+   "anchor": "24.3-wave-relation"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "波的频率，决定它属于电磁波谱的哪个波段",
+   "unit": "Hz",
+   "section": "24.3",
+   "anchor": "24.3-wave-relation"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "波的波长，决定它所能分辨的最小细节和天线的最有效长度",
+   "unit": "m",
+   "section": "24.3",
+   "anchor": "24.3-wave-relation"
+  },
+  {
+   "sym": "v_w",
+   "concept": "instantaneous-velocity",
+   "meaning": "任何种类的波的传播速率，对真空中的电磁波就是光速",
+   "unit": "m/s",
+   "section": "24.3",
+   "anchor": "24.3-wave-relation"
+  },
+  {
+   "sym": "I_intens",
+   "concept": "intensity",
+   "meaning": "波的强度，即单位面积上通过的功率",
+   "unit": "W/m²",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "I_ave",
+   "concept": "intensity",
+   "meaning": "连续正弦电磁波的平均强度",
+   "unit": "W/m²",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "I_0peak",
+   "concept": "intensity",
+   "meaning": "连续正弦波的峰值强度，等于平均强度的两倍",
+   "unit": "W/m²",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "E_0field",
+   "concept": "maximum-field-strength",
+   "type": "electric-field",
+   "meaning": "波的最大电场强度，即它的电场振幅",
+   "unit": "V/m",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "B_0mag",
+   "concept": "maximum-field-strength",
+   "type": "magnetic-field",
+   "meaning": "波的最大磁感应强度，即它的磁场振幅",
+   "unit": "T",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "P",
+   "concept": "power",
+   "meaning": "波源输出的功率，分布在一定面积上就得到强度",
+   "unit": "W",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "功率所分布的面积",
+   "unit": "m²",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，它出现在强度的全部三个表达式中",
+   "unit": "m/s",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "ε_0",
+   "concept": "permittivity-of-free-space",
+   "meaning": "真空电容率，8.85 × 10⁻¹² C²/N·m²",
+   "unit": "C²/N·m²",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "μ_0",
+   "concept": "permeability-of-free-space",
+   "meaning": "真空磁导率，4π × 10⁻⁷ T·m/A",
+   "unit": "T·m/A",
+   "section": "24.4",
+   "anchor": "24.4-average-intensity"
+  },
+  {
+   "sym": "v",
+   "concept": "wave-velocity",
+   "meaning": "赫兹所产生的波的传播速率，等于其频率与波长的乘积",
+   "unit": "m/s",
+   "section": "24.1",
+   "anchor": "24.1-hertz"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "赫兹所产生的波的频率，由他的电路得知",
+   "unit": "Hz",
+   "section": "24.1",
+   "anchor": "24.1-hertz"
+  },
+  {
+   "sym": "λ",
+   "concept": "wavelength",
+   "meaning": "赫兹所产生的波的波长，由其干涉图样读出",
+   "unit": "m",
+   "section": "24.1",
+   "anchor": "24.1-hertz"
+  },
+  {
+   "sym": "L_ind",
+   "concept": "self-inductance",
+   "meaning": "赫兹所用 RLC 电路的电感，它与电容一起决定共振频率",
+   "unit": "H",
+   "section": "24.1",
+   "anchor": "24.1-hertz"
+  },
+  {
+   "sym": "C_cap",
+   "concept": "capacitance",
+   "meaning": "赫兹所用 RLC 电路的电容，它与电感一起决定共振频率",
+   "unit": "F",
+   "section": "24.1",
+   "anchor": "24.1-hertz"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "电场，其电场线始于电荷、终于电荷，变化的磁场可以感应出电场",
+   "unit": "V/m",
+   "section": "24.1",
+   "anchor": "24.1-maxwell"
+  },
+  {
+   "sym": "B_mag",
+   "concept": "magnetic-field-strength-defined",
+   "meaning": "磁场，其磁感线自行闭合，运动的电荷和变化的电场可以产生磁场",
+   "unit": "T",
+   "section": "24.1",
+   "anchor": "24.1-maxwell"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "经过的时间，从图或例题开始计时的时刻算起",
+   "unit": "s",
+   "section": "24.2",
+   "anchor": "24.2-one-cycle"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "发电机驱动通过天线的电流，它产生波的磁场部分",
+   "unit": "A",
+   "section": "24.2",
+   "anchor": "24.2-e-and-b-together"
+  },
+  {
+   "sym": "Q_heat",
+   "concept": "heat",
+   "meaning": "把角膜组织的温度升高到 100 °C 所需的热量",
+   "unit": "J",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "激光脉冲串所加热并蒸发的角膜组织的质量",
+   "unit": "kg",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "c_spec",
+   "concept": "specific-heat",
+   "meaning": "组织的比热容，取水的比热容，4186 J/kg·K",
+   "unit": "J/kg·K",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "ΔT",
+   "concept": "temperature",
+   "meaning": "组织的温度变化，从 34 °C 到 100 °C",
+   "unit": "°C",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "L_v",
+   "concept": "heat-of-vaporization",
+   "meaning": "水的汽化热，2256 kJ/kg",
+   "unit": "J/kg",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "Q_v",
+   "concept": "heat",
+   "meaning": "蒸发角膜组织所需的热量",
+   "unit": "J",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "Q_tot",
+   "concept": "heat",
+   "meaning": "组织吸收的总能量，即使它升温的热量与使它蒸发的热量之和",
+   "unit": "J",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "ρ_dens",
+   "concept": "density",
+   "meaning": "角膜组织的密度，取水的密度，1000 kg/m³",
+   "unit": "kg/m³",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "V",
+   "concept": "volume",
+   "meaning": "被蒸发的角膜层的体积，等于其面积乘以厚度",
+   "unit": "m³",
+   "section": "24.3",
+   "anchor": "24.3-ex-laser-vision"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "无线电波在某一时刻的电场，调制塑造它的形状",
+   "unit": "V/m",
+   "section": "24.3",
+   "anchor": "24.3-radio-tv"
+  },
+  {
+   "sym": "E_0field",
+   "concept": "maximum-field-strength",
+   "meaning": "波的最大电场强度，即它的电场振幅",
+   "unit": "V/m",
+   "section": "24.3",
+   "anchor": "24.3-radio-tv",
+   "type": "electric-field"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "经过的时间，从图或例题开始计时的时刻算起",
+   "unit": "s",
+   "section": "24.3",
+   "anchor": "24.3-radio-tv"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "撞击电子到达时的能量，以及 X 射线带走的能量",
+   "unit": "keV",
+   "section": "24.3",
+   "anchor": "24.3-uv-benefits"
+  }
+ ]
+}

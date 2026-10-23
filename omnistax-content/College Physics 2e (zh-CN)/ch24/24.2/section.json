@@ -1,0 +1,872 @@
+{
+ "id": "24.2",
+ "module": "m42440",
+ "chapter": "24",
+ "title": "电磁波的产生",
+ "short": "电磁波的产生",
+ "lead": "要理解电磁波，最容易的办法是看着它形成，所以本节跟随<span data-ref=\"generator\">一台发电机</span>驱动<span data-type=\"charge\">电荷</span>沿<span data-ref=\"antenna\">一根长直导线</span>上下运动的过程。它追踪<span data-ref=\"antenna\">导线</span>发出的<span data-concept=\"electric-field\">电场</span>和<span data-concept=\"magnetic-field\">磁场</span>，并追问这两者如何排布、强度如何比较。",
+ "objectives": [
+  "描述电波和磁波从波源（例如交流发电机）向外传播的情形。",
+  "说明磁感应强度与电场强度之间的数学关系。",
+  "已知最大电场强度，计算电磁波中磁感应强度的最大值。"
+ ],
+ "summary_html": "<ul><li>电磁波由振荡电荷（电荷只要被加速就会辐射）产生，其<span data-concept=\"frequency\">频率</span>与振荡的频率相同。</li><li>由于大多数电磁波中的电场和<span data-concept=\"magnetic-field\">磁场</span>都垂直于波的运动方向，所以它通常是横波。</li><li>波的电场部分与磁场部分的强度之间的关系为 $\\frac{\\kEf}{\\kBmag} = \\kc,$ 这意味着相对于<span data-concept=\"electric-field\">电场</span> $\\kEf$，<span data-concept=\"magnetic-field\">磁场</span> $\\kBmag$ 非常弱。</li></ul>",
+ "notes": "与 PhET 模拟“无线电波与电磁场”（Radio Waves and Electromagnetic Fields）的链接被略去，全书对出版方交互内容的链接都是如此。本模块的三道习题中有两道没有书后答案，因此一并略去：波在速率为 $0.75\\kc$ 的介质中传播的那道，以及验证 $\\kEf/\\kc$ 的单位确实是特斯拉的那道。本模块关于 3 GHz 波的周期和波长的 AP 题，以及关于波到达介质末端的 AP 题，都需要用到 $\\kc = \\kf\\klam$，该式在 24.3 节引入，因此改放在那里。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。三道习题中有两道没有书后答案，因此略去：波在速率为 $0.75\\kc$ 的介质中传播的那道，以及验证 $\\kEf/\\kc$ 的单位是特斯拉的那道。十道思考题和六道 AP 题中的四道在书中都没有答案，保留为开放题，并附有标明由 AI 撰写的建议思路；另外两道 AP 题在原书中有答案，设为判分选择题。本模块没有印出“理解检测”框，所以没有设置任何内嵌题。本模块的两道 AP 题留给 24.3 节，那里引入了 $\\kc = \\kf\\klam$，并在那里以本节为出处标明。三道思考题的习题卡片上带有本书自己的图。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-antenna-cycle",
+   "kind": "sim",
+   "number": "24.5",
+   "originals": [
+    "/media/ch24/Figure_25_02_01a.jpg"
+   ],
+   "original_caption": "这根长直的灰色导线中央有一台交流发电机，成为电磁波的广播天线。图中所示为四个不同时刻的电荷分布。电场（E）以光速离开天线向外传播，构成电磁波的一部分。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "electric-field",
+    "charge",
+    "velocity",
+    "position",
+    "time",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped, caption grammar, charge label off ruler, minus signs"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-antenna-b",
+   "kind": "sim",
+   "number": "24.6",
+   "originals": [
+    "/media/ch24/Figure_25_02_02a.jpg"
+   ],
+   "original_caption": "（a）天线中的电流产生环形的磁感线。电流（I）使电荷沿导线分离，进而产生如图所示的电场。（b）导线附近的电场和磁场（E 和 B）相互垂直；图中画的是空间中的一个点。（c）磁场随电流变化，并以光速离开天线向外传播。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "electric-field",
+    "charge",
+    "velocity",
+    "position",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut; zero current reads 0 T; r label and colliding E, B names cleared"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-em-wave-3d",
+   "kind": "sim",
+   "number": "24.7",
+   "originals": [
+    "/media/ch24/Figure_25_02_03a.jpg"
+   ],
+   "original_caption": "天线在某一时刻发出的电磁波的一部分。电场和磁场（E 和 B）同相，并且彼此垂直，也都与传播方向垂直。为清楚起见，图中只画出了沿一个方向的波，但它们也向其他方向传播。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "velocity",
+    "position",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the receiver; superscript minus; receiver names fit"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-field-ratio",
+   "kind": "sim",
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped; headline value set whole; superscript minus"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "varying-current",
+   "concept": "em-waves-from-accelerating-charges",
+   "verb": "introduces"
+  },
+  {
+   "span": "varying-current",
+   "concept": "maxwells-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "changing-fields-generate-each-other",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "varying-current",
+   "concept": "oscillation",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "antenna-field-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "electric-field-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "one-cycle",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "magnetic-part-of-the-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "em-wave-is-transverse",
+   "verb": "introduces"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "antenna-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "amperes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "right-hand-rule-2",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "field-of-a-long-straight-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "transverse-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "standing-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "e-and-b-together",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "receiving",
+   "concept": "antenna-resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "receiving",
+   "concept": "em-waves-from-accelerating-charges",
+   "verb": "reinforces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "e-over-b-equals-c",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "find-b-from-e",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "em-wave-in-a-medium",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "volts-per-meter",
+   "verb": "uses"
+  },
+  {
+   "span": "field-ratio",
+   "concept": "the-tesla",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737794236",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "one-cycle",
+   "prompt": "图 24.5 各部分所示的电场方向，是导线上的电荷分布所产生的。请利用库仑定律和 $\\kEf = F/\\kq$ 的定义（其中 $\\kq$ 是正检验电荷），论证各部分所示的方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "天线旁某一点的电场，是置于该点的正检验电荷所受的单位电荷的力，所以它指向该检验电荷将要运动的方向。在 $\\kt = 0$ 时刻，天线顶部带负电荷，底部带正电荷。根据库仑定律，底部排斥检验电荷，顶部吸引检验电荷，所以两者的贡献都向上，如图所示。四分之一个周期之后，没有电荷分离，两项贡献相互抵消，天线旁的电场为零。在 $\\kt = \\kT/2$ 时刻，正负号已调到另一端，所以同样的论证给出大小相同、方向向下的电场。到 $\\kt = \\kT$ 时刻，电荷回到起初的位置，电场再次指向上方。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738200374",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "图 24.6（a）所示的磁场方向，与按图中所示电流方向应用电流的右手定则（RHR-2）得到的结果一致吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一致。右手定则 2 说，把右手拇指指向电流方向，四指弯曲；四指所指的就是磁感线的方向。图中的电流沿天线向上，所以拇指向上时，四指弯曲的转向与圆环相同。在导线上任何高度应用同样的定则，得到同样的转向，因此环绕天线的每一个圆环转向都相同。半个周期之后，电流反向，定则使所有圆环随之反向。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738176896",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "为什么图 24.6 各部分所示的电流方向，与导线中电荷分离所产生的电场方向相反？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为在那一时刻，发电机是在建立这种分离，而不是让它消散。导线旁画出的电场，是已经存在的电荷所产生的电场，它从天线的正端指向负端。同一时刻的电流把更多的正电荷送向已经带正电的那一端，方向恰与之相反，所以电源是在逆着自己产生的电场驱动电荷。这正是发电机对天线所做的功，它一直持续到分离达到最大值，那时电场最大，而电流已降为零。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737715013",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "在图中所示的哪种情形下，电磁波更容易在导线中感应出电流？请说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在第一种情形，即波的电场在竖直平面内振荡，因而沿着导线。直导线中的电流，就是电荷被从导线的一端驱向另一端；波的电场沿着场自身所指的方向推动电荷。当这个方向沿着导线时，整个电场都用来驱动电荷沿导线上下运动，所感应的电流就是这个波所能产生的最大值。在第二种情形，电场横跨导线，所以它把电荷推向导线的两侧而不是沿着导线的长度，几乎不产生电流。"
+   },
+   "figure": {
+    "src": "/media/ch24/Figure_25_02_04a.jpg",
+    "alt": "一列电磁波接近一根长直竖直导线，图中画了两次：第一次电场在竖直平面内振荡、磁场在水平面内振荡，第二次两个平面互换。",
+    "caption": "电磁波接近长直导线。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169738253710",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "在图中所示的哪种情形下，电磁波更容易在线圈中感应出电流？请说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在（a）中。线圈响应的是穿过它的磁通量，$\\kPhi = \\kBmag A\\cos\\theta$，只有磁通量变化时线圈周围才出现电动势。图中的线圈是竖直放置的，波的传播所沿的直线位于它的平面内。在（a）中，波的磁场沿水平方向振荡，并与这条直线垂直，所以它径直穿过线圈，磁通量随波起伏，于是有电流被驱动着绕线圈流动并进入调谐器。在（b）中，磁场沿竖直方向振荡，就在线圈自身的平面内，所以 $\\theta = 90^\\circ$，不论波有多强，磁通量始终为零，什么也感应不出来。上一题中的直导线也在（a）中效果最好，但原因不同：导线是由沿它的电场驱动的，而线圈是由穿过它的磁场驱动的。"
+   },
+   "figure": {
+    "src": "/media/ch24/Figure_25_02_05a.jpg",
+    "alt": "一列电磁波接近一个与调谐器相连的接收线圈，图中画了两次：第一次电场在竖直平面内振荡、磁场在水平面内振荡，第二次两个平面互换。",
+    "caption": "电磁波接近一个金属丝圈。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169738225032",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "receiving",
+   "prompt": "收音机的直导线天线要最好地接收竖直发射天线所广播的无线电波，应当竖直还是水平放置？环形天线应当怎样取向才能最好地接收信号？（请注意，能使接收最佳的线圈方向可用来确定波源的位置。例如，在野外研究中追踪带标记的动物时就是这样用的。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "竖直。竖直的发射天线发出的波，其电场在竖直平面内振荡。电场中沿接收导线的那一部分驱动它，所以接收导线应与发射天线平行竖立。同一个波的磁场是水平的，并与传播方向垂直。因此，线圈竖直放置、其平面包含指向发射器的连线时接收最好，这时水平的磁场穿过它。把线圈从这个位置绕竖直轴转四分之一圈，穿过它的磁通量就降为零，信号消失。这个信号消失的位置沿着通向波源的连线，所以可以用线圈来找出波源在哪里。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169737871842",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "receiving",
+   "prompt": "直流电路中的导线在什么条件下可能发射电磁波？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只要其中的电流并不是真正稳定的。电荷只有在被加速时才辐射，所以载有真正恒定直流电的电路什么也发射不出来。但是开关的闭合或断开、仍在向稳定值增大的电流、电动机换向器的断开接触，以及火花跳过间隙，都会使电流迅速变化，而电流变化期间导线中的电荷在加速，导线就会辐射。这就是为什么打开电器时，同一房间里的收音机会发出噼啪一声。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169737717009",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "举一个电磁波干涉的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "肥皂泡上的颜色就是一例。从薄膜外表面反射的光与从内表面反射的光一起到达，视薄膜的厚度和光的波长而定，二者相加或相消，使一些颜色加强、另一些缺失。第二个例子是汽车收音机在桥下或高楼之间出现的衰落，直接来自发射器的波遇到经建筑物反射的波，二者在某些地方抵消、在另一些地方加强。本节后面一道题中画出的两根广播天线发出同一信号的图样，是第三个例子。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169736620972",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "图中显示了两根无线电天线广播同一信号时的干涉图样。请解释这与两个扬声器产生的声的干涉图样有何类似之处。它能否用来制成在某些方向上优先广播的定向天线系统？请说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这两根天线所做的，与两个扬声器所做的完全一样。每一根都发出同样频率、彼此同步的波，所以在房间里任何一点，两个波到达时经过的距离不同。当路程差是波长的整数倍时，波峰重合，信号很强。当路程差是波长的半整数倍时，一个波的波峰遇上另一个波的波谷，信号很弱。图中在两根天线之间向外延伸的强信号线，就是两个扬声器在房间里造成的相长干涉线。而且是的，天线阵正是以这种方式变得具有方向性的。天线的间距和每根天线被驱动的相位，决定了波在哪些方向上相加、在哪些方向上抵消，所以你可以把信号送向想要的地方，而不让它进入不想要的地方。"
+   },
+   "figure": {
+    "src": "/media/ch24/Figure_25_02_06a.jpg",
+    "alt": "两根无线电广播天线发出同一信号的俯视图，圆形的波峰和波谷从每根天线向外扩展，箭头沿波峰相遇的方向向外延伸。",
+    "caption": "两根无线电广播天线发出同一信号的俯视图，以及它们产生的干涉图样。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id1169738013401",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "天线可以是任意长度吗？请说明你的理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你可以把它造成任意长度，但并不是在每种长度下都能很好地工作。交流电源在导线上建立起电荷的驻波，而驻波只有在导线的长度与它所承载的波相适应时才能容纳，这就是共振。长度与驱动频率相适应的天线辐射很强；长得多或短得多的天线则不然。这就是为什么天线必须工作的频率决定了它的尺寸，也是为什么调谐收音机或电视机，就是改变电学性质，直到满足共振条件。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id955131",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "e-and-b-together",
+   "prompt": "如果你试图产生纵电磁波，请描述会出现什么结果。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这是做不到的。天线中加速的电荷产生电磁波的场，而两个场都垂直于辐射传播所沿的直线。任何一个场都没有沿着传播方向的分量，所以没有什么能像纵波所要求的那样来回振荡。无论怎样驱动天线，从它离开的都是横波。把天线对准你想要的纵向振荡的方向，也只会让横波沿与之垂直的方向发出去，因为线天线不沿自身的长度方向辐射。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1921736",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "varying-current",
+   "prompt": "你在月球上蹦蹦跳跳，这时你的无线电设备坏了。要把这个问题告诉同样在月球上蹦跳的朋友，最好的办法是喊叫还是闪光？为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "闪光。声是机械波，需要介质来传播，而月球上没有大气，所以喊声无处可传，哪儿也到不了。光是电磁波，由相互产生的电场和磁场组成，不需要任何物质，所以它以 $3.00\\times 10^{8}\\;\\text{m/s}$ 穿过你们之间的真空，到达你的朋友那里。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2769744",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "one-cycle",
+   "prompt": "已知图 24.5（d）中的波形，若 $\\kT = 3.0\\times 10^{-9}\\;\\text{s}$、$\\kEf = 5.0\\times 10^{5}\\;\\text{N/C}$，下列哪个是天线处波的正确方程？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\sin\\left(2\\pi(3.0\\times 10^{-9}\\;\\text{s})t\\right)$",
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\sin\\left(\\frac{2\\pi t}{3.0\\times 10^{-9}\\;\\text{s}}\\right)$",
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\cos\\left(2\\pi(3.0\\times 10^{-9}\\;\\text{s})t\\right)$",
+     "$(5.0\\times 10^{5}\\;\\text{N/C})\\cos\\left(\\frac{2\\pi t}{3.0\\times 10^{-9}\\;\\text{s}}\\right)$"
+    ],
+    "correct": 3,
+    "hint": "在图的（d）部分中，天线回到电荷分离最大的位置，所以波在 $t = 0$ 时必为最大值。要把周期放在时间下面，而不是乘以时间。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2203616",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-ratio",
+   "prompt": "已知图 24.5（d）中的波形，若 $\\kf = 2.0\\;\\text{GHz}$、$\\kEf = 6.0\\times 10^{5}\\;\\text{N/C}$，天线处磁场波的正确方程是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "波的磁场部分与电场部分是由同样的电荷的同一运动产生的，所以它们频率相同、相位相同，只是振幅不同。这个振幅由两个场强之比得出：$\\kBmag = \\kEf/\\kc = (6.0\\times 10^{5}\\;\\text{N/C})/(3.00\\times 10^{8}\\;\\text{m/s}) = 2.0\\times 10^{-3}\\;\\text{T}$。天线处的波在 $t = 0$ 时处于最大值，与电波一样，所以它是同一自变量的余弦：$\\kBmag = (2.0\\times 10^{-3}\\;\\text{T})\\cos\\left(2\\pi(2.0\\times 10^{9}\\;\\text{Hz})t\\right)$。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id3179292",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-ratio",
+   "prompt": "在海因里希·赫兹的火花隙实验中，线圈 2 中感应出的火花与线圈 1 中产生的火花相比如何？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "更强",
+     "更弱",
+     "需要知道调谐器的设置才能判断",
+     "更弱，但弱多少取决于调谐器的设置。"
+    ],
+    "correct": 3,
+    "hint": "线圈 2 只由穿过房间的波驱动，而它吸收这个波的多少，取决于两个线圈被调谐到同一频率的程度。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1832456",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "varying-current",
+   "prompt": "太阳离地球很远，两者之间的空间几乎是空的。然而，地球自转轴相对于太阳的倾斜造成了四季。根据你在本节学到的内容，解释其中的原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "太阳发出的是电磁辐射，而电磁波是相互产生的变化电场和变化磁场，所以它的传播不需要介质，太阳与地球之间的空无一物完全不是障碍。四季则取决于这种辐射如何落到地面。由于地轴倾斜，到达某一纬度的阳光，在一年中的某个时候几乎垂直地射到地面，半年之后则是斜射，而斜射的光束把同样的功率摊到更大的面积上。每平方米上落下的能量较多就是夏季，较少就是冬季。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738092272",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-ratio",
+   "prompt": "最大磁感应强度为 $5.00\\times 10^{-4}\\;\\text{T}$（约为地磁场的 10 倍）的电磁波，其最大电场强度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 150,
+    "unit": "kV/m",
+    "generated_by": "source",
+    "hint": "在真空中，电场强度与磁感应强度之比是光速，所以电场等于磁场乘以 $\\kc$。",
+    "solution": "150 kV/m"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "antenna-field-cycle"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-field-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "magnetic-part-of-the-wave"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "right-hand-rule-2",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnetic-part-of-the-wave"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "antenna-field-cycle",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "antenna-resonance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "magnetic-part-of-the-wave",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "antenna-resonance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "antenna-field-cycle",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "antenna-resonance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "em-wave-is-transverse"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "em-wave-is-transverse",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "antenna-field-cycle"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "period-frequency",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "find-b-from-e"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "magnetic-part-of-the-wave",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "antenna-resonance"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "e-over-b-equals-c",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "em-waves-from-accelerating-charges"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "em-wave-is-transverse",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "find-b-from-e"
+  },
+  {
+   "exercise": "p1",
+   "concept": "e-over-b-equals-c",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "antenna",
+   "label": "长直导线天线",
+   "figures": [
+    "sim-antenna-b",
+    "sim-antenna-cycle",
+    "sim-em-wave-3d"
+   ]
+  },
+  {
+   "id": "generator",
+   "label": "天线中央的交流发电机",
+   "figures": [
+    "sim-antenna-b",
+    "sim-antenna-cycle"
+   ]
+  },
+  {
+   "id": "receiver-wire",
+   "label": "置于波束中的直导线",
+   "figures": [
+    "sim-antenna-b",
+    "sim-em-wave-3d"
+   ]
+  },
+  {
+   "id": "receiver-loop",
+   "label": "置于波束中的线圈",
+   "figures": [
+    "sim-antenna-b",
+    "sim-em-wave-3d"
+   ]
+  }
+ ]
+}
