@@ -1,0 +1,337 @@
+{
+ "id": "1.4",
+ "module": "m42121",
+ "chapter": "1",
+ "title": "近似",
+ "short": "近似",
+ "lead": "物理学家、其他科学家和工程师常常需要在任何人测量某个量之前就得到它的粗略值，他们从某个已知的东西出发按比例放大来得到这个值，例如<span data-ref=\"person\">一个人</span>的<span data-type=\"position\">身高</span>。下面是两个例子：<span data-ref=\"building\">一栋楼</span>的<span data-type=\"position\">高度</span>，以及铺满<span data-ref=\"field\">一个橄榄球场</span>的<span data-ref=\"pile\">一万亿美元钞票</span>的<span data-type=\"position\">高度</span>。",
+ "objectives": [
+  "根据给定数据进行合理的近似。"
+ ],
+ "summary_html": "<p>科学家常常对量的值进行近似，以进行计算和分析系统。</p>",
+ "notes": "习题 2、4、6 和 8 在书后答案中没有答案，因此略去，习题 4 旁的沙门菌照片也一并略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。答案取自书后答案，它为奇数号习题给出的是它所称的参考答案，因此每道给出答案的习题都是开放题，其解答是本书的参考答案，供读者与自己的估算比对，而不是按 2% 核对的数值；每道题的输入量（人的寿命、一次心跳的时间、原子的大小、细胞的质量）都在 1.2 节的表 1.3 中。习题 2、4、6 和 8 没有给出答案，因此略去，习题 4 旁的沙门菌照片也一并略去。数量级各行的权重为 2，因为每道题都依靠近似，只是从数量级表中取其输入量。",
+ "figures": [
+  {
+   "id": "sim-building",
+   "kind": "sim",
+   "draws": ["position"],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "height rounding and note"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-bank-stack",
+   "kind": "photo",
+   "number": "1.25",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-trillion",
+   "kind": "sim",
+   "draws": ["position"],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "end zone and person labels, note"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "approximation",
+   "concept": "approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "approximation",
+   "concept": "approximation-def",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-building",
+   "concept": "approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-building",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-trillion",
+   "concept": "approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-trillion",
+   "concept": "order-of-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-trillion",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-trillion",
+   "concept": "sig-figs-multiplication",
+   "verb": "uses"
+  },
+  {
+   "span": "example-trillion",
+   "concept": "volume",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1342451",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "ex-trillion"
+   },
+   "cite": "approximation",
+   "prompt": "利用心算和你对基本单位的理解，对一个标准篮球场的面积进行近似。描述你得出最终近似值所用的过程。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "一名普通男性身高约两米。大约需要 15 名男性首尾相接躺下才能覆盖长度，覆盖宽度大约需要 7 名。由此得到近似面积为 $420\\ \\text{m}^{2}$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2688152",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximation",
+   "prompt": "人一生中有多少次心跳？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "参考答案：$2 \\times 10^{9}$ 次心跳"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1957899",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximation",
+   "prompt": "人的寿命是极不稳定的原子核的平均寿命的多少倍？（提示：不稳定原子核的寿命的数量级为 $10^{-22}\\ \\text{s}$。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "参考答案：若把人的平均寿命取为约 70 年，则为 $2 \\times 10^{31}$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1527101",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximation",
+   "prompt": "假设细胞膜中所有原子的平均大小约为氢原子的两倍，细胞膜大约有多少个原子厚？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "参考答案：50 个原子"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id885316",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximation",
+   "prompt": "（a）假设一个普通细胞的质量是一个细菌质量的十倍，计算一只蜂鸟体内的细胞数。（b）在同样的假设下，一个人体内有多少个细胞？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "参考答案：（a）$10^{12}$ 个细胞/蜂鸟（b）$10^{16}$ 个细胞/人"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "approximation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "approximation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "order-of-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "approximation"
+  },
+  {
+   "exercise": "p3",
+   "concept": "order-of-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "approximation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "order-of-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "approximation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "order-of-magnitude",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "building",
+   "label": "这栋楼",
+   "figures": [
+    "sim-building"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "这个人",
+   "figures": [
+    "sim-building"
+   ]
+  },
+  {
+   "id": "pile",
+   "label": "这堆钱",
+   "figures": [
+    "sim-trillion"
+   ]
+  },
+  {
+   "id": "field",
+   "label": "这个橄榄球场",
+   "figures": [
+    "sim-trillion"
+   ]
+  },
+  {
+   "id": "fan",
+   "label": "端区里的人",
+   "figures": [
+    "sim-trillion"
+   ]
+  }
+ ]
+}

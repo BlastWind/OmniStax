@@ -1,0 +1,630 @@
+{
+ "id": "11.2",
+ "module": "m42187",
+ "chapter": "11",
+ "title": "密度",
+ "short": "密度",
+ "lead": "一吨羽毛和一吨砖的<span data-concept=\"mass\">质量</span>相同，堆成的堆却大小悬殊，而<span data-concept=\"density\">密度</span>，即单位<span data-concept=\"volume\">体积</span>的<span data-concept=\"mass\">质量</span>，就能把它们区分开来。你可以通过<span data-concept=\"density\">密度</span>表读出它对一种物质的成分和物态的说明，并用其中的一个值求出<span data-ref=\"dam\">一座水坝</span>后面所蓄<span data-type=\"mass\">水的质量</span>。",
+ "objectives": [
+  "定义密度。",
+  "由密度计算水库的质量。",
+  "比较并对比各种物质的密度。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"density\">密度</span>是物质或物体单位<span data-concept=\"volume\">体积</span>的<span data-concept=\"mass\">质量</span>。用公式表示，<span data-concept=\"density\">密度</span>定义为 $\\krho = \\frac{m}{V}.$</li><li><span data-concept=\"density\">密度</span>的 SI 单位是 $\\text{kg/m}^3$。</li></ul>",
+ "notes": "书中没有给出答案的三道习题，即盛汞的烧瓶、咖啡杯和垃圾压实机，已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。习题 2、5 和 7 没有给出答案，因而略去：34.5 kg 汞的烧瓶的体积、咖啡杯的内半径，以及垃圾压实机使其内容物的密度增大的倍数。习题 3 和 6 只给出（a）问的答案，所以每张题卡核对的是那个数值，并在解答中附上书中对（b）问的答案。本节的第一道 AP 题，即半径增大百分之十的排球，有答案，设为评分选择题；第二道，即铝箔做成的空心立方体，和第四道，即挂在四根弹簧上的四个球，没有答案，保留为开放题，选项和表格照书中原样给出，并附上由 AI 撰写、已标明的建议思路。第四道题借助第 16.1 节的胡克定律求每个球的重力，但它要求的是密度的排序，所以仍放在这里。本节的第三道 AP 题，即聚苯乙烯立方体先后漂浮在水和乙醇中、部分浸没，问的只是浸入的比例，别无其他，所以留给第 11.7 节，那里以 source_section 11.2 设置它；该节的说明中也这样写明。三道思考题的建议思路由 AI 撰写，并已标明。第二道思考题是对那段由表 11.1 判断物体成分的文字的简短检测，设在该段之后；其余都放在末尾。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-ton",
+   "kind": "sim",
+   "number": "11.3",
+   "originals": [
+    "/media/ch11/Figure_12_02_01a.jpg"
+   ],
+   "original_caption": "一吨羽毛和一吨砖的质量相同，但羽毛堆成的堆要大得多，因为羽毛的密度低得多。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "density",
+    "mass",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "pile labels split into three lines so they never meet"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-identify",
+   "kind": "sim",
+   "draws": [
+    "density",
+    "mass",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "chart top lowered to clear a two-line headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-dam",
+   "kind": "photo",
+   "number": "11.4",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-reservoir",
+   "kind": "sim",
+   "draws": [
+    "density",
+    "mass",
+    "volume",
+    "area",
+    "position"
+   ],
+   "facts": [
+    "#bfe0f2"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "panels spaced so labels clear at slider extremes; note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "definition",
+   "concept": "density",
+   "verb": "introduces"
+  },
+  {
+   "span": "definition",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "definition",
+   "concept": "units",
+   "verb": "uses"
+  },
+  {
+   "span": "definition",
+   "concept": "derived-units",
+   "verb": "uses"
+  },
+  {
+   "span": "identify",
+   "concept": "density-identifies-substance",
+   "verb": "introduces"
+  },
+  {
+   "span": "identify",
+   "concept": "density",
+   "verb": "reinforces"
+  },
+  {
+   "span": "identify",
+   "concept": "phases-of-matter",
+   "verb": "uses"
+  },
+  {
+   "span": "identify",
+   "concept": "atomic-arrangement-and-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "reservoir",
+   "concept": "calculate-mass-from-density",
+   "verb": "introduces"
+  },
+  {
+   "span": "reservoir",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "reservoir",
+   "concept": "weight",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1417224",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identify",
+   "prompt": "空气的密度随海拔高度大致如何变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "空气的密度随海拔升高而减小。空气是气体，表 11.1 给出它在地面附近的密度为 $1.29\\ \\text{kg/m}^3$，约为水的密度的千分之一。气体的原子和分子之间隔着大量的空旷空间，而空间有多大，取决于气体被压得有多紧。在地面附近，上方全部空气的重力把空气压缩；而在高处，头顶上的空气较少，同样质量的空气分布在更大的体积之中。所以，随着你向上攀升，密度不断下降。它近似按指数下降，每向上升同样的一级，就减去剩余部分中大致相同的比例，直到在大气层顶部逐渐消失在近乎真空的太空之中。第 11.4 节再回到大气，把它作为密度随高度变化的流体来讨论。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1613737",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identify",
+   "prompt": "举一个利用密度来识别构成某物体的物质的例子。对于由多种材料构成的物体，要识别其中的各种物质，除平均密度外是否还需要其他信息？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "珠宝商可以这样检验一枚戒指是不是纯金：对它称重，根据它排开的水测出它的体积，再相除得到密度。纯金的密度在表 11.1 中为 $19.32 \\times 10^3\\ \\text{kg/m}^3$。如果戒指的结果接近 $15.8 \\times 10^3\\ \\text{kg/m}^3$，它就是合金；如果接近 $8.4 \\times 10^3\\ \\text{kg/m}^3$，它就是黄铜。同样的检验也能分辨花岗岩小石子和铅块，或者软木和聚苯乙烯块。对于由多种材料构成的物体，仅有平均密度是不够的。平均密度把各部分的密度按各自所占的多少加权混合起来，所以许多不同的组合都能给出同一个数：金和铜的混合物与银和铅的混合物，可能得到同样的平均值。要识别其中的物质，还需要更多的东西，例如其中某一种组分是什么、各组分的比例，或者另一种不以同样方式混合的性质，比如颜色、硬度，或者物体导热或导电的情况。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1397150",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "figure": {
+    "src": "/media/ch11/Figure_12_02_03a.jpg",
+    "alt": "一只盛满水和冰块、水面与杯口齐平的玻璃杯。"
+   },
+   "prompt": "图中是一杯满到杯口的冰水。冰融化时水会溢出来吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不会，水不会溢出。表 11.1 给出冰的密度为 $0.917 \\times 10^3\\ \\text{kg/m}^3$，水的密度为 $1.000 \\times 10^3\\ \\text{kg/m}^3$，所以冰的密度比水小，这就是冰会漂浮、每块冰有一部分露出水面的原因。一块冰融化时，它的质量不变，但它变成的水密度较大，因此由 $V = m/\\krho$，体积比原来的冰小：按 $0.917/1.000$ 的比值减小，也就是约 8%。这 8% 恰好就是每块冰露出水面的那一部分所占的比例，所以融化后的水正好填满冰浸在水中的那一部分所占的体积，水面仍停在杯口，什么也不会溢出。第 11.7 节说明了这两个比例为什么一致：漂浮的物体排开的水，其重力等于物体自身的重力，所以冰浸入水中的那一部分，已经恰好占据了冰将要化成的水的体积。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2059915",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "一只充气不足的排球被打满气，使它的半径增大 10%。忽略打入球中的空气的质量，排球的密度将会怎样？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "排球的密度将增大约 25%。",
+     "排球的密度将增大约 10%。",
+     "排球的密度将减小约 10%。",
+     "排球的密度将减小约 17%。",
+     "排球的密度将减小约 25%。"
+    ],
+    "correct": 4,
+    "hint": "质量保持不变，而球的体积与其半径的三次方成正比，所以想一想 $(1.10)^3$ 是多少，以及当 $V$ 乘以这个因子时 $\\krho = m/V$ 会怎样变化。",
+    "solution": "（e）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1866510",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "一片铝箔的面密度已知为 15 g/cm<sup>2</sup>。如果用这种铝箔做成一个 100 克的空心立方体，求这个立方体的边长的近似值。<ol type=\"a\"><li>1.05 cm</li><li>1.10 cm</li><li>2.6 cm</li><li>6.67 cm</li><li>15 cm</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "边长约为 1.05 cm，即选项（a）。面密度是单位面积的质量，所以铝箔的质量等于它的面密度乘以面积，就像普通的密度给出 $m = \\krho V$ 一样。因此立方体中铝箔的总面积为 $A = (100\\ \\text{g})/(15\\ \\text{g/cm}^2) = 6.67\\ \\text{cm}^2$。空心立方体由六个正方形的面构成，所以每个面的面积为 $6.67\\ \\text{cm}^2/6 = 1.11\\ \\text{cm}^2$，边长是它的平方根，$\\sqrt{1.11\\ \\text{cm}^2} = 1.05\\ \\text{cm}$。选项（d）6.67 cm，是把总面积误当成了长度；选项（b）1.10 cm，是一个面的面积没有开平方。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1758169",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "四个球分别挂在几根不同的弹簧上。下表描述了这些球以及悬挂它们的弹簧的特性。利用这些信息，把各球的密度从小到大排序。写出支持你的排序的演算过程。<table class=\"data\"><tr><th>材料类型</th><th>球的半径</th><th>弹簧的伸长量（相对于平衡位置）</th><th>劲度系数</th></tr><tr><td>A</td><td>10 cm</td><td>5 cm</td><td>2 N/m</td></tr><tr><td>B</td><td>5 cm</td><td>8 cm</td><td>8 N/m</td></tr><tr><td>C</td><td>8 cm</td><td>10 cm</td><td>6 N/m</td></tr><tr><td>D</td><td>8 cm</td><td>12 cm</td><td>10 N/m</td></tr></table>把上面列出的物体的密度从大到小排序。写出支持你的排序的演算过程。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "密度从小到大依次为 A（$2.43\\ \\text{kg/m}^3$）、C（$28.6\\ \\text{kg/m}^3$）、D（$57.0\\ \\text{kg/m}^3$）、B（$125\\ \\text{kg/m}^3$）；从大到小则是 B、D、C、A。每个球都静止地悬挂着，所以弹簧向上的力 $F = kx$（胡克定律，第 16.1 节）等于该球的重力，其质量为 $m = kx/g$。对 A，$kx = (2\\ \\text{N/m})(0.05\\ \\text{m}) = 0.10\\ \\text{N}$，所以 $m = 0.10/9.80 = 0.0102\\ \\text{kg}$；对 B，为 $0.64\\ \\text{N}$ 和 $0.0653\\ \\text{kg}$；对 C，为 $0.60\\ \\text{N}$ 和 $0.0612\\ \\text{kg}$；对 D，为 $1.20\\ \\text{N}$ 和 $0.122\\ \\text{kg}$。由 $V = \\frac{4}{3}\\pi r^3$ 得到的体积是：A 为 $4.19\\times 10^{-3}\\ \\text{m}^3$（$r = 0.10\\ \\text{m}$），B 为 $5.24\\times 10^{-4}\\ \\text{m}^3$（$r = 0.05\\ \\text{m}$），C 和 D 为 $2.14\\times 10^{-3}\\ \\text{m}^3$（$r = 0.08\\ \\text{m}$）。相除，由 $\\krho = m/V$ 得：A 为 $0.0102/4.19\\times 10^{-3} = 2.43\\ \\text{kg/m}^3$，B 为 $0.0653/5.24\\times 10^{-4} = 125\\ \\text{kg/m}^3$，C 为 $0.0612/2.14\\times 10^{-3} = 28.6\\ \\text{kg/m}^3$，D 为 $0.122/2.14\\times 10^{-3} = 57.0\\ \\text{kg/m}^3$。B 是体积最小而重力较大的球，密度最大；A 是体积最大而重力最小的球，密度最小。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1081259",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reservoir",
+   "prompt": "金按金衡盎司（31.103 g）出售。1 金衡盎司纯金的体积是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1.61,
+    "unit": "cm³",
+    "generated_by": "source",
+    "hint": "把 $\\krho = m/V$ 对体积求解，得 $V = m/\\krho$，并取表 11.1 中金的密度，以 g/cm³ 为单位，这样克就能约去。",
+    "solution": "$1.610\\ \\text{cm}^3$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2639547",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reservoir",
+   "prompt": "（a）一次体积为 2.00 L 的深呼吸所吸入的空气，质量是多少？（b）讨论这样吸一口气对你身体的体积和密度有什么影响。",
+   "answer": {
+    "type": "number",
+    "value": 2.58,
+    "unit": "g",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "1 升等于 1000 cm³，表 11.1 给出空气的密度为 $1.29 \\times 10^{-3}\\ \\text{g/cm}^3$；质量为 $m = \\krho V$。",
+    "solution": "（a）2.58 g。（b）你身体的体积增加了你吸入的空气的体积。深吸一口气时，你身体的平均密度减小，因为空气的密度比深吸气之前身体的平均密度要小得多。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1561911",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "求物体密度的一种直截了当的方法，是先测出它的质量，再把它浸没在量筒中测出它的体积。一块 240 g 的石块排开 $89.0\\ \\text{cm}^3$ 的水，它的密度是多少？（请注意，与基于阿基米德原理的各种其他方法相比，这种技术的准确度和实际应用都更为有限。）",
+   "answer": {
+    "type": "number",
+    "value": 2.7,
+    "unit": "g/cm³",
+    "generated_by": "source",
+    "hint": "石块排开的水的体积等于它自身的体积，所以石块的体积就是量筒中升高的 89.0 cm³，再用 $\\krho = m/V$。",
+    "solution": "$2.70\\ \\text{g/cm}^3$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1157183",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reservoir",
+   "prompt": "（a）一个长方体的汽油箱装满时可容纳 50.0 kg 汽油。如果油箱宽 0.500 m、长 0.900 m，它的深度是多少？（b）讨论这个油箱的容积对一辆轿车来说是否合理。",
+   "answer": {
+    "type": "number",
+    "value": 0.163,
+    "unit": "m",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "由 $V = m/\\krho$ 和表 11.1 中汽油的密度求出汽油的体积，再除以底面积，就像水库的例题是把面积乘以深度一样。",
+    "solution": "（a）0.163 m。（b）相当于 19.4 加仑，是合理的。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1599362",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "一个 2.50 kg 的钢制汽油桶装满时可盛 20.0 L 汽油。把钢所占的体积和汽油所占的体积都算在内，这个装满的汽油桶的平均密度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 790,
+    "unit": "kg/m³",
+    "generated_by": "source",
+    "hint": "平均密度等于总质量除以总体积。汽油的质量是 $\\krho V$（密度取自表 11.1），钢的体积是它的质量除以钢的密度；相除之前，先把两个质量相加、两个体积相加。",
+    "solution": "$7.9 \\times 10^2\\ \\text{kg/m}^3$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1848674",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "由 18 份金、5 份银和 1 份铜混合而成的 18.0 开金，密度是多少？（这些数值是按质量而不是按体积计的份数。）假设这是一种简单的混合物，其平均密度等于其各组分密度的加权值。",
+   "answer": {
+    "type": "number",
+    "value": 15.8,
+    "unit": "g/cm³",
+    "generated_by": "source",
+    "hint": "取 24 g 这种合金，使各份数就是各自的克数。由 $V = m/\\krho$ 和表 11.1 中的密度，求出每种金属贡献的体积，把三个体积相加，再用 24 g 除以总和。",
+    "solution": "$15.8\\ \\text{g/cm}^3$"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id3101625",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identify",
+   "prompt": "固体和液体中原子之间的空旷空间相对较少，所以一个原子的平均密度与宏观尺度上的物质大致相同，约为 $10^3\\ \\text{kg/m}^3$。原子核的半径约为原子半径的 $10^{-5}$，并且几乎包含了整个原子的全部质量。（a）原子核的密度大约是多少？（b）超新星的一种遗迹，称为中子星，其密度可以等于原子核的密度。质量为太阳 10 倍的中子星，半径会是多大（太阳的半径为 $7 \\times 10^8\\ \\text{m}$）？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1e+18,
+      "unit": "kg/m³",
+      "hint": "原子核把原子的全部质量集中在一个半径为原子半径 $10^{-5}$ 的球体内，所以它的体积是原子体积的 $(10^{-5})^3$，它的密度也就比原子的大这个因子的倒数倍。"
+     },
+     {
+      "part": "(b)",
+      "value": 20000.0,
+      "unit": "m",
+      "hint": "由太阳的半径和约 $1.4 \\times 10^3\\ \\text{kg/m}^3$ 的平均密度求出太阳的质量，或者直接取它约为 $2 \\times 10^{30}\\ \\text{kg}$；这个质量的 10 倍，以（a）问的密度，填满一个球体，球体的半径由 $V = \\frac{4}{3}\\pi r^3$ 求得。"
+     }
+    ],
+    "solution": "（a）$10^{18}\\ \\text{kg/m}^3$（b）$2 \\times 10^4\\ \\text{m}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "density-identifies-substance"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "atomic-arrangement-and-phase",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "density-identifies-substance"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "density"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "density"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "density"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "density"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "hookes-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-mass-from-density"
+  },
+  {
+   "exercise": "p1",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-mass-from-density"
+  },
+  {
+   "exercise": "p3",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p4",
+   "concept": "density"
+  },
+  {
+   "exercise": "p4",
+   "concept": "density-identifies-substance",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "calculate-mass-from-density"
+  },
+  {
+   "exercise": "p6",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "density"
+  },
+  {
+   "exercise": "p8",
+   "concept": "calculate-mass-from-density",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "density"
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-mass-from-density",
+   "weight": 3
+  },
+  {
+   "exercise": "p10",
+   "concept": "density-identifies-substance"
+  },
+  {
+   "exercise": "p10",
+   "concept": "density",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "pile-left",
+   "label": "左边的一堆",
+   "figures": [
+    "sim-ton"
+   ]
+  },
+  {
+   "id": "pile-right",
+   "label": "右边的一堆",
+   "figures": [
+    "sim-ton"
+   ]
+  },
+  {
+   "id": "reservoir",
+   "label": "例题 11.1 中的水库",
+   "figures": [
+    "sim-reservoir"
+   ]
+  },
+  {
+   "id": "dam",
+   "label": "水坝",
+   "figures": [
+    "sim-reservoir"
+   ]
+  }
+ ]
+}

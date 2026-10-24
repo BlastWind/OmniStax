@@ -1,0 +1,515 @@
+{
+ "id": "11.3",
+ "module": "m42189",
+ "chapter": "11",
+ "title": "压强",
+ "short": "压强",
+ "lead": "<span data-concept=\"pressure\">压强</span>衡量的是一个<span data-concept=\"force\">力</span>如何分布在一块<span data-concept=\"area\">面积</span>上，这就是为什么同样的推力，有时只是戳一下皮肤，有时却能把它刺破。你会认识度量<span data-concept=\"pressure\">压强</span>所用的单位，并看到静止的流体如何推着容纳它的每一个表面。",
+ "objectives": [
+  "定义压强。",
+  "解释压强与力之间的关系。",
+  "在已知压强和面积时计算力。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"pressure\">压强</span>是单位垂直<span data-concept=\"area\">面积</span>上所受的<span data-concept=\"force\">力</span>，该<span data-concept=\"force\">力</span>就作用在这块面积上。用公式表示，<span data-concept=\"pressure\">压强</span>定义为 $\\kPr = \\frac{\\kF}{A}.$</li><li><span data-concept=\"pressure\">压强</span>的 SI 单位是帕斯卡，$1\\ \\text{Pa} = 1\\ \\text{N/m}^2$。</li></ul>",
+ "notes": "本节末尾的 PhET 气体性质链接略去，关于留声机唱针的习题也略去，书后没有给出它的答案。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。习题 2，即留声机唱片上的唱针，没有给出答案，因而略去。本节仅有的一道 AP 备考练习题，即盛石油醚的圆柱形桶，要求求出装满液体的桶的壁面和底面所受的压强，这是流体的重力所产生的压强，因此把它放在 11.4，其 source_section 为 11.3；关于冰山和冰川的思考题涉及阿基米德原理，同样放在 11.7。其余七道思考题的建议思路由 AI 撰写，并已标明。关于钝的皮下注射针的那道题是对手指与针那张图的一个简短检测，设在该图之后的行内；其余的都放在末尾。没有任何内容取自其他章节。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-poke",
+   "kind": "sim",
+   "number": "11.5",
+   "originals": [
+    "/media/ch11/Figure_12_03_01a.jpg"
+   ],
+   "original_caption": "（a）被手指戳的人也许会感到恼火，但这个力并不会产生什么持久的效果。（b）相反，同样大小的力若作用在针尖大小的面积上，就大到足以刺破皮肤。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "force",
+    "pressure",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note set through the macros and shortened"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library hand at body scale, syringe, magnified inset of the contact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tire",
+   "kind": "sim",
+   "number": "11.6",
+   "originals": [
+    "/media/ch11/Figure_12_03_02a.jpg"
+   ],
+   "original_caption": "这个轮胎内部的压强对它所接触的所有表面都施加垂直于表面的力。箭头给出了各点所受力的有代表性的方向和大小。请注意，静态流体不施加切向力。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "pressure",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeating arrow note dropped, valve label moved off the ring, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-swimmer",
+   "kind": "sim",
+   "number": "11.7",
+   "originals": [
+    "/media/ch11/Figure_12_03_03a.jpg"
+   ],
+   "original_caption": "压强作用在这名游泳者的各个侧面，因为如果他不在那里，水就会流进他所占据的空间。箭头表示游泳者身上各点所受力的方向和大小。请注意，由于深度较大，下方的力更大，因而产生一个向上的合力，即浮力，它与游泳者的重力平衡。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "pressure",
+    "angle",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "swimmer posed with arms forward; heading off the arrow; notes trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pressure-defined",
+   "concept": "pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-defined",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-defined",
+   "concept": "fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "units",
+   "concept": "pascal-unit",
+   "verb": "introduces"
+  },
+  {
+   "span": "units",
+   "concept": "pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "units",
+   "concept": "derived-units",
+   "verb": "uses"
+  },
+  {
+   "span": "units",
+   "concept": "newton-unit",
+   "verb": "uses"
+  },
+  {
+   "span": "force-from-pressure",
+   "concept": "force-from-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-from-pressure",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "perpendicular",
+   "concept": "pressure-is-scalar",
+   "verb": "introduces"
+  },
+  {
+   "span": "perpendicular",
+   "concept": "fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "perpendicular",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "perpendicular",
+   "concept": "force-from-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "perpendicular",
+   "concept": "weight",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3149806",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "units",
+   "prompt": "压强与刀的锋利程度及其切割能力有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "压强是力除以该力所作用的面积，$\\kPr = \\kF/A$。锋利的刀，其刃口与材料的接触面积非常小，所以手施加同样的推力，会在刃口处产生很大的压强，大到足以把那里的材料分开。钝刀的刃口更宽、更圆；同样的力分布在更大的面积上，压强较小，刀就会把材料压碎或撕裂，而不是切开。磨刀并不改变你能施加的力，只改变这个力所集中作用的面积。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2615691",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "units",
+   "prompt": "为什么钝的皮下注射针比锋利的针更疼？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "无论用哪根针，皮肤大约都在同样的压强下破开，所以不同的是达到这个压强所需的力。锋利的针其针尖的面积非常小，由 $\\kF = \\kPr A$ 可知，很小的力就能达到刺破皮肤的压强。钝针的针尖面积较大，要达到同样的压强就需要更大的力。这个更大的力压在皮肤及其下方的组织上，在皮肤破开之前会把更多的组织拉伸和压缩，疼痛正是来自这个更大的力和它造成的形变。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1034685",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-from-pressure",
+   "prompt": "例题 11.2 中算出了气瓶一端所受的向外的力。这个力是如何被平衡的？（气瓶不做加速运动，所以这个力一定是平衡的。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "气瓶内的空气把它的压强施加在它接触的每一个表面上，而不只是一端，并且每个表面所受的力都垂直于该表面。在圆柱体的另一个平端上，同样的压强作用在同样的面积上，所以空气以大小相等的力 $\\kF = \\kPr A = 1.22\\times 10^{5}\\ \\text{N}$ 向相反的方向推它，两个端面上的力相互平衡。弯曲的筒壁所受的力沿圆柱体四周向外，也同样相互抵消，每一个力都与相对一侧的力相匹配。气瓶整体所受的来自内部空气的合力为零，这就是它不做加速运动的原因；空气所做的是把气瓶的筒壁拉伸，这就是气瓶必须坚固的原因。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id935474",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "perpendicular",
+   "prompt": "为什么静态流体施加的力总是垂直于表面？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "静态流体是不流动的流体，而流体按定义会顺从切向力：它不能抵抗沿着表面作用的力，也不能施加这样的力。如果流体对表面施加的力有沿表面的分量，那么根据牛顿第三定律，表面就会以大小相等、方向相反的沿表面的力反推流体，这个横向的力会使流体流动起来。由于流体是静态的、不流动，不可能存在这样的横向分量，所以静态流体对表面所能施加的力，只有垂直于表面的那一个。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1429595",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "units",
+   "prompt": "在松软的地面上慢跑和穿有衬垫的鞋，是怎样减小脚和腿所受的压强的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每一步都必须提供使身体向下的运动停下来、并再次把它向上推起的力，所以脚上的力是由跑步者的重力和她跑步的方式决定的，而不是由她跑在什么上面决定的。松软的地面和衬垫改变的是这个力所分布的面积：表面在脚下发生形变，与脚有更多的接触，所以由 $\\kPr = \\kF/A$，同样的力在脚上以及在脚以上的关节上产生的压强更小。衬垫和松软的地面在被压缩时，还会把力分散到更长的时间上，从而降低力的峰值本身，正如动量那一章所解释的。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2382902",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "units",
+   "prompt": "足尖舞（如芭蕾）比普通的舞蹈或走路对脚趾的负担大得多。请用压强来解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "正常行走时，身体的重力分布在脚掌上，或者分布在脚跟和前脚掌上，面积有许多平方厘米。在足尖上，同样的重力由几个脚趾的趾尖支撑，面积要小许多倍，所以由 $\\kPr = \\kF/A$，脚趾上的压强要大许多倍。脚趾的骨骼、关节和组织必须承受这个压强，这就是足尖舞要求如此之高的原因，也是舞者的足尖鞋要做成把负荷分布到各个脚趾上的原因。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3091727",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "units",
+   "prompt": "不借助压强换算因子表，你如何把毫米汞柱、厘米水柱和英寸汞柱这样的压强单位换算成牛每平方米这样的单位？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这些单位中的每一个都给出了该压强所能支撑的液柱的高度，所以换算就是把压强的定义应用于这个液柱。高度为 $h$、底面积为 $A$ 的液柱，体积为 $Ah$，由密度的定义，质量为 $\\rho Ah$，重力为 $\\rho Ahg$。它对底面施加的压强是这个重力除以面积，$\\kPr = \\rho Ahg/A = \\rho gh$，面积被约去。所以 1 mm Hg 的压强就是 1 mm 高的汞柱所产生的压强。从表 11.1 取汞的密度 $13.6\\times 10^{3}\\ \\text{kg/m}^3$，乘以 $g = 9.80\\ \\text{m/s}^2$ 和高度 $1.00\\times 10^{-3}\\ \\text{m}$；所得结果约 $133\\ \\text{N/m}^2$ 就是换算因子。1 厘米水柱用水的密度 $1.00\\times 10^{3}\\ \\text{kg/m}^3$ 和高度 $1.00\\times 10^{-2}\\ \\text{m}$，1 英寸汞柱用汞的密度和高度 $2.54\\times 10^{-2}\\ \\text{m}$。你只需要密度和 $g$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2611366",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-defined",
+   "prompt": "一位女士走路时，她的全部重力会在某一瞬间落在一只高跟鞋的鞋跟上。若鞋跟的面积为 $1.50\\ \\text{cm}^2$，这位女士的质量为 55.0 kg，求鞋跟对地板施加的压强。以 Pa 表示压强。（在商业航空的早期，女士不被允许穿高跟鞋，因为航空器的地板太薄，承受不了这么大的压强。）",
+   "answer": {
+    "type": "number",
+    "value": 3590000,
+    "unit": "Pa",
+    "generated_by": "source",
+    "hint": "她的全部重力都压在这一只鞋跟上，所以力为 $m g = (55.0\\ \\text{kg})(9.80\\ \\text{m/s}^2)$，而面积必须用平方米：$1.50\\ \\text{cm}^2$ 即 $1.50\\times 10^{-4}\\ \\text{m}^2$。",
+    "solution": "$3.59\\times 10^{6}\\ \\text{Pa}$；或 $521\\ \\text{lb/in}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3051764",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-from-pressure",
+   "prompt": "钉尖被锤子击打时会产生巨大的压强，因为它们把很大的力施加在很小的面积上。要在直径 1.00 mm 的圆形钉尖上产生 $3.00\\times 10^{9}\\ \\text{N/m}^2$ 的压强，必须对钉子施加多大的力？（之所以可能有这么高的压强，是因为击打钉子的锤子在极短的距离内就被止住了。）",
+   "answer": {
+    "type": "number",
+    "value": 2360,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "钉尖是直径 1.00 mm 的圆，所以它的半径是 $0.500\\ \\text{mm} = 5.00\\times 10^{-4}\\ \\text{m}$，面积是 $\\pi r^2$；然后 $\\kF = \\kPr A$。",
+    "solution": "$2.36\\times 10^{3}\\ \\text{N}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "pressure"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "pressure"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "force-from-pressure"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "pressure-is-scalar",
+   "weight": 3
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pressure-is-scalar"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "pressure"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "pressure"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "pascal-unit"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "pressure",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "pressure"
+  },
+  {
+   "exercise": "p1",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "force-from-pressure"
+  },
+  {
+   "exercise": "p3",
+   "concept": "pressure",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "skin",
+   "label": "皮肤",
+   "figures": [
+    "sim-poke"
+   ]
+  },
+  {
+   "id": "fingertip",
+   "label": "指尖",
+   "figures": [
+    "sim-poke"
+   ]
+  },
+  {
+   "id": "needle",
+   "label": "针",
+   "figures": [
+    "sim-poke"
+   ]
+  },
+  {
+   "id": "tire",
+   "label": "轮胎",
+   "figures": [
+    "sim-tire"
+   ]
+  },
+  {
+   "id": "swimmer",
+   "label": "游泳者",
+   "figures": [
+    "sim-swimmer"
+   ]
+  }
+ ]
+}

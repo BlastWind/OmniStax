@@ -1,0 +1,827 @@
+{
+ "id": "7.6",
+ "module": "m42151",
+ "chapter": "7",
+ "title": "能量守恒",
+ "short": "能量守恒",
+ "lead": "<span data-concept=\"energy\">机械能</span>只是<span data-concept=\"energy\">能量</span>的形式之一，对任何过程的完整核算，都要追踪它所经过的每一种形式。这样的核算引出了<span data-concept=\"conservation-of-energy\">能量守恒定律</span>、<span data-concept=\"forms-of-energy\">能量的形式</span>，以及一种形式转化为另一种形式的<span data-concept=\"efficiency\">效率</span>。",
+ "objectives": [
+  "解释能量守恒定律。",
+  "描述能量的若干种形式。",
+  "将能量转换过程的效率定义为剩余为有用能量或功、而不是（例如）被转化为热能的那一部分所占的比例。"
+ ],
+ "summary_html": "<ul><li>能量守恒定律指出，<span data-concept=\"total-energy\">总能量</span>在任何过程中都是恒定的。<span data-concept=\"energy\">能量</span>可以改变形式，或从一个系统转移到另一个系统，但总量保持不变。</li><li>考虑所有形式的能量时，<span data-concept=\"energy\">能量</span>守恒写成方程的形式为 $\\kKEi + \\kPEi + \\kWnc + \\kOEi = \\kKEf + \\kPEf + \\kOEf$，其中 $\\kOE$ 是除机械能以外的所有<em>其他形式的能量</em>。</li><li>常见的能量形式包括<span data-concept=\"energy\">电能</span>、化学能、辐射能、核能和<span data-concept=\"thermal-energy\">热能</span>。</li><li><span data-concept=\"energy\">能量</span>常被用来做<span data-concept=\"work\">功</span>，但不可能把一个系统的全部<span data-concept=\"energy\">能量</span>都转化为<span data-concept=\"work\">功</span>。</li><li>机器或人的效率 $\\text{Eff}$ 定义为 $\\text{Eff} = \\frac{\\kWout}{\\kEin}$，其中 $\\kWout$ 是有用功输出，$\\kEin$ 是消耗的<span data-concept=\"energy\">能量</span>。</li></ul>",
+ "notes": "第三题，即一年的能源需求需要多少颗九兆吨氢弹，书后答案没有给出答案，故予以略去；通往 PhET 质量与弹簧实验室的链接也被略去，如同书中其他交互链接一样。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成，答案仅来自书后答案。四道习题中有三道有答案并予保留：电视显像管电子束中的一个电子与使一条 DNA 链断裂的能量之比较（fs-id1626731）；从桥上抛出的石块（eip-309），它要求给出步骤而不是一个数值，因此设为开放题，并附书中自己的解答供对照；以及海洋的聚变能（fs-id1523087），书中第一问的答案给出为数值，第二问用文字作答，因此两问都列在解答中。第三道习题（fs-id1594186），关于九兆吨氢弹，没有给出答案，予以略去。五道思考题均无答案，所以每道都带有一段 AI 撰写并有标注的建议思路，其中第四道要求列出四种能量形式并为每种各举一个转化的例子，它是对点明这些形式的段落的一次简短检查，排在该段之后；本章没有任何地方印有“理解检测”框，所以书中自己的内容没有填入这个内联位置。本节十道 AP 题中保留了八道：三道只对应一个选项，是判分选择题（飞镖玩具枪 fs-id2713007、两辆四轮小车 fs-id1422967、下落的石块 fs-id1640289）；一道对应四个选项中的两个，“(c), (d)”，判分选择题无法承载，所以封闭系统一题（fs-id1426819）是开放题，以书中自己的答案作为答案，四个选项放在其题干中；还有四道没有答案，是带有 AI 撰写的建议思路的开放题（fs-id1365681、fs-id1224844、fs-id2334422、fs-id2790720）。有两道 AP 题留给 7.1，因为那里才引入它们所考查的内容，在此略去：骡子以 1200 N 和 20 度拉着驳船走 10 km（fs-id772532），它就是 $W = Fd\\cos\\theta$，别无其他；以及“描述今天你做功的一个实例”（fs-id2338574）；7.1 已建好，并把两题都以 source_section 7.6 收入，它自己的说明也这样写。有两道本可以算作 7.5 的题留在这里：飞镖玩具枪和下落的石块都是含有非保守项的守恒方程，而本节以最一般的形式陈述该方程，自己有答案的题目又很少。",
+ "figures": [
+  {
+   "id": "sim-account",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "position",
+    "velocity",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "top landing, speed arrow kept under the headline, labels guarded, note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ladder",
+   "kind": "sim",
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-solar",
+   "kind": "photo",
+   "number": "7.19",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-conversion",
+   "kind": "sim",
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "stage labels clear, in-canvas copy and note dropped, canvas taller"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-car",
+   "kind": "figure",
+   "originals": [
+    "/media/ch07/Figure_08_06_02a.jpg"
+   ],
+   "original_caption": "一辆摩擦力不可忽略的汽车沿山坡滑行而下，越过一个小坡顶，再次下坡，最后在加油站停下。",
+   "widths": [
+    500
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "law",
+   "concept": "conservation-of-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "law",
+   "concept": "mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "law",
+   "concept": "work-by-nonconservative-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "other-energy",
+   "concept": "conservation-of-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "other-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "other-energy",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "other-energy",
+   "concept": "work-by-nonconservative-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "forms",
+   "concept": "forms-of-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "forms",
+   "concept": "electrical-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "forms",
+   "concept": "chemical-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "forms",
+   "concept": "radiant-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "forms",
+   "concept": "nuclear-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "forms",
+   "concept": "thermal-energy-of-an-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "energy-problem-solving",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "problem-solving-steps",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "transformation",
+   "concept": "energy-transformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "transformation",
+   "concept": "forms-of-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "efficiency",
+   "concept": "efficiency",
+   "verb": "introduces"
+  },
+  {
+   "span": "efficiency",
+   "concept": "energy-transformation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2713007",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-energy",
+   "prompt": "你做了 30 J 的功来给一把玩具飞镖枪上膛。然而，飞镖长 10 cm，在穿过枪管时受到 10 N 的摩擦力。发射出的飞镖的动能是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "30 J",
+     "29 J",
+     "28 J",
+     "27 J"
+    ],
+    "correct": 2,
+    "hint": "你给枪上膛所做的功储存在弹簧里，而摩擦力在飞镖穿过枪管的全程中都作用于飞镖，所以在列能量账时要为克服摩擦力所做的功写上一项。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1365681",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-energy",
+   "prompt": "物体被起重机吊起时，它的运动从静止开始，也在静止时结束。物体被推过粗糙表面时同样如此。解释为什么会这样。这两个系统有什么区别？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在这两种情形中，物体都从静止开始、在静止时结束，所以它的动能在整个运动过程中的变化为零。根据动能定理，对它所做的合外力的功为零，尽管功确实发生了。起重机的缆绳对重物做正功，而重力做等量的负功；推力对物体做正功，而摩擦力做等量的负功。这两个系统的区别在于能量去了哪里。重力是保守力，所以克服它所做的功变成重力势能，而放下重物又把它取回来。重物位于更高处，重物-地球系统的机械能恰好增加了起重机所做的功。摩擦力是非保守力，所以克服它所做的功以热能的形式离开，留在表面和物体中，任何位置的改变都无法把它取回。该系统的机械能没有变化，推力所输入的能量现在成了其他能量。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1422967",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law",
+   "prompt": "一个孩子有两辆红色的四轮小车，后面一辆用一根有弹性的绳（弹簧）系在前面一辆上。如果孩子拉前面那辆小车，____ 增加。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "四轮小车的动能",
+     "储存在弹簧中的势能",
+     "A 和 B 都是",
+     "信息不足"
+    ],
+    "correct": 2,
+    "hint": "想一想孩子所做的功用在了哪里：小车比之前跑得更快，而且两车之间的绳比之前伸得更长。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1224844",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law",
+   "prompt": "一个孩子有两辆红色的四轮小车，后面一辆用一根有弹性的绳（弹簧）系在前面一辆上。如果孩子拉前面那辆小车，系统中储存的能量增加。随着时间推移，这个系统中势能和动能的相对量如何变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "刚一拉，前面的小车先于后面的小车运动，所以绳被拉长，孩子的大部分能量变成绳中的势能，而后面的小车仍几乎静止。被拉长的绳随后把后面的小车向前拉：伸长量减小，小车加快，绳的势能转化为小车的动能。绳起着弹簧的作用，所以后面的小车会冲过头，绳变松弛，小车落在后面，再次把绳拉长。这两种形式在这对小车向前行驶的过程中来回交换。总量不断增加，因为孩子一直在对前面的小车做功，但它在任一时刻如何划分，取决于绳的伸长量。与此同时，车轮中的摩擦和绳中的损耗不断把总量的一部分变成热能，所以拉得越久，机械能所占的份额就越小。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1426819",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law",
+   "prompt": "下列哪些是封闭系统？<ol type=\"a\"><li>地球</li><li>一辆汽车</li><li>一个无摩擦的摆</li><li>真空中弹簧上的一个重物</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(c), (d)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2334422",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law",
+   "prompt": "描述封闭系统的一个真实例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "要找边界上没有能量通过的东西：没有任何东西进入，也没有任何东西漏出。没有哪个真实系统是完全封闭的，所以任何例子都只在足够短的时间内成立，在这段时间里穿过边界的那部分可以忽略。一个盖着塞子的真空保温瓶中的热咖啡就是个好例子，因为瓶壁之间的真空带走的热能几乎为零，瓶内的能量在一两个小时内几乎保持不变。一个沉重的摆锤在一根长金属丝上摆动，装在密封、抽成真空的罩子里，是另一个例子，因为它没有空气可以摩擦，支点处的摩擦也很小。地球是一个糟糕的选择，因为太阳整天向它倾泻辐射能，而地球整夜又向太空辐射能量。无论你选哪个例子，都要说明你的系统的边界在哪里，以及要有什么东西穿过边界，系统才不再是封闭的。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1640289",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-energy",
+   "prompt": "一块 5.0 kg 的石块从 10 m 高的悬崖上落下。如果空气阻力施加的平均力为 10 N，石块落地时的动能是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "400 J",
+     "12.6 m/s",
+     "100 J",
+     "500 J"
+    ],
+    "correct": 0,
+    "hint": "石块失去的势能是 $mgh$，而空气阻力以一个力乘同样的距离从中拿走一部分；四个选项中有一个甚至不是能量。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id2790720",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transformation",
+   "prompt": "水电是这样产生的：把水储存在水坝后面，然后让其中一部分流过坝内的发电机，使发电机转动。如果把水作为系统，那么对它做功的环境是什么？如果水坝后面的水深 100 m，当 10,000 kg 的水以 2.0 m/s 的速度流出水坝时，产生了多少能量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对水做功的环境是地球，通过重力来做功，产生的能量约为 $9.8\\times 10^{6}\\ \\text{J}$。取 100 m 高处水坝后面静止的水为初态。从出水口算起，它的重力势能为 $\\kPEg = m\\kg\\kh = (10{,}000\\ \\text{kg})(9.80\\ \\text{m/s}^2)(100\\ \\text{m}) = 9.80\\times 10^{6}\\ \\text{J}$，这就是它一开始拥有的全部能量。水离开水坝时仍带有动能 $\\kKE = \\tfrac{1}{2}m\\kv^2 = \\tfrac{1}{2}(10{,}000\\ \\text{kg})(2.0\\ \\text{m/s})^2 = 2.0\\times 10^{4}\\ \\text{J}$。忽略水道中的摩擦，能量守恒说明发电机取走了二者之差，$9.80\\times 10^{6}\\ \\text{J} - 0.02\\times 10^{6}\\ \\text{J} = 9.78\\times 10^{6}\\ \\text{J}$，取两位有效数字即 $9.8\\times 10^{6}\\ \\text{J}$。水带走的动能只占它所储存能量的 0.2%。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2075302",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transformation",
+   "figure": {
+    "src": "/media/ch07/Figure_08_06_02a.jpg",
+    "alt": "一辆汽车沿山坡滑行，越过一个坡顶，再次下坡，最后在加油站停下。每个位置都标有一个向下的箭头。",
+    "caption": "一辆摩擦力不可忽略的汽车沿山坡滑行而下，越过一个小坡顶，再次下坡，最后在加油站停下。"
+   },
+   "prompt": "考虑下面的情景。一辆摩擦力<em>不可</em>忽略的汽车从山坡顶上由静止开始加速下行，走了不远就把汽油耗尽。司机让汽车继续沿山坡向下滑行，然后上坡越过一个小坡顶。接着他沿那座山坡滑进一个加油站，在那里刹车停下并给油箱加满汽油。找出这辆车具有的能量形式，以及在这一系列事件中它们如何被改变和转移。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沿着这段行程跟随汽车，说出它在每个阶段具有什么。在顶端，它静止，所以具有重力势能而没有动能，油箱中的汽油带有化学能。沿第一座山坡下行时，发动机把一部分化学能变成动能，汽车-地球系统的势能也变成了动能。传动系统和轮胎中的摩擦以及空气阻力把两者的一部分变成热能，使汽车和空气变暖。汽油耗尽之后，唯一的交换发生在重力势能与动能之间，再减去摩擦力不断拿走的那一部分。滑行越过坡顶时，汽车用动能换取势能并减速。沿第二座山坡下行时，它把势能取回，并加速。在加油站刹车，把剩余的全部动能变成刹车中的热能。加满油箱则是把化学能从外部送入汽车，这是系统之间的转移，而不是形式的改变。在任何阶段能量都不会消失：一种形式失去的，另一种形式得到。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1471362",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transformation",
+   "prompt": "描述标枪的能量的转移与转化，从运动员拿起标枪时开始，到标枪被掷出后插入地面时结束。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "运动员肌肉中的化学能是这一切的来源。拿起标枪并把它带到起掷线的过程中，运动员把这些能量的一小部分变成被举起的标枪的重力势能和助跑的动能。大部分变成了身体里的热能，因为人体的效率只有约五分之一。投掷时，运动员在手臂的长度和身体的转动范围内对标枪做功，于是更多的化学能变成标枪的动能。在空中，标枪上升时用动能换取势能，下落时再把它取回，同时空气阻力把一小部分变成标枪和空气中的热能。标枪尖端触地时，动能用于把泥土推开，变成泥土和枪杆中的热能，还有一部分变成声。标枪最后静止，位置比开始时更低，而它起初拥有的每一焦耳都到了别处。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2098120",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "efficiency",
+   "prompt": "效率小于 1 的装置是否违反能量守恒定律？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不违反。效率小于 1 说明投入的能量中只有一部分作为有用功输出，并不是说其余部分不见了。守恒定律说的是总量，而总量与以前相同：没有作为有用功输出的那部分，以热能的形式留在装置和周围空气中，还有一部分变成声和光。效率为 30% 的汽油机把燃料中十分之三的化学能变成驱动汽车的功，其余十分之七则以热能的形式通过散热器和排气管离开。效率只计有用的那一份；守恒定律计的是每一焦耳。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1172158",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forms",
+   "prompt": "列出四种不同的能量形式或类型。为每种形式各举一个把它转化为另一种形式的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电能、化学能、辐射能、核能和热能是机械能以外的五种形式，任选四种即可。电动机把电能转化为转动轴的机械能。发动机把汽油中的化学能转化为热能，再转化为机械能；爬楼梯的人把食物中的化学能转化为动能和势能。太阳电池把来自太阳的辐射能转化为电能，树叶则通过光合作用把它转化为化学能。反应堆堆芯把核能转化为热能，由其蒸汽驱动的发电机再把热能转化为电能。涡轮机把锅炉蒸汽的热能转化为机械能。在每种情形中，都要说出起始形式和最终形式，并说明是什么在完成转化。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1528780",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transformation",
+   "prompt": "列出骑自行车时发生的能量转换。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "骑车人所吃的食物是来源，所以这条链从肌肉中的化学能开始。双腿把它转化为作用在脚踏板上的机械功，与此同时约五分之四变成骑车人体内的热能，因为骑行的效率约为 20%。踏板上的功变成骑车人和自行车加速时的动能，以及道路上坡时的重力势能。下山时，这些势能又变回动能。链条和轴承中的摩擦以及空气阻力一直在把一部分动能变成热能，所以骑车人必须蹬踏才能在平路上保持匀速。刹车则把其余的动能变成刹车块和轮圈中的热能。如果装有发电机，它会把一小部分机械能变成电能，再变成车灯的辐射能。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1626731",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forms",
+   "prompt": "利用表 7.1 中的数值，一台老式电视显像管电子束中的单个电子所携带的能量，能使多少个 DNA 分子断裂？（这些电子本身并不危险，但它们确实产生了危险的 X 射线。后来型号的显像管电视机装有屏蔽，在 X 射线逸出并照射观众之前把它吸收。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 40000,
+    "unit": "molecules",
+    "hint": "从表 7.1 中读出电子束中单个电子的能量以及使一条 DNA 链断裂所需的能量，然后用前者除以后者。",
+    "solution": "$4 \\times 10^{4}\\ \\text{个分子}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "eip-309",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "利用能量方面的考虑，并假设空气阻力可忽略，证明：从水面上方 20.0 m 高的桥上以 15.0 m/s 的初速率抛出的石块，无论抛出方向如何，入水时的速率都是 24.8 m/s。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "令 $\\kdPEg$ 和 $\\kdKE$ 相等，我们得到 $\\kv = \\sqrt{2\\kg\\kh + {\\kvo}^2} = \\sqrt{2(9.80\\ \\text{m/s}^2)(20.0\\ \\text{m}) + (15.0\\ \\text{m/s})^2} = 24.8\\ \\text{m/s}$。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1523087",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forms",
+   "prompt": "（a）利用氢聚变来供应能源是一个可能在下个世纪实现的梦想。聚变将是一种相对清洁、几乎无限的能源，从表 7.1 中可以看出这一点。为了说明这一点，计算利用海洋氢聚变能的百万分之一，可以满足世界目前的能源需求多少年。（b）这段时间与具有历史意义的事件相比如何，例如稳定经济体系的持续时间？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 25000000,
+    "unit": "years",
+    "part": "(a)",
+    "hint": "表 7.1 给出了海洋中全部氢的聚变能和全世界年能源消费量；取前者的百万分之一，再除以后者。",
+    "solution": "（a）$25 \\times 10^{6}\\ \\text{年}$（b）这比人类的时间尺度长得多得多。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "work-by-nonconservative-forces",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "nonconservative-force"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "work-energy-theorem",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elastic-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "energy-transformation",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "forms-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "work-by-nonconservative-forces",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "energy-transformation",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "energy-transformation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "forms-of-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "nonconservative-force",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "energy-transformation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "forms-of-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "efficiency"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "forms-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "forms-of-energy"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "energy-transformation",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "energy-transformation"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "forms-of-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "forms-of-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "conservation-of-mechanical-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "energy-problem-solving",
+   "weight": 2
+  },
+  {
+   "exercise": "p4",
+   "concept": "forms-of-energy"
+  }
+ ],
+ "referents": [
+  {
+   "id": "climber",
+   "label": "爬楼梯的人",
+   "figures": [
+    "sim-account"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "滑行到加油站的车",
+   "figures": [
+    "fig-car"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,652 @@
+{
+ "id": "16.3",
+ "module": "m42242",
+ "chapter": "16",
+ "title": "简谐运动：一种特殊的周期运动",
+ "short": "简谐运动",
+ "lead": "合<span data-concept=\"force\">力</span>遵循<span data-concept=\"hookes-law\">胡克定律</span>的系统，其振动最简单也最常见，称为简谐运动。它们的<span data-concept=\"period\">周期</span>，以及它们的<span data-concept=\"position\">位置</span>、<span data-concept=\"velocity\">速度</span>和<span data-concept=\"acceleration\">加速度</span>在每个循环中变化的方式，把我们从振动引向波。",
+ "objectives": [
+  "描述简谐振子。",
+  "解释简谐运动与波之间的联系。"
+ ],
+ "summary_html": "<ul><li>简谐运动是只能用胡克定律描述的系统的振动运动。这样的系统也称为简谐振子。</li><li>最大<span data-concept=\"displacement\">位移</span>即<span data-concept=\"amplitude\">振幅</span> $\\kX$。简谐振子的<span data-concept=\"period\">周期</span> $\\kT$ 和<span data-concept=\"frequency\">频率</span> $\\kf$ 分别由 $\\kT = 2\\pi\\sqrt{\\frac{m}{\\kk}}$ 和 $\\kf = \\frac{1}{2\\pi}\\sqrt{\\frac{\\kk}{m}}$ 给出，其中 $m$ 为系统的<span data-concept=\"mass\">质量</span>。</li><li>简谐运动中的<span data-concept=\"displacement\">位移</span>作为<span data-concept=\"time\">时间</span>的函数，由 $\\kx(\\kt) = \\kX\\cos\\frac{2\\pi\\kt}{\\kT}.$ 给出。</li><li><span data-concept=\"velocity\">速度</span>由 $\\kv(\\kt) = -\\kvmax\\sin\\frac{2\\pi\\kt}{\\kT}$ 给出，其中 $\\kvmax = \\kX\\sqrt{\\frac{\\kk}{m}}$。</li><li><span data-concept=\"acceleration\">加速度</span>为 $\\ka(\\kt) = -\\frac{\\kk\\kX}{m}\\cos\\frac{2\\pi\\kt}{\\kT}.$</li></ul>",
+ "notes": "AP 第 1、3 题以及习题 2、4、5、7、8 在书后答案中没有给出，因而略去；AP 题附带的两幅图，以及习题 8 旁边的孩子弹跳吊椅照片，也一并略去。AP 第 4 题问的是振子在中心处的能量，这一内容由第 16.5 节引入，因此该题放在那里。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案；AP 第 1、3 题以及习题 2、4、5、7、8 没有给出答案，因而略去。第一道 AP 题是本书放在 16.1 的那道，它考查振幅和周期，因此放在这里。AP 第 4 题考查振动中心处的能量，放在第 16.5 节。开放题的建议思路由 AI 撰写，并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-shm-oscillator",
+   "kind": "sim",
+   "number": "16.9",
+   "originals": [
+    "/media/ch16/Figure_17_03_02a.jpg"
+   ],
+   "original_caption": "连在弹簧上、在无摩擦表面上滑动的物体是一个简单的简谐振子。物体偏离平衡位置后，做振幅为 X、周期为 T 的简谐运动。物体经过平衡位置时速率最大。弹簧的刚度越大，周期 T 越小。物体的质量越大，周期 T 越大。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "force",
+    "position",
+    "stiffness",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label under line, readout arithmetic, note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-shm-period",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "stiffness",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note trimmed, curve name and headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-paper-strip",
+   "kind": "sim",
+   "number": "16.11",
+   "folds": [
+    "16.10"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_03_04a.jpg",
+    "/media/ch16/Figure_17_03_03a.jpg"
+   ],
+   "original_caption": "（图 16.11）弹簧上跳动的物体的竖直位置被记录在移动的纸带上，留下一条正弦波。（图 16.10）上下颠动的汽车做波状运动。如果悬架系统中的回复力只能用胡克定律描述，那么这条波就是正弦函数。（这条波是汽车向右行驶时前照灯留下的轨迹。）",
+   "widths": [
+    175,
+    300
+   ],
+   "draws": [
+    "position",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "taller stage, typeset headline, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-shm-xva",
+   "kind": "sim",
+   "number": "16.12",
+   "originals": [
+    "/media/ch16/Figure_17_03_05a.jpg"
+   ],
+   "original_caption": "弹簧上物体运动的 x(t)、v(t) 和 a(t) 随 t 变化的图线。物体所受的合力可以用胡克定律描述，因此物体做简谐运动。注意，初始位置处的竖直位移取其最大值 X；v 起初为零，随后在物体向下运动时为负；初始加速度为负，指向平衡位置，并在该点变为零。",
+   "draws": [
+    "acceleration",
+    "position",
+    "stiffness",
+    "time",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graphs clear of headline, note and headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "shm",
+   "concept": "simple-harmonic-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "shm",
+   "concept": "amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "shm",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "shm",
+   "concept": "restoring-force",
+   "verb": "uses"
+  },
+  {
+   "span": "shm",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "shm",
+   "concept": "simple-harmonic-oscillator",
+   "verb": "introduces"
+  },
+  {
+   "span": "shm-period",
+   "concept": "shm-period",
+   "verb": "introduces"
+  },
+  {
+   "span": "shm-period",
+   "concept": "force-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-period",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-car-shocks",
+   "concept": "shm-period",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-waves",
+   "concept": "shm-kinematics",
+   "verb": "introduces"
+  },
+  {
+   "span": "shm-waves",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-waves",
+   "concept": "shm-period",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-waves",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-waves",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-waves",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2056610",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "shm-period"
+   },
+   "cite": "shm-period",
+   "prompt": "假设你拨动一根班卓琴的弦。你听到一个单音，起初很响，随时间慢慢变弱。请用周期、频率和振幅描述，随着声音的音量减小，声波发生了什么变化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "频率和周期基本保持不变。随着音量减小，只有振幅减小。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id2056612",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "shm-waves"
+   },
+   "cite": "shm-waves",
+   "prompt": "一位保姆正在推一个坐在秋千上的孩子。在秋千到达 $\\kX$ 的位置，这一运动的波上对应的点位于何处？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kX$ 是最大形变，对应于波的振幅。波上的这个点要么在曲线的最顶端，要么在最底端。"
+   }
+  },
+  {
+   "id": "ap-4a",
+   "source_id": "fs-id2793783",
+   "source_section": "16.1",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm",
+   "prompt": "下列哪一项表示做简谐运动的质点在一个时间周期内所走的路程（即质点经过的总路程）？（这里 $A$ 表示振动的振幅。）",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0 cm",
+     "A cm",
+     "2A cm",
+     "4A cm"
+    ],
+    "correct": 3,
+    "hint": "跟随物体走完一个完整周期：从 $\\kX$ 到 $-\\kX$，再回来。它经过了多少个振幅？"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1170241149016",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-period",
+   "prompt": "一个质量为 100 g 的质点做简谐运动。回复力由一根劲度系数为 40 N∙m<sup>−1</sup> 的弹簧提供。振动的周期是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "10π",
+     "0.5π",
+     "0.1π",
+     "1π"
+    ],
+    "correct": 2,
+    "hint": "用 $\\kT = 2\\pi\\sqrt{m/\\kk}$，质量以千克为单位。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2017072",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm",
+   "prompt": "要产生简谐运动，必须满足什么条件？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "系统所受的合力必须是可以用胡克定律 $\\kF = -\\kk\\kx$ 描述的回复力，这样它才与位移成正比，并且指向平衡位置。还必须没有阻尼，也就是说，没有摩擦力或其他非保守力把能量从运动中带走。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1561901",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-period",
+   "prompt": "（a）如果某个振动的频率不是恒定的，这个振动还可能是简谐运动吗？（b）你能想到频率可能取决于振幅的谐运动的例子吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）不可能。在简谐运动中，频率只由质量和劲度系数决定，$\\kf = \\frac{1}{2\\pi}\\sqrt{\\kk/m}$，所以在振动进行的过程中它不会改变。频率变化意味着合力不具有 $\\kF = -\\kk\\kx$ 的形式。（b）摆在大角度摆动时，大幅度摆动一次比小幅度摆动一次用时更长；被拉伸超出胡克定律成立范围的弹簧、在地板上弹跳的球，以及在不是真正半球形的碗中滚动的弹珠，它们的周期都会随运动幅度的大小而变化。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2032223",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-period",
+   "prompt": "请举出一个简谐振子的例子，并特别指出它的频率如何与振幅无关。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "吉他弦就是一个例子：无论轻拨还是重拨，它发出的都是同一个音，所以不论振幅小还是大，它的频率都相同。弹簧上的物体是另一个例子。无论从大位移还是小位移处释放，它完成每个循环所用的时间都是同样的 $\\kT = 2\\pi\\sqrt{m/\\kk}$，其中含有质量和劲度系数，而不含振幅。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1888472",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-period",
+   "prompt": "请解释，为什么你预期由刚度大的材料制成的物体比由海绵状材料制成的类似物体振动的频率更高。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "刚度大的材料，劲度系数 $\\kk$ 大：使它发生形变需要很大的力，而它发生形变时也会用很大的力推回去。简谐振子的频率为 $\\kf = \\frac{1}{2\\pi}\\sqrt{\\kk/m}$，所以质量相同时，$\\kk$ 越大，频率越高。海绵状的物体 $\\kk$ 小，振动得更慢。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3306170",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-period",
+   "prompt": "你在高速公路上超过一辆拖着挂车的货运卡车时，注意到它的挂车在缓慢地上下颠动。挂车更可能是重载还是接近空载？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "重载。无论哪种情形，挂车的弹簧都是一样的，所以劲度系数是固定的，周期 $\\kT = 2\\pi\\sqrt{m/\\kk}$ 随质量增大而变长。颠动缓慢意味着周期长，也就意味着弹簧上承载的质量大。空载的挂车会颠动得很快。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3449442",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shm-period",
+   "prompt": "有些人改装汽车，使车身比出厂时离地面近得多。他们应该安装刚度更大的弹簧吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "应该。汽车离地面更近时，悬架在触底之前可以活动的空间更小，所以每次颠簸都必须使弹簧压缩得更少。根据胡克定律，同样的载荷使刚度更大的弹簧压缩得更少，因为 $\\kx = \\kF/\\kk$。刚度更大的弹簧还会提高汽车振动的频率 $\\kf = \\frac{1}{2\\pi}\\sqrt{\\kk/m}$，所以乘坐起来更硬，颠动在更少、更快的循环之内就消失了。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1587278",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "有一种布谷鸟钟靠一个在弹簧上颠动的物体来计时，这个物体通常是可爱的东西，比如坐在椅子上的小天使。要使质量为 0.0150 kg 的物体的周期为 0.500 s，需要多大的劲度系数？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.37,
+    "unit": "N/m",
+    "hint": "由 $\\kT = 2\\pi\\sqrt{m/\\kk}$ 解出 $\\kk$。",
+    "solution": "$2.37\\ \\text{N/m}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "eip-800",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "悬挂在弹簧上的 0.500 kg 物体以 1.50 s 的周期振动。要使周期变为 2.00 s，必须给该物体增加多少质量？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.389,
+    "unit": "kg",
+    "hint": "弹簧不变，所以 $\\kT^2$ 与质量成正比。求出使周期为 2.00 s 的质量，再减去 0.500 kg。",
+    "solution": "0.389 kg"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1941088",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "跳板上的一名跳水运动员在做简谐运动。她的质量是 55.0 kg，她的运动周期是 0.800 s。下一名运动员是男性，其简谐振动的周期是 1.05 s。如果跳板的质量可以忽略，他的质量是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 94.7,
+    "unit": "kg",
+    "hint": "两名运动员用的是同一块跳板，所以质量之比等于周期之比的平方。",
+    "solution": "94.7 kg"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3035922",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch16/Figure_17_02_03a.jpg",
+    "alt": "图中显示两名跳伞者在半空中，两人的降落伞都已打开。",
+    "caption": "图 16.14 一名跳伞者的振动即将受到第二名跳伞者的影响。（来源：U.S. Army, www.army.mil）"
+   },
+   "prompt": "一名 90.0 kg 的跳伞者悬挂在降落伞下上下颠动，周期为 1.50 s。当第二名质量为 60.0 kg 的跳伞者挂在第一名的腿上时（如图 16.14 所示），新的振动周期是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.94,
+    "unit": "s",
+    "hint": "降落伞的伞绳起弹簧的作用，所以劲度系数不变。周期与总质量的平方根成正比。",
+    "solution": "1.94 s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "shm-kinematics"
+  },
+  {
+   "exercise": "ap-4a",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "ap-4a",
+   "concept": "period"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "force-constant"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "p1",
+   "concept": "force-constant"
+  },
+  {
+   "exercise": "p3",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "p6",
+   "concept": "shm-period"
+  },
+  {
+   "exercise": "p9",
+   "concept": "shm-period"
+  }
+ ],
+ "referents": [
+  {
+   "id": "object",
+   "label": "弹簧上的物体",
+   "figures": [
+    "sim-shm-oscillator"
+   ]
+  },
+  {
+   "id": "upper-object",
+   "label": "上方的物体",
+   "figures": [
+    "sim-shm-period"
+   ]
+  },
+  {
+   "id": "lower-object",
+   "label": "下方的物体",
+   "figures": [
+    "sim-shm-period"
+   ]
+  },
+  {
+   "id": "trace-object",
+   "label": "画出轨迹的物体",
+   "figures": [
+    "sim-paper-strip"
+   ]
+  },
+  {
+   "id": "xva-object",
+   "label": "竖直弹簧上的物体",
+   "figures": [
+    "sim-shm-xva"
+   ]
+  }
+ ]
+}

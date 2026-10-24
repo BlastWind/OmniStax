@@ -1,0 +1,1311 @@
+{
+ "types": [
+  {
+   "id": "dose",
+   "label": "辐射剂量",
+   "dimension": "Gy"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "dose",
+   "latex": "\\text{dose}",
+   "macro": "\\kdose"
+  },
+  {
+   "sym": "RBE",
+   "latex": "\\text{RBE}"
+  },
+  {
+   "sym": "m_i",
+   "latex": "m_{\\text{i}}",
+   "macro": "\\kmi"
+  },
+  {
+   "sym": "m_f",
+   "latex": "m_{\\text{f}}",
+   "macro": "\\kmf"
+  },
+  {
+   "sym": "m_products",
+   "latex": "m_{\\text{products}}",
+   "macro": "\\kmprod"
+  },
+  {
+   "sym": "E_gamma",
+   "latex": "E_{\\gamma}",
+   "macro": "\\kEgam"
+  },
+  {
+   "sym": "FF_1",
+   "latex": "\\text{FF}_{1}"
+  },
+  {
+   "sym": "FF_2",
+   "latex": "\\text{FF}_{2}"
+  },
+  {
+   "sym": "x_fis",
+   "latex": "x"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "radiopharmaceuticals-and-tagging",
+   "kind": "definition",
+   "section": "32.1",
+   "name": "放射性药物",
+   "terms": [
+    "放射性药物"
+   ],
+   "statement": "放射性药物是标记了放射性核素的化合物，之所以选用它，是因为人体会把它输送到被研究的器官。由于 $\\gamma$ 射线很容易穿出人体，而且无论核素处在哪种化合物中，其原子核辐射的情形都相同，所以体外的探测器能够看出这种化合物去了哪里。"
+  },
+  {
+   "id": "technetium-99m",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "锝-99m",
+   "statement": "一种核素承担了大约 80% 的核医学，其原因正是本章物理学的缩影：只有单一而清晰的 $\\gamma$ 能量，半衰期短因而限制了剂量，而且有一个母体能就地衰变成它。"
+  },
+  {
+   "id": "anger-camera",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "安格照相机",
+   "terms": [
+    "安格照相机",
+    "γ 照相机"
+   ],
+   "statement": "安格照相机用一个只让沿其孔道行进的 $\\gamma$ 射线通过的铅准直器、一个把每个 $\\gamma$ 射线变成光的闪烁体，以及把光变成信号的光电倍增管，来给放射性药物成像。它形成的图像是平面的，不含深度。"
+  },
+  {
+   "id": "spect-imaging",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "单光子发射计算机断层成像",
+   "terms": [
+    "单光子发射计算机断层成像"
+   ],
+   "statement": "单光子发射计算机断层成像给发射 $\\gamma$ 射线的放射性药物成像。它把探测器围在患者周围，再用计算机把各探测器的图像合成为三维图像，就像 X 射线 CT 对阴影所做的那样。它获得了深度，代价是分辨率。"
+  },
+  {
+   "id": "pet-annihilation-pair",
+   "kind": "idea",
+   "section": "32.1",
+   "name": "正电子发射断层成像",
+   "terms": [
+    "正电子发射断层成像"
+   ],
+   "statement": "正电子发射断层成像是守恒定律在医学中最干净利落的应用：静止的正电子与电子湮没时，必定沿相反方向发出两个相等的 0.511 MeV 的 $\\gamma$ 射线，所以两个探测器同时触发，就确定了源所在的直线。"
+  },
+  {
+   "id": "mass-from-activity",
+   "kind": "skill",
+   "section": "32.1",
+   "name": "由活度求质量",
+   "statement": "放射性样品的质量可由其活度和半衰期求出：活度和半衰期给出核的数目，再由阿伏伽德罗常量和摩尔质量把这个数目换算成质量。几毫居里的医用活度，对应的质量小得惊人。"
+  },
+  {
+   "id": "tagged-compound",
+   "kind": "definition",
+   "section": "32.1",
+   "name": "标记化合物",
+   "terms": [
+    "标记的"
+   ],
+   "statement": "当一种放射性核素附着在某化合物上时，这种化合物就被标记了，这样核素的辐射就能显示该化合物的去向。"
+  },
+  {
+   "id": "radiation-damages-dna",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "DNA 辐射损伤",
+   "statement": "辐射的一切生物效应，从致癌到治癌，都源于这一个论断。它解释了为什么快速增殖的细胞，包括癌细胞，最为敏感。"
+  },
+  {
+   "id": "absorbed-dose-rad-and-gray",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "辐射剂量",
+   "symbol": "dose",
+   "type": "dose",
+   "statement": "吸收剂量是受影响组织每千克所沉积的电离能量。它以拉德为单位来度量，其中 $1\\;\\text{rad} = 0.01\\;\\text{J/kg}$，或以戈瑞为单位，其中 $1\\;\\text{Gy} = 1\\;\\text{J/kg} = 100\\;\\text{rad}$。"
+  },
+  {
+   "id": "relative-biological-effectiveness",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "相对生物效能",
+   "symbol": "RBE",
+   "terms": [
+    "相对生物效能",
+    "品质因数"
+   ],
+   "statement": "某种辐射的相对生物效能（RBE），或称品质因数，是指该辐射每单位吸收剂量的生物效应超过 X 射线的倍数。诸如 $\\alpha$ 粒子之类的短程辐射把损伤集中起来，更难修复，因此 RBE 较大。"
+  },
+  {
+   "id": "dose-equivalent-rem-and-sievert",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "剂量当量",
+   "statement": "剂量当量是吸收剂量乘以 RBE，这个数与生物效应成正比：$\\text{rem} = \\text{rad}\\times\\text{RBE}$，$\\text{Sv} = \\text{Gy}\\times\\text{RBE}$。剂量限值和风险都用这个量来表述。",
+   "type": "dose"
+  },
+  {
+   "id": "dose-from-a-source",
+   "kind": "skill",
+   "section": "32.2",
+   "name": "计算剂量",
+   "statement": "源的剂量要沿着它的衰变一直算到焦耳每千克：活度和时间给出衰变的次数，每次衰变的能量给出沉积的能量，受照组织的质量给出以戈瑞为单位的剂量，再由 RBE 给出以希沃特为单位的剂量。计算中不要把活度与剂量混淆。"
+  },
+  {
+   "id": "immediate-effects-and-dose-levels",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "剂量的即时效应",
+   "statement": "低于约 0.1 Sv 的一次全身剂量没有可观察到的即时效应，接近 1 Sv 的剂量会引起放射病，接近 5 Sv 的剂量会使约一半的受照者死亡。血细胞数目最先下降，因为血细胞增殖得最快。"
+  },
+  {
+   "id": "linear-hypothesis-and-long-term-risk",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "线性假说",
+   "terms": [
+    "线性假说"
+   ],
+   "statement": "线性假说假定，辐射致癌的风险与剂量成正比，即使剂量低到观察不到任何效应也是如此。按这种方式从高剂量往下推算，得到癌症风险约为 $10/10^{6}\\;\\text{rem}\\cdot\\text{y}$。"
+  },
+  {
+   "id": "background-radiation",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "本底辐射",
+   "statement": "每个人都受到本底辐射，平均每年约 3 mSv，来自宇宙线、岩石和土壤、人体自身的核素，而最主要的是来自氡。它的大小因地而异，是衡量其他一切剂量的天然标尺。"
+  },
+  {
+   "id": "radiation-protection",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "辐射防护",
+   "statement": "限制剂量只有三种方法：缩短受照时间，增大与源的距离，以及在源与人体之间放置屏蔽。"
+  },
+  {
+   "id": "rad",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "拉德",
+   "terms": [
+    "拉德"
+   ],
+   "statement": "拉德是辐射吸收剂量（radiation absorbed dose）的缩写，是使每千克组织沉积 0.01 J 电离能量的剂量。",
+   "forms": [
+    {
+     "id": "eq-rad",
+     "latex": "1\\;\\text{rad} = 0.01\\;\\text{J/kg}",
+     "anchor": "32.2-dose-units"
+    }
+   ]
+  },
+  {
+   "id": "gray",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "戈瑞",
+   "terms": [
+    "戈瑞"
+   ],
+   "statement": "戈瑞是吸收剂量的 SI 单位，是使每千克组织沉积 1 J 电离能量的剂量；一戈瑞等于 100 拉德。",
+   "forms": [
+    {
+     "id": "eq-gray",
+     "latex": "1\\;\\text{Gy} = 1\\;\\text{J/kg} = 100\\;\\text{rad}",
+     "anchor": "32.2-dose-units"
+    }
+   ]
+  },
+  {
+   "id": "rem",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "雷姆",
+   "terms": [
+    "雷姆"
+   ],
+   "statement": "雷姆是伦琴当量人（roentgen equivalent man）的缩写，是与拉德配套的剂量当量单位：以拉德为单位的剂量乘以该辐射的 RBE，就得到以雷姆为单位的剂量当量。",
+   "forms": [
+    {
+     "id": "eq-rem",
+     "latex": "\\text{rem} = \\text{rad}\\times\\text{RBE}",
+     "anchor": "32.2-rbe"
+    }
+   ]
+  },
+  {
+   "id": "sievert",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "希沃特",
+   "terms": [
+    "希沃特"
+   ],
+   "statement": "希沃特是剂量当量的 SI 单位：以戈瑞为单位的剂量乘以该辐射的 RBE，就得到以希沃特为单位的剂量当量，一希沃特等于 100 雷姆。",
+   "forms": [
+    {
+     "id": "eq-sievert",
+     "latex": "1\\;\\text{Sv} = 1\\;\\text{Gy}\\times\\text{RBE} = 100\\;\\text{rem}",
+     "anchor": "32.2-rbe"
+    }
+   ]
+  },
+  {
+   "id": "low-dose",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "小剂量",
+   "terms": [
+    "小剂量"
+   ],
+   "statement": "小剂量是小于约 0.1 Sv（10 rem）的剂量，低于此值观察不到即时效应。"
+  },
+  {
+   "id": "moderate-dose",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "中等剂量",
+   "terms": [
+    "中等剂量"
+   ],
+   "statement": "中等剂量是从约 0.1 Sv 到 1 Sv（10 到 100 rem）的剂量，它能使血液产生可测量的变化，在该范围的上端附近还会引起放射病。"
+  },
+  {
+   "id": "high-dose",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "大剂量",
+   "terms": [
+    "大剂量"
+   ],
+   "statement": "大剂量是大于约 1 Sv（100 rem）的剂量，它会引起放射病，达到几希沃特时可能致命。"
+  },
+  {
+   "id": "hormesis",
+   "kind": "idea",
+   "section": "32.2",
+   "name": "毒物兴奋效应",
+   "terms": [
+    "毒物兴奋效应"
+   ],
+   "statement": "毒物兴奋效应是这样一种提法：极低剂量的辐射可能有益，能刺激人体的修复机制；支持它的证据并不确凿。"
+  },
+  {
+   "id": "shielding",
+   "kind": "definition",
+   "section": "32.2",
+   "name": "屏蔽",
+   "terms": [
+    "屏蔽"
+   ],
+   "statement": "屏蔽是放置在辐射源与人体之间的一层材料，用来吸收辐射，从而降低剂量。"
+  },
+  {
+   "id": "therapeutic-ratio",
+   "kind": "definition",
+   "section": "32.3",
+   "name": "治疗比",
+   "terms": [
+    "治疗比"
+   ],
+   "statement": "放射治疗之所以有效，是因为快速增殖的癌细胞比正常细胞对辐射更敏感。每一种技术的目标，都是使每杀死一个正常细胞所杀死的异常细胞尽可能多。"
+  },
+  {
+   "id": "crossfire-beams",
+   "kind": "idea",
+   "section": "32.3",
+   "name": "交叉射束",
+   "statement": "单一的射束会使其路径上的健康组织受到与肿瘤相同的剂量。让辐射源绕肿瘤中的一点旋转，就能使交叉点处的剂量保持很高，而在其他各处把剂量摊得很薄。"
+  },
+  {
+   "id": "therapeutic-doses",
+   "kind": "idea",
+   "section": "32.3",
+   "name": "治疗剂量",
+   "statement": "几十希沃特的剂量若一次施加于全身就会致命。局部化和分次照射使这些剂量能够承受，而可耐受的剂量取决于周围的组织。"
+  },
+  {
+   "id": "radiotherapy",
+   "kind": "definition",
+   "section": "32.3",
+   "name": "放射治疗",
+   "terms": [
+    "放射治疗"
+   ],
+   "statement": "放射治疗是利用电离辐射来治疗疾病，尤其是用来消灭癌细胞。"
+  },
+  {
+   "id": "food-irradiation",
+   "kind": "definition",
+   "section": "32.4",
+   "name": "食品辐照",
+   "terms": [
+    "食品辐照"
+   ],
+   "statement": "食品辐照是用电离辐射处理食品。它减少虫害，延缓变质，并预防由微生物引起的疾病；由于昆虫和细菌能承受的辐射远多于人，所以需要几千戈瑞的剂量。"
+  },
+  {
+   "id": "irradiated-food-is-not-radioactive",
+   "kind": "result",
+   "section": "32.4",
+   "name": "辐照食品无残留放射性",
+   "statement": "人们对辐照食品的第一个担心是它会变成放射性的。其实不会，因为这些能量的 $\\gamma$ 射线、X 射线和电子不会引起核反应。"
+  },
+  {
+   "id": "free-radicals-and-radiolytic-products",
+   "kind": "idea",
+   "section": "32.4",
+   "name": "自由基与辐解产物",
+   "statement": "电离辐射会在食品和生物体内产生自由基，自由基的反应生成称为辐解产物的新化合物。自由基是辐照杀死生物体的途径，而辐解产物是辐照食品安全性争论的核心。"
+  },
+  {
+   "id": "free-radicals",
+   "kind": "definition",
+   "section": "32.4",
+   "name": "自由基",
+   "terms": [
+    "自由基"
+   ],
+   "statement": "自由基是带有未成对电子的分子或原子，在电离辐射打断分子键时产生；它们的反应活性很高。"
+  },
+  {
+   "id": "radiolytic-products",
+   "kind": "definition",
+   "section": "32.4",
+   "name": "辐解产物",
+   "terms": [
+    "辐解产物"
+   ],
+   "statement": "辐解产物是食品中由辐照所产生的自由基发生化学反应而生成的化合物。"
+  },
+  {
+   "id": "fusion-releases-energy",
+   "kind": "result",
+   "section": "32.5",
+   "name": "聚变释放的能量",
+   "statement": "第 31 章的每核子结合能曲线既预言了聚变，也预言了裂变。当两个轻核形成一个 BE/$A$ 更大的核时，质量被消灭，能量被释放。"
+  },
+  {
+   "id": "coulomb-barrier-to-fusion",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "库仑势垒",
+   "statement": "两个带正电的核相互排斥，直到靠得足够近，使短程的吸引性核力接管。因此它们的势能是一座小山，即库仑势垒，中心处有一口深井。"
+  },
+  {
+   "id": "fusion-by-tunneling-and-temperature",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "通过隧穿的聚变",
+   "statement": "太阳核心的温度太低，核无法相接触，却仍然使氢聚变。隧穿解释了这一点，而且由于隧穿对核爬上势垒多高极其敏感，所以温度控制着反应速率。"
+  },
+  {
+   "id": "proton-proton-cycle",
+   "kind": "result",
+   "section": "32.5",
+   "name": "质子-质子循环",
+   "terms": [
+    "质子-质子循环"
+   ],
+   "statement": "太阳靠质子-质子循环发光，这是三个反应，其中四个质子和两个电子变成一个氦核、两个中微子和六个 $\\gamma$ 射线：$2e^{-} + 4\\,{}^{1}\\text{H} \\to {}^{4}\\text{He} + 2v_{\\text{e}} + 6\\gamma$，释放 26.7 MeV。每生成一个氦核，前两个反应必须各发生两次。",
+   "forms": [
+    {
+     "id": "eq-pp-overall",
+     "latex": "2e^{-} + 4\\,{}^{1}\\text{H} \\to {}^{4}\\text{He} + 2v_{\\text{e}} + 6\\gamma\\;(26.7\\;\\text{MeV})",
+     "anchor": "32.5-proton-proton-cycle"
+    },
+    {
+     "id": "eq-pp-step-1",
+     "latex": "{}^{1}\\text{H} + {}^{1}\\text{H} \\to {}^{2}\\text{H} + e^{+} + v_{\\text{e}}\\;(0.42\\;\\text{MeV})",
+     "anchor": "32.5-proton-proton-cycle"
+    },
+    {
+     "id": "eq-pp-step-2",
+     "latex": "{}^{1}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{He} + \\gamma\\;(5.49\\;\\text{MeV})",
+     "anchor": "32.5-proton-proton-cycle"
+    },
+    {
+     "id": "eq-pp-step-3",
+     "latex": "{}^{3}\\text{He} + {}^{3}\\text{He} \\to {}^{4}\\text{He} + {}^{1}\\text{H} + {}^{1}\\text{H}\\;(12.86\\;\\text{MeV})",
+     "anchor": "32.5-proton-proton-cycle"
+    }
+   ]
+  },
+  {
+   "id": "solar-neutrinos",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "太阳中微子",
+   "statement": "来自核心的能量要花几万年才能到达表面，而中微子在几秒内就离开了。这使它们成为反应中仅有的直接信使，它们的短缺促成了中微子有质量这一发现。"
+  },
+  {
+   "id": "deuterium-tritium-fusion",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "氘-氚聚变",
+   "statement": "质子-质子循环对于发电厂来说慢得多。氘和氚的反应更容易引发，给出很大的能量，并且所用的燃料在海水中十分丰富。",
+   "forms": [
+    {
+     "id": "eq-dt-fusion",
+     "latex": "{}^{2}\\text{H} + {}^{3}\\text{H} \\to {}^{4}\\text{He} + n\\;(17.59\\;\\text{MeV})",
+     "anchor": "32.5-fusion-on-earth"
+    },
+    {
+     "id": "eq-dd-tritium",
+     "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{H} + {}^{1}\\text{H}\\;(4.03\\;\\text{MeV})",
+     "anchor": "32.5-fusion-on-earth"
+    },
+    {
+     "id": "eq-dd-helium-3",
+     "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{He} + n\\;(3.27\\;\\text{MeV})",
+     "anchor": "32.5-fusion-on-earth"
+    },
+    {
+     "id": "eq-dd-gamma",
+     "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{4}\\text{He} + \\gamma\\;(23.85\\;\\text{MeV})",
+     "anchor": "32.5-fusion-on-earth"
+    }
+   ]
+  },
+  {
+   "id": "fusion-energy-from-a-mass-of-fuel",
+   "kind": "skill",
+   "section": "32.5",
+   "name": "由燃料质量求聚变能量",
+   "statement": "聚变一定质量的燃料所得的能量，是该质量中的反应次数乘以每次反应的能量，再用能量除以释放它所用的时间，就得到平均功率。"
+  },
+  {
+   "id": "ignition-and-break-even",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "得失相当与点火",
+   "statement": "实用的聚变需要燃料足够热、足够密，并且被约束足够长的时间；这三者互相制约。得失相当与点火是反应堆必须越过的里程碑。"
+  },
+  {
+   "id": "magnetic-and-inertial-confinement",
+   "kind": "idea",
+   "section": "32.5",
+   "name": "磁约束与惯性约束",
+   "statement": "磁约束在磁场中把热而稀薄的等离子体约束很长时间，托卡马克就是如此；而惯性约束则用激光束在极短的时间内压缩致密的燃料靶丸。这两种技术在密度与约束时间之间做出不同的取舍。"
+  },
+  {
+   "id": "nuclear-fusion",
+   "kind": "definition",
+   "section": "32.5",
+   "name": "核聚变",
+   "terms": [
+    "核聚变"
+   ],
+   "statement": "核聚变是两个核结合成一个更大的核的反应。"
+  },
+  {
+   "id": "break-even",
+   "kind": "definition",
+   "section": "32.5",
+   "name": "得失相当",
+   "terms": [
+    "得失相当"
+   ],
+   "statement": "得失相当是聚变反应堆由聚变产生的能量与用于加热和约束其燃料的投入能量相等的那一点。"
+  },
+  {
+   "id": "ignition",
+   "kind": "definition",
+   "section": "32.5",
+   "name": "点火",
+   "terms": [
+    "点火"
+   ],
+   "statement": "点火是反应堆中的聚变产生足够的能量，使燃料保持高温并持续聚变，而无需再投入任何能量的那一点。"
+  },
+  {
+   "id": "magnetic-confinement-fusion",
+   "kind": "definition",
+   "section": "32.5",
+   "name": "磁约束",
+   "terms": [
+    "磁约束"
+   ],
+   "statement": "磁约束是用磁场使热的聚变等离子体离开容器壁的技术，托卡马克就是如此。"
+  },
+  {
+   "id": "inertial-confinement",
+   "kind": "definition",
+   "section": "32.5",
+   "name": "惯性约束",
+   "terms": [
+    "惯性约束"
+   ],
+   "statement": "惯性约束是把一小粒聚变燃料靶丸压缩并加热得如此之快（通常用激光束），以致它在自身惯性使其飞散之前就发生聚变的技术。"
+  },
+  {
+   "id": "fission-releases-energy",
+   "kind": "result",
+   "section": "32.6",
+   "name": "裂变释放的能量",
+   "statement": "裂变是结合能曲线的另一侧。读出 $A = 240$ 附近每核子约 7.6 MeV，对比 $A = 120$ 附近的 8.6 MeV，就估算出一次裂变的能量约为 200 MeV，是一次聚变的十倍，一次衰变的一百倍。"
+  },
+  {
+   "id": "fission-energy-from-masses",
+   "kind": "skill",
+   "section": "32.6",
+   "name": "计算裂变能",
+   "statement": "一次裂变释放的能量是被消灭的质量乘以 $c^{2}$，质量由反应物和产物的原子质量求出，产物中要把中子算在内。"
+  },
+  {
+   "id": "neutron-induced-fission",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "中子诱发裂变",
+   "terms": [
+    "中子诱发裂变"
+   ],
+   "statement": "在中子诱发裂变中，不带电荷的中子以低能量进入重核，沉积足够的能量使它像被敲击的液滴一样振荡，直到库仑斥力把它分裂成两个碎片和几个中子：$n + {}^{A}\\text{X} \\to \\text{FF}_{1} + \\text{FF}_{2} + xn$。",
+   "forms": [
+    {
+     "id": "eq-neutron-induced-fission",
+     "latex": "n + {}^{A}\\text{X} \\to \\text{FF}_{1} + \\text{FF}_{2} + xn",
+     "anchor": "32.6-neutron-induced-fission"
+    },
+    {
+     "id": "eq-uranium-235-fission",
+     "latex": "n + {}^{235}_{92}\\text{U} \\to {}^{142}_{56}\\text{Ba} + {}^{91}_{36}\\text{Kr} + 3n",
+     "anchor": "32.6-neutron-induced-fission"
+    }
+   ]
+  },
+  {
+   "id": "chain-reaction-and-critical-mass",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "链式反应",
+   "statement": "由于裂变产生的中子能引起更多裂变，所以当每次裂变有多于一个中子继续去使另一个核裂变时，链式反应就可能发生。这需要多少材料，就是临界质量，它是反应堆和原子弹共同的核心量。"
+  },
+  {
+   "id": "odd-neutron-number-fissile",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "奇中子数核的裂变",
+   "statement": "为什么是 ${}^{235}\\text{U}$ 和 ${}^{239}\\text{Pu}$，而不是储量丰富的 ${}^{238}\\text{U}$？当俘获的中子使中子数变成偶数时，核力的吸引更强，所以多沉积约 2 MeV，液滴变形得更厉害。"
+  },
+  {
+   "id": "reactor-moderation-and-control",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "反应堆的慢化与控制",
+   "statement": "${}^{235}\\text{U}$ 最容易俘获慢中子，而裂变给出的是快中子，所以反应堆需要慢化剂；控制棒使它保持在临界。水还带来一项安全特性，因为失去水就会使链式反应停止。"
+  },
+  {
+   "id": "fission-energy-per-kilogram",
+   "kind": "skill",
+   "section": "32.6",
+   "name": "由燃料质量求裂变能量",
+   "statement": "裂变一定质量的燃料所得的能量，是该质量中的核数乘以每次裂变的能量。每次裂变给出的能量是一次聚变的十倍，但一千克裂变燃料给出的能量只有一千克聚变燃料的约四分之一，因为它所含的核少得多。"
+  },
+  {
+   "id": "breeding-plutonium",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "增殖钚",
+   "terms": [
+    "增殖"
+   ],
+   "statement": "增殖把 ${}^{238}\\text{U}$ 变成可裂变的 ${}^{239}\\text{Pu}$：${}^{238}\\text{U}$ 俘获一个中子，生成的 ${}^{239}\\text{U}$ 经两次 $\\beta^{-}$ 衰变，通过 ${}^{239}\\text{Np}$ 衰变而成。增殖使天然铀的另外 99% 可以利用，同时也产生了炸弹材料。",
+   "forms": [
+    {
+     "id": "eq-breeding-capture",
+     "latex": "{}^{238}\\text{U} + n \\to {}^{239}\\text{U} + \\gamma",
+     "anchor": "32.6-breeding"
+    },
+    {
+     "id": "eq-breeding-uranium-decay",
+     "latex": "{}^{239}\\text{U} \\to {}^{239}\\text{Np} + \\beta^{-} + v_{e}\\;(t_{1/2} = 23\\;\\text{min})",
+     "ktex": "{}^{239}\\text{U} \\to {}^{239}\\text{Np} + \\beta^{-} + v_{e}\\;(\\kthalf = 23\\;\\text{min})",
+     "anchor": "32.6-breeding"
+    },
+    {
+     "id": "eq-breeding-neptunium-decay",
+     "latex": "{}^{239}\\text{Np} \\to {}^{239}\\text{Pu} + \\beta^{-} + v_{e}\\;(t_{1/2} = 2.4\\;\\text{d})",
+     "ktex": "{}^{239}\\text{Np} \\to {}^{239}\\text{Pu} + \\beta^{-} + v_{e}\\;(\\kthalf = 2.4\\;\\text{d})",
+     "anchor": "32.6-breeding"
+    }
+   ]
+  },
+  {
+   "id": "nuclear-fission",
+   "kind": "definition",
+   "section": "32.6",
+   "name": "核裂变",
+   "terms": [
+    "核裂变"
+   ],
+   "statement": "核裂变是一个核分裂成两个或更多个较小的核的反应。"
+  },
+  {
+   "id": "fission-fragments",
+   "kind": "definition",
+   "section": "32.6",
+   "name": "裂变碎片",
+   "symbol": "FF_1",
+   "terms": [
+    "裂变碎片"
+   ],
+   "statement": "裂变碎片是一个核在裂变中分裂成的两个子核。"
+  },
+  {
+   "id": "liquid-drop-model",
+   "kind": "idea",
+   "section": "32.6",
+   "name": "液滴模型",
+   "terms": [
+    "液滴模型"
+   ],
+   "statement": "液滴模型把核看作一滴核物质：沉积在其中的能量使它振荡并变形，当它变形到足够大时，其两端的库仑斥力就压倒了短程的吸引性核力，它便分裂开来。"
+  },
+  {
+   "id": "critical-mass",
+   "kind": "definition",
+   "section": "32.6",
+   "name": "临界质量",
+   "terms": [
+    "临界质量"
+   ],
+   "statement": "临界质量是自持链式反应所需的可裂变材料的最小质量。"
+  },
+  {
+   "id": "criticality",
+   "kind": "definition",
+   "section": "32.6",
+   "name": "临界",
+   "terms": [
+    "临界"
+   ],
+   "statement": "临界是这样一种状态：平均而言，每次裂变恰好有一个中子继续引起另一次裂变，因此链式反应以稳定的速率进行。"
+  },
+  {
+   "id": "supercriticality",
+   "kind": "definition",
+   "section": "32.6",
+   "name": "超临界",
+   "terms": [
+    "超临界"
+   ],
+   "statement": "超临界是这样一种状态：平均而言，每次裂变有多于一个中子继续引起另一次裂变，因此链式反应不断增长。"
+  },
+  {
+   "id": "breeder-reactor",
+   "kind": "definition",
+   "section": "32.6",
+   "name": "增殖反应堆",
+   "terms": [
+    "增殖反应堆"
+   ],
+   "statement": "增殖反应堆是设计成产生的可裂变燃料（例如由 ${}^{238}\\text{U}$ 产生 ${}^{239}\\text{Pu}$）多于消耗的反应堆。"
+  },
+  {
+   "id": "fission-bomb-assembly",
+   "kind": "idea",
+   "section": "32.7",
+   "name": "原子弹",
+   "statement": "炸弹必须在自己炸开之前，把一块超临界质量聚在一起保持几微秒。两种设计的差别在于装配得多快，这就是钚为什么需要内爆。"
+  },
+  {
+   "id": "thermonuclear-bomb",
+   "kind": "idea",
+   "section": "32.7",
+   "name": "氢弹",
+   "statement": "聚变每千克给出更多的能量，而且快中子对它有帮助，所以几乎没有什么东西限制氢弹的大小。裂变引爆装置产生氚并加热燃料。",
+   "forms": [
+    {
+     "id": "eq-lithium-tritium",
+     "latex": "n + {}^{6}\\text{Li} \\to {}^{3}\\text{H} + {}^{4}\\text{He}",
+     "anchor": "32.7-thermonuclear-bombs"
+    }
+   ]
+  },
+  {
+   "id": "nuclear-weapon-energy-output",
+   "kind": "idea",
+   "section": "32.7",
+   "name": "核武器当量",
+   "statement": "核武器的当量以千吨或兆吨 TNT 来表示，对应于几克到几千克的被消灭质量。它的能量分配到冲击波、热辐射和核辐射中，其比例与常规炸药的不同。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "radiopharmaceuticals-and-tagging",
+   "prereq": "gamma-decay"
+  },
+  {
+   "concept": "radiopharmaceuticals-and-tagging",
+   "prereq": "isotopes"
+  },
+  {
+   "concept": "radiopharmaceuticals-and-tagging",
+   "prereq": "range-of-radiation"
+  },
+  {
+   "concept": "technetium-99m",
+   "prereq": "radiopharmaceuticals-and-tagging"
+  },
+  {
+   "concept": "technetium-99m",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "technetium-99m",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "anger-camera",
+   "prereq": "scintillator-and-photomultiplier"
+  },
+  {
+   "concept": "anger-camera",
+   "prereq": "radiopharmaceuticals-and-tagging"
+  },
+  {
+   "concept": "spect-imaging",
+   "prereq": "anger-camera"
+  },
+  {
+   "concept": "spect-imaging",
+   "prereq": "x-ray-imaging"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "rest-energy"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "pet-annihilation-pair",
+   "prereq": "spect-imaging"
+  },
+  {
+   "concept": "mass-from-activity",
+   "prereq": "activity-from-number-and-half-life"
+  },
+  {
+   "concept": "mass-from-activity",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "radiation-damages-dna",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "absorbed-dose-rad-and-gray",
+   "prereq": "radiation-damages-dna"
+  },
+  {
+   "concept": "absorbed-dose-rad-and-gray",
+   "prereq": "ionization-energy-to-count"
+  },
+  {
+   "concept": "relative-biological-effectiveness",
+   "prereq": "range-of-radiation"
+  },
+  {
+   "concept": "relative-biological-effectiveness",
+   "prereq": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "concept": "dose-equivalent-rem-and-sievert",
+   "prereq": "relative-biological-effectiveness"
+  },
+  {
+   "concept": "dose-from-a-source",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "dose-from-a-source",
+   "prereq": "activity"
+  },
+  {
+   "concept": "immediate-effects-and-dose-levels",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "immediate-effects-and-dose-levels",
+   "prereq": "radiation-damages-dna"
+  },
+  {
+   "concept": "linear-hypothesis-and-long-term-risk",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "background-radiation",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "background-radiation",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "radiation-protection",
+   "prereq": "range-of-radiation"
+  },
+  {
+   "concept": "radiation-protection",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "therapeutic-ratio",
+   "prereq": "radiation-damages-dna"
+  },
+  {
+   "concept": "therapeutic-ratio",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "crossfire-beams",
+   "prereq": "therapeutic-ratio"
+  },
+  {
+   "concept": "therapeutic-doses",
+   "prereq": "therapeutic-ratio"
+  },
+  {
+   "concept": "therapeutic-doses",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "food-irradiation",
+   "prereq": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "concept": "food-irradiation",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "irradiated-food-is-not-radioactive",
+   "prereq": "food-irradiation"
+  },
+  {
+   "concept": "irradiated-food-is-not-radioactive",
+   "prereq": "gamma-decay"
+  },
+  {
+   "concept": "free-radicals-and-radiolytic-products",
+   "prereq": "food-irradiation"
+  },
+  {
+   "concept": "free-radicals-and-radiolytic-products",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "fusion-releases-energy",
+   "prereq": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "concept": "fusion-releases-energy",
+   "prereq": "mass-defect"
+  },
+  {
+   "concept": "fusion-releases-energy",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "coulomb-barrier-to-fusion",
+   "prereq": "fusion-releases-energy"
+  },
+  {
+   "concept": "coulomb-barrier-to-fusion",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "coulomb-barrier-to-fusion",
+   "prereq": "short-range-nuclear-force-and-coulomb-repulsion"
+  },
+  {
+   "concept": "fusion-by-tunneling-and-temperature",
+   "prereq": "coulomb-barrier-to-fusion"
+  },
+  {
+   "concept": "fusion-by-tunneling-and-temperature",
+   "prereq": "quantum-tunneling"
+  },
+  {
+   "concept": "fusion-by-tunneling-and-temperature",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "fusion-releases-energy"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "proton-proton-cycle",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "solar-neutrinos",
+   "prereq": "proton-proton-cycle"
+  },
+  {
+   "concept": "deuterium-tritium-fusion",
+   "prereq": "proton-proton-cycle"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "deuterium-tritium-fusion"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "prereq": "calculate-power"
+  },
+  {
+   "concept": "ignition-and-break-even",
+   "prereq": "fusion-by-tunneling-and-temperature"
+  },
+  {
+   "concept": "magnetic-and-inertial-confinement",
+   "prereq": "ignition-and-break-even"
+  },
+  {
+   "concept": "magnetic-and-inertial-confinement",
+   "prereq": "spiral-along-field-lines"
+  },
+  {
+   "concept": "fission-releases-energy",
+   "prereq": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "concept": "fission-releases-energy",
+   "prereq": "fusion-releases-energy"
+  },
+  {
+   "concept": "fission-energy-from-masses",
+   "prereq": "fission-releases-energy"
+  },
+  {
+   "concept": "fission-energy-from-masses",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "fission-energy-from-masses",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "neutron-induced-fission",
+   "prereq": "fission-releases-energy"
+  },
+  {
+   "concept": "neutron-induced-fission",
+   "prereq": "short-range-nuclear-force-and-coulomb-repulsion"
+  },
+  {
+   "concept": "neutron-induced-fission",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "chain-reaction-and-critical-mass",
+   "prereq": "neutron-induced-fission"
+  },
+  {
+   "concept": "odd-neutron-number-fissile",
+   "prereq": "neutron-induced-fission"
+  },
+  {
+   "concept": "odd-neutron-number-fissile",
+   "prereq": "binding-energy"
+  },
+  {
+   "concept": "reactor-moderation-and-control",
+   "prereq": "chain-reaction-and-critical-mass"
+  },
+  {
+   "concept": "reactor-moderation-and-control",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "fission-energy-per-kilogram",
+   "prereq": "fission-releases-energy"
+  },
+  {
+   "concept": "fission-energy-per-kilogram",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "fission-energy-per-kilogram",
+   "prereq": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "concept": "breeding-plutonium",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "breeding-plutonium",
+   "prereq": "odd-neutron-number-fissile"
+  },
+  {
+   "concept": "fission-bomb-assembly",
+   "prereq": "chain-reaction-and-critical-mass"
+  },
+  {
+   "concept": "fission-bomb-assembly",
+   "prereq": "odd-neutron-number-fissile"
+  },
+  {
+   "concept": "thermonuclear-bomb",
+   "prereq": "fission-bomb-assembly"
+  },
+  {
+   "concept": "thermonuclear-bomb",
+   "prereq": "deuterium-tritium-fusion"
+  },
+  {
+   "concept": "nuclear-weapon-energy-output",
+   "prereq": "fission-bomb-assembly"
+  },
+  {
+   "concept": "nuclear-weapon-energy-output",
+   "prereq": "find-mass-change-from-energy"
+  },
+  {
+   "concept": "odd-neutron-number-fissile",
+   "prereq": "neutron-number"
+  },
+  {
+   "concept": "neutron-induced-fission",
+   "prereq": "neutron"
+  },
+  {
+   "concept": "solar-neutrinos",
+   "prereq": "neutrino"
+  },
+  {
+   "concept": "tagged-compound",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "rad",
+   "prereq": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "concept": "rad",
+   "prereq": "joule"
+  },
+  {
+   "concept": "rad",
+   "prereq": "kilogram"
+  },
+  {
+   "concept": "gray",
+   "prereq": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "concept": "gray",
+   "prereq": "rad"
+  },
+  {
+   "concept": "gray",
+   "prereq": "joule"
+  },
+  {
+   "concept": "gray",
+   "prereq": "kilogram"
+  },
+  {
+   "concept": "rem",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "rem",
+   "prereq": "rad"
+  },
+  {
+   "concept": "rem",
+   "prereq": "relative-biological-effectiveness"
+  },
+  {
+   "concept": "sievert",
+   "prereq": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "concept": "sievert",
+   "prereq": "gray"
+  },
+  {
+   "concept": "sievert",
+   "prereq": "rem"
+  },
+  {
+   "concept": "sievert",
+   "prereq": "relative-biological-effectiveness"
+  },
+  {
+   "concept": "low-dose",
+   "prereq": "sievert"
+  },
+  {
+   "concept": "low-dose",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "moderate-dose",
+   "prereq": "sievert"
+  },
+  {
+   "concept": "moderate-dose",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "high-dose",
+   "prereq": "sievert"
+  },
+  {
+   "concept": "high-dose",
+   "prereq": "immediate-effects-and-dose-levels"
+  },
+  {
+   "concept": "hormesis",
+   "prereq": "low-dose"
+  },
+  {
+   "concept": "hormesis",
+   "prereq": "linear-hypothesis-and-long-term-risk"
+  },
+  {
+   "concept": "shielding",
+   "prereq": "radiation-protection"
+  },
+  {
+   "concept": "shielding",
+   "prereq": "range-of-radiation"
+  },
+  {
+   "concept": "radiotherapy",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "radiotherapy",
+   "prereq": "radiation-damages-dna"
+  },
+  {
+   "concept": "free-radicals",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "radiolytic-products",
+   "prereq": "free-radicals"
+  },
+  {
+   "concept": "radiolytic-products",
+   "prereq": "food-irradiation"
+  },
+  {
+   "concept": "nuclear-fusion",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "break-even",
+   "prereq": "nuclear-fusion"
+  },
+  {
+   "concept": "break-even",
+   "prereq": "ignition-and-break-even"
+  },
+  {
+   "concept": "ignition",
+   "prereq": "nuclear-fusion"
+  },
+  {
+   "concept": "ignition",
+   "prereq": "ignition-and-break-even"
+  },
+  {
+   "concept": "magnetic-confinement-fusion",
+   "prereq": "nuclear-fusion"
+  },
+  {
+   "concept": "magnetic-confinement-fusion",
+   "prereq": "magnetic-and-inertial-confinement"
+  },
+  {
+   "concept": "inertial-confinement",
+   "prereq": "nuclear-fusion"
+  },
+  {
+   "concept": "inertial-confinement",
+   "prereq": "magnetic-and-inertial-confinement"
+  },
+  {
+   "concept": "nuclear-fission",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "fission-fragments",
+   "prereq": "nuclear-fission"
+  },
+  {
+   "concept": "liquid-drop-model",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "liquid-drop-model",
+   "prereq": "nuclear-fission"
+  },
+  {
+   "concept": "critical-mass",
+   "prereq": "chain-reaction-and-critical-mass"
+  },
+  {
+   "concept": "critical-mass",
+   "prereq": "nuclear-fission"
+  },
+  {
+   "concept": "criticality",
+   "prereq": "chain-reaction-and-critical-mass"
+  },
+  {
+   "concept": "criticality",
+   "prereq": "nuclear-fission"
+  },
+  {
+   "concept": "supercriticality",
+   "prereq": "criticality"
+  },
+  {
+   "concept": "breeder-reactor",
+   "prereq": "breeding-plutonium"
+  },
+  {
+   "concept": "breeder-reactor",
+   "prereq": "reactor-moderation-and-control"
+  }
+ ]
+}

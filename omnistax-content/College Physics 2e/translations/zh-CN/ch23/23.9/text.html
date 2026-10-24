@@ -1,0 +1,86 @@
+<section id="inductors">
+<h2>电感器</h2>
+<p class="cite-target"><span data-concept="induction">感应</span>是变化的<span data-concept="magnetic-flux">磁通量</span>感应出电动势的过程。迄今已经讨论过许多例子，有些比另一些更有效。例如，<span data-concept="transformer">变压器</span>被设计得特别有效，能在几乎不让<span data-concept="energy">能量</span>损失为其他形式的情况下，感应出所需的<span data-concept="potential-difference">电压</span>和<span data-concept="electric-current">电流</span>。有没有一个有用的<span data-concept="physical-quantity">物理量</span>，与给定器件的“效果”有多好有关呢？答案是有，这个<span data-concept="physical-quantity">物理量</span>称为<strong><span data-concept="inductance">电感</span></strong>。</p>
+<p><strong><span data-concept="mutual-inductance">互感</span></strong>是<span data-concept="faradays-law">法拉第电磁感应定律</span>在一个器件对另一个器件上的效应，例如<span data-concept="transformer">变压器</span>中原线圈向副线圈传输<span data-concept="energy">能量</span>。见图 23.37，图中<span data-ref="coil-1 coil-2">简单的线圈</span>相互感应出<span data-type="voltage">电动势</span>。</p>
+<figure class="sim" id="sim-mutual-inductance" data-figure="23.37" data-original="/media/ch23/Figure_24_09_01.jpg" data-original-width="330" data-original-caption="这些线圈可以像一台低效率的变压器那样相互感应出电动势。它们的互感 M 表明二者之间耦合的效果。图中，线圈 1 中电流的变化在线圈 2 中感应出电动势。（注意，线圈 2 中的感应电动势记作 ℰ₂ induced。）">
+  <div class="sim-head"><span class="eyebrow">Figure 23.37</span><span><span data-ref="coil-1 coil-2">两个线圈</span>并排立在同一条轴线上，<span data-ref="coil-1">第一个</span>由交变电源驱动，<span data-ref="coil-2">第二个</span>由<span data-ref="galvanometer">一只电流计</span>读数。请在驱动线圈中的<span data-type="current">电流</span>增大和减小时注视指针：在每次摆动的顶点，<span data-type="current">电流</span>最大而变化最慢，指针停着不动；<span data-type="current">电流</span>经过零点时变化最快，指针摆得最猛。设定<span data-ref="coil-1 coil-2">两线圈</span>之间的<span data-type="inductance">互感</span>和被驱动线圈中的<span data-type="current">电流</span>，想驱动哪个线圈都行，因为同一个 $\kMind$ 在两个方向上都适用。</span></div>
+</figure>
+<p class="cite-target">在器件几何形状固定的许多情形中，磁通量是靠改变<span data-concept="electric-current">电流</span>来改变的。因此我们把注意力集中在<span data-concept="electric-current">电流</span>的变化率 $\kdIcur/\kdt$ 上，把它当作<span data-concept="induction">感应</span>的起因。<span data-ref="coil-1">一个器件</span>（即<span data-ref="coil-1">图中的线圈 1</span>）中<span data-type="current"><span data-concept="electric-current">电流</span></span> $\kIcurone$ 的变化，会在<span data-ref="coil-2">另一个器件</span>中感应出 $\kemftwo$。我们把它写成方程的形式：</p>
+$$\kemftwo = -\kMind\frac{\Delta \kIcurone}{\kdt},$$
+<p>其中 $\kMind$ 被定义为这两个器件之间的<span data-concept="mutual-inductance">互感</span>。负号是<span data-concept="lenzs-law">楞次定律</span>的体现。<span data-concept="mutual-inductance">互感</span> $\kMind$ 越大，耦合就越有效。例如，与图 23.27 中的<span data-concept="transformer">变压器</span>线圈相比，<span data-ref="coil-1 coil-2">图 23.37 中的线圈</span>的 $\kMind$ 较小。$\kMind$ 的<span data-concept="units">单位</span>是 $(\text{V}\cdot\text{s})/\text{A} = \Omega\cdot\text{s}$，它被命名为<strong><span data-concept="henry">亨利</span></strong>（H），以约瑟夫·亨利的名字命名。也就是说，$1\;\text{H} = 1\;\Omega\cdot\text{s}$。</p>
+<p>自然界在这里是对称的。如果我们改变<span data-ref="coil-2">线圈 2</span> 中的<span data-type="current"><span data-concept="electric-current">电流</span></span> $\kIcurtwo$，就会在<span data-ref="coil-1">线圈 1</span> 中感应出 $\kemfone$，它由下式给出：</p>
+$$\kemfone = -\kMind\frac{\Delta \kIcurtwo}{\kdt},$$
+<p>其中 $\kMind$ 与反向过程中的相同。<span data-concept="transformer">变压器</span>反向运行时具有同样的效果，即同样的<span data-concept="mutual-inductance">互感</span> $\kMind$。</p>
+<p class="cite-target">较大的<span data-concept="mutual-inductance">互感</span> $\kMind$ 可能合乎需要，也可能不合乎需要。我们希望<span data-concept="transformer">变压器</span>有较大的<span data-concept="mutual-inductance">互感</span>。但是，像电动干衣机这样的用电器，如果<span data-ref="element">其线圈</span>与外壳之间的<span data-type="inductance"><span data-concept="mutual-inductance">互感</span></span>很大，就可能在外壳上感应出<span data-type="voltage">危险的电动势</span>。减小<span data-concept="mutual-inductance">互感</span> $\kMind$ 的一种方法，是把线圈反向绕制，使所产生的<span data-concept="magnetic-field">磁场</span>相互抵消。（见图 23.38。）</p>
+<figure class="sim" id="sim-counterwound" data-figure="23.38" data-original="/media/ch23/Figure_24_09_02.jpg" data-original-width="325" data-original-caption="电动干衣机的加热线圈可以反向绕制，使它们的磁场相互抵消，从而大大减小与干衣机外壳之间的互感。">
+  <div class="sim-head"><span class="eyebrow">Figure 23.38</span><span><span data-ref="element">干衣机的加热元件</span>是绕在圆筒上的一根长线圈，<span data-ref="element">它</span>在自身内部产生<span data-type="magnetic-field">一个磁场</span>。按普通方式绕制<span data-ref="element">它</span>时，各匝中的<span data-type="current">电流</span>都沿同一绕向，所以<span data-type="magnetic-field">它们的磁场</span>相加，<span data-ref="element">该元件</span>就有了干衣机外壳能感受到的<span data-type="inductance">电感</span>。把<span data-ref="element">它</span>反向绕制，让一半的匝数朝另一个方向绕回，<span data-type="magnetic-field">两层的磁场</span>在内部处处相互抵消。设定匝数和通过<span data-ref="element">该元件</span>的<span data-type="current">电流</span>，看看绕法的选择对<span data-type="magnetic-field">磁场</span>和<span data-type="inductance">电感</span>有什么影响。</span></div>
+</figure>
+</section>
+
+<section id="self-inductance">
+<h2>器件在自身中感应出电动势</h2>
+<p class="cite-target"><strong><span data-concept="self-inductance">自感</span></strong>，即器件对自身的<span data-concept="faradays-law">法拉第电磁感应定律</span>效应，也是存在的。例如，当通过线圈的<span data-concept="electric-current">电流</span>增大时，<span data-concept="magnetic-field">磁场</span>和磁通量也随之增大，感应出一个反电动势，这是<span data-concept="lenzs-law">楞次定律</span>所要求的。反过来，如果<span data-concept="electric-current">电流</span>减小，就会感应出阻碍这一减小的电动势。大多数器件的几何形状是固定的，因此磁通量的变化完全由通过器件的<span data-concept="electric-current">电流</span>变化 $\kdIcur$ 引起。感应电动势与器件的物理几何形状以及<span data-concept="electric-current">电流</span>的变化率有关。它由下式给出：</p>
+$$\kemf = -\kLind\frac{\kdIcur}{\kdt},$$
+<p>其中 $\kLind$ 是器件的<span data-concept="self-inductance">自感</span>。表现出显著<span data-concept="self-inductance">自感</span>的器件称为<strong><span data-concept="inductor">电感器</span></strong>，并以图 23.39 中的符号表示。</p>
+<figure class="sim" id="sim-self-inductance" data-figure="23.39" data-original="/media/ch23/Figure_24_09_05.jpg" data-original-width="100" data-original-caption="电感器的电路符号。">
+  <div class="sim-head"><span class="eyebrow">Figure 23.39</span><span>电感器的符号，画在旁边那一段所描述的电路中：一个通有<span data-type="current">稳定电流</span>的电感器，和一个会断开的<span data-ref="switch">开关</span>。只要<span data-type="current">电流</span>是稳定的，无论它多大，都什么也不会发生。断开<span data-ref="switch">开关</span>，<span data-type="current">电流</span>就必须在<span data-type="time">触点分开所用的时间</span>内下降，而电感器以<span data-type="voltage">一个电动势</span>作答，这个电动势可以是驱动该<span data-concept="electric-current">电流</span>的<span data-type="voltage">电压</span>的几千倍。设定<span data-type="inductance">电感</span>、<span data-type="current">电流</span>以及<span data-concept="electric-current">电流</span>下降所用的<span data-type="time">时间</span>，看<span data-type="voltage">电动势</span>只在<span data-type="current">电流</span>变化期间才存在。</span></div>
+</figure>
+<p class="cite-target">负号是<span data-concept="lenzs-law">楞次定律</span>的体现，表明电动势阻碍<span data-concept="electric-current">电流</span>的变化。<span data-concept="self-inductance">自感</span>的<span data-concept="units">单位</span>与<span data-concept="mutual-inductance">互感</span>的一样，是<span data-concept="henry">亨利</span>（H）。器件的<span data-concept="self-inductance">自感</span> $\kLind$ 越大，它对通过自身的<span data-concept="electric-current">电流</span>的任何变化的阻碍就越大。例如，匝数很多且带有铁芯的大线圈有很大的 $\kLind$，不会让<span data-concept="electric-current">电流</span>迅速变化。为避免这种效应，必须使 $\kLind$ 很小，例如像图 23.38 那样把线圈反向绕制。</p>
+<p class="cite-target">1 H 的<span data-concept="inductor">电感器</span>是一个大<span data-concept="inductor">电感器</span>。为了说明这一点，考虑一个 $\kLind = 1.0\;\text{H}$ 的器件，有<span data-type="current"> 10 A 的<span data-concept="electric-current">电流</span></span>通过它。如果我们试图迅速切断<span data-type="current"><span data-concept="electric-current">电流</span></span>，比如只用<span data-type="time"> 1.0 ms</span>，会发生什么？<span data-type="voltage">一个电动势</span>，由 $\kemf = -\kLind(\kdIcur/\kdt)$ 给出，将阻碍这一变化。于是将感应出<span data-type="voltage">一个电动势</span>，由 $\kemf = -\kLind(\kdIcur/\kdt) = (1.0\;\text{H})[(10\;\text{A})/(1.0\;\text{ms})] = 10{,}000\;\text{V}$ 给出。正号表示<span data-type="voltage">这个很大的<span data-concept="potential-difference">电压</span></span>与<span data-type="current"><span data-concept="electric-current">电流</span></span>的<span data-concept="vector-direction">方向</span>相同，阻碍它的减小。如此大的电动势会引起电弧，损坏开关设备，因此可能需要让<span data-concept="electric-current">电流</span>变化得更慢一些。</p>
+<p>这样大的感应<span data-concept="potential-difference">电压</span>是有用处的。闪光灯用<span data-ref="battery">一块电池</span>、两个起<span data-concept="transformer">变压器</span>作用的<span data-concept="inductor">电感器</span>，以及<span data-ref="flash-switch">一套开关系统</span>或振荡器来感应出<span data-type="voltage">很高的<span data-concept="potential-difference">电压</span></span>。（请记住，要在另一个线圈中感应出<span data-concept="potential-difference">电压</span>，我们需要一个变化的<span data-concept="magnetic-field">磁场</span>，它由变化的<span data-concept="electric-current">电流</span>产生。）振荡器系统会这样做许多次，同时<span data-type="voltage">电池<span data-concept="potential-difference">电压</span></span>被升高到一千多伏。（在<span data-ref="capacitor"><span data-concept="capacitor">电容器</span></span>充电时，你也许能听到来自<span data-concept="transformer">变压器</span>的高音尖啸声。）<span data-ref="capacitor"><span data-concept="capacitor">电容器</span></span>储存<span data-type="voltage">这个高<span data-concept="potential-difference">电压</span></span>，供以后给闪光灯供电之用。（见图 23.40。）</p>
+<figure class="sim" id="sim-camera-flash" data-figure="23.40" data-original="/media/ch23/Figure_24_09_03.jpg" data-original-width="180" data-original-caption="通过对电感器的快速通断，1.5 V 的电池可以用来感应出几千伏的电动势。这个电压可以用来在电容器中储存电荷，以便日后使用，例如用于闪光灯附件。">
+  <div class="sim-head"><span class="eyebrow">Figure 23.40</span><span><span data-ref="flash-switch">闪光灯的开关</span>每秒在<span data-ref="battery">电池</span>和<span data-ref="capacitor">电容器</span>之间来回切换许多次。切到一侧时，<span data-ref="flash-switch">它</span>让<span data-ref="battery">电池</span>在电感器对中建立起<span data-type="current">电流</span>；切到另一侧时，<span data-ref="flash-switch">它</span>在<span data-type="time">几微秒</span>内切断<span data-type="current">该电流</span>，于是这对电感器作出回应，产生<span data-type="voltage">几百伏的电动势</span>，把<span data-type="charge">多一点电荷</span>送到<span data-ref="capacitor">电容器</span>上。请看着<span data-ref="capacitor">电容器</span>的<span data-type="voltage">电压</span>在每次通断切换时升高一级，而<span data-ref="battery">电池只有 1.5 V</span>，并设定<span data-type="inductance">电感</span>、<span data-ref="battery">电池</span>以及<span data-ref="flash-switch">开关</span>切断<span data-type="current">电流</span>所用的<span data-type="time">时间</span>。</span></div>
+</figure>
+</section>
+
+<section id="calculating-inductance">
+<h2>由几何形状计算电感</h2>
+<p class="cite-target">已知<span data-concept="inductor">电感器</span>的几何形状（大小和形状），并知道它产生的<span data-concept="magnetic-field">磁场</span>，就有可能算出它的 $\kLind$。在大多数情形中这很困难，因为所产生的<span data-concept="force-field">场</span>很复杂。所以在本教材中，<span data-concept="inductance">电感</span> $\kLind$ 通常是已知量。一个例外是<span data-concept="solenoid">螺线管</span>，因为它内部的<span data-concept="force-field">场</span>非常均匀，外部的<span data-concept="force-field">场</span>几乎为零，形状也简单。推导它的<span data-concept="inductance">电感</span>的方程很有启发性。</p>
+<figure class="dv" id="drv-inductance-from-flux"></figure>
+<p>这个关于器件<span data-concept="self-inductance">自感</span> $\kLind$ 的方程总是成立的。它意味着<span data-concept="self-inductance">自感</span> $\kLind$ 取决于<span data-concept="electric-current">电流</span>产生磁通量的效果有多好；效果越好，$\kdPhi/\kdIcur$ 就越大。</p>
+<p>让我们用最后这个方程来求<span data-concept="solenoid">螺线管</span>的<span data-concept="inductance">电感</span>的表达式。</p>
+<figure class="dv" id="drv-solenoid-inductance"></figure>
+<p class="cite-target">这就是<span data-concept="area">横截面积</span>为 $\karea$、<span data-concept="length">长度</span>为 $\ell$ 的<span data-concept="solenoid">螺线管</span>的<span data-concept="self-inductance">自感</span>。注意，<span data-concept="inductance">电感</span>只取决于<span data-concept="solenoid">螺线管</span>的物理特性，这与它的定义是一致的。</p>
+<figure class="sim" id="sim-solenoid-inductance">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>螺线管是书中唯一求出电感的形状，所得结果说明了两件事。<span data-type="inductance">它的电感</span>与匝数的<em>平方</em>成正比，所以绕组加倍，在同样的<span data-concept="electric-current">电流</span>下磁通量就是原来的四倍。把<span data-ref="solenoid">螺线管</span>拉长时电感减小，因为同样的匝数此时彼此分得更开，产生的磁场更弱。设定匝数、<span data-type="position">长度</span>和<span data-type="position">直径</span>，<span data-ref="solenoid">螺线管</span>就按比例重新画出，内部带有<span data-type="magnetic-field">它的磁场</span>。初始状态是<span data-ref="solenoid">下面例题中那个中等大小的螺线管</span>，在 <span data-type="position">10.0 cm</span> 长度上绕有 200 匝，<span data-type="position">直径 4.00 cm</span>。</span></div>
+</figure>
+<div class="example" id="ex-self-inductance-of-a-solenoid">
+<h3>例题 23.7 · 计算中等大小螺线管的自感</h3>
+<p>计算<span data-ref="solenoid">一个长 10.0 cm、直径 4.00 cm、有 200 匝线圈的<span data-concept="solenoid">螺线管</span></span>的<span data-type="inductance"><span data-concept="self-inductance">自感</span></span>。</p>
+<h4>思路</h4>
+<p>这是对 $\kLind = \frac{\mu_0 N^2 \karea}{\ell}$ 的直接应用，因为方程中除 $\kLind$ 以外的所有量都是已知的。</p>
+<h4>解</h4>
+<p>对<span data-concept="solenoid">螺线管</span>的<span data-concept="self-inductance">自感</span>，使用下面的表达式：</p>
+$$\kLind = \frac{\mu_0 N^2 \karea}{\ell}.$$
+<p>本例中的<span data-type="area">横截面积</span>为 $\karea = \pi \krad^2 = (3.14\ldots)(0.0200\;\text{m})^2 = 1.26\times 10^{-3}\;\text{m}^2$，$N$ 给定为 200，<span data-type="position">长度</span> $\ell$ 为 0.100 m。我们知道<span data-concept="permeability-of-free-space">真空磁导率</span>为 $\mu_0 = 4\pi\times 10^{-7}\;\text{T}\cdot\text{m/A}$。把这些代入 $\kLind$ 的表达式，得</p>
+$$\begin{array}{lll}\kLind & = & \frac{(4\pi\times 10^{-7}\;\text{T}\cdot\text{m/A})(200)^2(1.26\times 10^{-3}\;\text{m}^2)}{0.100\;\text{m}} \\ & = & 0.632\;\text{mH}.\end{array}$$
+<h4>讨论</h4>
+<p><span data-ref="solenoid">这个<span data-concept="solenoid">螺线管</span></span>的大小适中。<span data-type="inductance">它将近一毫亨的<span data-concept="inductance">电感</span></span>也被认为是适中的。</p>
+</div>
+<p class="cite-target"><span data-concept="inductance">电感</span>的一种常见应用见于交通信号灯，它能判断是否有车辆在路口等候。在等候的汽车将要停靠的位置下方的路面里，埋设一个含有<span data-concept="inductor">电感器</span>的电路。汽车的车身使<span data-type="inductance"><span data-concept="inductance">电感</span></span>增大，电路随之改变，并向交通信号灯发出信号，使其变换颜色。类似地，机场安检所用的金属探测器也采用同样的技术。金属探测器门框中的线圈或<span data-concept="inductor">电感器</span>兼作发射器和接收器。发射线圈中的脉冲信号在接收器中感应出信号。<span data-type="inductance">电路的<span data-concept="self-inductance">自感</span></span>会受到路径上任何金属物体的影响。这类探测器的灵敏度可以调节，还能指出在人身上发现的金属的大致位置。见图 23.41。</p>
+<figure class="photo" id="photo-security-gate" data-figure="23.41">
+  <img src="/media/ch23/OSX_CP2e_Figure_24_09_04.jpg" alt="机场出发航站楼里，人们围在一道安检门周围的照片。" data-width="250">
+  <figcaption><span class="eyebrow">Figure 23.41</span><span>我们熟悉的机场安检门不仅能探测金属，还能指出金属离地面的大致高度。（来源：shankar s/Flickr）</span></figcaption>
+</figure>
+</section>
+
+<section id="inductor-energy">
+<h2>电感器中储存的能量</h2>
+<p class="cite-target">由<span data-concept="lenzs-law">楞次定律</span>我们知道，各种<span data-concept="inductance">电感</span>都阻碍<span data-concept="electric-current">电流</span>的变化。还有另一种基于<span data-concept="energy">能量</span>的方式来看待这种阻碍。<span data-concept="energy">能量</span>储存在<span data-concept="magnetic-field">磁场</span>中。建立<span data-concept="energy">能量</span>需要<span data-concept="time">时间</span>，耗尽<span data-concept="energy">能量</span>也需要<span data-concept="time">时间</span>；因此对快速变化就有一种阻碍。在<span data-concept="inductor">电感器</span>中，<span data-concept="magnetic-field">磁场</span>与<span data-concept="electric-current">电流</span>和器件的<span data-concept="inductance">电感</span>成正比。可以证明，<strong><span data-concept="energy-stored-in-an-inductor">电感器中储存的能量</span></strong> $\kEind$ 为</p>
+$$\kEind = \frac{1}{2}\kLind\kIcur^2.$$
+<p>这个表达式与<span data-concept="capacitor-energy">电容器中储存的能量</span>的表达式相似。</p>
+<figure class="sim" id="sim-inductor-energy">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>电感器所储存的<span data-concept="energy">能量</span>位于其内部的<span data-concept="magnetic-field">磁场</span>中，其密度由<span data-concept="electric-current">电流</span>决定。由于<span data-concept="electric-current">电流</span>是平方关系，把它加倍，所储存的<span data-concept="energy">能量</span>就是原来的四倍，这就是为什么一台通有一百安培的科研用螺线管所储存的<span data-concept="energy">能量</span>足以熔毁它自己的开关设备。设定<span data-type="inductance">电感</span>和<span data-type="current">电流</span>；<span data-ref="solenoid">上面例题中的 0.632 mH 螺线管</span>通有<span data-type="current">下面例题中的 30.0 A</span> 时，储存 <span data-type="energy">0.284 J</span>。</span></div>
+</figure>
+<div class="example" id="ex-energy-stored-in-a-solenoid">
+<h3>例题 23.8 · 计算螺线管磁场中储存的能量</h3>
+<p>当有<span data-type="current"> 30.0 A 的<span data-concept="electric-current">电流</span></span>通过<span data-ref="solenoid">前一个例题中的 0.632 mH <span data-concept="inductor">电感器</span></span>时，<span data-ref="solenoid">它</span>里面储存了多少<span data-type="energy"><span data-concept="energy">能量</span></span>？</p>
+<h4>思路</h4>
+<p><span data-type="energy"><span data-concept="energy">能量</span></span>由方程 $\kEind = \frac{1}{2}\kLind\kIcur^2$ 给出，除 $\kEind$ 以外的所有量都是已知的。</p>
+<h4>解</h4>
+<p>把前一个例题中求得的 $\kLind$ 值和<span data-type="current">给定的<span data-concept="electric-current">电流</span></span>代入 $\kEind = \frac{1}{2}\kLind\kIcur^2$，得</p>
+$$\begin{array}{lll}\kEind & = & \frac{1}{2}\kLind\kIcur^2 \\ & = & 0.5(0.632\times 10^{-3}\;\text{H})(30.0\;\text{A})^2 = 0.284\;\text{J}.\end{array}$$
+<h4>讨论</h4>
+<p><span data-type="energy">这么多的<span data-concept="energy">能量</span></span>，当<span data-type="current"><span data-concept="electric-current">电流</span></span>被突然切断时，当然足以引起火花。除非输入<span data-concept="power">功率</span>为无穷大，否则它不可能在瞬间建立起来。</p>
+</div>
+</section>

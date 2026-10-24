@@ -1,0 +1,419 @@
+/* Figures for section 15.5 Applications of Thermodynamics: Heat Pumps and Refrigerators.
+   Boots against the section's text article. A heat pump between two fixed
+   temperatures has no time in it, so every figure here is a still picture:
+   none registers a cycle, none carries a transport, and a slider's or a
+   choice's input alone redraws it. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['15.5'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, topline, axes, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the figures ---------- */
+const K0 = 273.15;
+const kelvin = (c) => c + K0;
+/* a number written with the typographic minus */
+const num = (v, d) => (v < 0 && Math.abs(v) >= 0.5 * Math.pow(10, -d) ? '−' : '') + fmt(Math.abs(v), d);
+/* a wide arrow for an energy in transit: the shaft is w wide, the head wider,
+   so the size of a transfer is read from the width of its arrow */
+function fat(ctx, x1, y1, x2, y2, w, color) {
+  const L = Math.hypot(x2 - x1, y2 - y1); if (L < 4) return;
+  const ux = (x2 - x1) / L, uy = (y2 - y1) / L, nx = -uy, ny = ux;
+  const hw = w + 22, hl = Math.min(L * 0.55, 0.55 * w + 22), bx = x2 - hl * ux, by = y2 - hl * uy;
+  ctx.save(); ctx.fillStyle = alpha(color, 0.78); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(x1 + nx * w / 2, y1 + ny * w / 2); ctx.lineTo(bx + nx * w / 2, by + ny * w / 2); ctx.lineTo(bx + nx * hw / 2, by + ny * hw / 2);
+  ctx.lineTo(x2, y2); ctx.lineTo(bx - nx * hw / 2, by - ny * hw / 2); ctx.lineTo(bx - nx * w / 2, by - ny * w / 2); ctx.lineTo(x1 - nx * w / 2, y1 - ny * w / 2);
+  ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+}
+/* a reservoir, outlined and named in its referent's hue, its temperature in the temperature hue */
+function reservoir(ctx, x, y, w, h, name, tlabel, id) {
+  const c = F.ref(id);
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.fillRect(x, y, w, h); ctx.strokeRect(x, y, w, h); ctx.restore();
+  text(ctx, name, x + w / 2, y + h / 2 - 16, c, { size: 19, align: 'center' });
+  text(ctx, tlabel, x + w / 2, y + h / 2 + 16, C('temperature'), { size: 22, weight: 600, align: 'center' });
+}
+/* the machine, a circle outlined and named in its referent's hue */
+function machine(ctx, x, y, r, name, id) {
+  const c = F.ref(id);
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+  text(ctx, name, x, y, c, { size: 20, weight: 600, align: 'center' });
+}
+/* diagonal hatching inside the current path, for an area that counts as negative */
+function hatch(ctx, pathFn, color) {
+  ctx.save(); ctx.beginPath(); pathFn(); ctx.clip(); ctx.strokeStyle = alpha(color, 0.75); ctx.lineWidth = 2;
+  ctx.beginPath(); for (let s = -800; s < 1400; s += 16) { ctx.moveTo(s, 700); ctx.lineTo(s + 700, 0); } ctx.stroke(); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 15.26: the heat pump's three arrows and the reversed Carnot loop.
+   The same cycle drawn as an engine and as a pump: a choice turns every
+   arrow and the walk round the loop about together, and the two reservoir
+   temperatures set the sizes. Still: what the figure teaches is which way
+   the transfers go and that Q_h = Q_c + W, which one state shows.
+===================================================================== */
+(function () {
+  const d = sim('sim-heat-pump-backward', 640);
+  const mode = choice(d.controls, { label: '\\text{循环}', options: [{ value: 'engine', label: '热机' }, { value: 'pump', label: '热泵' }], value: 'pump', aria: '循环是作为热机还是作为热泵运行' });
+  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 300, max: 400, step: 2, value: 318, unit: 'K', dec: 0, aria: '高温热库的温度' });
+  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 220, max: 300, step: 2, value: 258, unit: 'K', dec: 0, aria: '低温热库的温度', specials: [{ at: () => th.v, label: '没有环路' }] });
+  /* a fixed amount of gas, nR = 2 J/K, expanded from 2.0 L to 4.0 L on the hot isotherm;
+     with V in litres and P in kPa, PV is in joules. Axes fixed at V 0 to 10 L and P 0 to
+     500 kPa, which hold the loop at both slider extremes (V_C = 9.8 L at 400 K and 220 K,
+     P_A = 400 kPa at 400 K). */
+  const NR = 2, VA = 2.0, VB = 4.0, GAM = 5 / 3;
+  const box = { l: 780, r: 1340, t: 130, b: 540 };
+  const MX = 290, HOT = { x: 110, y: 90, w: 360, h: 100 }, COLD = { x: 110, y: 500, w: 360, h: 100 }, MY = 345, MR = 78;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), pc = C('pressure'), tcol = C('temperature');
+    const Th = th.v, Tc = tc.v, pump = mode.value === 'pump', s = mode.mix((v) => (v === 'pump' ? -1 : 1));
+    const Qh = NR * Th * Math.log(VB / VA), Qc = NR * Tc * Math.log(VB / VA), W = Qh - Qc;
+    const wOf = (Q) => Math.max(3, Q / 8);
+    /* an arrow drawn the engine's way, from 1 to 2; as the mode turns it shrinks to its tail and regrows from 2 */
+    const turned = (x1, y1, x2, y2, w) => (s >= 0 ? fat(ctx, x1, y1, x1 + (x2 - x1) * s, y1 + (y2 - y1) * s, w, ec) : fat(ctx, x2, y2, x2 + (x1 - x2) * -s, y2 + (y1 - y2) * -s, w, ec));
+    /* a part only one mode has, faded and shifted with the mode */
+    /* ---- the schematic: hot reservoir above, cold below, the machine between ---- */
+    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, '高温热库', 'T_h = ' + fmt(Th, 0) + ' K', 'hot-reservoir');
+    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, '低温热库', 'T_c = ' + fmt(Tc, 0) + ' K', 'cold-reservoir');
+    const top = HOT.y + HOT.h, bot = COLD.y;
+    turned(MX, top, MX, MY - MR - 2, wOf(Qh));
+    if (Qc > 0) turned(MX, MY + MR + 2, MX, bot, wOf(Qc));
+    if (W > 0.5) turned(MX + MR + 2, MY, 600, MY, wOf(W));
+    machine(ctx, MX, MY, MR, '', 'machine');
+    mode.only(ctx, 'pump', () => text(ctx, '热泵', MX, MY, F.ref('machine'), { size: 20, weight: 600, align: 'center' }), [0, 10]);
+    mode.only(ctx, 'engine', () => text(ctx, '热机', MX, MY, F.ref('machine'), { size: 20, weight: 600, align: 'center' }), [0, 10]);
+    text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J', MX - wOf(Qh) / 2 - 22, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'Q_c = ' + fmt(Qc, 0) + ' J', MX - wOf(Qc) / 2 - 22, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'W = ' + fmt(W, 0) + ' J', 500, MY - wOf(W) / 2 - 30, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    mode.only(ctx, 'pump', () => text(ctx, '输入的功', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }), [0, 10]);
+    mode.only(ctx, 'engine', () => text(ctx, '输出的功', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }), [0, 10]);
+    /* ---- the PV diagram: pressure wears its hue on the vertical axis, volume on the horizontal ---- */
+    const { X, Y } = axes(ctx, box, [0, 10], [0, 500], { xl: 'V (L)', xc: C('volume'), yl: 'P (kPa)', yc: pc, nx: 5, ny: 5 });
+    const k = 1 / (GAM - 1), VC = VB * Math.pow(Th / Tc, k), VD = VA * Math.pow(Th / Tc, k);
+    const Ph = (V) => NR * Th / V, Pc = (V) => NR * Tc / V;
+    const adia = (V0, T0) => (V) => NR * T0 / V0 * Math.pow(V0 / V, GAM);   /* the adiabat through (V0, T0) */
+    const aBC = adia(VB, Th), aDA = adia(VA, Th);
+    const walk = (fn) => {
+      const N = 40, seg = (f, v0, v1, first) => { for (let i = 0; i <= N; i++) { const V = v0 + (v1 - v0) * i / N; const p = [X(V), Y(f(V))]; if (first && i === 0) fn.move(p); else fn.line(p); } };
+      seg(Ph, VA, VB, true); seg(aBC, VB, VC, false); seg(Pc, VC, VD, false); seg(aDA, VD, VA, false);
+    };
+    const pathFn = () => walk({ move: (p) => ctx.moveTo(p[0], p[1]), line: (p) => ctx.lineTo(p[0], p[1]) });
+    /* the two isotherms extended beyond the loop, as the book dashes them */
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
+    for (const [f, v0, v1] of [[Ph, Math.max(0.9, NR * Th / 500), Math.min(10, VB * 1.5)], [Pc, Math.max(0.9, NR * Tc / 500), 8.5]]) {
+      ctx.beginPath(); for (let i = 0; i <= 60; i++) { const V = v0 + (v1 - v0) * i / 60; const p = Math.min(500, f(V)); if (i) ctx.lineTo(X(V), Y(p)); else ctx.moveTo(X(V), Y(p)); } ctx.stroke();
+    }
+    ctx.restore();
+    /* the area inside the loop is the work: filled for an engine, hatched for a pump */
+    if (W > 0.5) {
+      mode.only(ctx, 'pump', () => hatch(ctx, pathFn, ec), [0, 10]);
+      mode.only(ctx, 'engine', () => { ctx.fillStyle = alpha(ec, 0.28); ctx.beginPath(); pathFn(); ctx.fill(); }, [0, 10]);
+    }
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); pathFn(); ctx.closePath(); ctx.stroke(); ctx.restore();
+    /* the way the loop is walked: an arrowhead at the middle of each leg */
+    const legs = [[Ph, VA, VB], [aBC, VB, VC], [Pc, VC, VD], [aDA, VD, VA]];
+    for (const [f, v0, v1] of legs) {
+      const vm = (v0 + v1) / 2, dv = (v1 - v0) * 0.02 * (s < 0 ? -1 : 1), n = 26 * Math.abs(s);
+      const ax = X(vm - dv), ay = Y(f(vm - dv)), bx = X(vm + dv), by = Y(f(vm + dv));
+      const L = Math.hypot(bx - ax, by - ay); if (L > 1 && n > 4) arrow(ctx, ax, ay, ax + (bx - ax) / L * n, ay + (by - ay) / L * n, PAL.ink, 4);
+    }
+    /* the corners and the isotherms named */
+    const corners = [['A', VA, Ph(VA), -20, -8, 'right'], ['B', VB, Ph(VB), 16, -14, 'left'], ['C', VC, Pc(VC), 6, 26, 'left'], ['D', VD, Pc(VD), -18, 20, 'right']];
+    for (const [nm, V, P, dx, dy, al] of corners) { dot(ctx, X(V), Y(P), PAL.ink, true, 7); text(ctx, nm, X(V) + dx, Y(P) + dy, PAL.ink, { size: 22, weight: 600, align: al, bg: alpha(PAL.panel, 0.85) }); }
+    text(ctx, 'T_h 下的等温线', X(Math.max(0.9, NR * Th / 500)) + 16, box.t + 18, tcol, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'T_c 下的等温线', X(10) - 8, Y(Pc(8.5)) - 26, tcol, { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    /* the two heat transfers at the isotherms: in on one, out on the other */
+    const hx = X((VA + VB) / 2), hy = Y(Ph((VA + VB) / 2)), vq = VD + 0.3 * (VC - VD), cx = X(vq), cy = Y(Pc(vq));
+    const cb = Math.min(cy + 84, box.b - 4);      /* the cold arrow stays inside the axes when the loop sits low */
+    turned(hx, hy - 84, hx, hy - 14, 12); turned(cx, cy + 14, cx, cb, 12);
+    text(ctx, 'Q_h', hx + 26, hy - 50, ec, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'Q_c', cx - 26, (cy + 14 + cb) / 2, ec, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    mode.only(ctx, 'pump', () => text(ctx, '沿 ADCBA 走完一圈，净输入功', box.l, box.b + 58, PAL.muted, { size: 17 }), [0, 10]);
+    mode.only(ctx, 'engine', () => text(ctx, '沿 ABCDA 走完一圈，净输出功', box.l, box.b + 58, PAL.muted, { size: 17 }), [0, 10]);
+    topline(ctx, W < 0.5
+      ? '两个热库都在 ' + fmt(Th, 0) + ' K 时，环路没有面积，所以作为热泵不需要功，作为热机也得不到功。'
+      : pump
+        ? '作为热泵在 ' + fmt(Tc, 0) + ' K 和 ' + fmt(Th, 0) + ' K 之间运行时，该循环从低温热库吸收 ' + fmt(Qc, 0) + ' J，并输入 ' + fmt(W, 0) + ' J 的功，向高温热库输送 ' + fmt(Qh, 0) + ' J。'
+        : '作为热机在 ' + fmt(Th, 0) + ' K 和 ' + fmt(Tc, 0) + ' K 之间运行时，该循环从高温热库吸收 ' + fmt(Qh, 0) + ' J，输出 ' + fmt(W, 0) + ' J 的功，并向低温热库排出 ' + fmt(Qc, 0) + ' J。');
+    /* the first law rearranged by meaning: each term moves to its place as the mode turns */
+    const QH = '\\mk{QH}{\\kQH}', QC = '\\mk{QC}{\\kQC}', Wk = '\\mk{W}{\\kW}', nQH = `\\mk{nQH}{${fmt(Qh, 0)}}\\ \\text{J}`, nQC = `\\mk{nQC}{${fmt(Qc, 0)}}\\ \\text{J}`, nW = `\\mk{nW}{${fmt(W, 0)}}\\ \\text{J}`;
+    F.morph(formula, pump ? `${QH} = ${QC} + ${Wk} = ${nQC} + ${nW} = ${nQH}` : `${Wk} = ${QH} - ${QC} = ${nQH} - ${nQC} = ${nW}`, { force: pump !== wasPump });
+    wasPump = pump;
+  }
+  let wasPump = mode.value === 'pump';
+  const formula = el('div');
+  const note = el('small', null, '卡诺循环决定了 $\\kQC/\\kQH = \\kTempc/\\kTemph$。'); d.readout.append(formula, note); F.renderMath(note);
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.27: the four components of a heat pump. A choice swaps heating
+   for cooling, reversing the flow and exchanging the roles of the two
+   coils, which the text says in one sentence and the book never draws.
+   Still: an animation of the fluid would replay the book's arrows; the
+   arrowheads on the pipe say which way it flows.
+===================================================================== */
+(function () {
+  const d = sim('sim-heat-pump-components', 640);
+  const mode = choice(d.controls, { label: '\\text{模式}', options: [{ value: 'heat', label: '制热' }, { value: 'cool', label: '制冷' }], value: 'heat', aria: '热泵是给房间制热还是制冷' });
+  const WX = 700, TOP = 200, BOT = 500, OX = 430, IX = 970, CW = 150, CH = 190, CY = 350;
+  const parts = () => {
+    const heating = mode.value === 'heat';
+    return [
+      { x: OX, y: CY, r: 100, name: heating ? '蒸发器 (3)：工质在此沸腾，并从冷的室外空气吸收热传递 Q_c' : '冷凝器 (1)：热气体在此凝结，并向室外空气放出热传递 Q_h' },
+      { x: IX, y: CY, r: 100, name: heating ? '冷凝器 (1)：热气体在此凝结，并向房间放出热传递 Q_h' : '蒸发器 (3)：工质在此沸腾，并从房间吸收热传递 Q_c' },
+      { x: WX, y: TOP, r: 36, name: '膨胀阀 (2)：液体在此压强降低，并在膨胀时变冷' },
+      { x: WX, y: BOT, r: 40, name: '压缩机 (4)：电动的泵，提高气体的温度和压强' },
+    ];
+  };
+  hover(d.stage, parts);
+  function coil(ctx, x, y, w, h, color) {
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath();
+    ctx.roundRect(x - w / 2, y - h / 2, w, h, 22); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath();
+    for (let k = -2; k <= 2; k++) { ctx.moveTo(x - w / 2 + 12, y + k * 22); ctx.lineTo(x + w / 2 - 12, y + k * 22); }
+    ctx.stroke(); ctx.restore();
+  }
+  function pipe(ctx, pts) { ctx.save(); ctx.strokeStyle = F.ref('working-fluid'); ctx.lineWidth = 6; ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore(); }
+  function head(ctx, x, y, dx, dy) { arrow(ctx, x - dx * 14, y - dy * 14, x + dx * 14, y + dy * 14, F.ref('working-fluid'), 6); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), heating = mode.value === 'heat', s = mode.mix((v) => (v === 'heat' ? 1 : -1));
+    /* a label either mode has in the same place, the old one fading down as the new one rises */
+    const two = (a, b, f) => { for (const [v, str] of [['heat', a], ['cool', b]]) { const q = mode.a(v); if (q <= 0) continue; const [dx, dy] = mode.off(v, [0, 10]); ctx.save(); ctx.globalAlpha *= q; ctx.translate(dx, dy); f(str); ctx.restore(); } };
+    /* an arrow drawn the heating way, from 1 to 2; as the mode turns it shrinks to its tail and regrows from 2 */
+    const turned = (x1, y1, x2, y2, w) => (s >= 0 ? fat(ctx, x1, y1, x1 + (x2 - x1) * s, y1 + (y2 - y1) * s, w, ec) : fat(ctx, x2, y2, x2 + (x1 - x2) * -s, y2 + (y1 - y2) * -s, w, ec));
+    /* the wall, and which side is which */
+    line(ctx, WX, 130, WX, 610, PAL.muted, 3, [12, 10]);
+    text(ctx, '室外', WX - 16, 112, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    text(ctx, '室内', WX + 16, 112, PAL.ink, { size: 20, weight: 600 });
+    /* the loop of pipe through the four components */
+    pipe(ctx, [[OX, CY - CH / 2], [OX, TOP + 26], [OX + 26, TOP], [WX - 36, TOP]]);
+    pipe(ctx, [[WX + 36, TOP], [IX - 26, TOP], [IX, TOP + 26], [IX, CY - CH / 2]]);
+    pipe(ctx, [[IX, CY + CH / 2], [IX, BOT - 26], [IX - 26, BOT], [WX + 40, BOT]]);
+    pipe(ctx, [[WX - 40, BOT], [OX + 26, BOT], [OX, BOT - 26], [OX, CY + CH / 2]]);
+    /* which way the fluid flows: down the outdoor side and along the bottom in heating mode, the reverse in cooling */
+    if (Math.abs(s) > 0.15) {
+      head(ctx, (OX + WX - 40) / 2, BOT, s, 0); head(ctx, (WX + 40 + IX) / 2, BOT, s, 0);
+      head(ctx, (WX + 36 + IX) / 2, TOP, -s, 0); head(ctx, (OX + WX - 36) / 2, TOP, -s, 0);
+    }
+    /* the four components */
+    const oc = F.ref('outdoor-coil'), ic = F.ref('indoor-coil'), vc = F.ref('expansion-valve'), kc = F.ref('compressor');
+    coil(ctx, OX, CY, CW, CH, oc); coil(ctx, IX, CY, CW, CH, ic);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
+    ctx.strokeStyle = vc; ctx.beginPath(); ctx.arc(WX, TOP, 30, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = kc; ctx.beginPath(); ctx.arc(WX, BOT, 34, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    line(ctx, WX - 16, TOP - 16, WX + 16, TOP + 16, vc, 3); line(ctx, WX - 16, TOP + 16, WX + 16, TOP - 16, vc, 3);
+    text(ctx, '4', WX, BOT, kc, { size: 22, weight: 600, align: 'center' });
+    two('3', '1', (t) => text(ctx, t, OX, CY, oc, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
+    two('1', '3', (t) => text(ctx, t, IX, CY, ic, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
+    text(ctx, '膨胀阀 (2)', WX, TOP - 52, vc, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, '压缩机 (4)', WX - 48, BOT + 44, kc, { size: 19, weight: 600, align: 'right' });
+    text(ctx, '室外盘管', OX, CY - CH / 2 + 24, oc, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    two('蒸发器 (3)', '冷凝器 (1)', (t) => text(ctx, t, OX, CY + CH / 2 - 24, oc, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
+    text(ctx, '室内盘管', IX, CY - CH / 2 + 24, ic, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    two('冷凝器 (1)', '蒸发器 (3)', (t) => text(ctx, t, IX, CY + CH / 2 - 24, ic, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
+    /* the state of the fluid on each leg */
+    const gas = '气体，低压', hot = '热气体，高压', liq = '液体，高压', cold = '冷的液体和气体';
+    two(gas, hot, (t) => text(ctx, t, (OX + WX - 40) / 2, BOT - 30, PAL.muted, { size: 17, align: 'center' }));
+    two(hot, gas, (t) => text(ctx, t, (WX + 40 + IX) / 2, BOT - 30, PAL.muted, { size: 17, align: 'center' }));
+    two(cold, liq, (t) => text(ctx, t, (OX + WX - 36) / 2, TOP + 30, PAL.muted, { size: 17, align: 'center' }));
+    two(liq, cold, (t) => text(ctx, t, (WX + 36 + IX) / 2, TOP + 30, PAL.muted, { size: 17, align: 'center' }));
+    /* the three transfers across the boundary: heat into the evaporator, heat out of the condenser, work into the compressor;
+       as the mode turns, each coil's arrow turns about and takes the other transfer's width */
+    const QC = 26, QH = 38, WW = 12, k = (1 - s) / 2;
+    const L0 = 120, L1 = OX - CW / 2 - 4, R0 = IX + CW / 2 + 4, R1 = 1300;
+    turned(L0, CY, L1, CY, QC + (QH - QC) * k); turned(R0, CY, R1, CY, QH + (QC - QH) * k);
+    two('Q_c', 'Q_h', (t) => text(ctx, t, L0, CY - 44 - 6 * k, ec, { size: 21, weight: 600 }));
+    two('来自室外空气', '进入室外空气', (t) => text(ctx, t, L0, CY + 44 + 6 * k, PAL.muted, { size: 17 }));
+    two('Q_h', 'Q_c', (t) => text(ctx, t, R0, CY - 50 + 6 * k, ec, { size: 21, weight: 600 }));
+    two('进入房间', '来自房间', (t) => text(ctx, t, R0, CY + 50 - 6 * k, PAL.muted, { size: 17 }));
+    fat(ctx, WX, 612, WX, BOT + 38, WW, ec); text(ctx, 'W，电能', WX + 22, 585, ec, { size: 19, weight: 600 });
+    topline(ctx, heating
+      ? '在制热模式下，工质从室外空气吸收 $\\kQC$，并向房间输送 $\\kQH = \\kQC + \\kW$。'
+      : '在制冷模式下，流向反转：工质从房间吸收 $\\kQC$，并向室外空气输送 $\\kQH = \\kQC + \\kW$。');
+    readout(d.readout, '\\kQH = \\kQC + \\kW', heating
+      ? '膨胀阀降低液体的压强，使它到达室外盘管时是冷的。'
+      : '压缩机仍然提供功 $\\kW$，房间由先前给它制热的同一台机器来制冷。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.28: a real heat pump, some of whose work input is lost to
+   friction before it reaches the pump. Still: it answers its sliders.
+===================================================================== */
+(function () {
+  const d = sim('sim-friction', 640);
+  const ws = ctl(d.controls, { label: '\\kW', cls: 'energy', min: 20, max: 200, step: 5, value: 100, unit: 'J', dec: 0, aria: '输入的功' });
+  const fs = ctl(d.controls, { label: '\\text{摩擦损失}', cls: '', min: 0, max: 60, step: 5, value: 20, unit: '%', dec: 0, aria: '因摩擦而损失的功所占的份额' });
+  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 25, max: 80, step: 1, value: 45, unit: '°C', dec: 1, aria: '高温热库的温度' });
+  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: -40, max: 15, step: 1, value: -15, unit: '°C', dec: 1, aria: '低温热库的温度' });
+  const MX = 400, MY = 345, MR = 80, HOT = { x: 200, y: 90, w: 480, h: 100 }, COLD = { x: 200, y: 500, w: 480, h: 100 }, JX = 590, PX = 900;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy');
+    const W = ws.v, f = fs.v / 100, r = kelvin(tc.v) / kelvin(th.v);
+    const Wp = W * (1 - f), Qf = W - Wp, Qh = Wp / (1 - r), Qc = Qh - Wp, cop = Qh / W, cop0 = 1 / (1 - r);
+    const wOf = (Q) => Math.max(3, 92 * Q / Qh);     /* widths in proportion, the delivered heat transfer widest */
+    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, '高温热库', 'T_h = ' + num(th.v, 1) + ' °C', 'hot-reservoir');
+    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, '低温热库', 'T_c = ' + num(tc.v, 1) + ' °C', 'cold-reservoir');
+    const top = HOT.y + HOT.h, bot = COLD.y;
+    /* the work arrives from the right and splits at a junction: W′ on into the pump, Q_f down to the cold reservoir */
+    fat(ctx, 800, MY, JX + 8, MY, wOf(W), ec);
+    if (Wp > 0.01) fat(ctx, JX + 8, MY, MX + MR + 2, MY, wOf(Wp), ec);
+    if (Qf > 0.01) fat(ctx, JX, MY + wOf(W) / 2, JX, bot, wOf(Qf), ec);
+    fat(ctx, MX, bot, MX, MY + MR + 2, wOf(Qc), ec);
+    fat(ctx, MX, MY - MR - 2, MX, top, wOf(Qh), ec);
+    machine(ctx, MX, MY, MR, '热泵', 'real-pump');
+    text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J', MX - wOf(Qh) / 2 - 20, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'Q_c = ' + fmt(Qc, 0) + ' J', MX - wOf(Qc) / 2 - 20, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'W = ' + fmt(W, 0) + ' J', 700, MY - wOf(W) / 2 - 28, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (Qf > 0.01) text(ctx, 'Q_f = ' + fmt(Qf, 0) + ' J', JX + wOf(Qf) / 2 + 16, (MY + bot) / 2 + 20, ec, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    if (Qf > 0.01) text(ctx, '损失给低温热库', JX + wOf(Qf) / 2 + 16, (MY + bot) / 2 + 50, PAL.muted, { size: 17 });
+    /* what the pump makes of it, read at the right */
+    text(ctx, '你付出的与你得到的', PX, 150, PAL.muted, { size: 19 });
+    text(ctx, 'W = ' + fmt(W, 0) + ' J 输入', PX, 196, ec, { size: 22, weight: 600 });
+    text(ctx, 'W′ = ' + fmt(Wp, 0) + ' J 到达热泵', PX, 238, ec, { size: 22, weight: 600 });
+    text(ctx, 'Q_f = ' + fmt(Qf, 0) + ' J 因摩擦损失', PX, 280, ec, { size: 22, weight: 600 });
+    text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J 送出', PX, 322, ec, { size: 22, weight: 600 });
+    text(ctx, 'COP_hp = Q_h/W = ' + fmt(cop, 2), PX, 372, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, '没有摩擦时将是 ' + fmt(cop0, 2), PX, 410, PAL.muted, { size: 19 });
+    topline(ctx, Qf < 0.01
+      ? '全部 ' + fmt(W, 0) + ' J 的功都到达热泵，热泵向高温热库输送 ' + fmt(Qh, 0) + ' J，这是这两个温度所允许的最佳值。'
+      : '输入的 ' + fmt(W, 0) + ' J 功中，有 ' + fmt(Qf, 0) + ' J 因摩擦而损失，到达热泵的 ' + fmt(Wp, 0) + ' J 向高温热库输送 ' + fmt(Qh, 0) + ' J，而不是 ' + fmt(cop0 * W, 0) + ' J。');
+    readout(d.readout, `\\kQH = \\kQC + \\kWprime = ${fmt(Qc, 0)}\\ \\text{J} + ${fmt(Wp, 0)}\\ \\text{J} = ${fmt(Qh, 0)}\\ \\text{J}`,
+      '热泵本身取为最佳可能情形，所以 $\\kQC/\\kQH = \\kTempc/\\kTemph$，温度以开尔文计。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 15.29: the heat pump of Example 15.5 across a house wall, with
+   the coefficient of performance drawn against the cold reservoir
+   temperature below. Still: a pump between two fixed temperatures has no
+   time in it.
+===================================================================== */
+(function () {
+  const d = sim('sim-heat-pump-house', 820);
+  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 25, max: 80, step: 0.5, value: 45, unit: '°C', dec: 1, aria: '工质在室内达到的高温热库温度' });
+  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: -40, max: -5, step: 0.5, value: -15, unit: '°C', dec: 1, aria: '工质在室外达到的低温热库温度' });
+  const OUT = -5, IN = 20, WX = 700, GY = 470;
+  /* the graph's axes are fixed at −40 to 15 °C and 0 to 12, whatever the sliders do */
+  const box = { l: 200, r: 1300, t: 540, b: 740 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), tcol = C('temperature');
+    const Th = th.v, Tc = tc.v, ThK = kelvin(Th), TcK = kelvin(Tc), eff = 1 - TcK / ThK, cop = 1 / eff;
+    /* ---- the house and the outside ---- */
+    line(ctx, 60, GY, 1340, GY, PAL.muted, 3);
+    ctx.save(); ctx.strokeStyle = F.ref('house'); ctx.lineWidth = 4; ctx.beginPath();
+    ctx.moveTo(WX, GY); ctx.lineTo(WX, 190); ctx.lineTo(1000, 128); ctx.lineTo(1300, 190); ctx.lineTo(1300, GY); ctx.stroke(); ctx.restore();
+    text(ctx, '墙壁', WX + 14, 208, PAL.muted, { size: 17 });
+    text(ctx, '室内空气 ' + fmt(IN, 0) + ' °C', 1000, 214, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, '室外空气 ' + num(OUT, 0) + ' °C', 300, 214, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    /* ---- the pump across the wall: the outdoor coil and the indoor coil ---- */
+    const CY = 320, CH = 120, OC = { x: 520, w: 180 }, IC = { x: 700, w: 180 };
+    const occ = F.ref('outdoor-coil'), icc = F.ref('indoor-coil');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
+    ctx.fillRect(OC.x, CY - CH / 2, OC.w + IC.w, CH);
+    ctx.strokeStyle = occ; ctx.strokeRect(OC.x, CY - CH / 2, OC.w, CH); ctx.strokeStyle = icc; ctx.strokeRect(IC.x, CY - CH / 2, IC.w, CH); ctx.restore();
+    line(ctx, WX, CY - CH / 2, WX, CY + CH / 2, F.ref('house'), 3);
+    text(ctx, '室外盘管', OC.x + OC.w / 2, CY - 22, occ, { size: 17, align: 'center' });
+    text(ctx, 'T_c = ' + num(Tc, 1) + ' °C', OC.x + OC.w / 2, CY + 14, tcol, { size: 22, weight: 600, align: 'center' });
+    text(ctx, '室内盘管', IC.x + IC.w / 2, CY - 22, icc, { size: 17, align: 'center' });
+    text(ctx, 'T_h = ' + fmt(Th, 1) + ' °C', IC.x + IC.w / 2, CY + 14, tcol, { size: 22, weight: 600, align: 'center' });
+    /* ---- the three transfers, drawn in units of the work ---- */
+    const U = 11, wQh = Math.min(100, U * cop), wQc = Math.min(100, U * (cop - 1)), wW = U;
+    fat(ctx, 330, CY, OC.x - 4, CY, wQc, ec);
+    text(ctx, 'Q_c = ' + fmt(cop - 1, 2) + ' W', 300, CY - wQc / 2 - 26, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, '来自冷空气，无需付费', 300, CY + wQc / 2 + 30, PAL.muted, { size: 17, align: 'center' });
+    fat(ctx, IC.x + IC.w + 4, CY, 1080, CY, wQh, ec);
+    text(ctx, 'Q_h = ' + fmt(cop, 2) + ' W', 1170, CY - wQh / 2 - 26, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, '进入住宅', 1170, CY + wQh / 2 + 30, PAL.muted, { size: 17, align: 'center' });
+    fat(ctx, 790, GY - 6, 790, CY + CH / 2 + 4, wW, ec);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.fillRect(826, GY - 40, 40, 34); ctx.strokeRect(826, GY - 40, 40, 34); ctx.restore();
+    dot(ctx, 838, GY - 23, PAL.muted, true, 3); dot(ctx, 854, GY - 23, PAL.muted, true, 3);
+    text(ctx, '来自电源插座的 W', 812, (GY + CY + CH / 2) / 2 - 14, ec, { size: 20, weight: 600 });
+    /* ---- the coefficient of performance against the cold reservoir temperature ---- */
+    const { X, Y } = axes(ctx, box, [-40, 15], [0, 12], { xl: 'T_c (°C)', xc: tcol, yl: 'T_h = ' + fmt(Th, 1) + ' °C 时的 COP_hp', nx: 11, ny: 4, fx: (v) => num(v, 0) });
+    const copAt = (t) => ThK / (Th - t);
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    const trace = (t0, t1, color, w, dash) => { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.beginPath(); for (let i = 0; i <= 80; i++) { const t = t0 + (t1 - t0) * i / 80; const p = [X(t), Y(copAt(t))]; if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); } ctx.stroke(); ctx.restore(); };
+    trace(-40, OUT, PAL.ink, 5);
+    trace(OUT, 15, alpha(PAL.ink, 0.35), 3, [8, 8]);
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(X(OUT), box.t, X(15) - X(OUT), box.b - box.t); ctx.restore();
+    ctx.restore();
+    line(ctx, X(OUT), box.t, X(OUT), box.b, tcol, 2, [6, 8]);
+    text(ctx, '室外空气，−5 °C', X(OUT) + 10, box.b - 18, PAL.muted, { size: 17, bg: alpha(PAL.panel, 0.9) });
+    line(ctx, X(Tc), Y(Math.min(cop, 12)), X(Tc), box.b, tcol, 2, [4, 8]);
+    pinned(ctx, box, X, Y, Tc, cop, tcol, 'COP_hp = ' + fmt(cop, 2));
+    if (cop <= 12) text(ctx, 'COP_hp = ' + fmt(cop, 2), X(Tc) - 16, Y(cop) - 24, PAL.ink, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    topline(ctx, '在 ' + num(Tc, 1) + ' °C 与 ' + fmt(Th, 1) + ' °C 之间，最佳性能系数为 ' + fmt(cop, 2) + '，所以来自插座的每一焦耳都从冷空气带入 ' + fmt(cop - 1, 2) + ' J。');
+    readout(d.readout, `\\text{COP}_{\\text{hp}} = \\frac{1}{\\text{Eff}_{\\text{C}}} = \\frac{1}{1 - \\kTempc/\\kTemph} = \\frac{1}{1 - ${fmt(TcK, 0)}\\ \\text{K}/${fmt(ThK, 0)}\\ \\text{K}} = ${fmt(cop, 2)}`,
+      '');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the two ratios of one machine. The same energies drawn as bars in
+   units of the work, so that Q_h/W and Q_c/W are seen to differ by the bar
+   for W itself. Still: it answers its sliders and its choice.
+===================================================================== */
+(function () {
+  const d = sim('sim-two-ratios', 640);
+  const use = choice(d.controls, { label: '\\text{用于}', options: [{ value: 'warm', label: '给空间制热' }, { value: 'cool', label: '给空间制冷' }], value: 'cool', aria: '机器是用作热泵，还是用作冰箱或空调' });
+  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 25, max: 80, step: 0.5, value: 45, unit: '°C', dec: 1, aria: '高温热库的温度' });
+  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: -40, max: 15, step: 0.5, value: -15, unit: '°C', dec: 1, aria: '低温热库的温度' });
+  const MX = 300, MY = 345, MR = 74, HOT = { x: 110, y: 96, w: 380, h: 96 }, COLD = { x: 110, y: 500, w: 380, h: 96 };
+  /* the bar scale is fixed at 0 to 12 units of the work; a taller bar is broken at the top and carries its number */
+  const B0 = 540, BT = 150, PER = (B0 - BT) / 12, BX = [820, 1040, 1260], BW = 110;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('energy'), warm = use.value === 'warm';
+    const r = kelvin(tc.v) / kelvin(th.v), cophp = 1 / (1 - r), copref = cophp - 1;
+    const wOf = (v) => Math.max(3, 92 * v / cophp);
+    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, warm ? '高温热库，待加热的空间' : '高温热库，室外', 'T_h = ' + num(th.v, 1) + ' °C', 'hot-reservoir');
+    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, warm ? '低温热库，室外' : '低温热库，待冷却的空间', 'T_c = ' + num(tc.v, 1) + ' °C', 'cold-reservoir');
+    const top = HOT.y + HOT.h, bot = COLD.y;
+    fat(ctx, MX, bot, MX, MY + MR + 2, wOf(copref), ec);
+    fat(ctx, MX, MY - MR - 2, MX, top, wOf(cophp), ec);
+    fat(ctx, 600, MY, MX + MR + 2, MY, wOf(1), ec);
+    machine(ctx, MX, MY, MR, warm ? '热泵' : '冰箱', 'machine');
+    text(ctx, 'Q_h = ' + fmt(cophp, 2) + ' W', MX - wOf(cophp) / 2 - 18, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'Q_c = ' + fmt(copref, 2) + ' W', MX - wOf(copref) / 2 - 18, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'W', 520, MY - wOf(1) / 2 - 26, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, '你付出的', 520, MY + wOf(1) / 2 + 26, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, '你得到的', MX + wOf(warm ? cophp : copref) / 2 + 16, warm ? (top + MY - MR) / 2 : (bot + MY + MR) / 2, PAL.ink, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* the three energies as bars in units of W */
+    line(ctx, BX[0] - BW, B0, BX[2] + BW, B0, PAL.muted, 2);
+    for (let k = 0; k <= 12; k += 2) { line(ctx, BX[0] - BW, B0 - k * PER, BX[0] - BW + 10, B0 - k * PER, PAL.muted, 2); text(ctx, fmt(k, 0), BX[0] - BW - 12, B0 - k * PER, PAL.muted, { size: 17, align: 'right' }); }
+    text(ctx, '以功 W 为单位的三个能量', BX[1], B0 + 58, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    const bars = [['Q_h/W', cophp, warm], ['Q_c/W', copref, !warm], ['W/W', 1, false]];
+    bars.forEach(([nm, v, chosen], i) => {
+      const h = Math.min(v, 12) * PER, y = B0 - h, x = BX[i] - BW / 2;
+      ctx.save(); ctx.fillStyle = alpha(ec, chosen ? 0.8 : 0.35); ctx.fillRect(x, y, BW, h); ctx.strokeStyle = ec; ctx.lineWidth = 2; ctx.strokeRect(x, y, BW, h); ctx.restore();
+      if (v > 12) { ctx.save(); ctx.strokeStyle = PAL.panel; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(x - 6, y + 22); ctx.lineTo(x + BW / 3, y + 10); ctx.lineTo(x + 2 * BW / 3, y + 26); ctx.lineTo(x + BW + 6, y + 14); ctx.stroke(); ctx.restore(); }
+      text(ctx, nm + ' = ' + fmt(v, 2), BX[i], i === 1 ? y + 24 : y - 22, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, i === 0 ? 'COP_hp' : i === 1 ? 'COP_ref' : '一个单位', BX[i], B0 + 26, i === 2 ? PAL.muted : PAL.ink, { size: 19, weight: i === 2 ? 400 : 600, align: 'center' });
+    });
+    /* the difference between the two coefficients is the third bar */
+    if (cophp <= 12) {
+      const y1 = B0 - cophp * PER, y2 = B0 - copref * PER, xb = BX[1] + BW / 2 + 22;
+      line(ctx, BX[0] + BW / 2, y1, xb + 10, y1, PAL.ink, 2, [4, 6]); line(ctx, BX[1] + BW / 2, y2, xb + 10, y2, PAL.ink, 2, [4, 6]);
+      line(ctx, xb, y1, xb, y2, PAL.ink, 3); line(ctx, xb - 8, y1, xb + 8, y1, PAL.ink, 3); line(ctx, xb - 8, y2, xb + 8, y2, PAL.ink, 3);
+      text(ctx, '1', xb + 14, (y1 + y2) / 2, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    }
+    topline(ctx, warm
+      ? '用来给空间制热时，机器每输入一焦耳的功就向高温热库输送 ' + fmt(cophp, 2) + ' J，它的性能系数为 ' + fmt(cophp, 2) + '。'
+      : '用来给空间制冷时，机器每输入一焦耳的功就从低温热库移走 ' + fmt(copref, 2) + ' J，它的性能系数为 ' + fmt(copref, 2) + '。');
+    readout(d.readout, warm
+      ? `\\text{COP}_{\\text{hp}} = \\frac{\\kQH}{\\kW} = \\frac{${fmt(cophp, 2)}\\ \\text{J}}{1.00\\ \\text{J}} = ${fmt(cophp, 2)}`
+      : `\\text{COP}_{\\text{ref}} = \\frac{\\kQC}{\\kW} = \\frac{${fmt(copref, 2)}\\ \\text{J}}{1.00\\ \\text{J}} = ${fmt(copref, 2)}`,
+      '把 $\\kQH = \\kQC + \\kW$ 两边同除以 $\\kW$，无论温度如何，都得到 $\\text{COP}_{\\text{hp}} = \\text{COP}_{\\text{ref}} + 1$。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

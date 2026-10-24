@@ -1,0 +1,590 @@
+{
+ "id": "8.7",
+ "module": "m42166",
+ "chapter": "8",
+ "title": "火箭推进导论",
+ "short": "火箭推进",
+ "lead": "火箭、喷气发动机、漏气的气球和乌贼，都是靠把自身的一部分抛出去而运动的。本节跟随<span data-ref=\"rocket\">一枚火箭</span>，看<span data-ref=\"rocket\">它</span>如何喷出<span data-ref=\"gas\">炽热气体</span>，探究<span data-type=\"acceleration\">它的加速度</span>由什么决定，并探究火箭必须有多大比例是燃料，才能进入轨道或摆脱地球。",
+ "objectives": [
+  "陈述牛顿第三定律。",
+  "解释火箭和喷气发动机推进所涉及的原理。",
+  "推导火箭加速度的表达式，并讨论影响加速度的因素。",
+  "描述航天飞机的功能。"
+ ],
+ "summary_html": "<ul><li>牛顿第三定律指出，每一个作用都有一个大小相等、方向相反的反作用。</li><li>火箭的加速度为 $\\ka = \\frac{\\kve}{m}\\;\\frac{\\Delta m}{\\kdt} - \\kg$。</li><li>火箭的<span data-concept=\"acceleration\">加速度</span>取决于三个主要因素。它们是<ol><li>气体的排气<span data-concept=\"velocity\">速度</span>越大，<span data-concept=\"acceleration\">加速度</span>就越大。</li><li>火箭燃烧燃料越快，它的<span data-concept=\"acceleration\">加速度</span>就越大。</li><li>火箭的<span data-concept=\"mass\">质量</span>越小，<span data-concept=\"acceleration\">加速度</span>就越大。</li></ol></li></ul>",
+ "notes": "习题 2、4、6 和 7、“不合理的结果”一项以及两道“自拟习题”在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案；习题 2、4、6 和 7、关于飞行乌贼的“不合理的结果”一项以及两道“自拟习题”没有给出答案，因此略去。本章没有给出任何一道思考题的答案，所以本节的三道思考题都作为开放式题目保留，并附有 AI 撰写并已标明的建议思路。本节没有设置“理解检测”框，也没有 AP 题，所以没有内嵌的题目；也没有从其他节取题，因为本章其他各节的题目没有一道涉及火箭的推力、加速度或质量比，本节的题目也没有留给后面的小节，因为 8.7 是本章的最后一节。",
+ "figures": [
+  {
+   "id": "sim-rocket",
+   "kind": "sim",
+   "number": "8.12",
+   "originals": [
+    "/media/ch08/Figure_09_07_01a.jpg"
+   ],
+   "original_caption": "（a）这枚火箭的质量为 m，向上的速度为 v。如果忽略空气阻力，系统所受的合外力为 −mg。（b）经过时间 Δt 后，系统有两个主要部分：喷出的气体和火箭的其余部分。火箭所受的反作用力克服了重力，使它向上加速。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "force",
+    "acceleration",
+    "momentum",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "curve clipped not flattened, exhaust label off the fin, note cut to macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mass-ratio",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of graph and drop line, escape level keyed, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-shuttle",
+   "kind": "photo",
+   "number": "8.13",
+   "widths": [
+    250
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "propulsion",
+   "concept": "rocket-propulsion",
+   "verb": "introduces"
+  },
+  {
+   "span": "propulsion",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "rocket-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "rocket-propulsion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "center-of-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "ejecting-mass",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "factors",
+   "concept": "rocket-thrust",
+   "verb": "introduces"
+  },
+  {
+   "span": "factors",
+   "concept": "factors-affecting-rocket-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "factors",
+   "concept": "thrust",
+   "verb": "uses"
+  },
+  {
+   "span": "factors",
+   "concept": "rocket-acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mass-ratio",
+   "concept": "rocket-velocity-mass-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "stages",
+   "concept": "multistage-rocket",
+   "verb": "introduces"
+  },
+  {
+   "span": "stages",
+   "concept": "rocket-velocity-mass-ratio",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2554772",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "假设一枚烟花弹爆炸，碎成三大块，空气阻力可以忽略。爆炸对质心的运动有什么影响？如果碎片受到的空气阻力比完整的烟花弹大得多，对质心的运动又有什么影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "爆炸属于烟花弹的内部过程，所以三块碎片彼此施加的力成对抵消，系统的动量保持不变。在空气阻力可以忽略时，唯一的外力是重力，因此这三块碎片的质心继续沿着完整烟花弹的抛物线运动。同样，火箭向上加速时，火箭及其喷出气体的质心保持自由落体运动。如果碎片受到的空气阻力比完整的烟花弹大得多，就有一个很大的外力作用在系统上，使质心减速。它到不了那条抛物线，落点比未破碎的烟花弹更靠近发射点。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1279088",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "propulsion",
+   "prompt": "在参观国际空间站期间，一名航天员静止地停在空间站的中央，够不到任何可以对其施力的固体物体。请提出一种他可以使自己离开这个位置的方法，并解释其中的物理原理。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "他可以把随身带着的东西——工具、手套、靴子，甚至用力呼出的一口气——朝着与他想去的方向相反的方向，尽可能快地扔出去。当他把物体推开时，根据牛顿第三定律，物体也以大小相等、方向相反的力推他。这一对物体之外没有任何东西对它们起作用，所以系统的动量守恒。物体带着动量朝一个方向离去，他则获得大小相等、方向相反的动量，于是飘向他想去的那面墙。这就是火箭推进，航天员相当于火箭，被扔出的物体相当于喷出的气体。决定他速度的也是同样两个因素：他扔出的质量越大、扔得越快，他运动得就越快。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1656529",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "火箭的速度有可能大于它所喷出气体的排气速度。在这种情况下，气体的速度和气体的动量与火箭的方向相同。火箭为什么仍然能靠喷出气体获得推力？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "推力并不取决于火箭相对于地面运动得多快。排气速度 $\\kve$ 是气体相对于火箭的速度，无论火箭自身的速度如何，发动机都以这个速度把气体向后抛出，所以两种情况下的推力 $\\kFthrust = \\kve\\,\\Delta m / \\kdt$ 是相同的。当火箭的速度比 $\\kve$ 更大时，气体离开后相对于地面仍然向前运动，但更慢了：发动机把它向后推，而根据牛顿第三定律，它以同样大小的力把发动机向前推。重要的是气体动量的变化，而不是地面上的观察者看到它朝哪个方向运动。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1106358",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "反弹道导弹（ABM）被设计成具有很大的加速度，以便在有限的短时间内拦截高速来袭的导弹。一枚 10,000 kg 的 ABM 每秒喷出 196 kg 气体，排气速度为 $2.50 \\times 10^3\\ \\text{m/s}$，它起飞时的加速度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 39.2,
+    "unit": "m/s²",
+    "generated_by": "source",
+    "hint": "方程 $\\ka = (\\kve / m)(\\Delta m / \\kdt) - \\kg$ 右边的每个量都已给出：排气速度、质量、气体喷出的速率，以及重力加速度。",
+    "solution": "$\\ka = 39.2\\ \\text{m/s}^2$."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2687489",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-ratio",
+   "prompt": "计算一个 4000 kg 的空间探测器喷出自身 3500 kg 质量、排气速度为 $2.00 \\times 10^3\\ \\text{m/s}$ 时的速度增量。可以假设探测器所在位置的引力可以忽略。",
+   "answer": {
+    "type": "number",
+    "value": 4160,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "探测器起初的质量为 4000 kg，剩下的是没有被喷出的部分，所以质量比 $m_0 / m_{\\text{r}}$ 是 4000 kg 除以 500 kg。",
+    "solution": "$\\kv = 4.16 \\times 10^3\\ \\text{m/s}$."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2605458",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ejecting-mass",
+   "prompt": "推导火箭竖直加速度的方程。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "使一小块质量 $\\Delta m$ 获得加速度 $a_{\\Delta m}$ 所需的力为 $\\kF = \\Delta m\\,a_{\\Delta m}$。要在很短的时间间隔 $\\kdt$ 内使这块质量加速，需要 $\\kve = a_{\\Delta m}\\kdt$，所以 $\\kF = \\kve\\frac{\\Delta m}{\\kdt}$。根据牛顿第三定律，这个力与作用在火箭上的推力大小相等，所以 $\\kFthrust = \\kve\\frac{\\Delta m}{\\kdt}$，其中所有的量都取正值。对火箭应用牛顿第二定律，得 $\\kFthrust - m\\kg = m\\ka \\Rightarrow \\ka = \\frac{\\kve}{m}\\frac{\\Delta m}{\\kdt} - \\kg$，其中 $m$ 是火箭及未燃烧燃料的质量。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2339225",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-ratio",
+   "prompt": "一枚 100,000 kg 的单级火箭，若要使末速率达到 $8.00\\ \\text{km/s}$，已知它喷出气体的排气速度为 $2.20 \\times 10^3\\ \\text{m/s}$，那么它除燃料之外还能有多少质量？",
+   "answer": {
+    "type": "number",
+    "value": 2630,
+    "unit": "kg",
+    "generated_by": "source",
+    "hint": "把 $\\kv = \\kve\\,\\text{ln}(m_0 / m_{\\text{r}})$ 改写，得质量比为 $e^{\\kv / \\kve}$，剩下的就是起飞质量除以这个质量比。",
+    "solution": "$m_{\\text{r}} = 2.63 \\times 10^3\\ \\text{kg}$."
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3112790",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "propulsion",
+   "prompt": "（a）一只 5.00 kg 的乌贼起初静止，以 10.0 m/s 的速度喷出 0.250 kg 的液体。如果喷射在 0.100 s 内完成，且有 5.00 N 的摩擦力阻碍乌贼运动，乌贼的反冲速度是多少？（b）有多少能量因克服摩擦力做功而损失？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.421,
+      "unit": "m/s",
+      "hint": "液体带走一定的动量，乌贼获得方向相反的动量，而摩擦力在喷射持续的 0.100 s 内又把其中一部分取了回去。"
+     },
+     {
+      "part": "b",
+      "value": 0.237,
+      "unit": "J",
+      "hint": "克服摩擦力所做的功等于摩擦力乘以乌贼被推动期间移动的距离。"
+     }
+    ],
+    "solution": "（a）0.421 m/s，方向背离喷出的液体。（b）$0.237\\ \\text{J}$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rocket-propulsion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "rocket-propulsion"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rocket-thrust"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rocket-propulsion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rocket-acceleration"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rocket-thrust",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "rocket-velocity-mass-ratio"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rocket-thrust"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rocket-acceleration"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rocket-propulsion",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "rocket-velocity-mass-ratio"
+  },
+  {
+   "exercise": "p8",
+   "concept": "multistage-rocket",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "rocket-propulsion"
+  },
+  {
+   "exercise": "p9",
+   "concept": "rocket-thrust",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "rocket",
+   "label": "图 8.12 中的火箭，即例题 8.8 中的土星五号",
+   "figures": [
+    "sim-rocket"
+   ]
+  },
+  {
+   "id": "gas",
+   "label": "火箭喷出的炽热气体",
+   "figures": [
+    "sim-rocket"
+   ]
+  },
+  {
+   "id": "escape-rocket",
+   "label": "从静止出发脱离地球的单级火箭",
+   "figures": [
+    "sim-mass-ratio"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "rocket-acceleration",
+   "what": "火箭的加速度",
+   "source": "《大学物理（第2版）》，8.7 火箭推进导论",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "冲量，即系统所受合外力与其作用时间的乘积，等于系统动量的变化。",
+       "src": "8.2"
+      },
+      {
+       "text": "$\\Delta$ 表示其后的量的变化，即它的末值减去初值。",
+       "src": "2.1"
+      },
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      },
+      {
+       "text": "经过时间 $\\kdt$ 后，火箭的其余部分（质量为 $\\km - \\kdm$）以 $\\kv + \\kdv$ 运动。",
+       "src": "8.7，图 8.12"
+      },
+      {
+       "text": "质量为 $\\kdm$ 的气体以相对于火箭的速度 $\\kve$ 喷出。",
+       "src": "8.7"
+      },
+      {
+       "text": "速度按矢量相加：相对于地球的速度，等于相对于一个运动物体的速度加上该物体相对于地球的速度。",
+       "src": "3.5"
+      },
+      {
+       "tex": "\\ka = \\dfrac{\\kdv}{\\kdt}",
+       "src": "2.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dp}{\\kdp} = \\mk{J}{-\\km\\kg\\kdt}",
+      "src": "8.7",
+      "uses": [
+       0
+      ],
+      "why": "重力 $-\\km\\kg$ 是作用在火箭及其气体上的合外力，它作用的时间为 $\\kdt$。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{(\\km - \\kdm)(\\kv + \\kdv)} + \\mk{gas}{\\kdm(\\kv + \\kdv - \\kve)} - \\mk{b}{\\km\\kv} = \\mk{J}{-\\km\\kg\\kdt}",
+       "uses": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "map": {
+        "dp": [
+         "r",
+         "gas",
+         "b"
+        ]
+       },
+       "cap": "这个变化等于火箭和气体之后的动量，减去之前的动量 $\\km\\kv$。气体相对于地球的速度为 $\\kv + \\kdv - \\kve$。"
+      },
+      {
+       "tex": "\\mk{r}{\\km\\kv + \\km\\kdv - \\kdm\\,\\kv - \\kdm\\,\\kdv} + \\mk{gas}{\\kdm\\,\\kv + \\kdm\\,\\kdv - \\kdm\\,\\kve} - \\mk{b}{\\km\\kv} = \\mk{J}{-\\km\\kg\\kdt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\km\\kdv} - \\mk{gas}{\\kdm\\,\\kve} = \\mk{J}{-\\km\\kg\\kdt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\km\\kdv} = \\mk{gas}{\\kdm\\,\\kve} - \\mk{J}{\\km\\kg\\kdt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\dfrac{\\kdv}{\\kdt}} = \\mk{gas}{\\dfrac{\\kve}{\\km}\\;\\dfrac{\\kdm}{\\kdt}} - \\mk{J}{\\kg}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\ka} = \\mk{gas}{\\dfrac{\\kve}{\\km}\\;\\dfrac{\\kdm}{\\kdt}} - \\mk{J}{\\kg}",
+       "uses": [
+        6
+       ]
+      }
+     ],
+     "src": "8.7"
+    }
+   ]
+  }
+ ]
+}

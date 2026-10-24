@@ -1,0 +1,702 @@
+{
+ "id": "7.5",
+ "module": "m42150",
+ "chapter": "7",
+ "title": "非保守力",
+ "short": "非保守力",
+ "lead": "并非每一种<span data-concept=\"force\">力</span>都会把克服它所做的功归还回来，而<span data-concept=\"friction\">摩擦力</span>就是<span data-concept=\"nonconservative-force\">非保守力</span>最明显的例子。考察这类<span data-concept=\"force\">力</span>所做的<span data-concept=\"work\">功</span>，会改变系统<span data-concept=\"mechanical-energy\">机械能</span>的核算方式。",
+ "objectives": [
+  "定义非保守力，并解释它们如何影响机械能。",
+  "说明能量守恒原理如何得以应用：将保守力按其势能处理，将任何非保守力按其所做的功处理。"
+ ],
+ "summary_html": "<ul><li>非保守力是指所做的<span data-concept=\"work\">功</span>取决于路径的力。</li><li><span data-concept=\"friction\">摩擦力</span>是一种非保守力，它把机械能转化为<span data-concept=\"thermal-energy\">热能</span>。</li><li>非保守力所做的<span data-concept=\"work\">功</span> $\\kWnc$ 会改变系统的机械能。用方程表示为 $$\\kWnc = \\kdKE + \\kdPE$$ 或者，等价地，$$\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf.$$</li><li>当保守力和非保守力同时起作用时，可以应用<span data-concept=\"energy\">能量</span>守恒，并借助保守力的已知<span data-concept=\"potential-energy\">势能</span>和非保守力所做的<span data-concept=\"work\">功</span>来计算运动，而不必由合<span data-concept=\"force\">力</span>求<span data-concept=\"net-work\">合外力的功</span>，也不必直接应用牛顿定律。</li></ul>",
+ "notes": "书中印在本节末尾的 PhET 模拟 The Ramp 的链接已略去。关于汽车滑行上山的习题也已略去，因为书后答案没有解答它。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均为 AI 生成，答案仅来自书后答案。本章没有任何地方印有“理解检测”框，因此书中自己的内容没有以内嵌形式出现，本节也没有印出思考题。两道习题中，质量 60.0 kg 的滑雪者滑行冲上 2.50 m 高的坡（fs-id1838153）的答案为 9.46 m/s，予以保留，习题所指的图画在正文末尾；汽车滑行上山（fs-id1788056）在书后答案中没有答案，已略去。两道 AP 题都属于本节本身：把很重的箱子推过地毯或绕着光滑地面推（fs-id1332485）有答案，因此设为判分选择题，保留书中的四个选项；为刹车失灵的半挂卡车设置的砾石斜坡（fs-id1974059）没有答案，因此保留为开放题，附有 AI 撰写的建议思路，并已标明。没有任何内容取自其他小节，也没有任何内容留给后面的小节。7.6 中有两道关于能量核算的 AP 题，即飞镖玩具枪因摩擦损失 1 J（fs-id2713007）和石块穿过空气阻力下落（fs-id1640289），由于每一道都是 $\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf$，也可以算作本节的题；它们仍留在 7.6，因为 7.6 以最一般的形式陈述该方程，而且自己带答案的题很少。7.4 中关于机械能及其与非保守力的关系的思考题仍留在 7.4，因为机械能是在 7.4 中定义的。",
+ "figures": [
+  {
+   "id": "sim-erasure",
+   "kind": "sim",
+   "number": "7.13",
+   "originals": [
+    "/media/ch07/Figure_08_05_01ab1.jpg"
+   ],
+   "original_caption": "笑脸被擦去的多少取决于橡皮在 A、B 两点之间所经的路径，克服摩擦力所做的功也是如此。（a）中的路径比（b）中的路径做功更少，擦去的笑脸也更少。这里的力是摩擦力，大部分功变成了热能，随后离开了系统（笑脸加橡皮）。所耗费的能量不能被完全回收。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "force",
+    "position",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the path-dependence fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-spring-ground",
+   "kind": "sim",
+   "number": "7.14",
+   "originals": [
+    "/media/ch07/Figure_08_05_02a.jpg"
+   ],
+   "original_caption": "保守力与非保守力对系统机械能的影响的比较。（a）只有保守力的系统。把一块石块落到弹簧上时，它的机械能保持不变（忽略空气阻力），因为弹簧中的力是保守力。弹簧可以把石块推回到原来的高度，在那里它又只有重力势能。（b）有非保守力的系统。把同一块石块落到地面上时，它被非保守力阻止，这些力把它的机械能耗散为热能、声和表面形变。石块失去了机械能。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "stiffness",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene (b) bracket and labels moved off bar (a); note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ramp",
+   "kind": "sim",
+   "number": "7.15",
+   "originals": [
+    "/media/ch07/Figure_08_05_03a.jpg"
+   ],
+   "original_caption": "一个人把木箱沿斜坡向上推，对木箱做功。摩擦力和重力（图中未画出）也对木箱做功；这两个力都阻碍人的推力。木箱被推上斜坡时获得机械能，这意味着人所做的功大于摩擦力所做的功。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "force",
+    "energy",
+    "position",
+    "velocity",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "friction and bar labels clear, minus signs, readout commas, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-slide",
+   "kind": "sim",
+   "number": "7.16",
+   "folds": [
+    "7.17"
+   ],
+   "originals": [
+    "/media/ch07/Figure_08_05_04a.jpg",
+    "/media/ch07/Figure_08_05_05a.jpg"
+   ],
+   "original_caption": "（图 7.16）棒球运动员滑行了距离 d 后停下。在这一过程中，摩擦力通过做大小为 fd 的功消耗了球员的动能，这个功等于初始动能。（图 7.17）同一名棒球运动员在 5.00º 的斜坡上滑行直至停下。",
+   "draws": [
+    "velocity",
+    "force",
+    "position",
+    "energy",
+    "acceleration",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "line names on panels over the markers; level note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cup",
+   "kind": "sim",
+   "number": "7.18",
+   "originals": [
+    "/media/ch07/Figure_08_05_06a.jpg"
+   ],
+   "original_caption": "让弹珠沿直尺滚入泡沫塑料杯。",
+   "draws": [
+    "position",
+    "energy",
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library book and cup, tick and h labels off the marble, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-skier",
+   "kind": "figure",
+   "originals": [
+    "/media/ch07/Figure_08_05_07a-9e45.jpg"
+   ],
+   "original_caption": "滑雪者的初始动能有一部分用于滑行到坡顶。",
+   "draws": [
+    "velocity",
+    "position",
+    "energy",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "mass and KE_i labels lifted off her head; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "path-dependence",
+   "concept": "nonconservative-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-dependence",
+   "concept": "conservative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "path-dependence",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "path-dependence",
+   "concept": "kinetic-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "path-dependence",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "mechanical-energy",
+   "concept": "friction-dissipates-mechanical-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "mechanical-energy",
+   "concept": "mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "mechanical-energy",
+   "concept": "conservative-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mechanical-energy",
+   "concept": "elastic-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "mechanical-energy",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "mechanical-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "work-energy",
+   "concept": "work-by-nonconservative-forces",
+   "verb": "introduces"
+  },
+  {
+   "span": "work-energy",
+   "concept": "work-energy-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "work-energy",
+   "concept": "net-work",
+   "verb": "uses"
+  },
+  {
+   "span": "work-energy",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "work-energy",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "work-energy",
+   "concept": "nonconservative-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applying",
+   "concept": "solve-with-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "applying",
+   "concept": "work-by-nonconservative-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applying",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "applying",
+   "concept": "weight-components-on-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "applying",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "applying",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "investigation",
+   "concept": "solve-with-friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "investigation",
+   "concept": "friction-dissipates-mechanical-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "investigation",
+   "concept": "pe-to-ke",
+   "verb": "uses"
+  },
+  {
+   "span": "investigation",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1332485",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-dependence",
+   "prompt": "你在地下室的一个房间里，房间里有光滑的混凝土地面（摩擦力等于 40 N）和一块漂亮的小地毯（摩擦力等于 55 N），地毯长宽为 3 m 乘 4 m。然而，你必须把一只很重的箱子从地毯的一个角推到地毯的对角。沿地面绕行和从地毯上穿过，哪种情形克服摩擦力所做的功更多，多出多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "穿过地毯多 275 J",
+     "绕地面多 5 J",
+     "穿过地毯多 5 J",
+     "绕地面多 280 J"
+    ],
+    "correct": 1,
+    "hint": "地毯长 3 m、宽 4 m，所以穿过它的对角线长 5 m，而沿着它的两条边在混凝土地面上绕行则为 7 m。算出每条路线的摩擦力乘以距离，再比较两者。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1974059",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "在阿巴拉契亚山脉沿线的州际公路旁，设有松散砾石铺成的斜坡，供刹车失灵的半挂卡车驶入以便停下。设计一个实验，测量这样做的效果有多好。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在工作台上按比例搭建斜坡，让一辆装了载荷的小车驶入其中。你想要知道的是，已知质量和速率的车辆在砾石耗尽它的全部动能之前行驶的距离。在一段水平轨道的末端放一盘松散的砾石，让小车从轨道上量好的高度释放，这样就知道它到达时的速率，然后测量它驶入砾石后停下之前行进的距离 $\\kd$。能量账目是 $\\tfrac{1}{2}m{\\kvi}^2 = \\kff\\kd + m\\kg\\kh$，其中，若斜坡向上倾斜，$\\kh$ 是小车上升的高度，因此由测得的距离可得出平均阻力。让小车从几个不同的高度释放，作出制动距离对到达速率平方的图线。直线表示阻力是恒定的，其斜率给出这个力。然后改变斜坡的表面——深砾石、浅砾石或裸木板——以及小车的载荷。这样你就能说出，哪种斜坡能使给定的车辆在最短的距离内停下，以及一辆以高速公路速度行驶的半挂卡车需要多长的斜坡。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1838153",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "一名质量 60.0 kg 的滑雪者以 12.0 m/s 的初速率滑行冲上一段高 2.50 m 的坡，如本节末尾的图所示。已知她的滑雪板与雪之间的摩擦因数为 0.0800，求她在坡顶的末速率。（提示：设路径为图中所示的直线，求沿斜面上行的距离。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9.46,
+    "unit": "m/s",
+    "hint": "她在坡底的动能，既要用来换取她升高的高度，也要用来抵偿摩擦力沿斜坡所做的功。把她上坡的路径取为直线，这样距离就是高度除以 $\\sin 35^\\circ$，摩擦力等于摩擦因数乘以她的重力垂直于斜面的分量。",
+    "solution": "9.46 m/s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "nonconservative-force"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "friction-dissipates-mechanical-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "friction-dissipates-mechanical-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "solve-with-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "work-by-nonconservative-forces",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "solve-with-friction"
+  },
+  {
+   "exercise": "p1",
+   "concept": "work-by-nonconservative-forces"
+  },
+  {
+   "exercise": "p1",
+   "concept": "friction-dissipates-mechanical-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "kinetic-friction-magnitude",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "rock",
+   "label": "石块",
+   "figures": [
+    "sim-spring-ground"
+   ]
+  },
+  {
+   "id": "spring",
+   "label": "石块落下砸到的弹簧",
+   "figures": [
+    "sim-spring-ground"
+   ]
+  },
+  {
+   "id": "pusher",
+   "label": "推木箱的人",
+   "figures": [
+    "sim-ramp"
+   ]
+  },
+  {
+   "id": "crate",
+   "label": "斜坡上的木箱",
+   "figures": [
+    "sim-ramp"
+   ]
+  },
+  {
+   "id": "player",
+   "label": "65.0 kg 的棒球运动员",
+   "figures": [
+    "sim-slide"
+   ]
+  },
+  {
+   "id": "ruler",
+   "label": "直尺",
+   "figures": [
+    "sim-cup"
+   ]
+  },
+  {
+   "id": "marble",
+   "label": "弹珠",
+   "figures": [
+    "sim-cup"
+   ]
+  },
+  {
+   "id": "cup",
+   "label": "泡沫塑料杯",
+   "figures": [
+    "sim-cup"
+   ]
+  },
+  {
+   "id": "skier",
+   "label": "滑雪者",
+   "figures": [
+    "fig-skier"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "nonconservative-work",
+   "what": "非保守力的功",
+   "source": "《大学物理（第2版）》，7.5 非保守力",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kWnet = \\kdKE",
+       "src": "7.2"
+      },
+      {
+       "tex": "\\kWc = -\\kdPE",
+       "src": "7.4"
+      },
+      {
+       "text": "$\\Delta$ 表示其后所跟的量的变化，即它的末值减去初值。",
+       "src": "2.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnet} = \\mk{nc}{\\kWnc} + \\mk{c}{\\kWc}",
+      "src": "7.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{nc}{\\kWnc} + \\mk{c}{\\kWc} = \\mk{W}{\\kdKE}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{nc}{\\kWnc} - \\mk{c}{\\kdPE} = \\mk{W}{\\kdKE}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{nc}{\\kWnc} = \\mk{W}{\\kdKE} + \\mk{c}{\\kdPE}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{nc}{\\kWnc} = (\\mk{kf}{\\kKEf} - \\mk{ki}{\\kKEi}) + (\\mk{pf}{\\kPEf} - \\mk{pi}{\\kPEi})",
+       "uses": [
+        2
+       ],
+       "map": {
+        "W": [
+         "kf",
+         "ki"
+        ],
+        "c": [
+         "pf",
+         "pi"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{ki}{\\kKEi} + \\mk{pi}{\\kPEi} + \\mk{nc}{\\kWnc} = \\mk{kf}{\\kKEf} + \\mk{pf}{\\kPEf}",
+       "uses": []
+      }
+     ],
+     "src": "7.5"
+    }
+   ]
+  }
+ ]
+}

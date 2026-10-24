@@ -1,0 +1,59 @@
+<section id="pendulum-force">
+<h2>摆所受的回复力</h2>
+<p class="cite-target">摆的应用很常见。有些摆有至关重要的用途，例如用在钟表中；有些是为了好玩，例如孩子玩的秋千；还有些只是摆在那里，例如鱼线上的铅坠。对于较小的<span data-concept="displacement">位移</span>，摆是一个<span data-concept="simple-harmonic-oscillator">简谐振子</span>。<strong><span data-concept="simple-pendulum">单摆</span></strong>的定义是：一个具有较小<span data-concept="mass">质量</span>的物体，也称为摆锤，悬挂在轻金属丝或细绳上，如图 16.13 所示。对<span data-concept="simple-pendulum">单摆</span>作进一步探究，我们可以发现它做<span data-concept="simple-harmonic-motion">简谐运动</span>的条件，并且可以推导出它的<span data-concept="period">周期</span>的一个有趣的表达式。</p>
+<p>我们首先把<span data-type="position"><span data-concept="displacement">位移</span></span>定义为<span data-type="position"><span data-concept="arc-length">弧长</span></span> $\ks$。由图 16.13 可见，<span data-ref="bob">摆锤</span>所受的<span data-type="force">合<span data-concept="force">力</span></span>沿弧的切线方向，等于 $-\km\kg\sin\ktheta$。（<span data-type="force"><span data-concept="weight">重力</span></span> $\km\kg$ 沿细绳方向的<span data-type="force"><span data-concept="vector-components">分量</span></span>为 $\km\kg\cos\ktheta$，沿弧的切线方向的分量为 $\km\kg\sin\ktheta$。）<span data-type="force">细绳中的<span data-concept="tension">张力</span></span>恰好抵消平行于细绳的<span data-type="force"><span data-concept="vector-components">分量</span></span> $\km\kg\cos\ktheta$。这样就留下了一个指回 $\ktheta = 0$ 处<span data-type="position">平衡<span data-concept="position">位置</span></span>的<em>合</em><span data-concept="restoring-force">回复力</span>。</p>
+<figure class="sim" id="sim-pendulum-force" data-figure="16.13" data-original="/media/ch16/Figure_17_04_01a.jpg" data-original-width="225" data-original-caption="单摆的摆锤直径很小，细绳质量极小，但足够结实，不会明显伸长。相对于平衡位置的线位移是 s，即弧长。图中还画出了摆锤所受的力，它们的合力为指向平衡位置的 −mg sin θ，也就是回复力。">
+  <div class="sim-head"><span class="eyebrow">Figure 16.13</span><span><span data-ref="bob">一个摆锤</span>系在细绳上，绕<span data-ref="bob">它的</span><span data-type="position">最低点</span>摆动。<span data-ref="bob">它的</span><span data-type="force">重力</span>每一时刻都被分解成<span data-type="force">沿细绳的一部分</span>和<span data-type="force">沿弧的一部分</span>，前者被<span data-type="force">张力</span>抵消，后者就是<span data-type="force">回复力</span>。旁边的图画出了<span data-type="force">这个力</span>随<span data-type="position">弧长</span> $\ks$ 变化的曲线，同时画出了胡克定律的直线。加大<span data-type="angle">摆动的角度</span>，观察两者如何在<span data-type="angle">小角度</span>之外分开。</span></div>
+</figure>
+</section>
+
+<section id="small-angle">
+<h2>小角度时，摆是简谐振子</h2>
+<p class="cite-target">现在，如果我们能证明<span data-concept="restoring-force">回复力</span>与<span data-concept="displacement">位移</span>成正比，那么我们就有了一个<span data-concept="simple-harmonic-oscillator">简谐振子</span>。为了判断我们是否有一个<span data-concept="simple-harmonic-oscillator">简谐振子</span>，应当注意到，对于<span data-concept="angle">小角度</span>（小于约 $15°$），$\sin\ktheta \approx \ktheta$（在较小的<span data-concept="angle">角度</span>时，$\sin\ktheta$ 与 $\ktheta$ 相差约 1% 或更小）。</p>
+<figure class="dv" id="drv-pendulum-restoring-force"></figure>
+<p>对于小于约 $15°$ 的<span data-concept="angle">角度</span>，<span data-concept="restoring-force">回复力</span>与<span data-concept="displacement">位移</span>成正比，<span data-concept="simple-pendulum">单摆</span>是一个<span data-concept="simple-harmonic-oscillator">简谐振子</span>。</p>
+</section>
+
+<section id="pendulum-period">
+<h2>周期只取决于摆长和重力加速度</h2>
+<p class="cite-target">利用这个方程，我们可以求出<span data-concept="amplitude">振幅</span>小于约 $15°$ 时摆的<span data-concept="period">周期</span>。</p>
+<figure class="dv" id="drv-pendulum-period"></figure>
+<p>这个结果的有趣之处在于它的简单。影响<span data-concept="simple-pendulum">单摆</span>的<span data-concept="period">周期</span>的，只有它的<span data-concept="length">摆长</span>和<span data-concept="acceleration-due-to-gravity">重力加速度</span>。<span data-concept="period">周期</span>完全与其他因素无关，例如<span data-concept="mass">质量</span>。与<span data-concept="simple-harmonic-oscillator">简谐振子</span>一样，摆的<span data-concept="period">周期</span> $\kT$ 几乎与<span data-concept="amplitude">振幅</span>无关，尤其是当 $\ktheta$ 小于约 $15°$ 时。即使是<span data-concept="simple-pendulum">单摆</span>钟，也可以精细调节，并且很准确。</p>
+<figure class="sim" id="sim-pendulum-period">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="pendulum-1 pendulum-2">两个摆</span>的<span data-concept="length">摆长</span>不同，同时被释放。<span data-ref="pendulum-1">较长的那个</span>摆动得更慢，下方的图显示了在你所设定的<span data-type="acceleration">重力加速度</span>下，<span data-type="time">周期</span>如何随<span data-type="position">摆长</span>增大。改变<span data-ref="pendulum-2">第二个摆锤</span>的<span data-type="mass">质量</span>，会发现<span data-ref="pendulum-2">它</span>的运动没有任何变化。把 $\kg$ 设为<span data-type="acceleration">月球上的 1.63 m/s²</span>，观察<span data-ref="pendulum-1 pendulum-2">两个摆</span>都变慢。</span></div>
+</figure>
+<p>请注意 $\kT$ 对 $\kg$ 的依赖关系。如果一个摆的<span data-concept="length">摆长</span>已被精确测定，实际上就可以用它来测量<span data-concept="acceleration-due-to-gravity">重力加速度</span>。请看下面的例题。</p>
+<div class="example" id="ex-measuring-g">
+<h3>例题 16.5 · 测量重力加速度：摆的周期</h3>
+<p>在某个地区，<span data-ref="timed-pendulum">一个<span data-concept="simple-pendulum">单摆</span></span>的<span data-type="position">摆长为 75.000 cm</span>，<span data-type="time"><span data-concept="period">周期</span>为 1.7357 s</span>，那里的<span data-type="acceleration"><span data-concept="acceleration-due-to-gravity">重力加速度</span></span>是多少？</p>
+<h4>思路</h4>
+<p>已知<span data-ref="timed-pendulum">一个摆</span>的<span data-type="time"><span data-concept="period">周期</span></span> $\kT$ 和<span data-type="position">摆长</span> $\kL$，要求我们求出 $\kg$。我们可以由 $\kT = 2\pi\sqrt{\frac{\kL}{\kg}}$ 解出 $\kg$，只需假定<span data-type="angle">偏转角</span>小于 $15°$。</p>
+<h4>解</h4>
+<ol>
+<li>将 $\kT = 2\pi\sqrt{\frac{\kL}{\kg}}$ 两边平方，并解出 $\kg$：
+$$\kg = 4\pi^{2}\frac{\kL}{\kT^{2}}.$$</li>
+<li>把已知值代入新的方程：
+$$\kg = 4\pi^{2}\frac{0.75000\ \text{m}}{(1.7357\ \text{s})^{2}}.$$</li>
+<li>计算得出 $\kg$：
+$$\kg = 9.8281\ \text{m/s}^{2}.$$</li>
+</ol>
+<h4>讨论</h4>
+<p>这种测定 $\kg$ 的方法可以非常准确。这就是为什么本例中的<span data-type="position">摆长</span>和<span data-type="time"><span data-concept="period">周期</span></span>都给到五位数字。要使近似 $\sin\ktheta \approx \ktheta$ 的<span data-concept="precision">精密度</span>优于<span data-type="position">摆长</span>和<span data-type="time"><span data-concept="period">周期</span></span>的<span data-concept="precision">精密度</span>，<span data-type="angle">最大<span data-concept="displacement">位移</span>角</span>应保持在约 $0.5°$ 以下。</p>
+</div>
+<figure class="sim" id="sim-measure-g">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="timed-pendulum">一个摆</span>的<span data-type="position">摆长已知</span>，它摆动时秒表在计时，数到十次完整的摆动时停止，如下面的居家实验所述。<span data-type="time">周期</span>就是<span data-type="time">时间</span>除以十，而<span data-type="acceleration">重力加速度</span>可由<span data-type="time">它</span>求得。载入时的数值就是例题 16.5 中的数值。改变<span data-type="position">摆长</span>，或者改变 $\kg$ 的<span data-type="acceleration">当地值</span>，再对<span data-ref="timed-pendulum">它</span>计时一次。</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">建立职业联系</div>
+<p>了解 $\kg$ 在地质勘探中可能很重要；例如，绘制大片地理区域上的 $\kg$ 分布图，有助于板块构造的研究，也有助于寻找油田和大型矿藏。</p>
+</div>
+<div class="note">
+<div class="eyebrow">居家实验：测定 $\kg$</div>
+<p>用<span data-concept="simple-pendulum">单摆</span>测定你所在地的<span data-concept="acceleration-due-to-gravity">重力加速度</span> $\kg$。剪一段细绳或牙线，使其长约 1 m。在绳端系一个<span data-concept="density">密度</span>很大的小物体（例如一个金属螺母或一把汽车钥匙）。从小于 $10°$ 的<span data-concept="angle">角</span>开始，让摆摆动，用秒表测量摆做 10 次振动的<span data-concept="period">周期</span>。计算 $\kg$。这个测量有多准确？怎样才能改进？</p>
+</div>
+<div class="exercises" data-place="pendulum-period"></div>
+<div class="note">
+<div class="eyebrow">单摆实验室</div>
+<p>在<a href="https://openstax.org/l/02pendulum">这个模拟</a>中，玩一玩一个或两个摆，发现<span data-concept="simple-pendulum">单摆</span>的<span data-concept="period">周期</span>如何取决于细绳的<span data-concept="length">长度</span>、摆锤的<span data-concept="mass">质量</span>和摆动的<span data-concept="amplitude">振幅</span>。用光电门计时器测量<span data-concept="period">周期</span>很容易。你可以改变<span data-concept="friction">摩擦力</span>和重力的大小。用摆求出行星 X 上 $\kg$ 的值。注意<span data-concept="amplitude">振幅</span>较大时的非简谐行为。</p>
+</div>
+</section>

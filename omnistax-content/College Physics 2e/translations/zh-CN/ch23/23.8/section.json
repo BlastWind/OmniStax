@@ -1,0 +1,702 @@
+{
+ "id": "23.8",
+ "module": "m42416",
+ "chapter": "23",
+ "title": "电气安全：系统与装置",
+ "short": "电气安全",
+ "lead": "房屋布线的安排，要使故障造成的危害尽可能小。本节依次讲述现代布线的三根导线以及每一根所防范的危害，然后讲述两种利用感应本身来保护<span data-ref=\"person\">人</span>的装置：漏电保护器和<span data-ref=\"isolation-transformer\">隔离变压器</span>。",
+ "objectives": [
+  "解释电路中各种现代安全装置的工作原理，重点说明其中如何运用感应。"
+ ],
+ "summary_html": "<ul><li>电气安全系统和装置用于防止热危害和电击危害。</li><li>断路器和保险丝切断过大的<span data-concept=\"electric-current\">电流</span>，以防止热危害。</li><li>三线制利用火线、中性线和地线，并使中性线和用电器外壳接地，既防范热危害，也防范电击危害。</li><li>漏电保护器（GFI）通过检测<span data-concept=\"electric-current\">电流</span>流失到非预期路径来防止电击。</li><li>隔离变压器使被供电的器件与原来的电源绝缘，同样是为了防止电击。</li><li>这些装置中有许多利用感应来实现其基本功能。</li></ul>",
+ "notes": "本节书中印出的内容一概未删。出版方源文件中带有第二道 AP 题的答案，已被注释掉，书中并不出现，所以该题照书中印出的样子编排，不附标准答案。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。答案来自书后答案。本节的那道习题有答案，已编排在此，其卡片上附有书中的接地外壳图片；它的前两问是数值，第三问，即短路是否使 20.0 A 断路器跳闸，书中的回答是“会”，写在解中。第一道 AP 题涉及隔离变压器的匝数，答案为（c），编排为判分选择题。第二道要求用文字说明漏电保护器的工作原理，书中没有印出答案，所以保留为开放题，附 AI 编写的建议思路，并作标记；出版方源文件在注释中带有的答案未被使用。三道思考题书中没有答案，是开放题，附 AI 编写的建议思路，并作标记。本节不印“理解检测”框，所以所有题目都放在末尾，没有哪道题留到后面的页面，也没有取自前面的页面。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-three-wire",
+   "kind": "sim",
+   "number": "23.29",
+   "folds": [
+    "23.30"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_08_01.jpg",
+    "/media/ch23/Figure_24_08_02.jpg"
+   ],
+   "original_caption": "（图 23.29）简单交流电路的示意图，含一个电压源和一个以电阻 R 表示的用电器。这个电路中没有任何安全装置。（图 23.30）三线制在电压源处和用户所在处把中性线与大地相连，迫使中性线处于零伏，并为电流提供另一条经大地的返回路径。用电器的外壳也接地到零伏。断路器或保险丝防止热过载，串联在火线（带电导线）上。请注意，导线绝缘层的颜色因地区而异，必须在当地核实使用的是哪种颜色编码（以及具体的安装是否遵循了它）。",
+   "widths": [
+    185,
+    200
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout says why no current flows once the breaker opens"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-plug",
+   "kind": "sim",
+   "number": "23.31",
+   "originals": [
+    "/media/ch23/Figure_24_08_03.jpg"
+   ],
+   "original_caption": "标准的三脚插头只能以一种方式插入，以保证三线制正常工作。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "voltage",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "wire and missing-wire labels moved off the plug and outlet"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-worn-insulation",
+   "kind": "sim",
+   "number": "23.32",
+   "originals": [
+    "/media/ch23/Figure_24_08_04a.jpg"
+   ],
+   "original_caption": "绝缘层磨损使火线与这台用电器的金属外壳直接接触。（a）与地的连接被断开，这个人受到严重电击。用电器在这种情况下可能正常工作。（b）与地的连接良好时，断路器跳闸，迫使人修理用电器。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline and note: 'more than' a 23 A short, not 'far more'"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-case-emf",
+   "kind": "sim",
+   "number": "23.33",
+   "originals": [
+    "/media/ch23/Figure_24_08_05a.jpg"
+   ],
+   "original_caption": "交流电流可以在用电器的外壳上感应出电动势。这个电压可能大到足以引起电击。如果外壳接地，感应电动势就保持在接近零。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-gfi",
+   "kind": "sim",
+   "number": "23.34",
+   "folds": [
+    "23.35"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_08_06.jpg",
+    "/media/ch23/Figure_24_08_07.jpg"
+   ],
+   "original_caption": "（图 23.34）漏电保护器（GFI）比较火线和中性线中的电流，如果二者之差超过安全值就会跳闸。这里的漏电流沿着一条危险的路径流动，而完好的地线本可以避免这条路径。（图 23.35）GFI 通过让两个电流在同一个线圈中感应电动势来比较它们。如果两个电流相等，它们感应出的电动势大小相等、方向相反。",
+   "widths": [
+    450,
+    285
+   ],
+   "draws": [
+    "current",
+    "voltage",
+    "magnetic-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-isolation",
+   "kind": "sim",
+   "number": "23.36",
+   "originals": [
+    "/media/ch23/Figure_24_08_08.jpg"
+   ],
+   "original_caption": "隔离变压器在原来的电压源与器件之间放入一个很大的电阻，防止二者之间形成完整的电路。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "dropdown options shortened so they show whole"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "three-wire",
+   "concept": "three-wire-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "three-wire",
+   "concept": "thermal-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "three-wire",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "three-wire",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "grounding-the-case",
+   "verb": "introduces"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "three-wire-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "short-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "grounded-case",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "gfi",
+   "concept": "ground-fault-interrupter",
+   "verb": "introduces"
+  },
+  {
+   "span": "gfi",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "gfi",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "gfi",
+   "concept": "three-wire-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "isolation",
+   "concept": "isolation-transformer",
+   "verb": "introduces"
+  },
+  {
+   "span": "isolation",
+   "concept": "transformer",
+   "verb": "uses"
+  },
+  {
+   "span": "isolation",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "isolation",
+   "concept": "shock-hazard",
+   "verb": "reinforces"
+  },
+  {
+   "span": "beyond-basics",
+   "concept": "shock-hazard",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737813489",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-wire",
+   "prompt": "塑料绝缘层能防止火线引起电击危害、热危害，还是两者都能防止？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者都能，而且靠的是同一个性质。绝缘层是很差的导体，它的全部作用就是不让火线接触到任何不该载有电流的东西。它能防止电击危害，因为把手放在带绝缘层的导线上的人根本不是电路的一部分：电流无法离开导体而通过人体。它能防止热危害，因为它使火线不会接触中性线、地线或接地的外壳，其中任何一种接触都会造成短路，而短路的电阻非常小，会取用很大的电流，使导线发热。绝缘层磨损在这两方面同时有危险，这就是为什么本节把火线碰到金属外壳当作必须修理而不是将就忍受的故障。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169736590263",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-wire",
+   "prompt": "为什么普通的断路器和保险丝不能有效防止电击？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "断路器或保险丝串联在火线上，当通过它的电流超过导线能安全承载的数值（家用电路中为 15 A 或 20 A）时就会断开。而电击所需的电流远没有这么大：5 mA 是公认的最大无害电流，通过胸部的几十毫安就可能致命。因此，一个人可能受到危险的电击，而断路器所读到的电流比它的额定值小一千倍，却毫无动作。还有第二个原因。通过人体流入大地的电流不一定会使断路器所看到的电流增大，因为它是经由大地而不是经由断路器所在的导线回到电源的。断路器保护导线不致过热，那是热危害。把电流挡在人体之外是另一项工作，需要另一种装置，即漏电保护器。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737777962",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gfi",
+   "prompt": "GFI 可能仅仅因为与之相连的火线和中性线长度相差很大就跳闸。解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从这个装置实际测量的东西说起。GFI 并不直接测量漏电流。它让两根导线穿过同一个线圈，读取该线圈中感应出的电动势，依靠的是这两根导线除了电流方向之外各方面都相同，于是相等的电流感应出大小相等、方向相反的电动势，什么也不剩。长度的差别破坏了这种相同。较长的一根与检测线圈的耦合不同于较短的一根，因此相等的电流不再感应出恰好抵消的电动势。较长的一根还沿着楼内其他一切设备的更多交变场敷设，并且对大地及其邻近物有更多的电容，所以它的一小部分电流确实经中性线以外的路径回到电源。这些情形中的任何一种，都会在线圈中留下一个本不该有的小的净电动势，而这个装置无法把它与真正漏电产生的电动势区分开。该装置对小到 5 mA 的差值就会动作，这只有 10 A 用电器所取电流的两千分之一，所以很小的不对称就足以使电路断开。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1516027",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isolation",
+   "prompt": "关于隔离变压器，下列哪一项说法是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "它的原线圈匝数多于副线圈匝数。",
+     "它的原线圈匝数少于副线圈匝数。",
+     "它的原线圈和副线圈匝数相等。",
+     "它的原线圈和副线圈的匝数可以更多、更少或相等。"
+    ],
+    "correct": 2,
+    "hint": "隔离变压器的作用不是改变电压。想一想，若要用电器得到电源所给的同样电压，它的匝数比必须是多少。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1449525",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gfi",
+   "prompt": "解释漏电保护器（GFI）的工作原理。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "漏电保护器把流向用电器的电流与从用电器返回的电流进行比较。火线和中性线都穿过同一个线圈。它们的电流方向相反，所以在该线圈中感应出大小相等、方向相反的电动势。只要从火线流出的每一安培电流都从中性线返回，这两个电动势就相互抵消，线圈不产生任何输出。如果有一部分电流经由其他路径回到电源——通过人体，或通过地线——中性线中的电流就比火线中的小，抵消失效，线圈中出现电动势。该电动势操作一个断路器，使电路断开。GFI 通常在差值大于 5 mA（公认的最大无害电击）时动作，所以它们在漏电造成多大伤害之前就切断了电路。无论漏电是通过人体还是经完好的地线安全地流入大地，它们都会动作，因为这两种漏电都是需要修理的故障。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738083911",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "grounded-case",
+   "figure": {
+    "src": "/media/ch23/Figure_24_08_09-e1b9.jpg",
+    "alt": "该图描述了接在交流电源上的一台用电器。交流电路的一端接到断路器。断路器的另一端接到用电器。用电器画成一个电阻，封装在一个称为用电器外壳的矩形金属外壳中。电阻的另一端通过一根连接导线接回交流电源。连接导线和交流电源都接地。用电器外壳处的接地端接到电阻 R g，R g 等于零点二欧姆。一个人一只手放在用电器外壳上。由于大地的电阻不为零，图中显示电压经这个人流向大地。",
+    "caption": "即使用电器的外壳接地，人也可能受到电击。很大的短路电流在用电器外壳上产生电压，因为地线的电阻不为零。"
+   },
+   "prompt": "<strong>综合概念</strong> 如下图所示，用电器接地的金属外壳发生了短路。接触外壳的人是湿的，对大地只有 $3.00\\ \\text{k}\\Omega$ 的电阻。（a）如果有 5.00 mA 的电流流过这个人，外壳上的电压是多少？（b）如果地线的电阻为 $0.200\\ \\Omega$，短路电流是多少？（c）这会使给该用电器供电的 20.0 A 断路器跳闸吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 15,
+      "unit": "V",
+      "hint": "这个人是一个电阻，载有一个电流，所以由欧姆定律可得他两端的电压，这也是外壳上的电压，因为这个人的另一端接在大地上。"
+     },
+     {
+      "part": "(b)",
+      "value": 75,
+      "unit": "A",
+      "hint": "外壳和大地是地线的两端，所以同样的电压跨在它的 0.200 Ω 上，几乎全部的短路电流都走这条路，而不是通过这个人。"
+     }
+    ],
+    "solution": "（a）这个人是 $3.00\\ \\text{k}\\Omega$ 的电阻，载有 5.00 mA，所以外壳上的电压为 $\\kV = \\kIcur\\kRes = (5.00 \\times 10^{-3}\\ \\text{A})(3.00 \\times 10^{3}\\ \\Omega) = 15.0\\ \\text{V}$。（b）同样的 15.0 V 跨在地线两端，所以其中的短路电流为 $\\kIcur = \\kV/\\kRes = (15.0\\ \\text{V})/(0.200\\ \\Omega) = 75.0\\ \\text{A}$。（c）会。75.0 A 远大于断路器的额定值 20.0 A，所以断路器跳闸，这正是迫使人修理故障的原因。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "three-wire-system"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "thermal-hazard",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "shock-hazard",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "three-wire-system"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "shock-hazard",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "ground-fault-interrupter"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "isolation-transformer"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ground-fault-interrupter"
+  },
+  {
+   "exercise": "p1",
+   "concept": "grounding-the-case"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ohms-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "three-wire-system",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "live-wire",
+   "label": "火线",
+   "figures": [
+    "sim-three-wire",
+    "sim-plug",
+    "sim-worn-insulation",
+    "sim-case-emf",
+    "sim-gfi"
+   ]
+  },
+  {
+   "id": "neutral-wire",
+   "label": "中性线",
+   "figures": [
+    "sim-three-wire",
+    "sim-plug",
+    "sim-worn-insulation",
+    "sim-case-emf",
+    "sim-gfi"
+   ]
+  },
+  {
+   "id": "earth-wire",
+   "label": "地线",
+   "figures": [
+    "sim-three-wire",
+    "sim-plug",
+    "sim-worn-insulation",
+    "sim-case-emf",
+    "sim-gfi"
+   ]
+  },
+  {
+   "id": "breaker",
+   "label": "断路器",
+   "figures": [
+    "sim-three-wire",
+    "sim-plug",
+    "sim-worn-insulation",
+    "sim-gfi",
+    "sim-isolation"
+   ]
+  },
+  {
+   "id": "case",
+   "label": "用电器的外壳",
+   "figures": [
+    "sim-three-wire",
+    "sim-plug",
+    "sim-worn-insulation",
+    "sim-case-emf",
+    "sim-gfi",
+    "sim-isolation"
+   ]
+  },
+  {
+   "id": "appliance",
+   "label": "用电器",
+   "figures": [
+    "sim-three-wire",
+    "sim-plug",
+    "sim-worn-insulation",
+    "sim-case-emf",
+    "sim-gfi",
+    "sim-isolation"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "人",
+   "figures": [
+    "sim-three-wire",
+    "sim-worn-insulation",
+    "sim-case-emf",
+    "sim-gfi",
+    "sim-isolation"
+   ]
+  },
+  {
+   "id": "plug",
+   "label": "插头",
+   "figures": [
+    "sim-three-wire",
+    "sim-plug"
+   ]
+  },
+  {
+   "id": "gfi-coil",
+   "label": "漏电保护器的检测线圈",
+   "figures": [
+    "sim-three-wire",
+    "sim-gfi"
+   ]
+  },
+  {
+   "id": "isolation-transformer",
+   "label": "隔离变压器",
+   "figures": [
+    "sim-three-wire",
+    "sim-isolation"
+   ]
+  }
+ ]
+}

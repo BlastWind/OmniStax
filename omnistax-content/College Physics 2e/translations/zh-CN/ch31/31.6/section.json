@@ -1,0 +1,740 @@
+{
+ "id": "31.6",
+ "module": "m42640",
+ "chapter": "31",
+ "title": "结合能",
+ "short": "结合能",
+ "lead": "原子核的结合能是把它拉开成单独的质子和中子所需的能量，它可以由原子质量求得。比结合能从最轻的原子核到最重的原子核如何变化，说明了核力和库仑力如何共同决定哪些原子核束缚得最紧。",
+ "objectives": [
+  "定义并讨论结合能。",
+  "计算一个粒子的比结合能。"
+ ],
+ "summary_html": "<ul><li>原子核的结合能（BE）是把它分离成单独的质子和中子所需的能量。用原子质量表示，$$\\kBE = \\{[Zm({}^{1}\\text{H}) + N\\kmn] - m({}^{A}\\text{X})\\}\\kc^{2},$$ 其中 $m({}^{1}\\text{H})$ 是氢原子的质量，$m({}^{A}\\text{X})$ 是该核素的原子质量，$\\kmn$ 是中子的质量。比结合能 $\\kBE/A$ 的规律揭示了核力的细节。$\\kBE/A$ 越大，原子核越稳定。</li></ul>",
+ "notes": "指向 PhET 模拟“核裂变”的链接被略去，与全书略去出版方互动内容的链接一样；另有三道没有给出答案的习题也被略去。书中关于氢中电子结合能那道习题的答案没有（d）小问，而移到这里的关于电子结合能的思考题，按原样印作 ZM(¹H)。图 31.24 的曲线由附录 A 的原子质量画出，略去了 ⁶³Cu，因为它的表列质量会使曲线出现一处书中图线没有的凹陷。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。有三道习题没有给出答案而被略去：⁵⁶Fe、²³⁵U 和 ²³⁸U 的比结合能，以及 $A = 60$ 的原子核的直径并比较 ⁵⁸Ni 和 ⁹⁰Sr；它们已在本节的说明中点明。那道 AP 题的答案在源文件中被注释掉了，因此设为开放题，附有标明为 AI 撰写的建议思路。五道思考题没有给出答案，附有标明为 AI 撰写的建议思路；其中四道（关于束缚系统、朝着更紧束缚的衰变、电子的结合能以及核力的力程）与“半衰期与活度”一节一同印出，而在引入结合能的这里设置，那一节的说明也这样写明。关于氢中电子的那道习题的答案没有（d）小问，按原样保留。本模块没有印出“理解检测”框，因此没有设置行内的内容。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-binding-energy",
+   "kind": "sim",
+   "number": "31.22",
+   "originals": [
+    "/media/ch31/Figure_32_06_01a.jpg"
+   ],
+   "original_caption": "把一个原子核拉开成其组成的质子和中子所做的功，使系统的质量增大。拆散原子核所做的功等于它的结合能 BE。一个束缚系统的质量小于其各部分的质量之和，这一点在力和能量都非常大的原子核中尤其明显。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "energy",
+    "mass",
+    "velocity"
+   ],
+   "conventions": [
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-earth-interior",
+   "kind": "sim",
+   "number": "31.23",
+   "originals": [
+    "/media/ch31/Figure_32_06_02a.jpg"
+   ],
+   "original_caption": "地球的中心通过众所周知的热传递方式冷却。液态区域中的对流和热传导把热能输送到地表，热能在那里向寒冷黑暗的太空辐射。考虑到地球的年龄和初始温度，它现在本应已冷却到更低的温度。放大图表明，核衰变在地球内部释放能量。这些能量减缓了冷却过程，也正是内部至今仍呈熔融状态的原因。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "energy",
+    "time",
+    "activity"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-binding-curve",
+   "kind": "sim",
+   "number": "31.24",
+   "folds": [
+    "31.25"
+   ],
+   "originals": [
+    "/media/ch31/Figure_32_06_03a.jpg",
+    "/media/ch31/Figure_32_06_04a.jpg"
+   ],
+   "original_caption": "（图 31.24）稳定原子核的平均比结合能 BE/A 的曲线图。束缚得最紧的原子核是 A 接近 60 的那些，在那里具有吸引性核力作用最大。在较大的 A 值处，由于核力是短程的，库仑斥力使比结合能逐渐减小。曲线上的尖峰是束缚得非常紧的核素，标志着壳层封闭。（图 31.25）核力是吸引性的，并且比库仑力强，但它是短程的。在质量小的原子核中，每个核子都感受到所有其他核子的核吸引力。在较大的原子核中，核力的力程（图中针对单个核子画出）小于原子核的大小，但所有质子的库仑斥力却能作用到所有其他质子。如果原子核足够大，库仑斥力累加起来就能克服核吸引力。",
+   "widths": [
+    450,
+    225
+   ],
+   "draws": [
+    "energy",
+    "position"
+   ],
+   "conventions": [
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "binding-energy",
+   "concept": "binding-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "binding-energy",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "binding-energy",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "mass-defect",
+   "verb": "introduces"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "binding-energy-from-atomic-masses",
+   "verb": "introduces"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "binding-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "rest-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "atomic-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "atomic-mass-unit",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "nuclide-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-defect",
+   "concept": "nucleons",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-hot-interior",
+   "concept": "radioactive-dating-technique",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-hot-interior",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-hot-interior",
+   "concept": "activity",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-hot-interior",
+   "concept": "conduction",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-hot-interior",
+   "concept": "convection",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-hot-interior",
+   "concept": "radiation-heat-transfer",
+   "verb": "uses"
+  },
+  {
+   "span": "earths-hot-interior",
+   "concept": "alpha-decay-process",
+   "verb": "uses"
+  },
+  {
+   "span": "binding-energy-per-nucleon",
+   "concept": "binding-energy-per-nucleon",
+   "verb": "introduces"
+  },
+  {
+   "span": "binding-energy-per-nucleon",
+   "concept": "binding-energy-per-nucleon-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "binding-energy-per-nucleon",
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "verb": "introduces"
+  },
+  {
+   "span": "binding-energy-per-nucleon",
+   "concept": "mass-number",
+   "verb": "uses"
+  },
+  {
+   "span": "binding-energy-per-nucleon",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "binding-energy-per-nucleon",
+   "concept": "electrostatic-force",
+   "verb": "uses"
+  },
+  {
+   "span": "binding-energy-per-nucleon",
+   "concept": "chart-of-the-nuclides",
+   "verb": "uses"
+  },
+  {
+   "span": "tightly-bound-nuclei",
+   "concept": "binding-energy-per-nucleon-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tightly-bound-nuclei",
+   "concept": "magic-numbers",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-particle-binding",
+   "concept": "binding-energy-from-atomic-masses",
+   "verb": "reinforces"
+  },
+  {
+   "span": "alpha-particle-binding",
+   "concept": "binding-energy-per-nucleon",
+   "verb": "reinforces"
+  },
+  {
+   "span": "alpha-particle-binding",
+   "concept": "mass-defect",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-particle-binding",
+   "concept": "alpha-decay-process",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-production",
+   "concept": "binding-energy-per-nucleon-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "problem-solving-strategies",
+   "concept": "binding-energy-from-atomic-masses",
+   "verb": "reinforces"
+  },
+  {
+   "span": "problem-solving-strategies",
+   "concept": "nuclear-reaction-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "problem-solving-strategies",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id932978",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binding-energy-per-nucleon",
+   "prompt": "结合能衡量的是：为了把一个原子核拆散成它的各个组成部分，必须克服核力做多少功。例如，要把 ${}^{4}_{2}\\text{He}$ 拆散成 2 个质子和 2 个中子，所需的能量相当于对这些核粒子做 28.3 MeV 的功。描述使原子核如此难以拉开的那种力。说电场力在原子核内的各种力中起作用，这样说准确吗？说明为什么准确或为什么不准确。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把原子核维系在一起的力是强核力。它把每个核子与其近邻相互吸引，质子和中子一视同仁，约比库仑力强 100 倍，但它只在短程内起作用，大约是一个原子核的大小。把 ${}^{4}_{2}\\text{He}$ 拉开，就意味着克服这种吸引力做功，这就是需要 28.3 MeV 的原因。电场力确实起作用，所以这样说是准确的：两个质子通过库仑力相互排斥，库仑力在原子核内与在其他任何地方一样起作用。它是与结合相对抗，而不是促成结合，而且在核的距离上它比核吸引力弱得多，所以原子核仍保持束缚。在重核中，许多质子的库仑斥力会累加起来，而短程的核吸引力不会，这就使比结合能降低。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2374875",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binding-energy-per-nucleon",
+   "prompt": "为什么在 $A$ 大于约 40 的稳定原子核中，中子数多于质子数？为什么这种效应在最重的原子核中更为显著？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个质子都通过库仑力排斥其他每一个质子，库仑力是长程的，而核吸引力只作用于近邻之间，并且对中子和质子都起作用。加到原子核上的一个中子，会与它的近邻增添核吸引力，却不增添排斥力，并且使质子彼此离得更远。在小的原子核中，排斥力很弱，$Z \\approx N$ 最稳定；但总的库仑斥力大致按 $Z^2$ 增长，因为每个质子都排斥其余所有质子，而核吸引力只与 $A$ 成正比地增长。因此，超过 $A = 40$ 左右，稳定就需要额外的中子，原子核越重，排斥力超过吸引力的程度就越大，所以中子的过剩在最重的原子核中最大。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1562211",
+   "source_section": "31.5",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-defect",
+   "prompt": "解释一个束缚系统为什么可以比它的组成部分质量更小。为什么这在经典情形下观察不到，比如对于由砖块砌成的建筑物？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "要把一个束缚系统分离成它的各个部分，必须对它做功，这份能量表现为分开后各部分增加的静质量，$\\kdm = \\kBE/\\kc^{2}$。反过来说，当各部分聚到一起并结合时，结合能被释放出去，束缚系统就少了这么多静能，所以它的质量比各部分的质量小 $\\kBE/\\kc^{2}$。对于由灰浆和重力固定在一起的砖砌建筑物也是如此，但那里的结合能是化学能和重力势能，每个原子只有几 eV 或更少，而每个原子的静能却有几十亿 eV。质量差只是约 $10^{-10}$ 或更小的一个分数，小到根本无法测量。只有在原子核中，结合能达每核子几百万电子伏，才大到能够看出来。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3181573",
+   "source_section": "31.5",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tightly-bound-nuclei",
+   "prompt": "自发的放射性衰变只有当衰变产物的质量小于母核时才会发生，并且它倾向于产生比母核更稳定的子核。解释这与束缚得更紧的原子核更稳定这一事实有何关系。（考虑比结合能。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "束缚得更紧的原子核比结合能 $\\kBE/A$ 更大，因此就其核子数而言质量亏损也更大：它的核子在结合时放出了更多的静能。衰变不改变核子数，所以它只能通过把核子重新组合成束缚得更紧的子核和产物（总结合能更大）来降低质量。消失的质量以产物动能的形式释放出来，而会使质量增大的衰变不可能自发发生。因此，自发衰变是从束缚得较松的原子核走向束缚得较紧的原子核，也就是朝着更大的 $\\kBE/A$ 的方向，即朝着更大的稳定性的方向。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2621402",
+   "source_section": "31.5",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-defect",
+   "prompt": "为了由方程 $\\text{BE}=[ZM({}^{1}\\text{H})+Nm_{n}]c^{2}-m({}^{A}\\text{X})c^{2}$ 得到最精确的 BE 值，我们应当考虑中性原子中电子的结合能。这样做会使 BE 的值变大还是变小？为什么这种效应通常可以忽略？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个原子的质量，都比它的原子核与自由电子的质量之和小，所差的是这些电子的结合能除以 $c^2$。在 $Zm({}^{1}\\text{H})$ 中，每个氢原子只少了 13.6 eV，但原子 ${}^{A}\\text{X}$ 有 $Z$ 个电子，其中许多紧紧束缚在内壳层，所少的比 $Z$ 乘 13.6 eV 还多。因此它的质量降低得更多，这使方程中的括号，从而 $\\text{BE}$，得出的值偏大。把电子的结合能考虑进去，会得到较小的 $\\text{BE}$ 值。这一效应通常可以忽略，因为电子的结合能是 eV 到几十 keV，而核的结合能是几百万 eV，所以修正至多是百分之零点零几。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1464742",
+   "source_section": "31.5",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binding-energy-per-nucleon",
+   "prompt": "核力的有限力程与 $\\kBE/A$ 在 $A$ 接近 60 时最大这一事实有何关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "核力只能到达大约 $A$ 接近 60 的原子核的直径那么远。在比它小的原子核中，每个核子都在其他每个核子的作用范围之内，所以每增加一个核子，都被其余所有核子吸引，$\\kBE/A$ 随 $A$ 上升。在较大的原子核中，增加的核子够不到远侧的核子，只被它的近邻束缚，所以每个核子的核吸引力不再增大。质子之间的库仑斥力是长程的，并随质子数不断增大，因此超过 $A$ 接近 60 之后，它使 $\\kBE/A$ 降低。这两种趋势在 $A = 60$ 附近相遇，$\\kBE/A$ 在那里最大。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1417224",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binding-energy-per-nucleon",
+   "prompt": "${}^{2}\\text{H}$ 是氢的一种束缚得松的同位素。它称为氘或重氢，是稳定的但相对稀少——只占天然氢的 0.015%。注意氘的 $Z=N$，这本应使它束缚得更紧，但二者都是奇数。计算 ${}^{2}\\text{H}$ 的比结合能 $\\kBE/A$，并将它与从图 31.24 的图线上得到的近似值作比较。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.112,
+    "unit": "MeV",
+    "hint": "利用 $\\kBE = \\{[Zm({}^{1}\\text{H}) + N\\kmn] - m({}^{A}\\text{X})\\}\\kc^{2}$，取 $Z = N = 1$ 和附录 A 中的 $m({}^{2}\\text{H}) = 2.014102\\;\\text{u}$，再除以 $A = 2$。",
+    "solution": "1.112 MeV，与图线一致"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2929599",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binding-energy-per-nucleon",
+   "prompt": "${}^{209}\\text{Bi}$ 是最重的稳定核素，与中等质量的核素相比，它的 $\\kBE/A$ 较低。计算 ${}^{209}\\text{Bi}$ 的比结合能 $\\kBE/A$，并将它与从图 31.24 的图线上得到的近似值作比较。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.848,
+    "unit": "MeV",
+    "hint": "铋的 $Z = 83$，所以 $N = 126$；取附录 A 中的 $m({}^{209}\\text{Bi}) = 208.980374\\;\\text{u}$，求出 $\\kBE$，再除以 209。",
+    "solution": "7.848 MeV，与图线一致"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3036979",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tightly-bound-nuclei",
+   "prompt": "（a）计算 ${}^{12}\\text{C}$ 的 $\\kBE/A$。这种核素稳定，且束缚得相对较紧，占天然碳的绝大部分。（b）计算 ${}^{14}\\text{C}$ 的 $\\kBE/A$。${}^{12}\\text{C}$ 与 ${}^{14}\\text{C}$ 的 $\\kBE/A$ 之差是否显著？一个稳定而常见，另一个不稳定而稀少。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 7.68,
+      "unit": "MeV",
+      "hint": "对于 ${}^{12}\\text{C}$，$Z = N = 6$，且 $m({}^{12}\\text{C}) = 12.000000\\;\\text{u}$ 是精确值。"
+     },
+     {
+      "part": "(b)",
+      "value": 7.52,
+      "unit": "MeV",
+      "hint": "对于 ${}^{14}\\text{C}$，$Z = 6$，$N = 8$，$m({}^{14}\\text{C}) = 14.003241\\;\\text{u}$。"
+     }
+    ],
+    "solution": "（a）7.680 MeV，与图线一致\n（b）7.520 MeV，与图线一致。与 ${}^{12}\\text{C}$ 的值没有显著差别，但已低到足以使其衰变成另一种束缚得更紧的核素。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3046036",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-defect",
+   "prompt": "这道题的目的，是用三种方式说明：氢原子中电子的结合能，与质子和电子的质量相比可以忽略。（a）计算氢原子中电子 13.6 eV 的结合能以 u 表示的质量当量，并将它与由附录 A 得到的氢原子的质量作比较。（b）用附录 A 给出的氢原子的质量，减去表 31.2 给出的质子的质量。你会发现，这一差值与电子的质量在三位数字上相等，这意味着结合能相比之下很小。（c）求电子的结合能（13.6 eV）与电子质量的能量当量（0.511 MeV）之比。（d）讨论你的答案如何证实了本题所述的目的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.46e-08,
+      "unit": "u",
+      "hint": "把 13.6 eV 换算成 MeV，再除以 931.5 MeV/u。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.000549,
+      "unit": "u",
+      "hint": "表 31.2 给出 $\\kmp = 1.007276\\;\\text{u}$；用 $m({}^{1}\\text{H}) = 1.007825\\;\\text{u}$ 减去它。"
+     },
+     {
+      "part": "(c)",
+      "value": 2.66e-05,
+      "hint": "相除之前，先把两个能量都写成以 eV 为单位。"
+     }
+    ],
+    "solution": "（a）$1.46\\times 10^{-8}\\;\\text{u}$，而 ${}^{1}\\text{H}$ 为 1.007825 u\n（b）0.000549 u\n（c）$2.66\\times 10^{-5}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-268",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-particle-binding",
+   "prompt": "<strong>不合理的结果</strong> 一位粒子物理学家发现了一个质量为 2.02733 u 的中性粒子，他假定它是两个束缚在一起的中子。（a）求结合能。（b）这个结果有什么不合理之处？（c）哪些假设是不合理的或自相矛盾的？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": -9.315,
+    "unit": "MeV",
+    "hint": "两个自由中子的质量为 $2\\kmn = 2.017330\\;\\text{u}$；结合能是它与 2.02733 u 之差乘以 931.5 MeV/u。",
+    "solution": "（a）$-9.315\\;\\text{MeV}$\n（b）负的结合能意味着这是一个非束缚的系统。\n（c）认为它是两个束缚中子的这一假设是不正确的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "strong-and-weak-nuclear-forces",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "binding-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "mass-defect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "binding-energy-per-nucleon",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "mass-defect"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "binding-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "atomic-mass"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "p1",
+   "concept": "binding-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "binding-energy-per-nucleon"
+  },
+  {
+   "exercise": "p1",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "p2",
+   "concept": "binding-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "binding-energy-per-nucleon"
+  },
+  {
+   "exercise": "p2",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "p3",
+   "concept": "binding-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "binding-energy-per-nucleon"
+  },
+  {
+   "exercise": "p3",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "p4",
+   "concept": "mass-defect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "atomic-mass"
+  },
+  {
+   "exercise": "p4",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "p5",
+   "concept": "binding-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "binding-energy"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "binding-energy",
+   "what": "由原子质量求核素的结合能",
+   "source": "《大学物理（第2版）》，31.6 结合能",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "核素 ${}^{A}\\text{X}$ 有 $Z$ 个质子和 $N$ 个中子，质量亏损等于这些分离核子的质量减去原子核的质量 $\\kmtot$：$\\kdm = (Z\\kmp + N\\kmn) - \\kmtot$。",
+       "src": "31.6"
+      },
+      {
+       "text": "给原子核加上 $Z$ 个电子，就得到中性原子：$\\kmtot + Z\\kme = m({}^{A}\\text{X})$。",
+       "src": "31.6"
+      },
+      {
+       "text": "给质子加上一个电子，就得到氢原子：$\\kmp + \\kme = m({}^{1}\\text{H})$。",
+       "src": "31.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{B}{\\kBE} = \\mk{d}{(\\kdm)}\\mk{c}{\\kc^{2}}",
+      "uses": [],
+      "src": "31.6",
+      "why": "为拉开原子核而输入的能量，使其各部分的静质量增大了 $\\kdm = \\kBE/\\kc^{2}$。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{B}{\\kBE} = (\\kdm)\\kc^{2} = \\mk{d}{[(Z\\kmp + N\\kmn) - \\kmtot]}\\mk{c}{\\kc^{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\kBE} = \\mk{d}{[(Z\\kmp + Z\\kme + N\\kmn) - (\\kmtot + Z\\kme)]}\\mk{c}{\\kc^{2}}",
+       "uses": [],
+       "cap": "给两项都加上 $Z$ 个电子的质量，它们的差保持不变。"
+      },
+      {
+       "tex": "\\mk{B}{\\kBE} = \\mk{d}{\\{[Zm({}^{1}\\text{H}) + N\\kmn] - m({}^{A}\\text{X})\\}}\\mk{c}{\\kc^{2}}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "31.6"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,843 @@
+{
+ "id": "15.5",
+ "module": "m42236",
+ "chapter": "15",
+ "title": "热力学的应用：热泵和冰箱",
+ "short": "热泵和冰箱",
+ "lead": "反向运行的热机从<span data-ref=\"cold-reservoir\">低温热库</span>吸取<span data-concept=\"heat\">热量</span>，并在输入<span data-concept=\"work\">功</span>的情况下，向<span data-ref=\"hot-reservoir\">高温热库</span>输送多于该<span data-concept=\"work\">功</span>的热量。热泵、空调和冰箱都是这同一台机器，<span data-ref=\"working-fluid\">它的工质</span>依次经过<span data-ref=\"indoor-coil\">冷凝器</span>、<span data-ref=\"expansion-valve\">膨胀阀</span>、<span data-ref=\"outdoor-coil\">蒸发器</span>和<span data-ref=\"compressor\">压缩机</span>。",
+ "objectives": [
+  "描述热机在热泵和冰箱中的应用。",
+  "演示热泵如何给室内空间制热。",
+  "解释热泵与冰箱的区别。",
+  "计算热泵的性能系数。"
+ ],
+ "summary_html": "<ul><li>热力学第二定律的一个衍生结果，是能够用热泵给室内空间加热。热泵压缩冷的环境空气，并由此把它加热到<span data-concept=\"temperature\">室温</span>，而不违背守恒原理。</li><li>要计算热泵的性能系数，使用公式 $\\text{COP}_{\\text{hp}} = \\frac{\\kQH}{\\kW}$。</li><li>冰箱是一台热泵；它吸入温暖的环境空气并使之膨胀，以使其变冷。</li></ul>",
+ "notes": "本节开头那张电器商店里冰箱的照片略去，书中未给出答案的五道习题也略去，其中包括推导冰箱的性能系数比热泵的小 1 的那道，正文提示读者去做它；图 15.26 的说明文字在书中指的是 15.4 节的循环之处提到了图 15.27 的卡诺循环，仍按原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6、8 和 10 没有给出答案，因而略去：−20.0 °C 与 50.0 °C 之间的理想冰箱、要求读者遵循解题策略的冬季温和地区的热泵、−30.0 °C 与 45.0 °C 之间的冰箱及其费用、性能系数为 12.0 的热泵的低温热库温度，以及推导 $\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$，正文提示读者去做它。习题 5 给出了（a）（b）两问的答案，（c）问中书里的费用比较放在解答里；习题 9 给出了（a）（b）两问的答案，（c）问中书里的讨论放在解答里。本节自己没有 AP 题；15.1 节中关于关闭的冰箱或冷冻室内部发生什么的那道题，说的是本节所介绍的冰箱，所以放在这里，其 source_section 为 15.1，没有给出答案，作为开放题，附有 AI 撰写并已标明的建议思路，15.1 节的说明里也这样写明。五道思考题的建议思路由 AI 撰写，并已标明。本章没有印出“理解检测”框，所以没有任何内容放在正文中间。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-heat-pump-backward",
+   "kind": "sim",
+   "number": "15.26",
+   "originals": [
+    "/media/ch15/Figure_16_05_01.jpg"
+   ],
+   "original_caption": "热泵、空调和冰箱是反向运行的热机。这里所示的一台基于卡诺（可逆）热机。（a）示意图，显示热泵把热传递从低温热库送到温暖的热库。W、Q_h 和 Q_c 的方向与它们在热机中的方向相反。（b）与图 15.27 中类似的卡诺循环的 PV 图，但反向，沿路径 ADCBA。环路内的面积为负，意味着有净功输入。沿路径 DC 有热传递 Q_c 从低温热库进入系统，沿路径 BA 有热传递 Q_h 从系统流出，进入高温热库。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "temperature",
+    "pressure",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the Carnot ratio, through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-heat-pump-components",
+   "kind": "sim",
+   "number": "15.27",
+   "originals": [
+    "/media/ch15/Figure_16_05_02.jpg"
+   ],
+   "original_caption": "一台简单的热泵有四个基本部件：（1） 冷凝器，（2） 膨胀阀，（3） 蒸发器和（4） 压缩机。在制热模式下，热传递 Q_c 在蒸发器（3） 中从较冷的室外空气传给工质，使其变成气体。电动压缩机（4） 提高气体的温度和压强，并将其压入受热空间内的冷凝器盘管（1）。由于气体的温度高于房间的温度，气体凝结成液体时，热传递便从气体传到房间。随后，工质在流回膨胀阀（2） 的过程中被冷却，到达室外的蒸发器盘管。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset; side label off the coil; notes cut to one fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-friction",
+   "kind": "sim",
+   "number": "15.28",
+   "originals": [
+    "/media/ch15/Figure_16_05_03.jpg"
+   ],
+   "original_caption": "当一台实际的热机反向运行时，预定输入的功（W） 中有一部分在进入热机之前就变成了热传递，从而降低了它的性能系数 COP_hp。图中，W′ 表示 W 中进入热泵的那一部分，而 W 的其余部分则以摩擦热（Q_f） 的形式损失给低温热库。如果 W 全部进入热泵，Q_h 就会更大。最好的热泵采用绝热过程和等温过程，因为理论上这样就没有会减少传给高温热库的热传递的耗散过程。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene W' label the ledger repeats dropped; note cut, macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-heat-pump-house",
+   "kind": "sim",
+   "number": "15.29",
+   "originals": [
+    "/media/ch15/Figure_16_05_04.jpg"
+   ],
+   "original_caption": "从室外到室内的热传递，以及为驱动热泵所做的功，发生在上面例题的热泵中。注意，热泵产生的低温低于室外温度，因此热传递进入工质。热泵的压缩机产生高于室内温度的温度，以便热传递进入住宅。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "outside-air key on a panel, COP label off the curve, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-reverse-cycle",
+   "kind": "photo",
+   "number": "15.30",
+   "widths": [
+    150
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-two-ratios",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "COP_ref label below the dashed line; note one derivation, macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "heat-engines-backward",
+   "concept": "heat-pump",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-engines-backward",
+   "concept": "heat-engine",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engines-backward",
+   "concept": "carnot-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engines-backward",
+   "concept": "reversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engines-backward",
+   "concept": "heat-engine-work-output",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engines-backward",
+   "concept": "second-law-heat-flow-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-pumps",
+   "concept": "heat-pump-components",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-pumps",
+   "concept": "heat-pump",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-pumps",
+   "concept": "second-law-heat-flow-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "coefficient-of-performance",
+   "concept": "coefficient-of-performance-heat-pump",
+   "verb": "introduces"
+  },
+  {
+   "span": "coefficient-of-performance",
+   "concept": "heat-pumps-and-temperature-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "coefficient-of-performance",
+   "concept": "heat-engine-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "coefficient-of-performance",
+   "concept": "carnot-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "coefficient-of-performance",
+   "concept": "real-engines-below-carnot",
+   "verb": "uses"
+  },
+  {
+   "span": "coefficient-of-performance",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "best-heat-pump",
+   "concept": "calculate-coefficient-of-performance",
+   "verb": "introduces"
+  },
+  {
+   "span": "best-heat-pump",
+   "concept": "coefficient-of-performance-heat-pump",
+   "verb": "reinforces"
+  },
+  {
+   "span": "best-heat-pump",
+   "concept": "heat-pumps-and-temperature-difference",
+   "verb": "reinforces"
+  },
+  {
+   "span": "best-heat-pump",
+   "concept": "carnot-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "best-heat-pump",
+   "concept": "convert-temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "refrigerators",
+   "concept": "coefficient-of-performance-refrigerator",
+   "verb": "introduces"
+  },
+  {
+   "span": "refrigerators",
+   "concept": "energy-efficiency-rating",
+   "verb": "introduces"
+  },
+  {
+   "span": "refrigerators",
+   "concept": "heat-pump",
+   "verb": "reinforces"
+  },
+  {
+   "span": "refrigerators",
+   "concept": "coefficient-of-performance-heat-pump",
+   "verb": "reinforces"
+  },
+  {
+   "span": "refrigerators",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "problem-solving",
+   "concept": "thermodynamics-problem-solving",
+   "verb": "introduces"
+  },
+  {
+   "span": "problem-solving",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "problem-solving",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "problem-solving",
+   "concept": "heat-engine-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "problem-solving",
+   "concept": "carnot-efficiency",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737786809",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coefficient-of-performance",
+   "prompt": "解释为什么热泵在非常寒冷的气候中不如在较温和的气候中工作得好。冰箱也是这样吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "热泵所能做到的最好情形是反向的卡诺热机，其 $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}} = 1/(1 - \\kTempc/\\kTemph)$。在非常寒冷的气候中，低温热库的温度 $\\kTempc$ 必须低于室外空气的温度，因而远远低于高温热库的温度 $\\kTemph$，后者必须保持在室温以上；该热机的卡诺效率增大，所以它的倒数，即性能系数，就减小了。于是热泵每付出一焦耳的功，所输送的热传递 $\\kQH$ 就更少，到了某一点，燃烧燃料就更便宜了。冰箱也是这样，因为 $\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$ 随之减小：一台必须使内部保持在远低于炎热厨房温度的冰箱，或者要制造 $-200^\\circ\\text{C}$ 的液氮的冰箱，每付出一焦耳的功，移走的热传递很少。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738105425",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-pumps",
+   "prompt": "在一些北欧国家，人们正在建造不装任何类型供暖系统的住宅。这些住宅保温性能很好，靠居民的体热保持温暖。然而，居民不在家时，这些房子里仍然是暖的。一种可能的解释是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "房子里每一台用电能运行的电器，最终都会把这些能量转化为房子里的热传递：灯、冰箱、冷冻室、热水器、一直开着的电脑。冰箱是最清楚的例子，因为它是一台热泵，其高温热库是厨房。它从自己的内部吸收热传递 $\\kQC$，并通过盘管向房间送出 $\\kQH = \\kQC + \\kW$，所以房间得到的不仅有为它付出的功 $\\kW$，还有从食物中移走的热传递，冰箱对它所在房间的净效果始终是使房间变暖。房子保温得非常好，几乎没有热传递散失出去，这些小热库就足以在没人在家时保持温度，而居民回家后，他们的体热再加到这些热库上。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738105385",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coefficient-of-performance",
+   "prompt": "为什么冰箱、空调和热泵在 $\\kTemph$ 与 $\\kTempc$ 相差很小的循环中运行时，成本效益最高？（请注意，所采用循环的温度对其 $\\text{COP}$ 至关重要。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这三者都是反向运行的热机，其中最好的是反向的卡诺热机，所以性能系数至多是卡诺效率的倒数，即 $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}} = 1/(1 - \\kTempc/\\kTemph)$，而 $\\text{COP}_{\\text{ref}}$ 比它小 1。当 $\\kTempc$ 和 $\\kTemph$ 靠近时，比值 $\\kTempc/\\kTemph$ 接近 1，卡诺效率很小，它的倒数就很大：每付出一焦耳的功，就能输送大量的热传递。你为功付费，所以随着循环的温差缩小，输送一定量热传递的成本也随之下降。这就是为什么热泵在温和的气候中表现最好，为什么冰箱不应调得比需要的更冷，也是为什么空调在最热的日子里运行费用更高。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738008505",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "refrigerators",
+   "prompt": "杂货店经理们主张，夏天把店里保持在<em>较低</em>的温度，总能耗会<em>更少</em>。考虑到店里有许多冰箱和冷冻室，请提出论据来支持或反驳这一主张。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有一种论据支持这一主张。每台冰箱和冷冻室都是一台热泵，其高温热库是店面，而当它的内部与店面之间的温差很小时，它的性能系数 $\\text{COP}_{\\text{ref}} = \\kQC/\\kW$ 最大。因此凉爽的店面使每台冰箱都能用更少的功移走它的热传递，而且一开始通过它们的门和壁漏进去的热量也更少。另一种论据反对这一主张。夏天让店面保持凉爽，本身就是空调，即另一台热泵的工作。它必须移走从室外进入建筑物的所有热传递，加上冰箱向店里放出的一切，即每台冰箱的 $\\kQH = \\kQC + \\kW$。在炎热的日子里，店面越凉，空调的温差就越大，它的性能系数就越小。哪种效应占上风，取决于具体数字：店里的负荷有多少来自冰箱、冰箱的保温有多好，以及室外有多热。单看冰箱，有利于凉爽的店面；单看空调，有利于温暖的店面；而总量在两者之间的某个温度下最小。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737965613",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-engines-backward",
+   "prompt": "打开冰箱门能使厨房变凉吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。冰箱是一台热泵，其低温热库是它的内部，高温热库是厨房。门开着时，它从流进去的厨房空气中吸收热传递 $\\kQC$，并通过它背面的盘管把 $\\kQH = \\kQC + \\kW$ 送回厨房。因此厨房得回了从它那里取走的一切，外加压缩机所付出的功 $\\kW$，这部分功也变成了热传递，所以净效果是每个循环使厨房变暖 $\\kW$。要使房间变凉，高温热库必须在别处，这正是空调把冷凝器盘管放在窗外所做的安排。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id3826091",
+   "source_section": "15.1",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-engines-backward",
+   "prompt": "从热传递、功和能量守恒的角度，描述冰箱或冷冻室内部的系统发生了什么。请只考虑门关着的时间段。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取系统为冰箱的内部，即其中的食物和空气。门关着时，热量从较暖的厨房通过壁和门封漏进来，这会使它的内能和温度升高。冰箱是一台反向运行的热机。它的压缩机对工质做功 $\\kW$，工质在蒸发器处从内部吸收热传递 $\\kQC$，并在冷凝器盘管处向厨房放出 $\\kQH = \\kQC + \\kW$。在内部保持温度不变的任何时间段内，移走的热传递 $\\kQC$ 等于漏进来的热量。系统的内能没有变化，对它来说热力学第一定律写成 $\\kdEint = 0$。能量总体上是守恒的：厨房得到了漏进冰箱的热量加上压缩机的功，而提供这份功的电能就是冰箱所用掉的。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737753692",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "best-heat-pump",
+   "prompt": "一台理想热泵的热传递是从 $-25.0^\\circ\\text{C}$ 的低温到 $40.0^\\circ\\text{C}$ 的高温，它的性能系数是多少？",
+   "answer": {
+    "type": "number",
+    "value": 4.82,
+    "generated_by": "source",
+    "hint": "理想热泵是反向的卡诺热机，所以 $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}}$，其中卡诺效率由以开尔文为单位的两个温度算出。",
+    "solution": "4.82"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737827636",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "refrigerators",
+   "prompt": "一台假想的冰箱可以制造 $-200^\\circ\\text{C}$ 的液氮，并向 $35.0^\\circ\\text{C}$ 的环境放出热传递，它可能达到的最佳性能系数是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.311,
+    "generated_by": "source",
+    "hint": "最好的冰箱是反向的卡诺热机。先由以开尔文为单位的温度求出 $\\text{COP}_{\\text{hp}} = 1/\\text{Eff}_{\\text{C}}$，再求 $\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$；温差这样大，结果小于 1。",
+    "solution": "0.311"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737787858",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "best-heat-pump",
+   "prompt": "（a）高温热库温度为 $50.0^\\circ\\text{C}$、低温热库温度为 $-20.0^\\circ\\text{C}$ 的热泵，最佳性能系数是多少？（b）如果向它输入 $3.60 \\times 10^{7}\\ \\text{J}$ 的功（$10.0\\ \\text{kW}\\cdot\\text{h}$），有多少热传递进入温暖的环境？（c）如果这份输入功的费用是 $10.0\\ \\text{美分/kW}\\cdot\\text{h}$，它的费用与以每撒姆 85.0 美分的价格燃烧天然气直接获得的热传递相比如何？（撒姆是天然气能量的一种常用单位，等于 $1.055 \\times 10^{8}\\ \\text{J}$。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.61,
+      "hint": "最好的热泵是反向的卡诺热机，所以 $\\text{COP}_{\\text{hp}} = 1/(1 - \\kTempc/\\kTemph)$，两个温度都以开尔文为单位。"
+     },
+     {
+      "part": "(b)",
+      "value": 166000000.0,
+      "unit": "J",
+      "hint": "性能系数是 $\\kQH/\\kW$，所以进入温暖环境的热传递等于性能系数乘以输入的功。"
+     }
+    ],
+    "solution": "（a）4.61。（b）$1.66 \\times 10^{8}\\ \\text{J}$，即 $3.97 \\times 10^{4}\\ \\text{kcal}$。（c）要传递 $1.66 \\times 10^{8}\\ \\text{J}$，热泵的费用为 ＄1.00，天然气的费用为 ＄1.34。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737792679",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "refrigerators",
+   "prompt": "假设你想运行一台低温为 $-10.0^\\circ\\text{C}$ 的理想冰箱，并希望它的性能系数为 7.00。这样一台冰箱的高温热库温度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 27.6,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "对理想冰箱，$\\text{COP}_{\\text{ref}} = \\text{COP}_{\\text{hp}} - 1$，且 $\\text{COP}_{\\text{hp}} = 1/(1 - \\kTempc/\\kTemph)$。令 $\\text{COP}_{\\text{hp}} = 8.00$，求出以开尔文为单位的 $\\kTemph$，再换算回摄氏度。",
+    "solution": "$27.6^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738091163",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "refrigerators",
+   "prompt": "一台 4 冷吨的空调在 1.00 h 内从冷环境中移走 $5.06 \\times 10^{7}\\ \\text{J}$（48,000 英热单位）。（a）如果这台空调的能效比（$\\text{EER}$）为 12.0，要做到这一点需要输入多少能量（以焦耳计）？（b）如果功的价格是每 $3.60 \\times 10^{6}\\ \\text{J}$（一千瓦时）10.0 美分，这样做的费用是多少？（c）讨论这个费用看起来是否现实。请注意，空调或冰箱的能效比（$\\text{EER}$）被定义为每小时从冷环境中传出的热传递的英热单位数，除以以瓦特计的输入功率。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 14400000.0,
+      "unit": "J",
+      "hint": "能效比是每小时移走的英热单位数除以以瓦特计的输入功率。用 48,000 Btu/h 除以 12.0 得到以瓦特计的功率，再乘以一小时的 3600 s，得到以焦耳计的输入能量。"
+     },
+     {
+      "part": "(b)",
+      "value": 40,
+      "unit": "cents",
+      "hint": "用输入能量除以 $3.60 \\times 10^{6}\\ \\text{J}$ 得到千瓦时数，再乘以 10.0 美分。"
+     }
+    ],
+    "solution": "（a）$1.44 \\times 10^{7}\\ \\text{J}$。（b）40 美分。（c）这个费用看起来相当现实；它表明，让空调运行一整天将花费 ＄9.59（如果它连续运行的话）。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "heat-pumps-and-temperature-difference"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "coefficient-of-performance-refrigerator",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "heat-pump"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "first-law-of-thermodynamics",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "heat-pumps-and-temperature-difference"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "coefficient-of-performance-heat-pump",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "coefficient-of-performance-refrigerator"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "heat-pumps-and-temperature-difference",
+   "weight": 3
+  },
+  {
+   "exercise": "cq5",
+   "concept": "heat-pump"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "coefficient-of-performance-refrigerator",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "heat-pump"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "first-law-of-thermodynamics",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-coefficient-of-performance"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coefficient-of-performance-heat-pump",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "carnot-efficiency",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-coefficient-of-performance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "coefficient-of-performance-refrigerator",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-coefficient-of-performance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "coefficient-of-performance-heat-pump",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "thermodynamics-problem-solving",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "calculate-coefficient-of-performance"
+  },
+  {
+   "exercise": "p7",
+   "concept": "coefficient-of-performance-refrigerator",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "convert-temperature-scales",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "energy-efficiency-rating"
+  },
+  {
+   "exercise": "p9",
+   "concept": "coefficient-of-performance-refrigerator",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "hot-reservoir",
+   "label": "高温热库",
+   "figures": [
+    "sim-heat-pump-backward",
+    "sim-friction",
+    "sim-two-ratios"
+   ]
+  },
+  {
+   "id": "cold-reservoir",
+   "label": "低温热库",
+   "figures": [
+    "sim-heat-pump-backward",
+    "sim-friction",
+    "sim-two-ratios"
+   ]
+  },
+  {
+   "id": "machine",
+   "label": "反向运行的机器",
+   "figures": [
+    "sim-heat-pump-backward",
+    "sim-two-ratios"
+   ]
+  },
+  {
+   "id": "working-fluid",
+   "label": "工质",
+   "figures": [
+    "sim-heat-pump-components"
+   ]
+  },
+  {
+   "id": "outdoor-coil",
+   "label": "室外盘管",
+   "figures": [
+    "sim-heat-pump-components",
+    "sim-heat-pump-house"
+   ]
+  },
+  {
+   "id": "indoor-coil",
+   "label": "室内盘管",
+   "figures": [
+    "sim-heat-pump-components",
+    "sim-heat-pump-house"
+   ]
+  },
+  {
+   "id": "compressor",
+   "label": "压缩机",
+   "figures": [
+    "sim-heat-pump-components"
+   ]
+  },
+  {
+   "id": "expansion-valve",
+   "label": "膨胀阀",
+   "figures": [
+    "sim-heat-pump-components"
+   ]
+  },
+  {
+   "id": "real-pump",
+   "label": "实际热泵",
+   "figures": [
+    "sim-friction"
+   ]
+  },
+  {
+   "id": "house",
+   "label": "住宅",
+   "figures": [
+    "sim-heat-pump-house"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-fig-carnot-ref",
+   "kind": "correction",
+   "html": "说明文字把该循环与图 15.27，即热泵的四个部件，作了比较。它所反向运行的卡诺循环是图 15.21 的那个。",
+   "figure": "sim-heat-pump-backward"
+  }
+ ]
+}

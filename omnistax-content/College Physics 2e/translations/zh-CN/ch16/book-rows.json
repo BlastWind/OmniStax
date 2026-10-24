@@ -1,0 +1,1257 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "θ_max",
+   "latex": "\\theta_{\\text{max}}",
+   "macro": "\\kthetamax"
+  },
+  {
+   "sym": "f_0",
+   "latex": "f_0",
+   "macro": "\\kfo"
+  },
+  {
+   "sym": "f_ave",
+   "latex": "f_{\\text{ave}}",
+   "macro": "\\kfave"
+  },
+  {
+   "sym": "x_1",
+   "latex": "x_1",
+   "macro": "\\kxone"
+  },
+  {
+   "sym": "x_2",
+   "latex": "x_2",
+   "macro": "\\kxtwo"
+  },
+  {
+   "sym": "λ_1",
+   "latex": "\\lambda_1",
+   "macro": "\\klamone"
+  },
+  {
+   "sym": "λ_2",
+   "latex": "\\lambda_2",
+   "macro": "\\klamtwo"
+  },
+  {
+   "sym": "I_intensprime",
+   "latex": "I'",
+   "macro": "\\kIntensprime"
+  },
+  {
+   "sym": "X_prime",
+   "latex": "X'",
+   "macro": "\\kXprime"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "restoring-force",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "回复力",
+   "symbol": "F",
+   "terms": [
+    "回复力"
+   ],
+   "type": "force",
+   "statement": "当物体偏离其平衡位置时，形变会产生一个方向相反的力，把物体推回去。没有这样的力就没有振动，因为物体只会沿直线匀速运动。"
+  },
+  {
+   "id": "force-constant",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "劲度系数",
+   "symbol": "k",
+   "terms": [
+    "劲度系数"
+   ],
+   "type": "stiffness",
+   "statement": "劲度系数表明一个系统的刚度有多大。$\\kk$ 越大，同样的位移下回复力越大，系统的刚度也越大。它是回复力—位移图像的斜率，单位为牛每米。"
+  },
+  {
+   "id": "hookes-law",
+   "kind": "axiom",
+   "section": "16.1",
+   "name": "胡克定律",
+   "terms": [
+    "胡克定律"
+   ],
+   "statement": "发生形变的系统的回复力与它偏离平衡位置的位移成正比，方向与位移相反，$\\kF = -\\kk\\kx$。这就是胡克定律，最简单的振动出现在服从它的系统中。由力和位移可以求出劲度系数。",
+   "forms": [
+    {
+     "id": "eq-hooke",
+     "latex": "F = -kx",
+     "ktex": "\\kF = -\\kk\\kx",
+     "anchor": "16.1-hookes-law"
+    },
+    {
+     "id": "eq-hooke-dl",
+     "latex": "F = k\\Delta L",
+     "ktex": "\\kF = \\kk\\kdL",
+     "condition": "小形变，物体能恢复原来的形状",
+     "section": "5.3",
+     "anchor": "5.3-deformation"
+    },
+    {
+     "id": "eq-dl-from-k",
+     "latex": "\\Delta L = \\frac{F}{k}",
+     "ktex": "\\kdL = \\frac{\\kF}{\\kk}",
+     "section": "5.3",
+     "anchor": "5.3-deformation"
+    },
+    {
+     "id": "eq-k",
+     "latex": "k = -\\frac{F}{x}",
+     "ktex": "\\kk = -\\frac{\\kF}{\\kx}",
+     "anchor": "16.1-ex-car"
+    }
+   ]
+  },
+  {
+   "id": "periodic-motion",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "周期运动",
+   "terms": [
+    "周期运动"
+   ],
+   "statement": "以规则的时间间隔重复自身的运动，例如被拨动的吉他弦或弹簧上上下下运动的物体，就是周期运动。每一次重复所用的时间都与前一次相同，这正是周期和频率有意义的原因。"
+  },
+  {
+   "id": "period",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "周期",
+   "symbol": "T",
+   "terms": [
+    "周期"
+   ],
+   "type": "time",
+   "statement": "周期是完成一次振动所用的时间。其单位通常是秒，但也可以是任何方便的时间单位。这个词适用于任何事件所用的时间，无论是否重复，但这里指的是周期运动一个循环所用的时间。"
+  },
+  {
+   "id": "frequency",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "频率",
+   "symbol": "f",
+   "terms": [
+    "频率"
+   ],
+   "type": "frequency",
+   "statement": "频率是单位时间内事件发生的次数。对周期运动而言，它是单位时间内的振动次数，以赫兹为单位，一赫兹就是每秒一个循环。用循环数除以所用的时间就得到频率，无论这个数是否是在一秒内数出的。"
+  },
+  {
+   "id": "period-frequency",
+   "kind": "result",
+   "section": "16.2",
+   "name": "周期与频率",
+   "statement": "如果一个循环用时 $\\kT$，那么每单位时间内容纳 $1/\\kT$ 个循环，所以频率是周期的倒数，周期也是频率的倒数。已知其中一个，另一个立即可得。",
+   "forms": [
+    {
+     "id": "eq-period-frequency",
+     "latex": "f = \\frac{1}{T}",
+     "ktex": "\\kf = \\frac{1}{\\kT}",
+     "anchor": "16.2-frequency"
+    },
+    {
+     "id": "eq-frequency-period",
+     "latex": "T = \\frac{1}{f}",
+     "ktex": "\\kT = \\frac{1}{\\kf}",
+     "anchor": "16.2-ex-ultrasound"
+    },
+    {
+     "id": "eq-generator-period",
+     "latex": "T = \\frac{1}{f} = \\frac{2\\pi}{\\omega}",
+     "ktex": "\\kT = \\frac{1}{\\kf} = \\frac{2\\pi}{\\kw}",
+     "section": "23.5",
+     "anchor": "23.5-the-emf-at-each-instant"
+    }
+   ]
+  },
+  {
+   "id": "simple-harmonic-motion",
+   "kind": "definition",
+   "section": "16.3",
+   "name": "简谐运动",
+   "terms": [
+    "简谐运动"
+   ],
+   "statement": "当系统所受的合力可以用胡克定律描述且没有阻尼时，系统在平衡位置两侧以相等的位移振动。这就是简谐运动，是最简单也最常见的振动，而这样的系统就是简谐振子。"
+  },
+  {
+   "id": "amplitude",
+   "kind": "definition",
+   "section": "16.3",
+   "name": "振幅",
+   "symbol": "X",
+   "terms": [
+    "振幅"
+   ],
+   "type": "position",
+   "statement": "振幅是偏离平衡位置的最大位移。它的单位与位移相同，弹簧上的物体以米为单位，并且与振动中的能量有关。在一个完整的周期内，物体走过四个振幅的路程。"
+  },
+  {
+   "id": "shm-period",
+   "kind": "result",
+   "section": "16.3",
+   "name": "简谐振子的周期",
+   "statement": "简谐振子的周期和频率只取决于质量和劲度系数，与振幅无关。刚度越大的系统周期越短，质量越大的系统周期越长。因为周期是恒定的，简谐振子可以用作时钟。",
+   "forms": [
+    {
+     "id": "eq-shm-period",
+     "latex": "T = 2\\pi\\sqrt{\\frac{m}{k}}",
+     "ktex": "\\kT = 2\\pi\\sqrt{\\frac{m}{\\kk}}",
+     "anchor": "16.3-shm-period"
+    },
+    {
+     "id": "eq-shm-frequency",
+     "latex": "f = \\frac{1}{2\\pi}\\sqrt{\\frac{k}{m}}",
+     "ktex": "\\kf = \\frac{1}{2\\pi}\\sqrt{\\frac{\\kk}{m}}",
+     "anchor": "16.3-shm-period"
+    }
+   ]
+  },
+  {
+   "id": "shm-kinematics",
+   "kind": "result",
+   "section": "16.3",
+   "name": "简谐运动的运动学",
+   "statement": "任何简谐运动的位移都是时间的余弦函数，$\\kx(t) = \\kX\\cos(2\\pi\\kt/\\kT)$。速度是正弦函数，最大值为 $\\kvmax = 2\\pi\\kX/\\kT = \\kX\\sqrt{\\kk/m}$，在折返点为零，经过平衡位置时最大；加速度是余弦函数，方向与位移相反。这些正弦波把简谐运动与波联系起来。",
+   "forms": [
+    {
+     "id": "eq-shm-x",
+     "latex": "x(t) = X\\cos\\frac{2\\pi t}{T}",
+     "ktex": "\\kx(\\kt) = \\kX\\cos\\frac{2\\pi\\kt}{\\kT}",
+     "anchor": "16.3-shm-waves"
+    },
+    {
+     "id": "eq-shm-v",
+     "latex": "v(t) = -v_{\\text{max}}\\sin\\frac{2\\pi t}{T}",
+     "ktex": "\\kv(\\kt) = -\\kvmax\\sin\\frac{2\\pi\\kt}{\\kT}",
+     "anchor": "16.3-shm-waves"
+    },
+    {
+     "id": "eq-vmax",
+     "latex": "v_{\\text{max}} = \\frac{2\\pi X}{T} = X\\sqrt{\\frac{k}{m}}",
+     "ktex": "\\kvmax = \\frac{2\\pi\\kX}{\\kT} = \\kX\\sqrt{\\frac{\\kk}{m}}",
+     "anchor": "16.3-shm-waves"
+    },
+    {
+     "id": "eq-shm-a",
+     "latex": "a(t) = -\\frac{kX}{m}\\cos\\frac{2\\pi t}{T}",
+     "ktex": "\\ka(\\kt) = -\\frac{\\kk\\kX}{m}\\cos\\frac{2\\pi\\kt}{\\kT}",
+     "anchor": "16.3-shm-waves"
+    },
+    {
+     "id": "eq-wave-at-a-point",
+     "latex": "x = X\\cos\\left(\\frac{2\\pi t}{T}\\right) = X\\cos(2\\pi f t)",
+     "ktex": "\\kx = \\kX\\cos\\left(\\frac{2\\pi\\kt}{\\kT}\\right) = \\kX\\cos(2\\pi\\kf\\kt)",
+     "section": "16.10",
+     "anchor": "16.10-beats"
+    }
+   ]
+  },
+  {
+   "id": "simple-harmonic-oscillator",
+   "kind": "definition",
+   "section": "16.3",
+   "name": "简谐振子",
+   "terms": [
+    "简谐振子"
+   ],
+   "statement": "简谐振子是服从胡克定律、因而做简谐运动的系统，例如连在弹簧上的物体。"
+  },
+  {
+   "id": "simple-pendulum",
+   "kind": "definition",
+   "section": "16.4",
+   "name": "单摆",
+   "terms": [
+    "单摆"
+   ],
+   "statement": "单摆是用轻细绳悬挂的一个小质量物体，即摆锤。沿其圆弧发生位移时，它受到指向最低点的合力 $-m\\kg\\sin\\theta$，因为张力抵消了重力沿绳方向的分量。对于小位移，它是简谐振子。"
+  },
+  {
+   "id": "pendulum-restoring-force",
+   "kind": "result",
+   "section": "16.4",
+   "name": "摆所受的回复力",
+   "statement": "对于小于约 15° 的角度，$\\sin\\theta$ 与 $\\theta$ 相差不超过 1%，所以回复力 $-m\\kg\\sin\\theta$ 变为 $-m\\kg\\theta$，再由 $\\ks = L\\theta$，它就是 $-\\frac{m\\kg}{L}\\ks$。这就是劲度系数为 $\\kk = m\\kg/L$ 的胡克定律，也正是它使摆成为简谐振子。",
+   "forms": [
+    {
+     "id": "eq-pendulum-force",
+     "latex": "F \\approx -\\frac{mg}{L}s",
+     "ktex": "\\kF \\approx -\\frac{m\\kg}{L}\\ks",
+     "anchor": "16.4-small-angle"
+    }
+   ]
+  },
+  {
+   "id": "pendulum-period",
+   "kind": "result",
+   "section": "16.4",
+   "name": "单摆的周期",
+   "statement": "把 $\\kk = m\\kg/L$ 代入 $\\kT = 2\\pi\\sqrt{m/\\kk}$，质量被消去，得到 $\\kT = 2\\pi\\sqrt{L/\\kg}$。只有摆长和重力加速度影响周期；质量不影响，对于小幅摆动，振幅也几乎不影响。这就是摆能够计时的原因。",
+   "forms": [
+    {
+     "id": "eq-pendulum-period",
+     "latex": "T = 2\\pi\\sqrt{\\frac{L}{g}}",
+     "ktex": "\\kT = 2\\pi\\sqrt{\\frac{L}{\\kg}}",
+     "anchor": "16.4-pendulum-period"
+    }
+   ]
+  },
+  {
+   "id": "measuring-g",
+   "kind": "skill",
+   "section": "16.4",
+   "name": "用摆测量 g",
+   "statement": "把周期公式平方并解出 $\\kg$，得 $\\kg = 4\\pi^2 L/\\kT^2$。如果摆长已精确知道，并且在小角度下对许多次摆动计时，就能把当地的重力加速度测到几位数字，这在地质勘探中很重要。",
+   "forms": [
+    {
+     "id": "eq-g-from-pendulum",
+     "latex": "g = 4\\pi^2\\frac{L}{T^2}",
+     "ktex": "\\kg = 4\\pi^2\\frac{L}{\\kT^2}",
+     "anchor": "16.4-ex-measuring-g"
+    }
+   ]
+  },
+  {
+   "id": "shm-energy",
+   "kind": "result",
+   "section": "16.5",
+   "name": "简谐振子的能量",
+   "statement": "简谐振子没有耗散力，所以它的能量在弹性势能和动能之间分配，总量不变。随着系统振动，能量完全地从一种形式转为另一种：在折返点全是势能，经过平衡位置时全是动能。从静止开始、起始 $\\kx = \\kX$ 时，总能量为 $\\tfrac{1}{2}\\kk\\kX^2$。",
+   "forms": [
+    {
+     "id": "eq-shm-energy",
+     "latex": "\\tfrac{1}{2}mv^2 + \\tfrac{1}{2}kx^2 = \\text{常量}",
+     "ktex": "\\tfrac{1}{2}m\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = \\text{常量}",
+     "anchor": "16.5-shm-energy"
+    },
+    {
+     "id": "eq-shm-total",
+     "latex": "\\tfrac{1}{2}mv^2 + \\tfrac{1}{2}kx^2 = \\tfrac{1}{2}kX^2",
+     "ktex": "\\tfrac{1}{2}m\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = \\tfrac{1}{2}\\kk\\kX^2",
+     "anchor": "16.5-max-speed"
+    },
+    {
+     "id": "eq-pendulum-energy",
+     "latex": "\\tfrac{1}{2}mL^2\\omega^2 + \\tfrac{1}{2}mgL\\theta^2 = \\text{常量}",
+     "ktex": "\\tfrac{1}{2}mL^2\\kw^2 + \\tfrac{1}{2}m\\kg L\\theta^2 = \\text{常量}",
+     "anchor": "16.5-shm-energy"
+    },
+    {
+     "id": "eq-omega-max",
+     "latex": "\\omega_{\\text{max}} = \\sqrt{\\frac{g}{L}}\\theta_{\\text{max}}",
+     "ktex": "\\kwmax = \\sqrt{\\frac{\\kg}{L}}\\theta_{\\text{max}}",
+     "anchor": "16.5-max-speed"
+    }
+   ]
+  },
+  {
+   "id": "shm-max-speed",
+   "kind": "result",
+   "section": "16.5",
+   "name": "简谐运动中的速率",
+   "statement": "由能量守恒解出速度，就得到每个位置处的速率，在平衡位置最大，在折返点为零，其中 $\\kvmax = \\kX\\sqrt{\\kk/m}$。最大速度与振幅成正比，刚度越大的系统越大，质量越大则越小。",
+   "forms": [
+    {
+     "id": "eq-v-of-x",
+     "latex": "v = \\pm v_{\\text{max}}\\sqrt{1 - \\frac{x^2}{X^2}}",
+     "ktex": "\\kv = \\pm\\kvmax\\sqrt{1 - \\frac{\\kx^2}{\\kX^2}}",
+     "anchor": "16.5-max-speed"
+    },
+    {
+     "id": "eq-vmax-energy",
+     "latex": "v_{\\text{max}} = X\\sqrt{\\frac{k}{m}}",
+     "ktex": "\\kvmax = \\kX\\sqrt{\\frac{\\kk}{m}}",
+     "anchor": "16.5-max-speed"
+    }
+   ]
+  },
+  {
+   "id": "ucm-shm-projection",
+   "kind": "result",
+   "section": "16.6",
+   "name": "匀速圆周运动的投影",
+   "statement": "一个以恒定角速度 $\\kw$ 绕圆周运动的点，在固定轴上的投影位于 $\\kx = \\kX\\cos\\kw\\kt$，而由 $\\kw = 2\\pi/\\kT$，这恰好就是简谐振子的位置。因此转盘上小球的影子做简谐运动，任何简谐振子的速率和周期都可以从圆上读出：由相似三角形得 $\\kv = \\kvmax\\sqrt{1 - \\kx^2/\\kX^2}$，转一周则得 $\\kT = 2\\pi\\kX/\\kvmax = 2\\pi\\sqrt{m/\\kk}$。",
+   "forms": [
+    {
+     "id": "eq-omega-T",
+     "latex": "\\omega = \\frac{2\\pi}{T}",
+     "ktex": "\\kw = \\frac{2\\pi}{\\kT}",
+     "anchor": "16.6-projection"
+    },
+    {
+     "id": "eq-x-cos-theta",
+     "latex": "x = X\\cos\\theta",
+     "ktex": "\\kx = \\kX\\cos\\theta",
+     "anchor": "16.6-projection"
+    },
+    {
+     "id": "eq-x-cos-wt",
+     "latex": "x = X\\cos\\omega t",
+     "ktex": "\\kx = \\kX\\cos\\kw\\kt",
+     "anchor": "16.6-projection"
+    },
+    {
+     "id": "eq-v-similar",
+     "latex": "\\frac{v}{v_{\\text{max}}} = \\sqrt{1 - \\frac{x^2}{X^2}}",
+     "ktex": "\\frac{\\kv}{\\kvmax} = \\sqrt{1 - \\frac{\\kx^2}{\\kX^2}}",
+     "anchor": "16.6-from-the-circle"
+    },
+    {
+     "id": "eq-T-from-circle",
+     "latex": "T = \\frac{2\\pi X}{v_{\\text{max}}}",
+     "ktex": "\\kT = \\frac{2\\pi\\kX}{\\kvmax}",
+     "anchor": "16.6-from-the-circle"
+    }
+   ]
+  },
+  {
+   "id": "damped-harmonic-motion",
+   "kind": "idea",
+   "section": "16.7",
+   "name": "阻尼简谐运动",
+   "statement": "完全无阻尼的运动是罕见的，因为摩擦和其他非保守力很少可以忽略；吉他弦在你拨动后几秒钟就停了。阻尼很小时，周期和频率几乎保持简谐运动的值，但随着阻尼力带走能量（通常变为热能），振幅逐渐减小。阻尼越大，对运动的阻碍和减慢越多，于是周期和频率开始变化。阻尼非常大时，系统根本不振动。"
+  },
+  {
+   "id": "nonconservative-work-damping",
+   "kind": "result",
+   "section": "16.7",
+   "name": "阻尼带走的能量",
+   "statement": "非保守力带走的能量由 $\\kWnc = \\Delta(\\kKE + \\kPEtot)$ 描述，其中 $\\kWnc$ 是非保守力（这里是阻尼力）所做的功。对阻尼简谐振子，这个功是负的，因为它从系统中带走机械能，所以阻尼振子的机械能只会随时间减小。",
+   "forms": [
+    {
+     "id": "eq-wnc-damping",
+     "latex": "W_{\\text{nc}} = \\Delta(\\text{KE} + \\text{PE})",
+     "ktex": "\\kWnc = \\Delta(\\kKE + \\kPEtot)",
+     "anchor": "16.7-damping"
+    }
+   ]
+  },
+  {
+   "id": "critical-damping",
+   "kind": "definition",
+   "section": "16.7",
+   "name": "临界阻尼",
+   "terms": [
+    "临界阻尼"
+   ],
+   "statement": "临界阻尼使振子尽可能快地回到平衡位置。临界阻尼系统可能越过平衡位置，但如果越过，也只会越过一次。汽车悬架和体重秤都用它，因为系统能迅速回到平衡并停在那里。恒力使它在最短的时间内、不经振动地移到新的平衡位置。"
+  },
+  {
+   "id": "underdamping",
+   "kind": "definition",
+   "section": "16.7",
+   "name": "欠阻尼",
+   "terms": [
+    "欠阻尼"
+   ],
+   "statement": "阻尼小于临界阻尼时，系统比临界阻尼系统更快地趋向平衡，但会越过并一次或多次穿过平衡位置，其振幅逐渐减小到零。这样的系统是欠阻尼的，而振幅缓慢衰减、周期几乎不变的轻阻尼振子是常见的情形。"
+  },
+  {
+   "id": "overdamping",
+   "kind": "definition",
+   "section": "16.7",
+   "name": "过阻尼",
+   "terms": [
+    "过阻尼"
+   ],
+   "statement": "过阻尼系统（曲线 B）不经振动就回到平衡位置，所用时间比临界阻尼系统更长；与临界阻尼系统一样，它可能越过平衡位置，但很慢才到达平衡。在小振幅运动比快速回位更重要的场合需要大阻尼，其代价是缓慢。"
+  },
+  {
+   "id": "friction-damped-oscillator",
+   "kind": "skill",
+   "section": "16.7",
+   "name": "求摩擦阻尼振子经过的路程",
+   "statement": "当阻尼是简单的摩擦时，它做的功是 $-\\kff\\kd$，其中 $\\kff = \\mu_{\\text{k}} m\\kg$，$\\kd$ 是经过的总路程，运动停在摩擦力与弹簧力平衡的位置，即 $\\kx = \\mu_{\\text{k}} m\\kg/\\kk$。令摩擦力所做的功等于储存的弹性势能的变化，就得到物体停下之前经过的总路程。这是一道综合概念题：先用牛顿定律处理摩擦，再用功和能量守恒。",
+   "forms": [
+    {
+     "id": "eq-friction-distance",
+     "latex": "d = \\frac{k}{2\\mu_{\\text{k}} mg}\\left(X^2 - \\left(\\frac{\\mu_{\\text{k}} mg}{k}\\right)^2\\right)",
+     "ktex": "\\kd = \\frac{\\kk}{2\\mu_{\\text{k}} m\\kg}\\left(\\kX^2 - \\left(\\frac{\\mu_{\\text{k}} m\\kg}{\\kk}\\right)^2\\right)",
+     "condition": "物体在水平弹簧上自 X 处由静止释放，且存在简单的摩擦",
+     "anchor": "16.7-friction-example"
+    },
+    {
+     "id": "eq-friction-stop-position",
+     "latex": "x = \\frac{\\mu_{\\text{k}} mg}{k}",
+     "ktex": "\\kx = \\frac{\\mu_{\\text{k}} m\\kg}{\\kk}",
+     "condition": "物体停下的位置，摩擦力与弹簧力平衡",
+     "anchor": "16.7-friction-example"
+    },
+    {
+     "id": "eq-friction-work",
+     "latex": "W_{\\text{nc}} = -fd = -\\mu_{\\text{k}} mgd",
+     "ktex": "\\kWnc = -\\kff\\kd = -\\mu_{\\text{k}} m\\kg\\kd",
+     "condition": "物体与表面之间存在简单的摩擦",
+     "anchor": "16.7-friction-example"
+    }
+   ]
+  },
+  {
+   "id": "natural-frequency",
+   "kind": "definition",
+   "section": "16.8",
+   "name": "固有频率",
+   "symbol": "f_0",
+   "terms": [
+    "固有频率"
+   ],
+   "type": "frequency",
+   "statement": "固有频率是系统在没有驱动力和阻尼力时振动的频率。物体可以被迫振动，但它们在固有频率下振动得最好；钢琴的弦会回应你对着它们唱出的音，因为它们的频率与你的声音相匹配。"
+  },
+  {
+   "id": "resonance",
+   "kind": "definition",
+   "section": "16.8",
+   "name": "共振",
+   "terms": [
+    "共振",
+    "共振",
+    "共振的"
+   ],
+   "statement": "以固有频率驱动系统称为共振，系统被说成发生共振。以固有频率驱动拍球玩具，只要你一直驱动，它的振幅就随每次振动增大。驱动频率远高于或远低于固有频率时，球吸收能量的效率较低，振幅较小。收音机、磁共振成像、荡秋千的孩子和塔科马海峡大桥都表现出共振。"
+  },
+  {
+   "id": "resonance-curve-damping",
+   "kind": "result",
+   "section": "16.8",
+   "name": "共振曲线与阻尼",
+   "statement": "受驱动的阻尼简谐振子的振幅在驱动频率等于固有频率处达到峰值，无论阻尼多大。阻尼最小时峰最高最窄，因为阻尼力带走的能量最少。必须在某一精确频率上共振的钢琴弦或收音机，需要尽可能小的阻尼。汽车的悬架需要很大的阻尼，这降低了振幅，但使它能在更多的频率上响应。"
+  },
+  {
+   "id": "energy-removed-by-damping",
+   "kind": "skill",
+   "section": "16.8",
+   "name": "求阻尼器带走的能量",
+   "statement": "减震器为抑制一次弹跳而必须耗散的能量，就是振动的机械能，在平衡位置为 $\\tfrac{1}{2}m\\kv^2$，在最大位移处为 $\\tfrac{1}{2}\\kk\\kX^2$；而驱动力要使振幅增大所必须提供的能量，是两个这样的储能之差。共振时驱动器以稳定的速率输入能量，所以达到更大振幅所需的时间就是这个差除以该速率。"
+  },
+  {
+   "id": "wave",
+   "kind": "definition",
+   "section": "16.9",
+   "name": "波",
+   "statement": "波是一种传播的扰动，即从产生它的地方移开。对水波而言，扰动在水面上，对声音而言是气压的变化，对地震而言则是地面本身。最简单的波重复若干个循环，并伴随简谐运动。海鸥随着波峰和波谷从下方经过而上下起伏，而波本身，也就是扰动而不是水，则继续向前。"
+  },
+  {
+   "id": "wave-velocity",
+   "kind": "definition",
+   "section": "16.9",
+   "name": "波速",
+   "symbol": "v_w",
+   "terms": [
+    "波速"
+   ],
+   "type": "velocity",
+   "statement": "波速是扰动运动的速率，有时称为传播速度或传播速率。它是波的速率，而不是海鸥上下运动的速率：对水波是表面波的速率，对声音是声速，对可见光是光速。"
+  },
+  {
+   "id": "wavelength",
+   "kind": "definition",
+   "section": "16.9",
+   "name": "波长",
+   "symbol": "λ",
+   "terms": [
+    "波长"
+   ],
+   "type": "position",
+   "statement": "波长是波中相邻的相同部分之间的距离，沿平行于传播方向测量。扰动的大小，即其振幅，是另一个长度，与传播速率完全无关。"
+  },
+  {
+   "id": "wave-speed-wavelength-frequency",
+   "kind": "result",
+   "section": "16.9",
+   "name": "波速、波长和频率",
+   "statement": "传播速率是波在给定时间内传播的距离，即一个周期内传播一个波长，所以 $\\kvw = \\klam/\\kT$，或 $\\kvw = \\kf\\klam$。这一基本关系适用于所有类型的波：水波、声波和光波都一样。",
+   "forms": [
+    {
+     "id": "eq-wave-speed-period",
+     "latex": "v_{\\text{w}} = \\frac{\\lambda}{T}",
+     "ktex": "\\kvw = \\frac{\\klam}{\\kT}",
+     "anchor": "16.9-wave-speed"
+    },
+    {
+     "id": "eq-wave-speed-frequency",
+     "latex": "v_{\\text{w}} = f\\lambda",
+     "ktex": "\\kvw = \\kf\\klam",
+     "anchor": "16.9-wave-speed"
+    },
+    {
+     "id": "eq-wave-speed-general",
+     "latex": "v_{\\text{w}} = f\\lambda",
+     "ktex": "\\kvw = \\kf\\klam",
+     "section": "24.3",
+     "anchor": "24.3-wave-relation"
+    },
+    {
+     "id": "eq-c-f-lambda",
+     "latex": "c = f\\lambda",
+     "ktex": "\\kc = \\kf\\klam",
+     "section": "27.1",
+     "anchor": "27.1-wave-character"
+    }
+   ]
+  },
+  {
+   "id": "transverse-wave",
+   "kind": "definition",
+   "section": "16.9",
+   "name": "横波",
+   "terms": [
+    "横波"
+   ],
+   "statement": "在横波，即剪切波中，扰动垂直于传播方向：绳子上下运动，而波沿绳水平传播。乐器弦上的波是横波，可见光等电磁波也是横波。"
+  },
+  {
+   "id": "longitudinal-wave",
+   "kind": "definition",
+   "section": "16.9",
+   "name": "纵波",
+   "terms": [
+    "纵波"
+   ],
+   "statement": "在纵波，即压缩波中，扰动平行于传播方向：绳子沿自身长度被推拉。空气和水中的声波是纵波，因为流体没有明显的抗切强度，因而只能传递压强的周期性变化；固体中的声波和地震波既可以是纵波，也可以是横波。"
+  },
+  {
+   "id": "superposition",
+   "kind": "axiom",
+   "section": "16.10",
+   "name": "叠加",
+   "terms": [
+    "叠加"
+   ],
+   "statement": "当两列或多列波到达同一点时，它们的扰动叠加在一起。每个扰动对应一个力，而力是相加的，所以如果扰动沿同一直线，合成波就是各列波扰动的简单相加：它们的振幅相加。大多数波看起来复杂，是因为它们由几个简单的波叠加而成，而叠加它们的规则就是这样简单。",
+   "forms": [
+    {
+     "id": "eq-superposition-sum",
+     "latex": "x = x_1 + x_2",
+     "ktex": "\\kx = \\kxone + \\kxtwo",
+     "condition": "扰动沿同一直线",
+     "anchor": "16.10-superposition"
+    }
+   ]
+  },
+  {
+   "id": "constructive-interference",
+   "kind": "definition",
+   "section": "16.10",
+   "name": "相长干涉",
+   "terms": [
+    "相长干涉"
+   ],
+   "statement": "两列相同的波恰好同相到达同一点，波峰对波峰、波谷对波谷，产生完全相长干涉：得到振幅为单列波两倍、波长相同的波。这是叠加所能做到的一个极端，大多数实际的叠加是它与其反面的混合，随地点和时间而变化。"
+  },
+  {
+   "id": "destructive-interference",
+   "kind": "definition",
+   "section": "16.10",
+   "name": "相消干涉",
+   "terms": [
+    "相消干涉"
+   ],
+   "statement": "两列相同的波恰好反相到达，波峰与波谷精确对齐，产生完全相消干涉：扰动方向相反，合成振幅为零，所以两列波完全抵消。立体声音响发出的声音在一处很响而在另一处很轻，就是同一房间里不同地点的两种干涉。"
+  },
+  {
+   "id": "standing-wave",
+   "kind": "idea",
+   "section": "16.10",
+   "name": "驻波",
+   "terms": [
+    "驻波"
+   ],
+   "statement": "两列沿相反方向运动的相同的波叠加成一列停在原地的波。它们彼此穿过时在相长干涉和相消干涉之间交替，合成波在固定位置振动而不传播。冰箱里一杯牛奶中的波、吉他弦上的波和风琴管中的波都是驻波，由来自两侧或两端的反射形成。"
+  },
+  {
+   "id": "nodes-and-antinodes-on-a-string",
+   "kind": "definition",
+   "section": "16.10",
+   "name": "波节和波腹",
+   "statement": "波节是弦不动的点；更一般地说，波节是驻波中波的扰动为零的地方。弦的固定端必须是波节，因为弦在那里不能运动。波腹是驻波中振幅最大的位置。"
+  },
+  {
+   "id": "string-harmonics",
+   "kind": "result",
+   "section": "16.10",
+   "name": "弦的基频和泛音",
+   "statement": "在两端固定的弦上，最长的波长是 $\\klamone = 2L$，所以最低的频率，即基频，是 $\\kfone = \\kvw/\\klamone = \\kvw/2L$。泛音，或称谐波，是基频的倍数：$\\klamtwo = L$ 给出 $\\kftwo = 2\\kfone$，以及 $\\kfthree = 3\\kfone$，依此类推。增大张力，所有这些频率一起升高，因为张力越大 $\\kvw$ 越大。弦乐器就是这样调音的。",
+   "forms": [
+    {
+     "id": "eq-string-fundamental",
+     "latex": "f_1 = \\frac{v_{\\text{w}}}{\\lambda_1} = \\frac{v_{\\text{w}}}{2L}",
+     "ktex": "\\kfone = \\frac{\\kvw}{\\klamone} = \\frac{\\kvw}{2L}",
+     "condition": "两端固定的弦",
+     "anchor": "16.10-standing-waves"
+    },
+    {
+     "id": "eq-fundamental-wavelength",
+     "latex": "\\lambda_1 = 2L",
+     "ktex": "\\klamone = 2L",
+     "condition": "两端固定的弦",
+     "anchor": "16.10-standing-waves"
+    },
+    {
+     "id": "eq-string-overtones",
+     "latex": "f_2 = \\frac{v_{\\text{w}}}{\\lambda_2} = \\frac{v_{\\text{w}}}{L} = 2f_1, \\quad f_3 = 3f_1",
+     "ktex": "\\kftwo = \\frac{\\kvw}{\\klamtwo} = \\frac{\\kvw}{L} = 2\\kfone, \\quad \\kfthree = 3\\kfone",
+     "condition": "两端固定的弦",
+     "anchor": "16.10-standing-waves"
+    }
+   ]
+  },
+  {
+   "id": "beats",
+   "kind": "idea",
+   "section": "16.10",
+   "name": "拍",
+   "statement": "两列频率相近但不相同的波叠加后，会时而同相时而反相，交替地相长和相消，所以合成波的频率是两者的平均频率，而振幅时升时降：它发生拍。相邻的两个钢琴键发出颤音，滑行中的双引擎喷气式飞机的声音忽强忽弱，也是这个缘故，而乘积形式 $\\kx = 2\\kX\\cos(\\pi\\kfB\\kt)\\cos(2\\pi\\kfave\\kt)$ 显示出承载振幅的慢余弦和作为波的快余弦。",
+   "forms": [
+    {
+     "id": "eq-beats-product",
+     "latex": "x = 2X\\cos(\\pi f_{\\text{B}} t)\\cos(2\\pi f_{\\text{ave}} t)",
+     "ktex": "\\kx = 2\\kX\\cos(\\pi\\kfB\\kt)\\cos(2\\pi\\kfave\\kt)",
+     "condition": "两列振幅相同、频率相近的波",
+     "anchor": "16.10-beats"
+    },
+    {
+     "id": "eq-two-waves-sum",
+     "latex": "x = X\\cos(2\\pi f_1 t) + X\\cos(2\\pi f_2 t)",
+     "ktex": "\\kx = \\kX\\cos(2\\pi\\kfone\\kt) + \\kX\\cos(2\\pi\\kftwo\\kt)",
+     "anchor": "16.10-beats"
+    }
+   ]
+  },
+  {
+   "id": "beat-frequency",
+   "kind": "result",
+   "section": "16.10",
+   "name": "拍频",
+   "symbol": "f_B",
+   "terms": [
+    "拍频"
+   ],
+   "type": "frequency",
+   "statement": "合成波的振幅起伏的频率就是拍频，等于两个频率之差的绝对值。它对所有类型的波都一样；对声音而言，只要两个频率相近，听到的就是平均频率的声音以拍频变响变轻。听拍是比较相近频率的一种很有用的办法，钢琴就是这样对着音叉调音的。",
+   "forms": [
+    {
+     "id": "eq-beat-frequency",
+     "latex": "f_{\\text{B}} = \\lvert f_1 - f_2 \\rvert",
+     "ktex": "\\kfB = \\lvert\\kfone - \\kftwo\\rvert",
+     "anchor": "16.10-beats"
+    }
+   ]
+  },
+  {
+   "id": "wave-energy-amplitude",
+   "kind": "result",
+   "section": "16.11",
+   "name": "波的能量与振幅",
+   "statement": "所有的波都携带能量，能量的多少取决于振幅。波是受到回复力阻碍的位移，所以位移 $\\kx$ 越大，产生它所需的力 $\\kF = \\kk\\kx$ 就越大。产生波所做的功提供了它的能量，所以 $\\kW \\propto \\kF\\kx = \\kk\\kx^2$。强度，即单位时间单位面积上的能量，也与振幅的平方成正比。因此，两列完全相长干涉的相同的波，强度是一列波的四倍，而不是两倍。",
+   "forms": [
+    {
+     "id": "eq-wave-energy-amplitude",
+     "latex": "W \\propto Fx = kx^2",
+     "ktex": "\\kW \\propto \\kF\\kx = \\kk\\kx^2",
+     "anchor": "16.11-wave-energy"
+    },
+    {
+     "id": "eq-intensity-amplitude-squared",
+     "latex": "I \\propto X^2",
+     "ktex": "\\kIntens \\propto \\kX^2",
+     "anchor": "16.11-wave-energy"
+    }
+   ]
+  },
+  {
+   "id": "intensity",
+   "kind": "definition",
+   "section": "16.11",
+   "name": "强度",
+   "symbol": "I_intens",
+   "terms": [
+    "强度"
+   ],
+   "type": "intensity",
+   "statement": "强度定义为单位面积上的功率，$\\kIntens = \\kP/A$，其中 $\\kP$ 是波通过面积 $A$ 所携带的功率；其 SI 单位是瓦每平方米。这个定义对任何传输中的能量都成立，包括波所携带的能量。它汇集了波的能量效应所依赖的三件事：振幅、时间和波所覆盖的面积：阳光到达大气层上方时为 1300 W/m²，而 90 分贝的声音只有 10⁻³ W/m²。",
+   "forms": [
+    {
+     "id": "eq-intensity",
+     "latex": "I = \\frac{P}{A}",
+     "ktex": "\\kIntens = \\frac{\\kP}{A}",
+     "anchor": "16.11-intensity"
+    },
+    {
+     "id": "eq-intensity-power-area",
+     "latex": "I = \\frac{P}{A}",
+     "ktex": "\\kIntens = \\frac{\\kP}{A}",
+     "section": "24.4",
+     "anchor": "24.4-average-intensity"
+    }
+   ]
+  },
+  {
+   "id": "energy-from-intensity",
+   "kind": "skill",
+   "section": "16.11",
+   "name": "由强度求能量",
+   "statement": "因为功率是单位时间的能量，$\\kP = \\kE/\\kt$，强度的定义就变成 $\\kIntens = (\\kE/\\kt)/A$，你可以从中解出能量 $\\kE = \\kIntens A\\kt$，或者解出时间。波作用的时间越长、落到的面积越大，传递的能量就越多。这就是为什么深层热疗超声治疗有规定的时间，而太阳能集热器有规定的尺寸。",
+   "forms": [
+    {
+     "id": "eq-energy-from-intensity",
+     "latex": "E = IAt",
+     "ktex": "\\kE = \\kIntens A\\kt",
+     "anchor": "16.11-intensity"
+    }
+   ]
+  },
+  {
+   "id": "intensity-area-ratio",
+   "kind": "skill",
+   "section": "16.11",
+   "name": "波的会聚或发散",
+   "statement": "会聚或发散一列波会改变它所覆盖的面积，从而改变强度，而功率保持不变。取新强度与旧强度之比，新的量用撇号表示。功率约去，所以强度之比是面积之比的倒数。被放大镜聚焦到小 200 倍的面积上的阳光，强度是原来的 200 倍，足以点火。",
+   "forms": [
+    {
+     "id": "eq-intensity-area-ratio",
+     "latex": "\\frac{I'}{I} = \\frac{A}{A'}",
+     "ktex": "\\frac{\\kIntensprime}{\\kIntens} = \\frac{A}{A'}",
+     "condition": "通过两个面积的功率相同，P' = P",
+     "anchor": "16.11-intensity"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "restoring-force",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "restoring-force",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "force-constant",
+   "prereq": "restoring-force"
+  },
+  {
+   "concept": "hookes-law",
+   "prereq": "restoring-force"
+  },
+  {
+   "concept": "hookes-law",
+   "prereq": "force-constant"
+  },
+  {
+   "concept": "period",
+   "prereq": "periodic-motion"
+  },
+  {
+   "concept": "frequency",
+   "prereq": "periodic-motion"
+  },
+  {
+   "concept": "period-frequency",
+   "prereq": "period"
+  },
+  {
+   "concept": "period-frequency",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "simple-harmonic-motion",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "simple-harmonic-motion",
+   "prereq": "restoring-force"
+  },
+  {
+   "concept": "amplitude",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "amplitude",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "shm-period",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "shm-period",
+   "prereq": "force-constant"
+  },
+  {
+   "concept": "shm-period",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "shm-kinematics",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "shm-kinematics",
+   "prereq": "shm-period"
+  },
+  {
+   "concept": "shm-kinematics",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "shm-kinematics",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "shm-kinematics",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "simple-pendulum",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "simple-pendulum",
+   "prereq": "restoring-force"
+  },
+  {
+   "concept": "pendulum-restoring-force",
+   "prereq": "simple-pendulum"
+  },
+  {
+   "concept": "pendulum-restoring-force",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "pendulum-restoring-force",
+   "prereq": "tension"
+  },
+  {
+   "concept": "pendulum-restoring-force",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "pendulum-period",
+   "prereq": "pendulum-restoring-force"
+  },
+  {
+   "concept": "pendulum-period",
+   "prereq": "shm-period"
+  },
+  {
+   "concept": "measuring-g",
+   "prereq": "pendulum-period"
+  },
+  {
+   "concept": "shm-energy",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "shm-energy",
+   "prereq": "elastic-potential-energy"
+  },
+  {
+   "concept": "shm-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "shm-energy",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "shm-max-speed",
+   "prereq": "shm-energy"
+  },
+  {
+   "concept": "shm-max-speed",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "ucm-shm-projection",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "ucm-shm-projection",
+   "prereq": "shm-kinematics"
+  },
+  {
+   "concept": "ucm-shm-projection",
+   "prereq": "uniform-circular-motion"
+  },
+  {
+   "concept": "ucm-shm-projection",
+   "prereq": "angular-velocity"
+  },
+  {
+   "concept": "damped-harmonic-motion",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "damped-harmonic-motion",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "damped-harmonic-motion",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "damped-harmonic-motion",
+   "prereq": "nonconservative-force"
+  },
+  {
+   "concept": "damped-harmonic-motion",
+   "prereq": "friction-dissipates-mechanical-energy"
+  },
+  {
+   "concept": "nonconservative-work-damping",
+   "prereq": "damped-harmonic-motion"
+  },
+  {
+   "concept": "nonconservative-work-damping",
+   "prereq": "work-by-nonconservative-forces"
+  },
+  {
+   "concept": "nonconservative-work-damping",
+   "prereq": "shm-energy"
+  },
+  {
+   "concept": "critical-damping",
+   "prereq": "damped-harmonic-motion"
+  },
+  {
+   "concept": "underdamping",
+   "prereq": "damped-harmonic-motion"
+  },
+  {
+   "concept": "overdamping",
+   "prereq": "damped-harmonic-motion"
+  },
+  {
+   "concept": "overdamping",
+   "prereq": "critical-damping"
+  },
+  {
+   "concept": "friction-damped-oscillator",
+   "prereq": "nonconservative-work-damping"
+  },
+  {
+   "concept": "friction-damped-oscillator",
+   "prereq": "kinetic-friction-magnitude"
+  },
+  {
+   "concept": "friction-damped-oscillator",
+   "prereq": "elastic-potential-energy"
+  },
+  {
+   "concept": "friction-damped-oscillator",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "friction-damped-oscillator",
+   "prereq": "solve-with-friction"
+  },
+  {
+   "concept": "natural-frequency",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "natural-frequency",
+   "prereq": "shm-period"
+  },
+  {
+   "concept": "natural-frequency",
+   "prereq": "damped-harmonic-motion"
+  },
+  {
+   "concept": "resonance",
+   "prereq": "natural-frequency"
+  },
+  {
+   "concept": "resonance",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "resonance-curve-damping",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "resonance-curve-damping",
+   "prereq": "damped-harmonic-motion"
+  },
+  {
+   "concept": "energy-removed-by-damping",
+   "prereq": "shm-energy"
+  },
+  {
+   "concept": "energy-removed-by-damping",
+   "prereq": "nonconservative-work-damping"
+  },
+  {
+   "concept": "energy-removed-by-damping",
+   "prereq": "elastic-potential-energy"
+  },
+  {
+   "concept": "energy-removed-by-damping",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "wave",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "wave",
+   "prereq": "periodic-motion"
+  },
+  {
+   "concept": "wave-velocity",
+   "prereq": "wave"
+  },
+  {
+   "concept": "wave-velocity",
+   "prereq": "average-speed"
+  },
+  {
+   "concept": "wavelength",
+   "prereq": "wave"
+  },
+  {
+   "concept": "wavelength",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "wave-speed-wavelength-frequency",
+   "prereq": "wave-velocity"
+  },
+  {
+   "concept": "wave-speed-wavelength-frequency",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "wave-speed-wavelength-frequency",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "transverse-wave",
+   "prereq": "wave"
+  },
+  {
+   "concept": "longitudinal-wave",
+   "prereq": "wave"
+  },
+  {
+   "concept": "longitudinal-wave",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "superposition",
+   "prereq": "wave"
+  },
+  {
+   "concept": "superposition",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "constructive-interference",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "destructive-interference",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "standing-wave",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "standing-wave",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "standing-wave",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "nodes-and-antinodes-on-a-string",
+   "prereq": "standing-wave"
+  },
+  {
+   "concept": "string-harmonics",
+   "prereq": "nodes-and-antinodes-on-a-string"
+  },
+  {
+   "concept": "string-harmonics",
+   "prereq": "wave-speed-wavelength-frequency"
+  },
+  {
+   "concept": "string-harmonics",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "beats",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "beats",
+   "prereq": "shm-kinematics"
+  },
+  {
+   "concept": "beats",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "beat-frequency",
+   "prereq": "beats"
+  },
+  {
+   "concept": "wave-energy-amplitude",
+   "prereq": "wave"
+  },
+  {
+   "concept": "wave-energy-amplitude",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "wave-energy-amplitude",
+   "prereq": "elastic-potential-energy"
+  },
+  {
+   "concept": "wave-energy-amplitude",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "intensity",
+   "prereq": "power"
+  },
+  {
+   "concept": "intensity",
+   "prereq": "wave-energy-amplitude"
+  },
+  {
+   "concept": "energy-from-intensity",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "energy-from-intensity",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "intensity-area-ratio",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "simple-harmonic-oscillator",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "simple-harmonic-oscillator",
+   "prereq": "hookes-law"
+  }
+ ]
+}

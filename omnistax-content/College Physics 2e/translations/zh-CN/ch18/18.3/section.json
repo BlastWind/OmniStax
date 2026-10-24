@@ -1,0 +1,680 @@
+{
+ "id": "18.3",
+ "module": "m42308",
+ "chapter": "18",
+ "title": "库仑定律",
+ "short": "库仑定律",
+ "lead": "两种电荷、同号电荷的相斥，以及<span data-concept=\"force\">力</span>随<span data-concept=\"distance\">距离</span>的减弱，汇集成一个公式，即库仑定律，用来表示两个点电荷之间的<span data-concept=\"force\">力</span>。它的常量在 SI 单位中确定了这个<span data-concept=\"force\">力</span>的大小，而对于一个电子和一个质子，可以把<span data-type=\"force\">库仑力</span>与它们之间的<span data-type=\"force\">引力</span>相比较。",
+ "objectives": [
+  "用静电力如何随两个物体之间的距离而变化来表述库仑定律。",
+  "计算两个带电的点力（如电子或质子）之间的静电力。",
+  "比较质子与电子之间的静电力和引力；比较人与地球之间的静电力和引力。"
+ ],
+ "summary_html": "<ul><li>法国人夏尔·库仑最先发表了描述两个物体之间静电力的数学方程。</li><li>库仑定律给出点电荷之间<span data-concept=\"force\">力</span>的大小。其公式为 $\\kF = k\\frac{|\\kqone\\kqtwo|}{r^2},$ 其中 $\\kqone$ 和 $\\kqtwo$ 是相距<span data-concept=\"distance\">距离</span> $r$ 的两个点电荷，$k \\approx 8.99\\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2$。</li><li>这种库仑力极为基本，因为大多数电荷都来自点状粒子。它是一切静电效应的成因，也是大多数宏观<span data-concept=\"force\">力</span>的基础。</li><li>与<span data-concept=\"force\">引力</span>这另一种基本<span data-concept=\"force\">力</span>相比，库仑力极其强大——但与<span data-concept=\"force\">引力</span>不同，它可以相互抵消，因为它既可以是吸引的，也可以是排斥的。</li><li>两个亚原子粒子之间的静电力远大于这同样两个粒子之间的<span data-concept=\"force\">引力</span>。</li></ul>",
+ "notes": "本节开头照片中的 Arp 87 星系作为装饰性题图略去，其图注所作的对比正是例题 18.1 的讨论，本页按书中原话收录。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自本书的答案表。九道没有答案的习题被略去，在此一并列出：相距 8.00 cm 的两个通草球；间距变为三倍的两个点电荷；使两个 75.0 nC 电荷之间的力为 1.00 N 的间距；相距一千米的两个 1 C 电荷；为使力最大而分配总电荷 $\\kqtot$；两个电子和两个质子的静电力与引力之比；两个质子之间的力等于其中一个质子重力的距离；总量为 $8.00\\ \\mu\\text{C}$ 的两个电荷；以及相距 3.00 m、总量为 $20\\ \\mu\\text{C}$ 的两个电荷。关于第三个电荷在何处所受合力为零的有答案习题，以及关于位于 $+6\\ \\mu\\text{C}$ 与 $+4\\ \\mu\\text{C}$ 正中间的检验电荷的无答案习题，都需要把两个库仑力作为矢量相加，而这是 18.5 节才引入的，因此两题都属于那里：有答案的一题放在 18.5 节，其 source_section 为 18.3；无答案的一题在那里被略去，就像本章每一道无答案的习题一样。18.5 节的说明里也这样写明。习题 1、4 和 5 只有 (a) 小问有答案，所以每张卡片只核对那个数，并在解中附上书中对另一小问的原话。六道 AP 题中有三道有答案，被设为评分选择题，或者（对于两个 1 C 的电荷）设为有答案的一对数值；另外三道没有答案，作为开放题保留，选项照书中印出的样子给出，并附有 AI 撰写的建议思路，且已作标注。以“对于第 25–27 题”引出的题目所指的是 AP 版的编号；其文字保留，而共用的设定在需要它的题目中重复给出。三道思考题的建议思路由 AI 撰写并已标注；三道题都通过 18.6 节所定义的极性水分子来理解库仑定律，所以也都标有该概念，书中那幅分子图附在第一张卡片上。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-coulomb-pair",
+   "kind": "sim",
+   "number": "18.17",
+   "originals": [
+    "/media/ch18/Figure_19_03_02a.jpg"
+   ],
+   "original_caption": "相距 r 的点电荷 q_1 和 q_2 之间静电力 F 的大小由库仑定律给出。请注意，牛顿第三定律（所施加的每一个力都会产生一个大小相等、方向相反的力）照常适用——q_1 所受的力与它施加给 q_2 的力大小相等、方向相反。（a）同号电荷。（b）异号电荷。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "charge",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "force labels drawn over the leaders; readout number plain; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-coulomb-versus-gravity",
+   "kind": "sim",
+   "draws": [
+    "charge",
+    "force",
+    "position",
+    "mass"
+   ],
+   "conventions": [
+    "p+",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "brackets apart so their labels clear; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "electrostatic-force",
+   "concept": "coulombs-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "coulomb-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "coulomb-force-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "electrostatic-force",
+   "concept": "electrostatic-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-square",
+   "concept": "coulomb-force-scaling",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-square",
+   "concept": "coulombs-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "coulomb-versus-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "coulomb-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "universal-gravitation",
+   "verb": "uses"
+  },
+  {
+   "span": "against-gravity",
+   "concept": "gravitational-constant",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2543029",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "cite": "inverse-square",
+   "prompt": "对于第 25–27 题，假设两个电荷之间的静电力为 $F$。如果它们之间的距离减半，力将变为多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "$4F$",
+     "$2F$",
+     "$F/4$",
+     "$F/2$"
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "solution": "力与间距的平方成反比，所以距离减半使 $r^2$ 变为原来的四分之一，使力变为原来的四倍。答案是 $4F$。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2453947",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "prompt": "假设两个电荷之间的静电力为 $F$。下列哪一项是错误的？（a）如果其中一个粒子的电荷加倍，而另一个粒子的电荷不变，力将变为 $2F$。（b）如果其中一个粒子的电荷加倍，而另一个粒子的电荷减半，力将保持为 $F$。（c）如果两个粒子的电荷都加倍，力将变为 $4F$。（d）以上都不是。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把每个说法与 $F = k|q_1 q_2|/r^2$ 对照来看，其中力与两个电荷的乘积成正比。一个电荷加倍而另一个不变，乘积加倍，因此力也加倍，所以（a）是正确的说法。一个加倍而另一个减半，乘积保持原样，所以力不变，（b）也是正确的。两个都加倍，乘积变为原来的四倍，因此力也变为四倍，所以（c）正确。既然三个说法都成立，错误的一项就是（d）。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1185370",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "cite": "against-gravity",
+   "prompt": "对于第 25–27 题，假设两个电荷之间的静电力为 $F$。关于这两个粒子之间的引力，下列哪一项是正确的？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "它将是 $3.25\\times 10^{-38}F$。",
+     "它将是 $3.25\\times 10^{38}F$。",
+     "它将等于 $F$。",
+     "由于没有给出粒子的质量，无法确定引力。"
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "solution": "牛顿万有引力定律是 $F_{\\text{G}} = GmM/r^2$，它需要两个质量。题目只给出了电荷以及它们之间的静电力，而电荷并不能确定质量，所以无法求出引力。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1758033",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "cite": "inverse-square",
+   "prompt": "两个有质量的带正电粒子起初被固定在一定距离处。当它们被移得更远时，它们之间引力的大小变为原来的 $n$ 倍。下列哪一项表示它们之间静电力的大小变化的倍数？（a）$1/n^2$（b）$1/n$（c）$n$（d）$n^2$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两个定律随距离衰减的方式相同。引力是 $GmM/r^2$，静电力是 $k|q_1q_2|/r^2$，粒子被移动时质量和电荷都不变，所以每个力都只改变 $r_{\\text{原}}^2/r_{\\text{新}}^2$ 这个倍数。这个倍数对二者相同，所以如果引力变为原来的 $n$ 倍，静电力也变为原来的 $n$ 倍，即选项（c）。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1469886",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "（a）相距 0.5 m、电荷各为 1 C 的两个电荷之间的静电力是多少？（b）如果距离增大到 1 m，这个力将如何变化？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 36000000000.0,
+      "unit": "N",
+      "hint": "把 $q_1 = q_2 = 1\\ \\text{C}$ 和 $r = 0.5\\ \\text{m}$ 代入 $F = k|q_1q_2|/r^2$。"
+     },
+     {
+      "part": "b",
+      "value": 8990000000.0,
+      "unit": "N",
+      "hint": "间距加倍，力变为原来的四分之一。"
+     }
+    ],
+    "solution": "（a）$3.60\\times 10^{10}$ N。（b）它将变为原值的 $1/4$；因此它将等于 $8.99\\times 10^{9}$ N。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id3202845",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "cite": "against-gravity",
+   "prompt": "（a）求两个电子之间静电力与引力之比。（b）如果把这两个电子换成质子，这个比值会改变吗？如果会，求出新的比值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）两个电子之间的静电力是引力的 $4.16\\times 10^{42}$ 倍。仿照例题 18.1，先取比值，再代入数值。对于电荷为 $\\kq$、质量为 $\\km$、相距 $\\krad$ 的两个粒子，$\\frac{\\kF}{\\kFG} = \\frac{k\\kq^2/\\krad^2}{G\\km^2/\\krad^2} = \\frac{k\\kq^2}{G\\km^2}$，所以间距被约去，比值只取决于粒子本身。对于电子，$\\frac{\\kF}{\\kFG} = \\frac{(8.99\\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)(1.60\\times 10^{-19}\\ \\text{C})^2}{(6.67\\times 10^{-11}\\ \\text{N}\\cdot\\text{m}^2/\\text{kg}^2)(9.11\\times 10^{-31}\\ \\text{kg})^2} = 4.16\\times 10^{42}$。（b）会，比值变为 $1.24\\times 10^{36}$。质子所带电荷的大小相同，但质量为 $1.67\\times 10^{-27}$ kg，而质量是以平方的形式进入的：$\\frac{\\kF}{\\kFG} = \\frac{(8.99\\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)(1.60\\times 10^{-19}\\ \\text{C})^2}{(6.67\\times 10^{-11}\\ \\text{N}\\cdot\\text{m}^2/\\text{kg}^2)(1.67\\times 10^{-27}\\ \\text{kg})^2} = 1.24\\times 10^{36}$。这个比值更小，小了一个因子 $(1.67\\times 10^{-27}/9.11\\times 10^{-31})^2 = 3.36\\times 10^{6}$，相比之下引力仍然可以忽略。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3146449",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "figure": {
+    "src": "/media/ch18/Figure_19_03_03a.jpg",
+    "alt": "图中给出了一个电中性水分子外层电子云的示意图。三个原子位于一个三角形的顶点上。氢原子带正电荷 q，氧原子带负 2q 的电荷，每个氢原子与氧原子的连线之间的夹角为一百零四度。电子云在氧原子处密度更大。",
+    "caption": "电中性水分子外层电子云的示意图。电子在氧原子附近停留的时间多于在氢原子附近，从而如图所示产生永久性的电荷分离。因此水是极性分子。与电荷分布均匀的分子相比，它更容易受静电力的影响。"
+   },
+   "prompt": "图中给出了水分子中的电荷分布，水分子因具有固有的电荷分离而被称为极性分子。鉴于水的极性，请解释湿度对清除物体上过剩电荷有什么影响。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "潮湿的空气中含有大量水分子，每个水分子的负端靠近氧原子，正端位于氢原子处。当这样的分子靠近一个带电体时，物体吸引符号相反的一端，排斥符号相同的一端。分子会转动，把被吸引的一端朝向物体，而库仑定律把它拉近，因为较近的一端所受的力更大。因此水分子聚集在带电表面上，吸收一部分过剩电荷并将其带走。在潮湿的日子里，物体上的电荷通过空气泄漏的速度几乎与它积累的速度一样快。这就是静电在夏季难以积累、而在干燥的冬季空气中容易积累的原因。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2420925",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "prompt": "利用上面的水分子图，根据库仑定律解释，为什么极性分子既会被正电荷吸引，也会被负电荷吸引。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "分子整体是电中性的，但它的电荷分布并不均匀：一端为负，另一端为正。把一个正电荷移近它，分子就会转动，使其负端更近；那一端所受的吸引力与远端所受的排斥力，只有在两端与正电荷的距离相同时才大小相等，而事实并非如此。库仑定律使较近一端所受的力更大，因为力按 $1/r^2$ 变化，所以吸引占上风，分子被拉近。如果移近的是负电荷，分子只需反向转过来，把正端放在最近处，同样的论证又得出吸引。因此极性分子会被任一种符号的电荷吸引。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1215964",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "cite": "electrostatic-force",
+   "prompt": "鉴于水分子的极性，解释空气中的离子如何形成雨滴的凝结核。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "空气中的离子带有净电荷，而它周围蒸气中的水分子是极性的。离子使每个靠近的分子转动，让符号相反的一端朝向离子，然后对这一端的吸引强于对远端的排斥，因为较近的一端离得更近，而库仑力按距离的平方减小。因此水分子被拉向离子并被固定在那里，汇聚起来的小团簇比必须从纯蒸气开始形成的液滴更容易让更多分子加入。离子就这样成为凝结核：在洁净空气中根本不会形成液滴的湿度下，液滴也会围绕离子形成。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2670145",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "（a）一根带 $0.700\\ \\mu\\text{C}$ 电荷的玻璃棒和一块带 $–0.600\\ \\mu\\text{C}$ 电荷的丝绸相距 12.0 cm，若近似认为它们像点电荷一样，它们之间的吸引力有多大？（b）讨论如果电荷分布在一定面积上，不像点电荷那样起作用，这道题的答案可能会受到怎样的影响。",
+   "answer": {
+    "type": "number",
+    "value": 0.263,
+    "unit": "N",
+    "part": "a",
+    "generated_by": "source",
+    "hint": "把两个电荷以库仑为单位、间距以米为单位代入 $F = k|q_1q_2|/r^2$。",
+    "solution": "（a）0.263 N。（b）如果电荷分布在一定面积上，电荷会集中在最靠近带异号电荷物体的一侧。这种效应会使合力增大。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1411839",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "cite": "inverse-square",
+   "prompt": "把两个点电荷移得更近，使它们之间的力增大为原来的 25 倍。它们的间距减小的倍数是多少？",
+   "answer": {
+    "type": "number",
+    "value": 5,
+    "generated_by": "source",
+    "hint": "力按 $1/r^2$ 变化，所以力变化 25 倍，需要间距变化 25 的平方根倍。",
+    "solution": "间距缩小为原来的 1/5。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2384303",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "裸露的自由电荷相距很近时不会保持静止。为说明这一点，计算相距 2.00 nm（气体原子之间的典型距离）的两个孤立质子的加速度。请明确写出你如何遵循静电学解题策略的各个步骤。",
+   "answer": {
+    "type": "number",
+    "value": 3.45e+16,
+    "unit": "m/s^2",
+    "generated_by": "source",
+    "hint": "先求两个质子之间的库仑力，再按牛顿第二定律的要求除以一个质子的质量。",
+    "solution": "$\\begin{array}{lll}F & = & k\\frac{|q_1q_2|}{r^2} = ma \\Rightarrow a = \\frac{kq^2}{mr^2} \\\\ & = & \\frac{(9.00\\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)(1.60\\times 10^{-19}\\ \\text{m})^2}{(1.67\\times 10^{-27}\\ \\text{kg})(2.00\\times 10^{-9}\\ \\text{m})^2} \\\\ & = & 3.45\\times 10^{16}\\ \\text{m/}\\text{s}^2\\end{array}$<sup class=\"fn\" data-note=\"c-p3-charge-unit\"></sup>"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2595116",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "cite": "inverse-square",
+   "prompt": "（a）要使两个点电荷之间的力变化 10 倍，必须使它们之间的距离变化多少倍？（b）解释距离为什么既可以增大也可以减小这个倍数，却同样使力变化 10 倍。",
+   "answer": {
+    "type": "number",
+    "value": 3.2,
+    "part": "a",
+    "generated_by": "source",
+    "hint": "力变化 10 倍，需要间距变化 $\\sqrt{10}$ 倍。",
+    "solution": "（a）3.2。（b）如果距离增大 3.2 倍，则力将减小为原来的 1/10；如果距离减小为原来的 1/3.2，则力将增大 10 倍。无论哪种情形，力都变化 10 倍。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3123949",
+   "kind": "problem",
+   "bloom": "Apply",
+   "cite": "electrostatic-force",
+   "prompt": "（a）普通透明胶带从胶带座上拉出时会带电。如果把一片放在另一片上方，排斥力可以大到足以支撑上面那片的重力。假设两个点电荷相等（只是近似），若静电力大到足以支撑悬在另一片上方 1.00 cm 处的一片 10.0 mg 胶带的重力，计算电荷的大小。（b）讨论这个电荷的大小是否与静电的典型情形相符。",
+   "answer": {
+    "type": "number",
+    "value": 1.04e-09,
+    "unit": "C",
+    "part": "a",
+    "generated_by": "source",
+    "hint": "令库仑斥力 $kq^2/r^2$ 等于上面那片的重力 $mg$，解出 $q$。",
+    "solution": "（a）$1.04\\times 10^{-9}$ C。（b）这个电荷约为 1 nC，与静电的典型电荷大小相符。"
+   },
+   "place": {
+    "at": "end"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2604205",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "cite": "against-gravity",
+   "prompt": "某枚五美分硬币含有 5.00 g 镍。镍原子的电子中，取走多大比例并放在硬币上方 1.00 m 处，就能支撑这枚硬币的重力？镍的原子质量为 58.7，每个镍原子含有 28 个电子和 28 个质子。",
+   "answer": {
+    "type": "number",
+    "value": 1.02e-11,
+    "generated_by": "source",
+    "hint": "数出硬币所含的电子数，让其中一部分放在硬币上方一米处，并令库仑吸引力等于硬币的重力。",
+    "solution": "$1.02\\times 10^{-11}$"
+   },
+   "place": {
+    "at": "end"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coulomb-force-scaling",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "coulomb-versus-gravity"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "universal-gravitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "universal-gravitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "coulomb-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "coulomb-versus-gravity"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "polar-molecule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "polar-molecule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "polar-molecule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coulomb-constant",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "p3",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-second-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "coulomb-force-scaling"
+  },
+  {
+   "exercise": "p5",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "weight",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "p6",
+   "concept": "count-charges-from-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "weight",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "charge-1",
+   "label": "第一个点电荷，q₁",
+   "figures": [
+    "sim-coulomb-pair"
+   ]
+  },
+  {
+   "id": "charge-2",
+   "label": "第二个点电荷，q₂",
+   "figures": [
+    "sim-coulomb-pair"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p3-charge-unit",
+   "kind": "correction",
+   "html": "书中的答案表把质子的电荷写成 $1.60\\times 10^{-19}\\ \\text{m}$；这个电荷应为 $1.60\\times 10^{-19}\\ \\text{C}$。"
+  }
+ ]
+}

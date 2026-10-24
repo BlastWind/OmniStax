@@ -1,0 +1,980 @@
+{
+ "types": [],
+ "symbols": [],
+ "concepts": [
+  {
+   "id": "reference-frame",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "参考系",
+   "statement": "参考系是给出位置时所相对的对象，例如地球、白板或飞机的客舱。选定参考系是描述任何运动的第一步。"
+  },
+  {
+   "id": "position",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "位置",
+   "symbol": "x",
+   "terms": [
+    "位置"
+   ],
+   "type": "position",
+   "statement": "物体的位置是它在某一时刻所处的地方，以所选坐标轴上带正负号的坐标给出。一维运动学中的其他所有量都由位置和时刻构成。"
+  },
+  {
+   "id": "displacement",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "位移",
+   "symbol": "Δx",
+   "terms": [
+    "位移"
+   ],
+   "type": "position",
+   "statement": "位移是位置的变化量，即末位置减去初位置。它带有正负号，正负号给出方向。在运动学中，我们几乎总是处理位移，而不是所经过的路径。",
+   "forms": [
+    {
+     "id": "eq-dx",
+     "latex": "\\Delta x = x_{\\text{f}} - x_0",
+     "ktex": "\\kdx = \\kxf - \\kxo",
+     "anchor": "2.1-displacement"
+    }
+   ]
+  },
+  {
+   "id": "distance",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "距离",
+   "symbol": "d",
+   "terms": [
+    "距离"
+   ],
+   "type": "position",
+   "statement": "距离是两个位置之间位移的大小，因此它没有正负号，也没有方向。它与路程不同，路程是路径的总长度。"
+  },
+  {
+   "id": "distance-traveled",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "路程",
+   "symbol": "d",
+   "terms": [
+    "路程"
+   ],
+   "type": "position",
+   "statement": "路程是路径的总长度，它可以比位移的大小大得多。例如，一位教授在讲课时来回踱步 150 m，最后可能只离出发点 2.0 m。"
+  },
+  {
+   "id": "kinematics",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "运动学",
+   "terms": [
+    "运动学"
+   ],
+   "statement": "运动学是研究运动而不考虑其原因的学科。在一维和二维运动学中，我们只研究物体的运动，而不关心是什么力引起或改变了它。"
+  },
+  {
+   "id": "average-velocity",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "平均速度",
+   "symbol": "v̄",
+   "terms": [
+    "平均速度"
+   ],
+   "type": "velocity",
+   "statement": "平均速度是位移除以行进的时间。它是矢量，因为位移是矢量，所以它有方向，其正负号说明物体朝哪个方向运动：一位飞机乘客用 5 s 向机尾方向移动了 −4 m，他的平均速度为 −0.8 m/s。平均速度并未说明起点与终点之间发生了什么。",
+   "forms": [
+    {
+     "id": "eq-vbar-def",
+     "latex": "\\bar v = \\frac{\\Delta x}{\\Delta t} = \\frac{x_{\\text{f}} - x_0}{t_{\\text{f}} - t_0}",
+     "ktex": "\\kvb = \\frac{\\kdx}{\\kdt} = \\frac{\\kxf - \\kxo}{\\ktf - \\kto}",
+     "anchor": "2.3-average-velocity"
+    },
+    {
+     "id": "eq-vbar-t",
+     "latex": "\\bar v = \\frac{\\Delta x}{t}",
+     "ktex": "\\kvb = \\frac{\\kdx}{\\kt}",
+     "condition": "初时刻 t_0 取为零",
+     "anchor": "2.3-average-velocity"
+    }
+   ]
+  },
+  {
+   "id": "acceleration",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "加速度",
+   "symbol": "a",
+   "terms": [
+    "加速度"
+   ],
+   "type": "acceleration",
+   "statement": "加速度是速度的变化率，加速度越大，在给定时间内速度的变化越大。因为速度是矢量，所以速度的变化可以是大小的变化，也可以是方向的变化，因此以恒定速率拐弯的汽车具有加速度。加速度是矢量，方向与速度变化的方向相同，其 SI 单位是米每二次方秒，意思是速度每秒变化多少米每秒。"
+  },
+  {
+   "id": "const-a",
+   "kind": "idea",
+   "section": "2.5",
+   "name": "恒定加速度模型",
+   "statement": "当加速度恒定时，平均加速度等于每一时刻的加速度，平均速度就是初速度与末速度的中点值。所有运动学方程都由这一假设推出，而且你可以把许多实际的运动分成若干段来描述，在每一段之内该假设成立。"
+  },
+  {
+   "id": "x-from-vbar",
+   "kind": "result",
+   "section": "2.5",
+   "name": "由平均速度求位移",
+   "statement": "位移等于平均速度乘以时间间隔。这是平均速度的定义经过变形得到的，所以无论加速度是否恒定，它都成立。",
+   "forms": [
+    {
+     "id": "eq-x-vbar",
+     "latex": "x = x_0 + \\bar v t",
+     "ktex": "\\kx = \\kxo + \\kvb\\kt",
+     "anchor": "2.5-avg-velocity"
+    }
+   ]
+  },
+  {
+   "id": "vbar-midpoint",
+   "kind": "result",
+   "section": "2.5",
+   "name": "恒定加速度下的平均速度",
+   "statement": "当加速度恒定时，速度以稳定的速率变化，所以平均速度是初速度与末速度的中点值。这一步把平均速度的定义变成了位移的方程。",
+   "forms": [
+    {
+     "id": "eq-vbar",
+     "latex": "\\bar v = \\frac{v_0 + v}{2}",
+     "ktex": "\\kvb = \\frac{\\kvo + \\kv}{2}",
+     "condition": "加速度恒定",
+     "anchor": "2.5-avg-velocity"
+    }
+   ]
+  },
+  {
+   "id": "v-from-at",
+   "kind": "result",
+   "section": "2.5",
+   "name": "由加速度和时间求速度",
+   "statement": "末速度既取决于加速度的大小，也取决于它作用的时间。一个不大的加速度如果持续很长时间，可以产生很大的速度。",
+   "forms": [
+    {
+     "id": "eq-v",
+     "latex": "v = v_0 + a t",
+     "ktex": "\\kv = \\kvo + \\ka\\kt",
+     "condition": "加速度恒定",
+     "anchor": "2.5-final-velocity"
+    }
+   ]
+  },
+  {
+   "id": "x-quadratic",
+   "kind": "result",
+   "section": "2.5",
+   "name": "恒定加速度下的位移",
+   "statement": "在恒定加速度下，位移随时间间隔的平方增长。例如，一辆从静止起步的直线加速赛车，在行程的前一半时间里只跑完赛道的四分之一。",
+   "forms": [
+    {
+     "id": "eq-x",
+     "latex": "x = x_0 + v_0 t + \\tfrac12 a t^2",
+     "ktex": "\\kx = \\kxo + \\kvo\\kt + \\tfrac{1}{2}\\ka\\kt^2",
+     "condition": "加速度恒定",
+     "anchor": "2.5-position-quadratic"
+    }
+   ]
+  },
+  {
+   "id": "v-squared",
+   "kind": "result",
+   "section": "2.5",
+   "name": "由位移求速度",
+   "statement": "这个方程不涉及时间，直接把速度与位移联系起来。因为汽车的制动距离随其速率的平方增长，所以速率减半，制动距离就减为四分之一。",
+   "forms": [
+    {
+     "id": "eq-v2",
+     "latex": "v^2 = v_0^2 + 2a(x - x_0)",
+     "ktex": "\\kv^2 = \\kvo^2 + 2\\ka(\\kx - \\kxo)",
+     "condition": "加速度恒定",
+     "anchor": "2.5-velocity-squared"
+    }
+   ]
+  },
+  {
+   "id": "choose-equation",
+   "kind": "skill",
+   "section": "2.5",
+   "name": "选择运动学方程",
+   "statement": "要解一道题，先列出已知量和要求的量，然后选择这样的方程：其中你要求的量是唯一的未知量。"
+  },
+  {
+   "id": "physical-solution",
+   "kind": "skill",
+   "section": "2.5",
+   "name": "从物理意义上解读结果",
+   "statement": "代数运算可能给出两个根、一个负的时间，或者带两个正负号的平方根，但其中只有一个描述了这个运动。判断哪个解在物理上是合理的，是解题的一部分。"
+  },
+  {
+   "id": "instantaneous-velocity",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "瞬时速度",
+   "symbol": "v",
+   "terms": [
+    "瞬时速度"
+   ],
+   "type": "velocity",
+   "statement": "你所考虑的运动中的时间间隔越小，得到的信息就越详细。推到逻辑上的极致，就剩下一个无穷小的时间间隔，在这个间隔内平均速度变成瞬时速度，即某一特定时刻的速度。汽车的速度计显示的是汽车瞬时速度的大小。精确地求它可能需要取极限，不过在许多情形下，不用微积分也能求得精确的值。"
+  },
+  {
+   "id": "acceleration-due-to-gravity",
+   "kind": "axiom",
+   "section": "2.7",
+   "name": "重力加速度",
+   "symbol": "g",
+   "terms": [
+    "重力加速度"
+   ],
+   "statement": "自由下落物体的加速度就是重力加速度，它非常重要，以至于其大小有专门的符号 $\\kg$，在地球上的平均值为 9.80 m/s²。它的方向向下，指向地心，事实上，它的方向定义了我们所说的竖直方向。运动学方程中的加速度 $\\ka$ 是 $+\\kg$ 还是 $-\\kg$，取决于你的坐标系：如果向上为正，则 $\\ka = -\\kg$。",
+   "forms": [
+    {
+     "id": "eq-g",
+     "latex": "g = 9.80\\ \\text{m/s}^2",
+     "ktex": "\\kg = 9.80\\ \\text{m/s}^2",
+     "condition": "地球上的平均值；g 随纬度、海拔和当地地质情况在 9.78 到 9.83 m/s² 之间变化",
+     "anchor": "2.7-accel-gravity"
+    }
+   ]
+  },
+  {
+   "id": "vector",
+   "kind": "definition",
+   "section": "2.2",
+   "name": "矢量",
+   "terms": [
+    "矢量"
+   ],
+   "statement": "矢量是任何既有大小又有方向的量，例如位移、向东 90 km/h 的速度，或者竖直向下 500 牛顿的力。在一维运动中，它的方向仅由正号或负号给出，在纸上则画成箭头，箭头的长度与它的大小成正比，指向与矢量的方向相同。"
+  },
+  {
+   "id": "scalar",
+   "kind": "definition",
+   "section": "2.2",
+   "name": "标量",
+   "terms": [
+    "标量"
+   ],
+   "statement": "标量是任何有大小而没有方向的量。20 ºC 的温度、糖果棒中的 250 千卡、90 km/h 的限速和 2.0 m 的距离都是标量，标量可以为负，此时负号表示的是标度上的一个点，而不是方向。标量从不用箭头表示。"
+  },
+  {
+   "id": "coordinate-system",
+   "kind": "skill",
+   "section": "2.2",
+   "name": "建立坐标系",
+   "statement": "要描述矢量的方向，你必须在参考系内指定一个坐标系，对一维运动而言它就是一条坐标轴。向右或向上的运动通常取为正，但对下落的物体取向下为正，或对向左跑的跑步者取向左为正，可能更方便。只要坐标系清楚且前后一致，选哪个都没有关系，而且一旦你指定了正方向并开始解题，就不能再改变它。"
+  },
+  {
+   "id": "time",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "时间",
+   "symbol": "t",
+   "terms": [
+    "时间"
+   ],
+   "type": "time",
+   "statement": "在物理学中，时间的定义很简单：时间就是变化，或者说发生变化所经过的间隔。每一次时间的测量都要测量某个物理量的变化，无论是数字时钟上的数字、心跳，还是太阳在天空中的位置，而变化的量要通过与秒这样的标准比较来标定。"
+  },
+  {
+   "id": "elapsed-time",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "时间间隔",
+   "symbol": "Δt",
+   "terms": [
+    "时间间隔"
+   ],
+   "type": "time",
+   "statement": "我们通常想要的是某一运动的时间间隔：记下运动开始和结束时的时刻，然后相减。如果开始时刻为零，就像用秒表计时那样，事情会简单些，所以在本书中运动从 $\\kto = 0$ 开始，除非另有说明，符号 $\\kt$ 就代表时间间隔。",
+   "forms": [
+    {
+     "id": "eq-dt",
+     "latex": "\\Delta t = t_{\\text{f}} - t_0",
+     "ktex": "\\kdt = \\ktf - \\kto",
+     "anchor": "2.3-elapsed-time"
+    },
+    {
+     "id": "eq-notation",
+     "latex": "\\Delta t = t,\\quad \\Delta x = x - x_0,\\quad \\Delta v = v - v_0",
+     "ktex": "\\kdt = \\kt,\\quad \\kdx = \\kx - \\kxo,\\quad \\kdv = \\kv - \\kvo",
+     "section": "2.5",
+     "anchor": "2.5-notation"
+    }
+   ]
+  },
+  {
+   "id": "instantaneous-speed",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "瞬时速率",
+   "symbol": "v",
+   "terms": [
+    "瞬时速率"
+   ],
+   "type": "velocity",
+   "statement": "瞬时速率是瞬时速度的大小，所以它是没有方向的标量。一位乘客的瞬时速度为 −3.0 m/s，朝向机尾，他的瞬时速率就是 3.0 m/s；一位购物者以 40 km/h 的速度正北行进，他的瞬时速率就是 40 km/h。"
+  },
+  {
+   "id": "average-speed",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "平均速率",
+   "terms": [
+    "平均速率"
+   ],
+   "statement": "平均速率是路程除以时间间隔。因为路程可以大于位移的大小，所以平均速率可以大于平均速度的大小：开车去商店再返回，用时半小时，里程表上多了 6 km，平均速率为 12 km/h，而平均速度为零。因此，平均速率并不简单地等于平均速度的大小。",
+   "forms": [
+    {
+     "id": "eq-avg-speed",
+     "latex": "\\text{平均速率} = \\frac{\\text{路程}}{\\text{时间间隔}}",
+     "anchor": "2.3-speed"
+    },
+    {
+     "id": "eq-average-speed",
+     "latex": "\\text{平均速率} = \\frac{\\text{距离}}{\\text{时间}}",
+     "section": "1.2",
+     "anchor": "1.2-ex-drive"
+    }
+   ]
+  },
+  {
+   "id": "average-acceleration",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "平均加速度",
+   "symbol": "ā",
+   "terms": [
+    "平均加速度"
+   ],
+   "type": "acceleration",
+   "statement": "平均加速度是速度的变化量除以变化所用的时间，即末速度减去初速度，再除以时间间隔。它的正负号跟随速度变化量的正负号，而不是运动方向：一列火车从负速度减速到静止，平均加速度为正。",
+   "forms": [
+    {
+     "id": "eq-abar",
+     "latex": "\\bar a = \\frac{\\Delta v}{\\Delta t} = \\frac{v_{\\text{f}} - v_0}{t_{\\text{f}} - t_0}",
+     "ktex": "\\kab = \\frac{\\kdv}{\\kdt} = \\frac{\\kvf - \\kvo}{\\ktf - \\kto}",
+     "anchor": "2.4-average-acceleration"
+    }
+   ]
+  },
+  {
+   "id": "instantaneous-acceleration",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "瞬时加速度",
+   "symbol": "a",
+   "terms": [
+    "瞬时加速度"
+   ],
+   "type": "acceleration",
+   "statement": "瞬时加速度是某一特定时刻的加速度，与瞬时速度一样，是在无穷小的时间间隔内求得的。只用代数时，你要选取一个能代表该运动的平均加速度。加速度只有轻微变化时，整个时间间隔内的平均值就够用了；加速度变化很大时，就把运动分成更小的时间间隔，为每一段选取一个平均加速度。"
+  },
+  {
+   "id": "deceleration",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "减速度",
+   "terms": [
+    "减速度"
+   ],
+   "statement": "虽然加速度沿速度变化的方向，但它并不总是沿运动方向。当物体减速时，它的加速度与运动方向相反，这称为减速度。减速度总是使速率减小。"
+  },
+  {
+   "id": "acceleration-sign",
+   "kind": "result",
+   "section": "2.4",
+   "name": "加速度的正负号",
+   "statement": "负加速度是沿所选坐标系负方向的加速度，它可能是减速度，也可能不是：负加速度会使负速度增大，而正加速度会使向左运动的火车减速。如果加速度与速度的正负号相同，物体就在加速，如果正负号相反，物体就在减速。"
+  },
+  {
+   "id": "calculate-average-acceleration",
+   "kind": "skill",
+   "section": "2.4",
+   "name": "计算平均加速度",
+   "statement": "要求平均加速度，先画一幅草图并建立坐标系，确定带正负号的初速度和末速度以及时间间隔，求出速度的变化量，即末速度减去初速度，再除以时间。当单位混用时，例如速度以千米每小时为单位而时间以秒为单位，要先把所有量都换算成米和秒再相除。"
+  },
+  {
+   "id": "problem-solving-steps",
+   "kind": "skill",
+   "section": "2.6",
+   "name": "解题步骤",
+   "statement": "没有哪一种简单的分步方法适用于每一道题，但有六个一般性的步骤能使解题更容易、更有意义。检查情境，找出其中涉及的物理原理，并画一幅草图，在上面标出正方向。列出已给出的或可以推出的量，即已知量。确定你必须求的量，即未知量。找出一个只含一个未知量的方程或方程组。代入带单位的已知量，得到带单位的数值解。检查答案是否合理。你常常会以不同的顺序，或几步同时进行，经过练习后，这些步骤就几乎成了自然而然的事。"
+  },
+  {
+   "id": "unreasonable-results",
+   "kind": "skill",
+   "section": "2.6",
+   "name": "识别不合理的结果",
+   "statement": "物理学必须准确地描述自然，有些题目的结果不合理，原因是某个前提不合理，或者几个前提彼此不相容。一位跑步者以 0.40 m/s² 的加速度加速 100 s，将达到 40 m/s，约 89 mph，是人所能跑速度的四倍。要检验结果，先按通常的方法解题，再问答案是太大还是太小，正负号或单位是否有误，如果结果不合理，就去找导致它的那个前提，这里就是 100 s 的时间。检验既能培养对自然的直觉，也能发现错误。",
+   "forms": [
+    {
+     "id": "eq-unreasonable-v",
+     "latex": "v = v_0 + at = 0 + (0.40\\ \\text{m/s}^2)(100\\ \\text{s}) = 40\\ \\text{m/s}",
+     "ktex": "\\kv = \\kvo + \\ka\\kt = 0 + (0.40\\ \\text{m/s}^2)(100\\ \\text{s}) = 40\\ \\text{m/s}",
+     "condition": "跑步者以 0.40 m/s² 的加速度加速 100 s",
+     "anchor": "2.6-unreasonable"
+    },
+    {
+     "id": "eq-unreasonable-mph",
+     "latex": "\\left(\\frac{40\\ \\text{m}}{\\text{s}}\\right)\\left(\\frac{3.28\\ \\text{ft}}{\\text{m}}\\right)\\left(\\frac{1\\ \\text{mi}}{5280\\ \\text{ft}}\\right)\\left(\\frac{60\\ \\text{s}}{\\text{min}}\\right)\\left(\\frac{60\\ \\text{min}}{1\\ \\text{h}}\\right) = 89\\ \\text{mph}",
+     "anchor": "2.6-unreasonable"
+    }
+   ]
+  },
+  {
+   "id": "free-fall",
+   "kind": "axiom",
+   "section": "2.7",
+   "name": "自由落体运动",
+   "terms": [
+    "自由落体运动"
+   ],
+   "statement": "关于落体最了不起的事实是，如果空气阻力和摩擦力可以忽略，那么在给定地点，所有物体都以相同的恒定加速度朝地心下落，与质量无关，就像锤子和羽毛在月球上一起下落那样。不受空气阻力或摩擦力作用而下落的物体做自由落体运动，这一假设使运动学方程可以用于范围很广的一类情境。"
+  },
+  {
+   "id": "free-fall-kinematics",
+   "kind": "result",
+   "section": "2.7",
+   "name": "自由落体的运动学方程",
+   "statement": "对于没有空气阻力的竖直上下运动，该运动是加速度大小恒为 $\\kg$ 的一维运动，所以运动学方程适用，用 $\\ky$ 表示竖直位置，向上为正时 $\\ka = -\\kg$：$\\kv = \\kvo - \\kg\\kt$、$\\ky = \\kyo + \\kvo\\kt - \\tfrac{1}{2}\\kg\\kt^2$ 和 $\\kv^2 = \\kvo^2 - 2\\kg(\\ky - \\kyo)$。同样的方程描述向上抛出的石块、向下抛出的石块和单纯释放的物体；只有初速度不同。",
+   "forms": [
+    {
+     "id": "eq-ff-y",
+     "latex": "y = y_0 + v_0 t - \\tfrac12 g t^2",
+     "ktex": "\\ky = \\kyo + \\kvo\\kt - \\tfrac{1}{2}\\kg\\kt^2",
+     "condition": "自由落体运动，向上为正，所以 a = −g",
+     "anchor": "2.7-vertical-motion"
+    },
+    {
+     "id": "eq-ff-v",
+     "latex": "v = v_0 - gt",
+     "ktex": "\\kv = \\kvo - \\kg\\kt",
+     "condition": "自由落体运动，向上为正，所以 a = −g",
+     "anchor": "2.7-vertical-motion"
+    },
+    {
+     "id": "eq-ff-v2",
+     "latex": "v^2 = v_0^2 - 2g(y - y_0)",
+     "ktex": "\\kv^2 = \\kvo^2 - 2\\kg(\\ky - \\kyo)",
+     "condition": "自由落体运动，向上为正，所以 a = −g",
+     "anchor": "2.7-vertical-motion"
+    }
+   ]
+  },
+  {
+   "id": "free-fall-highest-point",
+   "kind": "result",
+   "section": "2.7",
+   "name": "最高点处的自由落体",
+   "statement": "向上抛出的石块减速，在最高点瞬间停住，然后落回。在那一点它的速度为零，但它的加速度仍是 −9.80 m/s²，整个行程都是如此，无论石块向上运动还是向下运动。知道最高点处 $\\kv = 0$，就能由初速度求出最大高度，或由到达的高度求出初速度。"
+  },
+  {
+   "id": "free-fall-symmetry",
+   "kind": "result",
+   "section": "2.7",
+   "name": "落体的速率",
+   "statement": "因为只有重力加速度在起作用，所以落体的速率只取决于它的初速率和相对于起点的竖直位置，而与它是向上抛出还是向下抛出无关。以 13.0 m/s 向上抛出的石块再次经过起点时的速度为 −13.0 m/s，在起点下方 5.10 m 处它的速度为 −16.4 m/s，恰好是它以 13.0 m/s 竖直向下抛出时的速度。在上升途中的任一高度和下落途中的同一高度，速率相等而速度相反。"
+  },
+  {
+   "id": "g-from-fall-time",
+   "kind": "skill",
+   "section": "2.7",
+   "name": "测量重力加速度",
+   "statement": "你可以在入门实验室里求出某地精确的重力加速度：让一个空气阻力可以忽略的物体下落，测量它下落一段已知距离所用的时间。取 $\\kvo = 0$，由位置方程得 $\\ka = 2(\\ky - \\kyo)/\\kt^2$，所以在 0.45173 s 内下落 1.0000 m，得 $\\kg = 9.8010$ m/s²，由于数据精密，这比平均值更精确。两个高度处的两个速度也同样可用，通过 $\\kv^2 = \\kvo^2 - 2\\kg(\\ky - \\kyo)$ 求得。",
+   "forms": [
+    {
+     "id": "eq-a-from-fall",
+     "latex": "a = \\frac{2(y - y_0)}{t^2}",
+     "ktex": "\\ka = \\frac{2(\\ky - \\kyo)}{\\kt^2}",
+     "condition": "物体由静止下落，v_0 = 0",
+     "anchor": "2.7-ex-find-g"
+    }
+   ]
+  },
+  {
+   "id": "straight-line-graph",
+   "kind": "definition",
+   "section": "2.8",
+   "name": "斜率和截距",
+   "statement": "当两个物理量互相对应作图时，横轴通常是自变量，纵轴是因变量，直线图像的一般形式为 $y = mx + b$。这里 $m$ 是斜率，即纵向增量除以横向增量，$b$ 是纵截距，即直线与纵轴相交的点。从运动图像上读出斜率和截距，就是运动学方程在图像上的表现。",
+   "forms": [
+    {
+     "id": "eq-line",
+     "latex": "y = mx + b",
+     "anchor": "2.8-slopes"
+    }
+   ]
+  },
+  {
+   "id": "x-t-slope-velocity",
+   "kind": "result",
+   "section": "2.8",
+   "name": "位置图像的斜率",
+   "statement": "在位置对时间的图像上，纵向增量是位置的变化量，横向增量是时间的变化量，所以斜率是 $\\kdx / \\kdt$，即速度。直线表示速度恒定，其斜率是任意两点之间的平均速度；曲线表示速度在变化，曲线在每一点的陡峭程度就是该点的速度。截距是时刻为零时的位置，所以图像给出 $\\kx = \\kxo + \\kvb\\kt$。",
+   "forms": [
+    {
+     "id": "eq-slope-x",
+     "latex": "\\text{斜率} = \\frac{\\Delta x}{\\Delta t} = v",
+     "ktex": "\\text{斜率} = \\frac{\\kdx}{\\kdt} = \\kv",
+     "anchor": "2.8-x-t"
+    },
+    {
+     "id": "eq-x-graph",
+     "latex": "x = x_0 + \\bar v t",
+     "ktex": "\\kx = \\kxo + \\kvb\\kt",
+     "condition": "取自位置对时间的直线图像，其斜率为 v̄，截距为 x_0",
+     "anchor": "2.8-x-t"
+    }
+   ]
+  },
+  {
+   "id": "v-t-slope-acceleration",
+   "kind": "result",
+   "section": "2.8",
+   "name": "速度图像的斜率",
+   "statement": "在速度对时间的图像上，纵向增量是速度的变化量，横向增量是时间的变化量，所以斜率是 $\\kdv / \\kdt$，即加速度。直线表示加速度恒定，加上截距 $\\kvo$，图像给出 $\\kv = \\kvo + \\ka\\kt$，这与用代数推导出的关系相同。当线弯曲时，加速度在变化，可以由每一点的斜率读出。",
+   "forms": [
+    {
+     "id": "eq-slope-v",
+     "latex": "\\text{斜率} = \\frac{\\Delta v}{\\Delta t} = a",
+     "ktex": "\\text{斜率} = \\frac{\\kdv}{\\kdt} = \\ka",
+     "anchor": "2.8-v-t"
+    },
+    {
+     "id": "eq-v-graph",
+     "latex": "v = v_0 + at",
+     "ktex": "\\kv = \\kvo + \\ka\\kt",
+     "condition": "取自速度对时间的直线图像，其斜率为 a，截距为 v_0",
+     "anchor": "2.8-v-t"
+    }
+   ]
+  },
+  {
+   "id": "tangent-slope",
+   "kind": "skill",
+   "section": "2.8",
+   "name": "由切线求斜率",
+   "statement": "曲线在某一点的斜率等于与曲线在该点相切的直线的斜率。要求它，先画出切线，读出切线上两个相距较远的点的坐标，再把纵向量的变化量除以时间的变化量；区间越大，从图像上读取数据的误差按比例越小。在位置图像的每一点都这样做，就得到速度图像，在速度图像上这样做，就得到加速度。"
+  },
+  {
+   "id": "derive-motion-graphs",
+   "kind": "skill",
+   "section": "2.8",
+   "name": "由一个运动图像导出另一个",
+   "statement": "求出图像上每一点的斜率，就可以由位置对时间的图像得到速度对时间的图像，由速度对时间的图像得到加速度对时间的图像。图像为线性的地方，斜率处处相同，导出的图像是水平的；图像弯曲的地方，导出的图像上升或下降。反过来也成立：水平的速度图像意味着位置图像是直线，倾斜的速度图像意味着位置图像是曲线。"
+  },
+  {
+   "id": "interpret-motion-graph",
+   "kind": "skill",
+   "section": "2.8",
+   "name": "读懂运动图像",
+   "statement": "一幅图像就像一张图片，胜过千言万语，运动图像可以用来读出运动本身：位置图像最陡的地方速度最大，平坦的地方速度为零，下降的地方速度为负；速度图像平坦的地方加速度为零，下降的地方物体在减速。一艘船的速度图像先是水平的，然后急剧下降，再缓慢下降，它先以恒定速度运动，接着急剧减速，然后缓慢减速直到停下。"
+  },
+  {
+   "id": "independent-variable",
+   "kind": "definition",
+   "section": "2.8",
+   "name": "自变量",
+   "terms": [
+    "自变量"
+   ],
+   "statement": "自变量是图像横轴上所画的量，其他量依赖于它。时间通常是自变量。"
+  },
+  {
+   "id": "dependent-variable",
+   "kind": "definition",
+   "section": "2.8",
+   "name": "因变量",
+   "terms": [
+    "因变量"
+   ],
+   "statement": "因变量是图像纵轴上所画的量，它依赖于自变量，就像位置依赖于时间那样。"
+  },
+  {
+   "id": "slope",
+   "kind": "definition",
+   "section": "2.8",
+   "name": "图像的斜率",
+   "symbol": "m",
+   "terms": [
+    "斜率"
+   ],
+   "statement": "图像的斜率是纵向值之差（纵向增量）除以横向值之差（横向增量）。"
+  },
+  {
+   "id": "y-intercept",
+   "kind": "definition",
+   "section": "2.8",
+   "name": "纵截距",
+   "symbol": "b",
+   "terms": [
+    "纵截距"
+   ],
+   "statement": "纵截距是图像与纵轴相交处因变量的值，即自变量为零时它的值。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "position",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "displacement",
+   "prereq": "position"
+  },
+  {
+   "concept": "distance",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "distance-traveled",
+   "prereq": "position"
+  },
+  {
+   "concept": "const-a",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "const-a",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "x-from-vbar",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "x-from-vbar",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "vbar-midpoint",
+   "prereq": "const-a"
+  },
+  {
+   "concept": "v-from-at",
+   "prereq": "const-a"
+  },
+  {
+   "concept": "x-quadratic",
+   "prereq": "x-from-vbar"
+  },
+  {
+   "concept": "x-quadratic",
+   "prereq": "vbar-midpoint"
+  },
+  {
+   "concept": "x-quadratic",
+   "prereq": "v-from-at"
+  },
+  {
+   "concept": "v-squared",
+   "prereq": "x-from-vbar"
+  },
+  {
+   "concept": "v-squared",
+   "prereq": "vbar-midpoint"
+  },
+  {
+   "concept": "v-squared",
+   "prereq": "v-from-at"
+  },
+  {
+   "concept": "choose-equation",
+   "prereq": "x-from-vbar"
+  },
+  {
+   "concept": "choose-equation",
+   "prereq": "v-from-at"
+  },
+  {
+   "concept": "choose-equation",
+   "prereq": "x-quadratic"
+  },
+  {
+   "concept": "choose-equation",
+   "prereq": "v-squared"
+  },
+  {
+   "concept": "physical-solution",
+   "prereq": "x-quadratic"
+  },
+  {
+   "concept": "physical-solution",
+   "prereq": "v-squared"
+  },
+  {
+   "concept": "vector",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "scalar",
+   "prereq": "distance"
+  },
+  {
+   "concept": "coordinate-system",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "coordinate-system",
+   "prereq": "vector"
+  },
+  {
+   "concept": "time",
+   "prereq": "physical-quantity"
+  },
+  {
+   "concept": "time",
+   "prereq": "fundamental-units"
+  },
+  {
+   "concept": "elapsed-time",
+   "prereq": "time"
+  },
+  {
+   "concept": "average-velocity",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "average-velocity",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "average-velocity",
+   "prereq": "vector"
+  },
+  {
+   "concept": "instantaneous-velocity",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "instantaneous-speed",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "instantaneous-speed",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "average-speed",
+   "prereq": "distance-traveled"
+  },
+  {
+   "concept": "average-speed",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "average-speed",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "acceleration",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "acceleration",
+   "prereq": "vector"
+  },
+  {
+   "concept": "average-acceleration",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "average-acceleration",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "instantaneous-acceleration",
+   "prereq": "average-acceleration"
+  },
+  {
+   "concept": "deceleration",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "acceleration-sign",
+   "prereq": "deceleration"
+  },
+  {
+   "concept": "acceleration-sign",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "calculate-average-acceleration",
+   "prereq": "average-acceleration"
+  },
+  {
+   "concept": "calculate-average-acceleration",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "calculate-average-acceleration",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "const-a",
+   "prereq": "average-acceleration"
+  },
+  {
+   "concept": "const-a",
+   "prereq": "instantaneous-acceleration"
+  },
+  {
+   "concept": "problem-solving-steps",
+   "prereq": "choose-equation"
+  },
+  {
+   "concept": "problem-solving-steps",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "unreasonable-results",
+   "prereq": "problem-solving-steps"
+  },
+  {
+   "concept": "unreasonable-results",
+   "prereq": "physical-solution"
+  },
+  {
+   "concept": "unreasonable-results",
+   "prereq": "v-from-at"
+  },
+  {
+   "concept": "free-fall",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "acceleration-due-to-gravity",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "acceleration-due-to-gravity",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "free-fall-kinematics",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "free-fall-kinematics",
+   "prereq": "v-from-at"
+  },
+  {
+   "concept": "free-fall-kinematics",
+   "prereq": "x-quadratic"
+  },
+  {
+   "concept": "free-fall-kinematics",
+   "prereq": "v-squared"
+  },
+  {
+   "concept": "free-fall-highest-point",
+   "prereq": "free-fall-kinematics"
+  },
+  {
+   "concept": "free-fall-symmetry",
+   "prereq": "free-fall-kinematics"
+  },
+  {
+   "concept": "free-fall-symmetry",
+   "prereq": "physical-solution"
+  },
+  {
+   "concept": "g-from-fall-time",
+   "prereq": "free-fall-kinematics"
+  },
+  {
+   "concept": "g-from-fall-time",
+   "prereq": "choose-equation"
+  },
+  {
+   "concept": "g-from-fall-time",
+   "prereq": "precision"
+  },
+  {
+   "concept": "x-t-slope-velocity",
+   "prereq": "straight-line-graph"
+  },
+  {
+   "concept": "x-t-slope-velocity",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "x-t-slope-velocity",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "v-t-slope-acceleration",
+   "prereq": "straight-line-graph"
+  },
+  {
+   "concept": "v-t-slope-acceleration",
+   "prereq": "average-acceleration"
+  },
+  {
+   "concept": "v-t-slope-acceleration",
+   "prereq": "v-from-at"
+  },
+  {
+   "concept": "tangent-slope",
+   "prereq": "x-t-slope-velocity"
+  },
+  {
+   "concept": "tangent-slope",
+   "prereq": "v-t-slope-acceleration"
+  },
+  {
+   "concept": "derive-motion-graphs",
+   "prereq": "x-t-slope-velocity"
+  },
+  {
+   "concept": "derive-motion-graphs",
+   "prereq": "v-t-slope-acceleration"
+  },
+  {
+   "concept": "derive-motion-graphs",
+   "prereq": "tangent-slope"
+  },
+  {
+   "concept": "interpret-motion-graph",
+   "prereq": "x-t-slope-velocity"
+  },
+  {
+   "concept": "interpret-motion-graph",
+   "prereq": "v-t-slope-acceleration"
+  },
+  {
+   "concept": "kinematics",
+   "prereq": "physics"
+  },
+  {
+   "concept": "independent-variable",
+   "prereq": "straight-line-graph"
+  },
+  {
+   "concept": "dependent-variable",
+   "prereq": "independent-variable"
+  },
+  {
+   "concept": "slope",
+   "prereq": "straight-line-graph"
+  },
+  {
+   "concept": "y-intercept",
+   "prereq": "straight-line-graph"
+  },
+  {
+   "concept": "y-intercept",
+   "prereq": "dependent-variable"
+  }
+ ]
+}

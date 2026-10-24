@@ -1,0 +1,588 @@
+{
+ "id": "10.7",
+ "module": "m42184",
+ "chapter": "10",
+ "title": "回转效应：角动量的矢量特性",
+ "short": "回转效应",
+ "lead": "<span data-concept=\"angular-momentum\">角动量</span>既有方向，也有大小，力矩可以改变其中任何一个。本节给出确定该方向的右手定则，并把它用在<span data-ref=\"wheel\">一个旋转的自行车车轮</span>（<span data-ref=\"woman\">有人</span>试图使它倾倒）和<span data-ref=\"gyroscope\">一个陀螺仪</span>（它从支架上倾斜伸出，却不会倒下）上。",
+ "objectives": [
+  "描述用来确定角速度、动量和力矩方向的右手定则。",
+  "解释回转效应。",
+  "研究地球如何像一个巨大的陀螺仪那样运转。"
+ ],
+ "summary_html": "<ul><li>力矩垂直于 $r$ 和 $\\kF$ 所构成的平面，其方向是：当你把右手手指沿 $\\kF$ 的方向弯曲时，右手拇指所指的方向。因此，力矩的方向与它所产生的<span data-concept=\"angular-momentum\">角动量</span>的方向相同。</li><li>陀螺仪绕竖直轴进动，因为力矩始终是水平的，并垂直于 $\\kL$。如果陀螺仪没有旋转，它就会沿力矩的方向获得<span data-concept=\"angular-momentum\">角动量</span>（$\\kL = \\kdLang$），并绕水平轴转动，像我们所预期的那样倒下。</li><li>地球本身就像一个巨大的陀螺仪。它的<span data-concept=\"angular-momentum\">角动量</span>沿着它的转轴，指向北极星（Polaris）。</li></ul>",
+ "notes": "没有遗漏：本节的每道习题都有答案，图 10.41（地球进动的转轴）放在引用它的那道习题的卡片上。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示，以及两道思考题和那道没有答案的 AP 题的建议解法，均由 AI 生成并已作相应标注；习题、理解检测框和那道有答案的 AP 题的答案取自本书自带的书后答案，此处没有任何计算。本节的每道习题都有答案，因此没有遗漏。关于转动动能是否为矢量的理解检测框，放在陀螺仪与地球那段文字之后的行内，其余各题都放在末尾。第二道 AP 题是关于用渔线轮检验力矩与角动量的，书中没有给出答案，作为开放题保留，并附有建议解法。第一道思考题是关于向后拉摩托车车把的，在 10.6 中也一字不差地印出；把它放在这里，是因为它所依赖的角动量方向正是在这里引入的，10.6 的说明里也说明了这一点。图 10.41 放在引用它的那道习题的卡片上。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-right-hand-rule",
+   "kind": "sim",
+   "number": "10.37",
+   "originals": [
+    "/media/ch10/Figure_11_07_01.jpg"
+   ],
+   "original_caption": "图（a）显示一个圆盘从上方看沿逆时针方向转动。图（b）显示右手定则。角速度 ω 大小和角动量 L 的方向，都被定义为：当你的手指沿如图所示的圆盘转动方向弯曲时，右手拇指所指的方向。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "angular-rate",
+    "angular-momentum",
+    "rotational-inertia"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "hand labels kept on the canvas; note via macros (rewrite filed)"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: the library's right hand, a thumbs-up beside the disk"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-torque-direction",
+   "kind": "sim",
+   "number": "10.38",
+   "originals": [
+    "/media/ch10/Figure_11_07_02a.jpg"
+   ],
+   "original_caption": "在图（a）中，力矩垂直于 r 和 F 所构成的平面，其方向是：当你的手指沿 F 的方向弯曲时，右手拇指所指的方向。图（b）显示，力矩的方向与它所产生的角动量的方向相同。",
+   "widths": [],
+   "draws": [
+    "torque",
+    "force",
+    "position",
+    "angular-momentum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note one sentence via macros (rewrite filed)"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: silhouette on the ground at the rim; slider is the radius"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-bike-wheel",
+   "kind": "sim",
+   "number": "10.39",
+   "originals": [
+    "/media/ch10/Figure_11_07_03a.jpg"
+   ],
+   "original_caption": "在图（a）中，一个人握着旋转的自行车车轮，用右手把它向上抬，用左手向下压，试图使车轮转动。这一动作产生一个直接朝向她的力矩。这个力矩使角动量产生一个方向完全相同的变化 ΔL。图（b）是一幅矢量图，显示 ΔL 与 L 如何相加，得到一个更偏向这个人的新角动量。车轮朝这个人移动，垂直于她施加在它上面的力。",
+   "widths": [],
+   "draws": [
+    "angular-momentum",
+    "torque",
+    "angular-rate",
+    "force"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note shortened, via macros (rewrite filed)"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: silhouette in profile, hands on the handles, wheel between arms"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-gyroscope",
+   "kind": "sim",
+   "number": "10.40",
+   "originals": [
+    "/media/ch10/Figure_11_07_04a.jpg"
+   ],
+   "original_caption": "如图（a）所示，旋转的陀螺仪所受的力是它的重力和来自支架的支持力。这些力对陀螺仪产生一个水平的力矩，使角动量产生同样水平的变化 ΔL。在图（b）中，ΔL 与 L 相加，得到大小相同、方向不同的新角动量，因此陀螺仪沿图示方向进动，而不是倒下。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "angular-momentum",
+    "torque",
+    "angular-rate",
+    "force",
+    "angle",
+    "mass",
+    "position",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset, camera drawn back from the headline, note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "right-hand-rule",
+   "concept": "right-hand-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "right-hand-rule",
+   "concept": "angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "right-hand-rule",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "right-hand-rule",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "right-hand-rule",
+   "concept": "right-hand-rule-for-rotation",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-direction",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-direction",
+   "concept": "torque-changes-angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-direction",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-direction",
+   "concept": "right-hand-rule",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bike-wheel",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bike-wheel",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "bike-wheel",
+   "concept": "right-hand-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "gyroscope",
+   "concept": "gyroscopic-precession",
+   "verb": "introduces"
+  },
+  {
+   "span": "gyroscope",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "gyroscope",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "gyroscope",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1446925",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "gyroscope"
+   },
+   "cite": "right-hand-rule",
+   "prompt": "转动动能与角动量相关联？这是否意味着转动动能是矢量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "不是。无论是否涉及运动，能量总是标量。任何形式的能量在空间中都没有方向，你可以看出，转动动能并不取决于运动的方向，正如平动动能与运动的方向无关。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1645907",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-direction",
+   "prompt": "地球仪（地球的模型）是一个半径为 16 cm 的空心球体。一个人把绳子绕在地球仪的赤道上并拉动它，对地球仪施加了 120 N · m 的力矩，持续 1.2 s。1.2 s 后地球仪的角动量是多少？",
+   "answer": {
+    "type": "number",
+    "value": 144,
+    "unit": "N·m·s",
+    "generated_by": "source",
+    "hint": "地球仪从静止开始，所以它最终的角动量就是全部的变化量，而 $\\text{合力矩}\\;\\ktau = \\kdLang / \\kdt$ 表明，这个变化量等于力矩乘以它作用的时间。地球仪的半径用不到。",
+    "solution": "因为地球仪一开始是静止的，$\\ktau = \\frac{\\kdLang}{\\kdt}$，所以 $\\ktau \\cdot \\kdt = \\kdLang$。代入得 $120\\ \\text{N}\\cdot\\text{m} \\cdot 1.2\\ \\text{s} = 144\\ \\text{N}\\cdot\\text{m}\\cdot\\text{s}$。1.2 s 后地球仪的角动量为 $144\\ \\text{N}\\cdot\\text{m}\\cdot\\text{s}$。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1533695",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-direction",
+   "prompt": "怎样利用渔线轮来检验施加在一个系统上的力矩、力矩作用的时间，与该系统由此获得的角动量之间的关系？你将如何测量角动量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把一个已知的质量块挂在鱼线上，使鱼线拉着线轴的边缘。这个质量块的重力就是力，线轴的半径就是它的力臂，二者的乘积就是作用在渔线轮上的力矩，只要质量块自由悬挂，这个力矩就保持不变。松开渔线轮，让质量块拉动一段测定的时间，然后抓住鱼线，使力矩停止作用。为了求出渔线轮获得的角动量，在力矩停止后立即测出线轴转过一个数得清的圈数所用的时间，由此得到它的角速度，再乘以线轴的转动惯量；线轴的转动惯量可以根据它的质量和半径来估算，把它看作圆盘，或者看作图 10.12 中的空心圆柱体。让质量块分别拉动两倍和三倍的时间，重复实验，然后在时间相同的条件下换用两倍的质量块再做，每一次都把测得的角动量与乘积 $\\ktau\\,\\kdt$ 比较。关系式 $\\text{合力矩}\\;\\ktau = \\kdLang / \\kdt$ 预言，角动量与时间和力矩成比例地增长，并且力矩加倍而作用时间减半，渔线轮得到的角动量不变。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2603246",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bike-wheel",
+   "prompt": "一位物理系学生以公路车速骑摩托车时，注意到向后轻轻拉右侧车把，会使摩托车向左倾倒，并产生一次左转弯。请解释这是为什么。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "摩托车的前轮是一个角动量很大的旋转车轮，在公路车速下，这个角动量沿着转轴，按右手定则指向骑手的左侧。向后拉右侧车把，是想使前轮绕竖直轴向右转，而这一拉力的力矩是竖直的，垂直于车轮的角动量。与图 10.39 中的自行车车轮一样，角动量变化 $\\kdLang$ 沿着力矩的方向，所以转轴并不像骑手可能预期的那样向右摆动；相反，$\\kL$ 的矢端沿力矩的方向移动，车轮绕水平轴倾斜，使摩托车向左倾斜。摩托车一旦向左倾斜，它的重力和轮胎处的力就使它向左转弯，这就是学生注意到的那次转弯。这正是图 10.40 中回转效应在起作用：力矩改变角动量的方向，而且是沿着它自身的方向改变，垂直于骑手推的方向。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1972542",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gyroscope",
+   "prompt": "用于制导系统、指示空间方向的陀螺仪，其角动量的方向必须保持不变。然而它们常常受到很大的力和加速度。当它们被加速时，它们角动量的方向怎么能保持恒定？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有当力矩作用在旋转的物体上时，角动量的方向才会改变，因为 $\\text{合力矩}\\;\\ktau = \\kdLang / \\kdt$，而力本身并不是力矩。作用在陀螺仪质心上的力，或者通过质心起作用的支撑，没有力臂，不产生力矩，无论这个力多大。因此，制导陀螺仪安装在万向支架中，那是一组环，让它周围的框架能绕每一根轴自由转动。运载器可以俯仰、滚转和加速，而支座只把穿过旋转轮中心的力传给它，不传递绕该中心的力矩。没有力矩就没有 $\\kdLang$，角动量在空间中保持它的方向，无论运载器如何运动，转轴都保持原来的方向。较大的转动也有帮助：$\\kL$ 越大，任何杂散的力矩在给定时间内能使它偏转的角度就越小。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id350390",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gyroscope",
+   "figure": {
+    "src": "/media/ch10/Figure_11_07_06a.jpg",
+    "alt": "图中显示了地球的图像。有两个矢量，从地球中心出发，与竖直方向成二十三点五度角。在这两个矢量的矢端各有一个圆形，方向为逆时针。图中还显示了一个沿地球直径、指向左侧的角动量矢量。地球轨道所在的平面显示为一条穿过地球中心的水平线。",
+    "caption": "图 10.41 地球的转轴缓慢地进动，始终与垂直于地球轨道平面的方向成 23.5° 角。图中所示两个位置的角动量变化相当大，尽管大小 L 并没有改变。"
+   },
+   "prompt": "地球的转轴与垂直于地球轨道平面的方向成 23.5° 角。如图 10.41 所示，这条转轴在进动，在 25,780 y 内转过完整的一圈。（a）计算在这段时间的一半内角动量的变化。（b）产生这一角动量变化的平均力矩是多少？（c）如果这个力矩是由作用在赤道上最有效点的单个力产生的（实际上并非如此），这个力的大小是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 5.64e+33,
+      "unit": "kg·m²/s",
+      "hint": "地球的角动量为 $\\kL = \\kI\\kw$，其中转动惯量取实心球的 $\\frac{2}{5}MR^2$，角速度取每天转一圈的角速度。进动半周后，转轴摆到了圆锥的另一侧，所以 $\\kdLang$ 是一个三角形的第三条边，这个三角形的另外两条边都是 $\\kL$，它们之间的夹角为 $2 \\times 23.5^\\circ$。"
+     },
+     {
+      "part": "b",
+      "value": 1.39e+22,
+      "unit": "N·m",
+      "hint": "平均力矩为 $\\kdLang / \\kdt$，其中 $\\kdt$ 是 25,780 年的一半，以秒表示。"
+     },
+     {
+      "part": "c",
+      "value": 2170000000000000.0,
+      "unit": "N",
+      "hint": "最有效的点是力臂等于整个地球半径、且力垂直于它的地方，所以力等于力矩除以 $R$。"
+     }
+    ],
+    "solution": "（a）$5.64 \\times 10^{33}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$ （b）$1.39 \\times 10^{22}\\ \\text{N}\\cdot\\text{m}$ （c）$2.17 \\times 10^{15}\\ \\text{N}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "right-hand-rule"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "rotational-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque-changes-angular-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "gyroscopic-precession"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "gyroscopic-precession"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "gyroscopic-precession"
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque-changes-angular-momentum",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque-sets-the-direction-of-angular-momentum",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "disk",
+   "label": "圆盘",
+   "figures": [
+    "sim-right-hand-rule"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "右手",
+   "figures": [
+    "sim-right-hand-rule"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "推的人",
+   "figures": [
+    "sim-torque-direction"
+   ]
+  },
+  {
+   "id": "merry-go-round",
+   "label": "旋转木马",
+   "figures": [
+    "sim-torque-direction"
+   ]
+  },
+  {
+   "id": "wheel",
+   "label": "自行车车轮",
+   "figures": [
+    "sim-bike-wheel"
+   ]
+  },
+  {
+   "id": "woman",
+   "label": "握着车轮的女士",
+   "figures": [
+    "sim-bike-wheel"
+   ]
+  },
+  {
+   "id": "gyroscope",
+   "label": "陀螺仪",
+   "figures": [
+    "sim-gyroscope"
+   ]
+  },
+  {
+   "id": "stand",
+   "label": "支架",
+   "figures": [
+    "sim-gyroscope"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,125 @@
+/* Figures for section 2.2 Vectors, Scalars, and Coordinate Systems. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['2.2'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, plane } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* a number with its sign written out, as the book writes a signed displacement; a value that rounds to zero takes no sign */
+const eps = (d) => 0.5 * Math.pow(10, -d);
+const signed = (x, d) => (x > eps(d) ? '+' : x < -eps(d) ? '−' : '') + fmt(Math.abs(x), d);
+const signedTex = (x, d) => (x > eps(d) ? '+' : x < -eps(d) ? '-' : '') + fmt(Math.abs(x), d);
+/* a scalar reading, whose minus sign is a point below zero and which takes no plus */
+const reading = (x, d) => (x < -eps(d) ? '−' : '') + fmt(Math.abs(x), d);
+const readingTex = (x, d) => (x < -eps(d) ? '-' : '') + fmt(Math.abs(x), d);
+/* the jet of Figure 2.6, nose to the left when heading is −1 and to the right when it is +1 */
+function jet(ctx, x, y, heading, s) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(heading < 0 ? -1 : 1, 1); plane(ctx, 0, 0, F.ref('jet'), s); ctx.restore();
+}
+
+/* =====================================================================
+   SIM: a vector and a scalar. On the left the velocity of a jet is an
+   arrow whose length is proportional to its magnitude and which points
+   east or west by its sign; on the right a temperature is a point on the
+   scale of a thermometer, below the zero mark when it is negative. No
+   motion: the figure answers its sliders and nothing else.
+===================================================================== */
+(function () {
+  const d = sim('sim-vector-scalar', 430);
+  const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: -120, max: 120, step: 5, value: 90, unit: 'km/h', dec: 0, aria: '速度，向东为正' });
+  const T = ctl(d.controls, { label: '\\text{温度}', cls: 'temperature', min: -40, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: '温度' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
+  const jx = 400, jy = 262;                 /* where the jet sits on its strip */
+  const tx = 1060, tTop = 150, tBot = 366;  /* the thermometer's tube and the scale along it */
+  const Y = (deg) => tBot - ((tBot - tTop) * (deg + 40)) / 80;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const v = V.v, temp = T.v, east = v >= 0, mag = Math.abs(v);
+    /* the vector: the jet on a strip, with its velocity drawn as an arrow from its nose */
+    text(ctx, '矢量：喷气式飞机的速度', 70, 108, PAL.muted, { size: 20, weight: 600 });
+    strip(ctx, 70, 750, jy + 30, 44);
+    text(ctx, '西', 76, jy + 84, PAL.muted, { size: 17 }); text(ctx, '东', 744, jy + 84, PAL.muted, { size: 17, align: 'right' });
+    jet(ctx, jx, jy, east ? 1 : -1, 1.1);
+    const len = mag * 2.2, nose = east ? jx + 54 : jx - 54, tip = east ? nose + len : nose - len;
+    if (mag > 0) arrow(ctx, nose, jy, tip, jy, C('velocity'), 5);
+    const lx = mag > 0 ? (nose + tip) / 2 : jx;
+    text(ctx, mag > 0 ? 'v = ' + signed(v, 0) + ' km/h' : 'v = 0 km/h', lx, jy - 74, C('velocity'), { weight: 600, size: 24, align: 'center' });
+    text(ctx, mag > 0 ? '箭头指向' + (east ? '东' : '西') : '没有箭头可画', lx, jy - 44, PAL.ink, { size: 17, align: 'center' });
+    text(ctx, '箭头的长度本身就是速率，' + fmt(mag, 0) + ' km/h，是标量', 410, jy + 140, PAL.ink, { size: 17, align: 'center' });
+    /* the scalar: a thermometer, with the reading a point on its scale */
+    text(ctx, '标量：温度', 900, 108, PAL.muted, { size: 20, weight: 600 });
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.roundRect(tx - 14, tTop - 22, 28, tBot - tTop + 44, 14); ctx.fill();
+    ctx.fillStyle = alpha(PAL.muted, 0.35); ctx.fillRect(tx - 7, Y(temp), 14, tBot + 10 - Y(temp)); ctx.restore();
+    for (let deg = -40; deg <= 40; deg += 10) {
+      line(ctx, tx + 16, Y(deg), tx + (deg % 20 ? 26 : 34), Y(deg), PAL.muted, 2);
+      if (deg % 20 === 0) text(ctx, reading(deg, 0) + ' °C', tx + 44, Y(deg), PAL.muted, { size: 17 });
+    }
+    line(ctx, tx - 26, Y(0), tx - 16, Y(0), PAL.muted, 2);
+    dot(ctx, tx, Y(temp), C('temperature'), true, 10);
+    text(ctx, reading(temp, 0) + ' °C', tx - 28, Y(temp), C('temperature'), { weight: 600, size: 24, align: 'right' });
+    text(ctx, temp < 0 ? '负号表示零以下的一个点，而不是方向' : temp > 0 ? '标度上零以上的一个点' : '标度的零点', 1060, jy + 140, PAL.ink, { size: 17, align: 'center' });
+    headline(ctx, (mag > 0 ? '速度 ' + fmt(mag, 0) + ' km/h、方向' + (east ? '向东' : '向西') + '，用一个箭头表示' : '速度 0 km/h 没有箭头')
+      + '，而 ' + reading(temp, 0) + ' °C 的温度是标度上的一个点。');
+    readout(d.readout, `\\kv = ${signedTex(v, 0)}\\ \\text{km/h}${mag > 0 ? `\\ (\\text{${east ? '东' : '西'}})` : ''} \\qquad \\text{温度} = ${readingTex(temp, 0)}^{\\circ}\\text{C}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 2.7: the coordinate system. The flight of the jet is read on two
+   coordinate lines with the same origin, one with right positive and one
+   with left positive, and the pair of axes the book draws stands beneath
+   them with up and to the right marked positive. Still: which direction
+   is called positive is a choice and has no time in it, so a drawing that
+   answers the two sliders is all the idea needs and there is no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-axes', 620);
+  const D = ctl(d.controls, { label: '\\text{飞行距离}', cls: '', min: 0.5, max: 8, step: 0.5, value: 5, unit: 'km', dec: 1, aria: '飞行距离' });
+  const O = ctl(d.controls, { label: '\\text{原点}', cls: '', min: 0, max: 10, step: 0.5, value: 9, unit: 'km', dec: 1, aria: '坐标轴零点所在的位置' });
+  const L = 160, R = 1240, S0 = 9.0, X = (s) => L + ((R - L) * s) / 10;   /* s is the ground coordinate, a fixed 0 to 10 km across the strip */
+  const yA = 170, yS = 300, yB = 430;        /* the upper line, the strip, the lower line */
+  /* one coordinate line: its arrow toward the positive end, its ticks in its own coordinate, the start, the current position and the displacement */
+  function axis(ctx, y, sign, label, s0, s, o) {
+    const Xc = (x) => X(o + sign * x);                   /* x on this line to the ground */
+    text(ctx, label, L, y - 58, PAL.ink, { size: 20, weight: 600 });
+    if (sign > 0) arrow(ctx, L - 40, y, R + 44, y, PAL.muted, 3); else arrow(ctx, R + 40, y, L - 44, y, PAL.muted, 3);
+    const from = Math.ceil(sign > 0 ? -o : o - 10), to = Math.floor(sign > 0 ? 10 - o : o);
+    for (let k = from; k <= to; k++) { line(ctx, Xc(k), y - 8, Xc(k), y + 8, PAL.muted, 2); if (k % 2 === 0) text(ctx, signed(k, 0).replace('+', '') + ' km', Xc(k), y + 28, PAL.muted, { size: 17, align: 'center' }); }
+    const x0 = sign * (s0 - o), x = sign * (s - o), dx = x - x0;
+    if (Math.abs(dx) > 1e-9) arrow(ctx, X(s0), y, X(s), y, C('position'), 5);
+    dot(ctx, X(s0), y, C('position'), false, 10); dot(ctx, X(s), y, C('position'), true, 9);
+    text(ctx, 'x₀', X(s0), y - 30, C('position'), { size: 24, weight: 600, align: 'center' });
+    if (Math.abs(s - s0) > 0.3) text(ctx, 'x', X(s), y - 30, C('position'), { size: 24, weight: 600, align: 'center' });
+    if (Math.abs(dx) > 0.2) text(ctx, 'Δx = ' + signed(dx, 1) + ' km', (X(s0) + X(s)) / 2, y - 58, C('position'), { size: 22, weight: 600, align: 'center' });
+    return { x0, x, dx };
+  }
+  /* the pair of axes the book draws under this number, with up and to the right marked positive */
+  function cross(ctx, cx, cy2) {
+    const a = 46;
+    arrow(ctx, cx, cy2, cx + a, cy2, PAL.muted, 3); arrow(ctx, cx, cy2, cx - a, cy2, PAL.muted, 3);
+    arrow(ctx, cx, cy2, cx, cy2 - a, PAL.muted, 3); arrow(ctx, cx, cy2, cx, cy2 + a, PAL.muted, 3);
+    text(ctx, '+x', cx + a + 12, cy2, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, '−x', cx - a - 12, cy2, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    text(ctx, '+y', cx, cy2 - a - 16, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, '−y', cx, cy2 + a + 16, PAL.ink, { size: 20, weight: 600, align: 'center' });
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const s = S0 - D.v, o = O.v;
+    /* the origin, the same point on both lines */
+    line(ctx, X(o), yA - 8, X(o), yB + 8, PAL.rule, 2, [6, 8]);
+    /* the strip with the jet, which has flown its distance to the left */
+    strip(ctx, L, R, yS, 48);
+    jet(ctx, X(s), yS - 6, -1, 1.2);
+    const a = axis(ctx, yA, +1, '向右为正，通常的选择', S0, s, o);
+    const b = axis(ctx, yB, -1, '向左为正，喷气式飞机的前进方向', S0, s, o);
+    cross(ctx, 420, 548);
+    text(ctx, '对于竖直运动，通常的选择是向上为正、向下为负，', 520, 530, PAL.ink, { size: 20 });
+    text(ctx, '这两种选择合在一起，就是通常的那一对坐标轴。', 520, 562, PAL.ink, { size: 20 });
+    headline(ctx, '向左飞行 ' + fmt(D.v, 1) + ' km，向右为正时 $\\kdx = ' + signedTex(a.dx, 1) + '\\ \\text{km}$，向左为正时 $' + signedTex(b.dx, 1) + '\\ \\text{km}$。');
+    readout(d.readout, `\\begin{aligned} \\text{向右为正：}\\quad \\kdx &= \\kx - \\kxo = (${signedTex(a.x, 1)}) - (${signedTex(a.x0, 1)}) = ${signedTex(a.dx, 1)}\\ \\text{km} \\\\ \\text{向左为正：}\\quad \\kdx &= \\kx - \\kxo = (${signedTex(b.x, 1)}) - (${signedTex(b.x0, 1)}) = ${signedTex(b.dx, 1)}\\ \\text{km} \\end{aligned}`,
+      '移动原点会改变两个位置，但不改变位移；选取另一个方向为正，则这三个数各自变为其相反数。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

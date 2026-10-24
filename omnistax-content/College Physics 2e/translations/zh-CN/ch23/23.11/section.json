@@ -1,0 +1,655 @@
+{
+ "id": "23.11",
+ "module": "m42427",
+ "chapter": "23",
+ "title": "电抗：感抗与容抗",
+ "short": "电抗",
+ "lead": "电感器和电容器各自对交流<span data-concept=\"electric-current\">电流</span>所起的作用，是电阻器所没有的。本节考察单独接在<span data-ref=\"source\">交流电源</span>上的<span data-ref=\"inductor\">电感器</span>或电容器如何使<span data-concept=\"electric-current\">电流</span>相对于<span data-concept=\"potential-difference\">电压</span>发生移动，以及随<span data-concept=\"frequency\">频率</span>变化而限制电流的电抗。",
+ "objectives": [
+  "画出简单的感性、容性和阻性电路中电压和电流随时间变化的草图。",
+  "计算感抗和容抗。",
+  "计算简单的感性、容性和阻性电路中的电流和（或）电压。"
+ ],
+ "summary_html": "<ul><li>对于交流电路中的电感器，我们发现：当正弦<span data-concept=\"potential-difference\">电压</span>加在电感器上时，<span data-concept=\"potential-difference\">电压</span>超前<span data-concept=\"electric-current\">电流</span>四分之一个周期，即超前 $90^\\circ$ 的相位角。</li><li>电感器对<span data-concept=\"electric-current\">电流</span>变化的阻碍表示为一种交流<span data-concept=\"resistance\">电阻</span>。</li><li>电感器的欧姆定律为 $\\kIcur = \\frac{\\kV}{\\kXL} ,$ 其中 $\\kV$ 是电感器两端的方均根电压。</li><li>$\\kXL$ 定义为<span data-concept=\"inductive-reactance\">感抗</span>，由 $\\kXL = 2\\pi \\kf\\kLind ,$ 给出，其中 $\\kf$ 是交流电压源的<span data-concept=\"frequency\">频率</span>，单位为赫兹。</li><li><span data-concept=\"inductive-reactance\">感抗</span> $\\kXL$ 的单位是欧姆，在高<span data-concept=\"frequency\">频率</span>下最大。</li><li>对于电容器，我们发现：当正弦<span data-concept=\"potential-difference\">电压</span>加在电容器上时，<span data-concept=\"potential-difference\">电压</span>滞后于<span data-concept=\"electric-current\">电流</span>四分之一个周期，即滞后 $90^\\circ$ 的相位角。</li><li>由于电容器充满电时可以阻止<span data-concept=\"electric-current\">电流</span>，所以它限制<span data-concept=\"electric-current\">电流</span>，提供了另一种形式的交流<span data-concept=\"resistance\">电阻</span>；电容器的欧姆定律为 $\\kIcur = \\frac{\\kV}{\\kXC} ,$ 其中 $\\kV$ 是电容器两端的方均根电压。</li><li>$\\kXC$ 定义为<span data-concept=\"capacitive-reactance\">容抗</span>，由 $\\kXC = \\frac{1}{2\\pi \\kf\\kCap} .$ 给出。</li><li>$\\kXC$ 的单位是欧姆，在低<span data-concept=\"frequency\">频率</span>下最大。</li></ul>",
+ "notes": "书中没有给出答案的七道题已略去：在 500 Hz 时感抗为 20.0 kΩ 所对应的电感，80.0 mF 电容器的电抗为 0.250 Ω 时的频率，0.250 µF 电容器在 60.0 Hz 和 25.0 kHz 时通过的电流，20.0 Hz 电源和 2.00 mA 电流所对应的电容，电路（a）的滤波电容器在 120 Hz 和 1.00 MHz 时的两个小问，关于脑电图信号的“不合理的结果”题，以及关于电感器与计算机串联的“自拟习题”。书中那幅未编号的两个电容器滤波电路图，印在第五道与第六道思考题之间，现附在这两道题以及第十道习题的卡片上，第十道习题正是点出电路（b）的那道题。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案：十三道习题中有六道附有答案，已收入；另外七道没有答案，已略去，并在本节的说明中列出。六道思考题均没有给出答案，因此每一道都作为开放题保留，并附有 AI 撰写的建议思路，且已标明。本节没有 AP 题，也没有“理解检测”框，所以所有题目都排在末尾。没有题目留待后面各节，也没有从前面各节转来的题目。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-ac-phase",
+   "kind": "sim",
+   "number": "23.43",
+   "folds": [
+    "23.44",
+    "23.45"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_11_01a.jpg",
+    "/media/ch23/Figure_24_11_02a.jpg",
+    "/media/ch23/Figure_24_11_03a.jpg"
+   ],
+   "original_caption": "（图 23.43）（a）交流电压源与一个电阻可忽略的电感器串联。（b）电感器两端的电流和电压随时间变化的图像。（图 23.44）（a）交流电压源与一个电阻可忽略的电容器 C 串联。（b）电容器两端的电流和电压随时间变化的图像。（图 23.45）（a）交流电压源与一个电阻器串联。（b）电阻器两端的电流和电压随时间变化的图像，表明两者恰好同相。",
+   "widths": [
+    400,
+    400,
+    400
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "time",
+    "frequency",
+    "inductance",
+    "capacitance",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "curve key moved under the axis, off the curves"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-reactance-against-frequency",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "resistance",
+    "current",
+    "inductance",
+    "capacitance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note: X_C through the macros, cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "inductor-voltage-leads-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "inductive-reactance",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "filtering-by-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "self-inductance",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "inductance",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "henry",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "rl-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "alternating-current",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "rms-values",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors-and-inductive-reactance",
+   "concept": "ac-ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "capacitors-and-capacitive-reactance",
+   "concept": "capacitor-voltage-follows-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "capacitors-and-capacitive-reactance",
+   "concept": "capacitive-reactance",
+   "verb": "introduces"
+  },
+  {
+   "span": "capacitors-and-capacitive-reactance",
+   "concept": "filtering-by-frequency",
+   "verb": "reinforces"
+  },
+  {
+   "span": "capacitors-and-capacitive-reactance",
+   "concept": "capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "capacitors-and-capacitive-reactance",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "capacitors-and-capacitive-reactance",
+   "concept": "charging-a-capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "capacitors-and-capacitive-reactance",
+   "concept": "ac-ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "resistors-in-an-ac-circuit",
+   "concept": "resistor-voltage-in-phase",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistors-in-an-ac-circuit",
+   "concept": "ac-ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "resistors-in-an-ac-circuit",
+   "concept": "alternating-current",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738010807",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capacitors-and-capacitive-reactance",
+   "prompt": "老年性聋是因年龄增长而出现的听力损失，会逐渐影响较高的频率。助听器的放大器被设计成对所有频率等同地放大。为了针对老年性聋调整其输出，你会把电容器与助听器的扬声器串联还是并联？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把电容器与扬声器串联。串联的电容器提供的电抗为 $1/2\\pi fC$，在低频时大，在高频时小，所以它阻挡低频而让高频通过。这正是这里所需要的。听者已经失去了高频，所以放大器的输出必须向高频倾斜，而串联电容器通过去掉一部分低频输出做到了这一点。与扬声器并联的电容器则会起相反的作用。在高频时，它的小电抗会让电流绕过扬声器而不是通过扬声器，听者就会恰好失去最难听到的声音。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737854523",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capacitors-and-capacitive-reactance",
+   "prompt": "为了滤除低频，例如音响系统中 100 Hz 的交流声，你会在系统中串联大电感还是大电容？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用大电容。容抗 $X_C = 1/2\\pi fC$ 在低频时最大，所以与系统串联的电容器会挡住 100 Hz 的交流声，而对更高的频率几乎没有阻碍，这些频率便能通过。大电感则相反，因为 $X_L = 2\\pi fL$ 随频率增大：它会让交流声通过，却挡住音乐。请注意，电容必须足够大，使它在你想保留的频率上的电抗很小；本节自己的例子，就是把一个电容器与声音重放系统串联，以消除其中 60 Hz 的交流声。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737930275",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors-and-inductive-reactance",
+   "prompt": "交流电源中的高频噪声会损坏计算机。为防止这种损坏而设计的插接式装置，是用大电感还是大电容（与计算机串联）来滤除这样的高频？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用的是大电感。感抗 $X_L = 2\\pi fL$ 与频率成正比。因此，与计算机串联的电感器，在计算机所用的 60 Hz 时几乎就是一根普通导线，而在噪声的高频下则是很大的欧姆数。噪声被挡住，电源则得以通过。串联电容器的作用则相反，它会让高频噪声通过，却挡住电源本身，这就是滤波器使用电感器的原因。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737771745",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors-and-inductive-reactance",
+   "prompt": "电感取决于电流、频率，还是两者都取决？感抗呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电感与这两者都无关。它是器件本身的性质，由匝数、线圈的面积和长度以及线圈内部的物质决定，如螺线管的 $L = \\mu_0 N^2 A/\\ell$ 所示。通过线圈的电流和电流的频率都不会改变它。感抗则是另一个量，确实取决于频率，因为 $X_L = 2\\pi fL$。它也不取决于电流：电压加倍，电流也加倍，而电感器的欧姆数不变。正是这一点使 $X_L$ 成为一种等效电阻，使你可以用它写出欧姆定律。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737785016",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capacitors-and-capacitive-reactance",
+   "figure": {
+    "src": "/media/ch23/Figure_24_11_04a.jpg",
+    "alt": "两个连接方式不同的电路。第一个电路中，电路 1 和电路 2 串联，二者之间接有一个电容器 C，两个电路都接地。第二个电路中，电路 1 和电路 2 彼此相连，在连接点处接有一个电容器的一端，其另一端接地，两个电路都接地。",
+    "caption": "电容器与电感器。电容器分别对应高频和低频。"
+   },
+   "prompt": "解释为什么下图（a）部分中的电容器在两个电路之间起低频滤波器的作用，而（b）部分中的电容器起高频滤波器的作用。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在（a）中，电容器是串联的，处在信号从第一个电路到第二个电路的唯一路径上，所以凡是它挡住的信号都到不了。它的电抗 $1/2\\pi fC$ 在低频时大，在高频时小，所以它阻挡低频而让高频通过：它把低频从到达电路 2 的信号中滤除。在（b）中，电容器根本不在路径上，而是从路径上接到大地，一个信号如果在那里找到了通向大地的容易通路，就永远到不了电路 2。容易的通路是电抗小的那条，也就是高频的那条，所以高频被短路到大地，而看到大电抗的低频则继续前进。同一个元件滤除频谱的哪一半，取决于它是串联在路径上，还是跨接在路径上。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169736669333",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors-and-inductive-reactance",
+   "figure": {
+    "src": "/media/ch23/Figure_24_11_04a.jpg",
+    "alt": "两个连接方式不同的电路。第一个电路中，电路 1 和电路 2 串联，二者之间接有一个电容器 C，两个电路都接地。第二个电路中，电路 1 和电路 2 彼此相连，在连接点处接有一个电容器的一端，其另一端接地，两个电路都接地。",
+    "caption": "电容器与电感器。电容器分别对应高频和低频。"
+   },
+   "prompt": "如果下图中的电容器换成电感器，哪一个起低频滤波器的作用，哪一个起高频滤波器的作用？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者互换，因为 $X_L = 2\\pi fL$ 随频率的变化方向与 $X_C$ 相反。（a）中串联的电感器，在低频时欧姆数小，在高频时大，所以它让低频通过而挡住高频：它现在是高频滤波器。（b）中接到大地的电感器，在低频时提供了通向大地的容易通路，在高频时则是困难的，所以它把低频短路掉，而让高频继续前进到电路 2：它现在是低频滤波器。在每个位置上，电感器所做的，都是电容器在频谱另一端所做的，这正是本节结尾所说的一般事实：电容器对交流电路的作用与电感器的作用相反。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738117280",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors-and-inductive-reactance",
+   "prompt": "在什么频率下，一个 30.0 mH 的电感器的感抗为 $100\\ \\Omega$？",
+   "answer": {
+    "type": "number",
+    "value": 531,
+    "unit": "Hz",
+    "generated_by": "source",
+    "hint": "电感器的感抗是 $X_L = 2\\pi fL$；这里要求的是频率，另外两个量已给出。",
+    "solution": "531 Hz"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738077769",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capacitors-and-capacitive-reactance",
+   "prompt": "要在 60.0 Hz 时产生 $2.00\\ \\text{M}\\Omega$ 的容抗，应使用多大的电容？",
+   "answer": {
+    "type": "number",
+    "value": 1.33,
+    "unit": "nF",
+    "generated_by": "source",
+    "hint": "把 $X_C = 1/2\\pi fC$ 改写成求电容的形式。两兆欧是很大的电抗，所以预期是一个很小的电容器。",
+    "solution": "1.33 nF"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737729245",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors-and-inductive-reactance",
+   "prompt": "（a）求通过一个 0.500 H 电感器的电流，该电感器接在 60.0 Hz、480 V 的交流电源上。（b）在 100 kHz 时，电流是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.55,
+      "unit": "A",
+      "hint": "先求 60.0 Hz 时的感抗，再用 $I = V/X_L$ 形式的欧姆定律。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.53,
+      "unit": "mA",
+      "hint": "频率增大到约 1670 倍，感抗也随之增大。"
+     }
+    ],
+    "solution": "（a）2.55 A（b）1.53 mA"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738198521",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors-and-inductive-reactance",
+   "prompt": "一个 20.0 kHz、16.0 V 的电源接到一个电感器上，产生 2.00 A 的电流。电感是多少？",
+   "answer": {
+    "type": "number",
+    "value": 63.7,
+    "unit": "µH",
+    "generated_by": "source",
+    "hint": "电压和电流通过 $I = V/X_L$ 给出感抗，再由感抗和频率求出电感。",
+    "solution": "$63.7\\ \\mu\\text{H}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738250258",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors-and-inductive-reactance",
+   "prompt": "（a）一个设计用来滤除个人计算机供电中高频噪声的电感器，与计算机串联。要对 15.0 kHz 的噪声产生 $2.00\\ \\text{k}\\Omega$ 的感抗，它的电感至少应为多少？（b）它在 60.0 Hz 时的感抗是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 21.2,
+      "unit": "mH",
+      "hint": "把 $X_L = 2\\pi fL$ 改写成求电感的形式，频率取 15.0 kHz 的噪声。"
+     },
+     {
+      "part": "(b)",
+      "value": 8.0,
+      "unit": "Ω",
+      "hint": "感抗与频率成正比地减小，60.0 Hz 比 15.0 kHz 小 250 倍。"
+     }
+    ],
+    "solution": "（a）21.2 mH（b）$8.00\\ \\Omega$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169736611033",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capacitors-and-capacitive-reactance",
+   "figure": {
+    "src": "/media/ch23/Figure_24_11_04a.jpg",
+    "alt": "两个连接方式不同的电路。第一个电路中，电路 1 和电路 2 串联，二者之间接有一个电容器 C，两个电路都接地。第二个电路中，电路 1 和电路 2 彼此相连，在连接点处接有一个电容器的一端，其另一端接地，两个电路都接地。",
+    "caption": "电容器与电感器。电容器分别对应高频和低频。"
+   },
+   "prompt": "下图（b）部分中的电容器，会通过把高频信号短路到大地来滤除它们。（a）要对 5.00 kHz 的信号产生 $10.0\\ \\text{m}\\Omega$ 的电抗，需要多大的电容？（b）它在 3.00 Hz 时的电抗是多少？（c）讨论你对（a）和（b）的答案的含义。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.18,
+      "unit": "mF",
+      "hint": "把 $X_C = 1/2\\pi fC$ 改写成求电容的形式。十毫欧是很小的电抗，所以电容器必须非常大。"
+     },
+     {
+      "part": "(b)",
+      "value": 16.7,
+      "unit": "Ω",
+      "hint": "电抗与频率成反比地增大，3.00 Hz 比 5.00 kHz 小 1670 倍。"
+     }
+    ],
+    "solution": "（a）3.18 mF（b）$16.7\\ \\Omega$。这两个数合在一起，使这种安排成为滤波器：在 5.00 kHz 时，电容器几乎就是通向大地的一根导线，把信号带走；而在 3.00 Hz 时，它提供足够的阻碍，使低频信号留在两个电路之间的路径上。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "filtering-by-frequency"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "capacitive-reactance",
+   "weight": 5,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "filtering-by-frequency"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "capacitive-reactance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "inductive-reactance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "filtering-by-frequency"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "inductive-reactance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "inductive-reactance"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "inductance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "filtering-by-frequency"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "capacitive-reactance",
+   "weight": 5,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "filtering-by-frequency"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "inductive-reactance",
+   "weight": 5,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "inductive-reactance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "capacitive-reactance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "inductive-reactance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "filtering-by-frequency",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "inductive-reactance"
+  },
+  {
+   "exercise": "p9",
+   "concept": "inductive-reactance"
+  },
+  {
+   "exercise": "p9",
+   "concept": "filtering-by-frequency",
+   "weight": 5,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "capacitive-reactance"
+  },
+  {
+   "exercise": "p11",
+   "concept": "filtering-by-frequency",
+   "weight": 5,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "inductor",
+   "label": "电感器",
+   "figures": [
+    "sim-ac-phase",
+    "sim-reactance-against-frequency"
+   ]
+  },
+  {
+   "id": "capacitor",
+   "label": "电容器",
+   "figures": [
+    "sim-ac-phase",
+    "sim-reactance-against-frequency"
+   ]
+  },
+  {
+   "id": "resistor",
+   "label": "电阻器",
+   "figures": [
+    "sim-ac-phase"
+   ]
+  },
+  {
+   "id": "source",
+   "label": "交流电压源",
+   "figures": [
+    "sim-ac-phase"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,593 @@
+/* Figures for section 18.7 Conductors and Electric Fields in Static Equilibrium.
+   Boots against the section's text article.
+
+   The figures colour charge, electric field, force, the distances (position)
+   and the angle of the applied field. A charge's sign is told by the sign
+   written on it and by which way the arrows and the lines run, never by a
+   hue. The conductors, the sphere, the plates, the probe and the charges the
+   text names are referents and wear their referent colours on outline and
+   name; the book's plus and minus marks on them stay in ink.
+
+   Only the first figure moves. The section's argument is that free charges
+   move until nothing is left to move them, and that settling has a clock in
+   it, so Figure 18.26 registers a cycle and carries the transport. Everything
+   after it draws an equilibrium that has already been reached: the five other
+   figures answer their sliders, register no cycle and carry no transport. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['18.7'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- small helpers shared by the figures ---------- */
+const TAU = 2 * Math.PI, RAD = Math.PI / 180;
+const K = 8.99e9;                                   /* Coulomb's constant, N·m²/C² */
+const BREAKDOWN = 3e6;                              /* the field at which air stops insulating, N/C */
+const SUPS = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (e) => String(e).split('').map((ch) => SUPS[ch] ?? ch).join('');
+/* a field or a force written in the book's scientific notation, for a headline and for LaTeX */
+function sci(v, d) {
+  if (!(Math.abs(v) > 0)) return '0';
+  const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e);
+  return fmt(m, d) + ' × 10' + sup(e);
+}
+function sciTex(v, d) {
+  if (!(Math.abs(v) > 0)) return '0';
+  const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e);
+  return fmt(m, d) + ' \\times 10^{' + e + '}';
+}
+
+/* A point charge: a filled disc with its sign written on it, in its referent
+   colour where the text names it and in the charge hue where it does not. */
+function pointCharge(ctx, x, y, q, r, col = C('charge')) {
+  ctx.save(); ctx.fillStyle = q === 0 ? PAL.panel : col; ctx.strokeStyle = col; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+  if (q !== 0) text(ctx, q < 0 ? '−' : '+', x, y + 1, PAL.panel, { size: r * 1.8, weight: 700, align: 'center' });
+}
+
+/* A plus or a minus written on the body of a conductor, in ink as the book
+   draws it. */
+function signMark(ctx, x, y, positive, size) {
+  text(ctx, positive ? '+' : '−', x, y, PAL.ink, { size, weight: 700, align: 'center' });
+}
+
+/* The field of a list of point charges at a point, in N/C, with the charges in
+   nanocoulombs and every length in centimetres. */
+function fieldAt(x, y, qs) {
+  let ex = 0, ey = 0;
+  for (const c of qs) {
+    const dx = x - c.x, dy = y - c.y, r2 = dx * dx + dy * dy;
+    if (r2 < 1e-9) continue;
+    const f = c.q / (r2 * Math.sqrt(r2));
+    ex += f * dx; ey += f * dy;
+  }
+  return { x: ex, y: ey, m: Math.hypot(ex, ey) };
+}
+
+/* One field line, stepped along the field direction from a seed point with a
+   midpoint step, until it leaves the frame, reaches a charge or enters a body
+   the caller says it may not enter. */
+function traceLine(seed, field, sense, box, stop, step, maxSteps) {
+  const pts = [[seed.x, seed.y]];
+  let x = seed.x, y = seed.y;
+  for (let i = 0; i < maxSteps; i++) {
+    const f = field(x, y);
+    if (!(f.m > 0)) break;
+    const hx = x + (sense * step * f.x) / f.m / 2, hy = y + (sense * step * f.y) / f.m / 2;
+    const g = field(hx, hy);
+    if (!(g.m > 0)) break;
+    x += (sense * step * g.x) / g.m; y += (sense * step * g.y) / g.m;
+    pts.push([x, y]);
+    if (x < box.x0 || x > box.x1 || y < box.y0 || y > box.y1) break;
+    if (stop && stop(x, y)) break;
+  }
+  return pts;
+}
+
+/* A traced line drawn with arrowheads partway along it, so the sense of the
+   field is read off the line and not off a colour. */
+function drawLine(ctx, pts, color, w, heads) {
+  if (pts.length < 2) return;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.stroke(); ctx.restore();
+  for (const t of heads) {
+    const i = Math.min(pts.length - 2, Math.max(0, Math.round(t * (pts.length - 1))));
+    const [ax, ay] = pts[i], [bx, by] = pts[i + 1];
+    const dd = Math.hypot(bx - ax, by - ay);
+    if (dd > 0.01) arrow(ctx, ax - ((bx - ax) / dd) * 9, ay - ((by - ay) / dd) * 9, ax + ((bx - ax) / dd) * 9, ay + ((by - ay) / dd) * 9, color, w + 1);
+  }
+}
+
+/* =====================================================================
+   FIGURE 18.26: an electric field applied to a conductor at an angle, and
+   the free charge the parallel component pushes along the surface. Moving:
+   the sentence the figure illustrates is that the charges move *until* the
+   parallel component is gone, and the book can only draw the two ends of
+   that sentence as panels (a) and (b). One loop carries the reader from the
+   first to the second, and the transport lets it be watched again.
+===================================================================== */
+(function () {
+  const d = sim('sim-parallel-component', 620);
+  const T = 5.0;                                     /* one settling, in seconds */
+  const cy = cycle(() => T, 1.2);
+  const reset = () => cy.reset();
+  const Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 100, max: 1000, step: 20, value: 400, unit: 'N/C', dec: 0, aria: '外加电场的强度', onInput: reset });
+  const as = ctl(d.controls, { label: '\\text{角度}', cls: 'angle', min: 15, max: 90, step: 5, value: 35, unit: '°', dec: 0, aria: '外加电场与表面的夹角', onInput: reset });
+  const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 0.1, max: 5, step: 0.1, value: 1, unit: 'μC', dec: 2, aria: '导体中的自由电荷', onInput: reset });
+  const X0 = 190, X1 = 1210, YS = 420, YB = 548, KE = 0.26, KF = 0.055;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('electric-field'), fc = C('force'), qc = C('charge'), cdc = F.ref('conductor');
+    const E0 = Es.v, al = as.v * RAD, q = qs.v;
+    /* the share of the parallel component the gathered charge has already
+       cancelled; it settles quickly and then holds, as a conductor does */
+    const s = 1 - Math.exp(-3.4 * cy.now() / T);
+    const Epar = E0 * Math.cos(al) * (1 - s), Eperp = E0 * Math.sin(al);
+    const Enet = Math.hypot(Epar, Eperp), Fpar = q * Epar;        /* μC × N/C = μN */
+    /* the conductor, seen edge on */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.strokeStyle = cdc; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.rect(X0, YS, X1 - X0, YB - YS); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, '导体', (X0 + X1) / 2, (YS + YB) / 2 + 2, cdc, { size: 21, align: 'center' });
+    /* the field above the surface, drawn at five places */
+    const ux = Epar / (Enet || 1), uy = Eperp / (Enet || 1), L = Enet * KE;
+    for (const x of [280, 440, 900, 1060, 1160]) arrow(ctx, x - L * ux, YS - L * uy, x, YS, ec, 4);
+    /* one place where the field is resolved into its two components */
+    const PX = 670;
+    arrow(ctx, PX - L * ux, YS - L * uy, PX, YS, ec, 6);
+    const cy0 = YS - L * uy;
+    if (Epar * KE > 24) arrow(ctx, PX - L * ux, cy0, PX, cy0, ec, 4);
+    arrow(ctx, PX, cy0, PX, YS, ec, 4);
+    line(ctx, PX - L * ux, cy0, PX - L * ux, YS, PAL.rule, 2, [10, 10]);
+    /* the three numbers in a column of their own, so that no two labels can
+       run into one another as the applied field is turned */
+    text(ctx, '表面处的电场', 120, 150, PAL.muted, { size: 19 });
+    text(ctx, 'E = ' + fmt(Enet, 0) + ' N/C', 120, 190, ec, { size: 22, weight: 600 });
+    text(ctx, 'E∥ = ' + fmt(Epar, 0) + ' N/C', 120, 230, ec, { size: 22, weight: 600 });
+    text(ctx, 'E⊥ = ' + fmt(Eperp, 0) + ' N/C', 120, 270, ec, { size: 22, weight: 600 });
+    /* the free charge, driven along the surface by the parallel component */
+    /* the charge that has gathered at the two ends, on the surface and in ink
+       as the book draws it */
+    const n = Math.round(s * 7);
+    for (let i = 0; i < n; i++) {
+      signMark(ctx, X1 - 34 - i * 30, YS + 28, true, 28);
+      signMark(ctx, X0 + 34 + i * 30, YS + 28, false, 28);
+    }
+    const cxq = 540 + s * 580, yq = YS - 24;
+    pointCharge(ctx, cxq, yq, 1, 20, F.ref('free-charge'));
+    text(ctx, 'q = ' + fmt(q, 2) + ' μC', cxq, yq - 40, qc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (Fpar * KF > 5) {
+      arrow(ctx, cxq + 26, yq, cxq + 26 + Fpar * KF, yq, fc, 5);
+    }
+    text(ctx, Fpar >= 0.5 ? 'F∥ = ' + fmt(Fpar, 0) + ' μN' : 'F∥ = 0', cxq, yq - 76, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    topline(ctx, as.v >= 90
+      ? '外加电场与表面垂直相交，所以它没有沿表面的部分，那里没有什么东西能推动自由电荷。'
+      : s < 0.03
+      ? '外加电场与表面成 ' + fmt(as.v, 0) + '° 角，所以其中有 ' + fmt(E0 * Math.cos(al), 0) + ' N/C 沿表面，并以 ' + fmt(q * E0 * Math.cos(al), 0) + ' μN 的力推动自由电荷。'
+      : Epar < 0.005 * E0
+        ? '聚集在两端的电荷已经抵消了平行分量，所以表面处剩下的场为 ' + fmt(Eperp, 0) + ' N/C，垂直于表面，再没有什么东西推动自由电荷了。'
+        : '聚集的电荷已经抵消了平行分量，只剩 ' + fmt(Epar, 0) + ' N/C，剩下的部分以 ' + fmt(Fpar, 0) + ' μN 的力推动自由电荷。');
+    readout(d.readout, `\\kFpar = \\kq\\kEfpar = (${fmt(q, 2)}\\ \\mu\\text{C})(${fmt(Epar, 0)}\\ \\text{N/C}) = ${fmt(Fpar, 0)}\\ \\mu\\text{N}`,
+      '这里的自由电荷是正的；在金属中自由电荷是负的，向左被驱动的负电荷与向右被驱动的正电荷是一回事。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 18.27: a sphere in a field that was uniform before the sphere was
+   put in it. The lines are traced from the field itself, so the way they
+   turn to meet a conductor at right angles and die inside it is drawn
+   rather than asserted. Still: the polarizing is over by the time the book
+   draws the picture, and what is asked of the figure is what the finished
+   arrangement looks like.
+===================================================================== */
+(function () {
+  const d = sim('sim-sphere-in-field', 700);
+  const Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 50, max: 500, step: 10, value: 200, unit: 'N/C', dec: 0, aria: '外加电场的强度' });
+  const as = ctl(d.controls, { label: '\\text{半径}', cls: 'position', min: 5, max: 14, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: '球的半径' });
+  const kind = choice(d.controls, { label: '\\text{球}', options: [{ value: 'metal', label: '导体' }, { value: 'insulator', label: '绝缘体' }], value: 'metal', aria: '球由什么材料制成' });
+  const CX = 700, CY = 372, S = 15;                 /* 15 logical units to the centimetre */
+  const BOX = { x0: 120, x1: 1280, y0: 96, y1: 648 };
+  const BETA = 0.625;                                /* how far an insulator of this kind polarizes, against a conductor's 1 */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('electric-field');
+    const E0 = Es.v, a = as.v * S, metal = kind.value === 'metal';
+    /* a change of material blends how far the sphere polarizes, so the lines straighten or bend to
+       their new course, and the lines that begin again on a conductor's face fade with it */
+    const [b, mA] = kind.mix((v) => (v === 'metal' ? [1, 1] : [BETA, 0]));
+    const inside = E0 * (1 - b), shown = metal ? 0 : E0 * (1 - BETA);
+    /* the field of a sphere in a uniform field: the applied field and the
+       field of the charge the sphere's own surface has taken up */
+    const field = (x, y) => {
+      const dx = x - CX, dy = y - CY, r = Math.hypot(dx, dy);
+      if (r < a) return { x: inside, y: 0, m: Math.abs(inside) };
+      const r3 = r * r * r, r5 = r3 * r * r, a3 = a * a * a;
+      const ex = E0 * (1 - (b * a3) / r3 + (3 * b * a3 * dx * dx) / r5);
+      const ey = E0 * ((3 * b * a3 * dx * dy) / r5);
+      return { x: ex, y: ey, m: Math.hypot(ex, ey) };
+    };
+    /* the lines, traced from the left edge, and, on a conductor, begun again
+       on the excess positive charge of the right-hand face */
+    const stop = (x, y) => mA > 0.5 && Math.hypot(x - CX, y - CY) < a + 2;
+    const ys = [];
+    for (let i = 0; i < 11; i++) ys.push(BOX.y0 + 26 + (i * (BOX.y1 - BOX.y0 - 52)) / 10);
+    for (const y of ys) drawLine(ctx, traceLine({ x: BOX.x0 + 4, y }, field, 1, BOX, stop, 7, 420), ec, 3, [0.3, 0.75]);
+    if (mA > 0.01) {
+      ctx.save(); ctx.globalAlpha = mA;
+      for (let i = -4; i <= 4; i++) {
+        const ph = (i * 20) * RAD;
+        const seed = { x: CX + (a + 4) * Math.cos(ph), y: CY + (a + 4) * Math.sin(ph) };
+        drawLine(ctx, traceLine(seed, field, 1, BOX, null, 7, 420), ec, 3, [0.45]);
+      }
+      ctx.restore();
+    }
+    /* the sphere itself, outlined in its referent colour, with the charge its
+       two faces carry marked the way the book marks it */
+    const spc = F.ref('sphere');
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05 + 0.07 * mA);
+    ctx.strokeStyle = spc; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(CX, CY, a, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    for (const [marks, ma] of [[7, mA], [5, 1 - mA]]) {
+      if (ma < 0.01) continue;
+      ctx.save(); ctx.globalAlpha = ma;
+      for (let i = 0; i < marks; i++) {
+        const ph = -60 * RAD + (i * 120 * RAD) / (marks - 1);
+        signMark(ctx, CX + (a - 20) * Math.cos(ph), CY + (a - 20) * Math.sin(ph), true, 26);
+        signMark(ctx, CX - (a - 20) * Math.cos(ph), CY + (a - 20) * Math.sin(ph), false, 26);
+      }
+      ctx.restore();
+    }
+    /* the inside reading only where the sphere is wide enough to hold it; the readout states it at every size */
+    if (a >= 110) text(ctx, metal ? '内部没有电场' : '内部 E = ' + fmt(shown, 0) + ' N/C', CX, CY, metal ? PAL.muted : ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, metal ? '金属球' : '绝缘球', CX, CY + a + 44, spc, { size: 21, align: 'center' });
+    text(ctx, '外加电场，' + fmt(E0, 0) + ' N/C', BOX.x0 + 6, BOX.y0 + 20, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.95) });
+    topline(ctx, metal
+      ? '自由电荷已移到球的两面，它们产生的场恰好抵消球内的外加电场，使那里什么也不剩，并且场在表面处与表面垂直相交。'
+      : '绝缘体没有可以移到其两面的自由电荷，所以场线穿过它，被削弱到 ' + fmt(shown, 0) + ' N/C，但既没有被抵消，也没有弯曲到与表面垂直相交。');
+    const Ein = metal ? 0 : E0 * (1 - BETA);
+    readout(d.readout, `\\kEf_{\\ \\text{内部}} = \\kEf_{\\ \\text{外加}} - \\kEf_{\\ \\text{两面}} = ${fmt(E0, 0)}\\ \\text{N/C} - ${fmt(E0 - Ein, 0)}\\ \\text{N/C} = ${fmt(Ein, 0)}\\ \\text{N/C}`,
+      metal ? '场线在球附近挤在一起，球外的场在那里更强。' : undefined);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 18.28: excess charge on a metal sphere, and the field a probe
+   reads inside it and outside it. Still: the charge has spread itself
+   evenly and the picture that results does not change with time.
+===================================================================== */
+(function () {
+  const d = sim('sim-charged-sphere', 660);
+  const Qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: -20, max: 20, step: 0.5, value: 8, unit: 'nC', dec: 1, aria: '球上的过剩电荷' });
+  /* the surface, where the field inside gives way to the field outside, is a circle on the probe's
+     slider at the radius and on the radius's slider at the probe */
+  let rs;
+  const as = ctl(d.controls, { label: '\\text{半径}', cls: 'position', min: 2, max: 9, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: '球的半径',
+    specials: [{ at: () => (rs ? rs.v : null), label: '表面' }] });
+  rs = ctl(d.controls, { label: '\\text{探针}', cls: 'position', min: 1, max: 24, step: 0.5, value: 15, unit: 'cm', dec: 1, aria: '探针到球心的距离',
+    specials: [{ at: () => as.v, label: '表面' }] });
+  const { formula, note } = F.readout(d);
+  let wasOut = null;
+  const CX = 560, CY = 386, S = 17;                 /* 17 logical units to the centimetre */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('electric-field'), qc = C('charge'), msc = F.ref('metal-sphere'), prc = F.ref('probe');
+    const Q = Qs.v, a = as.v, r = rs.v, sgn = Q === 0 ? 0 : Q > 0 ? 1 : -1;
+    const Ein = 0, Eout = (8.99e4 * Math.abs(Q)) / (r * r);        /* nC and cm give N/C */
+    const out = r > a, Eread = out ? Eout : Ein;
+    /* the radial lines outside the sphere, which begin or end on the surface */
+    if (Q !== 0) {
+      for (let i = 0; i < 16; i++) {
+        const ph = (i * 360) / 16 * RAD, cx = Math.cos(ph), sy = Math.sin(ph);
+        const x0 = CX + (a * S + 3) * cx, y0 = CY + (a * S + 3) * sy;
+        const x1 = CX + 286 * cx, y1 = CY + 286 * sy;
+        if (sgn > 0) { line(ctx, x0, y0, x1, y1, ec, 3); arrow(ctx, CX + 190 * cx, CY + 190 * sy, CX + 212 * cx, CY + 212 * sy, ec, 4); }
+        else { line(ctx, x0, y0, x1, y1, ec, 3); arrow(ctx, CX + 212 * cx, CY + 212 * sy, CX + 190 * cx, CY + 190 * sy, ec, 4); }
+      }
+    }
+    /* the sphere, outlined in its referent colour, with its excess charge marked on the surface */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = msc; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(CX, CY, a * S, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    if (Q !== 0) for (let i = 0; i < 10; i++) { const ph = (i * 36 + 18) * RAD; signMark(ctx, CX + (a * S - 13) * Math.cos(ph), CY + (a * S - 13) * Math.sin(ph), sgn > 0, 24); }
+    if (out) text(ctx, 'E = 0', CX, CY, PAL.muted, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'q = ' + fmt(Q, 1) + ' nC，分布在表面上', CX, CY + a * S + 36, qc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* the probe, set down at the distance the slider gives it */
+    const ph = -32 * RAD, px = CX + r * S * Math.cos(ph), py = CY + r * S * Math.sin(ph);
+    line(ctx, CX, CY, px, py, C('position'), 2, [10, 10]);
+    dot(ctx, px, py, prc, false, 11);
+    /* inside the sphere the probe's two lines are set above the sphere, where no mark on the surface is */
+    const ly = out ? py : CY - a * S - 20;
+    text(ctx, '探针，距球心 ' + fmt(r, 1) + ' cm', out ? px - 22 : CX, ly - 32, prc, { size: 20, align: out ? 'right' : 'center', bg: alpha(PAL.panel, 0.95) });   /* outside, to the left of the probe, clear of its field arrow */
+    if (!out) line(ctx, px, py - 12, CX, ly - 14, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
+    if (Eread > 0) {
+      const L = Math.min(190, Eread * 0.028), dx = Math.cos(ph) * sgn, dy = Math.sin(ph) * sgn;
+      arrow(ctx, px, py, px + L * dx, py + L * dy, ec, 6);
+    }
+    text(ctx, out ? 'E = ' + sci(Eread, 2) + ' N/C' : '导体内 E = 0', out ? px : CX, out ? py + 34 : ly - 64, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.95) });
+    /* what the same charge would read if the sphere were a point charge */
+    topline(ctx, Q === 0 ? '球上没有过剩电荷时，球不产生任何场，无论在内部还是外部。'
+      : out ? '在 ' + fmt(r, 1) + ' cm 处探针读出 ' + sci(Eout, 2) + ' N/C，这正是球心处一个 ' + fmt(Q, 1) + ' nC 的点电荷在那里给出的值；拖动半径，读数不会变。'
+        : '探针在金属内部，表面上的过剩电荷在那里不留任何场，无论电荷有多少。');
+    F.morph(formula, out
+      ? `\\mk{E}{\\kEf} = \\mk{law}{k\\frac{|\\kq|}{\\krad^2}} = \\mk{nums}{\\frac{(8.99 \\times 10^{9})(${sciTex(Math.abs(Q) * 1e-9, 2)})}{(${fmt(r / 100, 4)})^2}} = \\mk{v}{${sciTex(Eout, 2)}}\\ \\text{N/C}`
+      : `\\mk{E}{\\kEf} = \\mk{v}{0}`, { force: wasOut !== null && out !== wasOut });
+    wasOut = out;
+    note.textContent = '';
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 18.29: two plates with equal and opposite excess charges. The
+   lines are traced from the charge spread along the plates themselves, so
+   the bowing at the ends and its falling away as the plates are brought
+   together are drawn rather than described. Still: the charges have
+   settled, and the field between the plates stands.
+===================================================================== */
+(function () {
+  const d = sim('sim-parallel-plates', 700);
+  const Qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 20, step: 0.5, value: 8, unit: 'nC', dec: 1, aria: '每块板上的过剩电荷' });
+  const ds = ctl(d.controls, { label: '\\text{间距}', cls: 'position', min: 2, max: 18, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: '两板之间的距离' });
+  const Ls = ctl(d.controls, { label: '\\text{板}', cls: 'position', min: 12, max: 38, step: 1, value: 30, unit: 'cm', dec: 0, aria: '每块板的长度' });
+  const CX = 700, YM = 356, S = 26, N = 30;          /* 26 logical units to the centimetre */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('electric-field'), qc = C('charge');
+    const Q = Qs.v, gap = ds.v, L = Ls.v;
+    const YT = YM - (gap * S) / 2, yb = YM + (gap * S) / 2, x0 = CX - (L * S) / 2, x1 = CX + (L * S) / 2;
+    /* each plate as a row of equal charges, which is what a conductor's
+       excess charge does when it spreads itself out */
+    const qs = [];
+    for (let i = 0; i < N; i++) {
+      const x = x0 + ((i + 0.5) * (x1 - x0)) / N;
+      qs.push({ x: x / S, y: YT / S, q: Q / N });
+      qs.push({ x: x / S, y: yb / S, q: -Q / N });
+    }
+    const field = (x, y) => { const f = fieldAt(x / S, y / S, qs); return { x: f.x, y: f.y, m: f.m }; };
+    const BOX = { x0: 90, x1: 1310, y0: 110, y1: 640 };
+    const stop = (x, y) => y > yb - 4;
+    for (let i = 0; i < 15; i++) {
+      const x = x0 + 6 + ((i) * (x1 - x0 - 12)) / 14;
+      drawLine(ctx, traceLine({ x, y: YT + 8 }, field, 1, BOX, stop, 6, 300), ec, 3, [0.5]);
+    }
+    /* the two plates, outlined in their referent colours, with the book's marks on them */
+    for (const [y, pos] of [[YT, true], [yb, false]]) {
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.strokeStyle = F.ref(pos ? 'positive-plate' : 'negative-plate'); ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.rect(x0, y - 11, x1 - x0, 22); ctx.fill(); ctx.stroke(); ctx.restore();
+      for (let i = 0; i < 12; i++) signMark(ctx, x0 + 18 + (i * (x1 - x0 - 36)) / 11, y, pos, 20);   /* on the plate itself, so a narrow gap stays clear */
+    }
+    text(ctx, 'q = +' + fmt(Q, 1) + ' nC', x1 + 18, YT, qc, { size: 21, weight: 600 });
+    text(ctx, 'q = −' + fmt(Q, 1) + ' nC', x1 + 18, yb, qc, { size: 21, weight: 600 });
+    /* the field in the middle of the gap and near the end of it */
+    const mid = fieldAt(CX / S, (YT + yb) / 2 / S, qs), edge = fieldAt((x0 + 10) / S, (YT + yb) / 2 / S, qs);
+    const Emid = K * 1e-9 * mid.m * 1e4, Eedge = K * 1e-9 * edge.m * 1e4;   /* nC and cm to N/C */
+    /* how much of the plates' length the field along the middle stays within 5 per cent of its value at the centre */
+    let xu = CX;
+    for (let x = CX; x <= x1; x += 4) { if (K * 1e-9 * fieldAt(x / S, YM / S, qs).m * 1e4 < 0.95 * Emid) break; xu = x; }
+    const share = Math.min(100, (100 * 2 * (xu - CX)) / (x1 - x0));
+    dot(ctx, CX, (YT + yb) / 2, PAL.ink, true, 9);
+    dot(ctx, x0 + 10, (YT + yb) / 2, PAL.ink, false, 9);
+    /* the two readings stand in the clear below the plates, each leadered to its point */
+    const RY = yb + 70;
+    for (const [x, name, v, tx] of [[CX, '中间（实心）处，', Emid, CX + 250], [x0 + 10, '边缘（空心）处，', Eedge, CX - 250]]) {
+      line(ctx, x, (YT + yb) / 2 + 14, tx, RY - 16, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
+      text(ctx, name + sci(v, 2) + ' N/C', tx, RY, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    }
+    topline(ctx, '两块板长 ' + fmt(L, 0) + ' cm，相距 ' + fmt(gap, 1) + ' cm，沿中间的场在板长的 ' + fmt(share, 0) + '% 范围内保持在其中心值的 5% 以内。');
+    readout(d.readout, `\\kEf_{\\ \\text{中间}} = ${sciTex(Emid, 2)}\\ \\text{N/C}`,
+      undefined);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 18.31 + 18.32: one conductor with a round end and an end the
+   reader sharpens. The book draws this body three times in 18.31 and a
+   sharper one again in 18.32, and one live drawing whose point can be
+   pulled out to a needle is that whole run of pictures at once, with the
+   field at the point stated as a number so that the air can be driven past
+   breaking down. Still: the charge has settled on the surface, and the
+   question asked of the figure is where it has settled.
+===================================================================== */
+(function () {
+  const d = sim('sim-sharp-end', 720);
+  const sh = ctl(d.controls, { label: '\\text{尖锐程度}', cls: '', min: 1, max: 12, step: 0.25, value: 3, unit: '×', dec: 2, aria: '右端比左端尖多少倍' });
+  const Qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 5, max: 200, step: 5, value: 60, unit: 'nC', dec: 0, aria: '导体上的过剩电荷' });
+  const Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 100, max: 1200, step: 50, value: 500, unit: 'N/C', dec: 0, aria: '外加电场的强度' });
+  const panel = select(d.controls, {
+    label: '\\text{情形}',
+    options: [{ value: 'a', label: '斥力' }, { value: 'b', label: '电荷' }, { value: 'c', label: '外加电场' }],
+    value: 'b', aria: '书中三种情形中的哪一种：沿表面的斥力、已安顿的电荷，或外加电场',
+  });
+  const R1CM = 6, CLX = 470, CRX = 940, YC = 396, S = 16;   /* 16 logical units to the centimetre */
+  /* The body is the outline of two circles and their common tangents, which is
+     the shape the book draws and the arrangement whose charge everyone can
+     work out: two conducting ends at one potential carry charge in proportion
+     to their radii, so the field at each goes as one over its radius. */
+  function ends() {
+    const R1 = R1CM, R2 = R1CM / sh.v;
+    return { R1, R2, r1: R1 * S, r2: R2 * S };
+  }
+  function outline(r1, r2) {
+    const D = CRX - CLX, al = Math.asin(Math.max(-1, Math.min(1, (r1 - r2) / D)));
+    const th = Math.PI / 2 + al, pts = [];
+    for (let i = 0; i <= 48; i++) { const a = th + (i * (2 * Math.PI - 2 * th)) / 48; pts.push([CLX + r1 * Math.cos(a), YC - r1 * Math.sin(a)]); }
+    for (let i = 0; i <= 48; i++) { const a = -th + (i * (2 * th)) / 48; pts.push([CRX + r2 * Math.cos(a), YC - r2 * Math.sin(a)]); }
+    return pts;
+  }
+  /* Points along the surface, each carrying a share of the excess charge in
+     proportion to the sharpness of the surface under it. */
+  function surface(r1, r2) {
+    const pts = outline(r1, r2), left = pts.slice(0, 49), right = pts.slice(49), out = [];
+    const push = (x, y, w) => out.push({ x, y, w });
+    for (const [x, y] of left) push(x, y, 1 / r1);
+    /* the straight flank along the bottom, where the surface passes from the
+       curvature of one end to that of the other */
+    const flank = (a, b, wa, wb) => { for (let i = 1; i < 24; i++) { const t = i / 24; push(a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1]), wa + t * (wb - wa)); } };
+    flank(left[left.length - 1], right[0], 1 / r1, 1 / r2);
+    for (const [x, y] of right) push(x, y, 1 / r2);
+    flank(right[right.length - 1], left[0], 1 / r2, 1 / r1);
+    let W = 0;
+    for (const p of out) W += p.w;
+    for (const p of out) p.w /= W;
+    return out;
+  }
+  function inBody(x, y, r1, r2) {
+    if (Math.hypot(x - CLX, y - YC) < r1 - 1) return true;
+    if (Math.hypot(x - CRX, y - YC) < r2 - 1) return true;
+    if (x < CLX || x > CRX) return false;
+    const t = (x - CLX) / (CRX - CLX), rr = r1 + t * (r2 - r1);
+    return Math.abs(y - YC) < rr - 1;
+  }
+  function drawBody(ctx, r1, r2) {
+    const pts = outline(r1, r2);
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = F.ref('pointed-conductor'); ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+    for (const [x, y] of pts) ctx.lineTo(x, y);
+    ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('electric-field'), fc = C('force'), qc = C('charge');
+    const { R1, R2, r1, r2 } = ends();
+    const Q = Qs.v, E0 = Es.v, cur = panel.value;
+    const Etip = (8.99e4 * Q) / (R2 * (R1 + R2)), Eflat = (8.99e4 * Q) / (R1 * (R1 + R2));
+    const BOX = { x0: 80, x1: 1320, y0: 120, y1: 690 };
+    sh.disable(false);
+    Qs.disable(cur === 'c');
+    Es.disable(cur !== 'c');
+    /* the body is the same in every case and stays; a change of case fades out the parts only the
+       old case has and brings in the new case's, each with a slight drift */
+    drawBody(ctx, r1, r2);
+    /* (a) an identical pair of charges at each end. The two charges of a
+       pair are the same distance apart at both ends, so the force between
+       them is the same size; what differs is how much of it lies along the
+       surface, and that is what drives them apart. */
+    const sep = Math.min(46, 1.7 * r2), PAIR = Q / 25;                              /* how far apart the pair sits, and the charge each carries, nC */
+    const Fpair = (K * (PAIR * 1e-9) * (PAIR * 1e-9)) / Math.pow(sep / S / 100, 2) * 1e6;   /* μN */
+    const dlOf = (r) => Math.asin(Math.min(0.94, sep / (2 * r)));
+    const dlL = dlOf(r1), dlR = dlOf(r2);
+    panel.only(ctx, 'a', () => {
+      const FL = 92;
+      for (const [cx, r, ox, nm] of [[CLX, r1, -1, '平端'], [CRX, r2, 1, '尖端']]) {
+        const dl = dlOf(r);
+        const ux = ox * Math.cos(dl), uy = Math.sin(dl);
+        const px = cx + r * ux, py = YC - r * uy;                  /* the upper charge of the pair */
+        const bx = cx + r * ux, by = YC + r * uy;                  /* and the lower one */
+        const tx = -ox * Math.sin(dl), ty = -Math.cos(dl);         /* along the surface, away from the other charge */
+        pointCharge(ctx, px, py, 1, 15);
+        pointCharge(ctx, bx, by, 1, 15);
+        arrow(ctx, px, py, px, py - FL, fc, 5);
+        arrow(ctx, bx, by, bx, by + FL, fc, 5);
+        arrow(ctx, px, py, px + FL * Math.cos(dl) * tx, py + FL * Math.cos(dl) * ty, fc, 4);
+        text(ctx, 'F = ' + fmt(Fpair, 1) + ' μN', bx, by + FL + 26, fc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+        text(ctx, 'F∥ = ' + fmt(Fpair * Math.cos(dl), 1) + ' μN', px + ox * 46 + FL * Math.cos(dl) * tx, py + FL * Math.cos(dl) * ty - 4, fc, { size: 20, weight: 600, align: ox < 0 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+        text(ctx, nm, cx, YC + r + 164, F.ref('pointed-conductor'), { size: 21, align: 'center' });
+      }
+    }, [0, 18]);
+    /* (b) the excess charge that has settled, and the field it makes */
+    panel.only(ctx, 'b', () => {
+      const pts = surface(r1, r2), qs = pts.map((p) => ({ x: p.x / S, y: p.y / S, q: (Q * p.w) }));
+      const field = (x, y) => { const f = fieldAt(x / S, y / S, qs); return { x: f.x, y: f.y, m: f.m }; };
+      /* one line out of every place a mark is drawn, so the crowding of the
+         charge and the crowding of the lines are the same picture */
+      const seeds = [];
+      let acc = 0, step = 1 / 26;
+      for (const p of pts) { acc += p.w; while (acc > step) { seeds.push(p); acc -= step; } }
+      for (const p of seeds) {
+        const nx = p.x - (p.x < (CLX + CRX) / 2 ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
+        drawLine(ctx, traceLine({ x: p.x + (nx / n) * 6, y: p.y + (ny / n) * 6 }, field, 1, BOX, null, 8, 120), ec, 2.5, [0.7]);
+      }
+      for (const p of seeds) {
+        const nx = p.x - (p.x < (CLX + CRX) / 2 ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
+        signMark(ctx, p.x - (nx / n) * 11, p.y - (ny / n) * 11, Q > 0, 22);
+      }
+      text(ctx, 'q = ' + fmt(Q, 0) + ' nC，分布在表面上', (CLX + CRX) / 2, YC + 2, qc, { size: 22, weight: 600, align: 'center' });
+      text(ctx, 'E = ' + sci(Eflat, 2) + ' N/C', CLX - r1 - 24, YC, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'E = ' + sci(Etip, 2) + ' N/C', CRX + r2 + 24, YC - 44, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    }, [0, 18]);
+    /* (c) the same body, uncharged, in a field that was uniform before it
+       was put there: the induced charge is most concentrated at the point */
+    panel.only(ctx, 'c', () => {
+      const pts = surface(r1, r2), xc = (CLX + CRX) / 2;
+      const raw = pts.map((p) => ({ x: p.x / S, y: p.y / S, q: p.w * (p.x - xc) / S }));
+      /* scale the induced charge so that it cancels the applied field at the
+         middle of the body, which is what a conductor's charge does */
+      const at = fieldAt(xc / S, YC / S, raw);
+      const kq = at.m > 0 ? -E0 / (K * 1e-9 * 1e4 * at.x) : 0;
+      const qs = raw.map((p) => ({ x: p.x, y: p.y, q: p.q * kq }));
+      const field = (x, y) => {
+        const f = fieldAt(x / S, y / S, qs);
+        const ex = E0 + K * 1e-9 * 1e4 * f.x, ey = K * 1e-9 * 1e4 * f.y;
+        return { x: ex, y: ey, m: Math.hypot(ex, ey) };
+      };
+      const stop = (x, y) => inBody(x, y, r1, r2);
+      for (let i = 0; i < 11; i++) {
+        const y = BOX.y0 + 20 + (i * (BOX.y1 - BOX.y0 - 40)) / 10;
+        drawLine(ctx, traceLine({ x: BOX.x0 + 4, y }, field, 1, BOX, stop, 8, 300), ec, 3, [0.35, 0.8]);
+      }
+      let acc = 0; const step = 1 / 22, seeds = [];
+      for (const p of pts) { acc += p.w; while (acc > step) { seeds.push(p); acc -= step; } }
+      for (const p of seeds) {
+        if (Math.abs(p.x - xc) < 20) continue;
+        const nx = p.x - (p.x < xc ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
+        if (p.x > xc) drawLine(ctx, traceLine({ x: p.x + (nx / n) * 8, y: p.y + (ny / n) * 8 }, field, 1, BOX, null, 8, 200), ec, 2.5, [0.6]);
+      }
+      for (const p of seeds) {
+        const nx = p.x - (p.x < xc ? CLX : CRX), ny = p.y - YC, n = Math.hypot(nx, ny) || 1;
+        signMark(ctx, p.x - (nx / n) * 11, p.y - (ny / n) * 11, p.x > xc, 22);
+      }
+      text(ctx, '内部没有电场', xc, YC + 2, PAL.muted, { size: 21, weight: 600, align: 'center' });
+      text(ctx, '外加电场，' + fmt(E0, 0) + ' N/C', BOX.x0 + 6, BOX.y0 + 20, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.95) });
+    }, [0, 18]);
+    if (cur === 'a') {
+      topline(ctx, '一对电荷在两端相距相同，所以它们之间的力同为 ' + fmt(Fpair, 1) + ' μN；但这个力沿平坦表面的部分占 ' + fmt(100 * Math.cos(dlL), 0) + '%，沿尖的一端的部分只占 ' + fmt(100 * Math.cos(dlR), 0) + '%。');
+      readout(d.readout, `\\kFpar = \\kF\\cos\\ktheta = (${fmt(Fpair, 1)}\\ \\mu\\text{N})(${fmt(Math.cos(dlR), 2)}) = ${fmt(Fpair * Math.cos(dlR), 1)}\\ \\mu\\text{N}`,
+        '这是尖端处沿表面的部分；在平端处它是 ' + fmt(Fpair * Math.cos(dlL), 1) + ' μN，所以那里的电荷被推得更开，尖端处则留下拥挤的电荷。');
+    } else if (cur === 'b') {
+      topline(ctx, Etip >= BREAKDOWN
+        ? '在 ' + sci(Etip, 2) + ' N/C 时，尖端处的场已超过空气不再绝缘的 3 × 10⁶ N/C，所以电荷从尖端被带走，进入空气，避雷针就是这样起作用的。'
+        : sh.v < 1.05 ? '两端同样圆时，电荷均匀分布，两端的场都是 ' + sci(Etip, 2) + ' N/C。'
+        : '尖端上电荷的密集程度是平端的 ' + fmt(sh.v, 2) + ' 倍，所以那里的场是 ' + sci(Etip, 2) + ' N/C，而平端处是 ' + sci(Eflat, 2) + ' N/C。');
+      readout(d.readout, `\\kEf_{\\ \\text{尖端}} = \\frac{R_{\\text{平端}}}{R_{\\text{尖端}}}\\,\\kEf_{\\ \\text{平端}} = (${fmt(sh.v, 2)})(${sciTex(Eflat, 2)}\\ \\text{N/C}) = ${sciTex(Etip, 2)}\\ \\text{N/C}`,
+        '两端是同一个导体的一部分，所以各端的场与其自身的半径成反比。');
+    } else {
+      topline(ctx, sh.v < 1.05
+        ? '这个物体本身不带过剩电荷，但外加电场已把它的自由电荷驱到两端，两端同样圆时，两端分到的相同。'
+        : '这个物体本身不带过剩电荷，但外加电场已把它的自由电荷驱到两端，而尖了 ' + fmt(sh.v, 2) + ' 倍的那一端所得的集中程度是平端的 ' + fmt(sh.v, 2) + ' 倍。');
+      readout(d.readout, `\\kEf_{\\ \\text{内部}} = 0`,
+        '这就是为什么雷暴云下的尖导体会不断泄放电荷，而不是等待一次雷击。');
+    }
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE (unnumbered): the square of four charges that nine of the
+   section's questions and problems are asked about. A faithful copy: no
+   sliders, nothing moving, the corners in the positions the book gives
+   them, since what the questions need from it is which charge is where.
+===================================================================== */
+(function () {
+  const d = sim('fig-square', 620);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge');
+    const CX = 700, CY = 330, H = 200;
+    const corners = [['a', CX - H, CY - H, -1], ['b', CX + H, CY - H, 1], ['c', CX - H, CY + H, -1], ['d', CX + H, CY + H, 1]];
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3;
+    ctx.strokeRect(CX - H, CY - H, 2 * H, 2 * H); ctx.restore();
+    for (const [x, y] of [[CX - H, CY - H], [CX + H, CY - H]]) line(ctx, x, y, 2 * CX - x, 2 * CY - y, PAL.rule, 2, [10, 10]);
+    for (const [nm, x, y, side] of corners) {
+      pointCharge(ctx, x, y, 0, 22, F.ref('charge-' + nm));
+      text(ctx, 'q_' + nm, x + side * 34, y, qc, { size: 24, weight: 600, align: side < 0 ? 'right' : 'left' });
+    }
+    pointCharge(ctx, CX, CY, 0, 22, F.ref('centre-charge'));
+    text(ctx, 'q', CX + 34, CY, qc, { size: 24, weight: 600 });
+    topline(ctx, '四个点电荷位于一个正方形的四个角上，第五个电荷位于其中心。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

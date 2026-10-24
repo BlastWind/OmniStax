@@ -1,0 +1,868 @@
+{
+ "id": "24.4",
+ "module": "m42446",
+ "chapter": "24",
+ "title": "电磁波中的能量",
+ "short": "电磁波中的能量",
+ "lead": "电磁波之所以携带<span data-concept=\"energy\">能量</span>，是因为它的电场和<span data-concept=\"magnetic-field\">磁场</span>对电荷施加<span data-concept=\"force\">力</span>并使电荷运动；本节要问的是，一定强度的波能传递多少能量。本节由场强写出正弦波的<span data-concept=\"intensity\">强度</span>，并就<span data-ref=\"oven\">微波炉</span>把它算出来。",
+ "objectives": [
+  "说明电磁波的能量与振幅是怎样联系的。",
+  "已知微波炉的输出功率和加热面积，计算其电磁场的强度，以及其电场强度峰值和磁感应强度峰值。"
+ ],
+ "summary_html": "<ul><li>任何波所携带的<span data-concept=\"energy\">能量</span>都与其<span data-concept=\"amplitude\">振幅</span>的平方成正比。对电磁波而言，这意味着<span data-concept=\"intensity\">强度</span>可以表示为 $$\\kIave = \\frac{\\kc\\varepsilon_0\\kEfo^2}{2},$$ 其中 $\\kIave$ 是以 $\\text{W/m}^2$ 为单位的平均<span data-concept=\"intensity\">强度</span>，$\\kEfo$ 是连续正弦波的最大<span data-concept=\"electric-field\">电场强度</span>。</li><li>这也可以用最大<span data-concept=\"magnetic-field-strength-defined\">磁感应强度</span> $\\kBmago$ 表示为 $$\\kIave = \\frac{\\kc\\kBmago^2}{2\\mu_0}$$ 也可以同时用电场和<span data-concept=\"magnetic-field\">磁场</span>表示为 $$\\kIave = \\frac{\\kEfo\\kBmago}{2\\mu_0}.$$</li><li>$\\kIave$ 的这三个表达式完全等价。</li></ul>",
+ "notes": "PhET 模拟“分子与光”的链接已省去，与全书省去出版方交互内容的链接一致。本模块二十四道习题中，有十二道没有书后答案，因而一并省去：磁场峰值为 4.00 nT 的波的强度、在 30.0 km 处测量的调幅发射器、大学的卫星天线及其照片、峰值强度是平均强度两倍的演示、5.00 pF 的 $LC$ 电路、警用雷达、在微波炉中加热的意大利面、200 匝线圈天线、在 0.500 m 处测得的 1.20 GHz 波、2.00 H 的 $LC$ 电路，以及两道“自拟习题”。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。二十四道习题中有十二道没有书后答案，已省去，这些习题列在本节的说明中。两道 AP 题中的第一道在原书中有答案，设为判分选择题；第二道在印刷版中没有答案，因为出版方在源文件中把它的解答注释掉了，所以作为开放题保留，并附有标明由 AI 给出的建议思路，与 24.2 中四道同类题的处理相同。本模块没有印出理解检测框和思考题，所以没有设置行内题目。这里保留的习题中有三道回溯到本章前面已建立的结果，即 24.2 中的比值 $\\kBmag = \\kEf/\\kc$ 和 24.3 中的 $\\kc = f\\lambda$；它们保留在原书安排的位置，是因为本节的三个表达式正建立在同一个比值之上。本书为批判性思考题（b）小题印出的答案回答的是电场，而题目问的是磁场；这里把它设为磁场，这是题目唯一允许的理解。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-amplitude-squared",
+   "kind": "sim",
+   "number": "24.22",
+   "originals": [
+    "/media/ch24/Figure_25_04_01a.jpg"
+   ],
+   "original_caption": "波所携带的能量与其振幅的平方成正比。对电磁波而言，较大的 $E$ 场和 $B$ 场施加较大的力，能做更多的功。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "velocity",
+    "intensity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption names the controls; note cut; B name off the axis"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-intensity-three-ways",
+   "kind": "sim",
+   "draws": [
+    "intensity",
+    "electric-field",
+    "magnetic-field",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped; I_0 and I_ave names apart near zero"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-oven-intensity",
+   "kind": "sim",
+   "draws": [
+    "intensity",
+    "electric-field",
+    "magnetic-field",
+    "power",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut; bars fit; brackets outside the walls; peak tick"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "energy-and-amplitude",
+   "concept": "wave-energy-from-field-amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-and-amplitude",
+   "concept": "maximum-field-strength",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-intensity",
+   "concept": "average-intensity-from-e0",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-intensity",
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-intensity",
+   "concept": "peak-intensity-is-twice-average",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-intensity",
+   "concept": "wave-energy-from-field-amplitude",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fields-from-intensity",
+   "concept": "find-fields-from-intensity",
+   "verb": "introduces"
+  },
+  {
+   "span": "fields-from-intensity",
+   "concept": "average-intensity-from-e0",
+   "verb": "uses"
+  },
+  {
+   "span": "fields-from-intensity",
+   "concept": "peak-intensity-is-twice-average",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fields-from-intensity",
+   "concept": "intensity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2008455",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-and-amplitude",
+   "prompt": "一台旧微波炉输出的电场只有原来的一半。用这台微波炉烹饪食物所需的时间要长多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "四倍的时间",
+     "两倍的时间",
+     "一半的时间",
+     "四分之一的时间"
+    ],
+    "correct": 0,
+    "hint": "波所携带的能量与其场强的平方成正比，所以场减半后强度只剩四分之一，而四分之一的强度要用四倍的时间才能传递同样的能量。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3156214",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fields-from-intensity",
+   "prompt": "说明你可以对雷达装置做出的至少两项改进，使它更灵敏（能在更远的距离探测到物体）。解释这些改进为什么有效。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "提高装置发射的功率，并增大它用来接收的天线。返回的波的强度随到目标再返回的距离的平方而减弱，所以在较远的距离上回波非常微弱。只有当回波强到足以驱动接收器时，装置才能探测到目标。更大的输出功率会使发出的波和回波的强度按同样的比例增大，因此来自更远目标的回波仍然足够强，可以读取。更大的天线之所以有帮助，原因不同：接收器收集到的功率等于强度乘以天线面对波所呈现的面积。面积加倍，则从给定强度的回波中收集到的功率也加倍。这两项改变中的任何一项，都使装置能够处理更微弱的回波，因而能在更远的距离上工作。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738045968",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-intensity",
+   "prompt": "电场强度峰值为 125 V/m 的电磁波，其强度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 20.7,
+    "unit": "W/m²",
+    "hint": "把电场强度峰值直接代入 $\\kIave = \\kc\\varepsilon_0\\kEfo^2/2$。",
+    "solution": "$I = \\frac{\\kc\\varepsilon_0\\kEfo^2}{2} = \\frac{(3.00\\times 10^{8}\\;\\text{m/s})(8.85\\times 10^{-12}\\;\\text{C}^2/\\text{N}\\cdot\\text{m}^2)(125\\;\\text{V/m})^2}{2} = 20.7\\;\\text{W/m}^2$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737768545",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fields-from-intensity",
+   "prompt": "假设学生物理实验室中常用的氦氖激光器的输出功率为 0.250 mW。（a）如果把这样的激光束投射到直径为 1.00 mm 的圆形光斑上，它的强度是多少？（b）求磁感应强度峰值。（c）求电场强度峰值。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the intensity",
+      "value": 318,
+      "unit": "W/m²",
+      "hint": "光斑是一个直径 1.00 mm 的圆，所以它的面积为 $\\pi r^2$，其中 $r = 0.500$ mm。"
+     },
+     {
+      "part": "(b) the peak magnetic field strength",
+      "value": 1.63e-06,
+      "unit": "T",
+      "hint": "把 $\\kIave = \\kc\\kBmago^2/2\\mu_0$ 改写成 $\\kBmago$ 的表达式。"
+     },
+     {
+      "part": "(c) the peak electric field strength",
+      "value": 490,
+      "unit": "V/m",
+      "hint": "电场振幅等于磁场振幅乘以光速。"
+     }
+    ],
+    "solution": "（a） $I = \\frac{\\kP}{A} = \\frac{\\kP}{\\pi r^2} = \\frac{0.250\\times 10^{-3}\\;\\text{W}}{\\pi (0.500\\times 10^{-3}\\;\\text{m})^2} = 318\\;\\text{W/m}^2$\n\n（b） $\\kIave = \\frac{\\kc\\kBmago^2}{2\\mu_0} \\Rightarrow \\kBmago = \\left(\\frac{2\\mu_0 I}{\\kc}\\right)^{1/2} = \\left(\\frac{2(4\\pi\\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A})(318.3\\;\\text{W/m}^2)}{3.00\\times 10^{8}\\;\\text{m/s}}\\right)^{1/2} = 1.63\\times 10^{-6}\\;\\text{T}$\n\n（c） $\\kEfo = \\kc\\kBmago = (3.00\\times 10^{8}\\;\\text{m/s})(1.633\\times 10^{-6}\\;\\text{T}) = 4.90\\times 10^{2}\\;\\text{V/m}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169736610621",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fields-from-intensity",
+   "prompt": "假设人体暴露于微波时的最大安全强度取为 $1.00\\;\\text{W/m}^2$。（a）如果一台雷达向各个方向均匀泄漏 10.0 W 的微波（不包括由其天线发出的微波），你必须离它多远，才能处在被认为安全的强度之下？假设功率均匀分布在球面上，不考虑吸收或反射带来的复杂情况。（b）在安全强度下，最大电场强度是多少？（注意，早期的雷达比现代雷达泄漏得更多。这使在其附近工作的人出现了明确可辨的健康问题，例如白内障。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the safe distance",
+      "value": 89.2,
+      "unit": "cm",
+      "hint": "泄漏的功率分布在球面上，所以面积为 $4\\pi r^2$；令那里的强度等于安全值，解出 $r$。"
+     },
+     {
+      "part": "(b) the maximum electric field strength",
+      "value": 27.4,
+      "unit": "V/m",
+      "hint": "在安全强度下，把 $\\kIave = \\kc\\varepsilon_0\\kEfo^2/2$ 改写成 $\\kEfo$ 的表达式。"
+     }
+    ],
+    "solution": "（a）89.2 cm\n\n（b）27.4 V/m"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169738198022",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-intensity",
+   "prompt": "可以制造出在短时间内产生极高强度电磁波的激光器，称为脉冲激光器。例如，它们被用来点燃核聚变。这样的激光器可以产生最大电场强度为 $1.00\\times 10^{11}\\;\\text{V/m}$ 的电磁波，持续时间为 1.00 ns。（a）这个波的最大磁感应强度是多少？（b）光束的强度是多少？（c）它在 $1.00\\;\\text{mm}^2$ 的面积上传递多少能量？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the maximum magnetic field strength",
+      "value": 333,
+      "unit": "T",
+      "hint": "用电场振幅除以光速。"
+     },
+     {
+      "part": "(b) the intensity of the beam",
+      "value": 1.33e+19,
+      "unit": "W/m²",
+      "hint": "把电场振幅代入 $\\kIave = \\kc\\varepsilon_0\\kEfo^2/2$。"
+     },
+     {
+      "part": "(c) the energy delivered",
+      "value": 13.3,
+      "unit": "kJ",
+      "hint": "能量等于强度乘以面积，再乘以脉冲持续的时间。"
+     }
+    ],
+    "solution": "（a）333 T\n\n（b）$1.33\\times 10^{19}\\;\\text{W/m}^2$\n\n（c）13.3 kJ"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737786485",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-intensity",
+   "prompt": "假设一个电磁波源在没有吸收或干涉效应的空无一物的空间中向各个方向均匀辐射。（a）证明强度与 $r^2$ 成反比，$r^2$ 是到波源距离的平方。（b）证明电场和磁场的大小都与 $r$ 成反比。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a） $I = \\frac{\\kP}{A} = \\frac{\\kP}{4\\pi r^2} \\propto \\frac{1}{r^2}$\n\n（b） $I \\propto \\kEfo^2,\\;\\kBmago^2 \\Rightarrow \\kEfo^2,\\;\\kBmago^2 \\propto \\frac{1}{r^2} \\Rightarrow \\kEfo,\\;\\kBmago \\propto \\frac{1}{r}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "eip-271",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "<strong>综合概念</strong> 与 $800\\;\\mu\\text{H}$ 的电感器串联要用多大的电容，才能构成一个辐射波长为 196 m 的电路？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 13.5,
+    "unit": "pF",
+    "hint": "波长通过 $\\kc = f\\lambda$ 给出频率，这个频率必须等于电路的共振频率 $f_0 = 1/2\\pi\\sqrt{LC}$。",
+    "solution": "13.5 pF"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737818918",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fields-from-intensity",
+   "prompt": "<strong>综合概念</strong> 假设加热灯发出的、以红外为主的辐射，其行为类似波长为 $1.50\\;\\mu\\text{m}$ 的连续波。（a）如果灯的 200 W 输出聚焦在一个人的肩部，照射在直径为 25.0 cm 的圆形区域上，以 $\\text{W/m}^2$ 计的强度是多少？（b）电场强度峰值是多少？（c）求磁感应强度峰值。（d）假设没有其他热传递，且已知肩部的比热容为 $3.47\\times 10^{3}\\;\\text{J/kg}\\cdot{}^\\circ\\text{C}$，使质量为 4.00 kg 的肩部温度升高 $2.00^\\circ\\text{C}$ 需要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the intensity",
+      "value": 4.07,
+      "unit": "kW/m²",
+      "hint": "被照射的面积是直径 25.0 cm 的圆，所以它是 $\\pi r^2$，其中 $r = 12.5$ cm。"
+     },
+     {
+      "part": "(b) the peak electric field strength",
+      "value": 1.75,
+      "unit": "kV/m",
+      "hint": "把 $\\kIave = \\kc\\varepsilon_0\\kEfo^2/2$ 改写成 $\\kEfo$ 的表达式。"
+     },
+     {
+      "part": "(c) the peak magnetic field strength",
+      "value": 5.84e-06,
+      "unit": "T",
+      "hint": "用电场振幅除以光速。"
+     },
+     {
+      "part": "(d) the time taken",
+      "value": 139,
+      "unit": "s",
+      "hint": "所需的热量为 $mc\\Delta T$，而灯始终把它的 200 W 送到肩部。"
+     }
+    ],
+    "solution": "（a）$4.07\\;\\text{kW/m}^2$\n\n（b）1.75 kV/m\n\n（c）$5.84\\;\\mu\\text{T}$\n\n（d）2 min 19 s"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169737994774",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fields-from-intensity",
+   "prompt": "<strong>综合概念</strong> 来自一台 5.00 mW 激光器的电磁辐射集中在 $1.00\\;\\text{mm}^2$ 的面积上。（a）以 $\\text{W/m}^2$ 计的强度是多少？（b）假设一个 2.00 nC 的静电荷处在光束中。它受到的最大电场力是多少？（c）如果这个静电荷以 400 m/s 的速率运动，它能感受到的最大磁力是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the intensity",
+      "value": 5000,
+      "unit": "W/m²",
+      "hint": "1 平方毫米是 $1.00\\times 10^{-6}\\;\\text{m}^2$。"
+     },
+     {
+      "part": "(b) the maximum electric force",
+      "value": 3.88e-06,
+      "unit": "N",
+      "hint": "由强度求出电场峰值，再用 $F = qE_0$，其中取场的峰值。"
+     },
+     {
+      "part": "(c) the maximum magnetic force",
+      "value": 5.18e-12,
+      "unit": "N",
+      "hint": "由电场峰值求出磁场峰值，再用 $F = qvB_0$，其中取场的峰值。"
+     }
+    ],
+    "solution": "（a）$5.00\\times 10^{3}\\;\\text{W/m}^2$\n\n（b）$3.88\\times 10^{-6}\\;\\text{N}$\n\n（c）$5.18\\times 10^{-12}\\;\\text{N}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737739948",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-intensity",
+   "prompt": "<strong>综合概念</strong> 如果电场强度和磁感应强度随时间做正弦变化，在 $t = 0$ 时为零，那么 $\\kEf = \\kEfo\\sin 2\\pi ft$，$\\kBmag = \\kBmago\\sin 2\\pi ft$。这里取 $f = 1.00\\;\\text{GHz}$。（a）场强第一次为零是在什么时刻？（b）它们在什么时刻达到最负的值？（c）它们完成一个周期需要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) when the field strengths are first zero",
+      "value": 0,
+      "unit": "s",
+      "hint": "照题目的字面来读：题中说场在开始时为零。"
+     },
+     {
+      "part": "(b) when they are most negative",
+      "value": 7.5e-10,
+      "unit": "s",
+      "hint": "正弦函数在一个周期的四分之三处取到最负值。"
+     },
+     {
+      "part": "(c) the time for one cycle",
+      "value": 1e-09,
+      "unit": "s",
+      "hint": "一个周期所用的时间就是周期，即 1 除以频率。"
+     }
+    ],
+    "solution": "（a）$t = 0$\n\n（b）$7.50\\times 10^{-10}\\;\\text{s}$\n\n（c）$1.00\\times 10^{-9}\\;\\text{s}$"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1169738045926",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-intensity",
+   "prompt": "<strong>不合理的结果</strong> 家用微波炉中的磁感应强度峰值为 $9.20\\times 10^{-5}\\;\\text{T}$。（a）微波的强度是多少？（b）这个结果有什么不合理之处？（c）前提有什么错误？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 1010000.0,
+    "unit": "W/m²",
+    "hint": "把磁感应强度峰值代入 $\\kIave = \\kc\\kBmago^2/2\\mu_0$，再把结果与真实微波炉每平方米几千瓦的功率相比较。",
+    "solution": "（a）$1.01\\times 10^{6}\\;\\text{W/m}^2$\n\n（b）对微波炉来说大得太多。\n\n（c）所设的磁场大得不合理。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169736621354",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "<strong>不合理的结果</strong> 一个含有 1.00 pF 电容器的 $\\text{LC}$ 电路，以某个频率振荡，使它辐射出波长为 300 nm 的波。（a）电路的电感是多少？（b）这个结果有什么不合理之处？（c）哪些假设不合理或不一致？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 2.53e-20,
+    "unit": "H",
+    "hint": "波长通过 $\\kc = f\\lambda$ 给出频率，令这个频率等于 $1/2\\pi\\sqrt{LC}$，即可得到电感。",
+    "solution": "（a）$2.53\\times 10^{-20}\\;\\text{H}$\n\n（b）$L$ 小得太多。\n\n（c）波长小得不合理。"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "exer-00001",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-intensity",
+   "prompt": "<strong>批判性思考</strong> （a）当电场强度为 1,250 V/m 时，求磁感应强度。（b）如果 <em>E</em> 增大，<em>B</em> 会增大、减小还是保持不变？（c）如果有变化，（b）问中的变化是多少倍？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 4.17e-06,
+    "unit": "T",
+    "hint": "在真空中，波的两个场强之比是固定的，这个比值就是光速。",
+    "solution": "（a）$\\kBmag = \\frac{\\kEf}{\\kc} = \\frac{1250}{3.00\\times 10^{8}}\\;\\text{T} = 4.17\\times 10^{-6}\\;\\text{T}$\n\n（b）$B$ 会增大。<sup class=\"fn\" data-note=\"c-p12-b\"></sup>\n\n（c）会是 $1/\\kc$ 倍。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "wave-energy-from-field-amplitude"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-intensity-from-e0",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "find-fields-from-intensity"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "intensity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-intensity-from-e0"
+  },
+  {
+   "exercise": "p2",
+   "concept": "find-fields-from-intensity"
+  },
+  {
+   "exercise": "p2",
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "intensity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "find-fields-from-intensity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "intensity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "average-intensity-from-e0"
+  },
+  {
+   "exercise": "p4",
+   "concept": "find-fields-from-intensity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "intensity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "wave-energy-from-field-amplitude"
+  },
+  {
+   "exercise": "p5",
+   "concept": "intensity",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "c-equals-f-lambda"
+  },
+  {
+   "exercise": "p6",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "find-fields-from-intensity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "intensity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "find-fields-from-intensity"
+  },
+  {
+   "exercise": "p8",
+   "concept": "intensity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "peak-intensity-is-twice-average"
+  },
+  {
+   "exercise": "p9",
+   "concept": "antenna-field-cycle",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "intensity-from-the-magnetic-amplitude"
+  },
+  {
+   "exercise": "p10",
+   "concept": "find-fields-from-intensity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "c-equals-f-lambda"
+  },
+  {
+   "exercise": "p11",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "find-b-from-e"
+  },
+  {
+   "exercise": "p12",
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "wave-1",
+   "label": "第一列波，即上面的那列",
+   "figures": [
+    "sim-amplitude-squared"
+   ]
+  },
+  {
+   "id": "wave-2",
+   "label": "第二列波，即下面场更强的那列",
+   "figures": [
+    "sim-amplitude-squared"
+   ]
+  },
+  {
+   "id": "oven",
+   "label": "例题 24.4 中的微波炉",
+   "figures": [
+    "sim-oven-intensity"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p12-b",
+   "kind": "correction",
+   "html": "本书的答案印为“E 会增大”，回答的是电场。题目问的是磁场，而由于 $\\kBmag = \\kEf/\\kc$，$B$ 随 $E$ 增大。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "intensity-from-magnetic-field",
+   "what": "由磁感应强度求平均强度",
+   "source": "《大学物理（第2版）》，24.4 电磁波中的能量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "该波是连续的正弦电磁波。",
+       "src": "24.4"
+      },
+      {
+       "tex": "\\kBmag = \\kEf/\\kc",
+       "src": "24.2"
+      },
+      {
+       "tex": "\\varepsilon_0 = 1/\\mu_0\\kc^2",
+       "src": "24.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\varepsilon_0}\\mk{E}{\\kEfo^2}}{2}",
+      "uses": [
+       0
+      ],
+      "src": "24.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\varepsilon_0}\\mk{E}{(\\kc\\kBmago)^2}}{2}",
+       "uses": [
+        1
+       ],
+       "cap": "这一比值在任何时刻都成立，所以对最大场强也成立：$\\kEfo = \\kc\\kBmago$。"
+      },
+      {
+       "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\varepsilon_0}\\mk{E}{\\kc^2\\kBmago^2}}{2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\dfrac{1}{\\mu_0\\kc^2}}\\mk{E}{\\kc^2\\kBmago^2}}{2}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{E}{\\kBmago^2}}{2\\mk{e}{\\mu_0}}",
+       "uses": []
+      }
+     ],
+     "src": "24.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kc\\cdot\\kBmago = \\kEfo",
+       "src": "24.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{E}{\\kBmago^2}}{2\\mk{e}{\\mu_0}}",
+      "uses": [],
+      "src": "24.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc\\kBmago}\\,\\mk{B}{\\kBmago}}{2\\mk{e}{\\mu_0}}",
+       "uses": [],
+       "map": {
+        "E": [
+         "c",
+         "B"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kEfo}\\mk{B}{\\kBmago}}{2\\mk{e}{\\mu_0}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "24.4"
+    }
+   ]
+  }
+ ]
+}

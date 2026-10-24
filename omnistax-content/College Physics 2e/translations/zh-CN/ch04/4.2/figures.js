@@ -1,0 +1,88 @@
+/* Figures for section 4.2 Newton's First Law of Motion: Inertia. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['4.2'] = function (root, F) {
+const { el, fmt, tex, C, PAL, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, axes, curve, pinned, block } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* =====================================================================
+   SIM: the block that slides farther and farther. A block is pushed
+   along a surface 60 m long and left alone; the surface slows it at a
+   rate the reader sets, from a rough floor down to the frictionless
+   surface of an air hockey table. The graph of the speed against time
+   below the scene tilts down to zero while there is friction and lies
+   flat when there is none, which is Newton's first law drawn. The idea
+   has a time in it, so the figure runs a finite loop and takes the
+   transport and its scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-frictionless', 700);
+  const V = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 2, max: 10, step: 0.5, value: 8, unit: 'm/s', dec: 1, onInput: reset, aria: '滑块开始运动时的速率' });
+  const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0, max: 3, step: 0.1, value: 2, unit: 'm/s²', dec: 1, onInput: reset, aria: '表面使滑块减慢的快慢',
+    specials: [{ at: 0, label: '无摩擦' }] });
+  const ro = F.readout(d);
+  const TRACK = 60;                                   /* the surface drawn, in metres */
+  const SL = 150, SR = 1200, X = (s) => SL + ((SR - SL) * s) / TRACK;
+  const yS = 250, yBlk = yS - 50, GB = { l: 150, r: 1200, t: 440, b: 630 };
+  /* the run: when the block stops inside the picture the loop ends there, and when it does not the loop ends as it leaves */
+  function run() {
+    const v0 = V.v, a = A.v;
+    const ts = a > 0 ? v0 / a : Infinity;                       /* the time it takes to stop */
+    const ds = a > 0 ? (v0 * v0) / (2 * a) : Infinity;          /* the distance it takes to stop */
+    const stops = ds <= TRACK;
+    const T = stops ? ts : a > 0 ? (v0 - Math.sqrt(Math.max(0, v0 * v0 - 2 * a * TRACK))) / a : TRACK / v0;
+    return { v0, a, ts, ds, stops, T };
+  }
+  const cy = cycle(() => run().T, 1.2);
+  function reset() { cy.reset(); }
+  /* the surface names itself, in the words the section uses for it */
+  const surface = (a) => (a === 0 ? '无摩擦的表面，如气垫冰球桌' : a <= 0.5 ? '抹了润滑油的表面' : a <= 1.5 ? '撒了滑石粉的表面' : '粗糙的表面');
+  function draw() {
+    const { ctx } = begin(d.c);
+    const r = run(), t = Math.min(cy.now(), r.T), done = t >= r.T - 1e-9;
+    const s = Math.min(TRACK, r.v0 * t - 0.5 * r.a * t * t), v = Math.max(0, r.v0 - r.a * t);
+    /* the scene: the surface, the block on it, and how far it has come */
+    text(ctx, surface(r.a), 700, 104, PAL.muted, { size: 20, weight: 600, align: 'center' });
+    strip(ctx, SL, SR, yS, 48);
+    line(ctx, X(TRACK), yS - 44, X(TRACK), yS + 44, PAL.rule, 2, [6, 8]);
+    block(ctx, X(s), yBlk, 76, 52, F.ref('block'));
+    if (v > 0.05) {
+      const nose = X(s) + 42, tip = nose + v * 14;
+      arrow(ctx, nose, yBlk, tip, yBlk, C('velocity'), 5);
+      text(ctx, 'v = ' + fmt(v, 1) + ' m/s', (nose + tip) / 2, yBlk - 46, C('velocity'), { size: 24, weight: 600, align: 'center' });
+    } else {
+      text(ctx, '滑块已经停下', Math.max(X(s), SL + 110), yBlk - 46, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    }
+    dot(ctx, X(0), yS, C('position'), false, 10);
+    if (s > 1.5) {
+      hbracket(ctx, X(0), X(s), yS + 62, C('position'));
+      text(ctx, 'Δx = ' + fmt(s, 1) + ' m', Math.max((X(0) + X(s)) / 2, SL + 70), yS + 40, C('position'), { size: 22, weight: 600, align: 'center' });
+    }
+    scale(ctx, X, 0, 60, 10, 356, 'm', 1);
+    /* the graph: the speed against the time, flat when the friction is gone */
+    /* fixed axes: the speed can reach the 10 m/s of its slider, so the speed axis is always 0 to 12 m/s.
+       The longest run the sliders allow is the frictionless one at 2 m/s, which takes 60 / 2 = 30 s to
+       cross the surface, and a range that long would squeeze the 4 s of the run drawn on load into a
+       thirteenth of the width. So the time axis is fixed at 0 to 8 s, which holds the run the figure
+       opens with and every run that slows the block at all, and a slower run walks off the right edge
+       as a pinned marker rather than stretching the axis. Neither range changes as a slider moves. */
+    const TR = 8, VR = 12;
+    const g = axes(ctx, GB, [0, TR], [0, VR], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: 6, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
+    curve(ctx, (q) => Math.max(0, r.v0 - r.a * q), 0, Math.min(r.T, TR), g.X, g.Y, C('velocity'), 5);
+    dot(ctx, g.X(0), g.Y(r.v0), C('velocity'), false, 10);
+    if (t <= TR) line(ctx, g.X(t), g.Y(v), g.X(t), GB.b, PAL.muted, 2, [4, 8]);
+    pinned(ctx, GB, g.X, g.Y, t, v, C('velocity'), 't = ' + fmt(t, 1) + ' s');
+    if (r.a === 0) text(ctx, '速度不变', (g.X(0) + g.X(Math.min(r.T, TR))) / 2, r.v0 > 8 ? g.Y(r.v0) + 30 : g.Y(r.v0) - 30, C('velocity'), { size: 20, weight: 600, align: 'center' });
+    headline(ctx, !done ? '滑块已在表面上走过 ' + fmt(s, 1) + ' m，仍以 ' + fmt(v, 1) + ' m/s 的速度运动'
+      : r.stops ? '在' + surface(r.a) + '上，滑块滑行 ' + fmt(r.ds, 1) + ' m 后停下'
+      : r.a === 0 ? '摩擦力消失后，滑块以 ' + fmt(r.v0, 1) + ' m/s 的速度离开画面，没有什么能使它停下'
+      : '滑块离开画面时仍以 ' + fmt(v, 1) + ' m/s 的速度运动，因为要使它停下需要 ' + fmt(r.ds, 1) + ' m');
+    ro.set(r.a === 0
+      ? `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} = \\mk{nv}{${fmt(r.v0, 1)}}\\ \\text{m/s}`
+      : `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} \\mk{at}{{}- \\ka\\kt} = \\mk{n0}{${fmt(r.v0, 1)}} \\mk{nat}{{}- ${fmt(r.a, 1)}(${fmt(t, 2)})} = \\mk{nv}{${fmt(Math.max(0, r.v0 - r.a * +fmt(t, 2)), 2)}}\\ \\text{m/s}`, r.a === 0 ? ''
+        : r.stops ? '滑块在停下之前走过 ' + fmt(r.ds, 1) + ' m，把减慢的程度减半，这段距离就会加倍。'
+        : '要使滑块停下需要 ' + fmt(r.ds, 1) + ' m，超过了这里所画表面的 60 m。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => run().T / 5), draw });
+})();
+};

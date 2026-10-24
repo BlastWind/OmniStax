@@ -1,0 +1,526 @@
+{
+ "id": "12.5",
+ "module": "m42210",
+ "chapter": "12",
+ "title": "湍流的发生",
+ "short": "湍流的发生",
+ "lead": "在宽血管中平滑的流动，到了血管变窄或流体加速之处，可能破碎成涡旋。你将遇到雷诺数——一个由流体的<span data-concept=\"density\">密度</span>、速率和<span data-concept=\"viscosity\">黏度</span>以及管的半径构成的无量纲的量——并用它来判断一个流动，从体内的血液到你呼吸的空气，将是层流还是湍流。",
+ "objectives": [
+  "计算雷诺数。",
+  "利用一个系统的雷诺数，判断它是层流还是湍流。"
+ ],
+ "summary_html": "<ul><li>雷诺数 $N_{\\text{R}}$ 可以揭示流动是层流还是湍流。它为 $N_{\\text{R}} = \\frac{2\\krho\\kv r}{\\keta}.$</li><li>当 $N_{\\text{R}}$ 低于约 2000 时，流动是层流。当 $N_{\\text{R}}$ 高于约 3000 时，流动是湍流。当 $N_{\\text{R}}$ 在 2000 到 3000 之间时，它可能是二者之一，也可能二者兼有。</li></ul>",
+ "notes": "习题 2、4、6、8 和 10 在书后答案中没有给出，因此略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案；习题 2（雷诺数的单位）、4（消防水带）、6（供水干管）、8（气管）和 10（主动脉）没有给出答案，因此略去。“不合理的结果”一题把（a）和（d）两问按数值给出答案，（b）和（c）两问用文字作答，解中给出了这些文字。三道思考题的建议思路由 AI 撰写并已标明；第二道题的卡片上附有图 12.23，即水槽排水口的插件。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-turbulence",
+   "kind": "sim",
+   "number": "12.22",
+   "originals": [
+    "/media/ch12/Figure_13_05_01a.jpg"
+   ],
+   "original_caption": "在这条血管较粗的部分，流动是层流；在被斑块变窄的部分，流动是湍流，那里的速度很高。在过渡区，流动可以在层流与湍流之间混沌地振动。",
+   "widths": [
+    245
+   ],
+   "draws": [
+    "flow-rate",
+    "velocity",
+    "viscosity",
+    "density",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: dye wound into eddies by decaying vortices, labels off the vessel"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "predicting-turbulence",
+   "concept": "laminar-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "predicting-turbulence",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "turbulence-in-circulation",
+   "concept": "turbulence-in-circulation",
+   "verb": "introduces"
+  },
+  {
+   "span": "turbulence-in-circulation",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "turbulence-in-circulation",
+   "concept": "radius-fourth-power-sensitivity",
+   "verb": "uses"
+  },
+  {
+   "span": "turbulence-in-circulation",
+   "concept": "blood-pressure-measurement",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-number",
+   "concept": "reynolds-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "reynolds-number",
+   "concept": "turbulence-onset-thresholds",
+   "verb": "introduces"
+  },
+  {
+   "span": "reynolds-number",
+   "concept": "viscosity",
+   "verb": "uses"
+  },
+  {
+   "span": "reynolds-number",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "checking-flow",
+   "concept": "reynolds-number",
+   "verb": "uses"
+  },
+  {
+   "span": "checking-flow",
+   "concept": "turbulence-onset-thresholds",
+   "verb": "uses"
+  },
+  {
+   "span": "checking-flow",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "checking-flow",
+   "concept": "flow-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "chaos",
+   "concept": "chaotic-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "chaos",
+   "concept": "turbulence-onset-thresholds",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3387532",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "turbulence-in-circulation",
+   "prompt": "多普勒超声可用来测量体内血液的速率。如果一条动脉有部分狭窄，你预计血液速率在何处最大，是在狭窄处还是在其附近？狭窄处流阻增大有哪两个不同的原因？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "速率在狭窄处本身最大。连续性方程要求同样的流量通过动脉的每一个横截面，因此在面积最小处血液必须运动得最快，而一旦血管变宽，速率又会下降。狭窄使流阻增大的方式有两种。第一，半径变小，而泊肃叶定律使流阻按半径倒数的四次方增长，所以即使是不大的变窄，也会使流阻显著增大。第二，高速率和阻塞物不规则的形状使雷诺数趋近或超过湍流范围，而湍流通过同一根管时的流阻比层流大，因为能量用在了涡旋和听诊器所听到的噪声上。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "eip-948",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "figure": {
+    "src": "/media/ch12/Figure_13_05_02a.jpg",
+    "alt": "图中是圆柱体的一小段环形部分，它被分成四个相等的部分。",
+    "caption": "图 12.23 许多排水口中都有这样的装置。它们能显著增大流量。"
+   },
+   "prompt": "水槽排水口中常装有图 12.23 所示的那种装置，以帮助加快水流。这是怎样起作用的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "离开水盆的水往下流入排水口时往往会打旋，而打旋的湍流所遇到的流阻比笔直向下流动的层流大得多。四片叶片把开口分隔成若干通道，水无法在通道之间环流，因此旋涡被打散，每条通道里的水流平滑，近乎层流。湍流被抑制后，流阻变小，盆中同样的水头能驱动更大的流量，这就是装有这种插件的排水口比没有时排空得更快的原因。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2616341",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "prompt": "有些吊扇的叶片上装有装饰性的藤条。请讨论这样的吊扇是否像叶片光滑的吊扇那样安静而高效。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们既不那么安静，也不那么高效。流过光滑叶片的流动可以一直保持层流，直到相当高的速率，但表面粗糙和障碍物会使流动在比本来更低的雷诺数下就变成湍流，而藤条正是这种粗糙。流过藤条的空气碎成涡旋，而湍流是有噪声的，所以风扇嗡嗡作响、呼呼作声，而光滑的叶片会安静地推动空气。湍流还会把能量耗散在涡旋中，而不是用来使空气流过房间，所以对于同样大小的微风，电动机要多做功，风扇的效率也就更低。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2054433",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "prompt": "验证对于一口通过直径 0.100 m 的管子把原油喷射到 25.0 m 高空的喷油井，油的流动是层流（勉强是）。这根竖直的管子长 50 m。取油的密度为 $900\\ \\text{kg/m}^3$，黏度为 $1.00\\ (\\text{N/m}^2)\\cdot\\text{s}$（即 $1.00\\ \\text{Pa}\\cdot\\text{s}$）。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1990,
+    "hint": "油离开管口时的速率可由它所到达的高度求出，如同抛体，或由托里拆利定理，$\\kv = \\sqrt{2\\kg\\kh}$；然后用半径（而不是直径）代入 $N_{\\text{R}} = 2\\krho\\kv r/\\keta$，并与 2000 比较。",
+    "solution": "$N_{\\text{R}} = 1.99\\times 10^{3} < 2000$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1908770",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "prompt": "当喷嘴接在软管上时，计算水流过（a）半径为 0.250 cm 的喷嘴和（b）半径为 0.900 cm 的花园软管的雷诺数。通过软管和喷嘴的流量为 0.500 L/s。二者之中的流动有可能是层流吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) nozzle",
+      "value": 127000,
+      "hint": "每处的速率都是流量除以横截面积，$\\kvb = \\kQ/\\pi r^2$，流量要用立方米每秒；20 °C 水的黏度取自表 12.1，为 $1.002\\times 10^{-3}\\ \\text{N}\\cdot\\text{s/m}^2$。"
+     },
+     {
+      "part": "(b) hose",
+      "value": 35100,
+      "hint": "同样的流量通过更大的半径，速率更小；流量一定时，$N_{\\text{R}}$ 按 $1/r$ 下降。"
+     }
+    ],
+    "solution": "（a）喷嘴：$1.27\\times 10^{5}$，不是层流。（b）软管：$3.51\\times 10^{4}$，不是层流。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3047968",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "prompt": "混凝土是用泵从混凝土搅拌机送到铺设地点的，而不是用独轮手推车运送。流量为 200.0 L/min，流经一根长 50.0 m、直径 8.00 cm 的软管，泵处的压强为 $8.00\\times 10^{6}\\ \\text{N/m}^2$。验证混凝土的流动是层流，取混凝土的黏度为 $48.0\\ (\\text{N/m}^2)\\cdot\\text{s}$，并已知其密度为 $2300\\ \\text{kg/m}^3$。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.54,
+    "hint": "把流量换算成立方米每秒，由 $\\kvb = \\kQ/\\pi r^2$ 求速率，半径取 4.00 cm；混凝土的黏度极大，使 $N_{\\text{R}}$ 很小。",
+    "solution": "$2.54 \\ll 2000$，层流。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3418228",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "prompt": "如果要使流动保持为层流，在半径为 2.00 mm 的动脉中，37 °C 下血流的最大速率是多少？相应的流量是多少？取血液的密度为 $1025\\ \\text{kg/m}^3$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "greatest speed",
+      "value": 1.02,
+      "unit": "m/s",
+      "hint": "令 $N_{\\text{R}} = 2000$，由 $N_{\\text{R}} = 2\\krho\\kv r/\\keta$ 解出速率，其中 37 °C 全血的黏度取自表 12.1。"
+     },
+     {
+      "part": "flow rate",
+      "value": 0.0128,
+      "unit": "L/s",
+      "hint": "流量等于速率乘以横截面积，$\\kQ = \\kvb\\pi r^2$，并把立方米每秒换算成升每秒。"
+     }
+    ],
+    "solution": "1.02 m/s; $1.28\\times 10^{-2}\\ \\text{L/s}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1431732",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "prompt": "汽油通过地下管道从炼油厂输送到主要用户。流量为 $3.00\\times 10^{-2}\\ \\text{m}^3\\text{/s}$（约 500 gal/min），汽油的黏度为 $1.00\\times 10^{-3}\\ (\\text{N/m}^2)\\cdot\\text{s}$，密度为 $680\\ \\text{kg/m}^3$。（a）如果要使雷诺数小于 2000，管子的直径至少为多大？（b）为维持这一流量，沿管子每千米必须保持多大的压强差？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 13.0,
+      "unit": "m",
+      "hint": "在雷诺数中把速率写成 $\\kQ/\\pi r^2$，于是 $N_{\\text{R}} = 2\\krho\\kQ/\\pi r\\keta$，令它等于 2000 并解出半径；直径是它的两倍，任何更粗的管子也都能使流动保持为层流。"
+     },
+     {
+      "part": "(b)",
+      "value": 2.68e-06,
+      "unit": "N/m²",
+      "hint": "泊肃叶定律 $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$ 给出对于（a）中求得的半径，在 $l = 1000$ m 上的压强差。"
+     }
+    ],
+    "solution": "（a）$\\geq 13.0\\ \\text{m}$（b）$2.68\\times 10^{-6}\\ \\text{N/m}^2$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3385130",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reynolds-number",
+   "prompt": "一根相当粗的花园软管，内半径为 0.600 cm，长 23.0 m。这根没有喷嘴的水平软管接在水龙头上，输出流量为 50.0 L/s。（a）水龙头提供的水压是多大？（b）这一压强有什么不合理之处？（c）前提有什么不合理之处？（d）所给流动的雷诺数是多少？（取水的黏度为 $1.005\\times 10^{-3}\\ (\\text{N/m}^2)\\cdot\\text{s}$。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 23.7,
+      "unit": "atm",
+      "hint": "泊肃叶定律给出推动 50.0 L/s 的水流过 23.0 m 长、半径 0.600 cm 的软管所需的压强差，而敞开的一端处于大气压，所以这一压强差就是水龙头提供的表压强。"
+     },
+     {
+      "part": "(d)",
+      "value": 5270000,
+      "hint": "速率为 $\\kQ/\\pi r^2$，再用水的密度代入 $N_{\\text{R}} = 2\\krho\\kv r/\\keta$。"
+     }
+    ],
+    "solution": "（a）23.7 atm 或 $344\\ \\text{lb/in}^2$（b）这一压强高得过分。（c）对花园软管来说，所假设的流量非常大。（d）$5.27\\times 10^{6} \\gg 3000$，是湍流，与使用这一公式时所假定的层流相矛盾。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "turbulence-in-circulation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "equation-of-continuity",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "radius-fourth-power-sensitivity",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "turbulent-flow"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "turbulence-onset-thresholds",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "turbulence-onset-thresholds"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "turbulent-flow",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "reynolds-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "turbulence-onset-thresholds"
+  },
+  {
+   "exercise": "p1",
+   "concept": "torricellis-theorem",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "reynolds-number"
+  },
+  {
+   "exercise": "p3",
+   "concept": "turbulence-onset-thresholds"
+  },
+  {
+   "exercise": "p3",
+   "concept": "flow-rate-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "reynolds-number"
+  },
+  {
+   "exercise": "p5",
+   "concept": "turbulence-onset-thresholds"
+  },
+  {
+   "exercise": "p5",
+   "concept": "flow-rate-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "reynolds-number"
+  },
+  {
+   "exercise": "p7",
+   "concept": "turbulence-onset-thresholds"
+  },
+  {
+   "exercise": "p7",
+   "concept": "flow-rate-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "turbulence-in-circulation",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "reynolds-number"
+  },
+  {
+   "exercise": "p9",
+   "concept": "turbulence-onset-thresholds"
+  },
+  {
+   "exercise": "p9",
+   "concept": "poiseuilles-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "reynolds-number"
+  },
+  {
+   "exercise": "p11",
+   "concept": "turbulence-onset-thresholds"
+  },
+  {
+   "exercise": "p11",
+   "concept": "poiseuilles-law",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "artery",
+   "label": "动脉",
+   "figures": [
+    "sim-turbulence"
+   ]
+  },
+  {
+   "id": "plaque",
+   "label": "使动脉变窄的斑块",
+   "figures": [
+    "sim-turbulence"
+   ]
+  }
+ ]
+}

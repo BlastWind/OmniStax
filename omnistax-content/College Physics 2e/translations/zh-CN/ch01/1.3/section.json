@@ -1,0 +1,865 @@
+{
+ "id": "1.3",
+ "module": "m42120",
+ "chapter": "1",
+ "title": "准确度、精密度和有效数字",
+ "short": "准确度、精密度、有效数字",
+ "lead": "每次测量都只在一定程度上接近正确值，重复测量之间也只在一定程度上彼此一致：这就是测量的准确度和精密度，而测量中未知的部分就是它的不确定度。写下的有效数字表明测量工具有多精密，以及计算出的答案可以保留多少位数字。",
+ "objectives": [
+  "在加法和减法以及乘法和除法计算中确定恰当的有效数字位数。",
+  "计算一次测量的百分不确定度。"
+ ],
+ "summary_html": "<ul><li>测得值的准确度是指一次测量与正确值的接近程度。测量的不确定度是对测量结果可能偏离该值多少的一种估算。</li><li>测得值的精密度是指重复测量之间的一致程度。</li><li><em>测量工具</em>的精密度与其测量增量的大小有关。测量增量越小，工具越精密。</li><li>有效数字表示测量工具的精密度。</li><li>测得值相乘或相除时，最终答案所含的有效数字位数只能与最不精密的值相同。</li><li>测得值相加或相减时，最终答案的小数位数不能多于最不精密的值。</li></ul>",
+ "notes": "习题 2、4、6、8、10、12、14、16 和 18 在书后答案中没有给出，因此略去；本节开头的两张天平照片是正文从未提及的装饰，因此删去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "本节习题的答案请用正确的有效数字位数和恰当的单位表示。",
+ "exercise_notes": "布鲁姆层级、概念标签、提示以及单位换算和平均速率标签上的权重由 AI 生成。答案来自书后答案；习题 2、4、6、8、10、12、14、16 和 18 没有给出答案，因此略去。关于秒表的理解检测放在讲不确定度的段落之后，而不是本书印出它的位置，即地板之后。两道思考题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-target",
+   "kind": "sim",
+   "number": "1.23",
+   "folds": [
+    "1.24"
+   ],
+   "originals": [
+    "/media/ch01/Figure_01_03_03.jpg",
+    "/media/ch01/Figure_01_03_04.jpg"
+   ],
+   "original_caption": "（图 1.23）一个 GPS 系统试图确定位于靶心的一家餐馆的位置。黑点代表每一次确定餐馆位置的尝试。这些点彼此分散得相当开，表明精密度低，但每个点都相当接近餐馆的实际位置，表明准确度高。（来源：Dark Evil）（图 1.24）在这幅图中，这些点彼此相当集中，表明精密度高，但它们离餐馆的实际位置相当远，表明准确度低。（来源：Dark Evil）",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-percent",
+   "kind": "sim",
+   "draws": ["force"],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "weekly labels and note"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-area",
+   "kind": "sim",
+   "draws": ["area", "position"],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout and note"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ruler",
+   "kind": "sim",
+   "draws": ["position"],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "magnifier window and labels"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-calc",
+   "kind": "sim",
+   "draws": ["position", "area"],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "product wording"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "accuracy-precision",
+   "concept": "accuracy",
+   "verb": "introduces"
+  },
+  {
+   "span": "accuracy-precision",
+   "concept": "precision",
+   "verb": "introduces"
+  },
+  {
+   "span": "uncertainty",
+   "concept": "uncertainty",
+   "verb": "introduces"
+  },
+  {
+   "span": "uncertainty",
+   "concept": "accuracy",
+   "verb": "uses"
+  },
+  {
+   "span": "uncertainty",
+   "concept": "precision",
+   "verb": "uses"
+  },
+  {
+   "span": "percent-uncertainty",
+   "concept": "percent-uncertainty",
+   "verb": "introduces"
+  },
+  {
+   "span": "percent-uncertainty",
+   "concept": "uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-apples",
+   "concept": "percent-uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "calculations",
+   "concept": "adding-percents",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculations",
+   "concept": "percent-uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "calculations",
+   "concept": "area",
+   "verb": "introduces"
+  },
+  {
+   "span": "sig-figs",
+   "concept": "significant-figures",
+   "verb": "introduces"
+  },
+  {
+   "span": "sig-figs",
+   "concept": "precision",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs",
+   "concept": "uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs-calculations",
+   "concept": "sig-figs-multiplication",
+   "verb": "introduces"
+  },
+  {
+   "span": "sig-figs-calculations",
+   "concept": "sig-figs-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "sig-figs-calculations",
+   "concept": "significant-figures",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs-text",
+   "concept": "sig-figs-multiplication",
+   "verb": "uses"
+  },
+  {
+   "span": "sig-figs-text",
+   "concept": "sig-figs-addition",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2586676",
+   "kind": "check-understanding",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "uncertainty"
+   },
+   "cite": "uncertainty",
+   "prompt": "一位高中田径教练刚买了一块新秒表。秒表说明书上写明，该秒表的不确定度为 $\\pm 0.05\\ \\text{s}$。队里最好的短跑运动员上周跑 100 米短跑的计时为 12.04 秒，本周为 11.96 秒。我们能否断定本周的成绩更快？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "不能，秒表的不确定度太大，无法有效区分这两次短跑的时间。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id3141103",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "sig-figs"
+   },
+   "cite": "sig-figs",
+   "prompt": "确定下列测量值的有效数字位数：（a） 0.0009 （b） 15,450.0 （c） $6 \\times 10^{3}$ （d） 87.990 （e） 30.42",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1,
+      "unit": "figures",
+      "hint": "只用来确定小数点位置的零是占位符，不是测得的数字。"
+     },
+     {
+      "part": "(b)",
+      "value": 6,
+      "unit": "figures",
+      "hint": "写在小数点后的零表明测量进行到了那一位。"
+     },
+     {
+      "part": "(c)",
+      "value": 1,
+      "unit": "figures",
+      "hint": "10 的幂决定数的大小，而不决定测得了多少位数字。"
+     },
+     {
+      "part": "(d)",
+      "value": 5,
+      "unit": "figures",
+      "hint": "小数点后的末尾零是测得的数字。"
+     },
+     {
+      "part": "(e)",
+      "value": 4,
+      "unit": "figures",
+      "hint": "位于两个其他数字之间的零不是占位符。"
+     }
+    ],
+    "solution": "（a） 1；这个数中的零是表示小数点位置的占位符。（b） 6；这里的零表明测量进行到了小数点后 0.1 这一位，因此这些零是有效的。（c） 1；$10^{3}$ 这个值表示小数点的位置，而不是测得的数字的个数。（d） 5；末尾的零表明测量进行到了小数点后 0.001 这一位，因此它是有效的。（e） 4；一个数中位于有效数字之间的任何零也是有效的。"
+   }
+  },
+  {
+   "id": "cyu3",
+   "source_id": "fs-id2506196",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "sig-figs-text"
+   },
+   "cite": "sig-figs-text",
+   "prompt": "进行下列计算，并用正确的有效数字位数表示答案。（a） 一位女士有三个袋子：其中两个袋子各重 13.5 磅，另一个袋子重 10.2 磅。这些袋子的总重量是多少？（b） 物体所受的力 $F$ 等于其质量 $m$ 乘以其加速度 $a$。如果一辆质量为 55 kg 的小车以 $0.0255\\ \\text{m/s}^2$ 的加速度加速，小车所受的力是多少？（力的单位称为牛顿，用符号 N 表示。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 37.2,
+      "unit": "pounds",
+      "hint": "把三个重量相加，并保留最不精密的那个值的小数位数。袋子的个数是精确的。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.4,
+      "unit": "N",
+      "hint": "把质量乘以加速度，并保留与有效数字最少的那个量相同的有效数字位数。"
+     }
+    ],
+    "solution": "（a） 37.2 磅；由于袋子的个数是精确值，在确定有效数字时不予考虑。（b） 1.4 N；由于 55 kg 这个值只有两位有效数字，最终值也必须只含两位有效数字。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2839906",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uncertainty",
+   "prompt": "一次测量的准确度与不确定度之间有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "准确度是指一次测量与正确值的接近程度，而不确定度是对测得值可能偏离该值多少的定量量度。不确定度是对测量的一种免责声明，二者相伴而行：不太准确的测量具有较高的不确定度，而不确定度小的测量，其值可以相信是接近正确值的。正文对精密度也作了同样的说明，因为既不准确也不精密的测量具有很高的不确定度。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id953198",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uncertainty",
+   "prompt": "视力矫正的处方以一种称为屈光度（D）的单位给出。确定这个单位的含义。获取有关信息（或许可以打电话给验光师，或在互联网上搜索），了解以屈光度为单位确定矫正量时的最小不确定度，以及矫正镜片能够制造到的准确度。讨论处方的不确定度和镜片制造准确度二者的来源。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "屈光度是以米为单位的透镜焦距的倒数，$P = 1/f$，因此焦距为 0.50 m 的透镜的光焦度为 2.0 D。处方以 0.25 D 为步长书写，同一只眼睛的重复检查通常相差一个步长，因此处方带有约 $\\pm 0.25\\ \\text{D}$ 的不确定度。镜片实验室按照 ANSI Z80.1 标准工作，该标准允许光焦度不超过 6.50 D 时球镜光焦度与订单相差 $\\pm 0.13\\ \\text{D}$。对于一片 $-3.00\\ \\text{D}$ 的镜片，这相当于 $(0.13/3.00) \\times 100\\% \\approx 4\\%$ 的百分不确定度。处方的不确定度来自测量仪器的局限、检查者的技能，以及患者本人对两种设置中哪一种看起来更清晰的判断，还来自眼睛本身的不规则性，眼睛的聚焦会随疲劳、光照和瞳孔大小而变化。镜片的不确定度来自研磨和抛光工具的精密度、镜片材料折射率的变化，以及用来检验成品镜片的焦度计的精密度。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2131067",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-uncertainty",
+   "prompt": "假设你的体重秤显示你的质量为 65 kg，不确定度为 3%。你的质量的不确定度是多少（以千克为单位）？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "unit": "kg",
+    "hint": "不确定度等于以分数表示的百分不确定度乘以测得值。",
+    "solution": "2 kg"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2773103",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-uncertainty",
+   "prompt": "（a） 一个汽车速度计的不确定度为 $5.0\\%$。当它的读数为 $90\\ \\text{km/h}$ 时，可能速率的范围是多少？（b） 把这个范围换算为英里每小时。（$1\\ \\text{km} = 0.6214\\ \\text{mi}$）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) lowest",
+      "value": 85,
+      "unit": "km/h",
+      "hint": "求出 90 km/h 的 5.0%，并从读数中减去它。"
+     },
+     {
+      "part": "(a) highest",
+      "value": 95,
+      "unit": "km/h",
+      "hint": "求出 90 km/h 的 5.0%，并把它加到读数上。"
+     },
+     {
+      "part": "(b) lowest",
+      "value": 53,
+      "unit": "mi/h",
+      "hint": "把最低速率乘以一千米所含的英里数。"
+     },
+     {
+      "part": "(b) highest",
+      "value": 59,
+      "unit": "mi/h",
+      "hint": "把最高速率乘以一千米所含的英里数。"
+     }
+    ],
+    "solution": "（a） 85 至 95 km/h （b） 53 至 59 mi/h"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1359647",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sig-figs-calculations",
+   "prompt": "（a） 假设一个人的平均心率为 72.0 次/min。他在 2.0 y 内心跳多少次？（b） 在 2.00 y 内呢？（c） 在 2.000 y 内呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 76000000,
+      "unit": "beats",
+      "hint": "把年换算为分钟，乘以心率，并保留 2.0 y 的两位有效数字。"
+     },
+     {
+      "part": "(b)",
+      "value": 75700000,
+      "unit": "beats",
+      "hint": "同样的乘积，保留到 2.00 y 和 72.0 次/min 的三位有效数字。"
+     },
+     {
+      "part": "(c)",
+      "value": 75700000,
+      "unit": "beats",
+      "hint": "心率只有三位有效数字，因此时间的有效数字再多，也不会给答案增加有效数字。"
+     }
+    ],
+    "solution": "（a） $7.6 \\times 10^{7}\\ \\text{次}$ （b） $7.57 \\times 10^{7}\\ \\text{次}$ （c） $7.57 \\times 10^{7}\\ \\text{次}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id882742",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sig-figs-calculations",
+   "prompt": "说明下列计算结果中恰当的有效数字位数：（a） $(106.7)(98.2)/(46.210)(1.01)$ （b） $(18.7)^{2}$ （c） $(1.60 \\times 10^{-19})(3712)$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3,
+      "unit": "figures",
+      "hint": "数出每个因数的有效数字位数，并保留最少的位数。"
+     },
+     {
+      "part": "(b)",
+      "value": 3,
+      "unit": "figures",
+      "hint": "平方就是一个数乘以它自身。"
+     },
+     {
+      "part": "(c)",
+      "value": 3,
+      "unit": "figures",
+      "hint": "10 的幂不计入；看 1.60 的各位数字。"
+     }
+    ],
+    "solution": "（a） 3 （b） 3 （c） 3"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2675538",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-uncertainty",
+   "prompt": "（a） 如果你的速度计在 $90\\ \\text{km/h}$ 的速率下有 $2.0\\ \\text{km/h}$ 的不确定度，百分不确定度是多少？（b） 如果它在读数为 $60\\ \\text{km/h}$ 时具有相同的百分不确定度，你的行驶速率可能在什么范围内？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.2,
+      "unit": "%",
+      "hint": "用不确定度除以读数，再乘以 100%。"
+     },
+     {
+      "part": "(b) lowest",
+      "value": 59,
+      "unit": "km/h",
+      "hint": "把同样的百分数用于 60 km/h 求出不确定度，然后减去它。"
+     },
+     {
+      "part": "(b) highest",
+      "value": 61,
+      "unit": "km/h",
+      "hint": "把同样的百分数用于 60 km/h 求出不确定度，然后加上它。"
+     }
+    ],
+    "solution": "（a） 2.2% （b） 59 至 61 km/h"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1500652",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculations",
+   "prompt": "一个人通过数 $30\\ \\text{s}$ 内的心跳次数来测量自己的心率。如果在 $30.0 \\pm 0.5\\ \\text{s}$ 内数得 $40 \\pm 1$ 次心跳，以每分钟心跳次数表示的心率及其不确定度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "heart rate",
+      "value": 80,
+      "unit": "beats/min",
+      "hint": "用心跳次数除以时间，并把时间换算为分钟。"
+     },
+     {
+      "part": "uncertainty",
+      "value": 3,
+      "unit": "beats/min",
+      "hint": "求出计数和时间的百分不确定度，把它们相加，并把这个和用于心率。"
+     }
+    ],
+    "solution": "$80 \\pm 3\\ \\text{次/min}$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2998426",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sig-figs-calculations",
+   "prompt": "如果一位马拉松运动员的平均速率为 9.5 mi/h，他或她跑完 26.22 mi 的马拉松需要多长时间？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.8,
+    "unit": "h",
+    "hint": "时间等于距离除以速率，而速率只有两位有效数字。",
+    "solution": "2.8 h"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2509052",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculations",
+   "prompt": "测得一个小长方体盒子的各边长分别为 $1.80 \\pm 0.01\\ \\text{cm}$、$2.05 \\pm 0.02\\ \\text{cm}$ 和 $3.1 \\pm 0.1\\ \\text{cm}$。计算它的体积及其不确定度，以立方厘米为单位。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "volume",
+      "value": 11.4,
+      "unit": "cm³",
+      "hint": "把三条边相乘，并保留有效数字最少的那条边的有效数字位数。"
+     },
+     {
+      "part": "uncertainty",
+      "value": 0.6,
+      "unit": "cm³",
+      "hint": "把每个不确定度化为百分数，把三个百分数相加，再把这个和用于体积。"
+     }
+    ],
+    "solution": "$11.4 \\pm 0.6\\ \\text{cm}^3$"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id2637086",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculations",
+   "prompt": "测得一个长方形房间的长度和宽度分别为 $3.955 \\pm 0.005\\ \\text{m}$ 和 $3.050 \\pm 0.005\\ \\text{m}$。计算房间的面积及其不确定度，以平方米为单位。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "area",
+      "value": 12.06,
+      "unit": "m²",
+      "hint": "把长度乘以宽度，并保留四位有效数字，因为每条边都有四位。"
+     },
+     {
+      "part": "uncertainty",
+      "value": 0.04,
+      "unit": "m²",
+      "hint": "把两个百分不确定度相加，再把这个和用于面积。"
+     }
+    ],
+    "solution": "$12.06 \\pm 0.04\\ \\text{m}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "uncertainty"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "precision"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "significant-figures"
+  },
+  {
+   "exercise": "cyu3",
+   "concept": "sig-figs-addition"
+  },
+  {
+   "exercise": "cyu3",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "accuracy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "uncertainty"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "uncertainty"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "precision"
+  },
+  {
+   "exercise": "p1",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p3",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p3",
+   "concept": "unit-conversion",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p5",
+   "concept": "unit-conversion",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p7",
+   "concept": "significant-figures"
+  },
+  {
+   "exercise": "p9",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p11",
+   "concept": "percent-uncertainty"
+  },
+  {
+   "exercise": "p11",
+   "concept": "adding-percents"
+  },
+  {
+   "exercise": "p13",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p13",
+   "concept": "unit-conversion",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "average-speed",
+   "weight": 1
+  },
+  {
+   "exercise": "p15",
+   "concept": "adding-percents"
+  },
+  {
+   "exercise": "p15",
+   "concept": "sig-figs-multiplication"
+  },
+  {
+   "exercise": "p17",
+   "concept": "adding-percents"
+  },
+  {
+   "exercise": "p17",
+   "concept": "sig-figs-multiplication"
+  }
+ ],
+ "referents": [
+  {
+   "id": "restaurant",
+   "label": "餐馆",
+   "figures": [
+    "sim-target"
+   ]
+  },
+  {
+   "id": "ruler",
+   "label": "直尺",
+   "figures": [
+    "sim-ruler"
+   ]
+  },
+  {
+   "id": "stick",
+   "label": "木棍",
+   "figures": [
+    "sim-ruler"
+   ]
+  }
+ ]
+}

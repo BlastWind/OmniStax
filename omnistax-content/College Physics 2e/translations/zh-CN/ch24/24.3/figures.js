@@ -1,0 +1,530 @@
+/* Figures for section 24.3 The Electromagnetic Spectrum. Boots against the
+   section's text article.
+
+   Five of the seven figures answer their sliders and nothing else: a spectrum
+   walked by a marker, a wavelength held against the sea, a visible strip read
+   at one wavelength, a line of antenna lengths and two mechanisms of X-ray
+   production have no clock in them, so none of them registers a cycle and none
+   carries a transport. The two that move are the modulations, because a
+   carrier being modulated by an audio signal has a time in it and the reader
+   must watch the envelope swell and the crests bunch as the audio passes.
+
+   Colour follows the chapter's plan. The type hues are frequency, position,
+   velocity, time, the electric field and energy. The carrier wave, the audio
+   signal and the modulated wave of each modulation are referents of the
+   section, one trace apiece, as are the submarine, the three signals of
+   Example 24.2, and the atom, the material and the characteristic X-ray of the
+   X-ray figure; the X-rays of braking, which the text never names one by one,
+   take a referent hue by index. The striking and captured electrons are filled
+   from the element palette. The one colour on this page that is a physical
+   fact is the colour of visible light: the function `spectralHex` below turns a
+   wavelength into the hue the eye sees at it, it is the only place a hex
+   literal appears, and it reaches the canvas only through `F.fact`. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['24.3'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, hbracket, label, labeller, axes, curve, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the figures ---------- */
+const TAU = 2 * Math.PI, CLIGHT = 3.00e8;
+/* a power of ten as a superscript for the canvas, where text() knows only subscripts */
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (n) => String(n).split('').map((ch) => SUP[ch] ?? ch).join('');
+/* a number to three significant figures, written plainly */
+const sig = (v) => String(+(+v).toPrecision(3));
+/* a number in scientific notation, for the canvas and for the readout */
+const parts = (v, d) => { const e = Math.floor(Math.log10(Math.abs(v))); return { m: fmt(v / Math.pow(10, e), d), e }; };
+const sciTxt = (v, d) => { if (!v || !isFinite(v)) return '0'; const p = parts(v, d); return p.e === 0 ? p.m : p.m + ' × 10' + sup(p.e); };
+const sciTex = (v, d) => { if (!v || !isFinite(v)) return '0'; const p = parts(v, d); return p.e === 0 ? p.m : p.m + '\\times 10^{' + p.e + '}'; };
+/* a length written in the unit that suits it, which is how the book writes its wavelengths */
+const UNITS = [[1e3, 'km'], [1, 'm'], [1e-2, 'cm'], [1e-3, 'mm'], [1e-6, 'μm'], [1e-9, 'nm'], [1e-12, 'pm']];
+function lamText(L) {
+  for (const [k, u] of UNITS) if (L >= k * 0.9995) return sig(L / k) + ' ' + u;
+  return sciTxt(L, 2) + ' m';
+}
+
+/* ---------- the one colour on the page that is a physical fact ----------
+   A wavelength between about 380 and 750 nm has a colour, and that colour is
+   not a choice the figure makes: it is what the eye sees at that wavelength.
+   The usual piecewise fit turns nanometres into a red, green and blue triple,
+   dimmed at the two ends of the range where the eye's response falls away.
+   This is root rule 7's third family, and the plan names it; nowhere else on
+   this page is a hex written. */
+function spectralHex(nm) {
+  let r = 0, g = 0, b = 0;
+  if (nm >= 380 && nm < 440) { r = -(nm - 440) / 60; b = 1; }
+  else if (nm < 490) { g = (nm - 440) / 50; b = 1; }
+  else if (nm < 510) { g = 1; b = -(nm - 510) / 20; }
+  else if (nm < 580) { r = (nm - 510) / 70; g = 1; }
+  else if (nm < 645) { r = 1; g = -(nm - 645) / 65; }
+  else if (nm <= 780) { r = 1; }
+  let k = 1;
+  if (nm >= 380 && nm < 420) k = 0.3 + (0.7 * (nm - 380)) / 40;
+  else if (nm > 700 && nm <= 780) k = 0.3 + (0.7 * (780 - nm)) / 80;
+  const ch = (v) => Math.round(255 * Math.pow(Math.max(0, Math.min(1, v)) * k, 0.8)).toString(16).padStart(2, '0');
+  return '#' + ch(r) + ch(g) + ch(b);
+}
+const spectral = (nm) => F.fact(spectralHex(nm));
+const spectralFill = (nm) => (F.shown.facts ? spectral(nm) : PAL.soft);
+/* the seven colours the book names across the visible strip */
+const COLOURS = [[620, 750, '红'], [590, 620, '橙'], [570, 590, '黄'], [495, 570, '绿'], [450, 495, '蓝'], [425, 450, '靛'], [380, 425, '紫']];
+const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0, null])[2];
+
+/* =====================================================================
+   FIGURE 24.8: the whole electromagnetic spectrum, on a scale of frequency
+   and a scale of wavelength, with the bands the book names drawn between
+   them and a marker the reader walks along. Still: a chart of frequencies
+   has no clock in it, and the marker is the reader's hand rather than the
+   passage of time. Scales fixed: the frequency from 10 Hz to 10²² Hz, and
+   the wavelength that follows from it through c = fλ.
+===================================================================== */
+(function () {
+  const d = sim('sim-spectrum', 660);
+  const NAMED = [
+    { v: 1.778, label: '60 Hz' }, { v: 3, label: 'ELF' }, { v: 6.185, label: 'AM' }, { v: 8.022, label: 'FM' },
+    { v: 9.279, label: '手机' }, { v: 9.389 }, { v: 15.079, label: '紫外' }, { v: 18.477, label: 'X 射线' },
+  ];
+  const fs = ctl(d.controls, { label: '\\log_{10}(\\kf/\\text{Hz})', cls: 'frequency', min: 1, max: 22, step: 0.001, value: 6.185, unit: '', dec: 3,
+    aria: '波的频率的十的幂次', snap: true, detents: NAMED });
+  const LX = 120, RX = 1320, EMIN = 1, EMAX = 22;
+  const X = (e) => LX + ((e - EMIN) / (EMAX - EMIN)) * (RX - LX);
+  const YF = 232, YT = 288, YB = 356, YW = 500;
+  const BANDS = [
+    { a: 1, b: 9, name: '无线电波' }, { a: 9, b: 12, name: '微波' }, { a: 12, b: 14.6, name: '红外线' },
+    { a: 14.6, b: 14.9, name: '可见光' }, { a: 14.9, b: 16.5, name: '紫外线' }, { a: 16.5, b: 19.3, name: 'X 射线' },
+    { a: 19.3, b: 22, name: 'γ 射线' },
+  ];
+  const OVERLAP = [[11.6, 12.4], [15.9, 16.9], [18.9, 19.7]];
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('frequency'), pc = C('position'), vc = C('velocity');
+    const e = fs.v, f = Math.pow(10, e), lam = CLIGHT / f;
+    const band = BANDS.find((b) => e >= b.a && e < b.b) ?? BANDS[BANDS.length - 1];
+    const vis = e >= 14.6 && e < 14.9;
+    const mc = vis ? spectral(lam * 1e9) : PAL.ink;
+    /* the band strip, one box per band, the visible one painted in the colours it really has */
+    BANDS.forEach((b) => {
+      const x1 = X(b.a), x2 = X(b.b);
+      if (b.name === '可见光') {
+        for (let x = x1; x < x2; x += 1) { ctx.save(); ctx.fillStyle = spectralFill(CLIGHT / Math.pow(10, b.a + ((x - x1) / (x2 - x1)) * (b.b - b.a)) * 1e9); ctx.fillRect(x, YT, 1.4, YB - YT); ctx.restore(); }
+      } else { ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x1, YT, x2 - x1, YB - YT); ctx.restore(); }
+      ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(x1, YT, x2 - x1, YB - YT); ctx.restore();
+    });
+    /* the three boundaries the book calls overlapping rather than distinct, hatched across the line */
+    OVERLAP.forEach(([a, b]) => {
+      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 2;
+      for (let x = X(a); x < X(b); x += 9) { ctx.beginPath(); ctx.moveTo(x, YB - 2); ctx.lineTo(x + 14, YT + 2); ctx.stroke(); }
+      ctx.restore();
+    });
+    /* the band names, which are the frame of a spectrum chart and so are always shown: inside
+       the band where the name fits, and under it with a leader where it does not. The names
+       that will not fit and the marker's own wavelength go through one labeller, so that the
+       narrow bands and the marker never write over one another. */
+    const lab = labeller(ctx, 660, { headline: 2 });
+    lab.block(0, 476, 1400, 620);
+    BANDS.forEach((b) => {
+      const x1 = X(b.a), x2 = X(b.b), mid = (x1 + x2) / 2;
+      const w = F.measure(ctx, b.name, { size: 20, weight: 600 });
+      if (x2 - x1 > w + 24) text(ctx, b.name, mid, (YT + YB) / 2, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.78) });
+      else lab.add(b.name, mid, YB + 2, 0, 1, PAL.ink, 20, 18);
+    });
+    /* the frequency scale above the strip */
+    line(ctx, LX, YF, RX, YF, PAL.muted, 2);
+    for (let k = 2; k <= 22; k += 2) { line(ctx, X(k), YF - 9, X(k), YF + 9, PAL.muted, 2); text(ctx, '10' + sup(k), X(k), YF - 26, PAL.muted, { size: 17, align: 'center' }); }
+    text(ctx, '频率 f（Hz）', LX, YF - 58, fc, { size: 20, weight: 600 });
+    text(ctx, '频率越高，能量越大，穿透力越强 →', RX, YF - 58, PAL.muted, { size: 17, align: 'right' });
+    /* the wavelength scale below it, which runs the other way because λ = c/f */
+    line(ctx, LX, YW, RX, YW, PAL.muted, 2);
+    for (let k = -14; k <= 6; k += 2) {
+      const x = X(Math.log10(CLIGHT) - k); if (x < LX - 1 || x > RX + 1) continue;
+      line(ctx, x, YW - 9, x, YW + 9, PAL.muted, 2); text(ctx, '10' + sup(k) + ' m', x, YW + 28, PAL.muted, { size: 17, align: 'center' });
+    }
+    text(ctx, '波长 λ（m）', LX, YW + 62, pc, { size: 20, weight: 600 });
+    text(ctx, '← 波长越短，可分辨的细节越小', RX, YW + 62, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, '本图中每一点都有 c = 3.00 × 10⁸ m/s', RX, YW + 94, vc, { size: 18, weight: 600, align: 'right' });
+    /* the marker, which takes the colour of the light where the light has one */
+    const x = X(e);
+    line(ctx, x, YF - 10, x, YW + 10, mc, 3, [10, 10]);
+    dot(ctx, x, YF, mc, true, 9); dot(ctx, x, YW, mc, true, 9);
+    label(ctx, 'f = ' + sciTxt(f, 2) + ' Hz', x, YT - 16, { side: 'above', gap: 12, color: fc, size: 21 });
+    lab.add('λ = ' + lamText(lam), x, YB + 2, 0, 1, pc, 21, 18);
+    lab.flush();
+    topline(ctx, '频率为 ' + sciTxt(f, 2) + ' Hz 的波，波长为 ' + lamText(lam) + '，属于' + band.name + '，用它无法分辨比 ' + lamText(lam) + ' 小得多的细节。');
+    readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
+      vis ? '整个可见光波段只有十分之三个数量级宽，只是波谱中的一小条。'
+        : '斜线表示各波段在此重叠，而不是在一条分明的界线处相接。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 24.10: the wavelength of a radio signal held against the sea, and
+   how far down into salt water a wave of that length gets. Still: one
+   frequency's wavelength beside the sea has no clock in it. The wave above
+   the surface is drawn on a compressed scale, since five powers of ten of
+   wavelength will not fit in one picture at one scale, and the readout
+   states the true wavelength and the factor the drawing departs from it by
+   (root rule 28.4).
+===================================================================== */
+(function () {
+  const d = sim('sim-elf-submarine', 660);
+  const fs = ctl(d.controls, { label: '\\log_{10}(\\kf/\\text{Hz})', cls: 'frequency', min: 3, max: 8, step: 0.001, value: 3, unit: '', dec: 3,
+    aria: '信号的频率的十的幂次', snap: true,
+    detents: [{ v: 3, label: 'ELF' }, { v: 5.732, label: 'AM' }, { v: 8, label: 'FM' }] });
+  const SEA = 340, FLOOR = 584, LX = 70, RX = 1330;
+  /* the drawn wavelength: 620 units at 1 kHz down to 130 at 100 MHz, so that the wave
+     stretches visibly across five powers of ten of true wavelength */
+  const drawn = (e) => 620 - ((e - 3) / 5) * 490;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('frequency'), pc = C('position');
+    const e = fs.v, f = Math.pow(10, e), lam = CLIGHT / f;
+    /* the sea and its floor */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(LX, SEA, RX - LX, FLOOR - SEA); ctx.restore();
+    line(ctx, LX, SEA, RX, SEA, PAL.muted, 3);
+    line(ctx, LX, FLOOR, RX, FLOOR, PAL.muted, 4);
+    text(ctx, '海面', LX + 14, SEA - 20, PAL.muted, { size: 18 });
+    text(ctx, '海底', LX + 16, FLOOR + 22, PAL.muted, { size: 18 });
+    /* the signal above the surface, drawn on a compressed scale */
+    const W = drawn(e), A = 42, y0 = 190;
+    ctx.save(); ctx.strokeStyle = fc; ctx.lineWidth = 4; ctx.beginPath();
+    for (let x = 150; x <= RX; x += 3) { const y = y0 - A * Math.sin((TAU * (x - 150)) / W); if (x === 150) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+    ctx.stroke(); ctx.restore();
+    text(ctx, '传向潜艇的信号', 150, y0 - A - 26, PAL.ink, { size: 19 });
+    hbracket(ctx, 150, 150 + W, y0 + A + 30, pc, '一个波长 = ' + lamText(lam), { side: 'below' });
+    /* how far down the wave gets: deeper for a longer wavelength, and drawn in proportion only */
+    const reach = SEA + (FLOOR - 26 - SEA) * Math.min(1, Math.max(0.08, (Math.log10(lam) + 0.6) / 6));
+    ctx.save(); ctx.fillStyle = alpha(fc, 0.22); ctx.fillRect(LX, SEA, RX - LX, reach - SEA); ctx.restore();
+    line(ctx, LX, reach, RX, reach, fc, 3, [12, 10]);
+    text(ctx, '波能深入多深', LX + 16, reach > SEA + 80 ? reach - 22 : reach + 24, fc, { size: 19, weight: 600, bg: PAL.panel });
+    /* the submarine: a hull with a conning tower */
+    const sx = 1120, sy = SEA + (FLOOR - SEA) * 0.66, sub = F.ref('submarine');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = sub; ctx.lineWidth = 3.5;
+    /* the tail fin and the rudder, drawn first so the hull sits over their roots */
+    ctx.beginPath(); ctx.moveTo(sx - 104, sy - 12); ctx.lineTo(sx - 138, sy - 34); ctx.lineTo(sx - 122, sy - 6); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(sx - 104, sy + 12); ctx.lineTo(sx - 138, sy + 34); ctx.lineTo(sx - 122, sy + 6); ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the propeller, two blades on a short shaft at the stern */
+    ctx.beginPath(); ctx.moveTo(sx - 126, sy); ctx.lineTo(sx - 140, sy); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(sx - 142, sy, 5, 16, 0, 0, TAU); ctx.fill(); ctx.stroke();
+    /* the hull: a long cigar, blunter at the bow */
+    ctx.beginPath(); ctx.moveTo(sx - 126, sy - 12);
+    ctx.bezierCurveTo(sx - 90, sy - 28, sx + 60, sy - 30, sx + 104, sy - 22);
+    ctx.bezierCurveTo(sx + 128, sy - 16, sx + 128, sy + 16, sx + 104, sy + 22);
+    ctx.bezierCurveTo(sx + 60, sy + 30, sx - 90, sy + 28, sx - 126, sy + 12); ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the conning tower, with its periscope up */
+    ctx.beginPath(); ctx.moveTo(sx - 22, sy - 24); ctx.lineTo(sx - 12, sy - 52); ctx.lineTo(sx + 26, sy - 52); ctx.lineTo(sx + 32, sy - 24); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(sx + 10, sy - 52); ctx.lineTo(sx + 10, sy - 72); ctx.lineTo(sx + 20, sy - 72); ctx.stroke();
+    /* a line of portholes along the hull */
+    ctx.fillStyle = alpha(PAL.ink, 0.5);
+    for (let k = -3; k <= 3; k++) { ctx.beginPath(); ctx.arc(sx + 22 * k + 30, sy - 2, 3, 0, TAU); ctx.fill(); }
+    ctx.restore();
+    label(ctx, '水下的潜艇', sx, sy - 74, { side: 'above', gap: 12, color: sub, size: 19 });
+    topline(ctx, e <= 3.2 ? '在 ' + sciTxt(f, 2) + ' Hz 时，一个波长是 ' + lamText(lam) + '，用来到达海面以下潜艇的正是这样长的波。'
+      : '在 ' + sciTxt(f, 2) + ' Hz 时，一个波长是 ' + lamText(lam) + '，咸水在这样短的波深入海面以下不远之前就把它吸收了。');
+    readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
+      (() => { const k = (lam * 2.64) / W; return '以 100 m 长的潜艇为参照，海面上方的波按 ' + (k >= 1 ? sciTxt(k, 1) + ' 倍缩小' : fmt(1 / k, 0) + ' 倍放大') + '画出；所示的深度没有比例。'; })());
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   The two modulation figures share their frame: three traces against one
+   clock, the carrier above, the audio signal it is to carry in the middle,
+   and the modulated wave below, with a cursor that runs along all three at
+   once. Both move, because a carrier being modulated has a time in it; one
+   sweep of the cursor is the cycle, and it covers two periods of the audio
+   signal. The carrier is drawn with sixteen cycles to every cycle of the
+   audio signal, since the true ratio is in the thousands, and each figure
+   says in its readout what the true ratio is (root rule 28.4).
+===================================================================== */
+const NCAR = 16, MH = 840;
+const PANELS = [
+  { l: 150, r: 1320, t: 160, b: 286, title: '（a）载波，频率即电台本身的频率' },
+  { l: 150, r: 1320, t: 396, b: 506, title: '（b）音频信号，频率在人耳可听范围内' },
+  { l: 150, r: 1320, t: 616, b: 756, title: '（c）电台发出的波' },
+];
+function cursorOn(ctx, box, X, Y, u, v, color) {
+  const x = X(u); line(ctx, x, box.t, x, box.b, alpha(PAL.ink, 0.45), 2, [6, 6]); dot(ctx, x, Y(v), color, true, 9);
+}
+const fieldTick = (v) => (v === 0 ? '0' : v === 1 ? 'E_0' : v === -1 ? '−E_0' : v === 2 ? '2E_0' : v === -2 ? '−2E_0' : '');
+const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '');
+
+/* FIGURE 24.11: amplitude modulation. The envelope of the modulated wave is
+   the audio signal itself, so the envelope is drawn in the audio signal's own
+   colour and the reader can read one off the other. */
+(function () {
+  const d = sim('sim-am', MH);
+  const fcar = ctl(d.controls, { label: '\\kf_{\\text{c}}', cls: 'frequency', min: 540, max: 1600, step: 10, value: 1530, unit: 'kHz', dec: 0, aria: '电台的载波频率', snap: true, detents: [{ v: 540 }, { v: 1530, label: '1530' }, { v: 1600 }] });
+  const faud = ctl(d.controls, { label: '\\kf_{\\text{a}}', cls: 'frequency', min: 200, max: 5000, step: 100, value: 1000, unit: 'Hz', dec: 0, aria: '音频信号的频率' });
+  const ms = ctl(d.controls, { label: 'm', cls: '', min: 0, max: 1, step: 0.05, value: 0.6, unit: '', dec: 2, aria: '音频信号对载波的调制深度' });
+  const cy = cycle(() => 1, 0.8);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('electric-field'), tc = C('time'), car = F.ref('am-carrier'), aud = F.ref('am-audio'), wav = F.ref('am-wave');
+    const m = ms.v, u = Math.min(1, cy.now()) * 2, Wms = 2000 / faud.v;
+    const audio = (t) => Math.sin(TAU * t);
+    const carr = (t) => Math.cos(TAU * NCAR * t);
+    const env = (t) => 1 + m * audio(t);
+    const fx = (v) => fmt((v * Wms) / 2, 2);
+    PANELS.forEach((b, i) => text(ctx, b.title, b.l, b.t - 54, [car, aud, wav][i], { size: 19 }));
+    const A = axes(ctx, PANELS[0], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: fieldTick, yl: '电场 E', yc: ec });
+    curve(ctx, carr, 0, 2, A.X, A.Y, car, 3.5, 900);
+    cursorOn(ctx, PANELS[0], A.X, A.Y, u, carr(u), car);
+    const B = axes(ctx, PANELS[1], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: plainTick, yl: '音频信号', yc: PAL.ink });
+    curve(ctx, audio, 0, 2, B.X, B.Y, aud, 5, 400);
+    cursorOn(ctx, PANELS[1], B.X, B.Y, u, audio(u), aud);
+    const G = axes(ctx, PANELS[2], [0, 2], [-2, 2], { nx: 4, ny: 4, fx, fy: fieldTick, xl: '时间 t（ms）', xc: tc, yl: '电场 E', yc: ec });
+    curve(ctx, (t) => env(t) * carr(t), 0, 2, G.X, G.Y, wav, 3.5, 1200);
+    curve(ctx, env, 0, 2, G.X, G.Y, aud, 3, 400);
+    curve(ctx, (t) => -env(t), 0, 2, G.X, G.Y, aud, 3, 400);
+    cursorOn(ctx, PANELS[2], G.X, G.Y, u, env(u) * carr(u), wav);
+    text(ctx, '包络就是音频信号', G.X(0.75), G.Y(-1.55), aud, { size: 19, align: 'center', bg: PAL.panel });
+    topline(ctx, '一个 ' + fmt(fcar.v, 0) + ' kHz 的载波被一个 ' + fmt(faud.v, 0) + ' Hz 的音频信号调幅，调制深度为 ' + fmt(m, 2) + '，所以波的高度随声音起伏，而它的频率始终不变。');
+    readout(d.readout, `\\kEf(\\kt) = \\kEfo\\left[1 + m\\sin(2\\pi \\kf_{\\text{a}}\\kt)\\right]\\cos(2\\pi \\kf_{\\text{c}}\\kt) = \\kEfo\\left[1 + ${fmt(m, 2)}\\sin(2\\pi (${fmt(faud.v, 0)}\\ \\text{Hz})\\kt)\\right]\\cos(2\\pi (${fmt(fcar.v, 0)}\\ \\text{kHz})\\kt)`,
+      '图中载波每个音频周期画了 ' + NCAR + ' 个周期；这里的真实比值是 ' + fmt((fcar.v * 1000) / faud.v, 0) + ' 比 1。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
+})();
+
+/* FIGURE 24.12: frequency modulation. Here the audio signal changes the rate
+   at which the crests come and leaves their height alone, so the swing has to
+   be drawn far larger than it is and the readout says by how much. */
+(function () {
+  const d = sim('sim-fm', MH);
+  const fcar = ctl(d.controls, { label: '\\kf_{\\text{c}}', cls: 'frequency', min: 88, max: 108, step: 0.1, value: 105.1, unit: 'MHz', dec: 1, aria: '电台的载波频率', snap: true, detents: [{ v: 88 }, { v: 105.1, label: '105.1' }, { v: 108 }] });
+  const faud = ctl(d.controls, { label: '\\kf_{\\text{a}}', cls: 'frequency', min: 200, max: 5000, step: 100, value: 1000, unit: 'Hz', dec: 0, aria: '音频信号的频率' });
+  const dfs = ctl(d.controls, { label: '\\Delta \\kf', cls: 'frequency', min: 0, max: 20, step: 0.5, value: 20, unit: 'kHz', dec: 1, aria: '音频信号使载波频率摆动的幅度' });
+  const cy = cycle(() => 1, 0.8);
+  const DRAWN = 0.45;                 /* the fractional swing the picture is drawn with at the full 20 kHz */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ec = C('electric-field'), tc = C('time'), car = F.ref('fm-carrier'), aud = F.ref('fm-audio'), wav = F.ref('fm-wave');
+    const u = Math.min(1, cy.now()) * 2, Wms = 2000 / faud.v, A = DRAWN * (dfs.v / 20);
+    const audio = (t) => Math.sin(TAU * t);
+    const carr = (t) => Math.cos(TAU * NCAR * t);
+    const fmw = (t) => Math.cos(TAU * NCAR * (t + (A / TAU) * (1 - Math.cos(TAU * t))));
+    const fx = (v) => fmt((v * Wms) / 2, 2);
+    PANELS.forEach((b, i) => text(ctx, b.title, b.l, b.t - 54, [car, aud, wav][i], { size: 19 }));
+    const P = axes(ctx, PANELS[0], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: fieldTick, yl: '电场 E', yc: ec });
+    curve(ctx, carr, 0, 2, P.X, P.Y, car, 3.5, 900);
+    cursorOn(ctx, PANELS[0], P.X, P.Y, u, carr(u), car);
+    const B = axes(ctx, PANELS[1], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: plainTick, yl: '音频信号', yc: PAL.ink });
+    curve(ctx, audio, 0, 2, B.X, B.Y, aud, 5, 400);
+    cursorOn(ctx, PANELS[1], B.X, B.Y, u, audio(u), aud);
+    const G = axes(ctx, PANELS[2], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: fieldTick, xl: '时间 t（ms）', xc: tc, yl: '电场 E', yc: ec });
+    curve(ctx, fmw, 0, 2, G.X, G.Y, wav, 3.5, 1600);
+    cursorOn(ctx, PANELS[2], G.X, G.Y, u, fmw(u), wav);
+    topline(ctx, '一个 ' + fmt(fcar.v, 1) + ' MHz 的载波被向两侧各摆动 ' + fmt(dfs.v, 1) + ' kHz，所用的音频信号为 ' + fmt(faud.v, 0) + ' Hz，所以这个波在 ' + fmt(fcar.v - dfs.v / 1000, 3) + ' 与 ' + fmt(fcar.v + dfs.v / 1000, 3) + ' MHz 之间变化，而它的高度始终不变。');
+    readout(d.readout, `\\kf(\\kt) = \\kf_{\\text{c}} + \\Delta \\kf \\sin(2\\pi \\kf_{\\text{a}}\\kt) = ${fmt(fcar.v, 1)}\\ \\text{MHz} \\pm ${fmt(dfs.v, 1)}\\ \\text{kHz}`,
+      dfs.v === 0 ? '频偏为零时，电台只发送单纯的载波，不携带声音。'
+        : '频偏画得比实际大 ' + fmt(A / (dfs.v / (fcar.v * 1000)), 0) + ' 倍：' + fmt(dfs.v, 1) + ' kHz 在 ' + fmt(fcar.v, 1) + ' MHz 上是 ' + fmt((100 * dfs.v) / (fcar.v * 1000), 4) + '% 的变化。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 24.15: the visible strip, painted in the colours the eye sees, with
+   the infrared below it in frequency and the ultraviolet above. Still: a
+   colour at a wavelength has no clock in it. Scale fixed: 800 nm at the left
+   to 300 nm at the right, so that the frequency rises to the right here as it
+   does on the spectrum of Figure 24.8.
+===================================================================== */
+(function () {
+  const d = sim('sim-visible', 620);
+  const ls = ctl(d.controls, { label: '\\klam', cls: 'position', min: 300, max: 800, step: 1, value: 550, unit: 'nm', dec: 0, aria: '光的波长', specials: [{ at: 380, label: '紫端' }, { at: 750, label: '红端' }] });
+  const LX = 150, RX = 1250, TOP = 200, BOT = 320, NMA = 800, NMB = 300, YW = 436, YF = 520;
+  const X = (nm) => LX + ((NMA - nm) / (NMA - NMB)) * (RX - LX);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('position'), fc = C('frequency'), vc = C('velocity');
+    const nm = ls.v, lam = nm * 1e-9, f = CLIGHT / lam, name = colourName(nm);
+    const mc = name ? spectral(nm) : PAL.ink;
+    /* the strip: painted where the eye responds, plain where it does not */
+    for (let x = LX; x < RX; x += 1) {
+      const w = NMA - ((x - LX) / (RX - LX)) * (NMA - NMB);
+      ctx.save(); ctx.fillStyle = w <= 750 && w >= 380 ? spectralFill(w) : PAL.soft; ctx.fillRect(x, TOP, 1.8, BOT - TOP); ctx.restore();
+    }
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(LX, TOP, RX - LX, BOT - TOP); ctx.restore();
+    text(ctx, '红外线', (LX + X(750)) / 2, (TOP + BOT) / 2, PAL.muted, { size: 20, weight: 600, align: 'center' });
+    text(ctx, '紫外线', (X(380) + RX) / 2, (TOP + BOT) / 2, PAL.muted, { size: 20, weight: 600, align: 'center' });
+    /* the seven colours the book names, on two rows so that the narrow ones have room */
+    COLOURS.forEach(([a, b, s], i) => { line(ctx, X((a + b) / 2), BOT, X((a + b) / 2), BOT + (i % 2 ? 40 : 16), PAL.muted, 1.5); text(ctx, s, X((a + b) / 2), BOT + (i % 2 ? 54 : 30), PAL.ink, { size: 18, weight: 600, align: 'center' }); });
+    /* the marker, in the colour of the light it stands on, or in ink where there is none; the
+       scales are drawn after it, so their numbers sit on panels over the line where it crosses them */
+    const x = X(nm);
+    line(ctx, x, TOP - 44, x, YF + 10, mc, 4);
+    /* the two scales, both below the strip so that the marker has the space above it */
+    line(ctx, LX, YW, RX, YW, PAL.muted, 2);
+    for (let w = 800; w >= 300; w -= 100) { const x = X(w); line(ctx, x, YW - 9, x, YW + 9, PAL.muted, 2); text(ctx, String(w), x, YW + 26, PAL.muted, { size: 17, align: 'center', bg: PAL.panel }); }
+    text(ctx, '波长 λ（nm）', LX, YW + 58, pc, { size: 20, weight: 600 });
+    line(ctx, LX, YF, RX, YF, PAL.muted, 2);
+    for (let w = 800; w >= 300; w -= 100) { const x = X(w); line(ctx, x, YF - 9, x, YF + 9, PAL.muted, 2); text(ctx, fmt(CLIGHT / (w * 1e-9) / 1e14, 2), x, YF + 26, PAL.muted, { size: 17, align: 'center', bg: PAL.panel }); }
+    text(ctx, '频率 f（10¹⁴ Hz）', LX, YF + 58, fc, { size: 20, weight: 600 });
+    text(ctx, 'c = 3.00 × 10⁸ m/s', RX, YF + 58, vc, { size: 18, weight: 600, align: 'right' });
+    dot(ctx, x, YW, mc, true, 9); dot(ctx, x, YF, mc, true, 9);
+
+    label(ctx, name ? name + '，' + fmt(nm, 0) + ' nm' : fmt(nm, 0) + ' nm：没有眼睛看得见它', x, TOP - 46, { side: 'above', color: name ? mc : PAL.ink, gap: 14, size: 22 });
+    topline(ctx, name ? '波长为 ' + fmt(nm, 0) + ' nm 的光，频率为 ' + sciTxt(f, 2) + ' Hz，眼睛看到它是' + name + '色。'
+      : '波长为 ' + fmt(nm, 0) + ' nm 的波，频率为 ' + sciTxt(f, 2) + ' Hz，位于' + (nm > 750 ? '光带红端之下的红外区' : '光带紫端之上的紫外区') + '，没有眼睛看得见它。');
+    readout(d.readout, `\\kf = \\frac{\\kc}{\\klam} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(lam, 2)}\\ \\text{m}} = ${sciTex(f, 2)}\\ \\text{Hz}`,
+      '频率从红到紫逐渐升高，就像它在整个波谱中升高那样。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 24.18 + 24.19: the two ways an energetic electron makes an X-ray.
+   The book draws the same electron striking the same material twice, so one
+   scene with a choice of mechanism puts the two side by side, and the bars
+   below say where the X-ray's energy comes from in each. Still: the book's
+   two pictures are a before and an after rather than a motion, and replaying
+   them would be the mechanism animation root rule 24.9 forbids.
+===================================================================== */
+(function () {
+  const d = sim('sim-xray', 810);
+  const how = choice(d.controls, { label: '\\text{X 射线的来源}', options: [{ value: 'char', label: '俘获' }, { value: 'brake', label: '制动' }], value: 'char', aria: '哪种机制产生 X 射线' });
+  const Es = ctl(d.controls, { label: '\\kE', cls: 'energy', min: 5, max: 120, step: 1, value: 60, unit: 'keV', dec: 0, aria: '撞击电子到达时的能量' });
+  const BY = 596, BL = 430, BR = 1280;
+  const KX = (v) => BL + (v / 120) * (BR - BL);
+  /* an X-ray drawn as a wave running from one point to another, with an arrowhead at its end */
+  function xray(ctx, x1, y1, x2, y2, color) {
+    const L = Math.hypot(x2 - x1, y2 - y1), a = Math.atan2(y2 - y1, x2 - x1), n = Math.max(24, Math.round(L * 0.6));
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3.5; ctx.beginPath();
+    for (let i = 0; i <= n; i++) { const s = (i / n) * (L - 18), o = 7 * Math.sin((TAU * s) / 18); const px = x1 + s * Math.cos(a) - o * Math.sin(a), py = y1 + s * Math.sin(a) + o * Math.cos(a); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+    ctx.stroke(); ctx.restore();
+    arrow(ctx, x1 + (L - 22) * Math.cos(a), y1 + (L - 22) * Math.sin(a), x2, y2, color, 3.5);
+  }
+  /* an atom: a clustered nucleus and three orbits, in the atom's referent colour, the innermost drawn broken where it is empty */
+  function atom(ctx, cx, cy, R, gone) {
+    const ac = F.ref('atom');
+    ctx.save(); ctx.strokeStyle = alpha(ac, 0.75); ctx.lineWidth = 2.5;
+    [0.32, 0.64, 1].forEach((k, i) => { ctx.setLineDash(gone && i === 0 ? [7, 8] : []); ctx.beginPath(); ctx.ellipse(cx, cy, R * k, R * k * (i === 0 ? 1 : 0.68), i * 0.55, 0, TAU); ctx.stroke(); });
+    ctx.restore();
+    ctx.save(); ctx.fillStyle = ac;
+    [[0, 0], [-7, -5], [7, -4], [-4, 7], [6, 6]].forEach(([a, b]) => { ctx.beginPath(); ctx.arc(cx + a, cy + b, 6, 0, TAU); ctx.fill(); });
+    ctx.restore();
+  }
+  function bar(ctx, x1, x2, y, h, color) { ctx.save(); ctx.fillStyle = alpha(color, 0.3); ctx.fillRect(x1, y, x2 - x1, h); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.strokeRect(x1, y, x2 - x1, h); ctx.restore(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const En = C('energy'), E = Es.v, e0 = F.el('e-'), xr = F.ref('x-ray'), brake = cat(3), mc = F.ref('material');
+    const chosen = how.value === 'char', ray = chosen ? xr : brake;
+    /* the striking electron and its energy bar belong to both mechanisms and hold; each scene fades and drifts on its own */
+    const [ax2, ay2] = how.mix((v) => (v === 'char' ? [300, 312] : [430, 292]));
+    arrow(ctx, 150, 262, ax2, ay2, En, 5);
+    dot(ctx, 150, 262, e0, true, 11);
+    label(ctx, '撞击电子', 150, 254, { side: 'above', gap: 14, size: 19 });
+    const scene = (v, f) => { const a = how.a(v); if (a <= 0.01) return; const [dx, dy] = how.off(v, [0, 24]); ctx.save(); ctx.globalAlpha = a; ctx.translate(dx, dy); f(); ctx.restore(); };
+    scene('char', () => {
+      text(ctx, '撞击', 380, 150, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, '片刻之后', 1010, 150, PAL.muted, { size: 19, align: 'center' });
+      atom(ctx, 380, 340, 140, false);
+      arrow(ctx, 404, 332, 548, 252, PAL.ink, 4);
+      dot(ctx, 556, 248, e0, true, 10);
+      label(ctx, '一个内层电子被击出', 556, 248, { side: 'right', gap: 18, size: 19 });
+      atom(ctx, 1010, 340, 140, true);
+      arrow(ctx, 1146, 250, 1036, 324, PAL.ink, 4);
+      dot(ctx, 1154, 246, e0, true, 10);
+      label(ctx, '另一个电子落入空轨道', 1154, 240, { side: 'above', gap: 40, size: 19 });
+      xray(ctx, 1010, 360, 1010, 494, xr);
+      label(ctx, 'X 射线', 1010, 498, { side: 'below', color: xr, gap: 12, size: 20 });
+      text(ctx, '原子核及其周围的轨道属于原子', 1300, 542, F.ref('atom'), { size: 17, align: 'right' });
+    });
+    scene('brake', () => {
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(360, 200, 900, 300); ctx.strokeStyle = mc; ctx.lineWidth = 3; ctx.strokeRect(360, 200, 900, 300); ctx.restore();
+      text(ctx, '电子撞击的材料', 1250, 478, mc, { size: 19, align: 'right' });
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.4);
+      for (let r = 0; r < 3; r++) for (let q = 0; q < 10; q++) { ctx.beginPath(); ctx.arc(404 + q * 96 + (r % 2) * 48, 246 + r * 84, 9, 0, TAU); ctx.fill(); }
+      ctx.restore();
+      text(ctx, '原子及其电子', 380, 528, PAL.muted, { size: 17 });
+      const path = [[150, 266], [430, 292], [600, 256], [780, 330], [940, 292], [1080, 370], [1200, 350]];
+      for (let i = 1; i < path.length - 1; i++) line(ctx, path[i][0], path[i][1], path[i + 1][0], path[i + 1][1], En, Math.max(1.5, 5 - i * 0.7));
+      dot(ctx, 1200, 350, e0, true, 8);
+      label(ctx, '以及它所剩的部分', 1200, 360, { side: 'below', gap: 14, size: 19 });
+      [1, 2, 3, 4].forEach((i, k) => xray(ctx, path[i][0], path[i][1], path[i][0] + 26 + k * 12, path[i][1] - 120 + k * 10, brake));
+      label(ctx, '每一次偏转都发出一个 X 射线', 700, 130, { side: 'above', color: brake, gap: 6, size: 20 });
+    });
+    /* the two bars: what the electron arrives with, and what the X-ray carries away */
+    line(ctx, BL, BY + 118, BR, BY + 118, PAL.muted, 2);
+    for (let k = 0; k <= 120; k += 20) { line(ctx, KX(k), BY + 110, KX(k), BY + 126, PAL.muted, 2); text(ctx, String(k), KX(k), BY + 146, PAL.muted, { size: 17, align: 'center' }); }
+    text(ctx, '能量（keV）', BR, BY + 176, En, { size: 20, weight: 600, align: 'right' });
+    bar(ctx, BL, KX(E), BY, 32, En);
+    text(ctx, '电子到达时的能量 ' + fmt(E, 0) + ' keV', BL - 18, BY + 16, En, { size: 19, weight: 600, align: 'right' });
+    /* what the X-ray carries: a fixed bar the atom sets, bending into the braking spread up to E */
+    const q = how.mix((v) => (v === 'char' ? [BL, BY + 52, KX(9), BY + 52, KX(9), BY + 84] : [BL, BY + 52, BL, BY + 52, KX(E), BY + 84]));
+    ctx.save(); ctx.fillStyle = alpha(ray, 0.3); ctx.strokeStyle = ray; ctx.lineWidth = 2.5; ctx.beginPath();
+    ctx.moveTo(q[0], q[1]); ctx.lineTo(q[2], q[3]); ctx.lineTo(q[4], q[5]); ctx.lineTo(BL, BY + 84); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+    scene('char', () => {
+      text(ctx, 'X 射线的能量由原子决定', BL - 18, BY + 68, xr, { size: 19, weight: 600, align: 'right' });
+      text(ctx, '由原子的轨道固定，与电子到达时的能量无关', KX(12), BY + 68, PAL.muted, { size: 17 });
+    });
+    scene('brake', () => {
+      text(ctx, 'X 射线的能量最高可达 ' + fmt(E, 0) + ' keV', BL - 18, BY + 68, brake, { size: 19, weight: 600, align: 'right' });
+      text(ctx, '高能者少，低能者多：碰撞是随机的', BL, BY + 176, PAL.muted, { size: 17 });
+    });
+    topline(ctx, chosen ? '一个带有 ' + fmt(E, 0) + ' keV 能量的电子击出一个内层电子，随后的 X 射线带走另一个电子落入空轨道时失去的能量，这能量属于原子本身，而不属于撞击电子。'
+      : '一个带有 ' + fmt(E, 0) + ' keV 能量的电子被一次又一次的碰撞减速，每一次减速都会辐射，所以离开材料的 X 射线的能量可以从几乎为零一直到 ' + fmt(E, 0) + ' keV。');
+    readout(d.readout, chosen ? `\\kE_{\\text{X-ray}} = \\kE_{\\text{outer}} - \\kE_{\\text{inner}}`
+      : `\\kE_{\\text{X-ray}} \\le \\kE = ${fmt(E, 0)}\\ \\text{keV}`,
+      chosen ? '由于各轨道为各类原子所特有，这称为特征 X 射线。'
+        : '这种辐射称为轫致辐射（bremsstrahlung，德语，意为“制动辐射”）。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the antenna a frequency asks for. The book states in words that the
+   most efficient linear antenna is half a wavelength long, and that an AM
+   station therefore needs a very large one, and never draws it. Both scales
+   are logarithmic, so the relation is a straight line. Still: an antenna
+   length at a frequency has no clock in it. Axes fixed: 10⁵ to 10¹⁰ Hz and
+   0.01 m to 1000 m, which hold every length the slider reaches.
+===================================================================== */
+(function () {
+  const d = sim('sim-antenna-length', 620);
+  const fs = ctl(d.controls, { label: '\\log_{10}(\\kf/\\text{Hz})', cls: 'frequency', min: 5, max: 10, step: 0.001, value: 6.185, unit: '', dec: 3,
+    aria: '电台广播频率的十的幂次', snap: true,
+    detents: [{ v: 6.185, label: 'AM' }, { v: 8.022, label: 'FM' }, { v: 9.279, label: '手机' }] });
+  const mount = choice(d.controls, { label: '\\text{天线}', options: [{ value: 'half', label: '独立竖立' }, { value: 'quarter', label: '一端接地' }], value: 'half', aria: '天线的安装方式' });
+  const MARKS = [[6.185, '调幅，1530 kHz', 'am-signal'], [8.022, '调频，105.1 MHz', 'fm-signal'], [9.279, '手机，1.90 GHz', 'cell-signal']];
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('frequency'), pc = C('position'), vc = C('velocity');
+    const e = fs.v, f = Math.pow(10, e), lam = CLIGHT / f, k = mount.value === 'half' ? 2 : 4, L = lam / k;
+    const box = { l: 210, r: 1290, t: 150, b: 470 };
+    const { X, Y } = axes(ctx, box, [5, 10], [-2, 3], { nx: 5, ny: 5, fx: (v) => '10' + sup(Math.round(v)), fy: (v) => '10' + sup(Math.round(v)),
+      xl: '频率 f（Hz）', xc: fc, yl: '天线长度 L（m）', yc: pc });
+    const lab = labeller(ctx, 620, { headline: 2 });
+    lab.place({ l: box.l - 60, r: box.l + 300, t: box.t - 40, b: box.t - 8 });
+    lab.block(0, box.b + 2, 1400, box.b + 60);
+    /* both lines, the chosen one solid and the other faint, since one is twice the other; a change of mount
+       hands the emphasis from one to the other and slides the point between them */
+    const km = mount.mix((v) => (v === 'half' ? 2 : 4)), Lm = lam / km;
+    [[2, 'L = λ/2'], [4, 'L = λ/4']].forEach(([kk, name]) => {
+      const on = mount.mix((v) => ((v === 'half' ? 2 : 4) === kk ? 1 : 0));
+      const fl = (v) => Math.log10(CLIGHT / (kk * Math.pow(10, v)));
+      curve(ctx, fl, 5, 10, X, Y, alpha(PAL.ink, 0.3), 2.5, 60);
+      if (on > 0.01) curve(ctx, fl, 5, 10, X, Y, alpha(pc, on), 2.5 + 2.5 * on, 60);
+      text(ctx, name, X(6.95), Y(fl(6.95)) + (kk === 2 ? -22 : 24), on > 0.5 ? pc : PAL.muted, { size: 20, weight: 600, bg: PAL.panel });
+    });
+    /* the height of a person, the one length the reader already has */
+    line(ctx, box.l, Y(Math.log10(1.7)), box.r, Y(Math.log10(1.7)), alpha(PAL.ink, 0.4), 2, [10, 10]);
+    { const s = '人的身高，1.7 m', w = F.measure(ctx, s, { size: 17 }), y = Y(Math.log10(1.7)) - 16;
+      lab.place({ l: box.l + 10, r: box.l + 14 + w, t: y - 13, b: y + 13 });
+      text(ctx, s, box.l + 12, y, PAL.muted, { size: 17, bg: PAL.panel }); }
+    /* the three frequencies of Example 24.2 */
+    MARKS.forEach(([ee, name, id]) => { const yy = Math.log10(CLIGHT / (km * Math.pow(10, ee))), rc = F.ref(id); dot(ctx, X(ee), Y(yy), rc, false, 10); lab.add(name, X(ee), Y(yy), 0.4, -0.9, rc, 17, 16); });
+    pinned(ctx, box, X, Y, e, Math.log10(Lm), fc);
+    /* the length's name goes below the point, and above it near the bottom of the graph */
+    if (Math.log10(Lm) < -1.3) lab.add('L = ' + lamText(L), X(e), Y(Math.log10(Lm)), -0.6, -0.8, pc, 21, 20);
+    else lab.add('L = ' + lamText(L), X(e), Y(Math.log10(Lm)), -0.5, 0.9, pc, 21, 20);
+    lab.flush();
+    text(ctx, 'c = 3.00 × 10⁸ m/s', box.r, box.t - 24, vc, { size: 18, weight: 600, align: 'right' });
+    topline(ctx, '在 ' + sciTxt(f, 2) + ' Hz 时波长为 ' + lamText(lam) + '，所以最有效的天线长 ' + lamText(L) + '，是人的身高的 ' + (L >= 1.7 ? fmt(L / 1.7, L / 1.7 >= 10 ? 0 : 1) + ' 倍' : '1/' + fmt(1.7 / L, 0)) + '。');
+    readout(d.readout, `L = \\frac{\\klam}{${k}} = \\frac{\\kc}{${k}\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${k}(${sciTex(f, 2)}\\ \\text{Hz})} = ${sciTex(L, 2)}\\ \\text{m}`,
+      k === 2 ? '' : '一端封闭的气柱以同样的方式共振，波长为其自身长度的四倍。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

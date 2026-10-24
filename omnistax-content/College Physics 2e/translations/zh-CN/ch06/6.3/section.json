@@ -1,0 +1,1365 @@
+{
+ "id": "6.3",
+ "module": "m42086",
+ "chapter": "6",
+ "title": "向心力",
+ "short": "向心力",
+ "lead": "过弯的汽车、系在绳端的球和沿轨道运行的月球，都朝着圆心加速，所以必定有某个<span data-concept=\"force\">合力</span>沿那个方向推或拉着它们中的每一个。这个力就是<span data-concept=\"centripetal-force\">向心力</span>，可以用速率或<span data-concept=\"angular-velocity\">角速度</span>来表示；公路弯道，不论是水平的还是倾斜的，都显示出这样的力可以从哪里来。",
+ "objectives": [
+  "计算汽车轮胎的摩擦因数。",
+  "计算汽车在弯道上的理想速率和角度。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"centripetal-force\">向心力</span> $\\kFc$ 是引起匀速圆周运动的任何<span data-concept=\"force\">力</span>。它是一种“寻求中心”的<span data-concept=\"force\">力</span>，总是指向转动中心。它垂直于<span data-concept=\"velocity\">线速度</span> $\\kv$，其大小为 $$\\kFc = m\\kac,$$ 也可以表示为 $$\\kFc = m\\frac{\\kv^2}{\\kr} \\quad \\text{或} \\quad \\kFc = m\\kr\\kw^2.$$</li></ul>",
+ "notes": "习题 2、4、6 和 9 在书后答案中没有给出，因而略去；PhET 仿真“引力与轨道”（Gravity and Orbits）的链接也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和对思考题的建议思路由 AI 生成并已标明；习题的答案来自书后答案，此处没有任何计算。习题 2（风力涡轮机叶片）、4（20.0º 弯道的理想速率）、6（倾斜的自行车）和 9（过山车的竖直圆环）没有给出答案，因而略去；后两题的书中配图，即倾斜的自行车和水滴形圆环，也随之略去，因为习题一旦去掉，为它印制的图就没有什么可展示的了。本章没有“理解检测”栏目；最短的一道思考题要求读者给出向心力的定义并说出哪些力可以成为向心力，它被安排在回答它的那段文字之后，其余各项都与习题放在一起。关于汽车过弯时为什么感觉被甩离中心的思考题，是根据向心力和惯性来回答的，读者到这里已经学过这两者，所以它留在这里，而不是移到 6.4，6.4 的说明也是这样说的。6.6 节的批判性思考题，涉及竖直圆环中汽车所受的法向力在何处最大，以及 $F_N = Kr^{1/2}$ 是否可能正确，它取决于本节引入的向心力，所以放在这里，source_section 为 6.6，并在其答案中附有书中 v 对 r 的图；6.6 的说明也是这样说的。",
+ "figures": [
+  {
+   "id": "sim-radius",
+   "kind": "sim",
+   "number": "6.9",
+   "originals": [
+    "/media/ch06/Figure_07_03_01a.jpg"
+   ],
+   "original_caption": "摩擦力提供向心力，在数值上与向心力相等。向心力垂直于速度，使物体做匀速圆周运动。F_c 越大，曲率半径 r 越小，曲线弯得越急。第二条曲线的 v 相同，但更大的 F_c 产生了更小的 r′。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption names the second force; note set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-level-curve",
+   "kind": "sim",
+   "number": "6.10",
+   "originals": [
+    "/media/ch06/Figure_07_03_02a.jpg"
+   ],
+   "original_caption": "水平地面上的这辆汽车正在远去并向左转弯。使汽车沿圆形路径转弯的向心力来自轮胎与路面之间的摩擦力。需要有最小的摩擦因数，否则汽车将沿半径更大的曲线运动并驶离路面。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "r label moved off the force arrow; note shortened through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-banked",
+   "kind": "sim",
+   "number": "6.11",
+   "originals": [
+    "/media/ch06/Figure_07_03_03a.jpg"
+   ],
+   "original_caption": "这辆在倾斜弯道上的汽车正在远去并向左转弯。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption names the real controls; N label kept out of the headline; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-loop",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "velocity",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout adds up past contact loss; lost stretch drawn broken; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-race-track",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_04a.jpg"
+   ],
+   "original_caption": "图中给出了绕赛道弯道的两条路径。赛车手只要有可能，就会走内侧路径（称为抄近路），因为这样可以让他们以最高速率通过弯道。",
+   "widths": [
+    200
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "corner-cutting path redrawn as the wider arc; caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-loop-ride",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_05a.jpg"
+   ],
+   "original_caption": "带竖直圆环的游乐设施是曲线运动的一个例子。",
+   "widths": [
+    300
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption names the cars; repeated note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-merry-go-round",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_06a.jpg"
+   ],
+   "original_caption": "一个骑在旋转木马上的孩子在 P 点松开了她的饭盒。这是从上方俯视顺时针转动的视图。假设饭盒滑动时摩擦可以忽略，从地球参考系看，它将沿路径 A、B 还是 C 运动？它在旋转木马上的灰尘中留下的路径将是什么形状？",
+   "widths": [
+    300
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-nail",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/Figure_07_03_07a.jpg"
+   ],
+   "original_caption": "系在无摩擦桌面上一枚钉子上的物体沿圆形路径运动。拉伸细绳的力是真实的，不是虚构的。作用在细绳上的力的物理来源是什么？",
+   "widths": [
+    250
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note repeating the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-centrifuge",
+   "kind": "figure",
+   "originals": [
+    "/media/ch06/OSX_CPhysics2e_06_03_P22_img.jpg"
+   ],
+   "original_caption": "（a）NASA 离心机，用来使受训者承受与火箭发射和再入大气层时相似的加速度。（来源：NASA）（b）吊笼中的乘坐者，显示转动时吊笼如何向外摆动。这使吊笼对乘坐者施加的总力始终沿着它的轴线。",
+   "draws": [
+    "force",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "centripetal-force",
+   "concept": "centripetal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "uniform-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "centripetal-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "centripetal-force",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "two-forms",
+   "concept": "centripetal-force-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-forms",
+   "concept": "centripetal-acceleration-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "two-forms",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "two-forms",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "radius",
+   "concept": "radius-and-centripetal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "radius",
+   "concept": "centripetal-force-magnitude",
+   "verb": "reinforces"
+  },
+  {
+   "span": "level-curve",
+   "concept": "friction-as-centripetal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "level-curve",
+   "concept": "free-body-circular-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "level-curve",
+   "concept": "static-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "static-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "coefficient-of-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "level-curve",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "centripetal-force-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "friction-as-centripetal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "free-body-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-flat-curve",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "banked-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "banked",
+   "concept": "ideal-banking-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "banked",
+   "concept": "free-body-circular-motion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "banked",
+   "concept": "resolve-forces-into-components",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "banked",
+   "concept": "ideal-banking",
+   "verb": "introduces"
+  },
+  {
+   "span": "ideal-speed",
+   "concept": "ideal-speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "ideal-speed",
+   "concept": "ideal-banking-angle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-ideal-speed",
+   "concept": "ideal-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-ideal-speed",
+   "concept": "newtons-laws-problem-solving",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3255120",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "如果你想减小高速轮胎上的应力（它与向心力有关），应该使用大直径轮胎还是小直径轮胎？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "应该使用大直径轮胎。半径为 $\\kr$ 的轮胎以速率 $\\kv$ 转动时，胎面上的一点需要 $\\kFc = m\\kv^2/\\kr$ 的向心力才能保持在它的圆周路径上，而这个力必须由橡胶自身的拉力来提供。反过来写，$\\kr = m\\kv^2/\\kFc$：在给定的行驶速率下，半径越大，胎面每一小块所需的力就越小，因此轮胎中的应力也越小。小直径轮胎在相同速率下使胎面经过更急的弯曲，需要更大的力。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3055510",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "定义向心力。任何类型的力（例如张力、引力、摩擦力等等）都可以是向心力吗？力的任何组合都可以是向心力吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "向心力是引起匀速圆周运动的任何合力，使一个力成为向心力的是它的方向：它指向路径的曲率中心。任何类型的力都可以起这个作用，本节列出了几个这样的例子——系绳球上绳中的张力、地球对月球的引力、轮滑鞋与溜冰场地面之间的摩擦力，以及倾斜路面对汽车的力。力的组合同样可以是向心力，因为第二定律所要求的是合外力；在倾斜弯道上，是法向力和重力合在一起，加成一个指向中心的水平力。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3035023",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "如果向心力指向中心，那么汽车过弯时，你为什么会觉得自己被“甩”向远离中心的方向？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "没有什么东西把你向外甩。根据牛顿第一定律，除非有力使你的身体转向，否则它会沿直线继续运动，而转弯的是汽车。车门或座椅必须向内推你，使你的路径弯成汽车所沿的同一个圆，你感觉到的正是身体外侧受到的这个向内的推力。从地面上看，根本没有向外的力：你注意到的是自己保持直线运动的趋势，而汽车在你下方弯了过去。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3286004",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "赛车手通常会抄近路，如赛道图所示。请解释这样做为什么能使弯道以最大的速率通过。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "抄近路使路径变直：进弯时沿赛道外侧、在弯道中部触及内侧、出弯时回到外侧的那条线，其曲率半径比车道本身的更大。轮胎所能提供的力受摩擦限制，而 $\\kr = m\\kv^2/\\kFc$ 表明，力相同时，半径越大，允许的速率越大，等价地也可写成 $\\kv = \\sqrt{\\kFc \\kr / m}$。所以走赛道所允许的最宽圆弧的车手，能带着最大的速率通过弯道。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2405334",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "许多游乐园里都有做竖直圆环运动的游乐设施，就像游乐设施图所示的那样。为了安全，车厢以不会掉下来的方式固定在导轨上。如果车厢恰好以合适的速率越过顶部，则仅靠重力就能提供向心力。在下列情况下，还有什么其他的力在起作用，它的方向如何？（a）车厢越过顶部的速率比这个速率更快？（b）车厢越过顶部的速率比这个速率更慢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在顶部，向心力必须为 $m\\kv^2/\\kr$，并且必须指向下方，即圆环的中心，而重力提供了其中的 $m\\kg$。（a）速率比合适的速率更快时，$m\\kv^2/\\kr$ 大于重力，所以导轨必须提供差值：轨道从外侧向下推车厢，车厢所受的力指向下方，即指向中心。（b）速率比合适的速率更慢时，$m\\kv^2/\\kr$ 小于重力，所以必须有某种东西托住重力的一部分：导轨把车厢向外拉，车厢所受的力指向上方，即背离中心。由于这个缘故，车厢是锁在导轨上运行的。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1186294",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "在下列情况下，车厢越过游乐设施图所示游乐设施的顶部时，车厢对乘客施加的力的方向如何？（a）车厢越过顶部的速率恰使重力成为唯一起作用的力？（b）车厢越过顶部的速率比这个速率更快？（c）车厢越过顶部的速率比这个速率更慢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "乘客在顶部需要一个大小为 $m\\kv^2/\\kr$、方向向下的合力，而重力已经提供了其中的 $m\\kg$。（a）在仅靠重力就足够的速率下，车厢对乘客完全不施加力。乘客与车厢一起自由下落，感到失重。（b）速率比这更快时，乘客需要的力大于重力，所以座椅必须把乘客向下推，即推向圆环的中心，乘客感到被压在座椅上。（c）速率比这更慢时，乘客需要的力小于重力，所以约束装置必须把乘客向上拉，即背离中心，乘客吊在安全带上。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3011795",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "level-curve",
+   "prompt": "滑冰者划出一个圆时，是什么力使她转弯？请在回答中使用受力图。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "使她转弯的是冰刀与冰面之间的摩擦力。画出滑冰者绕圆运动时的受力图：她的重力 $\\kwgt$ 竖直向下，冰面的法向力 $\\kN$ 竖直向上并与之平衡，唯一的水平力是冰面作用在冰刀上的摩擦力，它指向圆心。因此这个摩擦力就是全部合外力，也就是向心力，其大小为 $\\kFc = m\\kv^2/\\kr$。身体向转弯内侧倾斜，使冰刀能够侧向蹬冰，于是冰面向内反推她。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3047120",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "假设一个孩子骑在旋转木马上，离中心和边缘大约各一半的距离处。她有一个饭盒放在蜡纸上，所以它与旋转木马之间的摩擦很小。她松手时，饭盒将沿旋转木马图中所示的哪条路径运动？饭盒在旋转木马上的灰尘中留下一条轨迹。那条轨迹是直的、向左弯，还是向右弯？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "饭盒一旦松开，水平方向就没有力作用在它上面，因为蜡纸几乎没有摩擦，所以从地面上看，它以松开瞬间的速度沿直线继续运动。这个速度沿其圆的切线方向，所以饭盒走切向路径，即路径 B。它在灰尘中留下的轨迹则是另一回事：旋转木马在饭盒下方继续沿顺时针转动，而饭盒沿直线运动，所以相对于平台，饭盒看起来是弯曲的。从平台上看，轨迹向饭盒运动方向的左侧弯曲。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id2404351",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "banked",
+   "prompt": "当你以按汽车速率设计为理想倾斜的弯道转弯时，你会感觉自己被甩向某一侧吗？座椅对你施加的力的方向如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不会。在理想倾斜弯道上以理想速率行驶时，沿路面方向不需要摩擦力，也没有什么东西把你侧向压在座椅或车门上。座椅对你的推力垂直于它自身的表面，即垂直于倾斜的路面：从你自己的角度看，是笔直地向下压向座椅，从地面上看，则是向上并指向弯道的中心。这个推力的竖直部分托住你的重力，水平部分是使你随汽车转弯的向心力，这恰恰就是路面对汽车本身所做的。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3340905",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centripetal-force",
+   "prompt": "假设一个物体在无摩擦的桌面上沿圆形路径运动，如钉子和细绳图所示。在地球参考系中，没有把物体拉离转动中心的离心力，然而有一个非常真实的力在拉伸连接物体和钉子的细绳。请运用与向心力和牛顿第三定律有关的概念，解释是什么力拉伸了细绳，并指出它的物理来源。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "细绳把物体向内拉，这个张力就是使物体保持在圆周上的向心力 $\\kFc = m\\kv^2/\\kr$。根据牛顿第三定律，物体以大小相等、方向向外的力反拉细绳，而在另一端，钉子拉住细绳以抵抗大小相等、方向向内的拉力。因此细绳两端都受到拉力，物体向外拉，钉子向内拉，正是这一对力拉伸了细绳。向外的力是真实的，但它作用在细绳上，而不是作用在物体上；没有什么东西把物体向外拉，这就是为什么细绳被剪断时物体不是沿半径飞出，而是沿切线飞出。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3245705",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-forms",
+   "prompt": "（a）一个质量为 22.0 kg 的孩子骑在以 40.0 rev/min 转动的游乐场的旋转木马上。如果她离中心 1.25 m，她必须施加多大的向心力才能不被甩下？（b）如果她离中心 8.00 m，在以 3.00 rev/min 转动的游乐园的旋转木马上，她需要多大的向心力才能不被甩下？（c）把每个力与她的重力比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 483,
+      "unit": "N"
+     },
+     {
+      "part": "b",
+      "value": 17.4,
+      "unit": "N"
+     }
+    ],
+    "solution": "（a）483 N（b）17.4 N（c）游乐场的旋转木马上的力是她重力的 2.24 倍，游乐园的旋转木马上的力是她重力的 0.0807 倍。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1864125",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "banked",
+   "prompt": "在限速 105 km/h（约 65 mi/h）的公路上，一个半径为 1.20 km 的缓弯，假设所有人都按限速行驶，其理想倾斜角是多大？",
+   "answer": {
+    "type": "number",
+    "value": 4.14,
+    "unit": "°",
+    "generated_by": "source",
+    "hint": "在使用 $\\theta = \\tan^{-1}(\\kv^2/\\kr\\kg)$ 之前，先把限速换算成米每秒。",
+    "solution": "$4.14^\\circ$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-id1167458029802",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "banked",
+   "prompt": "（a）一个倾斜角为 75.0°、以 30.0 m/s 通过的雪车弯道，假设它是理想倾斜的，其半径是多少？（b）计算向心加速度。（c）你觉得这个加速度大吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 24.6,
+      "unit": "m"
+     },
+     {
+      "part": "b",
+      "value": 36.6,
+      "unit": "m/s²"
+     }
+    ],
+    "solution": "（a）24.6 m（b）$36.6\\ \\text{m/s}^2$（c）$\\kac = 3.73\\,\\kg.$ 这看起来并不太大，但很明显，雪车运动员在通过急剧倾斜的弯道时会感到很大的力作用在他们身上。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3424499",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "prompt": "一台大型离心机，如离心机图所示，用来让有志成为航天员的人承受与火箭发射和再入大气层时相似的加速度。（a）如果乘坐者距转动中心 15.0 m，角速度为多大时向心加速度为 $10\\,\\kg$？（b）乘坐者的吊笼悬挂在臂末端的支点上，使它在转动时能向外摆开，如图所示。当向心加速度为 $10\\,\\kg$ 时，吊笼将悬挂在水平方向以下多大的角 $\\theta$ 处？（提示：臂既提供向心力，又支撑吊笼的重力。画出这些力的受力图，看看角 $\\theta$ 应该是多少。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 2.56,
+      "unit": "rad/s"
+     },
+     {
+      "part": "b",
+      "value": 5.71,
+      "unit": "°"
+     }
+    ],
+    "solution": "（a）2.56 rad/s（b）$5.71^\\circ$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2963096",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-speed",
+   "prompt": "如果汽车以低于理想速率的速率通过倾斜弯道，就需要摩擦力来防止它向弯道内侧滑动（这在结冰的山路上是个实际问题）。（a）计算通过半径 100 m、倾斜 15.0º 的弯道的理想速率。（b）胆战心惊的司机以 20.0 km/h 通过同一弯道，所需的最小摩擦因数是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 16.2,
+      "unit": "m/s"
+     },
+     {
+      "part": "b",
+      "value": 0.234,
+      "unit": ""
+     }
+    ],
+    "solution": "（a）16.2 m/s（b）0.234"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id2667652",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "level-curve",
+   "prompt": "（a）计算汽车以 30.0 m/s 通过半径 50.0 m 的水平弯道所需的最小摩擦因数。（b）这个结果有什么不合理之处？（c）哪些前提是不合理的或不一致的？",
+   "answer": {
+    "type": "number",
+    "value": 1.84,
+    "unit": "",
+    "part": "a",
+    "generated_by": "source",
+    "solution": "（a）1.84（b）摩擦因数如此远大于 1 是不合理的。（c）假设的速率对这条急弯来说太大了。"
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-86626",
+   "source_section": "6.6",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-forms",
+   "prompt": "一辆汽车以恒定速率绕一个摩擦可忽略的圆环运动，并且始终不与圆环脱离接触。圆环的顶部标为 A，底部标为 B。（a）法向力在哪一点最大？请简要说明你的理由。（b）根据实验数据，对法向力 <em>F</em><sub>N</sub> 提出了一个与数据吻合的方程，它可能并不正确：$F_N = Kr^{1/2}$，其中 <em>K</em> 是带有适当单位的常量，<em>r</em> 是圆环的半径。这个方程与你在（a）中的答案一致吗？请说明为什么一致或为什么不一致。这个方程合理吗？请说明为什么合理或为什么不合理。（c）现在汽车绕各种半径的圆环运动，测量汽车刚好能绕过圆环时的速率。作出该速率与圆环半径的关系图。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）法向力在 B 点最大。在 A 点，法向力和重力共同构成合力；在 B 点，只有法向力与合力的方向相同。（b）i. 这并不一致，因为更大的半径应当使合力和张力减小，而不是增大。ii. 这不合理，因为 $F_c = mv^2/r$。（c）<img src=\"/media/ch06/OSX_CP2e_Figure_06_06Sol_CTQ01c.jpg\" alt=\"该图是 v 作为 r 的函数的曲线。函数从原点出发，单调增大，斜率逐渐减小。\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "radius-and-centripetal-force"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "radius-and-centripetal-force"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "friction-as-centripetal-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "free-body-circular-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "friction-as-centripetal-force"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "centripetal-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "uniform-circular-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "cq9",
+   "concept": "banked-curve"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "ideal-speed"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "ideal-banking-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq10",
+   "concept": "centripetal-force"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "free-body-circular-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq10",
+   "concept": "newtons-third-law",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "p1",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "ideal-banking-angle"
+  },
+  {
+   "exercise": "p3",
+   "concept": "banked-curve",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "ideal-banking-angle"
+  },
+  {
+   "exercise": "p5",
+   "concept": "radius-and-centripetal-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "centripetal-acceleration-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "acceleration-in-multiples-of-g",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "p7",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "p7",
+   "concept": "centripetal-acceleration-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "acceleration-in-multiples-of-g",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "ideal-speed"
+  },
+  {
+   "exercise": "p8",
+   "concept": "friction-as-centripetal-force"
+  },
+  {
+   "exercise": "p8",
+   "concept": "ideal-banking-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p10",
+   "concept": "friction-as-centripetal-force"
+  },
+  {
+   "exercise": "p10",
+   "concept": "coefficient-of-friction"
+  },
+  {
+   "exercise": "p10",
+   "concept": "centripetal-force-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "centripetal-force-magnitude"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "free-body-circular-motion"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "centripetal-force",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "object-1",
+   "label": "受你设定的力约束的物体",
+   "figures": [
+    "sim-radius"
+   ]
+  },
+  {
+   "id": "object-2",
+   "label": "受第二个力约束的物体",
+   "figures": [
+    "sim-radius"
+   ]
+  },
+  {
+   "id": "flat-car",
+   "label": "水平弯道上的汽车",
+   "figures": [
+    "sim-level-curve"
+   ]
+  },
+  {
+   "id": "banked-car",
+   "label": "倾斜弯道上的汽车",
+   "figures": [
+    "sim-banked"
+   ]
+  },
+  {
+   "id": "loop-car",
+   "label": "圆环轨道上的汽车",
+   "figures": [
+    "sim-loop"
+   ]
+  },
+  {
+   "id": "track",
+   "label": "圆环轨道",
+   "figures": [
+    "sim-loop"
+   ]
+  },
+  {
+   "id": "inside-path",
+   "label": "内侧路径",
+   "figures": [
+    "fig-race-track"
+   ]
+  },
+  {
+   "id": "outside-path",
+   "label": "外侧路径",
+   "figures": [
+    "fig-race-track"
+   ]
+  },
+  {
+   "id": "cars",
+   "label": "游乐设施的车厢",
+   "figures": [
+    "fig-loop-ride"
+   ]
+  },
+  {
+   "id": "platform",
+   "label": "旋转木马",
+   "figures": [
+    "fig-merry-go-round"
+   ]
+  },
+  {
+   "id": "child",
+   "label": "骑在木马上的孩子",
+   "figures": [
+    "fig-merry-go-round"
+   ]
+  },
+  {
+   "id": "body",
+   "label": "系在细绳上的物体",
+   "figures": [
+    "fig-nail"
+   ]
+  },
+  {
+   "id": "string",
+   "label": "细绳",
+   "figures": [
+    "fig-nail"
+   ]
+  },
+  {
+   "id": "nail",
+   "label": "钉子",
+   "figures": [
+    "fig-nail"
+   ]
+  },
+  {
+   "id": "cage",
+   "label": "乘坐者的吊笼",
+   "figures": [
+    "fig-centrifuge"
+   ]
+  },
+  {
+   "id": "arm",
+   "label": "离心机臂",
+   "figures": [
+    "fig-centrifuge"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "ideal-banking-angle",
+   "what": "弯道的理想倾斜角",
+   "source": "《大学物理（第2版）》，6.3 向心力",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "在无摩擦的倾斜弯道上，只有法向力有水平分量，所以它必须等于向心力。",
+       "src": "6.3"
+      },
+      {
+       "text": "法向力的水平分量为 $\\kN\\ \\sin\\ \\ktheta$。",
+       "src": "图 6.11"
+      },
+      {
+       "tex": "\\kFc = \\km\\frac{\\kv^2}{\\kr}",
+       "src": "6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{\\kN\\ \\sin\\ \\ktheta} = \\mk{c}{\\kFc}",
+      "src": "6.3",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{\\kN\\ \\sin\\ \\ktheta} = \\mk{c}{\\frac{\\km\\kv^2}{\\kr}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "6.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "汽车不离开路面，所以竖直方向的合力为零。",
+       "src": "6.3"
+      },
+      {
+       "text": "法向力的竖直分量为 $\\kN\\ \\cos\\ \\ktheta$，竖直方向上唯一的另一个力是重力 $\\km\\kg$。",
+       "src": "图 6.11"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{\\kN\\ \\cos\\ \\ktheta} = \\mk{w}{\\km\\kg}",
+      "src": "6.3",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{\\kN} = \\frac{\\mk{w}{\\km\\kg}}{\\mk{c}{\\cos\\ \\ktheta}}",
+       "uses": [],
+       "map": {
+        "N": [
+         "N",
+         "c"
+        ]
+       }
+      }
+     ],
+     "src": "6.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kN\\ \\sin\\ \\ktheta} = \\mk{R}{\\frac{\\km\\kv^2}{\\kr}}",
+      "src": "6.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\km\\kg\\frac{\\sin\\ \\ktheta}{\\cos\\ \\ktheta}} = \\mk{R}{\\frac{\\km\\kv^2}{\\kr}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\km\\kg\\ \\tan(\\ktheta)} = \\mk{R}{\\frac{\\km\\kv^2}{\\kr}}",
+       "uses": [],
+       "cap": "$\\sin\\ktheta/\\cos\\ktheta = \\tan\\ktheta$."
+      },
+      {
+       "tex": "\\mk{L}{\\tan\\ \\ktheta} = \\mk{R}{\\frac{\\kv^2}{\\kr\\kg}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\ktheta} = \\mk{R}{\\tan^{-1}\\left(\\frac{\\kv^2}{\\kr\\kg}\\right)}\\ \\text{（理想倾斜弯道，无摩擦）}",
+       "uses": []
+      }
+     ],
+     "src": "6.3"
+    }
+   ]
+  }
+ ]
+}

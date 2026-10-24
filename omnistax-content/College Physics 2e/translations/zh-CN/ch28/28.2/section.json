@@ -1,0 +1,720 @@
+{
+ "id": "28.2",
+ "module": "m42531",
+ "chapter": "28",
+ "title": "同时性与时间延缓",
+ "short": "同时性与时间延缓",
+ "lead": "两个事件对一个观察者是同时的，对相对于他运动的另一个观察者却未必同时，所以同时性不是绝对的。<span data-concept=\"elapsed-time\">时间间隔</span>也不是绝对的：相对于观察者运动的时钟，被测得走得慢，高层大气中的 μ 子和双生子佯谬都表明了这一点。",
+ "objectives": [
+  "描述同时性。",
+  "描述时间延缓。",
+  "计算 γ。",
+  "比较固有时与观察者测得的时间。",
+  "解释为什么双生子佯谬是一个虚假的佯谬。"
+ ],
+ "summary_html": "<ul><li>如果一个观察者测得两个事件在同一时刻发生，这两个事件就被定义为同时的。它们不一定对所有观察者都是同时的——同时性不是绝对的。</li><li>时间延缓是指对于相对另一个观察者运动的观察者，<span data-concept=\"time\">时间</span>过得更慢的现象。</li><li>以相对速度 $\\kv$ 运动的观察者，对一个事件测得的<span data-concept=\"elapsed-time\">时间间隔</span>并不相同。<span data-concept=\"proper-time\">固有时</span> $\\kdto$ 是相对于被观察事件静止的观察者所测得的<span data-concept=\"time\">时间</span>。<span data-concept=\"proper-time\">固有时</span>与地球上的观察者测得的<span data-concept=\"time\">时间</span> $\\kdt$ 由方程 $$\\kdt=\\frac{\\kdto}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}=\\gamma\\kdto,$$ 相联系，其中 $$\\gamma=\\frac{1}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}.$$</li><li>联系<span data-concept=\"proper-time\">固有时</span>与地球上的观察者测得的<span data-concept=\"time\">时间</span>的方程意味着，相对速度不可能超过<span data-concept=\"speed-of-light-in-vacuum\">光速</span>。</li><li>双生子佯谬问的是：为什么以相对论性速率远离地球再返回的双生子，比留在地球上的双生子衰老得更少。这个佯谬的前提是有缺陷的，因为旅行的双生子在加速。狭义相对论不适用于加速参考系。</li><li>在低相对速度下，时间延缓通常可以忽略，但它确实存在，并且已经被实验证实。</li></ul>",
+ "notes": "图 28.4 是一名跑步者冲过终点线的照片，它是本节的题图，已被删去，因为开头一段提出的问题与它的图注相同。十一道习题中有五道没有给出答案，已被省去：$0.100\\kc$ 和 $0.900\\kc$ 时的 $\\gamma$，以 $0.980\\kc$ 运动的 K 介子，测得寿命为 2065 s 的中子，$\\gamma = 1.03$ 时的速率，以及 $\\gamma = 2.00$ 和 $10.0$ 时的速率。书中自身的疏漏照原样保留：闪光灯一段的最后一句（“B 将测得来自右边灯泡的光并到达观察者 A，早于……”）语句混乱，“同时性不是绝对的。”带有双句号，“在航天员观察反射光的情形中”是书中的原话。这里 μ 子的 1.52 μs 和 4.87 μs 是半衰期，而长度收缩一节给出的 μ 子的 2.20 μs 和 7.05 μs 是平均寿命，书中并未说明这一点。通往“广义相对论与量子引力”的链接在该章建成之前只是纯文本。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十一道习题中有五道没有给出答案，已被省去，本节的说明中列出了它们。每道思考题都没有书后答案，并附有标明为 AI 所写的建议思路。理解检测按书中印出的位置，放在双生子佯谬一段末尾。“不合理的结果”一题对其（a）问评分，并在解中给出书中对（b）和（c）的回答。以光速的分数给出的速率，按该分数填写。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-flash-lamps",
+   "kind": "sim",
+   "number": "28.5",
+   "originals": [
+    "/media/ch28/Figure_29_02_02a.jpg"
+   ],
+   "original_caption": "观察者 B 按正文所述测量闪光到达之间的时间间隔。观察者 A 与灯一起在车厢上运动。观察者 B 看到两次闪光是同时发生的。观察者 B 看到右边的光先于左边的光到达观察者 A。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "frame label set as text; readout of the arrival times added"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-light-clock",
+   "kind": "sim",
+   "number": "28.6",
+   "originals": [
+    "/media/ch28/Figure_28_02_03.jpg"
+   ],
+   "original_caption": "（a）一名航天员用电子计时器测量光穿过她的飞船所用的时间 $\\kdto$。在航天员的参考系中，光传播的距离为 $2\\kD$。（b）地球上的一个人看到光沿着更长的路径 $2\\ks$ 传播，用的时间 $\\kdt$ 也更长。（c）用这些三角形求出两个距离 $2\\kD$ 和 $2\\ks$ 之间的关系。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset; panel titles clear of the v arrow; D label off the divider"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-muon-gamma",
+   "kind": "sim",
+   "number": "28.7",
+   "originals": [
+    "/media/ch28/Figure_29_02_04a.jpg"
+   ],
+   "original_caption": "地球大气中的 μ 子，地球上的观察者测得的寿命比 μ 子的内部时钟测得的更长。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset; gamma label clear of the axis; bar values match readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-twins",
+   "kind": "sim",
+   "number": "28.8",
+   "originals": [
+    "/media/ch28/Figure_29_02_05a.jpg"
+   ],
+   "original_caption": "双生子佯谬问的是：为什么旅行的双生子比留在地球上的双生子衰老得更少。如果我们从留在地球上的双生子的参考系来考虑，就会得到这个预言。然而在航天员的参考系中，地球在运动，那里的时间过得更慢。谁是对的？",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "frame label set as text; acceleration marks off the arrowheads"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "simultaneity",
+   "concept": "relativity-of-simultaneity",
+   "verb": "introduces"
+  },
+  {
+   "span": "time-dilation",
+   "concept": "time-dilation",
+   "verb": "introduces"
+  },
+  {
+   "span": "time-dilation",
+   "concept": "proper-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "time-dilation",
+   "concept": "relativistic-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "time-dilation",
+   "concept": "time-dilation-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "time-dilation",
+   "concept": "calculate-time-dilation",
+   "verb": "introduces"
+  },
+  {
+   "span": "twin-paradox",
+   "concept": "twin-paradox",
+   "verb": "introduces"
+  },
+  {
+   "span": "twin-paradox",
+   "concept": "time-dilation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2680242",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "twin-paradox"
+   },
+   "cite": "time-dilation",
+   "prompt": "1. 如果 $\\kv=0.650\\kc$，$\\gamma$ 是多少？2. 一个粒子以 $1.90\\times 10^{8}\\;\\text{m/s}$ 的速率运动，相对于观察者静止时的寿命为 $2.10\\times 10^{-8}\\;\\text{s}$。在实验室中看，这个粒子的寿命有多长？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "1. the value of γ",
+      "value": 1.32,
+      "hint": "把 $\\kv/\\kc = 0.650$ 代入 $\\gamma = 1/\\sqrt{1 - \\kv^2/\\kc^2}$。"
+     },
+     {
+      "part": "2. the lifetime in the laboratory",
+      "value": 2.71e-08,
+      "unit": "s",
+      "hint": "静止时的寿命是固有时，把它除以 $\\sqrt{1 - \\kv^2/\\kc^2}$，取 $\\kc = 3.00\\times 10^{8}\\;\\text{m/s}$。"
+     }
+    ],
+    "solution": "1. $\\gamma=\\frac{1}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}=\\frac{1}{\\sqrt{1-\\frac{(0.650\\kc)^{2}}{\\kc^{2}}}}=1.32$\n\n2. $\\kdt=\\frac{\\kdto}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}=\\frac{2.10\\times 10^{-8}\\;\\text{s}}{\\sqrt{1-\\frac{(1.90\\times 10^{8}\\;\\text{m/s})^{2}}{(3.00\\times 10^{8}\\;\\text{m/s})^{2}}}}=2.71\\times 10^{-8}\\;\\text{s}$"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3159158",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "运动会影响随时钟一起运动的观察者所测得的该时钟的快慢吗？运动会影响相对于时钟运动的观察者所测得的它的快慢吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "前者不会，后者会。随时钟一起运动的观察者相对于时钟静止，测得的是固有时，她参考系中的每一个时钟，包括她的心跳，都按通常的快慢走，所以仅凭时钟本身，她什么也察觉不到。相对于时钟运动的观察者，测得它每一次滴答的时间都更长，为 $\\kdt = \\gamma\\kdto$，所以在他看来这个时钟走得慢，慢的因子在日常速率下非常接近 1，而在接近 $\\kc$ 时很大。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2725128",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "对于一个过程，时间间隔在谁看来更长：相对于该过程运动的观察者，还是随该过程一起运动的观察者？哪个观察者测得的是固有时？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对相对于该过程运动的观察者来说，时间显得更长，他测得 $\\kdt = \\gamma\\kdto$，而对于任何相对运动，$\\gamma$ 总是大于 1。随该过程一起运动的观察者相对于它静止，测得的是固有时 $\\kdto$，它是两者中较短的。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2790874",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "twin-paradox",
+   "prompt": "怎样才能在不显著衰老的情况下，远远地旅行到未来？这种方法也能让你旅行到过去吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "像航天员双生子那样，以接近 $\\kc$ 的速率远离地球再返回。你自己的时钟，包括你的衰老，都按通常的快慢走，测得的固有时只有几年，而地球参考系测得的时间是它的 $\\gamma$ 倍；在 $\\gamma = 30.0$ 时，一次 2.00 年的旅行会使你回到地球的 60.0 年之后的未来。这种方法不能把你带到过去。时间延缓只会使地球上的时间间隔比你的更长，因为 $\\gamma$ 从不小于 1，而要使 $\\gamma$ 无穷大就需要速率达到 $\\kc$，有质量的物体不可能达到这个速率，所以没有任何速率能使你的时钟相对于地球的时钟倒走。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1745109",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "（a）如果 $\\kv=0.250\\kc$，$\\gamma$ 是多少？（b）如果 $\\kv=0.500\\kc$ 呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) γ at 0.250c",
+      "value": 1.0328,
+      "hint": "当 $\\kv/\\kc = 0.250$ 时，$\\kv^2/\\kc^2 = 0.0625$。"
+     },
+     {
+      "part": "(b) γ at 0.500c",
+      "value": 1.15,
+      "hint": "当 $\\kv/\\kc = 0.500$ 时，$\\kv^2/\\kc^2 = 0.250$。"
+     }
+    ],
+    "solution": "（a）1.0328\n\n（b）1.15"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1780163",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "称为 π 介子的粒子由加速器束流产生。如果这些粒子以 $2.70\\times 10^{8}\\;\\text{m/s}$ 的速率运动，相对于观察者静止时的寿命为 $2.60\\times 10^{-8}\\;\\text{s}$，那么在实验室中看，它们的寿命有多长？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.96e-08,
+    "unit": "s",
+    "hint": "静止时的寿命是固有时。先求出 $\\kv/\\kc = 0.900$，再求 $\\gamma$，然后相乘。",
+    "solution": "$5.96\\times 10^{-8}\\;\\text{s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1352226",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "中性 π 介子是加速器束流可以产生的一种粒子。如果这样一个粒子在实验室中测得的寿命为 $1.40\\times 10^{-16}\\;\\text{s}$，相对于观察者静止时的寿命为 $0.840\\times 10^{-16}\\;\\text{s}$，那么它相对于实验室的速度是多少？以 $\\kc$ 的分数给出。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.8,
+    "unit": "c",
+    "hint": "两个寿命之比就是 $\\gamma$。由 $\\gamma = 1/\\sqrt{1 - \\kv^2/\\kc^2}$ 解出 $\\kv/\\kc = \\sqrt{1 - 1/\\gamma^2}$。",
+    "solution": "$0.800\\kc$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2944491",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "如果要使相对论效应小于 1%，那么 $\\gamma$ 必须小于 1.01。在多大的相对速度下 $\\gamma=1.01$？以 $\\kc$ 的分数给出。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.14,
+    "unit": "c",
+    "hint": "由 $\\gamma = 1/\\sqrt{1 - \\kv^2/\\kc^2}$ 解出 $\\kv/\\kc = \\sqrt{1 - 1/\\gamma^2}$。",
+    "solution": "$0.140\\kc$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1310375",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "（a）在多大的相对速度下 $\\gamma=1.50$？（b）在多大的相对速度下 $\\gamma=100$？各以 $\\kc$ 的分数给出。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the speed at which γ = 1.50",
+      "value": 0.745,
+      "unit": "c",
+      "hint": "使用 $\\kv/\\kc = \\sqrt{1 - 1/\\gamma^2}$。"
+     },
+     {
+      "part": "(b) the speed at which γ = 100",
+      "value": 0.99995,
+      "unit": "c",
+      "tol": 5e-06,
+      "hint": "同一关系；保留五位数字，以看出速率必须多么接近 $\\kc$。"
+     }
+    ],
+    "solution": "（a）$0.745\\kc$\n\n（b）$0.99995\\kc$（取五位数字以显示其效应）"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2723163",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "time-dilation",
+   "prompt": "不合理的结果。（a）求下列情形中 $\\gamma$ 的值。地球上的观察者测得经过了 23.9 h，而来自一个高速空间探测器的信号表明，探测器上经过了 24.0 h。（b）这个结果有什么不合理之处？（c）哪些假设是不合理的或相互矛盾的？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.996,
+    "hint": "探测器上的时间是固有时，所以 $\\gamma = \\kdt/\\kdto$。",
+    "solution": "（a）0.996\n\n（b）$\\gamma$ 不可能小于 1。\n\n（c）认为运动的飞船中时间更长的假设是不合理的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "relativistic-factor",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "calculate-time-dilation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "time-dilation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "proper-time",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "twin-paradox",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "time-dilation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "relativistic-factor",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "calculate-time-dilation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-time-dilation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "relativistic-factor",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "relativistic-factor",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "relativistic-factor",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "proper-time",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "relativistic-factor",
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "observer-a",
+   "label": "观察者 A",
+   "figures": [
+    "sim-flash-lamps"
+   ]
+  },
+  {
+   "id": "observer-b",
+   "label": "观察者 B",
+   "figures": [
+    "sim-flash-lamps"
+   ]
+  },
+  {
+   "id": "left-lamp",
+   "label": "左灯",
+   "figures": [
+    "sim-flash-lamps"
+   ]
+  },
+  {
+   "id": "right-lamp",
+   "label": "右灯",
+   "figures": [
+    "sim-flash-lamps"
+   ]
+  },
+  {
+   "id": "rail-car",
+   "label": "车厢",
+   "figures": [
+    "sim-flash-lamps"
+   ]
+  },
+  {
+   "id": "astronaut",
+   "label": "航天员",
+   "figures": [
+    "sim-light-clock"
+   ]
+  },
+  {
+   "id": "earth-observer",
+   "label": "地球上的观察者",
+   "figures": [
+    "sim-light-clock"
+   ]
+  },
+  {
+   "id": "ship",
+   "label": "航天员的飞船",
+   "figures": [
+    "sim-light-clock"
+   ]
+  },
+  {
+   "id": "muon",
+   "label": "μ 子",
+   "figures": [
+    "sim-muon-gamma"
+   ]
+  },
+  {
+   "id": "muon-observer",
+   "label": "地球上的观察者",
+   "figures": [
+    "sim-muon-gamma"
+   ]
+  },
+  {
+   "id": "traveler",
+   "label": "航天员双生子",
+   "figures": [
+    "sim-twins"
+   ]
+  },
+  {
+   "id": "earth-twin",
+   "label": "留在地球上的双生子",
+   "figures": [
+    "sim-twins"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "time-dilation",
+   "what": "时间延缓",
+   "source": "《大学物理（第2版）》，28.2 同时性与时间延缓",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kLlen=\\frac{\\kv\\kdt}{2}",
+       "src": "28.2"
+      },
+      {
+       "text": "$\\kD$ 和 $\\kLlen$ 是直角三角形的两条直角边，其斜边为 $\\ks$。",
+       "src": "图 28.6（c）"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks^{2}}=\\mk{D}{\\kD^{2}}+\\mk{L}{\\kLlen^{2}}",
+      "uses": [
+       1
+      ],
+      "why": "勾股定理。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks}=\\sqrt{\\mk{D}{\\kD^{2}}+\\mk{L}{\\kLlen^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\sqrt{\\mk{D}{\\kD^{2}}+\\mk{L}{\\left(\\frac{\\kv\\kdt}{2}\\right)^{2}}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "28.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kdt=\\frac{2\\ks}{\\kc}",
+       "src": "28.2"
+      },
+      {
+       "tex": "\\kdto=\\frac{2\\kD}{\\kc}",
+       "src": "28.2"
+      },
+      {
+       "tex": "\\gamma=\\frac{1}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{\\ks}=\\sqrt{\\kD^{2}+\\left(\\frac{\\kv\\kdt}{2}\\right)^{2}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kdt}=\\frac{2\\ks}{\\kc}=\\frac{\\mk{n}{2\\sqrt{\\kD^{2}+\\left(\\frac{\\kv\\kdt}{2}\\right)^{2}}}}{\\mk{c}{\\kc}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\frac{\\mk{n}{4\\left(\\kD^{2}+\\frac{\\kv^{2}(\\kdt)^{2}}{4}\\right)}}{\\mk{c}{\\kc^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\mk{a}{\\frac{4\\kD^{2}}{\\kc^{2}}}+\\mk{b}{\\frac{\\kv^{2}}{\\kc^{2}}(\\kdt)^{2}}",
+       "uses": [],
+       "map": {
+        "n": [
+         "a",
+         "b"
+        ],
+        "c": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\mk{a}{(\\kdto)^{2}}+\\mk{b}{\\frac{\\kv^{2}}{\\kc^{2}}(\\kdt)^{2}}",
+       "uses": [
+        2
+       ],
+       "cap": "对 $\\kdto = 2\\kD/\\kc$ 取平方，得 $(\\kdto)^{2} = 4\\kD^{2}/\\kc^{2}$。"
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}\\left(1-\\frac{\\kv^{2}}{\\kc^{2}}\\right)}=\\mk{a}{(\\kdto)^{2}}",
+       "uses": [],
+       "map": {
+        "b": "t"
+       }
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\frac{\\mk{a}{(\\kdto)^{2}}}{\\mk{g}{1-\\frac{\\kv^{2}}{\\kc^{2}}}}",
+       "uses": [],
+       "map": {
+        "t": [
+         "t",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{t}{\\kdt}=\\frac{\\mk{a}{\\kdto}}{\\mk{g}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}}",
+       "uses": [],
+       "cap": "对两边取平方根；两个时间间隔都是正的。"
+      },
+      {
+       "tex": "\\mk{t}{\\kdt}=\\frac{\\mk{a}{\\kdto}}{\\mk{g}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}}=\\mk{G}{\\gamma\\kdto}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "28.2"
+    }
+   ]
+  }
+ ]
+}

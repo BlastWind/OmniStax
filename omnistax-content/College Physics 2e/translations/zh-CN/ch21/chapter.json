@@ -1,0 +1,747 @@
+{
+ "id": "21",
+ "dir": "ch21",
+ "title": "电路与直流仪表",
+ "intro": {
+  "module": "m42354",
+  "slug": "21-introduction-to-circuits-and-dc-instruments"
+ },
+ "sections": [
+  {
+   "id": "21.1",
+   "module": "m42356",
+   "title": "电阻器的串联与并联",
+   "slug": "21-1-resistors-in-series-and-parallel"
+  },
+  {
+   "id": "21.2",
+   "module": "m42357",
+   "title": "电动势：端电压",
+   "slug": "21-2-electromotive-force-terminal-voltage"
+  },
+  {
+   "id": "21.3",
+   "module": "m42359",
+   "title": "基尔霍夫定律",
+   "slug": "21-3-kirchhoffs-rules"
+  },
+  {
+   "id": "21.4",
+   "module": "m42360",
+   "title": "直流电压表与电流表",
+   "slug": "21-4-dc-voltmeters-and-ammeters"
+  },
+  {
+   "id": "21.5",
+   "module": "m42362",
+   "title": "零示测量",
+   "slug": "21-5-null-measurements"
+  },
+  {
+   "id": "21.6",
+   "module": "m42363",
+   "title": "含电阻器和电容器的直流电路",
+   "slug": "21-6-dc-circuits-containing-resistors-and-capacitors"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "R_resone",
+   "concept": "resistance",
+   "meaning": "被组合的第一个电阻器，在例题中为 1.00 Ω",
+   "unit": "Ω",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-1"
+  },
+  {
+   "sym": "R_restwo",
+   "concept": "resistance",
+   "meaning": "被组合的第二个电阻器，在例题中为 6.00 Ω",
+   "unit": "Ω",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-2"
+  },
+  {
+   "sym": "R_resthree",
+   "concept": "resistance",
+   "meaning": "被组合的第三个电阻器，在例题中为 13.0 Ω",
+   "unit": "Ω",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-3"
+  },
+  {
+   "sym": "R_ress",
+   "concept": "resistance",
+   "meaning": "整个串联的等效电阻",
+   "unit": "Ω",
+   "section": "21.1",
+   "anchor": "21.1-series"
+  },
+  {
+   "sym": "R_resp",
+   "concept": "resistance",
+   "meaning": "整个并联的等效电阻",
+   "unit": "Ω",
+   "section": "21.1",
+   "anchor": "21.1-parallel"
+  },
+  {
+   "sym": "R_restot",
+   "concept": "resistance",
+   "meaning": "混有串联和并联部分的电路的总电阻",
+   "unit": "Ω",
+   "section": "21.1",
+   "anchor": "21.1-combinations"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "电源驱动的电流，在串联的每个电阻器中都相同",
+   "unit": "A",
+   "section": "21.1",
+   "anchor": "21.1-series"
+  },
+  {
+   "sym": "I_onecurr",
+   "concept": "electric-current",
+   "meaning": "并联的第一条支路中的电流",
+   "unit": "A",
+   "section": "21.1",
+   "anchor": "21.1-parallel",
+   "ref": "resistor-1"
+  },
+  {
+   "sym": "I_twocurr",
+   "concept": "electric-current",
+   "meaning": "第二条支路中的电流",
+   "unit": "A",
+   "section": "21.1",
+   "anchor": "21.1-parallel",
+   "ref": "resistor-2"
+  },
+  {
+   "sym": "I_threecurr",
+   "concept": "electric-current",
+   "meaning": "第三条支路中的电流",
+   "unit": "A",
+   "section": "21.1",
+   "anchor": "21.1-parallel",
+   "ref": "resistor-3"
+  },
+  {
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "meaning": "电源输出的电压，是并联的每个电阻器两端的全部电压",
+   "unit": "V",
+   "section": "21.1",
+   "anchor": "21.1-series"
+  },
+  {
+   "sym": "V_1volt",
+   "concept": "potential-difference",
+   "meaning": "第一个电阻器上的电压降",
+   "unit": "V",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-1"
+  },
+  {
+   "sym": "V_2volt",
+   "concept": "potential-difference",
+   "meaning": "第二个电阻器上的电压降",
+   "unit": "V",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-2"
+  },
+  {
+   "sym": "V_3volt",
+   "concept": "potential-difference",
+   "meaning": "第三个电阻器上的电压降",
+   "unit": "V",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-3"
+  },
+  {
+   "sym": "V_p",
+   "concept": "potential-difference",
+   "meaning": "位于较大电路之中的并联组两端的电压",
+   "unit": "V",
+   "section": "21.1",
+   "anchor": "21.1-combinations"
+  },
+  {
+   "sym": "P",
+   "concept": "power",
+   "meaning": "电源输送给整个电路的功率",
+   "unit": "W",
+   "section": "21.1",
+   "anchor": "21.1-series"
+  },
+  {
+   "sym": "P_onepow",
+   "concept": "power",
+   "meaning": "第一个电阻器耗散的功率",
+   "unit": "W",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-1"
+  },
+  {
+   "sym": "P_twopow",
+   "concept": "power",
+   "meaning": "第二个电阻器耗散的功率",
+   "unit": "W",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-2"
+  },
+  {
+   "sym": "P_threepow",
+   "concept": "power",
+   "meaning": "第三个电阻器耗散的功率",
+   "unit": "W",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-3"
+  },
+  {
+   "sym": "emf",
+   "concept": "emf",
+   "meaning": "电源的电动势，即没有电流流动时它的电势差",
+   "unit": "V",
+   "section": "21.2",
+   "anchor": "21.2-emf-defined"
+  },
+  {
+   "sym": "V_volt",
+   "concept": "terminal-voltage",
+   "meaning": "端电压，即电源在输送电流时，在它自己的接线端之间测得的电压",
+   "unit": "V",
+   "section": "21.2",
+   "anchor": "21.2-terminal"
+  },
+  {
+   "sym": "r_int",
+   "concept": "internal-resistance",
+   "meaning": "电源的内阻，随电池耗尽而增大",
+   "unit": "Ω",
+   "section": "21.2",
+   "anchor": "21.2-internal"
+  },
+  {
+   "sym": "R_load",
+   "concept": "resistance",
+   "meaning": "电源所驱动的负载电阻",
+   "unit": "Ω",
+   "section": "21.2",
+   "anchor": "21.2-terminal",
+   "ref": "load"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "电源输送的电流，从正极流出时为正",
+   "unit": "A",
+   "section": "21.2",
+   "anchor": "21.2-terminal"
+  },
+  {
+   "sym": "emf_one",
+   "concept": "emf",
+   "meaning": "连在一起的两个电源中第一个的电动势",
+   "unit": "V",
+   "section": "21.2",
+   "anchor": "21.2-multiple-sources",
+   "ref": "source-1"
+  },
+  {
+   "sym": "emf_two",
+   "concept": "emf",
+   "meaning": "第二个电源的电动势",
+   "unit": "V",
+   "section": "21.2",
+   "anchor": "21.2-multiple-sources",
+   "ref": "source-2"
+  },
+  {
+   "sym": "r_intone",
+   "concept": "internal-resistance",
+   "meaning": "第一个电源的内阻",
+   "unit": "Ω",
+   "section": "21.2",
+   "anchor": "21.2-multiple-sources",
+   "ref": "source-1"
+  },
+  {
+   "sym": "r_inttwo",
+   "concept": "internal-resistance",
+   "meaning": "第二个电源的内阻",
+   "unit": "Ω",
+   "section": "21.2",
+   "anchor": "21.2-multiple-sources",
+   "ref": "source-2"
+  },
+  {
+   "sym": "r_inttot",
+   "concept": "internal-resistance",
+   "meaning": "并联电源的总内阻，比其中任何一个都小",
+   "unit": "Ω",
+   "section": "21.2",
+   "anchor": "21.2-multiple-sources"
+  },
+  {
+   "sym": "P",
+   "concept": "power",
+   "meaning": "电源输送给它的负载的功率",
+   "unit": "W",
+   "section": "21.2",
+   "anchor": "21.2-terminal"
+  },
+  {
+   "sym": "I_onecurr",
+   "concept": "electric-current",
+   "meaning": "流入节点的支路中的电流",
+   "unit": "A",
+   "section": "21.3",
+   "anchor": "21.3-junction"
+  },
+  {
+   "sym": "I_twocurr",
+   "concept": "electric-current",
+   "meaning": "流出节点的第一条支路中的电流",
+   "unit": "A",
+   "section": "21.3",
+   "anchor": "21.3-junction"
+  },
+  {
+   "sym": "I_threecurr",
+   "concept": "electric-current",
+   "meaning": "流出节点的第二条支路中的电流",
+   "unit": "A",
+   "section": "21.3",
+   "anchor": "21.3-junction"
+  },
+  {
+   "sym": "emf",
+   "concept": "emf",
+   "meaning": "回路中一个电源的电动势，回路从其负极穿到正极时记为正",
+   "unit": "V",
+   "section": "21.3",
+   "anchor": "21.3-loop"
+  },
+  {
+   "sym": "r_int",
+   "concept": "internal-resistance",
+   "meaning": "回路中电源的内阻",
+   "unit": "Ω",
+   "section": "21.3",
+   "anchor": "21.3-loop"
+  },
+  {
+   "sym": "R_resone",
+   "concept": "resistance",
+   "meaning": "回路中的第一个负载电阻",
+   "unit": "Ω",
+   "section": "21.3",
+   "anchor": "21.3-loop",
+   "ref": "resistor-1"
+  },
+  {
+   "sym": "R_restwo",
+   "concept": "resistance",
+   "meaning": "回路中的第二个负载电阻",
+   "unit": "Ω",
+   "section": "21.3",
+   "anchor": "21.3-loop",
+   "ref": "resistor-2"
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "与电流计相连的电阻：电压表中为大电阻且串联，电流表中为小电阻且并联",
+   "unit": "Ω",
+   "section": "21.4",
+   "anchor": "21.4-as-voltmeter"
+  },
+  {
+   "sym": "r_int",
+   "concept": "internal-resistance",
+   "meaning": "电流计自身的内阻",
+   "unit": "Ω",
+   "section": "21.4",
+   "anchor": "21.4-galvanometer"
+  },
+  {
+   "sym": "R_restot",
+   "concept": "resistance",
+   "meaning": "电表的总电阻，即所连电阻与电流计自身的电阻之和",
+   "unit": "Ω",
+   "section": "21.4",
+   "anchor": "21.4-as-voltmeter"
+  },
+  {
+   "sym": "I_Gcurr",
+   "concept": "electric-current",
+   "meaning": "通过电流计的电流，其满标度值就是它的电流灵敏度",
+   "unit": "A",
+   "section": "21.4",
+   "anchor": "21.4-galvanometer",
+   "ref": "galvanometer"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "要给出满标度读数的电流；在电流表中，它是被测支路中的电流，几乎全部通过分流电阻",
+   "redefines": true,
+   "unit": "A",
+   "section": "21.4",
+   "anchor": "21.4-as-ammeter"
+  },
+  {
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "meaning": "要给出满标度读数的电压，可以是电流计单独的，也可以是用它做成的电压表的",
+   "redefines": true,
+   "unit": "V",
+   "section": "21.4",
+   "anchor": "21.4-as-voltmeter"
+  },
+  {
+   "sym": "emf_x",
+   "concept": "emf",
+   "meaning": "电势差计所测的待测电动势",
+   "unit": "V",
+   "section": "21.5",
+   "anchor": "21.5-potentiometer",
+   "ref": "unknown-cell"
+  },
+  {
+   "sym": "emf_s",
+   "concept": "emf",
+   "meaning": "待测电动势与之比较的、精确已知的标准电动势",
+   "unit": "V",
+   "section": "21.5",
+   "anchor": "21.5-potentiometer",
+   "ref": "standard-cell"
+  },
+  {
+   "sym": "R_resx",
+   "concept": "resistance",
+   "meaning": "与待测电动势平衡的那段导线的电阻，也是电桥中的待测电阻",
+   "unit": "Ω",
+   "section": "21.5",
+   "anchor": "21.5-potentiometer"
+  },
+  {
+   "sym": "R_ress",
+   "concept": "resistance",
+   "meaning": "与标准电动势平衡的那段导线的电阻",
+   "unit": "Ω",
+   "section": "21.5",
+   "anchor": "21.5-potentiometer"
+  },
+  {
+   "sym": "R_resone",
+   "concept": "resistance",
+   "meaning": "惠斯通电桥的第一个精确已知的臂",
+   "unit": "Ω",
+   "section": "21.5",
+   "anchor": "21.5-wheatstone-bridge",
+   "ref": "resistor-1"
+  },
+  {
+   "sym": "R_restwo",
+   "concept": "resistance",
+   "meaning": "电桥的第二个精确已知的臂",
+   "unit": "Ω",
+   "section": "21.5",
+   "anchor": "21.5-wheatstone-bridge",
+   "ref": "resistor-2"
+  },
+  {
+   "sym": "R_resthree",
+   "concept": "resistance",
+   "meaning": "电桥的可变臂，调节到电流计读数为零",
+   "redefines": true,
+   "unit": "Ω",
+   "section": "21.5",
+   "anchor": "21.5-wheatstone-bridge",
+   "ref": "resistor-3"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "电势差计的电源通过其长导线的恒定电流",
+   "unit": "A",
+   "section": "21.5",
+   "anchor": "21.5-potentiometer"
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "电容器充电或放电所经过的电阻，包括电源的内阻",
+   "redefines": true,
+   "unit": "Ω",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "C_cap",
+   "concept": "capacitance",
+   "meaning": "电路中电容器的电容",
+   "unit": "F",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "τ_RC",
+   "concept": "time-constant",
+   "meaning": "电路的时间常量，即电压走完剩余距离的 0.632 所用的时间",
+   "unit": "s",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "开关闭合后经过的时间",
+   "unit": "s",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "meaning": "在时刻 t 电容器两端的电压",
+   "unit": "V",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "V_zero",
+   "concept": "potential-difference",
+   "meaning": "放电开始的时刻电容器上的电压",
+   "unit": "V",
+   "section": "21.6",
+   "anchor": "21.6-discharging"
+  },
+  {
+   "sym": "V_c",
+   "concept": "potential-difference",
+   "meaning": "电容器两端的电压，随电荷积累而与电源相反",
+   "unit": "V",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits",
+   "ref": "capacitor"
+  },
+  {
+   "sym": "emf",
+   "concept": "emf",
+   "meaning": "给电容器充电的电源的电动势，电容器电压趋近于它",
+   "unit": "V",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "I_0curr",
+   "concept": "electric-current",
+   "meaning": "初始电流，在开关闭合的瞬间最大",
+   "unit": "A",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "Q_charge",
+   "concept": "electric-charge",
+   "meaning": "电容器每个极板上储存的电荷",
+   "unit": "C",
+   "section": "21.6",
+   "anchor": "21.6-rc-circuits"
+  },
+  {
+   "sym": "R_resfour",
+   "concept": "resistance",
+   "meaning": "被组合的第四个电阻器，出现在该节的第一幅图中，但不在例题中",
+   "unit": "Ω",
+   "section": "21.1",
+   "anchor": "21.1-series",
+   "ref": "resistor-4"
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "欧姆定律和电阻器耗散功率中电阻器的电阻",
+   "unit": "Ω",
+   "section": "21.1"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "在相同时间内通过电源和每个电阻器的电荷",
+   "unit": "C",
+   "section": "21.1"
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "耗散功率的电阻，在例题中为负载的电阻",
+   "unit": "Ω",
+   "section": "21.2",
+   "redefines": true
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "电子所带的电荷，用它去除电子的势能便得到电压",
+   "unit": "C",
+   "section": "21.2",
+   "redefines": true
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "单个回路中的电流，在回路的每个元件中都相同，或在被穿过的元件中的电流",
+   "unit": "A",
+   "section": "21.3",
+   "redefines": true
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "回路中被穿过的电阻，其 IR 压降就是电势的变化",
+   "unit": "Ω",
+   "section": "21.3"
+  },
+  {
+   "sym": "R_resthree",
+   "concept": "resistance",
+   "meaning": "双回路电路的第三个电阻，在第二个电源的支路中",
+   "unit": "Ω",
+   "section": "21.3",
+   "ref": "resistor-3",
+   "redefines": true
+  },
+  {
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "meaning": "电势，它沿任何闭合回路的变化之和为零",
+   "unit": "V",
+   "section": "21.3",
+   "redefines": true
+  },
+  {
+   "sym": "emf_one",
+   "concept": "emf",
+   "meaning": "双回路电路的第一个电源的电动势",
+   "unit": "V",
+   "section": "21.3",
+   "ref": "source-1"
+  },
+  {
+   "sym": "emf_two",
+   "concept": "emf",
+   "meaning": "双回路电路的第二个电源的电动势",
+   "unit": "V",
+   "section": "21.3",
+   "ref": "source-2"
+  },
+  {
+   "sym": "r_intone",
+   "concept": "internal-resistance",
+   "meaning": "双回路电路的第一个电源的内阻",
+   "unit": "Ω",
+   "section": "21.3",
+   "ref": "source-1"
+  },
+  {
+   "sym": "r_inttwo",
+   "concept": "internal-resistance",
+   "meaning": "双回路电路的第二个电源的内阻",
+   "unit": "Ω",
+   "section": "21.3",
+   "ref": "source-2"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "电势能为 qV 的电荷",
+   "unit": "C",
+   "section": "21.3"
+  },
+  {
+   "sym": "I_onecurr",
+   "concept": "electric-current",
+   "meaning": "平衡电桥的 adc 支路中的电流，通过 R₁ 和 R₂",
+   "unit": "A",
+   "section": "21.5",
+   "redefines": true
+  },
+  {
+   "sym": "I_twocurr",
+   "concept": "electric-current",
+   "meaning": "平衡电桥的 abc 支路中的电流，通过 R₃ 和 Rₓ",
+   "unit": "A",
+   "section": "21.5",
+   "redefines": true
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "电势差计的长导线，或电压表内部的大电阻",
+   "unit": "Ω",
+   "section": "21.5",
+   "redefines": true
+  },
+  {
+   "sym": "V_volt",
+   "concept": "terminal-voltage",
+   "meaning": "电池的端电压，即吸取电流的电压表所读到的",
+   "unit": "V",
+   "section": "21.5",
+   "redefines": true
+  },
+  {
+   "sym": "emf",
+   "concept": "emf",
+   "meaning": "电池的电动势，即没有电流流动时它的电势差",
+   "unit": "V",
+   "section": "21.5",
+   "redefines": true
+  },
+  {
+   "sym": "r_int",
+   "concept": "internal-resistance",
+   "meaning": "电池的内阻，并不精确已知",
+   "unit": "Ω",
+   "section": "21.5",
+   "redefines": true
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "RC 电路中的电流，随电容器充电而降为零",
+   "unit": "A",
+   "section": "21.6",
+   "redefines": true
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "子弹穿过苹果的速度",
+   "unit": "m/s",
+   "section": "21.6"
+  },
+  {
+   "sym": "x",
+   "concept": "position",
+   "meaning": "子弹穿过苹果所行经的距离，即它的直径",
+   "unit": "m",
+   "section": "21.6"
+  }
+ ]
+}

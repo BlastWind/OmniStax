@@ -1,0 +1,885 @@
+{
+ "id": "32.6",
+ "module": "m42662",
+ "chapter": "32",
+ "title": "裂变",
+ "short": "裂变",
+ "lead": "把一个重核分裂成两个中等质量的碎片会释放能量，而原子核吸收一个中子就能引发这种分裂。由于裂变还会放出中子，它可以维持链式反应；反应堆使链式反应处于控制之下，链式反应还能增殖新的燃料。",
+ "objectives": [
+  "定义核裂变。",
+  "讨论裂变燃料如何发生反应，并说明它产生什么。",
+  "描述受控和不受控的链式反应。"
+ ],
+ "summary_html": "<ul><li>核裂变是原子核被分裂的一种反应。</li><li>当重核分裂成中等质量核时，裂变释放能量。</li><li>自持裂变是可能的，因为中子诱发裂变也产生中子，这些中子可以诱发其他裂变，$n+{}^{A}\\text{X}\\to \\text{FF}_{1}+\\text{FF}_{2}+xn$，其中 $\\text{FF}_{1}$ 和 $\\text{FF}_{2}$ 是两个子核，即裂变碎片，$x$ 是产生的中子数。</li><li>要达到临界，必须有一个称为临界质量的最小质量。</li><li>超过临界质量会产生超临界。</li><li>通过核转变产生新的或不同的同位素（尤其是 ${}^{239}\\text{Pu}$）称为增殖，为此目的而设计的反应堆称为增殖反应堆。</li></ul>",
+ "notes": "与出版方互动内容的链接在全书各处都被略去，这里同样略去了通往 PhET 模拟“核裂变”的链接。按原文照录的有：正文为 $\\text{BE}/A$ 的曲线引用了中子诱发裂变的图（图 32.21）；钚被写成 ${}^{239}_{94}\\text{P}_{145}$；术语表把裂变碎片定义为“a daughter nuclei”；第一题的答案给出 $Z=92=38+53$，而氙的 $Z = 54$。本模块八道习题中有四道没有给出答案，已略去：$n+{}^{235}\\text{U}\\to{}^{92}\\text{Kr}+{}^{142}\\text{Ba}+2n$ 的能量、增殖反应中守恒定律的验证、把 ${}^{232}\\text{Th}$ 增殖为燃料，以及产生 150 MW 的停堆堆芯的活度。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-05",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。八道习题中有四道没有给出答案，已略去：$n+{}^{235}\\text{U}\\to{}^{92}\\text{Kr}+{}^{142}\\text{Ba}+2n$ 中释放的能量（fs-id2070007）、增殖反应中守恒定律的验证（fs-id1586899，它与一道 32.5 的习题同用一个 id）、把 ${}^{232}\\text{Th}$ 增殖为燃料（fs-id3008175），以及仍产生 150 MW 的停堆堆芯的活度（fs-id1871891）；它们在本节的说明中已列出。前两题的答案用文字回答了第（b）和（c）问，所以只核对第（a）问的数值，其余随解答一并给出；答案中的 $Z=92=38+53$ 按原文照录。两道 AP 题没有给出答案：关于把 10 g 质量转化的一题，连同它的四个选项，保留为开放题；关于 ${}^{235}\\text{U}$ 与 ${}^{92}\\text{Kr}$ 反应的一题，也保留为开放题；两题都带有标明由 AI 生成的建议思路，均不评分。八道思考题没有答案，并带有标明由 AI 生成的建议思路。本模块没有印出理解检测框，所以没有设置行内题。数值答案接受各题卡片给出的容差，未给出时为 2%。",
+ "figures": [
+  {
+   "id": "photo-power-plant",
+   "kind": "photo",
+   "number": "32.20",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fission-chain",
+   "kind": "sim",
+   "number": "32.21",
+   "folds": [
+    "32.22"
+   ],
+   "originals": [
+    "/media/ch32/Figure_33_06_02a.jpg",
+    "/media/ch32/Figure_33_06_03a.jpg"
+   ],
+   "original_caption": "（图 32.21）图示中子诱发裂变。首先，这个大原子核吸收一个中子时，能量被注入其中。原子核像被击中的液滴一样发生形变，并开始在中间变细。由于相互接触的核子减少，库仑斥力能够把原子核撕成两部分，同时还有一些中子飞出。（图 32.22）如果每次裂变都产生足够的中子，至少再诱发一次裂变，链式反应就能产生自持裂变。这取决于几个因素，包括平均每次裂变产生多少个中子，以及使某种特定核素发生裂变有多容易。",
+   "widths": [
+    225,
+    350
+   ],
+   "conventions": [
+    "n0",
+    "p+",
+    "U"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-reactor",
+   "kind": "sim",
+   "number": "32.23",
+   "originals": [
+    "/media/ch32/Figure_33_06_04a.jpg"
+   ],
+   "original_caption": "压水堆设计巧妙，既能控制大量 ²³⁵U 的裂变，又能利用裂变反应产生的热来制造蒸汽以发电。控制棒调节中子通量，使反应堆达到临界，但不超过临界。万一反应堆过热并把水烧干，链式反应就会终止，因为需要水来使中子热化。这一固有的安全特性在极端情况下可能被压垮。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "power"
+   ],
+   "conventions": [
+    "n0",
+    "U"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "fission",
+   "concept": "nuclear-fission",
+   "verb": "introduces"
+  },
+  {
+   "span": "fission",
+   "concept": "fission-releases-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "fission",
+   "concept": "binding-energy-per-nucleon",
+   "verb": "uses"
+  },
+  {
+   "span": "fission",
+   "concept": "binding-energy-per-nucleon-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fission",
+   "concept": "nuclear-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fission-energy-example",
+   "concept": "fission-energy-from-masses",
+   "verb": "introduces"
+  },
+  {
+   "span": "fission-energy-example",
+   "concept": "nuclear-reaction-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "fission-energy-example",
+   "concept": "atomic-mass-unit",
+   "verb": "uses"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "neutron-induced-fission",
+   "verb": "introduces"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "liquid-drop-model",
+   "verb": "introduces"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "fission-fragments",
+   "verb": "introduces"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "chain-reaction-and-critical-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "surface-tension",
+   "verb": "uses"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "conservation-of-nucleon-number",
+   "verb": "uses"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "neutron-induced-fission",
+   "concept": "alpha-decay-process",
+   "verb": "uses"
+  },
+  {
+   "span": "critical-mass",
+   "concept": "critical-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-mass",
+   "concept": "odd-neutron-number-fissile",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-mass",
+   "concept": "chain-reaction-and-critical-mass",
+   "verb": "reinforces"
+  },
+  {
+   "span": "critical-mass",
+   "concept": "isotopes",
+   "verb": "uses"
+  },
+  {
+   "span": "reactors",
+   "concept": "reactor-moderation-and-control",
+   "verb": "introduces"
+  },
+  {
+   "span": "reactors",
+   "concept": "criticality",
+   "verb": "introduces"
+  },
+  {
+   "span": "reactors",
+   "concept": "supercriticality",
+   "verb": "introduces"
+  },
+  {
+   "span": "reactors",
+   "concept": "chain-reaction-and-critical-mass",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reactors",
+   "concept": "rms-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "reactors",
+   "concept": "diffusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fuel-energy-example",
+   "concept": "fission-energy-per-kilogram",
+   "verb": "introduces"
+  },
+  {
+   "span": "fuel-energy-example",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "fuel-energy-example",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "fuel-energy-example",
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "verb": "uses"
+  },
+  {
+   "span": "breeding",
+   "concept": "breeding-plutonium",
+   "verb": "introduces"
+  },
+  {
+   "span": "breeding",
+   "concept": "breeder-reactor",
+   "verb": "introduces"
+  },
+  {
+   "span": "breeding",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "breeding",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "breeding",
+   "concept": "gamma-decay",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2500538",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fission",
+   "prompt": "下列关于核裂变的说法，哪一项是正确的？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "裂变反应不能产生新元素。",
+     "裂变反应释放的能量通常小于聚变反应。",
+     "在裂变反应中，两个轻核结合成一个较重的核。",
+     "裂变反应可以根据质能守恒来解释。"
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "solution": "(d)",
+    "hint": "想一想分裂后的铀核的碎片是什么，以及释放的能量从何而来。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2328532",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fission-energy-example",
+   "prompt": "以 70% 的效率把 10 g 质量转化为能量，得到的能量是多少？\n(a) $3.93\\times 10^{27}$ MeV\n(b) $3.93\\times 10^{30}$ MeV\n(c) $5.23\\times 10^{27}$ MeV\n(d) $5.23\\times 10^{30}$ MeV",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "得到的能量是 $3.93\\times10^{27}$ MeV，即选项（a）。10 g 的静能为 $\\kE=m\\kc^{2}=(0.010\\;\\text{kg})(3.00\\times10^{8}\\;\\text{m/s})^{2}=9.0\\times10^{14}\\;\\text{J}$。在 70% 的效率下，得到的能量为 $0.70(9.0\\times10^{14}\\;\\text{J})=6.3\\times10^{14}\\;\\text{J}$，再除以 $1.602\\times10^{-13}\\;\\text{J/MeV}$，得 $3.93\\times10^{27}\\;\\text{MeV}$。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2181068",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "neutron-induced-fission",
+   "prompt": "在 ${}^{239}\\text{Pu}$ 的中子诱发裂变反应中，与 ${}^{96}\\text{Sr}$ 和四个中子一同产生的是下列哪一种？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "${}_{56}^{139}\\text{Ba}$",
+     "${}_{56}^{140}\\text{Ba}$",
+     "${}_{54}^{139}\\text{Xe}$",
+     "${}_{54}^{140}\\text{Xe}$"
+    ],
+    "correct": 1,
+    "generated_by": "source",
+    "solution": "(b)",
+    "hint": "使核子数守恒，要算上入射的那个中子和飞出的四个中子，并使电荷守恒：钚的 $Z = 94$，锶的 $Z = 38$。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2701414",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "neutron-induced-fission",
+   "prompt": "用一个中子轰击 ${}^{235}\\text{U}$ 时，发生如下裂变反应：${}_{92}^{235}\\text{U}+n\\to {}_{56}^{141}\\text{Ba}+{}_{y}^{92}\\text{Kr}+xn$。\n（a）求 $x$ 和 $y$ 的值。\n（b）假设 ${}^{235}\\text{U}$ 的质量为 235.04 u，${}^{141}\\text{Ba}$ 的质量为 140.91 u，${}^{92}\\text{Kr}$ 的质量为 91.93 u，$n$ 的质量为 1.01 u，一位学生算出裂变反应释放的能量为 $2.689\\times 10^{-8}$，但忘了写单位。求正确的单位，并把答案换算成 MeV。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）$x=3$，$y=36$。电荷守恒，所以 $92+0=56+y$，$y=36$。核子数守恒，所以 $235+1=141+92+x$，$x=3$。（b）单位是毫焦，即 $\\text{g}\\cdot\\text{m}^{2}/\\text{s}^{2}$，释放的能量约为 168 MeV。被消灭的质量为 $\\kdm=(235.04\\;\\text{u}+1.01\\;\\text{u})-(140.91\\;\\text{u}+91.93\\;\\text{u}+3\\times1.01\\;\\text{u})=0.18\\;\\text{u}$。把 $\\kdm$ 换成千克，$(0.18\\;\\text{u})(1.66\\times10^{-27}\\;\\text{kg/u})=2.99\\times10^{-28}\\;\\text{kg}$，而 $(\\kdm)\\kc^{2}=(2.99\\times10^{-28}\\;\\text{kg})(3.00\\times10^{8}\\;\\text{m/s})^{2}=2.689\\times10^{-11}\\;\\text{J}$。学生的数字大了一千倍，所以质量是按克取的，结果为 $2.689\\times10^{-8}\\;\\text{mJ}$。以 MeV 计，这是 $(2.689\\times10^{-11}\\;\\text{J})/(1.602\\times10^{-13}\\;\\text{J/MeV})=168\\;\\text{MeV}$，与 $(0.18\\;\\text{u})(931.5\\;\\text{MeV/u})=168\\;\\text{MeV}$ 一致。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2499792",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fission",
+   "prompt": "解释为什么重核的裂变会释放能量。同样，为什么使轻核裂变需要输入能量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "重核裂变释放能量，是因为它的碎片比原来的核结合得更紧密；轻核裂变需要能量，是因为它的碎片会结合得更松。重核的 $\\kBE/A$ 约为每核子 7.6 MeV，而中等质量核约为每核子 8.6 MeV，所以把重核分裂成中等质量的碎片，会使它的核子结合得更紧密：产物的质量更小，被消灭的质量以能量形式释放。对轻核来说，$\\kBE/A$ 曲线随 $A$ 上升，所以分裂轻核得到的碎片的 $\\kBE/A$ 会比原来的核小；它们的质量会比原来的核大，多出的这部分质量必须以能量的形式供给。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3089659",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reactors",
+   "prompt": "用动量守恒和能量守恒解释，为什么中子与质子的碰撞比与氧的碰撞更能使中子热化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "中子在一次碰撞中几乎可以把它的全部动能交给一个质子，但只能把一小部分交给一个氧原子核，所以与质子碰撞能以少得多的步数把它减速到热能。在与质量相等的静止物体的弹性对头碰撞中，只有当中子停下、质子带走全部动能时，动量和动能才能同时守恒。氧原子核的质量约为中子的十六倍，所以要同时满足动量守恒和能量守恒，中子就必须以其大部分速率弹回，就像球从墙上弹回那样，而氧核则缓慢离去，只带走很少的能量。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1514358",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reactors",
+   "prompt": "切尔诺贝利反应堆的废墟被事故后在其周围修建的一座巨大的混凝土建筑封闭起来。冬天有一些雨水渗入这座建筑，从建筑中发出的放射性随之增强。这意味着里面正在发生什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "放射性的增强意味着里面的燃料接近临界，并且水在提高裂变的速率。水使中子热化，而慢中子正是 ${}^{235}\\text{U}$ 所吸收并借以发生裂变的中子。雨水进来后，使剩余燃料中的中子慢化，于是更多的中子引发裂变，多出来的裂变产生新的放射性裂变产物，使建筑放出的放射性增强。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1871243",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "neutron-induced-fission",
+   "prompt": "铀核或钚核裂变成若干裂变碎片，其质量分布覆盖很宽的范围，你预期裂变比聚变会留下更多的残留放射性吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会。裂变碎片是中等质量核，它们大致保持了重母核的中子质子比，而这个比值对同样大小的稳定核来说过高，所以其中大多数是放射性的，会发生 $\\beta^{-}$ 衰变，往往要经过好几步；又因为裂变产生的碎片范围很宽，所以有许多具有不同半衰期的不同放射性核素。轻核聚变产生的主要是稳定的产物，例如氦；它的放射性主要来自氚，以及中子对周围材料的活化。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1980156",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reactors",
+   "prompt": "即使产生功率的裂变链式反应已被关停，反应堆堆芯仍会由裂变产物的衰变产生大量热能。反应堆运行了很长时间后，还是运行了很短时间后，这种余热会最大？如果反应堆已经停堆数月呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "反应堆运行很长时间后，余热最大；停堆数月后则小得多。反应堆运行得越久，积累的裂变产物就越多，包括长寿命的那些，所以链式反应停止时正在衰变的裂变产物也就越多。停堆之后不再产生新的裂变产物，每一种都按各自的半衰期衰变掉，所以余热随时间下降；数月后，短寿命的产物已经消失，只剩下活度较低的长寿命产物还在加热堆芯。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2682824",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reactors",
+   "prompt": "核反应堆怎么能含有许多个临界质量而不变成超临界？反应堆中用什么方法来控制裂变？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "临界质量是在没有其他东西吸收中子时，维持链式反应所需的最少燃料。反应堆含有许多个临界质量，但在燃料之间放置了由强烈吸收中子的核素制成的控制棒，使平均而言每次裂变只有一个中子继续引发下一次裂变。把控制棒插入或拔出可以调节中子通量，使反应堆保持在临界而不超过临界，而使中子热化的水提供负反馈：如果它过热而沸腾蒸干，链式反应就会停止。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2662098",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "critical-mass",
+   "prompt": "为什么中子数为奇数的重核可以被热中子诱发裂变，而中子数为偶数的重核却需要输入更多的能量才能诱发裂变？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "核力对偶数个中子的束缚比对奇数个更强。原子核吸收一个中子，若原来的中子数为奇数，吸收后就变成偶数，所以沉积的能量比原来已是偶数时多约 2 MeV。这份额外的能量使原子核形变得足以裂变，即使中子带来的动能几乎为零；中子数为偶数的原子核得到的能量较少，中子必须以动能的形式补上差额。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3149360",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reactors",
+   "prompt": "为什么常规的裂变核反应堆不会像炸弹那样爆炸？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "常规反应堆不会像炸弹那样爆炸，因为它的燃料无法维持炸弹所需的快速快中子链式反应。炸弹必须在高度浓缩的燃料中以快中子变得强烈超临界，才会把自身炸开。常规反应堆的燃料只是轻度浓缩的，所以只有靠水热化了的中子才能维持链式反应；如果反应堆过热、水沸腾蒸干，慢化作用就消失，链式反应就会停止。它可能过热而熔化，或者因蒸汽压力而破裂，但不会像核弹那样爆炸。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1151311",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fission-energy-example",
+   "prompt": "（a）计算中子诱发裂变（类似于例题 32.3 中的自发裂变）\n$n+{}^{238}\\text{U}\\to {}^{96}\\text{Sr}+{}^{140}\\text{Xe}+3n,$\n中释放的能量，已知 $m({}^{96}\\text{Sr})=95.921750\\ \\text{u}$，$m({}^{140}\\text{Xe})=139.92164$。（b）这个结果比自发裂变的结果大约多 6 MeV。为什么？（c）验证在这个反应中，总核子数和总电荷是守恒的。",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 177.1,
+    "unit": "MeV",
+    "tol": 0.005,
+    "generated_by": "source",
+    "hint": "把入射中子的质量加到例题 32.3 中 ${}^{238}\\text{U}$ 的质量上，减去产物（包括三个中子）的质量，再乘以 931.5 MeV/u。",
+    "solution": "（a）177.1 MeV\n（b）因为获得一个外来的中子会产生约 6 MeV，这就是重核的平均 $BE/A$。\n（c）$A=1+238=96+140+1+1+1,\\; Z=92=38+53,\\; \\text{efn}=0=0$<sup class=\"fn\" data-note=\"c-p1-xenon\"></sup>"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2449340",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fission-energy-example",
+   "prompt": "（a）计算中子诱发裂变反应\n$n+{}^{239}\\text{Pu}\\to {}^{96}\\text{Sr}+{}^{140}\\text{Ba}+4n,$\n中释放的能量，已知 $m({}^{96}\\text{Sr})=95.921750\\ \\text{u}$，$m({}^{140}\\text{Ba})=139.910581\\ \\text{u}$。\n（b）验证在这个反应中，总核子数和总电荷是守恒的。",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 180.6,
+    "unit": "MeV",
+    "tol": 0.005,
+    "generated_by": "source",
+    "hint": "取 ${}^{239}\\text{Pu}$ 的质量为 239.052157 u。入射的中子与飞出的四个中子之一相抵消，所以右边剩下三个中子的质量。",
+    "solution": "（a）180.6 MeV\n（b）$A=1+239=96+140+1+1+1+1,\\; Z=94=38+56,\\; \\text{efn}=0=0$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1248028",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "breeding",
+   "prompt": "增殖钚在任何钚发生裂变之前就产生了能量。（切尔诺贝利四座核反应堆的主要目的是增殖钚以制造武器。电力只是供平民使用的副产品。）计算例题 32.4 之后列出的钚增殖各反应中产生的能量。有关的质量为 $m({}^{239}\\text{U})=239.054289\\ \\text{u}$，$m({}^{239}\\text{Np})=239.052932\\ \\text{u}$，$m({}^{239}\\text{Pu})=239.052157\\ \\text{u}$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "${}^{238}\\text{U}+n\\to {}^{239}\\text{U}+\\gamma$: 4.81 MeV\n${}^{239}\\text{U}\\to {}^{239}\\text{Np}+\\beta^{-}+v_{e}$: 0.753 MeV\n${}^{239}\\text{Np}\\to {}^{239}\\text{Pu}+\\beta^{-}+v_{e}$: 0.211 MeV",
+    "parts": [
+     {
+      "part": "neutron capture by ²³⁸U",
+      "value": 4.81,
+      "unit": "MeV",
+      "tol": 0.005,
+      "hint": "用 $m({}^{238}\\text{U}) = 238.050784\\ \\text{u}$ 和 $m(n) = 1.008665\\ \\text{u}$；$\\gamma$ 射线没有质量。"
+     },
+     {
+      "part": "β⁻ decay of ²³⁹U",
+      "value": 0.753,
+      "unit": "MeV",
+      "tol": 0.005,
+      "hint": "用原子质量时，电子的质量已经算在子原子里了，所以把两个原子质量相减。"
+     },
+     {
+      "part": "β⁻ decay of ²³⁹Np",
+      "value": 0.211,
+      "unit": "MeV",
+      "tol": 0.01,
+      "hint": "同样是两个原子质量之差，再乘以 931.5 MeV/u。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id744835",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fuel-energy-example",
+   "prompt": "一座大型核反应堆设施的输出电功率为 900 MW。它把核功率转换为电功率的效率为 35.0%。\n（a）以兆瓦计，核热功率输出是多少？\n（b）假设平均每次裂变产生 200 MeV，每秒有多少个 ${}^{235}\\text{U}$ 核发生裂变？\n（c）满功率运行一年，有多少质量的 ${}^{235}\\text{U}$ 发生裂变？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）$2.57\\times 10^{3}\\ \\text{MW}$\n（b）$8.03\\times 10^{19}\\ \\text{次裂变/s}$\n（c）991 kg",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2570,
+      "unit": "MW",
+      "hint": "电输出功率是核功率的 35.0%。"
+     },
+     {
+      "part": "(b)",
+      "value": 8.03e+19,
+      "unit": "fission/s",
+      "hint": "用一次裂变的能量（以焦耳计）去除热功率（以瓦计）。"
+     },
+     {
+      "part": "(c)",
+      "value": 991,
+      "unit": "kg",
+      "hint": "用每秒的裂变次数乘以一年的秒数，再用 235.04 g/mol 和阿伏伽德罗常量把核的数目换算成质量。"
+     }
+    ]
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "nuclear-fission",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "fission-releases-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "rest-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "fission-energy-from-masses",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "neutron-induced-fission",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-nucleon-number",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-charge",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "neutron-induced-fission",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "conservation-of-nucleon-number",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "fission-energy-from-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "fission-releases-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "binding-energy-per-nucleon-curve",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "reactor-moderation-and-control",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "elastic-collision",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "reactor-moderation-and-control",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "criticality",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "fission-fragments",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "nuclear-fusion",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "reactor-moderation-and-control",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "half-life",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "criticality",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "reactor-moderation-and-control",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "critical-mass",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "odd-neutron-number-fissile",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "liquid-drop-model",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "reactor-moderation-and-control",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "supercriticality",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "fission-energy-from-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-nucleon-number",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "fission-energy-from-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "conservation-of-charge",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "breeding-plutonium",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "nuclear-reaction-energy",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "fission-energy-per-kilogram",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "power",
+   "weight": 1,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ff-1",
+   "label": "第一个裂变碎片 FF₁",
+   "figures": [
+    "sim-fission-chain"
+   ]
+  },
+  {
+   "id": "ff-2",
+   "label": "第二个裂变碎片 FF₂",
+   "figures": [
+    "sim-fission-chain"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-plutonium-symbol",
+   "kind": "correction",
+   "html": "书中印的是 $\\text{P}$，那是磷的符号。钚是 $\\text{Pu}$：${}^{239}_{94}\\text{Pu}_{145}$。"
+  },
+  {
+   "id": "c-bea-figure",
+   "kind": "correction",
+   "html": "此处及下一段中的图 32.21 是中子诱发裂变。$\\kBE/A$ 对 $A$ 的曲线是“聚变”一节中的图 32.12。"
+  },
+  {
+   "id": "c-p1-xenon",
+   "kind": "correction",
+   "html": "书中的答案写的是 $Z = 92 = 38 + 53$。氙的 $Z = 54$，而 $38 + 54 = 92$。"
+  }
+ ]
+}

@@ -1,0 +1,152 @@
+/* Figures for section 1.4 Approximation. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['1.4'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, text, headline, topline, vbracket, nice } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* a number written the way the book writes it: whole when it is whole, otherwise to one decimal */
+const num = (x) => (Math.abs(x - Math.round(x)) < 1e-9 ? String(Math.round(x)) : fmt(x, 1));
+/* a number with the digits its size calls for: none above ten, one above one, and just enough below that */
+const dec = (x) => (x >= 10 ? fmt(x, 0) : x >= 1 ? fmt(x, 1) : plain(x));
+/* a small decimal with only the digits it needs, for the values that round to less than one */
+function plain(x) { if (x <= 0) return '0'; const d = Math.max(0, -Math.floor(Math.log10(x))); return fmt(x, d); }
+/* a number rounded to one significant figure, as Example 1.4 rounds its result */
+function round1(x) { if (x <= 0) return 0; const p = Math.pow(10, Math.floor(Math.log10(x))); return Math.round(x / p) * p; }
+/* a number in scientific notation with up to three significant figures, trailing zeros dropped, as LaTeX */
+function sci(x) {
+  let e = Math.floor(Math.log10(x)); let m = +(x / Math.pow(10, e)).toFixed(2); if (m >= 10) { m = 1; e += 1; }
+  return `${String(m)} \\times 10^{${e}}`;
+}
+
+/* a standing person of height h with their feet at (x, y): the library's jointed figure, which stands 97 units tall at s = 1 */
+const PERSON_H = 97;
+function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSON_H }); }
+
+/* =====================================================================
+   SIM 1: the height of a building. A person stands beside a building
+   on a common ground line, and the stories stack up one by one, a
+   staggered arrival on first view, while a bracket on the right reads
+   the running height; after that a slider redraws at once. The
+   ground story is shown magnified on the left with the persons that
+   make it up, since at 39 stories a person to scale is a few units
+   tall. An estimate has no time in it, so there is no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-building', 620);
+  const N = ctl(d.controls, { label: '\\text{层数}', cls: '', min: 1, max: 100, step: 1, value: 39, unit: '', dec: 0, aria: '楼层数' });
+  const P = ctl(d.controls, { label: '\\text{身高}', cls: 'position', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, aria: '人的身高' });
+  const S = ctl(d.controls, { label: '\\text{每层人数}', cls: '', min: 1, max: 3, step: 0.5, value: 2, unit: '', dec: 1, aria: '每层的人数' });
+  function draw() {
+    const { ctx } = begin(d.c);
+    const kA = F.arrival(d), done = kA >= 1;
+    const story = P.v * S.v, total = N.v * story, meters = (m) => (m < 10 ? num(m) : String(Math.round(m)));
+    let grown = 0; for (let i = 0; i < N.v; i++) grown += F.stagger(kA, i, N.v, 0.1);
+    const n = done ? N.v : Math.ceil(grown - 1e-6), up = (done ? N.v : grown) * story;
+    /* The ground line, and a scale fixed once from the tallest the sliders allow: 100 stories of
+       2.0 m per person and 3 persons per story is 600 m, drawn 440 units high. It never follows the
+       building, so one story and a hundred stories are drawn as different as they are. */
+    const G = 560, MAX_M = 100 * 2 * 3, k = 440 / MAX_M;
+    line(ctx, 60, G, 1340, G, PAL.muted, 3);
+    /* the ground story, magnified, with its persons stacked inside */
+    const ix0 = 90, ix1 = 370, it = 190, ih = G - it, ph = ih / S.v, icx = (ix0 + ix1) / 2;
+    text(ctx, '一层楼容纳 ' + num(S.v) + ' 个人', icx, 140, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, '高 ' + num(story) + ' m', icx, 162, PAL.muted, { size: 17, align: 'center' });
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fillRect(ix0, it, ix1 - ix0, ih); ctx.restore();
+    ctx.save(); ctx.beginPath(); ctx.rect(ix0, it, ix1 - ix0, ih); ctx.clip();
+    for (let i = 0; i < Math.ceil(S.v - 1e-9); i++) person(ctx, icx, G - i * ph, ph, F.ref('person'));
+    ctx.restore();
+    line(ctx, ix0, it, ix1, it, PAL.ink, 3); line(ctx, ix0, it, ix0, G, PAL.muted, 2); line(ctx, ix1, it, ix1, G, PAL.muted, 2);
+    /* the building, one story at a time */
+    const bx0 = 640, bx1 = 900, sh = story * k, top = G - up * k;
+    line(ctx, ix1, it, bx0, G - sh, PAL.rule, 2, [6, 8]); line(ctx, ix1, G, bx0, G, PAL.rule, 2, [6, 8]);
+    if (n > 0) {
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bx0, top, bx1 - bx0, G - top); ctx.restore();
+      if (sh >= 7) for (let i = 1; i < n; i++) line(ctx, bx0, G - i * sh, bx1, G - i * sh, PAL.muted, 1.5);
+      if (sh >= 14) {   /* windows, a row per story, and a door on the ground story, once a story is tall enough to hold them */
+        ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.35);
+        const wh = Math.min(sh * 0.45, 22), ww = 18;
+        for (let i = 0; i < n; i++) for (let c = 0; c < 6; c++) { const wx = bx0 + 28 + c * 40, wy = G - i * sh - sh / 2 - wh / 2; if (i === 0 && c === 2) continue; ctx.fillRect(wx, wy, ww, wh); }
+        ctx.fillStyle = PAL.ink; ctx.fillRect(bx0 + 28 + 2 * 40 - 4, G - Math.min(sh * 0.8, 30), 26, Math.min(sh * 0.8, 30));
+        ctx.restore();
+      }
+      ctx.save(); ctx.strokeStyle = F.ref('building'); ctx.lineWidth = 3; ctx.strokeRect(bx0, top, bx1 - bx0, G - top); ctx.restore();
+      line(ctx, bx0 - 8, top, bx1 + 8, top, F.ref('building'), 4);
+      if (G - top >= 40) vbracket(ctx, 950, G, top, C('position'), meters(up) + ' m');
+      else { vbracket(ctx, 950, G, top, C('position')); text(ctx, meters(up) + ' m', 966, top - 22, C('position'), { weight: 600 }); }
+    }
+    text(ctx, N.v + ' 层', (bx0 + bx1) / 2, G + 30, PAL.muted, { size: 17, align: 'center' });
+    /* the person beside it, at the same scale as the building */
+    const hp = P.v * k;
+    person(ctx, 560, G, hp, F.ref('person'));
+    text(ctx, '一个人，' + num(P.v) + ' m', 560, G - hp - 24, F.ref('person'), { size: 17, weight: 600, align: 'center' });
+    const tot = meters(total);
+    headline(ctx, done ? N.v + ' 层，每层约 ' + num(story) + ' m，楼高约 ' + tot + ' m。'
+      : '共 ' + N.v + ' 层中已建起 ' + n + ' 层，这栋楼目前高 ' + meters(up) + ' m。');
+    const exact = Math.abs(total - Math.round(total)) < 1e-9;
+    readout(d.readout, `\\frac{${num(P.v)}\\ \\text{m}}{1\\ \\text{人}} \\times \\frac{${num(S.v)}\\ \\text{人}}{1\\ \\text{层}} \\times ${N.v}\\ \\text{层} ${exact || total < 10 ? '=' : '\\approx'} ${tot}\\ \\text{m}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM 2: a trillion dollars on a football field. A side view of the
+   field, 100 yd between the end zones, with a scale in feet on the left
+   and a person 6 ft tall in the end zone for scale; the pile of
+   100-bill stacks rises on the field to its final height, which is
+   computed from the set amount and thickness with the field's true
+   area and rounded to one significant figure as the example does.
+   The pile rises as the figure's arrival on first view; after that a
+   slider redraws at once, and there is no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-trillion', 670);
+  const A = ctl(d.controls, { label: '\\text{金额}', cls: '', min: 0.1, max: 30, step: 0.1, value: 1, unit: '万亿美元', dec: 1, specials: [{ at: 28, label: '2021 年债务' }], aria: '以万亿美元计的金额' });
+  const TH = ctl(d.controls, { label: '\\text{每摞厚度}', cls: 'position', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, aria: '一摞 100 张钞票的厚度' });
+  const AREA = 6480000;   /* the field between the end zones, 100 yd by 50 yd, in square inches */
+  const volumeOf = (trillions) => (trillions * 1e12 / 1e4) * 6 * 3 * TH.v;   /* stacks of 10,000 dollars, each 6 in. by 3 in. by the set thickness */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const k = F.ease.out(F.arrival(d)), done = k >= 1;
+    const vol = volumeOf(A.v), Hin = vol / AREA, Hft = Hin / 12;
+    const H1 = round1(Hin), F1 = round1(H1 / 12);
+    const h = Hft * k;
+    /* the field in side view: the end zones shaded, the yard line ticked every 10 yd */
+    const G = 560, fx0 = 240, fx1 = 1300, ez = (fx1 - fx0) / 12, gx0 = fx0 + ez, gx1 = fx1 - ez, Xy = (yd) => gx0 + ((gx1 - gx0) * yd) / 100;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(fx0, G, fx1 - fx0, 24); ctx.fillStyle = alpha(PAL.muted, 0.25); ctx.fillRect(fx0, G, ez, 24); ctx.fillRect(gx1, G, ez, 24); ctx.restore();
+    line(ctx, 200, G, 1340, G, PAL.muted, 3); line(ctx, gx0, G, gx1, G, F.ref('field'), 4);
+    for (let yd = 0; yd <= 100; yd += 10) line(ctx, Xy(yd), G, Xy(yd), G + 24, F.ref('field'), yd % 50 ? 1.5 : 3);
+    for (const yd of [0, 50, 100]) text(ctx, yd + ' yd', Xy(yd), G + 44, PAL.muted, { size: 17, align: 'center' });
+    /* the end zones are named a row below the yard numbers: inside the strip the words would run onto the pile's edges */
+    text(ctx, '端区', fx0 + ez / 2, G + 72, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, '端区', fx1 - ez / 2, G + 72, PAL.muted, { size: 17, align: 'center' });
+    /* The scale in feet is fixed at 0 to 40 ft, which holds the example's pile of about 10 ft with
+       room to spare, and never follows the pile. A pile taller than the scale is drawn to the top of
+       it with its true height written above, so the reader is told it runs past the drawing. */
+    const ax = 200, top = 150, span = { hi: 40, n: 4 }, step = 10;
+    const Y = (ft) => G - (Math.min(ft, span.hi) / span.hi) * (G - top);
+    const over = h > span.hi;
+    line(ctx, ax, G, ax, top, PAL.muted, 2);
+    for (let i = 0; i <= span.n; i++) { const v = i * step; line(ctx, ax - 8, Y(v), ax, Y(v), PAL.muted, 2); text(ctx, fmt(v, 0) + ' ft', ax - 16, Y(v), PAL.muted, { size: 17, align: 'right' }); }
+    /* the pile of stacks between the end zones */
+    const py = Y(h);
+    if (h > 0) {
+      ctx.save(); ctx.fillStyle = alpha(F.ref('pile'), 0.1); ctx.fillRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
+      const gap = 14; if (G - py > 2 * gap) for (let y = G - gap; y > py + 2; y -= gap) line(ctx, gx0, y, gx1, y, alpha(PAL.ink, 0.18), 1.5);
+      ctx.save(); ctx.strokeStyle = F.ref('pile'); ctx.lineWidth = 3; ctx.strokeRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
+      text(ctx, dec(h * 12) + ' in.，即 ' + dec(h) + ' ft' + (over ? '，超出了标尺顶端' : ''), (gx0 + gx1) / 2, py - 22, C('position'), { weight: 600, align: 'center' });
+    }
+    /* a person 6 ft tall in the end zone, at the scale of the axis */
+    const hp = (6 / span.hi) * (G - top), px = fx1 - ez / 2;
+    person(ctx, px, G, hp, F.ref('fan'));
+    text(ctx, '一个人', px - 12, G - hp - 44, F.ref('fan'), { size: 17, weight: 600, align: 'left' });
+    text(ctx, '身高 6 ft', px - 12, G - hp - 24, C('position'), { size: 17, weight: 600, align: 'left' });
+    const amount = A.v === 1 ? '一万亿美元' : fmt(A.v, 1) + ' 万亿美元';
+    topline(ctx, done ? amount + '的 $100 钞票铺满球场，高度约为 ' + plain(H1) + ' in.，' + (F1 >= 1 ? '即约 ' + plain(F1) + ' ft' : '不到一英尺') + (over ? '，比左侧标尺所能达到的还高。' : '。')
+      : '钞票正一摞摞铺下，钱堆目前高 ' + dec(h) + ' ft。');
+    readout(d.readout, `\\text{高度} = \\frac{${sci(vol)}\\ \\text{in.}^{3}}{6.48 \\times 10^{6}\\ \\text{in.}^{2}} = ${dec(Hin)}\\ \\text{in.} \\approx ${sci(H1)}\\ \\text{in.} = ${plain(F1)}\\ \\text{ft}`,
+      '例题只保留一位有效数字，因为它的输入量就是这么粗略。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

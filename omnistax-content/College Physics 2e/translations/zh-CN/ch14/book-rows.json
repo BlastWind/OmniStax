@@ -1,0 +1,1228 @@
+{
+ "types": [
+  {
+   "id": "latent-heat",
+   "label": "潜热",
+   "dimension": "J/kg"
+  },
+  {
+   "id": "specific-heat",
+   "label": "比热容",
+   "dimension": "J/(kg·°C)"
+  },
+  {
+   "id": "thermal-conductivity",
+   "label": "热导率",
+   "dimension": "J/(s·m·°C)"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "Q_heat",
+   "latex": "Q",
+   "macro": "\\kQh"
+  },
+  {
+   "sym": "Q_hot",
+   "latex": "Q_{\\text{hot}}",
+   "macro": "\\kQhot"
+  },
+  {
+   "sym": "Q_cold",
+   "latex": "Q_{\\text{cold}}",
+   "macro": "\\kQcold"
+  },
+  {
+   "sym": "Q_net",
+   "latex": "Q_{\\text{net}}",
+   "macro": "\\kQnet"
+  },
+  {
+   "sym": "T_itemp",
+   "latex": "T_{\\text{i}}",
+   "macro": "\\kTempi"
+  },
+  {
+   "sym": "T_primetemp",
+   "latex": "T'",
+   "macro": "\\kTemppr"
+  },
+  {
+   "sym": "T_hottemp",
+   "latex": "T_{\\text{hot}}",
+   "macro": "\\kTemphot"
+  },
+  {
+   "sym": "T_coldtemp",
+   "latex": "T_{\\text{cold}}",
+   "macro": "\\kTempcold"
+  },
+  {
+   "sym": "c_spec",
+   "latex": "c",
+   "macro": "\\kcspec"
+  },
+  {
+   "sym": "c_p",
+   "latex": "c_{\\text{p}}",
+   "macro": "\\kcp"
+  },
+  {
+   "sym": "c_v",
+   "latex": "c_{\\text{v}}",
+   "macro": "\\kcv"
+  },
+  {
+   "sym": "L_f",
+   "latex": "L_{\\text{f}}",
+   "macro": "\\kLf"
+  },
+  {
+   "sym": "L_v",
+   "latex": "L_{\\text{v}}",
+   "macro": "\\kLv"
+  },
+  {
+   "sym": "L_s",
+   "latex": "L_{\\text{s}}",
+   "macro": "\\kLs"
+  },
+  {
+   "sym": "L_latent",
+   "latex": "L",
+   "macro": "\\kLlat"
+  },
+  {
+   "sym": "k_cond",
+   "latex": "k",
+   "macro": "\\kkcond"
+  },
+  {
+   "sym": "d_thick",
+   "latex": "d",
+   "macro": "\\kdthick"
+  },
+  {
+   "sym": "R_factor",
+   "latex": "R"
+  },
+  {
+   "sym": "e_emis",
+   "latex": "e"
+  },
+  {
+   "sym": "σ_SB",
+   "latex": "\\sigma"
+  },
+  {
+   "sym": "m_Al",
+   "latex": "m_{\\text{Al}}",
+   "macro": "\\kmAl"
+  },
+  {
+   "sym": "c_Al",
+   "latex": "c_{\\text{Al}}",
+   "macro": "\\kcAl"
+  },
+  {
+   "sym": "m_W",
+   "latex": "m_{\\text{W}}",
+   "macro": "\\kmW"
+  },
+  {
+   "sym": "c_W",
+   "latex": "c_{\\text{W}}",
+   "macro": "\\kcW"
+  },
+  {
+   "sym": "m_ice",
+   "latex": "m_{\\text{ice}}",
+   "macro": "\\kmice"
+  },
+  {
+   "sym": "m_soda",
+   "latex": "m_{\\text{soda}}",
+   "macro": "\\kmsoda"
+  },
+  {
+   "sym": "Q_ice",
+   "latex": "Q_{\\text{ice}}",
+   "macro": "\\kQice"
+  },
+  {
+   "sym": "Q_soda",
+   "latex": "Q_{\\text{soda}}",
+   "macro": "\\kQsoda"
+  },
+  {
+   "sym": "m_w",
+   "latex": "m_{\\text{w}}",
+   "macro": "\\kmw"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "heat",
+   "kind": "definition",
+   "section": "14.1",
+   "name": "热量",
+   "symbol": "Q_heat",
+   "terms": [
+    "热量"
+   ],
+   "type": "energy",
+   "statement": "热量是由温差引起的能量自发传递。当两个温度不同的物体相接触时，能量由高温物体传向低温物体，直到它们达到相同的温度；在此过程中没有力作用一段距离，所以这种传递不是功。因此，热量是一种传递中的能量形式：它只在温差驱动它的时候存在，一旦温度相等便终止。"
+  },
+  {
+   "id": "heat-vs-temperature",
+   "kind": "idea",
+   "section": "14.1",
+   "name": "热量与温度之别",
+   "statement": "我们可能会说热量令人难以忍受，而实际想说的是温度很高。热量是能量的一种形式，以焦耳计量；温度不是能量，而是原子和分子平均动能的量度。之所以产生这种混淆，是因为我们感觉到的是热量的流动，而不是温度本身。把两者区分开，本章后面的内容才能说明，加入热量并不一定会使温度升高。"
+  },
+  {
+   "id": "units-of-heat",
+   "kind": "definition",
+   "section": "14.1",
+   "name": "热量的单位",
+   "statement": "由于热量是能量的一种形式，其 SI 单位是焦耳，但热量也用卡来计量，卡是使 1.00 g 水的温度升高 1.00 °C 所需的能量，而最常用的是千卡，它使 1.00 kg 水升高同样的温度。食物卡路里（大卡）就是千卡，这一点很难从包装标签上确定，而在这些单位之间换算是本章几乎每道题的一部分。"
+  },
+  {
+   "id": "mechanical-equivalent-of-heat",
+   "kind": "axiom",
+   "section": "14.1",
+   "name": "热功当量",
+   "terms": [
+    "热功当量"
+   ],
+   "statement": "做功也可以改变物质的温度，詹姆斯·普雷斯科特·焦耳的实验确立了热功当量，即产生与热传递相同效果的功。现代最佳值是 1.000 kcal = 4186 J，我们把它当作两个能量单位之间的换算关系。在焦耳的装置中，下落的重物带动水中的桨叶转动。重力势能变为动能，黏度把它随机化为分子的运动，温度计的示数恰好像加入热量时一样上升。",
+   "forms": [
+    {
+     "id": "eq-mechanical-equivalent",
+     "latex": "1.000\\;\\text{kcal} = 4186\\;\\text{J}",
+     "condition": "15 °C 卡",
+     "anchor": "14.1-mechanical-equivalent"
+    }
+   ]
+  },
+  {
+   "id": "internal-energy-changed-by-heat-or-work",
+   "kind": "idea",
+   "section": "14.1",
+   "name": "由热量或功改变内能",
+   "statement": "加给系统的热量会改变其内能，通常也改变其温度，对系统做功（通过搅拌或摩擦）同样如此。系统有确定的内能，却没有热含量，也没有功含量：能量一旦进入内部，样品本身就看不出它是以哪种方式进来的。这就是本书说热传递而不说热量的原因，也是第 15 章建立热力学第一定律所依据的思想。"
+  },
+  {
+   "id": "kilocalorie",
+   "kind": "definition",
+   "section": "14.1",
+   "name": "千卡",
+   "terms": [
+    "千卡"
+   ],
+   "statement": "千卡是热量的单位，等于 1000 卡，即使 1.00 kg 水的温度升高 1.00 °C 所需的能量。食物卡路里（大卡）就是千卡。",
+   "forms": [
+    {
+     "id": "eq-kilocalorie",
+     "latex": "1\\;\\text{kcal} = 1000\\;\\text{cal}"
+    }
+   ]
+  },
+  {
+   "id": "three-factors-of-heat-transfer",
+   "kind": "idea",
+   "section": "14.2",
+   "name": "热传递中的因素",
+   "statement": "实验表明，使物体温度改变所传递的热量取决于三个因素：温度的变化、物体的质量，以及物质及其相。给定质量的温度变化加倍，所需热量加倍；质量加倍，在同样的温度变化下所需热量也加倍；而相同质量的水发生同样的温度变化，所需热量是铜的 10.8 倍。前两条源于内能与热力学温度和分子数成正比；第三条是材料的性质。"
+  },
+  {
+   "id": "heat-and-temperature-change",
+   "kind": "axiom",
+   "section": "14.2",
+   "name": "热量与温度变化",
+   "statement": "在没有相变且不做功的条件下，传递的热量等于质量乘以比热容再乘以温度变化。温度变化以开尔文计和以摄氏度计是相同的，所以用哪个都行；热量以千卡为单位时，比热容的单位是 kcal/(kg·°C)。这是整章的工作方程，因为之后每一种热传递方式都要回到它所产生的温度变化上来。",
+   "forms": [
+    {
+     "id": "eq-heat-temperature-change",
+     "latex": "Q = mc\\Delta T",
+     "ktex": "\\kQh = m\\,c\\,\\kdTemp",
+     "condition": "没有相变且不做功",
+     "anchor": "14.2-heat-equation"
+    }
+   ]
+  },
+  {
+   "id": "specific-heat",
+   "kind": "definition",
+   "section": "14.2",
+   "name": "比热容",
+   "symbol": "c_spec",
+   "terms": [
+    "比热容"
+   ],
+   "type": "specific-heat",
+   "statement": "比热容是使 1.00 kg 某种物质的温度改变 1.00 °C 所需的热量。它取决于材料及其相，一般必须查表，因为没有简单的方法可以计算它，而且对大多数固体和液体，它随温度变化不大。水的比热容是所有材料中最大的之一，是玻璃的五倍、铁的十倍，这对维持地球上的生命很重要。"
+  },
+  {
+   "id": "temperature-rise-from-work",
+   "kind": "skill",
+   "section": "14.2",
+   "name": "由功求温度升高",
+   "statement": "当功转化为内能时，把同一个方程对温度变化求解，就得到温度升高：传递的能量除以吸收它的物体的质量与比热容。卡车在下坡行驶时，刹车把卡车失去的重力势能转化为刹车材料的内能。由于刹车相对于卡车很小，即使只有十分之一的能量也会使它们迅速升温。",
+   "forms": [
+    {
+     "id": "eq-temperature-change-from-heat",
+     "latex": "\\Delta T = \\frac{Q}{mc}",
+     "ktex": "\\kdTemp = \\frac{\\kQh}{m\\,c}",
+     "anchor": "14.2-work-into-heat"
+    }
+   ]
+  },
+  {
+   "id": "calorimetry",
+   "kind": "result",
+   "section": "14.2",
+   "name": "量热学",
+   "statement": "当两个温度不同的物体在隔热容器中接触时，热量由高温物体传向低温物体，直到它们达到共同温度。没有热量离开这一对物体，所以高温物体失去的热量就是低温物体得到的热量。考虑正负号，流入低温物体的热量为正，流出高温物体的热量为负，二者之和为零。这是一个量热学问题，而量热学测量食物的热含量和材料的比热容。",
+   "forms": [
+    {
+     "id": "eq-calorimetry",
+     "latex": "Q_{\\text{cold}} + Q_{\\text{hot}} = 0",
+     "ktex": "\\kQcold + \\kQhot = 0",
+     "condition": "与周围环境没有热交换",
+     "anchor": "14.2-calorimetry"
+    },
+    {
+     "id": "eq-heat-balance",
+     "latex": "m_W c_W (T_{\\text{f}} - T_{\\text{i},W}) = -m_{\\text{Al}} c_{\\text{Al}} (T_{\\text{f}} - T_{\\text{i},\\text{Al}})",
+     "anchor": "14.2-calorimetry"
+    }
+   ]
+  },
+  {
+   "id": "final-temperature-from-heat-exchange",
+   "kind": "skill",
+   "section": "14.2",
+   "name": "求两个物体的末温",
+   "statement": "对量热学平衡式求解末温，得到两个起始温度的加权平均，每个起始温度的权重是该物体的质量乘以比热容。150 °C 的锅与 20.0 °C 的水最终达到 59.1 °C，更接近水的温度，因为水的比热容是铝的四倍多，其质量乘以比热容是较大的权重。关键技巧是用唯一的未知温度写出失去的热量和得到的热量，然后合并各项。",
+   "forms": [
+    {
+     "id": "eq-final-temperature",
+     "latex": "T_{\\text{f}} = \\frac{m_{\\text{Al}} c_{\\text{Al}} T_{\\text{i},\\text{Al}} + m_W c_W T_{\\text{i},W}}{m_{\\text{Al}} c_{\\text{Al}} + m_W c_W}",
+     "condition": "两个物体交换热量且没有相变",
+     "anchor": "14.2-calorimetry"
+    }
+   ]
+  },
+  {
+   "id": "water-moderates-temperature",
+   "kind": "idea",
+   "section": "14.2",
+   "name": "水对温度的调节作用",
+   "statement": "由于水的比热容比大多数常见物质大，在给定的热传递下它的温度变化很小。像湖泊这样的大片水体需要大量热量才能明显升温，所以即使气温在一天中变化很大，它的温度也几乎保持不变，而在从夏季到冬季的较长时间内它的温度确实会变化。陆地比水升温和降温更快，这正是陆风和海风的成因。"
+  },
+  {
+   "id": "latent-heat",
+   "kind": "definition",
+   "section": "14.3",
+   "name": "潜热",
+   "symbol": "L_latent",
+   "terms": [
+    "潜热系数"
+   ],
+   "type": "latent-heat",
+   "statement": "物质发生相变时，热传递并不引起温度变化。能量用于破坏分子之间的内聚键，而不是增加它们的动能，所以 0 °C 的冰在全部熔化之前一直保持 0 °C。当键在凝固或凝结中重新形成时，同样的能量又释放出来，通常以热能的形式。改变一定质量的相所需的热量，等于该质量乘以潜热系数，这是一个材料常量。之所以称为潜热，即隐藏的热，是因为能量进入或离开时并不改变温度。",
+   "forms": [
+    {
+     "id": "eq-latent-heat",
+     "latex": "Q = mL",
+     "ktex": "\\kQh = m\\,L",
+     "condition": "相变期间",
+     "anchor": "14.3-phase-change"
+    }
+   ]
+  },
+  {
+   "id": "heat-of-fusion",
+   "kind": "definition",
+   "section": "14.3",
+   "name": "熔化热",
+   "symbol": "L_f",
+   "type": "latent-heat",
+   "statement": "熔化热是使一千克物质在熔点熔化所需的热量，这一千克物质凝固时释放同样的热量。对水而言它是 334 kJ/kg，足以使一千克液态水从 0 °C 升温到 79.8 °C。因此，一袋 0 °C 的冰比同样温度的一袋水吸收的能量多得多，在喷过水的果园里，水结冰会使树木变暖。",
+   "forms": [
+    {
+     "id": "eq-heat-fusion",
+     "latex": "Q = mL_{\\text{f}}",
+     "ktex": "\\kQh = m\\,L_{\\text{f}}",
+     "condition": "熔化或凝固",
+     "anchor": "14.3-phase-change"
+    },
+    {
+     "id": "eq-melting-heat",
+     "latex": "Q = mL_{\\text{f}}",
+     "ktex": "\\kQh = mL_{\\text{f}}",
+     "condition": "在熔点温度下熔化",
+     "section": "15.6",
+     "anchor": "15.6-order-to-disorder"
+    }
+   ]
+  },
+  {
+   "id": "heat-of-vaporization",
+   "kind": "definition",
+   "section": "14.3",
+   "name": "汽化热",
+   "symbol": "L_v",
+   "type": "latent-heat",
+   "statement": "汽化热是使一千克液体在沸点变为蒸气所需的热量，蒸气凝结时释放同样的热量。对水而言它是 2256 kJ/kg，几乎是其熔化热的七倍，所以把一千克水煮干所耗的热量，比把它从冰冷升温到沸腾还多。一杯冰茶外壁上的凝结把能量释放到杯子里，加速了冰的熔化。",
+   "forms": [
+    {
+     "id": "eq-heat-vaporization",
+     "latex": "Q = mL_{\\text{v}}",
+     "ktex": "\\kQh = m\\,L_{\\text{v}}",
+     "condition": "汽化或凝结",
+     "anchor": "14.3-phase-change"
+    }
+   ]
+  },
+  {
+   "id": "heating-curve",
+   "kind": "idea",
+   "section": "14.3",
+   "name": "水的加热曲线",
+   "statement": "给 −20 °C 的冰加热，描出的图线有斜坡也有平台。冰升温时温度线性上升；冰熔化时停在 0 °C，每一焦耳都用于相变；然后在液态水中再次上升，但更慢，因为水的比热容是冰的两倍；水沸腾时停在 100 °C，平台长得多；之后作为蒸汽再次上升。这些平台就是潜热，把它们的长度与斜坡相比较可以看出，相变的能量比温度变化的能量大得多。"
+  },
+  {
+   "id": "evaporation-below-boiling",
+   "kind": "idea",
+   "section": "14.3",
+   "name": "沸点以下的蒸发",
+   "statement": "水在低于沸点的温度也会蒸发，而且每千克所耗的能量更多，因为分子可资利用的动能更少：在体温下汽化热为 2430 kJ/kg，比 100 °C 时约高百分之十。汗液从皮肤带走这份热量，所以出汗能降温，而高湿度减缓蒸发，汗就留在你的额头上。同样的蒸发也是潮湿气候中气温很少升到 35 °C 以上的原因。"
+  },
+  {
+   "id": "condensation-and-freezing-release-heat",
+   "kind": "idea",
+   "section": "14.3",
+   "name": "凝结和凝固释放热量",
+   "statement": "要使蒸气凝结或使液体凝固，必须移走相变在相反方向上所吸收的全部能量，周围环境接收这些能量。这就是为什么冷杯上的凝结加快了杯内冰的熔化，为什么潮湿天气里气温很少降到露点以下，为什么给果园喷水能使它免受严重霜冻，以及为什么结冰的水保持在 0 °C 而不会更冷。"
+  },
+  {
+   "id": "heat-of-sublimation",
+   "kind": "definition",
+   "section": "14.3",
+   "name": "升华热",
+   "symbol": "L_s",
+   "terms": [
+    "升华热"
+   ],
+   "type": "latent-heat",
+   "statement": "升华是由固相直接变为气相的转变，如雪不留一点液体痕迹地消失，干冰冒出它的烟，或霜仅由蒸气在冷窗上形成。它的发生是因为固体的平衡蒸气压不为零。所需能量是质量乘以升华热，升华热是与其他潜热同一数量级的常量，所以干冰是有效的冷却剂，而凝华释放能量。",
+   "forms": [
+    {
+     "id": "eq-heat-sublimation",
+     "latex": "Q = mL_{\\text{s}}",
+     "ktex": "\\kQh = m\\,L_{\\text{s}}",
+     "condition": "固体变为蒸气，或蒸气变为固体",
+     "anchor": "14.3-sublimation"
+    }
+   ]
+  },
+  {
+   "id": "phase-change-calorimetry",
+   "kind": "skill",
+   "section": "14.3",
+   "name": "求有相变时的末温",
+   "statement": "当相变参与热交换时，要分阶段求解。使冰熔化的热量，再加上使熔化后的水升温的热量，与另一物体放出的热量相平衡，每一项都含有唯一的未知末温。先试着按没有相变来求解。如果温度变化会使某个物体越过熔点或沸点，就回去分步来做，并在最后检查有没有漏掉任何相变。",
+   "forms": [
+    {
+     "id": "eq-ice-soda-balance",
+     "latex": "m_{\\text{ice}} L_{\\text{f}} + m_{\\text{ice}} c_W (T_{\\text{f}} - 0^\\circ\\text{C}) = -m_{\\text{soda}} c_W (T_{\\text{f}} - 20^\\circ\\text{C})",
+     "condition": "汽水和冰不与其他任何东西交换热量",
+     "anchor": "14.3-cooling-soda"
+    }
+   ]
+  },
+  {
+   "id": "heat-transfer-methods",
+   "kind": "idea",
+   "section": "14.4",
+   "name": "热传递的三种方式",
+   "statement": "只要有温差，就会发生热传递，而热传递的每一个过程都只通过三种方式进行：热传导、对流和辐射。三者有一个共同点，即它们传递热量仅仅是因为温差，我们通过选择材料、控制空气的运动和选择颜色来控制它们的速率。壁炉同时显示了这三种方式。"
+  },
+  {
+   "id": "conduction",
+   "kind": "definition",
+   "section": "14.4",
+   "name": "热传导",
+   "terms": [
+    "热传导"
+   ],
+   "statement": "热传导是通过物理接触、经由静止物质的热传递。物质在宏观上是静止的，尽管在高于绝对零度的任何温度下，它的原子和分子都在做热运动，热量在炉灶的电热灶头与锅底之间传递，或从发热的地板传入脚掌，而没有任何东西从一处移到另一处。"
+  },
+  {
+   "id": "convection",
+   "kind": "definition",
+   "section": "14.4",
+   "name": "对流",
+   "terms": [
+    "对流"
+   ],
+   "statement": "对流是通过流体的宏观运动传递热量。流体本身把能量从一处带到另一处，如强制送风炉中的空气、烟囱中向上的气流和天气中的空气，以及汽车冷却系统中的水。"
+  },
+  {
+   "id": "radiation-heat-transfer",
+   "kind": "definition",
+   "section": "14.4",
+   "name": "辐射",
+   "terms": [
+    "辐射"
+   ],
+   "statement": "通过辐射的热传递发生在微波、红外辐射、可见光或其他形式的电磁辐射被发射或吸收的时候。太阳就是这样穿过空旷的空间使地球变暖，火也主要这样使房间变暖，人体不论是否接触任何东西都会辐射红外线。"
+  },
+  {
+   "id": "conduction-by-molecular-collisions",
+   "kind": "idea",
+   "section": "14.5",
+   "name": "分子碰撞引起的热传导",
+   "statement": "高温物体的分子平均动能较大，当一个快分子与一个慢分子在两物体接触的表面处碰撞时，能量由较快的传给较慢的。所有碰撞的累积效果，是热量的净流量由高温物体流向低温物体，它随温差和接触面积增大，温度相等时降为零。由于依赖随机运动，热传导在大于分子作用范围的距离上是缓慢的。"
+  },
+  {
+   "id": "rate-of-conductive-heat-transfer",
+   "kind": "axiom",
+   "section": "14.5",
+   "name": "热传导速率",
+   "terms": [
+    "热传导速率"
+   ],
+   "statement": "热量通过热传导流过一块材料平板的速率，正比于平板两侧的温差和面积，反比于其厚度，并由材料的一个常量即其热导率决定。实验揭示并证实了这四个因素，无论平板是窗玻璃还是海象的皮下脂肪层，该方程都成立。它给出以瓦为单位的速率。",
+   "forms": [
+    {
+     "id": "eq-conduction-rate",
+     "latex": "\\frac{Q}{t} = \\frac{kA(T_2 - T_1)}{d}",
+     "ktex": "\\frac{\\kQh}{\\kt} = \\frac{k\\,A\\,(\\kTemptwo - \\kTempone)}{d}",
+     "condition": "通过平板的稳态热传导",
+     "anchor": "14.5-conduction-rate"
+    },
+    {
+     "id": "eq-heat-flux-temperature-difference",
+     "latex": "\\Delta T = T_{\\text{hot}} - T_{\\text{cold}}",
+     "ktex": "\\kdTemp = \\kTemphot - \\kTempcold",
+     "anchor": "14.5-collisions"
+    }
+   ]
+  },
+  {
+   "id": "thermal-conductivity",
+   "kind": "definition",
+   "section": "14.5",
+   "name": "热导率",
+   "symbol": "k_cond",
+   "terms": [
+    "热导率"
+   ],
+   "type": "thermal-conductivity",
+   "statement": "热导率衡量材料传导热量的能力，在常见物质中跨越四个以上数量级。最好的热导体银、铜、金和铝，同时也是最好的电导体，因为它们含有密度很高的自由电子，厨师使用由它们制成的器具。Styrofoam、玻璃纤维、羊毛和羽绒导热很差，因为它们截留了许多小气室，而气室中空气自身的热导率是所有物质中最低的之一。"
+  },
+  {
+   "id": "r-factor",
+   "kind": "definition",
+   "section": "14.5",
+   "name": "R 值",
+   "symbol": "R_factor",
+   "terms": [
+    "R 值"
+   ],
+   "statement": "良好的隔热体把小的热导率与大的厚度结合起来，厚度与热导率之比就是 R 值。热传导速率与它成反比，所以 R 值越大，隔热越好。家用隔热材料标出的就是它，而且仍用非公制单位：3.5 英寸玻璃纤维棉毡的 R 值为 11，6.5 英寸的为 19。"
+  },
+  {
+   "id": "conduction-with-phase-change",
+   "kind": "skill",
+   "section": "14.5",
+   "name": "求热传导所熔化的质量",
+   "statement": "热传导方程给出的是速率；乘以时间得到热量，这些热量可能用于相变。热车后备箱里的 Styrofoam 保温箱以由箱壁决定的速率让热量进入，一天之内这些热量所熔化的冰的质量，等于总热量除以熔化热。关键技巧是把速率换成量，再把量换成质量，并保持每一步的单位。"
+  },
+  {
+   "id": "temperature-difference-from-conduction",
+   "kind": "skill",
+   "section": "14.5",
+   "name": "由热流求温差",
+   "statement": "反过来求解，热传导方程给出已知热传递速率在平板两侧所维持的温差。通过每秒沸腾蒸发掉一克水的锅的铝底，传过 2.26 kW，温差只有 5.33 °C，因为铝的导热性极好；而穿过同样面积的陶瓷灶面，同样的速率则需要一千度的温差。较小的温差伴随较大的热流，是良导体的标志。",
+   "forms": [
+    {
+     "id": "eq-conduction-temperature-difference",
+     "latex": "T_2 - T_1 = \\frac{Q}{t}\\left(\\frac{d}{kA}\\right)",
+     "ktex": "\\kTemptwo - \\kTempone = \\frac{\\kQh}{\\kt}\\left(\\frac{d}{k\\,A}\\right)",
+     "anchor": "14.5-pan"
+    }
+   ]
+  },
+  {
+   "id": "conduction-rate-scaling",
+   "kind": "result",
+   "section": "14.5",
+   "name": "热传导速率的比例关系",
+   "statement": "因为面积是两个长度的乘积，而厚度只是一个长度，所以把平板的每个尺寸加倍，面积变为四倍而厚度只变为两倍，热传导速率便加倍。这类比较，如薄窗与厚墙、老茧与光脚掌，都可以通过四个因素的比值来回答，而无需算出任何一个速率。"
+  },
+  {
+   "id": "natural-convection",
+   "kind": "idea",
+   "section": "14.6",
+   "name": "自然对流",
+   "statement": "浮力驱动自然对流。受热的流体膨胀，密度降低，在周围较冷、较密的流体中上升，较冷的流体下沉来填补它的位置；所形成的环流随运动的物质携带热量。重力式热风炉以这种方式给房子供暖，炉灶上的一锅水以这种方式循环，洋流和大气也以这种方式把能量送到全球各地。强制对流，如汽车冷却系统中或皮肤的血管中的对流，是由泵驱动的同样的输运。"
+  },
+  {
+   "id": "convection-heat-rate",
+   "kind": "skill",
+   "section": "14.6",
+   "name": "求通过对流的热传递",
+   "statement": "要求对流所携带的热量，先由密度和体积求出被移动的流体的质量，再乘以它的比热容和温度变化。除以这些质量被替换所用的时间，就得到速率。把房子里的空气升温 10.0 °C，若每半小时全部更换一次，需要 4.64 kW，相当于四十六个 100 W 灯泡的功率，这就是房屋要装门窗密封条的原因。",
+   "forms": [
+    {
+     "id": "eq-convection-heat-rate",
+     "latex": "\\frac{Q}{t} = \\frac{mc\\Delta T}{t}",
+     "ktex": "\\frac{\\kQh}{\\kt} = \\frac{m\\,c\\,\\kdTemp}{\\kt}",
+     "condition": "质量为 m 的流体在时间 t 内被移动或被替换",
+     "anchor": "14.6-moving-mass"
+    }
+   ]
+  },
+  {
+   "id": "wind-chill",
+   "kind": "idea",
+   "section": "14.6",
+   "name": "风寒",
+   "statement": "冷风比静止的冷空气冷得多，因为对流与人体内的热传导结合起来，加快了能量离开身体的速率。风寒温度是能产生与给定温度和风速的空气相同冷却速率的静止空气的温度，它们生动地提醒我们对流传递热量的能力强于热传导：0 °C 时 15.0 m/s 的风使人感到的寒冷，就像约 −18 °C 的静止空气。"
+  },
+  {
+   "id": "air-as-insulator",
+   "kind": "idea",
+   "section": "14.6",
+   "name": "被截留的空气是隔热体",
+   "statement": "空气通过对流传热很快，但热传导很差，所以它是否隔热取决于它能否流动。房屋墙体内 9 cm 的空间大到足以发生对流，因此建筑工人用隔热材料把它填满，以阻止空气运动。双层玻璃窗 1 cm 的间隙小到不能发生对流，从而利用了空气热导率低的特点。皮毛、羽毛和玻璃纤维都把空气截留在小到不能发生对流的气室里，这就是它们轻而保暖的原因。"
+  },
+  {
+   "id": "convection-with-phase-change",
+   "kind": "result",
+   "section": "14.6",
+   "name": "蒸发速率",
+   "statement": "当对流伴有相变时，流动的流体把潜热一起带走，带走给定功率所需的蒸发质量速率，等于该功率除以汽化热。汗液从皮肤蒸发，每分钟约 3 g，就能带走休息时身体的 120 W，即使空气与皮肤一样温暖，只要气流替换掉饱和的空气。同样的过程把热量从海洋带入大气，通过正反馈把积雨云推升到平流层 20 km 的高度，也让熔化的冰山冷却它漂过的海水。",
+   "forms": [
+    {
+     "id": "eq-evaporation-rate",
+     "latex": "\\frac{m}{t} = \\frac{Q/t}{L_{\\text{v}}}",
+     "ktex": "\\frac{m}{\\kt} = \\frac{\\kQh/\\kt}{L_{\\text{v}}}",
+     "condition": "热量仅由蒸发带走",
+     "anchor": "14.6-phase-change"
+    }
+   ]
+  },
+  {
+   "id": "radiation-spectrum-and-temperature",
+   "kind": "idea",
+   "section": "14.7",
+   "name": "辐射谱与温度",
+   "statement": "热物体发射不需要介质即可传播的电磁波，而且波长越短携带的能量越大。因为物体在较高温度下辐射的热量更多，所以它的颜色随温度改变：从你在尚未开始发光的炉灶加热元件上感到的红外线，到红色，再到高炉中钢的黄色和白色。理想辐射体的光谱随温度急剧上升，其峰值向可见光和紫外线移动。"
+  },
+  {
+   "id": "absorbers-and-emitters",
+   "kind": "idea",
+   "section": "14.7",
+   "name": "吸收体与发射体",
+   "statement": "辐射传热的速率主要由物体的颜色决定。黑色吸收得最好，也辐射得最好，所以黑色沥青白天比灰色人行道热，夜晚比它冷；白色和银色吸收得差，辐射得也差，像镜子一样反射辐射。理想辐射体与理想吸收体颜色相同，物体辐射进出的平衡只取决于物体自身发射和吸收得多好。"
+  },
+  {
+   "id": "emissivity",
+   "kind": "definition",
+   "section": "14.7",
+   "name": "发射率",
+   "symbol": "e_emis",
+   "terms": [
+    "发射率"
+   ],
+   "statement": "发射率衡量物体辐射得多好。纯黑的理想辐射体即黑体，发射率为 1，完全反射体为 0，实际物体介于两者之间：钨丝约 0.5，炭黑约 0.99，皮肤在红外波段为 0.97，所以不论可见光下是什么颜色，我们在红外波段都近乎黑色。地球的平均发射率约为 0.65，因云量的变化而变得复杂。"
+  },
+  {
+   "id": "stefan-boltzmann-law",
+   "kind": "axiom",
+   "section": "14.7",
+   "name": "斯特藩-玻尔兹曼定律",
+   "terms": [
+    "辐射的斯特藩-玻尔兹曼定律"
+   ],
+   "statement": "发射辐射的热传递速率等于斯特藩-玻尔兹曼常量乘以发射率，乘以表面积，再乘以以开尔文计的热力学温度的四次方。辐射速率与表面积成正比，所以把火中的炭块拨散会使站在附近明显更热；它又与温度的四次方成正比，这是极强的依赖关系，接下来的两个结果都取决于它。温度必须是热力学温度；在这个方程中代入摄氏温度值是错的。",
+   "forms": [
+    {
+     "id": "eq-stefan-boltzmann",
+     "latex": "\\frac{Q}{t} = \\sigma e A T^4",
+     "ktex": "\\frac{\\kQh}{\\kt} = \\sigma\\,e\\,A\\,\\kTemp^4",
+     "condition": "T 以开尔文计",
+     "anchor": "14.7-stefan-boltzmann"
+    }
+   ]
+  },
+  {
+   "id": "radiation-fourth-power",
+   "kind": "result",
+   "section": "14.7",
+   "name": "辐射对四次方的依赖关系",
+   "statement": "由于辐射功率与热力学温度的四次方成正比，很小的温差就会产生可探测的辐射差：40 °C 的物体比同一物体在 20 °C 时多辐射约 30%，34.0 °C 的皮肤比 33.0 °C 时多辐射 1.31%，足以让热像图把它显示出来。比值更大时，效应极其巨大，热力学温度为四倍的辐射体发射的功率为 256 倍。"
+  },
+  {
+   "id": "net-radiation-rate",
+   "kind": "result",
+   "section": "14.7",
+   "name": "辐射的净热传递速率",
+   "terms": [
+    "辐射的净热传递速率"
+   ],
+   "statement": "所有物体都发射并吸收辐射，所以净速率是吸收减去发射；对于处在一种温度、被另一种温度的周围环境包围的物体，它是斯特藩-玻尔兹曼表达式中两个四次方之差，发射率只取物体自身的。周围是白色、灰色还是黑色都没有关系；当周围较热时，净传递是传入物体的，当周围较冷时则是传出的。一个没穿衣服的人在 22.0 °C 的房间里以这种方式损失约 99 W。",
+   "forms": [
+    {
+     "id": "eq-net-radiation",
+     "latex": "\\frac{Q_{\\text{net}}}{t} = \\sigma e A (T_2^4 - T_1^4)",
+     "ktex": "\\frac{\\kQnet}{\\kt} = \\sigma\\,e\\,A\\,(\\kTemptwo^4 - \\kTempone^4)",
+     "condition": "温度为 T_1 的物体处在均匀温度为 T_2 的周围环境中，二者均以开尔文计",
+     "anchor": "14.7-net-rate"
+    }
+   ]
+  },
+  {
+   "id": "greenhouse-effect",
+   "kind": "idea",
+   "section": "14.7",
+   "name": "温室效应",
+   "terms": [
+    "温室效应"
+   ],
+   "statement": "地球几乎所有能量都以太阳辐射的形式接收，并向约 3 K 的暗空辐射回去，它的稳定温度是二者的平衡。大气对太阳的可见光和大部分红外线是透明的，但较冷的地球发射的红外线波长更长，二氧化碳和水蒸气会吸收并重新辐射它，其中一部分回到地表，使地球比没有大气时约暖 40 °C。Eunice Newton Foote 最先在放在阳光下的二氧化碳烧瓶中测量到这一点，这种效应是工业和农业所排放气体引起的全球变暖的核心。"
+  },
+  {
+   "id": "heat-transfer-methods-strategy",
+   "kind": "skill",
+   "section": "14.7",
+   "name": "求解热传递问题",
+   "statement": "要解决热传递问题，先确定起作用的是三种方式中的哪一种，再选用相应的关系式。热传导用热传导方程，热导率取自表格；对流用所携带质量的温度变化方程或潜热方程；辐射用与周围环境交换的净辐射方程。列出已知量和未知量，在代入数值之前先把方程对未知量求解，并检查答案是否合理：一个人一天之内不可能升温 36 °C，一扇窗也不可能损失 1.46 kW。"
+  },
+  {
+   "id": "stefan-boltzmann-constant",
+   "kind": "axiom",
+   "section": "14.7",
+   "name": "斯特藩-玻尔兹曼常量",
+   "symbol": "σ_SB",
+   "statement": "斯特藩-玻尔兹曼常量确定了给定面积、发射率和热力学温度的表面的辐射速率。其值为 5.67 × 10⁻⁸ J/(s·m²·K⁴)。"
+  },
+  {
+   "id": "thermal-conductor-and-insulator",
+   "kind": "definition",
+   "section": "14.5",
+   "name": "热导体与隔热体",
+   "terms": [
+    "热导体"
+   ],
+   "statement": "银、铜或铝等良好的热导体热导率大，容易传热；Styrofoam、玻璃纤维、羊毛或静止空气等良好的隔热体热导率小。电的良导体一般也是热的良导体，因为携带电荷的自由电子也携带热能。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "heat",
+   "prereq": "work"
+  },
+  {
+   "concept": "heat",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "heat",
+   "prereq": "energy-transformation"
+  },
+  {
+   "concept": "heat",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "heat",
+   "prereq": "thermal-equilibrium"
+  },
+  {
+   "concept": "heat",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "heat-vs-temperature",
+   "prereq": "heat"
+  },
+  {
+   "concept": "heat-vs-temperature",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "heat-vs-temperature",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "units-of-heat",
+   "prereq": "heat"
+  },
+  {
+   "concept": "units-of-heat",
+   "prereq": "joule"
+  },
+  {
+   "concept": "units-of-heat",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "heat"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "units-of-heat"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "work-transfers-energy"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "friction-dissipates-mechanical-energy"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "mechanical-equivalent-of-heat",
+   "prereq": "turbulent-flow"
+  },
+  {
+   "concept": "internal-energy-changed-by-heat-or-work",
+   "prereq": "heat"
+  },
+  {
+   "concept": "internal-energy-changed-by-heat-or-work",
+   "prereq": "mechanical-equivalent-of-heat"
+  },
+  {
+   "concept": "internal-energy-changed-by-heat-or-work",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "three-factors-of-heat-transfer",
+   "prereq": "heat"
+  },
+  {
+   "concept": "three-factors-of-heat-transfer",
+   "prereq": "mass"
+  },
+  {
+   "concept": "three-factors-of-heat-transfer",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "heat-and-temperature-change",
+   "prereq": "three-factors-of-heat-transfer"
+  },
+  {
+   "concept": "heat-and-temperature-change",
+   "prereq": "heat"
+  },
+  {
+   "concept": "specific-heat",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "mechanical-equivalent-of-heat"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "temperature-rise-from-work",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "calorimetry",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "calorimetry",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "final-temperature-from-heat-exchange",
+   "prereq": "calorimetry"
+  },
+  {
+   "concept": "water-moderates-temperature",
+   "prereq": "specific-heat"
+  },
+  {
+   "concept": "water-moderates-temperature",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "heat"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "heat-vs-temperature"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "atomic-arrangement-and-phase"
+  },
+  {
+   "concept": "latent-heat",
+   "prereq": "cohesive-forces"
+  },
+  {
+   "concept": "heat-of-fusion",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heat-of-vaporization",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heat-of-vaporization",
+   "prereq": "boiling"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "heating-curve",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "evaporative-cooling"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "relative-humidity"
+  },
+  {
+   "concept": "evaporation-below-boiling",
+   "prereq": "vapor-pressure"
+  },
+  {
+   "concept": "condensation-and-freezing-release-heat",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "condensation-and-freezing-release-heat",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "condensation-and-freezing-release-heat",
+   "prereq": "dew-point"
+  },
+  {
+   "concept": "heat-of-sublimation",
+   "prereq": "latent-heat"
+  },
+  {
+   "concept": "heat-of-sublimation",
+   "prereq": "sublimation"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "calorimetry"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "final-temperature-from-heat-exchange"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "phase-change-calorimetry",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "heat-transfer-methods",
+   "prereq": "heat"
+  },
+  {
+   "concept": "conduction",
+   "prereq": "heat-transfer-methods"
+  },
+  {
+   "concept": "convection",
+   "prereq": "heat-transfer-methods"
+  },
+  {
+   "concept": "convection",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "radiation-heat-transfer",
+   "prereq": "heat-transfer-methods"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "conduction"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "heat-vs-temperature"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "kinetic-theory"
+  },
+  {
+   "concept": "conduction-by-molecular-collisions",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "rate-of-conductive-heat-transfer",
+   "prereq": "conduction-by-molecular-collisions"
+  },
+  {
+   "concept": "rate-of-conductive-heat-transfer",
+   "prereq": "power"
+  },
+  {
+   "concept": "rate-of-conductive-heat-transfer",
+   "prereq": "watt"
+  },
+  {
+   "concept": "thermal-conductivity",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "r-factor",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "r-factor",
+   "prereq": "thermal-conductivity"
+  },
+  {
+   "concept": "conduction-with-phase-change",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "conduction-with-phase-change",
+   "prereq": "heat-of-fusion"
+  },
+  {
+   "concept": "conduction-with-phase-change",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "temperature-difference-from-conduction",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "temperature-difference-from-conduction",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "conduction-rate-scaling",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "convection"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "buoyant-force"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "density"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "natural-convection",
+   "prereq": "volume-thermal-expansion"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "heat-and-temperature-change"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "density"
+  },
+  {
+   "concept": "convection-heat-rate",
+   "prereq": "power"
+  },
+  {
+   "concept": "wind-chill",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "wind-chill",
+   "prereq": "conduction-by-molecular-collisions"
+  },
+  {
+   "concept": "air-as-insulator",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "air-as-insulator",
+   "prereq": "thermal-conductivity"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "natural-convection"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "heat-of-vaporization"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "evaporation-below-boiling"
+  },
+  {
+   "concept": "convection-with-phase-change",
+   "prereq": "power"
+  },
+  {
+   "concept": "radiation-spectrum-and-temperature",
+   "prereq": "radiation-heat-transfer"
+  },
+  {
+   "concept": "radiation-spectrum-and-temperature",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "absorbers-and-emitters",
+   "prereq": "radiation-heat-transfer"
+  },
+  {
+   "concept": "emissivity",
+   "prereq": "absorbers-and-emitters"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "emissivity"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "radiation-spectrum-and-temperature"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "power"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "stefan-boltzmann-law",
+   "prereq": "absolute-zero"
+  },
+  {
+   "concept": "radiation-fourth-power",
+   "prereq": "stefan-boltzmann-law"
+  },
+  {
+   "concept": "net-radiation-rate",
+   "prereq": "stefan-boltzmann-law"
+  },
+  {
+   "concept": "greenhouse-effect",
+   "prereq": "net-radiation-rate"
+  },
+  {
+   "concept": "greenhouse-effect",
+   "prereq": "absorbers-and-emitters"
+  },
+  {
+   "concept": "greenhouse-effect",
+   "prereq": "emissivity"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "convection-heat-rate"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "net-radiation-rate"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "phase-change-calorimetry"
+  },
+  {
+   "concept": "heat-transfer-methods-strategy",
+   "prereq": "energy-problem-solving"
+  },
+  {
+   "concept": "stefan-boltzmann-constant",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "stefan-boltzmann-constant",
+   "prereq": "power"
+  },
+  {
+   "concept": "stefan-boltzmann-constant",
+   "prereq": "area"
+  },
+  {
+   "concept": "kilocalorie",
+   "prereq": "units-of-heat"
+  },
+  {
+   "concept": "kilocalorie",
+   "prereq": "heat"
+  },
+  {
+   "concept": "thermal-conductor-and-insulator",
+   "prereq": "thermal-conductivity"
+  }
+ ]
+}

@@ -1,0 +1,618 @@
+{
+ "id": "32.7",
+ "module": "m42665",
+ "chapter": "32",
+ "title": "核武器",
+ "short": "核武器",
+ "lead": "裂变发现后不到七年，第一批核弹就造出来并投入使用了。本节介绍原子弹如何合拢出临界质量，氢弹如何用裂变点燃聚变，以及核爆炸的<span data-concept=\"energy\">能量</span>如何度量，又如何分配给冲击波、热和辐射。",
+ "objectives": [
+  "讨论不同类型的原子弹和氢弹。",
+  "说明核爆炸的有害影响。"
+ ],
+ "summary_html": "<ul><li>核武器有两种类型——原子弹只利用裂变，而氢弹则利用裂变点燃聚变。</li><li>两种武器都在极短的时间内产生大量核反应。</li><li>能量当量以千吨或兆吨的等效常规炸药来度量，范围从 0.1 kT 到超过 20 MT。</li><li>与常规炸药相比，核弹的特点是热输出和核辐射输出要大得多。</li></ul>",
+ "notes": "本模块没有印出术语表。它的十二道习题中有五道没有给出答案，已略去：1.00 MT 炸弹转化为能量的质量、世界 4,000 MT 的核武库折合多少千瓦时及其作为电力的价值、当量为 20.0 kT 时裂变的钚-239 核的个数和质量、1.00 kT 深水炸弹把航空母舰抬起的高度，以及 1.00 MT 炸弹在 10.0 km 处的辐射热。书中印的是格伦·西博格获得的是诺贝尔物理学奖，而关于 320 kT 战略炸弹那道习题的答案把弹头（warheads）写成了“overheads”；两处都照原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十二道习题中有五道没有给出答案，已略去；它们在本节的说明中已列出。比较中子弹与常规核弹那道习题的答案写成了两个比较，所以按开放题处理，附上书中的答案；关于 320 kT 战略炸弹那道习题的（c）问是一个讨论，保留书中的解答。关于 $\\beta^{+}$ 靶的批判性思考习题印在这里，但设在讲授 PET 的 32.1 节。四道思考题没有答案，附有标明由 AI 生成的建议思路。本模块没有印出理解检测框，也没有 AP 题，所以行文中不设内联题。数值答案接受各题卡片给出的容差，未给出时为 2%。",
+ "figures": [
+  {
+   "id": "sim-fission-chain",
+   "kind": "sim",
+   "number": "32.24",
+   "folds": [
+    "32.25"
+   ],
+   "originals": [
+    "/media/ch32/Figure_33_07_01a.jpg",
+    "/media/ch32/Figure_33_07_02a.jpg"
+   ],
+   "original_caption": "（图 32.24）用于 ${}^{235}\\text{U}$ 的枪式原子弹，利用炮管内的炸药装药把两块次临界质量块压合在一起。能量当量取决于铀的数量，以及它在自行解体之前能被维持在一起的时间。（图 32.25）高能炸药产生的内爆把一个 ${}^{239}\\text{Pu}$ 球压缩成临界质量。钚的裂变性能优越，使它成为通用的核弹材料。",
+   "widths": [
+    375,
+    200
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "U",
+    "Pu",
+    "n0"
+   ],
+   "facts": [
+    "#FFF1B8",
+    "#F08A24"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-trinity",
+   "kind": "photo",
+   "number": "32.26",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-hiroshima",
+   "kind": "photo",
+   "number": "32.27",
+   "widths": [
+    275
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hbomb",
+   "kind": "sim",
+   "number": "32.28",
+   "originals": [
+    "/media/ch32/Figure_33_07_05a.jpg"
+   ],
+   "original_caption": "这幅氢弹（H 弹）示意图大致说明了如何用 ${}^{239}\\text{Pu}$ 裂变触发装置点燃聚变燃料。中子和 $\\gamma$ 射线把能量传给聚变燃料，由氘生成氚，并加热和压缩聚变燃料。外层 ${}^{238}\\text{U}$ 壳把一部分中子反射回燃料，引起更多聚变，并且在中子能量足够高时自身发生裂变，从而提高能量输出。",
+   "widths": [
+    225
+   ],
+   "conventions": [
+    "U",
+    "Pu",
+    "Li",
+    "Be",
+    "H",
+    "He",
+    "n0",
+    "gamma"
+   ],
+   "facts": [
+    "#FFF1B8",
+    "#F08A24"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-energy-fractions",
+   "kind": "figure",
+   "number": "32.29",
+   "originals": [
+    "/media/ch32/Figure_33_07_06a.jpg"
+   ],
+   "original_caption": "常规武器和两种核武器输出能量的大致比例。核弹不仅比常规武器释放更多的能量，还把大得多的一部分变成热能。这一部分可以调整，以增强辐射输出，从而对部队更为有效。增强辐射弹也称中子弹。",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-weapon-yield",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "mass",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "race-for-the-bomb",
+   "concept": "nuclear-fission",
+   "verb": "uses"
+  },
+  {
+   "span": "race-for-the-bomb",
+   "concept": "neutron-induced-fission",
+   "verb": "uses"
+  },
+  {
+   "span": "race-for-the-bomb",
+   "concept": "chain-reaction-and-critical-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "race-for-the-bomb",
+   "concept": "reactor-moderation-and-control",
+   "verb": "uses"
+  },
+  {
+   "span": "race-for-the-bomb",
+   "concept": "breeding-plutonium",
+   "verb": "uses"
+  },
+  {
+   "span": "fission-bombs",
+   "concept": "fission-bomb-assembly",
+   "verb": "introduces"
+  },
+  {
+   "span": "fission-bombs",
+   "concept": "critical-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "fission-bombs",
+   "concept": "supercriticality",
+   "verb": "uses"
+  },
+  {
+   "span": "fission-bombs",
+   "concept": "odd-neutron-number-fissile",
+   "verb": "uses"
+  },
+  {
+   "span": "fission-bombs",
+   "concept": "chain-reaction-and-critical-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "first-bombs",
+   "concept": "fission-bomb-assembly",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thermonuclear-bombs",
+   "concept": "thermonuclear-bomb",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermonuclear-bombs",
+   "concept": "nuclear-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "thermonuclear-bombs",
+   "concept": "deuterium-tritium-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "thermonuclear-bombs",
+   "concept": "neutron-induced-fission",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-output",
+   "concept": "nuclear-weapon-energy-output",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-output",
+   "concept": "energy",
+   "verb": "uses"
+  },
+  {
+   "span": "arsenals",
+   "concept": "critical-mass",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2070214",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fission-bombs",
+   "prompt": "为什么所有原子弹都用钚而不是铀，所有氢弹的触发装置也都用钚？原因有哪些？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "之所以用钚，是因为 ${}^{239}\\text{Pu}$ 的临界质量是所有核素中最小的，而且比 ${}^{235}\\text{U}$ 更容易得到纯品。它每次裂变产生的中子比 ${}^{235}\\text{U}$ 多，也更容易被中子引发裂变，所以链式反应所需的量更少；质量小就能做出更小、更轻的炸弹，这对氢弹的触发装置最为重要。钚在化学性质上也不同于铀，因此可以用化学方法把它从增殖它的铀中分离出来，而 ${}^{235}\\text{U}$ 则必须依靠它与 ${}^{238}\\text{U}$ 之间微小的质量差来分离。内爆设计从三个维度压缩钚，合拢临界质量比枪式设计更快，而钚的裂变性能优越，使它成为通用的核弹材料。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2601363",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fission-bombs",
+   "prompt": "利用动量守恒和能量守恒定律，说明聚能装药如何能把爆炸释放的大部分能量导向某个特定方向。（请注意，这与枪和炮的情形类似——大部分能量进入了子弹。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "聚能装药之所以能导向能量，是因为朝向目标运动的那一部分很轻，其后的那一部分很重，于是轻的那一部分带走了大部分动能。爆炸是这两部分之间的一次推动，由于系统开始时静止，动量守恒使它们的动量大小相等、方向相反。动量 $p$ 相同时，一部分的动能是 $p^{2}/2m$，所以释放的能量按质量的反比分配，轻的那一部分得到的能量远多于重的那一部分。装药被做成使轻的、快速运动的那一部分朝向一个方向，即向内射向钚，就像炮的大部分能量进入炮弹而不是重得多的炮身一样。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1863894",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermonuclear-bombs",
+   "prompt": "图 32.28 所示氢弹中的氘化锂，是怎样既提供氘 $({}^{2}\\text{H})$ 又提供氚 $({}^{3}\\text{H})$ 的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "氘化锂是锂和氘的化合物，所以燃料中本来就有氘。来自裂变触发装置的中子撞击 ${}^{6}\\text{Li}$ 核，通过反应 $n + {}^{6}\\text{Li} \\to {}^{3}\\text{H} + {}^{4}\\text{He}$ 产生氚。这样，燃料中就同时有了氘氚聚变所需的两种核，而氚只在炸弹爆炸时才产生。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2514445",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-output",
+   "prompt": "大气层核武器试验产生的放射性沉降物主要是 ${}^{90}\\text{Sr}$ 和 ${}^{137}\\text{Cs}$，它们的半衰期分别为 28.6 y 和 32.2 y。大多数国家在 1963 年终止了大气层核试验，不过中国直到 1980 年才终止。人们发现，这两种同位素在环境中的活度下降得比其半衰期所预期的更快。这可能是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "单靠放射性衰变，每种同位素的活度在一个半衰期内只会减小一半，所以下降得更快就意味着这些核还在离开测量活度的地方。放射性沉降物落在地表，随后被带走：雨水把它冲入土壤并渗入地下水，河流把它带到海里，在那里被稀释。锶和铯还会被植物和动物吸收，并沿着食物链转移。这些过程都会把这两种同位素从被取样的表层中移走，所以测得的活度比单靠衰变下降得更快。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2663589",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-output",
+   "prompt": "求 12.0 kT 的炸弹转化为能量的质量。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.56,
+    "unit": "g",
+    "hint": "按每千吨 $4.2\\times10^{12}\\ \\text{J}$ 把当量换算成焦耳，再用 $\\Delta m = E/c^{2}$。",
+    "solution": "0.56 g"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2591096",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermonuclear-bombs",
+   "prompt": "氢弹利用其裂变触发装置的中子，通过反应 $n + {}^{6}\\text{Li} \\to {}^{3}\\text{H} + {}^{4}\\text{He}$ 产生氚燃料。这个反应释放的能量是多少 MeV？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.781,
+    "unit": "MeV",
+    "tol": 0.005,
+    "hint": "用中子和 ${}^{6}\\text{Li}$ 的质量减去 ${}^{3}\\text{H}$ 和 ${}^{4}\\text{He}$ 的质量，均以 u 为单位，再把差值乘以 931.5 MeV/u。",
+    "solution": "4.781 MeV"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3086058",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-output",
+   "prompt": "辐射增强型核武器（或称中子弹）的总当量可以较小，却比常规核弹产生更多的瞬发辐射。这样就可以用中子弹以辐射杀伤附近正在推进的敌军，而不会让己方部队被冲击波炸毁。对于一枚 0.500 kT 的辐射增强型武器和一枚 1.00 kT 的常规核弹：（a）比较冲击波当量。（b）比较瞬发辐射当量。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）冲击波当量分别为 $2.1\\times10^{12}\\ \\text{J}$ 和 $8.4\\times10^{11}\\ \\text{J}$，即常规核弹比辐射增强型核弹为 2.5 比 1。\n（b）瞬发辐射当量分别为 $6.3\\times10^{11}\\ \\text{J}$ 和 $2.1\\times10^{11}\\ \\text{J}$，即辐射增强型核弹比常规核弹为 3 比 1。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1596002",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-output",
+   "prompt": "假设一枚典型的 320 kT 战略炸弹的当量有四分之一来自平均每次 200 MeV 的裂变反应，其余来自平均每次 20 MeV 的聚变反应。\n（a）计算裂变的次数以及裂变的铀和钚的大致质量，取平均原子质量为 238。\n（b）求聚变的次数，并计算聚变燃料的大致质量，假设每个反应中两个核的平均总原子质量为 5。\n（c）考虑所求出的质量，某些导弹能携带 10 枚弹头，这合理吗？请讨论，并注意核燃料只是弹头质量的一部分。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) fissions",
+      "value": 1.1e+25,
+      "tol": 0.06,
+      "hint": "当量的四分之一，按每千吨 $4.2\\times10^{12}\\ \\text{J}$ 计，除以 200 MeV 换算成的焦耳数。"
+     },
+     {
+      "part": "(a) mass",
+      "value": 4.4,
+      "unit": "kg",
+      "tol": 0.08
+     },
+     {
+      "part": "(b) fusions",
+      "value": 3.2e+26,
+      "tol": 0.04,
+      "hint": "当量的四分之三，除以 20 MeV 换算成的焦耳数。"
+     },
+     {
+      "part": "(b) mass",
+      "value": 2.7,
+      "unit": "kg",
+      "tol": 0.05
+     }
+    ],
+    "solution": "（a）$1.1\\times10^{25}$ 次裂变，4.4 kg\n（b）$3.2\\times10^{26}$ 次聚变，2.7 kg\n（c）核燃料总共只有 6 kg，所以某些导弹携带 10 枚弹头是相当合理的。燃料的质量只有 60 kg，因此 10 枚弹头的质量，按其重量约为核燃料的 10 倍计，也只有 1500 lbs。如果导弹的燃料重量是弹头总重量的 5 倍，那么导弹大约重 9000 lbs，即 4.5 吨。这对一枚导弹来说并不是不合理的重量。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1935393",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-output",
+   "prompt": "据估计，大气层核试验已在地球表面沉积了约 9 MCi 的 ${}^{90}\\text{Sr}$。求这些 ${}^{90}\\text{Sr}$ 的质量。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 70000.0,
+    "unit": "g",
+    "tol": 0.1,
+    "hint": "把活度换算成贝可勒尔，用 $N = R\\,t_{1/2}/0.693$（取半衰期 28.8 y）求核的个数，再乘以一个 ${}^{90}\\text{Sr}$ 原子的质量。",
+    "solution": "$7\\times10^{4}\\ \\text{g}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1571001",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-output",
+   "prompt": "把核武器用于非军事用途的一种设想，是在地质稳定的地区把它们在地下引爆，并提取地热能来发电。2006 年各国核武库合计的总当量约为 4,000 MT。如果每天有 1.00 MT 以 10.0% 的效率转化为电能：\n（a）平均输出的电功率是多少？\n（b）以这个速率，核武库能用多少年？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4860000000.0,
+      "unit": "W",
+      "hint": "一兆吨是 $4.2\\times10^{15}\\ \\text{J}$；取其十分之一，再除以一天的秒数。"
+     },
+     {
+      "part": "(b)",
+      "value": 11.0,
+      "unit": "y"
+     }
+    ],
+    "solution": "（a）$4.86\\times10^{9}\\ \\text{W}$\n（b）11.0 y"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "fission-bomb-assembly",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "critical-mass"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "odd-neutron-number-fissile"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "fission-bomb-assembly"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-momentum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "thermonuclear-bomb",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "half-life",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "nuclear-weapon-energy-output"
+  },
+  {
+   "exercise": "p1",
+   "concept": "nuclear-weapon-energy-output"
+  },
+  {
+   "exercise": "p1",
+   "concept": "find-mass-change-from-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "thermonuclear-bomb"
+  },
+  {
+   "exercise": "p2",
+   "concept": "nuclear-reaction-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "nuclear-weapon-energy-output",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "nuclear-weapon-energy-output"
+  },
+  {
+   "exercise": "p4",
+   "concept": "thermonuclear-bomb"
+  },
+  {
+   "exercise": "p4",
+   "concept": "fission-releases-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "mass-from-activity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "p6",
+   "concept": "nuclear-weapon-energy-output"
+  },
+  {
+   "exercise": "p6",
+   "concept": "power"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-seaborg-prize",
+   "kind": "correction",
+   "html": "西博格 1951 年与埃德温·麦克米伦共同获得的诺贝尔奖是化学奖，而不是物理学奖。"
+  }
+ ]
+}

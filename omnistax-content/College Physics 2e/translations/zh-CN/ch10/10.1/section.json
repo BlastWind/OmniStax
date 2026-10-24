@@ -1,0 +1,611 @@
+{
+ "id": "10.1",
+ "module": "m42177",
+ "chapter": "10",
+ "title": "角加速度",
+ "short": "角加速度",
+ "lead": "匀速圆周运动中<span data-concept=\"angular-velocity\">角速度</span>保持恒定，而本节让它发生变化，就像滑冰者收拢手臂或硬盘减速直至停下时那样，并为它的变化率命名，即<span data-concept=\"angular-acceleration\">角加速度</span>。你将以<span data-ref=\"wheel\">一个被转动起来再被刹住的自行车车轮</span>为例把它算一遍，然后把圆周上一点的加速度分解为<span data-concept=\"tangential-acceleration\">切向</span>部分和<span data-concept=\"centripetal-acceleration\">向心</span>部分。",
+ "objectives": [
+  "描述匀速圆周运动。",
+  "解释变速圆周运动。",
+  "计算物体的角加速度。",
+  "观察线加速度与角加速度之间的联系。"
+ ],
+ "summary_html": "<ul><li>匀速圆周运动是具有恒定<span data-concept=\"angular-velocity\">角速度</span> $\\kw = \\frac{\\Delta\\theta}{\\kdt}$ 的运动。</li><li>在变速圆周运动中，<span data-concept=\"velocity\">速度</span>随<span data-concept=\"time\">时间</span>变化，<span data-concept=\"angular-velocity\">角速度</span>的变化率（即<span data-concept=\"angular-acceleration\">角加速度</span>）为 $\\kalpha = \\frac{\\kdw}{\\kdt}$。</li><li>线加速度或<span data-concept=\"tangential-acceleration\">切向加速度</span>指的是<span data-concept=\"velocity\">速度</span>大小的变化，而不是其方向的变化，其表达式为 $\\kat = \\frac{\\kdv}{\\kdt}$。</li><li>对于圆周运动，注意 $\\kv = \\kr\\kw$，所以 $$\\kat = \\frac{\\Delta(\\kr\\kw)}{\\kdt}.$$</li><li>圆周运动的半径 $\\kr$ 是恒定的，所以 $\\Delta(\\kr\\kw) = \\kr\\kdw$。因此，$$\\kat = \\kr\\frac{\\kdw}{\\kdt}.$$</li><li>根据定义，$\\kdw/\\kdt = \\kalpha$。因此，$$\\kat = \\kr\\kalpha$$ 或 $$\\kalpha = \\frac{\\kat}{\\kr}.$$</li></ul>",
+ "notes": "PhET 的 Ladybug Revolution 链接，以及本书没有给出答案的两道习题（超速离心机和关于篮球的“不合理的结果”题），均已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。关于角加速度的大小和方向的理解检测，书中已给出答案，并按书中印刷的位置，排在转动量与平动量的表格之后。习题 2 和 4 没有给出答案，因而略去：加速到 100,000 转每分的超速离心机，以及关于篮球的“不合理的结果”题。习题 3，即砂轮和斧头（fs-id3225958），两问均有答案，但其角加速度要通过摩擦力的力矩和圆盘的转动惯量求得，而这两者在 10.3 节才引入，因此它与 10.3 放在一起，source_section 为 10.1，10.3 的说明中也写明了这一点。四道思考题的建议思路由 AI 撰写，并已标明。本节没有 AP 备考练习，也没有取自其他小节的内容。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-uniform",
+   "kind": "sim",
+   "number": "10.3",
+   "originals": [
+    "/media/ch10/Figure_11_01_01a.jpg"
+   ],
+   "original_caption": "此图显示了匀速圆周运动及其若干已定义的量。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "angular-rate",
+    "position",
+    "velocity",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels step round arrow and arc; note one sentence via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-spin-up",
+   "kind": "sim",
+   "draws": [
+    "angular-rate",
+    "angular-acceleration",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note one sentence via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-accelerations",
+   "kind": "sim",
+   "number": "10.4",
+   "folds": [
+    "10.5"
+   ],
+   "originals": [
+    "/media/ch10/Figure_11_01_02a.jpg",
+    "/media/ch10/Figure_11_01_03a.jpg"
+   ],
+   "original_caption": "在圆周运动中，线加速度 a 随速度大小的变化而产生：a 与该运动相切。在圆周运动的语境中，线加速度也称为切向加速度 a_t。向心加速度 a_c 随速度方向的变化而产生；它垂直于圆周运动。因此，向心加速度和切向加速度彼此垂直。",
+   "draws": [
+    "position",
+    "angular-rate",
+    "angular-acceleration",
+    "velocity",
+    "acceleration",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset, live readout, note via macros, labels clear arrows, caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-motorcycle",
+   "kind": "sim",
+   "number": "10.6",
+   "originals": [
+    "/media/ch10/Figure_11_01_04a.jpg"
+   ],
+   "original_caption": "摩托车的线加速度伴随着其车轮的角加速度。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "velocity",
+    "acceleration",
+    "angular-acceleration",
+    "angular-rate",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "a_t arrow moved ahead of the nose, off the tank; note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "uniform-circular-motion",
+   "concept": "uniform-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "uniform-circular-motion",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "uniform-circular-motion",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "uniform-circular-motion",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-acceleration",
+   "concept": "nonuniform-circular-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-acceleration",
+   "concept": "angular-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-acceleration",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-acceleration",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-acceleration",
+   "concept": "change-in-angular-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "tangential-acceleration",
+   "concept": "tangential-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "tangential-acceleration",
+   "concept": "tangential-and-centripetal-are-independent",
+   "verb": "introduces"
+  },
+  {
+   "span": "tangential-acceleration",
+   "concept": "centripetal-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "tangential-acceleration",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "tangential-acceleration",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "tangential-angular-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "tangential-acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "analogy",
+   "concept": "rotational-translational-analogy",
+   "verb": "introduces"
+  },
+  {
+   "span": "analogy",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "analogy",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "analogy",
+   "concept": "angular-acceleration",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1870686",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "analogy"
+   },
+   "cite": "angular-acceleration",
+   "prompt": "角加速度是矢量，既有大小又有方向。我们如何表示它的大小和方向？请举例说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "角加速度的大小是 $\\kalpha$，其最常用的单位是 $\\text{rad/s}^2$。沿固定轴的角加速度的方向用 + 号或 – 号表示，正如一维线加速度的方向用 + 号或 – 号表示一样。例如，考虑一位体操运动员做前空翻。她的角动量将平行于垫子，并指向她的左侧。她的角加速度的大小将与她的角速度（转速）以及她绕转轴的转动惯量成正比。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1361145",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "analogy",
+   "prompt": "转动物理量与平动物理量之间存在类比。请指出下列每一项所对应的转动量：加速度、力、质量、功、平动动能、线动量、冲量。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先从表 10.1 已经给出的三对量说起：其中角对应位置，角速度对应速度，角加速度对应加速度，所以与加速度类比的转动量就是角加速度 $\\kalpha$。本章其余部分以同样的方式建立其余几对量，每个转动量在转动中所起的作用，就如同与它成对的平动量在直线运动中所起的作用。与力类比的是力矩，即力的转动效果，这在“静力学与力矩”中已经介绍过。与质量类比的是转动惯量，即物体对其转动变化的阻碍，它取决于质量围绕转轴如何分布，而不仅仅取决于质量有多少。功对应力矩乘以转过的角，就像直线运动中的功是力乘以移动的距离一样。平动动能，即质量与速率平方之积的一半，对应转动动能，即转动惯量与角速度平方之积的一半。线动量，即质量乘以速度，对应角动量，即转动惯量乘以角速度。冲量，即力乘以力的作用时间，对应力矩乘以力矩的作用时间，它改变角动量，就像冲量改变线动量一样。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1867019",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangential-acceleration",
+   "prompt": "解释为什么在圆周运动中，向心加速度改变速度的方向而不改变其大小。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "加速度沿着加速度所指的方向改变速度。向心加速度总是指向圆心，而做圆周运动的物体的速度总是与圆相切，所以在每一时刻，向心加速度都垂直于速度。与速度本身垂直的速度变化只能使速度矢量转向；它在运动方向上既没有增加什么，也没有减去什么，所以速率不变。只有沿速度方向的加速度分量，也就是切向加速度，才能使物体运动得更快或更慢。这就是为什么做匀速圆周运动的物体，只有向心加速度而没有别的加速度，速率保持不变，而它的运动方向却不断转变。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3046867",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangential-acceleration",
+   "prompt": "在圆周运动中，切向加速度可以改变速度的大小，但不能改变速度的方向。请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "切向加速度在所关注的点处与圆相切，这恰好就是速度在该点的方向。沿速度所在直线方向的加速度使速度矢量变长或变短，而不使它偏向一侧，所以它改变速率，而运动方向保持原样。使速度转向是向心加速度的作用，它与速度垂直。因为这两个加速度相互垂直，所以它们彼此独立，切向加速度单独作用时只能使物体沿圆周加速或减速，就像例题 10.1 中自行车车轮上的刹车使边缘上每一点减速，却不改变它所沿的圆一样。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3046066",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangential-acceleration",
+   "prompt": "假设一块食物放在转动的微波炉转盘的边缘上。在以下情形中，它是具有非零的切向加速度、非零的向心加速度，还是两者兼有：（a）转盘开始转动？（b）转盘以恒定角速度转动？（c）转盘减速直至停下？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在每个阶段都问两个问题：食物的速率是否在变化，以及食物是否在做圆周运动？速率变化意味着有切向加速度，因为只要角速度在变化，$\\kat = \\kr\\kalpha$ 就不为零；而任何圆周运动都意味着有向心加速度，因为只要角速度不为零，$\\kac = \\kr\\kw^2$ 就不为零。（a）转盘开始转动时，它的角速度在增大，所以食物有切向加速度；而一旦它在自己的圆上运动，它同时也有向心加速度，所以两者都有。（b）角速度恒定时，速率恒定，切向加速度为零，但食物仍在做圆周运动，所以它只有向心加速度，没有别的加速度。（c）转盘减速时，角速度在减小，所以有一个与运动方向相反的切向加速度；而只要食物还在转动，就也有向心加速度，所以它同样两者都有；转盘停下的那一时刻，两者都降为零。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1571972",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uniform-circular-motion",
+   "prompt": "龙卷风在最强时直径为 60.0 m，风速达 500 km/h。它的角速度是多少转每秒？",
+   "answer": {
+    "type": "number",
+    "value": 0.737,
+    "unit": "rev/s",
+    "generated_by": "source",
+    "hint": "边缘处的风速就是半径处一点的线速度，而半径是直径的一半。把速率换算成米每秒，用 $\\kw = \\kv/\\kr$ 求出以弧度每秒为单位的角速度，然后记住一圈是 $2\\pi$ 弧度。",
+    "solution": "$\\kw = 0.737\\ \\text{rev/s}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "angular-acceleration"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rotational-translational-analogy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "centripetal-acceleration"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "tangential-and-centripetal-are-independent",
+   "weight": 3
+  },
+  {
+   "exercise": "cq3",
+   "concept": "tangential-acceleration"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "tangential-and-centripetal-are-independent",
+   "weight": 3
+  },
+  {
+   "exercise": "cq4",
+   "concept": "tangential-and-centripetal-are-independent"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "tangential-acceleration",
+   "weight": 3
+  },
+  {
+   "exercise": "cq4",
+   "concept": "nonuniform-circular-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "angular-velocity",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "disk",
+   "label": "圆盘",
+   "figures": [
+    "sim-uniform"
+   ]
+  },
+  {
+   "id": "rim-point",
+   "label": "边缘上的点",
+   "figures": [
+    "sim-uniform"
+   ]
+  },
+  {
+   "id": "wheel",
+   "label": "自行车的后轮",
+   "figures": [
+    "sim-spin-up"
+   ]
+  },
+  {
+   "id": "point",
+   "label": "圆上的点",
+   "figures": [
+    "sim-accelerations"
+   ]
+  },
+  {
+   "id": "motorcycle",
+   "label": "摩托车",
+   "figures": [
+    "sim-motorcycle"
+   ]
+  },
+  {
+   "id": "wheels",
+   "label": "摩托车的车轮",
+   "figures": [
+    "sim-motorcycle"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "tangential-acceleration",
+   "what": "切向加速度",
+   "source": "《大学物理（第2版）》，10.1 角加速度",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "text": "圆周运动的半径 $\\kr$ 是恒定的。",
+       "src": "10.1"
+      },
+      {
+       "tex": "\\kalpha = \\dfrac{\\kdw}{\\kdt}",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kat} = \\dfrac{\\mk{v}{\\kdv}}{\\mk{t}{\\kdt}}",
+      "src": "2.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kat} = \\dfrac{\\mk{v}{\\Delta(\\kr\\kw)}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kat} = \\mk{r}{\\kr}\\dfrac{\\mk{v}{\\kdw}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "v": [
+         "r",
+         "v"
+        ]
+       },
+       "cap": "$\\kr$ 固定时，只有 $\\kw$ 变化，所以 $\\Delta(\\kr\\kw) = \\kr(\\kdw)$。"
+      },
+      {
+       "tex": "\\mk{a}{\\kat} = \\mk{r}{\\kr}\\mk{v}{\\kalpha}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t": "v"
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kalpha} = \\dfrac{\\mk{a}{\\kat}}{\\mk{r}{\\kr}}",
+       "uses": []
+      }
+     ],
+     "src": "10.1"
+    }
+   ]
+  }
+ ]
+}

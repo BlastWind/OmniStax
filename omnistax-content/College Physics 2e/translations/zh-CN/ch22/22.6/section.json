@@ -1,0 +1,552 @@
+{
+ "id": "22.6",
+ "module": "m42377",
+ "chapter": "22",
+ "title": "霍尔效应",
+ "short": "霍尔效应",
+ "lead": "<span data-concept=\"magnetic-field\">磁场</span>对携带<span data-concept=\"electric-current\">电流</span>的电荷施加侧向的推力，由于这些电荷无法离开<span data-concept=\"conductor\">导体</span>，它们便聚集在导体的一侧。本节测量这种聚集在<span data-concept=\"conductor\">导体</span>两端建立起的<span data-concept=\"potential-difference\">电压</span>，即<span data-concept=\"hall-emf\">霍尔电动势</span>，并沿着它进入霍尔探针，以及测量血液在动脉中流动快慢的流量计。",
+ "objectives": [
+  "描述霍尔效应。",
+  "计算载流导体两端的霍尔电动势。"
+ ],
+ "summary_html": "<ul><li>霍尔效应是指<span data-concept=\"magnetic-field\">磁场</span>在载流导体两端产生<span data-concept=\"potential-difference\">电压</span> $\\kemfhall$，该电压称为<span data-concept=\"hall-emf\">霍尔电动势</span>。</li><li>对于宽度为 $l$、其中电荷以速率 $\\kv$ 运动的导体，<span data-concept=\"hall-emf\">霍尔电动势</span>由下式给出$$\\kemfhall = \\kBmag l \\kv \\quad (\\kBmag,\\ \\kv,\\ \\text{和}\\ l,\\ \\text{两两垂直})$$</li></ul>",
+ "notes": "书中没有给出答案的四道习题略去；该模块的其余内容一概未省略，其三幅示意图被重绘为交互图形，并将书中原有的图片保留在一旁。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。九道习题中有五道给出了答案，在此收入；其余四道略去：横跨 2.60 cm 主动脉的霍尔电压，非机械式水表中的平均速度，霍尔探针从 2.00 T 的磁场移到 0.150 T 的磁场时的输出，以及证明通有相同电流的同种材料导线两端的霍尔电压与导线直径成反比。原书中没有给出答案的那道思考题和那道 AP 题，附有标明为 AI 撰写的建议思路，而不是判分答案。该模块没有“理解检测”框，所以本页不设内嵌习题，也没有习题被留给后面的小节，或在别处被留给本节。",
+ "figures": [
+  {
+   "id": "sim-hall-carriers",
+   "kind": "sim",
+   "number": "22.26",
+   "originals": [
+    "/media/ch22/Figure_23_06_01a.jpg"
+   ],
+   "original_caption": "霍尔效应。（a）电子在这个扁平导体中向左运动（约定电流向右）。磁场垂直纸面向外，用带圈的圆点表示；它对运动的电荷施加力，从而在导体两端产生电压 ε，即霍尔电动势。（b）向右运动的正电荷（约定电流同样向右）被推向一侧，产生符号相反的霍尔电动势 –ε。因此，如果磁场和电流的方向已知，就可以由霍尔效应确定载流子的正负。",
+   "widths": [
+    380
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "charge",
+    "velocity",
+    "force",
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "canvas note dropped, readout note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hall-balance",
+   "kind": "sim",
+   "number": "22.27",
+   "originals": [
+    "/media/ch22/Figure_23_06_02a.jpg"
+   ],
+   "original_caption": "霍尔电动势 ε 产生一个电场力，与运动电荷所受的磁力相平衡。磁力造成电荷分离，电荷分离不断增强，直到被电场力所平衡，这种平衡很快就能达到。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "magnetic-field",
+    "electric-field",
+    "force",
+    "velocity",
+    "charge",
+    "voltage",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "v label clear of the electron, legend line and note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-flow-probe",
+   "kind": "sim",
+   "number": "22.28",
+   "originals": [
+    "/media/ch22/Figure_23_06_03a.jpg"
+   ],
+   "original_caption": "霍尔效应可用于测量任何含有自由电荷的流体（如血液）的流动。霍尔电动势 ε 是在垂直于所施加磁场的方向上横跨管子测得的，与平均速度 v 成正比。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "magnetic-field",
+    "velocity",
+    "charge",
+    "force",
+    "voltage",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "meter value on a panel, canvas note dropped, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "carriers",
+   "concept": "hall-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "carriers",
+   "concept": "sign-of-charge-carriers",
+   "verb": "introduces"
+  },
+  {
+   "span": "carriers",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "carriers",
+   "concept": "right-hand-rule-1",
+   "verb": "uses"
+  },
+  {
+   "span": "carriers",
+   "concept": "conventional-current",
+   "verb": "uses"
+  },
+  {
+   "span": "balance",
+   "concept": "hall-emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "balance",
+   "concept": "hall-effect",
+   "verb": "reinforces"
+  },
+  {
+   "span": "balance",
+   "concept": "voltage-across-uniform-field",
+   "verb": "uses"
+  },
+  {
+   "span": "balance",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "probes",
+   "concept": "hall-probe-and-flow-measurement",
+   "verb": "introduces"
+  },
+  {
+   "span": "probes",
+   "concept": "hall-emf",
+   "verb": "reinforces"
+  },
+  {
+   "span": "probes",
+   "concept": "the-tesla",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1564685",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "carriers",
+   "prompt": "讨论如何利用霍尔效应获得导体中自由电荷密度的信息。（提示：考虑漂移速度与电流是怎样相关的。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "霍尔电动势给出电荷的漂移速度，而漂移速度与电流一起给出自由电荷的密度。让已知电流 $\\kIcur$ 通过横截面积 $\\karea$ 和宽度 $\\kl$ 都已知的导体，施加一个已知的磁场 $\\kBmag$，其方向与电流和宽度都垂直，并测量霍尔电动势。由于 $\\kemfhall = \\kBmag\\kl\\kvd$，漂移速度为 $\\kvd = \\kemfhall/\\kBmag\\kl$。自由电荷携带电流，所以 $\\kIcur = n\\kq\\karea\\kvd$，其中 $n$ 是每立方米中自由电荷的个数，$\\kq$ 是每个电荷所带的电荷量。这个关系式中除 $n$ 之外的量现在都已知，所以 $n = \\kIcur/\\kq\\karea\\kvd = \\kIcur\\kBmag\\kl/\\kq\\karea\\kemfhall$。此外，霍尔电动势的正负号还能告诉我们，自由电荷是正的还是负的。这就是为什么霍尔效应是探测材料中电荷的漂移速度和密度的研究工具。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2336649",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "balance",
+   "prompt": "飞机的翼展可以近似为一根长 35 m 的导电杆。飞机正北飞行时，以 82 m/s 的速率穿过地磁场，该磁场大小为 45 μT，指向北方，方向在水平面下方 57°。（a）翼展的哪一端带正电，东端还是西端？请解释。（b）沿翼展的霍尔电动势是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）西端。磁场指向北方并向下，其中沿向北的速度方向的那一部分不能施加力，所以只有磁场向下的那一部分起作用。取机翼中一个向北运动、穿过向下磁场的正电荷：右手定则 1 使拇指指向北，手指指向下，力从手掌穿出，指向西。因此正电荷聚集在西侧翼尖，东侧翼尖留下负电荷。（b）只有磁场的竖直分量 $\\kBmag\\sin 57^\\circ$ 与速度垂直，所以霍尔电动势为 $\\kemfhall = (\\kBmag\\sin 57^\\circ) \\kl \\kv = (45 \\times 10^{-6}\\ \\text{T})(0.839)(35\\ \\text{m})(82\\ \\text{m/s}) = 0.11\\ \\text{V}$，机翼两端约为十分之一伏特。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2114109",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "probes",
+   "prompt": "一根大型供水干管的直径为 2.50 m，水的平均速度为 6.00 m/s。若管子垂直于 $5.00 \\times 10^{-5}\\ \\text{T}$ 的地磁场，求产生的霍尔电压。",
+   "answer": {
+    "type": "number",
+    "value": 0.00075,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "干管的直径就是出现电动势所横跨的宽度，所以三个已知数直接代入 $\\kemfhall = \\kBmag l \\kv$。",
+    "solution": "$7.50 \\times 10^{-4}\\ \\text{V}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1527365",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "balance",
+   "prompt": "（a）一架翼展为 17.0 m 的超声速飞机在磁北极上空平飞时，两翼尖之间的霍尔电压为 1.60 V，该处地磁场的磁感应强度为 $8.00 \\times 10^{-5}\\ \\text{T}$，它的速率是多少？（b）解释为什么这个霍尔电压只会引起很小的电流。",
+   "answer": {
+    "type": "number",
+    "value": 1180,
+    "unit": "m/s",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "把 $\\kemfhall = \\kBmag l \\kv$ 解出速率，取翼展为出现电动势所横跨的宽度。",
+    "solution": "（a）$1.18 \\times 10^{3}$ m/s（b）霍尔电动势一旦建立，就把电荷推向一个方向，而磁力作用在相反的方向，使电荷所受合力为零。因此，没有电流沿霍尔电动势的方向流动。这与载流导体中的情形相同——电流不沿霍尔电动势的方向流动。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1645693",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "probes",
+   "prompt": "计算患者心脏在接受 MRI 设备扫描时所感应出的霍尔电压。把心壁上的导电通路近似为一根长 7.50 cm 的导线，它以 10.0 cm/s 的速率垂直于 1.50 T 的磁场运动。",
+   "answer": {
+    "type": "number",
+    "value": 11.3,
+    "unit": "mV",
+    "generated_by": "source",
+    "hint": "以米和米每秒为单位把三个数代入 $\\kemfhall = \\kBmag l \\kv$，然后以毫伏读出答案。",
+    "solution": "11.3 mV"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1797808",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "probes",
+   "prompt": "利用例题 20.3 中的信息，如果在载有 20.0 A 电流的 10 号铜线（直径 2.588 mm）两侧施加 2.00 T 的磁场，霍尔电压是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1.16,
+    "unit": "μV",
+    "generated_by": "source",
+    "hint": "所要用的速率就是漂移速度，它由 $\\kIcur = n\\kq A\\kvd$ 和例题 20.3 算出的铜的自由电子密度得到；导线的直径就是出现电动势所横跨的宽度。",
+    "solution": "$1.16\\ \\mu\\text{V}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-id1890293",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "probes",
+   "prompt": "一名装有起搏器的患者被误做了 MRI 成像扫描。一段长 10.0 cm 的起搏器导线以 10.0 cm/s 的速率垂直于 MRI 设备的磁场运动，感应出 20.0 mV 的霍尔电压。磁感应强度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 2.0,
+    "unit": "T",
+    "generated_by": "source",
+    "hint": "把 $\\kemfhall = \\kBmag l \\kv$ 解出磁场，取导线的长度为宽度，速率以米每秒为单位。",
+    "solution": "2.00 T"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "hall-probe-and-flow-measurement"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "hall-effect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "sign-of-charge-carriers"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "hall-effect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "p1",
+   "concept": "hall-probe-and-flow-measurement",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "p2",
+   "concept": "hall-effect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "p3",
+   "concept": "hall-probe-and-flow-measurement",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "p4",
+   "concept": "hall-probe-and-flow-measurement",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "hall-emf"
+  },
+  {
+   "exercise": "p5",
+   "concept": "hall-probe-and-flow-measurement",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "conductor",
+   "label": "扁平导体",
+   "figures": [
+    "sim-hall-carriers"
+   ]
+  },
+  {
+   "id": "slab",
+   "label": "导体",
+   "figures": [
+    "sim-hall-balance"
+   ]
+  },
+  {
+   "id": "magnet",
+   "label": "磁体",
+   "figures": [
+    "sim-flow-probe"
+   ]
+  },
+  {
+   "id": "vessel",
+   "label": "血管",
+   "figures": [
+    "sim-flow-probe"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "hall-emf",
+   "what": "霍尔电动势",
+   "source": "《大学物理（第2版）》，22.6 霍尔效应",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "分离的电荷不断积累，直到作用在运动电荷上的电场力等于磁力。",
+       "src": "22.6"
+      },
+      {
+       "tex": "\\kF_{\\text{e}} = \\kq\\kEf",
+       "src": "18.4"
+      },
+      {
+       "tex": "\\kF = \\kq\\kv\\kBmag",
+       "src": "22.4"
+      },
+      {
+       "text": "$\\kBmag$、$\\kv$ 和 $\\kl$ 两两垂直。",
+       "src": "22.6，图 22.27"
+      },
+      {
+       "text": "场 $\\kEf$ 在整个导体上是均匀的，因为 $\\kBmag$ 和导体都是均匀的。",
+       "src": "22.6"
+      },
+      {
+       "tex": "\\kEf = \\dfrac{\\kemfhall}{\\kl}",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kF_{\\text{e}}} = \\mk{m}{\\kF}",
+      "src": "22.6",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kq\\kEf} = \\mk{m}{\\kF}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kq\\kEf} = \\mk{m}{\\kq\\kv\\kBmag}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kEf} = \\mk{m}{\\kv\\kBmag}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{\\dfrac{\\kemfhall}{\\kl}} = \\mk{m}{\\kv\\kBmag}",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemfhall} = \\mk{m}{\\kBmag \\kl \\kv} \\quad (\\kBmag,\\ \\kv,\\ \\text{和}\\ \\kl,\\ \\text{两两垂直})",
+       "uses": []
+      }
+     ],
+     "src": "22.6"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,853 @@
+{
+ "id": "17.4",
+ "module": "m42712",
+ "chapter": "17",
+ "title": "多普勒效应与声爆",
+ "short": "多普勒效应与声爆",
+ "lead": "摩托车的尖啸声在它驶过时降为低沉的轰鸣，这是因为声源或观察者的运动会改变观察者听到的<span data-concept=\"frequency\">频率</span>。运动得比声音还快的声源会把它的波堆积成声爆。",
+ "objectives": [
+  "定义多普勒效应、多普勒频移和声爆。",
+  "计算观察到多普勒频移的人所听到的声音的频率。",
+  "描述运动速率超过声速的物体所产生的声音。"
+ ],
+ "summary_html": "<ul><li>多普勒效应是指由于声源或观察者的运动，声音的观测<span data-concept=\"frequency\">频率</span>发生的改变。</li><li><span data-concept=\"frequency\">频率</span>的实际变化称为多普勒频移。</li><li>声爆是由运动得比声音还快的物体所产生的声音的相长干涉。</li><li>声爆是弓形波的一种，当任何波源的运动速率超过波的传播速率时产生。</li><li>对于静止的观察者和运动的声源，观测<span data-concept=\"frequency\">频率</span> $\\kfobs$ 为：$\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right),$ 其中 $\\kfsrc$ 是声源的<span data-concept=\"frequency\">频率</span>，$\\kvs$ 是声源的速率，$\\kvw$ 是声速。朝向观察者的运动取负号，远离观察者的运动取正号。</li><li>对于静止的声源和运动的观察者，观测<span data-concept=\"frequency\">频率</span>为：$\\kfobs = \\kfsrc\\left(\\frac{\\kvw \\pm \\kvobs}{\\kvw}\\right),$ 其中 $\\kvobs$ 是观察者的速率。</li></ul>",
+ "notes": "书后答案中没有给出习题 2、4、6 和 8 的答案，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6 和 8 没有给出答案，因而略去。第一道 AP 题有答案，是一道选择题；第二道 AP 题附有本书画出的感知频率随时间变化的图，没有给出答案，保留为开放题，并附有一条由 AI 撰写、已标明的建议思路。三道思考题的建议思路由 AI 撰写，并已标明。两个理解检测框都附有本书的答案，并放在行内：第一个放在关于多普勒实验的段落之后，第二个放在关于频移用途的结尾段落之后，即本书印出它们的位置。没有任何内容留给其他小节，也没有从其他小节取来。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-doppler",
+   "kind": "sim",
+   "number": "17.13",
+   "folds": [
+    "17.14",
+    "17.15"
+   ],
+   "originals": [
+    "/media/ch17/Figure_18_04_02a.jpg",
+    "/media/ch17/Figure_18_04_03a.jpg",
+    "/media/ch17/Figure_18_04_04a.jpg"
+   ],
+   "original_caption": "（图 17.13）声源发出的声音呈球面波向外扩展。由于声源、观察者和空气都是静止的，波长和频率在所有方向上、对所有观察者都是相同的。（图 17.14）向右运动的声源发出的声音，从各自发出的点向外扩展。在运动方向上波长减小，因此频率增大，所以右侧的观察者听到音调较高的声音。左侧的观察者则相反，波长增大，频率减小。（图 17.15）观察者相对于声源运动时，也会产生同样的效应。朝向声源运动使频率增大，因为右侧的观察者比静止时经过更多的波峰。背离声源运动使频率减小，因为左侧的观察者比静止时经过更少的波峰。",
+   "widths": [
+    250,
+    250,
+    250
+   ],
+   "draws": [
+    "frequency",
+    "velocity",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note no longer repeats the headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-shift",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "value labels to hover names; v_w label moved; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-sonic-boom",
+   "kind": "sim",
+   "number": "17.16",
+   "originals": [
+    "/media/ch17/Figure_18_04_05a.jpg"
+   ],
+   "original_caption": "运动速率超过声速的声源发出的声波，从发出的点向外呈球形扩展，但声源总是跑在每个声波的前面。沿图中所示的线（在三维中实际是一个圆锥）发生相长干涉，产生一种称为声爆的冲击波。声源的速率越大，角 θ 越小。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "theta label off the path; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-booms",
+   "kind": "sim",
+   "number": "17.17",
+   "originals": [
+    "/media/ch17/Figure_18_04_06a.jpg"
+   ],
+   "original_caption": "由飞机机头和机尾产生的两次声爆，在飞机飞过之后于地面上被观察到。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note one sentence through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-duck",
+   "kind": "photo",
+   "number": "17.18",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-cerenkov",
+   "kind": "photo",
+   "number": "17.19",
+   "widths": [
+    200
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "doppler-effect",
+   "concept": "doppler-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler-effect",
+   "concept": "frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "wavefronts",
+   "concept": "doppler-effect",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wavefronts",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "wavefronts",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler-shift",
+   "concept": "doppler-shift-moving-source",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler-shift",
+   "concept": "doppler-shift-moving-observer",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler-shift",
+   "concept": "doppler-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler-shift",
+   "concept": "doppler-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-train-horn",
+   "concept": "doppler-shift-source-and-observer",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-train-horn",
+   "concept": "doppler-shift-moving-source",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-train-horn",
+   "concept": "doppler-shift-moving-observer",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-train-horn",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "sonic-boom",
+   "concept": "sonic-boom",
+   "verb": "introduces"
+  },
+  {
+   "span": "sonic-boom",
+   "concept": "doppler-shift-moving-source",
+   "verb": "uses"
+  },
+  {
+   "span": "bow-wake",
+   "concept": "bow-wake",
+   "verb": "introduces"
+  },
+  {
+   "span": "bow-wake",
+   "concept": "sonic-boom",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "doppler-effect",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "sonic-boom",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1864432",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "doppler-effect"
+   },
+   "cite": "doppler-effect",
+   "prompt": "为什么科学家克里斯蒂安·多普勒既在行驶的火车上观察音乐家，又在不在火车上的静止位置观察音乐家？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "多普勒需要比较观察者静止而声源运动时，以及声源和观察者都在运动时，对声音的知觉。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id2687479",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "applications"
+   },
+   "cite": "applications",
+   "prompt": "描述你生活中的一种情境：在开车或在车流附近行走时，你可能会借助多普勒频移来帮助自己。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "如果我正在开车，听到救护车警笛的多普勒频移，我就能判断它是否在靠近，也能判断它是否已经驶过。这会帮助我知道是否需要靠边停车，给救护车让路。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id3078306",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "一名行李搬运工站在跑道边上，一架正在降落的飞机飞近。与飞机驾驶员听到的飞机音调相比，下列哪一项正确描述了搬运工的感受？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "飞机的频率在搬运工听来音调较低，并且随着飞机减速直至停下，音调会变得更低。",
+     "飞机的频率在搬运工听来音调较低，但随着飞机减速直至停下，音调会升高。",
+     "飞机的频率在搬运工听来音调较高，但随着飞机减速直至停下，音调会降低。",
+     "飞机的频率在搬运工听来音调较高，并且随着飞机减速直至停下，音调会进一步升高。"
+    ],
+    "correct": 2,
+    "hint": "飞行员与声源一起运动，听到的就是 $\\kfsrc$ 本身。搬运工是静止的观察者，声源朝他运动，所以取负号，并且频移随 $\\kvs$ 增大。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1937370",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "figure": {
+    "src": "/media/ch17/CNX_APPhysics_17_M4_graph_img.jpg",
+    "alt": "一幅图，横轴为时间，单位为秒，纵轴为感知到的频率，单位为赫兹。图线从 0 到约 0.5 秒保持在 218 赫兹不变，然后从 (0.5, 218) 线性下降到 (0.8, 181)，之后保持在 181 赫兹不变，直到图线结束。",
+    "caption": "时间与感知到的频率的关系图，用于说明多普勒效应。"
+   },
+   "prompt": "下图表示一名学生感知到的一辆汽车驶过时的频率。（a）如果汽车喇叭的真实频率为 200 Hz，汽车的行驶速率是多少？（b）在上图中画一条线，表示汽车行驶速率为两倍时感知到的频率。标出图中所有的截距、最大值和最小值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "喇叭是运动的声源，学生是静止的观察者，所以图中的两段水平部分是 $\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)$ 的两个读数，其中 $\\kfsrc = 200\\ \\text{Hz}$。汽车驶近时读数为 218 Hz，对应负号；驶过之后为 181 Hz，对应正号。对于（a），由任一读数解出汽车的速率。驶近的读数给出 $\\kvs = \\kvw\\left(1 - \\frac{200\\ \\text{Hz}}{218\\ \\text{Hz}}\\right) = 0.083\\,\\kvw$，驶离的读数给出 $\\kvs = \\kvw\\left(\\frac{200\\ \\text{Hz}}{181\\ \\text{Hz}} - 1\\right) = 0.105\\,\\kvw$。两者不同，是因为频率是从图上读出的，所以取声速约为 343 m/s，并报告速率约为 30 m/s。0.5 s 到 0.8 s 之间的倾斜部分是汽车驶过的时候，这时它的运动已不再沿着指向学生的连线。对于（b），速率为两倍的汽车，比值 $\\kvs/\\kvw$ 也为两倍，约为 0.17。它的线起点更高，接近 $200\\ \\text{Hz}/(1 - 0.17) \\approx 240\\ \\text{Hz}$，终点更低，接近 $200\\ \\text{Hz}/(1 + 0.17) \\approx 170\\ \\text{Hz}$。汽车在一半的时间内驶过同样长的一段路，所以新线的倾斜部分只有原来的一半宽，从 0.5 s 延伸到约 0.65 s。两个频移都比之前大，并且向上的频移大于向下的频移，正如这两个方程所要求的。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1562301",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wavefronts",
+   "prompt": "多普勒频移是真实的，还是只是一种感觉错觉？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它是真实的。在运动的声源前方，空气的密部确实靠得更近，因为声源发出每一个密部的点都比前一个更靠前。那里空气中的波长更短，而由于 $\\kvw = \\kf\\klam$ 且 $\\kvw$ 由介质决定，到达静止观察者的频率确实更高。朝着静止声源走去的观察者每秒遇到的波峰确实比站着不动的观察者更多。传声器、雷达接收器或超声探头测得的频移后的频率，与耳朵听到的一样，这就是为什么频移能用来测量血流、汽车和星系的速率。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3415376",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sonic-boom",
+   "prompt": "出于与其弓形波有关的效率考虑，超声速运输机必须保持与声速成固定比值的巡航速率（即恒定的马赫数）。如果飞机从暖空气飞入较冷的空气，它应该提高还是降低速率？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它应该降低速率。空气中的声速取决于温度，$\\kvw = (331\\ \\text{m/s})\\sqrt{\\kTemp/273\\ \\text{K}}$，所以较冷的空气传播声音更慢。马赫数是飞机速率与声速之比 $\\kvs/\\kvw$，当 $\\kvw$ 下降时，要使这个比值保持不变，飞机必须按相同比例降低 $\\kvs$。这样，由该比值决定的弓形波角度就保持不变。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1272247",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sonic-boom",
+   "prompt": "听到声爆时，你往往看不到发出声爆的飞机。这是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "飞机运动得比它发出的声音还快，所以冲击波以圆锥形拖在飞机后面，只有在飞机飞过头顶之后才到达地面。声爆到达时，飞机已经远远飞过你会去寻找它的地方，声音来自飞机曾经所在的位置，而不是它现在所在的位置。图 17.17 显示了这一点：飞机飞过之后，观察者们才听到声爆，而冲击波尚未到达的那一位什么也听不到。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3285716",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "（a）一个人看着一辆迎面驶来的救护车，车速为 110 km/h，警笛持续发出 800 Hz 的声音，此人接收到的频率是多少？这天的声速为 345 m/s。（b）救护车驶过之后，她接收到的频率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 878,
+      "unit": "Hz",
+      "hint": "先把 110 km/h 换算成米每秒。救护车是朝着静止观察者驶来的运动声源，所以在 $\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw - \\kvs}\\right)$ 中取负号。"
+     },
+     {
+      "part": "b",
+      "value": 735,
+      "unit": "Hz",
+      "hint": "驶过之后声源远离，所以同一方程取正号。"
+     }
+    ],
+    "solution": "（a）878 Hz （b）735 Hz"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1421237",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "一只老鼠在即将被一只鹰捕杀之前，鹰正以 25.0 m/s 的速率朝它飞来，并发出频率为 3500 Hz 的尖叫，老鼠接收到的频率是多少？取声速为 331 m/s。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3790,
+    "unit": "Hz",
+    "hint": "鹰是朝着静止观察者运动的声源：$\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw - \\kvs}\\right)$。",
+    "solution": "$3.79 \\times 10^{3}\\ \\text{Hz}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3004322",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler-shift",
+   "prompt": "一列通勤列车驶近道口时鸣响它的 200 Hz 汽笛。声速为 335 m/s。（a）在道口等候的观察者接收到的频率为 208 Hz。火车的速率是多少？（b）火车驶离时，观察者接收到的频率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 12.9,
+      "unit": "m/s",
+      "hint": "对运动声源的方程取负号，解出 $\\kvs$：$\\kvs = \\kvw\\left(1 - \\kfsrc/\\kfobs\\right)$。"
+     },
+     {
+      "part": "b",
+      "value": 193,
+      "unit": "Hz",
+      "hint": "在同一方程中用（a）中求得的速率，并取正号。"
+     }
+    ],
+    "solution": "（a）12.9 m/s （b）193 Hz"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2023850",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-train-horn",
+   "prompt": "两只雕径直朝对方飞去，第一只的速率为 15.0 m/s，第二只为 20.0 m/s。两只都在尖叫，第一只发出的频率为 3200 Hz，第二只发出的频率为 3800 Hz。如果声速为 330 m/s，它们接收到的频率各是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "first eagle",
+      "value": 4230,
+      "unit": "Hz",
+      "hint": "第一只雕接收到的是第二只雕 3800 Hz 的尖叫。相对于空气，两只都朝对方运动，所以观察者因子取正号，$\\kvobs = 15.0\\ \\text{m/s}$，声源因子取负号，$\\kvs = 20.0\\ \\text{m/s}$，如例题 17.4 的（b）部分。"
+     },
+     {
+      "part": "second eagle",
+      "value": 3560,
+      "unit": "Hz",
+      "hint": "现在第二只雕是速率为 20.0 m/s 的观察者，第一只是速率为 15.0 m/s 的声源，发出 3200 Hz 的尖叫。"
+     }
+    ],
+    "solution": "第一只雕听到 $4.23 \\times 10^{3}\\ \\text{Hz}$。第二只雕听到 $3.56 \\times 10^{3}\\ \\text{Hz}$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "doppler-effect"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "doppler-effect"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "doppler-effect"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "doppler-shift-moving-source"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "doppler-shift-moving-source"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "doppler-effect",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "doppler-effect"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sonic-boom"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bow-wake",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "speed-of-sound-temperature",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "sonic-boom"
+  },
+  {
+   "exercise": "p1",
+   "concept": "doppler-shift-moving-source"
+  },
+  {
+   "exercise": "p3",
+   "concept": "doppler-shift-moving-source"
+  },
+  {
+   "exercise": "p5",
+   "concept": "doppler-shift-moving-source"
+  },
+  {
+   "exercise": "p7",
+   "concept": "doppler-shift-source-and-observer"
+  },
+  {
+   "exercise": "p7",
+   "concept": "doppler-shift-moving-source",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "doppler-shift-moving-observer",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "car",
+   "label": "汽车，即鸣喇叭的声源",
+   "figures": [
+    "sim-doppler"
+   ]
+  },
+  {
+   "id": "observer-x",
+   "label": "左侧的观察者 X",
+   "figures": [
+    "sim-doppler"
+   ]
+  },
+  {
+   "id": "observer-y",
+   "label": "右侧的观察者 Y",
+   "figures": [
+    "sim-doppler"
+   ]
+  },
+  {
+   "id": "source",
+   "label": "速率超过声速的声源",
+   "figures": [
+    "sim-sonic-boom"
+   ]
+  },
+  {
+   "id": "aircraft",
+   "label": "超声速飞机",
+   "figures": [
+    "sim-two-booms"
+   ]
+  },
+  {
+   "id": "observers",
+   "label": "地面上的三名观察者",
+   "figures": [
+    "sim-two-booms"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "doppler-shift",
+   "what": "运动声源和运动观察者的多普勒频移",
+   "source": "《大学物理（第2版）》，17.4 多普勒效应与声爆",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{v}{\\kvw} = \\mk{f}{\\kfsrc}\\mk{l}{\\klam}",
+      "uses": [],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\klam} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{f}{\\kfsrc}}",
+       "uses": []
+      }
+     ],
+     "src": "17.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "每个密部都从其发出的点向外扩展，但声源在两次发出之间移动，所以密部在声源前方靠得更近，在后方离得更远。",
+       "src": "17.4，图 17.14"
+      },
+      {
+       "tex": "\\kT = \\dfrac{1}{\\kfsrc}",
+       "src": "16.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\klam} \\pm \\mk{s}{\\kvs\\kT}",
+      "uses": [
+       1
+      ],
+      "why": "声源每隔一个周期 $\\kT$ 发出一个密部，并在这段时间内移动 $\\kvs\\kT$；负号对应朝向观察者运动的声源，正号对应远离观察者的声源。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\dfrac{\\kvw}{\\kfsrc}} \\pm \\mk{s}{\\kvs\\kT}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\dfrac{\\kvw}{\\kfsrc}} \\pm \\mk{s}{\\dfrac{\\kvs}{\\kfsrc}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\dfrac{\\kvw \\pm \\kvs}{\\kfsrc}}",
+       "uses": [],
+       "map": {
+        "s": "l"
+       }
+      }
+     ],
+     "src": "17.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "无论声源是否运动，声音在空气中的速率都是同一个 $\\kvw$。",
+       "src": "17.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvw} = \\mk{f}{\\kfobs}\\mk{lp}{\\klamprime}",
+      "uses": [
+       1
+      ],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{lp}{\\klamprime}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{lp}{(\\kvw \\pm \\kvs)/\\kfsrc}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{fs}{\\kfsrc}\\left(\\dfrac{\\mk{v}{\\kvw}}{\\mk{lp}{\\kvw \\pm \\kvs}}\\right)",
+       "uses": [],
+       "map": {
+        "lp": [
+         "fs",
+         "lp"
+        ]
+       }
+      }
+     ],
+     "src": "17.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "以 $\\kvobs$ 朝向声源运动的观察者，遇到密部的速率为 $\\kvw + \\kvobs$，远离声源运动的观察者则为 $\\kvw - \\kvobs$。",
+       "src": "17.4，图 17.15"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw \\pm \\kvobs}}{\\mk{l}{\\klam}}",
+      "uses": [
+       1
+      ],
+      "why": "相距 $\\klam$ 的各个密部以速率 $\\kvw \\pm \\kvobs$ 经过观察者，频率就是每秒经过的个数。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw \\pm \\kvobs}}{\\mk{l}{\\kvw/\\kfsrc}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{fs}{\\kfsrc}\\left(\\dfrac{\\mk{v}{\\kvw \\pm \\kvobs}}{\\mk{l}{\\kvw}}\\right)",
+       "uses": [],
+       "map": {
+        "l": [
+         "fs",
+         "l"
+        ]
+       }
+      }
+     ],
+     "src": "17.4"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,828 @@
+{
+ "id": "7.3",
+ "module": "m42148",
+ "chapter": "7",
+ "title": "重力势能",
+ "short": "重力势能",
+ "lead": "爬楼梯和举起重物都是克服<span data-concept=\"force\">重力</span>所做的<span data-concept=\"work\">功</span>，举起停止后这份<span data-concept=\"work\">功</span>并没有消失。物体与地球组成的系统把它储存为<span data-concept=\"gravitational-potential-energy\">重力势能</span>，并在物体再次落下时把它还回来。",
+ "objectives": [
+  "用克服重力所做的功来解释重力势能。",
+  "证明在地球上，质量为 $m$、高度为 $\\kh$ 的物体的重力势能为 $\\kPEg = m\\kg\\kh$。",
+  "说明如何利用势能作为位置的函数这一知识来简化计算并解释物理现象。"
+ ],
+ "summary_html": "<ul><li>举起物体时克服重力所做的<span data-concept=\"work\">功</span>，变成物体-地球系统的<span data-concept=\"potential-energy\">势能</span>。</li><li><span data-concept=\"gravitational-potential-energy\">重力势能</span>的变化量 $\\kdPEg$ 为 $\\kdPEg = m\\kg\\kh$，其中 $\\kh$ 为高度的增加量，$\\kg$ 为重力加速度。</li><li>地球表面附近物体的<span data-concept=\"gravitational-potential-energy\">重力势能</span>源于它在重物-地球系统中的<span data-concept=\"position\">位置</span>。只有<span data-concept=\"gravitational-potential-energy\">重力势能</span>的差 $\\kdPEg$ 才有物理意义。</li><li>物体在没有<span data-concept=\"friction\">摩擦力</span>的情况下下落时，它的<span data-concept=\"gravitational-potential-energy\">重力势能</span>变为对应于速率增大的<span data-concept=\"kinetic-energy\">动能</span>，因此 $\\kdKE = -\\kdPEg$。</li></ul>",
+ "notes": "胡夫金字塔、过山车的势能变化量与初动能之比，以及滑雪下坡赛这三道题在书后答案里没有答案，故予略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成，答案仅来自书后答案。六道习题中有三道在书后答案中没有答案，故予略去：胡夫金字塔中储存的重力势能（fs-id1332867）、过山车的 $\\kdPEg$ 与初动能之比（fs-id2189211），以及沿 $30^\\circ$ 斜坡下滑的滑雪下坡赛（fs-id2175922）。两道思考题在书后答案中都没有答案，所以各自附有 AI 撰写的建议思路，并已如此标明。本节的三道 AP 题中，飞行的棒球（fs-id3349229）和摆动的悠悠球（fs-id2335813）有答案，分别设为判分选择题和三个数值；发射出去的土豆（fs-id1258975）没有答案，保留为开放题，附有书中印出的四个选项和 AI 撰写的建议思路，绝不设为判分选择题。该题提到了总机械能，它在 7.4 中才定义，但它所要求的只是把一个动能加到 $m\\kg\\kh$ 上，而本节自己的过山车例题就做了这件事，所以它留在这里。7.4 中印出的摆钟 AP 题（fs-id2987264）问三个重物下落 1.3 m 放出多少能量，这就是 $m\\kg\\kh$，别无他物，所以它设在这里，source_section 为 7.4，7.4 的习题说明也这样说明。水电站大坝和弯曲轨道上的玩具小车的照片，属于指向它们的习题，附在这些题卡上，带有书中的说明文字和来源说明。本章在任何地方都没有印出“理解检测”框，两道思考题也都不是段落旁的简短检测，所以没有设置行内题。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-cuckoo",
+   "kind": "sim",
+   "number": "7.5",
+   "originals": [
+    "/media/ch07/Figure_08_03_01a.jpg"
+   ],
+   "original_caption": "（a）举起重锤所做的功以重力势能的形式储存在重物-地球系统中。（b）随着重锤向下运动，这部分重力势能转移给布谷鸟钟。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bar moved off the labels, slope label below the graph, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ladder",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "position",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "round ticks, zero line breaks round labels, bracket kept inside, note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-paths",
+   "kind": "sim",
+   "number": "7.6",
+   "originals": [
+    "/media/ch07/Figure_08_03_02a.jpg"
+   ],
+   "original_caption": "A、B 两点之间的重力势能变化量（ΔPE_g）与路径无关。对这两点之间的任何路径，ΔPE_g = mgh。重力属于一小类力：力所做的功或克服该力所做的功只取决于起点和终点，而与它们之间的路径无关。",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-landing",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "position",
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note keeps only the bent-knee comparison"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-kangaroo",
+   "kind": "photo",
+   "number": "7.7",
+   "draws": []
+  },
+  {
+   "id": "sim-coaster",
+   "kind": "sim",
+   "number": "7.8",
+   "originals": [
+    "/media/ch07/Figure_08_03_04a.jpg"
+   ],
+   "original_caption": "过山车的速率随着重力把它拉下山坡而增大，在最低点最大。从能量的角度看，过山车-地球系统的重力势能转化为动能。如果摩擦力所做的功可以忽略，全部 ΔPE_g 都转化为 KE。",
+   "draws": [
+    "energy",
+    "position",
+    "velocity",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library car, clipped labels hidden and stated, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-marble",
+   "kind": "sim",
+   "number": "7.9",
+   "originals": [
+    "/media/ch07/Figure_08_03_05a.jpg"
+   ],
+   "original_caption": "弹珠沿直尺滚下，测量它在水平面上的速率。",
+   "draws": [
+    "energy",
+    "position",
+    "velocity",
+    "acceleration",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library book, h label clear of the marble, notes trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "lifting",
+   "concept": "potential-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "lifting",
+   "concept": "pe-reference-level",
+   "verb": "introduces"
+  },
+  {
+   "span": "lifting",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "work-transfers-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "converting",
+   "concept": "gravitational-potential-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "converting",
+   "concept": "potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "converting",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "converting",
+   "concept": "work-energy-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "converting",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "any-path",
+   "concept": "path-independence-of-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "any-path",
+   "concept": "gravitational-potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "any-path",
+   "concept": "pe-reference-level",
+   "verb": "reinforces"
+  },
+  {
+   "span": "landing",
+   "concept": "stopping-force-from-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "landing",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "landing",
+   "concept": "work-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "landing",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "landing",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "pe-to-ke",
+   "verb": "introduces"
+  },
+  {
+   "span": "coaster",
+   "concept": "gravitational-potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "coaster",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "coaster",
+   "concept": "path-independence-of-gravity",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id3349229",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lifting",
+   "prompt": "一只 1.0 kg 的棒球以 10 m/s 的速率飞行。它具有多少动能？势能呢？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "10 J，20 J",
+     "50 J，20 J",
+     "未知，50 J",
+     "50 J，未知"
+    ],
+    "correct": 3,
+    "hint": "质量和速率足以确定动能，但重力势能是相对于参考平面度量的，而题目既没有给出高度，也没有给出度量它所依据的平面。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1258975",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "prompt": "一个 0.305 kg 的土豆以 15.8 m/s 的速率从土豆炮中发射出去。它的动能是多少？如果你随后得知它离地面 4.00 m，那么相对于地面的总机械能是多少？<ol type=\"a\"><li>12.0 J，50.1 J</li><li>2.41 J，14.4 J</li><li>38.1 J，50.1 J</li><li>12.0 J，14.4 J</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "动能为 38.1 J，相对于地面的总机械能为 50.1 J，应选（c）。动能为 $\\kKE = \\tfrac{1}{2}\\km\\kv^2 = \\tfrac{1}{2}(0.305\\ \\text{kg})(15.8\\ \\text{m/s})^2 = 38.1\\ \\text{J}$。取地面为 $\\kPEg = 0$ 的平面，在 4.00 m 高处的土豆具有 $\\kPEg = \\km\\kg\\kh = (0.305\\ \\text{kg})(9.80\\ \\text{m/s}^2)(4.00\\ \\text{m}) = 12.0\\ \\text{J}$。总机械能是二者之和，$\\kKE + \\kPEg = 38.1\\ \\text{J} + 12.0\\ \\text{J} = 50.1\\ \\text{J}$。选项（b）是由于没有把速率平方，这样算得的动能为 2.41 J。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2335813",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "prompt": "你有一个 120 g 的悠悠球，正以 0.9 m/s 的速率摆动。它具有多少能量？在地球上，不做任何额外的功，它能升到摆动最低点之上多高？在月球上，那里的重力是地球的 1/6，它能升多高？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the energy of the swinging yo-yo",
+      "value": 0.049,
+      "unit": "J",
+      "hint": "悠悠球正在运动，并且处于摆动的最低点，所以所问的全部能量都是动能 $\\tfrac{1}{2}m\\kv^2$，而质量的单位是克。"
+     },
+     {
+      "part": "how high it rises on Earth",
+      "value": 0.041,
+      "unit": "m",
+      "hint": "它一直上升到全部动能都变成重力势能为止，所以令 $m\\kg\\kh$ 等于你求出的能量，再解出 $\\kh$。"
+     },
+     {
+      "part": "how high it rises on the Moon",
+      "value": 0.25,
+      "unit": "m",
+      "hint": "只有 $\\kg$ 变了，它是地球上数值的六分之一，而且它在高度表达式的分母中。"
+     }
+    ],
+    "solution": "0.049 J；0.041 m，0.25 m"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2987264",
+   "source_section": "7.4",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "converting",
+   "prompt": "老式摆钟由重物驱动，这些重物大约每周需要被重新上弦，升回钟的顶部，以抵消摩擦和报时钟声所损失的能量。某一座钟有三个重物：4.0 kg、4.0 kg 和 6.0 kg。它们可以下落 1.3 米。这座钟一周消耗多少能量？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "51 J",
+     "76 J",
+     "127 J",
+     "178 J"
+    ],
+    "correct": 3,
+    "hint": "每个重物在下降时放出 $m\\kg\\kh$，而三个重物在这一周内都下降同样的 1.3 m，所以先把三个质量相加再相乘。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1415865",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "prompt": "在例题 7.7 中，我们计算了一辆过山车的末速率，它下降了 20 m 的高度，初速率为 5 m/s，方向沿山坡向下。假设这辆过山车在山坡底部的初速率为 5 m/s，但方向是<em>沿山坡向上</em>，它向上坡滑行了 20 m，停下，然后滚回到与出发处高度相同的终点。我们会发现，在这种情况下它的末速率与初速率相同。请用能量守恒来解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "摩擦力可以忽略，所以过山车在上坡和下坡途中所交换的唯一能量，就是动能与重力势能之间的交换，并且 $-\\kdPEg = \\kdKE$ 在每一阶段都成立。上坡时过山车失去动能，过山车-地球系统把它储存为重力势能；在过山车停下的那一刻，它开始时具有的全部动能都已被储存起来。沿着同样的高度变化再下来时，系统恰好把它所储存的能量还回来，因为 $\\kdPEg = m\\kg\\kh$ 只取决于高度的变化，而过山车回到了它出发时的高度。因此终点处的动能就是它在起点处具有的动能，又因为质量没有变，速率也相同。改变的只是行进的方向：过山车现在是下山，而原先是上山。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1759147",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "any-path",
+   "prompt": "把一本书举到搁板上时，你对书所做的功是否取决于所走的路径？是否取决于所用的时间？是否取决于搁板的高度？是否取决于书的质量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你把书举起时克服重力所做的功，就是书-地球系统重力势能的变化量 $\\kdPEg = m\\kg\\kh$，其中只出现两个量。它不取决于路径：你可以把书竖直向上举起，可以先拿着它绕房间走一圈，也可以沿一块斜板把它升上去，只要最后放在同一块搁板上，克服重力所做的功就相同，因为重力属于一小类力，这类力所做的功只取决于起点和终点。它也不取决于时间，因为 $m\\kg\\kh$ 中没有时间；用一小时而不是一秒钟来举起，改变的是你做功的快慢，而不是做功的多少。它确实取决于搁板的高度，而且成正比：搁板高一倍，所需的功就多一倍。它也确实取决于书的质量，同样成正比，因为以恒定速率举起书所需的力就是它的重力 $m\\kg$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1942940",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "converting",
+   "figure": {
+    "src": "/media/ch07/Figure_08_03_06a-8cbf.jpg",
+    "alt": "一座水坝，水从闸门流下。",
+    "caption": "水电站（来源：Denis Belevich, Wikimedia Commons）"
+   },
+   "prompt": "一座水电站（见下图）把水坝后面的水的重力势能转化为电能。（a）一个体积为 $50.0\\ \\text{km}^3$（$\\text{质量} = 5.00\\times 10^{13}\\ \\text{kg}$）的湖，若其平均高度比发电机高 40.0 m，那么它相对于发电机的重力势能是多少？（b）把它与 9 兆吨氢弹中储存的能量相比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the gravitational potential energy of the lake",
+      "value": 1.96e+16,
+      "unit": "J",
+      "hint": "已给出整个湖的质量，而它高出发电机的平均高度就是高度的变化量，所以能量是 $m\\kg\\kh$，以发电机所在处为参考平面。"
+     },
+     {
+      "part": "(b) the ratio of that energy to the energy stored in the bomb",
+      "value": 0.52,
+      "unit": "",
+      "hint": "1 兆吨 TNT 是 $4.2\\times 10^{15}$ J，所以先算出九个兆吨是多少，再用湖的能量除以它。"
+     }
+    ],
+    "solution": "（a）$1.96\\times 10^{16}\\ \\text{J}$ （b）湖的重力势能与氢弹中储存的能量之比为 0.52。也就是说，湖中储存的能量约为 9 兆吨氢弹的一半。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1796084",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "converting",
+   "prompt": "假设一只 350 g 的笑翠鸟（一种大型翠鸟）叼起一条 75 g 的蛇，把它从地面举高 2.5 m 到树枝上。（a）鸟对蛇做了多少功？（b）它把自己的质心升高到树枝上做了多少功？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the work done on the snake",
+      "value": 1.8,
+      "unit": "J",
+      "hint": "以恒定速率举起某物所做的功，等于物体-地球系统重力势能的变化量 $m\\kg\\kh$，而质量的单位是克。"
+     },
+     {
+      "part": "(b) the work done in raising the bird",
+      "value": 8.6,
+      "unit": "J",
+      "hint": "鸟自己的质心升高同样的 2.5 m，所以同一个表达式适用，只是换成鸟的质量。"
+     }
+    ],
+    "solution": "（a）1.8 J（b）8.6 J"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2097867",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coaster",
+   "figure": {
+    "src": "/media/ch07/Figure_08_03_07a-5a6c.jpg",
+    "alt": "一辆玩具小车正沿弯曲的轨道上行。",
+    "caption": "一辆玩具小车沿倾斜的轨道上行。（来源：Leszek Leszczynski, Flickr）"
+   },
+   "prompt": "一辆 100 g 的玩具小车由一根压缩的弹簧推动而开始运动。小车沿下图中的弯曲轨道行驶。证明：如果玩具小车的初速率为 2.00 m/s，并沿无摩擦的斜坡滑行上升 0.180 m 的高度，则它的末速率为 0.687 m/s。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.687,
+    "unit": "m/s",
+    "hint": "小车上升，所以在 $\\kv = \\sqrt{2\\kg\\kh + \\kvo^2}$ 中高度的变化量为负，而且质量根本不进入结果。",
+    "solution": "$\\kv = \\sqrt{2\\kg\\kh + \\kvo^2} = \\sqrt{2(9.80\\ \\text{m/s}^2)(-0.180\\ \\text{m}) + (2.00\\ \\text{m/s})^2} = 0.687\\ \\text{m/s}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "pe-reference-level"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "kinetic-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pe-reference-level",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "path-independence-of-gravity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pe-to-ke"
+  },
+  {
+   "exercise": "p5",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "crate",
+   "label": "20 kg 的木箱",
+   "figures": [
+    "sim-ladder"
+   ]
+  },
+  {
+   "id": "clock",
+   "label": "布谷鸟钟",
+   "figures": [
+    "sim-cuckoo"
+   ]
+  },
+  {
+   "id": "clock-weight",
+   "label": "布谷鸟钟 0.500 kg 的重锤",
+   "figures": [
+    "sim-cuckoo"
+   ]
+  },
+  {
+   "id": "tv-stairs",
+   "label": "被搬上楼梯的电视机",
+   "figures": [
+    "sim-paths"
+   ]
+  },
+  {
+   "id": "tv-rope",
+   "label": "用绳吊起的电视机",
+   "figures": [
+    "sim-paths"
+   ]
+  },
+  {
+   "id": "jumper",
+   "label": "跳下的 60.0 kg 的人",
+   "figures": [
+    "sim-landing"
+   ]
+  },
+  {
+   "id": "coaster",
+   "label": "过山车",
+   "figures": [
+    "sim-coaster"
+   ]
+  },
+  {
+   "id": "ruler",
+   "label": "带槽的直尺",
+   "figures": [
+    "sim-marble"
+   ]
+  },
+  {
+   "id": "marble",
+   "label": "弹珠",
+   "figures": [
+    "sim-marble"
+   ]
+  }
+ ]
+}

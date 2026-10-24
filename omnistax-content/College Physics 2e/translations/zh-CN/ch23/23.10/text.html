@@ -1,0 +1,56 @@
+<section id="switching-an-rl-circuit">
+<h2>接通和断开电流的开关</h2>
+<p class="cite-target">我们知道，通过<span data-concept="inductor">电感器</span> $\kLind$ 的<span data-concept="electric-current">电流</span>不能被瞬间接通或断开。<span data-concept="electric-current">电流</span>的变化使磁通量改变，感应出阻碍这一变化的电动势（<span data-concept="lenzs-law">楞次定律</span>）。这种阻碍会持续多久？<span data-concept="electric-current">电流</span><em>会</em>流动，也<em>能</em>被断开，但这需要多长时间？图 23.42 给出了一个开关电路，可用来研究通过<span data-concept="inductor">电感器</span>的<span data-concept="electric-current">电流</span>随<span data-concept="time">时间</span>变化的函数关系。</p>
+<figure class="sim" id="sim-rl-switching" data-figure="23.42" data-original="/media/ch23/Figure_24_10_01.jpg" data-original-width="550" data-original-caption="（a）带开关的 RL 电路，用于接通和断开电流。开关在位置 1 时，电池、电阻器和电感器串联，建立起电流。在位置 2 时，电池被移除，由于电阻器中的能量损耗，电流最终停止。（b）开关拨到位置 1 时，电流增长随时间变化的图像。（c）开关拨到位置 2 时，电流衰减的图像。">
+  <div class="sim-head"><span class="eyebrow">Figure 23.42</span><span><span data-ref="resistor">一个电阻器</span>和<span data-ref="inductor">一个电感器</span>与<span data-ref="battery">一节电池</span>及<span data-ref="switch">一个双位开关</span>串联，<span data-ref="switch">开关</span>放过的<span data-type="current">电流</span>随<span data-concept="time">时间</span>变化的曲线被描绘出来。把<span data-ref="switch">开关</span>拨到位置 1，<span data-type="current">电流</span>便向<span data-ref="battery">电池</span>和<span data-type="resistance">电阻</span>所允许的<span data-type="current">值</span>攀升；把<span data-ref="switch">它</span>拨到位置 2，<span data-ref="battery">电池</span>被切除，<span data-type="current">电流</span>逐渐衰减。设定<span data-type="inductance">电感</span>和<span data-type="resistance">电阻</span>，观察标在<span data-type="time">一个、两个和三个时间常量</span>处的标记沿坐标轴滑动，因为<span data-type="inductance">更大的电感</span>或<span data-type="resistance">更小的电阻</span>会把同一条曲线拉伸到更长的<span data-concept="time">时间</span>上。</span></div>
+</figure>
+</section>
+
+<section id="current-turning-on">
+<h2>接通：电流趋近 $V/R$</h2>
+<p class="cite-target">当<span data-ref="switch">开关</span>首次拨到位置 1 时（在 $\kt = 0$ 时刻），<span data-type="current">该<span data-concept="electric-current">电流</span></span>为零，最终升至 $\kIocur = \kV/\kRes$，其中 $\kRes$ 是电路的总<span data-concept="resistance">电阻</span>。<span data-ref="inductor"><span data-concept="inductor">电感器</span></span> $\kLind$ 的阻碍在开始时最大，因为变化量最大。它所产生的阻碍以<span data-type="voltage">感应电动势</span>的形式出现，随着<span data-type="current">该<span data-concept="electric-current">电流</span></span>趋近其终值，这个电动势减小到零。<span data-type="voltage">起阻碍作用的电动势</span>与剩余的变化量成正比。这是指数行为的标志，用微积分可以证明：</p>
+$$\kIcur = \kIocur(1 - e^{-\kt/\ktauRL})\;\text{(接通),}$$
+<p>即 <em>RL</em> 电路接通时的<span data-concept="electric-current">电流</span>（注意它与充电<span data-concept="capacitor">电容器</span>上<span data-concept="potential-difference">电压</span>的指数行为相似）。<span data-type="current">初始<span data-concept="electric-current">电流</span></span>为零，并以 <em>RL</em> 电路的<strong><span data-concept="rl-time-constant">特征时间常量</span></strong> $\ktauRL$ 趋近 $\kIocur = \kV/\kRes$，$\ktauRL$ 由下式给出：</p>
+$$\ktauRL = \frac{\kLind}{\kRes}\text{,}$$
+<p>其中 $\ktauRL$ 的<span data-concept="units">单位</span>是<span data-concept="second">秒</span>，因为 $1\;\text{H} = 1\;\Omega\cdot\text{s}$。在<span data-type="time">第一段<span data-concept="time">时间</span></span> $\ktauRL$ 内，<span data-type="current"><span data-concept="electric-current">电流</span></span>从零升至 $0.632\kIocur$，因为 $\kIcur = \kIocur(1 - e^{-1}) = \kIocur(1 - 0.368) = 0.632\kIocur$。在<span data-type="time">下一段<span data-concept="time">时间</span></span> $\ktauRL$ 内，<span data-type="current"><span data-concept="electric-current">电流</span></span>将再升高剩余部分的 0.632。指数函数有一个众所周知的性质：终值永远不会被精确达到，但每经过一个特征<span data-concept="time">时间</span> $\ktauRL$，就会达到距该值剩余部分的 0.632。只需经过 $\ktauRL$ 的几倍<span data-concept="time">时间</span>，终值就几乎达到了，如图 23.42（b）的图像所示。</p>
+</section>
+
+<section id="what-sets-the-time-constant">
+<h2>什么决定时间常量的长短</h2>
+<p class="cite-target">特征<span data-concept="time">时间</span> $\ktauRL$ 只取决于两个因素，即<span data-concept="inductance">电感</span> $\kLind$ 和<span data-concept="resistance">电阻</span> $\kRes$。<span data-concept="inductance">电感</span> $\kLind$ 越大，$\ktauRL$ 越大，这是合理的，因为大的<span data-concept="inductance">电感</span>能非常有效地阻碍变化。<span data-concept="resistance">电阻</span> $\kRes$ 越小，$\ktauRL$ 越大。这同样合理，因为小的<span data-concept="resistance">电阻</span>意味着大的<span data-concept="electric-current">终值电流</span>，以及要达到它需要更大的变化。在这两种情形中——大 $\kLind$ 和小 $\kRes$——<span data-concept="inductor">电感器</span>中储存的<span data-concept="energy">能量</span>更多，把它存进去和取出来所需的<span data-concept="time">时间</span>也更多。</p>
+</section>
+
+<section id="current-turning-off">
+<h2>断开：电流逐渐衰减</h2>
+<p class="cite-target">当图 23.42（a）中的<span data-ref="switch">开关</span>拨到位置 2，把<span data-ref="battery">电池</span>从电路中切除时，<span data-type="current"><span data-concept="electric-current">电流</span></span>因<span data-ref="resistor"><span data-concept="resistor">电阻器</span></span>耗散<span data-concept="energy">能量</span>而下降。但这同样不是瞬间完成的，因为<span data-ref="inductor"><span data-concept="inductor">电感器</span></span>通过感应出<span data-type="voltage">电动势</span>来阻碍<span data-concept="electric-current">电流</span>的减小，这个电动势的<span data-concept="vector-direction">方向</span>与驱动该<span data-concept="electric-current">电流</span>的<span data-ref="battery">电池</span>相同。此外，<span data-ref="inductor"><span data-concept="inductor">电感器</span></span>中储存着<span data-type="energy">一定量的<span data-concept="energy">能量</span></span> $(1/2)\kLind\kIocur^{2}$，它以有限的速率耗散。随着<span data-type="current"><span data-concept="electric-current">电流</span></span>趋近于零，减小的速率变慢，因为<span data-type="power"><span data-concept="energy">能量</span>耗散率</span>是 $\kIcur^{2}\kRes$。其行为再次是指数式的，求得 $\kIcur$ 为</p>
+$$\kIcur = \kIocur e^{-\kt/\ktauRL}\;\text{(断开).}$$
+<p>（见图 23.42（c）。）在<span data-ref="switch">开关</span>闭合后的<span data-type="time">第一段<span data-concept="time">时间</span></span> $\ktauRL = \kLind/\kRes$ 内，<span data-type="current"><span data-concept="electric-current">电流</span></span>降到其初始值的 0.368，因为 $\kIcur = \kIocur e^{-1} = 0.368\kIocur$。在随后的每一段<span data-concept="time">时间</span> $\ktauRL$ 内，<span data-type="current"><span data-concept="electric-current">电流</span></span>都降到前一个值的 0.368，而在 $\ktauRL$ 的几倍之后，<span data-type="current"><span data-concept="electric-current">电流</span></span>变得非常接近于零，如图 23.42（c）的图像所示。</p>
+</section>
+
+<section id="counting-in-time-constants">
+<h2>以时间常量计数</h2>
+<figure class="sim" id="sim-counting-time-constants">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>同一规则，只计数而不求解。柱条立在零个、一个、两个及更多个<span data-concept="time-constant">时间常量</span>处，上升时每个柱条覆盖剩余部分的 0.632，下降时每个柱条降到现有量的 0.368，精确的指数曲线从这些柱条之间穿过。指定<span data-type="current">终值电流</span>的某个比例，把<span data-type="time">指数曲线达到它所需的时间</span>与计数所需的整数个<span data-concept="time-constant">时间常量</span>作比较。</span></div>
+</figure>
+<div class="example" id="ex-characteristic-time-and-current">
+<h3>例题 23.9 · 计算 <em>RL</em> 电路的特征时间和电流</h3>
+<p>（a）与 $3.00\;\Omega$ <span data-ref="resistor"><span data-concept="resistor">电阻器</span></span><span data-concept="series-connection">串联</span>的 <span data-ref="inductor">7.50 mH <span data-concept="inductor">电感器</span></span>，其<span data-type="time"><span data-concept="rl-time-constant">特征时间常量</span></span>是多少？（b）如果<span data-type="current"><span data-concept="electric-current">电流</span></span>初始为 10.0 A，求将<span data-ref="switch">开关</span>拨到位置 2 以断开<span data-ref="battery">电池</span>后 <span data-type="time">5.00 ms</span> 时的值。</p>
+<h4>（a）的思路</h4>
+<p><em>RL</em> 电路的<span data-concept="time-constant">时间常量</span>定义为 $\ktauRL = \kLind/\kRes$。</p>
+<h4>（a）的解</h4>
+<p>将已知值代入由 $\ktauRL = \kLind/\kRes$ 给出的 $\ktauRL$ 表达式，得</p>
+$$\ktauRL = \frac{\kLind}{\kRes} = \frac{7.50\;\text{mH}}{3.00\;\Omega} = 2.50\;\text{ms.}$$
+<h4>（a）的讨论</h4>
+<p>这是一段很小但确定有限的<span data-type="time"><span data-concept="time">时间</span></span>。<span data-ref="inductor">线圈</span>将在约十个<span data-concept="time-constant">时间常量</span>，即<span data-type="time">约 25 ms</span> 内非常接近<span data-type="current">其满值<span data-concept="electric-current">电流</span></span>。</p>
+<h4>（b）的思路</h4>
+<p>我们可以用 $\kIcur = \kIocur e^{-\kt/\ktauRL}$ 求<span data-type="current"><span data-concept="electric-current">电流</span></span>，也可以通过分步考虑下降过程来求。由于<span data-type="time"><span data-concept="time">时间</span></span>是特征<span data-concept="time">时间</span>的两倍，我们分步考虑这一过程。</p>
+<h4>（b）的解</h4>
+<p>在<span data-type="time">最初的 2.50 ms</span> 内，<span data-type="current"><span data-concept="electric-current">电流</span></span>降到其初始值的 0.368，即</p>
+$$\begin{array}{lll}\kIcur & = & 0.368\kIocur = (0.368)(10.0\;\text{A}) \\ & = & 3.68\;\text{A，当 }\kt = 2.50\;\text{ms 时.}\end{array}$$
+<p>再过 2.50 ms，即总共 5.00 ms 后，<span data-type="current"><span data-concept="electric-current">电流</span></span>降到刚才所得值的 0.368。也就是说，</p>
+$$\begin{array}{lll}\kIcur' & = & 0.368\kIcur = (0.368)(3.68\;\text{A}) \\ & = & 1.35\;\text{A，当 }\kt = 5.00\;\text{ms 时.}\end{array}$$
+<h4>（b）的讨论</h4>
+<p>再过 5.00 ms 后，<span data-type="current"><span data-concept="electric-current">电流</span></span>将为 0.183 A；因此，虽然它确实会衰减消失，但<span data-type="current"><span data-concept="electric-current">电流</span></span>肯定不会瞬间变为零。</p>
+</div>
+<p class="cite-target">总之，当加在<span data-concept="inductor">电感器</span>上的<span data-concept="potential-difference">电压</span>改变时，<span data-concept="electric-current">电流</span>也会改变，<em>但在 RL 电路中，<span data-concept="electric-current">电流</span>的变化滞后于<span data-concept="potential-difference">电压</span>的变化</em>。在“电抗：感抗与容抗”中，我们将探讨 <em>RL</em> 电路在加上正弦<span data-concept="ac-voltage">交流电压</span>时的行为。</p>
+</section>

@@ -1,0 +1,735 @@
+{
+ "id": "11.4",
+ "module": "m42192",
+ "chapter": "11",
+ "title": "流体中压强随深度的变化",
+ "short": "压强与深度",
+ "lead": "流体的<span data-concept=\"weight\">重力</span>压在它下面的一切物体上，因此静止流体中的<span data-concept=\"pressure\">压强</span>随深度而变化。你将沿着这一思路，从一箱液体出发，讲到<span data-ref=\"dam\">水坝</span>所受的<span data-concept=\"force\">力</span>，再讲到你上方大气的<span data-concept=\"weight\">重力</span>。",
+ "objectives": [
+  "用重力来定义压强。",
+  "解释流体中压强随深度的变化。",
+  "已知压强和海拔，计算密度。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"pressure\">压强</span>等于流体的<span data-concept=\"weight\">重力</span> $m\\kg$ 除以支撑它的<span data-concept=\"area\">面积</span> $A$（容器底部的<span data-concept=\"area\">面积</span>）：$\\kPr = \\frac{m\\kg}{A}.$</li><li>液体的<span data-concept=\"weight\">重力</span>产生的<span data-concept=\"pressure\">压强</span>为 $\\kPr = \\kh\\krho\\kg,$ 其中 $\\kPr$ 是<span data-concept=\"pressure\">压强</span>，$\\kh$ 是液体的高度，$\\krho$ 是液体的<span data-concept=\"density\">密度</span>，$\\kg$ 是重力加速度。</li></ul>",
+ "notes": "书中未给出答案的四道习题——马里亚纳海沟、水塔、大气层下的一张纸和推铅球运动员的手掌——被略去，而关于在大盐湖中游泳的问题则留待阿基米德原理一节。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案来自书后答案。有四道习题没有给出答案，因而被略去：马里亚纳海沟底部的压强、水塔的高度、大气作用在一张纸上的力，以及铅球对推铅球运动员手掌的压强。要求证明矩形水坝所受的力与水深的平方成正比的那道习题是一个推导，没有数值可以作答，所以作为开放题保留，附有标明为 AI 所写的建议思路，并且引用图 11.9，而不自带图像。关于为什么在大盐湖的水下很难游泳的思考题留待阿基米德原理一节，因为那是更稠密流体中的浮力问题。关于石油醚桶的 AP 题取自“压强”一节，因为它要求的是桶底的压强，也就是流体的重力产生的压强；它没有给出答案，是附有标明为 AI 所写思路的开放题。关于房水的习题要求以毫米汞柱为单位，其换算由压强测量一节给出，但该计算是力除以面积，所以按本章的配置仍留在这里。七道思考题的建议思路由 AI 所写并已标明。",
+ "figures": [
+  {
+   "id": "sim-column",
+   "kind": "sim",
+   "number": "11.8",
+   "originals": [
+    "/media/ch11/Figure_12_04_01a.jpg"
+   ],
+   "original_caption": "这个容器的底部承受着其中流体的全部重力。竖直的侧壁无法对流体施加向上的力（因为流体不能承受切向力），因此底部必须承受全部重力。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "pressure",
+    "density",
+    "position",
+    "force",
+    "area",
+    "mass",
+    "volume",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "slope label clear of the point; note trimmed; headline comma"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dam",
+   "kind": "sim",
+   "number": "11.9",
+   "originals": [
+    "/media/ch11/Figure_12_04_02a-dacf.jpg"
+   ],
+   "original_caption": "水坝必须承受它所拦蓄的水对它施加的力。与水坝后面水的重力相比，这个力很小。",
+   "widths": [],
+   "draws": [
+    "pressure",
+    "density",
+    "position",
+    "force",
+    "area",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "water in the chapter's water blue; note trimmed, through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ],
+   "facts": [
+    "#bfe0f2"
+   ]
+  },
+  {
+   "id": "sim-atmosphere",
+   "kind": "sim",
+   "number": "11.10",
+   "originals": [
+    "/media/ch11/Figure_12_04_03a.jpg"
+   ],
+   "original_caption": "海平面处的大气压平均为 1.01 × 10⁵ Pa（相当于 1 atm），因为这 1 m² 上方一直延伸到大气层顶的空气柱，其重力为 1.01 × 10⁵ N。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "pressure",
+    "density",
+    "position",
+    "force",
+    "area",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "weight arrow kept below the break; note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "weight-of-fluid",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "calculate-mass-from-density",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-of-fluid",
+   "concept": "atomic-arrangement-and-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "dam",
+   "concept": "force-on-a-dam",
+   "verb": "introduces"
+  },
+  {
+   "span": "dam",
+   "concept": "pressure-independent-of-container",
+   "verb": "introduces"
+  },
+  {
+   "span": "dam",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "dam",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "dam",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "atmospheric-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "density-from-pressure-and-height",
+   "verb": "introduces"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "verb": "reinforces"
+  },
+  {
+   "span": "atmosphere",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "density-from-pressure-and-height",
+   "verb": "reinforces"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "atmospheric-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "water-and-air",
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3073220",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "atmosphere",
+   "prompt": "当你躺在海滩上晒太阳时，大气压对你身体的上表面施加了很大的力（等于你身体上方大气的重力——约 10 吨）。你为什么还能站起来？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "大气确实以身体每平方米约 $10^{5}$ N 的力压在你身上，但它并不只压在你的上表面。空气是流体，它压在所接触的每一个表面上，所以同样的压强也作用在你的侧面；而你体内的流体，即血管中的血液和肺中的空气，压强与之几乎相同，向外推的力也同样大。因此，大气作用在你身上的各个力几乎完全相互抵消，剩下的合力小得根本不足以把你压住。你站起来时所举起的是你自己的重力，而不是空气的重力。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2598964",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "为什么大气压随海拔升高而下降得比线性变化更快？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "某一高度处的压强等于该高度以上空气的重力，而只有当空气的密度一直到顶都相同时，$\\kPr = \\kh\\krho\\kg$ 才会使它随海拔按直线下降。但事实并非如此。空气是可压缩的，所以靠近地面的空气被其上方的一切所挤压，那里的密度最大，而随着你向上攀升，密度会减小。你每上升一米，就去掉一层空气，而这层空气的重力比它下面那一层更小，因此压强在近地面处下降得很快，越往高处下降得越来越慢。例题 11.4 表明了这种效应有多大：整个空气柱的平均密度比海平面处的密度小约十五倍。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3045581",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "water-and-air",
+   "prompt": "气压计中使用汞而不是水，有哪两个原因？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "气压计让大气与一段液柱相平衡，所以液柱必须足够高，使 $\\kh\\krho\\kg$ 达到一个大气压。对水求解 $\\kh = \\kPr/(\\krho\\kg)$ 得到 10.3 m，这相当于一栋三层楼房的高度；而汞的密度是水的 13.6 倍，只需 0.760 m，因此汞气压计可以挂在墙上。第二个原因是汞在室温下几乎不蒸发，所以液柱上方的空间几乎是空的，液柱的高度仅由大气决定；而水很容易蒸发，液柱上方的水蒸气会向下压在液柱上，使读数偏低。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1381740",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dam",
+   "figure": {
+    "src": "/media/ch11/Figure_12_04_04a.jpg",
+    "alt": "图中最右侧是一条泛滥的河流，其左侧筑有一道堤坝，堤坝左侧堆放着沙袋。堤坝和堆放的沙袋的高度都大于泛滥河流的水位，所以水不会从它们的顶部漫过，但堤坝下方的一处渗漏使一部分水从堤坝下流过，到达沙袋处。",
+    "caption": "由于河水水位很高，河水已开始从堤坝下方渗漏。在渗漏处周围放置了沙袋，被沙袋围住的水不断上升，直到与河水处于同一水位，此时那里的水就不再上升。"
+   },
+   "prompt": "图中显示了在河堤外侧的渗漏处周围堆放沙袋，如何有效地阻止水从堤坝下方流过。请解释沙袋围成的水柱中的少量水，为何能够平衡堤坝后面大得多的水体。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "静止流体中任一点的压强，只取决于该点在自由液面以下多深，即 $\\kPr = \\kh\\krho\\kg$，而与流体有多少无关。在堤坝下方的渗漏处，河水位于河面以下深度 $\\kh$ 处，所产生的压强为 $\\kh\\krho\\kg$。被迫穿过渗漏处的水充满沙袋围成的水柱并不断上升，随着水位上升，水柱底部的压强增大。当沙袋内的水与河水处于同一水位时，渗漏处在水面以下的深度在两侧相同，两个压强相等，就不再有任何东西把水推过去了。河流巨大的水平范围对该深度处的压强毫无贡献，这就是为什么一个不比沙袋围圈更宽的水柱就能与之抗衡。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "eip-29",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dam",
+   "prompt": "水坝是否受到大气压产生的合力？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "没有，或者说几乎没有。大气压在水坝后面的水面上，本节最后一段说，这个压强会通过水传递，并在 $\\kh\\krho\\kg$ 之外同样作用在水坝的湿面上。然而，大气对水坝的干面压得一样大，作用在同一高度的相同面积上，因为空气是流体，能到达每一个表面。大气产生的这两个力大小相等、方向相反，因此相互抵消，水坝必须承受的合力就是例题 11.3 仅由水的重力求得的那个力。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3042305",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "water-and-air",
+   "prompt": "大气压会与刚性罐中的气体压强叠加吗？与玩具气球中的呢？一般来说，大气压在什么时候<em>不</em>影响流体中的总压强？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在刚性罐中不会。大气推压着罐的外侧，但刚性的罐壁承受了这个推力，没有把其中任何一部分传给里面的气体，气体的压强保持罐子密封时的数值。在玩具气球中会。橡胶是柔性的，所以它把大气的推力直接传给气体，球内的压强等于大气压加上被拉伸的橡胶所增加的少许压强。一般来说，只有当刚性壁把流体封闭起来、使外界无法压到它时，大气压才不会影响流体中的压强。凡是流体有向大气敞开的自由液面，或有柔性边界的地方，大气的压强都会叠加到内部的压强上，就像在游泳池底部那样。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1355852",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "你可以用拳头把软木塞砸进一个结实的酒瓶里，从而把瓶子打破，但软木塞必须直接压在灌满瓶子的液体上——软木塞与液体之间不能有空气。请解释瓶子为什么会破，以及如果软木塞与液体之间有空气，瓶子为什么不会破。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "液体几乎不可压缩，所以当软木塞被砸向液体时，液体无处可让，软木塞哪怕只移动一点点，也会使液体中的压强急剧升高。升高的压强同时作用在瓶子的整个内表面上，大的压强作用在玻璃的大面积上就是很大的力，足以把瓶子震碎。如果软木塞与液体之间有空气，这一击压缩的就是空气。气体很容易被压缩，所以软木塞进入时压强只有很小的升高，液体和玻璃根本感觉不到这一击。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2402162",
+   "source_section": "11.3",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "一个半径为 0.5 m 的圆柱形桶用来盛放 400 升石油醚（密度 = .68 g/mL，即 680 kg/m<sup>3</sup>）。（注：1 升 = 0.001 m<sup>3</sup>）（a）若石油醚把桶灌满到桶口，求桶壁受到的压强的大小。（b）若石油醚把桶灌满到桶口，求桶底受到的压强的大小。（c）若把桶重新设计为可盛 800 升石油醚：<ol><li>桶壁受到的压强会如何变化？是增大、减小还是不变？</li><li>桶底受到的压强会如何变化？是增大、减小还是不变？</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先求液体的深度，因为这里的每一个压强都是 $\\kh\\krho\\kg$。桶盛有 $400\\ \\text{L} = 0.400\\ \\text{m}^3$，桶底面积为 $\\pi(0.5\\ \\text{m})^2 = 0.785\\ \\text{m}^2$，所以装满时石油醚的深度为 $\\kh = 0.400/0.785 = 0.509\\ \\text{m}$。（b）桶底受到的压强就是该满深度处的压强，$\\kPr = \\kh\\krho\\kg = (0.509\\ \\text{m})(680\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = 3.39\\times 10^{3}\\ \\text{N/m}^2$。（a）桶壁受到的压强不是一个数。它在液面处为零，沿直线增大到底部的桶底压强 $3.39\\times 10^{3}\\ \\text{N/m}^2$，所以它在桶壁上的平均值就是平均深度 0.255 m 处的压强，即 $1.70\\times 10^{3}\\ \\text{N/m}^2$，正如例题 11.3 对水坝所求得的那样。（c）两个压强都只取决于液体的深度，与其他因素无关。半径相同、高度加倍的桶，在深度加倍时盛 800 L，所以桶壁上的平均压强和桶底的压强都加倍。一个更宽、在同样深度时盛 800 L 的桶，则两个压强都不变，因为某一深度处的压强与它旁边有多少液体无关。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3210042",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "water-and-air",
+   "prompt": "多深的汞能产生 1.00 atm 的压强？",
+   "answer": {
+    "type": "number",
+    "value": 0.76,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "像例题 11.5 那样，把 $\\kPr = \\kh\\krho\\kg$ 对深度求解，只是用表 11.1 中汞的密度代替水的密度。",
+    "solution": "0.760 m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1844231",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "验证 $\\kh\\krho\\kg$ 的 SI 单位是 $\\text{N/m}^2$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$\\begin{aligned}(\\kh\\krho\\kg)_{\\text{单位}} &= (\\text{m})(\\text{kg/m}^3)(\\text{m/s}^2) = (\\text{kg}\\cdot\\text{m}^2)/(\\text{m}^3\\cdot\\text{s}^2)\\\\ &= (\\text{kg}\\cdot\\text{m/s}^2)(1/\\text{m}^2)\\\\ &= \\text{N/m}^2\\end{aligned}$$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1931094",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "人眼中的房水对角膜 $1.10\\text{-cm}^2$ 的面积施加了 0.300 N 的力。（a）这相当于多少 mm Hg 的压强？（b）这个值在眼内压的正常范围之内吗？",
+   "answer": {
+    "type": "number",
+    "value": 20.5,
+    "unit": "mm Hg",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "压强等于力除以面积，面积要用平方米表示；把 N/m² 换算成 mm Hg 的换算因子在“表压强、绝对压强与压强的测量”中，眼内压的正常范围在“人体内的压强”中。",
+    "solution": "（a）20.5 mm Hg。（b）眼内压的范围是 12–24 mm Hg，所以（a）的结果在这个范围之内。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2437095",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "一个宽 0.500 m、长 0.900 m、可盛 50.0 kg 汽油的油箱，在装满时，其中汽油的重力在箱底产生多大的压强？",
+   "answer": {
+    "type": "number",
+    "value": 1090,
+    "unit": "N/m²",
+    "generated_by": "source",
+    "hint": "箱底的压强等于汽油的重力除以箱底的面积，这就是本节结果的第一种形式 $\\kPr = m\\kg/A$；不需要箱的深度。",
+    "solution": "$1.09\\times 10^{3}\\ \\text{N/m}^2$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1946824",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-of-fluid",
+   "prompt": "心脏左侧通过直接对血液施力，在 $15.0\\ \\text{cm}^2$ 的有效面积上产生 120 mm Hg 的压强。为此它要施加多大的力？",
+   "answer": {
+    "type": "number",
+    "value": 24.0,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "把压强用 N/m² 表示、面积用平方米表示之后，力等于压强乘以面积，$\\kF = \\kPr A$。",
+    "solution": "24.0 N"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id3357018",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dam",
+   "prompt": "证明矩形水坝所受的、由其后方的水所产生的总力随水深的<em>平方</em>增大。具体地说，证明这个力由 $\\kF = \\krho\\kg\\kh^2 L/2$ 给出，其中 $\\krho$ 是水的密度，$\\kh$ 是水坝处水的深度，$L$ 是水坝的长度。你可以假定水坝的迎水面是竖直的。（提示：计算所施加的平均压强，再将它乘以与水接触的面积。（见图 11.9。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "按照提示并参照例题 11.3。迎水面上的压强随深度沿直线增大，从水面处的零增大到底部的 $\\kh\\krho\\kg$，所以整个迎水面上的平均压强就是平均深度 $\\khbar = \\kh/2$ 处的压强，即 $\\kPbar = \\khbar\\krho\\kg = \\krho\\kg\\kh/2$。迎水面与水接触的面积是它的深度乘以长度，$A = \\kh L$。力等于平均压强乘以这个面积，$\\kF = \\kPbar A = (\\krho\\kg\\kh/2)(\\kh L) = \\krho\\kg\\kh^2 L/2$。深度出现了两次，一次通过平均压强，一次通过迎水面的面积，这就是为什么力随深度的平方增大：水深加倍，水坝所受的力就变为四倍。代入例题 11.3 的数值，$\\krho = 10^3\\ \\text{kg/m}^3$、$\\kh = 80.0\\ \\text{m}$、$L = 500\\ \\text{m}$，得到 $1.57\\times 10^{10}\\ \\text{N}$，这就是该例题求得的力。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "atmospheric-pressure"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "depth-in-a-liquid-versus-a-gas"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "atmospheric-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "density-from-pressure-and-height"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pressure-independent-of-container"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "atmospheric-pressure"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "force-on-a-dam",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "atmospheric-pressure"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "depth-in-a-liquid-versus-a-gas"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "pressure-from-weight-of-fluid"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "pressure-independent-of-container",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "density-from-pressure-and-height"
+  },
+  {
+   "exercise": "p1",
+   "concept": "atmospheric-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "pressure-from-weight-of-fluid"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pressure"
+  },
+  {
+   "exercise": "p7",
+   "concept": "pressure-from-weight-of-fluid"
+  },
+  {
+   "exercise": "p9",
+   "concept": "force-from-pressure"
+  },
+  {
+   "exercise": "p10",
+   "concept": "force-on-a-dam"
+  },
+  {
+   "exercise": "p10",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "container",
+   "label": "容器",
+   "figures": [
+    "sim-column"
+   ]
+  },
+  {
+   "id": "dam",
+   "label": "例题 11.3 中的水坝",
+   "figures": [
+    "sim-dam"
+   ]
+  },
+  {
+   "id": "column",
+   "label": "空气柱",
+   "figures": [
+    "sim-atmosphere"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "pressure-depth",
+   "what": "流体的重力产生的压强",
+   "source": "《大学物理（第2版）》，11.4 流体中压强随深度的变化",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvol = \\karea\\kh",
+       "src": "11.4，图 11.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\kvol}",
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\karea\\kh}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "11.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "容器底部承受着流体的全部重力 $\\km\\kg$。",
+       "src": "11.4，图 11.8"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPr} = \\frac{\\mk{w}{\\km\\kg}}{\\mk{A}{\\karea}}",
+      "src": "11.3",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPr} = \\frac{\\mk{w}{(\\krho\\karea\\kh)\\kg}}{\\mk{A}{\\karea}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kPr} = \\mk{w}{\\kh\\krho\\kg}",
+       "uses": []
+      }
+     ],
+     "src": "11.4"
+    }
+   ]
+  }
+ ]
+}

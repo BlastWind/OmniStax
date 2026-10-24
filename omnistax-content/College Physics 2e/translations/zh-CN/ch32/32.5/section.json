@@ -1,0 +1,1062 @@
+{
+ "id": "32.5",
+ "module": "m42659",
+ "chapter": "32",
+ "title": "聚变",
+ "short": "聚变",
+ "lead": "<span data-concept=\"nuclear-fusion\">核聚变</span>把轻核结合成一个更大的原子核。本节从<span data-concept=\"binding-energy-per-nucleon\">比结合能</span>曲线上读出聚变，说明两个原子核之间的库仑斥力为什么构成阻碍、隧穿又如何在太阳中越过它，沿着为太阳提供能量的质子-质子循环讲下去，并介绍在地球上为获得聚变能而研究的反应和技术。",
+ "objectives": [
+  "给出核聚变的定义。",
+  "讨论实现实用聚变能产生的各种过程。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"nuclear-fusion\">核聚变</span>是两个原子核结合形成一个更大的原子核的反应。当轻核聚变形成中等质量核时，它释放<span data-concept=\"energy\">能量</span>。</li><li>聚变是恒星中<span data-concept=\"energy\">能量</span>的来源，其中<span data-concept=\"proton-proton-cycle\">质子-质子循环</span>，$${}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}\\;(0.42\\;\\text{MeV})$$ $${}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma\\;(5.49\\;\\text{MeV})$$ $${}^{3}\\text{He}+{}^{3}\\text{He}\\to {}^{4}\\text{He}+{}^{1}\\text{H}+{}^{1}\\text{H}\\;(12.86\\;\\text{MeV})$$ 是我们的太阳中产生<span data-concept=\"energy\">能量</span>的反应的主要序列。</li><li><span data-concept=\"proton-proton-cycle\">质子-质子循环</span>的总体效果是 $$2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{\\text{e}}+6\\gamma\\;(26.7\\;\\text{MeV}),$$其中<span data-type=\"energy\">这 26.7 MeV</span>包括所发射并湮没的<span data-concept=\"positron\">正电子</span>的<span data-concept=\"energy\">能量</span>。</li><li>在地球上利用受控聚变作为<span data-concept=\"energy\">能量</span>来源的尝试与氘和氚有关，相应的反应起着重要作用。</li><li><span data-concept=\"ignition\">点火</span>是受控聚变能够自持的条件；它尚未实现。<span data-concept=\"break-even\">得失相当</span>，即聚变<span data-concept=\"energy\">能量</span>输出与外部<span data-concept=\"energy\">能量</span>输入一样大，已接近实现。</li><li><span data-concept=\"magnetic-confinement-fusion\">磁约束</span>和<span data-concept=\"inertial-confinement\">惯性约束</span>是正在发展的两种方法，用来把燃料加热到足够高的<span data-concept=\"temperature\">温度</span>，在足够的<span data-concept=\"density\">密度</span>下，持续足够长的<span data-concept=\"time\">时间</span>，以实现点火。第一种方法使用磁场进行约束，第二种方法使用入射激光束的<span data-concept=\"linear-momentum\">动量</span>进行约束。</li></ul>",
+ "notes": "本书的疏漏照印刷原样保留：第二个中子反应印成 n + ¹H → ²H + γ，能量为 20.68 MeV，这其实是 n + ³He → ⁴He + γ 的能量（20.58 MeV）；ITER 的建成时间给的是预定于 2018 年；图 32.18 的图注以（a）开头，却没有（b）。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。八道没有答案的习题被略去：三个质子-质子反应的能量；整个循环中核子、电荷和电子轻子数的守恒；生成氚的中子俘获的能量；游泳池中的氘及其可提供的能量；太阳每秒消耗的质子数和到达地球的中微子数；碳循环的能量；惯性约束激光脉冲的功率、光子数和动量；以及使两个 ³He 核接触所需的温度。四道思考题和两道 AP 题没有答案，附有标明由 AI 撰写的建议思路；关于 2 g 氢变成 1.985 g 氦的 AP 题连同选项一并保留，但不评分。32.6 节以与本节关于 n + ³He 和 n + ¹H 反应的习题相同的来源编号印出了一道没有答案的习题；该题已在 32.6 节中略去。",
+ "figures": [
+  {
+   "id": "photo-sun",
+   "kind": "photo",
+   "number": "32.11",
+   "widths": [
+    275
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fusion-curve",
+   "kind": "sim",
+   "number": "32.12",
+   "originals": [
+    "/media/ch32/Figure_33_05_02a.jpg"
+   ],
+   "original_caption": "轻核聚变形成中等质量核时质量被消灭，因为生成核的 BE/A 更大。BE/A 越大，每核子的质量越小，所以质量转化为能量，并在这些聚变反应中释放出来。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "energy",
+    "mass",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-coulomb-barrier",
+   "kind": "sim",
+   "number": "32.13",
+   "folds": [
+    "32.14"
+   ],
+   "originals": [
+    "/media/ch32/Figure_33_05_03a.jpg",
+    "/media/ch32/Figure_33_05_04a.jpg"
+   ],
+   "original_caption": "（图 32.13）两个轻核之间的势能随它们之间距离变化的图线。如果原子核有足够的动能越过库仑斥力的隆起处，它们就会结合、释放能量，并落入深的吸引性井中。穿过势垒的隧穿在实际中很重要。动能越大、粒子爬上势垒的位置越高（或势垒越低），隧穿就越可能发生。（图 32.14）（a）两个相向运动的原子核减速，然后停下，再飞散开，既没有接触也没有聚变。（b）能量较高时，两个原子核靠得足够近，通过隧穿发生聚变。隧穿的概率随它们靠近而增大，但反应发生并不需要它们接触。",
+   "widths": [
+    275,
+    350
+   ],
+   "draws": [
+    "energy",
+    "position"
+   ],
+   "conventions": [
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-sun-fusion",
+   "kind": "sim",
+   "number": "32.15",
+   "originals": [
+    "/media/ch32/Figure_33_05_05a.jpg"
+   ],
+   "original_caption": "太阳中的核聚变把氢原子核转变为氦；聚变主要发生在氦核心的边界处，那里温度最高，并且仍有足够的氢。释放的能量缓慢地扩散到表面，中微子除外，它们立即逸出。由于负反馈效应，能量的产生保持稳定。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-",
+    "e+",
+    "nu",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-neutrino-detector",
+   "kind": "photo",
+   "number": "32.16",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-supernova",
+   "kind": "photo",
+   "number": "32.17",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-iter",
+   "kind": "photo",
+   "number": "32.18",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-nif",
+   "kind": "photo",
+   "number": "32.19",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "nuclear-fusion",
+   "concept": "nuclear-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "fusion-releases-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "binding-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "binding-energy-per-nucleon",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "binding-energy-per-nucleon-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "mass-defect",
+   "verb": "uses"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "coulomb-barrier-to-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "electric-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "fusion-by-tunneling-and-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "coulomb-barrier-to-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "quantum-tunneling",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "proton-proton-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "fusion-releases-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "nuclear-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "positron",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "electron-neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "nuclear-reaction-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "solar-neutrinos",
+   "concept": "solar-neutrinos",
+   "verb": "introduces"
+  },
+  {
+   "span": "solar-neutrinos",
+   "concept": "proton-proton-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "solar-neutrinos",
+   "concept": "neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "deuterium-tritium-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "fusion-releases-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "proton-proton-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "isotopes",
+   "verb": "uses"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "ignition-and-break-even",
+   "verb": "introduces"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "ignition",
+   "verb": "introduces"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "break-even",
+   "verb": "introduces"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "fusion-by-tunneling-and-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "magnetic-confinement",
+   "concept": "magnetic-and-inertial-confinement",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnetic-confinement",
+   "concept": "magnetic-confinement-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnetic-confinement",
+   "concept": "ignition-and-break-even",
+   "verb": "uses"
+  },
+  {
+   "span": "inertial-confinement",
+   "concept": "inertial-confinement",
+   "verb": "introduces"
+  },
+  {
+   "span": "inertial-confinement",
+   "concept": "magnetic-and-inertial-confinement",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inertial-confinement",
+   "concept": "deuterium-tritium-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "verb": "introduces"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "deuterium-tritium-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "atomic-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "power",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2720847",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coulomb-barrier",
+   "figure": {
+    "src": "/media/ch32/CNX_APPhysics_32_M5_S01_img.jpg",
+    "alt": "两个轻核的总势能随它们之间距离 r 变化的图线。曲线在 r 较小处起点很低，标注为“核引力”，陡峭地升到零以上的一个峰值，然后向零缓慢下降，标注为“库仑斥力”。位于陡峭内侧斜坡上的一个原子核标注为“被拉到一起”，位于外侧斜坡上的一个标注为“被推开”。"
+   },
+   "prompt": "这幅图给出了两个轻核之间的势能作为它们之间距离的函数的图线。如果距离满足下列条件，原子核之间就可能发生聚变：距离",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "较大，使得动能较低。",
+     "较大，使得势能较低。",
+     "较小，使得吸引性核力能够克服库仑斥力。",
+     "较小，使得吸引性核力不能克服库仑斥力。"
+    ],
+    "correct": 2,
+    "generated_by": "source",
+    "hint": "在图上找出曲线向下转入井中的位置，并想一想那里哪种力占上风。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2380256",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-fusion",
+   "prompt": "在一次核聚变反应中，2 g 氢转变为 1.985 g 氦。释放的能量是多少？（a）$4.5\\times10^{3}$ J（b）$4.5\\times10^{6}$ J（c）$1.35\\times10^{12}$ J（d）$1.35\\times10^{15}$ J",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "释放的能量为 $1.35\\times10^{12}$ J，即选项（c）。这些能量来自反应中被消灭的质量。损失的质量为 $2\\;\\text{g}-1.985\\;\\text{g}=0.015\\;\\text{g}=1.5\\times10^{-5}\\;\\text{kg}$，所以释放的能量为 $\\kE=\\Delta m\\,\\kc^{2}=(1.5\\times10^{-5}\\;\\text{kg})(3.00\\times10^{8}\\;\\text{m/s})^{2}=1.35\\times10^{12}\\;\\text{J}$。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1860061",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "氘核和氚核聚变产生氦时，还产生什么？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "正电子",
+     "质子",
+     "α 粒子",
+     "中子"
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "hint": "数一数 ${}^{2}\\text{H}+{}^{3}\\text{H}$ 和 ${}^{4}\\text{He}$ 中的质子和中子；还剩下什么？",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3172212",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "假设两个氘核聚变产生氦。（a）写出该聚变反应的方程。（b）计算反应物与产物的质量之差。（c）利用（b）中算出的结果，求该聚变反应产生的能量。设氘的质量为 2.014102 u，氦的质量为 4.002603 u，1 u = $1.66\\times10^{-27}$ kg。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）${}^{2}\\text{H}+{}^{2}\\text{H}\\to{}^{4}\\text{He}+\\gamma$。两个氘核含有两个质子和两个中子，恰好是 ${}^{4}\\text{He}$ 的核子，所以另一个产物只能是 $\\gamma$ 射线。（b）质量之差为 0.025601 u。反应物的质量为 $2(2.014102\\;\\text{u})=4.028204\\;\\text{u}$，而氦的质量为 4.002603 u，所以被消灭的质量为 $4.028204\\;\\text{u}-4.002603\\;\\text{u}=0.025601\\;\\text{u}$。（c）产生的能量为 $3.82\\times10^{-12}$ J，即 23.9 MeV。以千克计，质量之差为 $(0.025601\\;\\text{u})(1.66\\times10^{-27}\\;\\text{kg/u})=4.250\\times10^{-29}\\;\\text{kg}$，而 $\\kE=\\Delta m\\,\\kc^{2}=(4.250\\times10^{-29}\\;\\text{kg})(3.00\\times10^{8}\\;\\text{m/s})^{2}=3.82\\times10^{-12}\\;\\text{J}$。除以 $1.602\\times10^{-13}\\;\\text{J/MeV}$ 得 23.9 MeV，与该反应给出的 23.85 MeV 相符。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3229632",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-fusion",
+   "prompt": "为什么轻核聚变成较重的原子核会释放能量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "比结合能从最轻的原子核到铁急剧上升。两个轻核聚变时，生成核的比结合能比它们原来的更大，所以其核子被束缚得更紧，生成核的质量也小于形成它的那些原子核。亏损的质量乘以 $c^{2}$，就是释放的能量。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1349762",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-fusion",
+   "prompt": "要把铁或钴这样的中等质量核聚变成质量更大的原子核，需要输入能量。请解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "比结合能在铁附近达到最大值，对更重的原子核则缓慢下降。由两个中等质量核聚变而成的原子核会落在峰值之后，其比结合能比形成它的原子核更小，所以它的质量会比那些原子核的质量更大。这部分质量必须以能量的形式供给，因此该反应是吸收能量，而不是释放能量。同一条曲线也解释了为什么重核通过分裂来释放能量。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2991423",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "在考虑可能的聚变反应时，反应 ${}^{2}\\text{H}+{}^{3}\\text{H}\\to {}^{4}\\text{He}+n$ 相对于反应 ${}^{2}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+n?$ 有什么优势？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "氘氚反应每次反应释放的能量要多得多：17.59 MeV，是氘氘反应的 3.27 MeV 的五倍多。它的产物 ${}^{4}\\text{He}$ 束缚得非常紧，因此被消灭的质量比生成束缚较松的 ${}^{3}\\text{He}$ 时多得多。两个反应都是把电荷为 $+e$ 的原子核聚到一起，所以要克服的库仑斥力相同，氘氚反应在引发它所需的条件上并没有付出额外代价，却获得了更大的能量。它所用的氚具有放射性，但它是作为燃料被消耗掉的，而不是作为废物留下。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3286002",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "请给出理由，说明正文中提出的论断：聚变反应 ${}^{2}\\text{H}+{}^{2}\\text{H}\\to {}^{4}\\text{He}+\\gamma$ 的能量相对难以捕获和利用。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "动量守恒，而反应物开始时几乎静止，所以 ${}^{4}\\text{He}$ 和 $\\gamma$ 射线以大小相等、方向相反的动量离开。质量很大的氦核以这个动量缓慢运动，因此带有的动能很少，大部分能量归了 $\\gamma$ 射线。$\\gamma$ 射线不带电，穿透力很强，所以很难把它在一个很小的区域内阻止并转化为热，这与在产生处沉积能量的带电粒子不同。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1909383",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "验证在质子-质子循环的各个聚变反应 ${}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}$、${}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma$ 和 ${}^{3}\\text{He}+{}^{3}\\text{He}\\to {}^{4}\\text{He}+{}^{1}\\text{H}+{}^{1}\\text{H}$ 中，总核子数、总电荷和电子轻子数都是守恒的。（列出每个反应前后每个守恒量的值。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $A=1+1=2$, $Z=1+1=1+1$, $\\text{efn}=0=-1+1$ (b) $A=1+2=3$, $Z=1+1=2$, $\\text{efn}=0=0$ (c) $A=3+3=4+1+1$, $Z=2+2=2+1+1$, $\\text{efn}=0=0$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1403001",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "证明质子-质子循环中释放的总能量为 26.7 MeV，考虑 ${}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}$、${}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma$ 和 ${}^{3}\\text{He}+{}^{3}\\text{He}\\to {}^{4}\\text{He}+{}^{1}\\text{H}+{}^{1}\\text{H}$ 的总体效果，并务必把湮没能量包括在内。",
+   "answer": {
+    "type": "number",
+    "value": 26.73,
+    "unit": "MeV",
+    "generated_by": "source",
+    "hint": "总体效果是把四个 ${}^{1}\\text{H}$ 原子变成一个 ${}^{4}\\text{He}$ 原子；发生湮没的那两个电子已经计入原子质量之中。",
+    "solution": "$E=(m_{\\text{i}}-m_{\\text{f}})c^{2}=[4m({}^{1}\\text{H})-m({}^{4}\\text{He})]c^{2}=[4(1.007825)-4.002603](931.5\\;\\text{MeV})=26.73\\;\\text{MeV}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2447454",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-energy-and-power",
+   "prompt": "例题 32.2 “计算聚变产生的能量和功率”中求出了 1.00 kg 氘和氚的混合物聚变所产生的能量。大约需要多少千克，才能供应美国一年的能源使用？",
+   "answer": {
+    "type": "number",
+    "value": 312000.0,
+    "unit": "kg",
+    "tol": 0.1,
+    "generated_by": "source",
+    "hint": "用美国一年的能源使用除以每千克释放的 $3.37\\times10^{14}$ J。",
+    "solution": "$3.12\\times10^{5}\\;\\text{kg}$（约 200 吨）"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1586899",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "正文中提到的两个聚变反应是 $n+{}^{3}\\text{He}\\to {}^{4}\\text{He}+\\gamma$ 和 $n+{}^{1}\\text{H}\\to {}^{2}\\text{H}+\\gamma$。两个反应都释放能量，但第二个反应还产生更多的燃料。证实这两个反应产生的能量分别为 20.58 和 2.22 MeV。就哪种生成核素束缚得最紧，是 ${}^{4}\\text{He}$ 还是 ${}^{2}\\text{H}$，谈谈你的看法。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$n+{}^{3}\\text{He}$",
+      "value": 20.58,
+      "unit": "MeV",
+      "tol": 0.005,
+      "hint": "对 $E=(m_{\\text{i}}-m_{\\text{f}})c^{2}$，取 ${}^{3}\\text{He}$ 和 ${}^{4}\\text{He}$ 的原子质量以及中子的质量。"
+     },
+     {
+      "part": "$n+{}^{1}\\text{H}$",
+      "value": 2.224,
+      "unit": "MeV",
+      "tol": 0.005,
+      "hint": "取 ${}^{1}\\text{H}$ 和 ${}^{2}\\text{H}$ 的原子质量以及中子的质量。"
+     }
+    ],
+    "solution": "$E_{1}=(1.008665+3.016030-4.002603)(931.5\\;\\text{MeV})=20.58\\;\\text{MeV}$；$E_{2}=(1.008665+1.007825-2.014102)(931.5\\;\\text{MeV})=2.224\\;\\text{MeV}$。${}^{4}\\text{He}$ 束缚得更紧，因为这个反应每核子放出的能量更多。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3094380",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-energy-and-power",
+   "prompt": "假设氘占天然氢的 0.01500%（按数目计），要得到 198.8 mol 的氘，需要多少千克水？",
+   "answer": {
+    "type": "number",
+    "value": 11900.0,
+    "unit": "kg",
+    "generated_by": "source",
+    "hint": "求出含有 198.8 mol 氘的氢的摩尔数；每摩尔水含有两摩尔氢，质量为 18.0 g。",
+    "solution": "$1.19\\times10^{4}\\;\\text{kg}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1514231",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "在太阳中，尤其是在更热的恒星中，另一组使氢聚变成氦的反应称为碳循环。它是 ${}^{12}\\text{C}+{}^{1}\\text{H}\\to{}^{13}\\text{N}+\\gamma$，${}^{13}\\text{N}\\to{}^{13}\\text{C}+e^{+}+v_{e}$，${}^{13}\\text{C}+{}^{1}\\text{H}\\to{}^{14}\\text{N}+\\gamma$，${}^{14}\\text{N}+{}^{1}\\text{H}\\to{}^{15}\\text{O}+\\gamma$，${}^{15}\\text{O}\\to{}^{15}\\text{N}+e^{+}+v_{e}$，${}^{15}\\text{N}+{}^{1}\\text{H}\\to{}^{12}\\text{C}+{}^{4}\\text{He}$。写出碳循环的总体效果（就像在 $2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{e}+6\\gamma$ 中对质子-质子循环所做的那样）。注意所需质子（${}^{1}\\text{H}$）的数目，并假设正电子（$e^{+}$）与电子湮没，形成更多的 $\\gamma$ 射线。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2e^{-}+4\\,{}^{1}\\text{H}\\to{}^{4}\\text{He}+7\\gamma+2v_{e}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1517224",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "验证在上一题给出的碳循环中，每一个聚变反应的总核子数、总电荷和电子轻子数都是守恒的。（列出每个反应前后每个守恒量的值。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $A=12+1=13$, $Z=6+1=7$, $\\text{efn}=0=0$ (b) $A=13=13$, $Z=7=6+1$, $\\text{efn}=0=-1+1$ (c) $A=13+1=14$, $Z=6+1=7$, $\\text{efn}=0=0$ (d) $A=14+1=15$, $Z=7+1=8$, $\\text{efn}=0=0$ (e) $A=15=15$, $Z=8=7+1$, $\\text{efn}=0=-1+1$ (f) $A=15+1=12+4$, $Z=7+1=6+2$, $\\text{efn}=0=0$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3154583",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "综合概念：利用动量守恒原理，并取反应物初始时静止，求反应 $n+{}^{3}\\text{He}\\to{}^{4}\\text{He}+\\gamma$ 中给予 ${}^{4}\\text{He}$ 核和 $\\gamma$ 射线的能量。这应当证实大部分能量归 $\\gamma$ 射线所有的论断。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$\\gamma$ ray",
+      "value": 20.6,
+      "unit": "MeV",
+      "hint": "$\\gamma$ 射线和 ${}^{4}\\text{He}$ 核的动量大小相等、方向相反；光子的能量为 $pc$。"
+     },
+     {
+      "part": "${}^{4}\\text{He}$",
+      "value": 0.0568,
+      "unit": "MeV",
+      "hint": "由 $\\gamma$ 射线求得动量 $p$ 后，原子核的动能为 $p^{2}/2m$。"
+     }
+    ],
+    "solution": "$E_{\\gamma}=20.6\\;\\text{MeV}$; $E_{{}^{4}\\text{He}}=5.68\\times10^{-2}\\;\\text{MeV}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3043838",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-energy-and-power",
+   "prompt": "综合概念：（a）估算海洋中的氘燃料能够满足全世界能源需求多少年。假设世界能源消费是美国的十倍，美国的能源消费为 $8\\times10^{19}$ J/y，并假设海洋中的氘能以 32% 的效率转化为能量。你必须估算或查出海洋中的水量，并取氘含量为天然氢的 0.015%，以求出可用的氘的质量。注意，氘的能量产额约为 $3.37\\times10^{14}$ J/kg。（b）谈谈按任何人类的尺度衡量，这是多长的时间。（这并不是一个不合理的结果，只是一个令人印象深刻的结果。）",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 3000000000.0,
+    "unit": "y",
+    "tol": 0.5,
+    "generated_by": "source",
+    "hint": "由海洋的面积和平均深度估算海洋的质量，求出其中氘的质量，再用它所产生的有用能量除以全世界每年的能源使用。",
+    "solution": "（a）$3\\times10^{9}\\;\\text{y}$（b）这大约是地球寿命的一半。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "coulomb-barrier-to-fusion"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "nuclear-fusion"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "proton-proton-cycle"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p2",
+   "concept": "proton-proton-cycle"
+  },
+  {
+   "exercise": "p2",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p3",
+   "concept": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "exercise": "p4",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p4",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "p4",
+   "concept": "binding-energy-per-nucleon"
+  },
+  {
+   "exercise": "p5",
+   "concept": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "exercise": "p5",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p6",
+   "concept": "proton-proton-cycle"
+  },
+  {
+   "exercise": "p6",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p8",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p8",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "p9",
+   "concept": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "exercise": "p9",
+   "concept": "deuterium-tritium-fusion"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-helium-three-capture",
+   "kind": "correction",
+   "html": "本书印的是 $n + {}^{1}\\text{H} \\to {}^{2}\\text{H} + \\gamma\\;(20.68\\;\\text{MeV})$，它用另一个能量重复了下一个反应。其本意的反应是 $n + {}^{3}\\text{He} \\to {}^{4}\\text{He} + \\gamma$，释放 20.58 MeV，这正是正文后面给出的能量。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "proton-proton-cycle",
+   "what": "质子-质子循环的总体效果",
+   "source": "《大学物理（第2版）》，32.5 聚变",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "{}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}\\;(0.42\\;\\text{MeV})",
+       "src": "32.5"
+      },
+      {
+       "tex": "{}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma\\;(5.49\\;\\text{MeV})",
+       "src": "32.5"
+      },
+      {
+       "text": "两个正电子遇到两个电子并湮没，形成另外四条 $\\gamma$ 射线：$2e^{+} + 2e^{-} \\to 4\\gamma$。",
+       "src": "32.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{{}^{3}\\text{He}+{}^{3}\\text{He}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{p}{{}^{1}\\text{H}+{}^{1}\\text{H}}",
+      "uses": [],
+      "src": "32.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{2\\,{}^{1}\\text{H}+2\\,{}^{2}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{p}{2\\,{}^{1}\\text{H}}+\\mk{g}{2\\gamma}",
+       "uses": [
+        1
+       ],
+       "cap": "第二个反应进行两次，生成两个 ${}^{3}\\text{He}$，并放出两条 $\\gamma$ 射线。"
+      },
+      {
+       "tex": "\\mk{a}{6\\,{}^{1}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{p}{2\\,{}^{1}\\text{H}}+\\mk{e}{2e^{+}+2v_{\\text{e}}}+\\mk{g}{2\\gamma}",
+       "uses": [
+        0
+       ],
+       "cap": "第一个反应进行两次，生成两个 ${}^{2}\\text{H}$，所以该循环消耗六个质子。"
+      },
+      {
+       "tex": "\\mk{a}{4\\,{}^{1}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{e}{2e^{+}+2v_{\\text{e}}}+\\mk{g}{2\\gamma}",
+       "uses": [],
+       "cap": "六个质子中有两个被归还。",
+       "map": {
+        "p": "a"
+       }
+      },
+      {
+       "tex": "\\mk{n}{2e^{-}}+\\mk{a}{4\\,{}^{1}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{e}{2v_{\\text{e}}}+\\mk{g}{6\\gamma}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "e": [
+         "e",
+         "g",
+         "n"
+        ]
+       }
+      }
+     ],
+     "src": "32.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "前两个反应各发生两次，每次分别释放 $0.42\\;\\text{MeV}$ 和 $5.49\\;\\text{MeV}$，第三个反应释放 $12.86\\;\\text{MeV}$。",
+       "src": "32.5"
+      },
+      {
+       "text": "每一次正电子与电子的湮没产生两条 $0.511\\;\\text{MeV}$ 的 $\\gamma$ 射线。",
+       "src": "32.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E} = \\mk{r}{2(0.42\\;\\text{MeV}) + 2(5.49\\;\\text{MeV}) + 12.86\\;\\text{MeV}} + \\mk{x}{2(2)(0.511\\;\\text{MeV})}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "该循环的能量就是它的各个反应所释放的能量，两次湮没也包括在内。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{E} = \\mk{r}{26.7\\;\\text{MeV}}",
+       "uses": [],
+       "map": {
+        "x": "r"
+       }
+      }
+     ],
+     "src": "32.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{\\text{e}}+6\\gamma}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{\\text{e}}+6\\gamma}\\;\\mk{E}{(26.7\\;\\text{MeV})}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "32.5"
+    }
+   ]
+  }
+ ]
+}

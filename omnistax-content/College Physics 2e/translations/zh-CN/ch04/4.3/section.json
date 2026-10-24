@@ -1,0 +1,1074 @@
+{
+ "id": "4.3",
+ "module": "m42073",
+ "chapter": "4",
+ "title": "牛顿第二定律：系统的概念",
+ "short": "牛顿第二定律",
+ "lead": "牛顿第二定律把作用在所选系统上的<span data-concept=\"net-external-force\">合外力</span>与它产生的<span data-concept=\"acceleration\">加速度</span>联系起来，并由它得出牛顿这个<span data-concept=\"force\">力</span>的单位，以及物体的<span data-concept=\"weight\">重力</span>。",
+ "objectives": [
+  "定义合力、外力和系统。",
+  "理解牛顿第二定律。",
+  "应用牛顿第二定律确定物体的重力。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"acceleration\">加速度</span> $\\ka$ 定义为<span data-concept=\"velocity\">速度</span>的变化，即其大小或方向，或二者同时的变化。</li><li>外力是从系统之外作用于系统的力，与之相对的是内<span data-concept=\"force\">力</span>，后者作用于系统内各组成部分之间。</li><li>牛顿第二定律指出，系统的<span data-concept=\"acceleration\">加速度</span>与作用在系统上的<span data-concept=\"net-external-force\">合外力</span>成正比，方向与之相同，并与其<span data-concept=\"mass\">质量</span>成反比。</li><li>用方程表示，牛顿第二定律是 $\\mathbf{a} = \\frac{\\mathbf{F}_{\\text{net}}}{m}$。</li><li>它常常写成更为熟悉的形式：$\\mathbf{F}_{\\text{net}} = m\\mathbf{a}$。</li><li>物体的<span data-concept=\"weight\">重力</span> $\\mathbf{w}$ 定义为作用在<span data-concept=\"mass\">质量</span>为 $m$ 的物体上的<span data-concept=\"force\">引力</span>。物体具有重力加速度 $\\mathbf{g}$：$\\mathbf{w} = m\\mathbf{g}$。</li><li>如果作用在物体上的唯一的<span data-concept=\"force\">力</span>来自重力，则该物体处于自由落体运动。</li><li><span data-concept=\"friction\">摩擦力</span>是一种阻碍相互接触的物体彼此相对运动的<span data-concept=\"force\">力</span>。</li></ul>",
+ "notes": "习题 2、4、5、6、8、10、12 和 14 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "可以假定从插图中取得的数据精确到三位数字。",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、5、6、8、10、12 和 14 没有给出答案，因而略去。十道思考题均没有给出答案，所以每道题都附有一条由 AI 撰写的建议思路，并已标明；其中最短的两道就地放在它们所检验的段落旁边：抛到最高点的石块放在关于重力的段落之后，恒定的不为零的力放在关于第二定律的段落之后。本书印在其他各节的三道题放在这里，因为习题应与引入其所检验内容的那一节放在一起，那几节也各在自己的说明中这样讲明。4.1 节的第一道 AP 题是赛道上的两辆汽车，它要求给出沿赛道各点处合外力的方向，并有答案，所以它连同 source_section 4.1 和书后答案一起放在这里；其弯道部分预示了第 6 章的向心力，而书后答案讨论的是直道部分，所以它照本书印出的样子保留。4.5 节的第一道 AP 题是作用在一支箭上的引力，它就是这支箭的重力，别无其他；它没有答案，所以它连同 source_section 4.5 作为开放题放在这里，其四个选项照本书印出的样子给出，并附有一条由 AI 撰写的建议思路。4.8 节的批判性思考题是两个被推过不同距离的箱子，它的关键在于第二定律，以及把末速率的平方与距离联系起来的恒定加速度方程，而不在于四种基本力；它有答案，所以它连同 source_section 4.8 和本书在其答案中给出的图一起放在这里。习题 7 把它的 (a) 部分的答案给成数值，并在解中保留本书对 (b) 部分给出的理由；习题 9 把它的 (c) 和 (d) 部分的答案给成数值，并在解中保留本书对 (a) 和 (b) 部分给出的系统和受力图；习题 11 给出了它全部四项读数的答案。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-wagon",
+   "kind": "sim",
+   "number": "4.5",
+   "originals": [
+    "/media/ch04/Figure_04_03_01.jpg"
+   ],
+   "original_caption": "施加在同一质量上的不同的力产生不同的加速度。(a) 两个孩子推着一辆坐着一个孩子的四轮小车。图中画出了表示所有外力的箭头。所研究的系统是四轮小车及其乘坐者。为完整起见，系统的重力 w 和地面的支持力 N 也画了出来，并假定二者相互抵消。矢量 f 表示作用在四轮小车上的摩擦力，它向左作用，阻碍四轮小车的运动。(b) 作用在系统上的所有外力相加，产生合力 F_net。受力图显示了作用在所研究的系统上的所有力。圆点表示系统的质心。每个力矢量都从这个点出发。因为有两个力向右作用，所以我们把这些矢量共线地画出。(c) 当一个成年人推这个孩子时，更大的合外力产生更大的加速度 (a′ > a)。",
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library children and rider, bigger scene, labeller, fixed FBD scale"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mass",
+   "kind": "sim",
+   "number": "4.6",
+   "originals": [
+    "/media/ch04/Figure_04_03_02.jpg"
+   ],
+   "original_caption": "同样的力作用在质量不同的系统上，产生不同的加速度。(a) 一名篮球运动员推篮球传球。（忽略重力对球的作用。）(b) 同一名运动员对一辆熄火的 SUV 施加相同的力，产生的加速度要小得多（即使摩擦力可以忽略）。(c) 两幅受力图相同，便于直接比较这两种情形。随着你做的习题越来越多，受力图的一系列模式将会逐渐显现。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout separator, note shortened, graph labels on a panel"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mower",
+   "kind": "sim",
+   "number": "4.7",
+   "originals": [
+    "/media/ch04/Figure_04_03_03.jpg"
+   ],
+   "original_caption": "割草机所受的合力为 51 N，方向向右。割草机以多大的加速度向右加速？",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene scale so arrows stay on the stage, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-sled",
+   "kind": "sim",
+   "number": "4.8",
+   "originals": [
+    "/media/ch04/Figure_04_03_04.jpg"
+   ],
+   "original_caption": "一辆滑橇受到火箭推力，使它向右加速。每枚火箭产生相同的推力 T。如同其他只有水平加速度的情形一样，竖直方向的力相互抵消。地面对系统施加一个向上的力 N，其大小与系统的重力 w 相等，方向与之相反。这里的系统是滑橇、它的火箭和乘坐者，因此这些物体之间的力都不予考虑。表示摩擦力 (f) 的箭头画得比实际比例大。",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "force",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: seated rider, flames, thrusts at nozzles, N off rail, dropdown"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-weight",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph labels placed, note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "system",
+   "concept": "system-of-interest",
+   "verb": "introduces"
+  },
+  {
+   "span": "system",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "system",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "system",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "system",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "system",
+   "concept": "system",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-force",
+   "concept": "net-external-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-force",
+   "concept": "friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-force",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "net-force",
+   "concept": "inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "newtons-second-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "newton",
+   "concept": "newton-unit",
+   "verb": "introduces"
+  },
+  {
+   "span": "newton",
+   "concept": "fundamental-units",
+   "verb": "uses"
+  },
+  {
+   "span": "newton",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "weight",
+   "concept": "weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "weight",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "weight",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-weight",
+   "concept": "mass-versus-weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "mass-weight",
+   "concept": "weight",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mass-weight",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "mower",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mower",
+   "concept": "newton-unit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "net-external-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sled",
+   "concept": "system-of-interest",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2928601",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "下列哪个说法是正确的？(a) 合力引起运动。(b) 合力引起运动的变化。请解释你的答案并举例说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(b) 是正确的说法。牛顿第一定律说，已经以恒定速度运动的物体，在完全没有合外力作用于它时，会保持这一速度继续运动，所以运动本身不需要原因；需要原因的是速度的变化，而这个原因就是合外力。在气垫台上滑行的冰球以非常接近恒定的速度滑过桌面，此时作用在它上面的合外力非常接近于零，只有当手或墙推它时，它的运动才会改变。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2423185",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "system",
+   "prompt": "在应用牛顿第二定律时，为什么我们可以忽略像把一个物体维系在一起的那些力？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把物体维系在一起的力作用于物体各部分之间，所以一旦选定该物体为所研究的系统，它们就是内力，而只有外力才会影响系统的运动。内力成对抵消，正如下一节所示，所以它们对合外力没有任何贡献，对加速度也没有任何贡献。这是一个极大的简化：孩子体内的肌肉力以及四轮小车的原子之间数不清的力，都根本不必计入。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3010660",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "system",
+   "prompt": "解释在应用牛顿第二定律时，“所研究的系统”的选择如何影响必须考虑哪些力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个力是外力还是内力，取决于你把系统的边界划在哪里，所以系统的选择决定了哪些力要计入。以图 4.5 中的四轮小车为例。如果系统是四轮小车连同坐在里面的孩子，那么孩子对四轮小车的抓握是内力，不再计入。这时外力就是两个推力、摩擦力、系统的重力和地面的支持力。如果系统只是四轮小车，孩子的抓握就成为作用在它上面的外力，应当画在图中，而系统的重力现在只是四轮小车本身的重力。两种选择都是正确的，每一种给出的合外力不同，与之相除的质量也不同，所以在写出第二定律之前，要先确定边界。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2672485",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "描述这样一种情形：系统所受的合外力不为零，但它的速率保持不变。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一辆汽车以速度计上稳定的示数驶过弯道，就是这样的系统。速度是矢量，所以汽车的速度在变化，尽管它的速率没有变：速度的方向随弯道转动。速度的变化就是加速度，而加速度需要合外力，这里的合外力是路面作用在轮胎上的侧向力。这个力指向弯道的内侧，与速度成直角，所以它使汽车转向，却不会使汽车变快或变慢。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3026744",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "系统可以在所受合外力<em>为</em>零的同时具有不为零的速度。请描述这样一种情形。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一辆汽车在笔直、水平的道路上以稳定的速率行驶，就是这样的系统。摩擦力和空气阻力阻碍运动，并与路面作用在驱动轮上的向前的力相等。路面的支持力与汽车的重力相等。这些力成对抵消，合外力为零。于是牛顿第一定律说，汽车保持恒定的速度运动，而它做的恰恰就是这样。一个滑过气垫台的冰球，以及一艘在远离任何大天体处滑行的航天器，也是同样的情形，只是需要抵消的东西更少。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1449832",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight",
+   "prompt": "一块石块被竖直向上抛出。当它处于轨迹的最高点时，作用在它上面的合外力是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在轨迹的最高点，石块瞬时静止，但静止并不等于不受力。撇开空气阻力不计，石块在飞行中任一点上受到的唯一的力是重力，所以在最高点处的合外力就是石块的重力 $\\kwgt = \\km\\kg$，方向竖直向下。这就是石块不会停留在最高点的原因：合外力不为零，所以速度每秒钟都改变 $9.80\\ \\text{m/s}$，石块随即开始下落。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1475076",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "(a) 举一个例子，说明不同的合外力作用在同一系统上产生不同的加速度。(b) 举一个例子，说明相同的合外力作用在质量不同的系统上，产生不同的加速度。(c) 哪条定律准确地描述了这两种效应？请用文字和方程两种形式表述它。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) 图 4.5 中的四轮小车是一个被以两种方式推动的系统：两个孩子给它一定的合外力和一定的加速度，而一个成年人推同一辆四轮小车，则给它更大的合外力和更大的加速度。(b) 图 4.6 中的球员先推一个篮球，然后用同样的力推一辆熄火的 SUV；球很快加速，而 SUV 几乎不动。(c) 牛顿第二定律描述了这两种效应。用文字表述，系统的加速度与作用在系统上的合外力成正比，方向与之相同，并与其质量成反比。用方程表示，则为 $\\mathbf{a} = \\frac{\\mathbf{F}_{\\text{net}}}{\\km}$，通常写成 $\\mathbf{F}_{\\text{net}} = \\km\\mathbf{a}$。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1930138",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "如果一个系统的加速度为零，是不是就没有外力作用在它上面？内力又如何？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "加速度为零只意味着合外力为零，并不意味着没有外力作用。放在桌子上的书，重力把它往下拉，桌子的支持力把它往上推；二者大小相等、方向相反，所以相加为零，书不会加速。内力完全不能说明加速度的情况，因为无论大小如何，它们在系统内都成对抵消：把书页和纤维维系在一起的力很大，而书依然静止。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3180550",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "如果对一个物体施加一个恒定的、不为零的力，关于该物体的速度和加速度，你能说些什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "如果合外力恒定且不为零，那么 $\\mathbf{a} = \\frac{\\mathbf{F}_{\\text{net}}}{\\km}$ 表明加速度也是恒定的，方向与力相同，并且在每一时刻大小相同。因此速度绝不是恒定的：它每秒钟改变相同的量。如果物体一开始沿力的方向运动，或者从静止开始，那么只要力还在作用，它的速率就会稳定地增大。如果它一开始逆着力的方向运动，它就会以稳定的变化率减速，瞬时静止，然后沿力的方向加速。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3210019",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "图 4.6 中作用在篮球上的重力被忽略了。当<em>确实</em>把重力考虑在内时，篮球所受合外力的方向如何——在水平方向之上、水平方向之下，还是仍然水平？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在水平方向之下。把重力计入后，有两个外力作用在球上：球员沿水平方向的推力和球的重力，其方向竖直向下。合外力是这两个力的矢量和，可用首尾相接法或分量求出，一个水平矢量与一个向下的矢量相加，得到指向水平方向之下的合矢量。低多少取决于推力的大小。球员推得越用力，合外力就越接近水平，这就是图中在用力传球时可以忽略重力的原因。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2025052",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "一名 63.0 kg 的短跑运动员起跑时的加速度为 $4.20\\ \\text{m/s}^2$。他所受的合外力是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 265,
+    "unit": "N",
+    "hint": "质量和加速度都已给出，所以形如 $\\kFnet = m\\ka$ 的牛顿第二定律可以直接给出力，而千克米每二次方秒就是牛顿。",
+    "solution": "265 N"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1947422",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "一名清洁工推着一辆 4.50 kg 的洗衣车，使它所受的合外力为 60.0 N。计算它的加速度的大小。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 13.3,
+    "unit": "m/s²",
+    "hint": "使用 $\\ka = \\kFnet/m$，并用千克米每二次方秒代替牛顿，这样千克就抵消了。",
+    "solution": "$13.3\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2673239",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sled",
+   "figure": {
+    "src": "/media/ch04/Figure_04_03_05-1144.jpg",
+    "alt": "图中画出一辆滑橇，推力由矢量 T 表示，把滑橇推向右方。摩擦力由标为矢量 f 的箭头表示，指向滑橇的左方。滑橇的重力由标为矢量 W 的箭头表示，指向下方，法向力由标为矢量 N 的箭头表示，其长度与 W 相同，向上作用在滑橇上。"
+   },
+   "prompt": "(a) 如果图中所示的火箭橇起动时只有一枚火箭在燃烧，它的加速度的大小是多少？假设系统的质量为 2100 kg，推力 T 为 $2.59 \\times 10^{4}$ N，阻碍运动的摩擦力已知为 650 N。(b) 为什么加速度不是全部火箭燃烧时的四分之一？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 12,
+    "unit": "m/s²",
+    "hint": "沿导轨方向的合外力是一个推力减去摩擦力，再由第二定律除以系统的质量。",
+    "solution": "(a) $12\\ \\text{m/s}^2$。(b) 加速度不是全部火箭燃烧时的四分之一，因为摩擦力仍然和全部火箭燃烧时一样大。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2963161",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "system",
+   "prompt": "假设两个孩子沿水平方向推坐在四轮小车里的第三个孩子，但方向恰好相反。第一个孩子施加的力为 75.0 N，第二个孩子施加的力为 90.0 N，摩擦力为 12.0 N，第三个孩子加上四轮小车的质量为 23.0 kg。<ol type=\"a\"><li>如果要计算四轮小车里那个孩子的加速度，所研究的系统是什么？</li><li>画出受力图，包括作用在系统上的所有力。</li><li>计算加速度。</li><li>如果摩擦力为 15.0 N，加速度会是多少？</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(c)",
+      "value": 0.13,
+      "unit": "m/s²",
+      "hint": "两个推力的方向相反，所以相减，而摩擦力阻碍由此产生的运动。"
+     },
+     {
+      "part": "(d)",
+      "value": 0,
+      "unit": "m/s²",
+      "hint": "用更大的摩擦力再算一次合外力，看看还剩下多少。"
+     }
+    ],
+    "solution": "(a) 系统是四轮小车里的孩子加上四轮小车。(b) <img src=\"/media/ch04/Figure_04_03_06.jpg\" alt=\"中心有一个标为 m 的圆点，表示一个物体。一个由标为矢量 F 下标 2 的箭头表示的力向右作用。另一个由标为矢量 F 下标 1 的箭头表示的力作用在物体上，指向左方，其长度比 F 下标 2 略短。一个由标为矢量 f 的箭头表示的摩擦力，长度很小，向左作用在物体上。重力由标为矢量 W 的箭头表示，向下作用在物体上，法向力由标为矢量 N 的箭头表示，向上作用，其长度与 W 相同。\"> (c) $a = 0.130\\ \\text{m/s}^2$，方向与第二个孩子的推力的方向相同。(d) $a = 0.00\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3091858",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sled",
+   "figure": {
+    "src": "/media/ch04/Figure_04_03_07-c153.jpg",
+    "alt": "图中画出一辆装有四枚火箭的滑橇。摩擦力由标为矢量 f 的箭头表示，指向滑橇的左方。滑橇的重力由标为矢量 W 的箭头表示，指向下方，法向力由标为矢量 N 的箭头表示，其长度与 W 相同，向上作用在滑橇上。"
+   },
+   "prompt": "图中所示的火箭橇以 $49.0\\ \\text{m/s}^2$ 的加速度加速。它的乘客质量为 75.0 kg。(a) 计算座椅作用在他身体上的力的水平分量。用比值把它与他的重力作比较。(b) 计算座椅作用在他身体上的合力的方向和大小。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) horizontal component",
+      "value": 3680,
+      "unit": "N",
+      "hint": "现在乘客是系统，作用在他身上的水平力等于他自己的质量乘以滑橇的加速度。"
+     },
+     {
+      "part": "(a) ratio to his weight",
+      "value": 5.0,
+      "hint": "他的重力是 $\\kwgt = m\\kg$，所以这个比值就是滑橇的加速度除以重力加速度。"
+     },
+     {
+      "part": "(b) magnitude",
+      "value": 3750,
+      "unit": "N",
+      "hint": "座椅还要托住他以对抗他的重力，所以把水平分量与一个等于他的重力的竖直分量合成。"
+     },
+     {
+      "part": "(b) direction above horizontal",
+      "value": 11.3,
+      "unit": "°",
+      "hint": "方向是竖直分量与水平分量之比的反正切。"
+     }
+    ],
+    "solution": "(a) $3.68 \\times 10^{3}\\ \\text{N}$。这个力是他的重力的 5.00 倍。(b) 3750 N；在水平方向之上 11.3°"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3244376",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-weight",
+   "prompt": "一名航天员连同他们的航天服在月球上的重力只有 250 N。他们在地球上的重力是多少？在月球上的质量是多少？在地球上呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "weight on Earth",
+      "value": 1500,
+      "unit": "N",
+      "hint": "先由月球上的重力和月球的重力加速度求出质量，再求这个质量在地球上的重力。"
+     },
+     {
+      "part": "mass on the Moon",
+      "value": 150,
+      "unit": "kg",
+      "hint": "重力是 $\\kwgt = m\\kg$，所以质量等于重力除以称重处的重力加速度。"
+     },
+     {
+      "part": "mass on Earth",
+      "value": 150,
+      "unit": "kg",
+      "hint": "质量是物质的量，不随位置而变。"
+     }
+    ],
+    "solution": "$1.5 \\times 10^{3}\\ \\text{N}, 150\\ \\text{kg}, 150\\ \\text{kg}$"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1691415",
+   "source_section": "4.1",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-force",
+   "prompt": "<img src=\"/media/ch04/Figure_04_01_03.jpg\" alt=\"该图看上去像一条实心的黑色椭圆形赛道，有 16 条等间距的短垂直刻度线横穿赛道。椭圆的长度大于高度，赛道的上下两部分是水平的，与页面底边平行。为了构成椭圆，赛道从顶部中心刻度线右边的第二条垂直刻度线起开始弯成半圆。该弯道持续四条垂直刻度线，赛道水平的底部从底部中心刻度线右边两条垂直刻度线处开始。这个半圆在赛道左侧呈镜像对称。椭圆右侧有一个绕赛道弯曲并指向上方的箭头，旁边的文字是“Direction of Cars’ Motion”。赛道上方有一条实线，赛道外右侧还有一条。两条线都用小写字母 d 标示。一条线起于右上方水平直线路段上第一条刻度线的位置，表示该线的长度再延伸 4 条刻度线。第二条线起于赛道左上方水平路段的末端，并弯曲延伸 4 条刻度线。\">上图表示一条赛道，半圆形路段由直路段连接而成。每一路段的长度为 <em>d</em>，赛道沿线的标记彼此相距 <em>d</em>/4。如图所示，两个人驾驶汽车沿赛道逆时针行驶。汽车 <em>X</em> 以恒定速率 $v_{\\text{c}}$ 通过弯道，在每个直路段的前半段以恒定加速度加速，达到 $2v_{\\text{c}}$ 的最大速率，然后在每个直路段的后半段以恒定加速度刹车，回到速率 $v_{\\text{c}}$。汽车 <em>Y</em> 同样以恒定速率 $v_{\\text{c}}$ 通过弯道，在每个直路段的四分之一长度上以恒定加速度提高速率，达到同样的最大速率 $2v_{\\text{c}}$，在每个直路段的一半长度上保持该速率，然后在每个直路段其余的四分之一长度上以恒定加速度刹车，回到速率 $v_{\\text{c}}$。(a) 在下面的图中，在圆点所标出的位置上，画出一个箭头，表示每辆汽车所受合力的方向。如果在任何位置上合力为零，就在该圆点上标 0。<img src=\"/media/ch04/Figure_04_01_04.jpg\" alt=\"有两条虚线椭圆形赛道，代表前图所示的较大的椭圆形赛道。两条赛道都有前图所示的同样 16 条等间距垂直刻度线，但赛道周围是虚线，而不是实线。每两条垂直短划之间，有一段较小的短划位于该垂直短划处，另有三段短划。左侧图形上方居中的文字是 Car X，右侧图形上方是 Car Y。汽车 X 和汽车 Y 的赛道上各有 6 个黑点。\">(b) i. 指出哪辆汽车绕赛道一周所用的时间较短（如果有的话），并且不用方程，定性地论证你的答案。ii. 用适当的方程，定量地论证你关于哪辆汽车（如果有的话）绕赛道一周所用时间较短的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/Figure_04_01_05.jpg\" alt=\"两幅相同的图，都有椭圆形的虚线路径，上面交替出现加号和减号。每条路径上都有黑点，黑点带有箭头，表示沿环路各点处的特定矢量方向。\">汽车 <em>X</em> 画在左边，汽车 <em>Y</em> 画在右边。i. 汽车 <em>X</em> 加速所用的时间较长，并且没有任何时间以最大速率行驶。汽车 <em>Y</em> 加速的时间较短，并且有一段时间以最大速率行驶。所以汽车 <em>Y</em> 通过直道的时间一定较短。弯道所用的时间相同，所以汽车 <em>Y</em> 总体上所用的时间一定较短。ii. 在计算一段直线加速所用时间时，唯一的差别在于距离的不同。这表明汽车 <em>X</em> 加速所用的时间较长。方程 $\\frac{d}{4{v}_{c}} = {t}_{c}$ 对应于汽车 <em>Y</em> 以最大速率行驶一段时间。把 $a = \\frac{{v}_{c}}{{t}_{1}}$ 代入 (b) ii 部分的位移方程，得 $D = \\frac{3}{2}{v}_{c}{t}_{1}$。这表明汽车在较短的距离上加速时，达到最大速率所用的时间较少。因此，正如 (b) i 部分所论证的，汽车 <em>Y</em> 更快地达到最大速率，并且比汽车 <em>X</em> 在最大速率上度过的时间更多。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1367314",
+   "source_section": "4.5",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight",
+   "prompt": "一名弓箭手用 24.5 N 的力把一支箭竖直向上射出。这支箭的质量为 0.4 kg。作用在这支箭上的重力是多少？<ol type=\"a\"><li>9.8 m/s<sup>2</sup></li><li>9.8 N</li><li>61.25 N</li><li>3.9 N</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(d) 3.9 N。作用在箭上的引力就是箭的重力 $\\kwgt = \\km\\kg$，只取决于箭的质量和重力加速度，所以弓箭手的 24.5 N 不进入计算。代入得 $\\kwgt = (0.4\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 3.9\\ \\text{N}$。其他选项错误的原因很明显：9.8 m/s<sup>2</sup> 是加速度，不是力；9.8 N 是 1.0 kg 物体的重力，而不是 0.4 kg 物体的重力；61.25 N 是弓箭手的力除以质量，具有加速度的单位，而且无论如何都大于把箭向上射出的 24.5 N 的推力。"
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-16012",
+   "source_section": "4.8",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "两个质量相等的箱子从静止开始滑动，在不同的水平外加力作用下滑过无摩擦的表面，到达距起点相同的距离。箱子 A 受到的水平力是箱子 B 的三倍。(a) 在离起点这个距离处，哪个箱子运动得更快？请简要解释你的理由。(b) 根据实验数据，对末速率 <em>V</em> 提出了一个与数据吻合的方程，但它可能不正确：$V = KF$，其中 <em>K</em> 是带有适当单位的常数，<em>F</em> 是水平外加力。这个方程与你在 a 部分的回答一致吗？请解释为什么一致或为什么不一致。这个方程合理吗？请解释为什么合理或为什么不合理。(c) 现在外加力可以取任意值，在速率达到一个一致的值时测量离起点的距离。画出箱子在给定速率下所到达的距离随外加力变化的函数图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) 在终点距离处，箱子 A 运动得更快，因为在质量相等时，较大的力产生较大的加速度。另外，在相同的距离上，较大的加速度产生较大的末速率。(b) i. 是的，它是一致的，因为较大的力产生较大的末速率。ii. 它不合理，因为 $V=\\sqrt{2(f/m)x}=\\text{K}\\sqrt{(F)}$。(c) <img src=\"/media/ch04/OSX_CP2e_Figure_04_08Sol_CTQ01c.jpg\" alt=\"该图是 x 随 F 变化的曲线图。曲线始于紧靠 x 轴右侧的较大的 x 值，其值和斜率都在减小，并渐近地趋向 F 轴。图下方注明 x 与 1/F 成正比。\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "newtons-first-law",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "newtons-first-law"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "weight"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "system-of-interest",
+   "weight": 2
+  },
+  {
+   "exercise": "cq9",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newton-unit",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "newton-unit",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "p7",
+   "concept": "friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "p9",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p11",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "weight"
+  },
+  {
+   "exercise": "p13",
+   "concept": "mass-versus-weight"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-first-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "weight"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "mass-versus-weight",
+   "weight": 1
+  },
+  {
+   "exercise": "ct1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "v-squared",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "wagon",
+   "label": "四轮小车及其乘坐者",
+   "figures": [
+    "sim-wagon"
+   ]
+  },
+  {
+   "id": "pushers",
+   "label": "推车的两个孩子",
+   "figures": [
+    "sim-wagon"
+   ]
+  },
+  {
+   "id": "ball",
+   "label": "篮球",
+   "figures": [
+    "sim-mass"
+   ]
+  },
+  {
+   "id": "suv",
+   "label": "SUV",
+   "figures": [
+    "sim-mass"
+   ]
+  },
+  {
+   "id": "player",
+   "label": "球员",
+   "figures": [
+    "sim-mass"
+   ]
+  },
+  {
+   "id": "mower",
+   "label": "割草机",
+   "figures": [
+    "sim-mower"
+   ]
+  },
+  {
+   "id": "pusher",
+   "label": "推割草机的人",
+   "figures": [
+    "sim-mower"
+   ]
+  },
+  {
+   "id": "sled",
+   "label": "滑橇、火箭及乘坐者",
+   "figures": [
+    "sim-sled"
+   ]
+  },
+  {
+   "id": "load",
+   "label": "秤上的物体",
+   "figures": [
+    "sim-weight"
+   ]
+  },
+  {
+   "id": "scale",
+   "label": "体重秤",
+   "figures": [
+    "sim-weight"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1005 @@
+{
+ "id": "19.1",
+ "module": "m42324",
+ "chapter": "19",
+ "title": "电势能：电势差",
+ "short": "电势差",
+ "lead": "<span data-concept=\"electric-field\">电场</span>中的电荷具有<span data-concept=\"potential-energy\">势能</span>，正如引力场中的<span data-concept=\"mass\">质量</span>那样；把这份<span data-concept=\"energy\">能量</span>除以电荷，就得到<span data-concept=\"electric-potential\">电势</span>，它只属于场本身。于是，两点之间的<span data-concept=\"potential-difference\">电势差</span>，即<span data-concept=\"potential-difference\">电压</span>，就说明了电荷在这两点之间运动时获得或失去多少<span data-concept=\"energy\">能量</span>，其大小以焦耳或电子伏计。",
+ "objectives": [
+  "定义电势和电势能。",
+  "描述电势差与电势能之间的关系。",
+  "解释电子伏及其在亚微观过程中的用途。",
+  "已知电势差和电荷量，求电势能。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"electric-potential\">电势</span>是单位电荷的<span data-concept=\"potential-energy\">势能</span>。</li><li>A、B 两点之间的<span data-concept=\"potential-difference\">电势差</span> $\\kVB - \\kVA$，定义为电荷 $\\kq$ 从 A 移到 B 时<span data-concept=\"potential-energy\">势能</span>的变化，它等于<span data-concept=\"potential-energy\">势能</span>的变化除以电荷，<span data-concept=\"potential-difference\">电势差</span>通常称为<span data-concept=\"potential-difference\">电压</span>，用符号 $\\kdV$ 表示。$$\\kdV = \\frac{\\kdPE}{\\kq}\\ \\text{和}\\ \\kdPE = \\kq\\kdV.$$</li><li>电子伏是赋予经过 1 V <span data-concept=\"potential-difference\">电势差</span>加速的一个元电荷的<span data-concept=\"energy\">能量</span>。写成方程形式，$$\\begin{aligned}1\\ \\text{eV} &= (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{V}) =\\\\ &(1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{J/C})\\\\ &= 1.60 \\times 10^{-19}\\ \\text{J}.\\end{aligned}$$</li><li>机械能是系统<span data-concept=\"kinetic-energy\">动能</span>与<span data-concept=\"potential-energy\">势能</span>之和，即 $\\kKE + \\kPEtot$。这个和是一个常量。</li></ul>",
+ "notes": "书中没有给出答案的六道习题已略去：40 kV 的 X 射线管、速率为光速 2.00% 的氦原子核、处于太阳中心温度的一价离子、击中一棵树的闪电、聚变题（它还需要点电荷的电势），以及关于手机电池的“自拟习题”。关于带电球的“不合理的结果”习题，以及最后七道 AP 题（它们需要点电荷的电势），放在“点电荷的电势”一节；前四道 AP 题考查电场中电荷所受的力（来自“电荷与电场”），则照书中印出的样子保留在这里。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自本书的书后答案。书中没有给出答案的六道习题已略去：40 kV 的 X 射线管、速率为光速 2.00% 的氦原子核、处于太阳中心温度的一价离子、击中一棵树的闪电、聚变题（它还需要点电荷的电势，19.3 中同样略去了它），以及关于手机电池的“自拟习题”。关于 10.0 cm 的球带 8.00 C 电荷的“不合理的结果”习题，以及最后七道 AP 题（两个和三个点电荷的内能、正方形排列的电荷的内能，以及在另外两个电荷之间运动的电荷的内能），需要点电荷的电势，放在 19.3，其 source_section 为 19.1。前四道 AP 题考查电场中电荷所受的力，来自第 18 章，照书中印出的样子保留在这里，其中两道有答案、设为判分选择题，两道是附有 AI 撰写的建议思路的开放题。除颤器那道题只给出了 (a) 的答案，所以卡片检查这个数值，并在解答里附上书中给出的 (b) 的答案。保留下来的九道 AP 题中，四道有答案，设为判分选择题；另外五道没有答案，保留为开放题，附有 AI 撰写的建议思路并已标明，五道思考题的建议思路同样如此。本章没有“理解检测”框，所以本节没有行内题目。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-electrical-hill",
+   "kind": "sim",
+   "number": "19.2",
+   "originals": [
+    "/media/ch19/Figure_20_01_01a.jpg"
+   ],
+   "original_caption": "在电场中被加速的电荷，类似于沿山坡下滑的物体。两种情形下，势能都转化为另一种形式。功是由力做的，但由于这个力是保守力，所以我们可以写成 W = –ΔPE。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline formulas typeset; note shortened through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-battery-headlight",
+   "kind": "sim",
+   "number": "19.3",
+   "originals": [
+    "/media/ch19/Figure_20_01_02a.jpg"
+   ],
+   "original_caption": "电池把负电荷从它的负极经过一盏前照灯送到它的正极。电池中适当的化学物质组合使电荷分离，于是负极带有过剩的负电荷，这些电荷受到负极的排斥，并受到另一极上过剩正电荷的吸引。就电势而言，正极的电压比负极高。在电池内部，正电荷和负电荷都在运动。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "energy",
+    "charge"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headlight off the headline; arrow off a label; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-electron-gun",
+   "kind": "sim",
+   "number": "19.4",
+   "originals": [
+    "/media/ch19/Figure_20_01_03a.jpg"
+   ],
+   "original_caption": "典型的电子枪利用两块金属板之间的电势差加速电子。以电子伏为单位的电子能量，在数值上与两板之间的电压相同。例如，5000 V 的电势差产生 5000 eV 的电子。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "energy",
+    "velocity"
+   ],
+   "conventions": [
+    "e-",
+    "p+",
+    "He"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "electric-potential-energy",
+   "concept": "electric-potential-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "conservative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "path-independence-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential-energy",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "electric-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "electric-potential",
+   "concept": "test-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-difference",
+   "concept": "potential-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "potential-difference",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage",
+   "concept": "zero-of-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "voltage",
+   "concept": "pe-reference-level",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-from-voltage",
+   "concept": "energy-from-potential-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-from-voltage",
+   "concept": "potential-difference",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-batteries",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "charge-sign",
+   "concept": "charge-sign-and-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "charge-sign",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "charge-sign",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-headlight",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-headlight",
+   "concept": "count-charges-from-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-headlight",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "electron-volt",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "elementary-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-volt",
+   "concept": "charge-sign-and-potential",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "energy-conservation-for-charges",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation-of-energy",
+   "concept": "pe-to-ke",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "speed-from-potential-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "energy-conservation-for-charges",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "speed-from-work-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-electron-speed",
+   "concept": "coulomb-versus-gravity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2660782",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage",
+   "prompt": "电压是电势差的通称。哪个术语更能说明其含义，是电压还是电势差？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电势差是更能说明含义的术语，因为它直接说出了这个量是什么：两点之间电势的差，也就是在两点之间移动单位电荷时势能的变化。电压（voltage）这个名称取自单位伏特（volt），并没有说出所测量的是哪两点之间的量，不过它确实提醒你这个量是以伏特为单位测量的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2681166",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potential-difference",
+   "prompt": "如果两点之间的电压为零，能否在这两点之间移动一个检验电荷而净功为零？这是否一定能在不施加力的情况下做到？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "第一个问题的回答是肯定的。静电力所做的功是 $\\kW = -\\kdPE = -\\kq\\kdV$，所以当 $\\kdV = 0$ 时，势能的变化为零。库仑力是保守力，所以无论电荷沿什么路径运动，它在这两点之间对电荷所做的净功都为零。第二个问题的回答是否定的。净功为零并不意味着力为零。力可以在路径的一段上做正功，在另一段上做大小相等的负功，就像把一个电荷从极板旁带走，再把它带回到同一电势处。力完全可能在起作用；只是它不做净功。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1350416",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "电压与能量之间是什么关系？更确切地说，电势差与电势能之间是什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电压是单位电荷的能量。两点之间的电势差，是在这两点之间移动的电荷的电势能的变化除以该电荷：$\\kdV = \\kdPE/\\kq$，即 $\\kdPE = \\kq\\kdV$。电压本身并不是能量。能量取决于有多少电荷通过这个电势差，这就是为什么同为 12 V 的汽车蓄电池和摩托车蓄电池可以储存非常不同的能量。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2339284",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage",
+   "prompt": "电压总是在两点之间测量的。为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为只有电势之差才有物理意义。电势的零点是任意的，就像重力势能的零点是任意的一样，所以仅一个点上的电势可以通过参考点的选取而取任何值。使电荷运动、并储存或释放能量的，是势能的变化 $\\kdPE = \\kq\\kdV$，而它取决于电荷出发处与到达处之间的电势差。因此电压表有两根引线。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2000410",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electron-volt",
+   "prompt": "伏特与电子伏这两个单位有什么联系？又有什么区别？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "伏特是电势差的单位，等于每库仑一焦耳。电子伏是能量的单位，是一个元电荷经过一伏特加速时所获得的能量：$1\\ \\text{eV} = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{V}) = 1.60 \\times 10^{-19}\\ \\text{J}$。两者通过 $\\kdPE = \\kq\\kdV$ 联系起来。带一个元电荷的粒子经过 $V$ 伏特加速，获得 $V$ 电子伏，所以数值相同而单位不同：一个是单位电荷的能量，另一个是能量。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1345616",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "把一个电子放在方向向右、大小为 12.0 N/C 的电场中。电子由此受到的力是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$1.33 \\times 10^{-20}\\ \\text{N}$，向右",
+     "$1.33 \\times 10^{-20}\\ \\text{N}$，向左",
+     "$1.92 \\times 10^{-18}\\ \\text{N}$，向右",
+     "$1.92 \\times 10^{-18}\\ \\text{N}$，向左"
+    ],
+    "correct": 3,
+    "hint": "电荷在场中所受的力是 $\\kF = \\kq\\kEf$，而电子带负电，使这个力与电场方向相反。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1368476",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "在某个电场中，一个带正电的物体目前受到由此产生的力的作用，被推向西。如果电荷增大，这个力将如何变化？如果电荷变为负的呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电荷在电场中所受的力是 $\\kF = \\kq\\kEf$，所以力的大小与电荷成正比。如果电荷增大，力按同样的比例增大，仍然指向西，即电场所指的方向，因为正电荷沿电场方向受推。如果电荷变为负的，力就反过来，指向东，因为负电荷受到的推力与电场方向相反，其大小同样由电荷的大小决定。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2627165",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "一个 −5.0 C 的电荷受到一个 60 N 的力，被推向南。该处电场的大小和方向是什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "12 N/C，向南",
+     "12 N/C，向北",
+     "300 N/C，向南",
+     "300 N/C，向北"
+    ],
+    "correct": 1,
+    "hint": "电场的大小是 $\\kEf = \\kF/\\kq$，对于负电荷，电场的方向与它所受力的方向相反。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1649035",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electric-potential",
+   "prompt": "一个带电体受到一个向东的 100 N 的合力，这个力是由指向北的 50 N/C 的电场引起的。这怎么可能？如果不可能，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这是不可能的。电荷所受的力是 $\\kF = \\kq\\kEf$，而 $\\kq$ 是一个数，所以力总是沿着电场所在的直线：正电荷所受的力沿电场方向，负电荷所受的力与电场方向相反。指向北的电场可以把电荷推向北或推向南，无论电荷的大小和正负如何，永远不会把它推向东。向东的力需要一个有向东分量的电场。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id3080988",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-sign",
+   "prompt": "一个储有 $7.20 \\times 10^{5}\\ \\text{J}$、电压为 12 V 的汽车蓄电池，要使其能量减少 1%，需要移动多少个电子？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$4.80 \\times 10^{27}$",
+     "$4.00 \\times 10^{26}$",
+     "$3.75 \\times 10^{21}$",
+     "$3.13 \\times 10^{20}$"
+    ],
+    "correct": 2,
+    "hint": "能量的 1% 是 $7.20 \\times 10^{3}\\ \\text{J}$。携带它的电荷是 $\\kq = \\kdPE/\\kdV$，电子数就是这个电荷除以 $1.60 \\times 10^{-19}\\ \\text{C}$，如例题 19.2 所示。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2544423",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "电网中的大部分电力是由强大的涡轮机旋转发出的。为什么这些涡轮机不会因为推动电子所做的功而慢下来？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "如果没有东西使它们持续转动，它们就会慢下来。让电荷通过一个电势差需要能量，每移动一份电荷需要 $\\kdPE = \\kq\\kdV$，而在发电机中，这份能量来自涡轮机的转动。涡轮机之所以能保持速率，是因为有东西在持续地驱动它们：来自锅炉的蒸汽、落下的水或风对它们做功，做功的速率与电网取走电能的速率相同。能量是守恒的，对涡轮机所做的功补充了涡轮机推动电子所做的功。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id2013214",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "一节典型的 7 号电池在 1.5 V 下可以移动 2000 C 的电荷。这能让一个 50 mW 的发光二极管（LED）工作多长时间？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1000 分钟",
+     "120,000 秒",
+     "15 小时",
+     "250 分钟"
+    ],
+    "correct": 0,
+    "hint": "电池能够提供的能量是 $\\kdPE = \\kq\\kdV$。把它除以发光二极管每秒消耗的能量 0.050 J，得到以秒为单位的时间，再换算成分钟。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1935369",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "找一个汽车（或其他车辆）蓄电池的实例，计算需要多少节上一题中的 7 号电池，才能与它所储存的能量相等。哪一个更紧凑？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取例题 19.1 中的 12.0 V 汽车蓄电池，它可以移动 60,000 C 的电荷。它储存的能量为 $\\kdPEcar = \\kq\\kdV = (60{,}000\\ \\text{C})(12.0\\ \\text{V}) = 7.20 \\times 10^{5}\\ \\text{J}$。上一题中每节 7 号电池储存的能量为 $\\kdPE = (2000\\ \\text{C})(1.5\\ \\text{V}) = 3000\\ \\text{J}$，所以需要 $(7.20 \\times 10^{5}\\ \\text{J})/(3000\\ \\text{J}) = 240$ 节 7 号电池，才能与这个汽车蓄电池相等。7 号电池是更紧凑的储能方式。一节电池直径约 1.05 cm、长约 4.45 cm，体积约 3.9 cm$^3$，所以 240 节约占 0.9 L，并排紧挨着排列时略多于 1 L，而一个汽车蓄电池约占 8 L。汽车蓄电池作为交换所提供的，是给起动机的数百安培电流，以及可以反复充电的能力。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id2506228",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation-of-energy",
+   "prompt": "一个电子起初静止，经过 10 V 的电势后，其速度是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电子达到 $1.87 \\times 10^{6}\\ \\text{m/s}$，方向由低电势指向高电势。与例题 19.3 一样，全部电势能都变成了动能，所以 $\\kq\\kV = \\km\\kv^2/2$，$\\kv = \\sqrt{2\\kq\\kV/\\km}$。电子的 $\\kq = -1.60 \\times 10^{-19}\\ \\text{C}$，经过 $\\kV = -10\\ \\text{V}$，所以 $\\kv = \\sqrt{2(-1.60 \\times 10^{-19}\\ \\text{C})(-10\\ \\text{J/C})/(9.11 \\times 10^{-31}\\ \\text{kg})} = \\sqrt{3.51 \\times 10^{12}\\ \\text{m}^2/\\text{s}^2} = 1.87 \\times 10^{6}\\ \\text{m/s}$。速率与电压的平方根成正比，所以这是例题 19.3 中 $5.93 \\times 10^{6}\\ \\text{m/s}$ 的 $\\sqrt{10/100} = 0.316$ 倍，正如应有的那样。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1350363",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-electron-speed",
+   "prompt": "求经同一电压加速的电子与负氢离子（即多了一个电子的氢离子）的速率的比值，设末速率为非相对论性的。取氢离子的质量为 $1.67 \\times 10^{-27}\\ \\text{kg}$。",
+   "answer": {
+    "type": "number",
+    "value": 42.8,
+    "generated_by": "source",
+    "hint": "两者所带电荷相同，经过同一个电压，所以获得相同的动能，而 $\\kv = \\sqrt{2\\kq\\kV/m}$ 使速率的比值等于质量之比的倒数的平方根。",
+    "solution": "42.8"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2574445",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "一价气体离子从静止开始经 13.0 V 的电压加速。气体分子的平均动能在多高的温度下，会与赋予这些离子的动能相同？",
+   "answer": {
+    "type": "number",
+    "value": 100000,
+    "unit": "K",
+    "generated_by": "source",
+    "hint": "离子获得 $\\kdPE = \\kq\\kdV$，每个离子是 13.0 eV。令它等于分子的平均动能 $\\tfrac{3}{2}kT$（来自“温度、气体动理论与气体定律”），解出温度。",
+    "solution": "$1.00 \\times 10^{5}\\ \\text{K}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2677893",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "（a）一台心脏除颤器在 10.0 ms 内耗散 400 J 的能量，它的平均输出功率是多少？（b）考虑到输出功率很高，为什么除颤器不会造成严重烧伤？",
+   "answer": {
+    "type": "number",
+    "value": 40000,
+    "unit": "W",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "功率是能量除以输送这些能量所用的时间，而 10.0 ms 是 $1.00 \\times 10^{-2}\\ \\text{s}$。",
+    "solution": "（a）$4 \\times 10^{4}\\ \\text{W}$ （b）除颤器不会造成严重烧伤，因为在高电压下皮肤的导电性很好，除颤器用的就是这样的高电压。所用的凝胶有助于能量传到身体里，皮肤并不吸收这些能量，而是让它们穿过去到达心脏。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2003316",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-sign",
+   "prompt": "一个 12.0 V 的电池供电奶瓶加热器，把 50.0 g 玻璃、$2.50 \\times 10^{2}\\ \\text{g}$ 婴儿配方奶和 $2.00 \\times 10^{2}\\ \\text{g}$ 铝从 $20.0^\\circ\\text{C}$ 加热到 $90.0^\\circ\\text{C}$。（a）电池移动了多少电荷？（b）如果加热配方奶需要 5.00 min，那么每秒有多少个电子流过？（提示：假设婴儿配方奶的比热容与水的比热容大致相同。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 7400,
+      "unit": "C",
+      "hint": "所需的热量是玻璃、配方奶和铝各自的 $Q = mc\\Delta T$ 之和，比热容取自“热量与热传递的方式”。这份能量是 $\\kq\\kdV$，所以电荷为 $\\kq = \\kdPE/\\kdV$。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.54e+20,
+      "unit": "electrons per second",
+      "hint": "把电荷除以以秒为单位的时间，得到每秒流过的电荷，再除以每个电子的 $1.60 \\times 10^{-19}\\ \\text{C}$，如例题 19.2 所示。"
+     }
+    ],
+    "solution": "（a）$7.40 \\times 10^{3}\\ \\text{C}$ （b）$1.54 \\times 10^{20}\\ \\text{个电子每秒}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2606659",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-from-voltage",
+   "prompt": "一辆电池驱动的汽车使用 12.0 V 的系统。求电池必须能够移动多少电荷，才能使这辆 750 kg 的汽车从静止加速到 25.0 m/s，使它爬上 $2.00 \\times 10^{2}\\ \\text{m}$ 高的山坡，然后施加 $5.00 \\times 10^{2}\\ \\text{N}$ 的力，使它以 25.0 m/s 的恒定速率行驶一小时。",
+   "answer": {
+    "type": "number",
+    "value": 3890000,
+    "unit": "C",
+    "generated_by": "source",
+    "hint": "把电池必须提供的三份能量相加：动能 $\\tfrac{1}{2}m\\kv^2$、重力势能 $m\\kg\\kh$，以及该力在汽车以 25.0 m/s 行驶一小时所通过的距离上所做的功 $\\kF\\kd$，然后把总和除以电压，因为 $\\kq = \\kdPE/\\kdV$。",
+    "solution": "$3.89 \\times 10^{6}\\ \\text{C}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "potential-difference"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-potential",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "potential-difference"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-potential-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "potential-difference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "zero-of-potential"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "potential-difference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "electron-volt"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "potential-difference",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electric-field-direction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "count-charges-from-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "calculate-power",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "speed-from-potential-difference"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "energy-conservation-for-charges",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "speed-from-potential-difference"
+  },
+  {
+   "exercise": "p1",
+   "concept": "energy-conservation-for-charges",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "p4",
+   "concept": "thermal-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p8",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "p8",
+   "concept": "heat-and-temperature-change",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "count-charges-from-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "energy-from-potential-difference"
+  },
+  {
+   "exercise": "p9",
+   "concept": "kinetic-energy",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "gravitational-potential-energy",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-work",
+   "weight": 1,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "plate-a",
+   "label": "极板 A，正极板",
+   "figures": [
+    "sim-electrical-hill"
+   ]
+  },
+  {
+   "id": "plate-b",
+   "label": "极板 B，负极板",
+   "figures": [
+    "sim-electrical-hill"
+   ]
+  },
+  {
+   "id": "battery",
+   "label": "汽车蓄电池",
+   "figures": [
+    "sim-battery-headlight"
+   ]
+  },
+  {
+   "id": "headlight",
+   "label": "前照灯",
+   "figures": [
+    "sim-battery-headlight"
+   ]
+  },
+  {
+   "id": "terminal-a",
+   "label": "负极 A",
+   "figures": [
+    "sim-battery-headlight"
+   ]
+  },
+  {
+   "id": "terminal-b",
+   "label": "正极 B",
+   "figures": [
+    "sim-battery-headlight"
+   ]
+  },
+  {
+   "id": "gun-plate-a",
+   "label": "电子枪的负极板 A",
+   "figures": [
+    "sim-electron-gun"
+   ]
+  },
+  {
+   "id": "gun-plate-b",
+   "label": "电子枪的正极板 B",
+   "figures": [
+    "sim-electron-gun"
+   ]
+  }
+ ]
+}

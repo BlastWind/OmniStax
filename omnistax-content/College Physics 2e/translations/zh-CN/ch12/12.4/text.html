@@ -1,0 +1,139 @@
+<section id="laminar-viscosity">
+<h2>层流与黏度</h2>
+<p class="cite-target">当你给自己倒一杯果汁时，液体流得自如而迅速。但当你把糖浆倒在煎饼上时，那种液体流得缓慢，还黏在壶上。二者的差别在于流体<span data-concept="friction">摩擦</span>，它既存在于流体内部，也存在于流体与周围物体之间。我们把<span data-concept="fluid">流体</span>的这种性质称为<em><span data-concept="viscosity">黏度</span></em>。果汁的<span data-concept="viscosity">黏度</span>低，而糖浆的<span data-concept="viscosity">黏度</span>高。在前面几节中，我们考虑的是<span data-concept="viscosity">黏度</span>很小或为零的理想<span data-concept="fluid">流体</span>。本节将研究有哪些因素（包括<span data-concept="viscosity">黏度</span>）会影响流体流动的快慢。</p>
+<p><span data-concept="viscosity">黏度</span>的精确定义基于<em><span data-concept="laminar-flow">层流</span></em>，即非湍流的流动。因此，在定义<span data-concept="viscosity">黏度</span>之前，我们需要先定义<span data-concept="laminar-flow">层流</span>和湍流。图 12.14 显示了这两种流动。<strong><span data-concept="laminar-flow">层流</span></strong>的特点是流体分层平稳地流动，各层互不混合。<strong><span data-concept="turbulent-flow">湍流</span></strong>的特点是出现涡旋和旋涡，把各层流体混合在一起。</p>
+<figure class="photo" id="fig-smoke" data-figure="12.14">
+  <img src="/media/ch12/Figure_13_04_01a.jpg" alt="烟先平稳上升一段，然后开始形成旋涡和涡旋的照片。" data-width="200">
+  <figcaption><span class="eyebrow">Figure 12.14</span><span>烟先平稳上升一段，然后开始形成旋涡和涡旋。平稳的流动称为层流，而旋涡和涡旋则是湍流的典型特征。如果你观察这股烟（注意不要对着它呼气），就会发现它平稳流动时比变成湍流之后上升得更快，这说明湍流给流动带来更大的<span data-concept="flow-resistance">流阻</span>。（来源：Creativity103）</span></figcaption>
+</figure>
+<p>图 12.15 示意了<span data-concept="laminar-flow">层流</span>与湍流的区别。流动为<span data-concept="laminar-flow">层流</span>时，各层流动而不混合。出现<span data-concept="turbulent-flow">湍流</span>时，各层相互混合，在整体流动<span data-concept="vector-direction">方向</span>以外的<span data-concept="vector-direction">方向</span>上也有显著的<span data-concept="velocity">速度</span>。许多插图中画出的线，是<span data-concept="fluid">流体</span>的微小<span data-concept="volume">体积</span>所经过的路径。这些路径称为<em>流线</em>。流动为<span data-concept="laminar-flow">层流</span>时，流线光滑而连续；流动为湍流时，流线则断裂并相互混合。<span data-concept="turbulent-flow">湍流</span>有两个主要成因。第一，任何障碍物或急转弯处（例如水龙头中）都会因产生垂直于流动的<span data-concept="velocity">速度</span>而造成<span data-concept="turbulent-flow">湍流</span>。第二，高速也会造成<span data-concept="turbulent-flow">湍流</span>。只要速率足够大，相邻流体层之间以及流体与周围物体之间的阻力就会形成旋涡和涡旋。在本节余下的部分，我们将集中讨论<span data-concept="laminar-flow">层流</span>，把<span data-concept="turbulent-flow">湍流</span>的某些方面留到后面几节。</p>
+<figure class="sim" id="sim-laminar-turbulent" data-figure="12.15" data-original="/media/ch12/Figure_13_04_02a.jpg" data-original-width="400" data-original-caption="（a）层流中，流体分层流动而不混合。注意，黏度既在各层之间产生阻力，也在流体与固定表面之间产生阻力。（b）容器中的障碍物产生湍流。湍流使流体混合。与层流相比，相互作用更多，发热更大，流阻也更大。">
+  <div class="sim-head"><span class="eyebrow">Figure 12.15</span><span>你看到的是一条向右流动的小河的剖面，水流过<span data-ref="bed">它的河床</span>。层流时，流体分层运动，各层保持次序，紧贴<span data-ref="bed">河床</span>的一层最慢，其上每一层都比下面一层快一点。相邻两层之间，以及最底层与<span data-ref="bed">河床</span>之间的<span data-concept="friction">摩擦</span>，就是<span data-concept="viscosity">黏度</span>所描述的阻力。选择湍流后，<span data-ref="obstruction">一个障碍物</span>从<span data-ref="bed">河床</span>升起：各层绕过<span data-ref="obstruction">它</span>弯曲，并在<span data-ref="obstruction">它</span>后方破碎成涡旋和旋涡，这些涡旋和旋涡使流体横过流动方向运动，并把各层混合在一起。</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">建立联系：居家实验：去河边看看</div>
+<p>试着同时把两根木棍扔进流动的河里，一根靠近河岸，一根靠近河中央。哪一根走得更快？为什么？</p>
+</div>
+<p>图 12.16 显示了如何测量流体的<span data-concept="viscosity">黏度</span>。<span data-ref="top-plate bottom-plate">两块平行板</span>把待测的特定流体夹在<span data-ref="top-plate bottom-plate">它们</span>中间。<span data-ref="bottom-plate">下板</span>固定不动，而<span data-ref="top-plate">上板</span>向右移动，拖着流体随<span data-ref="top-plate">它</span>一起运动。与<span data-ref="top-plate bottom-plate">任一块板</span>接触的那一层（或薄层）流体相对于<span data-ref="top-plate bottom-plate">该板</span>不动，所以最上层以 $\kv$ 运动，而最下层保持静止。从上到下，每一层都对其下方的一层施加<span data-type="force">一个<span data-concept="force">力</span></span>，试图拖着它前进，使<span data-type="velocity">速率</span>从 $\kv$ 连续变化到 0，如图所示。要注意确保流动是<span data-concept="laminar-flow">层流</span>，也就是说，各层不混合。图 12.16 中的<span data-concept="motion">运动</span>就像一种连续的切变<span data-concept="motion">运动</span>。<span data-concept="fluid">流体</span>的抗切强度为零，但它们被切变的<em>快慢</em>，与固体的<span data-concept="shear-deformation">切变</span>一样，同几何因素 $\karea$ 和 $\kLlen$ 有关。</p>
+<figure class="sim" id="sim-viscosity-plates" data-figure="12.16" data-original="/media/ch12/Figure_13_04_03a.jpg" data-original-width="300" data-original-caption="图中显示了流体在两块面积为 A 的板之间的层流。下板固定。当上板被推向右边时，它拖着流体一起运动。">
+  <div class="sim-head"><span class="eyebrow">Figure 12.16</span><span>一种流体充满<span data-ref="top-plate bottom-plate">两块板</span>之间<span data-type="position">厚度</span>为 $\kLlen$ 的缝隙，板的<span data-type="area">面积</span>为 $\karea$。<span data-ref="bottom-plate">下板</span>保持固定，<span data-type="force">一个力</span> $\kF$ 使<span data-ref="top-plate">上板</span>以<span data-type="velocity">稳定的速率</span> $\kv$ 向右运动。与<span data-ref="top-plate">上板</span>接触的那层流体以 $\kv$ 运动，与<span data-ref="bottom-plate">下板</span>接触的那层完全不动，中间各层则相互切变滑过。从表 12.1 中选一种流体，改变<span data-type="velocity">速率</span>、<span data-type="position">流体的厚度</span>或<span data-type="area">板的面积</span>，观察<span data-type="force">保持板运动所需的力</span>。板下方的阶梯显示你选的流体在其余流体中所处的位置，跨越若干个 10 的幂。</span></div>
+</figure>
+<p>要使<span data-ref="top-plate">图 12.16 中的上板</span>以<span data-type="velocity">恒定<span data-concept="velocity">速度</span></span> $\kv$ 运动，需要<span data-type="force">一个<span data-concept="force">力</span></span> $\kF$，实验表明，<span data-type="force">这个<span data-concept="force">力</span></span>取决于四个因素。第一，$\kF$ 与 $\kv$ 成正比（直到速率高到出现<span data-concept="turbulent-flow">湍流</span>为止——那时需要大得多的<span data-concept="force">力</span>，而且它对 $\kv$ 的依赖关系也复杂得多）。第二，$\kF$ 与<span data-ref="top-plate">板</span>的<span data-type="area">面积</span> $\karea$ 成正比。这一关系看起来合理，因为 $\karea$ 与被拖动的流体的量成正比。第三，$\kF$ 与<span data-type="position">两板之间的<span data-concept="distance">距离</span></span> $\kLlen$ 成反比。这一关系同样合理；$\kLlen$ 就像一个力臂，力臂越大，所需的<span data-concept="force">力</span>就越小。第四，$\kF$ 与<em><span data-concept="viscosity">黏度</span></em> $\keta$ 成正比。<span data-concept="viscosity">黏度</span>越大，所需的<span data-concept="force">力</span>就越大。把这些关系合在一起，就得到方程</p>
+$$\kF = \keta\frac{\kv \karea}{\kLlen},$$
+<p>它给出了流体<strong><span data-concept="viscosity">黏度</span></strong> $\keta$ 的一个实用定义。解出 $\keta$，得</p>
+$$\keta = \frac{\kF \kLlen}{\kv \karea},$$
+<p>这是按测量方式来定义<span data-concept="viscosity">黏度</span>。<span data-concept="viscosity">黏度</span>的 SI 单位是 $\text{N}\cdot\text{m/}[(\text{m/s})\text{m}^2] = (\text{N/m}^2)\text{s}$，即 $\text{Pa}\cdot\text{s}$。表 12.1 列出了各种<span data-concept="fluid">流体</span>的<span data-concept="viscosity">黏度</span>。</p>
+<p>不同流体的<span data-concept="viscosity">黏度</span>相差若干个<span data-concept="order-of-magnitude">数量级</span>。正如你所料，气体的<span data-concept="viscosity">黏度</span>远小于液体，而且这些<span data-concept="viscosity">黏度</span>往往与<span data-concept="temperature">温度</span>有关。服用阿司匹林可以降低血液的<span data-concept="viscosity">黏度</span>，使血液更容易在体内流动。（长期<span data-concept="low-dose">小剂量</span>服用时，阿司匹林有助于预防心脏病发作，并降低凝血的风险。）</p>
+</section>
+
+<section id="poiseuille">
+<h2>局限于管内的层流——泊肃叶定律</h2>
+<p class="cite-target">是什么引起了流动？答案并不出人意料，是<span data-concept="pressure">压强</span>差。事实上，水平流动与<span data-concept="pressure">压强</span>之间有一个非常简单的关系。<span data-concept="flow-rate">流量</span> $\kQ$ 的<span data-concept="vector-direction">方向</span>是从高压强到低<span data-concept="pressure">压强</span>。两点之间的<span data-concept="pressure">压强</span>差越大，<span data-concept="flow-rate">流量</span>就越大。这一关系可以表示为</p>
+$$\kQ = \frac{\kPrtwo - \kProne}{R},$$
+<p>其中 $\kProne$ 和 $\kPrtwo$ 是两点（例如一根管的两端）处的<span data-concept="pressure">压强</span>，$R$ 是<span data-concept="flow-resistance">流阻</span>。<span data-concept="flow-resistance">流阻</span> $R$ 包含了除<span data-concept="pressure">压强</span>以外所有影响<span data-concept="flow-rate">流量</span>的因素。例如，长管的 $R$ 比短管的大。流体的<span data-concept="viscosity">黏度</span>越大，$R$ 的值就越大。<span data-concept="turbulent-flow">湍流</span>会使 $R$ 大大增加，而增大管的直径则使 $R$ 减小。</p>
+<p>如果<span data-concept="viscosity">黏度</span>为零，流体就没有摩擦，<span data-concept="flow-resistance">流阻</span>也为零。把无摩擦的流动与黏性流动（如图 12.17 所示）相比较，我们看到，对于黏性流体，由于边界处的阻力，管中央的速率最大。即使天然气的<span data-concept="viscosity">黏度</span>很小，我们也能在本生灯的火焰中看到<span data-concept="viscosity">黏度</span>的影响。</p>
+<figure class="sim" id="sim-velocity-profile" data-figure="12.17" data-original="/media/ch12/Figure_13_04_04a.jpg" data-original-width="400" data-original-caption="（a）如果管内流体流动的流阻可以忽略，则整个管内各处的速率相同。（b）黏性流体流过管时，其在管壁处的速率为零，逐渐增大，在管中心达到最大值。（c）本生灯火焰的形状是由管内的速度分布造成的。（来源：Jason Woodhead）">
+  <div class="sim-head"><span class="eyebrow">Figure 12.17</span><span><span data-type="flow-rate">相同的流量</span> $\kQ$ 向上通过<span data-ref="nonviscous viscous">两根管</span>，<span data-type="position">两管的半径相同</span>，均为 $\krad$。在<span data-ref="nonviscous">左侧的管</span>中，流体没有<span data-concept="viscosity">黏度</span>，各部分都以<span data-type="velocity">平均速率</span> $\kvb = \kQ/\karea$ 运动。在<span data-ref="viscous">右侧的管</span>中，流体有黏性，所以贴着<span data-ref="viscous">管壁</span>的一层完全不动，<span data-type="velocity">速率</span>逐渐增大，到中央达到<span data-type="velocity">最大值</span>；这些箭头构成的分布，其形状就是本生灯火焰的形状。改变<span data-type="flow-rate">流量</span>或<span data-type="position">半径</span>，观察两组箭头如何响应，而它们所载的流量保持不变。</span></div>
+</figure>
+<p><span data-concept="viscosity">黏度</span>为 $\keta$ 的不可压缩流体以<span data-concept="laminar-flow">层流</span>通过半径 $\krad$ 均匀、<span data-concept="length">长度</span>为 $\kl$ 的水平管（例如<span data-ref="tube">图 12.18 中的那根管</span>）时，其<span data-concept="flow-resistance">流阻</span> $R$ 为</p>
+$$R = \frac{8\keta \kl}{\pi \krad^4}.$$
+<p>这个方程称为<strong><span data-concept="flow-resistance">流阻</span>的<span data-concept="poiseuilles-law">泊肃叶定律</span></strong>，得名于法国科学家 J. L. 泊肃叶（1799–1869），他推导此式是为了弄清血液这种常常呈湍流的流体的流动。</p>
+<p>让我们检验一下泊肃叶给出的 $R$ 表达式，看看它在直观上是否说得通。我们看到，<span data-concept="flow-resistance">流阻</span>与流体的<span data-concept="viscosity">黏度</span> $\keta$ 和管的<span data-concept="length">长度</span> $\kl$ 都成正比。毕竟，这两者都直接影响所遇到的<span data-concept="friction">摩擦</span>量——二者中任何一个越大，<span data-concept="flow-resistance">流阻</span>就越大，流动就越小。管的半径 $\krad$ 也影响<span data-concept="flow-resistance">流阻</span>，这同样说得通，因为半径越大，流动就越大（其他因素不变）。但令人惊讶的是，在<span data-concept="poiseuilles-law">泊肃叶定律</span>中 $\krad$ 是<em>四</em>次方。这个指数意味着，管半径的任何变化都会对<span data-concept="flow-resistance">流阻</span>产生很大的影响。例如，把管的半径加倍，会使<span data-concept="flow-resistance">流阻</span>减小到原来的 $2^4 = 16$ 分之一。</p>
+<p>把 $\kQ = \frac{\kPrtwo - \kProne}{R}$ 和 $R = \frac{8\keta \kl}{\pi \krad^4}$ 合在一起，就得到<span data-concept="flow-rate">流量</span>的如下表达式：</p>
+$$\kQ = \frac{(\kPrtwo - \kProne)\pi \krad^4}{8\keta \kl}.$$
+<p>这个方程描述通过管的<span data-concept="laminar-flow">层流</span>。它有时称为<span data-concept="laminar-flow">层流</span>的<span data-concept="poiseuilles-law">泊肃叶定律</span>，或者简称<strong><span data-concept="poiseuilles-law">泊肃叶定律</span></strong>。</p>
+<div class="example" id="ex-plaque">
+<h3>例题 12.7 · 利用流量：斑块沉积使血流减少</h3>
+<p>假设冠状动脉中<span data-type="flow-rate">血液的<span data-concept="flow-rate">流量</span></span>因斑块沉积而降到了正常值的一半。假设不发生<span data-concept="turbulent-flow">湍流</span>，<span data-type="position">动脉的半径</span>变成了原来的多少倍？</p>
+<h4>思路</h4>
+<p>假设为<span data-concept="laminar-flow">层流</span>，则<span data-concept="poiseuilles-law">泊肃叶定律</span>给出</p>
+$$\kQ = \frac{(\kPrtwo - \kProne)\pi \krad^4}{8\keta \kl}.$$
+<p>我们需要比较<span data-concept="flow-rate">流量</span>减小前后的<span data-type="position">动脉半径</span>。</p>
+<h4>解</h4>
+<p>假设<span data-type="pressure">恒定的<span data-concept="pressure">压强</span>差</span>，并且沿动脉<span data-type="position">长度相同</span>、<span data-type="viscosity"><span data-concept="viscosity">黏度</span></span>相同，则有</p>
+$$\frac{\kQone}{\krone^4} = \frac{\kQtwo}{\krtwo^4}.$$
+<p>于是，由 $\kQtwo = 0.5\kQone$，得 $\krtwo^4 = 0.5\krone^4$。</p>
+<p>因此，$\krtwo = (0.5)^{0.25}\krone = 0.841\krone$，即<span data-type="position">动脉半径减小了 16%</span>。</p>
+<h4>讨论</h4>
+<p><span data-type="position">半径的这一减小</span>对于这种情形来说小得出人意料。要在存在这种沉积的情况下恢复血流量，就需要使<span data-type="pressure"><span data-concept="pressure">压强</span>差</span> $(\kPrtwo - \kProne)$ 增大到原来的两倍，心脏也随之承受更大的负担。</p>
+</div>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 12.1</span><span>各种流体的<span data-concept="viscosity">黏度</span></span></div>
+  <table>
+    <thead><tr><th>流体</th><th><span data-concept="temperature">温度</span> (°C)</th><th><span data-concept="viscosity">黏度</span> $\keta$ (mPa·s)</th></tr></thead>
+    <tbody>
+      <tr><th colspan="3">气体</th></tr>
+      <tr><td rowspan="4">空气</td><td class="num">0</td><td class="num">0.0171</td></tr>
+      <tr><td class="num">20</td><td class="num">0.0181</td></tr>
+      <tr><td class="num">40</td><td class="num">0.0190</td></tr>
+      <tr><td class="num">100</td><td class="num">0.0218</td></tr>
+      <tr><td>氨</td><td class="num">20</td><td class="num">0.00974</td></tr>
+      <tr><td>二氧化碳</td><td class="num">20</td><td class="num">0.0147</td></tr>
+      <tr><td>氦</td><td class="num">20</td><td class="num">0.0196</td></tr>
+      <tr><td>氢</td><td class="num">0</td><td class="num">0.0090</td></tr>
+      <tr><td>汞</td><td class="num">20</td><td class="num">0.0450</td></tr>
+      <tr><td>氧</td><td class="num">20</td><td class="num">0.0203</td></tr>
+      <tr><td>蒸汽</td><td class="num">100</td><td class="num">0.0130</td></tr>
+      <tr><th colspan="3">液体</th></tr>
+      <tr><td rowspan="5">水</td><td class="num">0</td><td class="num">1.792</td></tr>
+      <tr><td class="num">20</td><td class="num">1.002</td></tr>
+      <tr><td class="num">37</td><td class="num">0.6947</td></tr>
+      <tr><td class="num">40</td><td class="num">0.653</td></tr>
+      <tr><td class="num">100</td><td class="num">0.282</td></tr>
+      <tr><td rowspan="2">全血<sup>1</sup></td><td class="num">20</td><td class="num">3.015</td></tr>
+      <tr><td class="num">37</td><td class="num">2.084</td></tr>
+      <tr><td rowspan="2">血浆<sup>2</sup></td><td class="num">20</td><td class="num">1.810</td></tr>
+      <tr><td class="num">37</td><td class="num">1.257</td></tr>
+      <tr><td>乙醇</td><td class="num">20</td><td class="num">1.20</td></tr>
+      <tr><td>甲醇</td><td class="num">20</td><td class="num">0.584</td></tr>
+      <tr><td>重质机油</td><td class="num">20</td><td class="num">660</td></tr>
+      <tr><td>机油（SAE 10）</td><td class="num">30</td><td class="num">200</td></tr>
+      <tr><td>橄榄油</td><td class="num">20</td><td class="num">138</td></tr>
+      <tr><td>丙三醇</td><td class="num">20</td><td class="num">1500</td></tr>
+      <tr><td>蜂蜜</td><td class="num">20</td><td class="num">2000–10000</td></tr>
+      <tr><td>枫糖浆</td><td class="num">20</td><td class="num">2000–3000</td></tr>
+      <tr><td>牛奶</td><td class="num">20</td><td class="num">3.0</td></tr>
+      <tr><td>玉米油</td><td class="num">20</td><td class="num">65</td></tr>
+    </tbody>
+  </table>
+  <p class="tnote"><sup>1</sup> 血液与水的<span data-concept="viscosity">黏度</span>之比在 0 °C 到 37 °C 之间几乎恒定。</p>
+  <p class="tnote"><sup>2</sup> 见全血的注。</p>
+</div>
+<p>循环系统提供了许多<span data-concept="poiseuilles-law">泊肃叶定律</span>实际起作用的例子——血流是通过血管大小和<span data-concept="pressure">血压</span>的变化来调节的。血管不是刚性的，而是有弹性的。对血流的调节主要通过改变血管的大小来实现，因为<span data-concept="flow-resistance">流阻</span>对半径非常敏感。剧烈运动时，通向重要肌肉和器官的血管被选择性地扩张，<span data-concept="pressure">血压</span>升高。这既使全身的总血流量增大，也使流向特定<span data-concept="area">区域</span>的血流增加。反之，血管半径减小（也许是由于动脉中的斑块）会使血流大大减少。如果一根血管的半径只减小了 5%（降到原来的 0.95），则<span data-concept="flow-rate">流量</span>将降到原来的约 $(0.95)^4 = 0.81$。半径减小 5% 会使血流减少 19%。身体可以通过使<span data-concept="pressure">血压</span>升高 19% 来补偿，但这会给心脏和任何管壁薄弱的血管带来危险。另一个例子来自汽车发动机的机油。如果你的车有<span data-concept="pressure">油压</span>表，你可能会注意到发动机冷时<span data-concept="pressure">油压</span>很高。机油冷时比热时<span data-concept="viscosity">黏度</span>大，所以要泵送同样多的冷油，<span data-concept="pressure">压强</span>就必须更大。</p>
+<figure class="sim" id="sim-poiseuille" data-figure="12.18" data-original="/media/ch12/Figure_13_04_05a.jpg" data-original-width="313" data-original-caption="泊肃叶定律适用于黏度为 η 的不可压缩流体在长度为 l、半径为 r 的管中的层流。流动方向是从较高压强到较低压强。流量 Q 与压强差 P₂ − P₁ 成正比，与管的长度 l 和流体的黏度 η 成反比。流量随 r⁴ 增大，即随半径的四次方增大。">
+  <div class="sim-head"><span class="eyebrow">Figure 12.18</span><span><span data-type="viscosity">黏度</span>为 $\keta$ 的流体流过<span data-ref="tube">一根管</span>，管的<span data-type="position">半径</span>为 $\krad$，<span data-type="position">长度</span>为 $\kl$，流向是从<span data-type="pressure">较高压强</span> $\kPrtwo$ 处的一端到<span data-type="pressure">较低压强</span> $\kProne$ 处的一端。<span data-type="flow-rate">流量</span> $\kQ$ 画成通过<span data-ref="tube">管</span>的水流，也画成管下方的一根条形图，而横跨<span data-ref="tube">管</span>的箭头是图 12.17 中的<span data-concept="velocity">速度</span>分布。<span data-ref="tube">这根管</span>起初是<span data-ref="tube">例题 12.8 中的静脉输液针头</span>。从表 12.1 中选一种流体，改变<span data-type="pressure">压强差</span>、<span data-type="position">半径</span>或<span data-type="position">长度</span>，观察流动：<span data-type="pressure">压强差</span>和<span data-type="position">长度</span>使流动按比例变化，而<span data-type="position">半径</span>使它按四次方变化。</span></div>
+</figure>
+<div class="example" id="ex-iv">
+<h3>例题 12.8 · 什么压强能产生这一流量？</h3>
+<p>一套静脉输液（IV）系统以 $0.120\ \text{cm}^3\text{/s}$ 的<span data-type="flow-rate">流量</span>，通过<span data-ref="tube">一根针头</span>向病人输入生理盐水，针头的<span data-type="position">半径为 0.150 mm</span>，<span data-type="position">长度为 2.50 cm</span>。要产生这一流量，<span data-ref="tube">针头</span>入口处需要多大的<span data-type="pressure"><span data-concept="pressure">压强</span></span>？假设<span data-type="viscosity">生理盐水的<span data-concept="viscosity">黏度</span></span>与水的相同。<span data-type="pressure">病人静脉中血液的<span data-concept="gauge-pressure">表压强</span></span>为 8.00 mm Hg。（假设<span data-type="temperature"><span data-concept="temperature">温度</span></span>为 20 °C。）</p>
+<h4>思路</h4>
+<p>假设为<span data-concept="laminar-flow">层流</span>，则适用<span data-concept="poiseuilles-law">泊肃叶定律</span>，其表达式为</p>
+$$\kQ = \frac{(\kPrtwo - \kProne)\pi \krad^4}{8\keta \kl},$$
+<p>其中 $\kPrtwo$ 是<span data-ref="tube">针头</span>入口处的<span data-concept="pressure">压强</span>，$\kProne$ 是静脉中的<span data-concept="pressure">压强</span>。唯一的未知量是 $\kPrtwo$。</p>
+<h4>解</h4>
+<p>解出 $\kPrtwo$，得</p>
+$$\kPrtwo = \frac{8\keta \kl}{\pi \krad^4}\kQ + \kProne.$$
+<p>已知 $\kProne$ 为 8.00 mm Hg，换算为 $1.066\times10^{3}\ \text{N/m}^2$。代入这个值和其他已知量，得</p>
+$$\begin{aligned}\kPrtwo &= \left[\frac{8(1.00\times10^{-3}\ \text{N}\cdot\text{s/m}^2)(2.50\times10^{-2}\ \text{m})}{\pi(0.150\times10^{-3}\ \text{m})^4}\right](1.20\times10^{-7}\ \text{m}^3\text{/s}) + 1.066\times10^{3}\ \text{N/m}^2\\ &= 1.62\times10^{4}\ \text{N/m}^2.\end{aligned}$$
+<h4>讨论</h4>
+<p><span data-type="pressure">这一<span data-concept="pressure">压强</span></span>可以由一个输液瓶提供，只要瓶中生理盐水的液面<span data-type="position">在针头入口上方 1.61 m 处</span>（这一点留给你在本章的习题中求解），并假设通向针头的输液管中的<span data-concept="pressure">压强</span>降可以忽略。</p>
+</div>
+</section>
+
+<section id="pressure-drops">
+<h2>流量和流阻是压降的原因</h2>
+<p class="cite-target">你可能注意到，在用水量较大的炎热夏日，<span data-ref="houses">你家</span>的<span data-type="pressure"><span data-concept="pressure">水压</span></span>可能比平时低。这一<span data-concept="pressure">压强</span>降发生在水到达<span data-ref="houses">你家</span>之前的<span data-ref="main">供水干管</span>中。让我们来考虑图 12.19 所示的通过<span data-ref="main">供水干管</span>的流动。我们可以这样来理解，为什么在用水高峰期输送到<span data-ref="houses">住户</span>的<span data-type="pressure"><span data-concept="pressure">压强</span></span> $\kProne$ 会下降：把</p>
+$$\kQ = \frac{\kPrtwo - \kProne}{R}$$
+<p>改写为</p>
+$$\kPrtwo - \kProne = R\kQ,$$
+<p>其中，在这里 $\kPrtwo$ 是<span data-ref="works">自来水厂</span>处的<span data-concept="pressure">压强</span>，$R$ 是<span data-ref="main">供水干管</span>的<span data-concept="flow-resistance">流阻</span>。用水高峰期，<span data-type="flow-rate"><span data-concept="flow-rate">流量</span></span> $\kQ$ 很大。这意味着 $\kPrtwo - \kProne$ 也必须很大。因而 $\kProne$ 必须减小。认为是流量和<span data-concept="flow-resistance">流阻</span>使<span data-concept="pressure">压强</span>从 $\kPrtwo$ 降到了 $\kProne$，这是正确的。$\kPrtwo - \kProne = R\kQ$ 对<span data-concept="laminar-flow">层流</span>和湍流都成立。</p>
+<figure class="sim" id="sim-water-main" data-figure="12.19" data-original="/media/ch12/Figure_13_04_06a.jpg" data-original-width="300" data-original-caption="用水高峰期，供水干管中有显著的压降，供给用户的 P₁ 明显小于自来水厂产生的 P₂。如果流量很小，则压降可以忽略，P₂ ≈ P₁。">
+  <div class="sim-head"><span class="eyebrow">Figure 12.19</span><span><span data-ref="main">一根供水干管</span>从<span data-ref="works">自来水厂</span>通到一个路口，<span data-type="pressure">自来水厂处的压强</span>为 $\kPrtwo$，在路口处<span data-ref="main">它</span>分出支管通向<span data-ref="houses">一排住户</span>，<span data-type="pressure">那里的压强</span>为 $\kProne$。<span data-ref="houses">每户</span>用水时都取 <span data-type="flow-rate">20.0 L/min</span>，所以打开的水龙头数决定了<span data-ref="main">干管</span>中的<span data-type="flow-rate">流量</span> $\kQ$。<span data-type="pressure">路口处的压强</span>是沿<span data-ref="main">干管</span>经过<span data-type="pressure">压降</span> $R\kQ$ 之后剩下的部分。多打开一些水龙头，改变<span data-ref="main">干管</span>的<span data-concept="flow-resistance">流阻</span>或<span data-ref="works">自来水厂</span>处的<span data-type="pressure">压强</span>，观察<span data-ref="houses">住户</span>处的压强计随着街区用水增多而下降。</span></div>
+</figure>
+<p>我们可以用 $\kPrtwo - \kProne = R\kQ$ 来分析更复杂的系统中出现的<span data-concept="pressure">压强</span>降，在这些系统中管的半径并非处处相同。在狭窄之处，例如被阻塞的冠状动脉，<span data-concept="flow-resistance">流阻</span>会大得多。对于给定的<span data-concept="flow-rate">流量</span> $\kQ$，管最狭窄处的<span data-concept="pressure">压强</span>降最大。水龙头就是这样控制流动的。此外，<span data-concept="turbulent-flow">湍流</span>会使 $R$ 大大增加，而造成<span data-concept="turbulent-flow">湍流</span>的狭窄处会使下游的<span data-concept="pressure">压强</span>大大降低。动脉中的斑块使<span data-concept="pressure">压强</span>降低，从而使流动减小，原因既在于它本身的<span data-concept="flow-resistance">流阻</span>，也在于它造成的<span data-concept="turbulent-flow">湍流</span>。</p>
+<p>图 12.20 是人体循环系统的示意图，显示了静息状态下成年人<span data-type="pressure">各主要部分的平均<span data-concept="pressure">血压</span></span>。心脏的两个泵（右心室和左心室）所产生的<span data-concept="pressure">压强</span>，在血液流过血管时被血管的<span data-concept="flow-resistance">流阻</span>降低。左心室使<span data-concept="pressure">动脉血压</span>升高，驱动血液流经除肺以外的身体各部分。右心室接收来自两条主要静脉的<span data-concept="pressure">压强</span>较低的血液，并把它泵入肺中，与大气中的气体进行气体交换——排出血液中的二氧化碳并补充氧。示意图中只画出了一个主要器官，其中动脉典型地分支为越来越小的血管，最小的是毛细血管，而小静脉则重新汇合成较大的静脉。身体的许多器官中都发生类似的分支，循环系统通过通向这些器官的动脉以及器官内毛细血管的扩张与收缩，对流向这些器官的血流有相当大的调节灵活性。流动对管半径的敏感性，使这种灵活性在很大的<span data-concept="flow-rate">流量</span>范围内成为可能。</p>
+<figure class="sim" id="sim-circulation" data-figure="12.20" data-original="/media/ch12/Figure_13_04_07a.jpg" data-original-width="350" data-original-caption="循环系统示意图。压强差由心脏的两个泵产生，并被血管中的流阻降低。血管分支为毛细血管，使血液能够到达各个细胞，并与细胞交换氧和代谢废物等物质。该系统调节流向各个器官的血流的能力令人印象深刻，这主要是靠改变血管直径来实现的。">
+  <div class="sim-head"><span class="eyebrow">Figure 12.20</span><span>循环系统被展开，从<span data-ref="aorta">主动脉</span>到<span data-ref="venae-cavae">腔静脉</span>，再经过肺，每个主要部分各有一根条形图，表示<span data-type="pressure">静息状态下成年人的平均血压</span>。相邻两根条形图之间的每一段血管都是一个<span data-concept="flow-resistance">流阻</span>，<span data-type="pressure">跨过它的压降</span>为 $R\kQ$，其中流量取<span data-type="flow-rate">心脏泵出的流量</span>。提高<span data-type="flow-rate">流量</span>，每一个压降都按比例增大，所以<span data-type="pressure">左心室必须提供的压强</span>也随之升高。把<span data-ref="arterioles">微动脉</span>的半径缩小或扩大几个百分点：跨过<span data-ref="arterioles">它们</span>的<span data-type="pressure">压降</span>与<span data-ref="arterioles">它们</span>的<span data-type="position">半径</span>的四次方成反比，所以它的变化比<span data-type="position">半径</span>的变化大得多。<span data-ref="venae-cavae">腔静脉</span>保持在 4 mm Hg，<span data-ref="pulmonary-veins">肺静脉</span>保持在 8 mm Hg，<span data-type="pressure">上游的压强</span>则随之而定。</span></div>
+</figure>
+<p>大血管每分支成较小的血管一次，血液所流经的各管的总<span data-concept="area">横截面积</span>就增大一次。例如，<span data-type="area">横截面积</span>为 $1\ \text{cm}^2$ 的一根动脉，可以分支成 20 根较小的动脉，每根的<span data-type="area">横截面积</span>为 $0.5\ \text{cm}^2$，<span data-type="area">总面积</span>为 $10\ \text{cm}^2$。这样，分支处的<span data-concept="flow-resistance">流阻</span>就减小了，使<span data-concept="pressure">压强</span>不致完全损失。此外，由于 $\kQ = \karea\kvb$，而 $\karea$ 随分支而增大，所以<span data-type="velocity">较小血管中血液的<span data-concept="average-velocity">平均速度</span></span>减小。<span data-ref="aorta">主动脉</span>（$\text{直径} = 1\ \text{cm}$）中的<span data-type="velocity">血液<span data-concept="velocity">速度</span></span>约为 25 cm/s，而在毛细血管（直径为 $20\ \mu\text{m}$）中，<span data-type="velocity"><span data-concept="velocity">速度</span></span>约为 1 mm/s。<span data-type="velocity">这一减小了的<span data-concept="velocity">速度</span></span>使血液得以与毛细血管中的细胞，特别是肺泡中的细胞交换物质。</p>
+</section>

@@ -1,0 +1,1039 @@
+{
+ "id": "23.12",
+ "module": "m42431",
+ "chapter": "23",
+ "title": "RLC 串联交流电路",
+ "short": "RLC 串联交流电路",
+ "lead": "<span data-ref=\"resistor\">电阻器</span>、<span data-ref=\"inductor\">电感器</span>和<span data-ref=\"capacitor\">电容器</span>都会阻碍交变<span data-concept=\"electric-current\">电流</span>，而在这里，<span data-ref=\"resistor inductor capacitor\">三者</span>串联在同一个电源上。本节要找出它们怎样合成一个阻抗，共振时会发生什么，这样的电路消耗多少<span data-concept=\"power\">功率</span>，以及它怎样与弹簧上的质量块相对应。",
+ "objectives": [
+  "计算 RLC 串联电路中的阻抗、相位角、共振频率、功率、功率因数、电压和（或）电流。",
+  "画出 RLC 串联电路的电路图。",
+  "解释共振频率的意义。"
+ ],
+ "summary_html": "<ul><li>与<span data-concept=\"resistance\">电阻</span>相对应的交流量是<span data-concept=\"impedance\">阻抗</span> $\\kZimp$，它是电阻器、电感器和电容器的合成效应，由欧姆定律的交流形式定义：$\\kIocur = \\frac{\\kVo}{\\kZimp}\\;\\text{或}\\;\\kIrms = \\frac{\\kVrms}{\\kZimp},$ 其中 $\\kIocur$ 是峰值<span data-concept=\"electric-current\">电流</span>，$\\kVo$ 是电源的峰值<span data-concept=\"potential-difference\">电压</span>。</li><li><span data-concept=\"impedance\">阻抗</span>的单位是欧姆，由 $\\kZimp = \\sqrt{\\kRes^{2} + (\\kXL - \\kXC)^{2}}$ 给出。</li><li><span data-concept=\"resonant-frequency-of-an-rlc-circuit\">共振频率</span> $\\kfo$ 满足 $\\kXL = \\kXC$，其值为 $\\kfo = \\frac{1}{2\\pi\\sqrt{\\kLind\\kCap}}.$</li><li>在交流电路中，电源<span data-concept=\"potential-difference\">电压</span> $\\kV$ 与<span data-concept=\"electric-current\">电流</span> $\\kIcur$ 之间有一个相位角 $\\phi$，可由 $\\cos\\;\\phi = \\frac{\\kRes}{\\kZimp},$ 求得，</li><li>对于纯电阻电路或处于共振的 <em>RLC</em> 电路，$\\phi = 0^\\circ$。</li><li>输送给 <em>RLC</em> 电路的平均<span data-concept=\"power\">功率</span>受相位角影响，由 $\\kPave = \\kIrms\\kVrms\\;\\cos\\;\\phi,$ 给出，$\\cos\\;\\phi$ 称为功率因数，其取值范围为 0 到 1。</li></ul>",
+ "notes": "书中未给答案的七道习题没有收入：RC 电路在两个频率下的阻抗，0.500 mH 电感器与 40.0 µF 电容器的共振频率，一批电感器和电容器所能达到的共振频率范围，与 2.00 µF 电容器在 60.0 Hz 共振所需的电感，2.50 Ω 电路的阻抗和电流，同一电路的功率因数和平均功率，以及在 8000 Hz 时相位角为 45.0° 的 200 Ω 电路。本模块的最后一题，即把导线弯成一个线圈、两个线圈和一个八字形的批判性思考题，在 CNXML 中没有标注类型，按它所在的标题归为习题。它的答案除以的是 100，而四分之一周期实为 1/1600 s；解答照书中印出的给出，并附有更正，习题卡片核对的是 32.0 V 和 16.0 V。这里没有替书重新计算任何东西。模块末尾指向 PhET 模拟“电路构建工具包（交流＋直流）”的链接没有收入。本模块的其余内容都保留；它的五幅图被重绘为三个交互图，因为电路和它各电压的曲线是同一台机器的两种看法，而搓板状路面上的汽车与弹簧上的质量块是同一个类比讲了两遍，一遍受驱动，一遍自由。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。答案来自书后答案：十六道习题中有九道给了答案，这里都已设置，没有答案的七道没有收入，并在本节的说明中列出。九道中的最后一道是批判性思考题，CNXML 没有标注它的类型，按它所在的标题归为习题；它的答案照书中印出的给出并附有更正，习题卡片核对的是更正后的数值。书中只给出某道题数值部分的答案、而该题还要求比较时，所给的部分被设置为答案，书中的比较保留在详细解答中。两道思考题附有标为 AI 的建议思路，而不是判分答案，因为书中没有给出这两道题的答案。本节没有 AP 题，也没有“理解检测”框，所以所有习题都放在最后。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-rlc-voltages",
+   "kind": "sim",
+   "number": "23.46",
+   "folds": [
+    "23.47"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_12_01a.jpg",
+    "/media/ch23/Figure_24_12_02a.jpg"
+   ],
+   "original_caption": "（图 23.46）带有交流电压源的 RLC 串联电路。（图 23.47）这幅图表示 RLC 电路中各电压与电流的关系。各电路元件两端的电压相加等于电源电压，可以看到电源电压与电流不同相。",
+   "widths": [
+    275,
+    300
+   ],
+   "draws": [
+    "voltage",
+    "current",
+    "resistance",
+    "inductance",
+    "capacitance",
+    "frequency",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-impedance-triangle",
+   "kind": "sim",
+   "draws": [
+    "resistance",
+    "inductance",
+    "capacitance",
+    "frequency",
+    "voltage",
+    "current",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "phase-angle arc drawn inside the triangle; R label moved clear"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-resonance",
+   "kind": "sim",
+   "number": "23.48",
+   "originals": [
+    "/media/ch23/Figure_24_12_03a.jpg"
+   ],
+   "original_caption": "两个仅电阻不同的 RLC 串联电路的电流随频率变化的图线。两者都在 f₀ 处共振，但电阻较大的那个峰更低、更宽。驱动的交流电压源有固定的振幅 V₀。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "frequency",
+    "current",
+    "power",
+    "resistance",
+    "inductance",
+    "capacitance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph note dropped, it ran over the axis"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mechanical-analogy",
+   "kind": "sim",
+   "number": "23.49",
+   "folds": [
+    "23.50"
+   ],
+   "originals": [
+    "/media/ch23/Figure_24_12_04a.jpg",
+    "/media/ch23/Figure_24_12_05a.jpg"
+   ],
+   "original_caption": "（图 23.49）汽车弹簧上车轮受迫而有阻尼的运动，类似于 RLC 串联交流电路。减震器使运动受到阻尼并耗散能量，相当于 RLC 电路中的电阻。质量块和弹簧决定共振频率。（图 23.50）LC 电路类似于无摩擦、无驱动力的弹簧上振动的质量块。能量在电感器和电容器之间来回移动，正如在质量块-弹簧系统中能量在动能和势能之间转移。",
+   "widths": [
+    225,
+    350
+   ],
+   "draws": [
+    "energy",
+    "inductance",
+    "capacitance",
+    "voltage",
+    "current",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "car body drawn as a face with a hover name; caption names the damped choice"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "impedance",
+   "concept": "voltages-do-not-simply-add",
+   "verb": "introduces"
+  },
+  {
+   "span": "impedance",
+   "concept": "impedance",
+   "verb": "introduces"
+  },
+  {
+   "span": "impedance",
+   "concept": "ac-ohms-law-with-impedance",
+   "verb": "introduces"
+  },
+  {
+   "span": "impedance",
+   "concept": "inductive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "capacitive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "inductor-voltage-leads-current",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "capacitor-voltage-follows-current",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "resistor-voltage-in-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "series-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "ac-ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "rms-values",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "rlc-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonance-peak-and-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "impedance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "ac-ohms-law-with-impedance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "inductive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "capacitive-reactance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "natural-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-in-rlc-series-ac-circuits",
+   "concept": "resonance-curve-damping",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "phase-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "power-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "lc-oscillation-analogy",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "impedance",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "rms-values",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "ac-power",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "energy-stored-in-an-inductor",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "capacitor-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "shm-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "power-in-rlc-series-ac-circuits",
+   "concept": "voltages-do-not-simply-add",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736614731",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "交流电路的共振频率是否取决于交流电源的峰值电压？说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不取决于。共振频率是感抗和容抗相等时的频率，而这两个量都与电源电压的大小无关。令 $2\\pi f_0 L = 1/2\\pi f_0 C$ 并求解，得 $f_0 = 1/2\\pi\\sqrt{LC}$，其中只出现电感和电容。提高电源的峰值电压，会使各个频率上的电流按同一比例增大，所以整条共振曲线变高，而它的峰仍在频率轴上的同一位置。这就是收音机调谐器是一个可变电容器而不是音量旋钮的原因：把音量调大并不会改变你听到的是哪个电台。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738073810",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-rlc-series-ac-circuits",
+   "prompt": "假设有一台电动机，其功率因数远小于 1。解释为什么改善功率因数比提高输入电压更适合用来提高电动机的输出。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "输送给电动机的平均功率是 $P_\\text{ave} = I_\\text{rms}V_\\text{rms}\\cos\\phi$，所以既可以靠提高电压来增大功率，也可以靠提高功率因数来增大功率。提高电压会使电流按同一比例增大，而绕组中浪费的热量与电流的平方成正比。推得越远，多出来的功率就有越多损失在电动机自身上，而且绝缘层还要承受更高的电压。提高功率因数则不需要从电源多取任何东西，也不浪费任何东西。它使电流重新与电压步调一致，因此同样的电流和电压能输出更多有用的功率。电动机是感性的，其电流滞后于电压，电路中的一个电容器可以抵消一部分感抗，使两者重新同相。这就是大型电动机配有电容器、正是为了这一目的的原因。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169736657142",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impedance",
+   "prompt": "一个 <em>RL</em> 电路由一个 $40.0\\;\\Omega$ 的电阻器和一个 3.00 mH 的电感器组成。（a）求它在 60.0 Hz 和 10.0 kHz 时的阻抗 $\\kZimp$。（b）把这些 $\\kZimp$ 值与例题 23.12 中的值作比较，那里还有一个电容器。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) at 60.0 Hz",
+      "value": 40.02,
+      "unit": "Ω",
+      "hint": "在没有电容器的情况下，令阻抗表达式中的 $X_C = 0$。"
+     },
+     {
+      "part": "(a) at 10.0 kHz",
+      "value": 193.0,
+      "unit": "Ω",
+      "hint": "10.0 kHz 时的感抗，就是上一节求得的 188 Ω。"
+     }
+    ],
+    "solution": "（a）60.0 Hz 时为 $40.02\\;\\Omega$，10.0 kHz 时为 $193\\;\\Omega$。（b）在 60 Hz 时，有电容器的 $Z = 531\\;\\Omega$，是没有电容器时的 13 倍以上。电容器在低频时影响很大。在 10 kHz 时，有电容器的 $Z = 190\\;\\Omega$，与没有电容器时大致相同。电容器在高频时影响较小。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738012738",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impedance",
+   "prompt": "一个 <em>LC</em> 电路由一个 3.00 mH 的电感器和一个 $5.00\\;\\mu\\text{F}$ 的电容器组成。（a）求它在 60.0 Hz 和 10.0 kHz 时的阻抗。（b）把这些 $\\kZimp$ 值与例题 23.12 中的值作比较，那里还有一个电阻器。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) at 60.0 Hz",
+      "value": 529.0,
+      "unit": "Ω",
+      "hint": "在没有电阻器的情况下，令 $R = 0$，于是阻抗就是两个电抗之差。"
+     },
+     {
+      "part": "(a) at 10.0 kHz",
+      "value": 185.0,
+      "unit": "Ω",
+      "hint": "10.0 kHz 时，感抗为 188 Ω，容抗为 3.18 Ω。"
+     }
+    ],
+    "solution": "（a）60.0 Hz 时为 $529\\;\\Omega$，10.0 kHz 时为 $185\\;\\Omega$。（b）这些值与例题 23.12 中得到的值接近，因为在低频时电容器起主导作用，在高频时电感器起主导作用。所以在两种情况下，电阻器对总阻抗的贡献都很小。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738072090",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "要接收调幅广播，你需要一个能在 500 到 1650 kHz 之间任一频率发生共振的 <em>RLC</em> 电路。这可以用一个固定的 $1.00\\;\\mu\\text{H}$ 电感器与一个可变电容器相连来实现。需要多大的电容范围？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "at 1650 kHz",
+      "value": 9.3,
+      "unit": "nF",
+      "hint": "由共振频率解出电容：最高的频率需要最小的电容。"
+     },
+     {
+      "part": "at 500 kHz",
+      "value": 101.0,
+      "unit": "nF",
+      "hint": "频段中最低的频率需要最大的电容。"
+     }
+    ],
+    "solution": "9.30 nF 到 101 nF"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738244135",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "用一个 8.00 nH 的电感器，要产生 1.00 GHz 的共振频率，需要多大的电容？",
+   "answer": {
+    "type": "number",
+    "value": 3.17,
+    "unit": "pF",
+    "generated_by": "source",
+    "hint": "把共振频率的表达式两边平方，再解出电容。",
+    "solution": "3.17 pF"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169738136983",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-resonance",
+   "prompt": "调频广播频段中最低的频率是 88.0 MHz。（a）如果电感器与一个 2.50 pF 的电容器相连，要产生这个共振频率需要多大的电感？（b）电容器是可变的，使共振频率可以调到高达 108 MHz。在这个频率上电容必须是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.31,
+      "unit": "µH",
+      "hint": "由共振频率解出电感，电容为已知。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.66,
+      "unit": "pF",
+      "hint": "电感仍是（a）所得的值；解出较高频率时的电容。"
+     }
+    ],
+    "solution": "（a）$1.31\\;\\mu\\text{H}$（b）1.66 pF"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169738137511",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-impedance-triangle",
+   "prompt": "一个 <em>RLC</em> 串联电路有一个 $1.00\\;\\text{k}\\Omega$ 的电阻器、一个 $150\\;\\mu\\text{H}$ 的电感器和一个 25.0 nF 的电容器。（a）求电路在 500 Hz 时的阻抗。（b）求电路在 7.50 kHz 时的阻抗。（c）如果电压源的 $\\kVrms = 408\\;\\text{V}$，在每个频率上 $\\kIrms$ 是多少？（d）电路的共振频率是多少？（e）共振时 $\\kIrms$ 是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 12.8,
+      "unit": "kΩ",
+      "hint": "在 500 Hz 时，容抗是三个数中最大的一个，而且大得多。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.31,
+      "unit": "kΩ",
+      "hint": "在 7.50 kHz 时，两个电抗已经靠得近得多。"
+     },
+     {
+      "part": "(c) at 500 Hz",
+      "value": 31.9,
+      "unit": "mA",
+      "hint": "用（a）中的阻抗，应用欧姆定律。"
+     },
+     {
+      "part": "(c) at 7.50 kHz",
+      "value": 312.0,
+      "unit": "mA",
+      "hint": "用（b）中的阻抗，应用欧姆定律。"
+     },
+     {
+      "part": "(d)",
+      "value": 82.2,
+      "unit": "kHz",
+      "hint": "共振频率只取决于电感和电容。"
+     },
+     {
+      "part": "(e)",
+      "value": 0.408,
+      "unit": "A",
+      "hint": "共振时阻抗就等于电阻。"
+     }
+    ],
+    "solution": "（a）$12.8\\;\\text{k}\\Omega$（b）$1.31\\;\\text{k}\\Omega$（c）500 Hz 时为 31.9 mA，7.50 kHz 时为 312 mA（d）82.2 kHz（e）0.408 A"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1169737939490",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-rlc-series-ac-circuits",
+   "prompt": "一个 <em>RLC</em> 串联电路有一个 $1.00\\;\\text{k}\\Omega$ 的电阻器、一个 $150\\;\\mu\\text{H}$ 的电感器和一个 25.0 nF 的电容器。（a）求在 $\\kf = 7.50\\;\\text{Hz}$ 时的功率因数。（b）在这个频率上相位角是多少？（c）在这个频率上的平均功率是多少？（d）求电路在共振频率时的平均功率。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.159,
+      "unit": "",
+      "hint": "功率因数等于电阻除以阻抗。"
+     },
+     {
+      "part": "(b)",
+      "value": 80.9,
+      "unit": "°",
+      "hint": "相位角是功率因数的反余弦。"
+     },
+     {
+      "part": "(c)",
+      "value": 26.4,
+      "unit": "W",
+      "hint": "平均功率等于方均根电流乘以方均根电压再乘以功率因数。"
+     },
+     {
+      "part": "(d)",
+      "value": 166.0,
+      "unit": "W",
+      "hint": "共振时功率因数为 1，阻抗就等于电阻。"
+     }
+    ],
+    "solution": "（a）0.159（b）$80.9^\\circ$（c）26.4 W（d）166 W"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1169738224784",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-in-rlc-series-ac-circuits",
+   "prompt": "参照例题 23.14，求 10.0 kHz 时的平均功率。",
+   "answer": {
+    "type": "number",
+    "value": 16.0,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "例题 23.12 中求得 10.0 kHz 时的阻抗为 190 Ω，由它可以得到电流和功率因数。",
+    "solution": "16.0 W"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "exer-78926",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resonance-in-rlc-series-ac-circuits",
+   "prompt": "<strong>批判性思考</strong> 要用一段 4.000 m 长的导线来探测磁场。把导线做成一个正方形线圈，以每秒 400 个周期的速率转动。（a）如果磁场为 0.02000 T，设线圈起初所在的平面与磁场垂直，在第一个四分之一周期内能产生的平均电动势 的大小是多少？（b）如果把这根导线做成两个正方形线圈，以同样的速率转动，起始时线圈相对于磁场的取向与（a）中的线圈相同，那么产生的平均电动势 的大小有差别吗？如果有，两个线圈在磁场中以每秒 400 个周期转动时，第一个四分之一周期内可能的平均电动势 是多少？（c）如果把导线做成八字形，仍从线圈相对于磁场的同样取向开始，以每秒 400 个周期的速率在磁场中转动，第一个四分之一周期内能产生的平均电动势 是多少？在这种布置中，导线与自身相交。（d）线圈的形状有关系吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 32.0,
+      "unit": "V",
+      "hint": "4.000 m 的导线做成的一个正方形线圈，边长为 1.000 m，磁通量在这四分之一周期内从最大值降到零。"
+     },
+     {
+      "part": "(b)",
+      "value": 16.0,
+      "unit": "V",
+      "hint": "用同一根导线做成的两个正方形线圈，每个的边长为 0.5000 m，所以每个围住的面积是四分之一，而线圈有两个。"
+     },
+     {
+      "part": "(c)",
+      "value": 0.0,
+      "unit": "V",
+      "hint": "导线与自身相交，所以八字形的两半绕向相反。"
+     }
+    ],
+    "solution": "（a）$|\\text{emf}| = 1\\frac{\\Delta\\phi}{\\Delta t} = \\frac{1.000(0.02000)}{100}\\text{V} = 0.0002000\\text{V}$（b）$|\\text{emf}| = 2\\frac{\\Delta\\phi}{\\Delta t} = \\frac{2(0.2500)(0.02000)}{100}\\text{V} = 0.0001000\\text{V}$<sup class=\"fn\" data-note=\"c-p16-quarter\"></sup>（c）平均电动势 为 0，因为线圈是由一根交叉的导线做成的，每个线圈的电压抵消了另一个线圈的电动势。（d）没有关系。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "resonance-peak-and-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "power-factor"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "phase-angle",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "impedance"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ac-ohms-law-with-impedance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "impedance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "voltages-do-not-simply-add",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "p7",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "p9",
+   "concept": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "exercise": "p11",
+   "concept": "impedance"
+  },
+  {
+   "exercise": "p11",
+   "concept": "ac-ohms-law-with-impedance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "power-factor"
+  },
+  {
+   "exercise": "p13",
+   "concept": "phase-angle",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "power-factor"
+  },
+  {
+   "exercise": "p15",
+   "concept": "impedance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "average-emf-of-a-generator"
+  },
+  {
+   "exercise": "p16",
+   "concept": "faradays-law",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "resistor",
+   "label": "电阻器",
+   "figures": [
+    "sim-rlc-voltages",
+    "sim-impedance-triangle",
+    "sim-mechanical-analogy"
+   ]
+  },
+  {
+   "id": "inductor",
+   "label": "电感器",
+   "figures": [
+    "sim-rlc-voltages",
+    "sim-impedance-triangle",
+    "sim-mechanical-analogy"
+   ]
+  },
+  {
+   "id": "capacitor",
+   "label": "电容器",
+   "figures": [
+    "sim-rlc-voltages",
+    "sim-impedance-triangle",
+    "sim-mechanical-analogy"
+   ]
+  },
+  {
+   "id": "source",
+   "label": "交流电源",
+   "figures": [
+    "sim-rlc-voltages"
+   ]
+  },
+  {
+   "id": "wheel",
+   "label": "汽车的车轮",
+   "figures": [
+    "sim-rlc-voltages",
+    "sim-mechanical-analogy"
+   ]
+  },
+  {
+   "id": "spring",
+   "label": "弹簧",
+   "figures": [
+    "sim-rlc-voltages",
+    "sim-mechanical-analogy"
+   ]
+  },
+  {
+   "id": "shock-absorber",
+   "label": "减震器",
+   "figures": [
+    "sim-rlc-voltages",
+    "sim-mechanical-analogy"
+   ]
+  },
+  {
+   "id": "mass",
+   "label": "质量块",
+   "figures": [
+    "sim-rlc-voltages",
+    "sim-mechanical-analogy"
+   ]
+  },
+  {
+   "id": "low-r-circuit",
+   "label": "电阻较小的电路",
+   "figures": [
+    "sim-resonance"
+   ]
+  },
+  {
+   "id": "high-r-circuit",
+   "label": "电阻较大的电路",
+   "figures": [
+    "sim-resonance"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p16-quarter",
+   "kind": "correction",
+   "html": "书中的答案在计算四分之一周期时除以的是 100。在每秒 400 个周期时，四分之一周期的时长为 $\\Delta t = 1/1600\\ \\text{s}$，所以（a）中一个线圈的平均电动势 为 $32.0\\ \\text{V}$，（b）中两个线圈的为 $16.0\\ \\text{V}$，也就是习题卡片所核对的值。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "rlc-impedance",
+   "what": "RLC 串联电路的阻抗",
+   "source": "《大学物理（第2版）》，23.12 RLC 串联交流电路",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kVR$ 与电流同相，$\\kVL$ 超前电流 $90^\\circ$，$\\kVC$ 滞后电流 $90^\\circ$，所以各峰值电压并不对齐。",
+       "src": "23.12，图 23.47"
+      },
+      {
+       "tex": "\\kIocur = \\dfrac{\\kVo}{\\kZimp}",
+       "src": "23.12"
+      },
+      {
+       "tex": "\\kVoR = \\kIocur\\kRes",
+       "src": "20.2"
+      },
+      {
+       "tex": "\\kVoL = \\kIocur\\kXL,\\quad \\kVoC = \\kIocur\\kXC",
+       "src": "23.11"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVo} = \\sqrt{\\mk{R}{\\kVoR^{2}} + (\\mk{L}{\\kVoL} - \\mk{C}{\\kVoC})^{2}}",
+      "src": "23.12",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kIocur\\kZimp} = \\sqrt{\\mk{R}{\\kVoR^{2}} + (\\mk{L}{\\kVoL} - \\mk{C}{\\kVoC})^{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kIocur\\kZimp} = \\sqrt{\\mk{R}{\\kIocur^{2}\\kRes^{2}} + (\\mk{L}{\\kIocur\\kXL} - \\mk{C}{\\kIocur\\kXC})^{2}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kIocur\\kZimp} = \\mk{I}{\\kIocur}\\sqrt{\\mk{R}{\\kRes^{2}} + (\\mk{L}{\\kXL} - \\mk{C}{\\kXC})^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{V}{\\kZimp} = \\sqrt{\\mk{R}{\\kRes^{2}} + (\\mk{L}{\\kXL} - \\mk{C}{\\kXC})^{2}}",
+       "uses": []
+      }
+     ],
+     "src": "23.12"
+    }
+   ]
+  },
+  {
+   "id": "resonant-frequency",
+   "what": "RLC 串联电路的共振频率",
+   "source": "《大学物理（第2版）》，23.12 RLC 串联交流电路",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "在共振频率 $\\kfo$ 处，两个电抗相等并相互抵消。",
+       "src": "23.12"
+      },
+      {
+       "tex": "\\kXL = 2\\pi \\kf\\kLind",
+       "src": "23.11"
+      },
+      {
+       "tex": "\\kXC = \\dfrac{1}{2\\pi \\kf\\kCap}",
+       "src": "23.11"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kXL} = \\mk{C}{\\kXC}",
+      "src": "23.12",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{2\\pi\\kfo\\kLind} = \\mk{C}{\\dfrac{1}{2\\pi\\kfo\\kCap}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kfo^{2}} = \\mk{C}{\\dfrac{1}{4\\pi^{2}\\kLind\\kCap}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kfo} = \\mk{C}{\\dfrac{1}{2\\pi\\sqrt{\\kLind\\kCap}}}",
+       "uses": [],
+       "cap": "频率为正，所以只取正的平方根。"
+      }
+     ],
+     "src": "23.12"
+    }
+   ]
+  }
+ ]
+}

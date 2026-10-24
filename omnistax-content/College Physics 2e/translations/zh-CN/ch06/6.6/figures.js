@@ -1,0 +1,348 @@
+/* Figures for section 6.6 Satellites and Kepler's Laws: An Argument for
+   Simplicity. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['6.6'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, axes, curve, labeller } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- numbers and helpers shared by the figures ---------- */
+const TAU = 2 * Math.PI, RAD = Math.PI / 180;
+const GRAV = 6.674e-11;                      /* N·m²/kg² */
+const M_EARTH = 5.972e24;                    /* kg */
+const R_EARTH = 6.380e6;                     /* m */
+const MOON_R = 384;                          /* 10³ km */
+const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+/* three significant figures, never in exponent form, with commas */
+const sig3 = (x) => { const s = Math.abs(x).toPrecision(3); return (x < 0 ? '−' : '') + (s.includes('e') || Math.abs(x) >= 1000 ? commas(String(Math.round(Number(s)))) : s); };
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+/* a tick label on a logarithmic axis, where the tick is the power of ten */
+const pow10 = (v) => { const x = Math.pow(10, v); return x >= 1 ? commas(String(Math.round(x))) : String(+x.toFixed(2)); };
+/* the period in hours of a circular orbit of radius rk (10³ km) about a mass of mE Earth masses */
+const orbitT = (rk, mE) => (TAU * Math.sqrt(Math.pow(rk * 1e6, 3) / (GRAV * M_EARTH * mE))) / 3600;
+/* the orbital speed in km/s at that radius */
+const orbitV = (rk, mE) => Math.sqrt((GRAV * M_EARTH * mE) / (rk * 1e6)) / 1000;
+/* a period in hours, said in hours or in days as the size of it asks */
+const sayT = (h) => (h < 72 ? sig3(h) + ' h' : sig3(h / 24) + ' d');
+/* Kepler's equation E − e sin E = M, solved for E by Newton's method */
+function anomaly(mean, e) {
+  let E = mean;
+  for (let i = 0; i < 8; i++) E -= (E - e * Math.sin(E) - mean) / (1 - e * Math.cos(E));
+  return E;
+}
+/* an ellipse of semi-major axis a and eccentricity e, drawn about the focus at (fx, fy)
+   with the nearest point of the curve to the left of that focus */
+function orbitPoint(fx, fy, a, e, E) {
+  const b = a * Math.sqrt(1 - e * e);
+  return { x: fx - a * (Math.cos(E) - e), y: fy + b * Math.sin(E), r: a * (1 - e * Math.cos(E)) };
+}
+/* the whole curve, as a path through the scales the scene uses */
+function ellipsePath(ctx, fx, fy, a, e, color, w, dash) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.beginPath();
+  for (let i = 0; i <= 180; i++) { const p = orbitPoint(fx, fy, a, e, (i * TAU) / 180); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); }
+  ctx.closePath(); ctx.stroke(); ctx.restore();
+}
+
+/* a point a fraction f along a segment, pushed k units to one side of it, so a label there sits beside the line */
+function beside(ax, ay, bx, by, k, f) {
+  const dx = bx - ax, dy = by - ay, n = Math.hypot(dx, dy) || 1, t = f === undefined ? 0.5 : f;
+  return { x: ax + dx * t - (dy / n) * k, y: ay + dy * t + (dx / n) * k };
+}
+
+/* ---------- sprites, in ink ---------- */
+/* a planet of radius rad centred on (x, y), with a lit edge so it reads as a body */
+function planet(ctx, x, y, rad, color) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.fill(); ctx.stroke();
+  /* a band of cloud and a shaded limb, so that the disc reads as a world */
+  ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.clip();
+  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.ellipse(x - rad * 0.2, y - rad * 0.25, rad * 0.5, rad * 0.22, -0.4, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(x + rad * 0.35, y + rad * 0.3, rad * 0.32, rad * 0.18, 0.3, 0, TAU); ctx.fill();
+  ctx.fillStyle = alpha(color, 0.3); ctx.beginPath(); ctx.arc(x + rad * 0.55, y + rad * 0.35, rad, 0, TAU); ctx.fill(); ctx.restore();
+}
+/* the Sun at (x, y): a disc with eight short rays */
+function sun(ctx, x, y, rad, color) {
+  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.fill();
+  ctx.beginPath(); for (let i = 0; i < 8; i++) { const a = (i * TAU) / 8; ctx.moveTo(x + rad * 1.45 * Math.cos(a), y + rad * 1.45 * Math.sin(a)); ctx.lineTo(x + rad * 2.1 * Math.cos(a), y + rad * 2.1 * Math.sin(a)); }
+  ctx.stroke(); ctx.restore();
+}
+/* a drawing pin at (x, y) */
+function pin(ctx, x, y, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 26); ctx.stroke();
+  ctx.beginPath(); ctx.arc(x, y - 30, 7, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.arc(x, y, 3.5, 0, TAU); ctx.fill(); ctx.restore();
+}
+/* a pencil whose point rests on (x, y), leaning away from the center (cx, cy) */
+function pencil(ctx, x, y, cx, cy, color, s = 1) {
+  const a = Math.atan2(y - cy, x - cx) || 0;
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s); ctx.strokeStyle = color; ctx.lineWidth = 2.5 / s; ctx.lineJoin = 'round';
+  /* the sharpened cone with its lead, the body with a ridge line, and the eraser at the end */
+  ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(22, -7); ctx.lineTo(22, 7); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(7, -2.3); ctx.lineTo(7, 2.3); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(22, -7, 68, 14); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.rect(22, -7, 68, 4.5); ctx.fill();
+  ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.rect(90, -7, 6, 14); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = PAL.soft2; ctx.beginPath(); ctx.rect(96, -7, 12, 14); ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 6.26: the ellipse of Kepler's first law, drawn twice as the book
+   draws it. On the left the pins and the string, on the right the same
+   curve with M at one focus. There is no time in the definition of an
+   ellipse, so the figure is still: it answers its two sliders and carries
+   no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-ellipse', 690);
+  const ecc = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 0.8, step: 0.01, value: 0.5, unit: '', dec: 2, aria: '偏心率', specials: [{ at: 0, label: '圆' }] });
+  const ang = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 360, step: 1, value: 55, unit: '°', dec: 0, aria: '点在曲线上的位置' });
+  function draw() {
+    const { ctx } = begin(d.c);
+    const e = ecc.v, a = 205, b = a * Math.sqrt(1 - e * e), c = a * e, th = ang.v * RAD;
+    const L = labeller(ctx, 690); L.block(0, 0, 1400, 92);
+    const px = (cx) => cx + a * Math.cos(th), py = (cy) => cy - b * Math.sin(th);
+    /* (a) the pins and the string */
+    const cx1 = 370, cy1 = 385, f1 = { x: cx1 - c, y: cy1 }, f2 = { x: cx1 + c, y: cy1 }, P1 = { x: px(cx1), y: py(cy1) };
+    text(ctx, '（a）两枚钉子、一根细绳和一支铅笔', 370, 655, PAL.muted, { size: 20, align: 'center' });
+    ellipsePath(ctx, cx1 - c, cy1, a, e, PAL.ink, 4);
+    line(ctx, f1.x, f1.y, f2.x, f2.y, PAL.rule, 2, [8, 8]);
+    const d1 = Math.hypot(P1.x - f1.x, P1.y - f1.y) / a, d2 = Math.hypot(P1.x - f2.x, P1.y - f2.y) / a;
+    line(ctx, f1.x, f1.y, P1.x, P1.y, C('position'), 4);
+    line(ctx, f2.x, f2.y, P1.x, P1.y, C('position'), 4);
+    text(ctx, fmt(d1, 2) + 'a', (f1.x + P1.x) / 2 - 10, (f1.y + P1.y) / 2 - 18, C('position'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, fmt(d2, 2) + 'a', (f2.x + P1.x) / 2 + 10, (f2.y + P1.y) / 2 - 18, C('position'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    pin(ctx, f1.x, f1.y, PAL.ink); pin(ctx, f2.x, f2.y, PAL.ink);
+    text(ctx, 'f₁', f1.x, f1.y + 26, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, 'f₂', f2.x, f2.y + 26, PAL.muted, { size: 20, align: 'center' });
+    pencil(ctx, P1.x, P1.y, cx1, cy1, F.ref('pencil'), 1.25);
+    dot(ctx, P1.x, P1.y, F.ref('pencil'), true, 5);
+    { const pa = Math.atan2(P1.y - cy1, P1.x - cx1), qx = P1.x + 70 * Math.cos(pa), qy = P1.y + 70 * Math.sin(pa); L.add('铅笔', qx, qy, -Math.sin(pa), Math.cos(pa), F.ref('pencil'), 17, 26); }
+    /* (b) the same curve as an orbit, with M at one focus */
+    const cx2 = 1030, cy2 = 385, M = { x: cx2 - c, y: cy2 }, P2 = { x: px(cx2), y: py(cy2) };
+    text(ctx, '（b）同一条曲线作为轨道，M 位于一个焦点上', 1030, 655, PAL.muted, { size: 20, align: 'center' });
+    ellipsePath(ctx, cx2 - c, cy2, a, e, PAL.ink, 4);
+    line(ctx, M.x, M.y, P2.x, P2.y, C('position'), 4);
+    text(ctx, 'r = ' + fmt(d1, 2) + 'a', (M.x + P2.x) / 2, (M.y + P2.y) / 2 - 20, C('position'), { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    sun(ctx, M.x, M.y, 15, F.ref('sun'));
+    /* on panels, since a focus near the end of a long ellipse puts the curve under them */
+    text(ctx, 'M', M.x, M.y + 44, C('mass'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, '太阳', M.x, M.y + 68, F.ref('sun'), { size: 17, align: 'center', bg: PAL.panel });
+    planet(ctx, P2.x, P2.y, 24, F.ref('planet'));
+    L.add('m，行星', P2.x, P2.y, Math.cos(th), -Math.sin(th), F.ref('planet'), 18, 30);
+    L.flush();
+    headline(ctx, e < 0.005
+      ? 'e = 0.00 时，两个焦点在中心重合，两段距离处处都是 1.00a。'
+      : 'e = ' + fmt(e, 2) + ' 时，两段距离分别为 ' + fmt(d1, 2) + 'a 和 ' + fmt(d2, 2) + 'a，二者之和为 2.00a。');
+    readout(d.readout, `d_1 + d_2 = ${fmt(d1, 2)}a + ${fmt(d2, 2)}a = 2.00a`,
+      'M 位于焦点 f₁ 处，M 到 m 的距离从轨道最近点处的 ' + fmt(1 - e, 2) + 'a 变到最远点处的 ' + fmt(1 + e, 2) + 'a，此处为 ' + fmt(d1, 2) + 'a。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 6.27: equal areas in equal times. The planet runs one orbit per
+   loop at the speed Kepler's second law gives it, and three sectors swept
+   in equal times are shaded as the line from M passes over them. The idea
+   is about time, so the figure runs a cycle and takes the transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-equal-areas', 660);
+  const ecc = ctl(d.controls, { label: 'e', cls: '', min: 0.1, max: 0.7, step: 0.01, value: 0.5, unit: '', dec: 2, aria: '偏心率' });
+  const dur = ctl(d.controls, { label: '\\Delta \\kT', cls: 'time', min: 0.02, max: 0.12, step: 0.005, value: 0.08, unit: 'T', dec: 3, aria: '每段扫过的时间间隔的长度' });
+  const cy = cycle(() => 1, 1.2);
+  const STARTS = [0.0, 0.26, 0.46], MARKS = [['A', 'B'], ['C', 'D'], ['E', 'F']];
+  const CX = 400, CY = 360, A = 230;
+  /* the speed of the planet from the vis-viva relation, in units of 2πa/T, which is the speed a
+     circular orbit of radius a would have. That is not the mean of the speed over the orbit, which
+     has no elementary form, so the figure names the level for what it is. */
+  const speedAt = (r, a) => Math.sqrt(Math.max(0, 2 * a / r - 1));
+  const at = (f, e) => orbitPoint(CX - A * e, CY, A, e, anomaly(((f % 1) + 1) % 1 * TAU, e));
+  function draw() {
+    const { ctx } = begin(d.c);
+    const e = ecc.v, dt = dur.v, tau = cy.now();
+    /* the three sectors, each swept in the same time */
+    STARTS.forEach((s, i) => {
+      const active = tau >= s && tau <= s + dt;
+      ctx.save(); ctx.fillStyle = alpha(C('area'), active ? 0.34 : 0.16); ctx.beginPath();
+      ctx.moveTo(CX - A * e, CY);
+      for (let k = 0; k <= 40; k++) { const p = at(s + (dt * k) / 40, e); ctx.lineTo(p.x, p.y); }
+      ctx.closePath(); ctx.fill(); ctx.restore();
+      const p0 = at(s, e), p1 = at(s + dt, e);
+      line(ctx, CX - A * e, CY, p0.x, p0.y, PAL.muted, 2);
+      line(ctx, CX - A * e, CY, p1.x, p1.y, PAL.muted, 2);
+      text(ctx, MARKS[i][0], p0.x + 18 * Math.sign(p0.x - CX + A * e || 1), p0.y - 18, PAL.muted, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, MARKS[i][1], p1.x + 18 * Math.sign(p1.x - CX + A * e || 1), p1.y - 18, PAL.muted, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    });
+    ellipsePath(ctx, CX - A * e, CY, A, e, PAL.ink, 4);
+    /* the planet, the line from M to it, and its velocity along the tangent */
+    const p = at(tau, e), pn = at(tau + 0.004, e);
+    const vrel = speedAt(p.r / A, 1), ux = pn.x - p.x, uy = pn.y - p.y, un = Math.hypot(ux, uy) || 1;
+    line(ctx, CX - A * e, CY, p.x, p.y, C('position'), 4);
+    const rl = beside(CX - A * e, CY, p.x, p.y, 20);
+    /* named by its symbol alone, the headline giving its length, and not at all where the line is too short to hold it */
+    if (Math.hypot(p.x - CX + A * e, p.y - CY) > 90) text(ctx, 'r', rl.x, rl.y, C('position'), { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    const vl = clamp(48 * vrel, 24, 110);
+    arrow(ctx, p.x, p.y, p.x + (ux / un) * vl, p.y + (uy / un) * vl, C('velocity'), 5);
+    text(ctx, 'v', p.x + (ux / un) * (vl + 20), p.y + (uy / un) * (vl + 20), C('velocity'), { size: 22, weight: 600, align: 'center' });
+    sun(ctx, CX - A * e, CY, 15, F.ref('sun'));
+    text(ctx, 'M', CX - A * e, CY + 44, C('mass'), { size: 22, weight: 600, align: 'center' });
+    planet(ctx, p.x, p.y, 11, F.ref('planet'));
+    /* the graph: the speed against time for one whole orbit, the three intervals shaded */
+    const box = { l: 800, r: 1340, t: 210, b: 520 };
+    const { X, Y } = axes(ctx, box, [0, 1], [0, 2.5], { xl: 't / T', yl: 'v ÷ (2πa/T)', xc: C('time'), yc: C('velocity'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 1) });
+    STARTS.forEach((s) => { ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.16); ctx.fillRect(X(s), box.t, X(s + dt) - X(s), box.b - box.t); ctx.restore(); });
+    line(ctx, box.l, Y(1), box.r, Y(1), PAL.rule, 2, [10, 10]);
+    text(ctx, '半径为 a 的圆轨道的速率', (box.l + box.r) / 2, Y(1) - 15, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    curve(ctx, (f) => speedAt(at(f, e).r / A, 1), 0, 1, X, Y, C('velocity'), 5, 140);
+    dot(ctx, X(tau), Y(vrel), C('velocity'), true, 9);
+    line(ctx, X(tau), Y(vrel), X(tau), box.b, C('velocity'), 2, [4, 8]);
+    headline(ctx, '行星距 M 为 ' + fmt(p.r / A, 2) + 'a，速率为 $2\\pi a/\\kT$ 的 ' + fmt(vrel, 2) + ' 倍。');
+    readout(d.readout, `\\frac{\\kv_{\\text{近}}}{\\kv_{\\text{远}}} = \\frac{1+e}{1-e} = \\frac{1+${fmt(e, 2)}}{1-${fmt(e, 2)}} = ${fmt((1 + e) / (1 - e), 2)}`,
+      '每个扇形在周期的 ' + fmt(dt, 3) + ' 内扫过，覆盖轨道内面积的 ' + fmt(dt, 3) + '。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
+})();
+
+/* =====================================================================
+   SIM: the period of a circular orbit. Gravity supplies the centripetal
+   force, the satellite's own mass cancels, and the period follows from
+   the radius alone. The graph beside the orbit carries Kepler's third law
+   as a straight line on logarithmic axes, with the Moon marked on it, so
+   that the parent's mass can be read off the line that runs through it.
+   The orbit has a period in it, so the figure runs a cycle.
+===================================================================== */
+(function () {
+  const d = sim('sim-third-law', 690);
+  const rad = ctl(d.controls, { label: '\\kr', cls: 'position', min: 7, max: 400, step: 0.01, value: 7.88, unit: '×10³ km', dec: 2, onInput: reset, aria: '轨道半径' });
+  const mass = ctl(d.controls, { label: '\\kM', cls: 'mass', min: 0.2, max: 2.5, step: 0.01, value: 1, unit: 'M⊕', dec: 2, onInput: reset, aria: '中心天体的质量', specials: [{ at: 1, label: '经过月球' }] });
+  const cy = cycle(() => 1, 1.0);
+  function reset() { cy.reset(); }
+  const CX = 340, CY = 400, RDRAW = 200;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const rk = rad.v, mE = mass.v, tau = cy.now();
+    const T = orbitT(rk, mE), v = orbitV(rk, mE), ac = (v * 1000) * (v * 1000) / (rk * 1e6);
+    const th = tau * TAU, sx = CX + RDRAW * Math.cos(th), sy = CY - RDRAW * Math.sin(th);
+    /* the scene: the orbit always drawn at the same size, so the parent shrinks as the orbit grows */
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.beginPath(); ctx.arc(CX, CY, RDRAW, 0, TAU); ctx.stroke(); ctx.restore();
+    const bodyR = clamp((RDRAW * R_EARTH) / (rk * 1e6), 7, 162);
+    if (bodyR > 24) {
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('earth'); ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(CX, CY, bodyR, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+      text(ctx, 'M', CX, CY, C('mass'), { size: 26, weight: 600, align: 'center' });
+    } else {
+      planet(ctx, CX, CY, bodyR, F.ref('earth'));
+      text(ctx, 'M', CX, CY + bodyR + 24, C('mass'), { size: 22, weight: 600, align: 'center' });
+    }
+    line(ctx, CX, CY, sx, sy, C('position'), 3, [6, 8]);
+    /* the gravitational force toward the center and the velocity along the tangent */
+    const fl = clamp(70 * Math.sqrt((mE / (rk * rk)) / (1 / (7.88 * 7.88))), 22, 120);
+    const vl = clamp(70 * (v / orbitV(7.88, 1)), 26, 120);
+    const ir = Math.hypot(CX - sx, CY - sy) || 1, ix = (CX - sx) / ir, iy = (CY - sy) / ir;
+    arrow(ctx, sx, sy, sx + ix * fl, sy + iy * fl, C('force'), 5);
+    arrow(ctx, sx, sy, sx - Math.sin(th) * vl, sy - Math.cos(th) * vl, C('velocity'), 5);
+    /* r, F and v are placed by a labeller with the satellite, its panels and both arrows kept clear */
+    const LB = labeller(ctx, 690, { headline: true });
+    LB.block(sx - 34, sy - 34, sx + 34, sy + 34);
+    for (let k = 0; k <= fl; k += 14) LB.block(sx + ix * k - 6, sy + iy * k - 6, sx + ix * k + 6, sy + iy * k + 6);
+    for (let k = 0; k <= vl; k += 14) LB.block(sx - Math.sin(th) * k - 6, sy - Math.cos(th) * k - 6, sx - Math.sin(th) * k + 6, sy - Math.cos(th) * k + 6);
+    LB.add('F', sx + ix * fl, sy + iy * fl, -iy, ix, C('force'), 22, 22);
+    LB.add('v', sx - Math.sin(th) * vl, sy - Math.cos(th) * vl, -Math.sin(th), -Math.cos(th), C('velocity'), 22, 22);
+    LB.add('r', CX - ix * ir * 0.45, CY - iy * ir * 0.45, iy, -ix, C('position'), 24, 22);
+    /* the satellite: a body with a panel on each side, set square to its radius */
+    ctx.save(); ctx.translate(sx, sy); ctx.rotate(-th); ctx.fillStyle = F.ref('satellite'); ctx.fillRect(-8, -8, 16, 16); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('satellite'); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.rect(-30, -5, 18, 10); ctx.rect(12, -5, 18, 10); ctx.fill(); ctx.stroke(); ctx.restore();
+    LB.flush();
+    text(ctx, '质量为 m 的卫星', CX, CY + RDRAW + 62, F.ref('satellite'), { size: 17, align: 'center' });
+    /* the graph: the period against the radius, where the third law is a straight line */
+    const box = { l: 730, r: 1330, t: 150, b: 540 };
+    const { X, Y } = axes(ctx, box, [0, 3], [0, 4], { xl: 'r (×10³ km)', yl: 'T (h)', xc: C('position'), yc: C('time'), nx: 3, ny: 4, fx: pow10, fy: pow10 });
+    const lK = Math.log10(orbitT(1, mE));
+    const lrLo = clamp((0 - lK) / 1.5, 0, 3), lrHi = clamp((4 - lK) / 1.5, 0, 3);
+    curve(ctx, (lr) => Math.log10(orbitT(Math.pow(10, lr), mE)), lrLo, lrHi, X, Y, C('time'), 5, 60);
+    const moonT = orbitT(MOON_R, mE), moonOff = orbitT(MOON_R, 1) / moonT;
+    dot(ctx, X(Math.log10(MOON_R)), Y(Math.log10(orbitT(MOON_R, 1))), F.ref('moon'), false, 11);
+    text(ctx, '月球', X(Math.log10(MOON_R)) - 16, Y(Math.log10(orbitT(MOON_R, 1))) - 24, F.ref('moon'), { size: 17, align: 'right' });
+    dot(ctx, X(Math.log10(rk)), Y(Math.log10(T)), C('time'), true, 10);
+    line(ctx, X(Math.log10(rk)), Y(Math.log10(T)), X(Math.log10(rk)), box.b, C('position'), 2, [4, 8]);
+    headline(ctx, '在 ' + fmt(rk, 2) + ' × 10³ km 处，卫星绕行一周需 ' + sayT(T) + '，速率为 ' + sig3(v) + ' km/s，与其质量无关。');
+    readout(d.readout, `G\\frac{\\km\\kM}{\\kr^2} = \\km\\kac = \\km\\frac{\\kv^2}{\\kr} \\;\\Rightarrow\\; \\kv = \\sqrt{\\frac{G\\kM}{\\kr}} = ${sig3(v)}\\ \\text{km/s}, \\quad \\kac = \\frac{\\kv^2}{\\kr} = ${sig3(ac)}\\ \\text{m/s}^2`,
+      Math.abs(moonOff - 1) < 0.02
+        ? '这条直线经过月球的点：质量为 ' + fmt(mE, 2) + ' 个地球质量的中心天体，能使月球保持在 384 × 10³ km 和 27.3 d。'
+        : '这条直线偏离月球的点（384 × 10³ km，27.3 d），在周期上相差 ' + fmt(moonOff > 1 ? moonOff : 1 / moonOff, 2) + ' 倍。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 6.28: the same two motions drawn twice, once with Earth at the
+   center and once with the Sun. The loops the left picture needs an
+   epicycle for are what the right picture gets from one rule. The planets
+   run, so the figure cycles over eight years.
+===================================================================== */
+(function () {
+  const d = sim('sim-frames', 660);
+  const rad = ctl(d.controls, { label: '\\kr', cls: 'position', min: 1.2, max: 3, step: 0.01, value: 1.52, unit: 'AU', dec: 2, onInput: reset, aria: '外侧行星的轨道半径' });
+  const trail = ctl(d.controls, { label: '\\Delta \\kt', cls: 'time', min: 1, max: 8, step: 0.1, value: 4, unit: 'y', dec: 1, aria: '保留的轨迹长度' });
+  const cy = cycle(() => 8, 1.0);
+  function reset() { cy.reset(); }
+  const CY = 400, CX1 = 380, CX2 = 1020, RMAX = 190;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const r = rad.v, tr = trail.v, t = cy.now(), P = Math.pow(r, 1.5);
+    const syn = 1 / Math.abs(1 - 1 / P);
+    const earth = (s) => ({ x: Math.cos(TAU * s), y: Math.sin(TAU * s) });
+    const outer = (s) => ({ x: r * Math.cos(TAU * s / P), y: r * Math.sin(TAU * s / P) });
+    /* (a) Earth at the center: the Sun on a circle, the outer planet on a track that loops */
+    const S1 = RMAX / (r + 1);
+    text(ctx, '（a）地球位于中心，如托勒密模型所示', CX1, 150, PAL.muted, { size: 20, align: 'center' });
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([8, 8]); ctx.beginPath(); ctx.arc(CX1, CY, S1, 0, TAU); ctx.stroke(); ctx.restore();
+    const t0 = Math.max(0, t - tr);
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath();
+    for (let i = 0; i <= 320; i++) {
+      const s = t0 + ((t - t0) * i) / 320, e = earth(s), o = outer(s);
+      const gx = CX1 + (o.x - e.x) * S1, gy = CY - (o.y - e.y) * S1;
+      if (i) ctx.lineTo(gx, gy); else ctx.moveTo(gx, gy);
+    }
+    ctx.stroke(); ctx.restore();
+    const e1 = earth(t), o1 = outer(t);
+    const sunG = { x: CX1 - e1.x * S1, y: CY + e1.y * S1 }, outG = { x: CX1 + (o1.x - e1.x) * S1, y: CY - (o1.y - e1.y) * S1 };
+    const away = (q, k) => { const n = Math.hypot(q.x - CX1, q.y - CY) || 1; return { x: q.x + ((q.x - CX1) / n) * k, y: q.y + ((q.y - CY) / n) * k }; };
+    sun(ctx, sunG.x, sunG.y, 13, F.ref('sun'));
+    const sl = away(sunG, 42); text(ctx, '太阳', sl.x, sl.y, F.ref('sun'), { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    planet(ctx, outG.x, outG.y, 10, F.ref('outer-planet'));
+    const ol = away(outG, 34); text(ctx, '行星', ol.x, ol.y, F.ref('outer-planet'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    planet(ctx, CX1, CY, 13, F.ref('earth'));
+    /* Earth's own label goes on the side away from the Sun, so the two never sit on each other */
+    const sn = Math.hypot(sunG.x - CX1, sunG.y - CY) || 1;
+    text(ctx, '地球', CX1 - ((sunG.x - CX1) / sn) * 34, CY - ((sunG.y - CY) / sn) * 34, F.ref('earth'), { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* (b) the Sun at the center: two plain circles */
+    const S2 = RMAX / r;
+    text(ctx, '（b）太阳位于中心，如哥白尼模型所示', CX2, 150, PAL.muted, { size: 20, align: 'center' });
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
+    ctx.beginPath(); ctx.arc(CX2, CY, S2, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(CX2, CY, S2 * r, 0, TAU); ctx.stroke(); ctx.restore();
+    const eH = { x: CX2 + e1.x * S2, y: CY - e1.y * S2 }, oH = { x: CX2 + o1.x * S2, y: CY - o1.y * S2 };
+    line(ctx, CX2, CY, oH.x, oH.y, C('position'), 3);
+    const rl2 = beside(CX2, CY, oH.x, oH.y, 20);
+    text(ctx, 'r = ' + fmt(r, 2) + ' AU', rl2.x, rl2.y, C('position'), { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    sun(ctx, CX2, CY, 15, F.ref('sun'));
+    const out2 = (q, k) => { const n = Math.hypot(q.x - CX2, q.y - CY) || 1; return { x: q.x + ((q.x - CX2) / n) * k, y: q.y + ((q.y - CY) / n) * k }; };
+    planet(ctx, eH.x, eH.y, 9, F.ref('earth'));
+    const el2 = out2(eH, 30); text(ctx, '地球', el2.x, el2.y, F.ref('earth'), { size: 18, weight: 600, align: 'center' });
+    planet(ctx, oH.x, oH.y, 10, F.ref('outer-planet'));
+    const ol2 = out2(oH, 32); text(ctx, '行星', ol2.x, ol2.y, F.ref('outer-planet'), { size: 18, weight: 600, align: 'center' });
+    const loops = Math.floor((t - t0) / syn);
+    headline(ctx, t - t0 < 0.3
+      ? '经过 ' + fmt(t, 1) + ' y，两颗行星刚刚出发，从地球上看到的轨迹才刚刚开始。'
+      : '经过 ' + fmt(t, 1) + ' y，这颗行星相对于太阳走的是一个简单的圆，而从地球上看，它在最近 ' + fmt(t - t0, 1) + ' y 内已折返 '
+        + loops + ' 次。');
+    readout(d.readout, `\\kT = \\kr^{3/2} = (${fmt(r, 2)})^{3/2} = ${fmt(P, 2)}\\ \\text{y}`,
+      '地球每隔 ' + fmt(syn, 2) + ' y 追上这颗行星一次，每追上一次，左侧的轨迹就折返一次。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 8 / 6), draw });
+})();
+
+};

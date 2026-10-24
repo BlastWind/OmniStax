@@ -1,0 +1,1047 @@
+{
+ "id": "34.1",
+ "module": "m42686",
+ "chapter": "34",
+ "title": "宇宙学与粒子物理学",
+ "short": "宇宙学",
+ "lead": "宇宙学研究宇宙的特性与演化，在最大的尺度上，它的解释最终要落到最小尺度的物理学上。本节介绍星系及其距离、由星系红移读出的宇宙膨胀、大爆炸遗留下来的宇宙微波背景，以及早期宇宙中各力尚处于统一状态的各个时期。",
+ "objectives": [
+  "讨论宇宙的膨胀。",
+  "解释大爆炸。"
+ ],
+ "summary_html": "<ul><li>宇宙学是研究宇宙的特性与演化的学科。</li><li>宇宙最重要的两个特征，一是其星系的宇宙学红移与距离成正比，二是它的宇宙微波背景（CMBR）。两者都支持这样的观念：曾发生过一次巨大的爆炸，称为大爆炸，它创生了宇宙。</li><li>比本星系群更远的星系，平均而言，其退行速度为 $$\\kv = H_{0}\\kd\\text{,}$$ 其中 $\\kd$ 是到该星系的距离，$H_{0}$ 是哈勃常数，取平均值 $H_{0} = 20\\;\\text{km/s}\\cdot\\text{Mly}\\text{.}$<sup class=\"fn\" data-note=\"c-hubble-unit\"></sup></li><li>对宇宙大尺度特性的解释与粒子物理学密切相关。</li><li>物质相对于反物质的优势和 CMBR 的光滑性，是与粒子物理学相联系的两个特征。</li><li>根据已知的物理定律，宇宙的各个时期可以一直追溯到大爆炸之后极短的时刻。</li><li>最早的时期与力的统一相联系，其中电弱时期已被部分理解，大统一时期属于推测，而万有理论时期则高度推测，因为它涉及一种未知的单一超力。</li><li>从大统一理论到电弱的转变称为对称性自发破缺。它释放出能量，造成了暴胀图景，而暴胀图景又解释了 CMBR 的光滑性。</li></ul>",
+ "notes": "书中的疏漏照其印刷原样保留：书中写作“100,000 km/s 的速率”，而随后的计算用的是 10,000 km/s；摘要中和一道习题的答案里，哈勃常数写成 km/s·Mly；“200 μk”；以及图 34.7 中的“100 亿到 200 亿年”与正文的 130 亿到 150 亿年不一致；重绘图 34.9 的那幅图，把地球、生命和现在放在 1.0、1.05 和 1.5 × 10¹⁰ y，而书中的图像把它们印在晚十倍之处。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案；视差习题的答案书中印作 º，这里写作 °。十道没有给出答案的习题被略去（银河系中暗物质与发光物质的质量、距离 5 亿光年的星系的速率、太阳绕星系运行的周期、由哈勃常数得出的宇宙年龄、仙女星系对一个人的引力、质子—反质子湮没产生的 γ 射线、宇宙背景辐射光子的能量、轨道速率对半径的依赖关系、坍缩核心的转动能，以及 10⁻⁴³ s 时的能量不确定度），关于星系质量的“自拟习题”一项也略去。中子星习题留到 34.2，因为中子星在那里才引入；34.6 中印出的关于哈勃定律的“批判性思考”习题则放在这里。思考题的建议思路由 AI 撰写。",
+ "figures": [
+  {
+   "id": "photo-clusters",
+   "kind": "photo",
+   "number": "34.2",
+   "widths": [
+    300
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-milky-way",
+   "kind": "photo",
+   "number": "34.3",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-andromeda",
+   "kind": "photo",
+   "number": "34.4",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hubble-expansion",
+   "kind": "sim",
+   "number": "34.5",
+   "folds": [
+    "34.6"
+   ],
+   "originals": [
+    "/media/ch34/Figure_35_01_04a.jpg",
+    "/media/ch34/Figure_35_01_05a.jpg"
+   ],
+   "original_caption": "（图 34.5）这幅星系红移对距离的图线呈线性关系，距离越大红移越大，表明宇宙在膨胀。斜率给出膨胀率的近似值。（来源：John Cub）。（图 34.6）星系正在彼此飞散，越远的运动得越快，就好像一次原初的爆炸把形成它们的物质抛了出来。已知最遥远的星系以接近光速的速率相对于我们运动。",
+   "widths": [
+    250,
+    200
+   ],
+   "draws": [
+    "velocity",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cmbr-stretch",
+   "kind": "sim",
+   "number": "34.7",
+   "originals": [
+    "/media/ch34/Figure_35_01_06a.jpg"
+   ],
+   "original_caption": "（a）大爆炸被用来解释目前观测到的宇宙膨胀。它是一次能量极高的爆炸，发生在大约 100 亿到 200 亿年前。在膨胀和冷却之后，星系在现已冷却的原初火球遗迹中形成。（b）宇宙微波辐射的光谱是迄今探测到的最完美的黑体辐射谱。它对应于 2.725 K 的温度，即大爆炸遗迹因膨胀而冷却后的温度。这种辐射可以从空间中任何未被其他源遮挡的方向测得。它是宇宙在一次巨大爆炸中诞生的有力证据，而星系红移早已显示了这一点。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "intensity",
+    "position",
+    "temperature",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-wmap",
+   "kind": "photo",
+   "number": "34.8",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-epochs",
+   "kind": "sim",
+   "number": "34.9",
+   "originals": [
+    "/media/ch34/Figure_35_01_08a-03a9.jpg"
+   ],
+   "original_caption": "宇宙从大爆炸开始的演化与物理定律密切相关，在最早期阶段尤其与粒子物理学的定律相关。宇宙在整个历史中都是相对论性的。高能下力的统一理论可以通过它们对宇宙及其演化的塑造来检验。",
+   "widths": [],
+   "draws": [
+    "time",
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "milky-way",
+   "label": "银河系",
+   "figures": [
+    "sim-hubble-expansion"
+   ]
+  },
+  {
+   "id": "distant-galaxy",
+   "label": "相距 1 亿光年的星系",
+   "figures": [
+    "sim-hubble-expansion"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "large-and-small",
+   "concept": "four-basic-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "large-and-small",
+   "concept": "universal-gravitation",
+   "verb": "uses"
+  },
+  {
+   "span": "galaxies",
+   "concept": "cosmology",
+   "verb": "introduces"
+  },
+  {
+   "span": "galaxies",
+   "concept": "look-back-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "galaxies",
+   "concept": "speed-of-light-in-vacuum",
+   "verb": "uses"
+  },
+  {
+   "span": "galaxies",
+   "concept": "distance",
+   "verb": "uses"
+  },
+  {
+   "span": "expansion",
+   "concept": "big-bang",
+   "verb": "introduces"
+  },
+  {
+   "span": "expansion",
+   "concept": "cosmological-red-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "expansion",
+   "concept": "hubble-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "expansion",
+   "concept": "hubble-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "expansion",
+   "concept": "recession-speed-and-distance",
+   "verb": "introduces"
+  },
+  {
+   "span": "expansion",
+   "concept": "look-back-time",
+   "verb": "uses"
+  },
+  {
+   "span": "expansion",
+   "concept": "relativistic-doppler-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "expansion",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "expansion",
+   "concept": "distance",
+   "verb": "uses"
+  },
+  {
+   "span": "expansion",
+   "concept": "wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "cmbr",
+   "concept": "cosmic-microwave-background",
+   "verb": "introduces"
+  },
+  {
+   "span": "cmbr",
+   "concept": "big-bang",
+   "verb": "reinforces"
+  },
+  {
+   "span": "cmbr",
+   "concept": "blackbody-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "cmbr",
+   "concept": "wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "cmbr",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-antimatter",
+   "concept": "matter-antimatter-asymmetry",
+   "verb": "introduces"
+  },
+  {
+   "span": "matter-antimatter",
+   "concept": "antimatter",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-antimatter",
+   "concept": "antimatter-and-annihilation",
+   "verb": "uses"
+  },
+  {
+   "span": "wrinkles",
+   "concept": "cmbr-wrinkles",
+   "verb": "introduces"
+  },
+  {
+   "span": "wrinkles",
+   "concept": "cosmic-microwave-background",
+   "verb": "uses"
+  },
+  {
+   "span": "wrinkles",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "epochs",
+   "concept": "epochs-of-the-universe",
+   "verb": "introduces"
+  },
+  {
+   "span": "epochs",
+   "concept": "electroweak-epoch",
+   "verb": "introduces"
+  },
+  {
+   "span": "epochs",
+   "concept": "gut-epoch",
+   "verb": "introduces"
+  },
+  {
+   "span": "epochs",
+   "concept": "toe-epoch",
+   "verb": "introduces"
+  },
+  {
+   "span": "epochs",
+   "concept": "superforce",
+   "verb": "introduces"
+  },
+  {
+   "span": "epochs",
+   "concept": "grand-unified-theories",
+   "verb": "uses"
+  },
+  {
+   "span": "epochs",
+   "concept": "electroweak-unification",
+   "verb": "uses"
+  },
+  {
+   "span": "epochs",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "epochs",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "inflation",
+   "concept": "spontaneous-symmetry-breaking",
+   "verb": "introduces"
+  },
+  {
+   "span": "inflation",
+   "concept": "inflationary-scenario",
+   "verb": "introduces"
+  },
+  {
+   "span": "inflation",
+   "concept": "symmetry-breaking-and-inflation",
+   "verb": "introduces"
+  },
+  {
+   "span": "inflation",
+   "concept": "cmbr-wrinkles",
+   "verb": "uses"
+  },
+  {
+   "span": "inflation",
+   "concept": "four-basic-forces",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737723323",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "解释为什么我们只是<em>看起来</em>处于宇宙膨胀的中心，以及为什么另一个星系中的观察者会看到除最近的星系外所有星系同样的相对运动，都在远离她。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "膨胀的是空间本身，所以星系之间的每一个间距都在相同的时间内增大同样的倍数。从任何一个星系看，距离为两倍的星系，其间距增大的量也是两倍，因而退行的速率也是两倍：每个观察者都会得出 $v = H_{0}d$，并看到除最近的星系（它们或被引力束缚在她周围，或有局部运动）之外的所有星系都在远离。我们不在中心；宇宙中没有膨胀的中心，所有观察者都认为自己是静止的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169736809912",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "如果宇宙没有可观测的边缘，我们能确定它的膨胀中心在哪里吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。既然每个观察者看到的退行模式都相同，都是相对于自己的 $v = H_{0}d$，星系的运动就没有挑出任何一个特殊的点。只有找到边缘，或者找到宇宙看起来有所不同的某个方向，才能确定中心的位置；而宇宙没有可观测的边缘，膨胀也就没有可观测的中心。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738013588",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "如果宇宙是无限的，它有中心吗？请讨论。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "无限的宇宙没有中心，因为没有可以用来量出中间位置的边缘，每个点所处的周围情形都相同。这与观测到的膨胀从每个星系看来都一样相符：大爆炸不是从一点向空空的空间中爆发的爆炸，而是所有空间、处处同时发生的膨胀。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737769843",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "光红移的另一个已知原因，是光源处于强引力场中。请讨论，鉴于星系红移与距离成正比而不是与星系的大小成正比，如何排除这一点是星系红移的来源。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "引力红移取决于光源处的场，所以质量越大、越致密的星系红移就越大，而与星系有多远无关。观测到的红移与距离成正比，而与星系的大小或质量无关，所以光源处的引力不可能是红移的原因。红移随光所走过的距离而增大，这指向光在途中空间被拉伸，即宇宙学红移。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169738043146",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "如果发现了某种未知的红移原因——例如光在空旷空间中长距离传播而变得“疲劳”——这会对宇宙学有什么影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "星系红移是宇宙正在膨胀的主要证据，经 $v = H_{0}d$ 被解读为宇宙学红移。如果光在长距离上自行损失能量，那么每个红移的一部分或全部就来自于此，而不是来自膨胀，于是由红移得出的退行速度、哈勃常数和宇宙年龄都需要修订，而大爆炸的依据就要更多地依赖其他证据，例如宇宙微波背景。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169737825737",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "galaxies",
+   "prompt": "奥伯斯佯谬提出了一个有趣的问题：如果宇宙是无限的，那么任何一条视线最终都应落在某颗恒星的表面上。那么夜空为什么是黑的？请讨论公认的宇宙演化图景如何解决这个佯谬。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在公认的图景中，宇宙始于约 130 亿到 150 亿年前的大爆炸，所以恒星和星系只存在了有限的时间。来自约 140 亿光年之外的光还没有来得及到达我们这里，因此大多数视线根本不会落在任何恒星上。膨胀还使遥远星系的光发生红移，降低了它的能量，并把早期宇宙的辉光拉伸成微弱的微波背景。这两方面都使夜空变暗。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169737756597",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wrinkles",
+   "prompt": "如果宇宙微波背景辐射（CMBR）是大爆炸火球的遗迹，我们预期会在其中看到热区和冷区。造成 CMBR 中这些皱褶的两个原因是什么？观测到的温度变化比最初预期的更大还是更小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "皱褶对应于早期宇宙中稠密和稀疏的气体区域，由湍流或早期涨落造成；稠密区域后来在引力作用下收缩，形成恒星和星系。观测到的变化比预期的小得多，在 2.7 K 中只有约 200 μK，好于千分之一，暴胀图景用把早期的皱褶拉伸得几乎平坦来解释这一点。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169737812412",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-antimatter",
+   "prompt": "一种 $K$ 介子的衰变被引为自然界偏爱物质而非反物质的证据。既然介子由一个夸克和一个反夸克组成，它们优先衰变成某一种类型，是否令人惊讶？这是自然界中的一种不对称吗？物质压倒反物质的优势是一种不对称吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这是令人惊讶的：介子含有一个夸克和一个反夸克，所以完全对称的自然界不会让它的衰变在物质与反物质之间有所偏好。中性 $K$ 介子的这种偏好是基本力中一种微小而真实的不对称。宇宙中物质占优势同样是一种不对称，而粒子物理学中那种微小的不对称可以解释它：早期宇宙中多出 $10^{9}$ 分之一的物质，在其余部分一对一对地湮没之后，就留下了今天恒星和星系那样几乎纯粹的物质。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169737949974",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "galaxies",
+   "prompt": "到本地星系的距离，是通过测量称为造父变星的恒星的亮度来确定的，这些恒星可以单个观测到，并且在标准距离处的绝对亮度是已知得很准确的。请解释测得的亮度如何随距离变化，与绝对亮度相比。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "恒星的光扩散到一个面积与距离平方成正比的球面上，所以接收到的强度按 $1/d^{2}$ 下降。一颗距离为标准距离两倍的造父变星，看起来只有其绝对亮度的四分之一，把测得的亮度与已知的绝对亮度比较，就得到距离。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id1169737788808",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "到非常遥远的星系的距离，是根据它们的外观类型（它表明星系中恒星的数量）和测得的亮度来估计的。请解释测得的亮度如何随距离变化。是否需要对星系的红移（所有遥远的星系都有显著的红移）做某种修正？请讨论这些测量中不确定度的可能原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "与单颗恒星一样，测得的亮度按距离的平方反比下降。需要对红移做修正：被拉伸的光每个光子带的能量更少、到达的速率也更低，还有一部分被移出了所测量的波段，所以未经修正的星系会显得比实际更暗、更远。不确定度来自：由星系的类型判断恒星数量，吸收光的尘埃和气体，以及人们看到的是星系很久以前的样子，那时它们可能比我们附近的星系更亮或看起来更年轻。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id1169738166165",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epochs",
+   "prompt": "如果有意义的最小时间间隔大于零，图 34.9 中的两条线会相交吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不会。在指数标度上没有零，两条线只有在时间趋向零时才相互接近。如果比某个最小间隔更短的时间间隔没有意义，那么标度就在那里终止，在两条线汇合之前，所以它们永远不会相交。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738060667",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "galaxies",
+   "prompt": "已知银河系约有 $10^{11}$ 颗恒星，平均质量为太阳的 1.5 倍，求银河系中发光物质的近似质量。",
+   "answer": {
+    "type": "number",
+    "value": 3e+41,
+    "unit": "kg",
+    "generated_by": "source",
+    "hint": "用恒星数乘以 1.5 个太阳质量，其中太阳质量为 $1.99\\times 10^{30}\\;\\text{kg}$。",
+    "solution": "$3\\times 10^{41}\\;\\text{kg}$",
+    "tol": 0.1
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738109498",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "galaxies",
+   "prompt": "（a）估计已知宇宙中发光物质的质量，已知有 $10^{11}$ 个星系，每个星系含有 $10^{11}$ 颗恒星，平均质量为太阳的 1.5 倍。（b）这些质量中有多少个质子（最丰富的核素）？（c）将（b）的答案乘以 2（因为每个质子对应一个电子），再乘以 $10^{9}$（因为空间中的粒子，如光子和中微子，远多于发光物质中的粒子），估计可观测宇宙中的粒子总数。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）$3\\times 10^{52}\\;\\text{kg}$（b）$2\\times 10^{79}$（c）$4\\times 10^{88}$",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3e+52,
+      "unit": "kg",
+      "tol": 0.1,
+      "hint": "把星系数、每个星系中的恒星数和恒星的平均质量相乘。"
+     },
+     {
+      "part": "(b)",
+      "value": 2e+79,
+      "tol": 0.15,
+      "hint": "用质量除以质子的质量 $1.67\\times 10^{-27}\\;\\text{kg}$。"
+     },
+     {
+      "part": "(c)",
+      "value": 4e+88,
+      "tol": 0.15,
+      "hint": "把（b）的结果乘以 2，再乘以 $10^{9}$。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738128083",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "平均而言，以光速的 2.0% 的速率离我们远去的星系有多远？",
+   "answer": {
+    "type": "number",
+    "value": 0.3,
+    "unit": "Gly",
+    "generated_by": "source",
+    "hint": "先由 $c = 3.00\\times 10^{5}\\;\\text{km/s}$ 求出以 km/s 为单位的速率，再用 $d = v/H_{0}$，其中 $H_{0} = 20\\;\\text{(km/s)/Mly}$。",
+    "solution": "0.30 Gly"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169737802923",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "（a）一个位于已知宇宙边缘附近、约 100 亿光年之外的星系，相对于我们的速率约为多少？（b）这是光速的几分之几？请注意，我们已观测到以大于 $0.9c$ 的速率远离我们的星系。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）$2.0\\times 10^{5}\\;\\text{km/s}$（b）$0.67c$",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 200000.0,
+      "unit": "km/s",
+      "hint": "用 $v = H_{0}d$，其中 $d = 10{,}000\\;\\text{Mly}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.67,
+      "unit": "c",
+      "hint": "除以 $c = 3.00\\times 10^{5}\\;\\text{km/s}$。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737753519",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "galaxies",
+   "prompt": "假设太阳绕银河系中心沿圆轨道运行，利用下列信息计算它的轨道速率：银河系的质量相当于一个质量为太阳 $1.5\\times 10^{11}$ 倍（即 $3\\times 10^{41}\\;\\text{kg}$）的单个质点，位于 30,000 光年之外。",
+   "answer": {
+    "type": "number",
+    "value": 270000.0,
+    "unit": "m/s",
+    "generated_by": "source",
+    "hint": "引力提供向心力，所以 $v = \\sqrt{GM/r}$；用 $1\\;\\text{ly} = 9.46\\times 10^{15}\\;\\text{m}$ 把 30,000 光年换算成米。",
+    "solution": "$2.7\\times 10^{5}\\;\\text{m/s}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169738077849",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "galaxies",
+   "prompt": "仙女星系是最近的大型星系，肉眼可见。假设它的光度是太阳的 $10^{12}$ 倍，距离为 200 万光年，估计它相对于太阳的亮度。",
+   "answer": {
+    "type": "number",
+    "value": 6e-11,
+    "generated_by": "source",
+    "hint": "亮度与光度成正比，与距离的平方成反比；把 $10^{12}$ 除以 $(2\\;\\text{Mly})^{2}$ 与 1 除以 $(1.58\\times 10^{-5}\\;\\text{ly})^{2}$（太阳的距离）作比较。",
+    "solution": "$6\\times 10^{-11}$（这是一个高估值，因为仙女星系的部分光被该星系内的气体和尘埃挡住了）",
+    "tol": 0.1
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737794400",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epochs",
+   "prompt": "观察到各力统一所需的平均粒子能量估计为 $10^{19}\\;\\text{GeV}$。（a）静质量为 $10^{19}\\;\\text{GeV/}c^{2}$ 的粒子，其静质量是多少千克？（b）这是氢原子质量的多少倍？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）$2\\times 10^{-8}\\;\\text{kg}$（b）$1\\times 10^{19}$",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2e-08,
+      "unit": "kg",
+      "tol": 0.15,
+      "hint": "把 $10^{19}\\;\\text{GeV}$ 换算成焦耳，再除以 $c^{2}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 1e+19,
+      "tol": 0.15,
+      "hint": "除以氢原子的质量 $1.67\\times 10^{-27}\\;\\text{kg}$。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169737820271",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "（a）宇宙年龄约为 $10^{10}$ y 时，对应的哈勃常数是多少？为得到近似值，假设膨胀率不变，并计算两个星系在 $10^{10}$ y 的时间内相距 100 万光年（目前星系间的平均间距）所必须具有的分离速率。（b）同样，宇宙年龄约为 $2\\times 10^{10}$ y 时，对应的哈勃常数是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）$30\\;\\text{km/s}\\cdot\\text{Mly}$（b）$15\\;\\text{km/s}\\cdot\\text{Mly}$<sup class=\"fn\" data-note=\"c-p8-unit\"></sup>",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 30,
+      "unit": "(km/s)/Mly",
+      "hint": "两个星系在 $10^{10}$ y 内相距 100 万光年；把这一速率换算成 km/s，就是每百万光年间距对应的 $H_{0}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 15,
+      "unit": "(km/s)/Mly",
+      "hint": "时间加倍意味着速率减半。"
+     }
+    ]
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737812426",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "galaxies",
+   "prompt": "到最近的恒星（500 光年以内）的距离可以用称为视差的技术测量，如图 34.26 所示。对于位于太阳正上方 4.0 光年处的恒星，相对于地球轨道平面的角 $\\theta_{1}$ 和 $\\theta_{2}$ 是多少？",
+   "answer": {
+    "type": "number",
+    "value": 89.999773,
+    "unit": "°",
+    "generated_by": "source",
+    "hint": "恒星、太阳和地球构成一个直角三角形，地球—太阳距离 $1.50\\times 10^{11}\\;\\text{m}$ 是一条直角边，4.0 光年是另一条直角边；两个角相同。",
+    "solution": "$89.999773^\\circ$（用了很多位数字，是为了显示它与 $90^\\circ$ 的差别）",
+    "tol": 1e-07
+   },
+   "figure": {
+    "src": "/media/ch34/Figure_35_01_09a.jpg",
+    "alt": "该图显示一个圆锥形，顶点处是一颗恒星，圆形底面的中心是太阳，地球沿底面的圆周绕太阳公转。这颗恒星在地球—太阳平面上方 4 光年处。当地球位于太阳最左边时，从地球到太阳的线段与从地球到恒星的线段之间的夹角称为 θ₁。当地球位于直径另一端（即最右边）的位置时，同样两条线之间的夹角标为 θ₂。",
+    "caption": "图 34.26。到邻近恒星的距离用三角测量法测定，也称视差法。每隔六个月测量一次到恒星的视线的角度，再利用已知的地球轨道直径计算距离。这种方法可用于约 500 光年以内的恒星。"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "exer-87234",
+   "source_section": "34.6",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expansion",
+   "prompt": "假设两个星系相距 $2.00\\times 10^{2}\\;\\text{Mly}$。（a）由于空间膨胀，它们分离的速率有多大？（b）现在设第三个星系位于沿一条线、距离为 $2.00\\times 10^{2}\\;\\text{Mly}$ 的地方，该线是前两个星系之间线段的垂直平分线。这个星系离另外两个星系中任一个的分离速率有多大？（c）为什么第三个星系看起来会以相同的速率同时远离最初提到的两个星系？（d）如何探测到这种表观运动？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "（a）$v = H_{0}d = (20\\;\\text{km/s})/\\text{Mly}\\,(2.00\\times 10^{2}\\;\\text{Mly}) = 4.00\\times 10^{3}\\;\\text{km/s}$（b）$d = \\sqrt{(1.00\\times 10^{2})^{2} + (2.00\\times 10^{2})^{2}}\\;\\text{Mly} = 2.24\\times 10^{2}\\;\\text{Mly}$，$v = (20\\;\\text{km/s})/\\text{Mly}\\,(2.24\\times 10^{2}\\;\\text{Mly}) = 4.48\\times 10^{3}\\;\\text{km/s}$（c）这些星系的分离主要是由于空间的膨胀。（d）从第三个星系发出的光，在另外两个星系中的任何一个探测到时，都会有红移。",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4000.0,
+      "unit": "km/s",
+      "hint": "用 $v = H_{0}d$，其中 $H_{0} = 20\\;\\text{(km/s)/Mly}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 4480.0,
+      "unit": "km/s",
+      "hint": "第三个星系到另外两个星系中每一个的距离都是 $\\sqrt{(1.00\\times 10^{2})^{2} + (2.00\\times 10^{2})^{2}}\\;\\text{Mly}$。"
+     }
+    ]
+   },
+   "tag": "批判性思考"
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "hubble-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "cosmological-red-shift"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "hubble-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "big-bang"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "big-bang"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "cosmological-red-shift"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "hubble-law"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "cosmological-red-shift"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "big-bang"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "big-bang"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "look-back-time"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "cmbr-wrinkles"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "inflationary-scenario"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "matter-antimatter-asymmetry"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "intensity"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "cosmology"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "cosmological-red-shift"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "intensity"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "epochs-of-the-universe"
+  },
+  {
+   "exercise": "p1",
+   "concept": "cosmology"
+  },
+  {
+   "exercise": "p1",
+   "concept": "mass"
+  },
+  {
+   "exercise": "p2",
+   "concept": "cosmology"
+  },
+  {
+   "exercise": "p2",
+   "concept": "proton"
+  },
+  {
+   "exercise": "p3",
+   "concept": "recession-speed-and-distance"
+  },
+  {
+   "exercise": "p4",
+   "concept": "recession-speed-and-distance"
+  },
+  {
+   "exercise": "p4",
+   "concept": "speed-of-light-in-vacuum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "orbital-speed"
+  },
+  {
+   "exercise": "p5",
+   "concept": "cosmology"
+  },
+  {
+   "exercise": "p6",
+   "concept": "intensity"
+  },
+  {
+   "exercise": "p6",
+   "concept": "look-back-time"
+  },
+  {
+   "exercise": "p7",
+   "concept": "epochs-of-the-universe"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rest-energy"
+  },
+  {
+   "exercise": "p8",
+   "concept": "hubble-constant"
+  },
+  {
+   "exercise": "p8",
+   "concept": "big-bang"
+  },
+  {
+   "exercise": "p9",
+   "concept": "distance"
+  },
+  {
+   "exercise": "p10",
+   "concept": "hubble-law"
+  },
+  {
+   "exercise": "p10",
+   "concept": "recession-speed-and-distance"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-galaxy-speed",
+   "kind": "correction",
+   "html": "书中印的是 100,000 km/s，而计算中用的是 $10{,}000\\;\\text{km/s}$。算得的 50 亿光年，是以 10,000 km/s 的速率退行的星系的距离。"
+  },
+  {
+   "id": "c-hubble-unit",
+   "kind": "correction",
+   "html": "书中把单位写成乘积 $\\text{km/s}\\cdot\\text{Mly}$。哈勃常数是速率与距离之比，$H_{0} = 20\\;\\text{(km/s)/Mly}$，正文就是这样写的。"
+  },
+  {
+   "id": "c-fig-big-bang-age",
+   "kind": "correction",
+   "html": "图注把大爆炸的时间定为 100 亿到 200 亿年前。本节正文把它定在 130 亿到 150 亿年前，而测得的宇宙年龄是 138 亿年。",
+   "figure": "sim-cmbr-stretch"
+  },
+  {
+   "id": "c-p8-unit",
+   "kind": "correction",
+   "html": "书中的答案把单位写成乘积 $\\text{km/s}\\cdot\\text{Mly}$。哈勃常数是速率与距离之比：30 和 15 (km/s)/Mly。"
+  }
+ ]
+}

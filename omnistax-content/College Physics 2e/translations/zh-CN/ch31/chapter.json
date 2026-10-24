@@ -1,0 +1,654 @@
+{
+ "id": "31",
+ "dir": "ch31",
+ "title": "放射性与核物理学",
+ "intro": {
+  "module": "m42620",
+  "slug": "31-introduction-to-radioactivity-and-nuclear-physics"
+ },
+ "sections": [
+  {
+   "id": "31.1",
+   "module": "m42623",
+   "title": "核放射性",
+   "slug": "31-1-nuclear-radioactivity"
+  },
+  {
+   "id": "31.2",
+   "module": "m42627",
+   "title": "辐射的探测与探测器",
+   "slug": "31-2-radiation-detection-and-detectors"
+  },
+  {
+   "id": "31.3",
+   "module": "m42631",
+   "title": "原子核的子结构",
+   "slug": "31-3-substructure-of-the-nucleus"
+  },
+  {
+   "id": "31.4",
+   "module": "m42633",
+   "title": "核衰变与守恒定律",
+   "slug": "31-4-nuclear-decay-and-conservation-laws"
+  },
+  {
+   "id": "31.5",
+   "module": "m42636",
+   "title": "半衰期与活度",
+   "slug": "31-5-half-life-and-activity"
+  },
+  {
+   "id": "31.6",
+   "module": "m42640",
+   "title": "结合能",
+   "slug": "31-6-binding-energy"
+  },
+  {
+   "id": "31.7",
+   "module": "m42644",
+   "title": "隧穿",
+   "slug": "31-7-tunneling"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "单次核衰变或其发射的辐射的能量，量级为 MeV",
+   "unit": "MeV",
+   "section": "31.1",
+   "anchor": "31.1-discovery"
+  },
+  {
+   "sym": "q_e",
+   "concept": "elementary-charge",
+   "type": "charge",
+   "meaning": "电子电荷的大小；α 粒子带 $+2q_e$，β 粒子带 $-q_e$",
+   "unit": "C",
+   "section": "31.1",
+   "anchor": "31.1-alpha-beta-gamma"
+  },
+  {
+   "sym": "m_p",
+   "concept": "mass",
+   "meaning": "质子的质量",
+   "unit": "u",
+   "section": "31.3",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "sym": "m_n",
+   "concept": "mass",
+   "meaning": "中子的质量",
+   "unit": "u",
+   "section": "31.3",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "sym": "m_e",
+   "concept": "electron-mass",
+   "meaning": "电子的质量",
+   "unit": "u",
+   "section": "31.3",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "sym": "Z",
+   "concept": "atomic-number",
+   "meaning": "原子序数，即原子核中质子的数目",
+   "section": "31.3",
+   "anchor": "31.3-nuclides"
+  },
+  {
+   "sym": "N_neut",
+   "concept": "neutron-number",
+   "meaning": "原子核中中子的数目",
+   "section": "31.3",
+   "anchor": "31.3-nuclides"
+  },
+  {
+   "sym": "A_nuc",
+   "concept": "mass-number",
+   "meaning": "质量数，即原子核中质子和中子的总数",
+   "section": "31.3",
+   "anchor": "31.3-nuclides"
+  },
+  {
+   "sym": "r_nuc",
+   "concept": "nuclear-radius",
+   "type": "position",
+   "meaning": "原子核的半径",
+   "unit": "fm",
+   "section": "31.3",
+   "anchor": "31.3-nuclear-size"
+  },
+  {
+   "sym": "r_0nuc",
+   "concept": "nuclear-radius",
+   "type": "position",
+   "meaning": "核半径中的常量，1.2 fm",
+   "unit": "fm",
+   "section": "31.3",
+   "anchor": "31.3-nuclear-size"
+  },
+  {
+   "sym": "ρ_dens",
+   "concept": "density",
+   "meaning": "原子核的密度，所有原子核的密度几乎相同",
+   "unit": "kg/m³",
+   "section": "31.3",
+   "anchor": "31.3-nuclear-density"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，其平方把以 MeV/$c^2$ 为单位的质量转换为以 MeV 为单位的能量",
+   "unit": "m/s",
+   "section": "31.3",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "sym": "Δm",
+   "concept": "mass",
+   "meaning": "母核与衰变或反应产物之间的质量差",
+   "unit": "u",
+   "section": "31.4",
+   "anchor": "31.4-decay-energy"
+  },
+  {
+   "sym": "N_count",
+   "concept": "exponential-decay-law",
+   "meaning": "样品在时刻 $t$ 所含放射性原子核的数目",
+   "section": "31.5",
+   "anchor": "31.5-half-life"
+  },
+  {
+   "sym": "N_0nuc",
+   "concept": "exponential-decay-law",
+   "meaning": "零时刻放射性原子核的数目",
+   "section": "31.5",
+   "anchor": "31.5-half-life"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "自开始计数起经过的时间",
+   "unit": "s",
+   "section": "31.5",
+   "anchor": "31.5-half-life"
+  },
+  {
+   "sym": "t_half",
+   "concept": "half-life",
+   "meaning": "半衰期，即每个原子核有 50% 的概率发生衰变所需的时间",
+   "unit": "s",
+   "section": "31.5",
+   "anchor": "31.5-half-life"
+  },
+  {
+   "sym": "λ_dec",
+   "concept": "decay-constant",
+   "meaning": "核素的衰变常量，半衰期越短，衰变常量越大",
+   "unit": "1/s",
+   "section": "31.5",
+   "anchor": "31.5-half-life"
+  },
+  {
+   "sym": "R_act",
+   "concept": "activity",
+   "meaning": "放射源的活度，即单位时间内的衰变次数",
+   "unit": "Bq",
+   "section": "31.5",
+   "anchor": "31.5-activity"
+  },
+  {
+   "sym": "R_0act",
+   "concept": "activity",
+   "meaning": "放射源在零时刻的活度",
+   "unit": "Bq",
+   "section": "31.5",
+   "anchor": "31.5-activity-decays"
+  },
+  {
+   "sym": "ΔN",
+   "concept": "activity",
+   "meaning": "在一段时间间隔内发生的衰变次数",
+   "section": "31.5",
+   "type": null,
+   "anchor": "31.5-activity"
+  },
+  {
+   "sym": "Δt",
+   "concept": "time",
+   "meaning": "统计衰变次数所用的时间间隔",
+   "unit": "s",
+   "section": "31.5",
+   "anchor": "31.5-activity"
+  },
+  {
+   "sym": "BE",
+   "concept": "binding-energy",
+   "meaning": "原子核的结合能，即把它拆散成质子和中子所需的能量",
+   "unit": "MeV",
+   "section": "31.6",
+   "anchor": "31.6-binding-energy"
+  },
+  {
+   "sym": "m_tot",
+   "concept": "atomic-mass",
+   "meaning": "核素的质量",
+   "unit": "u",
+   "section": "31.6",
+   "anchor": "31.6-mass-defect"
+  },
+  {
+   "section": "31.1",
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "unit": "m/s",
+   "meaning": "光速，其平方把原子核损失的质量转换为它所发射的能量",
+   "anchor": "31.1-discovery"
+  },
+  {
+   "section": "31.1",
+   "sym": "B_mag",
+   "concept": "magnetic-field-strength-defined",
+   "unit": "T",
+   "meaning": "射线在到达磷光屏的途中穿过的磁场的强度",
+   "anchor": "31.1-alpha-beta-gamma"
+  },
+  {
+   "section": "31.1",
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "unit": "m",
+   "meaning": "带电射线垂直于均匀磁场运动时所沿圆周的半径",
+   "anchor": "31.1-alpha-beta-gamma"
+  },
+  {
+   "section": "31.1",
+   "sym": "q",
+   "concept": "electric-charge",
+   "unit": "C",
+   "meaning": "穿过磁场的粒子的电荷",
+   "anchor": "31.1-alpha-beta-gamma"
+  },
+  {
+   "section": "31.1",
+   "sym": "Δp",
+   "concept": "change-in-momentum",
+   "unit": "kg·m/s",
+   "meaning": "射线给它所穿过的物质中一个粒子的动量变化",
+   "anchor": "31.1-ionization-and-range"
+  },
+  {
+   "section": "31.1",
+   "sym": "F",
+   "concept": "force",
+   "unit": "N",
+   "meaning": "射线施加于它所穿过的物质中一个粒子的力",
+   "anchor": "31.1-ionization-and-range"
+  },
+  {
+   "section": "31.1",
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "unit": "s",
+   "meaning": "射线对它所经过的一个粒子施力的时间",
+   "anchor": "31.1-ionization-and-range"
+  },
+  {
+   "section": "31.1",
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "unit": "m/s",
+   "meaning": "射线的速率，它决定射线在每个原子附近停留多久",
+   "anchor": "31.1-ionization-and-range"
+  },
+  {
+   "section": "31.1",
+   "sym": "R",
+   "concept": "range-of-radiation",
+   "type": "position",
+   "unit": "m",
+   "meaning": "辐射的射程，即它在停止之前深入物质的距离",
+   "anchor": "31.1-ionization-and-range",
+   "redefines": true
+  },
+  {
+   "section": "31.2",
+   "sym": "E",
+   "concept": "energy",
+   "unit": "MeV",
+   "meaning": "射线沉积在盖革管气体中的能量",
+   "anchor": "31.2-geiger-counters"
+  },
+  {
+   "section": "31.2",
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "unit": "V",
+   "meaning": "盖革管的中央导线与圆筒之间的电压",
+   "anchor": "31.2-geiger-counters"
+  },
+  {
+   "section": "31.2",
+   "sym": "f",
+   "concept": "frequency",
+   "unit": "Hz",
+   "meaning": "闪烁光中一个光子的频率",
+   "anchor": "31.2-scintillators"
+  },
+  {
+   "section": "31.3",
+   "sym": "E",
+   "concept": "rest-energy",
+   "unit": "MeV",
+   "meaning": "一个质量完全转换时所给出的能量，$E = mc^2$",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "section": "31.3",
+   "sym": "m",
+   "concept": "mass",
+   "unit": "kg",
+   "meaning": "一个质量，被转换为能量或除以体积",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "section": "31.3",
+   "sym": "q",
+   "concept": "electric-charge",
+   "unit": "C",
+   "meaning": "粒子的电荷，中子为零",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "section": "31.3",
+   "sym": "V",
+   "concept": "volume",
+   "unit": "m³",
+   "meaning": "原子核的体积",
+   "anchor": "31.3-nuclear-size"
+  },
+  {
+   "section": "31.3",
+   "sym": "W",
+   "concept": "work",
+   "unit": "J",
+   "meaning": "力所做的功",
+   "anchor": "31.3-nuclear-forces"
+  },
+  {
+   "section": "31.3",
+   "sym": "F",
+   "concept": "force",
+   "unit": "N",
+   "meaning": "做功的力",
+   "anchor": "31.3-nuclear-forces"
+  },
+  {
+   "section": "31.3",
+   "sym": "d",
+   "concept": "distance",
+   "unit": "m",
+   "meaning": "力所作用的距离",
+   "anchor": "31.3-nuclear-forces"
+  },
+  {
+   "section": "31.3",
+   "sym": "θ",
+   "concept": "angle",
+   "unit": "°",
+   "meaning": "力与位移之间的夹角",
+   "anchor": "31.3-nuclear-forces"
+  },
+  {
+   "section": "31.3",
+   "sym": "r",
+   "concept": "distance",
+   "unit": "m",
+   "meaning": "库仑力中两个电荷之间的距离",
+   "anchor": "31.3-nuclear-forces"
+  },
+  {
+   "section": "31.3",
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "unit": "MeV",
+   "meaning": "$\\alpha$ 粒子或 $\\beta$ 粒子的动能",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "section": "31.3",
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "unit": "m/s",
+   "meaning": "$\\alpha$ 粒子或 $\\beta$ 粒子的速率",
+   "anchor": "31.3-nucleons"
+  },
+  {
+   "section": "31.3",
+   "sym": "λ",
+   "concept": "wavelength",
+   "unit": "m",
+   "meaning": "用来探测原子核的 $\\gamma$ 射线光子的波长",
+   "anchor": "31.3-nuclear-size"
+  },
+  {
+   "section": "31.4",
+   "sym": "E",
+   "concept": "nuclear-reaction-energy",
+   "unit": "MeV",
+   "meaning": "衰变所释放的能量，由其产物带走",
+   "anchor": "31.4-decay-energy",
+   "redefines": true
+  },
+  {
+   "section": "31.4",
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "unit": "m/s",
+   "meaning": "光速，其平方把衰变所消灭的质量转换为它所释放的能量",
+   "anchor": "31.4-decay-energy"
+  },
+  {
+   "section": "31.4",
+   "sym": "m_e",
+   "concept": "electron-mass",
+   "unit": "u",
+   "meaning": "电子的质量",
+   "anchor": "31.4-positron-decay"
+  },
+  {
+   "section": "31.4",
+   "sym": "Z",
+   "concept": "atomic-number",
+   "meaning": "原子序数，即原子核中质子的数目",
+   "anchor": "31.4-alpha-decay"
+  },
+  {
+   "section": "31.4",
+   "sym": "N_neut",
+   "concept": "neutron-number",
+   "meaning": "原子核中中子的数目",
+   "anchor": "31.4-alpha-decay"
+  },
+  {
+   "section": "31.4",
+   "sym": "A_nuc",
+   "concept": "mass-number",
+   "meaning": "质量数，即原子核中质子和中子的总数",
+   "anchor": "31.4-alpha-decay"
+  },
+  {
+   "section": "31.4",
+   "sym": "f",
+   "concept": "frequency",
+   "unit": "Hz",
+   "meaning": "$\\gamma$ 射线的频率",
+   "anchor": "31.4-gamma-decay"
+  },
+  {
+   "section": "31.5",
+   "sym": "m",
+   "concept": "mass",
+   "unit": "kg",
+   "meaning": "某种核素的样品的质量",
+   "anchor": "31.5-chernobyl-example"
+  },
+  {
+   "section": "31.5",
+   "sym": "A_nuc",
+   "concept": "mass-number",
+   "meaning": "质量数，即原子核中质子和中子的总数",
+   "anchor": "31.5-chernobyl-example"
+  },
+  {
+   "section": "31.6",
+   "sym": "Δm",
+   "concept": "mass-defect",
+   "type": "mass",
+   "unit": "u",
+   "meaning": "质量亏损，即分开的质子和中子的质量减去它们所组成的原子核的质量",
+   "anchor": "31.6-mass-defect",
+   "redefines": true
+  },
+  {
+   "section": "31.6",
+   "sym": "m_p",
+   "concept": "mass",
+   "unit": "u",
+   "meaning": "质子的质量",
+   "anchor": "31.6-mass-defect"
+  },
+  {
+   "section": "31.6",
+   "sym": "m_n",
+   "concept": "mass",
+   "unit": "u",
+   "meaning": "中子的质量",
+   "anchor": "31.6-mass-defect"
+  },
+  {
+   "section": "31.6",
+   "sym": "Z",
+   "concept": "atomic-number",
+   "meaning": "原子序数，即原子核中质子的数目",
+   "anchor": "31.6-mass-defect"
+  },
+  {
+   "section": "31.6",
+   "sym": "N_neut",
+   "concept": "neutron-number",
+   "meaning": "原子核中中子的数目",
+   "anchor": "31.6-mass-defect"
+  },
+  {
+   "section": "31.6",
+   "sym": "A_nuc",
+   "concept": "mass-number",
+   "meaning": "质量数，即原子核中质子和中子的总数",
+   "anchor": "31.6-mass-defect"
+  },
+  {
+   "section": "31.6",
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "unit": "m/s",
+   "meaning": "光速，其平方把质量亏损转换为结合能",
+   "anchor": "31.6-mass-defect"
+  },
+  {
+   "section": "31.6",
+   "sym": "E",
+   "concept": "nuclear-reaction-energy",
+   "unit": "MeV",
+   "meaning": "一个质量所对应的能量，$E = (\\Delta m)c^2$",
+   "anchor": "31.6-binding-energy",
+   "redefines": true
+  },
+  {
+   "section": "31.6",
+   "sym": "t",
+   "concept": "time",
+   "unit": "y",
+   "meaning": "今天之前的时间，从地球形成时往回数",
+   "anchor": "31.6-earths-hot-interior"
+  },
+  {
+   "section": "31.6",
+   "sym": "t_half",
+   "concept": "half-life",
+   "unit": "y",
+   "meaning": "加热地球内部的核素的半衰期",
+   "anchor": "31.6-earths-hot-interior"
+  },
+  {
+   "section": "31.6",
+   "sym": "R_act",
+   "concept": "activity",
+   "unit": "Bq",
+   "meaning": "地球内部核素的活度",
+   "anchor": "31.6-earths-hot-interior"
+  },
+  {
+   "section": "31.6",
+   "sym": "R_0act",
+   "concept": "activity",
+   "unit": "Bq",
+   "meaning": "这些核素在地球形成时的活度",
+   "anchor": "31.6-earths-hot-interior"
+  },
+  {
+   "section": "31.7",
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "unit": "mJ",
+   "meaning": "弹珠在碗底的动能",
+   "anchor": "31.7-bound-in-a-well"
+  },
+  {
+   "section": "31.7",
+   "sym": "PE_g",
+   "concept": "gravitational-potential-energy",
+   "unit": "mJ",
+   "meaning": "弹珠在碗沿的重力势能",
+   "anchor": "31.7-bound-in-a-well"
+  },
+  {
+   "section": "31.7",
+   "sym": "E",
+   "concept": "nuclear-reaction-energy",
+   "unit": "MeV",
+   "meaning": "$\\alpha$ 粒子的能量，它在 $\\alpha$ 衰变中带着这一能量离开",
+   "anchor": "31.7-tunneling",
+   "redefines": true
+  },
+  {
+   "section": "31.7",
+   "sym": "d",
+   "type": "position",
+   "unit": "fm or nm",
+   "meaning": "粒子所隧穿的势垒的厚度：对 $\\alpha$ 粒子，是势垒在其能量之上的那一段的宽度；对扫描隧穿显微镜，是探针与表面之间的间隙",
+   "anchor": "31.7-tunneling",
+   "redefines": true
+  },
+  {
+   "section": "31.7",
+   "sym": "t_half",
+   "concept": "half-life",
+   "unit": "s",
+   "meaning": "$\\alpha$ 发射体的半衰期",
+   "anchor": "31.7-tunneling"
+  },
+  {
+   "section": "31.7",
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "unit": "nA",
+   "meaning": "探针与表面之间的隧穿电流",
+   "anchor": "31.7-tunneling-in-solids"
+  }
+ ]
+}

@@ -1,0 +1,720 @@
+{
+ "id": "26.4",
+ "module": "m42491",
+ "chapter": "26",
+ "title": "显微镜",
+ "short": "显微镜",
+ "lead": "复显微镜是依次使用的<span data-ref=\"objective eyepiece\">两个凸透镜</span>，<span data-ref=\"first-image\">物镜所成的像</span>成为<span data-ref=\"eyepiece\">目镜</span>的物。它的数值孔径、浸液、照明以及电子的使用，各自决定显微镜能看清多精细的细节。",
+ "objectives": [
+  "研究不同类型的显微镜。",
+  "了解复显微镜中像是如何形成的。"
+ ],
+ "summary_html": "<ul><li>显微镜是一种多元件系统，含有不止一个透镜或面镜。</li><li>许多光学装置含有不止一个透镜或面镜。分析它们的办法是依次考虑每个元件。第一个元件所成的像是第二个元件的物，依此类推。同样的光线追迹和薄透镜方法适用于每个透镜元件。</li><li>多元件系统的总放大率是其各个元件的放大率的乘积。对于由一个物镜和一个目镜组成的双元件系统，它是 $$m = m_{\\text{o}}m_{\\text{e}},$$ 其中 $m_{\\text{o}}$ 是物镜的放大率，$m_{\\text{e}}$ 是目镜的放大率，显微镜即是一例。</li><li>显微镜是让我们能看到肉眼看不到的细节的仪器，由一系列部件构成。</li><li>目镜和物镜都对放大率有贡献。物镜的数值孔径 $(\\text{NA})$ 为 $$\\text{NA} = n\\sin\\alpha$$ 其中 $n$ 是折射率，$\\alpha$ 是<span data-concept=\"angle\">接收角</span>。</li><li>浸液技术常用来提高显微镜的聚光本领。标本通过聚光器，由透射光、散射光或反射光照明。</li><li>$f/\\#$ 描述透镜的聚光本领。它由 $$f/\\# = \\frac{\\kffoc}{\\kD} \\approx \\frac{1}{2\\,\\text{NA}}.$$ 给出。</li></ul>",
+ "notes": "本模块的七道习题中有四道在书后没有给出答案，因而略去：物镜焦距为 0.150 cm、目镜为 8× 的显微镜的放大率，1.40 NA 和 0.35 NA 油浸物镜的接收角，0.10 NA 和 0.65 NA 物镜的接收角，以及总放大率为 250,000 的“不合理的结果”显微镜习题。书中理论分辨率“$-0.2\\;\\mu\\text{m}$”保留其多余的负号，照书中所印；书中术语表里复显微镜的词条把第一个透镜称为目镜，亦照书中所印。26.6 中印出的“批判性思考”显微镜习题放在此处，其措辞和解答均照书中所印。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。七道习题中有四道没有给出答案，因而略去（fs-id3046042、fs-id2639290、eip-999、fs-id1526656），这四道习题在本节的说明中列出。关于物镜从距物体 6.00 mm 处移到 5.00 mm 处的显微镜的批判性思考习题（exer-00001）印在 26.6 中，但考查的是复显微镜，所以放在此处，source_section 为 26.6，26.6 的说明中也有交代；其措辞和解答均照书中所印。第一道 AP 题有答案，设为判分选择题。第二道要求画光线图，其解答在源文件中被注释掉了，所以作为开放题保留，题纲附在卡片上，并附有标明由 AI 撰写的建议思路。每道思考题都没有书后答案，并附有标明由 AI 撰写的建议思路。本模块没有印出“理解检测”框，所以没有设置内嵌题。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "photo-microscope-in-use",
+   "kind": "photo",
+   "number": "26.15",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-compound-microscope",
+   "kind": "sim",
+   "number": "26.16",
+   "originals": [
+    "/media/ch26/Figure_27_04_02.jpg"
+   ],
+   "original_caption": "由两个透镜组成的复显微镜，即物镜和目镜。物镜形成一个比物体大的情形 1 的像。这第一个像是目镜的物。目镜形成一个被进一步放大的情形 2 的最终像。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rays kept within the eyepiece, labels off headline and focal points"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-numerical-aperture",
+   "kind": "sim",
+   "number": "26.17",
+   "folds": [
+    "26.19"
+   ],
+   "originals": [
+    "/media/ch26/Figure_27_04_03.jpg",
+    "/media/ch26/Figure_27_04_05.jpg"
+   ],
+   "original_caption": "（图 26.17）（a）显微镜物镜的数值孔径 $\\text{(NA)}$ 指透镜的聚光本领，用接收角 $\\theta$ 的一半来计算。（b）这里 $\\alpha$ 是进入照相机镜头的、来自标本的光线的接收角的一半，$D$ 是控制进入镜头的光的孔径的直径。（图 26.19）来自标本、进入物镜的光线。图中给出了浸没介质为空气（a）、水（b）$(n = 1.33)$ 和油（c）$(n = 1.51)$ 时的光路。水浸和油浸使更多光线进入物镜，从而提高分辨率。",
+   "widths": [
+    400,
+    225
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rays kept on the cover glass, arrowheads off the fan"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fiber-acceptance",
+   "kind": "sim",
+   "number": "26.18",
+   "originals": [
+    "/media/ch26/Figure_27_04_04.jpg"
+   ],
+   "original_caption": "光线射入光纤。光纤的数值孔径可以用角 $\\alpha_{\\text{max}}$ 来确定。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "acceptance cone capped to stay in frame"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-illumination",
+   "kind": "sim",
+   "number": "26.20",
+   "originals": [
+    "/media/ch26/Figure_27_04_06.jpg"
+   ],
+   "original_caption": "显微镜中标本的照明。（a）来自聚光透镜的透射光。（b）来自反射式聚光器的透射光。（c）通过散射的暗场照明（照明光束没有射入物镜）。（d）高放大率照明，用反射光——通常是激光。",
+   "widths": [
+    475
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "side port for the laser, reflector and condenser labels moved"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-electron-microscope",
+   "kind": "photo",
+   "number": "26.21",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "photo-bacteria-sand",
+   "kind": "photo",
+   "number": "26.22",
+   "widths": [
+    300
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "multiple-element-systems",
+   "concept": "compound-microscope",
+   "verb": "introduces"
+  },
+  {
+   "span": "compound-microscope",
+   "concept": "compound-microscope",
+   "verb": "reinforces"
+  },
+  {
+   "span": "compound-microscope",
+   "concept": "overall-magnification",
+   "verb": "introduces"
+  },
+  {
+   "span": "compound-microscope",
+   "concept": "objective-lens",
+   "verb": "introduces"
+  },
+  {
+   "span": "compound-microscope",
+   "concept": "eyepiece",
+   "verb": "introduces"
+  },
+  {
+   "span": "microscope-magnification",
+   "concept": "solve-a-multiple-element-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "microscope-magnification",
+   "concept": "overall-magnification",
+   "verb": "uses"
+  },
+  {
+   "span": "microscope-magnification",
+   "concept": "compound-microscope",
+   "verb": "reinforces"
+  },
+  {
+   "span": "numerical-aperture",
+   "concept": "numerical-aperture",
+   "verb": "introduces"
+  },
+  {
+   "span": "f-number",
+   "concept": "f-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "f-number",
+   "concept": "numerical-aperture",
+   "verb": "uses"
+  },
+  {
+   "span": "immersion",
+   "concept": "immersion-objectives",
+   "verb": "introduces"
+  },
+  {
+   "span": "immersion",
+   "concept": "numerical-aperture",
+   "verb": "uses"
+  },
+  {
+   "span": "illumination",
+   "concept": "microscopes-beyond-visible-light",
+   "verb": "introduces"
+  },
+  {
+   "span": "beyond-visible-light",
+   "concept": "microscopes-beyond-visible-light",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2859977",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "compound-microscope",
+   "prompt": "下列哪一项正确描述了显微镜所成的像？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "像是实像、倒立、放大的。",
+     "像是虚像、倒立、放大的。",
+     "像是实像、正立、放大的。",
+     "像是虚像、正立、放大的。"
+    ],
+    "correct": 1,
+    "hint": "物镜形成实的、倒立的第一个像，目镜则像放大镜那样观察它。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2589414",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "compound-microscope",
+   "figure": {
+    "src": "/media/ch26/Figure_27_04_09.jpg",
+    "alt": "图中有一条水平虚线。一个小的正立箭头立在线上。一个中等大小的灰色椭圆以线为中心，离箭头不远。一个大的灰色椭圆以线为中心，离箭头更远。"
+   },
+   "prompt": "利用下图回答下列问题。画两条离开箭头的光线，箭头在两个透镜的左侧。用光线追迹画出物镜和目镜所成的像。把这些像分别标记为 $i_{\\text{o}}$ 和 $i_{\\text{e}}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从箭头的尖端出发，画一条平行于轴的光线，它离开物镜时经过物镜另一侧的焦点；再画第二条光线，径直穿过物镜的中心。两条光线在两个透镜之间相交处，就是实的、倒立的、放大的像 $i_{\\text{o}}$ 的尖端。把 $i_{\\text{o}}$ 当作目镜的物：它在目镜的焦距之内，所以离开目镜的光线是发散的。把它们向左反向延长，画成虚线；它们相交于 $i_{\\text{e}}$ 的尖端，$i_{\\text{e}}$ 是虚像，相对于箭头是倒立的，并且比 $i_{\\text{o}}$ 大。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1509147",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "multiple-element-systems",
+   "prompt": "几何光学描述光与宏观物体的相互作用。那么，为什么用几何光学来分析显微镜的像是正确的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "显微镜的透镜是宏观的，比光的波长大许多倍，所以穿过它们的光线遵从折射定律和薄透镜公式。几何光学描述了透镜对光所做的事，而这正是形成像的原因。它只对于接近光的波长的标本细节失效，而那正是显微镜的分辨率达到极限之处。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3138431",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microscope-magnification",
+   "prompt": "图 26.16 中的显微镜所成的像不能投影。额外的透镜或面镜能把它投影出来吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能。最终像是虚像，但离开目镜的光线是真实的光，看上去像是从那个像发出的。再用一个会聚透镜，如同眼睛本身的晶状体，把虚像当作它的物，使这些光线会聚，形成可以投影到屏幕上或记录下来的实像，装在显微镜上的照相机就是这样做的。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id953388",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "compound-microscope",
+   "prompt": "为什么不让显微镜的物镜形成放大率很大的情形 2 的像？（提示：考虑那个像的位置，以及它给把目镜用作放大镜带来的困难。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "情形 2 的像与物在物镜的同一侧，并且是虚像。放大率很大就会使它远远地落在标本一侧，因此位于物镜另一侧的目镜就无法放在离该像不超过其焦距的位置，也就不能起放大镜的作用。而物镜形成的是镜筒内的实的情形 1 的像，目镜可以放在靠近它的地方。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1816641",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "immersion",
+   "prompt": "油浸物镜有什么优点？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "油的折射率与盖玻片的接近，所以以大角度离开标本的光线在盖玻片处几乎不发生偏折，也不会被全反射回盖玻片内。更多的光线进入物镜，而且由于 $\\text{NA} = n\\sin\\alpha$，$n$ 约为 1.5，数值孔径可以超过 1.00。物镜收集更多的光，能分辨更精细的细节。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3130222",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "f-number",
+   "prompt": "显微镜的 $\\text{NA}$ 与光纤的 $\\text{NA}$ 相比如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者的定义相同，都是 $n\\sin\\alpha$，其中 $\\alpha$ 是所接收的最宽光锥的锥角的一半。对于显微镜物镜，透镜的大小和距离决定光锥，浸液可以使 NA 大于 1。对于光纤，光锥中包含的是在包层处发生全反射的光线，这取决于纤芯和包层的折射率；光纤的 NA 通常比好的物镜的小得多。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2666912",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "compound-microscope",
+   "prompt": "一台总放大率为 800 的显微镜，其物镜的放大率为 200。（a）目镜的放大率是多少？（b）如果还有另外两个物镜可用，放大率分别为 100 和 400，那么还可能有哪些总放大率？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the magnification of the eyepiece",
+      "value": 4.0,
+      "hint": "用 $m = m_{\\text{o}}m_{\\text{e}}$，解出 $m_{\\text{e}}$。"
+     },
+     {
+      "part": "(b) the total magnification with the 400 objective",
+      "value": 1600,
+      "hint": "目镜相同，所以把它的放大率乘以新物镜的放大率。"
+     }
+    ],
+    "solution": "（a）4.00　（b）1600"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2407281",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microscope-magnification",
+   "prompt": "（a）要使 0.500 cm 焦距的物镜产生 $-400$ 的放大率，物体需要放在相对显微镜的什么位置？（b）要产生进一步的四倍（4.00）放大，5.00 cm 焦距的目镜应放在哪里？（c）这是一个现实的显微镜设计吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the object distance from the objective",
+      "value": 0.501,
+      "unit": "cm",
+      "hint": "写出 $\\kdimg = 400\\kdobj$，代入 $1/\\kdobj + 1/\\kdimg = 1/\\kfobj$。"
+     },
+     {
+      "part": "(b) the distance of the eyepiece behind the objective",
+      "value": 204,
+      "unit": "cm",
+      "hint": "求出使 $m_{\\text{e}} = 4.00$ 的目镜物距，再加上第一个像到物镜的距离。"
+     }
+    ],
+    "solution": "（a）0.501 cm　（b）目镜应放在物镜后 204 cm 处。（c）不现实，205 cm（超过 2 m）的距离对显微镜的镜筒来说是不现实的。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "eip-49",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microscope-magnification",
+   "prompt": "一只变形虫距显微镜的物镜 0.305 cm，物镜的焦距为 0.300 cm。（a）物镜所成的像在哪里？（b）这个像的放大率是多少？（c）一个焦距为 2.00 cm 的目镜放在距物镜 20.0 cm 处。最终像在哪里？（d）目镜产生的放大率是多少？（e）总放大率是多少？（见图 26.16。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the image distance for the objective",
+      "value": 18.3,
+      "unit": "cm",
+      "hint": "用 $1/\\kdimg = 1/\\kfobj - 1/\\kdobj$。"
+     },
+     {
+      "part": "(b) the magnification of the objective",
+      "value": -60.0,
+      "hint": "用 $m_{\\text{o}} = -\\kdimg/\\kdobj$。"
+     },
+     {
+      "part": "(c) the image distance for the eyepiece",
+      "value": -11.3,
+      "unit": "cm",
+      "hint": "目镜的物距是 20.0 cm 减去第一个像的距离。"
+     },
+     {
+      "part": "(d) the magnification of the eyepiece",
+      "value": 6.67,
+      "hint": "用 $m_{\\text{e}} = -\\kdimgp/\\kdobjp$。"
+     },
+     {
+      "part": "(e) the overall magnification",
+      "value": -400,
+      "hint": "把两个放大率相乘。"
+     }
+    ],
+    "solution": "（a）+18.3 cm（在物镜靠目镜的一侧）　（b）−60.0　（c）−11.3 cm（在目镜靠物镜的一侧）　（d）+6.67　（e）−400"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "exer-00001",
+   "source_section": "26.6",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microscope-magnification",
+   "prompt": "一台显微镜的物镜距物体 6.00 mm。物镜的焦距为 4.00 mm。目镜的焦距为 50.0 mm，最初距物镜 25.0 mm。（a）物镜被移到距物镜 5.00 mm 处<sup class=\"fn\" data-note=\"c-p4-object\"></sup>，实际上使显微镜变长了。这对显微镜的放大率有什么影响？（b）把物镜移得更靠近物体，会使放大率增大、减小，还是保持不变？（c）你认为把物镜从距物体 6 mm 处移到 7 mm 处，会使显微镜的放大率增大、减小，还是很可能保持不变？（d）什么表明像是正立的还是倒立的？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the overall magnification with the objective 6.00 mm from the object",
+      "value": -2.7,
+      "hint": "由 $1/\\kdimg = 1/\\kfobj - 1/\\kdobj$ 求出第一个像，再把它当作目镜的物。"
+     },
+     {
+      "part": "(a) the overall magnification with the objective 5.00 mm from the object",
+      "value": -4.44,
+      "hint": "用 $\\kdobj = 5.00$ mm 重复这两步。"
+     }
+    ],
+    "solution": "（a）物镜距物体 6.00 mm 时，$\\kdimg = 12.0\\ \\text{mm}$，$m_{\\text{o}} = -12.0/6.00 = -2.00$；目镜的物距为 13.0 mm，$\\kdimgp = -17.6\\ \\text{mm}$，$m_{\\text{e}} = -(-17.6)/13 = 1.35$，$m = -2(1.35) = -2.70$。物镜距物体 5.00 mm 时，$\\kdimg = 20.0\\ \\text{mm}$，$m_{\\text{o}} = -20.0/5.00 = -4.00$；目镜的物距为 5.00 mm，$\\kdimgp = -5.56\\ \\text{mm}$，$m_{\\text{e}} = -(-5.56)/5 = 1.11$，$m = -4(1.11) = -4.44$。（b）增大了。（c）放大率应当减小。（d）两种情形下像都是倒立的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "compound-microscope"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "compound-microscope"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "solve-a-multiple-element-system"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "compound-microscope"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "solve-a-multiple-element-system"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "compound-microscope"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "immersion-objectives"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "numerical-aperture"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "numerical-aperture"
+  },
+  {
+   "exercise": "p1",
+   "concept": "overall-magnification"
+  },
+  {
+   "exercise": "p2",
+   "concept": "solve-a-multiple-element-system"
+  },
+  {
+   "exercise": "p2",
+   "concept": "overall-magnification"
+  },
+  {
+   "exercise": "p3",
+   "concept": "solve-a-multiple-element-system"
+  },
+  {
+   "exercise": "p3",
+   "concept": "overall-magnification"
+  },
+  {
+   "exercise": "p4",
+   "concept": "solve-a-multiple-element-system"
+  },
+  {
+   "exercise": "p4",
+   "concept": "overall-magnification"
+  }
+ ],
+ "referents": [
+  {
+   "id": "objective",
+   "label": "复显微镜的物镜，例题 26.5 中焦距为 6.00 mm",
+   "figures": [
+    "sim-compound-microscope"
+   ]
+  },
+  {
+   "id": "eyepiece",
+   "label": "复显微镜的目镜",
+   "figures": [
+    "sim-compound-microscope"
+   ]
+  },
+  {
+   "id": "object",
+   "label": "物镜下的物体",
+   "figures": [
+    "sim-compound-microscope"
+   ]
+  },
+  {
+   "id": "first-image",
+   "label": "第一个像，由物镜所成，经目镜观察",
+   "figures": [
+    "sim-compound-microscope"
+   ]
+  },
+  {
+   "id": "final-image",
+   "label": "最终像，由目镜所成",
+   "figures": [
+    "sim-compound-microscope"
+   ]
+  },
+  {
+   "id": "specimen",
+   "label": "标本上的点 P",
+   "figures": [
+    "sim-numerical-aperture"
+   ]
+  },
+  {
+   "id": "cover-glass",
+   "label": "标本上方的盖玻片",
+   "figures": [
+    "sim-numerical-aperture"
+   ]
+  },
+  {
+   "id": "na-objective",
+   "label": "画出其接收锥的物镜",
+   "figures": [
+    "sim-numerical-aperture"
+   ]
+  },
+  {
+   "id": "ray",
+   "label": "读者使之倾斜射入光纤的光线",
+   "figures": [
+    "sim-fiber-acceptance"
+   ]
+  },
+  {
+   "id": "core",
+   "label": "光纤的纤芯，折射率为 1.50",
+   "figures": [
+    "sim-fiber-acceptance"
+   ]
+  },
+  {
+   "id": "cladding",
+   "label": "光纤的包层",
+   "figures": [
+    "sim-fiber-acceptance"
+   ]
+  },
+  {
+   "id": "condenser",
+   "label": "聚光透镜",
+   "figures": [
+    "sim-illumination"
+   ]
+  },
+  {
+   "id": "concave-mirror",
+   "label": "凹面镜聚光器",
+   "figures": [
+    "sim-illumination"
+   ]
+  },
+  {
+   "id": "annular-stop",
+   "label": "暗场照明的环形光阑",
+   "figures": [
+    "sim-illumination"
+   ]
+  },
+  {
+   "id": "reflector",
+   "label": "平板玻璃反射器",
+   "figures": [
+    "sim-illumination"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-resolution-sign",
+   "kind": "correction",
+   "html": "书中印的理论分辨率为 $-0.2\\;\\mu\\text{m}$。分辨率是一个距离，没有正负之分：理论分辨率约为 $0.2\\;\\mu\\text{m}$。"
+  },
+  {
+   "id": "c-p4-object",
+   "kind": "correction",
+   "html": "书中印的是“距物镜”。按答案的算法，应是把物镜移到距物体 5.00 mm 处。"
+  }
+ ]
+}

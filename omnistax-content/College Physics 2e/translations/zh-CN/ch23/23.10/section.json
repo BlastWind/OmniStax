@@ -1,0 +1,397 @@
+{
+ "id": "23.10",
+ "module": "m42425",
+ "chapter": "23",
+ "title": "RL 电路",
+ "short": "RL 电路",
+ "lead": "电感器不会让<span data-concept=\"electric-current\">电流</span>立即开始或停止。本节把<span data-ref=\"resistor\">一个电阻器</span>和<span data-ref=\"inductor\">一个电感器</span>与<span data-ref=\"battery\">一节电池</span>及<span data-ref=\"switch\">一个开关</span>串联，跟踪<span data-concept=\"electric-current\">电流</span>如何建立又如何衰减，其快慢由电路的<span data-concept=\"rl-time-constant\">特征时间常量</span>计时。",
+ "objectives": [
+  "计算 RL 电路在经过指定数目的特征时间步长后的电流。",
+  "计算 RL 电路的特征时间。",
+  "画出 RL 电路中电流随时间变化的草图。"
+ ],
+ "summary_html": "<ul><li>当电阻器和电感器的串联组合——即 <em>RL</em> 电路——接到<span data-concept=\"potential-difference\">电压</span>源上时，<span data-concept=\"electric-current\">电流</span>随<span data-concept=\"time\">时间</span>的变化为 $\\kIcur = \\kIocur(1 - e^{-\\kt/\\ktauRL})\\;\\text{(接通),}$ 其中 $\\kIocur = \\kV/\\kRes$ 是终值<span data-concept=\"electric-current\">电流</span>。</li><li><span data-concept=\"rl-time-constant\">特征时间常量</span> $\\ktauRL$ 为 $\\ktauRL = \\frac{\\kLind}{\\kRes}$，其中 $\\kLind$ 是电感，$\\kRes$ 是<span data-concept=\"resistance\">电阻</span>。</li><li>在第一个<span data-concept=\"time-constant\">时间常量</span> $\\ktauRL$ 内，<span data-concept=\"electric-current\">电流</span>从零升至 $0.632\\kIocur$，此后在每个<span data-concept=\"time\">时间</span>间隔 $\\ktauRL$ 内再升高剩余部分的 0.632。</li><li>当电感器经电阻器短接时，<span data-concept=\"electric-current\">电流</span>按 $\\kIcur = \\kIocur e^{-\\kt/\\ktauRL}\\;\\text{(断开).}$ 减小。这里 $\\kIocur$ 是初始<span data-concept=\"electric-current\">电流</span>。</li><li><span data-concept=\"electric-current\">电流</span>在第一个<span data-concept=\"time\">时间</span>间隔 $\\ktauRL$ 内降到 $0.368\\kIocur$，此后在每个<span data-concept=\"time\">时间</span> $\\ktauRL$ 内再向零下降剩余部分的 0.368。</li></ul>",
+ "notes": "书中未给出答案的五道习题被略去：20.0 ns 的时间常量配 5.00 MΩ 的电阻、对例题 23.9 中 0.183 A 的验证、接在 12.0 V 电池上的 25.0 mH 电感器、通过 1.50 H 电感器的 5.00 A 电流，以及降到 0.100% 的 2.00 H 电感器。例题末尾的讨论让读者去看这些习题中的第四题，以得到它所说的 0.183 A；由于该题在此处没有收录，本页给出了这个数值，并略去了这一指引。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。答案来自书后答案：十道习题中有五道附有答案，在此收录；没有答案的五道被略去，并在说明中列出。本节没有概念性思考题，没有 AP 题，也没有“理解检测”框，所以全部习题都放在节末。第五题要求给出的是一个范围而不是一个数，所以作为开放题保留，并以书中的答案作为其答案。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-rl-switching",
+   "kind": "sim",
+   "number": "23.42",
+   "originals": [
+    "/media/ch23/Figure_24_10_01.jpg"
+   ],
+   "original_caption": "（a）带开关的 RL 电路，用于接通和断开电流。开关在位置 1 时，电池、电阻器和电感器串联，建立起电流。在位置 2 时，电池被移除，由于电阻器中的能量损耗，电流最终停止。（b）开关拨到位置 1 时，电流增长随时间变化的图像。（c）开关拨到位置 2 时，电流衰减的图像。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "inductance",
+    "resistance",
+    "current",
+    "voltage",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "late tau marks dropped below the axis title; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-counting-time-constants",
+   "kind": "sim",
+   "draws": [
+    "inductance",
+    "resistance",
+    "current",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: 0-7 tau axis, keyed time tags, labeller bar values, segmented choice"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "switching-an-rl-circuit",
+   "concept": "rl-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "switching-an-rl-circuit",
+   "concept": "self-inductance",
+   "verb": "uses"
+  },
+  {
+   "span": "switching-an-rl-circuit",
+   "concept": "inductance",
+   "verb": "uses"
+  },
+  {
+   "span": "switching-an-rl-circuit",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "current-turning-on",
+   "concept": "current-growth-in-an-rl-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "current-turning-on",
+   "concept": "rl-time-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "current-turning-on",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "current-turning-on",
+   "concept": "rc-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "what-sets-the-time-constant",
+   "concept": "rl-time-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "what-sets-the-time-constant",
+   "concept": "energy-stored-in-an-inductor",
+   "verb": "uses"
+  },
+  {
+   "span": "current-turning-off",
+   "concept": "current-decay-in-an-rl-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "current-turning-off",
+   "concept": "energy-stored-in-an-inductor",
+   "verb": "uses"
+  },
+  {
+   "span": "current-turning-off",
+   "concept": "electric-power",
+   "verb": "uses"
+  },
+  {
+   "span": "counting-in-time-constants",
+   "concept": "fraction-per-time-constant-rl",
+   "verb": "introduces"
+  },
+  {
+   "span": "counting-in-time-constants",
+   "concept": "rl-time-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "counting-in-time-constants",
+   "concept": "current-decay-in-an-rl-circuit",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738227350",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "current-turning-on",
+   "prompt": "如果你想要 1.00 s 的 <em>RL</em> 特征时间常量，而你有一个 $500\\ \\Omega$ 的电阻器，需要多大的自感？",
+   "answer": {
+    "type": "number",
+    "value": 500.0,
+    "unit": "H",
+    "generated_by": "source",
+    "hint": "时间常量等于电感除以电阻，所以电感等于时间常量乘以电阻。",
+    "solution": "500 H"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737788008",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "what-sets-the-time-constant",
+   "prompt": "用于磁共振成像的大型超导磁体具有 50.0 H 的电感。如果你希望通过它的电流能以 1.00 s 的特征时间常量调节，系统的最小电阻是多少？",
+   "answer": {
+    "type": "number",
+    "value": 50.0,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "电阻越小，时间常量越长，所以恰好给出 1.00 s 的电阻就是所能取的最小电阻。",
+    "solution": "$50.0\\ \\Omega$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169736596063",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "what-sets-the-time-constant",
+   "prompt": "假设你有一批电感从 1.00 nH 到 10.0 H 的电感器，以及电阻从 $0.100\\ \\Omega$ 到 $1.00\\ \\text{M}\\Omega$ 的电阻器。把一个电阻器与一个电感器相连，你能得到的 <em>RL</em> 特征时间常量的范围是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0.100 s 至 $1.00\\times 10^{-18}\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737723042",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "counting-in-time-constants",
+   "prompt": "电路接通三个时间常量之后，在与电阻器 $\\kRes$ 串联的电感器 $\\kLind$ 中流过的电流是终值电流 $\\kIocur$ 的百分之几？",
+   "answer": {
+    "type": "number",
+    "value": 95.0,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "电流在每个时间常量内走完剩余部分的 0.632，所以数三步，而不是求解指数。",
+    "solution": "95.0%"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737787416",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "counting-in-time-constants",
+   "prompt": "（a）用精确的指数处理求出：与 $15.0\\ \\Omega$ 电阻器串联的 80.0 mH 电感器中的电流，从零开始升到其终值的 99.0% 需要多少时间。（b）将你的答案与使用整数个 $\\ktauRL$ 的近似方法作比较。（c）讨论这一差别有多大意义。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 24.6,
+      "unit": "ms",
+      "hint": "令增长表达式等于终值电流的 0.990，解出时间。"
+     },
+     {
+      "part": "(b)",
+      "value": 26.7,
+      "unit": "ms",
+      "hint": "按整数个时间常量计数，经过五个之后，电流超过终值的 99.0%。"
+     }
+    ],
+    "solution": "（a）24.6 ms（b）26.7 ms（c）相差 9%，大于给定参数本身固有的不确定度。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "p1",
+   "concept": "rl-time-constant"
+  },
+  {
+   "exercise": "p3",
+   "concept": "rl-time-constant"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rl-time-constant"
+  },
+  {
+   "exercise": "p7",
+   "concept": "fraction-per-time-constant-rl"
+  },
+  {
+   "exercise": "p7",
+   "concept": "current-growth-in-an-rl-circuit",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "current-growth-in-an-rl-circuit"
+  },
+  {
+   "exercise": "p9",
+   "concept": "fraction-per-time-constant-rl",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "rl-time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "battery",
+   "label": "电池",
+   "figures": [
+    "sim-rl-switching"
+   ]
+  },
+  {
+   "id": "switch",
+   "label": "开关",
+   "figures": [
+    "sim-rl-switching"
+   ]
+  },
+  {
+   "id": "inductor",
+   "label": "电感器",
+   "figures": [
+    "sim-rl-switching"
+   ]
+  },
+  {
+   "id": "resistor",
+   "label": "电阻器",
+   "figures": [
+    "sim-rl-switching"
+   ]
+  }
+ ]
+}

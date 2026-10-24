@@ -1,0 +1,573 @@
+{
+  "id": "9",
+  "dir": "ch09",
+  "title": "静力学与力矩",
+  "intro": {
+    "module": "m42167",
+    "slug": "9-introduction-to-statics-and-torque"
+  },
+  "sections": [
+    {
+      "id": "9.1",
+      "module": "m42170",
+      "title": "平衡的第一条件",
+      "slug": "9-1-the-first-condition-for-equilibrium"
+    },
+    {
+      "id": "9.2",
+      "module": "m42171",
+      "title": "平衡的第二条件",
+      "slug": "9-2-the-second-condition-for-equilibrium"
+    },
+    {
+      "id": "9.3",
+      "module": "m42172",
+      "title": "稳定性",
+      "slug": "9-3-stability"
+    },
+    {
+      "id": "9.4",
+      "module": "m42173",
+      "title": "静力学的应用，包括解题策略",
+      "slug": "9-4-applications-of-statics-including-problem-solving-strategies"
+    },
+    {
+      "id": "9.5",
+      "module": "m42174",
+      "title": "简单机械",
+      "slug": "9-5-simple-machines"
+    },
+    {
+      "id": "9.6",
+      "module": "m42175",
+      "title": "肌肉与关节中的力和力矩",
+      "slug": "9-6-forces-and-torques-in-muscles-and-joints"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "系统所受的合外力，系统处于平衡时它为零",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "sym": "F_x",
+      "concept": "force",
+      "meaning": "沿水平轴的合外力，平衡时它为零",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "sym": "F_y",
+      "concept": "force",
+      "meaning": "沿竖直轴的合外力，平衡时它为零",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-first-condition"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "人或汽车的重力，即作用在它上面的引力",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "N",
+      "concept": "normal-force",
+      "meaning": "地面施加的法向力，它支撑着重力",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "F_app",
+      "concept": "force",
+      "meaning": "轮胎与路面之间的外加力，它驱动汽车前进",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "f_fric",
+      "concept": "friction",
+      "meaning": "汽车所受的空气阻力，在速度恒定时它与外加力平衡",
+      "unit": "N",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "v",
+      "concept": "instantaneous-velocity",
+      "meaning": "处于动态平衡的物体的恒定速度，其大小和方向都保持不变",
+      "unit": "m/s",
+      "section": "9.1",
+      "anchor": "9.1-static-and-dynamic"
+    },
+    {
+      "sym": "τ",
+      "concept": "torque",
+      "type": "torque",
+      "meaning": "力矩，即力对所选支点的转动或扭转效果",
+      "unit": "N·m",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "τ_1",
+      "concept": "torque",
+      "type": "torque",
+      "meaning": "第一个孩子的重力对支点产生的逆时针力矩",
+      "unit": "N·m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw",
+      "ref": "child-1"
+    },
+    {
+      "sym": "τ_2",
+      "concept": "torque",
+      "type": "torque",
+      "meaning": "第二个孩子的重力对支点产生的顺时针力矩",
+      "unit": "N·m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw",
+      "ref": "child-2"
+    },
+    {
+      "sym": "r_lever",
+      "concept": "torque",
+      "type": "position",
+      "meaning": "从支点到力的作用点的距离",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "r_perp",
+      "concept": "perpendicular-lever-arm",
+      "meaning": "垂直力臂，即从支点到力的作用线的最短距离",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "meaning": "力与从作用点指向支点的矢量之间的夹角",
+      "unit": "°",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "施加在物体上的力的大小",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-torque-defined"
+    },
+    {
+      "sym": "F_p",
+      "concept": "force",
+      "meaning": "支点对跷跷板施加的支持力",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-seesaw",
+      "ref": "pivot"
+    },
+    {
+      "sym": "w_1",
+      "concept": "weight",
+      "meaning": "第一个孩子的重力",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-seesaw",
+      "ref": "child-1"
+    },
+    {
+      "sym": "w_2",
+      "concept": "weight",
+      "meaning": "第二个孩子的重力",
+      "unit": "N",
+      "section": "9.2",
+      "anchor": "9.2-seesaw",
+      "ref": "child-2"
+    },
+    {
+      "sym": "r_1",
+      "concept": "torque",
+      "type": "position",
+      "meaning": "从支点到第一个孩子的距离",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw",
+      "ref": "child-1"
+    },
+    {
+      "sym": "r_2",
+      "concept": "torque",
+      "type": "position",
+      "meaning": "从支点到第二个孩子的距离",
+      "unit": "m",
+      "section": "9.2",
+      "anchor": "9.2-seesaw",
+      "ref": "child-2"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "跷跷板上一个孩子的质量",
+      "unit": "kg",
+      "section": "9.2",
+      "anchor": "9.2-seesaw"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "物体的重力，它作用在物体的重心上",
+      "unit": "N",
+      "section": "9.3",
+      "anchor": "9.3-stable"
+    },
+    {
+      "sym": "N",
+      "concept": "normal-force",
+      "meaning": "表面在支点处施加的法向力",
+      "unit": "N",
+      "section": "9.3",
+      "anchor": "9.3-stable"
+    },
+    {
+      "sym": "τ",
+      "concept": "torque",
+      "type": "torque",
+      "meaning": "物体偏离平衡位置时，重力对支点产生的力矩",
+      "unit": "N·m",
+      "section": "9.3",
+      "anchor": "9.3-stable"
+    },
+    {
+      "sym": "F_L",
+      "concept": "force",
+      "meaning": "左手对撑杆施加的力",
+      "unit": "N",
+      "section": "9.4",
+      "anchor": "9.4-symmetric",
+      "ref": "left-hand"
+    },
+    {
+      "sym": "F_R",
+      "concept": "force",
+      "meaning": "右手对撑杆施加的力",
+      "unit": "N",
+      "section": "9.4",
+      "anchor": "9.4-symmetric",
+      "ref": "right-hand"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "撑杆的重力，它作用在撑杆的重心上",
+      "unit": "N",
+      "section": "9.4",
+      "anchor": "9.4-symmetric"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "撑杆的质量",
+      "unit": "kg",
+      "section": "9.4",
+      "anchor": "9.4-symmetric"
+    },
+    {
+      "sym": "τ",
+      "concept": "torque",
+      "type": "torque",
+      "meaning": "力对题目所选支点产生的力矩",
+      "unit": "N·m",
+      "section": "9.4",
+      "anchor": "9.4-strategy"
+    },
+    {
+      "sym": "r_lever",
+      "concept": "torque",
+      "type": "position",
+      "meaning": "沿撑杆从所选支点到某只手或到重心的距离",
+      "unit": "m",
+      "section": "9.4",
+      "anchor": "9.4-strategy"
+    },
+    {
+      "sym": "MA",
+      "concept": "mechanical-advantage",
+      "meaning": "机械利益，即简单机械的输出力与输入力的大小之比",
+      "section": "9.5",
+      "anchor": "9.5-machines"
+    },
+    {
+      "sym": "F_i",
+      "concept": "force",
+      "meaning": "输入力，即施加在机械上的力",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-machines"
+    },
+    {
+      "sym": "F_o",
+      "concept": "force",
+      "meaning": "输出力，即机械施加在它的载荷上的力",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-machines"
+    },
+    {
+      "sym": "F_nail",
+      "concept": "force",
+      "meaning": "钉子反过来对起钉器施加的反作用力，与输出力大小相等、方向相反",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-lever",
+      "ref": "nail"
+    },
+    {
+      "sym": "l_i",
+      "concept": "perpendicular-lever-arm",
+      "meaning": "输入力的垂直力臂",
+      "unit": "m",
+      "section": "9.5",
+      "anchor": "9.5-lever"
+    },
+    {
+      "sym": "l_o",
+      "concept": "perpendicular-lever-arm",
+      "meaning": "输出力的垂直力臂",
+      "unit": "m",
+      "section": "9.5",
+      "anchor": "9.5-lever"
+    },
+    {
+      "sym": "N",
+      "concept": "normal-force",
+      "meaning": "杠杆在支点处受到的法向力，它的力矩为零",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-lever"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "独轮手推车及其载荷的重力",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-wheelbarrow"
+    },
+    {
+      "sym": "T_force",
+      "concept": "tension",
+      "meaning": "绕过滑轮的绳中的张力",
+      "unit": "N",
+      "section": "9.5",
+      "anchor": "9.5-pulleys"
+    },
+    {
+      "sym": "F_B",
+      "concept": "force",
+      "meaning": "肱二头肌对前臂施加的力，在第二个例子中则是背部肌肉施加的力",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "F_E",
+      "concept": "force",
+      "meaning": "肱骨在肘关节处对前臂施加的力",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-joints",
+      "ref": "elbow"
+    },
+    {
+      "sym": "F_V",
+      "concept": "force",
+      "meaning": "椎骨在髋部的支点处对脊柱施加的力",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "F_Vx",
+      "concept": "force",
+      "meaning": "椎骨所受力的水平分量",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "F_Vy",
+      "concept": "force",
+      "meaning": "椎骨所受力的竖直分量",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "w_a",
+      "concept": "weight",
+      "meaning": "前臂的重力",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-biceps",
+      "ref": "forearm"
+    },
+    {
+      "sym": "w_b",
+      "concept": "weight",
+      "meaning": "手中所拿的书的重力",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-biceps",
+      "ref": "book"
+    },
+    {
+      "sym": "w_ub",
+      "concept": "weight",
+      "meaning": "上身的重力",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "w_box",
+      "concept": "weight",
+      "meaning": "所搬举的箱子的重力",
+      "unit": "N",
+      "section": "9.6",
+      "anchor": "9.6-lifting",
+      "ref": "box"
+    },
+    {
+      "sym": "r_1",
+      "concept": "perpendicular-lever-arm",
+      "meaning": "从肘到肱二头肌拉力作用处的垂直力臂",
+      "redefines": true,
+      "unit": "m",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "r_2",
+      "concept": "perpendicular-lever-arm",
+      "meaning": "从肘到前臂重心的垂直力臂",
+      "redefines": true,
+      "unit": "m",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "r_3",
+      "concept": "perpendicular-lever-arm",
+      "meaning": "从肘到书的重心的垂直力臂",
+      "unit": "m",
+      "section": "9.6",
+      "anchor": "9.6-biceps"
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "meaning": "椎骨所受力的方向，从水平方向起沿逆时针方向量度",
+      "unit": "°",
+      "section": "9.6",
+      "anchor": "9.6-lifting"
+    },
+    {
+      "sym": "r_bperp",
+      "concept": "perpendicular-lever-arm",
+      "meaning": "背部肌肉对髋的垂直力臂",
+      "unit": "m",
+      "section": "9.6"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "人、他的背包、汽车或木箱的质量",
+      "unit": "kg",
+      "section": "9.1"
+    },
+    {
+      "sym": "m_1",
+      "concept": "mass",
+      "ref": "child-1",
+      "meaning": "跷跷板上第一个孩子的质量",
+      "unit": "kg",
+      "section": "9.2"
+    },
+    {
+      "sym": "m_2",
+      "concept": "mass",
+      "ref": "child-2",
+      "meaning": "跷跷板上第二个孩子的质量",
+      "unit": "kg",
+      "section": "9.2"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "重力加速度的大小",
+      "unit": "m/s²",
+      "section": "9.2"
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "meaning": "倾斜角，即物体偏离直立位置的角度，或球下方表面的坡度",
+      "unit": "°",
+      "section": "9.3",
+      "redefines": true
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "meaning": "力与从作用点指向支点的矢量之间的夹角",
+      "unit": "°",
+      "section": "9.4",
+      "redefines": true
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "重力加速度的大小",
+      "unit": "m/s²",
+      "section": "9.4"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "独轮手推车及其载荷的总质量，或滑轮所托载荷的质量",
+      "unit": "kg",
+      "section": "9.5"
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "redefines": true,
+      "meaning": "斜面与水平面所成的角",
+      "unit": "°",
+      "section": "9.5"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "手中的书、上身或箱子的质量",
+      "unit": "kg",
+      "section": "9.6"
+    }
+  ]
+}

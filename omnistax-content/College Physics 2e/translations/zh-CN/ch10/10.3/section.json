@@ -1,0 +1,1180 @@
+{
+ "id": "10.3",
+ "module": "m42179",
+ "chapter": "10",
+ "title": "转动动力学：转动惯量",
+ "short": "转动惯量",
+ "lead": "推门时，推的位置离铰链太近，门就开得很慢，门的质量越大开得越慢，所以<span data-concept=\"force\">力</span>、<span data-concept=\"mass\">质量</span>以及<span data-concept=\"force\">力</span>的作用点，都对转动如何改变有影响。本节先针对绳上拴着的<span data-ref=\"point-mass\">单个质点</span>，再针对任意物体，写出转动的牛顿第二定律，并在<span data-ref=\"father\">一位父亲</span>推<span data-ref=\"merry-go-round\">旋转木马</span>的例子中检验它，<span data-ref=\"merry-go-round\">它</span>上面有<span data-ref=\"child\">一个孩子</span>和没有孩子的两种情形都考虑。",
+ "objectives": [
+  "理解力、质量和加速度之间的关系。",
+  "研究力的转动效果。",
+  "研究力与力矩、质量与转动惯量、线加速度与角加速度之间的类比。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"force\">力</span>的作用点离支点越远，<span data-concept=\"angular-acceleration\">角加速度</span>就越大；<span data-concept=\"angular-acceleration\">角加速度</span>与<span data-concept=\"mass\">质量</span>成反比。</li><li>如果我们对与支点相距<span data-concept=\"distance\">距离</span> $\\kr$ 的质点 $m$ 施加<span data-concept=\"force\">力</span> $\\kF$，那么，因为<span data-concept=\"force\">力</span>垂直于 $\\kr$，就在 $\\kF$ 的方向上得到<span data-concept=\"acceleration\">加速度</span> $\\ka = \\kF/m$。我们可以重新整理这个方程，使得 $$\\kF = m\\ka,$$ 然后寻找办法，把这个表达式与转动量的表达式联系起来。我们注意到 $\\ka = \\kr\\kalpha$，把这个表达式代入 $\\kF = m\\ka$，得到 $$\\kF = m\\kr\\kalpha.$$</li><li>力矩是力的转动效果。在这种情形下，因为 $\\kF$ 垂直于 $\\kr$，力矩就简单地是 $\\ktau = \\kr\\kF$。如果把上面方程的两边都乘以 $\\kr$，左边就得到力矩。也就是说，$$\\kr\\kF = m\\kr^2\\kalpha$$ 或 $$\\ktau = m\\kr^2\\kalpha.$$</li><li>物体的<span data-concept=\"moment-of-inertia\">转动惯量</span> $\\kI$ 是组成它的所有质点的 $M\\kR^2$ 之和。也就是说，$$\\kI = \\sum m\\kr^2.$$</li><li>力矩、<span data-concept=\"moment-of-inertia\">转动惯量</span>和<span data-concept=\"angular-acceleration\">角加速度</span>之间的一般关系是 $$\\ktau = \\kI\\kalpha$$ 或 $$\\kalpha = \\frac{\\text{合力矩}\\;\\ktau}{\\kI}.$$</li></ul>",
+ "notes": "书中四道没有给出答案的题——把滑冰者看作带杆状手臂的圆柱体、足球运动员的踢球、作为圆环的摩托车车轮，以及汽车传动系统——被略去，摩托车车轮的图（图 10.15）也随第三题一同略去；书中关于两种大小圆盘的 AP 题的答案附带了紧随其后那道题的题干，这句多余的话被略去了。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示，以及五道思考题和三道没有答案的 AP 题的建议思路，均由 AI 生成并已标明；八道习题、理解检测框和四道有答案的 AP 题的答案出自本书自带的答案表，这里没有计算任何东西。习题 2（把滑冰者看作带杆状手臂的圆柱体）、4（足球运动员的踢球）、6（作为圆环的摩托车车轮，附图 10.15）和 8（汽车传动系统）没有答案，被略去。理解检测框问的是力矩和转动惯量是否只取决于一个因素，它就地放在旋转木马例题之后，其余各题都放在末尾。本节六道 AP 题中有三道问的是角动量，与 10.5 放在一起，source_section 为 10.3：载人摩天轮（fs-id438270）、要测量其角动量的杠杆（fs-id1500072），以及用来确定角加速度和角动量的杠杆装置（fs-id2003821）。10.4 的四道 AP 题问的都是力矩如何改变角速度，放在这里，source_section 为 10.4：两个啮合的齿轮（fs-id2004322）、力矩加倍与半径减半的比较（fs-id1292713）、渔线轮（fs-id1543406）以及两个人推旋转木马（fs-id1628274）。10.1 的第三题，被斧头减慢的砂轮（fs-id3225958），通过摩擦力的力矩和圆盘的转动惯量求出它的角加速度，而圆盘的转动惯量正是本节引入的，因此放在这里，source_section 为 10.1；10.1 的说明里也这样写明。书中关于两种大小圆盘的 AP 题的答案附带了紧随其后那道题的题干，这句话被略去；关于带两个铅块的杆的那道题重复了自己问题中的一个分句，照书中印出的样子保留。赛车自行车的照片图 10.14 附在引用它的那道思考题的卡片上。习题 11，飞轮汽车，涉及转动动能，而转动动能由 10.4 节引入；它放在书中印出的位置，其提示中也这样说明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-bike-wheel",
+   "kind": "sim",
+   "number": "10.10",
+   "originals": [
+    "/media/ch10/Figure_11_03_01a.jpg"
+   ],
+   "original_caption": "要让自行车车轮转起来需要力。力越大，产生的角加速度越大。车轮的质量越大，角加速度越小。如果你推的是离车轴更近的辐条，角加速度会更小。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "rotational-inertia",
+    "angular-acceleration",
+    "torque",
+    "angular-rate",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "pull moved to the top as the book's, library fist, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-point-mass",
+   "kind": "sim",
+   "number": "10.11",
+   "originals": [
+    "/media/ch10/Figure_11_03_02a.jpg"
+   ],
+   "original_caption": "一个物体由水平的无摩擦桌面支承，并用一根提供向心力的绳与支点相连。一个力 F 垂直于半径 r 作用在物体上，使它绕支点加速。该力始终保持与 r 垂直。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "acceleration",
+    "angular-acceleration",
+    "torque",
+    "rotational-inertia",
+    "mass",
+    "angular-rate",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels through the labeller, panel line shortened, note via macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: the mass going round its circle from rest, faster and faster"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-inertias",
+   "kind": "sim",
+   "number": "10.12",
+   "originals": [
+    "/media/ch10/Figure_11_03_06.jpg"
+   ],
+   "original_caption": "几种转动惯量。",
+   "draws": [
+    "rotational-inertia",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "panel text kept on the canvas, headline reworded, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-merry-go-round",
+   "kind": "sim",
+   "number": "10.13",
+   "originals": [
+    "/media/ch10/Figure_11_03_03a.jpg"
+   ],
+   "original_caption": "一位父亲在游乐场旋转木马的边缘、垂直于其半径的方向推它，以获得最大的力矩。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "rotational-inertia",
+    "angular-acceleration",
+    "torque",
+    "angular-rate",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "push turns the platform its drawn way, library personTop, note, labels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "force-and-rotation",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "force-and-rotation",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "force-and-rotation",
+   "concept": "inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "force-and-rotation",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "torque-on-a-point-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "point-mass",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "tangential-angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "point-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "point-mass",
+   "concept": "rotational-translational-analogy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "moment-of-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "torque-on-a-point-mass",
+   "verb": "reinforces"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "moment-of-inertia",
+   "concept": "inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "newtons-second-law-rotation",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "mass-distribution-and-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "angular-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "rotational-translational-analogy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-law-rotation",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strategy",
+   "concept": "rotational-dynamics-strategy",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "newtons-second-law-rotation",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "newtons-second-law-rotation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "mass-distribution-and-inertia",
+   "verb": "reinforces"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "merry-go-round",
+   "concept": "torque-on-a-point-mass",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2404667",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "merry-go-round"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "力矩是力的类比，转动惯量是质量的类比。力和质量是只取决于一个因素的物理量。例如，质量只与物体中各种类型原子的数目有关。力矩和转动惯量也同样简单吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "不是。力矩取决于三个因素：力的大小、力的方向和作用点。转动惯量既取决于质量，也取决于质量相对于转轴的分布。因此，虽然这些类比是精确的，但这些转动量取决于更多的因素。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2655227",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "绕垂直于长度、过一端的轴旋转的长杆，其转动惯量为 $ML^2/3$。为什么这个转动惯量，比把质点 $M$ 放在杆的质心处（在 $L/2$ 处）旋转时的转动惯量更大？（那将是 $ML^2/4$。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从定义 $\\kI = \\sum m\\kr^2$ 出发：杆是一排小段，每一小段贡献它自己的质量乘以它自身到端点距离的平方。杆的一半质量位于质心之外，直到距离 $L$ 处，另一半位于质心之内，靠近支点。因为距离是以平方的形式出现的，远的那一半增加的比近的那一半减少的更多。位于 $3L/4$ 处的一小段，每单位质量贡献 $(3L/4)^2 = 9L^2/16$，而位于 $L/4$ 处的一小段只贡献 $L^2/16$。两者合起来平均为 $5L^2/16$，大于两者都在 $L/2$ 处时各自贡献的 $4L^2/16$。对整根杆求和，得到 $ML^2/3$ 而不是 $ML^2/4$。位于质心的质点再现了杆的质量，却没有再现它的分散程度，而转动惯量衡量的正是质量离开转轴的这种分散程度。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2450048",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "为什么质量为 $M$、半径为 $R$ 的细圆环的转动惯量，大于质量和半径都相同的圆盘的转动惯量？为什么质量为 $M$、半径为 $R$ 的球壳的转动惯量，大于质量和半径都相同的实心球的转动惯量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "问一问每个物体的质量位于何处。细圆环的每一小部分都在离转轴完整的距离 $\\kR$ 处，所以它的转动惯量是 $M\\kR^2$，这是质量和半径给定的物体所能具有的最大值。质量和半径都相同的圆盘把质量铺在整个盘面上，其中大部分比边缘更靠近转轴。其中每一小部分对求和的贡献都小于 $m\\kR^2$，所以总和为 $\\frac{1}{2}M\\kR^2$。对于两种球，道理相同。薄球壳的全部质量都在表面，而质量相同的实心球的大部分质量在内部，更靠近转轴，所以球壳的 $\\frac{2}{3}M\\kR^2$ 大于实心球的 $\\frac{2}{5}M\\kR^2$。两种球都达不到 $M\\kR^2$，因为转轴是一条直径，只有赤道上的质量到它的距离才是 $\\kR$。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1222304",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "point-mass",
+   "prompt": "举一个小的力产生大的力矩的例子。再举一个大的力产生小的力矩的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "力矩是力与它的垂直力臂的乘积，所以力臂长时，小的力就能产生大的力矩。例如，在沉重的门的外缘轻轻一推就能使它摆动；在长扳手的末端适度一拉，就能松开用短扳手使劲拉也拧不动的螺母。力臂短，或者力的方向沿着一条过转轴的直线时，大的力产生的力矩就小。例如，在紧挨着铰链的地方用力推门几乎推不动它；而一个大的力若径直指向支点，比如你沿径向向内推旋转木马，则无论力多大，都根本不产生力矩。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2680047",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "figure": {
+    "src": "/media/ch10/Figure_11_03_04a.jpg",
+    "alt": "给出的图显示一辆赛车自行车靠在一扇门上。",
+    "caption": "图 10.14 该图为一辆赛车自行车的侧视图。你能从这辆赛车自行车车轮的设计中看出它们的转动惯量被有意减小的证据吗？（来源：Jesús Rodriguez）"
+   },
+   "prompt": "在减轻赛车自行车的质量时，减轻轮胎和轮圈的质量能获得最大的好处。为什么这样做比同样减轻自行车车架的质量，能让车手获得更大的加速度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "考虑车手的力必须做什么。无论从自行车的哪个部位拿掉一千克，都会减少必须沿路面加速的质量。从轮胎或轮圈上拿掉一千克还有更多的作用，因为自行车速度增加时车轮也必须被转动起来，而使它们转动的力矩必须克服它们的转动惯量。轮圈和轮胎是车轮上离车轴最远的部分，所以它们的质量以尽可能大的 $\\kr^2$ 进入转动惯量 $\\kI = \\sum m\\kr^2$，就像细圆环的质量那样。从车架上拿掉质量只降低质量；从轮圈上拿掉同样的质量，则同时降低了质量和两个车轮的转动惯量，所以车手的同样的力能产生更大的加速度。图 10.14 展示了由此得出的设计：薄的轮圈和轮胎、几根细长的辐条，轮毂则承担车轮必须具有的那部分质量。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1401566",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "一个球滑上一个无摩擦的斜面。然后让它以同样的初速度、纯滚动地滚上另一个无摩擦的斜面（斜面倾角相同）。在哪种情形下它能到达更大的高度，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "问一问在上升过程中什么能改变球的转动。在无摩擦的斜面上，作用在球上的力只有它的重力和法向力，这两个力的作用线都通过球心，所以它们对球心都不产生力矩。没有合力矩，由 $\\text{合力矩}\\;\\ktau = \\kI\\kalpha$ 就没有角加速度，滚动的球一路上升都保持起始的转速。它转动中的能量留在转动里，对把它抬高毫无帮助。只有球心的运动变成高度，而由于初速度相同，两种情形下球心的运动是一样的，所以两个球到达同样的高度。滚动的球总共带有更多的能量，但在无摩擦的斜面上它无法转化多出的那一部分。只有摩擦才能产生使转动减慢的力矩，让这份能量把球抬得更高。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1721000",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "可以在电动车床上让一块木头旋转，并在木头旋转时把一把锋利的凿子顶在木头边缘，把木头雕刻出来。当用 50 N 的力把凿子顶在木头边缘时，一块半径为 0.2 m、在车床上旋转的木头的角速度如何变化？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "增加 10 N·m 乘以木头的转动惯量。",
+     "减少 10 N·m 除以木头与车床系统的转动惯量。",
+     "减少 10 N·m 乘以木头的转动惯量。",
+     "减少 10 m/s²。"
+    ],
+    "correct": 1,
+    "hint": "凿子在边缘处的力与转动方向相反，力臂等于半径，所以它的力矩为 $\\ktau = \\kr\\kF = (0.2\\ \\text{m})(50\\ \\text{N})$。该力矩产生的角加速度为 $\\kalpha = \\ktau/\\kI$，其中 $\\kI$ 是一起转动的所有部分的转动惯量。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2004322",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "齿轮 A 顺时针转动，与逆时针转动的齿轮 B 啮合。当通过齿轮 A 施加更大的力时，就会产生力矩。齿轮 B 的角速度因此如何变化？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "其大小增大。",
+     "其大小减小。",
+     "其方向改变。",
+     "保持不变。"
+    ],
+    "correct": 0,
+    "hint": "齿轮 A 的齿在 B 的边缘处推齿轮 B 的齿，这个力在 B 已有的转动方向上产生对 B 的力矩。力矩在它自己的方向上产生角加速度，$\\kalpha = \\text{合力矩}\\;\\ktau/\\kI$。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1292713",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "使圆盘的角速度增加更多的是：把施加的力矩加倍，还是把施加力矩的半径减半？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从 $\\kalpha = \\text{合力矩}\\;\\ktau/\\kI$ 出发。圆盘的质量和半径决定了它的转动惯量，所以单是力矩就决定了角加速度，也就决定了角速度增长的快慢。力矩加倍，角加速度加倍。把给定力矩作用处的半径减半，什么也不会改变，因为力矩已经包含了力及其力臂。如果相反，是同一个力作用在一半的半径处，力矩就减半，角速度的增长也只有一半快。无论哪种方式，力矩加倍都会使角速度增加得更多。一个力作用处的半径，只通过它所产生的力矩起作用；而圆盘本身的半径，只通过它的转动惯量起作用。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1543406",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "当渔线轮上的力矩增大时，下列哪个量对帮助你确定角速度的变化没有用处？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "渔线轮的半径",
+     "放出的线的量",
+     "鱼线的角动量",
+     "线放出所用的时间"
+    ],
+    "correct": 2,
+    "hint": "角速度的变化等于角加速度乘以它作用的时间，而角加速度由力矩和渔线轮的转动惯量得出。想一想四个量中哪个能告诉你渔线轮转动的情况，哪个是鱼线而不是渔线轮的性质。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1669125",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "考虑两种大小的圆盘，质量都是 $M$。一种圆盘的半径为 $R$；另一种的半径为 $2R$。系统 A 由两个较大的圆盘刚性连接而成，具有共同的转轴。系统 B 由一个较大的圆盘和若干个较小的圆盘刚性连接而成，具有共同的转轴。如果系统 A 的转动惯量等于系统 B 的转动惯量，系统 B 中有多少个较小的圆盘？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "correct": 3,
+    "hint": "圆盘绕其转轴的转动惯量是 $\\frac{1}{2}M\\kR^2$，所以在质量相同时半径加倍，转动惯量就变为原来的四倍，并且共用一个转轴的物体的转动惯量相加。写出每个系统的总转动惯量，令二者相等。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1338880",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "给你一根长 1.0 m、质量 2.0 kg 的细杆，一个 0.50 kg 的小铅块，以及一个 1.0 kg 的不那么小的铅块。杆上有三个孔，两端各一个，中间一个，每个孔既可以放一个支点，也可以挂一个小铅块。你怎样布置这些物体，才能使所得系统的转动惯量最大？这个转动惯量是多少？怎样布置这些物体，才能使所得系统的转动惯量最大？这个转动惯量是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "转动惯量随到转轴距离的平方增大，所以要把支点放在使杆和铅块离它尽可能远的地方，较重的铅块放在最外面。把杆的支点放在一端。图 10.12 此时给出它的转动惯量为 $\\frac{1}{3}M\\ell^2 = \\frac{1}{3}(2.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 0.67\\ \\text{kg}\\cdot\\text{m}^2$。把 1.0 kg 的铅块挂在远端的孔里，它是距转轴 1.0 m 的质点，增加 $m\\kr^2 = (1.0\\ \\text{kg})(1.0\\ \\text{m})^2 = 1.0\\ \\text{kg}\\cdot\\text{m}^2$。把 0.50 kg 的铅块挂在中间的孔里，距转轴 0.50 m，增加 $(0.50\\ \\text{kg})(0.50\\ \\text{m})^2 = 0.13\\ \\text{kg}\\cdot\\text{m}^2$。绕同一转轴的转动惯量可以相加，所以系统的总转动惯量约为 $1.8\\ \\text{kg}\\cdot\\text{m}^2$。若支点穿过中点，杆只贡献 $\\frac{1}{12}M\\ell^2 = 0.17\\ \\text{kg}\\cdot\\text{m}^2$，两个铅块各距转轴 0.50 m，二者合计增加 $0.38\\ \\text{kg}\\cdot\\text{m}^2$，总共约为 $0.54\\ \\text{kg}\\cdot\\text{m}^2$。端点支点给出的结果是它的三倍多。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1628274",
+   "source_section": "10.4",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "当两个人而不是一个人推旋转木马、提供两倍的力矩时，你可以收集什么数据来研究角速度的变化？你将如何使用你收集的数据？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "测量在每种推法下角速度如何随时间增长。在边缘上标记一个点，用摄像机，或者用秒表和计数器，记录一个人从静止开始在边缘稳定地推时，它每完成一圈的时刻。然后重复实验，换成两个人在边缘沿同一方向推。根据这些时刻，求出每转一圈之后的角速度，画出它随时间变化的图线，并取每条直线的斜率作为角加速度。两次实验中旋转木马及其乘客相同，所以转动惯量相同，而 $\\text{合力矩}\\;\\ktau = \\kI\\kalpha$ 预言力矩加倍则角加速度加倍。比较两条斜率就检验了这个预言。用弹簧秤测推力，再测量力作用处的半径，就可以核对力矩本身。转轴处的摩擦会使斜率比两倍略小一点。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1198532",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "merry-go-round",
+   "prompt": "这道习题考虑例题“计算质量分布对旋转木马的影响”的更多方面。（a）考虑该例题的（b）部分，即孩子坐在旋转木马上的情形。父亲需要多长时间才能使旋转木马获得 1.50 rad/s 的角速度？（b）要产生这一角速度，他必须转过多少圈？（c）如果他在 1.35 m 的半径处施加 300 N 的减速力，他需要多长时间才能使它们停下来？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.338,
+      "unit": "s",
+      "hint": "该例题的（b）部分已经给出了孩子在上面时的角加速度。从静止开始，角速度按 $\\kw = \\kalpha\\kt$ 增长，所以所需时间就是所要的角速度除以该角加速度。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.0403,
+      "unit": "rev",
+      "hint": "角加速度恒定、从静止开始时，转过的角度为 $\\theta = \\frac{1}{2}\\kalpha\\kt^2$，如 10.2 节的运动学所给出的。除以 $2\\pi$，把弧度换算成圈。"
+     },
+     {
+      "part": "(c)",
+      "value": 0.313,
+      "unit": "s",
+      "hint": "减速的力产生一个新的力矩，$\\ktau = \\kr\\kF$，其中的力和半径取新值，转动惯量与例题（b）部分相同。它所产生的角加速度使 1.50 rad/s 的角速度回到零，所需时间的求法与（a）部分相同。"
+     }
+    ],
+    "solution": "（a）$0.338\\ \\text{s}$ （b）$0.0403\\ \\text{rev}$ （c）$0.313\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2669875",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "肱三头肌位于上臂背面，使前臂伸直。职业拳击手的这块肌肉施加 $2.00 \\times 10^3\\ \\text{N}$ 的力，有效垂直力臂为 3.00 cm，使前臂产生 $120\\ \\text{rad/s}^2$ 的角加速度。这位拳击手前臂的转动惯量是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.5,
+    "unit": "kg·m²",
+    "generated_by": "source",
+    "hint": "肌肉的力矩等于它的力乘以垂直力臂，力臂要以米为单位。然后由 $\\text{合力矩}\\;\\ktau = \\kI\\kalpha$ 得出转动惯量等于力矩除以角加速度。",
+    "solution": "$0.50\\ \\text{kg}\\cdot\\text{m}^2$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2449638",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "假设你对一个半径为 0.280 m、质量为 75.0 kg 的砂轮（一个实心圆盘）沿切线方向施加 180 N 的力。（a）施加的力矩是多少？（b）假设没有阻碍转动的摩擦，角加速度是多少？（c）如果有一个 20.0 N 的阻碍转动的摩擦力，作用在距转轴 1.50 cm 处，角加速度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 50.4,
+      "unit": "N·m",
+      "hint": "沿切线、作用在边缘上的力，其垂直力臂就是半径，所以 $\\ktau = \\kr\\kF$。"
+     },
+     {
+      "part": "(b)",
+      "value": 17.1,
+      "unit": "rad/s²",
+      "hint": "砂轮是实心圆盘，所以图 10.12 给出 $\\kI = \\frac{1}{2}M\\kR^2$，而 $\\kalpha = \\text{合力矩}\\;\\ktau/\\kI$。"
+     },
+     {
+      "part": "(c)",
+      "value": 17.0,
+      "unit": "rad/s²",
+      "hint": "摩擦力对转轴也产生它自己的力矩，力臂为 1.50 cm，并且它阻碍你的推力，所以合力矩是你的力矩减去摩擦力的力矩。用同样的转动惯量去除合力矩。"
+     }
+    ],
+    "solution": "（a）$50.4\\ \\text{N}\\cdot\\text{m}$ （b）$17.1\\ \\text{rad/s}^2$ （c）$17.0\\ \\text{rad/s}^2$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3064540",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "Zorch，超人的死敌，决定通过在赤道处沿平行于赤道的方向施加一个反向的力，把地球的自转减慢到每 28.0 h 转一圈。超人并不立刻担心，因为他知道 Zorch 只能施加 $4.00 \\times 10^7\\ \\text{N}$ 的力（比土星五号火箭的推力略大一点）。Zorch 必须用这个力推多长时间才能达到目的？（这段时间让超人有时间去对付其他恶棍。）请明确展示你是如何遵循“转动动力学的解题策略”中的各个步骤的。",
+   "answer": {
+    "type": "number",
+    "value": 3.96e+18,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "遵循解题策略。所研究的系统是地球，把它取为均匀实心球，其转动惯量由图 10.12 给出为 $\\frac{2}{5}M\\kR^2$；唯一的外力矩是 Zorch 的力乘以地球半径，因为他在赤道处沿平行于赤道的方向推。角速度必须从每 24.0 h 一圈降到每 28.0 h 一圈，因此求出这个角速度的变化，由 $\\kalpha = \\text{合力矩}\\;\\ktau/\\kI$ 求出角加速度，时间就是角速度的变化除以角加速度。检验答案与人类的任何时间跨度相比都是巨大的，也应当如此。",
+    "solution": "$3.96 \\times 10^{18}\\ \\text{s}$ 或 $1.26 \\times 10^{11}\\ \\text{y}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2962557",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "从绕过一端、垂直于长度的轴转动的杆的转动惯量公式 $(\\kI = M\\ell^2/3)$ 出发，证明绕过杆中心、垂直于长度的轴转动的杆的转动惯量为 $\\kI = M\\ell^2/12$。你会发现图 10.12 中的图形对想象这些转动很有用。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$I_{\\text{end}} = I_{\\text{center}} + m\\left(\\frac{l}{2}\\right)^2$。因此，$I_{\\text{center}} = I_{\\text{end}} - \\frac{1}{4}ml^2 = \\frac{1}{3}ml^2 - \\frac{1}{4}ml^2 = \\frac{1}{12}ml^2$。"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id2514768",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "一位体操运动员做前空翻后落在垫子上，施加 500 N·m 的力矩使自己的角速度减小到零。其初角速度为 10.0 rad/s，转动惯量为 $0.050\\ \\text{kg}\\cdot\\text{m}^2$。（a）这位体操运动员要多长时间才能使自己的转动恰好停下来？（b）这个结果有什么不合理之处？（c）哪些前提是不合理的或不一致的？",
+   "answer": {
+    "type": "number",
+    "value": 2.0,
+    "unit": "ms",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "力矩产生与转动方向相反的角加速度 $\\kalpha = \\text{合力矩}\\;\\ktau/\\kI$，使角速度降为零所需的时间等于初角速度除以该角加速度。然后问一问，一个物体能否在这么短的时间内停止转动，以及所给数值中哪一个对人来说超出了合理的量级。",
+    "solution": "（a）2.0 ms （b）时间间隔太短。（c）转动惯量小得太多，小了一到两个数量级。$500\\ \\text{N}\\cdot\\text{m}$ 的力矩是合理的。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1930191",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moment-of-inertia",
+   "prompt": "一则广告声称，一辆 800 kg 的汽车得到其 20.0 kg 飞轮的助力，该飞轮能使汽车从静止加速到 30.0 m/s 的速率。飞轮是半径为 0.150 m 的圆盘。（a）如果飞轮转动能的 95.0% 用于使汽车达到该速率，计算飞轮必须具有的角速度。（b）这个结果有什么不合理之处？（c）哪个前提是不合理的，或者哪些前提不一致？",
+   "answer": {
+    "type": "number",
+    "value": 17500,
+    "unit": "rpm",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "飞轮是圆盘，所以图 10.12 给出它的转动惯量为 $\\frac{1}{2}M\\kR^2$。它转动中储存的能量是转动动能 $\\frac{1}{2}\\kI\\kw^2$，下一节将引入转动动能；令它的 95.0% 等于汽车在 30.0 m/s 时的动能 $\\frac{1}{2}m\\kv^2$，解出角速度，再把弧度每秒换算成转每分。",
+    "solution": "（a）17,500 转每分（b）对这样大小和质量的圆盘来说，这个角速度非常高。圆盘边缘的径向加速度大于 50,000 g。（c）飞轮的质量和半径都应当大得多，这样才允许较低的转速（角速度）。"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id3225958",
+   "source_section": "10.1",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law-rotation",
+   "prompt": "你有一个质量为 90.0 kg、半径为 0.340 m 的砂轮（一个圆盘），它以 90.0 转每分转动，你用 20.0 N 的径向力把一把钢斧压在它上面。（a）假设钢与石头之间的动摩擦因数为 0.20，计算砂轮的角加速度。（b）砂轮在停下来之前会转多少圈？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -0.26,
+      "unit": "rad/s²",
+      "hint": "边缘上的摩擦力等于摩擦因数乘以径向力，它沿边缘的切线方向作用，所以它对转轴的力矩等于这个力乘以半径。用圆盘的转动惯量 $\\frac{1}{2}MR^2$ 去除力矩，求出角加速度；砂轮在减速，所以符号为负。"
+     },
+     {
+      "part": "(b)",
+      "value": 27,
+      "unit": "rev",
+      "hint": "把 90.0 转每分换算成弧度每秒，再求在恒定的角加速度使该角速度降到零的过程中转过的角度，如 10.2 节的运动学方程所做的那样，然后除以 $2\\pi$ 得到转的圈数。"
+     }
+    ],
+    "solution": "（a）$-0.26\\ \\text{rad/s}^2$ （b）$27\\ \\text{rev}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "torque"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "mass-distribution-and-inertia"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque-on-a-point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque-on-a-point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "torque-on-a-point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "mass-distribution-and-inertia",
+   "weight": 3
+  },
+  {
+   "exercise": "ap6",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "mass-distribution-and-inertia",
+   "weight": 3
+  },
+  {
+   "exercise": "ap7",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotational-dynamics-strategy",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rotational-dynamics-strategy",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rotational-dynamics-strategy"
+  },
+  {
+   "exercise": "p9",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "p10",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p10",
+   "concept": "rotational-dynamics-strategy",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "choosing-a-moment-of-inertia"
+  },
+  {
+   "exercise": "p11",
+   "concept": "moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "newtons-second-law-rotation"
+  },
+  {
+   "exercise": "p12",
+   "concept": "choosing-a-moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "rotational-kinematic-equations",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "wheel",
+   "label": "自行车车轮",
+   "figures": [
+    "sim-bike-wheel"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "拉着车轮的手",
+   "figures": [
+    "sim-bike-wheel"
+   ]
+  },
+  {
+   "id": "point-mass",
+   "label": "桌面上的质点",
+   "figures": [
+    "sim-point-mass"
+   ]
+  },
+  {
+   "id": "pivot",
+   "label": "支点",
+   "figures": [
+    "sim-point-mass"
+   ]
+  },
+  {
+   "id": "cord",
+   "label": "绳",
+   "figures": [
+    "sim-point-mass"
+   ]
+  },
+  {
+   "id": "merry-go-round",
+   "label": "旋转木马",
+   "figures": [
+    "sim-merry-go-round"
+   ]
+  },
+  {
+   "id": "father",
+   "label": "父亲",
+   "figures": [
+    "sim-merry-go-round"
+   ]
+  },
+  {
+   "id": "child",
+   "label": "孩子",
+   "figures": [
+    "sim-merry-go-round"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "torque-point-mass",
+   "what": "质点的牛顿第二定律的转动类比",
+   "source": "《大学物理（第2版）》，10.3 转动动力学：转动惯量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "力 $\\kF$ 始终与 $\\kr$ 垂直。",
+       "src": "10.3，图 10.11"
+      },
+      {
+       "tex": "\\ka = \\kr\\kalpha",
+       "src": "10.1"
+      },
+      {
+       "tex": "\\ktau = \\kr\\kF\\sin\\ktheta",
+       "src": "9.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{m}{\\km}\\mk{a}{\\ka}",
+      "src": "4.3",
+      "uses": [
+       0
+      ],
+      "why": "力垂直于 $\\kr$，所以它产生的加速度 $\\ka = \\kF/\\km$ 沿着圆周，方向与 $\\kF$ 相同。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{m}{\\km}\\mk{a}{\\kr\\kalpha}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kr\\kF} = \\mk{m}{\\km}\\mk{a}{\\kr^2\\kalpha}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{\\ktau} = \\mk{m}{\\km}\\mk{a}{\\kr^2\\kalpha}",
+       "uses": [
+        0,
+        2
+       ],
+       "cap": "因 $\\kF$ 垂直于 $\\kr$，$\\sin\\ktheta = 1$，所以力矩就是 $\\kr\\kF$。"
+      }
+     ],
+     "src": "10.3"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,578 @@
+{
+ "id": "31.1",
+ "module": "m42623",
+ "chapter": "31",
+ "title": "核放射性",
+ "short": "放射性",
+ "lead": "有些原子核具有放射性：它们会自发衰变，并从核中发出射线。本节讲述放射性是如何被发现的，<span data-concept=\"magnetic-field\">磁场</span>如何把它的射线分为 α 射线、β 射线和 γ 射线，以及为什么这三种射线都会使它们穿过的物质电离，却在物质中行进如此不同的距离。",
+ "objectives": [
+  "解释核辐射。",
+  "解释辐射的类型——α 发射、β 发射和 γ 发射。",
+  "解释辐射对原子的电离。",
+  "定义辐射的射程。"
+ ],
+ "summary_html": "<ul><li>有些原子核具有放射性——它们自发衰变，损失一部分<span data-concept=\"mass\">质量</span>并发出高能射线，这一过程称为核放射性。</li><li>核辐射和 X 射线一样是电离辐射，因为每次衰变所发出的<span data-concept=\"energy\">能量</span>足以使物质电离。</li><li>电离辐射的射程（即在物质中行进的距离）与所发射粒子的<span data-concept=\"electric-charge\">电荷</span>及其<span data-concept=\"energy\">能量</span>直接相关，电荷越大、能量越低的粒子射程越短。</li><li>辐射探测器直接或间接地以辐射所产生的电离为基础，辐射对生物和非生物材料的效应也是如此。</li></ul>",
+ "notes": "PhET 模拟“β 衰变”的链接（其描述是用质子、中子和电子搭建原子）已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。AP 题问的是铀发射一个 α 后留下哪种原子核，它印在本节，而设在介绍 α 衰变的 31.4 节；其答案在本书源文件中被注释掉，所以在那里作为开放题设置。关于 10 MeV 质子在 2.00 T 磁场中路径的综合概念题印在 31.7 节，而设在这里，因为带电辐射在这里被磁场偏转。九道思考题没有书后答案，附有标明为 AI 撰写的建议思路。本模块没有自己的习题，也没有“理解检测”框，所以没有行内习题。",
+ "figures": [
+  {
+   "id": "photo-radium-dials",
+   "kind": "photo",
+   "number": "31.2",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rays-in-field",
+   "kind": "sim",
+   "number": "31.3",
+   "originals": [
+    "/media/ch31/Figure_32_01_02a.jpg"
+   ],
+   "original_caption": "α 射线、β 射线和 γ 射线在射向磷光屏的途中穿过一个磁场。α 粒子和 β 粒子向相反方向偏转，而 γ 射线不受影响，这表明 α 粒子带正电，β 粒子带负电，γ 射线呈电中性。用电场也得到一致的结果。对辐射的收集通过对过剩电荷的直接测量，进一步提供了证实。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "magnetic-field",
+    "energy",
+    "position",
+    "velocity",
+    "charge"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-dosimeter",
+   "kind": "photo",
+   "number": "31.4",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-range",
+   "kind": "sim",
+   "number": "31.5",
+   "originals": [
+    "/media/ch31/Figure_32_01_04a.jpg"
+   ],
+   "original_caption": "辐射的穿透深度或射程取决于它的能量、所遇到的物质以及辐射的类型。（a）能量越大，射程越大。（b）辐射在电子密度高的物质中射程较小。（c）α 粒子的射程最小，β 粒子的射程较大，γ 射线穿透得最远。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "time"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-bone-scan",
+   "kind": "photo",
+   "number": "31.6",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "radioactivity",
+   "concept": "nucleus",
+   "verb": "uses"
+  },
+  {
+   "span": "discovery",
+   "concept": "nuclear-radioactivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "discovery",
+   "concept": "nuclear-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "discovery",
+   "concept": "radioactive",
+   "verb": "introduces"
+  },
+  {
+   "span": "discovery",
+   "concept": "radiation-is-nuclear-in-origin",
+   "verb": "introduces"
+  },
+  {
+   "span": "discovery",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "discovery",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "discovery",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "discovery",
+   "concept": "atomic-spectra",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "alpha-beta-gamma-rays",
+   "verb": "introduces"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "alpha-rays",
+   "verb": "introduces"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "beta-rays",
+   "verb": "introduces"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "radius-of-curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "electron",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-beta-gamma",
+   "concept": "gamma-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "ionization-and-range",
+   "concept": "ionizing-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "ionization-and-range",
+   "concept": "range-of-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "ionization-and-range",
+   "concept": "ionizing-photons",
+   "verb": "uses"
+  },
+  {
+   "span": "ionization-and-range",
+   "concept": "elastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "ionization-and-range",
+   "concept": "change-in-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "ionization-and-range",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ionization-and-range",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "discovery",
+   "concept": "nuclear-decay",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1315166",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-beta-gamma",
+   "prompt": "观察到一个原子核发射出频率为 $6.3\\times 10^{19}\\;\\text{Hz}$ 的 $\\gamma$ 射线。这会使该原子核发生什么？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "原子核必须获得 0.26 MeV。",
+     "原子核还必须沿相反方向发射一个能量为 0.26 MeV 的 α 粒子。",
+     "原子核必须失去 0.26 MeV。",
+     "原子核还必须沿相反方向发射一个能量为 0.26 MeV 的 β 粒子。"
+    ],
+    "correct": 2,
+    "generated_by": "source",
+    "hint": "由 $\\kE = hf$ 求光子的能量，其中 $h = 4.14\\times 10^{-15}\\;\\text{eV}\\cdot\\text{s}$，再想一想这份能量从何而来。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1575916",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ionization-and-range",
+   "prompt": "假设已知在某种材料中，5.0 MeV 的 $\\alpha$ 射线的射程为 2.0 mm。这是否意味着每一条射到这种材料上的 5.0 MeV $\\alpha$ 射线都行进 2.0 mm，还是射程有一个平均值，所行进的距离存在统计涨落？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "射程是一个平均值。$\\alpha$ 粒子要在极多次分立的电离碰撞中损失能量，每次碰撞所取走的能量以及沿给定长度的碰撞次数，都随机变化。因此，两个能量相同的 $\\alpha$ 粒子会在略有不同的深度停下，分布在 2.0 mm 附近。由于每个 $\\alpha$ 粒子产生的电离次数极多，随机变化在很大程度上被平均掉了，所以涨落与射程本身相比很小，射程仍是一个有用的、定义明确的数，这与 $\\gamma$ 射线的射程不同。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2968914",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-beta-gamma",
+   "prompt": "$\\gamma$ 射线和特征 X 射线有什么区别？二者中是否必然有一个能量更高？哪一个的能量可以最高？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们只在来源上有区别：$\\gamma$ 射线来自原子核的退激发，而特征 X 射线来自原子内层空位被填充时原子的退激发。能量相同时，这两种光子完全相同，所以二者都不必然能量更高；几十 keV 的低能 $\\gamma$ 射线所带的能量，比重元素的特征 X 射线还少。然而核能量可达 $10^{6}\\;\\text{eV}$ 的量级，比能量最高的特征 X 射线高出十倍以上，所以二者中能量最高的是 $\\gamma$ 射线。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1817248",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ionization-and-range",
+   "prompt": "电离辐射通过与物质中的电子和原子核散射而发生相互作用。根据动量守恒定律和能量守恒定律，解释为什么在这些相互作用中，电子往往比原子核吸收更多的能量。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在碰撞中，辐射给被撞粒子一定的动量 $\\kdp$，质量为 $m$ 的粒子从静止开始，随后具有的动能为 $(\\kdp)^{2}/2m$。对于同样的冲击，质量越小，所获得的能量越大。电子的质量比原子核小几千倍，所以在同类的碰撞中它带走的能量要多得多；沉重的原子核反冲得很慢，只取得很少的能量，就像球从墙上弹回时几乎保持全部能量一样。因此，动量守恒和能量守恒使辐射的大部分能量进入了电子。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2617114",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discovery",
+   "prompt": "放射性的哪些特征表明它起源于原子核，而不是起源于原子？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "第一，放射性属于某些元素，不随元素的化学状态变化，也不随其温度、压强或电离状态变化。所有这些都会影响原子的电子，所以这种辐射不可能来自电子跃迁。第二，每次事件释放的能量为 $10^{6}\\;\\text{eV}$ 的量级，远大于原子过程和化学过程的几 eV，也比能量最高的特征 X 射线高出十倍以上。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2392575",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discovery",
+   "prompt": "放射性衰变中所发出的能量来源是什么？指出一条更早的守恒定律，并描述它是如何被修改以便把这类过程考虑在内的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "能量来自原子核一小部分质量转化成的能量，二者的关系为 $\\kE = m\\kc^{2}$。放射源没有任何能量输入却持续发出能量，这似乎违反了能量守恒定律。这条定律之所以得以保留，是因为把质量也算作一种能量：守恒的是能量与静能 $m\\kc^{2}$ 的总和，所以原子核损失的质量以其辐射能量的形式重新出现。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2397625",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-beta-gamma",
+   "prompt": "考虑图 31.3。如果用电场代替磁场，以正电荷代替北极、负电荷代替南极，$\\alpha$ 射线、$\\beta$ 射线和 $\\gamma$ 射线将分别向哪些方向偏转？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电场由正极板指向负极板，沿场的方向推动正电荷，逆着场的方向推动负电荷，这与向侧向推动的磁场不同。所以带正电的 $\\alpha$ 粒子向负极板偏转，即原来南极所在的一侧；带负电的 $\\beta$ 粒子向正极板偏转，即原来北极所在的一侧；不带电的 $\\gamma$ 射线径直前进。$\\alpha$ 粒子和 $\\beta$ 粒子仍然向相反方向偏转，但现在是沿着两极板连线的方向，而不是垂直于它。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2593990",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ionization-and-range",
+   "prompt": "解释 $\\alpha$ 粒子在空气中的射程为什么可以比能量相同的 $\\beta$ 粒子在铅中的射程大。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "射程既取决于辐射的类型，也取决于物质。能量相同时，$\\alpha$ 粒子比 $\\beta$ 粒子更容易电离，因为它的电荷是后者的两倍，而且运动得慢得多，所以在同一种物质中它先停下来。但辐射主要把能量损失给电子，而铅每立方厘米中的电子数比空气多几千倍。$\\beta$ 粒子在铅中遇到的电子如此之多，以致大约一毫米就停下了，而 $\\alpha$ 粒子在稀薄的空气中遇到的电子如此之少，能行进几厘米。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2621936",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ionization-and-range",
+   "prompt": "按照作为辐射屏蔽体的能力对下列各项排序，最好的在前，最差的在后。请根据辐射在物质中损失能量的方式解释你的排序。（a）由低质量原子组成的低密度固体。（b）由高质量原子组成的气体。（c）由低质量原子组成的气体。（d）由高质量原子组成的高密度固体。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "辐射通过电离损失能量，主要是把能量交给电子，所以最好的屏蔽体是单位体积中电子最多的。固体的密度大约是气体的一千倍，所以两种固体都排在两种气体之前；在每一对之中，高质量原子每个带有更多的电子，由它们构成的致密固体电子最多。排序为（d）、（a）、（b）、（c）：由高质量原子构成的致密固体最好，其次是轻原子构成的固体，再次是重原子构成的气体，轻原子构成的气体最差。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1548218",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ionization-and-range",
+   "prompt": "人们在处理放射性物质泄漏时，我们常常看到他们穿着白色连体防护服（通常是塑料材质）。你认为这些防护服能保护工作人员免受哪些类型的辐射（如果有的话），又是怎样保护的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "薄薄的塑料防护服能挡住 $\\alpha$ 辐射，其射程与一张纸相当，它也会吸收一部分低能 $\\beta$ 粒子，但 $\\gamma$ 射线会径直穿过。它的主要保护作用是防止污染：使放射性尘埃和液体不沾到皮肤和衣服上，这样工作人员就不会把物质带走，也不会把它摄入体内——即使是短射程的 $\\alpha$ 和 $\\beta$ 发射体，进入体内也会造成伤害。防护服脱下后，连同其上的污染物一起处理掉。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1186653",
+   "source_section": "31.7",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-beta-gamma",
+   "prompt": "综合概念。在气泡室中，一个 2.00 T 的磁场垂直于带电粒子的路径。一个 10 MeV 的质子在这个磁场中的路径曲率半径是多少？忽略它沿途的减速。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 22.8,
+    "unit": "cm",
+    "hint": "由质子的动能 $\\frac{1}{2}m\\kv^{2} = 10\\;\\text{MeV}$ 求出它的速率（在这个速率下可按经典处理），再用 $\\kr = m\\kv/(\\kq\\kBmag)$。",
+    "solution": "22.8 cm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "alpha-beta-gamma-rays"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "photon-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "conservation-of-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ionizing-radiation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "alpha-beta-gamma-rays"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "characteristic-x-rays"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "elastic-collision"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "radiation-is-nuclear-in-origin"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "nuclear-radioactivity"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "alpha-beta-gamma-rays"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "ionizing-radiation"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "alpha-beta-gamma-rays"
+  },
+  {
+   "exercise": "p1",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "p1",
+   "concept": "alpha-beta-gamma-rays"
+  }
+ ]
+}

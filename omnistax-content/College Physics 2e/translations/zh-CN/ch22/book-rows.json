@@ -1,0 +1,1443 @@
+{
+ "types": [
+  {
+   "id": "magnetic-field",
+   "label": "磁场",
+   "dimension": "T"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "B_mag",
+   "latex": "B",
+   "macro": "\\kBmag"
+  },
+  {
+   "sym": "B_1mag",
+   "latex": "B_1",
+   "macro": "\\kBmagone"
+  },
+  {
+   "sym": "w_loop",
+   "latex": "w",
+   "macro": "\\kwloop"
+  },
+  {
+   "sym": "μ_0",
+   "latex": "\\mu_0"
+  },
+  {
+   "sym": "emf_hall",
+   "latex": "\\varepsilon",
+   "macro": "\\kemfhall"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "magnetic-poles",
+   "kind": "axiom",
+   "section": "22.1",
+   "name": "磁极",
+   "statement": "所有磁体都吸引铁，但一块磁体靠近另一块磁体时，可能吸引它，也可能排斥它，因为每块磁体都有两个表现不同的端点。把一块磁体自由悬挂起来，它的一端会指向北方。这两端分别是磁北极和磁南极，是按它们所指的方向命名的。本章后面的每一条规则，从磁感线的方向到载流线圈所受的力矩，都要用到这两个磁极。"
+  },
+  {
+   "id": "like-poles-repel",
+   "kind": "axiom",
+   "section": "22.1",
+   "name": "同名磁极相斥",
+   "statement": "把两块磁体靠在一起，你会发现两个北极互相推开，两个南极也是如此，而北极和南极则互相吸引。把这与静电学的规则作比较：异号电荷相吸，同号电荷相斥。两者看上去很相像，人们很容易把整个静电学照搬过来，但后面的各节会表明这种类比在哪里成立、在哪里失效。"
+  },
+  {
+   "id": "no-magnetic-monopoles",
+   "kind": "axiom",
+   "section": "22.1",
+   "name": "不存在磁单极子",
+   "terms": [
+    "磁单极子"
+   ],
+   "statement": "把一根条形磁体从中间切成两半，你得不到一手拿着北极、另一手拿着南极的结果；你得到的是两块更短的磁体，每块都有两个磁极。再切一次，情形依旧，一直切到铁原子本身。这正是与电荷的类比失效之处，因为正电荷和负电荷很容易分开；也正是这一事实迫使本章后面把全部磁性都解释为电流：载流线圈总是产生一对磁极，而从不产生单个磁极。"
+  },
+  {
+   "id": "north-magnetic-pole",
+   "kind": "definition",
+   "section": "22.1",
+   "name": "磁北极",
+   "terms": [
+    "磁北极"
+   ],
+   "statement": "磁体的磁北极是被地球地理北极吸引的那一端或那一侧，也就是磁体可以自由转动时指向北方的那一端。"
+  },
+  {
+   "id": "south-magnetic-pole",
+   "kind": "definition",
+   "section": "22.1",
+   "name": "磁南极",
+   "terms": [
+    "磁南极"
+   ],
+   "statement": "磁体的磁南极是被地球地理南极吸引的那一端或那一侧。"
+  },
+  {
+   "id": "ferromagnetic-materials",
+   "kind": "definition",
+   "section": "22.2",
+   "name": "铁磁材料与磁化",
+   "terms": [
+    "铁磁性的"
+   ],
+   "statement": "只有少数几种材料表现出很强的磁效应，其中有铁、钴、镍、钆和一些稀土合金。它们被称为铁磁性的，得名于拉丁语中表示铁的 ferrum 一词。它们的作用不止于对磁体做出响应：它们本身可以被磁化，也就是可以被诱导而带有磁性，或被制成永磁体，这就是为什么靠近未磁化铁块的磁体会吸引它。"
+  },
+  {
+   "id": "magnetic-domains",
+   "kind": "idea",
+   "section": "22.2",
+   "name": "磁畴",
+   "terms": [
+    "磁畴"
+   ],
+   "statement": "铁磁材料内部有一些称为磁畴的区域，由于其中各个原子的磁极排列一致，每个磁畴都像一根小条形磁体。在未磁化的物体中，磁畴很小，指向随机，因此它们的效应相互抵消。在外磁场中，原本就指向正确的磁畴以其他磁畴为代价而增大，其余的磁畴则转向同一方向，整块材料就成为一块磁体。加热后冷却，或在施加磁场时敲击它，可使这种排列永久保持。"
+  },
+  {
+   "id": "curie-temperature",
+   "kind": "definition",
+   "section": "22.2",
+   "name": "居里温度",
+   "terms": [
+    "居里温度"
+   ],
+   "statement": "热运动不利于磁畴的排列，因此在没有另一块磁体的情况下加热永磁体会使其退磁，猛烈敲击也会如此。每种铁磁材料都有一个确定的温度，即居里温度，超过这个温度它就根本不能被磁化；铁的居里温度是 1043 K，即 770 °C，远高于室温。有些元素和合金的居里温度低于室温，只有在低温下才是铁磁性的。"
+  },
+  {
+   "id": "electromagnet",
+   "kind": "idea",
+   "section": "22.2",
+   "name": "电磁铁",
+   "terms": [
+    "电磁铁"
+   ],
+   "statement": "奥斯特在 1820 年发现，载流导线会使指南针的指针偏转，这是运动电荷与磁体有关的最早证据。利用电流制造磁体称为电磁学，以这种方式制成的磁体称为电磁铁。撒在载流线圈周围的铁屑形成的图样，与它们在条形磁体周围形成的图样相同。电磁铁同样有无法分开的北极和南极，并且遵循同样的规则相互排斥和吸引，所以这两种磁体是同一类东西。"
+  },
+  {
+   "id": "current-is-the-source-of-magnetism",
+   "kind": "idea",
+   "section": "22.2",
+   "name": "作为磁性来源的电流",
+   "statement": "电磁铁用电流产生磁场，铁磁体也是如此，只不过尺度小到看不见。绕原子核运动的电子是一个闭合的载流线圈，电子的自旋是第二种电流，二者都产生带有北极和南极的磁场。铁磁性是这些自旋的协同排列。孤立的磁极从未被发现，因为载流线圈总是产生一对磁极。本章其余部分都建立在这一想法之上。"
+  },
+  {
+   "id": "electromagnetism",
+   "kind": "definition",
+   "section": "22.2",
+   "name": "电磁学",
+   "terms": [
+    "电磁学"
+   ],
+   "statement": "电磁学是利用电流产生磁性，更广泛地说，是指一旦知道电流能产生磁场，电和磁就合而为一的那门学科。"
+  },
+  {
+   "id": "magnetized",
+   "kind": "definition",
+   "section": "22.2",
+   "name": "被磁化的",
+   "terms": [
+    "被磁化的"
+   ],
+   "statement": "一种材料已被变成磁体时就是被磁化的，这既可以是在一段时间内被诱导而带有磁性，也可以是被制成永磁体。"
+  },
+  {
+   "id": "magnetic-field",
+   "kind": "definition",
+   "section": "22.3",
+   "name": "磁场",
+   "symbol": "B_mag",
+   "terms": [
+    "磁场",
+    "B 场"
+   ],
+   "type": "magnetic-field",
+   "statement": "磁场，传统上称为 B 场，是对磁力的表示。与引力场和电场一样，它描绘出物体周围的力，这些力可以作用于远处的另一个物体；它表示的是产生它的物体，而不是用来探测它的指南针。"
+  },
+  {
+   "id": "direction-of-field-lines",
+   "kind": "definition",
+   "section": "22.3",
+   "name": "磁感线的方向",
+   "terms": [
+    "磁感线的方向"
+   ],
+   "statement": "我们用磁感线来画磁场，这是一种显示磁场强弱和方向的图示工具。磁感线的方向就是小指南针的指针北端所指的方向，所以你可以用桌上的一只指南针来检验。小指南针不会扰动它所检验的磁场，就像小检验电荷不会扰动电场一样，所以它们描出的图只是磁体本身的图。"
+  },
+  {
+   "id": "rules-for-magnetic-field-lines",
+   "kind": "axiom",
+   "section": "22.3",
+   "name": "磁感线的规则",
+   "statement": "对许多磁场的描绘确立了四条规则。磁场在每一点都与磁感线相切，所以指南针沿着磁感线摆放。磁感应强度与磁感线的密集程度成正比，确切地说，与垂直于磁感线的单位面积上穿过的磁感线条数成正比。磁感线从不相交，因为磁场在空间每一点只有一个值。而且磁感线是连续的闭合回路，没有起点也没有终点，这是四条中最深刻的一条，因为电场线始于电荷、止于电荷，而磁感线没有可供其始终的单极子。"
+  },
+  {
+   "id": "magnetic-field-lines",
+   "kind": "definition",
+   "section": "22.3",
+   "name": "磁感线",
+   "terms": [
+    "磁感线"
+   ],
+   "statement": "磁感线是磁场的一种图示表示：磁场沿着磁感线的方向，磁场较强的地方磁感线靠得较近。"
+  },
+  {
+   "id": "magnetic-force-on-a-moving-charge",
+   "kind": "axiom",
+   "section": "22.4",
+   "name": "运动电荷所受的磁力",
+   "terms": [
+    "洛伦兹力",
+    "磁力"
+   ],
+   "statement": "磁场只在电荷运动时才对电荷施加力。这个力的大小等于电荷、速率、磁感应强度以及速度与磁场夹角的正弦四者的乘积。正弦与其余各量同样重要：沿磁感线运动的电荷完全不受力，而垂直穿过磁感线运动的电荷受力最大。这个力常被称为洛伦兹力，一块磁体就是靠它推动另一块磁体的，因为每块磁体都由运动的电荷构成。",
+   "forms": [
+    {
+     "id": "eq-magnetic-force",
+     "latex": "F = qvB\\sin\\theta",
+     "ktex": "\\kF = \\kq\\kv\\kBmag\\sin\\theta",
+     "anchor": "22.4-force-law"
+    }
+   ]
+  },
+  {
+   "id": "magnetic-field-strength-defined",
+   "kind": "definition",
+   "section": "22.4",
+   "name": "磁感应强度",
+   "symbol": "B_mag",
+   "terms": [
+    "磁感应强度"
+   ],
+   "type": "magnetic-field",
+   "statement": "磁感线显示磁场的样子；把力的定律反过来，就说出了它的强度是什么。解出 $B$，就把磁感应强度定义为单位电荷、单位速度所受的力（沿垂直于磁场的方向度量），正如电场强度是单位电荷所受的力一样。所以我们只能通过磁场对运动电荷的作用来了解它。",
+   "forms": [
+    {
+     "id": "eq-field-from-force",
+     "latex": "B = \\frac{F}{qv\\sin\\theta}",
+     "ktex": "\\kBmag = \\frac{\\kF}{\\kq\\kv\\sin\\theta}",
+     "anchor": "22.4-force-law"
+    }
+   ]
+  },
+  {
+   "id": "the-tesla",
+   "kind": "definition",
+   "section": "22.4",
+   "name": "特斯拉",
+   "terms": [
+    "特斯拉"
+   ],
+   "statement": "由于正弦是纯数，磁感应强度的单位可由定义得出：一特斯拉等于一牛每库每米每秒，也就是一牛每安米。较小的单位高斯是 $10^{-4}$ 特斯拉。最强的永磁体可达约 2 T，超导电磁铁可达 10 T 或更多。地球表面的磁场只有约 $5 \\times 10^{-5}$ T，即半个高斯，所以你从来感觉不到地球在推你口袋里的电荷。",
+   "forms": [
+    {
+     "id": "eq-tesla",
+     "latex": "1\\;\\text{T} = \\frac{1\\;\\text{N}}{\\text{C}\\cdot\\text{m/s}} = \\frac{1\\;\\text{N}}{\\text{A}\\cdot\\text{m}}",
+     "anchor": "22.4-tesla-and-gauss"
+    }
+   ]
+  },
+  {
+   "id": "right-hand-rule-1",
+   "kind": "skill",
+   "section": "22.4",
+   "name": "右手定则 1",
+   "terms": [
+    "右手定则 1（RHR-1）"
+   ],
+   "statement": "磁力的方向垂直于速度与磁场所构成的平面，不借助约定就无法从平面图上读出这个方向，所以本书给出了一条约定。右手拇指指向速度方向，四指指向磁场方向，则正电荷所受的力从掌心穿出。一个速度，一个拇指；多条磁感线，多个手指；力就是你推的方向。负电荷所受的力正好相反。"
+  },
+  {
+   "id": "force-reverses-with-sign-of-charge",
+   "kind": "result",
+   "section": "22.4",
+   "name": "力与电荷的正负",
+   "statement": "右手定则 1 适用于正电荷，沿相同方向运动的负电荷所受的力方向正好相反。导线中实际运动的电荷是电子，所以在本章中你要不断在约定电流的方向与载流子的运动方向之间换算。这种反转还使霍尔效应能够显示运动的载流子带哪种电荷。"
+  },
+  {
+   "id": "gauss",
+   "kind": "definition",
+   "section": "22.4",
+   "name": "高斯",
+   "terms": [
+    "高斯"
+   ],
+   "statement": "高斯是比特斯拉更小的磁感应强度单位，$1\\;\\text{G} = 10^{-4}\\;\\text{T}$。",
+   "forms": [
+    {
+     "id": "eq-gauss",
+     "latex": "1\\;\\text{G} = 10^{-4}\\;\\text{T}"
+    }
+   ]
+  },
+  {
+   "id": "magnetic-force-does-no-work",
+   "kind": "result",
+   "section": "22.5",
+   "name": "磁力不做功",
+   "statement": "磁力始终垂直于速度，而垂直于运动方向的力不做功。所以粒子的动能和速率都不变：受影响的只有运动的方向。这是决定本节其余一切的唯一事实，因为大小恒定、方向始终垂直于速度的力，正是匀速圆周运动所要求的。"
+  },
+  {
+   "id": "circular-motion-in-a-magnetic-field",
+   "kind": "result",
+   "section": "22.5",
+   "name": "磁场中的圆周运动",
+   "statement": "当电荷垂直于匀强磁场运动时，磁力就是向心力，所以 $qvB$ 等于 $mv^2/r$。你已经在第 6 章解过圆周运动；这里你只需认出是哪个力充当向心力。在真空中，单靠磁场就决定了运动，粒子以恒定速率永远转圈。",
+   "forms": [
+    {
+     "id": "eq-magnetic-force-is-centripetal",
+     "latex": "qvB = \\frac{mv^2}{r}",
+     "ktex": "\\kq\\kv\\kBmag = \\frac{m\\kv^2}{\\kr}",
+     "anchor": "22.5-radius"
+    }
+   ]
+  },
+  {
+   "id": "radius-of-curvature",
+   "kind": "result",
+   "section": "22.5",
+   "name": "带电粒子轨迹的半径",
+   "type": "position",
+   "statement": "把向心力方程解出半径，得到质量乘以速率再除以电荷乘以磁感应强度。本章关于弯曲径迹的一切结论都由这个分式得出：质量更大或速率更快的粒子转得更宽，磁场更强或电荷更多则把圆拉得更紧。固定速率、电荷和磁感应强度，半径就与质量成正比，质谱仪就是这样称出离子的质量的。这也是为什么贴在玻璃上的一块磁体能使电视显像管里的电子转出直径不到一毫米的圆。",
+   "forms": [
+    {
+     "id": "eq-radius-of-curvature",
+     "latex": "r = \\frac{mv}{qB}",
+     "ktex": "\\kr = \\frac{m\\kv}{\\kq\\kBmag}",
+     "anchor": "22.5-radius"
+    },
+    {
+     "id": "eq-mass-spectrometer-radius",
+     "latex": "r = \\frac{mv}{qB}",
+     "ktex": "\\kr = \\frac{m\\kv}{\\kq\\kBmag}",
+     "section": "22.11",
+     "anchor": "22.11-spectrometry"
+    }
+   ]
+  },
+  {
+   "id": "spiral-along-field-lines",
+   "kind": "result",
+   "section": "22.5",
+   "name": "沿磁感线的螺旋运动",
+   "statement": "只有垂直于磁场的速度分量会发生弯曲；沿磁场方向的分量保持不变，因为对平行于磁感线的运动，磁力为零。因此以某一角度射入的粒子会绕着磁感线转圈，同时沿磁感线漂移，轨迹是螺旋线而不是圆。接近磁场的带电粒子，绕磁感线螺旋运动的可能性远大于穿过磁感线。这解释了极光、图 22.20 中径迹的形状，以及下一个想法的全部内容。"
+  },
+  {
+   "id": "magnetic-mirror",
+   "kind": "idea",
+   "section": "22.5",
+   "name": "磁镜",
+   "statement": "在磁感线挤在一起的地方，沿运动方向磁场变强。于是磁力有一个分量，使粒子沿磁感线的运动减慢，并可能把它折回。因此两端各有一个强磁场区域，就能把在两端之间来回反弹的粒子困住，这就是磁镜。地球就是这样一个陷阱。它的两条范艾仑带捕获来自太阳和深空的粒子，这些粒子沿磁感线迁移，并在两极附近被反射回去。那些确实在两极附近进入大气的粒子会点亮极光，并使那里的辐射剂量高于赤道。"
+  },
+  {
+   "id": "magnetic-confinement",
+   "kind": "idea",
+   "section": "22.5",
+   "name": "约束和引导带电粒子",
+   "statement": "工程师有意构建同样的约束。加速器使用磁场，不仅使束流绕环弯转，还使它聚焦，并使它不被自身同号电荷的排斥力冲散。托卡马克把螺线管弯成甜甜圈形，使等离子体的带电粒子绕着磁感线转圈而永远到不了器壁，这是约束聚变反应的主要希望。微波炉的磁控管以同样的方式约束振荡的电子。所有这些都应用同一个想法。"
+  },
+  {
+   "id": "hall-effect",
+   "kind": "idea",
+   "section": "22.6",
+   "name": "霍尔效应",
+   "terms": [
+    "霍尔效应"
+   ],
+   "statement": "磁场对导体内运动的电荷的作用，与对自由电荷的作用一样；由于电荷不能离开金属，它们就堆积在一侧，而在另一侧留下相反符号的电荷。分离出的电荷在导体两侧产生电场，这个电场把载流子推回去。因此堆积几乎立刻停止，停在电力 $qE$ 等于磁力 $qvB$ 的那一点，于是 $E = vB$。这种分离在导体两侧产生的电压就是霍尔电动势。",
+   "forms": [
+    {
+     "id": "eq-hall-force-balance",
+     "latex": "qE = qvB \\quad\\text{所以}\\quad E = vB",
+     "ktex": "\\kq\\kEf = \\kq\\kv\\kBmag \\quad\\text{所以}\\quad \\kEf = \\kv\\kBmag",
+     "anchor": "22.6-balance"
+    }
+   ]
+  },
+  {
+   "id": "hall-emf",
+   "kind": "result",
+   "section": "22.6",
+   "name": "霍尔电动势",
+   "symbol": "emf_hall",
+   "terms": [
+    "霍尔电动势"
+   ],
+   "type": "voltage",
+   "statement": "对于横穿均匀导体的匀强磁场，电场也是均匀的，所以电压等于电场强度乘以宽度，$E = \\varepsilon/l$。把它代入平衡式，当三者互相垂直时，霍尔电动势等于磁感应强度乘以宽度再乘以速率。这是个很小的电压，动脉中的血液只有几十微伏，本节特意指出了这一点，因为与心跳产生的毫伏级电压相比，这个电压很难测量，所以霍尔流量探头采用交变磁场。",
+   "forms": [
+    {
+     "id": "eq-hall-emf",
+     "latex": "\\varepsilon = Blv",
+     "ktex": "\\kemfhall = \\kBmag l \\kv",
+     "anchor": "22.6-balance"
+    }
+   ]
+  },
+  {
+   "id": "sign-of-charge-carriers",
+   "kind": "skill",
+   "section": "22.6",
+   "name": "判定载流子的正负",
+   "statement": "把载流子的正负颠倒，对同一个约定电流，它们的运动方向就相反。磁力把它们推向同一侧，但它们在那里带的电荷相反，所以霍尔电动势变号。因此，知道磁场和电流的方向，就能知道携带电流的是哪种电荷。历史上，这表明金属中是电子携带电流，而在某些半导体中是正载流子携带电流。"
+  },
+  {
+   "id": "hall-probe-and-flow-measurement",
+   "kind": "idea",
+   "section": "22.6",
+   "name": "霍尔探针与流量计",
+   "statement": "有两种应用直接来自这个公式。让已知电流通过一小块导体，霍尔电动势就测出磁场：这是霍尔探针，它可以做得很小，校准之后非常精确。或者固定磁场和宽度，霍尔电动势就测出运动物体的速率，仪器就是这样在不接触流体的情况下测量动脉中的血流和管道中的水流的。这里电动势的正负只取决于磁场和速度的方向，而不取决于电荷的正负，所以同时带有两种电荷的流体仍能给出读数。"
+  },
+  {
+   "id": "magnetic-force-on-a-current-carrying-wire",
+   "kind": "result",
+   "section": "22.7",
+   "name": "载流导线所受的力",
+   "statement": "电荷无法逃出导线，所以作用在导线内运动电荷上的磁力传给了导线本身。把一段导线中每个载流子所受的力加起来，并认识到单位体积内的载流子数乘以电荷、漂移速度和横截面积就是电流。于是作用在一个电荷上的力就变成了作用在导线上的力：电流乘以处于磁场中的长度，再乘以磁感应强度，再乘以电流与磁场夹角的正弦。这一推导架起了关于粒子的定律与关于电路的定律之间的桥梁。",
+   "forms": [
+    {
+     "id": "eq-force-on-a-current",
+     "latex": "F = IlB\\sin\\theta",
+     "ktex": "\\kF = \\kIcur l \\kBmag\\sin\\theta",
+     "anchor": "22.7-force-on-a-wire"
+    },
+    {
+     "id": "eq-force-on-wire-two",
+     "latex": "F_2 = I_2 l B_1",
+     "ktex": "\\kFtwo = \\kIcurtwo l \\kBmagone",
+     "section": "22.10",
+     "anchor": "22.10-force-between-two-wires"
+    }
+   ]
+  },
+  {
+   "id": "force-per-unit-length-on-a-wire",
+   "kind": "result",
+   "section": "22.7",
+   "name": "导线单位长度上的力",
+   "statement": "除以长度，就得到每米导线所受的力。导线很长或长度未给出时就用这种形式，例如闪电、输电线，或 22.10 中的两根平行导体。这是同一个结果，只是写成了只出现电流、磁感应强度和夹角的形式。",
+   "forms": [
+    {
+     "id": "eq-force-per-length-on-a-current",
+     "latex": "\\frac{F}{l} = IB\\sin\\theta",
+     "ktex": "\\frac{\\kF}{l} = \\kIcur\\kBmag\\sin\\theta",
+     "anchor": "22.7-force-on-a-wire"
+    }
+   ]
+  },
+  {
+   "id": "direction-of-force-on-a-current",
+   "kind": "skill",
+   "section": "22.7",
+   "name": "电流的右手定则 1",
+   "statement": "同一条右手定则给出导线所受力的方向，与给出单个电荷所受力的方向一样，只是拇指现在指向电流，而不是某一个电荷的速度。这样替换是严格成立的，因为约定电流指向正载流子本应运动的方向，所以你不需要第二条定则。"
+  },
+  {
+   "id": "magnetohydrodynamic-pump",
+   "kind": "idea",
+   "section": "22.7",
+   "name": "磁流体动力泵",
+   "statement": "如果电流通过的是导电流体而不是导线，力就作用在流体上，把它沿管子推动，这种泵根本没有运动部件。这对于热的或有化学活性的液体很有吸引力，例如某些核反应堆中的钠，也适用于实验性人工心脏，以及比螺旋桨运行更安静的潜艇推进装置。力的方向不取决于载流子的正负，所以同时带有两种电荷的流体仍朝一个方向运动。"
+  },
+  {
+   "id": "torque-on-a-current-loop",
+   "kind": "result",
+   "section": "22.8",
+   "name": "载流线圈所受的力矩",
+   "statement": "把一个矩形线圈装在转轴上，放入匀强磁场。它两条竖直边所受的力大小相等、方向相反，所以线圈不会被推走，但每个力绕转轴产生的力矩转向相同，所以线圈转动。把两个力矩相加，得到宽度乘以力。代入 $F = IlB$ 并认出宽度乘以高度就是面积，得到的力矩等于匝数乘以电流、面积、磁感应强度，再乘以角度的正弦。推导用的是矩形，但结果对任意形状的线圈都成立。",
+   "forms": [
+    {
+     "id": "eq-torque-on-a-loop",
+     "latex": "\\tau = NIAB\\sin\\theta",
+     "ktex": "\\ktau = N\\kIcur A\\kBmag\\sin\\theta",
+     "anchor": "22.8-torque-on-a-loop"
+    },
+    {
+     "id": "eq-torque-one-turn",
+     "latex": "\\tau = wIlB\\sin\\theta",
+     "ktex": "\\ktau = w\\kIcur l \\kBmag\\sin\\theta",
+     "anchor": "22.8-torque-on-a-loop"
+    }
+   ]
+  },
+  {
+   "id": "torque-varies-with-angle",
+   "kind": "result",
+   "section": "22.8",
+   "name": "力矩与角度",
+   "statement": "公式中的角度是磁场与线圈平面垂线之间的夹角，所以当线圈平面沿磁场方向时力矩最大，当线圈正对磁场时力矩降为零。越过这一点后，正弦变号，力矩也变号，这意味着任其自行运动的线圈不会一直转下去：它围绕力矩为零的位置来回振动，正如指南针的指针停在一条磁感线上。",
+   "forms": [
+    {
+     "id": "eq-maximum-torque",
+     "latex": "\\tau_{\\text{max}} = NIAB",
+     "ktex": "\\ktau_{\\text{max}} = N\\kIcur A\\kBmag",
+     "anchor": "22.8-torque-on-a-loop"
+    }
+   ]
+  },
+  {
+   "id": "net-force-on-a-loop-is-zero",
+   "kind": "result",
+   "section": "22.8",
+   "name": "线圈所受的合力",
+   "statement": "线圈上、下两段所受的力是竖直的，平行于转轴，大小相等、方向相反，所以既不会使线圈转动，也不会把它推向任何地方。两条竖直边所受的力同样大小相等、方向相反。因此线圈在匀强磁场中不受合力，只受力矩，电动机转动时不会在房间里到处乱跑。"
+  },
+  {
+   "id": "brushes-reverse-the-current",
+   "kind": "idea",
+   "section": "22.8",
+   "name": "电刷使电动机持续转动",
+   "statement": "只会振动的线圈毫无用处，所以电动机每当线圈经过力矩为零的位置就使电流反向，用的是称为电刷的自动开关。这样力矩总是朝同一方向作用，线圈就一直朝一个方向转动，电能就是这样变成机械功的。这就是电动机的全部：一个线圈、一个磁场，以及一个每转一圈使电流改变两次的开关。"
+  },
+  {
+   "id": "meter-and-galvanometer",
+   "kind": "idea",
+   "section": "22.8",
+   "name": "作为电动机的模拟式电表",
+   "terms": [
+    "电表"
+   ],
+   "statement": "模拟式电表的构造与此相同，但它的磁极被做成特定形状，使磁场在很宽的角度范围内保持垂直于线圈。这样正弦始终约为一，力矩取决于电流而不取决于角度，弹簧则提供随偏转增大而增大的反向力矩，所以指针的位置与电流成正比。用于电压表或电流表的灵敏电流计需要大的线圈面积、强磁场和低电阻线圈。"
+  },
+  {
+   "id": "number-of-turns",
+   "kind": "definition",
+   "section": "22.8",
+   "name": "匝数",
+   "symbol": "N_count",
+   "statement": "线圈是绕成多圈的导线，它的匝数 $N$ 就是圈数。在磁场中每一匝受到相同的力矩，所围的磁通量也相同，所以线圈的许多量都是单匝线圈的 $N$ 倍。"
+  },
+  {
+   "id": "electric-motor",
+   "kind": "definition",
+   "section": "22.8",
+   "name": "电动机",
+   "terms": [
+    "电动机"
+   ],
+   "statement": "电动机是装在磁场中转轴上的一个导线线圈，或由许多圈组成的线圈，磁场对其电流施加的力矩使转轴转动。"
+  },
+  {
+   "id": "field-of-a-long-straight-wire",
+   "kind": "axiom",
+   "section": "22.9",
+   "name": "长直导线的磁场",
+   "terms": [
+    "长直载流导线产生的磁感应强度（大小）"
+   ],
+   "statement": "实验给出长直导线周围的磁感应强度等于真空磁导率乘以电流，再除以二倍 π 乘以到导线的最短距离。磁场随距离的一次方反比减小，而不是距离平方反比，并且因为导线很长，它与该点在导线上哪个位置无关。本节自己的例子是对它最有用的解读：25 A 的电流在 5.0 cm 处产生的磁场是地磁场的两倍，这就是为什么架空输电线会干扰测量员的指南针。",
+   "forms": [
+    {
+     "id": "eq-field-of-a-straight-wire",
+     "latex": "B = \\frac{\\mu_0 I}{2\\pi r}",
+     "ktex": "\\kBmag = \\frac{\\mu_0\\kIcur}{2\\pi\\kr}",
+     "anchor": "22.9-straight-wire"
+    },
+    {
+     "id": "eq-field-of-wire-one",
+     "latex": "B_1 = \\frac{\\mu_0 I_1}{2\\pi r}",
+     "ktex": "\\kBmagone = \\frac{\\mu_0\\kIcurone}{2\\pi\\kr}",
+     "section": "22.10",
+     "anchor": "22.10-force-between-two-wires"
+    }
+   ]
+  },
+  {
+   "id": "right-hand-rule-2",
+   "kind": "skill",
+   "section": "22.9",
+   "name": "右手定则 2",
+   "terms": [
+    "右手定则 2（RHR-2）"
+   ],
+   "statement": "围绕直导线摆放的指南针表明，磁感线是以导线为中心的圆，而右手定则 2 给出这些圆的绕向：拇指指向电流，四指弯曲的方向就是磁场的方向。它对任何一段电流都成立，而不只是直导线，所以同一条定则可以给出线圈和螺线管的磁场。右手定则 1 给出的是力，这一条给出的是磁场，把两者区分开来是大部分工作所在。"
+  },
+  {
+   "id": "permeability-of-free-space",
+   "kind": "definition",
+   "section": "22.9",
+   "name": "真空磁导率",
+   "symbol": "μ_0",
+   "terms": [
+    "真空磁导率"
+   ],
+   "statement": "磁场公式中的常量 $\\mu_0 = 4\\pi \\times 10^{-7}$ T·m/A 是真空磁导率，是基本自然常量之一，相当于电场中出现的电容率的磁性对应量。它的值是精确值而不是测量值，这使 22.10 中安培的定义成为可能，本书还指出它与光速有关，后面的各章会证实这种联系。"
+  },
+  {
+   "id": "amperes-law",
+   "kind": "axiom",
+   "section": "22.9",
+   "name": "安培环路定理",
+   "terms": [
+    "安培环路定理"
+   ],
+   "statement": "每一段电流产生的磁场都像长直导线上的一小段所产生的，任意形状电流的磁场是各段磁场的矢量和。对一小段写出这一关系就是毕奥-萨伐尔定律，用微积分把它们求和就得到安培环路定理，它在一般情形下把磁场与电流联系起来。安培环路定理是麦克斯韦方程组之一，这四个方程描述全部电磁现象；本书保留了一般特征，即右手定则和磁感线的规则，而把积分留给后面的课程。"
+  },
+  {
+   "id": "field-at-the-centre-of-a-loop",
+   "kind": "result",
+   "section": "22.9",
+   "name": "线圈中心的磁场",
+   "terms": [
+    "圆形线圈中心的磁感应强度"
+   ],
+   "statement": "载流线圈的磁场除中心之外处处都很复杂，而在中心很简单：真空磁导率乘以电流再除以二倍半径，对 $N$ 圈的平面线圈则是它的 $N$ 倍。线圈越大，中心的磁场越弱，因为电流离得更远。线圈外部的磁场形状与条形磁体的相同，这就为 22.2 中的铁屑图样给出了数值。",
+   "forms": [
+    {
+     "id": "eq-field-at-centre-of-a-loop",
+     "latex": "B = \\frac{\\mu_0 I}{2R}",
+     "ktex": "\\kBmag = \\frac{\\mu_0\\kIcur}{2\\kR}",
+     "anchor": "22.9-loop"
+    },
+    {
+     "id": "eq-field-of-a-flat-coil",
+     "latex": "B = \\frac{N\\mu_0 I}{2R}",
+     "ktex": "\\kBmag = \\frac{N\\mu_0\\kIcur}{2\\kR}",
+     "anchor": "22.9-loop"
+    }
+   ]
+  },
+  {
+   "id": "field-inside-a-solenoid",
+   "kind": "result",
+   "section": "22.9",
+   "name": "螺线管内部的磁场",
+   "terms": [
+    "螺线管内部的磁感应强度"
+   ],
+   "statement": "把导线绕成一个长线圈，各匝的磁场在内部叠加，在外部几乎抵消。内部的磁场在线圈大部分长度上大小和方向都均匀，紧靠外面的磁场几乎为零。它的强度等于真空磁导率乘以单位长度上的匝数再乘以电流，其中根本没有半径。这就是为什么螺线管，如 MRI 磁体中的螺线管，是在大体积内产生强而匀强磁场的方法。",
+   "forms": [
+    {
+     "id": "eq-field-inside-a-solenoid",
+     "latex": "B = \\mu_0 nI",
+     "ktex": "\\kBmag = \\mu_0 n\\kIcur",
+     "anchor": "22.9-solenoid"
+    }
+   ]
+  },
+  {
+   "id": "solenoid",
+   "kind": "definition",
+   "section": "22.9",
+   "name": "螺线管",
+   "symbol": "n",
+   "terms": [
+    "螺线管"
+   ],
+   "statement": "螺线管是绕成长线圈的细导线，单位长度上的匝数 $n = N/l$ 描述它绕得有多紧。",
+   "forms": [
+    {
+     "id": "eq-turns-per-unit-length",
+     "latex": "n = \\frac{N}{l}",
+     "anchor": "22.9-solenoid"
+    }
+   ]
+  },
+  {
+   "id": "biot-savart-law",
+   "kind": "axiom",
+   "section": "22.9",
+   "name": "毕奥-萨伐尔定律",
+   "terms": [
+    "毕奥-萨伐尔定律"
+   ],
+   "statement": "毕奥-萨伐尔定律给出电流的每一小段产生的磁场，因此任何电流的磁场都是其各段磁场之和。"
+  },
+  {
+   "id": "force-between-parallel-currents",
+   "kind": "result",
+   "section": "22.10",
+   "name": "平行电流之间的力",
+   "statement": "这一结果不需要任何新东西，只需要本章已有的两点：第一根导线在第二根导线处产生磁场，第二根导线在该磁场中受力。把长直导线的磁场代入电流所受的力并除以长度，得到单位长度上的力，等于真空磁导率乘以两个电流，再除以二倍 π 乘以间距。根据牛顿第三定律，每根导线受到的力大小相同，所以一个数就适用于两根导线。",
+   "forms": [
+    {
+     "id": "eq-force-per-length-parallel",
+     "latex": "\\frac{F}{l} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}",
+     "ktex": "\\frac{\\kF}{l} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr}",
+     "anchor": "22.10-force-between-two-wires"
+    }
+   ]
+  },
+  {
+   "id": "attraction-and-repulsion-of-currents",
+   "kind": "result",
+   "section": "22.10",
+   "name": "电流的相吸与相斥",
+   "statement": "沿两条右手定则一路推下来，得到力的方向：电流方向相同的导线相互吸引，电流方向相反的导线相互排斥。这与你可能从同号电荷相斥所猜想的相反，所以用你的手检验一次。电器电线中的火线和中性线，以及轻轨线路的两根导体，是它的日常例子。"
+  },
+  {
+   "id": "pinch-effect",
+   "kind": "idea",
+   "section": "22.10",
+   "name": "箍缩效应",
+   "statement": "因为平行电流相互吸引，分布在一个区域内的电流会把自己挤进更窄的区域。在电弧或等离子体中，这叫箍缩效应，它并非奇闻：在大型断路器中，它使电弧集中在试图切断电流的极板之间，烧出孔洞，有时还点燃设备。太阳耀斑中电离物质的喷流也是以同样方式成形的。"
+  },
+  {
+   "id": "definition-of-the-ampere",
+   "kind": "definition",
+   "section": "22.10",
+   "name": "安培的定义",
+   "statement": "在相距一米的两根导线中各通一安培的电流，产生的力恰为 $2 \\times 10^{-7}$ N/m，说它恰为这个值，是因为真空磁导率本身就被定义为恰为 $4\\pi \\times 10^{-7}$ T·m/A。把这个陈述倒过来，就是安培的操作定义，库仑也随之而定，因为一库仑就是一安培电流在一秒内流过的电荷。实际上，电流天平使用的是相距几厘米的线圈，而不是无限长的导线，测力是确定这两个单位的已知最精确的方法。",
+   "forms": [
+    {
+     "id": "eq-the-ampere",
+     "latex": "\\frac{F}{l} = \\frac{(4\\pi \\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A})(1\\;\\text{A})^2}{(2\\pi)(1\\;\\text{m})} = 2 \\times 10^{-7}\\;\\text{N/m}",
+     "anchor": "22.10-defining-the-ampere"
+    }
+   ]
+  },
+  {
+   "id": "mass-spectrometry",
+   "kind": "idea",
+   "section": "22.11",
+   "name": "质谱仪",
+   "statement": "带电粒子圆周运动的半径等于它的质量乘以速率再除以它的电荷乘以磁感应强度，所以如果速率、电荷和磁感应强度都固定，半径就简单地与质量成正比。这就是质谱仪：一个离子源，一个固定速率的环节，以及一个匀强磁场，每个离子在其中沿一段圆弧转过，圆弧的宽度就反映它的质量。电荷是电子电荷的整数倍，所以容易考虑。这种仪器通过质荷比来识别化学物质和生物分子，并测量医学中使用的同位素示踪剂。"
+  },
+  {
+   "id": "velocity-selector",
+   "kind": "result",
+   "section": "22.11",
+   "name": "速度选择器",
+   "statement": "让电场与磁场正交，使它们对运动电荷的推力方向相反，则只有两个力恰好平衡的粒子才会直线通过。令 $qE$ 等于 $qvB$，电荷被约去，速率等于电场强度除以磁感应强度，这意味着选出的速率完全不取决于粒子的电荷或质量，改变任一个场都可以调节它。正是这一级使质谱仪的圆弧有意义。",
+   "forms": [
+    {
+     "id": "eq-velocity-selector",
+     "latex": "v = \\frac{E}{B}",
+     "ktex": "\\kv = \\frac{\\kEf}{\\kBmag}",
+     "anchor": "22.11-spectrometry"
+    }
+   ]
+  },
+  {
+   "id": "steering-an-electron-beam",
+   "kind": "idea",
+   "section": "22.11",
+   "name": "偏转电子束",
+   "statement": "阴极射线管、旧式计算机显示器、X 射线机和两英里长的直线加速器，都是同一种电子枪的变体，其中许多都用磁场来控制束流的指向。两对线圈，一对管竖直方向，一对管水平方向，把电子偏转到屏幕上想要的位置。这些射线之所以称为阴极射线，是因为它们从枪里的阴极出发。"
+  },
+  {
+   "id": "magnetic-resonance-imaging",
+   "kind": "idea",
+   "section": "22.11",
+   "name": "磁共振成像",
+   "terms": [
+    "磁共振成像（MRI）"
+   ],
+   "statement": "某些原子核，首先是氢的单个质子，自身带有小磁场，就像本章的载流线圈。在强外磁场中，它们处于两个能态之一，频率恰好合适的无线电信号能使它们在两个能态之间翻转。它们吸收和再发射的频率取决于原子核、它的化学环境以及磁感应强度。因此让磁场扫过人体就把位置变成频率，返回信号的强度显示那里有多少这种原子核。这就是核磁共振，用它成像就是 MRI。"
+  },
+  {
+   "id": "biomagnetic-measurement",
+   "kind": "idea",
+   "section": "22.11",
+   "name": "生物磁测量",
+   "statement": "神经细胞和心脏中的电流像其他电流一样产生磁场，这些磁场可以在不接触人体的情况下记录下来：心脏的是心磁图，大脑的是脑磁图。它们比地磁场弱一百万到一亿倍，所以要用 SQUID 来读取，这是一种在液氦温度下工作的超导探测器。它们报告的是活动而不是结构，这使它们对癫痫和胎儿研究有用，也使它们不同于心电图。"
+  },
+  {
+   "id": "nuclear-magnetic-resonance",
+   "kind": "idea",
+   "section": "22.11",
+   "name": "核磁共振",
+   "terms": [
+    "核磁共振（NMR）"
+   ],
+   "statement": "核磁共振是外加磁场与某些原子的原子核之间的相互作用：这些原子核自身的小磁场与外加磁场排成一线，并吸收频率由磁感应强度决定的无线电波。"
+  },
+  {
+   "id": "magnetocardiogram",
+   "kind": "definition",
+   "section": "22.11",
+   "name": "心磁图",
+   "terms": [
+    "心磁图（MCG）"
+   ],
+   "statement": "心磁图是对心脏跳动时其磁场的记录。"
+  },
+  {
+   "id": "magnetoencephalogram",
+   "kind": "definition",
+   "section": "22.11",
+   "name": "脑磁图",
+   "terms": [
+    "脑磁图（MEG）"
+   ],
+   "statement": "脑磁图是对大脑磁场的测量。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "magnetic-poles",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "like-poles-repel",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "like-poles-repel",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "like-poles-repel",
+   "prereq": "force"
+  },
+  {
+   "concept": "no-magnetic-monopoles",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "no-magnetic-monopoles",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "ferromagnetic-materials",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "ferromagnetic-materials",
+   "prereq": "like-poles-repel"
+  },
+  {
+   "concept": "magnetic-domains",
+   "prereq": "ferromagnetic-materials"
+  },
+  {
+   "concept": "magnetic-domains",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "curie-temperature",
+   "prereq": "magnetic-domains"
+  },
+  {
+   "concept": "curie-temperature",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "curie-temperature",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "electromagnet",
+   "prereq": "ferromagnetic-materials"
+  },
+  {
+   "concept": "electromagnet",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "current-is-the-source-of-magnetism",
+   "prereq": "no-magnetic-monopoles"
+  },
+  {
+   "concept": "current-is-the-source-of-magnetism",
+   "prereq": "electromagnet"
+  },
+  {
+   "concept": "current-is-the-source-of-magnetism",
+   "prereq": "magnetic-domains"
+  },
+  {
+   "concept": "magnetic-field",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "magnetic-field",
+   "prereq": "force-field"
+  },
+  {
+   "concept": "magnetic-field",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "direction-of-field-lines",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "direction-of-field-lines",
+   "prereq": "test-charge"
+  },
+  {
+   "concept": "direction-of-field-lines",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "rules-for-magnetic-field-lines",
+   "prereq": "direction-of-field-lines"
+  },
+  {
+   "concept": "rules-for-magnetic-field-lines",
+   "prereq": "electric-field-lines"
+  },
+  {
+   "concept": "rules-for-magnetic-field-lines",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "rules-for-magnetic-field-lines",
+   "prereq": "no-magnetic-monopoles"
+  },
+  {
+   "concept": "magnetic-force-on-a-moving-charge",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "magnetic-force-on-a-moving-charge",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "magnetic-force-on-a-moving-charge",
+   "prereq": "force"
+  },
+  {
+   "concept": "magnetic-force-on-a-moving-charge",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "magnetic-force-on-a-moving-charge",
+   "prereq": "current-is-the-source-of-magnetism"
+  },
+  {
+   "concept": "magnetic-field-strength-defined",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "magnetic-field-strength-defined",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "magnetic-field-strength-defined",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "the-tesla",
+   "prereq": "magnetic-field-strength-defined"
+  },
+  {
+   "concept": "the-tesla",
+   "prereq": "newton-unit"
+  },
+  {
+   "concept": "right-hand-rule-1",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "right-hand-rule-1",
+   "prereq": "vector"
+  },
+  {
+   "concept": "right-hand-rule-1",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "force-reverses-with-sign-of-charge",
+   "prereq": "right-hand-rule-1"
+  },
+  {
+   "concept": "force-reverses-with-sign-of-charge",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "magnetic-force-does-no-work",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "magnetic-force-does-no-work",
+   "prereq": "work"
+  },
+  {
+   "concept": "magnetic-force-does-no-work",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "magnetic-force-does-no-work",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "circular-motion-in-a-magnetic-field",
+   "prereq": "magnetic-force-does-no-work"
+  },
+  {
+   "concept": "circular-motion-in-a-magnetic-field",
+   "prereq": "centripetal-force"
+  },
+  {
+   "concept": "circular-motion-in-a-magnetic-field",
+   "prereq": "centripetal-force-magnitude"
+  },
+  {
+   "concept": "circular-motion-in-a-magnetic-field",
+   "prereq": "uniform-circular-motion"
+  },
+  {
+   "concept": "radius-of-curvature",
+   "prereq": "circular-motion-in-a-magnetic-field"
+  },
+  {
+   "concept": "radius-of-curvature",
+   "prereq": "radius-and-centripetal-force"
+  },
+  {
+   "concept": "radius-of-curvature",
+   "prereq": "mass"
+  },
+  {
+   "concept": "spiral-along-field-lines",
+   "prereq": "radius-of-curvature"
+  },
+  {
+   "concept": "spiral-along-field-lines",
+   "prereq": "resolve-forces-into-components"
+  },
+  {
+   "concept": "spiral-along-field-lines",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "magnetic-mirror",
+   "prereq": "spiral-along-field-lines"
+  },
+  {
+   "concept": "magnetic-mirror",
+   "prereq": "rules-for-magnetic-field-lines"
+  },
+  {
+   "concept": "magnetic-confinement",
+   "prereq": "magnetic-mirror"
+  },
+  {
+   "concept": "magnetic-confinement",
+   "prereq": "circular-motion-in-a-magnetic-field"
+  },
+  {
+   "concept": "magnetic-confinement",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "hall-effect",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "hall-effect",
+   "prereq": "right-hand-rule-1"
+  },
+  {
+   "concept": "hall-effect",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "hall-effect",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "hall-effect",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "hall-emf",
+   "prereq": "hall-effect"
+  },
+  {
+   "concept": "hall-emf",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "hall-emf",
+   "prereq": "volts-per-meter"
+  },
+  {
+   "concept": "sign-of-charge-carriers",
+   "prereq": "hall-effect"
+  },
+  {
+   "concept": "sign-of-charge-carriers",
+   "prereq": "force-reverses-with-sign-of-charge"
+  },
+  {
+   "concept": "sign-of-charge-carriers",
+   "prereq": "right-hand-rule-1"
+  },
+  {
+   "concept": "hall-probe-and-flow-measurement",
+   "prereq": "hall-emf"
+  },
+  {
+   "concept": "hall-probe-and-flow-measurement",
+   "prereq": "sign-of-charge-carriers"
+  },
+  {
+   "concept": "hall-probe-and-flow-measurement",
+   "prereq": "the-tesla"
+  },
+  {
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "prereq": "right-hand-rule-1"
+  },
+  {
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "prereq": "hall-effect"
+  },
+  {
+   "concept": "force-per-unit-length-on-a-wire",
+   "prereq": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "concept": "direction-of-force-on-a-current",
+   "prereq": "right-hand-rule-1"
+  },
+  {
+   "concept": "direction-of-force-on-a-current",
+   "prereq": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "concept": "direction-of-force-on-a-current",
+   "prereq": "force-reverses-with-sign-of-charge"
+  },
+  {
+   "concept": "magnetohydrodynamic-pump",
+   "prereq": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "concept": "magnetohydrodynamic-pump",
+   "prereq": "direction-of-force-on-a-current"
+  },
+  {
+   "concept": "magnetohydrodynamic-pump",
+   "prereq": "hall-probe-and-flow-measurement"
+  },
+  {
+   "concept": "torque-on-a-current-loop",
+   "prereq": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "concept": "torque-on-a-current-loop",
+   "prereq": "torque"
+  },
+  {
+   "concept": "torque-on-a-current-loop",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "torque-on-a-current-loop",
+   "prereq": "torque-from-lever-arm"
+  },
+  {
+   "concept": "torque-varies-with-angle",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "torque-varies-with-angle",
+   "prereq": "restoring-torque"
+  },
+  {
+   "concept": "torque-varies-with-angle",
+   "prereq": "stable-equilibrium"
+  },
+  {
+   "concept": "net-force-on-a-loop-is-zero",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "net-force-on-a-loop-is-zero",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "net-force-on-a-loop-is-zero",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "brushes-reverse-the-current",
+   "prereq": "torque-varies-with-angle"
+  },
+  {
+   "concept": "brushes-reverse-the-current",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "brushes-reverse-the-current",
+   "prereq": "work-transfers-energy"
+  },
+  {
+   "concept": "meter-and-galvanometer",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "meter-and-galvanometer",
+   "prereq": "torque-varies-with-angle"
+  },
+  {
+   "concept": "meter-and-galvanometer",
+   "prereq": "restoring-torque"
+  },
+  {
+   "concept": "field-of-a-long-straight-wire",
+   "prereq": "electromagnet"
+  },
+  {
+   "concept": "field-of-a-long-straight-wire",
+   "prereq": "current-is-the-source-of-magnetism"
+  },
+  {
+   "concept": "field-of-a-long-straight-wire",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "right-hand-rule-2",
+   "prereq": "field-of-a-long-straight-wire"
+  },
+  {
+   "concept": "right-hand-rule-2",
+   "prereq": "right-hand-rule-1"
+  },
+  {
+   "concept": "right-hand-rule-2",
+   "prereq": "rules-for-magnetic-field-lines"
+  },
+  {
+   "concept": "permeability-of-free-space",
+   "prereq": "field-of-a-long-straight-wire"
+  },
+  {
+   "concept": "permeability-of-free-space",
+   "prereq": "coulomb-constant"
+  },
+  {
+   "concept": "amperes-law",
+   "prereq": "field-of-a-long-straight-wire"
+  },
+  {
+   "concept": "amperes-law",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "amperes-law",
+   "prereq": "superposition-of-electric-fields"
+  },
+  {
+   "concept": "amperes-law",
+   "prereq": "vector"
+  },
+  {
+   "concept": "field-at-the-centre-of-a-loop",
+   "prereq": "field-of-a-long-straight-wire"
+  },
+  {
+   "concept": "field-at-the-centre-of-a-loop",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "field-at-the-centre-of-a-loop",
+   "prereq": "electromagnet"
+  },
+  {
+   "concept": "field-at-the-centre-of-a-loop",
+   "prereq": "amperes-law"
+  },
+  {
+   "concept": "field-inside-a-solenoid",
+   "prereq": "field-at-the-centre-of-a-loop"
+  },
+  {
+   "concept": "field-inside-a-solenoid",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "field-inside-a-solenoid",
+   "prereq": "rules-for-magnetic-field-lines"
+  },
+  {
+   "concept": "force-between-parallel-currents",
+   "prereq": "field-of-a-long-straight-wire"
+  },
+  {
+   "concept": "force-between-parallel-currents",
+   "prereq": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "concept": "force-between-parallel-currents",
+   "prereq": "force-per-unit-length-on-a-wire"
+  },
+  {
+   "concept": "force-between-parallel-currents",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "attraction-and-repulsion-of-currents",
+   "prereq": "force-between-parallel-currents"
+  },
+  {
+   "concept": "attraction-and-repulsion-of-currents",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "attraction-and-repulsion-of-currents",
+   "prereq": "direction-of-force-on-a-current"
+  },
+  {
+   "concept": "pinch-effect",
+   "prereq": "attraction-and-repulsion-of-currents"
+  },
+  {
+   "concept": "pinch-effect",
+   "prereq": "force-between-parallel-currents"
+  },
+  {
+   "concept": "definition-of-the-ampere",
+   "prereq": "force-between-parallel-currents"
+  },
+  {
+   "concept": "definition-of-the-ampere",
+   "prereq": "permeability-of-free-space"
+  },
+  {
+   "concept": "definition-of-the-ampere",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "mass-spectrometry",
+   "prereq": "radius-of-curvature"
+  },
+  {
+   "concept": "mass-spectrometry",
+   "prereq": "circular-motion-in-a-magnetic-field"
+  },
+  {
+   "concept": "mass-spectrometry",
+   "prereq": "magnetic-confinement"
+  },
+  {
+   "concept": "velocity-selector",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "velocity-selector",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "velocity-selector",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "velocity-selector",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "steering-an-electron-beam",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "steering-an-electron-beam",
+   "prereq": "right-hand-rule-1"
+  },
+  {
+   "concept": "steering-an-electron-beam",
+   "prereq": "field-inside-a-solenoid"
+  },
+  {
+   "concept": "steering-an-electron-beam",
+   "prereq": "speed-from-potential-difference"
+  },
+  {
+   "concept": "magnetic-resonance-imaging",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "magnetic-resonance-imaging",
+   "prereq": "current-is-the-source-of-magnetism"
+  },
+  {
+   "concept": "magnetic-resonance-imaging",
+   "prereq": "field-inside-a-solenoid"
+  },
+  {
+   "concept": "magnetic-resonance-imaging",
+   "prereq": "the-tesla"
+  },
+  {
+   "concept": "biomagnetic-measurement",
+   "prereq": "current-is-the-source-of-magnetism"
+  },
+  {
+   "concept": "biomagnetic-measurement",
+   "prereq": "field-at-the-centre-of-a-loop"
+  },
+  {
+   "concept": "biomagnetic-measurement",
+   "prereq": "hall-probe-and-flow-measurement"
+  },
+  {
+   "concept": "electromagnetism",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "electromagnetism",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "magnetic-field-lines",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "electric-motor",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "solenoid",
+   "prereq": "number-of-turns"
+  },
+  {
+   "concept": "solenoid",
+   "prereq": "length"
+  },
+  {
+   "concept": "nuclear-magnetic-resonance",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "north-magnetic-pole",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "south-magnetic-pole",
+   "prereq": "magnetic-poles"
+  },
+  {
+   "concept": "magnetized",
+   "prereq": "ferromagnetic-materials"
+  },
+  {
+   "concept": "gauss",
+   "prereq": "the-tesla"
+  },
+  {
+   "concept": "biot-savart-law",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "biot-savart-law",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "magnetocardiogram",
+   "prereq": "biomagnetic-measurement"
+  },
+  {
+   "concept": "magnetoencephalogram",
+   "prereq": "biomagnetic-measurement"
+  },
+  {
+   "concept": "rules-for-magnetic-field-lines",
+   "prereq": "magnetic-field-lines"
+  },
+  {
+   "concept": "field-inside-a-solenoid",
+   "prereq": "solenoid"
+  }
+ ]
+}

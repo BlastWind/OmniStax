@@ -1,0 +1,1473 @@
+{
+ "types": [
+  {
+   "id": "temperature",
+   "label": "温度",
+   "dimension": "K"
+  },
+  {
+   "id": "temperature-coefficient",
+   "label": "温度系数",
+   "dimension": "1/°C"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "T_temp",
+   "latex": "T",
+   "macro": "\\kTemp"
+  },
+  {
+   "sym": "ΔT",
+   "latex": "\\Delta T",
+   "macro": "\\kdTemp"
+  },
+  {
+   "sym": "T_0temp",
+   "latex": "T_0",
+   "macro": "\\kTempo"
+  },
+  {
+   "sym": "T_ftemp",
+   "latex": "T_{\\text{f}}",
+   "macro": "\\kTempf"
+  },
+  {
+   "sym": "T_1temp",
+   "latex": "T_1",
+   "macro": "\\kTempone"
+  },
+  {
+   "sym": "T_2temp",
+   "latex": "T_2",
+   "macro": "\\kTemptwo"
+  },
+  {
+   "sym": "T_c",
+   "latex": "T_{\\text{c}}",
+   "macro": "\\kTempc"
+  },
+  {
+   "sym": "T_C",
+   "latex": "T_{{}^\\circ\\text{C}}",
+   "macro": "\\kTempC"
+  },
+  {
+   "sym": "T_F",
+   "latex": "T_{{}^\\circ\\text{F}}",
+   "macro": "\\kTempF"
+  },
+  {
+   "sym": "T_K",
+   "latex": "T_{\\text{K}}",
+   "macro": "\\kTempK"
+  },
+  {
+   "sym": "P_0",
+   "latex": "P_0",
+   "macro": "\\kPro"
+  },
+  {
+   "sym": "P_f",
+   "latex": "P_{\\text{f}}",
+   "macro": "\\kPrf"
+  },
+  {
+   "sym": "KE_bar",
+   "latex": "\\overline{\\text{KE}}",
+   "macro": "\\kKEbar"
+  },
+  {
+   "sym": "v_rms",
+   "latex": "v_{\\text{rms}}",
+   "macro": "\\kvrms"
+  },
+  {
+   "sym": "v2_bar",
+   "latex": "\\overline{v^2}"
+  },
+  {
+   "sym": "N_count",
+   "latex": "N"
+  },
+  {
+   "sym": "n",
+   "latex": "n"
+  },
+  {
+   "sym": "N_A",
+   "latex": "N_{\\text{A}}"
+  },
+  {
+   "sym": "k_boltz",
+   "latex": "k"
+  },
+  {
+   "sym": "R_gas",
+   "latex": "R"
+  },
+  {
+   "sym": "α_exp",
+   "latex": "\\alpha",
+   "macro": "\\kalphaexp"
+  },
+  {
+   "sym": "β",
+   "latex": "\\beta",
+   "macro": "\\kbeta"
+  },
+  {
+   "sym": "ΔA",
+   "latex": "\\Delta A",
+   "macro": "\\kdarea"
+  },
+  {
+   "sym": "T_Rtemp",
+   "latex": "T_{{}^\\circ\\text{R}}",
+   "macro": "\\kTempR"
+  },
+  {
+   "sym": "ΔV_s",
+   "latex": "\\Delta V_{\\text{s}}",
+   "macro": "\\kdvols"
+  },
+  {
+   "sym": "β_s",
+   "latex": "\\beta_{\\text{s}}",
+   "macro": "\\kbetas"
+  },
+  {
+   "sym": "V_s",
+   "latex": "V_{\\text{s}}",
+   "macro": "\\kvols"
+  },
+  {
+   "sym": "ΔV_gas",
+   "latex": "\\Delta V_{\\text{gas}}",
+   "macro": "\\kdvolgas"
+  },
+  {
+   "sym": "β_gas",
+   "latex": "\\beta_{\\text{gas}}",
+   "macro": "\\kbetagas"
+  },
+  {
+   "sym": "V_gas",
+   "latex": "V_{\\text{gas}}",
+   "macro": "\\kvolgas"
+  },
+  {
+   "sym": "V_spill",
+   "latex": "V_{\\text{spill}}",
+   "macro": "\\kvolspill"
+  },
+  {
+   "sym": "V_f",
+   "latex": "V_{\\text{f}}",
+   "macro": "\\kvolf"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "temperature",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "温度",
+   "symbol": "T_temp",
+   "terms": [
+    "温度"
+   ],
+   "type": "temperature",
+   "statement": "温度在操作上被定义为用温度计测量的量。你对冷热的感觉是相对的：对于刚才放在热水里的手，温水感觉是凉的；对于刚才放在冷水里的手，温水感觉是暖的。放在同一水中的两支精确的温度计给出相同的读数。许多物理量只是由我们测量它们的方式来定义的，而在本章后面，温度获得了更偏物理的含义，它与原子和分子的动能相联系。",
+   "forms": [
+    {
+     "id": "eq-temperature-difference",
+     "latex": "\\Delta T = T_{\\text{f}} - T_{\\text{i}}",
+     "ktex": "\\kdTemp = \\kTempf - \\kTempi",
+     "section": "14.2",
+     "anchor": "14.2-heat-equation"
+    }
+   ]
+  },
+  {
+   "id": "thermometer",
+   "kind": "idea",
+   "section": "13.1",
+   "name": "温度计",
+   "statement": "任何依赖于温度、且对温度的响应可重复的物理性质，都可以作为温度计的基础。对大多数物质来说，体积随温度升高而增大，这是酒精温度计、水银温度计和双金属片的基础。电阻、颜色和红外辐射的发射同样可以用。由于有这么多性质依赖于温度，温度计的种类之多令人惊叹。"
+  },
+  {
+   "id": "temperature-scales",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "温标",
+   "statement": "温标以两个易于复现的温度为起点，通常是水在标准大气压下的凝固点和沸点。摄氏温标把它们定为 0 °C 和 100 °C，华氏温标把它们定为 32 °F 和 212 °F，所以一摄氏度的大小是一华氏度的 1.8 倍。开尔文温标是科学上的热力学温标。它的零点是绝对零度，它的单位是开尔文，不带度的符号，一开尔文与一摄氏度大小相等，所以水在 273.15 K 凝固，在 373.15 K 沸腾。"
+  },
+  {
+   "id": "convert-temperature-scales",
+   "kind": "skill",
+   "section": "13.1",
+   "name": "温标之间的温度换算",
+   "statement": "三种常用温标之间的温度换算用表 13.1 的方程进行。由摄氏温标换算到华氏温标是乘以五分之九再加 32，由摄氏温标换算到开尔文温标是加 273.15，而华氏温标与开尔文温标之间的换算看起来复杂，其实就是这两者的简单组合。温差的换算与温度的换算不同：摄氏度改变一度，就是开尔文改变一度，也是华氏度改变五分之九度，没有偏移量。",
+   "forms": [
+    {
+     "id": "eq-celsius-to-fahrenheit",
+     "latex": "T_{{}^\\circ\\text{F}} = \\frac{9}{5}T_{{}^\\circ\\text{C}} + 32",
+     "ktex": "\\kTempF = \\frac{9}{5}\\kTempC + 32",
+     "anchor": "13.1-temperature-scales"
+    },
+    {
+     "id": "eq-fahrenheit-to-celsius",
+     "latex": "T_{{}^\\circ\\text{C}} = \\frac{5}{9}\\left(T_{{}^\\circ\\text{F}} - 32\\right)",
+     "ktex": "\\kTempC = \\frac{5}{9}\\left(\\kTempF - 32\\right)",
+     "anchor": "13.1-temperature-scales"
+    },
+    {
+     "id": "eq-celsius-to-kelvin",
+     "latex": "T_{\\text{K}} = T_{{}^\\circ\\text{C}} + 273.15",
+     "ktex": "\\kTempK = \\kTempC + 273.15",
+     "anchor": "13.1-temperature-scales"
+    },
+    {
+     "id": "eq-kelvin-to-celsius",
+     "latex": "T_{{}^\\circ\\text{C}} = T_{\\text{K}} - 273.15",
+     "ktex": "\\kTempC = \\kTempK - 273.15",
+     "anchor": "13.1-temperature-scales"
+    },
+    {
+     "id": "eq-fahrenheit-to-kelvin",
+     "latex": "T_{\\text{K}} = \\frac{5}{9}\\left(T_{{}^\\circ\\text{F}} - 32\\right) + 273.15",
+     "ktex": "\\kTempK = \\frac{5}{9}\\left(\\kTempF - 32\\right) + 273.15",
+     "anchor": "13.1-temperature-scales"
+    },
+    {
+     "id": "eq-kelvin-to-fahrenheit",
+     "latex": "T_{{}^\\circ\\text{F}} = \\frac{9}{5}\\left(T_{\\text{K}} - 273.15\\right) + 32",
+     "ktex": "\\kTempF = \\frac{9}{5}\\left(\\kTempK - 273.15\\right) + 32",
+     "anchor": "13.1-temperature-scales"
+    }
+   ]
+  },
+  {
+   "id": "absolute-zero",
+   "kind": "idea",
+   "section": "13.1",
+   "name": "绝对零度",
+   "terms": [
+    "绝对零度"
+   ],
+   "statement": "绝对零度的概念来自气体的行为。保持体积不变的气体的压强，随温度降低而沿一条直线下降，不同气体的直线都外推到同一温度时压强为零，这个温度是 −273.15 °C。这表明存在一个最低温度，而其他热力学关系也导出同样的结论。在绝对零度 0 K 时，分子运动处于可能的最低能量；大多数气体在达到绝对零度之前就已液化然后凝固，而且实际上不可能达到绝对零度。"
+  },
+  {
+   "id": "thermal-equilibrium",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "热平衡",
+   "terms": [
+    "热平衡"
+   ],
+   "statement": "两个处于热接触的系统，当它们的温度相同时就处于热平衡，这时没有热量在它们之间流动，两者的温度也都不再变化。任何两个处于热接触、但与环境的其余部分隔绝的系统都会达到这种状态：热量从较热的物体流向较冷的物体，直到它们的温度相等。这就是为什么温度计（它实际测量的是它自己的温度）在经过足够长的时间之后，读出的是它所接触物体的温度。单个物体在其内部没有热量流动、温度均匀时，处于内部热平衡。"
+  },
+  {
+   "id": "zeroth-law-of-thermodynamics",
+   "kind": "axiom",
+   "section": "13.1",
+   "name": "热力学第零定律",
+   "terms": [
+    "热力学第零定律"
+   ],
+   "statement": "如果系统 A 和 B 彼此处于热平衡，而 B 又与第三个系统 C 处于热平衡，那么 A 也与 C 处于热平衡。这个结论看似显而易见，因为三者具有相同的温度，但它是热力学的基础。它之所以称为第零定律，是因为它在逻辑上先于第一和第二定律，尽管物理学家是在它们之后才表述它的。它让你可以相信，分别接触同一块板上两个不同物块的两支温度计，读出的是同一个数，因此它使温度成为一个有意义的概念。"
+  },
+  {
+   "id": "celsius-scale",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "摄氏温标",
+   "terms": [
+    "摄氏温标"
+   ],
+   "statement": "摄氏温标是这样一种温标：在标准大气压下，水的凝固点为 0 °C，沸点为 100 °C。"
+  },
+  {
+   "id": "degree-celsius",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "摄氏度",
+   "terms": [
+    "摄氏度"
+   ],
+   "statement": "摄氏度是摄氏温标的单位，为水的凝固点与沸点之间间隔的百分之一。它与开尔文大小相同。"
+  },
+  {
+   "id": "fahrenheit-scale",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "华氏温标",
+   "terms": [
+    "华氏温标"
+   ],
+   "statement": "华氏温标是这样一种温标：在标准大气压下，水的凝固点为 32 °F，沸点为 212 °F。"
+  },
+  {
+   "id": "degree-fahrenheit",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "华氏度",
+   "terms": [
+    "华氏度"
+   ],
+   "statement": "华氏度是华氏温标的单位，为水的凝固点与沸点之间间隔的一百八十分之一，所以一摄氏度的大小是它的 1.8 倍。"
+  },
+  {
+   "id": "kelvin-scale",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "开尔文温标",
+   "terms": [
+    "开尔文温标"
+   ],
+   "statement": "开尔文温标是科学上的热力学温标。它的零点是绝对零度，它的单位开尔文写作 K，不带度的符号，与一摄氏度大小相等，所以水在 273.15 K 凝固，在 373.15 K 沸腾。"
+  },
+  {
+   "id": "thermal-expansion",
+   "kind": "idea",
+   "section": "13.2",
+   "name": "热膨胀",
+   "terms": [
+    "热膨胀"
+   ],
+   "statement": "热膨胀是给定质量的物体的大小或体积随温度的变化。热空气上升是由于热膨胀：膨胀的空气密度比周围的空气小，对给定质量的浮力更大；铁轨和桥需要伸缩缝也是由于它。其原因在于，温度升高使原子的动能增大，原子微小而快速的振动平均而言把相邻的原子推得稍远一些，这稍大一点的间距累积起来就成为更大的物体。对大多数物质来说，没有择优的方向，物体在每个维度上按相同的比例增大。"
+  },
+  {
+   "id": "linear-thermal-expansion",
+   "kind": "axiom",
+   "section": "13.2",
+   "name": "线膨胀",
+   "statement": "物体长度的变化与其长度和温度的变化成正比，比例系数是线胀系数，它取决于材料，并随温度略有变化。由于一开尔文与一摄氏度大小相同，系数和温度变化都可以用其中任何一种。该方程对温度的小变化是精确的，对大的变化可以用线胀系数的平均值。",
+   "forms": [
+    {
+     "id": "eq-linear-expansion",
+     "latex": "\\Delta L = \\alpha L\\Delta T",
+     "ktex": "\\kdL = \\alpha L\\kdTemp",
+     "condition": "温度的小变化",
+     "anchor": "13.2-linear-expansion"
+    }
+   ]
+  },
+  {
+   "id": "area-thermal-expansion",
+   "kind": "result",
+   "section": "13.2",
+   "name": "二维热膨胀",
+   "statement": "物体在所有维度上都膨胀，所以面积增大，是因为它的长度和宽度都增大。对于小的温度变化，面积的变化等于线胀系数的两倍乘以面积再乘以温度的变化，因为两个维度各自贡献线性的比例。",
+   "forms": [
+    {
+     "id": "eq-area-expansion",
+     "latex": "\\Delta A = 2\\alpha A\\Delta T",
+     "ktex": "\\Delta A = 2\\alpha A\\kdTemp",
+     "condition": "温度的小变化",
+     "anchor": "13.2-two-and-three-dimensions"
+    }
+   ]
+  },
+  {
+   "id": "holes-expand-too",
+   "kind": "result",
+   "section": "13.2",
+   "name": "孔的膨胀",
+   "statement": "如果在一块金属板上切出一个孔，剩下的材料的膨胀恰如那块圆塞仍在原处时一样。圆塞会变大，所以孔也一定变大：孔壁上相邻的一圈原子随温度升高而相互推得更远，这一圈就变得稍大一些。加热一个物体时，孔不会闭合。"
+  },
+  {
+   "id": "volume-thermal-expansion",
+   "kind": "axiom",
+   "section": "13.2",
+   "name": "三维热膨胀",
+   "statement": "体积的变化非常接近于线胀系数的三倍乘以体积再乘以温度变化。该方程通常使用约为线胀系数三倍的体胀系数，表 13.2 中的数值几乎精确地显示了这一点。液体和气体只有体胀系数，而气体的系数是所有系数中最大的，并且对每一种气体几乎相同。",
+   "forms": [
+    {
+     "id": "eq-volume-expansion",
+     "latex": "\\Delta V = \\beta V\\Delta T",
+     "ktex": "\\Delta V = \\beta V\\kdTemp",
+     "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+     "id": "eq-beta-three-alpha",
+     "latex": "\\beta \\approx 3\\alpha",
+     "anchor": "13.2-two-and-three-dimensions"
+    }
+   ]
+  },
+  {
+   "id": "differential-thermal-expansion",
+   "kind": "skill",
+   "section": "13.2",
+   "name": "求膨胀的液体溢出多少",
+   "statement": "当装满的容器和其中的液体一起变暖时，两者都膨胀，但液体膨胀得更多，溢出的量是两者体积变化之差。由于原来的体积相等，三个方程合并成一个：溢出量等于两个体胀系数之差乘以体积再乘以温度变化。同样的差值，也是夏天油箱里的质量比冬天更少时油量表就显示为空的原因，也是装满到杯口的烧杯变暖时会溢出的原因。",
+   "forms": [
+    {
+     "id": "eq-spill-volume",
+     "latex": "V_{\\text{spill}} = \\left(\\beta_{\\text{gas}} - \\beta_{\\text{s}}\\right)V\\Delta T",
+     "ktex": "V_{\\text{spill}} = \\left(\\beta_{\\text{gas}} - \\beta_{\\text{s}}\\right)V\\kdTemp",
+     "anchor": "13.2-filling-the-tank"
+    }
+   ]
+  },
+  {
+   "id": "anomalous-expansion-of-water",
+   "kind": "idea",
+   "section": "13.2",
+   "name": "水的反常膨胀",
+   "statement": "水是物体随温度升高而膨胀这一规律的最重要的例外。在 4 °C 以上，它随温度升高而膨胀，但在 4 °C 和 0 °C 之间，它随温度降低而膨胀，所以它在 4 °C 时密度最大。最显著的效应是池塘的结冰：表面的水冷却到 4 °C，下沉，并使池塘的水上下翻转，直到整个池塘的水都处于 4 °C；表面一层进一步冷却后，密度比下面的水小而留在上面，于是表面结冰，冰使下面的水与外界隔热，鱼就在那里度过冬天。"
+  },
+  {
+   "id": "thermal-stress",
+   "kind": "result",
+   "section": "13.2",
+   "name": "热应力",
+   "terms": [
+    "热应力"
+   ],
+   "statement": "当有东西限制热膨胀或收缩时，就会产生热应力。要求一个受热物体若不能膨胀将会施加的压强，先取它在固定压强下会产生的体积变化，再用体积模量求出把这一体积挤回去所需的压强。这样的压强通常大得惊人：保持体积不变的汽油经历 20 °C 的升温，将达到 1.83 × 10⁷ Pa，约 2500 lb/in²，远远超出油箱所能承受的。热应力使铁轨弯曲，使输电线绷断，使冷却不均匀的玻璃开裂，使岩石和路面风化，也使食物冻结时的生物细胞胀破。",
+   "forms": [
+    {
+     "id": "eq-thermal-stress",
+     "latex": "P = \\frac{F}{A} = \\frac{\\Delta V}{V_0}B",
+     "ktex": "\\kPr = \\frac{\\kF}{A} = \\frac{\\Delta V}{V_0}\\kBb",
+     "anchor": "13.2-thermal-stress"
+    }
+   ]
+  },
+  {
+   "id": "coefficient-of-linear-expansion",
+   "kind": "definition",
+   "section": "13.2",
+   "name": "线胀系数",
+   "symbol": "α_exp",
+   "terms": [
+    "线膨胀系数"
+   ],
+   "type": "temperature-coefficient",
+   "statement": "线胀系数是每单位长度、温度每改变一度时长度的变化。它取决于材料，并随温度略有变化，它的单位是摄氏度的倒数，1/°C。"
+  },
+  {
+   "id": "coefficient-of-volume-expansion",
+   "kind": "definition",
+   "section": "13.2",
+   "name": "体胀系数",
+   "symbol": "β",
+   "terms": [
+    "体膨胀系数"
+   ],
+   "type": "temperature-coefficient",
+   "statement": "体胀系数是每单位体积、温度每改变一度时体积的变化。对固体来说，它非常接近线胀系数的三倍，而液体的值比固体大得多。"
+  },
+  {
+   "id": "ideal-gas",
+   "kind": "idea",
+   "section": "13.3",
+   "name": "理想气体",
+   "statement": "气体中的原子和分子相互间隔与它们自身的大小相比相距很远，所以除了碰撞时，它们之间的力可以忽略，气体会膨胀到充满它所能到达的任何体积。这就是为什么气体的体胀系数最大、而且几乎全都相同，而液体和固体则相差很大：气体的性质取决于单位体积内有多少个分子以及温度，而不取决于分子的种类。粒子体积可以忽略、只通过完全弹性碰撞相互作用的气体称为理想气体，室温下的空气在大多数情况下都是理想气体。"
+  },
+  {
+   "id": "ideal-gas-law",
+   "kind": "axiom",
+   "section": "13.3",
+   "name": "理想气体定律",
+   "terms": [
+    "理想气体定律"
+   ],
+   "statement": "理想气体定律通过玻尔兹曼常量，把气体的绝对压强、体积、其中的原子和分子数以及它的热力学温度联系起来。它是一个物态方程，即系统的热力学性质之间的一个关系。它最初来自实验：查理定律说，在压强一定时体积与温度成正比；玻意耳定律说，在温度一定时压强乘以体积是常量。它在大多数条件下描述实际气体，并且对任何气体或混合气体都成立，因为只有分子的总数进入方程。务必使用绝对压强和热力学温度。",
+   "forms": [
+    {
+     "id": "eq-ideal-gas-law",
+     "latex": "PV = NkT",
+     "ktex": "\\kPr V = Nk\\kTemp",
+     "anchor": "13.3-ideal-gas-law"
+    }
+   ]
+  },
+  {
+   "id": "boltzmann-constant",
+   "kind": "axiom",
+   "section": "13.3",
+   "name": "玻尔兹曼常量",
+   "symbol": "k_boltz",
+   "terms": [
+    "玻尔兹曼常量"
+   ],
+   "statement": "把分子数和热力学温度换算为压强与体积之积的常量，是以路德维希·玻尔兹曼命名的玻尔兹曼常量，其值为 1.38 × 10⁻²³ J/K。它的单位说明了它的作用：它把能量与温度联系起来，所以 kT 是每个分子的能量。",
+   "forms": [
+    {
+     "id": "eq-boltzmann-constant",
+     "latex": "k = 1.38\\times10^{-23}\\ \\text{J/K}",
+     "anchor": "13.3-ideal-gas-law"
+    }
+   ]
+  },
+  {
+   "id": "ideal-gas-ratio-method",
+   "kind": "skill",
+   "section": "13.3",
+   "name": "把理想气体定律用作比值",
+   "statement": "当气体改变状态而它的某些性质保持不变时，对初态写一次这个定律，对末态再写一次，然后用一个除以另一个。保持不变的量都约掉了，玻尔兹曼常量也约掉了，只剩下一个关于发生变化的量的关系。对于体积和其中所含的气体都不变的轮胎，末态压强与初态压强的比值等于末态热力学温度与初态热力学温度的比值，这就是温度必须用开尔文的原因。",
+   "forms": [
+    {
+     "id": "eq-ideal-gas-ratio",
+     "latex": "\\frac{P_{\\text{f}}}{P_0} = \\frac{T_{\\text{f}}}{T_0}",
+     "ktex": "\\frac{\\kPrf}{\\kPro} = \\frac{\\kTempf}{\\kTempo}",
+     "condition": "体积和分子数不变",
+     "anchor": "13.3-tire-pressure"
+    }
+   ]
+  },
+  {
+   "id": "mole",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "摩尔",
+   "symbol": "n",
+   "terms": [
+    "摩尔"
+   ],
+   "statement": "摩尔是物质的量的 SI 单位，它很方便，因为任何普通物体中的分子数都极其庞大。一摩尔含有阿伏伽德罗常量个粒子，不论是什么物质，并且任何物质的一摩尔，其以克为单位的质量等于它的分子质量，这可以从元素周期表上读出。物质的量等于分子数除以阿伏伽德罗常量。",
+   "forms": [
+    {
+     "id": "eq-moles-from-molecules",
+     "latex": "n = \\frac{N}{N_{\\text{A}}}",
+     "anchor": "13.3-moles"
+    }
+   ]
+  },
+  {
+   "id": "avogadros-number",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "阿伏伽德罗常量",
+   "symbol": "N_A",
+   "terms": [
+    "阿伏伽德罗常量"
+   ],
+   "statement": "阿伏伽德罗常量是一摩尔中的粒子数，取三位有效数字为每摩尔 6.02 × 10²³ 个。这是为纪念阿梅代奥·阿伏伽德罗，他正确地提出：在相同压强和温度下，相同体积的气体含有相同数目的分子。自 2019 年起，一摩尔恰好是 6.02214076 × 10²³ 个基本单元。这个数如此之大，以至于一摩尔乒乓球可以把地球覆盖到约 40 km 的深度。",
+   "forms": [
+    {
+     "id": "eq-avogadros-number",
+     "latex": "N_{\\text{A}} = 6.02\\times10^{23}\\ \\text{mol}^{-1}",
+     "anchor": "13.3-moles"
+    }
+   ]
+  },
+  {
+   "id": "ideal-gas-law-moles",
+   "kind": "result",
+   "section": "13.3",
+   "name": "用物质的量表示的理想气体定律",
+   "statement": "将理想气体定律乘以并除以阿伏伽德罗常量，就把分子数变成了物质的量，把玻尔兹曼常量变成了摩尔气体常量。这个常量是阿伏伽德罗常量乘以玻尔兹曼常量：在 SI 单位制中是 8.31 J/(mol·K)，在其他单位制中是 1.99 cal/(mol·K) 或 0.0821 L·atm/(mol·K)。使用与你已知量相匹配的定律形式，即分子数或物质的量，并使用与问题所用单位相匹配的气体常量的值。",
+   "forms": [
+    {
+     "id": "eq-ideal-gas-law-moles",
+     "latex": "PV = nRT",
+     "ktex": "\\kPr V = nR\\kTemp",
+     "anchor": "13.3-moles-form"
+    }
+   ]
+  },
+  {
+   "id": "molar-volume-at-stp",
+   "kind": "result",
+   "section": "13.3",
+   "name": "标准状况下的摩尔体积",
+   "statement": "标准状况是 0 °C 和大气压。在标准状况下，理想气体定律给出任何气体每立方米中有 2.68 × 10²⁵ 个分子，即每立方米 44.5 mol，每摩尔 22.5 L（在三位数字输入的精度范围内；公认值是 22.4 L/mol）。由于每种气体的数目相同，一立方米气体的质量仅由摩尔质量就可得出。摩尔质量为 28.8 g/mol 的干空气每立方米重 1.28 kg，所以一间客厅里约有 90 kg 的空气，相当于一个人的质量。",
+   "forms": [
+    {
+     "id": "eq-molar-volume-stp",
+     "latex": "\\frac{N}{V} = 2.68\\times10^{25}\\ \\text{m}^{-3},\\quad 22.4\\ \\text{L/mol}",
+     "condition": "在标准状况（0 °C、1 atm）下",
+     "anchor": "13.3-stp"
+    }
+   ]
+  },
+  {
+   "id": "ideal-gas-law-energy",
+   "kind": "idea",
+   "section": "13.3",
+   "name": "能量形式的理想气体定律",
+   "statement": "理想气体定律的两边都具有能量的量纲，在 SI 单位制中是焦耳。压强是单位面积上的力，所以压强乘以体积是力乘以位移，也就是功。右边与该温度下分子的平动动能成正比，下一节将会说明这一点。气体含有与它的压强和体积两者都有关的能量，而理想气体定律是能量守恒的另一种表达：给轮胎打气所做的功，用于产生空气的压强，并用于使打气筒和空气变暖。"
+  },
+  {
+   "id": "universal-gas-constant",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "摩尔气体常量",
+   "symbol": "R_gas",
+   "statement": "摩尔气体常量是阿伏伽德罗常量与玻尔兹曼常量的乘积，R = 8.31 J/(mol·K)。它对一摩尔气体所起的作用，就像玻尔兹曼常量对单个分子所起的作用。",
+   "forms": [
+    {
+     "id": "eq-gas-constant",
+     "latex": "R = N_{\\text{A}}k = 8.31\\ \\text{J/(mol·K)}",
+     "anchor": "13.3-moles-form"
+    },
+    {
+     "id": "eq-gas-constant-other-units",
+     "latex": "R = 1.99\\ \\text{cal/(mol·K)} = 0.0821\\ \\text{L·atm/(mol·K)}",
+     "anchor": "13.3-moles-form"
+    }
+   ]
+  },
+  {
+   "id": "kinetic-theory",
+   "kind": "idea",
+   "section": "13.4",
+   "name": "气体动理论",
+   "statement": "气体动理论假设原子和分子处于持续的无规运动中，并由这个假设解释压强和温度。当分子与刚性器壁发生弹性碰撞时，它的动量垂直于器壁的分量反向，所以器壁对它施加一个力，并且根据牛顿第三定律，它也对器壁施加一个力。极大数目的分子在短时间内撞击器壁，我们观察到的是单位面积上的平均力。分子越多，碰撞越多，压强越大；分子越快，碰撞越猛，压强越大。"
+  },
+  {
+   "id": "molecular-origin-of-pressure",
+   "kind": "result",
+   "section": "13.4",
+   "name": "由分子推出理想气体定律",
+   "statement": "跟踪盒子里的一个分子，就得到气体的压强。每次碰撞时，它的动量变化是其垂直动量的两倍，它与一面器壁相继两次碰撞的平均时间间隔，是穿过盒子再返回的时间，所以单个分子产生的平均力，等于它的质量乘以其垂直速率的平方再除以盒子的长度。乘以分子数，把垂直分量换成方均速率的三分之一（因为运动是无规的，三个方向相同），再除以器壁的面积，就得到压强。结果 PV = ⅓Nm v̄² 是理想气体定律的另一种表达，现在是用分子的质量和速率表示的。",
+   "forms": [
+    {
+     "id": "eq-pressure-from-molecules",
+     "latex": "PV = \\frac{1}{3}Nm\\overline{v^2}",
+     "ktex": "\\kPr V = \\frac{1}{3}Nm\\overline{v^2}",
+     "anchor": "13.4-collisions"
+    },
+    {
+     "id": "eq-force-one-molecule",
+     "latex": "F = \\frac{\\Delta p}{\\Delta t} = \\frac{2mv_x}{\\Delta t} = \\frac{mv_x^2}{l}",
+     "ktex": "\\kF = \\frac{\\kdp}{\\kdt} = \\frac{2m\\kvx}{\\kdt} = \\frac{m\\kvx^2}{l}",
+     "anchor": "13.4-derivation"
+    },
+    {
+     "id": "eq-mean-square-components",
+     "latex": "\\overline{v^2} = \\overline{v_x^2} + \\overline{v_y^2} + \\overline{v_z^2} = 3\\overline{v_x^2}",
+     "ktex": "\\overline{v^2} = \\overline{\\kvx^2} + \\overline{\\kvy^2} + \\overline{v_z^2} = 3\\overline{\\kvx^2}",
+     "anchor": "13.4-derivation"
+    }
+   ]
+  },
+  {
+   "id": "thermal-energy",
+   "kind": "result",
+   "section": "13.4",
+   "name": "分子的热能",
+   "terms": [
+    "热能"
+   ],
+   "type": "energy",
+   "statement": "令理想气体定律的分子形式等于 PV = NkT 并整理，可知分子的平均平动动能等于玻尔兹曼常量与热力学温度之乘积的二分之三。这个平均动能就是热能。这个方程给出了温度的分子解释，对气体成立，对液体和固体也相当准确。它用分子运动的能量来定义温度，并且在给定温度下，对每一种分子都是相同的。",
+   "forms": [
+    {
+     "id": "eq-thermal-energy",
+     "latex": "\\overline{\\text{KE}} = \\frac{1}{2}m\\overline{v^2} = \\frac{3}{2}kT",
+     "ktex": "\\kKEbar = \\frac{1}{2}m\\overline{v^2} = \\frac{3}{2}k\\kTemp",
+     "anchor": "13.4-thermal-energy"
+    },
+    {
+     "id": "eq-temperature-from-speed",
+     "latex": "T = \\frac{m\\overline{v^2}}{3k}",
+     "ktex": "\\kTemp = \\frac{m\\overline{v^2}}{3k}",
+     "anchor": "13.4-ex-escape"
+    },
+    {
+     "id": "eq-average-kinetic-energy",
+     "latex": "\\tfrac{1}{2}m\\bar{v}^2 = \\tfrac{3}{2}kT",
+     "ktex": "\\tfrac{1}{2}m\\kvb^2 = \\tfrac{3}{2}k\\kTemp",
+     "condition": "单原子理想气体",
+     "section": "15.2",
+     "anchor": "15.2-isothermal-adiabatic"
+    }
+   ]
+  },
+  {
+   "id": "rms-speed",
+   "kind": "result",
+   "section": "13.4",
+   "name": "方均根速率",
+   "type": "velocity",
+   "statement": "由热能方程解出速率，得到分子的方均根速率，即方均速率的平方根，它随热力学温度的平方根增大，随分子质量的平方根减小。它大得出奇，室温下氮气为 511 m/s，但它不产生风，因为分子向各个方向运动的情形相同，并且在两次碰撞之间只运动极小的平均自由程。声速在室温下约为 340 m/s，它反映了这一点，这就是为什么声音在热空气和氦这样的轻质气体中更快。",
+   "forms": [
+    {
+     "id": "eq-rms-speed",
+     "latex": "v_{\\text{rms}} = \\sqrt{\\overline{v^2}} = \\sqrt{\\frac{3kT}{m}}",
+     "ktex": "\\kvrms = \\sqrt{\\overline{v^2}} = \\sqrt{\\frac{3k\\kTemp}{m}}",
+     "anchor": "13.4-thermal-energy"
+    },
+    {
+     "id": "eq-rms-speed-17",
+     "latex": "v_{\\text{rms}} = \\sqrt{\\frac{3kT}{m}}",
+     "ktex": "\\kvrms = \\sqrt{\\frac{3k\\kTemp}{m}}",
+     "section": "17.2",
+     "anchor": "17.2-temperature"
+    }
+   ]
+  },
+  {
+   "id": "molecular-mass-from-molar-mass",
+   "kind": "skill",
+   "section": "13.4",
+   "name": "求分子的质量",
+   "statement": "单个原子或分子的质量，等于摩尔质量（从元素周期表上读出，以克每摩尔为单位，再换算为千克）除以一摩尔中的粒子数。氮分子是两个 14.0067 g/mol 的原子，所以质量为 4.65 × 10⁻²⁶ kg；氦原子为 6.65 × 10⁻²⁷ kg。每一次对方均根速率的计算，或由速率求温度的计算，都要经过这一步。",
+   "forms": [
+    {
+     "id": "eq-molecular-mass",
+     "latex": "m = \\frac{\\text{摩尔质量}}{\\text{每摩尔的原子数}}",
+     "anchor": "13.4-ex-kinetic-energy"
+    }
+   ]
+  },
+  {
+   "id": "maxwell-boltzmann-distribution",
+   "kind": "idea",
+   "section": "13.4",
+   "name": "麦克斯韦-玻尔兹曼分布",
+   "statement": "任何一个分子的运动，其大小和方向都是无规的，但由许多分子组成的气体具有可以预测的速率分布，即麦克斯韦-玻尔兹曼分布，它由气体动理论算出，并为实验所证实。这个分布有一条长长的尾部，因为有少数分子的速率是方均根速率的几倍，而它的峰值，即最概然速率，低于方均根速率。随着温度升高，整个分布向较高的速率移动并变宽，这就是为什么发热的人会从口腔和肺的内壁损失更多的水分。"
+  },
+  {
+   "id": "atmospheric-escape",
+   "kind": "idea",
+   "section": "13.4",
+   "name": "轻质气体从大气中逃逸",
+   "statement": "要从大气顶部摆脱地球的引力，物体必须以 11.1 km/s 的速率运动，而氦需要约 2 × 10⁴ K 的温度，其方均根速率才能达到这个值。然而空气中的氦含量极少。原子的速率时时刻刻都在变化，而在任一时刻，分布尾部中的一小部分都超过逃逸速度；经过几十亿年，这一部分就逸散掉了。较重的分子，氧、氮和水，方均根速率较小，能达到逃逸速度的非常之少，所以地球保住了它的大气。月球的引力弱得多，它几乎失去了全部大气，它白天的天空是黑色的。"
+  },
+  {
+   "id": "real-gas-condensation",
+   "kind": "idea",
+   "section": "13.5",
+   "name": "实际气体的凝结",
+   "statement": "实际气体在高温时的行为像理想气体，但在较低温度时，分子之间的相互作用和分子本身的体积开始起作用。分子靠得很近，气体凝结，物质变成液体时体积骤然下降。进一步冷却变成固体，体积再略微缩小，但永远不会缩到零，因为分子本身有体积。高压也可以使气体液化，工业上就是这样制造液态二氧化碳和液氮的。"
+  },
+  {
+   "id": "pv-diagram",
+   "kind": "idea",
+   "section": "13.5",
+   "name": "PV 图",
+   "terms": [
+    "PV 图"
+   ],
+   "statement": "压强对体积的图像是 PV 图。对于温度和分子数固定的理想气体，乘积 PV 是常量，所以每条等温线，即某一温度下的曲线，都是双曲线，上面的曲线对应更热的温度。在较低的温度下，这些曲线不再像双曲线，因为气体不再表现为理想气体，并且可能含有液体；沿着低温等温线的平直部分，压强保持不变而体积变化，因为物质正在发生相变。",
+   "forms": [
+    {
+     "id": "eq-isotherm",
+     "latex": "PV = \\text{常量}",
+     "ktex": "\\kPr V = \\text{常量}",
+     "condition": "理想气体，温度和分子数不变",
+     "anchor": "13.5-pv-diagrams"
+    }
+   ]
+  },
+  {
+   "id": "critical-point",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "临界点",
+   "terms": [
+    "临界点"
+   ],
+   "statement": "在物质的临界温度以上，液相在任何压强下都不能存在。该温度的等温线是具有平直的两相部分的最高一条，在它之上，被压缩得足够厉害的气体可以达到液体的密度而不凝结。临界压强是液体在临界温度下存在所需的最小压强。二氧化碳在 31 °C 以上不能成为液体，氧在 −118 °C 以上也不能，所以无论怎样挤压都不能使氧在室温下液化。"
+  },
+  {
+   "id": "phase-diagram",
+   "kind": "idea",
+   "section": "13.5",
+   "name": "相图",
+   "terms": [
+    "相图"
+   ],
+   "statement": "压强对温度的图像是相图：其中有明确的区域，物质在这些区域里是固体、液体或气体，而区域之间的实线是两个相共存的温度和压强。对水来说，液体-蒸气曲线给出每个压强下的沸点，1.00 atm 时为 100 °C，218 atm 时升高到 374 °C，这就是为什么高压锅烹饪更快；固体-液体曲线给出熔点，对水来说它向一侧倾斜，使熔点随压强增大而降低，这就是为什么雪球能被压实，也是为什么轮胎会把雪熔化成一层冰。知道了压强和温度，你就可以从图上读出相。"
+  },
+  {
+   "id": "sublimation",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "升华",
+   "terms": [
+    "升华"
+   ],
+   "statement": "在足够低的压强下，不存在液相，物质直接在固态和气态之间转变。从固态到气态的相变是升华；它解释了积雪没有汇入河流就消失的现象、冰箱的自动除霜以及冷冻干燥。对水来说，低于 0.00600 atm 时没有液体，而二氧化碳在通常的大气压下就升华，这就是为什么固态二氧化碳是干冰：它不熔化。"
+  },
+  {
+   "id": "triple-point",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "三相点",
+   "terms": [
+    "三相点"
+   ],
+   "statement": "相图的三条曲线交于一点，即三相点，固体、液体和气体在此同时处于平衡共存。对水来说，它在 273.16 K 和 0.00600 atm，由于它是单一的、明确的温度和压强，所以它作为校准温度，比 1.00 atm 下的熔点 273.15 K 更精确。每种物质都有一个三相点，表 13.4 列出了几种。"
+  },
+  {
+   "id": "phase-equilibrium",
+   "kind": "idea",
+   "section": "13.5",
+   "name": "相平衡",
+   "statement": "液体和气体在沸点下处于平衡。在密闭容器中，液体沸腾和气体凝结的速率相同，两者的量没有净变化，因为分子离开液体成为气体的速度，与气体分子附着于液体的速度一样快。在较高温度下，液体沸腾得更快，气体中的分子更多，气体压强更高，凝结加快到与之相当，所以这一对在新的压强下再次达到平衡。敞口锅中 100 °C 的水会沸腾蒸发殆尽，敞口杯中 20 °C 的水会蒸发，因为它们上方的气体是空气而不是纯水蒸气。低于其沸点的气体是蒸气。"
+  },
+  {
+   "id": "vapor-pressure",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "蒸气压",
+   "symbol": "P_press",
+   "terms": [
+    "蒸气压"
+   ],
+   "type": "pressure",
+   "statement": "蒸气压是气体与其固相或液相共存时的压强。它由从液体或固体挣脱出来进入气体的较快的分子产生，所以它取决于物质及其温度，温度升高使它增大。当水的蒸气压超过周围气体中水蒸气的分压时，水蒸发，冰升华；小于时，则形成液滴或霜。"
+  },
+  {
+   "id": "daltons-law",
+   "kind": "axiom",
+   "section": "13.5",
+   "name": "道尔顿分压定律",
+   "terms": [
+    "道尔顿分压定律"
+   ],
+   "statement": "气体的分压是它单独占据全部可用体积时所产生的压强，在气体混合物中，总压强等于各组分分压之和，假设气体表现为理想气体且不发生化学反应。这就是道尔顿分压定律，它可由气体动理论得出：每种气体靠自己的分子碰撞产生压强，与存在的其他气体无关，而压强相加正如帕斯卡原理所说。"
+  },
+  {
+   "id": "vapor",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "蒸气",
+   "terms": [
+    "蒸气"
+   ],
+   "statement": "蒸气是温度低于其物质沸点的气体，因此它可以与液体共存。"
+  },
+  {
+   "id": "partial-pressure",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "分压",
+   "terms": [
+    "分压强"
+   ],
+   "statement": "混合气体中一种气体的分压，是它单独占据全部可用体积时所产生的压强。"
+  },
+  {
+   "id": "critical-temperature",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "临界温度",
+   "symbol": "T_c",
+   "terms": [
+    "临界温度"
+   ],
+   "type": "temperature",
+   "statement": "物质的临界温度是这样一个温度：高于它，无论压强多大，其液相都不能存在。"
+  },
+  {
+   "id": "critical-pressure",
+   "kind": "definition",
+   "section": "13.5",
+   "name": "临界压强",
+   "terms": [
+    "临界压强"
+   ],
+   "statement": "物质的临界压强是其液相在临界温度下存在所需的最小压强。"
+  },
+  {
+   "id": "relative-humidity",
+   "kind": "definition",
+   "section": "13.6",
+   "name": "相对湿度与饱和",
+   "terms": [
+    "相对湿度"
+   ],
+   "statement": "相对湿度表明空气中的水蒸气相对于可能的最大量有多少。在最大量，即饱和时，相对湿度为 100%，蒸发受到抑制，我们感觉更热，因为汗不再使我们变凉。空气能够容纳的水蒸气量通过水的蒸气压而取决于温度：在 100% 湿度时，水蒸气的分压等于蒸气压，低于它则蒸发继续进行，高于它则发生凝结。水并不是由空气容纳的；空气中的水量仅由水的蒸气压决定，与空气的性质无关。"
+  },
+  {
+   "id": "vapor-density-from-vapor-pressure",
+   "kind": "skill",
+   "section": "13.6",
+   "name": "求饱和蒸气密度",
+   "statement": "水蒸气的行为像理想气体。产生给定分压的蒸气的密度，可由 PV = nRT 解出每立方米的物质的量，再用水的摩尔质量 18.0 g/mol 换算成克得到。在 20.0 °C 时，2.33 × 10³ Pa 的蒸气压给出 17.2 g/m³，恰好是表 13.5 中的饱和蒸气密度。该表中的密度是每个温度下每立方米所能容纳的水蒸气的最大量。",
+   "forms": [
+    {
+     "id": "eq-vapor-density",
+     "latex": "\\frac{n}{V} = \\frac{P}{RT}",
+     "ktex": "\\frac{n}{V} = \\frac{\\kPr}{R\\kTemp}",
+     "anchor": "13.6-vapor-density"
+    }
+   ]
+  },
+  {
+   "id": "percent-relative-humidity",
+   "kind": "definition",
+   "section": "13.6",
+   "name": "相对湿度百分比",
+   "terms": [
+    "相对湿度百分比"
+   ],
+   "statement": "相对湿度百分比是空气中实际的蒸气密度与该温度下的饱和蒸气密度之比乘以 100。借助表 13.5，它可以回答许多关于一天天气的问题：25.0 °C 且含有 9.40 g/m³ 的空气，相对湿度为 40.9%，而露点为 −10.0 °C 的同样的空气，相对湿度只有 10.3%。",
+   "forms": [
+    {
+     "id": "eq-percent-relative-humidity",
+     "latex": "\\text{相对湿度百分比} = \\frac{\\text{蒸气密度}}{\\text{饱和蒸气密度}}\\times 100",
+     "anchor": "13.6-percent-humidity"
+    }
+   ]
+  },
+  {
+   "id": "dew-point",
+   "kind": "definition",
+   "section": "13.6",
+   "name": "露点",
+   "terms": [
+    "露点"
+   ],
+   "statement": "露点是空气中的水蒸气达到饱和密度时的温度，这时相对湿度将为 100%。在该温度，水开始从空气中凝结出来，成为露、雾或霜。气温不能降到露点以下而不发生水的凝结，而凝结释放出可观的热量，使温度维持不降。这就是为什么农民要关注露点，为什么沙漠的夜晚如此寒冷，以及为什么雾会在傍晚降温时形成。"
+  },
+  {
+   "id": "humidity-from-the-table",
+   "kind": "skill",
+   "section": "13.6",
+   "name": "由饱和表读出湿度",
+   "statement": "每个湿度问题都要用到表 13.5。空气中的蒸气密度、空气温度下的饱和密度和露点下的饱和密度，是同一列中的三个条目。湿度、蒸气密度、露点和温度中的任何一个，都可由其余几个得出。湿度是两个密度之比，露点是饱和密度等于空气中蒸气密度的那个温度，而空气冷却时凝结出的水是两个饱和密度之差。当温度落在两行之间时，进行内插。"
+  },
+  {
+   "id": "boiling",
+   "kind": "idea",
+   "section": "13.6",
+   "name": "沸点与压强",
+   "statement": "水在 100 °C 沸腾，因为那是它的蒸气压达到 1.01 × 10⁵ Pa（一个大气压）的温度，这样它就能无限制地蒸发。气泡的形成是因为水中溶有空气：锅底的气泡含有空气和水蒸气，总压强为 1.00 atm，随着温度升高，其中的水蒸气增多，气泡膨胀以保持其压强；在 100 °C 时蒸气不断进入，气泡长大，它的浮力增大，于是脱离并上升。当水所受的压强不同，沸腾温度也不同：在高压锅里或在深处较高，在高海拔处和真空室里较低。"
+  },
+  {
+   "id": "evaporative-cooling",
+   "kind": "idea",
+   "section": "13.6",
+   "name": "蒸发使留下的物体变冷",
+   "statement": "我们在炎热的天气里靠皮肤上汗水的蒸发和呼吸道里水的蒸发来保持凉爽，而高湿度抑制这种蒸发，这就是潮湿的炎热更难受的原因。最可能从液体逸出的分子是速率最大的那些，所以留下的分子平均速率较低，温度也较低；降低周围的压强会降低水的分压，加快蒸发，并且可以使食物冷却到冻结，冷冻干燥机就是这样工作的。吹热风使头发干得更快，因为较高的温度提高了蒸发的速率。"
+  },
+  {
+   "id": "saturation",
+   "kind": "definition",
+   "section": "13.6",
+   "name": "饱和",
+   "terms": [
+    "饱和"
+   ],
+   "statement": "当空气的相对湿度为 100% 时，空气是饱和的，即它在该温度下所含的水蒸气已达最大量，水蒸气的分压等于水的蒸气压。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "temperature",
+   "prereq": "physical-quantity"
+  },
+  {
+   "concept": "thermometer",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "temperature-scales",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "temperature-scales",
+   "prereq": "units"
+  },
+  {
+   "concept": "convert-temperature-scales",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "convert-temperature-scales",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "absolute-zero",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "absolute-zero",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "absolute-zero",
+   "prereq": "straight-line-graph"
+  },
+  {
+   "concept": "thermal-equilibrium",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "zeroth-law-of-thermodynamics",
+   "prereq": "thermal-equilibrium"
+  },
+  {
+   "concept": "thermal-expansion",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "thermal-expansion",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "thermal-expansion",
+   "prereq": "density"
+  },
+  {
+   "concept": "thermal-expansion",
+   "prereq": "buoyant-force"
+  },
+  {
+   "concept": "linear-thermal-expansion",
+   "prereq": "thermal-expansion"
+  },
+  {
+   "concept": "linear-thermal-expansion",
+   "prereq": "convert-temperature-scales"
+  },
+  {
+   "concept": "area-thermal-expansion",
+   "prereq": "linear-thermal-expansion"
+  },
+  {
+   "concept": "holes-expand-too",
+   "prereq": "linear-thermal-expansion"
+  },
+  {
+   "concept": "volume-thermal-expansion",
+   "prereq": "linear-thermal-expansion"
+  },
+  {
+   "concept": "differential-thermal-expansion",
+   "prereq": "volume-thermal-expansion"
+  },
+  {
+   "concept": "anomalous-expansion-of-water",
+   "prereq": "volume-thermal-expansion"
+  },
+  {
+   "concept": "anomalous-expansion-of-water",
+   "prereq": "density"
+  },
+  {
+   "concept": "anomalous-expansion-of-water",
+   "prereq": "average-density-decides-floating"
+  },
+  {
+   "concept": "thermal-stress",
+   "prereq": "volume-thermal-expansion"
+  },
+  {
+   "concept": "thermal-stress",
+   "prereq": "stress"
+  },
+  {
+   "concept": "thermal-stress",
+   "prereq": "bulk-deformation"
+  },
+  {
+   "concept": "thermal-stress",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "ideal-gas",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "ideal-gas",
+   "prereq": "atomic-arrangement-and-phase"
+  },
+  {
+   "concept": "ideal-gas",
+   "prereq": "volume-thermal-expansion"
+  },
+  {
+   "concept": "ideal-gas-law",
+   "prereq": "ideal-gas"
+  },
+  {
+   "concept": "ideal-gas-law",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "ideal-gas-law",
+   "prereq": "absolute-pressure"
+  },
+  {
+   "concept": "ideal-gas-law",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "ideal-gas-law",
+   "prereq": "absolute-zero"
+  },
+  {
+   "concept": "boltzmann-constant",
+   "prereq": "ideal-gas-law"
+  },
+  {
+   "concept": "ideal-gas-ratio-method",
+   "prereq": "ideal-gas-law"
+  },
+  {
+   "concept": "ideal-gas-ratio-method",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "mole",
+   "prereq": "fundamental-units"
+  },
+  {
+   "concept": "avogadros-number",
+   "prereq": "mole"
+  },
+  {
+   "concept": "ideal-gas-law-moles",
+   "prereq": "ideal-gas-law"
+  },
+  {
+   "concept": "ideal-gas-law-moles",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "molar-volume-at-stp",
+   "prereq": "ideal-gas-law-moles"
+  },
+  {
+   "concept": "molar-volume-at-stp",
+   "prereq": "atmospheric-pressure"
+  },
+  {
+   "concept": "molar-volume-at-stp",
+   "prereq": "density"
+  },
+  {
+   "concept": "ideal-gas-law-energy",
+   "prereq": "ideal-gas-law"
+  },
+  {
+   "concept": "ideal-gas-law-energy",
+   "prereq": "work"
+  },
+  {
+   "concept": "ideal-gas-law-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "kinetic-theory",
+   "prereq": "ideal-gas"
+  },
+  {
+   "concept": "kinetic-theory",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "kinetic-theory",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "molecular-origin-of-pressure",
+   "prereq": "kinetic-theory"
+  },
+  {
+   "concept": "molecular-origin-of-pressure",
+   "prereq": "change-in-momentum"
+  },
+  {
+   "concept": "molecular-origin-of-pressure",
+   "prereq": "impulse"
+  },
+  {
+   "concept": "molecular-origin-of-pressure",
+   "prereq": "newtons-second-law-momentum"
+  },
+  {
+   "concept": "molecular-origin-of-pressure",
+   "prereq": "elastic-collision"
+  },
+  {
+   "concept": "molecular-origin-of-pressure",
+   "prereq": "force-from-pressure"
+  },
+  {
+   "concept": "thermal-energy",
+   "prereq": "molecular-origin-of-pressure"
+  },
+  {
+   "concept": "thermal-energy",
+   "prereq": "ideal-gas-law"
+  },
+  {
+   "concept": "thermal-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "rms-speed",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "molecular-mass-from-molar-mass",
+   "prereq": "mole"
+  },
+  {
+   "concept": "molecular-mass-from-molar-mass",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "maxwell-boltzmann-distribution",
+   "prereq": "rms-speed"
+  },
+  {
+   "concept": "atmospheric-escape",
+   "prereq": "maxwell-boltzmann-distribution"
+  },
+  {
+   "concept": "atmospheric-escape",
+   "prereq": "rms-speed"
+  },
+  {
+   "concept": "atmospheric-escape",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "real-gas-condensation",
+   "prereq": "ideal-gas"
+  },
+  {
+   "concept": "real-gas-condensation",
+   "prereq": "ideal-gas-law"
+  },
+  {
+   "concept": "real-gas-condensation",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "pv-diagram",
+   "prereq": "ideal-gas-law"
+  },
+  {
+   "concept": "critical-point",
+   "prereq": "pv-diagram"
+  },
+  {
+   "concept": "critical-point",
+   "prereq": "real-gas-condensation"
+  },
+  {
+   "concept": "phase-diagram",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "phase-diagram",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "phase-diagram",
+   "prereq": "critical-point"
+  },
+  {
+   "concept": "sublimation",
+   "prereq": "phase-diagram"
+  },
+  {
+   "concept": "triple-point",
+   "prereq": "phase-diagram"
+  },
+  {
+   "concept": "phase-equilibrium",
+   "prereq": "thermal-equilibrium"
+  },
+  {
+   "concept": "phase-equilibrium",
+   "prereq": "maxwell-boltzmann-distribution"
+  },
+  {
+   "concept": "vapor-pressure",
+   "prereq": "phase-equilibrium"
+  },
+  {
+   "concept": "vapor-pressure",
+   "prereq": "maxwell-boltzmann-distribution"
+  },
+  {
+   "concept": "daltons-law",
+   "prereq": "kinetic-theory"
+  },
+  {
+   "concept": "daltons-law",
+   "prereq": "pascals-principle"
+  },
+  {
+   "concept": "daltons-law",
+   "prereq": "pressures-add"
+  },
+  {
+   "concept": "daltons-law",
+   "prereq": "vapor-pressure"
+  },
+  {
+   "concept": "relative-humidity",
+   "prereq": "vapor-pressure"
+  },
+  {
+   "concept": "relative-humidity",
+   "prereq": "daltons-law"
+  },
+  {
+   "concept": "vapor-density-from-vapor-pressure",
+   "prereq": "ideal-gas-law-moles"
+  },
+  {
+   "concept": "vapor-density-from-vapor-pressure",
+   "prereq": "vapor-pressure"
+  },
+  {
+   "concept": "vapor-density-from-vapor-pressure",
+   "prereq": "density"
+  },
+  {
+   "concept": "percent-relative-humidity",
+   "prereq": "relative-humidity"
+  },
+  {
+   "concept": "percent-relative-humidity",
+   "prereq": "vapor-density-from-vapor-pressure"
+  },
+  {
+   "concept": "dew-point",
+   "prereq": "relative-humidity"
+  },
+  {
+   "concept": "dew-point",
+   "prereq": "phase-equilibrium"
+  },
+  {
+   "concept": "humidity-from-the-table",
+   "prereq": "percent-relative-humidity"
+  },
+  {
+   "concept": "humidity-from-the-table",
+   "prereq": "dew-point"
+  },
+  {
+   "concept": "boiling",
+   "prereq": "vapor-pressure"
+  },
+  {
+   "concept": "boiling",
+   "prereq": "daltons-law"
+  },
+  {
+   "concept": "boiling",
+   "prereq": "atmospheric-pressure"
+  },
+  {
+   "concept": "boiling",
+   "prereq": "buoyant-force"
+  },
+  {
+   "concept": "boiling",
+   "prereq": "phase-diagram"
+  },
+  {
+   "concept": "evaporative-cooling",
+   "prereq": "maxwell-boltzmann-distribution"
+  },
+  {
+   "concept": "evaporative-cooling",
+   "prereq": "vapor-pressure"
+  },
+  {
+   "concept": "evaporative-cooling",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "coefficient-of-linear-expansion",
+   "prereq": "length"
+  },
+  {
+   "concept": "coefficient-of-linear-expansion",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "coefficient-of-volume-expansion",
+   "prereq": "volume"
+  },
+  {
+   "concept": "coefficient-of-volume-expansion",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "coefficient-of-volume-expansion",
+   "prereq": "coefficient-of-linear-expansion"
+  },
+  {
+   "concept": "universal-gas-constant",
+   "prereq": "avogadros-number"
+  },
+  {
+   "concept": "universal-gas-constant",
+   "prereq": "boltzmann-constant"
+  },
+  {
+   "concept": "vapor",
+   "prereq": "phase-equilibrium"
+  },
+  {
+   "concept": "partial-pressure",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "partial-pressure",
+   "prereq": "volume"
+  },
+  {
+   "concept": "celsius-scale",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "degree-celsius",
+   "prereq": "celsius-scale"
+  },
+  {
+   "concept": "fahrenheit-scale",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "degree-fahrenheit",
+   "prereq": "fahrenheit-scale"
+  },
+  {
+   "concept": "kelvin-scale",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "kelvin-scale",
+   "prereq": "absolute-zero"
+  },
+  {
+   "concept": "critical-temperature",
+   "prereq": "critical-point"
+  },
+  {
+   "concept": "critical-temperature",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "critical-pressure",
+   "prereq": "critical-point"
+  },
+  {
+   "concept": "critical-pressure",
+   "prereq": "critical-temperature"
+  },
+  {
+   "concept": "critical-pressure",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "saturation",
+   "prereq": "relative-humidity"
+  },
+  {
+   "concept": "saturation",
+   "prereq": "vapor-pressure"
+  }
+ ]
+}

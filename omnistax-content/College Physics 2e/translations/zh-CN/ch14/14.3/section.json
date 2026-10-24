@@ -1,0 +1,1194 @@
+{
+ "id": "14.3",
+ "module": "m42225",
+ "chapter": "14",
+ "title": "相变与潜热",
+ "short": "相变与潜热",
+ "lead": "使冰熔化或使水沸腾的<span data-concept=\"heat\">热量</span>并不改变任何<span data-concept=\"temperature\">温度</span>：它以<span data-concept=\"latent-heat\">潜热</span>的形式用于把分子拉开，而当蒸气凝结或液体凝固时，同样多的<span data-concept=\"energy\">能量</span>又被放出来。<span data-ref=\"sample\">一块冰样品</span>沿着加热曲线升温直至变成蒸汽，<span data-ref=\"ice\">冰块</span>在<span data-ref=\"soda\">汽水</span>中熔化，随后给出的一套策略用于处理既有<span data-concept=\"temperature\">温度</span>变化又有相变的问题。",
+ "objectives": [
+  "考察热传递。",
+  "由热传递计算末温。"
+ ],
+ "summary_html": "<ul><li>大多数物质可以以固态、液态和气态三种形式存在，这些形式被称为“相”。</li><li>对于给定的物质，在给定的<span data-concept=\"pressure\">压强</span>下，相变在固定的<span data-concept=\"temperature\">温度</span>下发生，这些<span data-concept=\"temperature\">温度</span>称为沸点和凝固点（或熔点）。</li><li>相变过程中，吸收或放出的<span data-concept=\"heat\">热量</span>为：$$\\kQh = mL,$$ 其中 $L$ 是<span data-concept=\"latent-heat\">潜热系数</span>。</li></ul>",
+ "notes": "书中未给出答案的九道习题没有收入：冰袋与水袋的对比、使冰熔化的凝结、靠蒸发维持水温的游泳池、罗斯冰架的冰山、雷暴中的凝结、放进冷冻室的一碗汤、浇在一块冰上的水、上一节那个加上蒸发的热锅，以及铅弹。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。关于雪在高于凝固点的山坡上仍然留存的“理解检测”栏目带有书中的答案，并以内嵌方式置于关于潜热系数的段落末尾。十一道思考题没有答案，是开放题，附有 AI 撰写的建议思路，并已注明。本模块没有印出 AP 备考练习。十九道习题中有十道带有答案并予保留，按其在书中列表中的位置命名；原油那道题只给出（a）的答案，所以该题卡片核对这个数，并在解中给出书中对（b）的答案；而把 0.200 kg 的冰从 −20.0 °C 加热到 130 °C 的那道题给出（a）（b）两问的答案，（c）问的图像就是本节图线所画的加热曲线。九道习题没有答案，已略去：冰袋与水袋的对比、使冰熔化的凝结、会蒸发的游泳池、冰山、雷暴、放进冷冻室的一碗汤、浇在一块冰上的水、14.2 中加上蒸发的热锅，以及铅弹。没有从其他小节取用任何内容，本节自己的内容也没有留到以后的页面。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-icicle",
+   "kind": "photo",
+   "number": "14.7",
+   "originals": [
+    "/media/ch14/Figure_15_03_01a.jpg"
+   ],
+   "original_caption": "来自空气的热量传给冰，使冰熔化。（来源：Mike Brand）",
+   "widths": [
+    272
+   ]
+  },
+  {
+   "id": "sim-phases",
+   "kind": "sim",
+   "number": "14.8",
+   "originals": [
+    "/media/ch14/Figure_15_03_02a.jpg"
+   ],
+   "original_caption": "（a）要使固体变成液体，需要能量来部分克服固体中分子之间的吸引力。要发生凝固，必须移走同样多的能量。（b）从液体变成蒸气时，分子之间相距很远，需要大量能量来克服分子间的吸引。要发生凝结，必须移走同样多的能量。在相变完成之前，温度没有变化。",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "energy",
+    "mass",
+    "latent-heat"
+   ],
+   "conventions": [
+    "H",
+    "O",
+    "He",
+    "N",
+    "Cu",
+    "Ag",
+    "Au"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "heat-bar label kept inside the stage at the scale's end"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: solid molecules shake, liquid wander, gas fly and bounce"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-heating-curve",
+   "kind": "sim",
+   "number": "14.9",
+   "originals": [
+    "/media/ch14/Figure_15_03_03a.jpg"
+   ],
+   "original_caption": "温度随所加能量变化的图线。该系统的构造使得冰升温变成液态水的过程中没有蒸气蒸发出去，而发生汽化时，蒸气仍留在系统之内。在 0 °C 和 100 °C 处温度值长长的恒定段，分别反映了熔化和汽化的潜热很大。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "temperature",
+    "mass",
+    "specific-heat",
+    "latent-heat"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "melting and boiling notes cut, no longer repeating the headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ice-soda",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "temperature",
+    "mass",
+    "latent-heat",
+    "specific-heat"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence; heat-bar label inside the stage"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-iced-tea",
+   "kind": "photo",
+   "number": "14.10",
+   "originals": [
+    "/media/ch14/Figure_15_03_04a.jpg"
+   ],
+   "original_caption": "这杯冰茶上出现了凝结，因为附近空气的温度降到了露点以下。水分子结合在一起的速率超过它们分开的速率，所以水凝结了。水凝结时释放能量，加快了杯中冰的熔化。（来源：Jenny Downing）",
+   "widths": [
+    286
+   ]
+  },
+  {
+   "id": "fig-orchard-ice",
+   "kind": "photo",
+   "number": "14.11",
+   "originals": [
+    "/media/ch14/Figure_15_03_05a.jpg"
+   ],
+   "original_caption": "这些树上的冰在凝固时释放了大量能量，有助于防止树的温度降到 0 °C 以下。人们有意向果园喷水，以帮助防止严重霜冻。（来源：Hermann Hammer）",
+   "widths": [
+    350
+   ]
+  },
+  {
+   "id": "fig-dry-ice-frost",
+   "kind": "photo",
+   "number": "14.12",
+   "originals": [
+    "/media/ch14/Figure_15_03_06aa.jpg"
+   ],
+   "original_caption": "固体与蒸气之间的直接转变很常见，有时很有用，甚至很美。（a）干冰直接升华为二氧化碳气体。可见的蒸气是由小水滴构成的。（来源：Windell Oskay）（b）霜在极冷的窗户上形成图案，这是固体直接由蒸气形成的一个例子。（来源：Liz West）"
+  }
+ ],
+ "coverage": [
+  {
+   "span": "phase-change",
+   "concept": "latent-heat",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-change",
+   "concept": "heat-of-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-change",
+   "concept": "heat-of-vaporization",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-change",
+   "concept": "heat",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "heat-vs-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "phases-of-matter",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "atomic-arrangement-and-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "cohesive-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "latent-heat-coefficients",
+   "concept": "latent-heat",
+   "verb": "reinforces"
+  },
+  {
+   "span": "latent-heat-coefficients",
+   "concept": "heat-of-fusion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "latent-heat-coefficients",
+   "concept": "heat-of-vaporization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "latent-heat-coefficients",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "latent-heat-coefficients",
+   "concept": "evaporative-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "latent-heat-coefficients",
+   "concept": "dew-point",
+   "verb": "uses"
+  },
+  {
+   "span": "heating-curve",
+   "concept": "heating-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "heating-curve",
+   "concept": "heat-of-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "heating-curve",
+   "concept": "heat-of-vaporization",
+   "verb": "uses"
+  },
+  {
+   "span": "heating-curve",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "heating-curve",
+   "concept": "specific-heat",
+   "verb": "uses"
+  },
+  {
+   "span": "heating-curve",
+   "concept": "boiling",
+   "verb": "uses"
+  },
+  {
+   "span": "evaporation",
+   "concept": "evaporation-below-boiling",
+   "verb": "introduces"
+  },
+  {
+   "span": "evaporation",
+   "concept": "heat-of-vaporization",
+   "verb": "uses"
+  },
+  {
+   "span": "evaporation",
+   "concept": "evaporative-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "evaporation",
+   "concept": "relative-humidity",
+   "verb": "uses"
+  },
+  {
+   "span": "cooling-soda",
+   "concept": "phase-change-calorimetry",
+   "verb": "introduces"
+  },
+  {
+   "span": "cooling-soda",
+   "concept": "heat-of-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "cooling-soda",
+   "concept": "calorimetry",
+   "verb": "uses"
+  },
+  {
+   "span": "cooling-soda",
+   "concept": "final-temperature-from-heat-exchange",
+   "verb": "uses"
+  },
+  {
+   "span": "cooling-soda",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "condensation",
+   "concept": "condensation-and-freezing-release-heat",
+   "verb": "introduces"
+  },
+  {
+   "span": "condensation",
+   "concept": "heat-of-vaporization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "condensation",
+   "concept": "heat-of-fusion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "condensation",
+   "concept": "dew-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sublimation",
+   "concept": "heat-of-sublimation",
+   "verb": "introduces"
+  },
+  {
+   "span": "sublimation",
+   "concept": "latent-heat",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sublimation",
+   "concept": "sublimation",
+   "verb": "uses"
+  },
+  {
+   "span": "sublimation",
+   "concept": "vapor-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "strategies",
+   "concept": "phase-change-calorimetry",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strategies",
+   "concept": "latent-heat",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strategies",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "strategies",
+   "concept": "temperature-rise-from-work",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2408137",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "latent-heat-coefficients"
+   },
+   "cite": "latent-heat-coefficients",
+   "prompt": "为什么即使白天的温度高于凝固点，雪仍会留在山坡上？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "雪由冰晶形成，因此是水的固相。因为相变需要巨大的热量，所以即使空气温度高于 $0^\\circ\\text{C}$，也需要一定的时间才能从空气中积累到这些热量。空气越暖，这种热交换进行得越快，雪也就熔化得越快。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1412690",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategies",
+   "prompt": "热传递可以引起温度变化和相变。还有什么能引起这些变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "功可以。热传递是向系统输入能量的一种方式，功是另一种：焦耳的桨叶下面没有火焰，也能使水变暖；汽车的刹车会发热，是因为摩擦力对它们做功；被压缩的气体会变热，是因为活塞对它做功。对一个物体做足够多的功，就能升高它的温度；若所做的功足以使它越过熔点或沸点，它的相也会改变，就和以热量形式送入的同样多能量所起的作用一样。解题策略在结尾一句里就是这样说的：热传递和功都能引起温度变化和相变。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2621789",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "condensation",
+   "prompt": "在大片水体附近，水的熔化热如何帮助减缓气温的下降，也许还能阻止温度显著降到 $0^\\circ\\text{C}$ 以下？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "当湖边的空气冷却到凝固点时，湖面的水开始结冰，每有一千克水凝固，就向周围环境放出 334 kJ，即还回来的熔化热。这些能量使水上方的空气变暖，所以在大量的水凝固之前，空气不可能降到 $0^\\circ\\text{C}$ 以下很多，而大片水体的质量是巨大的。同样的现象也使水本身在凝固时保持在 $0^\\circ\\text{C}$：在相变完成之前，它的温度不会下降。果农在霜冻前向树上喷水，有意利用的就是这种效应。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3449946",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "刚由水凝固形成的冰，温度是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是 $0^\\circ\\text{C}$，即凝固点。凝固是一种相变，在相变完成之前温度不会变化：水在放出熔化热的同时一直保持在 $0^\\circ\\text{C}$，所形成的冰在形成的时刻也处于同样的温度。只有冰形成以后，继续冷却才能使它降到 $0^\\circ\\text{C}$ 以下，而那是由冰的比热容而不是由潜热决定的温度变化。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3225958",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "如果把 $0^\\circ\\text{C}$ 的冰放进隔热容器中 $0^\\circ\\text{C}$ 的水里，会发生什么？是有一些冰熔化，还是有更多的水凝固，还是两者都不发生？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者都不发生。热量是由温差引起的能量传递，而这里没有温差：冰和水都是 $0^\\circ\\text{C}$，容器也不让任何东西从外界进入。要使一些冰熔化，热量必须流入冰，而这些热量只能来自水，水就得冷却到 $0^\\circ\\text{C}$ 以下；要使一些水凝固，热量必须从水流入并不比它更冷的冰中。没有温差，这两种热流都不会发生，所以混合物保持原样，冰和水一起处在 $0^\\circ\\text{C}$。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1933185",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "condensation",
+   "prompt": "冰水杯子上的凝结对冰的熔化速率有什么影响？凝结会加快熔化过程，还是减慢它？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它加快熔化。当空气中的水蒸气在冰冷的玻璃杯上凝结时，每一千克都把它的汽化热 2256 kJ 放给玻璃杯，这些能量穿过玻璃杯传入冰水。汽化热差不多是熔化热的七倍，所以外壁上每凝结一克水，放出的能量就足以使里面将近七克的冰熔化。因此，除了温暖空气通过接触传来的热量之外，凝结是冰的一个额外热库，冰比在干燥空气中熔化得更快。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3105447",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaporation",
+   "prompt": "在像佛罗里达这样有大量水体的非常潮湿的气候中，温度很少升到约 $35^\\circ\\text{C}\\ (95^\\circ\\text{F})$ 以上。然而在沙漠中，温度可以远高于此。解释水的蒸发如何有助于限制潮湿气候中的高温。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水在远低于沸点的温度下就会蒸发，每蒸发一千克，就从周围环境吸收约 2430 kJ，即在这些温度下的汽化热。哪里有大量的水，太阳送来的大部分能量就用于使水蒸发，而不是用于升高地面和空气的温度，所以空气只缓慢变暖，并停在 $35^\\circ\\text{C}$ 附近。在沙漠里，可供蒸发的水很少，同样的阳光几乎全部用于温度变化，所以气温能升得高得多。蒸发与你出汗时使皮肤降温的机制是相同的。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2677751",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaporation",
+   "prompt": "冬天，旧金山常常比 150 km 外内陆的萨克拉门托更暖和。夏天，萨克拉门托几乎总是更热。解释旧金山周围的水体如何缓和了它的极端温度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "海洋和海湾的作用是双向的。夏天，照在旧金山的阳光大部分用于使水蒸发，每有一千克水离开，就从周围环境带走约 2430 kJ。那里的空气不像萨克拉门托的干燥空气那样变暖，因为在萨克拉门托，几乎所有同样的阳光都用于温度变化。冬天，水面上方的空气冷却到露点，水蒸气发生凝结。每凝结一千克，就把它的汽化热还给空气，使温度不致降得太低。这两种效应背后，是水的比热容很大：在相同的热传递下，水的温度变化比陆地小得多。水在夏天比陆地凉，在冬天比陆地暖，水上的空气也随之而变。位于内陆 150 km 的萨克拉门托，则没有这些作用。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2595298",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "condensation",
+   "prompt": "给沸腾的锅盖上锅盖，能大大减少维持沸腾所需的热传递。解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沸腾的水主要靠离开它的蒸汽损失能量：每有一千克水沸腾逸走，就带走 2256 kJ，即它的汽化热，而这正是炉灶必须不断补充的能量。盖上锅盖后，蒸汽被留在锅里。其中很多在锅盖内侧凝结并滴回去，凝结时它把汽化热还给水，所以能量终究没有损失。锅盖还把水面上方的蒸气层留住，使一开始蒸发的水就更少。这样，炉灶需要补充的只是通过锅壁和锅盖散失的热量，这远小于敞口沸腾所带走的潜热。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1926483",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sublimation",
+   "prompt": "冷冻干燥食品是在真空中脱水的。在这个过程中，食品会冻结，必须加热才能促进脱水。解释真空如何加快脱水，以及食品为什么因此会冻结。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在真空中，食物上方没有空气，也没有水蒸气，所以食物中的水以最快的速度蒸发。离开表面的分子被抽走，而不会回来，也没有任何东西抑制水的蒸气压。每蒸发一千克，就从食物本身带走它的汽化热，在常温下约为 2430 kJ，因为没有空气来提供这些热量。因此食物迅速冷却，并且一直冷却到冻结，因为蒸发不断移走能量，却没有能量进来。食物冻结之后，其中的水通过升华离开，直接从冰变成蒸气，这同样要吸收能量。所以必须加热食物来维持干燥继续进行，同时又不能让它解冻。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id1215980",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "condensation",
+   "prompt": "静止的空气在夜间通过辐射冷却时，温度很少降到露点以下。解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "露点是空气中的水蒸气达到饱和密度时的温度，再继续冷却就会使蒸气凝结。空气一达到露点，水就开始以露或雾的形式凝结出来，每凝结一千克，就向周围的空气放出它的汽化热 2256 kJ。这些能量补充了空气辐射失去的能量，所以在凝结进行期间，温度停止下降，或只是下降得非常缓慢。只有在大部分蒸气已经凝结之后，空气才可能降到露点以下，而在无风的夜里，通常有足够多的蒸气把温度维持在那里直到早晨。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id2449057",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sublimation",
+   "prompt": "在一次物理课堂演示中，教师用嘴吹起一个气球，然后把它在液氮中冷却。冷却后，缩小的气球里有少量淡蓝色的液体，还有一些像雪一样的晶体。随着它变暖，液体沸腾，部分晶体升华，有些晶体停留了一会儿，然后产生了液体。指出冷气球中的蓝色液体和两种固体是什么。用表 14.2 中的数据证明你的判断。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "气球里装的是呼出的气体，主要是氮气和氧气，另有肺部带入的水蒸气和二氧化碳。由表 14.2，液氮处在它自己的沸点 $-195.8^\\circ\\text{C}$，低于氧的沸点 $-183.0^\\circ\\text{C}$。因此气球中的氧会凝结，而氮不必：淡蓝色的液体就是液氧，液氧是淡蓝色的。水蒸气在此之前很久就已凝固，因为水在 $0^\\circ\\text{C}$ 就熔化，二氧化碳也凝固了，成为干冰。变暖时，氧首先在 $-183.0^\\circ\\text{C}$ 沸腾逸走。升华的晶体是二氧化碳，它在大气压下直接从固体变为蒸气，从不形成液体。停留一会儿然后产生液体的晶体是水冰，它在 $0^\\circ\\text{C}$ 以下一直是固体，然后熔化，并从房间吸收它的熔化热。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2668191",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "latent-heat-coefficients",
+   "prompt": "如果冷冻蔬菜的熔化热与水相同，要使一包原来为 $0^\\circ\\text{C}$、质量为 0.450 kg 的冷冻蔬菜解冻，需要多少热传递（以千卡为单位）？",
+   "answer": {
+    "type": "number",
+    "value": 35.9,
+    "unit": "kcal",
+    "generated_by": "source",
+    "hint": "蔬菜已经处在熔点，所以不涉及温度变化：热量为 $\\kQh = mL_{\\text{f}}$，表 14.2 同时用 kcal/kg 和 kJ/kg 给出了水的 $L_{\\text{f}}$。",
+    "solution": "35.9 kcal"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2011381",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heating-curve",
+   "prompt": "（a）要使一个装有 2.50 kg 水、质量为 0.750 kg 的铝锅的温度从 $30.0^\\circ\\text{C}$ 升高到沸点，再使 0.750 kg 的水沸腾蒸发掉，需要多少热传递？（b）如果热传递的速率为 500 W $(1\\ \\text{瓦特} = 1\\ \\text{焦耳/秒}\\ (1\\ \\text{W} = 1\\ \\text{J/s}))$，这需要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 591,
+      "unit": "kcal",
+      "hint": "三项：锅升温 $70.0^\\circ\\text{C}$，用铝的比热容；全部 2.50 kg 水也升温同样的 $70.0^\\circ\\text{C}$；然后其中只有 0.750 kg 以 $L_{\\text{v}}$ 沸腾蒸发。"
+     },
+     {
+      "part": "(b)",
+      "value": 4940,
+      "unit": "s",
+      "hint": "把（a）的热量换算成焦耳，除以速率，即每秒 500 J。"
+     }
+    ],
+    "solution": "（a）591 kcal（b）$4.94 \\times 10^{3}\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-id1169190623482",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "latent-heat-coefficients",
+   "prompt": "在一次旅行中，你注意到一袋 3.50 kg 的冰在你的保温箱里平均能维持一天。如果冰起初为 $0^\\circ\\text{C}$，并在整整一天内完全熔化成 $0^\\circ\\text{C}$ 的水，则平均有多大功率（以瓦特为单位）传入冰中 $(1\\ \\text{瓦特} = 1\\ \\text{焦耳/秒}\\ (1\\ \\text{W} = 1\\ \\text{J/s}))$？",
+   "answer": {
+    "type": "number",
+    "value": 13.5,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "使整袋冰熔化的热量是以焦耳计的 $\\kQh = mL_{\\text{f}}$；一天是 $8.64 \\times 10^{4}\\ \\text{s}$，功率就是热量除以时间。",
+    "solution": "13.5 W"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "eip-200",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heating-curve",
+   "prompt": "（a）把一块 0.200 kg 的冰从 $-20.0^\\circ\\text{C}$ 加热到 $130^\\circ\\text{C}$，包括相变所需的能量，需要多少热传递？<br>（b）假设热传递速率恒为 20.0 kJ/s，每个阶段需要多少时间？<br>（c）画出这一过程的温度对时间的图像。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 148,
+      "unit": "kcal",
+      "hint": "依次五个阶段：冰升温 $20.0^\\circ\\text{C}$，使冰熔化，水升温 $100^\\circ\\text{C}$，使水沸腾，蒸汽升温 $30^\\circ\\text{C}$。冰、水和蒸汽的比热容见表 14.1，潜热见表 14.2。"
+     },
+     {
+      "part": "(b) warming the ice",
+      "value": 0.418,
+      "unit": "s",
+      "hint": "每个阶段的时间等于该阶段的热量（以焦耳计）除以 $2.00 \\times 10^{4}\\ \\text{J/s}$。"
+     },
+     {
+      "part": "(b) melting the ice",
+      "value": 3.34,
+      "unit": "s"
+     },
+     {
+      "part": "(b) warming the water",
+      "value": 4.19,
+      "unit": "s"
+     },
+     {
+      "part": "(b) boiling the water",
+      "value": 22.6,
+      "unit": "s"
+     },
+     {
+      "part": "(b) warming the steam",
+      "value": 0.456,
+      "unit": "s"
+     }
+    ],
+    "solution": "（a）148 kcal（b）0.418 s，3.34 s，4.19 s，22.6 s，0.456 s"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2400640",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaporation",
+   "prompt": "要使 100 g 玻璃杯中 350 g 的咖啡从 $95.0^\\circ\\text{C}$ 冷却到 $45.0^\\circ\\text{C}$，必须蒸发掉多少克咖啡？可以假设咖啡的热学性质与水相同，平均汽化热为 2340 kJ/kg（560 cal/g）。（可以忽略咖啡冷却时质量的变化，这会使你得到的答案比正确值略大。）",
+   "answer": {
+    "type": "number",
+    "value": 33,
+    "unit": "g",
+    "generated_by": "source",
+    "hint": "咖啡和玻璃杯在冷却 $50.0^\\circ\\text{C}$ 时放出的热量（咖啡用水的比热容，杯子用玻璃的比热容），等于蒸发掉的那部分质量以 2340 kJ/kg 带走的热量。",
+    "solution": "33.0 g"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id3180433",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heating-curve",
+   "prompt": "（a）原油油轮上的火很难扑灭，因为每升原油燃烧时释放 $2.80 \\times 10^{7}\\ \\text{J}$ 的能量。为说明这一困难，请计算：要吸收燃烧 1.00 L 原油所释放的能量，需要耗用多少升水，设水的温度从 $20.0^\\circ\\text{C}$ 升到 $100^\\circ\\text{C}$，然后沸腾，所生成的蒸汽再升到 $300^\\circ\\text{C}$。（b）讨论原油的密度比水小这一事实所带来的其他复杂情况。",
+   "answer": {
+    "type": "number",
+    "value": 9.67,
+    "unit": "L",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "一千克水即一升水，依次吸收三份热量：作为水升温 $80.0^\\circ\\text{C}$，以 $L_{\\text{v}}$ 沸腾，作为蒸汽升温 $200^\\circ\\text{C}$。用油的能量除以这三项之和。",
+    "solution": "（a）9.67 L（b）原油的密度比水小，所以漂在水面上，从而使它暴露在空气中的氧气里，而它正是用这些氧气燃烧的。另外，如果水在油的下面，吸收油所产生热量的效率就较低。"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id3452480",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "condensation",
+   "prompt": "为帮助防止霜冻危害，把 4.00 kg 的 $0^\\circ\\text{C}$ 水喷到一棵果树上。<br>（a）水凝固时发生了多少热传递？<br>（b）如果这些热量是从树上传出的，质量为 200 kg 的树的温度会降低多少？取比热容为 $3.35\\ \\text{kJ/kg}\\cdot{}^\\circ\\text{C}$，并假设没有发生相变。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 319,
+      "unit": "kcal",
+      "hint": "水已经处在 $0^\\circ\\text{C}$，所以它凝固时放出的热量是 $mL_{\\text{f}}$，水的 $L_{\\text{f}}$ 取表 14.2 中以 kcal/kg 计的值。"
+     },
+     {
+      "part": "(b)",
+      "value": 2,
+      "unit": "°C",
+      "hint": "令（a）中的热量（以 kJ 计）等于树的 $mc\\kdTemp$，解出 $\\kdTemp$。"
+     }
+    ],
+    "solution": "（a）319 kcal（b）$2.00^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id3085487",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cooling-soda",
+   "prompt": "把一块 0.0500 kg、$-30.0^\\circ\\text{C}$ 的冰块放进隔热性能很好的容器里 0.400 kg、$35.0^\\circ\\text{C}$ 的水中。末温是多少？",
+   "answer": {
+    "type": "number",
+    "value": 20.6,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "冰分三步吸收热量：作为冰升温 $30.0^\\circ\\text{C}$，熔化，作为水从 $0^\\circ\\text{C}$ 升到 $\\kTempf$；水放出 $m c_{\\text{W}}(35.0^\\circ\\text{C} - \\kTempf)$。令两者相等并解出 $\\kTempf$，就像例题 14.4 那样，只是多一项。",
+    "solution": "$20.6^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id1479060",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cooling-soda",
+   "prompt": "原住民有时在不漏水的篮子里做饭，方法是把烧热的石块放进水里使水烧开。如果起初的嘶嘶声中有 0.0250 kg 的水以蒸气形式逸走，要使 4.00 kg、$15.0^\\circ\\text{C}$ 的水升到 $100^\\circ\\text{C}$，必须放入多少质量的 $500^\\circ\\text{C}$ 石块？可以忽略周围环境的影响，并取石块的平均比热容为花岗岩的比热容。",
+   "answer": {
+    "type": "number",
+    "value": 4.38,
+    "unit": "kg",
+    "generated_by": "source",
+    "hint": "石块在冷却 $400^\\circ\\text{C}$ 时放出的热量用表 14.1 中花岗岩的比热容计算。这些热量使全部 4.00 kg 的水升温 $85.0^\\circ\\text{C}$，并使其中 0.0250 kg 以 $L_{\\text{v}}$ 沸腾。就这一平衡解出石块的质量。",
+    "solution": "4.38 kg"
+   }
+  },
+  {
+   "id": "p18",
+   "source_id": "fs-id3449621",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "latent-heat-coefficients",
+   "prompt": "在一些国家，乳制品运输车用液氮而不是机械制冷机。一次 3.00 小时的运送行程需要 200 L 液氮，其密度为 $808\\ \\text{kg/m}^{3}$。<br>（a）计算使这些液氮蒸发并把它的温度升高到 $3.00^\\circ\\text{C}$ 所需的热传递。（用 $c_{\\text{p}}$，并假设它在这一温度范围内为常量。）这个值就是液氮提供的冷却量。<br>（b）这个热传递速率是多少千瓦时？<br>（c）比较熔化同样质量的 $0^\\circ\\text{C}$ 冰与蒸发液氮所获得的冷却量。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 15700,
+      "unit": "kcal",
+      "hint": "质量等于密度乘以 0.200 m³。它在 $-195.8^\\circ\\text{C}$ 沸腾，用表 14.2 中氮的 $L_{\\text{v}}$，然后气体用表 14.1 中氮的 $c_{\\text{p}}$ 升温 $198.8^\\circ\\text{C}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 18.3,
+      "unit": "kW·h",
+      "hint": "把（a）的热量换算成焦耳；一千瓦时是 $3.60 \\times 10^{6}\\ \\text{J}$。"
+     },
+     {
+      "part": "(c)",
+      "value": 12900,
+      "unit": "kcal",
+      "hint": "同样质量 $0^\\circ\\text{C}$ 的冰熔化时吸收 $mL_{\\text{f}}$，水的 $L_{\\text{f}}$ 取以 kcal/kg 计的值。"
+     }
+    ],
+    "solution": "（a）$1.57 \\times 10^{4}\\ \\text{kcal}$（b）$18.3\\ \\text{kW}\\cdot\\text{h}$（c）$1.29 \\times 10^{4}\\ \\text{kcal}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "latent-heat"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "heat-of-fusion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "latent-heat"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "temperature-rise-from-work",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "condensation-and-freezing-release-heat"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "heat-of-fusion",
+   "weight": 3
+  },
+  {
+   "exercise": "cq3",
+   "concept": "latent-heat"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "condensation-and-freezing-release-heat",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "latent-heat"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "heat",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "condensation-and-freezing-release-heat"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "heat-of-vaporization",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "evaporation-below-boiling"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "heat-of-vaporization",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "evaporation-below-boiling"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "condensation-and-freezing-release-heat",
+   "weight": 3
+  },
+  {
+   "exercise": "cq7",
+   "concept": "water-moderates-temperature",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "heat-of-vaporization"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "condensation-and-freezing-release-heat",
+   "weight": 3
+  },
+  {
+   "exercise": "cq9",
+   "concept": "heat-of-sublimation"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "evaporation-below-boiling",
+   "weight": 3
+  },
+  {
+   "exercise": "cq9",
+   "concept": "vapor-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "cq10",
+   "concept": "condensation-and-freezing-release-heat"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "dew-point",
+   "weight": 2
+  },
+  {
+   "exercise": "cq11",
+   "concept": "heat-of-sublimation"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "heat-of-vaporization",
+   "weight": 3
+  },
+  {
+   "exercise": "cq11",
+   "concept": "sublimation",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "heat-of-fusion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-of-vaporization"
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-and-temperature-change",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "power",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "heat-of-fusion"
+  },
+  {
+   "exercise": "p5",
+   "concept": "power",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "heating-curve"
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-of-fusion",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-of-vaporization",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-and-temperature-change",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "evaporation-below-boiling"
+  },
+  {
+   "exercise": "p9",
+   "concept": "heat-and-temperature-change",
+   "weight": 3
+  },
+  {
+   "exercise": "p10",
+   "concept": "heat-of-vaporization"
+  },
+  {
+   "exercise": "p10",
+   "concept": "heating-curve",
+   "weight": 3
+  },
+  {
+   "exercise": "p10",
+   "concept": "heat-and-temperature-change",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "condensation-and-freezing-release-heat"
+  },
+  {
+   "exercise": "p12",
+   "concept": "heat-of-fusion",
+   "weight": 3
+  },
+  {
+   "exercise": "p12",
+   "concept": "heat-and-temperature-change",
+   "weight": 2
+  },
+  {
+   "exercise": "p14",
+   "concept": "phase-change-calorimetry"
+  },
+  {
+   "exercise": "p14",
+   "concept": "heat-of-fusion",
+   "weight": 2
+  },
+  {
+   "exercise": "p14",
+   "concept": "calorimetry",
+   "weight": 2
+  },
+  {
+   "exercise": "p16",
+   "concept": "phase-change-calorimetry"
+  },
+  {
+   "exercise": "p16",
+   "concept": "heat-of-vaporization",
+   "weight": 2
+  },
+  {
+   "exercise": "p16",
+   "concept": "calorimetry",
+   "weight": 2
+  },
+  {
+   "exercise": "p18",
+   "concept": "heat-of-vaporization"
+  },
+  {
+   "exercise": "p18",
+   "concept": "heat-of-fusion",
+   "weight": 2
+  },
+  {
+   "exercise": "p18",
+   "concept": "heat-and-temperature-change",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "sample",
+   "label": "被加热成蒸汽的冰样品",
+   "figures": [
+    "sim-heating-curve"
+   ]
+  },
+  {
+   "id": "ice",
+   "label": "冰块",
+   "figures": [
+    "sim-ice-soda"
+   ]
+  },
+  {
+   "id": "soda",
+   "label": "汽水",
+   "figures": [
+    "sim-ice-soda"
+   ]
+  },
+  {
+   "id": "cup",
+   "label": "泡沫塑料杯",
+   "figures": [
+    "sim-ice-soda"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-fig-axis-thousands",
+   "kind": "correction",
+   "html": "书中该图的坐标轴标的是 kJ/kg，但其上的数字 0.5、1 和 3 实际上是以千 kJ/kg 计的：熔化一千克冰需要 334 kJ，使一千克水沸腾需要 2256 kJ。",
+   "figure": "sim-heating-curve"
+  }
+ ]
+}

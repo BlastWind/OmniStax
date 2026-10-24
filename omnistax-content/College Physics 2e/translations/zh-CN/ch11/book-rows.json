@@ -1,0 +1,1361 @@
+{
+ "types": [
+  {
+   "id": "pressure",
+   "label": "压强",
+   "dimension": "N/m²"
+  },
+  {
+   "id": "density",
+   "label": "密度",
+   "dimension": "kg/m³"
+  },
+  {
+   "id": "surface-tension",
+   "label": "表面张力",
+   "dimension": "N/m"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "P_press",
+   "latex": "P",
+   "macro": "\\kPr"
+  },
+  {
+   "sym": "P_bar",
+   "latex": "\\bar{P}",
+   "macro": "\\kPbar"
+  },
+  {
+   "sym": "P_abs",
+   "latex": "P_{\\text{abs}}",
+   "macro": "\\kPabs"
+  },
+  {
+   "sym": "P_g",
+   "latex": "P_{\\text{g}}",
+   "macro": "\\kPg"
+  },
+  {
+   "sym": "P_atm",
+   "latex": "P_{\\text{atm}}",
+   "macro": "\\kPatm"
+  },
+  {
+   "sym": "P_1",
+   "latex": "P_1",
+   "macro": "\\kProne"
+  },
+  {
+   "sym": "P_2",
+   "latex": "P_2",
+   "macro": "\\kPrtwo"
+  },
+  {
+   "sym": "ΔP",
+   "latex": "\\Delta P",
+   "macro": "\\kdPr"
+  },
+  {
+   "sym": "ρ_dens",
+   "latex": "\\rho",
+   "macro": "\\krho"
+  },
+  {
+   "sym": "ρ_bar",
+   "latex": "\\bar{\\rho}",
+   "macro": "\\krhobar"
+  },
+  {
+   "sym": "ρ_fl",
+   "latex": "\\rho_{\\text{fl}}",
+   "macro": "\\krhofl"
+  },
+  {
+   "sym": "ρ_obj",
+   "latex": "\\bar{\\rho}_{\\text{obj}}",
+   "macro": "\\krhoobj"
+  },
+  {
+   "sym": "ρ_w",
+   "latex": "\\rho_{\\text{w}}",
+   "macro": "\\krhow"
+  },
+  {
+   "sym": "γ",
+   "latex": "\\gamma",
+   "macro": "\\kgamma"
+  },
+  {
+   "sym": "w_fl",
+   "latex": "w_{\\text{fl}}",
+   "macro": "\\kwfl"
+  },
+  {
+   "sym": "F_ST",
+   "latex": "F_{\\text{ST}}",
+   "macro": "\\kFST"
+  },
+  {
+   "sym": "h_bar",
+   "latex": "\\bar{h}",
+   "macro": "\\khbar"
+  },
+  {
+   "sym": "Δh",
+   "latex": "\\Delta h",
+   "macro": "\\kdh"
+  },
+  {
+   "sym": "V",
+   "latex": "V",
+   "macro": "\\kvol"
+  },
+  {
+   "sym": "V_sub",
+   "latex": "V_{\\text{sub}}",
+   "macro": "\\kvolsub"
+  },
+  {
+   "sym": "V_obj",
+   "latex": "V_{\\text{obj}}",
+   "macro": "\\kvolobj"
+  },
+  {
+   "sym": "V_fl",
+   "latex": "V_{\\text{fl}}",
+   "macro": "\\kvolfl"
+  },
+  {
+   "sym": "V_w",
+   "latex": "V_{\\text{w}}",
+   "macro": "\\kvolw"
+  },
+  {
+   "sym": "A_1",
+   "latex": "A_1",
+   "macro": "\\kareaone"
+  },
+  {
+   "sym": "A_2",
+   "latex": "A_2",
+   "macro": "\\kareatwo"
+  },
+  {
+   "sym": "L_wire",
+   "latex": "L",
+   "macro": "\\kLwire"
+  },
+  {
+   "sym": "V_st",
+   "latex": "V_{\\text{st}}",
+   "macro": "\\kvolst"
+  },
+  {
+   "sym": "m_st",
+   "latex": "m_{\\text{st}}",
+   "macro": "\\kmst"
+  },
+  {
+   "sym": "w_w",
+   "latex": "w_{\\text{w}}",
+   "macro": "\\kww"
+  },
+  {
+   "sym": "m_fl",
+   "latex": "m_{\\text{fl}}",
+   "macro": "\\kmfl"
+  },
+  {
+   "sym": "m_obj_mass",
+   "latex": "m_{\\text{obj}}",
+   "macro": "\\kmobj"
+  },
+  {
+   "sym": "m_c",
+   "latex": "m_{\\text{c}}",
+   "macro": "\\kmc"
+  },
+  {
+   "sym": "V_coin",
+   "latex": "V_{\\text{c}}",
+   "macro": "\\kvolc"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "fluid",
+   "kind": "definition",
+   "section": "11.1",
+   "name": "流体",
+   "terms": [
+    "流体"
+   ],
+   "statement": "流体是一种物质状态，它会顺从侧向力（即切向力），而固体则抵抗这种力。液体、气体和等离子体都是流体，因为其中的粒子都能彼此滑过，物质得以流动。本章的其余内容都建立在这一性质之上：由于流体不能承受切向力，它也就不能施加切向力，因此它对任何表面所施的力都垂直于该表面。"
+  },
+  {
+   "id": "phases-of-matter",
+   "kind": "idea",
+   "section": "11.1",
+   "name": "物态",
+   "statement": "物质最常以固体、液体、气体或等离子体的形式存在。固体有确定的形状和一定的体积，液体有确定的体积，但会取容纳它的容器的形状，而气体或等离子体两者都没有，因为它们的粒子会运动以充满容器。知道某种物质处于哪一种物态，就立刻能知道它是否会流动，以及是否能被压缩。"
+  },
+  {
+   "id": "atomic-arrangement-and-phase",
+   "kind": "idea",
+   "section": "11.1",
+   "name": "原子排列与物态",
+   "statement": "原子之间的力解释了各种物态。固体中的原子相互接触，并被束缚在邻近原子附近，所以固体保持其形状，并抵抗压缩。液体中的原子也彼此紧密接触，但可以相互滑过，所以液体能够流动，却仍然抵抗压缩。气体中的原子和等离子体中的带电粒子相距很远，彼此之间只有微弱的吸引，所以气体既能流动，又容易被压缩。"
+  },
+  {
+   "id": "density",
+   "kind": "definition",
+   "section": "11.2",
+   "name": "密度",
+   "symbol": "ρ_dens",
+   "terms": [
+    "密度"
+   ],
+   "type": "density",
+   "statement": "密度是物质或物体单位体积的质量，关于一吨羽毛和一吨砖头的那个古老谜语，关键就在于它：两者的质量相同，但羽毛占据的体积要大得多，所以它的密度低得多。密度对于判断物体在流体中是下沉还是漂浮至关重要，这就是本章先定义密度、再定义其他一切的原因。",
+   "forms": [
+    {
+     "id": "eq-density",
+     "latex": "\\rho = \\frac{m}{V}",
+     "ktex": "\\krho = \\frac{m}{V}",
+     "anchor": "11.2-definition"
+    }
+   ]
+  },
+  {
+   "id": "density-identifies-substance",
+   "kind": "idea",
+   "section": "11.2",
+   "name": "密度可以识别物质",
+   "statement": "每种物质都有自己的密度，所以测得的密度有助于识别物体由什么构成。金的密度约为铁的两倍半，而铁的密度又约为铝的两倍半。密度还能揭示物质的物态和内部结构。液体和固体的密度大致相当，因为它们的原子紧密接触，而气体的密度则小得多，因为大量空旷空间把它们的原子隔开。"
+  },
+  {
+   "id": "calculate-mass-from-density",
+   "kind": "skill",
+   "section": "11.2",
+   "name": "由密度求质量",
+   "statement": "由 $\\krho = m/V$ 解出质量，得到 $m = \\krho V$，所以一旦由物体的尺寸得知其体积，并查得其密度，它的质量也就随之得出。本章就是这样称出水坝后面的水的质量的，这也是后面几乎所有浮力计算的第一步。",
+   "forms": [
+    {
+     "id": "eq-mass-from-density",
+     "latex": "m = \\rho V",
+     "ktex": "m = \\krho V",
+     "anchor": "11.2-reservoir"
+    }
+   ]
+  },
+  {
+   "id": "pressure",
+   "kind": "definition",
+   "section": "11.3",
+   "name": "压强",
+   "symbol": "P_press",
+   "terms": [
+    "压强"
+   ],
+   "type": "pressure",
+   "statement": "压强是力除以该力所作用的、与力垂直的面积。同样大的力，作用在不同大小的面积上，效果可能大不相同。用手指戳一下只会令人不适，而同样大小的力通过针的尖端就会刺破皮肤。压强适用于物质的所有状态，但在流体中最为重要。",
+   "forms": [
+    {
+     "id": "eq-pressure",
+     "latex": "P = \\frac{F}{A}",
+     "ktex": "\\kPr = \\frac{\\kF}{A}",
+     "anchor": "11.3-pressure-defined"
+    }
+   ]
+  },
+  {
+   "id": "pascal-unit",
+   "kind": "definition",
+   "section": "11.3",
+   "name": "帕斯卡",
+   "statement": "压强的 SI 单位是帕斯卡，等于每平方米一牛顿。日常的压强要用很大的帕斯卡数值来表示，所以其他几种单位仍在通用：气象学中用毫巴，轮胎压强用磅每平方英寸，血压用毫米汞柱。知道其中每一种等于多少帕斯卡，才能把用一种仪器测得的结果与另一种相比较。",
+   "forms": [
+    {
+     "id": "eq-pascal",
+     "latex": "1\\;\\text{Pa} = 1\\;\\text{N/m}^2",
+     "anchor": "11.3-units"
+    }
+   ]
+  },
+  {
+   "id": "pressure-is-scalar",
+   "kind": "result",
+   "section": "11.3",
+   "name": "流体压强的方向",
+   "statement": "静态流体不能承受切向力，所以它也不能施加切向力。因此流体对任何表面所施的力都垂直于该表面，而且流体同时推着每一个表面：游泳者在各个方向上都感到压强，轮胎中的空气向外推着轮胎的每一个部分。压强本身是标量，没有方向；只有它所产生的力才有方向。"
+  },
+  {
+   "id": "force-from-pressure",
+   "kind": "skill",
+   "section": "11.3",
+   "name": "由压强求力",
+   "statement": "把压强的定义变形，就得到压强对表面所施的力，$\\kF = \\kPr A$。这个力既与受力面积成正比，也与压强本身成正比，这就是气瓶的平端必须结实的原因，也是用锤子敲进的钉子能劈开木头的原因。",
+   "forms": [
+    {
+     "id": "eq-force-from-pressure",
+     "latex": "F = PA",
+     "ktex": "\\kF = \\kPr A",
+     "anchor": "11.3-force-from-pressure"
+    }
+   ]
+  },
+  {
+   "id": "pressure-from-weight-of-fluid",
+   "kind": "result",
+   "section": "11.4",
+   "name": "流体的重力产生的压强",
+   "statement": "流体表面以下深度 $h$ 处由流体的重力产生的压强是 $P = h\\rho g$，其中 $\\rho$ 是流体的密度。容器的底部支撑着它上方全部流体的重力 $\\rho Ahg$，用这个重力除以面积就得到压强。",
+   "forms": [
+    {
+     "id": "eq-pressure-depth",
+     "latex": "P = h\\rho g",
+     "ktex": "\\kPr = \\kh\\krho\\kg",
+     "anchor": "11.4-weight-of-fluid"
+    },
+    {
+     "id": "eq-pressure-from-weight",
+     "latex": "P = \\frac{mg}{A}",
+     "ktex": "\\kPr = \\frac{m\\kg}{A}",
+     "anchor": "11.4-weight-of-fluid"
+    },
+    {
+     "id": "eq-mass-of-fluid-column",
+     "latex": "m = \\rho Ah",
+     "ktex": "m = \\krho A\\kh",
+     "anchor": "11.4-weight-of-fluid"
+    }
+   ]
+  },
+  {
+   "id": "pressure-independent-of-container",
+   "kind": "result",
+   "section": "11.4",
+   "name": "压强与容器形状无关",
+   "statement": "因为 $\\kPr = \\kh\\krho\\kg$ 中既不含宽度也不含长度，所以流体中某一点的压强并不取决于流体有多少，也不取决于容器的形状。决定水坝所受压强的是水的平均深度，而不是水库在它后面延伸多远。一圈沙袋里的一小柱水可以与一整条泛滥的河流相平衡。"
+  },
+  {
+   "id": "depth-in-a-liquid-versus-a-gas",
+   "kind": "idea",
+   "section": "11.4",
+   "name": "液体和气体中压强随深度的变化",
+   "statement": "这个结果假定流体中各处的密度相同。液体几乎不可压缩，所以在很大的深度上它仍然成立。气体很容易被压缩，它的密度随高度而下降，所以这个结果只适用于深度足够小、使密度变化不大的气体，或者用平均密度来代替真实密度的情形。"
+  },
+  {
+   "id": "atmospheric-pressure",
+   "kind": "definition",
+   "section": "11.4",
+   "name": "大气压",
+   "symbol": "P_atm",
+   "type": "pressure",
+   "statement": "大气压是由流体的重力产生的压强，这种流体与其他任何流体一样，在这里指的是某一高度以上空气的重力。平均而言，在海平面上，立在一平方米上的一柱空气重 $1.01\\times 10^{5}$ N，这就是一个大气压。随着你爬高，它会下降，因为你上方的空气变少了，这就是你乘飞机时耳朵会发出爆响的原因。",
+   "forms": [
+    {
+     "id": "eq-atmospheric-pressure",
+     "latex": "1\\;\\text{atm} = P_{\\text{atm}} = 1.01\\times 10^{5}\\;\\text{N/m}^2 = 101\\;\\text{kPa}",
+     "ktex": "1\\;\\text{atm} = \\kPatm = 1.01\\times 10^{5}\\;\\text{N/m}^2 = 101\\;\\text{kPa}",
+     "anchor": "11.4-atmosphere"
+    }
+   ]
+  },
+  {
+   "id": "force-on-a-dam",
+   "kind": "skill",
+   "section": "11.4",
+   "name": "求墙面所受的力",
+   "statement": "压强随深度线性增加，所以竖直墙面所受的平均压强就是其平均深度处的压强，而墙面所受的力就是这个平均压强乘以接触面积。水坝所受的力就是这样求出的，这也是水坝底部压强最大，因而要修得更厚的原因。",
+   "forms": [
+    {
+     "id": "eq-average-pressure-depth",
+     "latex": "\\bar{P} = \\bar{h}\\rho g",
+     "ktex": "\\kPbar = \\khbar\\krho\\kg",
+     "anchor": "11.4-dam"
+    },
+    {
+     "id": "eq-force-on-dam",
+     "latex": "F = \\bar{P}A",
+     "ktex": "\\kF = \\kPbar A",
+     "anchor": "11.4-dam"
+    }
+   ]
+  },
+  {
+   "id": "density-from-pressure-and-height",
+   "kind": "skill",
+   "section": "11.4",
+   "name": "由压强求密度或深度",
+   "statement": "因为 $\\kPr = \\kh\\krho\\kg$ 把三个量联系在一起，所以其中任何一个都可以由另外两个求出。解出密度，就得到由流体所施的压强和流体柱的高度求出的流体平均密度，解出高度，就得到流体达到给定压强时所处的深度。",
+   "forms": [
+    {
+     "id": "eq-average-density-from-pressure",
+     "latex": "\\bar{\\rho} = \\frac{P}{hg}",
+     "ktex": "\\krhobar = \\frac{\\kPr}{\\kh\\kg}",
+     "anchor": "11.4-atmosphere"
+    },
+    {
+     "id": "eq-depth-from-pressure",
+     "latex": "h = \\frac{P}{\\rho g}",
+     "ktex": "\\kh = \\frac{\\kPr}{\\krho\\kg}",
+     "anchor": "11.4-water-and-air"
+    }
+   ]
+  },
+  {
+   "id": "pascals-principle",
+   "kind": "axiom",
+   "section": "11.5",
+   "name": "帕斯卡原理",
+   "terms": [
+    "帕斯卡原理"
+   ],
+   "statement": "施加在密闭流体上的压强变化，会大小不变地传递到流体的所有部分以及容器的器壁。流体中的原子可以自由运动，所以它们把这一变化带到各处，而密闭的流体不能像河水那样从推力下流走。这一经实验验证的事实，使压强在流体中如此重要，因为在一处施加的压强，在其他每一处也就都已知了。",
+   "forms": [
+    {
+     "id": "eq-hydraulic-pressures-equal",
+     "latex": "P_1 = P_2",
+     "ktex": "\\kProne = \\kPrtwo",
+     "anchor": "11.5-hydraulic-forces"
+    }
+   ]
+  },
+  {
+   "id": "pressures-add",
+   "kind": "result",
+   "section": "11.5",
+   "name": "压强相加",
+   "statement": "流体会把压强的变化大小不变地传递，所以流体中的总压强是作用在它上面的各个来源的压强之和。游泳池中 10.3 m 深处的压强是两个大气压，其中一半来自上方的水，一半来自水面上方的空气。敞开通向空气的流体中任何地方的压强，都是该流体自身的压强加上大气压。"
+  },
+  {
+   "id": "hydraulic-system",
+   "kind": "definition",
+   "section": "11.5",
+   "name": "液压系统",
+   "statement": "液压系统是用来施加力的密闭流体系统。推一个活塞会使流体中各处的压强升高，这个压强又推着系统中其他每个活塞。它相对于杠杆的优点是，压强可以通过曲折弯绕的管路同时送到几个地方，这就是一个刹车踏板能带动四个车轮的原因。"
+  },
+  {
+   "id": "hydraulic-force-ratio",
+   "kind": "result",
+   "section": "11.5",
+   "name": "液压系统中的力",
+   "statement": "在两个活塞处于同一高度的简单液压系统中，一个活塞处的压强等于另一个活塞处的压强，所以 $F_1/A_1 = F_2/A_2$。较大活塞上的力要大，大的倍数就是面积之比。",
+   "forms": [
+    {
+     "id": "eq-hydraulic-force-ratio",
+     "latex": "\\frac{F_1}{A_1} = \\frac{F_2}{A_2}",
+     "ktex": "\\frac{\\kFone}{A_1} = \\frac{\\kFtwo}{A_2}",
+     "anchor": "11.5-hydraulic-forces"
+    },
+    {
+     "id": "eq-hydraulic-output-force",
+     "latex": "F_2 = \\frac{A_2}{A_1}F_1",
+     "ktex": "\\kFtwo = \\frac{A_2}{A_1}\\kFone",
+     "anchor": "11.5-hydraulic-forces"
+    }
+   ]
+  },
+  {
+   "id": "hydraulic-work-limit",
+   "kind": "result",
+   "section": "11.5",
+   "name": "液压系统中的功",
+   "statement": "液压系统像简单机械一样增大力，也像简单机械一样遵守能量守恒。功是力乘以移动的距离。轮缸移动的距离比主缸小，小的倍数恰好等于力增大的倍数，所以输出的功等于输入的功。你加的轮缸越多，每个轮缸移动的距离就越小。"
+  },
+  {
+   "id": "gauge-pressure",
+   "kind": "definition",
+   "section": "11.6",
+   "name": "表压强",
+   "symbol": "P_g",
+   "terms": [
+    "表压强"
+   ],
+   "type": "pressure",
+   "statement": "表压强是相对于大气压的压强。压强表被制成在大气压下读数为零，所以一个有大洞的轮胎，尽管里面有空气，读数仍然为零。"
+  },
+  {
+   "id": "absolute-pressure",
+   "kind": "definition",
+   "section": "11.6",
+   "name": "绝对压强",
+   "symbol": "P_abs",
+   "terms": [
+    "绝对压强"
+   ],
+   "type": "pressure",
+   "statement": "因为压强会相加，所以大气压要加到任何未封闭在刚性容器中的流体的压强上。因此总压强，即绝对压强，等于表压强加大气压。流体只推不拉，所以在大多数情况下绝对压强不能为负，最小可能的表压强是 $-\\kPatm$；而表压强可以多大，则没有理论上的限制。",
+   "forms": [
+    {
+     "id": "eq-absolute-pressure",
+     "latex": "P_{\\text{abs}} = P_{\\text{g}} + P_{\\text{atm}}",
+     "ktex": "\\kPabs = \\kPg + \\kPatm",
+     "anchor": "11.6-absolute"
+    }
+   ]
+  },
+  {
+   "id": "manometer",
+   "kind": "skill",
+   "section": "11.6",
+   "name": "读取压强计",
+   "statement": "压强计是一根 U 形管，其中一端通大气。两端都敞开时，两边的流体处在相同的深度，因为大气压对两边的向下压力相等。把一端连到压强源上，液面就会移动，直到高度差与压强差相平衡，于是表压强就是 $\\kh\\krho\\kg$，通过测量 $\\kh$ 就能求出。压强源的压强高于大气压时，高度差为正，低于大气压时为负。",
+   "forms": [
+    {
+     "id": "eq-gauge-pressure-manometer",
+     "latex": "P_{\\text{g}} = h\\rho g",
+     "ktex": "\\kPg = \\kh\\krho\\kg",
+     "anchor": "11.6-manometer"
+    }
+   ]
+  },
+  {
+   "id": "barometer",
+   "kind": "idea",
+   "section": "11.6",
+   "name": "气压计",
+   "statement": "气压计是一根管子，液体上方几乎是纯真空而不是空气，所以它测量的是绝对压强而不是表压强，而它测量的是大气的压强。汞柱停在某个高度，使汞的重力产生的压强等于大气压，这就是大气压常常用毫米汞柱来表示的原因，也是气压计还可以当作高度计使用的原因。",
+   "forms": [
+    {
+     "id": "eq-barometer",
+     "latex": "h\\rho g = P_{\\text{atm}}",
+     "ktex": "\\kh\\krho\\kg = \\kPatm",
+     "anchor": "11.6-barometer"
+    }
+   ]
+  },
+  {
+   "id": "blood-pressure-measurement",
+   "kind": "idea",
+   "section": "11.6",
+   "name": "测量血压",
+   "statement": "上臂上的充气袖带不断收紧，直到它所施加的压强截断其下方的血流，然后用汞压强计读出这个压强。随着袖带的压强慢慢下降，血流刚开始出现时的值就是收缩压，即心脏产生的最大压强。血液毫无中断地流动时的值就是舒张压，即两次心跳之间的最小压强。年轻成年人的典型读数是 120 mm Hg 比 80 mm Hg。压强计使用汞，是因为汞的密度是水的 13.6 倍，因而给出的液柱短得便于读数。"
+  },
+  {
+   "id": "systolic-pressure",
+   "kind": "definition",
+   "section": "11.6",
+   "name": "收缩压",
+   "terms": [
+    "收缩压"
+   ],
+   "statement": "收缩压是动脉中血压的最大值，由于心脏的泵血作用，在每次心跳时达到。年轻成年人的收缩压通常约为 120 mm Hg。"
+  },
+  {
+   "id": "diastolic-pressure",
+   "kind": "definition",
+   "section": "11.6",
+   "name": "舒张压",
+   "terms": [
+    "舒张压"
+   ],
+   "statement": "舒张压是动脉中血压的最小值，在两次心跳之间达到。年轻成年人的舒张压通常约为 80 mm Hg。"
+  },
+  {
+   "id": "mm-hg",
+   "kind": "definition",
+   "section": "11.6",
+   "name": "毫米汞柱",
+   "statement": "一毫米汞柱是能支撑一毫米高汞柱的压强，等于 133 Pa。汞气压计和汞压强计非常普遍，所以大气压和血压常常用这个单位来表示。",
+   "forms": [
+    {
+     "id": "eq-mm-hg",
+     "latex": "1.0\\;\\text{mm Hg} = 133\\;\\text{Pa}",
+     "anchor": "11.6-blood-pressure"
+    }
+   ]
+  },
+  {
+   "id": "buoyant-force",
+   "kind": "definition",
+   "section": "11.7",
+   "name": "浮力",
+   "symbol": "F_B",
+   "terms": [
+    "浮力"
+   ],
+   "type": "force",
+   "statement": "浮力是流体对其中任何物体所施的向上的合力。它的产生是因为压强随深度增加，所以流体向上推物体底部的力比向下推物体顶部的力更大。",
+   "forms": [
+    {
+     "id": "eq-buoyant-force-difference",
+     "latex": "F_{\\text{B}} = F_2 - F_1",
+     "ktex": "\\kFB = \\kFtwo - \\kFone",
+     "anchor": "11.7-buoyant-force"
+    }
+   ]
+  },
+  {
+   "id": "float-sink-suspend",
+   "kind": "result",
+   "section": "11.7",
+   "name": "漂浮与下沉",
+   "statement": "浮力与物体的重力相抗衡。如果浮力大于重力，物体就上升到表面并漂浮；如果浮力小于重力，物体就下沉；如果两者相等，物体就悬浮在该深度。潜水艇的构造使它能通过改变压载舱中所装的东西，在这三种状态之间转换。"
+  },
+  {
+   "id": "archimedes-principle",
+   "kind": "result",
+   "section": "11.7",
+   "name": "阿基米德原理",
+   "terms": [
+    "阿基米德原理"
+   ],
+   "statement": "物体所受的浮力等于它所排开的流体的重力。如果把物体拿走，它原来占据的空间会被流体填满，而周围的流体托住了这些流体，所以浮力必定等于那些流体的重力。",
+   "forms": [
+    {
+     "id": "eq-archimedes",
+     "latex": "F_{\\text{B}} = w_{\\text{fl}}",
+     "ktex": "\\kFB = \\kwfl",
+     "anchor": "11.7-archimedes"
+    }
+   ]
+  },
+  {
+   "id": "average-density-decides-floating",
+   "kind": "result",
+   "section": "11.7",
+   "name": "平均密度与漂浮",
+   "statement": "当物体的平均密度小于周围流体的密度时，物体漂浮。密度较大的流体在相同体积中含有较多的质量，因而重力也较大，所以浮力，即这个重力，就超过了物体自身的重力。这就是一块黏土会下沉，而把同样的黏土捏成船的形状却会漂浮的原因：形状改变的是平均密度，而不是质量。"
+  },
+  {
+   "id": "fraction-submerged",
+   "kind": "result",
+   "section": "11.7",
+   "name": "浸入的比例",
+   "statement": "漂浮物体位于液面以下的部分所占的比例，是其平均密度与流体密度之比 $\\bar{\\rho}_{\\text{obj}}/\\rho_{\\text{fl}}$，因为浸入的体积等于排开的流体的体积，而两者具有相同的质量。",
+   "forms": [
+    {
+     "id": "eq-fraction-submerged",
+     "latex": "\\text{浸入的比例} = \\frac{\\bar{\\rho}_{\\text{obj}}}{\\rho_{\\text{fl}}}",
+     "ktex": "\\text{浸入的比例} = \\frac{\\krhoobj}{\\krhofl}",
+     "anchor": "11.7-density-and-archimedes"
+    },
+    {
+     "id": "eq-fraction-submerged-volumes",
+     "latex": "\\text{浸入的比例} = \\frac{V_{\\text{sub}}}{V_{\\text{obj}}} = \\frac{V_{\\text{fl}}}{V_{\\text{obj}}}",
+     "anchor": "11.7-density-and-archimedes"
+    }
+   ]
+  },
+  {
+   "id": "specific-gravity",
+   "kind": "definition",
+   "section": "11.7",
+   "name": "比重",
+   "terms": [
+    "比重"
+   ],
+   "statement": "比重是物体的密度与某种流体（通常是水）的密度之比，它是无量纲的，所以无论密度用什么单位写出，结果都相同。比重小于一的物质漂浮，大于一的物质下沉，恰好等于一的物质则悬浮，这正是水肺潜水员努力达到的状态。对于漂浮的物体，比重也是浸入的比例，这是液体比重计可以直接读出的。",
+   "forms": [
+    {
+     "id": "eq-specific-gravity",
+     "latex": "\\text{比重} = \\frac{\\bar{\\rho}}{\\rho_{\\text{w}}}",
+     "ktex": "\\text{比重} = \\frac{\\krhobar}{\\krhow}",
+     "anchor": "11.7-specific-gravity"
+    }
+   ]
+  },
+  {
+   "id": "apparent-weight-loss",
+   "kind": "skill",
+   "section": "11.7",
+   "name": "通过两次称重求密度",
+   "statement": "浸没的物体看起来变轻了，而视重的减少量恰好等于它所排开的流体的重力；在测量质量的天平上，视质量的减少量就是所排开的流体的质量。把一个物体先在空气中称一次，再浸没在已知密度的流体中称一次，就能得出它的体积，进而得出它的密度。当物体的密度已知时，同样这两次测量则可以给出流体的密度。",
+   "forms": [
+    {
+     "id": "eq-apparent-weight-loss",
+     "latex": "\\text{视重减小量} = \\text{排开的流体的重力}",
+     "anchor": "11.7-density-measurements"
+    },
+    {
+     "id": "eq-apparent-mass-loss",
+     "latex": "\\text{视质量减小量} = \\text{排开的流体的质量}",
+     "anchor": "11.7-density-measurements"
+    }
+   ]
+  },
+  {
+   "id": "cohesive-forces",
+   "kind": "definition",
+   "section": "11.8",
+   "name": "内聚力",
+   "terms": [
+    "内聚力"
+   ],
+   "statement": "内聚力是同类分子之间的吸引力。正是它们把敞口容器中的液体聚在一起，把液体的表面拉成它所能取的最小面积，也使树中的一柱树液能像每一环都连在一起的链条那样被向上拉起。"
+  },
+  {
+   "id": "adhesive-forces",
+   "kind": "definition",
+   "section": "11.8",
+   "name": "附着力",
+   "terms": [
+    "附着力"
+   ],
+   "statement": "附着力是不同类分子之间的吸引力。正是它们使一滴水附着在窗玻璃上，使水在裸露的油漆上铺展开而在蜡上却聚成珠，也使血液被吸入一根只是碰到一滴血的细管中。附着与内聚之间的竞争决定了液体如何与固体接触。"
+  },
+  {
+   "id": "surface-tension",
+   "kind": "definition",
+   "section": "11.8",
+   "name": "表面张力",
+   "symbol": "γ",
+   "terms": [
+    "表面张力"
+   ],
+   "type": "surface-tension",
+   "statement": "液体表面的分子被下方的邻近分子向内拉，而液体内部的分子则完全不受合力，所以表面收缩到它所能取的最小面积。于是表面表现得像一张拉紧的弹性薄膜：昆虫的脚会把它压出凹陷，它还能托住一根钢针，尽管钢针的密度比水大得多。表面张力 $\\kgamma$ 是这张拉紧的薄膜所施的单位长度上的力，内聚力越强的液体，表面张力越大。",
+   "forms": [
+    {
+     "id": "eq-surface-tension",
+     "latex": "\\gamma = \\frac{F}{L}",
+     "ktex": "\\kgamma = \\frac{\\kF}{L}",
+     "anchor": "11.8-surface-tension"
+    },
+    {
+     "id": "eq-slide-wire-force",
+     "latex": "F = \\gamma L = \\gamma(2l)",
+     "ktex": "\\kF = \\kgamma L = \\kgamma(2l)",
+     "anchor": "11.8-surface-tension"
+    },
+    {
+     "id": "eq-insect-weight",
+     "latex": "w = \\gamma L\\sin\\theta",
+     "ktex": "\\kwgt = \\kgamma L\\sin\\theta",
+     "anchor": "11.8-surface-tension"
+    }
+   ]
+  },
+  {
+   "id": "pressure-inside-a-bubble",
+   "kind": "result",
+   "section": "11.8",
+   "name": "气泡内的压强",
+   "statement": "表面张力把气泡拉成球形，并挤压其中的气体，所以气泡内的表压强是 $4\\kgamma/r$。气泡越小，这个超出的压强就越大，这就是在一个小气球和一个大气球之间打开阀门时，会是小气球向大气球排空，而不是反过来的原因。",
+   "forms": [
+    {
+     "id": "eq-bubble-pressure",
+     "latex": "P = \\frac{4\\gamma}{r}",
+     "ktex": "\\kPr = \\frac{4\\kgamma}{r}",
+     "anchor": "11.8-bubbles"
+    }
+   ]
+  },
+  {
+   "id": "alveoli-and-surfactant",
+   "kind": "idea",
+   "section": "11.8",
+   "name": "肺中的表面张力",
+   "statement": "肺的末端是数以亿计的、内壁有黏液的小囊，称为肺泡，直径约 0.1 mm，肺泡内壁的表面张力就足以把空气挤出去，完全不需要任何肌肉活动。因为小囊缩小时压强会升高，小的肺泡就会向大的肺泡排空而塌陷；内壁中的脂蛋白表面活性剂通过在小囊伸展时增大壁的张力、在小囊收缩时减小壁的张力来防止这种情况。出生时没有这种表面活性剂的婴儿，肺非常难以充气。"
+  },
+  {
+   "id": "contact-angle",
+   "kind": "definition",
+   "section": "11.8",
+   "name": "接触角",
+   "symbol": "θ",
+   "terms": [
+    "接触角"
+   ],
+   "type": "angle",
+   "statement": "在液体与固体相接触的地方，液体表面的切线与固体表面之间的夹角就是接触角，它说明两种力中哪一种占上风。角度大，意味着内聚力相对于附着力较强，液体把自己拉成液滴；角度小，则意味着附着使液滴平铺在固体上。水在打了蜡的汽车漆面上形成大角度，在裸露的油漆上形成小角度。"
+  },
+  {
+   "id": "capillary-action",
+   "kind": "result",
+   "section": "11.8",
+   "name": "毛细现象",
+   "terms": [
+    "毛细现象"
+   ],
+   "statement": "毛细现象是流体在窄管中被升高或降低的趋势。当接触角小于 $90^\\circ$ 时，表面张力使液体升高，当角度大于 $90^\\circ$ 时使液体降低，升降的高度为 $h = 2\\gamma\\cos\\theta/\\rho gr$。",
+   "forms": [
+    {
+     "id": "eq-capillary-height",
+     "latex": "h = \\frac{2\\gamma\\cos\\theta}{\\rho gr}",
+     "ktex": "\\kh = \\frac{2\\kgamma\\cos\\theta}{\\krho\\kg r}",
+     "anchor": "11.8-capillary-action"
+    }
+   ]
+  },
+  {
+   "id": "pressures-in-the-body",
+   "kind": "idea",
+   "section": "11.9",
+   "name": "人体内的压强",
+   "statement": "人体内测得的压强是表压强，用毫米汞柱表示，它们是医学所拥有的最有用的指标之一。表 11.5 列出了这些压强：大动脉中每次心跳时超过一百毫米汞柱，大静脉中是几毫米汞柱，眼中是十二到二十四毫米汞柱，而肺与肋骨之间以及食管中的压强则为负值。"
+  },
+  {
+   "id": "blood-pressure-and-height",
+   "kind": "result",
+   "section": "11.9",
+   "name": "血压与高度",
+   "statement": "血液是有重力的流体，所以其中的压强随身体高度的变化，与其他任何流体中完全一样。站起来使双脚处在心脏下方约 1.4 m 处，这使那里的压强升高 108 mm Hg。长时间站着不动会使血液积聚在腿部，腿就会肿起来。这就是立正站着的士兵有时会晕倒，以及医生建议长途飞行时穿紧身长袜的原因。",
+   "forms": [
+    {
+     "id": "eq-pressure-in-feet",
+     "latex": "\\Delta P = \\Delta h\\rho g",
+     "ktex": "\\kdPr = \\kdh\\krho\\kg",
+     "anchor": "11.9-blood-pressure"
+    }
+   ]
+  },
+  {
+   "id": "intraocular-pressure",
+   "kind": "definition",
+   "section": "11.9",
+   "name": "眼内的压强",
+   "terms": [
+    "眼内压"
+   ],
+   "statement": "眼内流体的压强维持着眼球的形状，正常范围是 12.0 到 24.0 mm Hg。当某种东西阻塞了这种流体的循环时，压强就会积聚起来，这种情况称为青光眼，压强可以达到 85.0 mm Hg。在眼球后部 $6.0\\;\\text{cm}^2$ 的面积上，这相当于 6.8 N 的力，也就是约 680 g 的质量压在眼睛上的重力，足以永久损伤视神经。",
+   "forms": [
+    {
+     "id": "eq-eye-force",
+     "latex": "F = h\\rho gA",
+     "ktex": "\\kF = \\kh\\krho\\kg A",
+     "anchor": "11.9-eye"
+    }
+   ]
+  },
+  {
+   "id": "lung-pressures",
+   "kind": "idea",
+   "section": "11.9",
+   "name": "肺内的压强",
+   "statement": "当膈肌和胸廓的肌肉活动使胸腔扩张时，肺内的压降到大气压以下，这就把空气吸入。当肌肉放松、肺泡中的表面张力使肺收缩时，压强升到大气压以上，这就把空气挤出。把肺附着在胸壁内侧的液体处于 $-4$ 到 $-8$ mm Hg 的负表压强，这种附着使肺不致塌陷。让空气进入胸腔会破坏这种附着，肺就可能塌陷。"
+  },
+  {
+   "id": "bladder-pressure",
+   "kind": "idea",
+   "section": "11.9",
+   "name": "膀胱内压",
+   "statement": "随着膀胱充盈到其正常容量 $500\\;\\text{cm}^3$，膀胱内压从零稳步上升到约 25 mm Hg。这个压强触发排尿反射，产生想要排尿的感觉，同时还使膀胱周围的肌肉收缩，把压强升高到超过 100 mm Hg，从而加剧这种感觉。咳嗽、用力、紧身衣服和胎儿的重力都会增加这个压强，并可能触发这一反射。"
+  },
+  {
+   "id": "skeletal-pressures",
+   "kind": "idea",
+   "section": "11.9",
+   "name": "骨骼系统中的压强",
+   "statement": "人体内最大的压强出现在关节中和椎骨之间，因为很大的力作用在很小的面积上。不正确地搬起物体，可以在两节椎骨之间的小到 $10\\;\\text{cm}^2$ 的面积上产生 5000 N 的力，也就是 $5.0\\times 10^{6}\\;\\text{N/m}^2$，约 50 个大气压，这足以损伤椎间盘和骨质椎骨本身。"
+  },
+  {
+   "id": "glaucoma",
+   "kind": "definition",
+   "section": "11.9",
+   "name": "青光眼",
+   "terms": [
+    "青光眼"
+   ],
+   "statement": "青光眼是眼中流体的循环被阻塞时，流体压强积聚所引起的病症。升高的压强压迫视网膜和视神经，并可能损伤它们。"
+  },
+  {
+   "id": "micturition-reflex",
+   "kind": "definition",
+   "section": "11.9",
+   "name": "排尿反射",
+   "terms": [
+    "排尿反射"
+   ],
+   "statement": "排尿反射是想要排尿的感觉，由膀胱充盈、接近其正常容量时膀胱内的压强触发。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "fluid",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "fluid",
+   "prereq": "shear-deformation"
+  },
+  {
+   "concept": "fluid",
+   "prereq": "force"
+  },
+  {
+   "concept": "phases-of-matter",
+   "prereq": "mass"
+  },
+  {
+   "concept": "atomic-arrangement-and-phase",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "atomic-arrangement-and-phase",
+   "prereq": "force"
+  },
+  {
+   "concept": "atomic-arrangement-and-phase",
+   "prereq": "bulk-deformation"
+  },
+  {
+   "concept": "density",
+   "prereq": "mass"
+  },
+  {
+   "concept": "density",
+   "prereq": "units"
+  },
+  {
+   "concept": "density",
+   "prereq": "derived-units"
+  },
+  {
+   "concept": "density-identifies-substance",
+   "prereq": "density"
+  },
+  {
+   "concept": "density-identifies-substance",
+   "prereq": "phases-of-matter"
+  },
+  {
+   "concept": "density-identifies-substance",
+   "prereq": "atomic-arrangement-and-phase"
+  },
+  {
+   "concept": "calculate-mass-from-density",
+   "prereq": "density"
+  },
+  {
+   "concept": "calculate-mass-from-density",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "pressure",
+   "prereq": "force"
+  },
+  {
+   "concept": "pressure",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "pascal-unit",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "pascal-unit",
+   "prereq": "derived-units"
+  },
+  {
+   "concept": "pascal-unit",
+   "prereq": "newton-unit"
+  },
+  {
+   "concept": "pressure-is-scalar",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "pressure-is-scalar",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "pressure-is-scalar",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "force-from-pressure",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "pressure-from-weight-of-fluid",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "pressure-from-weight-of-fluid",
+   "prereq": "density"
+  },
+  {
+   "concept": "pressure-from-weight-of-fluid",
+   "prereq": "weight"
+  },
+  {
+   "concept": "pressure-from-weight-of-fluid",
+   "prereq": "calculate-mass-from-density"
+  },
+  {
+   "concept": "pressure-independent-of-container",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "depth-in-a-liquid-versus-a-gas",
+   "prereq": "atomic-arrangement-and-phase"
+  },
+  {
+   "concept": "atmospheric-pressure",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "atmospheric-pressure",
+   "prereq": "weight"
+  },
+  {
+   "concept": "force-on-a-dam",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "force-on-a-dam",
+   "prereq": "force-from-pressure"
+  },
+  {
+   "concept": "density-from-pressure-and-height",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "density-from-pressure-and-height",
+   "prereq": "density"
+  },
+  {
+   "concept": "pascals-principle",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "pascals-principle",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "pressures-add",
+   "prereq": "pascals-principle"
+  },
+  {
+   "concept": "pressures-add",
+   "prereq": "atmospheric-pressure"
+  },
+  {
+   "concept": "hydraulic-system",
+   "prereq": "pascals-principle"
+  },
+  {
+   "concept": "hydraulic-system",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "hydraulic-force-ratio",
+   "prereq": "pascals-principle"
+  },
+  {
+   "concept": "hydraulic-force-ratio",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "hydraulic-force-ratio",
+   "prereq": "force-from-pressure"
+  },
+  {
+   "concept": "hydraulic-work-limit",
+   "prereq": "hydraulic-force-ratio"
+  },
+  {
+   "concept": "hydraulic-work-limit",
+   "prereq": "work"
+  },
+  {
+   "concept": "hydraulic-work-limit",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "hydraulic-work-limit",
+   "prereq": "simple-machine"
+  },
+  {
+   "concept": "gauge-pressure",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "gauge-pressure",
+   "prereq": "atmospheric-pressure"
+  },
+  {
+   "concept": "absolute-pressure",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "absolute-pressure",
+   "prereq": "pressures-add"
+  },
+  {
+   "concept": "absolute-pressure",
+   "prereq": "atmospheric-pressure"
+  },
+  {
+   "concept": "manometer",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "manometer",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "manometer",
+   "prereq": "pascals-principle"
+  },
+  {
+   "concept": "barometer",
+   "prereq": "atmospheric-pressure"
+  },
+  {
+   "concept": "barometer",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "barometer",
+   "prereq": "absolute-pressure"
+  },
+  {
+   "concept": "blood-pressure-measurement",
+   "prereq": "manometer"
+  },
+  {
+   "concept": "blood-pressure-measurement",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "buoyant-force",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "buoyant-force",
+   "prereq": "force"
+  },
+  {
+   "concept": "float-sink-suspend",
+   "prereq": "buoyant-force"
+  },
+  {
+   "concept": "float-sink-suspend",
+   "prereq": "weight"
+  },
+  {
+   "concept": "float-sink-suspend",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "archimedes-principle",
+   "prereq": "buoyant-force"
+  },
+  {
+   "concept": "archimedes-principle",
+   "prereq": "weight"
+  },
+  {
+   "concept": "archimedes-principle",
+   "prereq": "calculate-mass-from-density"
+  },
+  {
+   "concept": "average-density-decides-floating",
+   "prereq": "archimedes-principle"
+  },
+  {
+   "concept": "average-density-decides-floating",
+   "prereq": "density"
+  },
+  {
+   "concept": "average-density-decides-floating",
+   "prereq": "weight"
+  },
+  {
+   "concept": "fraction-submerged",
+   "prereq": "average-density-decides-floating"
+  },
+  {
+   "concept": "fraction-submerged",
+   "prereq": "density"
+  },
+  {
+   "concept": "fraction-submerged",
+   "prereq": "archimedes-principle"
+  },
+  {
+   "concept": "specific-gravity",
+   "prereq": "density"
+  },
+  {
+   "concept": "specific-gravity",
+   "prereq": "fraction-submerged"
+  },
+  {
+   "concept": "apparent-weight-loss",
+   "prereq": "archimedes-principle"
+  },
+  {
+   "concept": "apparent-weight-loss",
+   "prereq": "weight"
+  },
+  {
+   "concept": "apparent-weight-loss",
+   "prereq": "density"
+  },
+  {
+   "concept": "cohesive-forces",
+   "prereq": "force"
+  },
+  {
+   "concept": "cohesive-forces",
+   "prereq": "atomic-arrangement-and-phase"
+  },
+  {
+   "concept": "adhesive-forces",
+   "prereq": "force"
+  },
+  {
+   "concept": "adhesive-forces",
+   "prereq": "atomic-arrangement-and-phase"
+  },
+  {
+   "concept": "surface-tension",
+   "prereq": "cohesive-forces"
+  },
+  {
+   "concept": "surface-tension",
+   "prereq": "force"
+  },
+  {
+   "concept": "pressure-inside-a-bubble",
+   "prereq": "surface-tension"
+  },
+  {
+   "concept": "pressure-inside-a-bubble",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "pressure-inside-a-bubble",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "alveoli-and-surfactant",
+   "prereq": "pressure-inside-a-bubble"
+  },
+  {
+   "concept": "alveoli-and-surfactant",
+   "prereq": "surface-tension"
+  },
+  {
+   "concept": "contact-angle",
+   "prereq": "cohesive-forces"
+  },
+  {
+   "concept": "contact-angle",
+   "prereq": "adhesive-forces"
+  },
+  {
+   "concept": "capillary-action",
+   "prereq": "surface-tension"
+  },
+  {
+   "concept": "capillary-action",
+   "prereq": "contact-angle"
+  },
+  {
+   "concept": "capillary-action",
+   "prereq": "adhesive-forces"
+  },
+  {
+   "concept": "capillary-action",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "capillary-action",
+   "prereq": "density"
+  },
+  {
+   "concept": "pressures-in-the-body",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "pressures-in-the-body",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "blood-pressure-and-height",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "blood-pressure-and-height",
+   "prereq": "blood-pressure-measurement"
+  },
+  {
+   "concept": "blood-pressure-and-height",
+   "prereq": "pressures-in-the-body"
+  },
+  {
+   "concept": "intraocular-pressure",
+   "prereq": "pressures-in-the-body"
+  },
+  {
+   "concept": "intraocular-pressure",
+   "prereq": "force-from-pressure"
+  },
+  {
+   "concept": "intraocular-pressure",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "lung-pressures",
+   "prereq": "pressures-in-the-body"
+  },
+  {
+   "concept": "lung-pressures",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "lung-pressures",
+   "prereq": "alveoli-and-surfactant"
+  },
+  {
+   "concept": "lung-pressures",
+   "prereq": "surface-tension"
+  },
+  {
+   "concept": "bladder-pressure",
+   "prereq": "pressures-in-the-body"
+  },
+  {
+   "concept": "bladder-pressure",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "skeletal-pressures",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "skeletal-pressures",
+   "prereq": "force-from-pressure"
+  },
+  {
+   "concept": "skeletal-pressures",
+   "prereq": "pressures-in-the-body"
+  },
+  {
+   "concept": "systolic-pressure",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "diastolic-pressure",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "mm-hg",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "mm-hg",
+   "prereq": "pascal-unit"
+  },
+  {
+   "concept": "glaucoma",
+   "prereq": "intraocular-pressure"
+  },
+  {
+   "concept": "micturition-reflex",
+   "prereq": "bladder-pressure"
+  }
+ ]
+}

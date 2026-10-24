@@ -1,0 +1,340 @@
+/* Figures for section 25.3 The Law of Refraction. The figures colour velocity,
+   position, time and angle: the speed of light and the speeds in each medium,
+   Michelson's distance, his round-trip time and the period of his mirror, and
+   the angles of incidence and refraction. The index of refraction is a rating and
+   stays in ink. The fish, the tank and the eye of Figure 25.10, Michelson's two
+   mirrors, source and observer, and the two media of Figure 25.12 are the
+   section's referents and wear F.ref; the two paths of the fish tank, which the
+   text never names one by one, keep F.cat. Only Michelson's mirror has a clock in
+   it; the other two figures are still. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['25.3'] = function (root, F) {
+const { fmt, tex, C, PAL, alpha, cat, ctl, select, cycle, register, begin, line, arrow, dot, text, topline, label, hbracket, angleArc, solve } = F;
+const sim = (id, H) => F.sim(root, id, H);
+
+const DEG = Math.PI / 180;
+const CLIGHT = 3.00e8;
+const SUPS = '\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079';
+const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => SUPS[+c]);
+function sci(x, dp) {
+  const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
+  return fmt(m, dp ?? 2) + ' \u00D7 10' + supOf(e);
+}
+function sciTex(x, dp) {
+  const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
+  return fmt(m, dp ?? 2) + '\\times 10^{' + e + '}';
+}
+const add = (a, b, k = 1) => [a[0] + b[0] * k, a[1] + b[1] * k];
+const sub = (a, b) => [a[0] - b[0], a[1] - b[1]];
+const dotp = (a, b) => a[0] * b[0] + a[1] * b[1];
+const unit = (a) => { const l = Math.hypot(a[0], a[1]); return [a[0] / l, a[1] / l]; };
+const reflect = (dv, n) => add(dv, n, -2 * dotp(dv, n));
+
+function poly(ctx, pts, stroke, w, fill, dash) {
+  ctx.save(); ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.stroke(); }
+  ctx.restore();
+}
+/* an eye seen from above or from the side, looking along the angle a (radians, on the page) */
+function eye(ctx, x, y, a, s, color) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s);
+  ctx.beginPath(); ctx.moveTo(-18, 0); ctx.quadraticCurveTo(0, -16, 18, 0); ctx.quadraticCurveTo(0, 16, -18, 0); ctx.closePath();
+  ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke();
+  ctx.beginPath(); ctx.arc(4, 0, 6.5, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill();
+  ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 25.10 · sim-fish-tank · still · flat
+   The book's inset: the tank seen from above, a square turned corner-on to
+   the eye. A ray from the fish meets each front face at the one point where
+   Snell's law sends it on to the eye, found by solving along the face; the
+   image is where the ray the eye receives, carried back into the tank, meets
+   the perpendicular to the face through the fish. Water is 1.333 and the thin
+   glass walls are left out. Scene in canvas units; no physical scale.
+===================================================================== */
+(function () {
+  const H = 700;
+  const d = sim('sim-fish-tank', H);
+  const across = ctl(d.controls, { label: '\\text{横向位置}', cls: '', min: -0.8, max: 0.8, step: 0.05, value: 0, unit: '', dec: 2, aria: '鱼离鱼缸中线的横向距离' });
+  const back = ctl(d.controls, { label: '\\text{纵深}', cls: '', min: 0.3, max: 0.8, step: 0.05, value: 0.6, unit: '', dec: 2, aria: '鱼离最靠近眼睛的棱角的距离' });
+  const NW = 1.333, NA = 1.00;
+  const CX = 700, NEAR = 520, HALF = 175;             /* the tank's near corner, and its half diagonal */
+  const TOP = NEAR - 2 * HALF, MID = NEAR - HALF;
+  const P0 = [CX, NEAR], PL = [CX - HALF, MID], PR = [CX + HALF, MID], PF = [CX, TOP];
+  const E = [CX, 655];
+  const faces = [
+    { a: P0, e: unit(sub(PL, P0)), n: unit([-1, 1]), len: Math.hypot(HALF, HALF) },
+    { a: P0, e: unit(sub(PR, P0)), n: unit([1, 1]), len: Math.hypot(HALF, HALF) },
+  ];
+  function fish(ctx, p, color, ghost) {
+    ctx.save(); ctx.translate(p[0], p[1]);
+    ctx.beginPath(); ctx.ellipse(0, 0, 11, 26, 0, 0, 2 * Math.PI);
+    ctx.moveTo(0, 22); ctx.lineTo(-11, 40); ctx.lineTo(11, 40); ctx.closePath();
+    if (ghost) { ctx.setLineDash([5, 5]); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke(); }
+    else { ctx.fillStyle = color; ctx.fill(); }
+    ctx.restore();
+  }
+  function path(F0, face) {
+    const at = (q) => add(face.a, face.e, q);
+    const g = (q) => { const Q = at(q); return NW * dotp(unit(sub(Q, F0)), face.e) - NA * dotp(unit(sub(E, Q)), face.e); };
+    const q = solve(g, 1, face.len - 1);
+    if (q === null) return null;
+    const Q = at(q), dw = unit(sub(Q, F0)), da = unit(sub(E, Q));
+    /* Q − s·da = F0 + t·n, solved for s */
+    const r = sub(Q, F0), det = -da[0] * -face.n[1] + face.n[0] * da[1];
+    const s = (r[0] * -face.n[1] + face.n[0] * r[1]) / det;
+    const G = add(Q, da, -s);
+    return { Q, G, tw: Math.asin(Math.abs(dotp(dw, face.e))) / DEG, ta: Math.asin(Math.abs(dotp(da, face.e))) / DEG };
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const y = NEAR - back.v * 2 * HALF, hw = HALF - Math.abs(y - MID);
+    const F0 = [CX + across.v * hw * 0.8, y];
+    const cFish = F.ref('fish'), cTank = F.ref('tank'), cEye = F.ref('viewer');
+    poly(ctx, [P0, PR, PF, PL], cTank, 3, alpha(PAL.ink, 0.06));
+    const paths = faces.map((f) => path(F0, f));
+    paths.forEach((p, i) => {
+      if (!p) return;
+      const col = cat(i + 3), f = faces[i];   /* offset past the figure's three referents */
+      line(ctx, p.Q[0] - f.n[0] * 70, p.Q[1] - f.n[1] * 70, p.Q[0] + f.n[0] * 70, p.Q[1] + f.n[1] * 70, alpha(PAL.ink, 0.35), 2, [6, 6]);
+      line(ctx, p.Q[0], p.Q[1], p.G[0], p.G[1], alpha(col, 0.8), 2.5, [8, 7]);
+      fish(ctx, p.G, alpha(col, 0.9), true);
+      line(ctx, F0[0], F0[1], p.Q[0], p.Q[1], col, 4);
+      const m = [(p.Q[0] + E[0]) / 2, (p.Q[1] + E[1]) / 2];
+      line(ctx, p.Q[0], p.Q[1], E[0], E[1], col, 4);
+      arrow(ctx, m[0] - (E[0] - p.Q[0]) * 0.08, m[1] - (E[1] - p.Q[1]) * 0.08, m[0] + (E[0] - p.Q[0]) * 0.08, m[1] + (E[1] - p.Q[1]) * 0.08, col, 4);
+      label(ctx, '像', p.G[0], p.G[1] - 30, { side: i ? 'right' : 'left', color: col, gap: 26, size: 20 });
+    });
+    fish(ctx, F0, cFish, false);
+    label(ctx, '鱼', F0[0], F0[1] - 30, { side: 'above', size: 20, gap: 14, color: cFish });
+    eye(ctx, E[0], E[1], -Math.PI / 2, 1.1, cEye);
+    label(ctx, '观察者', E[0] + 24, E[1], { side: 'right', size: 20, gap: 12, color: cEye });
+    label(ctx, '盛水的鱼缸，n = 1.333', PL[0], MID, { side: 'left', size: 20, gap: 24, color: cTank });
+    text(ctx, '空气，n = 1.00', 180, 620, PAL.muted, { size: 19, align: 'left' });
+    const a = paths[0], b = paths[1], one = a || b, side = a ? '左' : '右';
+    topline(ctx, a && b
+      ? '来自鱼的光通过两个前面射出，在每个面上都偏离法线，所以观察者在两个位置看到鱼。'
+      : `来自鱼的光只通过${side}面到达观察者，所以观察者在一个位置看到鱼。`);
+    if (!one) return;
+    tex(d.readout, `n_1\\sin\\kthetaone = (1.333)\\sin ${fmt(one.tw, 1)}^\\circ = ${fmt(NW * Math.sin(one.tw * DEG), 3)} = (1.00)\\sin ${fmt(one.ta, 1)}^\\circ = n_2\\sin\\kthetatwo`);
+    if (a && b) d.readout.appendChild(F.el('small', null, `这是通过左面的路径。通过右面时，光线在水中与法线成 ${fmt(b.tw, 1)}° 角，在空气中以 ${fmt(b.ta, 1)}° 角离开。`));
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 25.11 · sim-michelson · moving · flat
+   The book's plan view. A flash leaves when a face of the eight-sided mirror
+   sends the source's light toward the stationary mirror, and it travels out
+   and back at a steady drawn speed while the mirror turns at the rate the
+   period sets; the model time runs from just before the flash leaves to just
+   after it returns. The returning ray is traced against the mirror as it
+   stands when the flash arrives, so it reaches the observer only when the
+   mirror has turned a whole number of faces. The gap is not to scale.
+===================================================================== */
+(function () {
+  const H = 700;
+  const d = sim('sim-michelson', H);
+  const dS = ctl(d.controls, { label: '\\kd', cls: 'position', min: 10, max: 50, step: 0.5, value: 35, unit: 'km', dec: 1, aria: '到固定镜的距离' });
+  const TS = ctl(d.controls, { label: '\\kT', cls: 'time', min: 1, max: 4, step: 0.001, value: (16 * 35e3 / CLIGHT) * 1e3, unit: 'ms', dec: 3, aria: '转镜转一圈所用的时间',
+    specials: [{ at: () => (16 * dS.v * 1e3 / CLIGHT) * 1e3, label: '一个镜面' }, { at: () => (32 * dS.v * 1e3 / CLIGHT) * 1e3, label: '两个镜面' }] });
+  const U0 = -0.25, U1 = 1.45;
+  const cy = cycle(() => U1 - U0, 1.2);
+  const O = [250, 430], R = 72, AP = R * Math.cos(Math.PI / 8);
+  const c45 = Math.SQRT1_2;
+  const A = [O[0] + AP * c45, O[1] + AP * c45];        /* where the source's beam meets the lower right face */
+  const B0 = [O[0] + AP * c45, O[1] - AP * c45];       /* where the returning beam meets the upper right face */
+  const SRC = [A[0], 640];
+  const MX = 1230, M = [MX, A[1]];
+  const dBack = unit(sub(B0, M));
+  const EYE = add(B0, reflect(dBack, [c45, -c45]), 200);
+  const mirrorN = unit(sub(dBack, [1, 0]));
+  const mirrorT = [-mirrorN[1], mirrorN[0]];
+  const verts = (a) => Array.from({ length: 8 }, (_, k) => {
+    const t = (22.5 + 45 * k) * DEG + a;
+    return [O[0] + R * Math.cos(t), O[1] - R * Math.sin(t)];
+  });
+  /* the first face a ray from p along dv meets, and the reflected direction */
+  function hit(p, dv, a) {
+    const vs = verts(a); let best = null;
+    for (let k = 0; k < 8; k++) {
+      const s0 = vs[k], s1 = vs[(k + 1) % 8], e = sub(s1, s0);
+      const den = dv[0] * -e[1] + e[0] * dv[1];
+      if (Math.abs(den) < 1e-9) continue;
+      const r = sub(s0, p);
+      const t = (r[0] * -e[1] + e[0] * r[1]) / den, u = (dv[0] * r[1] - dv[1] * r[0]) / den;
+      if (t > 1e-6 && u >= 0 && u <= 1 && (!best || t < best.t)) {
+        let n = unit([e[1], -e[0]]);
+        if (dotp(n, sub(s0, O)) < 0) n = [-n[0], -n[1]];
+        best = { t, P: add(p, dv, t), r: reflect(dv, n) };
+      }
+    }
+    return best;
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const TC = C('time'), XC = C('position');
+    const cRot = F.ref('rotating-mirror'), cStat = F.ref('stationary-mirror'), cSrc = F.ref('source'), cObs = F.ref('observer');
+    const trt = 2 * dS.v * 1e3 / CLIGHT;             /* seconds */
+    const T = TS.v * 1e-3;
+    const u = U0 + cy.now();
+    const spin = (uu) => 2 * Math.PI * uu * trt / T;
+    const a = spin(u), aRet = spin(1);
+    const turned = aRet / DEG, faces = Math.round(turned / 45), off = turned - 45 * faces;
+    const seen = faces >= 1 && Math.abs(off) < 0.25;
+    const ret = hit(M, dBack, aRet);
+    const outLen = MX - A[0], backLen = Math.hypot(M[0] - B0[0], M[1] - B0[1]), total = outLen + backLen;
+    const trail = alpha(PAL.ink, 0.35);
+    const sd = [0, -1];
+    const srcHit = hit(SRC, sd, a);
+    line(ctx, SRC[0], SRC[1], srcHit ? srcHit.P[0] : A[0], srcHit ? srcHit.P[1] : A[1], PAL.ink, 3);
+    if (srcHit) line(ctx, srcHit.P[0], srcHit.P[1], srcHit.P[0] + srcHit.r[0] * 130, srcHit.P[1] + srcHit.r[1] * 130, alpha(PAL.ink, 0.45), 3);
+    const s = (u / 1) * total;
+    if (u > 0) {
+      const done = Math.min(s, total);
+      const outEnd = Math.min(done, outLen);
+      line(ctx, A[0], A[1], A[0] + outEnd, A[1], trail, 2.5, [10, 8]);
+      if (done > outLen) { const k = (done - outLen) / backLen; line(ctx, M[0], M[1], M[0] + (B0[0] - M[0]) * k, M[1] + (B0[1] - M[1]) * k, trail, 2.5, [10, 8]); }
+      const at = (x) => x <= outLen ? [A[0] + x, A[1]] : x <= total ? add(M, dBack, x - outLen) : null;
+      if (s <= total) {
+        const p1 = at(s), p0 = at(Math.max(0, s - 70));
+        line(ctx, p0[0], p0[1], p1[0], p1[1], PAL.ink, 6);
+      } else if (ret) {
+        const dd = s - total, P = ret.P;
+        line(ctx, M[0], M[1], P[0], P[1], trail, 2.5, [10, 8]);
+        const len = Math.min(dd, 260);
+        line(ctx, P[0], P[1], P[0] + ret.r[0] * len, P[1] + ret.r[1] * len, seen ? PAL.ink : alpha(PAL.ink, 0.6), 5);
+      }
+    }
+    poly(ctx, verts(a), cRot, 4, alpha(cRot, 0.08));
+    dot(ctx, O[0], O[1], cRot, true, 5);
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.6); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(O[0], O[1], 36, -0.4, -Math.PI * 1.6, true); ctx.stroke(); ctx.restore();
+    const tip = [O[0] + 36 * Math.cos(-Math.PI * 1.6), O[1] + 36 * Math.sin(-Math.PI * 1.6)];
+    arrow(ctx, tip[0] + 10, tip[1] + 6, tip[0], tip[1] - 2, alpha(PAL.ink, 0.6), 3);
+    const mh = 70;
+    line(ctx, MX + mirrorT[0] * mh, M[1] + mirrorT[1] * mh, MX - mirrorT[0] * mh, M[1] - mirrorT[1] * mh, cStat, 7);
+    ctx.save(); ctx.fillStyle = cSrc; ctx.fillRect(SRC[0] - 22, SRC[1] - 4, 44, 40); ctx.restore();
+    dot(ctx, SRC[0], SRC[1] + 16, PAL.panel, true, 10);
+    eye(ctx, EYE[0], EYE[1], Math.atan2(B0[1] - EYE[1], B0[0] - EYE[0]), 1.1, cObs);
+    label(ctx, '光源', SRC[0] + 30, SRC[1] + 16, { side: 'right', size: 20, gap: 10, color: cSrc });
+    label(ctx, '观察者', EYE[0] + 26, EYE[1], { side: 'right', size: 20, gap: 10, color: cObs });
+    label(ctx, '转镜', O[0] - R - 6, O[1] + 40, { side: 'left', size: 20, gap: 12, color: cRot });
+    label(ctx, '固定镜', MX, M[1] - mh - 8, { side: 'above', size: 20, gap: 16, color: cStat });
+    hbracket(ctx, A[0], MX, 600, XC, `d = ${fmt(dS.v, 1)} km`);
+    const tNow = Math.max(0, Math.min(u, 1)) * trt;
+    text(ctx, `t = ${fmt(tNow * 1e3, 3)} ms`, 700, A[1] + 44, TC, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    if (u > 1.05 && ret) text(ctx, seen ? '看到' : '未看到', ret.P[0] + ret.r[0] * 150 + 20, ret.P[1] + ret.r[1] * 150, seen ? PAL.ink : PAL.muted, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+    const tms = fmt(trt * 1e3, 3);
+    const names = ['', '八分之一', '八分之二'];
+    topline(ctx, seen
+      ? `闪光在 ${tms} ms 后返回，此时转镜恰好转过${names[faces] || '八分之' + faces}圈，所以下一个镜面把它送给观察者。`
+      : `闪光在 ${tms} ms 后返回，但此时转镜已转过 ${fmt(turned, 1)}°，不是整数个镜面，所以光没有射到观察者。`);
+    if (!d.ro) d.ro = F.readout(d);
+    const dTex = `${fmt(dS.v, 1)}\\ \\text{km}`;
+    if (seen) {
+      const t = faces * T / 8;
+      d.ro.set(`\\mk{c}{\\kc} = \\frac{\\mk{d}{2\\kd}}{\\mk{t}{\\kt}} = \\frac{2(${dTex})}{${fmt(t * 1e3, 3)}\\ \\text{ms}} = ${sciTex(2 * dS.v * 1e3 / t, 2)}\\ \\text{m/s}`,
+        `转镜每 ${fmt(TS.v, 3)} ms 转一圈，所以转${faces === 1 ? '八分之一' : '八分之二'}圈需要 ${fmt(t * 1e3, 3)} ms，这就是光往返所用的时间。`, { form: true });
+    } else {
+      d.ro.set(`\\mk{t}{\\kt} = \\frac{\\mk{d}{2\\kd}}{\\mk{c}{\\kc}} = \\frac{2(${dTex})}{3.00\\times 10^{8}\\ \\text{m/s}} = ${tms}\\ \\text{ms}`,
+        `转镜每 ${fmt(TS.v, 3)} ms 转一圈，在这段时间内转过 ${fmt(turned, 1)}°；光要到达观察者，转镜必须转过 45.0°，即一个镜面，或整数个镜面。`, { form: false });
+    }
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => (U1 - U0) / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 25.12 · sim-refraction · still · flat
+   One beam crossing a flat surface, with its wavefronts drawn at equal times:
+   a front is the set of points of equal phase n·(distance along the ray), so
+   it is continuous across the surface wherever Snell's law holds and kinks
+   there, which is the lawn mower's axle. The heavy front with its two wheels
+   is the one crossing the surface a quarter of the beam from its center.
+   Media from Table 25.1, air taken as 1.00 as the examples take it.
+===================================================================== */
+(function () {
+  const H = 650;
+  const d = sim('sim-refraction', H);
+  const MEDIA = [
+    { value: 'air', label: '空气', n: 1.00 }, { value: 'water', label: '水', n: 1.333 }, { value: 'ethanol', label: '乙醇', n: 1.361 },
+    { value: 'glycerine', label: '甘油', n: 1.473 }, { value: 'crown', label: '冕牌玻璃', n: 1.52 }, { value: 'flint', label: '火石玻璃', n: 1.66 },
+    { value: 'zircon', label: '锆石', n: 1.923 }, { value: 'diamond', label: '金刚石', n: 2.419 },
+  ];
+  const byV = (v) => MEDIA.find((m) => m.value === v);
+  const m1 = select(d.controls, { label: '\\text{介质 1}', options: MEDIA.map(({ value, label }) => ({ value, label })), value: 'air', aria: '光起初所在的介质' });
+  const m2 = select(d.controls, { label: '\\text{介质 2}', options: MEDIA.map(({ value, label }) => ({ value, label })), value: 'water', aria: '光进入的介质' });
+  const th = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 0, max: 80, step: 0.5, value: 30, unit: '°', dec: 1, aria: '入射角' });
+  const YI = 360, O = [640, YI], LEN = 250, W = 110, STEP = 58;
+  const nStr = (n) => (n === 1 ? '1.00' : String(n));
+  function front(ctx, k, n, phi, w, keep, color, lw) {
+    const perp = [k[1], -k[0]];
+    let a = add(add(O, k, phi / n), perp, -w / 2), b = add(add(O, k, phi / n), perp, w / 2);
+    const ina = keep(a[1]), inb = keep(b[1]);
+    if (!ina && !inb) return null;
+    if (ina !== inb) { const t = (YI - a[1]) / (b[1] - a[1]), c = [a[0] + (b[0] - a[0]) * t, YI]; if (ina) b = c; else a = c; }
+    line(ctx, a[0], a[1], b[0], b[1], color, lw);
+    return [a, b];
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const VC = C('velocity'), AC = C('angle'), c1 = F.ref('medium-1'), c2 = F.ref('medium-2');
+    const A = byV(m1.value), B = byV(m2.value), n1 = A.n, n2 = B.n, t1 = th.v * DEG;
+    const s2 = n1 * Math.sin(t1) / n2, crosses = s2 <= 1, t2 = crosses ? Math.asin(s2) : 0;
+    const k1 = [Math.sin(t1), Math.cos(t1)], k2 = [Math.sin(t2), Math.cos(t2)];
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(0, YI, 1400, H - YI); ctx.restore();
+    line(ctx, 0, YI, 1400, YI, PAL.ink, 3);
+    line(ctx, O[0], 140, O[0], H - 30, alpha(PAL.ink, 0.45), 2, [8, 8]);
+    const up = (y) => y <= YI + 0.01, down = (y) => y >= YI - 0.01;
+    const W1 = Math.min(W, 240 * Math.cos(t1)), w2 = W1 * Math.cos(t2) / Math.cos(t1);
+    const faint = alpha(PAL.ink, 0.3);
+    for (let m = -6; m <= 6; m++) {
+      const phi = m * STEP;
+      if (phi / n1 > -LEN - 1 && phi <= 0.5 * STEP * n1) front(ctx, k1, n1, phi, W1, up, faint, 2);
+      if (crosses && phi / n2 < LEN && phi >= -0.5 * STEP * n2) front(ctx, k2, n2, phi, w2, down, faint, 2);
+    }
+    const src = add(O, k1, -LEN);
+    line(ctx, src[0], src[1], O[0], O[1], PAL.ink, 4);
+    const mid1 = add(O, k1, -LEN * 0.55);
+    arrow(ctx, mid1[0] - k1[0] * 14, mid1[1] - k1[1] * 14, mid1[0] + k1[0] * 14, mid1[1] + k1[1] * 14, PAL.ink, 4);
+    let tail;
+    if (crosses) {
+      const phiA = -(W1 / 4) * n1 * Math.tan(t1);
+      const p1 = front(ctx, k1, n1, phiA, W1, up, PAL.ink, 4);
+      const p2 = front(ctx, k2, n2, phiA, w2, down, PAL.ink, 4);
+      [p1 && p1[0], p1 && p1[1], p2 && p2[0], p2 && p2[1]].filter((p) => p && Math.abs(p[1] - YI) > 1).forEach((p) => dot(ctx, p[0], p[1], PAL.ink, true, 8));
+      tail = add(O, k2, LEN);
+      arrow(ctx, O[0], O[1], tail[0], tail[1], PAL.ink, 4);
+      angleArc(ctx, { x: O[0], y: O[1] }, 70, -Math.PI / 2, -Math.PI / 2 + t2, '\u03B8_2', undefined, AC);
+    } else {
+      tail = [O[0] + k1[0] * LEN, O[1] - k1[1] * LEN];
+      arrow(ctx, O[0], O[1], tail[0], tail[1], PAL.ink, 4);
+    }
+    if (t1 > 0.5 * DEG) angleArc(ctx, { x: O[0], y: O[1] }, 70, Math.PI / 2, Math.PI / 2 + t1, '\u03B8_1', undefined, AC);
+    label(ctx, '法线', O[0], 140, { side: 'above', size: 18, gap: 16, weight: 400, color: PAL.muted });
+    text(ctx, `介质 1：${A.label}，n_1 = ${nStr(n1)}`, 40, YI - 34, c1, { size: 21, align: 'left', bg: PAL.panel });
+    text(ctx, `介质 2：${B.label}，n_2 = ${nStr(n2)}`, 40, YI + 34, c2, { size: 21, align: 'left', bg: PAL.panel });
+    const v1 = CLIGHT / n1, v2 = CLIGHT / n2;
+    text(ctx, `v_1 = ${sci(v1, 2)} m/s`, 1360, YI - 34, VC, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, `v_2 = ${sci(v2, 2)} m/s`, 1360, YI + 34, VC, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
+    const sp = (v) => fmt(v / 1e8, 2);
+    let head;
+    if (!crosses) head = `光从${A.label}以 ${fmt(th.v, 1)}° 射向${B.label}时，${B.label}中没有任何角满足折射定律，所以没有光穿过，光全部被反射。`;
+    else if (th.v < 0.25) head = `沿法线射到表面上的光，速率改变而方向不变。`;
+    else if (n2 > n1) head = `光从${A.label}进入${B.label}时，速率从 ${sp(v1)} 减小到 ${sp(v2)} \u00D7 10\u2078 m/s，并向法线偏折。`;
+    else if (n2 < n1) head = `光从${A.label}进入${B.label}时，速率从 ${sp(v1)} 增大到 ${sp(v2)} \u00D7 10\u2078 m/s，并偏离法线。`;
+    else head = `两种介质的折射率相同，所以光保持速率不变，沿直线继续前进。`;
+    topline(ctx, head);
+    const lhs = n1 * Math.sin(t1);
+    if (crosses) {
+      tex(d.readout, `n_1\\sin\\kthetaone = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} = (${nStr(n2)})\\sin ${fmt(t2 / DEG, 1)}^\\circ = n_2\\sin\\kthetatwo`);
+    } else {
+      tex(d.readout, `n_1\\sin\\kthetaone = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} > n_2 = ${nStr(n2)}`);
+      const nb = F.el('small', null, `由于 $\\sin\\kthetatwo$ 不会大于 1，折射定律的右边不会大于 $n_2 = ${nStr(n2)}$。`);
+      d.readout.appendChild(nb); F.renderMath(nb);
+    }
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

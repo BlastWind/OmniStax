@@ -1,0 +1,895 @@
+{
+ "types": [
+  {
+   "id": "angle",
+   "label": "角",
+   "dimension": "rad"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "θ",
+   "latex": "\\theta",
+   "macro": "\\ktheta"
+  },
+  {
+   "sym": "θ_0",
+   "latex": "\\theta_0",
+   "macro": "\\kthetao"
+  },
+  {
+   "sym": "θ_v",
+   "latex": "\\theta_v",
+   "macro": "\\kthetav"
+  },
+  {
+   "sym": "θ_A",
+   "latex": "\\theta_{\\text{A}}",
+   "macro": "\\kthetaA"
+  },
+  {
+   "sym": "θ_B",
+   "latex": "\\theta_{\\text{B}}",
+   "macro": "\\kthetaB"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "right-triangle-resultant",
+   "kind": "result",
+   "section": "3.1",
+   "name": "相互垂直的位移的合成",
+   "statement": "向东走 9 个街区，再向北走 5 个街区，共走了 14 个街区，但两点之间的直线距离只有 10.3 个街区。这趟行程的两个路段和直线路径构成一个直角三角形，由勾股定理可求出斜边。这是矢量一个普遍特性的例子：总位移是其相互垂直的各部分之和，而该定理给出它的大小。不相互垂直的矢量不能这样相加。",
+   "forms": [
+    {
+     "id": "eq-pythagoras",
+     "latex": "a^2 + b^2 = c^2,\\quad c = \\sqrt{a^2 + b^2}",
+     "condition": "直角三角形，两条直角边为 a 和 b，斜边为 c",
+     "anchor": "3.1-walking"
+    }
+   ]
+  },
+  {
+   "id": "vector-components",
+   "kind": "definition",
+   "section": "3.1",
+   "name": "矢量的分量",
+   "terms": [
+    "分量"
+   ],
+   "statement": "在二维运动中，有三个矢量表示物体的路径：一个表示起点与终点之间的直线路径，一个表示运动的水平分量，一个表示竖直分量。水平分量与竖直分量相加得到直线路径，而且每个分量只受其自身方向上的运动影响。",
+   "forms": [
+    {
+     "id": "eq-component-sum",
+     "latex": "\\mathbf{A}_x + \\mathbf{A}_y = \\mathbf{A}",
+     "condition": "作为矢量相加；而大小 A_x + A_y ≠ A",
+     "section": "3.3",
+     "anchor": "3.3-components"
+    }
+   ]
+  },
+  {
+   "id": "independence-of-perpendicular-motions",
+   "kind": "axiom",
+   "section": "3.1",
+   "name": "相互垂直运动的独立性",
+   "statement": "二维运动的水平分量和竖直分量彼此独立：水平方向的运动不影响竖直方向的运动，反之亦然。让一只球从静止下落，同时在同一高度水平抛出另一只球。在频闪仪的每一次闪光时，它们的竖直位置都相同，而被抛出的球在相邻两次闪光之间走过相同的水平距离，因为没有任何东西使它在水平方向加速。这是抛体运动的关键，你要把抛体运动分解为沿相互垂直方向的运动。"
+  },
+  {
+   "id": "vector-in-two-dimensions",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "二维矢量",
+   "statement": "在二维中，用一个角给出矢量相对于参考系的方向。用一个箭头表示矢量，箭头的长度与其大小成正比，矢尾位于起点，矢端位于所指的一端。本书用黑体书写矢量，用斜体书写其大小，并用一个角表示其方向，例如大小为 10.3 个街区、方向为东偏北 29.1º 的总位移 $\\mathbf{D}$。"
+  },
+  {
+   "id": "resultant-vector",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "合矢量",
+   "symbol": "R",
+   "terms": [
+    "合矢量",
+    "合矢量"
+   ],
+   "type": "position",
+   "statement": "合矢量是两个或多个矢量之和，从第一个矢量的矢尾画到最后一个矢量的矢端。它的大小至多等于各矢量大小之和（当这些矢量指向相同方向时），至少等于它们大小之差，所以两个非零矢量只有在大小相等、方向相反时，才相加为零。"
+  },
+  {
+   "id": "head-to-tail-method",
+   "kind": "skill",
+   "section": "3.2",
+   "name": "用首尾相接法求矢量和",
+   "statement": "用图解法相加矢量时，先用直尺和量角器把第一个矢量画成一个箭头。把第二个矢量的矢尾放在第一个矢量的矢端处，对你要相加的每一个矢量都这样继续做下去。然后从第一个矢量的矢尾到最后一个矢量的矢端画出合矢量，用直尺量出它的长度，用量角器量出它的角度。这种方法适用于任意多个矢量，其准确度只受作图和测量工具的精密度限制。"
+  },
+  {
+   "id": "vector-addition-commutative",
+   "kind": "result",
+   "section": "3.2",
+   "name": "矢量加法的交换律",
+   "terms": [
+    "可交换的"
+   ],
+   "statement": "合矢量与矢量相加的顺序无关：以不同的顺序加上同样的位移，终点相同。这在任何情形下都成立，是矢量的一个重要特性，正如无论算 2 + 3 还是 3 + 2，你得到的结果都相同。",
+   "forms": [
+    {
+     "id": "eq-commutative",
+     "latex": "\\mathbf{A} + \\mathbf{B} = \\mathbf{B} + \\mathbf{A}",
+     "anchor": "3.2-ex-walk"
+    }
+   ]
+  },
+  {
+   "id": "vector-subtraction",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "矢量减法",
+   "statement": "一个矢量的负矢量大小相同、方向相反，减去一个矢量定义为加上它的负矢量。一位水手若把指引中的第二段沿相反方向航行，她到达的是 $\\mathbf{A} - \\mathbf{B}$ 而不是 $\\mathbf{A} + \\mathbf{B}$，这与码头所在的地方大不相同，而减法的图解法就是用 $-\\mathbf{B}$ 代替 $\\mathbf{B}$ 的首尾相接法。",
+   "forms": [
+    {
+     "id": "eq-vector-subtraction",
+     "latex": "\\mathbf{A} - \\mathbf{B} = \\mathbf{A} + (-\\mathbf{B})",
+     "anchor": "3.2-subtraction"
+    }
+   ]
+  },
+  {
+   "id": "scalar-multiplication",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "矢量与标量相乘",
+   "statement": "用标量 $c$ 乘一个矢量时，它的大小变为 $c$ 的绝对值乘以原来的大小。若 $c$ 为正，方向不变；若 $c$ 为负，方向反向。把一个 27.5 m、东偏北 66.0º 的路段走成三倍远，就是沿同一方向走 82.5 m，而除法就是乘以 0 到 1 之间的标量。"
+  },
+  {
+   "id": "resolving-vector",
+   "kind": "skill",
+   "section": "3.2",
+   "name": "把矢量分解为分量",
+   "statement": "我们常常需要加法的逆运算：取一个矢量，求出哪些别的矢量相加能产生它，通常是它沿相互垂直的轴（如北和东）的分量。已知总位移为 10.3 个街区、方向为东偏北 29.0º，你可以求出这趟行走向东和向北各走了多少个街区，既可以用直尺和量角器图解，也可以对各分量构成的直角三角形用解析法。"
+  },
+  {
+   "id": "angle",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "角",
+   "symbol": "θ",
+   "type": "angle",
+   "statement": "角表示两个方向之间转过的大小。在二维中，一个角（如东偏北 29.1º）给出矢量相对于参考轴的方向。"
+  },
+  {
+   "id": "vector-head",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "矢端",
+   "terms": [
+    "矢端"
+   ],
+   "statement": "矢量的矢端是它的终点，即箭头的箭尖所在的位置，也称箭尖。"
+  },
+  {
+   "id": "vector-tail",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "矢尾",
+   "terms": [
+    "矢尾"
+   ],
+   "statement": "矢量的矢尾是它的起点，位于箭头上与矢端相对的另一端。"
+  },
+  {
+   "id": "vector-magnitude",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "矢量的大小",
+   "terms": [
+    "大小"
+   ],
+   "statement": "矢量的大小是它的长度或尺寸，它是一个标量。"
+  },
+  {
+   "id": "vector-direction",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "矢量的方向",
+   "terms": [
+    "方向"
+   ],
+   "statement": "矢量的方向是它在空间中的朝向，在二维中由相对于参考轴的一个角给出。"
+  },
+  {
+   "id": "head-to-tail-method-def",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "首尾相接法",
+   "terms": [
+    "首尾相接法"
+   ],
+   "statement": "首尾相接法是一种相加矢量的方法，其中每个矢量的矢尾都放在前一个矢量的矢端处。"
+  },
+  {
+   "id": "vector-addition",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "矢量加法",
+   "terms": [
+    "矢量加法"
+   ],
+   "statement": "矢量加法是适用于把矢量相加的一套规则，给出它们的合矢量。"
+  },
+  {
+   "id": "components-from-magnitude-angle",
+   "kind": "result",
+   "section": "3.3",
+   "name": "由大小和方向求分量",
+   "statement": "如果你知道一个矢量的大小 $\\kA$ 以及它与 $x$ 轴的夹角 $\\theta$，那么它沿各轴的分量就是一个直角三角形的两条直角边，$\\kAx = \\kA\\cos\\theta$ 和 $\\kAy = \\kA\\sin\\theta$。各分矢量相加得到该矢量，但它们的大小之和并不等于该矢量的大小：向东 3 m 和向北 4 m 合成 5 m，而不是 7 m，而且任何分量都不可能大于矢量本身的大小。",
+   "forms": [
+    {
+     "id": "eq-Ax",
+     "latex": "A_x = A\\cos\\theta",
+     "ktex": "\\kAx = \\kA\\cos\\theta",
+     "anchor": "3.3-components"
+    },
+    {
+     "id": "eq-Ay",
+     "latex": "A_y = A\\sin\\theta",
+     "ktex": "\\kAy = \\kA\\sin\\theta",
+     "anchor": "3.3-components"
+    },
+    {
+     "id": "eq-vx-comp",
+     "latex": "v_x = v\\cos\\theta",
+     "ktex": "\\kvx = \\kv\\cos\\theta",
+     "section": "3.4",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-vy-comp",
+     "latex": "v_y = v\\sin\\theta",
+     "ktex": "\\kvy = \\kv\\sin\\theta",
+     "section": "3.4",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-vel-x",
+     "latex": "v_x = v\\cos\\theta",
+     "ktex": "\\kvx = \\kv\\cos\\theta",
+     "section": "3.5",
+     "anchor": "3.5-velocity-addition"
+    },
+    {
+     "id": "eq-vel-y",
+     "latex": "v_y = v\\sin\\theta",
+     "ktex": "\\kvy = \\kv\\sin\\theta",
+     "section": "3.5",
+     "anchor": "3.5-velocity-addition"
+    }
+   ]
+  },
+  {
+   "id": "magnitude-direction-from-components",
+   "kind": "result",
+   "section": "3.3",
+   "name": "由分量求大小和方向",
+   "statement": "如果你知道一个矢量的相互垂直的分量，就可以用解析法求出这个矢量。它的大小是 $\\sqrt{\\kAx^2 + \\kAy^2}$，即各分量所构成的直角三角形的勾股定理；它相对于 $x$ 轴的方向是 $\\tan^{-1}(\\kAy / \\kAx)$。对于 9 个街区和 5 个街区的分量，这给出 10.3 个街区、29.1º，正如城市中的行走那样。",
+   "forms": [
+    {
+     "id": "eq-A-magnitude",
+     "latex": "A = \\sqrt{A_x^2 + A_y^2}",
+     "ktex": "\\kA = \\sqrt{\\kAx^2 + \\kAy^2}",
+     "anchor": "3.3-resultant"
+    },
+    {
+     "id": "eq-A-direction",
+     "latex": "\\theta = \\tan^{-1}(A_y / A_x)",
+     "ktex": "\\theta = \\tan^{-1}(\\kAy / \\kAx)",
+     "anchor": "3.3-resultant"
+    },
+    {
+     "id": "eq-vel-direction",
+     "latex": "\\theta = \\tan^{-1}(v_y / v_x)",
+     "ktex": "\\theta = \\tan^{-1}(\\kvy / \\kvx)",
+     "section": "3.5",
+     "anchor": "3.5-velocity-addition"
+    }
+   ]
+  },
+  {
+   "id": "analytical-vector-addition",
+   "kind": "skill",
+   "section": "3.3",
+   "name": "用分量求矢量和",
+   "statement": "用解析法相加矢量时，先确定 $x$ 轴和 $y$ 轴，用 $\\kAx = \\kA\\cos\\theta$ 和 $\\kAy = \\kA\\sin\\theta$ 求出每个矢量的分量。把沿每个轴的分量相加，得到 $\\kRx = \\kAx + \\kBx$ 和 $\\kRy = \\kAy + \\kBy$。然后求出合矢量的大小 $\\kR = \\sqrt{\\kRx^2 + \\kRy^2}$ 和方向 $\\theta = \\tan^{-1}(\\kRy / \\kRx)$。这种方法之所以有效，是因为沿同一轴的分量像普通的数一样相加。减法完全相同，因为 $-\\mathbf{B}$ 的分量是 $\\mathbf{B}$ 的分量的相反数。解析法比图解法更简明、更准确、更精密，而图解法的准确度只取决于作图。",
+   "forms": [
+    {
+     "id": "eq-Rx",
+     "latex": "R_x = A_x + B_x",
+     "ktex": "\\kRx = \\kAx + \\kBx",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-Ry",
+     "latex": "R_y = A_y + B_y",
+     "ktex": "\\kRy = \\kAy + \\kBy",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-R-magnitude",
+     "latex": "R = \\sqrt{R_x^2 + R_y^2}",
+     "ktex": "\\kR = \\sqrt{\\kRx^2 + \\kRy^2}",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-R-direction",
+     "latex": "\\theta = \\tan^{-1}(R_y / R_x)",
+     "ktex": "\\theta = \\tan^{-1}(\\kRy / \\kRx)",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-Rx-subtraction",
+     "latex": "R_x = A_x + (-B_x),\\quad R_y = A_y + (-B_y)",
+     "ktex": "\\kRx = \\kAx + (-\\kBx),\\quad \\kRy = \\kAy + (-\\kBy)",
+     "condition": "A − B 的合矢量",
+     "anchor": "3.3-subtraction"
+    }
+   ]
+  },
+  {
+   "id": "analytical-method",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "解析法",
+   "terms": [
+    "解析法"
+   ],
+   "statement": "解析法是利用勾股定理和三角恒等式来确定合矢量的大小和方向的方法。"
+  },
+  {
+   "id": "projectile-motion",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "抛体运动",
+   "terms": [
+    "抛体运动"
+   ],
+   "statement": "抛体运动是被抛出或射入空中、只受重力加速度作用的物体的运动；该物体是抛体，它的路径是轨迹。因为重力是竖直的，所以水平运动和竖直运动相互独立。关键在于把弯曲的路径分解为无加速度的水平运动和 $\\kay = -\\kg$ 的竖直运动。空气阻力可忽略时，轨迹是一条抛物线。"
+  },
+  {
+   "id": "projectile-horizontal-motion",
+   "kind": "result",
+   "section": "3.4",
+   "name": "抛体的水平运动",
+   "statement": "空气阻力可忽略时，沿水平轴没有加速度，所以速度的水平分量保持其初值 $\\kvx = \\kvo\\cos\\theta_0$，水平位移就是 $\\kvx\\kt$。只要竖直运动使抛体留在空中，水平运动就以这一恒定速度持续下去。",
+   "forms": [
+    {
+     "id": "eq-proj-x",
+     "latex": "x = x_0 + v_x t",
+     "ktex": "\\kx = \\kxo + \\kvx\\kt",
+     "condition": "抛体的水平运动，a_x = 0",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-vx",
+     "latex": "v_x = v_{0x} = \\text{常量}",
+     "ktex": "\\kvx = \\kvox = \\text{常量}",
+     "condition": "抛体的水平运动，a_x = 0",
+     "anchor": "3.4-steps"
+    }
+   ]
+  },
+  {
+   "id": "projectile-vertical-motion",
+   "kind": "result",
+   "section": "3.4",
+   "name": "抛体的竖直运动",
+   "statement": "沿竖直轴，抛体做自由落体运动，初始竖直速度为 $\\kvoy = \\kvo\\sin\\theta_0$，所以取向上为正时，运动学方程适用，其中 $\\kay = -\\kg$：$\\kvy = \\kvoy - \\kg\\kt$，$\\ky = \\kyo + \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2$ 和 $\\kvy^2 = \\kvoy^2 - 2\\kg(\\ky - \\kyo)$。物体上升时竖直速度减小，在最高点为零，下落时又向下增大。抛体在空中的时间只由它的竖直运动决定，而时间是两种运动共有的唯一变量。",
+   "forms": [
+    {
+     "id": "eq-proj-y",
+     "latex": "y = y_0 + v_{0y}t - \\tfrac12 gt^2",
+     "ktex": "\\ky = \\kyo + \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2",
+     "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-y-avg",
+     "latex": "y = y_0 + \\tfrac12(v_{0y} + v_y)t",
+     "ktex": "\\ky = \\kyo + \\tfrac{1}{2}(\\kvoy + \\kvy)\\kt",
+     "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-vy",
+     "latex": "v_y = v_{0y} - gt",
+     "ktex": "\\kvy = \\kvoy - \\kg\\kt",
+     "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-vy2",
+     "latex": "v_y^2 = v_{0y}^2 - 2g(y - y_0)",
+     "ktex": "\\kvy^2 = \\kvoy^2 - 2\\kg(\\ky - \\kyo)",
+     "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
+     "anchor": "3.4-steps"
+    }
+   ]
+  },
+  {
+   "id": "projectile-analysis",
+   "kind": "skill",
+   "section": "3.4",
+   "name": "抛体问题的求解",
+   "statement": "分析抛体运动时，把初速度分解为沿水平轴和竖直轴的分量。把运动看作两个只靠时间联系起来的相互独立的一维运动，分别求解其中的未知量。当你想求总位移或合速度时，用 $\\ks = \\sqrt{\\kx^2 + \\ky^2}$ 和 $\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$ 以及角 $\\theta = \\tan^{-1}(\\ky / \\kx)$ 和 $\\theta_v = \\tan^{-1}(\\kvy / \\kvx)$ 把各分量重新合成。竖直方向的方程常常是关于时间的二次方程；要舍去描述发射之前某个事件的那个根。",
+   "forms": [
+    {
+     "id": "eq-v-mag",
+     "latex": "v = \\sqrt{v_x^2 + v_y^2}",
+     "ktex": "\\kv = \\sqrt{\\kvx^2 + \\kvy^2}",
+     "anchor": "3.4-recombine"
+    },
+    {
+     "id": "eq-s",
+     "latex": "s = \\sqrt{x^2 + y^2}",
+     "ktex": "\\ks = \\sqrt{\\kx^2 + \\ky^2}",
+     "anchor": "3.4-recombine"
+    },
+    {
+     "id": "eq-s-direction",
+     "latex": "\\theta = \\tan^{-1}(y / x)",
+     "ktex": "\\theta = \\tan^{-1}(\\ky / \\kx)",
+     "anchor": "3.4-recombine"
+    },
+    {
+     "id": "eq-v-direction",
+     "latex": "\\theta_v = \\tan^{-1}(v_y / v_x)",
+     "ktex": "\\theta_v = \\tan^{-1}(\\kvy / \\kvx)",
+     "anchor": "3.4-recombine"
+    }
+   ]
+  },
+  {
+   "id": "maximum-height",
+   "kind": "result",
+   "section": "3.4",
+   "name": "抛体的最大高度",
+   "type": "position",
+   "statement": "任何轨迹的最高点称为顶点，在竖直速度为零时到达，在该点求解 $\\kvy^2 = \\kvoy^2 - 2\\kg\\ky$ 得到最大高度 $\\kh = \\kvoy^2 / 2\\kg$。它只取决于初速度的竖直分量，所以任何初速度竖直分量为 67.6 m/s 的抛体都上升 233 m，无论其水平速度如何。",
+   "forms": [
+    {
+     "id": "eq-h",
+     "latex": "h = \\frac{v_{0y}^2}{2g}",
+     "ktex": "\\kh = \\frac{\\kvoy^2}{2\\kg}",
+     "condition": "空气阻力可忽略",
+     "anchor": "3.4-max-height"
+    }
+   ]
+  },
+  {
+   "id": "range",
+   "kind": "result",
+   "section": "3.4",
+   "name": "射程",
+   "terms": [
+    "射程"
+   ],
+   "type": "position",
+   "statement": "在水平地面上，射程是抛体行进的水平距离，空气阻力可忽略时 $\\kR = \\kvo^2\\sin 2\\theta_0 / \\kg$。初速率越大，射程越大。对于给定的速率，最大射程出现在45º，而其他每个角都有一个余角给出相同的射程，只是最大高度不同。射程还取决于 $\\kg$，这就是高尔夫球在月球上能飞得那么远的原因。当射程很大时，地球在抛体下方向下弯曲而去，速率足够大时，它就进入轨道。",
+   "forms": [
+    {
+     "id": "eq-range",
+     "latex": "R = \\frac{v_0^2 \\sin 2\\theta_0}{g}",
+     "ktex": "\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}",
+     "condition": "水平地面，空气阻力可忽略",
+     "anchor": "3.4-range"
+    }
+   ]
+  },
+  {
+   "id": "motion",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "运动",
+   "terms": [
+    "运动"
+   ],
+   "statement": "运动是物体的位移作为时间的函数。"
+  },
+  {
+   "id": "air-resistance",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "空气阻力",
+   "terms": [
+    "空气阻力"
+   ],
+   "statement": "空气阻力是一种摩擦力，它使物体在空气中运动时变慢。求解基础物理问题时，假定空气阻力为零。"
+  },
+  {
+   "id": "projectile",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "抛体",
+   "terms": [
+    "抛体"
+   ],
+   "statement": "抛体是在空中运动、只受重力加速度作用的物体。"
+  },
+  {
+   "id": "trajectory",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "轨迹",
+   "terms": [
+    "轨迹"
+   ],
+   "statement": "轨迹是抛体在空中的路径。"
+  },
+  {
+   "id": "relative-velocity",
+   "kind": "idea",
+   "section": "3.5",
+   "name": "相对速度",
+   "terms": [
+    "相对速度"
+   ],
+   "statement": "速度总是相对于某个参考系而言的。河上的小船或侧风中的飞机，具有相对于介质的速度，而介质具有相对于站在坚实地面上的观察者的速度。物体相对于观察者的速度是这两者的矢量和，所以小船相对于岸斜向运动，而飞机并不沿其机头所指的方向运动。在一维运动中，速度像普通的数一样相加：一名以 5 m/s 奔跑的球员以 30 m/s 击出的球，相对于守门员以 35 m/s 运动。"
+  },
+  {
+   "id": "velocity-addition",
+   "kind": "skill",
+   "section": "3.5",
+   "name": "速度的合成",
+   "statement": "速度是矢量，所以矢量加法的规则适用于它。分量为 $\\kvx = \\kv\\cos\\theta$ 和 $\\kvy = \\kv\\sin\\theta$，而 $\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$ 和 $\\theta = \\tan^{-1}(\\kvy / \\kvx)$ 还原出大小和方向。让一条坐标轴平行于其中一个速度的坐标系使数学更简单，如船头径直对着河对岸的小船。当你知道合速度时，同样的分量可以求出风或水流的未知速度。",
+   "forms": [
+    {
+     "id": "eq-vel-mag",
+     "latex": "v = \\sqrt{v_x^2 + v_y^2}",
+     "ktex": "\\kv = \\sqrt{\\kvx^2 + \\kvy^2}",
+     "anchor": "3.5-velocity-addition"
+    },
+    {
+     "id": "eq-wind-components",
+     "latex": "v_{\\text{tot}\\,x} = v_{\\text{w}x},\\quad v_{\\text{tot}\\,y} = v_{\\text{w}y} + v_{\\text{p}}",
+     "ktex": "\\kvtotx = \\kvwx,\\quad \\kvtoty = \\kvwy + \\kvp",
+     "condition": "例题 3.7 中的飞机正向北飞行，x 轴指向正东，y 轴指向正北",
+     "anchor": "3.5-ex-plane"
+    }
+   ]
+  },
+  {
+   "id": "classical-relativity",
+   "kind": "idea",
+   "section": "3.5",
+   "name": "经典相对性原理",
+   "terms": [
+    "经典相对性原理"
+   ],
+   "statement": "相对论研究的是相互之间有相对运动的观察者如何测量同一个现象。经典相对性原理由伽利略和牛顿最先正确地讨论，在速率低于光速的约 1% 时成立。从行驶中的船的桅杆上掉下的双筒望远镜，对船上的观察者是竖直下落，对岸上的观察者则沿一条曲线路径下落，然而两人都看到它落在桅杆底部的甲板上。客机中掉落的硬币，对乘客以5.42 m/s下落，对地面上的观察者则以260.06 m/s几乎水平地下落。要得到正确的描述，总要说明相对于观察者的速度。"
+  },
+  {
+   "id": "velocity",
+   "kind": "definition",
+   "section": "3.5",
+   "name": "速度",
+   "symbol": "v",
+   "terms": [
+    "速度"
+   ],
+   "type": "velocity",
+   "statement": "速度是给定方向上的速率。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "right-triangle-resultant",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "right-triangle-resultant",
+   "prereq": "vector"
+  },
+  {
+   "concept": "right-triangle-resultant",
+   "prereq": "distance-traveled"
+  },
+  {
+   "concept": "vector-components",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-components",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "independence-of-perpendicular-motions",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "independence-of-perpendicular-motions",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "independence-of-perpendicular-motions",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "vector-in-two-dimensions",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-in-two-dimensions",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "resultant-vector",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "resultant-vector",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "head-to-tail-method",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "head-to-tail-method",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-addition-commutative",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "vector-subtraction",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "scalar-multiplication",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "scalar-multiplication",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "resolving-vector",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "resolving-vector",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "components-from-magnitude-angle",
+   "prereq": "resolving-vector"
+  },
+  {
+   "concept": "components-from-magnitude-angle",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "magnitude-direction-from-components",
+   "prereq": "right-triangle-resultant"
+  },
+  {
+   "concept": "magnitude-direction-from-components",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "vector-subtraction"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "independence-of-perpendicular-motions"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "projectile-horizontal-motion",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "projectile-horizontal-motion",
+   "prereq": "x-from-vbar"
+  },
+  {
+   "concept": "projectile-horizontal-motion",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "projectile-vertical-motion",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "projectile-vertical-motion",
+   "prereq": "free-fall-kinematics"
+  },
+  {
+   "concept": "projectile-vertical-motion",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "projectile-horizontal-motion"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "projectile-vertical-motion"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "choose-equation"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "physical-solution"
+  },
+  {
+   "concept": "maximum-height",
+   "prereq": "projectile-vertical-motion"
+  },
+  {
+   "concept": "maximum-height",
+   "prereq": "free-fall-highest-point"
+  },
+  {
+   "concept": "range",
+   "prereq": "projectile-analysis"
+  },
+  {
+   "concept": "relative-velocity",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "relative-velocity",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "relative-velocity",
+   "prereq": "vector"
+  },
+  {
+   "concept": "velocity-addition",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "velocity-addition",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "classical-relativity",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "classical-relativity",
+   "prereq": "independence-of-perpendicular-motions"
+  },
+  {
+   "concept": "classical-relativity",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "motion",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "motion",
+   "prereq": "time"
+  },
+  {
+   "concept": "air-resistance",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "angle",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-head",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-tail",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-magnitude",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-magnitude",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "vector-direction",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-direction",
+   "prereq": "angle"
+  },
+  {
+   "concept": "head-to-tail-method-def",
+   "prereq": "vector-head"
+  },
+  {
+   "concept": "head-to-tail-method-def",
+   "prereq": "vector-tail"
+  },
+  {
+   "concept": "head-to-tail-method-def",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "vector-addition",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "analytical-method",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "analytical-method",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "projectile",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "trajectory",
+   "prereq": "projectile"
+  },
+  {
+   "concept": "velocity",
+   "prereq": "vector"
+  },
+  {
+   "concept": "velocity",
+   "prereq": "instantaneous-speed"
+  },
+  {
+   "concept": "head-to-tail-method",
+   "prereq": "head-to-tail-method-def"
+  },
+  {
+   "concept": "vector-addition-commutative",
+   "prereq": "vector-addition"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "vector-addition"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "projectile"
+  }
+ ]
+}

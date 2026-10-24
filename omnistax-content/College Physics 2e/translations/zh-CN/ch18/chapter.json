@@ -1,0 +1,527 @@
+{
+ "id": "18",
+ "dir": "ch18",
+ "title": "电荷与电场",
+ "intro": {
+  "module": "m42299",
+  "slug": "18-introduction-to-electric-charge-and-electric-field"
+ },
+ "sections": [
+  {
+   "id": "18.1",
+   "module": "m42300",
+   "title": "静电与电荷：电荷守恒",
+   "slug": "18-1-static-electricity-and-charge-conservation-of-charge"
+  },
+  {
+   "id": "18.2",
+   "module": "m42306",
+   "title": "导体与绝缘体",
+   "slug": "18-2-conductors-and-insulators"
+  },
+  {
+   "id": "18.3",
+   "module": "m42308",
+   "title": "库仑定律",
+   "slug": "18-3-coulombs-law"
+  },
+  {
+   "id": "18.4",
+   "module": "m42310",
+   "title": "电场：再论场的概念",
+   "slug": "18-4-electric-field-concept-of-a-field-revisited"
+  },
+  {
+   "id": "18.5",
+   "module": "m42312",
+   "title": "电场线：多个电荷",
+   "slug": "18-5-electric-field-lines-multiple-charges"
+  },
+  {
+   "id": "18.6",
+   "module": "m42315",
+   "title": "生物学中的电场力",
+   "slug": "18-6-electric-forces-in-biology"
+  },
+  {
+   "id": "18.7",
+   "module": "m42317",
+   "title": "静电平衡中的导体与电场",
+   "slug": "18-7-conductors-and-electric-fields-in-static-equilibrium"
+  },
+  {
+   "id": "18.8",
+   "module": "m42329",
+   "title": "静电学的应用",
+   "slug": "18-8-applications-of-electrostatics"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "电荷，这个物理量的正、负两种类型解释了静电的各种效应",
+   "unit": "C",
+   "section": "18.1",
+   "anchor": "18.1-electrons-and-protons"
+  },
+  {
+   "sym": "q_e",
+   "concept": "elementary-charge",
+   "type": "charge",
+   "meaning": "单个电子（或符号相反的单个质子）的电荷，是所有观察到的电荷都是其整数倍的基本单位",
+   "unit": "C",
+   "section": "18.1",
+   "anchor": "18.1-electrons-and-protons"
+  },
+  {
+   "sym": "Δm",
+   "concept": "mass",
+   "meaning": "在粒子加速器中由能量产生的质量，或物质与反物质湮没时转化为能量的质量",
+   "unit": "kg",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "E",
+   "concept": "rest-energy",
+   "meaning": "转化为所产生的粒子对的质量的能量，或粒子对湮没时释放的能量",
+   "unit": "J",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速",
+   "unit": "m/s",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "m_e",
+   "concept": "electron-mass",
+   "meaning": "电子的质量",
+   "unit": "kg",
+   "section": "18.1",
+   "anchor": "18.1-pair-creation"
+  },
+  {
+   "sym": "q_tot",
+   "concept": "electric-charge",
+   "meaning": "事件之前、之中和之后粒子的总电荷",
+   "unit": "C",
+   "section": "18.1"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "两个点电荷之间静电力（库仑力）的大小",
+   "unit": "N",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "q_1",
+   "concept": "electric-charge",
+   "meaning": "两个点电荷中的第一个",
+   "unit": "C",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force",
+   "ref": "charge-1"
+  },
+  {
+   "sym": "q_2",
+   "concept": "electric-charge",
+   "meaning": "两个点电荷中的第二个",
+   "unit": "C",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force",
+   "ref": "charge-2"
+  },
+  {
+   "sym": "r",
+   "concept": "distance",
+   "meaning": "两个点电荷之间的距离",
+   "unit": "m",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "k_coul",
+   "concept": "coulomb-constant",
+   "meaning": "库仑常量，8.99 × 10⁹ N·m²/C²",
+   "unit": "N·m²/C²",
+   "section": "18.3",
+   "anchor": "18.3-electrostatic-force"
+  },
+  {
+   "sym": "F_G",
+   "concept": "universal-gravitation",
+   "type": "force",
+   "meaning": "两个质量之间的引力，来自牛顿万有引力定律",
+   "unit": "N",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "G",
+   "concept": "gravitational-constant",
+   "meaning": "引力常量，6.67 × 10⁻¹¹ N·m²/kg²",
+   "unit": "N·m²/kg²",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "例题 18.1 中电子的质量",
+   "unit": "kg",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "例题 18.1 中质子的质量",
+   "unit": "kg",
+   "section": "18.3",
+   "anchor": "18.3-against-gravity"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "电场，库仑力与它所作用的正检验电荷之比",
+   "unit": "N/C",
+   "section": "18.4",
+   "anchor": "18.4-electric-field-defined"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "施加在检验电荷上的静电力或库仑力",
+   "unit": "N",
+   "section": "18.4",
+   "anchor": "18.4-electric-field-defined"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "检验电荷，小到不会改变产生场的电荷分布的电荷",
+   "unit": "C",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field"
+  },
+  {
+   "sym": "Q_charge",
+   "concept": "electric-charge",
+   "meaning": "点电荷，产生电场的电荷",
+   "unit": "C",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field"
+  },
+  {
+   "sym": "r",
+   "concept": "distance",
+   "meaning": "从点电荷到求场的点的距离",
+   "unit": "m",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "电场，一个用箭头或连续的场线画出的矢量",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-field-lines"
+  },
+  {
+   "sym": "E_field1",
+   "concept": "electric-field",
+   "meaning": "电荷 q₁ 在某点产生的电场",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields",
+   "ref": "charge-1"
+  },
+  {
+   "sym": "E_field2",
+   "concept": "electric-field",
+   "meaning": "电荷 q₂ 在同一点产生的电场",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields",
+   "ref": "charge-2"
+  },
+  {
+   "sym": "E_tot",
+   "concept": "electric-field",
+   "meaning": "某点的合电场，各个电荷的场的矢量和",
+   "unit": "N/C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "q_1",
+   "concept": "electric-charge",
+   "meaning": "其场被相加的两个点电荷中的第一个",
+   "unit": "C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields",
+   "ref": "charge-1"
+  },
+  {
+   "sym": "q_2",
+   "concept": "electric-charge",
+   "meaning": "其场被相加的两个点电荷中的第二个",
+   "unit": "C",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields",
+   "ref": "charge-2"
+  },
+  {
+   "sym": "r_1",
+   "concept": "distance",
+   "meaning": "从 q₁ 到求场的点的距离",
+   "unit": "m",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields",
+   "ref": "charge-1"
+  },
+  {
+   "sym": "r_2",
+   "concept": "distance",
+   "meaning": "从 q₂ 到求场的点的距离",
+   "unit": "m",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields",
+   "ref": "charge-2"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "合电场的方向，从轴线量起",
+   "unit": "°",
+   "section": "18.5",
+   "anchor": "18.5-adding-fields"
+  },
+  {
+   "sym": "q_e",
+   "concept": "elementary-charge",
+   "type": "charge",
+   "meaning": "元电荷；DNA 每 0.3 nm 带有约两个元电荷",
+   "unit": "C",
+   "section": "18.6",
+   "anchor": "18.6-charged-molecules"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "加在导体上的电场，或带电导体的场",
+   "unit": "N/C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "E_par",
+   "concept": "electric-field",
+   "meaning": "电场平行于导体表面的分量，它使自由电荷移动，直到它为零",
+   "unit": "N/C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "E_perp",
+   "concept": "electric-field",
+   "meaning": "电场垂直于导体表面的分量",
+   "unit": "N/C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "F_par",
+   "concept": "force",
+   "meaning": "场的平行分量对导体中自由电荷施加的力",
+   "unit": "N",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "导体中的自由电荷，或本节思考题和习题中正方形中心处的电荷",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-free-charges-and-equilibrium"
+  },
+  {
+   "sym": "q_a",
+   "concept": "electric-charge",
+   "meaning": "正方形一个角上的电荷",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges",
+   "ref": "charge-a"
+  },
+  {
+   "sym": "q_b",
+   "concept": "electric-charge",
+   "meaning": "正方形第二个角上的电荷",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges",
+   "ref": "charge-b"
+  },
+  {
+   "sym": "q_c",
+   "concept": "electric-charge",
+   "meaning": "正方形第三个角上的电荷",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges",
+   "ref": "charge-c"
+  },
+  {
+   "sym": "q_d",
+   "concept": "electric-charge",
+   "meaning": "正方形第四个角上的电荷",
+   "unit": "C",
+   "section": "18.7",
+   "anchor": "18.7-four-charges",
+   "ref": "charge-d"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "带电汽油滴的重力",
+   "unit": "N",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "带电液滴的质量",
+   "unit": "kg",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "场中带电液滴所受的电场力",
+   "unit": "N",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "液滴上的电荷",
+   "unit": "C",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "由附近其他静电产生的向上的电场",
+   "unit": "N/C",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "F_net",
+   "concept": "force",
+   "meaning": "液滴所受的合力，即电场力减去重力",
+   "unit": "N",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "由牛顿第二定律得出的液滴的加速度",
+   "unit": "m/s²",
+   "section": "18.8",
+   "anchor": "18.8-integrated-concepts"
+  },
+  {
+   "sym": "q_1",
+   "concept": "electric-charge",
+   "meaning": "放在电荷 Q 附近的第一个检验电荷",
+   "unit": "C",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field",
+   "ref": "test-1"
+  },
+  {
+   "sym": "q_2",
+   "concept": "electric-charge",
+   "meaning": "放在离 Q 同样距离处的第二个检验电荷",
+   "unit": "C",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field",
+   "ref": "test-2"
+  },
+  {
+   "sym": "F_1",
+   "concept": "force",
+   "meaning": "第一个检验电荷所受的库仑力",
+   "unit": "N",
+   "section": "18.4",
+   "anchor": "18.4-concept-of-a-field",
+   "ref": "test-1"
+  },
+  {
+   "sym": "r",
+   "concept": "distance",
+   "meaning": "两个电荷之间的距离，库仑力随这个距离的平方而减小",
+   "unit": "m",
+   "section": "18.6",
+   "anchor": "18.6-charged-molecules"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "两个电荷之间的库仑力",
+   "unit": "N",
+   "section": "18.6",
+   "anchor": "18.6-charged-molecules"
+  },
+  {
+   "sym": "r",
+   "concept": "distance",
+   "meaning": "探针到带电球球心的距离",
+   "unit": "m",
+   "section": "18.7",
+   "anchor": "18.7-polarized-conductor"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "导体一端上一对相同电荷之间的力",
+   "unit": "N",
+   "section": "18.7",
+   "anchor": "18.7-uneven-surfaces"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "表面上一个电荷所受的力与表面之间的夹角",
+   "unit": "°",
+   "section": "18.7",
+   "anchor": "18.7-uneven-surfaces",
+   "redefines": true
+  },
+  {
+   "sym": "r",
+   "concept": "distance",
+   "meaning": "范德格拉夫球的半径，即从球心到其表面的距离",
+   "unit": "m",
+   "section": "18.8",
+   "anchor": "18.8-van-de-graaff"
+  }
+ ]
+}

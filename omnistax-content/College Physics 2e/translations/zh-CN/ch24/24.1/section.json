@@ -1,0 +1,252 @@
+{
+ "id": "24.1",
+ "module": "m42437",
+ "chapter": "24",
+ "title": "麦克斯韦方程组：电磁波的预言与观测",
+ "short": "麦克斯韦方程组",
+ "lead": "本章的一切都建立在四条表述之上，它们是詹姆斯·克拉克·麦克斯韦从奥斯特、库仑、高斯和法拉第的工作中汇集而成的，此外还有他加在其上的一个关于变化的<span data-concept=\"electric-field\">电场</span>的假说。本节解读这四个方程，沿着麦克斯韦由它们作出的预言往下讲，然后转向海因里希·赫兹，他搭建了检验这一预言的装置。",
+ "objectives": [
+  "复述麦克斯韦方程组。"
+ ],
+ "summary_html": "<ul><li>电磁波由振荡的电场和<span data-concept=\"magnetic-field\">磁场</span>构成，以<span data-concept=\"speed-of-light-in-vacuum\">光速</span> $\\kc$ 传播。它们是由麦克斯韦预言的，他还证明了 $$\\kc = \\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}},$$ 其中 $\\mu_0$ 是真空磁导率，$\\varepsilon_0$ 是真空电容率。</li><li>麦克斯韦对电磁波的预言，源于他提出的一套完整而对称的电学和磁学理论，即麦克斯韦方程组。</li><li>这四个方程在本教材中是用文字转述的，而不是以数学形式给出，它们涵盖了电学和磁学的主要定律。第一个是电学的高斯定律，第二个是磁学的高斯定律，第三个是法拉第电磁感应定律，其中包括楞次定律，第四个是对称形式的安培环路定理，它增添了磁的另一个来源——变化的<span data-concept=\"electric-field\">电场</span>。</li></ul>",
+ "notes": "书中没有给出答案的两道习题被略去：一道要求由真空磁导率和真空电容率验证光速的值，另一道要求证明同一表达式的单位是 m/s。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "本节有两道习题，没有思考题，没有 AP 题，也没有理解检测栏目，而书中对这两道习题都没有给出答案，因而都未设置：一道要求由 $\\mu_0$ 和 $\\varepsilon_0$ 验证 $\\kc$ 的值，另一道要求验证同一方程右边的单位是 m/s。答案取自书后答案，从不在此处计算，因此本节引入的五个概念，由 24.2 和 24.3 中以它们为基础的习题再次涉及。",
+ "figures": [
+  {
+   "id": "photo-maxwell",
+   "kind": "photo",
+   "number": "24.3",
+   "widths": [
+    175
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-maxwell-four",
+   "kind": "sim",
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "velocity",
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes cut; magnet label off the lines, loops clear the corners"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hertz",
+   "kind": "sim",
+   "number": "24.4",
+   "originals": [
+    "/media/ch24/Figure_25_01_02a.jpg"
+   ],
+   "original_caption": "赫兹在 1887 年用来产生和探测电磁波的装置。与第一个线圈相连的 $\\text{RLC}$ 电路使金属丝圈的间隙处产生火花，并产生了电磁波。位于实验室另一头的第二个线圈的间隙处出现的火花，表明波已被接收。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "electric-field",
+    "magnetic-field",
+    "position",
+    "velocity",
+    "frequency",
+    "inductance",
+    "capacitance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut and set through macros; λ label off drop lines"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "maxwell",
+   "concept": "maxwells-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "symmetry",
+   "concept": "changing-fields-generate-each-other",
+   "verb": "introduces"
+  },
+  {
+   "span": "symmetry",
+   "concept": "maxwells-equations",
+   "verb": "reinforces"
+  },
+  {
+   "span": "prediction",
+   "concept": "speed-of-light-from-constants",
+   "verb": "introduces"
+  },
+  {
+   "span": "prediction",
+   "concept": "light-is-an-electromagnetic-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "prediction",
+   "concept": "changing-fields-generate-each-other",
+   "verb": "uses"
+  },
+  {
+   "span": "prediction",
+   "concept": "electromagnetic-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "hertz",
+   "concept": "hertz-observations",
+   "verb": "introduces"
+  },
+  {
+   "span": "hertz",
+   "concept": "speed-of-light-from-constants",
+   "verb": "uses"
+  },
+  {
+   "span": "hertz",
+   "concept": "light-is-an-electromagnetic-wave",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hertz",
+   "concept": "hertz",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "magnet",
+   "label": "条形磁铁",
+   "figures": [
+    "sim-maxwell-four"
+   ]
+  },
+  {
+   "id": "loop",
+   "label": "磁场穿过的金属丝圈",
+   "figures": [
+    "sim-maxwell-four"
+   ]
+  },
+  {
+   "id": "circuit-1",
+   "label": "驱动发射线圈的 RLC 电路",
+   "figures": [
+    "sim-hertz"
+   ]
+  },
+  {
+   "id": "loop-1",
+   "label": "发射线圈",
+   "figures": [
+    "sim-hertz"
+   ]
+  },
+  {
+   "id": "loop-2",
+   "label": "实验室另一头的接收线圈",
+   "figures": [
+    "sim-hertz"
+   ]
+  },
+  {
+   "id": "circuit-2",
+   "label": "接收线圈的可调谐 RLC 电路",
+   "figures": [
+    "sim-hertz"
+   ]
+  }
+ ]
+}

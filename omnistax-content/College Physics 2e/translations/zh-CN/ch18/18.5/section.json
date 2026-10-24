@@ -1,0 +1,806 @@
+{
+ "id": "18.5",
+ "module": "m42312",
+ "chapter": "18",
+ "title": "电场线：多个电荷",
+ "short": "电场线",
+ "lead": "<span data-concept=\"electric-field\">电场</span>在空间的每一点都是一个矢量，场线把它完整地画了出来。几个电荷的场在一点处按矢量相加，就像<span data-ref=\"charge-1 charge-2\">两个成直角放置的电荷</span>那样，而场线则显示出一对同号或异号电荷的场是什么形状，以及每一幅这样的图都要遵守什么规则。",
+ "objectives": [
+  "计算多个电荷对检验电荷所施加的合力（大小和方向）",
+  "描述正点电荷的电场图；描述大小为正电荷两倍的负点电荷的电场图",
+  "画出带相同电荷的两点之间的电场线；画出带相反电荷的两点之间的电场线。"
+ ],
+ "summary_html": "<ul><li>电场线图是有用的直观工具。对于任意电荷分布，电场线的性质如下：<ul><li>场线必须始于正电荷、止于负电荷，或者在孤立电荷的假想情形下止于无穷远。</li><li>离开正电荷或进入负电荷的场线条数，与电荷的大小成正比。</li><li>场的强弱与场线的密集程度成正比——更确切地说，它与垂直于线条的单位<span data-concept=\"area\">面积</span>上的线条数成正比。</li><li>电场的方向在空间任一点处与该点的场线相切。</li><li>场线绝不会相交。</li></ul></li></ul>",
+ "notes": "PhET 模拟“电荷与电场”被略去了。书中没有给出本节四道习题的答案，其中两道被略去：在很远处画出图 18.23 中两种电荷分布的草图，以及画出负电荷是正电荷三倍的两个异号电荷的草图。库仑定律用间距 r 书写，r 是第 5 章中未标类型的符号，到原点的距离 r₁ 和 r₂ 也出于同样的原因以普通方式书写。正文把例题 18.4 的合矢量读作在 x 轴上方 63.4°，而图 18.21 把它画在第二象限；书中的文字和书中的箭头都予以保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案来自书后答案。四道 AP 题中有两道给出了答案：物体 W 对物体 Z 施加的力设为判分选择题，关于三个物体 R、S 和 T 的那道题附有书中自己的四部分答案及其图。另外两道没有答案的 AP 题是开放题，选项按书中印刷的样子给出，并附有一个由 AI 撰写并如此标注的建议思路。两道思考题同样附有一个由 AI 撰写的建议思路。书中没有给出本节任何习题的答案，因此这里保留的两道是开放题，答案是读者自己画出的图。书在第 18.3 节布置的两道习题需要求两个库仑力的矢量和，这正是本节的第一个目标：有答案的那道，即第三个电荷在何处所受合力为零，放在这里并记录了它的出处；没有答案的那道，即检验电荷位于两个电荷正中间，则被略去。",
+ "figures": [
+  {
+   "id": "sim-one-charge",
+   "kind": "sim",
+   "number": "18.19",
+   "folds": [
+    "18.20"
+   ],
+   "originals": [
+    "/media/ch18/Figure_19_05_02a.jpg",
+    "/media/ch18/Figure_19_05_03a.jpg"
+   ],
+   "original_caption": "（图 18.19）正电荷 $Q$ 所产生电场的两种等价表示。（a）用箭头表示电场的大小和方向。（b）在标准画法中，箭头被连续的场线取代，场线在任一点处的方向都与该点的电场方向相同。线条的密集程度与电场的强弱直接相关。放在任何位置的检验电荷都会受到沿场线方向的力；这个力的大小与线条的密度成正比（例如，在电荷附近更大）。（图 18.20）三个不同点电荷周围的电场。（a）一个正电荷。（b）一个大小相等的负电荷。（c）一个更大的负电荷。",
+   "widths": [
+    300,
+    325
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "arrow rings staggered so arrows never overlap; label panels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-adding-fields",
+   "kind": "sim",
+   "number": "18.21",
+   "originals": [
+    "/media/ch18/Figure_19_05_04a.jpg"
+   ],
+   "original_caption": "原点 O 处的电场 ${\\text{E}}_{1}$ 和 ${\\text{E}}_{2}$ 相加得到 ${\\text{E}}_{\\text{tot}}$。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "tick names over the arrows; Etot label clear of E2; note in macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-charges",
+   "kind": "sim",
+   "number": "18.22",
+   "folds": [
+    "18.23"
+   ],
+   "originals": [
+    "/media/ch18/Figure_19_05_05a.jpg",
+    "/media/ch18/Figure_19_05_06a.jpg"
+   ],
+   "original_caption": "（图 18.22）两个正点电荷 ${q}_{1}$ 和 ${q}_{2}$ 产生图中所示的合电场。先在有代表性的点处计算场，再按正文中概括的规则画出光滑的场线。（图 18.23）（a）两个负电荷产生图中所示的场。它与两个正电荷产生的场非常相似，只是方向相反。两电荷之间的场明显较弱。检验电荷在该区域内所受的各个力方向相反。（b）两个异号电荷产生图中所示的场，两电荷之间的区域内场较强。",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout adds the two fields at the midpoint; label panels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-square-wxyz",
+   "kind": "figure",
+   "originals": [
+    "/media/ch18/image022.jpg"
+   ],
+   "original_caption": "图中是一个带有四个点的虚线正方形。点 w 在左上角，x 在上边中部，y 在右上角，z 在下边中部。右侧有一条双向箭头的竖线，指向与网格上下边缘齐平的两条短横线。",
+   "draws": [
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "square moved down clear of the headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-three-objects",
+   "kind": "figure",
+   "originals": [
+    "/media/ch18/image025.jpg"
+   ],
+   "original_caption": "有三个带电体的电场。",
+   "draws": [
+    "charge",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "field-lines",
+   "concept": "electric-field-lines",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-lines",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "field-lines",
+   "concept": "field-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "field-lines",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "field-lines",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "superposition-of-electric-fields",
+   "verb": "introduces"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "add-electric-fields",
+   "verb": "introduces"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "superposition-of-coulomb-forces",
+   "verb": "introduces"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "field-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "adding-fields",
+   "concept": "electric-field-lines",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-charges",
+   "concept": "field-of-two-charges",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-charges",
+   "concept": "superposition-of-electric-fields",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-charges",
+   "concept": "like-charges-repel",
+   "verb": "uses"
+  },
+  {
+   "span": "two-charges",
+   "concept": "electric-field-lines",
+   "verb": "reinforces"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "field-line-properties",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "sketch-field-lines",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "field-line-rules",
+   "concept": "field-of-two-charges",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "superposition-of-coulomb-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "field-of-two-charges",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2679234",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-line-rules",
+   "prompt": "比较并对照库仑力场和电场。为此，请列出库仑力场的五条性质，与所列出的电场线的五条性质相对应。把你列出的库仑力场的每一条性质与电场的相应性质逐一比较——它们是相同还是不同？（例如，电场线不能相交。库仑场线也是如此吗？）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不画场，而是画出检验电荷 $q$ 在每一点所受的力，这时的图看上去一样，说的却是另一回事。这五条性质变成下面这样。力场线始于正电荷、止于负电荷，或者止于无穷远，与场线完全一样。不过它们从哪一端开始取决于检验电荷的正负，所以负的检验电荷会使每一条线反向。离开一个电荷的线条数与该电荷的大小成正比，这一点和以前一样。它还与检验电荷的大小成正比，所以换一个不同的 $q$，就必须把整幅图重画一遍。线条的密集程度与力的强弱成正比，正如它曾与场的强弱成正比一样。力的方向在每一点处与线相切，场的方向也是如此。力场线同样不能相交，因为一点处的合力是单个矢量，否则它就会同时有两个方向。第一条和第二条性质带来了关键的差别。电场只是产生它的那些电荷的性质，与别的什么都无关，而库仑力场则取决于你所选的检验电荷。这就是电场为什么是更有用的图，也是定义 $E = F/q$ 为什么值得的原因。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3034762",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_05_07a.jpg",
+    "alt": "图中画出五条场线，用从左向右的长箭头表示。两条箭头向外发散，另外三条中，一条箭头笔直向右，两条箭头突然终止。"
+   },
+   "prompt": "图中显示的电场延伸到标为 I、II 和 III 的三个区域。回答下列问题。（a）是否有孤立电荷？如果有，它们在哪个区域，各是什么正负？（b）场在哪里最强？（c）在哪里最弱？（d）场在哪里最均匀？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）有。场线始于正电荷、止于负电荷，所以凡是有一条线开始或终止的地方就有电荷。区域 III 中有两条线突然终止，所以那里有负电荷；区域 I 中向外发散的两条线始于区域 I 中的正电荷。（b）在区域 II，那里五条线靠得最近，因为场的强弱与线的密集程度成正比。（c）在区域 I 中间的上方和下方，那里发散的线相距最远。（d）在区域 II，那里的线相互平行、间距均匀，这正是匀强电场的样子：每一点的方向相同，密集程度也相同。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1522982",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding-fields",
+   "figure": {
+    "src": "/media/ch18/image016.jpg",
+    "alt": "三个点电荷的排布：-2q 和 +2q 位于上方的两个角，-q 位于下方，构成三角形的布局。"
+   },
+   "prompt": "上图所示是一个电偶极子（两个电荷分别为 +2<em>q</em> 和 –2<em>q</em>）。第三个电荷 −<em>q</em> 放在与偶极子两个电荷等距的位置。作用在第三个电荷上的合力的方向是什么？<ol type=\"a\"><li>→</li><li>←</li><li>↓</li><li>↑</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "合力指向右，即选项（a）。第三个电荷是负的，所以右上方的 $+2q$ 电荷吸引它，把它向上并向右拉，而左上方的 $-2q$ 电荷排斥它，把它向下并向右推。第三个电荷与这两个电荷等距，而且两个电荷的大小相等，所以根据库仑定律，这两个力大小相等，并且与竖直方向成相等的角。合力是它们的矢量和：竖直分量一个向上、一个向下，相互抵消，水平分量都向右，相加。因此合力是水平的，方向由偶极子的负电荷指向正电荷。这与偶极子在该点的电场方向相反，对于负电荷来说本该如此，因为那里的电场由 $+2q$ 指向 $-2q$。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1532965",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "figure": {
+    "src": "/media/ch18/image022.jpg",
+    "alt": "图中是一个带有四个点的虚线正方形。点 w 在左上角，x 在上边中部，y 在右上角，z 在下边中部。右侧有一条双向箭头的竖线，指向与网格上下边缘齐平的两条短横线。"
+   },
+   "prompt": "四个物体各带电荷 +<em>q</em>，固定在边长为 <em>d</em> 的正方形上，如图所示。物体 <em>X</em> 和 <em>Z</em> 位于正方形各边的中点。物体 <em>W</em> 对物体 <em>X</em> 施加的静电力为 <em>F</em>。利用这一信息回答第 39–40 题。<br>物体 <em>W</em> 对 <em>Z</em> 施加的力的大小是多少？<ol type=\"a\"><li><em>F</em>/7</li><li><em>F</em>/5</li><li><em>F</em>/3</li><li><em>F</em>/2</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "<em>F</em>/7",
+     "<em>F</em>/5",
+     "<em>F</em>/3",
+     "<em>F</em>/2"
+    ],
+    "correct": 1,
+    "hint": "库仑定律中的力与间距的平方成反比，所以要比较 W 到 Z 的距离与 W 到 X 的距离。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2015726",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "prompt": "四个物体各带电荷 +<em>q</em>，固定在边长为 <em>d</em> 的正方形上，物体 <em>X</em> 和 <em>Z</em> 位于正方形各边的中点，物体 <em>W</em> 对物体 <em>X</em> 施加的静电力为 <em>F</em>。物体 <em>W</em>、<em>Y</em> 和 <em>Z</em> 对物体 <em>X</em> 施加的合力的大小是多少？<ol type=\"a\"><li><em>F</em>/4</li><li><em>F</em>/2</li><li>9<em>F</em>/4</li><li>3<em>F</em></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "合力的大小为 <em>F</em>/4，即选项（a）。<em>X</em> 所受的合力是作用在它上面的三个力的矢量和。<em>W</em> 和 <em>Y</em> 位于上方的两个角，各沿上边与 <em>X</em> 相距 <em>d</em>/2，且带有相同的电荷，所以各以大小为 <em>F</em> 的力推 <em>X</em>，一个向右、一个向左，二者恰好抵消。剩下的是 <em>Z</em> 的力，<em>Z</em> 位于下边的中点，在 <em>X</em> 的正下方，相距 <em>d</em>。根据库仑定律，力按 $1/r^2$ 变化，<em>Z</em> 到 <em>X</em> 的距离是 <em>W</em> 到 <em>X</em> 的两倍，所以它的力是 $F/2^2 = F/4$，方向笔直向上，背离 <em>Z</em>。因此 <em>X</em> 所受的合力为 $F/4$。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id953643",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exercise-figures",
+   "figure": {
+    "src": "/media/ch18/image025.jpg",
+    "alt": "图中有一条水平的 x 线和一条竖直的 y 线，在各自的中心处相交，交点标为 0。一个白色的大圆圈似乎使以 0 为中心的短划线发生弯曲，标为 S。水平线左侧中部有一个被白色圆圈围住的点，线上方标为 R，线下方标为 -d。水平线右侧中部有一个点，也被白色圆圈围住，线上方在该点处标为 T，线下方在该点周围标为 d。整个网格中布满了均匀而密集的短划线，只有两个小圆圈 R 和 T 以及较大的圆圈 S 所在之处除外。短划线似乎被从每个圆圈的中心推开，线条呈现出椭圆形的图样，R 和 T 位于椭圆的右边缘和左边缘。",
+    "caption": "有三个带电体的电场。"
+   },
+   "prompt": "上图表示三个带电小物体 <em>R</em>、<em>S</em> 和 <em>T</em> 附近的电场。这三个物体的电荷分别为 −<em>q</em>、+2<em>q</em> 和 −<em>q</em>，位于 <em>x</em> 轴上的 −<em>d</em>、0 和 <em>d</em> 处。为清晰起见，大小很大的场矢量被省略了。<br>（a）i）简要说明场图的哪些特征表明物体 <em>R</em> 和 <em>T</em> 的电荷为负，物体 <em>S</em> 的电荷为正。<br>ii）简要说明场图的哪些特征表明物体 <em>R</em> 和 <em>T</em> 的电荷大小相等，而物体 <em>S</em> 的电荷大小约为物体 <em>R</em> 和 <em>T</em> 的两倍。<br>对于以下各部分，规定向右的电场为正。<br>（b）在下面的坐标轴上，画出电场 <em>E</em> 沿 <em>x</em> 轴随位置 <em>x</em> 变化的图像。<figure class=\"photo\"><img src=\"/media/ch18/image026.jpg\" alt=\"图的中央有一个向上的箭头，箭头上方标为 E。一条带刻度的水平线与 E 线垂直平分，交点标为 0。水平线右侧标为 X。–d 出现在 x 线下方，在 0 左侧约 2/3 长度处，d 出现在 0 右侧约 2/3 长度处。\"><figcaption>电场（E）轴和位置（x）轴。</figcaption></figure>（c）写出在物体 <em>S</em> 和 <em>T</em> 之间的区域内，电场 <em>E</em> 沿 <em>x</em> 轴随位置 <em>x</em> 变化的表达式，酌情用 <em>q</em>、<em>d</em> 和基本常量表示。<br>（d）你的同学告诉你，<em>S</em> 和 <em>T</em> 之间有一个点的电场为零。判断这一说法是否正确，并利用（a）、（b）或（c）各部分中的两种表示来解释你的理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）i）物体附近的场矢量指向带负电的物体，背离带正电的物体。<br>（a）ii）最靠近 <em>R</em> 和 <em>T</em> 的矢量长度大致相同，起始位置距离大致相同。我们有 ${q}_{R}/{d}^{2}={q}_{T}/{d}^{2}$，所以 <em>R</em> 上的电荷与 <em>T</em> 上的大致相同。最靠近 <em>S</em> 的矢量与 <em>R</em> 和 <em>T</em> 周围的矢量长度大致相同。<em>S</em> 附近的矢量起始于约 6 个单位远处，而 <em>R</em> 和 <em>T</em> 附近的矢量起始于约 4 个单位远处。我们有 ${q}_{R}/{d}^{2}={q}_{S}/{D}^{2}$，所以 ${q}_{S}/{q}_{R}={D}^{2}/{d}^{2}=36/16=2.25$，因此 <em>S</em> 上的电荷约为 <em>R</em> 和 <em>T</em> 上的两倍。<br>（b）<figure class=\"photo\"><img src=\"/media/ch18/image034.jpg\" alt=\"一条水平线把图分成上下两半。三条等间距的竖线把水平线平分。这些线把图分成八个部分，其中上方的第一和第三部分有曲线。下方的第二和第四部分也有曲线。\"><figcaption>矢量图。</figcaption></figure>（c）$E=k\\left[-\\frac{q}{{(d+x)}^{2}}+\\frac{2q}{{x}^{2}}+\\frac{q}{{(d-x)}^{2}}\\right]$<br>（d）这一说法不正确。矢量图显示，这一区域内的场矢量长度不为零，而未画出的矢量长度更大。（c）中的方程表明，当 $0<x<d$ 时，负项的分母总是大于第三项的分母，但分子相同。所以负项的大小总是小于第三项，而由于第二项为正，各项之和总是正的。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1368682",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-line-rules",
+   "prompt": "（a）画出点电荷 $+\\kq$ 附近的电场线。（b）对点电荷 $-3.00\\kq$ 也这样画。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "根据这五条性质画出两幅图。（a）从电荷向各个方向画出等间距的直线，每条线上的箭头都背离电荷，因为电场线始于正电荷。条数随你，比如八条，并保持间距均匀，这样线条的密集程度就会像电场一样随距离减小。（b）画出指向电荷的线，因为电荷是负的，而电场线止于负电荷。画的条数是（a）中的三倍，因为线条的条数与电荷的大小成正比。本题上方的图画的正是这两幅图：先把电荷设为 $+q$，再设为 $-3q$，然后比较。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1994588",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-charges",
+   "figure": {
+    "src": "/media/ch18/Figure_19_05_08a.jpg",
+    "alt": "图中用曲线表示一个正电荷和一个负电荷之间的场线",
+    "caption": "两个电荷附近的电场。"
+   },
+   "prompt": "图中画出了两个电荷 ${q}_{1}$ 和 ${q}_{2}$ 附近的电场线。它们的大小之比是多少？（b）画出离图中所示电荷很远处的电场线。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）正电荷的大小约为负电荷的两倍，比值约为 2 比 1。离开或进入一个电荷的线条数与它的大小成正比。左边的正电荷发出约两打线，其中约一打终止于右边的负电荷，所以 $|{q}_{+}|/|{q}_{-}| \\approx 24/12 = 2$。（b）每一条终止于负电荷的线都始于正电荷，因此另外约一打线离开这一对电荷，延伸到无穷远。在很远处，与距离相比，这两个电荷靠得非常近，所以只有它们的总电荷起作用，而这个总电荷是正的，大小约等于负电荷的大小，也就是正电荷的一半。因此远处的场就是单个正点电荷的场：画出约一打等间距的直线，从这一对电荷所在的位置向外辐射，箭头指向外。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2622925",
+   "source_section": "18.3",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding-fields",
+   "prompt": "点电荷 $5.00\\ \\mu\\text{C}$ 和 $-3.00\\ \\mu\\text{C}$ 相距 0.250 m。（a）第三个电荷放在何处，才能使它所受的合力为零？（b）如果两个电荷都是正的，结果如何？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.859,
+      "unit": "m beyond the negative charge, on the line joining the two charges",
+      "hint": "合力为零的地方，是两个库仑力大小相等、方向相反之处。对于异号电荷，这个点在这一对电荷之外，位于较小电荷的外侧。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.109,
+      "unit": "m from the lesser charge, on the line joining the two charges",
+      "hint": "对于两个同号电荷，这个点位于它们之间，靠近较小的电荷；令 $k|q_1|/r_1^2 = k|q_2|/r_2^2$，并且 $r_1 + r_2 = 0.250$ m。"
+     }
+    ],
+    "solution": "（a）在两个电荷的连线上，位于负电荷外侧 0.859 m 处（b）在两个电荷的连线上，距较小的电荷 0.109 m 处"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "electric-field-lines"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-field"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "field-line-properties",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-line-properties"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electric-field-lines"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-of-two-charges",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "head-to-tail-method",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coulombs-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "superposition-of-coulomb-forces",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "head-to-tail-method",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "field-of-two-charges"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "superposition-of-electric-fields"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electric-field-lines",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "field-of-point-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sketch-field-lines"
+  },
+  {
+   "exercise": "p1",
+   "concept": "field-line-properties",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "sketch-field-lines"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-line-properties"
+  },
+  {
+   "exercise": "p2",
+   "concept": "field-of-two-charges",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "superposition-of-coulomb-forces"
+  },
+  {
+   "exercise": "p3",
+   "concept": "coulombs-law",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "point-charge",
+   "label": "画出其电场的那个点电荷 Q",
+   "figures": [
+    "sim-one-charge"
+   ]
+  },
+  {
+   "id": "charge-1",
+   "label": "例题 18.4 中位于 y 轴上的电荷 q₁",
+   "figures": [
+    "sim-adding-fields"
+   ]
+  },
+  {
+   "id": "charge-2",
+   "label": "例题 18.4 中位于 x 轴上的电荷 q₂",
+   "figures": [
+    "sim-adding-fields"
+   ]
+  },
+  {
+   "id": "first-charge",
+   "label": "画出其电场的两个点电荷中的第一个，q₁",
+   "figures": [
+    "sim-two-charges"
+   ]
+  },
+  {
+   "id": "second-charge",
+   "label": "画出其电场的两个点电荷中的第二个，q₂",
+   "figures": [
+    "sim-two-charges"
+   ]
+  },
+  {
+   "id": "object-w",
+   "label": "物体 W，位于正方形的一个上角",
+   "figures": [
+    "fig-square-wxyz",
+    "fig-three-objects"
+   ]
+  },
+  {
+   "id": "object-x",
+   "label": "物体 X，位于上边的中点",
+   "figures": [
+    "fig-square-wxyz",
+    "fig-three-objects"
+   ]
+  },
+  {
+   "id": "object-y",
+   "label": "物体 Y，位于另一个上角",
+   "figures": [
+    "fig-square-wxyz",
+    "fig-three-objects"
+   ]
+  },
+  {
+   "id": "object-z",
+   "label": "物体 Z，位于下边的中点",
+   "figures": [
+    "fig-square-wxyz",
+    "fig-three-objects"
+   ]
+  },
+  {
+   "id": "object-r",
+   "label": "物体 R，电荷为 −q，位于 −d",
+   "figures": [
+    "fig-three-objects",
+    "fig-square-wxyz"
+   ]
+  },
+  {
+   "id": "object-s",
+   "label": "物体 S，电荷为 +2q，位于原点",
+   "figures": [
+    "fig-three-objects",
+    "fig-square-wxyz"
+   ]
+  },
+  {
+   "id": "object-t",
+   "label": "物体 T，电荷为 −q，位于 d",
+   "figures": [
+    "fig-three-objects",
+    "fig-square-wxyz"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-angle-axis",
+   "kind": "correction",
+   "html": "书中印的是在 $x$ 轴上方 $63.4^\\circ$。由于 $\\ktheta = \\tan^{-1}(\\kEfone/\\kEftwo)$ 是从 $\\kEftwo$ 量起的，而 $\\kEftwo$ 沿 $x$ 轴负方向，所以合电场在 $x$ 轴负方向上方 $63.4^\\circ$，处于第二象限，正如图 18.21 所画的那样。"
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+<section id="damping">
+<h2>阻尼使振动损失能量</h2>
+<p class="cite-target">吉他弦被拨动后，过几<span data-concept="second">秒</span>就不再振动了。要让秋千上的孩子玩得开心，你就得不停地推。虽然我们常常可以使<span data-concept="friction">摩擦力</span>和其他非保守<span data-concept="force">力</span>小到可以忽略，但完全无阻尼的<span data-concept="motion">运动</span>却很少见。事实上，我们甚至可能希望给振动加上阻尼，例如汽车的减震器。</p>
+<p>对于阻尼很小的<span data-concept="system">系统</span>，<span data-type="time"><span data-concept="period">周期</span></span>和<span data-type="frequency"><span data-concept="frequency">频率</span></span>与<span data-concept="simple-harmonic-motion">简谐运动</span>的几乎相同，但<span data-type="position"><span data-concept="amplitude">振幅</span></span>会逐渐减小，如图 16.20 所示。出现这种情况，是因为<span data-type="force">非保守的阻尼<span data-concept="force">力</span></span>从<span data-concept="system">系统</span>中带走了<span data-type="energy"><span data-concept="energy">能量</span></span>，通常是以<span data-type="energy"><span data-concept="thermal-energy-of-an-object">热能</span></span>的形式。一般地说，非保守<span data-concept="force">力</span>带走<span data-concept="energy">能量</span>的情形可以表示为</p>
+$$\kWnc = \Delta(\kKE + \kPEtot),$$
+<p>其中 $\kWnc$ 是<span data-type="energy">非保守<span data-concept="force">力</span>所做的<span data-concept="work">功</span></span>（这里是阻尼<span data-type="force"><span data-concept="force">力</span></span>）。对于阻尼谐振子，$\kWnc$ 为负，因为它从<span data-concept="system">系统</span>中带走了<span data-type="energy"><span data-concept="mechanical-energy">机械能</span></span>（KE + PE）。</p>
+<figure class="sim" id="sim-damped-amplitude" data-figure="16.20" data-original="/media/ch16/Figure_17_07_02a.jpg" data-original-width="400" data-original-caption="这幅阻尼很小的谐振子的位移随时间变化的图像中，振幅缓慢减小，但周期和频率与系统完全无阻尼时几乎相同。">
+  <div class="sim-head"><span class="eyebrow">Figure 16.20</span><span><span data-ref="damped-object">弹簧上的物体</span>在 $\kx = \kX$ 处被释放，每个循环都会损失<span data-ref="damped-object">自身</span><span data-type="position">振幅</span>的固定份额。看着波峰一个个降低，而<span data-type="time">相邻波峰之间的间隔</span>保持不变；再看图像旁边的柱，它表示<span data-type="energy">振动中剩余的机械能</span>。阻尼滑块设定每个循环中损失的<span data-type="position">振幅</span>所占的份额，所以把它调大，就能看到运动多快就会消失。</span></div>
+</figure>
+<div class="exercises" data-place="damping"></div>
+</section>
+
+<section id="regimes">
+<h2>临界阻尼、欠阻尼和过阻尼</h2>
+<p class="cite-target">如果你逐渐<em>增大</em><span data-concept="system">系统</span>中的阻尼，<span data-concept="period">周期</span>和<span data-concept="frequency">频率</span>就会开始受到影响，因为阻尼会阻碍往复<span data-concept="motion">运动</span>，从而使其变慢。（两个<span data-concept="vector-direction">方向</span>上的<span data-type="force">合<span data-concept="force">力</span></span>都更小。）图 16.21 给出了不同阻尼大小下谐振子的<span data-type="position"><span data-concept="displacement">位移</span></span>。当我们想要使振动衰减时，例如在汽车的悬架中，我们可能希望<span data-concept="system">系统</span>尽可能快地回到平衡状态<strong><span data-concept="critical-damping">临界阻尼</span></strong>被定义为这样一种条件：振子的阻尼使它以尽可能快的速度回到其平衡<span data-concept="position">位置</span>。临界阻尼<span data-concept="system">系统</span>可能越过平衡<span data-concept="position">位置</span>，但如果越过，也只会越过一次。<span data-concept="critical-damping">临界阻尼</span>由图 16.21 中的<span data-ref="system-a">曲线 A</span> 表示。阻尼小于<span data-concept="critical-damping">临界阻尼</span>时，<span data-concept="system">系统</span>回到平衡会更快，但会越过平衡并穿过一次或多次。这样的<span data-concept="system">系统</span>是<strong>欠阻尼</strong>的；<span data-type="position">其<span data-concept="displacement">位移</span></span>由图 16.20 中的曲线表示。图 16.21 中的<span data-ref="system-b">曲线 B</span> 表示<strong>过阻尼</strong><span data-concept="system">系统</span>。与<span data-concept="critical-damping">临界阻尼</span>一样，它也可能越过平衡<span data-concept="position">位置</span>，但要经过更长的<span data-concept="time">时间</span>才能达到平衡。</p>
+<figure class="sim" id="sim-damping-regimes" data-figure="16.21" data-original="/media/ch16/Figure_17_07_03a.jpg" data-original-width="250" data-original-caption="临界阻尼谐振子（A）和过阻尼谐振子（B）的位移随时间变化的图像。临界阻尼振子以尽可能短的时间回到 X = 0 处的平衡位置，而不会越过。">
+  <div class="sim-head"><span class="eyebrow">Figure 16.21</span><span><span data-ref="system-a system-b system-under">三个系统</span>的差别仅在于<span data-ref="system-a system-b system-under">它们</span>所带阻尼的大小，它们被同时从 $\kx = \kX$ 处释放。标记点按同一个时钟沿三条曲线运动，所以你可以看出哪一个最先达到平衡：<span data-ref="system-a">临界阻尼系统 A</span> 最先到达，<span data-ref="system-b">过阻尼系统 B</span> 要花更长的时间，而<span data-ref="system-under">欠阻尼系统</span>在<span data-ref="system-under">它</span>的途中会穿过平衡<span data-concept="position">位置</span>。你可以改变<span data-ref="system-a system-b system-under">这些系统</span>的起始位置，或者改变<span data-type="time">无阻尼时一个循环所需的时间</span>。</span></div>
+</figure>
+<p>人们常常希望得到<span data-concept="critical-damping">临界阻尼</span>，因为这样的<span data-concept="system">系统</span>能迅速回到平衡，并且也会保持在平衡状态。此外，<span data-type="force">恒<span data-concept="force">力</span></span>作用在临界阻尼<span data-concept="system">系统</span>上时，会使该<span data-concept="system">系统</span>移到<span data-type="position">新的平衡<span data-concept="position">位置</span></span>，所用的<span data-concept="time">时间</span>尽可能短，而且既不会越过、也不会围绕新<span data-concept="position">位置</span>振动。例如，当你站在装有指针式刻度盘的体重秤上时，指针会移到其平衡<span data-concept="position">位置</span>而不振动。如果指针要围绕新的平衡<span data-concept="position">位置</span>振动很长<span data-concept="time">时间</span>才停下来，那就相当不方便了。阻尼<span data-concept="force">力</span>的性质可以有很大的不同。例如，<span data-concept="friction">摩擦力</span>有时与<span data-concept="velocity">速度</span>无关（本书大多数地方都这样假设）。但许多阻尼<span data-concept="force">力</span>取决于<span data-concept="velocity">速度</span>——有时以复杂的方式，有时则只是与<span data-concept="velocity">速度</span>成正比。</p>
+<div class="exercises" data-place="regimes"></div>
+</section>
+
+<section id="friction-example">
+<h2>摩擦引起的阻尼</h2>
+<div class="example" id="ex-friction-spring">
+<h3>例题 16.7 · 使振动运动受到阻尼：与弹簧相连的物体所受的摩擦</h3>
+<p class="cite-target">使振动<span data-concept="motion">运动</span>受到阻尼，在许多<span data-concept="system">系统</span>中都很重要，而控制阻尼的能力则更为重要。这通常是借助非保守<span data-concept="force">力</span>来实现的，例如表面之间的<span data-concept="friction">摩擦力</span>，以及<span data-concept="viscosity">黏度</span>（对在<span data-concept="fluid">流体</span>中运动的物体而言）。下面的例题考虑<span data-concept="friction">摩擦</span>。设一个 <span data-type="mass">0.200 kg</span> 的<span data-ref="friction-object">物体</span>与弹簧相连，如图 16.22 所示，但<span data-ref="friction-object">物体</span>与表面之间存在简单的<span data-concept="friction">摩擦</span>，<span data-concept="friction">摩擦</span>因数 $\mu_{\text{k}}$ 等于 0.0800。（a）<span data-type="force">表面之间的摩擦<span data-concept="force">力</span></span>是多大？（b）若<span data-ref="friction-object">物体</span>从<span data-type="position">距平衡位置 0.100 m 处</span>释放，起始 $\kv = 0$，则<span data-ref="friction-object">它</span>运动的<span data-type="position">总<span data-concept="distance">路程</span></span>是多少？<span data-type="stiffness">弹簧的<span data-concept="force-constant">劲度系数</span></span>为 $\kk = 50.0\ \text{N/m}$。</p>
+<figure class="sim" id="sim-friction-damped" data-figure="16.22" data-original="/media/ch16/Figure_17_07_04a.jpg" data-original-width="450" data-original-caption="在无摩擦表面上与弹簧相连的物体，其简谐运动中的能量转化如图所示。">
+  <div class="sim-head"><span class="eyebrow">Figure 16.22</span><span><span data-ref="friction-object">物体</span>在 $\kx = \kX$ 处由静止释放，<span data-ref="friction-object">它</span>下方的表面现在有<span data-concept="friction">摩擦</span>。<span data-type="force">摩擦力箭头</span>总是指向运动的反方向，所以<span data-type="force">它</span>在路径的每一段上都从<span data-type="energy">能量</span>中取走同样多的一份，图像的波峰就沿着一条直线而不是曲线降低。里程表记录<span data-ref="friction-object">物体</span>已经走过的<span data-type="position">路程</span>，运动在<span data-type="force">弹簧</span>无法再克服<span data-type="force">摩擦力</span>的位置停止。滑块的初始值取自本例题中的数值。</span></div>
+</figure>
+<h4>思路</h4>
+<p>这道题要求你综合运用关于波、振动和阻尼的各种概念方面的知识。要解一道综合概念题，你必须首先找出其中涉及的物理原理。（a）部分涉及<span data-type="force">摩擦<span data-concept="force">力</span></span>。这一主题涉及牛顿<span data-concept="law">定律</span>的应用。（b）部分需要理解<span data-concept="work">功</span>和<span data-concept="energy">能量</span>守恒，还需要对水平振动<span data-concept="system">系统</span>有一定的理解。</p>
+<p>既然我们已经找出了解这些问题所必须应用的原理，接下来就需要找出各个部分的已知量和未知量，以及在（a）部分和（b）部分中保持不变的量。</p>
+<h4>（a）的解</h4>
+<ol>
+<li>选择合适的方程：<span data-concept="friction">摩擦力</span>为 $\kff = \mu_{\text{k}} \km\kg$。</li>
+<li>找出已知值。</li>
+<li>把已知值代入方程：
+$$\kff = (0.0800)(0.200\ \text{kg})(9.80\ \text{m/s}^{2}).$$</li>
+<li>计算并换算<span data-concept="units">单位</span>：$\kff = 0.157\ \text{N}$。</li>
+</ol>
+<h4>（a）的讨论</h4>
+<p><span data-type="force">这里的<span data-concept="force">力</span></span>很小，因为<span data-concept="system">系统</span>和各系数都很小。</p>
+<h4>（b）的解</h4>
+<p>找出已知条件：</p>
+<ul>
+<li><span data-concept="system">系统</span>涉及弹簧压缩和伸长时的<span data-type="energy"><span data-concept="elastic-potential-energy">弹性势能</span></span>，与所做的<span data-type="energy"><span data-concept="work">功</span></span>有关的<span data-concept="friction">摩擦力</span>，以及<span data-ref="friction-object">物体</span>加速和减速时的<span data-type="energy"><span data-concept="kinetic-energy">动能</span></span>。</li>
+<li><span data-ref="friction-object">该<span data-concept="mass">质量块</span></span><span data-concept="oscillation">振动</span>时，<span data-concept="energy">能量</span>不守恒，因为<span data-concept="friction">摩擦力</span>是非保守<span data-concept="force">力</span>。</li>
+<li><span data-concept="motion">运动</span>是水平的，因此不必考虑<span data-concept="gravitational-potential-energy">重力势能</span>。</li>
+</ul>
+<figure class="dv" id="drv-friction-damped-distance"></figure>
+<h4>（b）的讨论</h4>
+<p>这是来回穿过 $\kx = 0$ 的<span data-type="position">总<span data-concept="distance-traveled">路程</span></span>，而 $\kx = 0$ 就是<span data-type="position">无阻尼时的平衡<span data-concept="position">位置</span></span>。围绕<span data-type="position">平衡<span data-concept="position">位置</span></span>的振动次数将多于 $\kd/\kX = (1.59\ \text{m})/(0.100\ \text{m}) = 15.9$，因为<span data-type="position">振动的<span data-concept="amplitude">振幅</span></span>随<span data-concept="time">时间</span>减小。在<span data-concept="motion">运动</span>结束时，该<span data-concept="system">系统</span>在这种阻尼<span data-concept="force">力</span>下不会回到 $\kx = 0$，因为<span data-type="force"><span data-concept="static-friction">静摩擦力</span></span>将超过<span data-type="force"><span data-concept="restoring-force">回复力</span></span>。该<span data-concept="system">系统</span>是欠阻尼的。相比之下，过阻尼<span data-concept="system">系统</span>若只受简单恒定的阻尼<span data-concept="force">力</span>，则一次也不会穿过平衡<span data-concept="position">位置</span> $\kx = 0$。例如，如果该<span data-concept="system">系统</span>的<span data-type="force">阻尼<span data-concept="force">力</span>大 20 倍</span>，它就只会从<span data-type="position">其原来 0.100 m 的<span data-concept="position">位置</span></span>朝<span data-type="position">平衡<span data-concept="position">位置</span></span>移动 <span data-type="position">0.0484 m</span>。</p>
+<p>这道例题说明了如何把解题策略应用于综合了你所学的不同概念的情形。第一步是找出问题中涉及的物理原理。第二步是用熟悉的解题策略求出未知量。这些策略贯穿全书，许多例题展示了如何把它们用于单一主题。在这道综合概念例题中，你可以看到如何把它们跨多个主题加以应用。你会发现，这些技巧在<span data-concept="physics">物理</span>课程之外的<span data-concept="physics">物理学</span>应用中也很有用，例如在你的职业、其他科学学科以及日常生活中。</p>
+</div>
+</section>

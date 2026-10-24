@@ -1,0 +1,594 @@
+{
+ "id": "28.3",
+ "module": "m42535",
+ "chapter": "28",
+ "title": "长度收缩",
+ "short": "长度收缩",
+ "lead": "对同一过程测得不同<span data-concept=\"elapsed-time\">时间间隔</span>的观察者，仍然对他们的相对速率意见一致，因此他们测得的<span data-concept=\"distance\">距离</span>也必定不同。<span data-concept=\"proper-length\">固有长度</span> $\\kLo$ 是相对于两点都静止的观察者所测得的这两点之间的<span data-concept=\"distance\">距离</span>，而从这两点旁边掠过的观察者测得的则是缩短了的长度，无论这两点是界定一个 μ 子的路径，还是位于地球和<span data-ref=\"alpha-centauri\">半人马座α星</span>。",
+ "objectives": [
+  "描述固有长度。",
+  "计算长度收缩。",
+  "解释为什么我们在日常尺度上注意不到这些效应。"
+ ],
+ "summary_html": "<ul><li>所有观察者都同意相对速率。</li><li><span data-concept=\"distance\">距离</span>取决于观察者的运动。<span data-concept=\"proper-length\">固有长度</span> $\\kLo$ 是相对于两点都静止的观察者所测得的这两点之间的<span data-concept=\"distance\">距离</span>。地球上的观察者在测量相对于地球静止的两点之间的<span data-concept=\"distance\">距离</span>时，测得的是<span data-concept=\"proper-length\">固有长度</span>。</li><li>长度收缩 $\\kLrel$ 是相对于观察者的参考系运动的物体，其测得<span data-concept=\"length\">长度</span>的缩短：$$\\kLrel = \\kLo\\sqrt{1 - \\frac{\\kv^{2}}{\\kc^{2}}} = \\frac{\\kLo}{\\gamma}.$$</li></ul>",
+ "notes": "开头那张长路的照片（图 28.9）略去。本模块八道习题中有四道没有书后答案，因而略去：6.0 m 长的跑车看起来是 5.5 m 长、例题 28.1 中速率为 0.0500c 的 μ 子、看起来是 100 yd 长的 100 m 赛跑，以及以 1.20c 射向地球的容器。例题 28.2 把 L₀ = 4.300 ly 印成了“L₀ − 4.300 ly”，本节给出的 μ 子为 7.05 μs 和 2.20 μs，而例题 28.1 给出的是 4.87 μs 和 1.52 μs，通向“相对论能量”的链接又被拼成了“Relatavistic”；这三处均按原书印刷照录。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。八道习题中有四道没有书后答案，因而略去，它们在本节的说明中已列出。每道思考题都没有书后答案，并附有标明由 AI 撰写的建议思路。理解检测设在长度收缩一段的末尾。关于收缩的太空岩石的批判性思考题，印在“相对论能量”（28.6）的末尾，但考查的是长度收缩，所以设在这里。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-muon-frames",
+   "kind": "sim",
+   "number": "28.10",
+   "originals": [
+    "/media/ch28/Figure_29_03_02a.jpg"
+   ],
+   "original_caption": "（a）地球上的观察者看到 μ 子在云层之间行进了 2.01 km。（b）μ 子看到自己沿同一路径行进，但只行进了 0.627 km 的距离。在 μ 子的参考系中，地球、空气和云都相对于 μ 子运动，沿行进方向看上去长度全都变小了。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset; ground lines clear of clock captions; v label off the cloud"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-alpha-centauri",
+   "kind": "sim",
+   "number": "28.11",
+   "originals": [
+    "/media/ch28/Figure_29_03_03a.jpg"
+   ],
+   "original_caption": "（a）地球上的观察者测得地球与半人马座α星之间的固有距离。（b）航天员观察到长度收缩，因为地球和半人马座α星相对于她的飞船运动。她可以在更短的时间（她的固有时）内走完这段更短的距离，而不超过光速。",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "slider on gamma, reachable to 60; headline typeset and shortened; caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-contracted-field",
+   "kind": "sim",
+   "number": "28.12",
+   "originals": [
+    "/media/ch28/Figure_29_03_04a.jpg"
+   ],
+   "original_caption": "高速带电粒子的电场线因长度收缩而沿运动方向被压缩。这使粒子穿过线圈时产生不同的信号，这是长度收缩的一个经实验验证的效应。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "electric-field"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "field arrows point in, toward the electron; headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "proper-length",
+   "concept": "observers-agree-on-relative-speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "proper-length",
+   "concept": "proper-length",
+   "verb": "introduces"
+  },
+  {
+   "span": "proper-length",
+   "concept": "proper-time",
+   "verb": "uses"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "observers-agree-on-relative-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "proper-length",
+   "verb": "reinforces"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "length-contraction-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "calculate-length-contraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "relativity-at-everyday-speeds",
+   "verb": "introduces"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "time-dilation-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "relativistic-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "proper-time",
+   "verb": "uses"
+  },
+  {
+   "span": "length-contraction",
+   "concept": "length-contraction",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-309",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "length-contraction"
+   },
+   "cite": "length-contraction",
+   "prompt": "一个粒子以 $0.750c$ 的速率穿过地球大气层。对地球上的观察者来说，它行进的距离是 2.50 km。在粒子的参考系中，这个粒子行进了多远？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.65,
+    "unit": "km",
+    "hint": "地球上的观察者测得的是固有长度，因此粒子测得的是收缩后的长度。",
+    "solution": "$$\\kLrel = \\kLo\\sqrt{1 - \\frac{\\kv^{2}}{\\kc^{2}}} = (2.50\\;\\text{km})\\sqrt{1 - \\frac{(0.750c)^{2}}{c^{2}}} = 1.65\\;\\text{km}$$"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3088348",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proper-length",
+   "prompt": "对谁来说物体看起来更长：随物体一起运动的观察者，还是相对于物体运动的观察者？哪位观察者测得的是物体的固有长度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对随物体一起运动的观察者来说，物体看起来更长。这位观察者相对于物体的两端都是静止的，所以他测得的是物体的固有长度 $\\kLo$。相对于物体运动的观察者测得的是收缩后的长度 $\\kLrel = \\kLo/\\gamma$，它更短，因为对任何相对运动，$\\gamma$ 都大于 1。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2735759",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length-contraction",
+   "prompt": "时间延缓和长度收缩这类相对论效应对汽车和飞机同样存在。为什么这些效应对我们来说显得奇怪？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "汽车和飞机的速率与光速相比微不足道，所以 $\\kv^{2}/\\kc^{2}$ 极小，$\\gamma$ 只在小数点后第十二位左右才与 1 不同。时间延缓和长度收缩是真实的，但小得我们根本察觉不到，所以我们经历的一切都与经典预期一致，即时间和长度对每个人都相同。这些效应之所以显得奇怪，是因为我们从未经历过使它们变大的速率。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1350472",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length-contraction",
+   "prompt": "假设一位航天员相对于地球以光速的很大一部分运动。（a）他观察到自己的钟变慢了吗？（b）他看到地球上的钟的快慢发生了什么变化？（c）他的飞船在他看来会变短吗？（d）位于与他的运动平行的直线上的恒星之间的距离又如何？（e）他和地球上的观察者对他相对于地球的速度意见一致吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）没有。他的钟相对于他是静止的，所以他测得的是固有时，钟以正常的快慢运行。（b）地球上的钟相对于他在运动，所以他看到它们变慢了，变慢的因子为 $\\gamma$。（c）不会。他的飞船相对于他是静止的，所以他测得的是它的固有长度。（d）恒星相对于他在运动，所以沿他运动方向排列的恒星之间的距离按 $\\gamma$ 的因子收缩。（e）一致。所有观察者对相对速率意见一致，这正是他们测得的距离和时间必须以同一个因子相区别的原因。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2944255",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length-contraction",
+   "prompt": "一艘宇宙飞船，在飞船上测得长 200 m，以 $0.970c$ 从地球旁飞过。地球上的观察者测得它的长度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 48.6,
+    "unit": "m",
+    "hint": "在飞船上测得的长度是固有长度；地球上的观察者看到飞船在运动，测得的是收缩后的长度。",
+    "solution": "48.6 m"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id888555",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proper-length",
+   "prompt": "（a）根据地球上的观察者，例题 28.1 中的 μ 子行进了多远？（b）随 μ 子一起运动的观察者看到它行进了多远？计算请以它相对于地球的速度和它的寿命（固有时）为依据。（c）验证这两个距离通过长度收缩相关联，$\\gamma = 3.20$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the distance in the Earth’s frame",
+      "value": 1.387,
+      "unit": "km",
+      "hint": "把 μ 子的速率乘以地球上的观察者测得的时间，即延缓后的时间 $\\gamma\\kdto$。"
+     },
+     {
+      "part": "(b) the distance in the muon’s frame",
+      "value": 0.433,
+      "unit": "km",
+      "hint": "把同一速率乘以 μ 子的固有寿命。"
+     }
+    ],
+    "solution": "（a）1.387 km = 1.39 km\n（b）0.433 km\n（c）$\\kLrel = \\dfrac{\\kLo}{\\gamma} = \\dfrac{1.387\\times 10^{3}\\;\\text{m}}{3.20} = 433.4\\;\\text{m} = 0.433\\;\\text{km}$。因此，（a）和（b）两问中的距离在 $\\gamma = 3.20$ 时是相关联的。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2930467",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length-contraction",
+   "prompt": "（a）以 $0.99944c$ 的速率（由地球上的观察者测定），例题 28.2 中的航天员走完 4.30 光年需要多长时间？（b）按航天员的测量，需要多长时间？（c）验证这两个时间通过时间延缓相关联，如所给，$\\gamma = 30.00$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the time on the Earth",
+      "value": 4.303,
+      "unit": "y",
+      "hint": "光年是光在一年里传播的距离，所以以年为单位的时间等于以光年为单位的距离除以 $\\kv/\\kc$。"
+     },
+     {
+      "part": "(b) the time for the astronaut",
+      "value": 0.1434,
+      "unit": "y",
+      "hint": "航天员测得的是固有时，它短了一个因子 $\\gamma$。"
+     }
+    ],
+    "solution": "（a）4.303 y（取四位数字以显示任何效应）\n（b）0.1434 y\n（c）$\\kdt = \\gamma\\kdto \\Rightarrow \\gamma = \\dfrac{\\kdt}{\\kdto} = \\dfrac{4.303\\;\\text{y}}{0.1434\\;\\text{y}} = 30.0$。因此，这两个时间在 $\\gamma = 30.00$ 时是相关联的。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2595222",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length-contraction",
+   "prompt": "不合理的结果。（a）求下述情形中 $\\gamma$ 的值：一位航天员测得她的宇宙飞船长 25.0 m，而地球上的观察者测得它长 100 m。（b）这个结果有什么不合理之处？（c）哪些假设是不合理的或相互矛盾的？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the value of γ",
+    "value": 0.25,
+    "hint": "航天员测得的是固有长度；用它除以地球上的观察者测得的长度。",
+    "solution": "（a）0.250\n（b）$\\gamma$ 必须 ≥1\n（c）地球上的观察者必须测得更短的长度，因此假设他测得更长的长度是不合理的。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "exer-00001",
+   "source_section": "28.6",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "批判性思考",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length-contraction",
+   "prompt": "一块长度为 1,000.0 m 的太空岩石正以恰好 0.6 c 的速率在太空中运动。（a）如果太空岩石朝向观察者运动，观察到的收缩后长度是多少？（b）如果太空岩石远离观察者运动，观察到的收缩后长度是多少？（c）该物体能达到光速吗？（d）如果该物体在观察者的参考系中停下来，会观察到它具有固有长度吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) moving toward the observer",
+      "value": 800.0,
+      "unit": "m",
+      "hint": "岩石自身的长度是固有长度，收缩取决于速率的平方。"
+     },
+     {
+      "part": "(b) moving away from the observer",
+      "value": 800.0,
+      "unit": "m",
+      "hint": "速率只以平方的形式出现，所以方向无关紧要。"
+     }
+    ],
+    "solution": "（a）$\\kLrel = 1000.0\\sqrt{1 - \\frac{(0.6c)^{2}}{c^{2}}} = 800.00\\;\\text{m}$\n（b）$\\kLrel = 1000.0\\sqrt{1 - \\frac{(0.6c)^{2}}{c^{2}}} = 800.00\\;\\text{m}$\n（c）不能。\n（d）会。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "calculate-length-contraction",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "proper-length",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "relativity-at-everyday-speeds",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "observers-agree-on-relative-speed",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "proper-length",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-length-contraction",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "proper-length",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "length-contraction-equation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-length-contraction",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "proper-length",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "length-contraction-equation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-length-contraction",
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "muon",
+   "label": "μ 子",
+   "figures": [
+    "sim-muon-frames"
+   ]
+  },
+  {
+   "id": "clouds",
+   "label": "云",
+   "figures": [
+    "sim-muon-frames"
+   ]
+  },
+  {
+   "id": "muon-earth",
+   "label": "μ 子下方的地球",
+   "figures": [
+    "sim-muon-frames"
+   ]
+  },
+  {
+   "id": "astronaut",
+   "label": "飞船中的航天员",
+   "figures": [
+    "sim-alpha-centauri"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-alpha-centauri"
+   ]
+  },
+  {
+   "id": "alpha-centauri",
+   "label": "半人马座α星",
+   "figures": [
+    "sim-alpha-centauri"
+   ]
+  },
+  {
+   "id": "beam-pipe",
+   "label": "束流管",
+   "figures": [
+    "sim-contracted-field"
+   ]
+  },
+  {
+   "id": "coil",
+   "label": "线圈",
+   "figures": [
+    "sim-contracted-field"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-l0-equals",
+   "kind": "correction",
+   "html": "本书在已知量中印的是 $L_0 - 4.300$ 光年，其本意是 $L_0 = 4.300$ 光年，也就是解中除以 $\\gamma$ 的固有距离。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "length-contraction",
+   "what": "长度收缩",
+   "source": "《大学物理（第2版）》，28.3 长度收缩",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv = \\frac{\\kLrel}{\\kdto}",
+       "src": "28.3"
+      },
+      {
+       "tex": "\\kdt = \\gamma\\kdto",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\kdt}}",
+      "uses": [],
+      "src": "28.3"
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{v}{\\kLrel}}{\\mk{w}{\\kdto}} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ],
+       "cap": "两位观察者测得相同的相对速率 $\\kv$。",
+       "map": {
+        "v": [
+         "v",
+         "w"
+        ]
+       }
+      },
+      {
+       "tex": "\\frac{\\mk{v}{\\kLrel}}{\\mk{w}{\\kdto}} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\gamma\\kdto}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kLrel} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\gamma}}",
+       "uses": [],
+       "map": {
+        "w": "t"
+       }
+      }
+     ],
+     "src": "28.3"
+    }
+   ]
+  }
+ ]
+}

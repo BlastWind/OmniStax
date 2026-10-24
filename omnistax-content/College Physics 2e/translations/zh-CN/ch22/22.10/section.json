@@ -1,0 +1,692 @@
+{
+ "id": "22.10",
+ "module": "m42386",
+ "chapter": "22",
+ "title": "两根平行导体之间的磁力",
+ "short": "两根平行导体之间的力",
+ "lead": "本章的两个结果就足以说明两根平行导线如何相互作用：<span data-concept=\"electric-current\">电流</span>产生环绕它的<span data-concept=\"magnetic-field\">磁场</span>，而处于磁场中的电流会受到<span data-concept=\"force\">力</span>。本节把前者代入后者，并顺着结果讲到电弧的箍缩和安培的定义。",
+ "objectives": [
+  "描述两根导体之间磁力的效应。",
+  "计算两根平行导体之间的力。"
+ ],
+ "summary_html": "<ul><li>相隔<span data-concept=\"distance\">距离</span> $\\kr$ 的两个平行<span data-concept=\"electric-current\">电流</span> $\\kIcurone$ 和 $\\kIcurtwo$ 之间的<span data-concept=\"force\">力</span>，其单位<span data-concept=\"length\">长度</span>上的大小为 $\\frac{\\kF}{l} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr}.$</li><li><span data-concept=\"electric-current\">电流</span>方向相同时，该<span data-concept=\"force\">力</span>相互吸引；方向相反时，则相互排斥。</li></ul>",
+ "notes": "书中没有给出答案的四道习题被略去：已知跨接电缆两根导线之间每米的力、求其中电流的一题；为通勤列车的电动机和前灯供电的两根导线的间距一题；一个矩形线圈位于长直导线旁所受的力一题；以及位于正方形四角的四根平行导线一题。本模块的其他内容都没有略去：它仅有的一幅图被重绘为交互式图，书中原图并排放在旁边；框内注释“安培”保留在书中安放它的位置；保留的习题所引用的三幅图附在各自的习题卡片上。本模块没有印出“理解检测”框，也没有 PhET 链接。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。本节的六道思考题没有答案，因此它们的建议思路由 AI 撰写并已标明，第二道 AP 题的思路也是如此，该题书中印出时没有选项也没有答案。四道习题没有给出答案，因而略去：跨接电缆、通勤列车的两根导线、长直导线旁的矩形线圈，以及正方形四角的四根导线。书中自带的图附在引用它们的习题卡片上，两个线圈的图附在使用它们的两道题上。本节没有为后面的小节保留习题，也没有来自前面小节的习题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-parallel-wires",
+   "kind": "sim",
+   "number": "22.40",
+   "originals": [
+    "/media/ch22/Figure_23_10_01a.jpg"
+   ],
+   "original_caption": "（a）长直导体产生的磁场与一根平行导体垂直，如右手定则 2（RHR-2）所示。（b）从上方观察（a）中的两根导线，每根导线画出一条磁感线。右手定则 1（RHR-1）表明，当电流方向相同时，平行导体之间的力是相互吸引的。类似的分析表明，方向相反的电流之间的力是相互排斥的。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "attracting force arrows stop short of the other wire, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-pinch-effect",
+   "kind": "sim",
+   "draws": [
+    "current",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "canvas note dropped, readout note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-current-balance",
+   "kind": "sim",
+   "draws": [
+    "current",
+    "force",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "force-between-two-wires",
+   "concept": "force-between-parallel-currents",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-between-two-wires",
+   "concept": "attraction-and-repulsion-of-currents",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-between-two-wires",
+   "concept": "field-of-a-long-straight-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "force-between-two-wires",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "force-between-two-wires",
+   "concept": "force-per-unit-length-on-a-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "force-between-two-wires",
+   "concept": "right-hand-rule-2",
+   "verb": "uses"
+  },
+  {
+   "span": "force-between-two-wires",
+   "concept": "direction-of-force-on-a-current",
+   "verb": "uses"
+  },
+  {
+   "span": "force-between-two-wires",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "the-pinch-effect",
+   "concept": "pinch-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "the-pinch-effect",
+   "concept": "force-between-parallel-currents",
+   "verb": "reinforces"
+  },
+  {
+   "span": "the-pinch-effect",
+   "concept": "attraction-and-repulsion-of-currents",
+   "verb": "reinforces"
+  },
+  {
+   "span": "defining-the-ampere",
+   "concept": "definition-of-the-ampere",
+   "verb": "introduces"
+  },
+  {
+   "span": "defining-the-ampere",
+   "concept": "permeability-of-free-space",
+   "verb": "uses"
+  },
+  {
+   "span": "defining-the-ampere",
+   "concept": "force-between-parallel-currents",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2228629",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-between-two-wires",
+   "prompt": "架在电线杆上的火线和中性线之间的力是相互吸引还是相互排斥？为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是相互排斥的。火线把电流送往各户，中性线把同样的电流带回来，所以在任何时刻，同一根电线杆上一对导线中的两个电流方向都是相反的。方向相反的电流相互推开，因此这两根导线是被推得彼此远离，而不是被拉到一起。普通街区所用的电流产生的力很小，而且导线悬挂得相距很远，所以实际上不会有什么后果，但它的方向值得注意：一对载着电流去而复返的导体，绝不会有被自身的磁力拉到一起而接触的危险。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2334083",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-between-two-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_03a.jpg",
+    "alt": "图示三根相互平行且位于同一平面内的导线。位于图左侧的导线 1 和位于图右侧的导线 3 中的电流方向相反：I 1 从右上方流向左下方；I 3 从左下方流向右上方。导线 2 位于两者之间，比起导线 1 稍靠近导线 3。",
+    "caption": "三根平行共面的导线，外侧两根中的电流方向相反。"
+   },
+   "prompt": "如果有三根位于同一平面内的平行导线，如下图所示，外侧两根中的电流方向相反，那么中间的导线有可能同时受到两者的排斥吗？同时受到两者的吸引吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两种情况都不可能。中间的导线中的电流沿某一方向流动。无论是哪个方向，它都与一根外侧电流方向相同、与另一根相反，因为外侧两根的电流彼此相反。所以一根外侧导线吸引中间导线，另一根排斥它，电流无论怎样设置，都不会使两个力同为拉力或同为推力。不过请注意，这两个力并不相互抵消。吸引中间导线的那根把它拉向自己一侧，排斥它的那根把它从另一侧推开，而这两个方向是同一侧。两个力指向同一方向，相加。因此中间的导线向与它电流方向相同的那根外侧导线移动，两根外侧导线之间没有哪个位置能使它所受的合力为零。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2521716",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-between-two-wires",
+   "prompt": "假设两根长直导线相互垂直且互不接触。其中一根对另一根是否施加合力？如果是，合力的方向如何？其中一根对另一根是否施加合力矩？如果是，方向如何？请用右手定则说明你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "没有合力，但有合力矩。设第一根导线沿东西方向，第二根沿南北方向，位于它的稍上方。第一根导线的场环绕着它，因此在第二根导线上交叉点以北的各点，场横穿该导线指向一个方向，在交叉点以南的各点，场指向另一个方向。在这些点上各用一次 RHR-1，拇指沿第二根导线中的电流。北侧那一段所受的力沿第一根导线的方向指向一边，南侧那一段所受的力指向相反的一边，在距交叉点相等的位置上大小相等。把整个长度上的力相加，结果为零，所以没有合力。它们对垂直于两根导线的那条直线的力矩却不会相加为零，因为这两个力方向相反，作用在那条直线的两侧：它们构成一个力偶。关于公共垂线的力矩使第二根导线转向与第一根平行、两个电流沿相同方向的位置，这正是两根导线相互吸引的排列。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1893895",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-between-two-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_04a.jpg",
+    "alt": "图示两个载流线圈。两个线圈所在的平面相互平行且水平，一个在另一个上方。两个线圈中的电流都沿逆时针方向流动。",
+    "caption": "两个载有电流的导线线圈可以相互施加力和力矩。"
+   },
+   "prompt": "用右手定则证明：下图中两个线圈之间的力，当电流方向相同时是相互吸引的，当电流方向相反时是相互排斥的。这与线圈的同名磁极相互排斥、异名磁极相互吸引是否一致？请画草图来说明你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把两个线圈一上一下画出来，标出上方线圈的一小段，以及正下方那个线圈的一小段。这两小段是短的平行电流。当两个线圈中的电流绕行方向相同时，这两小段中的电流方向相同，所以相互拉近。绕线圈一周的每一对这样的小段都是如此，所以两个线圈相互吸引。把其中一个线圈中的电流反向，每一对小段都变成一对方向相反的电流而相互推开，所以两个线圈相互排斥。这与线圈作为磁体的表现是一致的。RHR-2 把线圈的北极放在从那一面看去其电流呈逆时针流动的那一面。当两个线圈绕行方向相同时，它们的北极指向相同的方向，上方线圈的南极面朝向下方线圈的北极面。异名磁极相对，也就是吸引。把一个电流反向，两个同名的面相遇，也就是排斥。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1555849",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-between-two-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_04a.jpg",
+    "alt": "图示两个载流线圈。两个线圈所在的平面相互平行且水平，一个在另一个上方。两个线圈中的电流都沿逆时针方向流动。",
+    "caption": "两个载有电流的导线线圈可以相互施加力和力矩。"
+   },
+   "prompt": "如果下图中的一个线圈相对于另一个线圈稍微倾斜，且二者的电流方向相同，那么它们相互施加的力矩方向如何？这是否意味着，如果允许线圈转动，它们所产生的类似条形磁铁的场的磁极会彼此对齐？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个线圈都处于另一个线圈的场中，磁场中的载流线圈会受到一个力矩，使它转动，直到它自己的场与它所处的场方向相同。把上方线圈稍微倾斜一点，下方线圈的场就不再沿上方线圈的轴线。上方线圈所受的力矩是绕两个平面相交的那条直线的，它使上方线圈转回到下方线圈所在平面的方向。下方线圈受到绕同一条直线的、方向相反的力矩，这是牛顿第三定律所要求的，它转向上方线圈所在的平面。所以答案是肯定的：可以自由转动的线圈会一直转到它们的轴线平行，它们的场通过两个线圈的方向相同，这使得一个线圈的北极面贴着另一个线圈的南极面。两根可以自由摆动的条形磁铁也会这样，原因也相同。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1798773",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defining-the-ampere",
+   "prompt": "电场线可以通过法拉第笼效应被屏蔽。我们能有磁屏蔽吗？能有引力屏蔽吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "存在一种磁屏蔽，尽管它的工作方式与法拉第笼不同。法拉第笼之所以起作用，是因为导体中有可以自由移动的电荷，它们一直移动，直到笼内的场为零。不存在能以同样方式移动的磁荷。不过，你可以用一种磁感线穿过它比穿过空气容易得多的材料把这块空间包围起来，例如软铁或 μ 金属。这样，几乎所有的磁感线都走绕过这个罩体的容易路径，只有极少数穿过罩内的空间。这是使场发生偏转而不是把它抵消，而且从来不是完全的，但已经足以使人们日常把灵敏的仪器放在这样的屏蔽罩里。引力屏蔽则是另一回事。质量只有一种符号，所以任何物质的排布都不能抵消外面一切物体的引力，也没有哪种材料比真空更容易让引力通过。从来没有人发现过任何能屏蔽引力的东西，我们对引力的所有了解也都不表明有什么东西可以做到。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1745122",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-parallel-wires",
+   "prompt": "（a）向一列轻轨通勤列车供应直流电的火线和中性线载有 800 A 的电流，二者相距 75.0 cm。这两根导线 50.0 m 长的部分之间的力的大小和方向如何？（b）讨论这个力在实际中造成的后果（如果有的话）。",
+   "answer": {
+    "type": "number",
+    "value": 8.53,
+    "unit": "N",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "先求出单位长度上的力，再乘以题目所问的 50.0 m 导线。火线和中性线一去一回地载着电流，所以两个电流方向相反。",
+    "solution": "（a）8.53 N，相互排斥\n（b）这个力是排斥力，因此永远不会有两根导线接触而短路的危险。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2007732",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-parallel-wires",
+   "prompt": "向一艘处于水下的潜艇的电动机供电的一段 2.50 m 长的导线载有 1000 A 的电流，受到 5.00 cm 外一根平行导线的 4.00 N 的排斥力。另一根导线中电流的方向和大小如何？",
+   "answer": {
+    "type": "number",
+    "value": 400,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "用 4.00 N 除以 2.50 m 得到每米所受的力，然后由单位长度上的力的公式解出未给出的那个电流。力是排斥的，这就决定了方向。",
+    "solution": "400 A，方向相反"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2099909",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-parallel-wires",
+   "prompt": "一根交流用电器电源线，其火线和中性线相距 3.00 mm，载有 5.00 A 的电流。（a）电源线中两根导线之间每米的平均力是多少？（b）两根导线之间每米的最大力是多少？（c）这些力是相互吸引还是相互排斥？（d）用电器电源线是否需要任何特殊的设计来补偿这些力？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.00167,
+      "unit": "N/m",
+      "hint": "取两个电流都等于电源线所载的 5.00 A，间距为 3.00 mm，即 0.00300 m。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.00333,
+      "unit": "N/m",
+      "hint": "这 5.00 A 是方均根电流，所以峰值电流较大，是它的 2 的平方根倍，而力与电流的平方成正比。"
+     }
+    ],
+    "solution": "（a）$1.67\\times 10^{-3}\\;\\text{N/m}$\n（b）$3.33\\times 10^{-3}\\;\\text{N/m}$\n（c）相互排斥\n（d）不需要，这些力非常小"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2009199",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-parallel-wires",
+   "figure": {
+    "src": "/media/ch22/Figure_23_11_10a-c140.jpg",
+    "alt": "图 a 画出三根相互平行的导线的横截面，它们排成一个等边三角形。左下方的导线中有十点零安培的电流垂直于纸面向里。右下方的导线中有二十点零安培的电流，同样垂直于纸面向里。三角形顶端的导线中有五点零安培的电流垂直于纸面向外。这些导线构成的三角形每边长十点零厘米。图 b 画出排成正方形的四根平行导线，正方形边长二十点零厘米。上面两根导线中有十点零安培的电流垂直于纸面向外。下面两根导线中有五点零安培的电流垂直于纸面向里。",
+    "caption": ""
+   },
+   "prompt": "利用矢量加法，求下图（a）部分中每根导线所受力的方向和大小。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）顶部导线：2.65 × 10⁻⁴ N/m，向上偏左 10.9°\n（b）左下导线：3.61 × 10⁻⁴ N/m，向右偏下 13.9°\n（c）右下导线：3.46 × 10⁻⁴ N/m，向左偏下 30.0°"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1555084",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-parallel-wires",
+   "prompt": "两根平行导线载有相等且方向相同的电流，相隔一小段距离。两根导线彼此施加的磁力方向如何？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "没有力，因为导线是平行的。",
+     "没有力，因为电流方向相同。",
+     "力是相互吸引的。",
+     "力是相互排斥的。"
+    ],
+    "correct": 2,
+    "hint": "依次用两条右手定则。RHR-2 给出第一根导线在第二根导线所在处产生的场，RHR-1 给出该场对第二个电流施加的力。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3298204",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-between-two-wires",
+   "prompt": "一根沿 <em>y</em> 轴的导线载有沿 +<em>y</em> 方向的电流。一位实验者想要布置第二根导线，使它与第一根导线平行，并在坐标 $x = 2.0\\;\\text{m}$ 处穿过 <em>x</em> 轴，以使坐标 $x = 1.0\\;\\text{m}$ 处的总磁场为零。假设第二根导线中的电流大小与第一根相等，它的电流必须沿什么方向流动？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "第二根导线中的电流必须与第一根沿相同的方向，即 $+y$ 方向。$x = 1.0\\;\\text{m}$ 处的点与两根导线各相距一米，所以只要两个电流相等，那里的两个场大小就相等，剩下要做的安排就是让它们方向相反。取位于 $y$ 轴上的第一根导线，用 RHR-2，拇指沿它的电流：四指弯曲的方向使得在它的 $+x$ 一侧的某点，场指向 $-z$ 方向。现在来看位于 $x = 2.0\\;\\text{m}$ 的第二根导线。所关注的点位于它的 $-x$ 一侧，所以沿 $+y$ 方向流动的电流在该点给出沿 $+z$ 方向的场，与第一个场恰好相反。两者抵消，总场为零。这个结果记住比推导更容易：在两个沿相同方向流动的相等电流正中间，两个场方向相反而抵消，这就是为什么两根这样的导线之间的区域是安静区域。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "attraction-and-repulsion-of-currents"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "force-between-parallel-currents",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "attraction-and-repulsion-of-currents"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "force-between-parallel-currents",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "attraction-and-repulsion-of-currents"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "right-hand-rule-2",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "direction-of-force-on-a-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "attraction-and-repulsion-of-currents"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "field-at-the-centre-of-a-loop",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "right-hand-rule-2",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "torque-on-a-current-loop"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "attraction-and-repulsion-of-currents",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "magnetic-field"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "ferromagnetic-materials",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "force-between-parallel-currents"
+  },
+  {
+   "exercise": "p1",
+   "concept": "attraction-and-repulsion-of-currents",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "force-between-parallel-currents"
+  },
+  {
+   "exercise": "p3",
+   "concept": "attraction-and-repulsion-of-currents",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "force-between-parallel-currents"
+  },
+  {
+   "exercise": "p5",
+   "concept": "attraction-and-repulsion-of-currents",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "force-between-parallel-currents"
+  },
+  {
+   "exercise": "p7",
+   "concept": "attraction-and-repulsion-of-currents",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "attraction-and-repulsion-of-currents"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "field-of-a-long-straight-wire"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "right-hand-rule-2",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "wire-1",
+   "label": "导线 1",
+   "figures": [
+    "sim-parallel-wires"
+   ]
+  },
+  {
+   "id": "wire-2",
+   "label": "导线 2",
+   "figures": [
+    "sim-parallel-wires"
+   ]
+  },
+  {
+   "id": "arc",
+   "label": "电弧柱",
+   "figures": [
+    "sim-pinch-effect"
+   ]
+  },
+  {
+   "id": "balance",
+   "label": "电流天平",
+   "figures": [
+    "sim-current-balance"
+   ]
+  },
+  {
+   "id": "coils",
+   "label": "两个线圈",
+   "figures": [
+    "sim-current-balance"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "force-between-wires",
+   "what": "两个平行电流之间的力",
+   "source": "《大学物理（第2版）》，22.10 两根平行导体之间的磁力",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "导线 1 的场沿导线 2 是均匀的，且与它垂直，所以 $\\sin\\ktheta = 1$。",
+       "src": "22.10"
+      },
+      {
+       "text": "由牛顿第三定律，两根导线所受的力大小相等（$\\kFone = -\\kFtwo$），所以 $\\kF$ 代表 $\\kFtwo$ 的大小。",
+       "src": "22.10"
+      },
+      {
+       "tex": "\\kBmagone = \\dfrac{\\mu_0\\kIcurone}{2\\pi\\kr}",
+       "src": "22.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcur} \\mk{l}{\\kl}\\mk{B}{\\kBmag}\\mk{s}{\\sin\\ktheta}",
+      "src": "22.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFtwo} = \\mk{I}{\\kIcurtwo} \\mk{l}{\\kl}\\mk{B}{\\kBmagone}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcurtwo} \\mk{l}{\\kl}\\mk{B}{\\kBmagone}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcurtwo} \\mk{l}{\\kl}\\mk{B}{\\dfrac{\\mu_0\\kIcurone}{2\\pi\\kr}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{F}{\\kF}}{\\mk{l}{\\kl}} = \\mk{B}{\\dfrac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr}}",
+       "uses": [],
+       "map": {
+        "I": "B"
+       }
+      }
+     ],
+     "src": "22.10"
+    }
+   ]
+  }
+ ]
+}

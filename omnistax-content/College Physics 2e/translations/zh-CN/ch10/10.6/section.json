@@ -1,0 +1,847 @@
+{
+ "id": "10.6",
+ "module": "m42183",
+ "chapter": "10",
+ "title": "有限大小物体的二维碰撞",
+ "short": "有限大小物体的碰撞",
+ "lead": "当某个物体撞上一个可以自由转动的物体时，<span data-concept=\"angular-momentum\">角动量</span>与<span data-concept=\"linear-momentum\">线动量</span>和<span data-concept=\"energy\">能量</span>一同进入这次碰撞。你跟随<span data-ref=\"disk\">一个圆盘</span>滑过无摩擦的桌面，粘在由<span data-ref=\"nail\">一枚钉子</span>固定住的<span data-ref=\"stick\">一根木棍</span>上，然后追问：打击落在哪里，钉子才完全感受不到<span data-concept=\"force\">力</span>，这就是<span data-ref=\"racquet\">球拍</span>的最佳击球点。",
+ "objectives": [
+  "观察有限大小物体的二维碰撞。",
+  "研究在打击中心处发生的碰撞。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"angular-momentum\">角动量</span> $\\kL$ 与<span data-concept=\"linear-momentum\">线动量</span>类似，由 $\\kL = \\kI\\kw$ 给出。</li><li><span data-concept=\"angular-momentum\">角动量</span>由力矩改变，遵循关系 $\\text{合力矩}\\;\\ktau = \\frac{\\kdLang}{\\kdt}$。</li><li>如果合力矩为零 $\\kL = \\text{常量}\\;(\\text{合力矩}\\;\\ktau = 0)$ 或 $\\kL = \\kLprime\\;(\\text{合力矩}\\;\\ktau = 0)$，<span data-concept=\"angular-momentum\">角动量</span>守恒。这个方程称为角动量守恒定律，角动量在碰撞中可以守恒。</li></ul>",
+ "notes": "书中未给出答案的两道习题——以 1000 转每分旋转着到达的圆盘，以及在冰上用伸直的手臂接球的人——连同那次接球的示意图，即图 10.36，均已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示，以及两道思考题和两道无答案的 AP 题的建议解法，均由 AI 生成并已标明；三道习题、理解检测框和那道有答案的 AP 题的答案来自本书自己的答案表，此处没有计算任何内容。习题 2（以 1000 转每分旋转的圆盘）和习题 4（冰上接球的人，CNXML 未给它标注类型，而按其标题归为习题）没有给出答案，已略去，图 10.36 随第 4 题一并略去。关于转动动能是否为矢量的理解检测框，排在例题之后，与正文放在一起，其余各题都放在末尾。本节八道 AP 题中，有五道问的是力矩如何改变角动量，或物体的形状为何重要，而不是碰撞，它们与 10.5 编在一起，source_section 为 10.6：骑行者的挡位（fs-id2159515）、电动螺丝刀（fs-id1526286）、物体的形状为何重要（fs-id1519591）、台式风扇（fs-id1581467），以及一个在不同力矩下的转动系统（fs-id1686879）；留在本节的三道是迅速坐到跷跷板上的人（fs-id1664450）、桌游的旋转指针，以及球和细绳。三道思考题中，第一道关于两种碰撞（fs-id1575956），第二道关于冰球和自由的冰球杆，编在本节；第三道关于向后拉摩托车的车把（fs-id2578076），与 10.7 的第一道逐字相同，编在 10.7，因为它取决于角动量的方向，而角动量的方向是 10.7 才引入的。本节没有取自其他小节的内容。数值答案允许 2% 的误差。",
+ "figures": [
+  {
+   "id": "fig-bowling",
+   "kind": "photo",
+   "number": "10.32",
+   "originals": [
+    "/media/ch10/Figure_11_06_01a.jpg"
+   ],
+   "original_caption": "保龄球使球瓶飞了出去，其中一些球瓶剧烈地旋转。（来源：Tinou Bao, Flickr）",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-disk-stick",
+   "kind": "sim",
+   "number": "10.33",
+   "originals": [
+    "/media/ch10/Figure_11_06_02a.jpg"
+   ],
+   "original_caption": "（a）一个圆盘在无摩擦的表面上滑向一根静止的木棍。（b）圆盘撞在木棍的一端并粘在上面，二者一起转动，绕钉子旋转。这个非弹性碰撞中角动量守恒，因为表面无摩擦，而且钉子处的不平衡外力不产生力矩。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "angular-momentum",
+    "rotational-inertia",
+    "angular-rate",
+    "momentum",
+    "velocity",
+    "energy",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels kept off the stick; note one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-percussion",
+   "kind": "sim",
+   "number": "10.34",
+   "originals": [
+    "/media/ch10/Figure_11_06_03.jpg"
+   ],
+   "original_caption": "把圆盘撞击木棍与球拍击打网球作比较。（a）球击中球拍靠近末端处时，手受到一个向后的力。（b）球拍在靠下得多的地方被击中时，手受到一个向前的力。（c）球拍在打击中心被击中时，手上没有力。",
+   "widths": [
+    330
+   ],
+   "draws": [
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library fist on the handle; note one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "collisions-with-spin",
+   "concept": "angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "collisions-with-spin",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "disk-and-stick",
+   "concept": "angular-momentum-in-collisions",
+   "verb": "introduces"
+  },
+  {
+   "span": "disk-and-stick",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "disk-and-stick",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "disk-and-stick",
+   "concept": "inelastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "solving-a-rotational-collision",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "energy-and-momentum-in-a-rotational-collision",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "angular-momentum-in-collisions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "point-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "rotational-kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "perfectly-inelastic-collision",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-in-a-collision",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "percussion",
+   "concept": "percussion-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "percussion",
+   "concept": "energy-and-momentum-in-a-rotational-collision",
+   "verb": "reinforces"
+  },
+  {
+   "span": "percussion",
+   "concept": "point-of-application",
+   "verb": "uses"
+  },
+  {
+   "span": "percussion",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2672292",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "rotation-in-a-collision"
+   },
+   "cite": "rotation-in-a-collision",
+   "prompt": "转动动能是矢量吗？请说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "不是。无论是否涉及运动，能量始终是标量。任何形式的能量都没有空间中的方向，而且你可以看出，转动动能不依赖于运动的方向，正如平动动能与运动的方向无关一样。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1664450",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-and-stick",
+   "prompt": "一个质量为 2.0 kg 的箱子放在跷跷板的一端。跷跷板长 6.0 m，可以认为它的质量可以忽略不计。如果一个质量为 65 kg 的人以 1.2 m/s 的速度迅速坐到跷跷板的另一端，箱子大约会具有多大的角动量？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "702 kg·m²/s",
+     "39 kg·m²/s",
+     "18 kg·m²/s",
+     "1.2 kg·m²/s"
+    ],
+    "correct": 1,
+    "hint": "以 1.2 m/s 的速度到达的人，对支点具有的角动量为 $\\kL = m\\kv r$，其中 $r$ 为跷跷板长度的一半，而放着箱子的跷跷板会接收这份角动量。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1623831",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotation-in-a-collision",
+   "prompt": "桌游中的旋转指针可以看作绕其中心的转轴旋转的细杆。某个游戏中的旋转指针长 12 cm，质量为 10 g。如果碰撞的全部能量都传给了旋转指针，那么当用相当于以 5.0 m/s 运动的 15 g 的力拨动它的一端时，它的角速度会如何变化？（你可以用图 10.12 中的表格估算旋转指针的转动惯量。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "旋转指针从静止开始，角速度变为约 $1.8 \\times 10^{2}\\ \\text{rad/s}$。把这一拨看作一个 15 g 的物体以 5.0 m/s 的速度到达。它的动能为 $\\frac{1}{2}\\km\\kv^2 = \\frac{1}{2}(0.015\\ \\text{kg})(5.0\\ \\text{m/s})^2 = 0.19\\ \\text{J}$，全部变成旋转指针的转动动能 $\\frac{1}{2}\\kI\\kw^2$。旋转指针是绕其中心转动的细杆，所以由图 10.12 得 $\\kI = \\kM\\ell^2/12 = (0.010\\ \\text{kg})(0.12\\ \\text{m})^2/12 = 1.2 \\times 10^{-5}\\ \\text{kg}\\cdot\\text{m}^2$。解出角速度，$\\kw = \\sqrt{2(0.1875\\ \\text{J})/(1.2 \\times 10^{-5}\\ \\text{kg}\\cdot\\text{m}^2)} = 177\\ \\text{rad/s}$，约为 28 转每秒。能量的全部转移是一种理想化；在圆盘与木棍的碰撞中，角动量守恒，而大部分动能损失了。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1501033",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-and-stick",
+   "prompt": "怎样才能用球和细绳这类简单的器材，研究一个系统与另一个系统相互作用时角动量的变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把一个球用细绳挂在一个固定点上，使它能够做圆周摆动，再让第二个球沿地面滚来，或者用它自己的细绳摆来，撞击它。碰撞之前，运动的球对固定点的角动量等于它的质量乘以速率，再乘以固定点到其路径的垂直距离，就像圆盘对钉子的角动量 $\\kL = m\\kv\\kr$ 一样。碰撞之后，给运动物体的圆周运动计时，以求出它的角速度。它的转动惯量就是位于细绳长度处的质点的转动惯量，因此你可以把碰撞之后的角动量与碰撞之前的角动量作比较。改变第二个球撞击点到固定点的距离，改变两球是粘在一起还是弹开，也改变细绳是挂在固定点上还是挂在一只不固定的手上。每一种情形下都记录两球系统的角动量在碰撞前后是否相同。如果不同，就是细绳或支撑物对你测量时所取的那个点施加了力矩。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1575956",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-and-stick",
+   "prompt": "请描述两种不同的碰撞——一种碰撞中角动量守恒，另一种碰撞中角动量不守恒。是哪个条件决定了碰撞中角动量是否守恒？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有合外力矩才能改变角动量，所以要问的是：系统外部的力对你取角动量所围绕的那个点是否有力臂。圆盘和被钉住的木棍就是第一类碰撞。钉子对木棍的推力很大，但它作用在支点上，力臂为零，所以不产生力矩，圆盘和木棍整体的角动量在碰撞之后与碰撞之前相同。对于第二类碰撞，可以让同一个圆盘撞击一根被手握在长度中间某处的木棍，或者让一个球撞击恰好有人正在推着关上的门。手和推门的人作用在离支点一定距离处，因此在碰撞过程中产生了力矩，对支点的角动量发生了改变。点的选取很重要：对某一点没有力臂的力，对另一点却有力臂，所以同一次碰撞可以对钉子守恒角动量，而对木棍的中心则不守恒。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3225926",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotation-in-a-collision",
+   "prompt": "假设一个冰球撞击一根平放在冰面上、可以向任意方向自由运动的冰球杆。哪些量可能守恒：角动量、线动量，还是动能（假设冰球和球杆的弹性都很好）？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对每个量都问一问：什么会改变它。只有合外力才能改变线动量。冰面无摩擦，也没有任何东西把球杆钉住，所以沿冰面没有外力作用，冰球和球杆整体的线动量保持不变。只有合外力矩才能改变角动量，没有外力就没有外力矩，所以角动量也保持不变，对你选定的任何一点都是如此。动能是碰撞可能损失的量，就像圆盘粘住时，圆盘和被钉住的木棍损失了大部分动能。但冰球和球杆的弹性都很好，所以这次碰撞近似为弹性碰撞，动能也几乎保持不变。这里三个量都守恒。被钉住的木棍在唯一要紧的一点上不同：它的钉子提供了改变系统线动量的外力。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2578283",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotation-in-a-collision",
+   "prompt": "重做例题 10.15，其中圆盘撞在离钉子 0.100 m 处并粘在木棍上。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.156,
+      "unit": "rad/s",
+      "hint": "圆盘对钉子的角动量为 $m\\kv\\kr$，现在 $\\kr = 0.100\\ \\text{m}$，碰撞之后的转动惯量是圆盘的 $m\\kr^2$ 加上整根 1.20 m 木棍的 $M\\ell^2/3$。"
+     },
+     {
+      "part": "b",
+      "value": 0.0117,
+      "unit": "J",
+      "hint": "碰撞之后的动能为 $\\frac{1}{2}\\kIprime\\kwprime^2$；碰撞之前的能量是圆盘的 22.5 J，与例题中相同。"
+     },
+     {
+      "part": "c",
+      "value": 0.188,
+      "unit": "kg·m/s",
+      "hint": "碰撞之后，圆盘以 $\\kr\\kwprime$ 运动，木棍的质心以 $(\\ell/2)\\kwprime$ 运动，其中 $\\ell$ 是木棍的长度，而不是到撞击点的距离。"
+     }
+    ],
+    "solution": "（a）$0.156\\ \\text{rad/s}$ （b）$1.17 \\times 10^{-2}\\ \\text{J}$ （c）$0.188\\ \\text{kg}\\cdot\\text{m/s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2026029",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotation-in-a-collision",
+   "figure": {
+    "src": "/media/ch10/Figure_11_06_04a.jpg",
+    "alt": "图 a 为俯视图，两名滑冰者以速度 v 从相反的方向相向而行。图 b 中，两名滑冰者随后握住对方的右手，并以角速度 ω 沿顺时针方向旋转起来。",
+    "caption": "图 10.35 双胞胎滑冰者以相同的速率相向而行。随后，两人握住手并旋转起来。"
+   },
+   "prompt": "双胞胎滑冰者如图 10.35 所示相向而行，并握住手。（a）已知每人相对于冰面的初速率为 2.50 m/s，计算他们的末角速度。每人的质量为 70.0 kg，每人的质心到他们握住的手的距离为 0.800 m。可以把他们的转动惯量近似为这一半径处质点的转动惯量。（b）比较初动能和末动能。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3.13,
+      "unit": "rad/s",
+      "hint": "每名滑冰者对握住的手的角动量为 $m\\kv r$，二者转向相同，之后两人一起转动，转动惯量为位于 0.800 m 处的两个质点的转动惯量。"
+     },
+     {
+      "part": "b",
+      "value": 438,
+      "unit": "J",
+      "hint": "把两名滑冰者碰撞前的平动动能与两人碰撞后的转动动能 $\\frac{1}{2}\\kI\\kw^2$ 作比较；这一小题要求的是末动能。"
+     }
+    ],
+    "solution": "（a）3.13 rad/s （b）初动能 KE = 438 J，末动能 KE = 438 J"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1848842",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotation-in-a-collision",
+   "prompt": "重做例题 10.15，其中木棍除转动外还可以自由地平动。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 1.7,
+      "unit": "rad/s",
+      "hint": "没有钉子就没有外力，所以线动量和角动量都守恒。取圆盘和木棍整体的质心为参考点计算角动量，此时木棍的转动惯量为 $M\\ell^2/12$。"
+     },
+     {
+      "part": "b",
+      "value": 2.04,
+      "unit": "J",
+      "hint": "碰撞之后的动能是质心的平动动能加上绕质心的转动动能；这一小题要求的是末动能，初动能是圆盘的 22.5 J。"
+     },
+     {
+      "part": "c",
+      "value": 1.5,
+      "unit": "kg·m/s",
+      "hint": "沿冰面没有外力作用，所以碰撞之后的线动量恰好等于碰撞之前圆盘的动量。"
+     }
+    ],
+    "solution": "（a）1.70 rad/s （b）初动能 KE = 22.5 J，末动能 KE = 2.04 J （c）$1.50\\ \\text{kg}\\cdot\\text{m/s}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "energy-and-momentum-in-a-rotational-collision",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "angular-momentum-in-collisions"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "solving-a-rotational-collision"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "choosing-a-moment-of-inertia",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "rotational-kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "angular-momentum-in-collisions"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "energy-and-momentum-in-a-rotational-collision"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "solving-a-rotational-collision"
+  },
+  {
+   "exercise": "p1",
+   "concept": "energy-and-momentum-in-a-rotational-collision",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "percussion-point",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "solving-a-rotational-collision"
+  },
+  {
+   "exercise": "p3",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "point-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "solving-a-rotational-collision"
+  },
+  {
+   "exercise": "p5",
+   "concept": "energy-and-momentum-in-a-rotational-collision",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "conservation-of-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "angular-momentum-in-collisions"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conservation-of-angular-momentum",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "disk",
+   "label": "圆盘",
+   "figures": [
+    "sim-disk-stick"
+   ]
+  },
+  {
+   "id": "stick",
+   "label": "木棍",
+   "figures": [
+    "sim-disk-stick",
+    "sim-percussion"
+   ]
+  },
+  {
+   "id": "nail",
+   "label": "钉子",
+   "figures": [
+    "sim-disk-stick",
+    "sim-percussion"
+   ]
+  },
+  {
+   "id": "ball",
+   "label": "球",
+   "figures": [
+    "sim-percussion"
+   ]
+  },
+  {
+   "id": "racquet",
+   "label": "网球拍",
+   "figures": [
+    "sim-percussion"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "握着球拍的手",
+   "figures": [
+    "sim-percussion"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "collision-angular-velocity",
+   "what": "碰撞后木棍与圆盘的角速度",
+   "source": "《大学物理（第2版）》，10.6 有限大小物体的二维碰撞，例题 10.15",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "碰撞前，木棍和圆盘对支点的角动量就是圆盘单独的角动量。"
+      },
+      {
+       "text": "圆盘近似看作质点。"
+      },
+      {
+       "tex": "\\kI = \\km\\kr^2",
+       "src": "10.3"
+      },
+      {
+       "tex": "\\kw = \\frac{\\kv}{\\kr}",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kL} = \\mk{I}{\\kI}\\mk{w}{\\kw}",
+      "src": "10.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{I}{\\km\\kr^2}\\mk{w}{\\kw}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{I}{\\km\\kr^2}\\mk{w}{\\frac{\\kv}{\\kr}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{I}{\\km\\kv\\kr}",
+       "uses": [],
+       "map": {
+        "w": "I"
+       }
+      }
+     ],
+     "src": "例题 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "text": "表面无摩擦。",
+       "src": "10.6"
+      },
+      {
+       "text": "钉子处的不平衡外力对钉子不产生力矩。",
+       "src": "10.6"
+      },
+      {
+       "tex": "\\kL = \\kI\\kw",
+       "src": "10.5"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kL} = \\mk{Lp}{\\kLprime}",
+      "src": "10.5",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{Lp}{\\kIprime\\kwprime}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\km\\kv\\kr} = \\mk{Lp}{\\kIprime\\kwprime}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{w}{\\kwprime} = \\frac{\\mk{L}{\\km\\kv\\kr}}{\\mk{Lp}{\\kIprime}}",
+       "uses": [],
+       "map": {
+        "Lp": [
+         "w",
+         "Lp"
+        ]
+       }
+      }
+     ],
+     "src": "例题 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "text": "粘在一起的木棍和圆盘对钉子的转动惯量，等于它们各自对钉子的转动惯量之和。"
+      },
+      {
+       "tex": "\\kI = \\km\\kr^2",
+       "src": "10.3"
+      },
+      {
+       "tex": "\\kI = \\frac{\\kM\\kr^2}{3}",
+       "src": "10.3，图 10.12"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIprime} = \\mk{d}{\\kI_{\\text{disk}}} + \\mk{s}{\\kI_{\\text{stick}}}",
+      "src": "例题 10.15",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\mk{d}{\\km\\kr^2} + \\mk{s}{\\kI_{\\text{stick}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\mk{d}{\\km\\kr^2} + \\mk{s}{\\frac{\\kM\\kr^2}{3}}",
+       "uses": [
+        2
+       ],
+       "cap": "木棍是绕一端转动的杆。"
+      },
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\left(\\mk{d}{\\km} + \\mk{s}{\\frac{\\kM}{3}}\\right)\\mk{r}{\\kr^2}",
+       "uses": [],
+       "map": {
+        "d": [
+         "d",
+         "r"
+        ],
+        "s": [
+         "s",
+         "r"
+        ]
+       }
+      }
+     ],
+     "src": "例题 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\km = 0.0500\\ \\text{kg},\\quad \\kM = 2.00\\ \\text{kg},\\quad \\kr = 1.20\\ \\text{m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIprime} = \\left(\\mk{d}{\\km} + \\mk{s}{\\frac{\\kM}{3}}\\right)\\mk{r}{\\kr^2}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIprime} = (\\mk{d}{0.0500\\ \\text{kg}} + \\mk{s}{0.667\\ \\text{kg}})\\mk{r}{(1.20\\ \\text{m})^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\mk{d}{1.032\\ \\text{kg}\\cdot\\text{m}^2}",
+       "uses": [],
+       "map": {
+        "s": "d",
+        "r": "d"
+       }
+      }
+     ],
+     "src": "例题 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\km = 0.0500\\ \\text{kg},\\quad \\kv = 30.0\\ \\text{m/s},\\quad \\kr = 1.20\\ \\text{m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kwprime} = \\frac{\\mk{L}{\\km\\kv\\kr}}{\\mk{Lp}{\\kIprime}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{\\kwprime} = \\frac{\\mk{L}{(0.0500\\ \\text{kg})(30.0\\ \\text{m/s})(1.20\\ \\text{m})}}{\\mk{Lp}{1.032\\ \\text{kg}\\cdot\\text{m}^2}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{w}{\\kwprime} = \\mk{L}{1.744\\ \\text{rad/s}} \\approx \\mk{a}{1.74\\ \\text{rad/s}}",
+       "uses": [],
+       "map": {
+        "Lp": "L"
+       }
+      }
+     ],
+     "src": "例题 10.15"
+    }
+   ]
+  }
+ ]
+}

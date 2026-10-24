@@ -1,0 +1,202 @@
+<section id="connections">
+<h2>两种最简单的连接</h2>
+<p class="cite-target">大多数电路含有不止一个元件，称为<strong><span data-concept="resistor">电阻器</span></strong>，它限制电路中电荷的流动。对电荷流动的这种限制的度量称为<strong><span data-concept="resistance">电阻</span></strong>。<span data-concept="resistor">电阻器</span>最简单的组合是图 21.2 所示的<span data-concept="series-connection">串联</span>和<span data-concept="parallel-connection">并联</span>。<span data-concept="resistor">电阻器</span>组合的总<span data-concept="resistance">电阻</span>既取决于各个电阻器自身的阻值，也取决于它们的连接方式。</p>
+<figure class="sim" id="sim-four-resistors" data-figure="21.2" data-original="/media/ch21/Figure_22_01_01.jpg" data-original-width="200" data-original-caption="（a）电阻器的串联。（b）电阻器的并联。">
+  <div class="sim-head"><span class="eyebrow">Figure 21.2</span><span><span data-ref="resistor-1 resistor-2 resistor-3 resistor-4">四个电阻器</span>沿同一条通路一个接一个地连接，或者各自占一条通路连在同样的两点之间。改变<span data-type="resistance">第三个和第四个电阻</span>，并在两种接法之间切换（切换会把每个电阻器移到它在另一种接法中的位置），观察<span data-ref="resistor-1 resistor-2 resistor-3 resistor-4">这四个电阻器</span>合在一起的电阻：串联时比其中最大的还要大，并联时比其中最小的还要小。</span></div>
+</figure>
+</section>
+
+<section id="series">
+<h2>电阻器的串联</h2>
+<p class="cite-target"><span data-concept="resistor">电阻器</span>何时是<strong><span data-concept="series-connection">串联</span></strong>的？只要电荷的流动（称为<strong><span data-concept="electric-current">电流</span></strong>）必须依次流过各个器件，<span data-concept="resistor">电阻器</span>就是<span data-concept="series-connection">串联</span>的。例如，若<span data-concept="electric-current">电流</span>流过一个手持螺丝刀的人而进入地球，则图 21.2 中的 $\kResone$ 可以是<span data-ref="resistor-1">螺丝刀杆</span>的<span data-concept="resistance">电阻</span>，$\kRestwo$ 是<span data-ref="resistor-2">其手柄</span>的<span data-concept="resistance">电阻</span>，$\kResthree$ 是<span data-ref="resistor-3">人体</span><span data-concept="resistance">电阻</span>，而 $\kResfour$ 是<span data-ref="resistor-4">她的鞋</span>的<span data-concept="resistance">电阻</span>。</p>
+<p>图 21.3 显示了接在<strong><span data-concept="potential-difference">电压</span></strong>源上的<span data-ref="resistor-1 resistor-2 resistor-3"><span data-concept="series-connection">串联</span>的<span data-concept="resistor">电阻器</span></span>。<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>等于<span data-type="resistance">各个<span data-concept="resistance">电阻</span></span>之和，这似乎是合理的，因为<span data-type="current"><span data-concept="electric-current">电流</span></span>必须依次通过每一个<span data-concept="resistor">电阻器</span>。（这一事实对想要避免电击的人是有利的，他可以穿高电阻的橡胶底鞋来减小<span data-concept="electric-current">电流</span>。如果其中一个<span data-concept="resistance">电阻</span>是通向某个用电器的、有故障的高电阻电源线，从而使工作<span data-concept="electric-current">电流</span>减小，则这一事实就是不利的。）</p>
+<figure class="sim" id="sim-three-resistors" data-figure="21.3 + 21.4 + 21.6" data-original="/media/ch21/Figure_22_01_02.jpg,/media/ch21/Figure_22_01_04.jpg,/media/ch21/Figure_22_01_06.jpg" data-original-width="300,500,350" data-original-caption="（图 21.3）三个电阻器串联在一个电池上（左），以及与之等效的单个电阻即串联电阻（右）。（图 21.4）（a）三个电阻器并联在一个电池上，以及与之等效的单个电阻即并联电阻。（b）住宅中的供电布置。（来源：Dmitry G, Wikimedia Commons）（图 21.6）这三个电阻器接在一个电压源上，使 R_2 和 R_3 相互并联，而这一并联组合再与 R_1 串联。">
+  <div class="sim-head"><span class="eyebrow">Figure 21.3 + 21.4 + 21.6</span><span>一个电池驱动<span data-ref="resistor-1 resistor-2 resistor-3">三个电阻器</span>，它们可以串联、并联，或两者混合连接，旁边是该组合所化成的<span data-type="resistance">单个电阻</span>。改变<span data-type="voltage">电源电压</span>和<span data-type="resistance">三个电阻中的任何一个</span>，并切换接法，让<span data-ref="resistor-1 resistor-2 resistor-3">这些电阻器</span>移到各自的新位置。串联时，各个<span data-type="voltage">电压降</span>分担<span data-type="voltage">电源电压</span>；并联时，<span data-type="current">各支路电流</span>分掉<span data-type="current">电源电流</span>；而当<span data-ref="resistor-2 resistor-3">并联的一对电阻</span>与<span data-ref="resistor-1">和它们串联的一个电阻器</span>相接时，两种情形同时出现。</span></div>
+</figure>
+<p>为了验证<span data-concept="series-connection">串联</span>的<span data-concept="resistance">电阻</span>确实相加，我们来考虑图 21.3 中每个<span data-concept="resistor">电阻器</span>上电<span data-concept="power">功率</span>的损失，称为<strong><span data-concept="ir-drop">电压降</span></strong>。</p>
+<p>根据<strong><span data-concept="ohms-law">欧姆定律</span></strong>，当<span data-concept="electric-current">电流</span>流过<span data-concept="resistor">电阻器</span>时，其两端的<span data-concept="ir-drop">电压降</span> $\kV$ 由公式 $\kV = \kIcur\kRes$ 算出，其中 $\kIcur$ 等于以安培（A）为单位的<span data-concept="electric-current">电流</span>，$\kRes$ 是以<span data-concept="ohm">欧姆</span> $(Ω)$ 为单位的<span data-concept="resistance">电阻</span>。换一种思考方式，$\kV$ 是使<span data-concept="electric-current">电流</span> $\kIcur$ 流过<span data-concept="resistance">电阻</span> $\kRes$ 所需的<span data-concept="potential-difference">电压</span>。</p>
+<p>所以 $\kResone$ 两端的<span data-type="voltage"><span data-concept="ir-drop">电压降</span></span>为 $\kVone = \kIcur\kResone$，$\kRestwo$ 两端的为 $\kVtwo = \kIcur\kRestwo$，$\kResthree$ 两端的为 $\kVthree = \kIcur\kResthree$。<span data-type="voltage">这些<span data-concept="potential-difference">电压</span></span>之和等于<span data-type="voltage">电源的输出<span data-concept="potential-difference">电压</span></span>。</p>
+<div class="note">
+<div class="eyebrow">联系：守恒定律</div>
+<p><span data-concept="series-connection">串联</span>和<span data-concept="parallel-connection">并联</span><span data-concept="resistance">电阻</span>表达式的推导，建立在<span data-concept="energy">能量</span>守恒和电荷守恒这两条<span data-concept="law">定律</span>之上，它们指出，在任何过程中总电荷和<span data-concept="total-energy">总能量</span>都是恒定的。这两条<span data-concept="law">定律</span>直接涉及一切电现象，将被反复用来解释各种具体效应以及电的一般行为。</p>
+</div>
+<figure class="dv" id="drv-resistance-in-series"></figure>
+<p>由于全部<span data-concept="electric-current">电流</span>都必须通过每一个<span data-concept="resistor">电阻器</span>，它就要经受每一个的<span data-concept="resistance">电阻</span>，所以<span data-concept="series-connection">串联</span>的<span data-concept="resistance">电阻</span>就是简单地相加。</p>
+<div class="example" id="ex-series">
+<h3>例题 21.1 · 计算电阻、电流、电压降和耗散功率：串联电路的分析</h3>
+<p>设图 21.3 中<span data-type="voltage">电池的输出<span data-concept="potential-difference">电压</span></span>为 $12.0\ \text{V}$，<span data-type="resistance">各<span data-concept="resistance">电阻</span></span>为 $\kResone = 1.00\ Ω$，$\kRestwo = 6.00\ Ω$，$\kResthree = 13.0\ Ω$。（a）<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>是多少？（b）求<span data-type="current"><span data-concept="electric-current">电流</span></span>。（c）计算<span data-type="voltage">每个<span data-concept="resistor">电阻器</span>上的<span data-concept="ir-drop">电压降</span></span>，并说明它们之和等于<span data-type="voltage">电源的输出<span data-concept="potential-difference">电压</span></span>。（d）计算<span data-type="power">每个<span data-concept="resistor">电阻器</span>所耗散的<span data-concept="power">功率</span></span>。（e）求<span data-type="power">电源的输出<span data-concept="power">功率</span></span>，并说明它等于<span data-type="power">各<span data-concept="resistor">电阻器</span>耗散的总<span data-concept="power">功率</span></span>。</p>
+<h4>（a）的思路与解</h4>
+<p><span data-type="resistance">总<span data-concept="resistance">电阻</span></span>就是<span data-type="resistance">各个<span data-concept="resistance">电阻</span></span>之和，如下式所示：</p>
+$$\begin{aligned}\kRess &= \kResone + \kRestwo + \kResthree\\ &= 1.00\ Ω + 6.00\ Ω + 13.0\ Ω\\ &= 20.0\ Ω.\end{aligned}$$
+<h4>（b）的思路与解</h4>
+<p><span data-type="current"><span data-concept="electric-current">电流</span></span>用<span data-concept="ohms-law">欧姆定律</span> $\kV = \kIcur\kRes$ 求出。代入<span data-type="voltage">所加<span data-concept="potential-difference">电压</span>的值</span>和<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>，得到<span data-type="current">电路中的<span data-concept="electric-current">电流</span></span>：</p>
+$$\kIcur = \frac{\kV}{\kRess} = \frac{12.0\ \text{V}}{20.0\ Ω} = 0.600\ \text{A}.$$
+<h4>（c）的思路与解</h4>
+<p><span data-concept="resistor">电阻器</span>上的<span data-concept="potential-difference">电压</span>，即 $\kIcur\kRes$ 压降，由<span data-concept="ohms-law">欧姆定律</span>给出。代入<span data-type="current"><span data-concept="electric-current">电流</span></span>和<span data-type="resistance">第一个<span data-concept="resistance">电阻</span>的值</span>，得到</p>
+$$\kVone = \kIcur\kResone = (0.600\ \text{A})(1.0\ Ω) = 0.600\ \text{V}.$$
+<p>同理，</p>
+$$\kVtwo = \kIcur\kRestwo = (0.600\ \text{A})(6.0\ Ω) = 3.60\ \text{V}$$
+<p>以及</p>
+$$\kVthree = \kIcur\kResthree = (0.600\ \text{A})(13.0\ Ω) = 7.80\ \text{V}.$$
+<h4>（c）的讨论</h4>
+<p>三个 $\kIcur\kRes$ 压降之和为 $12.0\ \text{V}$，与预期一致：</p>
+$$\kVone + \kVtwo + \kVthree = (0.600 + 3.60 + 7.80)\ \text{V} = 12.0\ \text{V}.$$
+<h4>（d）的思路与解</h4>
+<p>在直流电路中，计算<span data-concept="resistor">电阻器</span>所耗散的以<span data-concept="watt">瓦特</span>（W）为单位的<span data-concept="power">功率</span>，最简便的方法是用<strong><span data-concept="power-and-resistance">焦耳定律</span></strong> $\kP = \kIcur\kV$，其中 $\kP$ 是<span data-concept="electric-power">电功率</span>。在本题中，每个<span data-concept="resistor">电阻器</span>中通过的都是<span data-type="current">同一个完整的<span data-concept="electric-current">电流</span></span>。把<span data-concept="ohms-law">欧姆定律</span> $\kV = \kIcur\kRes$ 代入<span data-concept="power-and-resistance">焦耳定律</span>，就得到<span data-type="power">第一个<span data-concept="resistor">电阻器</span>所耗散的<span data-concept="power">功率</span></span>为</p>
+$$\kPonepow = \kIcur^2\kResone = (0.600\ \text{A})^2(1.00\ Ω) = 0.360\ \text{W}.$$
+<p>同理，</p>
+$$\kPtwopow = \kIcur^2\kRestwo = (0.600\ \text{A})^2(6.00\ Ω) = 2.16\ \text{W}$$
+<p>以及</p>
+$$\kPthreepow = \kIcur^2\kResthree = (0.600\ \text{A})^2(13.0\ Ω) = 4.68\ \text{W}.$$
+<h4>（d）的讨论</h4>
+<p><span data-concept="power">功率</span>也可以用 $\kP = \kIcur\kV$ 或 $\kP = \frac{\kV^2}{\kRes}$ 来计算，其中 $\kV$ 是<span data-concept="resistor">电阻器</span>两端的<span data-concept="ir-drop">电压降</span>（而不是电源的完整<span data-concept="potential-difference">电压</span>）。得到的数值相同。</p>
+<h4>（e）的思路与解</h4>
+<p>计算<span data-type="power">电源的输出<span data-concept="power">功率</span></span>，最简便的方法是用 $\kP = \kIcur\kV$，其中 $\kV$ 是<span data-type="voltage">电源<span data-concept="potential-difference">电压</span></span>。这样得到</p>
+$$\kP = (0.600\ \text{A})(12.0\ \text{V}) = 7.20\ \text{W}.$$
+<h4>（e）的讨论</h4>
+<p>请注意，<span data-type="power">各<span data-concept="resistor">电阻器</span>耗散的总<span data-concept="power">功率</span></span>也是 7.20 W，与<span data-type="power">电源输出的<span data-concept="power">功率</span></span>相同，这是巧合。也就是说，</p>
+$$\kPonepow + \kPtwopow + \kPthreepow = (0.360 + 2.16 + 4.68)\ \text{W} = 7.20\ \text{W}.$$
+<p><span data-concept="power">功率</span>是单位<span data-concept="time">时间</span>内的<span data-concept="energy">能量</span>（<span data-concept="watt">瓦特</span>），所以<span data-concept="energy">能量</span>守恒要求<span data-type="power">电源的输出<span data-concept="power">功率</span></span>等于<span data-type="power">各<span data-concept="resistor">电阻器</span>耗散的总<span data-concept="power">功率</span></span>。</p>
+</div>
+<div class="note">
+<div class="eyebrow">电阻器串联的主要特点</div>
+<ol>
+<li><span data-concept="series-connection">串联</span><span data-concept="resistance">电阻</span>相加：$\kRess = \kResone + \kRestwo + \kResthree + \ldots$。</li>
+<li>流过<span data-concept="series-connection">串联</span>的每个<span data-concept="resistor">电阻器</span>的<span data-concept="electric-current">电流</span>相同。</li>
+<li><span data-concept="series-connection">串联</span>的各个<span data-concept="resistor">电阻器</span>并不各自得到电源的总<span data-concept="potential-difference">电压</span>，而是分担它。</li>
+</ol>
+</div>
+</section>
+
+<section id="parallel">
+<h2>电阻器的并联</h2>
+<p class="cite-target">图 21.4 显示了接在<span data-concept="potential-difference">电压</span>源上的<strong><span data-concept="parallel-connection">并联</span></strong><span data-ref="resistor-1 resistor-2 resistor-3"><span data-concept="resistor">电阻器</span></span>。当每个<span data-concept="resistor">电阻器</span>都通过<span data-concept="resistance">电阻</span>可忽略的连接导线直接接到<span data-concept="potential-difference">电压</span>源上时，这些<span data-concept="resistor">电阻器</span>就是<span data-concept="parallel-connection">并联</span>的。因此每个<span data-concept="resistor">电阻器</span>上所加的都是电源的完整<span data-concept="potential-difference">电压</span>。</p>
+<p>每个<span data-concept="resistor">电阻器</span>所取用的<span data-concept="electric-current">电流</span>，与它单独接在<span data-concept="potential-difference">电压</span>源上时相同（前提是该<span data-concept="potential-difference">电压</span>源没有过载）。例如，汽车的前照灯、收音机等等都是<span data-concept="parallel-connection">并联</span>的，这样它们就能利用电源的完整<span data-concept="potential-difference">电压</span>，并且可以完全独立地工作。在你的住宅或任何建筑物中也是如此。（见图 21.4（b）。）</p>
+<p>为了求出<span data-type="resistance">等效<span data-concept="parallel-connection">并联</span><span data-concept="resistance">电阻</span></span> $\kResp$ 的表达式，我们来考虑<span data-type="current">流过的<span data-concept="electric-current">电流</span></span>以及它们与<span data-concept="resistance">电阻</span>的关系。</p>
+<figure class="dv" id="drv-resistance-in-parallel"></figure>
+<p>这一关系给出的总<span data-concept="resistance">电阻</span> $\kResp$ 小于各个<span data-concept="resistance">电阻</span>中最小的一个。（这一点将在下一个例题中看到。）当<span data-concept="resistor">电阻器</span><span data-concept="parallel-connection">并联</span>时，从电源流出的<span data-concept="electric-current">电流</span>比其中任何一个单独接入时流过的都要大，因此总<span data-concept="resistance">电阻</span>更低。</p>
+<div class="example" id="ex-parallel">
+<h3>例题 21.2 · 计算电阻、电流、耗散功率和输出功率：并联电路的分析</h3>
+<p>设图 21.4 中<span data-concept="parallel-connection">并联</span>连接里<span data-type="voltage">电池的输出<span data-concept="potential-difference">电压</span></span>和<span data-type="resistance"><span data-concept="resistance">电阻</span></span>与前面考虑过的<span data-concept="series-connection">串联</span>连接相同：$\kV = 12.0\ \text{V}$，$\kResone = 1.00\ Ω$，$\kRestwo = 6.00\ Ω$，$\kResthree = 13.0\ Ω$。（a）<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>是多少？（b）求<span data-type="current">总<span data-concept="electric-current">电流</span></span>。（c）计算<span data-type="current">每个<span data-concept="resistor">电阻器</span>中的<span data-concept="electric-current">电流</span></span>，并说明它们之和等于<span data-type="current">电源输出的总<span data-concept="electric-current">电流</span></span>。（d）计算<span data-type="power">每个<span data-concept="resistor">电阻器</span>所耗散的<span data-concept="power">功率</span></span>。（e）求<span data-type="power">电源的输出<span data-concept="power">功率</span></span>，并说明它等于<span data-type="power">各<span data-concept="resistor">电阻器</span>耗散的总<span data-concept="power">功率</span></span>。</p>
+<h4>（a）的思路与解</h4>
+<p><span data-type="resistance"><span data-concept="resistor">电阻器</span>的<span data-concept="parallel-connection">并联</span>组合的总<span data-concept="resistance">电阻</span></span>用下面的公式求出。代入已知值，得到</p>
+$$\frac{1}{\kResp} = \frac{1}{\kResone} + \frac{1}{\kRestwo} + \frac{1}{\kResthree} = \frac{1}{1.00\ Ω} + \frac{1}{6.00\ Ω} + \frac{1}{13.0\ Ω}.$$
+<p>于是，</p>
+$$\frac{1}{\kResp} = \frac{1.00}{Ω} + \frac{0.1667}{Ω} + \frac{0.07692}{Ω} = \frac{1.2436}{Ω}.$$
+<p>（注意，在这些计算中，每个中间结果都多保留了一位数字。）</p>
+<p>我们必须把它取倒数，才能求出<span data-type="resistance">总<span data-concept="resistance">电阻</span></span> $\kResp$。这样得到</p>
+$$\kResp = \frac{1}{1.2436}\ Ω = 0.8041\ Ω.$$
+<p>取正确的有效数字位数后，<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>为 $\kResp = 0.804\ Ω.$</p>
+<h4>（a）的讨论</h4>
+<p>正如预期，$\kResp$ 小于<span data-type="resistance">最小的单个<span data-concept="resistance">电阻</span></span>。</p>
+<h4>（b）的思路与解</h4>
+<p><span data-type="current">总<span data-concept="electric-current">电流</span></span>可以由<span data-concept="ohms-law">欧姆定律</span>求出，把 $\kResp$ 代入作为<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>。这样得到</p>
+$$\kIcur = \frac{\kV}{\kResp} = \frac{12.0\ \text{V}}{0.8041\ Ω} = 14.92\ \text{A}.$$
+<h4>（b）的讨论</h4>
+<p>每个器件的<span data-type="current"><span data-concept="electric-current">电流</span></span> $\kIcur$ 都比同样的器件<span data-concept="series-connection">串联</span>时大得多（见前面的例题）。含有<span data-concept="parallel-connection">并联</span>连接的电路，其总<span data-concept="resistance">电阻</span>比<span data-concept="series-connection">串联</span>的<span data-concept="resistor">电阻器</span>要小。</p>
+<h4>（c）的思路与解</h4>
+<p><span data-type="current">各个<span data-concept="electric-current">电流</span></span>很容易由<span data-concept="ohms-law">欧姆定律</span>算出，因为每个<span data-concept="resistor">电阻器</span>得到的都是<span data-type="voltage">完整的<span data-concept="potential-difference">电压</span></span>。于是，</p>
+$$\kIcurone = \frac{\kV}{\kResone} = \frac{12.0\ \text{V}}{1.00\ Ω} = 12.0\ \text{A}.$$
+<p>同理，</p>
+$$\kIcurtwo = \frac{\kV}{\kRestwo} = \frac{12.0\ \text{V}}{6.00\ Ω} = 2.00\ \text{A}$$
+<p>以及</p>
+$$\kIcurthree = \frac{\kV}{\kResthree} = \frac{12.0\ \text{V}}{13.0\ Ω} = 0.92\ \text{A}.$$
+<h4>（c）的讨论</h4>
+<p><span data-type="current">总<span data-concept="electric-current">电流</span></span>是<span data-type="current">各个<span data-concept="electric-current">电流</span></span>之和：</p>
+$$\kIcurone + \kIcurtwo + \kIcurthree = 14.92\ \text{A}.$$
+<p>这与电荷守恒是一致的。</p>
+<h4>（d）的思路与解</h4>
+<p><span data-type="power">每个<span data-concept="resistor">电阻器</span>所耗散的<span data-concept="power">功率</span></span>可以用任何一个把<span data-concept="power">功率</span>与<span data-concept="electric-current">电流</span>、<span data-concept="potential-difference">电压</span>和<span data-concept="resistance">电阻</span>联系起来的公式求出，因为这三个量都是已知的。我们用 $\kP = \frac{\kV^2}{\kRes}$，因为每个<span data-concept="resistor">电阻器</span>得到的都是<span data-type="voltage">完整的<span data-concept="potential-difference">电压</span></span>。于是，</p>
+$$\kPonepow = \frac{\kV^2}{\kResone} = \frac{(12.0\ \text{V})^2}{1.00\ Ω} = 144\ \text{W}.$$
+<p>同理，</p>
+$$\kPtwopow = \frac{\kV^2}{\kRestwo} = \frac{(12.0\ \text{V})^2}{6.00\ Ω} = 24.0\ \text{W}$$
+<p>以及</p>
+$$\kPthreepow = \frac{\kV^2}{\kResthree} = \frac{(12.0\ \text{V})^2}{13.0\ Ω} = 11.1\ \text{W}.$$
+<h4>（d）的讨论</h4>
+<p>与<span data-concept="series-connection">串联</span>到同一个<span data-concept="potential-difference">电压</span>源上相比，<span data-type="power">每个<span data-concept="resistor">电阻器</span>耗散的<span data-concept="power">功率</span></span>在<span data-concept="parallel-connection">并联</span>时要高得多。</p>
+<h4>（e）的思路与解</h4>
+<p><span data-type="power">总<span data-concept="power">功率</span></span>也可以用几种方法算出。选用 $\kP = \kIcur\kV$，并代入<span data-type="current">总<span data-concept="electric-current">电流</span></span>，得到</p>
+$$\kP = \kIcur\kV = (14.92\ \text{A})(12.0\ \text{V}) = 179\ \text{W}.$$
+<h4>（e）的讨论</h4>
+<p><span data-type="power">各<span data-concept="resistor">电阻器</span>耗散的总<span data-concept="power">功率</span></span>也是 179 W：</p>
+$$\kPonepow + \kPtwopow + \kPthreepow = 144\ \text{W} + 24.0\ \text{W} + 11.1\ \text{W} = 179\ \text{W}.$$
+<p>这与<span data-concept="conservation-of-energy">能量守恒定律</span>是一致的。</p>
+<h4>总体讨论</h4>
+<p>请注意，<span data-concept="parallel-connection">并联</span>连接中的<span data-concept="electric-current">电流</span>和<span data-concept="power">功率</span>都比同样的器件<span data-concept="series-connection">串联</span>时大。</p>
+</div>
+<div class="note">
+<div class="eyebrow">电阻器并联的主要特点</div>
+<ol>
+<li><span data-concept="parallel-connection">并联</span><span data-concept="resistance">电阻</span>由 $\frac{1}{\kResp} = \frac{1}{\kResone} + \frac{1}{\kRestwo} + \frac{1}{\kResthree} + \ldots$ 求出，并且它比组合中任何一个单独的<span data-concept="resistance">电阻</span>都小。</li>
+<li><span data-concept="parallel-connection">并联</span>的每个<span data-concept="resistor">电阻器</span>上所加的都是电源的完整<span data-concept="potential-difference">电压</span>。（<span data-concept="power">供电</span>系统最常采用<span data-concept="parallel-connection">并联</span>连接，为数不尽的用电设备提供相同的<span data-concept="potential-difference">电压</span>，并使它们能够独立工作。）</li>
+<li><span data-concept="parallel-connection">并联</span>的<span data-concept="resistor">电阻器</span>并不各自得到总<span data-concept="electric-current">电流</span>，而是分掉它。</li>
+</ol>
+</div>
+</section>
+
+<section id="combinations">
+<h2>串联与并联的组合</h2>
+<p class="cite-target">更复杂的<span data-concept="resistor">电阻器</span>连接，有时只是<span data-concept="series-connection">串联</span>和<span data-concept="parallel-connection">并联</span>的组合。这些连接很常见，尤其是在考虑导线<span data-concept="resistance">电阻</span>的时候。在那种情况下，导线<span data-concept="resistance">电阻</span>与其他<span data-concept="parallel-connection">并联</span>的<span data-concept="resistance">电阻</span>是<span data-concept="series-connection">串联</span>的。</p>
+<p>用图 21.5 所示的方法，可以把<span data-concept="series-connection">串联</span>与<span data-concept="parallel-connection">并联</span>的组合化简为单个等效<span data-concept="resistance">电阻</span>。先把各个部分判定为<span data-concept="series-connection">串联</span>或<span data-concept="parallel-connection">并联</span>，化简为它们的等效电阻，再继续化简，直到只剩下一个<span data-concept="resistance">电阻</span>。这个过程更多的是费时间，而不是难。</p>
+<figure class="sim" id="sim-reduce-network" data-figure="21.5" data-original="/media/ch21/Figure_22_01_05.jpg" data-original-width="500" data-original-caption="这个由七个电阻器组成的组合既有串联部分，也有并联部分。每一部分都被判定出来并化简为一个等效电阻，这些等效电阻再继续化简，直到得到单个等效电阻。">
+  <div class="sim-head"><span class="eyebrow">Figure 21.5</span><span>七个电阻器构成一个既有串联部分又有并联部分的网络，你要一步一步地把它化简为<span data-type="resistance">一个电阻</span>。每一步中，并联部分的各行折叠到它们共用的导线上，变成<span data-type="resistance">一个等效电阻</span>，一个接一个的电阻器滑到一起并相加。在方程中，你所合并的各项弯曲成它们所化成的那个<span data-concept="resistance">电阻</span>；倒回去时，合并后的电阻器又分解成它原来由之合成的那些电阻器。在任何一步改变 R₂ 或 R₃，<span data-type="resistance">它所折叠成的电阻</span>随之变化，其后的每一个也随之变化。</span></div>
+</figure>
+<p>图 21.6 所示的<span data-concept="series-connection">串联</span>与<span data-concept="parallel-connection">并联</span><span data-concept="resistance">电阻</span>的最简单组合，也是最有启发性的，因为它出现在许多应用中。例如，$\kResone$ 可以是从汽车蓄电池到<span data-ref="resistor-2 resistor-3">其用电设备</span>的<span data-ref="resistor-1">导线</span>的<span data-concept="resistance">电阻</span>，而这些用电设备是<span data-concept="parallel-connection">并联</span>的。$\kRestwo$ 和 $\kResthree$ 可以是<span data-ref="resistor-2"><span data-concept="electric-motor">起动机</span></span>和<span data-ref="resistor-3">一盏乘客舱灯</span>。我们前面假定导线<span data-concept="resistance">电阻</span>可以忽略，但当它不可忽略时，会产生重要的影响，下一个例题将说明这一点。</p>
+<div class="example" id="ex-combination">
+<h3>例题 21.3 · 计算电阻、$\kIcur\kRes$ 压降、电流和耗散功率：串联与并联电路的组合</h3>
+<p>图 21.6 显示的是前面两个例题中的<span data-ref="resistor-1 resistor-2 resistor-3"><span data-concept="resistor">电阻器</span></span>以另一种方式连接——<span data-concept="series-connection">串联</span>与<span data-concept="parallel-connection">并联</span>的组合。我们可以把 $\kResone$ 看作通向 $\kRestwo$ 和 $\kResthree$ 的<span data-ref="resistor-1">导线</span>的<span data-concept="resistance">电阻</span>。（a）求<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>。（b）$\kResone$ 上的 $\kIcur\kRes$ 压降是多少？（c）求通过 $\kRestwo$ 的<span data-type="current"><span data-concept="electric-current">电流</span></span> $\kIcurtwo$。（d）$\kRestwo$ 耗散的<span data-concept="power">功率</span>是多少？</p>
+<h4>（a）的思路与解</h4>
+<p>为了求<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>，我们注意到 $\kRestwo$ 和 $\kResthree$ 是<span data-concept="parallel-connection">并联</span>的，而它们的组合 $\kResp$ 与 $\kResone$ 是<span data-concept="series-connection">串联</span>的。因此这一组合的<span data-type="resistance">总（等效）<span data-concept="resistance">电阻</span></span>为</p>
+$$\kRestot = \kResone + \kResp.$$
+<p>首先，用<span data-concept="resistor">电阻器</span><span data-concept="parallel-connection">并联</span>的公式并代入已知值，求出 $\kResp$：</p>
+$$\frac{1}{\kResp} = \frac{1}{\kRestwo} + \frac{1}{\kResthree} = \frac{1}{6.00\ Ω} + \frac{1}{13.0\ Ω} = \frac{0.2436}{Ω}.$$
+<p>取倒数得到</p>
+$$\kResp = \frac{1}{0.2436}\ Ω = 4.11\ Ω.$$
+<p>于是<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>为</p>
+$$\kRestot = \kResone + \kResp = 1.00\ Ω + 4.11\ Ω = 5.11\ Ω.$$
+<h4>（a）的讨论</h4>
+<p>这一组合的<span data-type="resistance">总<span data-concept="resistance">电阻</span></span>介于纯<span data-concept="series-connection">串联</span>值和纯<span data-concept="parallel-connection">并联</span>值（分别为 $20.0\ Ω$ 和 $0.804\ Ω$）之间，这两个值是前面两个例题中同样的<span data-concept="resistor">电阻器</span>在两种连接下求得的。</p>
+<h4>（b）的思路与解</h4>
+<p>为了求 $\kResone$ 上的 $\kIcur\kRes$ 压降，我们注意到<span data-type="current">完整的<span data-concept="electric-current">电流</span></span> $\kIcur$ 流过 $\kResone$。因此它的 $\kIcur\kRes$ 压降为</p>
+$$\kVone = \kIcur\kResone.$$
+<p>我们必须先求出 $\kIcur$，才能算出 $\kVone$。<span data-type="current">总<span data-concept="electric-current">电流</span></span> $\kIcur$ 用整个电路的<span data-concept="ohms-law">欧姆定律</span>求出。即</p>
+$$\kIcur = \frac{\kV}{\kRestot} = \frac{12.0\ \text{V}}{5.11\ Ω} = 2.35\ \text{A}.$$
+<p>把它代入上面的表达式，得到</p>
+$$\kVone = \kIcur\kResone = (2.35\ \text{A})(1.00\ Ω) = 2.35\ \text{V}.$$
+<h4>（b）的讨论</h4>
+<p>加在 $\kRestwo$ 和 $\kResthree$ 上的<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>比<span data-type="voltage">总<span data-concept="potential-difference">电压</span></span>小，小的量为 $\kVone$。当<span data-type="resistance">导线<span data-concept="resistance">电阻</span></span>很大时，它会显著影响 $\kRestwo$ 和 $\kResthree$ 所代表的<span data-ref="resistor-2 resistor-3">器件</span>的工作。</p>
+<h4>（c）的思路与解</h4>
+<p>为了求通过 $\kRestwo$ 的<span data-type="current"><span data-concept="electric-current">电流</span></span>，我们必须先求出<span data-type="voltage">加在它上面的<span data-concept="potential-difference">电压</span></span>。我们把<span data-type="voltage">这个<span data-concept="potential-difference">电压</span></span>称为 $\kVp$，因为它加在<span data-concept="resistor">电阻器</span>的<span data-concept="parallel-connection">并联</span>组合上。<span data-type="voltage">同时加在 $\kRestwo$ 和 $\kResthree$ 上的<span data-concept="potential-difference">电压</span></span>减小了 $\kVone$，因此它是</p>
+$$\kVp = \kV - \kVone = 12.0\ \text{V} - 2.35\ \text{V} = 9.65\ \text{V}.$$
+<p>现在通过<span data-concept="resistance">电阻</span> $\kRestwo$ 的<span data-type="current"><span data-concept="electric-current">电流</span></span> $\kIcurtwo$ 用<span data-concept="ohms-law">欧姆定律</span>求出：</p>
+$$\kIcurtwo = \frac{\kVp}{\kRestwo} = \frac{9.65\ \text{V}}{6.00\ Ω} = 1.61\ \text{A}.$$
+<h4>（c）的讨论</h4>
+<p>这个<span data-type="current"><span data-concept="electric-current">电流</span></span>小于前面那个<span data-concept="parallel-connection">并联</span>电路例题中 $\kRestwo$ <span data-concept="parallel-connection">并联</span>到电池上时流过它的 2.00 A。</p>
+<h4>（d）的思路与解</h4>
+<p>$\kRestwo$ <span data-type="power">所耗散的<span data-concept="power">功率</span></span>为</p>
+$$\kPtwopow = (\kIcurtwo)^2\kRestwo = (1.61\ \text{A})^2(6.00\ Ω) = 15.5\ \text{W}.$$
+<h4>（d）的讨论</h4>
+<p>这个<span data-type="power"><span data-concept="power">功率</span></span>小于<span data-ref="resistor-2">这个<span data-concept="resistor">电阻器</span></span><span data-concept="parallel-connection">并联</span>到 12.0 V 电源上时所耗散的 24.0 W。</p>
+</div>
+</section>
+
+<section id="practical">
+<h2>导线电阻的作用</h2>
+<p class="cite-target">这最后一个例题的一个推论是，导线中的<span data-concept="resistance">电阻</span>会减小传送到<span data-concept="resistor">电阻器</span>的<span data-concept="electric-current">电流</span>和<span data-concept="power">功率</span>。如果导线<span data-concept="resistance">电阻</span>相对较大，例如在一根旧损的（或很长的）延长线中，这种损失就可能很显著。如果取用的<span data-concept="electric-current">电流</span>很大，导线中的 $\kIcur\kRes$ 压降也可能很显著。</p>
+<p>例如，当你在冰箱里翻找东西、<span data-ref="resistor-3"><span data-concept="electric-motor">电动机</span></span>起动时，<span data-ref="resistor-2">冰箱灯</span>会暂时变暗。同样，发动汽车的发动机时，你可以看到乘客舱灯变暗（不过这也可能是由电池本身内部的<span data-concept="resistance">电阻</span>造成的）。</p>
+<p>在这些大电流的情形中发生的事情如图 21.7 所示。$\kResthree$ 所代表的<span data-ref="resistor-3">器件</span>具有<span data-type="resistance">很低的<span data-concept="resistance">电阻</span></span>，所以<span data-ref="resistor-3">它</span>一接通，就有<span data-type="current">很大的<span data-concept="electric-current">电流</span></span>流过。<span data-type="current">这个增大的<span data-concept="electric-current">电流</span></span>使 $\kResone$ 所代表的<span data-ref="resistor-1">导线</span>中的 $\kIcur\kRes$ 压降变大，从而降低了<span data-ref="resistor-2">灯泡</span>（即 $\kRestwo$）两端的<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>，<span data-ref="resistor-2">它</span>于是明显变暗。</p>
+<figure class="sim" id="sim-dimming-light" data-figure="21.7" data-original="/media/ch21/Figure_22_01_07.jpg" data-original-width="200" data-original-caption="为什么大型用电器一接通，灯就会变暗？答案是，用电器的电动机所取用的大电流在导线中造成了显著的 IR 压降，使灯两端的电压降低。">
+  <div class="sim-head"><span class="eyebrow">Figure 21.7</span><span><span data-ref="resistor-2">一个灯泡</span>和<span data-ref="resistor-3">一台冰箱电动机</span>接在同一个家用电源上，二者前面是给<span data-ref="resistor-2 resistor-3">它们</span>供电的<span data-ref="resistor-1">导线</span>的<span data-type="resistance">电阻</span>。接通<span data-ref="resistor-3">电动机</span>，观察<span data-ref="resistor-2">灯泡</span>变暗：流过<span data-ref="resistor-1">导线</span>的<span data-type="current">电流</span>增大，分去了更多的<span data-type="voltage">供电电压</span>；增大<span data-ref="resistor-1">导线</span>的<span data-type="resistance">电阻</span>，变暗就更厉害。</span></div>
+</figure>
+<div class="exercises" data-place="practical"></div>
+<div class="note">
+<div class="eyebrow">串联与并联电阻器的解题策略</div>
+<ol>
+<li>画一幅清楚的电路图，标出所有<span data-concept="resistor">电阻器</span>和<span data-concept="potential-difference">电压</span>源。这一步包括列出题目的已知量，因为它们都已标在你的电路图中。</li>
+<li>确切地找出题目中需要求的量（找出未知量）。列一张书面清单是有用的。</li>
+<li>判定<span data-concept="resistor">电阻器</span>是<span data-concept="series-connection">串联</span>、<span data-concept="parallel-connection">并联</span>，还是<span data-concept="series-connection">串联</span>与<span data-concept="parallel-connection">并联</span>两者的组合。检查电路图来作出这一判断。如果同一<span data-concept="electric-current">电流</span>必须依次通过这些<span data-concept="resistor">电阻器</span>，它们就是<span data-concept="series-connection">串联</span>的。</li>
+<li>用<span data-concept="series-connection">串联</span>或<span data-concept="parallel-connection">并联</span>连接的相应主要特点清单来求解未知量。<span data-concept="series-connection">串联</span>有一张清单，<span data-concept="parallel-connection">并联</span>有另一张。如果你的题目含有<span data-concept="series-connection">串联</span>与<span data-concept="parallel-connection">并联</span>的组合，就像本节及其例题中所做的那样，通过逐个考虑<span data-concept="series-connection">串联</span>或<span data-concept="parallel-connection">并联</span>连接的各个部分，分步化简。特别提示：求 $\kResp$ 时，取倒数必须小心。</li>
+<li>检查答案是否合理、自洽。<span data-concept="units">单位</span>和数值结果必须合理。例如，<span data-concept="series-connection">串联</span>总<span data-concept="resistance">电阻</span>应当更大，而<span data-concept="parallel-connection">并联</span>总<span data-concept="resistance">电阻</span>应当更小。同样的器件<span data-concept="parallel-connection">并联</span>时的<span data-concept="power">功率</span>应当比<span data-concept="series-connection">串联</span>时大，等等。</li>
+</ol>
+</div>
+</section>

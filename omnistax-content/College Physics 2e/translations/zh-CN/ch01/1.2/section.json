@@ -1,0 +1,631 @@
+{
+ "id": "1.2",
+ "module": "m42091",
+ "chapter": "1",
+ "title": "物理量和单位",
+ "short": "物理量和单位",
+ "lead": "物理量是任何可以测量的东西，为它给出的数值如果没有单位来说明它计的是什么，就没有多少意义。国际单位制以四个基本单位为基础建立其单位，SI 词头把它们延伸到自然界中范围极广的<span data-concept=\"length\">长度</span>、<span data-concept=\"mass\">质量</span>和时间上，而换算因子把一个数值从一种单位带到另一种单位。",
+ "objectives": [
+  "在 SI 单位和英制单位中进行单位换算。",
+  "解释 SI 单位中最常用的词头，并能用科学记数法写出它们。"
+ ],
+ "summary_html": "<ul><li>物理量是物体的一种特性或属性，可以测量，或由其他测量结果计算得出。</li><li>单位是用于表示和比较物理量测量结果的标准。所有单位都可以表示为四个基本单位的组合。</li><li>本教材中将使用的四个基本单位是米（用于<span data-concept=\"length\">长度</span>）、千克（用于<span data-concept=\"mass\">质量</span>）、秒（用于<span data-concept=\"time\">时间</span>）和安培（用于<span data-concept=\"electric-current\">电流</span>）。这些单位是米制的一部分，米制用 10 的幂把自然界中所遇到的广阔范围内的量联系起来。</li><li>四个基本单位的缩写如下：米，m；千克，kg；秒，s；安培，A。米制还使用一套标准的词头来表示比基本单位本身大或小的每一个数量级。</li><li>单位换算是把用一种单位表示的数值变换为用另一种单位表示。这是通过使用换算因子来完成的，换算因子是联系不同单位的相等量的比值。</li></ul>",
+ "notes": "习题 2、4、6、8 和 10 在书后答案中没有给出，因而略去；本节开头从月球上看地球的照片属于装饰，也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6、8 和 10 没有给出答案，因而略去。习题 3 要求写出换算的步骤，因此保留本书的因子链，作为可供对照的开放式答案。思考题的建议思路由 AI 撰写，并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-map",
+   "kind": "photo",
+   "number": "1.16",
+   "draws": []
+  },
+  {
+   "id": "fig-clock",
+   "kind": "photo",
+   "number": "1.17",
+   "draws": []
+  },
+  {
+   "id": "sim-light-meter",
+   "kind": "sim",
+   "number": "1.18",
+   "originals": [
+    "/media/ch01/Figure_01_02_03a.jpg"
+   ],
+   "original_caption": "米被定义为光在真空中于 1/299,792,458 秒内传播的距离。路程等于速率乘以时间。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "time",
+    "velocity",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ladder",
+   "kind": "sim",
+   "draws": ["position"],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label rows and note"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-plankton",
+   "kind": "photo",
+   "number": "1.19",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-galaxies",
+   "kind": "photo",
+   "number": "1.20",
+   "draws": []
+  },
+  {
+   "id": "sim-drive",
+   "kind": "sim",
+   "draws": [
+    "time",
+    "velocity",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout and note"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "quantities",
+   "concept": "physical-quantity",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantities",
+   "concept": "units",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantities",
+   "concept": "si-units",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantities",
+   "concept": "english-units",
+   "verb": "introduces"
+  },
+  {
+   "span": "si-units",
+   "concept": "fundamental-units",
+   "verb": "introduces"
+  },
+  {
+   "span": "si-units",
+   "concept": "derived-units",
+   "verb": "introduces"
+  },
+  {
+   "span": "si-units",
+   "concept": "units",
+   "verb": "uses"
+  },
+  {
+   "span": "base-units",
+   "concept": "fundamental-units",
+   "verb": "uses"
+  },
+  {
+   "span": "base-units",
+   "concept": "length",
+   "verb": "introduces"
+  },
+  {
+   "span": "prefixes",
+   "concept": "metric-prefixes",
+   "verb": "introduces"
+  },
+  {
+   "span": "prefixes",
+   "concept": "order-of-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "prefixes",
+   "concept": "units",
+   "verb": "uses"
+  },
+  {
+   "span": "ranges",
+   "concept": "order-of-magnitude",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conversion",
+   "concept": "conversion-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "conversion",
+   "concept": "unit-conversion",
+   "verb": "introduces"
+  },
+  {
+   "span": "conversion",
+   "concept": "units",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-drive",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-drive",
+   "concept": "conversion-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-drive",
+   "concept": "physical-quantity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-drive",
+   "concept": "average-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "second",
+   "concept": "second",
+   "verb": "introduces"
+  },
+  {
+   "span": "meter",
+   "concept": "meter",
+   "verb": "introduces"
+  },
+  {
+   "span": "kilogram",
+   "concept": "kilogram",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1956235",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "prefixes"
+   },
+   "cite": "prefixes",
+   "prompt": "有些蜂鸟每秒拍打翅膀超过 50 次。一位科学家正在测量蜂鸟拍打一次翅膀所需的时间。这位科学家应该用哪个基本单位来描述这一测量？这位科学家可能会用 10 的哪个因子来精确地描述这一运动？指出与这个 10 的因子相对应的 SI 词头。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "这位科学家会用基本单位秒来测量每次运动之间的时间。由于翅膀拍打得非常快，这位科学家可能需要以毫秒，即 $10^{-3}$ 秒为单位来测量。（每秒拍打 50 次相当于每次拍打 20 毫秒。）"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id1780694",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "prefixes"
+   },
+   "cite": "si-units",
+   "prompt": "1 立方厘米等于 1 毫升。这对 SI 米制中的不同单位说明了什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "长度的基本单位（米）大概被用来构成体积的导出单位（升）。毫升的量度取决于厘米的量度。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3143663",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "prefixes",
+   "prompt": "指出米制单位的一些优点。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "米制单位之间的换算只涉及 10 的幂：1 米有 100 厘米，1 千米有 1000 米。美国惯用单位就没有这么简单，1 英尺有 12 英寸，1 英里有 5280 英尺。通过选择适当的词头，可以在极大的数值范围内使用同一个米制单位，因此米用于建筑施工，千米用于航空旅行，纳米用于光学设计，无需新的单位。科学家和数学家也已公认米制为他们的标准，而且世界上几乎每个国家都使用它，因此测得值易于表示和比较。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1434957",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conversion",
+   "prompt": "一些州际公路的限速约为 100 km/h。（a）这相当于多少米每秒？（b）这相当于多少英里每小时？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 27.8,
+      "unit": "m/s",
+      "hint": "需要两个换算因子，一个把千米换算成米，一个把小时换算成秒，就像例题 1.1 的（b）部分那样。"
+     },
+     {
+      "part": "(b)",
+      "value": 62.1,
+      "unit": "mph",
+      "hint": "1 英里约为 1.61 km，因此写出能约去千米、留下英里的因子。"
+     }
+    ],
+    "solution": "（a）$27.8\\ \\text{m/s}$（b）$62.1\\ \\text{mph}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1433050",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conversion",
+   "prompt": "证明 $1.0\\ \\text{m/s} = 3.6\\ \\text{km/h}$。提示：写出换算 $1.0\\ \\text{m/s} = 3.6\\ \\text{km/h}$ 所涉及的明确步骤。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1.0\\ \\text{m}}{\\text{s}} = \\frac{1.0\\ \\text{m}}{\\text{s}} \\times \\frac{3600\\ \\text{s}}{1\\ \\text{hr}} \\times \\frac{1\\ \\text{km}}{1000\\ \\text{m}} = 3.6\\ \\text{km/h}$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1439792",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conversion",
+   "prompt": "足球场的大小各不相同。一个大型足球场长 115 m、宽 85 m。它的尺寸用英尺和英寸表示是多少？（假设 1 米等于 3.281 英尺。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "length in feet",
+      "value": 377,
+      "unit": "ft",
+      "hint": "把以米为单位的长度乘以能约去米、留下英尺的因子。"
+     },
+     {
+      "part": "length in inches",
+      "value": 4530,
+      "unit": "in",
+      "hint": "1 英尺有 12 英寸，因此用第二个因子把英尺化为英寸。"
+     },
+     {
+      "part": "width in feet",
+      "value": 280,
+      "unit": "ft",
+      "hint": "每米 3.281 英尺这个因子同样适用于宽度。"
+     },
+     {
+      "part": "width in inches",
+      "value": 3300,
+      "unit": "in",
+      "hint": "把以英尺为单位的宽度乘以每英尺 12 英寸。"
+     }
+    ],
+    "solution": "长度：$377\\ \\text{ft}$；$4.53 \\times 10^{3}\\ \\text{in}$。宽度：$280\\ \\text{ft}$；$3.3 \\times 10^{3}\\ \\text{in}$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3159831",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conversion",
+   "prompt": "珠穆朗玛峰高 29,028 英尺，是地球上最高的山。它的高度是多少千米？（假设 1 千米等于 3,281 英尺。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.847,
+    "unit": "km",
+    "hint": "写出英尺在分母上的换算因子，使英尺约去而留下千米。",
+    "solution": "$8.847\\ \\text{km}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3180898",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conversion",
+   "prompt": "构造板块是地壳中缓慢移动的大块区域。假设某个这样的板块的平均速率为 4.0 cm/年。（a）以此速率，它在 1 s 内移动多少距离？（b）它的速率以千米每百万年计是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.3e-9,
+      "unit": "m",
+      "hint": "用表 1.3 中一年的秒数把速率换算成米每秒，1 s 内的距离就是该速率乘以 1 s。"
+     },
+     {
+      "part": "(b)",
+      "value": 40,
+      "unit": "km/My",
+      "hint": "一百万年是 $10^{6}$ 年，1 千米是 $10^{5}$ 厘米，所以这两个 10 的因子几乎相互抵消。"
+     }
+    ],
+    "solution": "（a）$1.3 \\times 10^{-9}\\ \\text{m}$（b）$40\\ \\text{km/My}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "fundamental-units"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "metric-prefixes"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "order-of-magnitude"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "derived-units"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "metric-prefixes"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "metric-prefixes"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "units"
+  },
+  {
+   "exercise": "p1",
+   "concept": "unit-conversion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conversion-factor"
+  },
+  {
+   "exercise": "p3",
+   "concept": "unit-conversion"
+  },
+  {
+   "exercise": "p3",
+   "concept": "conversion-factor"
+  },
+  {
+   "exercise": "p5",
+   "concept": "unit-conversion"
+  },
+  {
+   "exercise": "p5",
+   "concept": "conversion-factor"
+  },
+  {
+   "exercise": "p7",
+   "concept": "unit-conversion"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conversion-factor"
+  },
+  {
+   "exercise": "p7",
+   "concept": "metric-prefixes",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "unit-conversion"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conversion-factor"
+  },
+  {
+   "exercise": "p9",
+   "concept": "metric-prefixes"
+  }
+ ],
+ "referents": [
+  {
+   "id": "flashlight",
+   "label": "手电筒",
+   "figures": [
+    "sim-light-meter"
+   ]
+  },
+  {
+   "id": "meter-stick",
+   "label": "米尺",
+   "figures": [
+    "sim-light-meter"
+   ]
+  },
+  {
+   "id": "pulse",
+   "label": "光脉冲",
+   "figures": [
+    "sim-light-meter"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "汽车",
+   "figures": [
+    "sim-drive"
+   ]
+  },
+  {
+   "id": "school",
+   "label": "学校",
+   "figures": [
+    "sim-drive"
+   ]
+  },
+  {
+   "id": "home",
+   "label": "家",
+   "figures": [
+    "sim-drive"
+   ]
+  },
+  {
+   "id": "stopwatch",
+   "label": "秒表",
+   "figures": [
+    "sim-drive"
+   ]
+  }
+ ]
+}

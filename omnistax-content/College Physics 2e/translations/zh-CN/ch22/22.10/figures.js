@@ -1,0 +1,402 @@
+/* Figures for section 22.10 Magnetic Force between Two Parallel Conductors.
+   The page binds magnetic-field, force, current and position, the four types
+   ch22/COLOR.md gives it: the field circling a wire and the arrow it arrives at
+   the next wire with wear the field hue, the current along a wire and the dot
+   and cross that stand for a current toward the reader and away from her wear
+   the current hue, every force arrow wears the force hue, a magnetic force
+   being a force and nothing here being given a hue for being magnetic, and the
+   separation of two conductors, on its slider and in the bracket that measures
+   it, wears the position hue, as does the diameter of an arc column, and the
+   mass on a balance pan wears mass. Wires 1 and 2, the arc column, the balance
+   and its two coils are the section's referents: a wire's body, and the ring of
+   a wire seen end-on, wear its referent colour, and the dot or cross inside the
+   ring wears the current hue. The number of turns on a coil stays ink.
+
+   All three figures answer their controls and register no cycle (rule 14): two
+   wires carrying steady currents pull on each other, an arc of a given current
+   squeezes itself by a given amount, and a balance at balance is level. None of
+   the three has a clock in it, so none carries a transport.
+
+   A field line that circles a current is drawn with one arrowhead on it, which
+   is the one place this chapter departs from ch22/COLOR.md's closing sentence
+   about closed field lines. A magnet's lines take their sense from the N and S
+   on its poles; a current has no poles, and the sense of the circle is the whole
+   of RHR-2 and therefore the whole of this section's argument. With colour off a
+   field line is still told from a force arrow, being a closed circle where the
+   force arrow is a straight segment.
+
+   The force arrows of Figure 22.40 and of the current balance carry their
+   direction in their heads and their size in their labels, in the readout and,
+   softly, in the thickness of their stroke: the currents, the turns and the
+   separation between them can change these forces by four orders of magnitude,
+   and no fixed length scale could draw both ends of that. The pinch figure is
+   the one place where an arrow's length is the size of a force, because its two
+   sliders together can change that force by only a factor of three from the
+   default and one fixed scale holds at every setting. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['22.10'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, label, note, hbracket, vbracket, axes, curve, pinned, hover, view } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* mu_0 / 2 pi, exactly 2 x 10^-7 T.m/A, the constant every figure of the page uses */
+const K = 2e-7;
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (n) => String(n).split('').map((ch) => SUP[ch] ?? ch).join('');
+function sciParts(v, sig) {
+  if (!v) return { m: '0', e: 0 };
+  let e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e);
+  if (Math.abs(+m.toFixed(sig - 1)) >= 10) { m /= 10; e += 1; }
+  return { m: m.toFixed(sig - 1), e };
+}
+const sci = (v, sig = 3) => { const { m, e } = sciParts(v, sig); return e === 0 ? m : m + ' × 10' + sup(e); };
+const sciTex = (v, sig = 3) => { const { m, e } = sciParts(v, sig); return e === 0 ? m : m + '\\times 10^{' + e + '}'; };
+const big = (v) => Math.abs(v) >= 1e5 || (v !== 0 && Math.abs(v) < 0.01);
+/* three significant figures, written out where that is readable and in scientific
+   notation where it is not; this page's forces run from micronewtons to newtons */
+const num = (v) => (!v ? '0' : big(v) ? sci(v) : Number(v).toPrecision(3));
+const numTex = (v) => (!v ? '0' : big(v) ? sciTex(v) : Number(v).toPrecision(3));
+
+/* a current seen end-on: a ring with a dot in it for a current toward the reader
+   and a cross in it for a current away from her. The dot and the cross wear the
+   current hue; the ring, the wire itself, wears `rim`, a referent's colour where
+   the wire is one. */
+function currentMark(ctx, x, y, out, color, R, rim = color) {
+  dot(ctx, x, y, PAL.panel, true, R); dot(ctx, x, y, rim, false, R);
+  if (out) dot(ctx, x, y, color, true, Math.max(4, R * 0.34));
+  else { const k = R * 0.62; line(ctx, x - k, y - k, x + k, y + k, color, 3.5); line(ctx, x - k, y + k, x + k, y - k, color, 3.5); }
+}
+/* a force arrow's stroke, between 3.5 and 8 units, thickening with the force it
+   carries against the force the figure's own defaults make */
+const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
+
+/* =====================================================================
+   FIGURE 22.40: two long parallel wires, the field the first makes at the
+   second, and the equal and opposite forces they put on each other. Still:
+   the arrangement has no clock in it. The defaults are the section's own
+   first problem, the hot and neutral lines of a light-rail train, so the
+   figure reads 0.171 N/m on load, which over the 50.0 m that problem asks
+   about is the 8.53 N the book's key gives.
+===================================================================== */
+(function () {
+  const d = sim('sim-parallel-wires', 900);
+  const i1S = ctl(d.controls, { label: '\\kIcurone', cls: 'current', min: 0, max: 1000, step: 10, value: 800, unit: 'A', dec: 0, aria: '导线 1 中的电流' });
+  const i2S = ctl(d.controls, { label: '\\kIcurtwo', cls: 'current', min: 0, max: 1000, step: 10, value: 800, unit: 'A', dec: 0, aria: '导线 2 中的电流' });
+  const rS = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.1, max: 2, step: 0.05, value: 0.75, unit: 'm', dec: 2, aria: '两根导线之间的距离' });
+  const dirC = choice(d.controls, { label: '\\text{导线 2}', options: [{ value: 'same', label: '同向' }, { value: 'opp', label: '反向' }], value: 'same', aria: '导线 2 中的电流沿哪个方向' });
+  /* The book's two panels side by side, as the book prints them: on the left its own
+     viewpoint, from the right and well above, so that the horizontal field circles read
+     as open ellipses and the two vertical wires stay apart at every separation, never
+     changed and never turned by the reader (rule 28.2); on the right the same wires
+     seen end-on. Both are drawn at once rather than offered as a choice of view
+     (rule 26.7). */
+  const V = view({ yaw: 0.55, pitch: 0.34, dist: 2600, cx: 350, cy: 310 });
+  /* 170 canvas units to the meter of separation in perspective and 300 end-on, both
+     fixed: the widest separation the slider reaches, 2.00 m, is 340 and 600 units,
+     and the scene is clipped to its own band so that a field circle wider than the
+     canvas is cut by the frame rather than allowed to rescale the drawing. The graph
+     runs 0 to 1.00 N/m over 0 to 2.00 m and never rescales: the default state,
+     0.171 N/m, stands a sixth of the way up it, and the greatest the sliders can
+     make together, 2.00 N/m at 1000 A in each wire 0.100 m apart, is carried at the
+     top edge by pinned() with its value written beside it. */
+  const SR = 120, SE = 140, SCENE = 575, WY = 150, MID = 700, EX = 1050;
+  const BOX = { l: 200, r: 1260, t: 610, b: 826 };
+  const FREF = K * 800 * 800 / 0.75, BREF = K * 800 / 0.75;
+  let hits = [];
+
+  const line3 = (ctx, a, b, color, w, dash) => { const A = V.P(a), B = V.P(b); line(ctx, A[0], A[1], B[0], B[1], color, w, dash); };
+  const arr3 = (ctx, a, b, color, w) => { const A = V.P(a), B = V.P(b); arrow(ctx, A[0], A[1], B[0], B[1], color, w); };
+  /* a field line of wire 1: the horizontal circle about it at the height y, drawn as
+     the ellipse the locked view makes of it, with one arrowhead at the point nearest
+     the reader, where the field runs to the right for a current running up */
+  function circle3(ctx, cx0, y, rho, color, w, head) {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath();
+    for (let i = 0; i <= 96; i++) { const a = (2 * Math.PI * i) / 96, p = V.P([cx0 + rho * Math.cos(a), y, rho * Math.sin(a)]); if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); }
+    ctx.closePath(); ctx.stroke(); ctx.restore();
+    if (head) arr3(ctx, [cx0 - 30, y, rho], [cx0 + 30, y, rho], color, w + 1.5);
+  }
+  const widthOf = (B) => Math.max(1.6, Math.min(7, 1.6 + 3.4 * (B / BREF)));
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const I1 = i1S.v, I2 = i2S.v, r = rS.v, same = dirC.value === 'same';
+    const B1 = K * I1 / r, B2 = K * I2 / r, FL = K * I1 * I2 / r;
+    const cB = C('magnetic-field'), cI = C('current'), cF = C('force'), cR = C('position'), w1 = F.ref('wire-1'), w2 = F.ref('wire-2');
+    /* +1 draws each wire pulled toward the other; reversing wire 2 turns its current,
+       its field line and both forces over through nothing rather than cutting */
+    const pull = dirC.mix((v) => (v === 'same' ? 1 : -1));
+    const W = fw(FL, FREF), lw = widthOf(B1);
+    const pts = [];
+
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 74, MID, SCENE - 74); ctx.clip();
+    {
+      const D = r * SR, x1 = -D / 2, x2 = D / 2, up2 = pull;
+      /* the field of wire 1: a circle through wire 2 at each of three heights, and
+         two more radii at the middle height so that the falling off with distance
+         shows in the drawing as well as on the curve below */
+      if (I1 > 0.5) {
+        [-118, 0, 118].forEach((y) => circle3(ctx, x1, y, D, cB, lw, true));
+        [0.55, 1.45].forEach((k) => { if (D * k < 560) circle3(ctx, x1, 0, D * k, alpha(cB, 0.65), Math.max(1.4, widthOf(B1 / k) * 0.8), false); });
+      }
+      /* the two wires, and the current along each of them */
+      [[x1, w1], [x2, w2]].forEach(([x, c]) => line3(ctx, [x, -WY, 0], [x, WY, 0], c, 7));
+      if (I1 > 0.5) arr3(ctx, [x1, -46, 0], [x1, 130, 0], cI, 6);
+      if (I2 > 0.5 && Math.abs(up2) > 0.1) arr3(ctx, [x2, -up2 * 74, 0], [x2, up2 * 74, 0], cI, 6);
+      /* the field wire 1 makes where wire 2 stands is at right angles to wire 2 and
+         runs away from the reader, which is where RHR-1 takes over from RHR-2 */
+      if (B1 > 1e-12) arr3(ctx, [x2, 0, 0], [x2, 0, -76], cB, 5);
+      /* the pair of forces, equal in size and opposite in direction (Newton's third law) */
+      /* drawn toward each other, a force stops short of the other wire rather than crossing it */
+      const L3 = pull > 0 ? Math.min(118, 0.8 * (x2 - x1)) : 118;
+      if (FL > 1e-12 && Math.abs(pull) > 0.1) {
+        arr3(ctx, [x2, 58, 0], [x2 - pull * L3, 58, 0], cF, W);
+        arr3(ctx, [x1, -58, 0], [x1 + pull * L3, -58, 0], cF, W);
+      }
+      const t1 = V.P([x1, WY, 0]), t2 = V.P([x2, WY, 0]), apart = Math.max(0, 16 - (t2[0] - t1[0]) / 2);
+      text(ctx, '1', t1[0] - apart, t1[1] - 28, w1, { size: 26, weight: 700, align: 'center' });
+      text(ctx, '2', t2[0] + apart, t2[1] - 28, w2, { size: 26, weight: 700, align: 'center' });
+      const b1 = V.P([x1, -WY, 0]), b2 = V.P([x2, -WY, 0]);
+      hbracket(ctx, b1[0], b2[0], Math.max(b1[1], b2[1]) + 42, cR, 'r = ' + fmt(r, 2) + ' m', { side: 'below', H: SCENE });
+      ctx.restore();
+      /* the names: six of them, none on a thing that moves far (rule 26.7) */
+      const pI1 = V.P([x1, 130, 0]), pI2 = V.P([x2, up2 * 74, 0]), pB = V.P([x2, 0, -76]);
+      const pF2 = V.P([x2 - pull * L3, 58, 0]), pF1 = V.P([x1 + pull * L3, -58, 0]);
+      label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', pI1[0], pI1[1], { side: 'left', size: 21, color: cI, H: SCENE });
+      label(ctx, 'I₂ = ' + fmt(I2, 0) + ' A', pI2[0], pI2[1], { side: 'right', size: 21, color: cI, H: SCENE });
+      if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', pB[0], pB[1], { side: 'right', size: 21, color: cB, H: SCENE, bg: PAL.panel });
+      if (FL > 1e-12) {
+        label(ctx, 'F₂/l = ' + num(FL) + ' N/m', pF2[0], pF2[1], { side: pull > 0 ? 'left' : 'above', size: 21, color: cF, H: SCENE });   /* pulled in, its name stands clear of I₂ */
+        label(ctx, 'F₁/l = ' + num(FL) + ' N/m', pF1[0], pF1[1], { side: 'below', size: 21, color: cF, H: SCENE });
+      }
+      pts.push({ p: V.P([x1, 0, 0]), r: 56, name: '导线 1，载有 ' + fmt(I1, 0) + ' A' }, { p: V.P([x2, 0, 0]), r: 56, name: '导线 2，载有 ' + fmt(I2, 0) + ' A' });
+    }
+    ctx.save(); ctx.beginPath(); ctx.rect(MID, 74, 1400 - MID, SCENE - 74); ctx.clip();
+    line(ctx, MID, 110, MID, SCENE - 30, alpha(PAL.ink, 0.15), 2);
+    {
+      /* the book's second panel: both wires seen end-on, with one field line for each */
+      const D = r * SE, y0 = 300, xa = EX - D / 2, xb = EX + D / 2, R = 11;
+      /* each field line closes on itself, and the one arrowhead it carries, at the top
+         of the circle, gives the sense RHR-2 asks for: counterclockwise about a
+         current that comes toward the reader, so the field runs to the left up there */
+      const ring = (cx0, out, w) => {
+        ctx.save(); ctx.strokeStyle = cB; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(cx0, y0, D, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+        const s = out ? 1 : -1;
+        arrow(ctx, cx0 + s * 34, y0 - D, cx0 - s * 34, y0 - D, cB, w + 1.5);
+      };
+      if (I1 > 0.5) ring(xa, true, lw);
+      if (I2 > 0.5) ['same', 'opp'].forEach((v) => dirC.only(ctx, v, () => ring(xb, v === 'same', widthOf(B2)), [0, 0]));
+      /* the field each wire makes where the other one stands, at right angles to the
+         line between them, so that RHR-1 sends the force straight along that line */
+      if (B1 > 1e-12) arrow(ctx, xb, y0, xb, y0 - 88, cB, 5);
+      if (B2 > 1e-12 && Math.abs(pull) > 0.1) arrow(ctx, xa, y0, xa, y0 + pull * 88, cB, 5);
+      currentMark(ctx, xa, y0, true, cI, R, w1);
+      ['same', 'opp'].forEach((v) => dirC.only(ctx, v, () => currentMark(ctx, xb, y0, v === 'same', cI, R, w2), [0, 0]));
+      /* each force arrow is set on the side of its wire that the other wire's field
+         arrow has left clear, so that no force crosses a field */
+      const fy2 = y0 + 44, fy1 = y0 - pull * 44;
+      const L2 = pull > 0 ? Math.min(126, 0.8 * D) : 126;
+      if (FL > 1e-12 && Math.abs(pull) > 0.1) {
+        arrow(ctx, xb, fy2, xb - pull * L2, fy2, cF, W);
+        arrow(ctx, xa, fy1, xa + pull * L2, fy1, cF, W);
+      }
+      const apart = Math.max(0, 16 - D / 2);
+      text(ctx, '1', xa - apart, y0 - 34, w1, { size: 24, weight: 700, align: 'center' });
+      text(ctx, '2', xb + apart, y0 - 34, w2, { size: 24, weight: 700, align: 'center' });
+      hbracket(ctx, xa, xb, y0 + 178, cR, 'r = ' + fmt(r, 2) + ' m', { side: 'below', H: SCENE });
+      ctx.restore();
+      label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', xa, y0 - 16, { side: 'left', size: 21, color: cI, gap: 30, H: SCENE });
+      label(ctx, 'I₂ = ' + fmt(I2, 0) + ' A', xb, y0 + 16, { side: 'right', size: 21, color: cI, gap: 30, H: SCENE });
+      if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', xb, y0 - 88, { side: 'above', size: 21, color: cB, H: SCENE });
+      if (FL > 1e-12 && Math.abs(pull) > 0.5) {
+        label(ctx, 'F₂/l', xb - pull * L2, fy2, { side: 'below', size: 21, color: cF, H: SCENE });
+        label(ctx, 'F₁/l', xa + pull * L2, fy1, { side: pull > 0 ? 'above' : 'below', size: 21, color: cF, H: SCENE });
+      }
+      text(ctx, '圆点表示朝向你的电流，', EX, 520, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+      text(ctx, '叉号表示远离你的电流。', EX, 546, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
+      pts.push({ p: [xa, y0], r: 40, name: '导线 1，载有 ' + fmt(I1, 0) + ' A' }, { p: [xb, y0], r: 40, name: '导线 2，载有 ' + fmt(I2, 0) + ' A' });
+    }
+    hits = pts;
+    /* the force per unit length at every separation, with the state now set on it */
+    const { X, Y } = axes(ctx, BOX, [0, 2], [0, 1], { xl: 'r，两导线之间的距离（米）', xc: cR, yl: 'F/l (N/m)', yc: cF, nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 2) });
+    if (FL > 1e-12) {
+      ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
+      curve(ctx, (t) => K * I1 * I2 / t, 0.1, 2, X, Y, cF, 5, 160);
+      ctx.restore();
+      line(ctx, X(r), Math.max(Y(FL), BOX.t), X(r), BOX.b, alpha(PAL.ink, 0.35), 2.5, [4, 8]);
+      const pt = pinned(ctx, BOX, X, Y, r, FL, cF, num(FL) + ' N/m');
+      if (!pt.out) { const rightish = pt.x > BOX.r - 200; text(ctx, num(FL) + ' N/m', pt.x + (rightish ? -16 : 16), pt.y - 22, cF, { size: 18, weight: 600, align: rightish ? 'right' : 'left', bg: PAL.panel }); }
+    }
+    note(ctx, BOX, '导线被拉开时，力逐渐减小，但永远不会完全降到零。',
+      [{ l: X(r) - 190, r: X(r) + 190, t: BOX.t, b: BOX.b }, { l: BOX.l, r: BOX.l + (BOX.r - BOX.l) * 0.55, t: BOX.t, b: BOX.b }, { l: BOX.l, r: BOX.r, t: BOX.b - 64, b: BOX.b }]);
+    topline(ctx, FL < 1e-12
+      ? '只要其中一根导线中没有电流，无论两根导线靠得多近，它们都不受力。'
+      : `两根导线相距 ${fmt(r, 2)} m，一根载有 ${fmt(I1, 0)} A，另一根载有 ${fmt(I2, 0)} A，电流${same ? '同向' : '反向'}，每米长度上${same ? '相互拉近' : '相互推开'}的力为 ${num(FL)} N。`);
+    readout(d.readout,
+      `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(I1, 0)}\\ \\text{A})(${fmt(I2, 0)}\\ \\text{A})}{2\\pi(${fmt(r, 2)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
+      '在 50.0 m 长的一段线路上，每米受这么大的力，合计为 ' + num(FL * 50) + ' N。');
+  }
+  register(d.fig, { update: () => {}, draw });
+  hover(d.stage, () => hits.map((h) => ({ x: h.p[0], y: h.p[1], r: h.r, name: h.name })));
+})();
+
+/* =====================================================================
+   SIM: the pinch effect. The current of an arc is shared among seven
+   strands and the force on each is the vector sum of the pair force this
+   section derives, taken over the six others: no new law and no model of a
+   plasma. The six strands of the rim are pulled inward and the strand on
+   the axis is pulled nowhere. Still: how hard a given current squeezes
+   itself is a state of the arrangement.
+===================================================================== */
+(function () {
+  const d = sim('sim-pinch-effect', 780);
+  const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 5, max: 20, step: 0.5, value: 15, unit: 'kA', dec: 1, aria: '电弧中的电流' });
+  const dS = ctl(d.controls, { label: 'd', cls: 'position', min: 6, max: 16, step: 0.5, value: 10, unit: 'mm', dec: 1, aria: '电流所通过的电弧柱的直径' });
+  /* 22 canvas units to the millimeter, so the widest column the slider reaches,
+     16.0 mm, has a rim 176 units from the axis. The force arrows are drawn to one
+     fixed scale, 0.1365 units to the newton per meter, taken from the greatest force
+     the two sliders can make together: 20.0 kA in a 6.00 mm column comes to 1905 N/m
+     and is drawn 230 units long, and the default state is drawn 78 units. */
+  const SD = 22, SA = 230 / 1905, CX = 700, CY = 360;
+
+  /* the seven strands, one on the axis and six on the rim, in meters */
+  function strands(a) {
+    const out = [{ x: 0, y: 0 }];
+    for (let i = 0; i < 6; i++) { const t = (i * Math.PI) / 3; out.push({ x: a * Math.cos(t), y: a * Math.sin(t) }); }
+    return out;
+  }
+  /* the force per unit length on one strand, summed over the pair force this section
+     derives between it and every other strand */
+  function netOn(ps, Is, k) {
+    let fx = 0, fy = 0;
+    ps.forEach((p, j) => {
+      if (j === k) return;
+      const dx = p.x - ps[k].x, dy = p.y - ps[k].y, s = Math.hypot(dx, dy), f = K * Is * Is / s;
+      fx += (f * dx) / s; fy += (f * dy) / s;
+    });
+    return Math.hypot(fx, fy);
+  }
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const I = iS.v * 1000, dmm = dS.v, a = dmm / 2000, Is = I / 7, R = (dmm / 2) * SD;
+    const cI = C('current'), cF = C('force'), cR = C('position');
+    const ps = strands(a), net = netOn(ps, Is, 1), pair = K * Is * Is / a, L = Math.max(10, net * SA);
+    /* the column the current runs in, its outline in its referent's colour */
+    ctx.save(); ctx.strokeStyle = alpha(F.ref('arc'), 0.7); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
+    ctx.beginPath(); ctx.arc(CX, CY, R + 34, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
+    /* the squeeze: one arrow to each strand of the rim, all six the same size by
+       symmetry, drawn from outside the column and stopping short of the strand */
+    for (let i = 0; i < 6; i++) {
+      const t = (i * Math.PI) / 3, ux = Math.cos(t), uy = -Math.sin(t);
+      const hx = CX + ux * (R + 26), hy = CY + uy * (R + 26);
+      arrow(ctx, hx + ux * L, hy + uy * L, hx, hy, cF, 5);
+    }
+    /* the two neighbors whose pair force the readout writes */
+    const p0 = { x: CX + R, y: CY }, p1 = { x: CX + R * Math.cos(Math.PI / 3), y: CY - R * Math.sin(Math.PI / 3) };
+    line(ctx, p0.x, p0.y, p1.x, p1.y, alpha(cR, 0.8), 2.5, [7, 7]);
+    /* the strands themselves: seven equal currents, all coming toward the reader */
+    dot(ctx, CX, CY, cF, false, Math.max(18, R * 0.16 + 11));
+    const mr = Math.max(10, Math.min(16, R * 0.16));
+    ps.forEach((p) => currentMark(ctx, CX + p.x * SD * 1000, CY - p.y * SD * 1000, true, cI, mr));
+    /* the names: four of them, the six arrows named once on one representative
+       because symmetry makes every one of them the same (rule 26.7) */
+    label(ctx, 'F/l = ' + fmt(net, 0) + ' N/m', CX + R + 26 + L, CY, { side: 'right', size: 22, color: cF, H: 780 });
+    label(ctx, '每一细股中 ' + fmt(Is / 1000, 2) + ' kA', p1.x, p1.y, { side: 'above', size: 20, color: cI, gap: 28, H: 780 });
+    label(ctx, '相距 ' + fmt(dmm / 2, 2) + ' mm', (p0.x + p1.x) / 2, (p0.y + p1.y) / 2, { side: 'above', size: 19, gap: 18, H: 780, color: cR });
+    topline(ctx, `一个 ${fmt(iS.v, 1)} kA、直径 ${fmt(dmm, 1)} mm 的电弧自行收缩：外缘的每一细股都以每米 ${fmt(net, 0)} N 的力被拉向其余六股。`);
+    readout(d.readout,
+      `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${sciTex(Is)}\\ \\text{A})^2}{2\\pi(${sciTex(a)}\\ \\text{m})} = ${fmt(pair, 0)}\\ \\text{N/m}`,
+      `这是相邻细股之间的拉力；其余六股合起来对外缘一股每米的拉力为 ${fmt(net, 0)} N，指向轴线，而轴线上的那一细股则不被拉向任何方向。`);
+  }
+  register(d.fig, { update: () => {}, draw });
+  hover(d.stage, () => {
+    const R = (dS.v / 2) * SD, out = [{ x: CX, y: CY, r: 30, name: '轴线上的细股，各个方向受到的拉力相等' }];
+    for (let i = 0; i < 6; i++) { const t = (i * Math.PI) / 3; out.push({ x: CX + R * Math.cos(t), y: CY - R * Math.sin(t), r: 30, name: '外缘六根细股中的一根，载有 ' + fmt(iS.v / 7, 2) + ' kA，朝向你' }); }
+    return out;
+  });
+})();
+
+/* =====================================================================
+   SIM: the current balance, the instrument the section's last paragraph
+   describes. Two straight wires a meter apart carrying an ampere each pull
+   on one another with the weight of about twenty micrograms per meter,
+   which is why the definition is realised with many turns a few
+   centimeters apart instead. Still: a balance at balance is a state.
+===================================================================== */
+(function () {
+  const d = sim('sim-current-balance', 800);
+  const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 10, step: 0.1, value: 5, unit: 'A', dec: 2, aria: '通过两个线圈的电流' });
+  const nS = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 40, step: 1, value: 20, unit: '匝', dec: 0, aria: '每个线圈的匝数' });
+  const rS = ctl(d.controls, { label: '\\kr', cls: 'position', min: 1, max: 10, step: 0.25, value: 3, unit: 'cm', dec: 2, aria: '两个线圈相对两侧之间的间隙' });
+  /* 18 canvas units to the centimeter of gap, so the widest gap the slider reaches,
+     10.0 cm, is 180 units and the fixed coil never leaves its stand. The sides the
+     coils turn toward each other are 10.0 cm of wire, the length the force is
+     reckoned over, and g is 9.80 m/s^2 for the mass the balance must carry. */
+  const SG = 18, LEN = 0.100, G = 9.80, FREF = K * 100 * 100 / 0.03 * LEN;
+  const PIV = 700, BEAM = 140, ARM = 300, PANX = PIV - ARM, COILX = PIV + ARM, BASE = 726, YU = 380, MK = 16, PER = 10;
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const I = iS.v, N = nS.v, rcm = rS.v, r = rcm / 100;
+    const cI = C('current'), cF = C('force'), cR = C('position'), cM = C('mass'), bal = F.ref('balance'), coil = F.ref('coils');
+    const FL = K * (N * I) * (N * I) / r, Fn = FL * LEN, mg = (Fn / G) * 1e6;   /* the mass in milligrams */
+    const gap = rcm * SG, yL = YU + gap, rows = Math.ceil(N / PER), span = (rows - 1) * MK * 1.35;
+    const upTop = YU - MK * 0.7 - span - MK / 2, lowBot = yL + MK * 0.7 + span + MK / 2;
+    const mass = mg >= 1000 ? fmt(mg / 1000, 2) + ' g' : fmt(mg, mg < 10 ? 2 : 0) + ' mg';
+    /* the beam, its pivot and its pan: the beam is drawn level, because the mass on
+       the pan is the mass that balances what the coils do to each other */
+    line(ctx, PANX - 30, BEAM, COILX + 30, BEAM, bal, 7);
+    ctx.save(); ctx.fillStyle = alpha(bal, 0.6); ctx.beginPath(); ctx.moveTo(PIV, BEAM + 6); ctx.lineTo(PIV - 34, BEAM + 96); ctx.lineTo(PIV + 34, BEAM + 96); ctx.closePath(); ctx.fill(); ctx.restore();
+    line(ctx, PIV - 76, BEAM + 96, PIV + 76, BEAM + 96, bal, 5);
+    line(ctx, PANX, BEAM, PANX, BEAM + 100, bal, 3);
+    ctx.save(); ctx.strokeStyle = bal; ctx.lineWidth = 4; ctx.beginPath();
+    ctx.moveTo(PANX - 92, BEAM + 100); ctx.lineTo(PANX + 92, BEAM + 100); ctx.lineTo(PANX + 62, BEAM + 142); ctx.lineTo(PANX - 62, BEAM + 142); ctx.closePath(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.rect(PANX - 42, BEAM + 54, 84, 46); ctx.fill(); ctx.stroke(); ctx.restore();
+    label(ctx, mass, PANX, BEAM + 77, { side: 'left', size: 22, gap: 58, H: 800, color: cM });
+    /* the hanger and the coil it carries */
+    line(ctx, COILX, BEAM, COILX, upTop, PAL.ink, 3);
+    /* each coil is drawn end-on, one mark to a turn, in rows of eight, so that the
+       block of current grows visibly with the turns the reader asks for */
+    const bank = (yBase, up) => {
+      for (let k = 0; k < N; k++) {
+        const row = Math.floor(k / PER), col = k % PER, wide = Math.min(PER, N - row * PER);
+        currentMark(ctx, COILX + (col - (wide - 1) / 2) * MK * 1.35, yBase + up * row * MK * 1.35, true, cI, MK / 2.1, coil);
+      }
+    };
+    bank(YU - MK * 0.7, -1);
+    bank(yL + MK * 0.7, 1);
+    /* the stand the fixed coil rests on */
+    line(ctx, COILX - 130, BASE, COILX + 130, BASE, PAL.ink, 5);
+    [-84, 84].forEach((k) => line(ctx, COILX + k, lowBot + 8, COILX + k, BASE, PAL.ink, 3));
+    /* the pair of forces on the sides that face each other, drawn toward each other
+       because both coils carry their current the same way round */
+    const W = fw(Fn, FREF), len = Math.min(76, Math.max(10, gap * 0.42));
+    if (Fn > 1e-14) {
+      arrow(ctx, COILX - 156, YU, COILX - 156, YU + len, cF, W);
+      arrow(ctx, COILX - 156, yL, COILX - 156, yL - len, cF, W);
+    }
+    vbracket(ctx, COILX + 156, YU, yL, cR, 'r = ' + fmt(rcm, 2) + ' cm', 1, { side: 'right', H: 800 });
+    label(ctx, 'I = ' + fmt(I, 2) + ' A', COILX, upTop, { side: 'above', size: 21, color: cI, gap: 18, H: 800 });
+    label(ctx, '每个线圈 N = ' + fmt(N, 0) + ' 匝', COILX, lowBot, { side: 'below', size: 20, gap: 26, H: 800 });
+    if (Fn > 1e-14) label(ctx, 'F = ' + num(Fn) + ' N', COILX - 156, (YU + yL) / 2, { side: 'left', size: 21, color: cF, H: 800 });
+    text(ctx, '两个线圈相向的那 10.0 cm 导线，就是计算这个力所取的长度。', 700, 766, PAL.muted, { size: 18, align: 'center' });
+    topline(ctx, Fn < 1e-14
+      ? '线圈中没有电流，天平就没有什么可称的。'
+      : `${fmt(N, 0)} 匝载有 ${fmt(I, 2)} A 的线圈，位于另外 ${fmt(N, 0)} 匝线圈上方 ${fmt(rcm, 2)} cm 处，二者相对的 10.0 cm 导线之间的拉力为 ${num(Fn)} N，等于质量为 ${mass} 的物体所受的重力。`);
+    readout(d.readout,
+      `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N, 0)}\\times ${fmt(I, 2)}\\ \\text{A})^2}{2\\pi(${fmt(r, 4)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
+      `一个线圈的每一匝都与另一个线圈的每一匝平行，所以定律中的每个电流都是 ${fmt(N, 0)} × ${fmt(I, 2)} A。`);
+  }
+  register(d.fig, { update: () => {}, draw });
+  hover(d.stage, () => {
+    const gap = rS.v * SG, yL = YU + gap;
+    return [
+      { x: COILX, y: YU - 24, r: 80, name: '挂在横梁上的线圈，' + fmt(nS.v, 0) + ' 匝，载有 ' + fmt(iS.v, 2) + ' A，朝向你' },
+      { x: COILX, y: yL + 24, r: 80, name: '固定在支架上的线圈，载有同样的电流且绕向相同' },
+      { x: PANX, y: BEAM + 77, r: 60, name: '游码，其重力与两个线圈之间的相互作用力平衡' },
+    ];
+  });
+})();
+
+};

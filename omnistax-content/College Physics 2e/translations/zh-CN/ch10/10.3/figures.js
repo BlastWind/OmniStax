@@ -1,0 +1,416 @@
+/* Figures for section 10.3 Dynamics of Rotational Motion: Rotational Inertia. Boots against the section's text article.
+   Three of the four figures have a clock in them: a force changes an angular velocity, and the change
+   takes time, so the bike wheel, the point mass and the merry-go-round start from rest and spin up
+   while the push lasts, register a cycle and get the app's transport. The table of moments of inertia
+   is a relation between quantities, so it answers its sliders, registers no cycle and carries no
+   transport. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['10.3'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, axes, curve, pinned, view, face, labeller } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the figures ---------- */
+const TAU = 2 * Math.PI;
+/* the turning a torque produces, drawn as an arc about (cx, cy) with an arrowhead at the end the
+   turn runs towards; `mid` is the canvas angle the arc is centred on, and the turn is counterclockwise
+   on the screen */
+function turnArc(ctx, cx, cy, R, color, mid, w = 5) {
+  const a0 = mid - 0.7, a1 = mid + 0.7;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(cx, cy, R, a0, a1); ctx.stroke(); ctx.restore();
+  const hx = cx + R * Math.cos(a0), hy = cy + R * Math.sin(a0), t = a0 - Math.PI / 2;
+  arrow(ctx, hx - 30 * Math.cos(t), hy - 30 * Math.sin(t), hx, hy, color, w);
+}
+/* a clock and a reading, stacked in a panel at (x, y): the label in muted ink and the value in its type colour */
+function reading(ctx, x, y, label, value, color) {
+  text(ctx, label, x, y, PAL.muted, { size: 18 });
+  text(ctx, value, x, y + 30, color, { size: 22, weight: 600 });
+}
+
+/* =====================================================================
+   FIGURE 10.10: the bike wheel pulled by a hand. A hoop of the book's
+   radius on an axle, a hand on the tire or on a spoke, and a pull that
+   lasts 2.00 s. Moving: the sentence the figure illustrates is that force
+   is needed to change angular velocity, and the change happens in time,
+   so the wheel spins up from rest while the pull lasts and then holds.
+===================================================================== */
+(function () {
+  const d = sim('sim-bike-wheel', 700);
+  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 20, step: 0.5, value: 10, unit: 'N', dec: 1, onInput: reset, aria: '拉力的大小' });
+  const rs = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.05, max: 0.33, step: 0.01, value: 0.33, unit: 'm', dec: 2, onInput: reset, aria: '车轴到拉力作用点的距离' });
+  const Ms = ctl(d.controls, { label: '\\kM', cls: 'mass', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'kg', dec: 1, onInput: reset, aria: '车轮的质量' });
+  const R = 0.33, T = 2, CX = 470, CY = 430, S = 640, KF = 14, PX = 940;   /* 1 m is 640 units; the hand's forearm above the rim clears the headline's second line and the arc under the wheel the canvas foot */
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  const model = () => { const tau = rs.v * Fs.v, I = Ms.v * R * R; return { tau, I, al: tau / I }; };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('force'), pc = C('position'), ic = C('rotational-inertia'), ac = C('angular-acceleration'), wc = C('angular-rate'), tc = C('time'), qc = C('torque');
+    const m = model(), t = cy.now(), th = 0.5 * m.al * t * t, w = m.al * t, done = t >= T - 1e-9;
+    const Rp = R * S, px = CX, py = CY - rs.v * S;               /* the pull is applied above the axle, on the tire or on a spoke, as the book draws it */
+    /* the tire, the spokes turning counterclockwise, the hub and the axle */
+    const wr = F.ref('wheel'), hr = F.ref('hand');
+    ctx.save(); ctx.strokeStyle = wr; ctx.lineWidth = 14; ctx.beginPath(); ctx.arc(CX, CY, Rp, 0, TAU); ctx.stroke();
+    ctx.lineWidth = 3; ctx.strokeStyle = PAL.muted;
+    for (let k = 0; k < 16; k++) { const a = -th + (k / 16) * TAU; ctx.beginPath(); ctx.moveTo(CX + 22 * Math.cos(a), CY + 22 * Math.sin(a)); ctx.lineTo(CX + (Rp - 8) * Math.cos(a), CY + (Rp - 8) * Math.sin(a)); ctx.stroke(); }
+    ctx.restore();
+    /* one spoke marked so the turn can be followed */
+    const a0 = -th + Math.PI / 2; line(ctx, CX + 22 * Math.cos(a0), CY + 22 * Math.sin(a0), CX + (Rp - 8) * Math.cos(a0), CY + (Rp - 8) * Math.sin(a0), wr, 5);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = wr; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(CX, CY, 22, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    dot(ctx, CX, CY, PAL.ink, true, 6);
+    text(ctx, '车轴', CX + 34, CY - 2, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.9) });
+    /* the distance from the axle to the pull, then the hand, its forearm reaching up and back, and its pull along the tire to the left,
+       which turns the wheel counterclockwise */
+    line(ctx, CX, CY, px, py, pc, 3, [6, 8]);
+    F.fist(ctx, px, py, 0.6, -0.8, 1, hr);
+    text(ctx, '手', px + 92, py - 80, hr, { size: 19, bg: alpha(PAL.panel, 0.9) });
+    /* the distance label sits beside the dashed line, or under the axle when the pull is close to it */
+    if (rs.v * S > 90) text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', CX - 14, (CY + py) / 2 + 20, pc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
+    else text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', CX - 30, CY + 44, pc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
+    if (Fs.v > 0) {
+      arrow(ctx, px, py, px - Fs.v * KF, py, fc, 5);
+      text(ctx, 'F = ' + fmt(Fs.v, 1) + ' N', px - Fs.v * KF - 14, py - 26, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
+      turnArc(ctx, CX, CY, Rp + 28, ac, Math.PI / 2);
+      text(ctx, 'α = ' + fmt(m.al, 1) + ' rad/s²', CX + (Rp + 28) * Math.cos(0.87) + 18, CY + (Rp + 28) * Math.sin(0.87) - 4, ac, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
+    }
+    /* the readings beside the wheel */
+    text(ctx, '车轮是半径为 R = 0.330 m 的细圆环', PX, 130, PAL.muted, { size: 18 });
+    reading(ctx, PX, 176, '拉力的力矩', 'τ = rF = ' + fmt(m.tau, 2) + ' N·m', qc);
+    reading(ctx, PX, 250, '转动惯量', 'I = MR² = ' + fmt(m.I, 3) + ' kg·m²', ic);
+    reading(ctx, PX, 324, '角加速度', 'α = τ/I = ' + fmt(m.al, 1) + ' rad/s²', ac);
+    reading(ctx, PX, 398, '拉力已持续的时间', 't = ' + fmt(t, 2) + ' s', tc);
+    reading(ctx, PX, 472, '角速度', 'ω = αt = ' + fmt(w, 1) + ' rad/s', wc);
+    topline(ctx, Fs.v === 0 ? '车轮上没有拉力时就没有力矩，车轮保持原样。'
+      : t < 1e-9 ? '车轮静止，一个 ' + fmt(Fs.v, 1) + ' N 的拉力作用在距车轴 ' + fmt(rs.v, 2) + ' m 处，即将使它转动起来。'
+      : done ? '在质量为 ' + fmt(Ms.v, 1) + ' kg 的车轮上，距车轴 ' + fmt(rs.v, 2) + ' m 处施加 ' + fmt(Fs.v, 1) + ' N 的拉力，使它获得 ' + fmt(m.al, 1) + ' rad/s² 的角加速度，2.00 s 后它以 ' + fmt(w, 1) + ' rad/s 转动。'
+      : '以 ' + fmt(Fs.v, 1) + ' N 的拉力拉了 ' + fmt(t, 2) + ' s 后，车轮以 ' + fmt(w, 1) + ' rad/s 转动，并且每秒仍在增加 ' + fmt(m.al, 1) + ' rad/s。');
+    readout(d.readout, `\\kalpha = \\frac{\\text{合力矩}\\;\\ktau}{\\kI} = \\frac{\\kr\\kF}{\\kM\\kR^2} = \\frac{(${fmt(rs.v, 2)}\\ \\text{m})(${fmt(Fs.v, 1)}\\ \\text{N})}{(${fmt(Ms.v, 1)}\\ \\text{kg})(0.330\\ \\text{m})^2} = ${fmt(m.al, 1)}\\ \\text{rad/s}^2`,
+      Fs.v === 0 ? '没有力矩，角速度就不改变。' : '');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 10.11: the point mass on a frictionless table, tethered to a
+   pivot and pushed perpendicular to the cord. Moving: the book's arrows on
+   the circular path say the mass goes round, so it starts from rest and
+   goes round faster and faster for 1.00 s, the force and its acceleration
+   turning with it, then holds. The cord sweeps the disc and the arrows the
+   ring round it, so a label there would sit on things that move: hover
+   names carry the mass, the pivot, the cord and the arrows (rule 26.7).
+===================================================================== */
+(function () {
+  const d = sim('sim-point-mass', 620);
+  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 10, step: 0.1, value: 4, unit: 'N', dec: 1, onInput: reset, aria: '作用在质点上的力' });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 0.5, unit: 'kg', dec: 2, onInput: reset, aria: '质点的质量' });
+  const rs = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.6, unit: 'm', dec: 2, onInput: reset, aria: '绳长，即支点到质点的距离' });
+  const PXV = 440, PY = 350, S = 190, KF = 22, KA = 10, AMAX = 200, ANG = 0.75, PX = 980, T = 1;   /* the mass starts at the lower right with the force running up and to the right */
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const fc = C('force'), ac = C('acceleration'), gc = C('angular-acceleration'), qc = C('torque');
+    const Fv = Fs.v, m = ms.v, r = rs.v, a = Fv / m, al = a / r, tau = r * Fv, t = cy.now(), w = al * t;
+    const th = ANG - 0.5 * al * t * t;                                   /* counterclockwise on the screen is the canvas angle falling */
+    const rp = r * S, mx = PXV + rp * Math.cos(th), my = PY + rp * Math.sin(th);
+    const ux = Math.sin(th), uy = -Math.cos(th);                         /* the tangent, counterclockwise on the screen */
+    const rx = Math.cos(th), ry = Math.sin(th);                          /* outward along the cord */
+    const mid = (x1, y1, x2, y2) => [(x1 + x2) / 2, (y1 + y2) / 2];
+    hits = [{ x: mx, y: my, r: 22, name: '质点，m = ' + fmt(m, 2) + ' kg' }, { x: PXV, y: PY, r: 16, name: '支点' },
+      { x: (PXV + mx) / 2, y: (PY + my) / 2, r: 18, name: '绳，r = ' + fmt(r, 2) + ' m' }];
+    /* the table top seen from above, the circular path and the cord */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(120, 92, 700, 516, 26); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, '无摩擦的桌面', 150, 128, PAL.muted, { size: 18 });
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.setLineDash([8, 10]); ctx.beginPath(); ctx.arc(PXV, PY, rp, 0, TAU); ctx.stroke(); ctx.restore();
+    const pmr = F.ref('point-mass'), pvr = F.ref('pivot'), cdr = F.ref('cord');
+    line(ctx, PXV, PY, mx, my, cdr, 3);
+    dot(ctx, PXV, PY, pvr, false, 10);
+    /* the force on the mass and the acceleration it produces, both along the tangent */
+    if (Fv > 0) {
+      const LF = Fv * KF;
+      arrow(ctx, mx, my, mx + LF * ux, my + LF * uy, fc, 5);
+      const La = Math.min(a * KA, AMAX), ox = rx * 34, oy = ry * 34;     /* the acceleration arrow sits just outside the path, parallel to the force */
+      if (a * KA > AMAX) line(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, 3, [8, 8]);
+      arrow(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, a * KA > AMAX ? 2 : 4);
+      turnArc(ctx, PXV, PY, 62, gc, 4.0, 4);                                    /* the turn about the pivot, drawn above and to its left */
+      const fm = mid(mx, my, mx + LF * ux, my + LF * uy), am = mid(mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy);
+      hits.unshift({ x: fm[0], y: fm[1], r: 20, name: '力，F = ' + fmt(Fv, 1) + ' N' }, { x: am[0], y: am[1], r: 20, name: '沿力方向的加速度，a = ' + fmt(a, 1) + ' m/s²' },
+        { x: PXV + 62 * Math.cos(4), y: PY + 62 * Math.sin(4), r: 22, name: '绕支点的角加速度，α = ' + fmt(al, 1) + ' rad/s²' });
+    }
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = pmr; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(mx, my, 16, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    /* the path is named in the table's corner, where neither the mass nor its arrows reach at any one slider's extreme */
+    line(ctx, 520, 590, 564, 590, PAL.muted, 2, [8, 10]);
+    text(ctx, '半径为 r 的圆形路径', 576, 590, PAL.muted, { size: 17, base: 'middle' });
+    /* the three equalities of the derivation, with the live numbers */
+    text(ctx, '同一个力，三种读法', PX, 124, PAL.muted, { size: 18 });
+    reading(ctx, PX, 160, '沿力方向的牛顿第二定律', 'a = F/m = ' + fmt(a, 1) + ' m/s²', ac);
+    reading(ctx, PX, 224, '切向加速度为 rα', 'α = a/r = ' + fmt(al, 1) + ' rad/s²', gc);
+    reading(ctx, PX, 288, '对支点的力矩', 'τ = rF = ' + fmt(tau, 2) + ' N·m', qc);
+    reading(ctx, PX, 352, '同一力矩也可写成 mr²α', 'mr²α = ' + fmt(m * r * r * al, 2) + ' N·m', qc);
+    reading(ctx, PX, 416, '质点的转动惯量', 'mr² = ' + fmt(m * r * r, 3) + ' kg·m²', C('rotational-inertia'));
+    reading(ctx, PX, 480, '力已作用的时间', 't = ' + fmt(t, 2) + ' s', C('time'));
+    reading(ctx, PX, 544, '自静止开始的角速度', 'ω = αt = ' + fmt(w, 1) + ' rad/s', C('angular-rate'));
+    topline(ctx, Fv === 0 ? '质点上没有力时，就没有加速度、没有角加速度，也没有力矩，所以它停留在原处。'
+      : '对距支点 ' + fmt(r, 2) + ' m、质量为 ' + fmt(m, 2) + ' kg 的质点施加 ' + fmt(Fv, 1) + ' N 的力，使它沿力的方向获得 ' + fmt(a, 1) + ' m/s² 的加速度，并绕支点获得 ' + fmt(al, 1) + ' rad/s² 的角加速度，所以它从静止开始越转越快。');
+    readout(d.readout, `\\ktau = \\kr\\kF = \\km\\kr^2\\kalpha = (${fmt(m, 2)}\\ \\text{kg})(${fmt(r, 2)}\\ \\text{m})^2(${fmt(al, 1)}\\ \\text{rad/s}^2) = ${fmt(tau, 2)}\\ \\text{N}\\cdot\\text{m}`,
+      Fv === 0 ? '' : `$\\km\\kr^2 = ${fmt(m * r * r, 3)}\\ \\text{kg}\\cdot\\text{m}^2$ 在 $\\kF = \\km\\ka$ 中占据 $\\km$ 的位置。`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 10.12: the ten rotational inertias. One body at a time, chosen
+   from a dropdown, drawn from a locked view with its axis, its moment of
+   inertia worked from the book's formula and compared with all of its
+   mass at the farthest point from the axis. Still: a body and its axis
+   have no time in them.
+===================================================================== */
+(function () {
+  const d = sim('sim-inertias', 640);
+  const SHAPES = [
+    { value: 'hoop-axis', mk: '\\mk{I}{\\kI} = \\mk{M}{\\kM}\\mk{R}{\\kR^2}', label: '细圆环，绕圆柱轴线', ktex: '\\kI = \\kM\\kR^2', uses: { R: true } , I: (M, R) => M * R * R, far: (R) => R },
+    { value: 'annular', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{2}}\\mk{M}{\\kM}\\mk{R}{(R_1^2 + R_2^2)}', label: '空心圆柱体（或圆环），绕圆柱轴线', ktex: '\\kI = \\frac{\\kM}{2}(R_1^2 + R_2^2)', uses: { R: true, R1: true }, I: (M, R, l, R1) => 0.5 * M * (R1 * R1 + R * R), far: (R) => R },
+    { value: 'disk-axis', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{2}}\\mk{M}{\\kM}\\mk{R}{\\kR^2}', label: '实心圆柱体（或圆盘），绕圆柱轴线', ktex: '\\kI = \\frac{1}{2}\\kM\\kR^2', uses: { R: true }, I: (M, R) => 0.5 * M * R * R, far: (R) => R },
+    { value: 'disk-diameter', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{4}}\\mk{M}{\\kM}\\mk{R}{\\kR^2} + \\mk{c2}{\\frac{1}{12}}\\mk{M2}{\\kM}\\mk{L}{\\ell^2}', label: '实心圆柱体（或圆盘），绕中心直径', ktex: '\\kI = \\frac{1}{4}\\kM\\kR^2 + \\frac{1}{12}\\kM\\ell^2', uses: { R: true, l: true }, I: (M, R, l) => M * R * R / 4 + M * l * l / 12, far: (R, l) => Math.hypot(R, l / 2) },
+    { value: 'rod-center', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{12}}\\mk{M}{\\kM}\\mk{L}{\\ell^2}', label: '细杆，绕过中心且垂直于杆长的轴', ktex: '\\kI = \\frac{1}{12}\\kM\\ell^2', uses: { l: true }, I: (M, R, l) => M * l * l / 12, far: (R, l) => l / 2 },
+    { value: 'rod-end', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{3}}\\mk{M}{\\kM}\\mk{L}{\\ell^2}', label: '细杆，绕过一端且垂直于杆长的轴', ktex: '\\kI = \\frac{1}{3}\\kM\\ell^2', uses: { l: true }, I: (M, R, l) => M * l * l / 3, far: (R, l) => l },
+    { value: 'sphere', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{2}{5}}\\mk{M}{\\kM}\\mk{R}{\\kR^2}', label: '实心球，绕任一直径', ktex: '\\kI = \\frac{2}{5}\\kM\\kR^2', uses: { R: true }, I: (M, R) => 0.4 * M * R * R, far: (R) => R },
+    { value: 'shell', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{2}{3}}\\mk{M}{\\kM}\\mk{R}{\\kR^2}', label: '薄球壳，绕任一直径', ktex: '\\kI = \\frac{2}{3}\\kM\\kR^2', uses: { R: true }, I: (M, R) => (2 / 3) * M * R * R, far: (R) => R },
+    { value: 'hoop-diameter', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{2}}\\mk{M}{\\kM}\\mk{R}{\\kR^2}', label: '细圆环，绕任一直径', ktex: '\\kI = \\frac{1}{2}\\kM\\kR^2', uses: { R: true }, I: (M, R) => 0.5 * M * R * R, far: (R) => R },
+    { value: 'slab', mk: '\\mk{I}{\\kI} = \\mk{c}{\\frac{1}{12}}\\mk{M}{\\kM}\\mk{R}{(a^2 + b^2)}', label: '平板，绕过中心的垂直轴', ktex: '\\kI = \\frac{1}{12}\\kM(a^2 + b^2)', uses: { R: true, l: true }, I: (M, R, l) => M * (l * l + R * R) / 12, far: (R, l) => Math.hypot(R / 2, l / 2) },
+  ];
+  const shape = select(d.controls, { label: '\\text{该物体}', options: SHAPES.map((s) => ({ value: s.value, label: s.label })), value: 'disk-axis', aria: '形状及其转轴', onInput: hold });
+  const Ms = ctl(d.controls, { label: '\\kM', cls: 'mass', min: 10, max: 100, step: 0.5, value: 50, unit: 'kg', dec: 1, aria: '物体的质量' });
+  const Rs = ctl(d.controls, { label: '\\kR', cls: 'position', min: 0.25, max: 2, step: 0.05, value: 1.5, unit: 'm', dec: 2, aria: '物体的半径，即平板的宽度 b 或圆环的外半径' });
+  const ls = ctl(d.controls, { label: '\\ell', cls: '', min: 0.25, max: 3, step: 0.05, value: 1, unit: 'm', dec: 2, aria: '物体的长度，或平板的长度 a' });
+  const R1s = ctl(d.controls, { label: 'R_1', cls: 'position', min: 0.05, max: 1.9, step: 0.05, value: 1, unit: 'm', dec: 2, aria: '圆环的内半径' });
+  const cur = () => SHAPES.find((s) => s.value === shape.value);
+  const formula = el('div');
+  d.readout.append(formula);
+  /* the sliders a formula has no use for are held (root rule 24.6) */
+  function hold() { const u = cur().uses; Rs.disable(!u.R); ls.disable(!u.l); R1s.disable(!u.R1); }
+  hold();
+  /* the locked view: one viewpoint above and to the right of the body, as the book draws each shape */
+  const YAW = 0.62, PITCH = 0.42, DIST = 3400, CX = 430, CY = 360, S = 120;      /* 1 m of body is 120 canvas units */
+  const V = view({ yaw: YAW, pitch: PITCH, dist: DIST, cx: CX, cy: CY });
+  const EYE = [DIST * Math.sin(YAW) * Math.cos(PITCH), DIST * Math.sin(PITCH), DIST * Math.cos(YAW) * Math.cos(PITCH)];
+  const dist2 = (p) => Math.hypot(p[0] - EYE[0], p[1] - EYE[1], p[2] - EYE[2]);
+  /* n points round a circle of radius r about the centre c in the plane spanned by the unit vectors u and v */
+  const ring = (c, u, v, r, n = 56) => Array.from({ length: n }, (_, i) => { const a = (i / n) * TAU; return [c[0] + r * (u[0] * Math.cos(a) + v[0] * Math.sin(a)), c[1] + r * (u[1] * Math.cos(a) + v[1] * Math.sin(a)), c[2] + r * (u[2] * Math.cos(a) + v[2] * Math.sin(a))]; });
+  /* the convex hull of projected points, so a cylinder's side is one silhouette */
+  function hull(pts) {
+    const p = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lo = [], up = [];
+    for (const q of p) { while (lo.length >= 2 && cross(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
+    for (const q of p.reverse()) { while (up.length >= 2 && cross(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
+    return lo.slice(0, -1).concat(up.slice(0, -1));
+  }
+  const X = [1, 0, 0], Y = [0, 1, 0], Z = [0, 0, 1];
+  const neg = (v) => [-v[0], -v[1], -v[2]];
+  /* a solid cylinder from centre a to centre b (world), radius r, with u and v spanning its end planes */
+  function cylinder(ctx, a, b, r, u, v, axisN, open) {
+    const ra = ring(a, u, v, r), rb = ring(b, u, v, r);
+    face(ctx, hull(ra.concat(rb).map(V.P)), 0.16 + 0.1 * (1 - Math.abs(axisN[1])), 2.5);
+    const nearA = dist2(a) < dist2(b), n = nearA ? neg(axisN) : axisN;      /* the cap the camera sees, and its outward normal */
+    face(ctx, (nearA ? ra : rb).map(V.P), open ? null : V.shade(n), 3);
+  }
+  /* a sphere: a filled disc of the projected radius, shaded from the lamp's side */
+  function sphere(ctx, c, r, hollow) {
+    const q = V.P(c), rp = (r * DIST) / dist2(c);
+    ctx.save(); ctx.beginPath(); ctx.arc(q[0], q[1], rp, 0, TAU);
+    const g = ctx.createRadialGradient(q[0] - rp * 0.35, q[1] - rp * 0.4, rp * 0.1, q[0], q[1], rp);
+    g.addColorStop(0, hollow ? alpha(PAL.ink, 0.06) : PAL.soft); g.addColorStop(1, alpha(PAL.ink, hollow ? 0.22 : 0.42));
+    ctx.fillStyle = g; ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    if (hollow) { ctx.save(); ctx.setLineDash([6, 8]); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(q[0], q[1], rp, rp * 0.36, 0, 0, TAU); ctx.stroke(); ctx.restore(); }
+    return rp;
+  }
+  /* a hoop: a thick stroked ring of radius r about c in the plane of u and v */
+  function hoop(ctx, c, u, v, r) {
+    const pts = ring(c, u, v, r, 72).map(V.P);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineJoin = 'round'; ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.stroke();
+    ctx.strokeStyle = alpha(PAL.panel, 0.35); ctx.lineWidth = 4; ctx.stroke(); ctx.restore();
+  }
+  /* a box centred on the origin with half sizes hx, hy, hz: the three faces the camera sees */
+  function box(ctx, hx, hy, hz) {
+    const P = (x, y, z) => V.P([x * hx, y * hy, z * hz]);
+    const faces = [
+      { n: [0, 1, 0], pts: [P(-1, 1, -1), P(1, 1, -1), P(1, 1, 1), P(-1, 1, 1)] },
+      { n: [1, 0, 0], pts: [P(1, -1, -1), P(1, 1, -1), P(1, 1, 1), P(1, -1, 1)] },
+      { n: [0, 0, 1], pts: [P(-1, -1, 1), P(1, -1, 1), P(1, 1, 1), P(-1, 1, 1)] },
+    ];
+    faces.forEach((f) => face(ctx, f.pts, V.shade(f.n), 3));
+  }
+  /* the axis of rotation: a dashed line through the body, drawn under it and then again above its top */
+  function axis(ctx, top, bottom) {
+    const a = V.P([0, top, 0]), b = V.P([0, bottom, 0]);
+    a[1] = Math.max(a[1], 128);                                             /* the axis stops under the headline */
+    line(ctx, a[0], a[1], b[0], b[1], PAL.muted, 3, [10, 10]);
+    text(ctx, '转轴', a[0] + 14, a[1] - 4, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) });
+    return a;
+  }
+  function axisOver(ctx, top, y) { const a = V.P([0, top, 0]), b = V.P([0, y, 0]); a[1] = Math.max(a[1], 128); line(ctx, a[0], a[1], b[0], b[1], PAL.muted, 3, [10, 10]); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('position'), ic = C('rotational-inertia');
+    const s = cur(), M = Ms.v, R = Rs.v, l = ls.v;
+    if (s.uses.R1 && R1s.v >= R) R1s.set(Math.max(0.05, R - 0.05));        /* the hole stays inside the ring */
+    const R1 = R1s.v;
+    const I = s.I(M, R, l, R1), far = s.far(R, l), ref = M * far * far, share = I / ref;
+    const r = R * S, L = l * S, r1 = R1 * S, labs = [];
+    const dim = (p, str) => labs.push([V.P(p), str]);
+    /* the body and its axis, one shape at a time; the axis is always vertical */
+    function body(v, dim) {
+    let top = 0;
+    switch (v) {
+      case 'hoop-axis': top = 0; axis(ctx, 1.9 * r + 80, -1.2 * r - 40); hoop(ctx, [0, 0, 0], X, Z, r); dim([r, 0, 0], 'R = ' + fmt(R, 2) + ' m'); axisOver(ctx, 1.9 * r + 80, 0); break;
+      case 'hoop-diameter': top = r; axis(ctx, 1.3 * r + 80, -1.2 * r - 40); hoop(ctx, [0, 0, 0], X, Y, r); dim([r, 0, 0], 'R = ' + fmt(R, 2) + ' m'); axisOver(ctx, 1.3 * r + 80, r); break;
+      case 'annular': { const h = Math.max(40, 0.45 * r); top = h / 2; axis(ctx, h / 2 + 1.1 * r + 80, -h / 2 - 1.1 * r - 40);
+        cylinder(ctx, [0, -h / 2, 0], [0, h / 2, 0], r, X, Z, Y, true);
+        /* the top face is an annulus, and the hole shows its inner wall */
+        const outer = ring([0, h / 2, 0], X, Z, r).map(V.P), inner = ring([0, h / 2, 0], X, Z, r1).map(V.P), innerLow = ring([0, -h / 2, 0], X, Z, r1).map(V.P);
+        ctx.save(); ctx.beginPath(); inner.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.clip();
+        face(ctx, hull(inner.concat(innerLow)), 0.34, 0); ctx.restore();
+        ctx.save(); ctx.beginPath(); outer.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+        inner.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+        ctx.fillStyle = PAL.soft; ctx.fill('evenodd'); ctx.fillStyle = alpha(PAL.ink, V.shade(Y)); ctx.fill('evenodd');
+        ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+        dim([r, h / 2, 0], 'R_2 = ' + fmt(R, 2) + ' m'); dim([-r1 * 0.7, h / 2, r1 * 0.7], 'R_1 = ' + fmt(R1, 2) + ' m'); axisOver(ctx, h / 2 + 1.1 * r + 80, h / 2); break; }
+      case 'disk-axis': { const h = Math.max(36, 0.3 * r); top = h / 2; axis(ctx, h / 2 + 1.1 * r + 80, -h / 2 - 1.1 * r - 40); cylinder(ctx, [0, -h / 2, 0], [0, h / 2, 0], r, X, Z, Y, false); dim([r, h / 2, 0], 'R = ' + fmt(R, 2) + ' m'); axisOver(ctx, h / 2 + 1.1 * r + 80, h / 2); break; }
+      case 'disk-diameter': top = r; axis(ctx, r + 120, -r - 40); cylinder(ctx, [-L / 2, 0, 0], [L / 2, 0, 0], r, Y, Z, X, false); dim([L / 2 + 10, -r, 0], 'R = ' + fmt(R, 2) + ' m'); dim([0, -r - 24, r], 'ℓ = ' + fmt(l, 2) + ' m'); axisOver(ctx, r + 120, r); break;
+      case 'rod-center': top = 12; axis(ctx, 160, -80); cylinder(ctx, [-L / 2, 0, 0], [L / 2, 0, 0], 12, Y, Z, X, false); dim([0, -40, 14], 'ℓ = ' + fmt(l, 2) + ' m'); axisOver(ctx, 160, 12); break;
+      case 'rod-end': top = 12; axis(ctx, 160, -80); cylinder(ctx, [0, 0, 0], [L, 0, 0], 12, Y, Z, X, false); dim([L / 2, -40, 14], 'ℓ = ' + fmt(l, 2) + ' m'); axisOver(ctx, 160, 12); break;
+      case 'sphere': case 'shell': { top = r; axis(ctx, r + 120, -r - 40); const rp = sphere(ctx, [0, 0, 0], r, v === 'shell'); dim.raw([CX + rp + 4, CY + 10], 'R = ' + fmt(R, 2) + ' m'); axisOver(ctx, r + 120, r); break; }
+      case 'slab': top = 8; axis(ctx, 170, -90); box(ctx, L / 2, 8, r / 2); dim([0, -30, r / 2 + 10], 'a = ' + fmt(l, 2) + ' m'); dim([L / 2 + 10, -30, 0], 'b = ' + fmt(R, 2) + ' m'); axisOver(ctx, 170, 8); break;
+    }
+    }
+    /* a change of body fades the old one out and the new one in, each with a slight drop: the shapes do
+       not stand for one another, so none bends into the next */
+    const shown = shape.from === s.value ? [s.value] : [shape.from, s.value];
+    for (const v of shown) {
+      const [ox, oy] = shape.off(v, [0, 28]), live = v === s.value;
+      const put = (pp, str) => { if (live) dim(pp, str); };
+      put.raw = (q, str) => { if (live) labs.push([q, str]); };
+      ctx.save(); ctx.globalAlpha = shown.length === 1 ? 1 : shape.a(v); ctx.translate(ox, oy); body(v, put); ctx.restore();
+    }
+    labs.forEach(([p, str]) => text(ctx, str, Math.min(760, Math.max(60, p[0] + 16)), Math.min(600, Math.max(100, p[1] + 20)), pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) }));
+    /* the body's name, its formula and its moment of inertia, then the share of the farthest-mass value */
+    const PX = 880;
+    /* a long name breaks at its comma onto a second line, so it stays inside the canvas */
+    const cut = s.label.length > 34 ? s.label.indexOf(', ') : -1;
+    if (cut < 0) text(ctx, s.label, PX, 128, PAL.ink, { size: 21, weight: 600 });
+    else { text(ctx, s.label.slice(0, cut + 1), PX, 118, PAL.ink, { size: 21, weight: 600 }); text(ctx, s.label.slice(cut + 2), PX, 144, PAL.ink, { size: 21, weight: 600 }); }
+    text(ctx, 'M = ' + fmt(M, 1) + ' kg', PX, 174, C('mass'), { size: 20 });
+    reading(ctx, PX, 214, '对该轴的转动惯量', 'I = ' + fmt(I, I < 10 ? 3 : 1) + ' kg·m²', ic);
+    text(ctx, '与全部质量都在 ' + fmt(far, 2) + ' m 远处（任何质量所能到达的最远处）相比：', PX, 300, PAL.muted, { size: 18 });
+    text(ctx, 'M·(' + fmt(far, 2) + ' m)² = ' + fmt(ref, ref < 10 ? 3 : 1) + ' kg·m²', PX, 326, PAL.muted, { size: 18 });
+    const bx = PX, bw = 440, by = 372;
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bx, by, bw, 30); ctx.fillStyle = alpha(ic, 0.55); ctx.fillRect(bx, by, bw * Math.min(1, share), 30); ctx.restore();
+    line(ctx, bx + bw * Math.min(1, share), by - 6, bx + bw * Math.min(1, share), by + 36, ic, 3);
+    line(ctx, bx + bw, by - 6, bx + bw, by + 36, PAL.muted, 2);
+    text(ctx, fmt(100 * share, 0) + '%', bx + bw * Math.min(1, share) + (share > 0.8 ? -10 : 10), by + 60, ic, { size: 20, weight: 600, align: share > 0.8 ? 'right' : 'left' });
+    text(ctx, '细圆环绕其转轴时填满整个条形', PX, by + 100, PAL.muted, { size: 17 });
+    topline(ctx, '质量为 ' + fmt(M, 1) + ' kg 的' + s.label.charAt(0).toLowerCase() + s.label.slice(1).replace('（或圆盘）', '').replace('（或圆环）', '') + '，其转动惯量为 ' + fmt(I, I < 10 ? 3 : 1) + ' kg·m²，是其全部质量位于 ' + fmt(far, 2) + ' m 处时所得转动惯量的 ' + fmt(100 * share, 0) + '%。');
+    const nums = s.value === 'annular' ? `\\frac{${fmt(M, 1)}\\ \\text{kg}}{2}\\left[(${fmt(R1, 2)}\\ \\text{m})^2 + (${fmt(R, 2)}\\ \\text{m})^2\\right]`
+      : s.value === 'disk-diameter' ? `\\frac{(${fmt(M, 1)}\\ \\text{kg})(${fmt(R, 2)}\\ \\text{m})^2}{4} + \\frac{(${fmt(M, 1)}\\ \\text{kg})(${fmt(l, 2)}\\ \\text{m})^2}{12}`
+      : s.value === 'slab' ? `\\frac{(${fmt(M, 1)}\\ \\text{kg})\\left[(${fmt(l, 2)}\\ \\text{m})^2 + (${fmt(R, 2)}\\ \\text{m})^2\\right]}{12}`
+      : s.uses.l ? `${s.value === 'rod-center' ? '\\frac{1}{12}' : '\\frac{1}{3}'}(${fmt(M, 1)}\\ \\text{kg})(${fmt(l, 2)}\\ \\text{m})^2`
+      : `${s.ktex.split('= ')[1].split('\\kM')[0]}(${fmt(M, 1)}\\ \\text{kg})(${fmt(R, 2)}\\ \\text{m})^2`;
+    F.morph(formula, `${s.mk} = \\mk{n}{${nums}} = \\mk{v}{${fmt(I, I < 10 ? 3 : 1)}}\\ \\text{kg}\\cdot\\text{m}^2`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 10.13: the father pushing the merry-go-round of Example 10.7,
+   seen from above, with a graph of the angular velocity against time
+   beside it. Moving: the discussion times the push at 2.00 s and reads
+   the angular velocity it produces, so the platform spins up from rest
+   for 2.00 s and holds; the cycle is the push.
+===================================================================== */
+(function () {
+  const d = sim('sim-merry-go-round', 620);
+  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 400, step: 5, value: 250, unit: 'N', dec: 0, onInput: reset, aria: '父亲在边缘处的推力' });
+  const mc = ctl(d.controls, { label: '\\km_{\\text{child}}', cls: 'mass', min: 0, max: 40, step: 0.5, value: 18, unit: 'kg', dec: 1, onInput: reset, aria: '孩子的质量，平台上没有人时为零',
+    specials: [{ at: 0, label: '没有孩子' }] });
+  const rc = ctl(d.controls, { label: '\\kr_{\\text{c}}', cls: 'position', min: 0, max: 1.5, step: 0.05, value: 1.25, unit: 'm', dec: 2, onInput: reset, aria: '圆心到孩子的距离' });
+  const Ms = ctl(d.controls, { label: '\\kM', cls: 'mass', min: 20, max: 100, step: 0.5, value: 50, unit: 'kg', dec: 1, onInput: reset, aria: '平台的质量' });
+  const R = 1.5, T = 2, CX = 400, CY = 350, S = 140, KF = 0.5, BOX = { l: 900, r: 1320, t: 130, b: 470 }, WMAX = 30;   /* the graph is fixed at 0 to 2.00 s and 0 to 30 rad/s, twice the book's 13.3 rad/s rounded */
+  const { formula, note } = F.readout(d);
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  function model() {
+    const tau = R * Fs.v, Id = 0.5 * Ms.v * R * R, Ic = mc.v * rc.v * rc.v, I = Id + Ic;
+    return { tau, Id, Ic, I, al: tau / I, al0: tau / Id };
+  }
+  let childAt = { x: 0, y: 0 };
+  hover(d.stage, () => (mc.v > 0 ? [{ x: childAt.x, y: childAt.y, r: 24, name: '孩子，' + fmt(mc.v, 1) + ' kg，距圆心 ' + fmt(rc.v, 2) + ' m' }] : []));
+  function draw() {
+    const { ctx, H } = begin(d.c);
+    const fc = C('force'), pc = C('position'), ic = C('rotational-inertia'), ac = C('angular-acceleration'), wc = C('angular-rate'), tc = C('time'), qc = C('torque');
+    const m = model(), t = cy.now(), th = 0.5 * m.al * t * t, w = m.al * t, done = t >= T - 1e-9, loaded = mc.v > 0;
+    const Rp = R * S;
+    const L = labeller(ctx, H); L.block(0, 0, 1400, 96); L.block(BOX.l - 80, BOX.t - 60, 1400, H);
+    /* the platform from above, its handrails turning counterclockwise, and the child on it */
+    const gr = F.ref('merry-go-round'), chr = F.ref('child'), far = F.ref('father');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = gr; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(CX, CY, Rp, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4;
+    for (let k = 0; k < 4; k++) { const a = -th + (k / 4) * TAU; ctx.beginPath(); ctx.moveTo(CX, CY); ctx.lineTo(CX + (Rp - 10) * Math.cos(a), CY + (Rp - 10) * Math.sin(a)); ctx.stroke(); }
+    ctx.restore();
+    const a0 = -th + Math.PI; line(ctx, CX, CY, CX + (Rp - 10) * Math.cos(a0), CY + (Rp - 10) * Math.sin(a0), gr, 5);   /* one rail marked so the turn can be followed */
+    dot(ctx, CX, CY, gr, true, 8);
+    text(ctx, '圆心', CX + 16, CY - 20, PAL.ink, { size: 18, bg: alpha(PAL.soft, 0.9) }); L.block(CX + 8, CY - 34, CX + 90, CY - 6);
+    /* the radius, read out where the push is applied */
+    const ph = Math.PI / 2, ex = CX + Rp * Math.cos(ph), ey = CY + Rp * Math.sin(ph);
+    line(ctx, CX, CY, ex, ey, pc, 3, [6, 8]);
+    text(ctx, 'R = 1.50 m', CX + 14, (CY + ey) / 2 + 30, pc, { size: 20, weight: 600, bg: alpha(PAL.soft, 0.9) });
+    if (loaded) {
+      const ca = -th + Math.PI / 2 - 1.1, cx = CX + rc.v * S * Math.cos(ca), cyy = CY + rc.v * S * Math.sin(ca);
+      childAt = { x: cx, y: cyy };
+      if (rc.v > 0.1) line(ctx, CX, CY, cx, cyy, pc, 2, [4, 8]);
+      F.personTop(ctx, cx, cyy, 0.8, ca + Math.PI / 2, chr);   /* the child sits facing the way the platform carries her */
+      const rx = cx - CX, ry = cyy - CY, rl = Math.hypot(rx, ry), out = rl > 1;   /* a child at the center has her label put below her */
+      L.add('孩子，' + fmt(mc.v, 1) + ' kg，距圆心 ' + fmt(rc.v, 2) + ' m', cx, cyy, out ? rx / rl : 0, out ? ry / rl : 1, chr, 19, 30);
+    } else text(ctx, '平台上没有人', CX, CY + 60, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.soft, 0.9) });
+    /* the father's push at the edge, perpendicular to the radius: to the right at the near edge, so the platform turns
+       counterclockwise seen from above, and the turn it makes */
+    if (Fs.v > 0) {
+      arrow(ctx, ex, ey, ex + Fs.v * KF, ey, fc, 5);
+      text(ctx, 'F = ' + fmt(Fs.v, 0) + ' N', ex + Fs.v * KF + 12, ey + 30, fc, { size: 21, weight: 600, align: Fs.v * KF > 120 ? 'right' : 'left', bg: alpha(PAL.panel, 0.9) });
+      /* the father stands outside the rim behind his push, seen from above, both hands on the edge */
+      const fx = ex - 58, fy = ey + 34, fh = Math.atan2(ey - fy, ex - fx);
+      F.personTop(ctx, fx, fy, 1, fh, far, [{ x: ex - 14, y: ey + 10 }, { x: ex - 2, y: ey + 2 }]);
+      text(ctx, '父亲', fx - 40, fy + 4, far, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.9) });
+      turnArc(ctx, CX, CY, Rp + 40, ac, -Math.PI / 2);
+      L.add('α = ' + fmt(m.al, 2) + ' rad/s²', CX + (Rp + 40) * Math.cos(-0.87), CY + (Rp + 40) * Math.sin(-0.87), 0.7, -0.5, ac, 21, 24);
+    }
+    L.flush();
+    /* the graph beside: the angular velocity against time, the loaded platform solid and the empty one dashed */
+    const g = axes(ctx, BOX, [0, T], [0, WMAX], { xl: 't (s)', xc: tc, yl: 'ω (rad/s)', yc: wc, nx: 4, ny: 3, fx: (v) => fmt(v, 1) });
+    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => Math.min(WMAX, m.al0 * s), 0, T, g.X, g.Y, alpha(wc, 0.55), 3, 40); ctx.restore();
+    if (loaded) curve(ctx, (s) => Math.min(WMAX, m.al * s), 0, t, g.X, g.Y, wc, 5, 40); else curve(ctx, (s) => Math.min(WMAX, m.al0 * s), 0, t, g.X, g.Y, wc, 5, 40);
+    const p = pinned(ctx, BOX, g.X, g.Y, t, w, wc, 'ω = ' + fmt(w, 1) + ' rad/s');
+    if (!p.out && t > 0.05) line(ctx, p.x, p.y, p.x, BOX.b, tc, 2, [4, 8]);
+    text(ctx, '平台上没有人时（虚线）', BOX.r, BOX.t - 24, alpha(wc, 0.7), { size: 17, align: 'right' });
+    /* the readings under the graph */
+    text(ctx, 'τ = RF = ' + fmt(m.tau, 0) + ' N·m', 900, 548, qc, { size: 20, weight: 600 });
+    text(ctx, 'I = ' + fmt(m.I, 1) + ' kg·m²', 1140, 548, ic, { size: 20, weight: 600 });
+    text(ctx, 'ω = ' + fmt(w, 2) + ' rad/s = ' + fmt(w / TAU, 2) + ' rev/s', 900, 586, wc, { size: 20, weight: 600 });
+    text(ctx, 't = ' + fmt(t, 2) + ' s', 1200, 586, tc, { size: 20, weight: 600 });
+    const who = loaded ? '有一个 ' + fmt(mc.v, 1) + ' kg 的孩子坐在距圆心 ' + fmt(rc.v, 2) + ' m 处时，' : '平台上没有人时，';
+    topline(ctx, Fs.v === 0 ? '没有推力就没有力矩，无论谁坐在上面，平台都保持静止。'
+      : t < 1e-9 ? who + '平台静止，边缘处 ' + fmt(Fs.v, 0) + ' N 的推力即将使它转动起来。'
+      : done ? who + '推力产生 ' + fmt(m.tau, 0) + ' N·m 的力矩，转动惯量为 ' + fmt(m.I, 1) + ' kg·m²，2.00 s 后平台以 ' + fmt(w, 2) + ' rad/s 转动。'
+      : '推了 ' + fmt(t, 2) + ' s 后，平台以 ' + fmt(w, 2) + ' rad/s 转动，每秒增加 ' + fmt(m.al, 2) + ' rad/s。');
+    /* with no child the child's term leaves the sum, and the example's part (a) is what remains */
+    const child = loaded ? ' + \\mk{c}{\\km\\kr_{\\text{c}}^2}' : '', childN = loaded ? ` + \\mk{cn}{${fmt(m.Ic, 1)}}` : '';
+    F.morph(formula, `\\mk{a}{\\kalpha} = \\frac{\\mk{t}{\\ktau}}{\\mk{d}{\\frac{1}{2}\\kM\\kR^2}${child}} = \\frac{\\mk{tn}{${fmt(m.tau, 0)}}\\ \\text{N}\\cdot\\text{m}}{(\\mk{dn}{${fmt(m.Id, 1)}}${childN})\\ \\text{kg}\\cdot\\text{m}^2} = \\mk{an}{${fmt(m.al, 2)}}\\ \\text{rad/s}^2`);
+    const say = loaded ? `同样的推力作用在空平台上，2.00 s 后将达到 $\\kw = ${fmt(m.al0 * T, 1)}\\ \\text{rad/s}$。` : '';
+    if (note.dataset.said !== say) { note.dataset.said = say; note.textContent = say; F.renderMath(note); }
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
+})();
+};

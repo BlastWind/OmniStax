@@ -1,0 +1,1070 @@
+{
+ "id": "3.2",
+ "module": "m42127",
+ "chapter": "3",
+ "title": "矢量的加法和减法：图解法",
+ "short": "矢量加法的图解法",
+ "lead": "一支箭头可以表示二维矢量，用它的<span data-concept=\"length\">长度</span>代表大小，用它的<span data-concept=\"angle\">角</span>代表方向。借助直尺和量角器，这样的箭头可以首尾相接地相加成<span data-concept=\"resultant-vector\">合矢量</span>，也可以相减、乘以标量，并分解为各个部分，这一切都能在纸上完成。",
+ "objectives": [
+  "理解矢量加法、减法以及与标量相乘的规则。",
+  "应用矢量加法和减法的图解法，确定运动物体的位移。"
+ ],
+ "summary_html": "<ul><li><em>矢量相加的图解法</em>，即把矢量 $\\mathbf{A}$ 和 $\\mathbf{B}$ 画在图上，并用首尾相接法把它们相加。<span data-concept=\"resultant-vector\">合矢量</span> $\\mathbf{R}$ 的定义是使 $\\mathbf{A} + \\mathbf{B} = \\mathbf{R}$。然后分别用直尺和量角器确定 $\\mathbf{R}$ 的大小和方向。</li><li>从 $\\mathbf{A}$ 中<em>减去矢量</em> $\\mathbf{B}$ <em>的图解法</em>，是加上矢量 $\\mathbf{B}$ 的相反矢量，它定义为 $-\\mathbf{B}$。在这种情况下，$\\mathbf{A} - \\mathbf{B} = \\mathbf{A} + (-\\mathbf{B}) = \\mathbf{R}$。然后照常按首尾相接的加法步骤，得到<span data-concept=\"resultant-vector\">合矢量</span> $\\mathbf{R}$。</li><li>矢量的加法是<em>可交换的</em>，即 $\\mathbf{A} + \\mathbf{B} = \\mathbf{B} + \\mathbf{A}$。</li><li>相加矢量的<em>首尾相接法</em>，是先把第一个矢量画在图上，然后把后面每个矢量的矢尾放在前一个矢量的矢端处。然后从第一个矢量的矢尾到最后一个矢量的矢端画出<span data-concept=\"resultant-vector\">合矢量</span>。</li><li>如果矢量 $\\mathbf{A}$ 乘以标量 $c$，乘积的大小为 $c\\kA$。如果 $c$ 为正，乘积的方向与 $\\mathbf{A}$ 的方向相同；如果 $c$ 为负，乘积的方向与 $\\mathbf{A}$ 的方向相反。</li></ul>",
+ "notes": "第 2、4、6、8、10 和 12 题在书后答案中没有答案，故略去；两道 AP 题考查的是第 3.4 节才引入的抛体运动，放在那一页；本节开头的夏威夷群岛地图作为装饰略去，PhET 关于迷宫游戏的说明也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "用图解法求解这些习题。你可以假定从图上取得的数据准确到三位数字。",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案；第 2、4、6、8、10 和 12 题在书后答案中没有答案，故略去，因此第 7 题所说的“往前数两题的那道题”是第 5 题，即走 12.0 m 和 20.0 m 的那段路。带有罗盘方向的答案按数值核对，其罗盘指向写在单位里，所以北偏东 18.4º 填 18.4。两道 AP 题考查抛体的竖直速度和水平速度，这是第 3.4 节才引入的内容，所以两题都放到第 3.4 节，它们在那里以 source_section 3.2 收录：第一道（fs-id1398128，竖直发射的球，附高度表）没有答案，在那里作为开放题，附一个 AI 撰写的建议思路；第二道（fs-id2061889，以 60º 发射的球，附同一张表）有答案，答案是书中对那些图像的描述。思考题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-vector-2d",
+   "kind": "sim",
+   "number": "3.8",
+   "folds": [
+    "3.9"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_02_01.jpg",
+    "/media/ch03/Figure_03_02_02a.jpg"
+   ],
+   "original_caption": "一个人向东走了 9 个街区，向北走了 5 个街区。位移为 10.3 个街区，方向为东偏北 29.1º。",
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline shortened, repeated panel and note dropped, labels clear"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-head-to-tail",
+   "kind": "sim",
+   "number": "3.10",
+   "folds": [
+    "3.11",
+    "3.12",
+    "3.13"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_02_03.jpg",
+    "/media/ch03/Figure_03_02_04a.jpg",
+    "/media/ch03/Figure_03_02_05a.jpg",
+    "/media/ch03/Figure_03_02_06a.jpg"
+   ],
+   "original_caption": "首尾相接法：图中对图 3.8 中所考虑的、在城市中行走的人的两段位移，演示了用首尾相接法作图求矢量和。（a）画一个矢量，表示向东的位移。（b）再画一个矢量，表示向北的位移。这个矢量的矢尾应从第一个、指向东的矢量的矢端处出发。（c）从指向东的矢量的矢尾，向指向北的矢量的矢端画一条线，得到矢量和，即合矢量 D。箭头 D 的长度与矢量的大小成正比，测得为 10.3 个单位。它的方向，即相对于东（或水平轴）所成的角 θ，用量角器测得为 29.1º。",
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "map-view walker, steps kept on the stage, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-walk",
+   "kind": "sim",
+   "number": "3.14",
+   "folds": [
+    "3.15",
+    "3.16",
+    "3.17"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_02_08-d8f8.jpg",
+    "/media/ch03/Figure_03_02_09.jpg",
+    "/media/ch03/CNX_HSPhysics_05_01_result.jpg",
+    "/media/ch03/CNX_HSPhysics_05_01_measure.jpg"
+   ],
+   "widths": [
+    500,
+    250,
+    250,
+    220
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scale for the ruler, labels through the labeller, map-view walker"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-order",
+   "kind": "sim",
+   "number": "3.18",
+   "originals": [
+    "/media/ch03/CNX_HSPhysics_05_01_order.jpg"
+   ],
+   "widths": [
+    275
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend kept inside the stage"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subtraction",
+   "kind": "sim",
+   "number": "3.19",
+   "folds": [
+    "3.20",
+    "3.21",
+    "3.22",
+    "3.23"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_02_13a.jpg",
+    "/media/ch03/Figure_03_02_14.jpg",
+    "/media/ch03/Figure_03_02_15a.jpg",
+    "/media/ch03/Figure_03_02_16a.jpg",
+    "/media/ch03/Figure_03_02_17a.jpg"
+   ],
+   "original_caption": "一个矢量的负矢量，只不过是另一个大小相同、方向相反的矢量。所以 B 是 –B 的负矢量；它们长度相同而方向相反。",
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeated panel dropped, note shortened and set through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-scalar",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption layout, reversed angle, repeated note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-components",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeated panel and note dropped, D label clear of the numbers"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-paths",
+   "kind": "figure",
+   "originals": [
+    "/media/ch03/Figure_03_02_20a-b5e9.jpg"
+   ],
+   "original_caption": "这些不同的线表示不同的人在城市中行走所取的路径。所有街区的边长都是 120 m。",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "vectors-2d",
+   "concept": "vector-in-two-dimensions",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "reference-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "vector-head",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "vector-tail",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "vector-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors-2d",
+   "concept": "vector-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "head-to-tail-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "resultant-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "vector-in-two-dimensions",
+   "verb": "uses"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "right-triangle-resultant",
+   "verb": "uses"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "head-to-tail-method-def",
+   "verb": "introduces"
+  },
+  {
+   "span": "head-to-tail",
+   "concept": "vector-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "vector-addition-commutative",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "resultant-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "subtraction",
+   "concept": "vector-subtraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "subtraction",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-sail",
+   "concept": "vector-subtraction",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-sail",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-sail",
+   "concept": "resultant-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar-multiplication",
+   "concept": "scalar-multiplication",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar-multiplication",
+   "concept": "scalar",
+   "verb": "reinforces"
+  },
+  {
+   "span": "components",
+   "concept": "resolving-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "components",
+   "concept": "vector-components",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1165298732767",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "prompt": "下列各量中哪些是矢量：一个人的身高、珠穆朗玛峰的海拔、地球的年龄、水的沸点、本书的价格、地球的人口、重力加速度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "矢量是既有大小又有方向的量，标量只有大小。一个人的身高、珠穆朗玛峰的海拔、地球的年龄、水的沸点、本书的价格和地球的人口，都只是带单位的一个数，没有方向，所以它们是标量。重力加速度是这个列表中唯一的矢量：它的大小是 $9.80\\ \\text{m/s}^2$，方向是竖直向下，指向地心。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1165298775836",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "prompt": "举一个具体的矢量的例子，说明它的大小、单位和方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何既有大小又有方向的量都可以，本节自己的例子就是位移。例如，在城市中行走的人的总位移是 10.3 个街区，方向为东偏北 $29.1^\\circ$；例题 3.2 中水手行程的第一段是位移 27.5 m，方向为东偏北 $66.0^\\circ$。速度如 90 km/h 正西，或力如 500 N 竖直向下，同样是矢量，各自都说明了大小、单位和方向。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1165298783616",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "prompt": "矢量和标量有什么共同之处？它们又有什么不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "矢量和标量都是有大小的物理量，大小用带单位的数表示，而且你都可以把它们相加、相减，也可以乘以一个数。它们的不同在于，矢量还有方向，标量没有。像温度或价格这样的标量是一个数。像位移这样的矢量需要一个大小和一个角，或者一支箭头；而且两个矢量要首尾相接地相加，而不是把它们的大小相加。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1165296576944",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_18a.jpg",
+    "alt": "图的西南角是一间小屋，东北角是一个湖。一个长度为 5.0 千米的矢量 S 沿东偏北 40 度的方向把小屋与湖连接起来。两条蜿蜒的路径，标为路径 1 和路径 2，表示从小屋到湖所走的路线。"
+   },
+   "prompt": "两名露营者在一座国家公园里从他们的小屋徒步走到湖边的同一个地点，各走了不同的路径，如下图所示。沿路径 1 走过的总路程是 7.5 km，沿路径 2 走过的总路程是 8.2 km。每名露营者的最终位移是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "位移是从起点到终点位置的直线变化，与所走的路径无关。两名露营者都从小屋出发，到达湖边的同一个地点，所以两人的位移相同，都是图中的矢量 $\\mathbf{S}$：5.0 km，方向为东偏北 $40^\\circ$。所走的路程 7.5 km 和 8.2 km 是两条路径的长度，它们都大于位移的大小。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1165298981819",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors-2d",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_19a.jpg",
+    "alt": "北加利福尼亚的地图，上面有一个以旧金山为圆心、半径为 123 千米的圆。萨克拉门托位于这个圆的圆周上，在旧金山的东偏北 45 度方向。"
+   },
+   "prompt": "如果一名飞行员被告知沿直线飞行 123 km，从旧金山飞到萨克拉门托，请解释他为什么可能最终落在图中所示圆上的任何地方。他还需要什么其他信息才能到达萨克拉门托？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "123 km 的距离只给出了大小。圆上的每一点离旧金山都是 123 km，所以朝任何方向直飞 123 km，都会落在圆上的某处，而这条指示并没有指明圆上的哪一点。要到达萨克拉门托，飞行员还需要知道飞行的方向，在这里是东偏北 $45^\\circ$；有了这个方向，再加上 123 km，位移才成为既有大小又有方向的矢量。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1165298754450",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "head-to-tail",
+   "prompt": "假设你走了两步 $\\mathbf{A}$ 和 $\\mathbf{B}$（也就是两个非零的位移）。在什么情况下你能回到起点？更一般地说，在什么情况下两个非零矢量相加可以得到零？你离起点所能到达的最大距离 $\\mathbf{A} + \\mathbf{B}$ 是这两步的长度之和吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把两步首尾相接地相加，只有当 $\\mathbf{B}$ 的矢端落在 $\\mathbf{A}$ 的矢尾上时，你才回到起点，这就要求 $\\mathbf{B}$ 与 $\\mathbf{A}$ 大小相同而方向相反，即 $\\mathbf{B} = -\\mathbf{A}$，合矢量为零。一般地说，两个非零矢量只有在大小相等、方向相反时才会相加为零。两步指向同一方向时，合矢量最大，其大小就是两个长度之和；对于任何其他的相对方向，首尾相接作图得到的合矢量都更短，因为这两步和合矢量构成一个三角形。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1165298761188",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar-multiplication",
+   "prompt": "解释为什么不可能把一个标量加到一个矢量上。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "矢量有方向而标量没有，所以你无法把标量与矢量首尾相接。你把两个矢量首尾相接地相加，这要求两者都有大小和方向。把标量与矢量组合的唯一规则是乘法，它会改变矢量的大小，并可能使它的方向反向。把 5 加到向北 3 m 的位移上没有意义，因为 5 既没有方向，也没有长度的单位。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1165296242489",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "head-to-tail",
+   "prompt": "如果你走了两步，步长不同，你能回到起点吗？更一般地说，两个大小不同的矢量能相加为零吗？三个或更多个呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "走两步而步长不同，你无法回到起点，因为两个矢量只有在大小相等、方向相反时才相加为零，这样首尾相接时第二个矢量才止于第一个矢量开始的地方。三个或更多个大小不同的矢量可以相加为零，因为首尾相接的三个矢量可以闭合成一个三角形，例如先向东走 3 m，再向北走 4 m，然后沿对角线走 5 m 回到起点；唯一的要求是最后一个矢量的矢端落在第一个矢量的矢尾上。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1165298745593",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths",
+   "prompt": "求出本节末尾路径图中路径 A 的下列各量：（a）总路程，（b）从起点到终点的位移的大小和方向。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 480,
+      "unit": "m",
+      "hint": "数一数沿路径 A 向各个方向走过的街区数，再乘以 120 m。"
+     },
+     {
+      "part": "(b) magnitude",
+      "value": 379,
+      "unit": "m",
+      "hint": "路径 A 的两段相互垂直，所以从起点到终点的直线是直角三角形的斜边。"
+     },
+     {
+      "part": "(b) direction",
+      "value": 18.4,
+      "unit": "º east of north",
+      "hint": "测量位移与正北方向之间的角，因为这条路径主要朝北。"
+     }
+    ],
+    "solution": "（a）$480\\ \\text{m}$ （b）$379\\ \\text{m}$，北偏东 $18.4^\\circ$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1165298867580",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_18a.jpg",
+    "alt": "图的西南角是一间小屋，东北角是一个湖。一个长度为 5.0 千米的矢量 S 沿东偏北 40 度的方向把小屋与湖连接起来。两条蜿蜒的路径，标为路径 1 和路径 2，表示从小屋到湖所走的路线。"
+   },
+   "prompt": "求图中所示徒步者的位移的北向分量和东向分量。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "north component",
+      "value": 3.21,
+      "unit": "km",
+      "hint": "按比例画出东偏北 40º 的 5.0 km 位移，测量它的矢端比矢尾向北多远。"
+     },
+     {
+      "part": "east component",
+      "value": 3.83,
+      "unit": "km",
+      "hint": "测量位移的矢端比矢尾向东多远；两个分量首尾相接，合起来得到那 5.0 km。"
+     }
+    ],
+    "solution": "北向分量 3.21 km，东向分量 3.83 km"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1165298797729",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_22a.jpg",
+    "alt": "图中画出了坐标轴。矢量 A 的矢尾在原点，与 x 轴正方向成二十度角。矢量 A 的大小为十二米。另一个矢量 B 从矢量 A 的矢端处开始，与水平方向成四十度角。矢量 A 和 B 的合矢量 R 也被画出，从矢量 A 的矢尾到矢量 B 的矢端。矢量 R 与水平方向的夹角为 θ。"
+   },
+   "prompt": "假设你先沿北偏西 $20^\\circ$ 的方向走了 12.0 m，然后沿西偏南 $40.0^\\circ$ 的方向走了 20.0 m。你离起点有多远？连接起点和末位置的直线的罗盘方向是什么？（如果你像图中那样把这两段路表示为位移矢量 $\\mathbf{A}$ 和 $\\mathbf{B}$，那么这道题求的就是它们的和 $\\mathbf{R} = \\mathbf{A} + \\mathbf{B}$。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 19.5,
+      "unit": "m",
+      "hint": "按比例画出 A，把 B 的矢尾放在 A 的矢端处，再用直尺测量从 A 的矢尾到 B 的矢端的合矢量。"
+     },
+     {
+      "part": "direction",
+      "value": 4.65,
+      "unit": "º south of west",
+      "hint": "合矢量略偏向指向西的轴的南侧；用量角器测量它与该轴所成的角。"
+     }
+    ],
+    "solution": "$19.5\\ \\text{m}$，西偏南 $4.65^\\circ$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1165298560552",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）重做往前数两题的那道题，但第二段改为沿东偏北 $40.0^\\circ$ 的方向走 20.0 m（这相当于从 $\\mathbf{A}$ 中减去 $\\mathbf{B}$，即求 $\\mathbf{R}' = \\mathbf{A} - \\mathbf{B}$）。（b）重做往前数两题的那道题，但现在你先沿南偏东 $40.0^\\circ$ 的方向走 20.0 m（这相当于从 $\\mathbf{B}$ 中减去 $\\mathbf{A}$，即求 $\\mathbf{R}'' = \\mathbf{B} - \\mathbf{A} = -\\mathbf{R}'$）。证明情形确实如此。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) magnitude",
+      "value": 26.6,
+      "unit": "m",
+      "hint": "沿东偏北 40.0º 的方向走 20.0 m 就是走 −B，它与 B 长度相同、方向相反，所以把 A 和 −B 首尾相接地相加。"
+     },
+     {
+      "part": "(a) direction",
+      "value": 65.1,
+      "unit": "º north of east",
+      "hint": "用量角器测量合矢量与指向东的轴所成的角。"
+     },
+     {
+      "part": "(b) magnitude",
+      "value": 26.6,
+      "unit": "m",
+      "hint": "沿南偏东 40.0º 的方向走 20.0 m 就是 B，然后把 A 反向走就是 −A；合矢量的长度与（a）中相同。"
+     },
+     {
+      "part": "(b) direction",
+      "value": 65.1,
+      "unit": "º south of west",
+      "hint": "（b）的合矢量与（a）的合矢量方向恰好相反，因为 B − A = −(A − B)。"
+     }
+    ],
+    "solution": "（a）$26.6\\ \\text{m}$，东偏北 $65.1^\\circ$ （b）$26.6\\ \\text{m}$，西偏南 $65.1^\\circ$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1165298800490",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "证明例题 3.2 中所讨论的矢量之和给出图 3.23 所示的结果。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 52.9,
+      "unit": "m",
+      "hint": "画出 A（27.5 m，东偏北 66.0º），再从它的矢端处画出 B（30.0 m，东偏北 112º），然后测量从 A 的矢尾出发的合矢量。"
+     },
+     {
+      "part": "direction",
+      "value": 90.1,
+      "unit": "º with respect to the x-axis",
+      "hint": "合矢量几乎正指向北，所以它与指向东的 x 轴所成的角接近 90º。"
+     }
+    ],
+    "solution": "$52.9\\ \\text{m}$，与 $x$ 轴成 $90.1^\\circ$。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1165298735190",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_23a.jpg",
+    "alt": "在图中，速度矢量 V 下标 A 从原点出发，与 x 轴成二十二点五度角。从矢量 V 下标 A 的矢端处开始另一个矢量 V 下标 B。这两个矢量的合矢量，标为 V 下标 tot，与矢量 V 下标 A 成二十六点五度角，与矢量 V 下标 B 成二十三点零度角。V 下标 tot 的大小为 6.72 米每秒。",
+    "caption": "两个速度 v_A 和 v_B 相加，得到合速度 v_tot。"
+   },
+   "prompt": "求图中 $\\mathbf{v}_{\\text{tot}}$ 沿 $x$ 轴和 $y$ 轴的分量。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x-component",
+      "value": 4.41,
+      "unit": "m/s",
+      "hint": "合速度是 6.72 m/s，在 x 轴之上 22.5º + 26.5º = 49.0º 处；按比例画出它，测量它的矢端沿 x 方向有多远。"
+     },
+     {
+      "part": "y-component",
+      "value": 5.07,
+      "unit": "m/s",
+      "hint": "测量合速度的矢端沿 y 方向有多远；两个分量首尾相接，合起来得到那 6.72 m/s。"
+     }
+    ],
+    "solution": "$x$ 分量 4.41 m/s，$y$ 分量 5.07 m/s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "vector"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "scalar"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "vector"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "scalar"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "displacement"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "distance-traveled"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "vector-in-two-dimensions"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "head-to-tail-method",
+   "weight": 1
+  },
+  {
+   "exercise": "cq7",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "vector",
+   "weight": 1
+  },
+  {
+   "exercise": "cq8",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "head-to-tail-method",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "p1",
+   "concept": "distance-traveled",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "right-triangle-resultant",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "resolving-vector"
+  },
+  {
+   "exercise": "p3",
+   "concept": "vector-components"
+  },
+  {
+   "exercise": "p5",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "p7",
+   "concept": "vector-subtraction"
+  },
+  {
+   "exercise": "p7",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p9",
+   "concept": "head-to-tail-method"
+  },
+  {
+   "exercise": "p9",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "p9",
+   "concept": "vector-subtraction",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "resolving-vector"
+  },
+  {
+   "exercise": "p11",
+   "concept": "vector-components"
+  }
+ ],
+ "referents": [
+  {
+   "id": "city-walker",
+   "label": "在城市中行走的人",
+   "figures": [
+    "sim-head-to-tail"
+   ]
+  },
+  {
+   "id": "woman",
+   "label": "在例题 3.1 中走三段路的女士",
+   "figures": [
+    "sim-walk"
+   ]
+  },
+  {
+   "id": "sailor",
+   "label": "在例题 3.2 中驾船的女士及其小船",
+   "figures": [
+    "sim-subtraction"
+   ]
+  },
+  {
+   "id": "dock",
+   "label": "她驶向的码头",
+   "figures": [
+    "sim-subtraction"
+   ]
+  },
+  {
+   "id": "path-a",
+   "label": "路径 A",
+   "figures": [
+    "fig-paths"
+   ]
+  },
+  {
+   "id": "path-b",
+   "label": "路径 B",
+   "figures": [
+    "fig-paths"
+   ]
+  },
+  {
+   "id": "path-c",
+   "label": "路径 C",
+   "figures": [
+    "fig-paths"
+   ]
+  },
+  {
+   "id": "path-d",
+   "label": "路径 D",
+   "figures": [
+    "fig-paths"
+   ]
+  }
+ ]
+}

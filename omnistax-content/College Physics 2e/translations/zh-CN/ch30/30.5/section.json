@@ -1,0 +1,1074 @@
+{
+ "id": "30.5",
+ "module": "m42602",
+ "chapter": "30",
+ "title": "原子激发与退激发的应用",
+ "short": "激光与荧光",
+ "lead": "原子的<span data-concept=\"energy\">能级</span>决定了材料吸收哪些光、发出哪些光。事物的颜色、荧光材料和磷光材料的发光，以及在手术、读取光盘和记录全息图中派上用场的激光器，背后都是原子的能级。",
+ "objectives": [
+  "定义并讨论荧光。",
+  "定义亚稳。",
+  "描述激光发射是如何产生的。",
+  "解释粒子数反转。",
+  "定义并讨论全息术。"
+ ],
+ "summary_html": "<ul><li>一个重要的原子过程是荧光，它定义为这样的任何过程：原子或分子吸收给定<span data-concept=\"energy\">能量</span>的光子而被激发，并通过发射<span data-concept=\"energy\">能量</span>较低的光子而退激发。</li><li>有些状态的寿命比其他状态长得多，称为亚稳的。</li><li>磷光是亚稳态的退激发。</li><li>激光器通过受激发射产生相干的单一波长电磁辐射，在受激发射中，亚稳态被刺激而衰变。</li><li>激射需要粒子数反转，即大多数原子或分子处于其亚稳态。</li></ul>",
+ "notes": "以“这个原子吸收一个紫外光子，被激发到它较高的能级之一”开头的那一段，读起来像是本模块不再印出的某幅图的图注，按原样保留在原处；有两道没有答案的习题未收入（能够泵浦氦氖激光器的波长，以及把红宝石中的铬泵浦到第二和第三激发态的光子），重印自 30.2 的对应原理的问题只在 30.3 中设置一次，关于分立光谱的两道思考题也设在 30.3 中。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自原书自己的答案。本模块的五道习题中，三道有答案，连同它们在习题卡片上要读的能级图一并在此设置；另两道没有答案（能够泵浦氦氖激光器的波长，以及泵浦红宝石中铬的光子）予以省略，并在本节的说明中点明。30.9 中印出的两道有答案的综合概念习题，即二氧化碳手术激光器和用于视力矫正的准分子激光器，设在这里，也就是引入激光器的地方，30.9 的说明里对此有交代。七道思考题中，对应原理那道是 30.3 中所保留题目的重印，在此予以省略，关于分立光谱和氢的吸收的两道移到引入它们的 30.3；保留的四道带有 AI 标注的建议思路。六道 AP 题中，三道有答案，设为判分选择题；另外三道的解答在原文中被注释掉了，因此书中没有印出，它们是开放题，带有 AI 标注的建议思路。本模块没有印出“理解检测”框，因此没有设置内嵌题。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "photo-laser-beams",
+   "kind": "photo",
+   "number": "30.28",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-scorpion",
+   "kind": "photo",
+   "number": "30.29",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fluorescence",
+   "kind": "sim",
+   "widths": [],
+   "draws": [
+    "energy",
+    "position"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-fluorescein",
+   "kind": "photo",
+   "number": "30.30",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-dye-in-water",
+   "kind": "photo",
+   "number": "30.31",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-chicken-cells",
+   "kind": "photo",
+   "number": "30.32",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-ceramic-lion",
+   "kind": "photo",
+   "number": "30.33",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-laser",
+   "kind": "sim",
+   "number": "30.34",
+   "folds": [
+    "30.35",
+    "30.36"
+   ],
+   "originals": [
+    "/media/ch30/Figure_31_05_06.jpg",
+    "/media/ch30/Figure_31_05_07.jpg",
+    "/media/ch30/Figure_31_05_08.jpg"
+   ],
+   "original_caption": "（图 30.34）（a）原子的能级图，显示最初的几个状态，其中一个是亚稳态。（b）大量能量的输入把原子激发到各种状态。（c）大多数状态很快衰变，只在亚稳态和基态留下电子。如果大多数电子处于亚稳态，就实现了粒子数反转。（图 30.35）处于亚稳态的一个原子自发衰变到较低能级，产生一个光子，这个光子继而刺激另一个原子退激发。第二个光子的能量和波长与第一个完全相同，并与第一个光子同相。二者继续刺激其他光子的发射。要使光子的净产生而不是净吸收成为可能，粒子数反转是必要的。（图 30.36）典型的激光器结构有一种把能量泵浦到激光工作物质中以产生粒子数反转的方法。（a）自发发射开始，一些光子逸出，另一些光子刺激进一步的辐射。（b）和（c）反射镜用来使光子多次穿过材料，从而提高受激发射的概率。",
+   "widths": [
+    350,
+    500,
+    250
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "facts": [
+    "#ff4200"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-he-ne",
+   "kind": "sim",
+   "number": "30.37",
+   "originals": [
+    "/media/ch30/Figure_31_05_09.jpg"
+   ],
+   "original_caption": "氦和氖的能级。在常见的氦氖激光器中，放电把能量泵浦到两种原子的亚稳态中。混合气体中氦原子约为氖原子的十倍。被激发的氦原子通过碰撞把能量传给氖，因而很容易退激发。氖中实现了粒子数反转，使氖能够发生激射。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "position"
+   ],
+   "conventions": [
+    "e-",
+    "He",
+    "Ne"
+   ],
+   "facts": [
+    "#ff4200"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-retina",
+   "kind": "photo",
+   "number": "30.38",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-livermore",
+   "kind": "photo",
+   "number": "30.39",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cd",
+   "kind": "sim",
+   "number": "30.40",
+   "originals": [
+    "/media/ch30/Figure_31_05_12.jpg"
+   ],
+   "original_caption": "光盘以激光制出的凹坑的形式在其表面存储数字信息。这些凹坑又可以通过检测从凹坑散射的激光来读取。由于激光的精确性，才有可能实现大的信息容量。波长更短的激光器能带来更大的存储容量。",
+   "widths": [
+    185
+   ],
+   "draws": [
+    "position"
+   ],
+   "facts": [
+    "#ff0000",
+    "#8700d0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-hologram-card",
+   "kind": "photo",
+   "number": "30.41",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hologram",
+   "kind": "sim",
+   "number": "30.42",
+   "folds": [
+    "30.43"
+   ],
+   "originals": [
+    "/media/ch30/Figure_31_05_14.jpg",
+    "/media/ch30/Figure_31_05_15.jpg"
+   ],
+   "original_caption": "（图 30.42）全息图的制作。来自激光器的单一波长相干光在一片胶片上产生明确的干涉图样。激光束被一面部分镀银镜分开，一部分光照亮物体，其余部分直接照射在胶片上。（图 30.43）透射全息图是这样一种全息图：当用与曝光该全息图时同类型的激光穿过它时，会产生实像和虚像。胶片各部分的衍射产生的干涉图样，与用来使它曝光的物体所产生的相同。",
+   "widths": [
+    225,
+    250
+   ],
+   "draws": [
+    "angle"
+   ],
+   "facts": [
+    "#ff4200"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "color-and-energy-levels",
+   "concept": "color-from-energy-levels",
+   "verb": "introduces"
+  },
+  {
+   "span": "color-and-energy-levels",
+   "concept": "photon-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "atomic-excitation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "atomic-de-excitation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "fluorescence",
+   "verb": "introduces"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "photon-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "energy-level-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "bohr-transition-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "color-from-energy-levels",
+   "verb": "uses"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "metastable-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "phosphorescence",
+   "verb": "introduces"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "atomic-excitation",
+   "verb": "uses"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "atomic-de-excitation",
+   "verb": "uses"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "fluorescence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lasers",
+   "concept": "population-inversion",
+   "verb": "introduces"
+  },
+  {
+   "span": "lasers",
+   "concept": "stimulated-emission",
+   "verb": "introduces"
+  },
+  {
+   "span": "lasers",
+   "concept": "laser",
+   "verb": "introduces"
+  },
+  {
+   "span": "lasers",
+   "concept": "metastable-state",
+   "verb": "uses"
+  },
+  {
+   "span": "lasers",
+   "concept": "atomic-de-excitation",
+   "verb": "uses"
+  },
+  {
+   "span": "lasers",
+   "concept": "energy-level-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "lasers",
+   "concept": "coherent",
+   "verb": "uses"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "wavelength-from-a-level-spacing",
+   "verb": "introduces"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "metastable-state",
+   "verb": "uses"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "population-inversion",
+   "verb": "uses"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "laser",
+   "verb": "uses"
+  },
+  {
+   "span": "laser-applications",
+   "concept": "laser",
+   "verb": "uses"
+  },
+  {
+   "span": "laser-applications",
+   "concept": "color-from-energy-levels",
+   "verb": "reinforces"
+  },
+  {
+   "span": "holography",
+   "concept": "hologram",
+   "verb": "introduces"
+  },
+  {
+   "span": "holography",
+   "concept": "holography",
+   "verb": "introduces"
+  },
+  {
+   "span": "holography",
+   "concept": "laser",
+   "verb": "uses"
+  },
+  {
+   "span": "holography",
+   "concept": "constructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "holography",
+   "concept": "destructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "holography",
+   "concept": "diffraction-grating",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2531682",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "封闭在管中的一份氢气样品起初处于室温。随着气体被加热，观察者注意到气体开始发出淡粉色的光。对光谱的仔细研究表明，这种光的光谱不是连续的。相反，氢气只发射四种特定颜色的可见光波长的光子，它们合在一起，在人眼看来形成整体的颜色。解释这种现象的最好方式是什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "随着气体升温，原子之间的碰撞和近距离接近越来越多，因此摩擦生热使气体发光。",
+     "随着气体升温，氢原子内的电子被激发到较高的能级。当电子跃迁到较低的能量时，它们发射特定颜色的光。",
+     "随着气体升温，发生的碰撞越来越多，这些非弹性碰撞中损失的能量转化为光。",
+     "随着气体升温，管内气体的湍流使气体与容器壁之间产生摩擦，从而使气体发光。"
+    ],
+    "correct": 1,
+    "hint": "只有几种确定颜色的光，意味着光子只有几种确定的能量。原子中的什么东西只具有某些特定的能量？",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2020093",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "用高能紫外光照射一块岩石，使岩石发出可见光。请解释岩石的原子子结构中发生了什么，导致了这种效应，我们称之为荧光。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个紫外光子所携带的能量，足以把岩石中某个原子里的一个电子从基态抬升到比它高出若干级的能级。电子不必一步回到原来的能级。它可以经过中间的各个能级逐级下落，每一步发射一个光子。其中每一步都比它上升的那一步小，因此每个被发射的光子都比被吸收的紫外光子能量更低、波长更长，其中一些落在可见光范围内。所看到的颜色取决于各能级的间距，这就是每种矿物都发出各自颜色的光的原因。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2619962",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "color-and-energy-levels",
+   "prompt": "下列哪一项是解释某棵树的叶子为什么是绿色的最佳方式？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "叶子中的分子吸收所有可见光，但强烈反射绿光。",
+     "叶子中的分子吸收绿光，反射其他可见光。",
+     "分子被外部光源激发，当它们的电子在分子内退激发到较低的能级时发射绿光。",
+     "分子发出特有的绿色能量的光，以平衡对周围环境的光和热所带来的能量的吸收。"
+    ],
+    "correct": 0,
+    "hint": "番茄看起来是红色的，是因为它的色素吸收除红色以外的每一种可见光波长。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2647247",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phosphorescence",
+   "prompt": "解释什么是磷光，以及它与荧光有何不同。哪一个过程通常需要更长的时间，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者都始于原子或分子吸收能量，使一个电子被抬升到激发能级。在荧光中，电子经过普通能级逐级回落，其中每个能级约在 $10^{-8}$ s 内退激发，所以光几乎立即发出，并在照射一停止时就停止。在磷光中，电子最终处于亚稳态，这个能级的量子数与它下方各能级的量子数相差很大，因此它的退激发受到抑制。电子在那里停留毫秒、数分钟甚至数小时之后才发光，而磷光就是该亚稳态的退激发。因此磷光所需的时间长得多，这就是夜光材料在激发它们的光被关掉之后仍继续发光的原因。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2029970",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "一个电子从原子的基态（能级 1）被激发到高度激发的状态（能级 8）。下列哪一种电子行为代表该原子的荧光效应？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "电子在能级 8 停留很长时间，然后向上跃迁到能级 9。",
+     "电子从能级 8 直接向下跃迁到能级 1。",
+     "电子从能级 8 跃迁到能级 1，然后很快回到能级 8。",
+     "电子从能级 8 跃迁到能级 6，再到能级 5，再到能级 3，然后到能级 1。"
+    ],
+    "correct": 3,
+    "hint": "荧光发射的光子能量低于被吸收的光子。哪条路径是分较小的步骤下来的？",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1976847",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "请根据电子在能态之间跃迁时光子的发射来描述荧光过程。具体地说，请解释这一过程与普通的原子发射有何不同。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "原子吸收一个光子，其能量等于它的基态与某个高激发能级之间的间距，于是一个电子被抬升到该能级。在最简单的退激发中，电子直接落回基态，发射一个与被吸收光子能量相同的光子。在荧光中，电子则经过一个或多个中间能级下来，每一步发射一个光子。这些光子中的每一个，能量都比被吸收的光子低，因而波长更长，它们的能量之和等于所吸收的能量。紫外光射入而可见光射出，就是这样发生的。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3077267",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-applications",
+   "prompt": "激光器用来烧录和读取光盘。请解释为什么发蓝光的激光器比发红外光的激光器能够烧录和读取更多的信息。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "激光束不能聚焦成远小于其波长的光点，因为衍射会使它扩散。蓝光的波长大约是光盘所用红外光波长的一半，所以蓝光激光器可以聚焦成小得多的光点。于是它烧出的凹坑可以更短更窄，光道可以靠得更近，而更小的光点仍能读取它们，不会同时读到相邻的光道。同样面积的光盘上能容纳更多的凹坑，因此可以存储和读取更多的信息。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2383870",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "荧光灯管内壁的涂层吸收紫外光，随后发出可见光。一位发明者声称他能够实现相反的过程。这位发明者的说法有可能成立吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "相反的过程将是吸收可见光光子并发射紫外光光子，而每个紫外光光子所携带的能量都比可见光光子多。在荧光过程中，一个原子吸收一个光子，再把能量以一个或多个光子的形式还回去，所以它所发射的光子合起来所携带的能量不会超过它所吸收的能量，而且每一个光子的能量都更低。被单个可见光光子抬升的原子，不可能发射能量更高的紫外光光子，所以就这一过程而言，这一说法是不可能成立的。要做到这一点，就需要凭空创造能量，或者把几个被吸收光子的能量合并成一个，而普通的荧光涂层并不做这些。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2989879",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phosphorescence",
+   "prompt": "荧光和磷光有什么区别？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在荧光中，被光子激发的原子或分子几乎立即（约在 $10^{-8}$ s 内）退激发，发射一个或多个能量低于被吸收光子的光子，所以激发它的光一停止，发光也随之停止。磷光是亚稳态的退激发，亚稳态的寿命为毫秒到数小时，所以材料在被激发很久之后仍继续发光，夜光材料就是如此。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1934114",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holography",
+   "prompt": "你如何判断全息图是真正的三维图像，而 3-D 电影中的图像不是？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "观看每一个时都移动你的头。在全息图中，当你改变观看的角度时，物体的相对位置会改变：较近的物体相对较远的物体发生移位，你还能稍微看到物体的侧面，就像直接看这些物体一样，因为全息图重建了来自它们的光。3-D 电影给每只眼睛看的是一幅从一个视点拍摄的固定平面图片。当你移动头部时，较近和较远的物体不会相对移位，你也看不到被摄像机遮住的任何部分，所以其中的纵深感是由两幅平面图像造成的错觉。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1420277",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "helium-neon-laser",
+   "figure": {
+    "src": "/media/ch30/Figure_31_05_09.jpg",
+    "alt": "图的左侧显示氦原子的基态和第一亚稳态，右侧显示氖原子的基态和第一亚稳态。氦原子和氖原子两个状态之间的差分别约为二十点六一电子伏和二十点六六电子伏。从氦原子到氖原子的碰撞传递能量给出为一点九六电子伏。",
+    "caption": "氦和氖的能级。在常见的氦氖激光器中，放电把能量泵浦到两种原子的亚稳态中。混合气体中氦原子约为氖原子的十倍。被激发的氦原子通过碰撞把能量传给氖，因而很容易退激发。氖中实现了粒子数反转，使氖能够发生激射。"
+   },
+   "prompt": "图 30.37 显示了氖的能级图。（a）验证氖从其亚稳态跃迁到紧邻其下的状态时，所发射光子的能量等于 1.96 eV。（b）证明这种辐射的波长为 633 nm。（c）氖直接跃迁到基态时，发射的波长是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the photon energy",
+      "value": 1.96,
+      "unit": "eV",
+      "hint": "从图中读出亚稳态与其下紧邻能级之间的间距。"
+     },
+     {
+      "part": "(b) the wavelength",
+      "value": 633,
+      "unit": "nm",
+      "hint": "用 $\\klam = h\\kc/\\kdE$，其中 $h\\kc = 1240$ eV·nm。"
+     },
+     {
+      "part": "(c) the wavelength of the direct transition",
+      "value": 60.0,
+      "unit": "nm",
+      "hint": "亚稳态比基态高 20.66 eV。"
+     }
+    ],
+    "solution": "（a）1.96 eV；（b）$(1240\\;\\text{eV}\\cdot\\text{nm})/(1.96\\;\\text{eV}) = 633\\;\\text{nm}$；（c）60.0 nm"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3292679",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "helium-neon-laser",
+   "figure": {
+    "src": "/media/ch30/Figure_31_05_16.jpg",
+    "alt": "图中显示了氧化铝晶体中铬原子的能级。基态位于零点零电子伏，第一亚稳态位于一点七九电子伏，第二个状态位于二点三电子伏，第三个状态位于三点零电子伏。",
+    "caption": "氧化铝晶体中的铬原子具有这些能级，其中一个是亚稳态。这是红宝石激光器的基础。可见光可以把原子泵浦到亚稳态之上的激发态，从而实现粒子数反转。"
+   },
+   "prompt": "红宝石激光器的氧化铝晶体中掺有铬原子。红宝石中铬的能级图如下所示。红宝石激光器发射的波长是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 693,
+    "unit": "nm",
+    "hint": "激光来自亚稳态落到基态；用 $\\klam = h\\kc/\\kdE$，其中 $h\\kc = 1240$ eV·nm。",
+    "solution": "693 nm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2670689",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "helium-neon-laser",
+   "figure": {
+    "src": "/media/ch30/Figure_31_05_18.jpg",
+    "alt": "图中显示了玻璃中钕原子的不同能级。基态位于零电子伏，第一个状态位于零点五零电子伏，亚稳的第二个状态位于一点六七电子伏，亚稳的第二个状态之上的一组能级位于二点一电子伏。光子从亚稳的第二个状态跃迁到第一个状态时释放一点一七电子伏，波长为一点零六微米。",
+    "caption": "玻璃中的钕原子具有这些能级，其中一个是亚稳态。亚稳态之上的一组能级便于实现粒子数反转，因为处于基态的原子可以吸收许多不同能量的光子。"
+   },
+   "prompt": "一些功率最强的激光器基于钕在固体（例如玻璃）中的能级，如下所示。（a）什么平均波长的光可以把钕泵浦到其亚稳态之上的能级？（b）验证 1.17 eV 的跃迁产生 $1.06\\;\\mu\\text{m}$ 的辐射。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the average pumping wavelength",
+      "value": 590,
+      "unit": "nm",
+      "hint": "亚稳态之上的那组能级比基态高约 2.1 eV。"
+     },
+     {
+      "part": "(b) the wavelength of the 1.17-eV transition",
+      "value": 1.06,
+      "unit": "μm",
+      "hint": "用 $\\klam = h\\kc/\\kdE$，其中 $h\\kc = 1240$ eV·nm。"
+     }
+    ],
+    "solution": "（a）590 nm；（b）$(1240\\;\\text{eV}\\cdot\\text{nm})/(1.17\\;\\text{eV}) = 1.06\\;\\mu\\text{m}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3168724",
+   "source_section": "30.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-applications",
+   "prompt": "手术中使用的二氧化碳激光器发射波长为 $10.6\\;\\mu\\text{m}$ 的红外辐射。在 1.00 ms 内，这台激光器把 $1.00\\;\\text{cm}^{3}$ 肉的温度升高到 $100^\\circ\\text{C}$ 并使其蒸发。（a）需要多少个光子？可以假定肉的汽化热与水相同。（b）这一闪光期间的最小输出功率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the number of photons",
+      "value": 1.34e+23,
+      "hint": "求出把水从体温加热到 100°C 并使其蒸发所需的热量，再除以一个 10.6 μm 光子的能量。"
+     },
+     {
+      "part": "(b) the minimum power",
+      "value": 2.52,
+      "unit": "MW",
+      "hint": "用所传递的能量除以所用的 1.00 ms。"
+     }
+    ],
+    "solution": "（a）$1.34\\times 10^{23}$；（b）2.52 MW"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1545878",
+   "source_section": "30.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-applications",
+   "prompt": "（a）用于视力矫正的准分子激光器发射 193 nm 的紫外光。求以 eV 为单位的光子能量。（b）这些光子用来使角膜组织蒸发，角膜组织的性质与水非常相似。计算使每个水分子从液态相变为气态所需的能量。也就是说，用以 kJ/kg 为单位的汽化热，除以一千克水中的水分子数。（c）把它换算成 eV，并与光子能量比较。讨论其含义。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the photon energy",
+      "value": 6.42,
+      "unit": "eV",
+      "hint": "用 $\\kE = h\\kc/\\klam$，其中 $h\\kc = 1240$ eV·nm。"
+     },
+     {
+      "part": "(b) the energy per molecule",
+      "value": 7.27e-20,
+      "unit": "J",
+      "hint": "一千克水是 1000/18.0 mol，每摩尔含有阿伏伽德罗常量个分子。"
+     },
+     {
+      "part": "(c) the energy per molecule in eV",
+      "value": 0.454,
+      "unit": "eV",
+      "hint": "除以 $1.60\\times 10^{-19}$ J/eV。"
+     }
+    ],
+    "solution": "（a）6.42 eV；（b）$7.27\\times 10^{-20}$ J/个分子；（c）0.454 eV，只有单个紫外光子能量的 1/14.1。因此，每个光子将使大约 14 个组织分子蒸发。这为外科医生提供了一种相当精确的从眼球表面去除角膜组织的方法。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "atomic-de-excitation"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "atomic-excitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "atomic-excitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "color-from-energy-levels"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "phosphorescence"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "fluorescence",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "metastable-state",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "atomic-de-excitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "laser"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "color-from-energy-levels",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "photon-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "phosphorescence"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "fluorescence",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "hologram"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "holography",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "wavelength-from-a-level-spacing"
+  },
+  {
+   "exercise": "p1",
+   "concept": "energy-level-diagram",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "wavelength-from-a-level-spacing"
+  },
+  {
+   "exercise": "p2",
+   "concept": "laser",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "wavelength-from-a-level-spacing"
+  },
+  {
+   "exercise": "p3",
+   "concept": "population-inversion",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "photon-energy-from-wavelength"
+  },
+  {
+   "exercise": "p4",
+   "concept": "heat-of-vaporization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "power",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "photon-energy-in-ev"
+  },
+  {
+   "exercise": "p5",
+   "concept": "heat-of-vaporization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "laser",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": []
+}

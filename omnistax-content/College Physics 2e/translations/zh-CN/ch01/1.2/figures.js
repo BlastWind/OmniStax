@@ -1,0 +1,227 @@
+/* Figures for section 1.2 Physical Quantities and Units. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['1.2'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, scale, car, FONT } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- small helpers shared by the figures ---------- */
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (n) => String(n).split('').map((ch) => SUP[ch] ?? ch).join('');
+const pow10 = (n) => '10' + sup(n);
+const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+/* three significant figures, never in exponent form */
+const sig3 = (x) => { const s = x.toPrecision(3); return s.includes('e') ? String(Math.round(Number(s))) : s; };
+/* a label in ink followed by a value in a colour, on one line */
+function pair(ctx, left, right, x, y, color) {
+  const w = F.measure(ctx, left);
+  text(ctx, left, x, y, PAL.ink); text(ctx, right, x + w + 8, y, color, { weight: 600, size: 24 });
+}
+
+/* ---------- sprites, in the colour they are handed ---------- */
+/* a flashlight whose lens is at (x, y), pointing right */
+function flashlight(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = color;
+  ctx.fillRect(x - 112, y - 12, 78, 24); ctx.fillRect(x - 96, y - 19, 16, 7);
+  ctx.beginPath(); ctx.moveTo(x - 34, y - 12); ctx.lineTo(x, y - 24); ctx.lineTo(x, y + 24); ctx.lineTo(x - 34, y + 12); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+/* a school building standing on (x, y), with a flag */
+function school(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
+  ctx.fillRect(x - 50, y - 60, 100, 60); ctx.strokeRect(x - 50, y - 60, 100, 60);
+  ctx.fillStyle = color; ctx.fillRect(x - 10, y - 28, 20, 28); ctx.fillRect(x - 38, y - 48, 14, 12); ctx.fillRect(x + 24, y - 48, 14, 12);
+  ctx.beginPath(); ctx.moveTo(x + 40, y - 60); ctx.lineTo(x + 40, y - 100); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x + 40, y - 100); ctx.lineTo(x + 68, y - 92); ctx.lineTo(x + 40, y - 84); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+/* a house standing on (x, y) */
+function house(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
+  ctx.fillRect(x - 40, y - 50, 80, 50); ctx.strokeRect(x - 40, y - 50, 80, 50);
+  ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(x - 48, y - 50); ctx.lineTo(x, y - 90); ctx.lineTo(x + 48, y - 50); ctx.closePath(); ctx.fill();
+  ctx.fillRect(x - 9, y - 26, 18, 26);
+  ctx.restore();
+}
+/* a stopwatch centred on (x, y) whose hand has turned the fraction f of one turn */
+function stopwatch(ctx, x, y, r, f) {
+  ctx.save(); ctx.strokeStyle = F.ref('stopwatch'); ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillRect(x - 12, y - r - 20, 24, 14); ctx.strokeRect(x - 12, y - r - 20, 24, 14);
+  for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; line(ctx, x + (r - 12) * Math.sin(a), y - (r - 12) * Math.cos(a), x + (r - 4) * Math.sin(a), y - (r - 4) * Math.cos(a), F.ref('stopwatch'), i % 3 ? 2 : 4); }
+  ctx.restore();
+  const a = f * Math.PI * 2;
+  line(ctx, x, y, x + (r - 22) * Math.sin(a), y - (r - 22) * Math.cos(a), C('time'), 5); dot(ctx, x, y, C('time'), true, 7);
+}
+
+/* =====================================================================
+   FIGURE 1.18: the meter. A pulse of light leaves a flashlight at the
+   left end of a meter stick and runs along it at the speed of light for
+   the time set on the slider. In 3.34 ns it covers 1.00 m, which is what
+   the meter is defined to be. Finite motion, so it gets the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-light-meter', 370);
+  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 5, step: 0.01, value: 3.34, unit: 'ns', dec: 2, specials: [{ at: 1 / 0.299792458, label: '一米' }], onInput: reset, aria: '经过的时间' });
+  const CNS = 0.299792458;   /* the speed of light in meters per nanosecond, exact */
+  const cy = cycle(() => T.v, 1.2);
+  function reset() { cy.reset(); }
+  const L = 180, R = 1300, LEN = 1.5, X = (m) => L + ((R - L) * m) / LEN;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), done = tau >= T.v - 1e-9, dist = CNS * tau, dEnd = CNS * T.v;
+    /* the meter stick, 1.5 m of it, with a tick every 10 cm and the meter mark called out */
+    const ys = 250, yp = 196;   /* the pulse runs just above the stick's face, out of the flashlight's lens */
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('meter-stick'); ctx.lineWidth = 3;
+    ctx.fillRect(X(0), ys - 24, X(LEN) - X(0), 32); ctx.strokeRect(X(0), ys - 24, X(LEN) - X(0), 32); ctx.restore();
+    scale(ctx, (cm) => X(cm / 100), 0, 150, 10, ys, 'cm', 5);
+    line(ctx, X(1), ys + 40, X(1), ys + 58, PAL.ink, 3);
+    text(ctx, '1 m 刻度', X(1), ys + 76, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    /* the flashlight and the pulse of light */
+    flashlight(ctx, X(0) - 4, yp, F.ref('flashlight'));
+    if (dist > 0.002) {
+      ctx.save(); ctx.fillStyle = alpha(C('position'), 0.18); ctx.fillRect(X(0), yp - 14, X(dist) - X(0), 28); ctx.restore();
+      line(ctx, X(0), yp, X(dist), yp, C('position'), 6);
+    }
+    dot(ctx, X(dist), yp, F.ref('pulse'), true, 9);
+    text(ctx, 't = ' + fmt(tau, 2) + ' ns', Math.min(X(dist), R - 60), yp - 48, C('time'), { weight: 600, align: 'center', bg: PAL.panel });
+    /* the distance covered so far */
+    if (dist > 0.02) hbracket(ctx, X(0), X(dist), 118, C('position'), 'd = ' + fmt(dist, 2) + ' m');
+    const clause = Math.abs(dEnd - 1) < 0.005 ? '这正是米的定义' : dEnd < 1 ? '还没有到达 1 m 刻度' : '越过了 1 m 刻度';
+    headline(ctx, done ? '在 ' + fmt(T.v, 2) + ' ns 内，光传播了 ' + fmt(dEnd, 2) + ' m，' + clause + '。'
+      : fmt(tau, 2) + ' ns 后，光已传播了 ' + fmt(dist, 2) + ' m，并且仍在前进。');
+    readout(d.readout, `\\kd = \\kc\\,\\kt = (299{,}792{,}458\\ \\text{m/s})(${fmt(T.v, 2)} \\times 10^{-9}\\ \\text{s}) = ${fmt(dEnd, 2)}\\ \\text{m}`,
+      '这样定义后，光速是精确的，而被测量的是距离。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
+})();
+
+/* =====================================================================
+   SIM: the ladder of powers of 10. A logarithmic ladder from 10⁻¹⁸ m to
+   10²⁶ m, the metric prefixes under their powers, some known lengths
+   above, and a marker at m × 10ⁿ. The decade the value falls in is
+   shaded: every number in it has the same order of magnitude. No motion.
+===================================================================== */
+(function () {
+  const d = sim('sim-ladder', 440);
+  const M = ctl(d.controls, { label: '\\text{尾数 } m', cls: '', min: 1, max: 9.9, step: 0.1, value: 4.5, unit: '', dec: 1, aria: '尾数' });
+  const N = ctl(d.controls, { label: '\\text{指数 } n', cls: '', min: -18, max: 26, step: 1, value: 2, unit: '', dec: 0, aria: '指数' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
+  const PREFIX = [[-18, '阿', 'a'], [-15, '飞', 'f'], [-12, '皮', 'p'], [-9, '纳', 'n'], [-6, '微', 'µ'], [-3, '毫', 'm'], [-2, '厘', 'c'], [-1, '分', 'd'],
+    [1, '十', 'da'], [2, '百', 'h'], [3, '千', 'k'], [6, '兆', 'M'], [9, '吉', 'G'], [12, '太', 'T'], [15, '拍', 'P'], [18, '艾', 'E']];
+  /* the lengths of Table 1.3: power of ten, label, row above the ladder (0 nearest), and which side of its tick the label sits */
+  /* rows chosen so no leader passes behind another label: a label on a row is crossed only by the leaders of higher rows, and none falls inside its span */
+  const LENGTHS = [[-15, '质子', 0, 'right'], [-10, '氢原子', 1, 'right'], [-8, '细胞膜', 2, 'right'], [-6, '可见光', 3, 'right'],
+    [-3, '一粒沙子', 3, 'left'], [0, '儿童', 1, 'right'], [2, '橄榄球场', 2, 'left'], [7, '地球', 0, 'left'], [11, '地球到太阳', 1, 'right'],
+    [16, '1 光年', 1, 'left'], [21, '银河系', 2, 'right'], [26, '已知宇宙', 3, 'right']];
+  const L = 90, R = 1330, X = (n) => L + ((R - L) * (n + 18)) / 44;
+  const yl = 250;
+  /* the value written in the prefix nearest below n, when the mantissa stays under 1000 */
+  function nearest(m, n) {
+    const below = PREFIX.filter((p) => p[0] <= n).map((p) => p[0]); if (!below.length) return null;
+    const p = Math.max(...below), k = n - p; if (k > 2) return null;
+    const pre = PREFIX.find((q) => q[0] === p);
+    return { num: fmt(m * Math.pow(10, k), Math.max(0, 1 - k)), sym: pre[2], name: pre[1], p };
+  }
+  function plain(m, n) { return n >= 0 ? commas(fmt(m * Math.pow(10, n), n === 0 ? 1 : 0)) : fmt(m * Math.pow(10, n), 1 - n); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const m = M.v, n = N.v, x = X(n + Math.log10(m)), own = PREFIX.find((p) => p[0] === n), near = own ? null : nearest(m, n);
+    const lit = own ? own[0] : near ? near.p : null;
+    /* the shaded decade, the ladder and its ticks */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(X(n), yl - 14, X(n + 1) - X(n), 28); ctx.restore();
+    line(ctx, X(-18), yl, X(26), yl, PAL.ink, 3);
+    for (let k = -18; k <= 26; k++) { const big = k % 3 === 0; line(ctx, X(k), yl - (big ? 12 : 7), X(k), yl + (big ? 12 : 7), PAL.ink, 2); if (big) text(ctx, pow10(k), X(k), yl + 30, PAL.muted, { size: 17, align: 'center' }); }
+    /* the prefixes under their powers, on three rows where they crowd */
+    for (const [p, name] of PREFIX) {
+      const row = Math.abs(p) === 2 ? 1 : Math.abs(p) === 1 ? 2 : 0, y = yl + 104 + 26 * row, on = p === lit;
+      if (row) line(ctx, X(p), yl + 44, X(p), y - 12, alpha(PAL.ink, 0.35), 1.5);
+      text(ctx, name, X(p), y, on ? PAL.ink : PAL.muted, { size: 17, align: 'center', weight: on ? 600 : 400 });
+    }
+    /* the known lengths above the ladder */
+    for (const [p, , row] of LENGTHS) line(ctx, X(p), yl - 8, X(p), yl - 31 - 30 * row, PAL.muted, 2);
+    for (const [p, name, row, side] of LENGTHS) text(ctx, name, X(p) + (side === 'left' ? 6 : -6), yl - 42 - 30 * row, PAL.ink, { size: 17, align: side });
+    /* the marker */
+    dot(ctx, x, yl, C('position'), true, 10);
+    text(ctx, fmt(m, 1) + ' × ' + pow10(n) + ' m', x, yl + 72, C('position'), { weight: 600, align: x > 1250 ? 'right' : x < 150 ? 'left' : 'center', bg: PAL.panel });
+    /* what the value is, in words and in the readout */
+    const sci = fmt(m, 1) + ' × ' + pow10(n) + ' m', oom = pow10(n);
+    const sciTex = `${fmt(m, 1)} \\times 10^{${n}}\\ \\text{m}`;
+    let h, r;
+    if (Math.abs(n) <= 3) {
+      h = sci + ' 即 ' + plain(m, n) + ' m' + (own ? '，或 ' + fmt(m, 1) + ' ' + own[2] + 'm' : '') + '，其数量级为 ' + oom;
+      r = `${sciTex} = ${plain(m, n).replace(/,/g, '{,}')}\\ \\text{m}`;
+    } else if (own) {
+      h = sci + ' 即 ' + fmt(m, 1) + ' ' + own[2] + 'm，1 ' + own[1] + '米为 ' + pow10(n) + ' m，其数量级为 ' + oom;
+      r = `${sciTex} = ${fmt(m, 1)}\\ \\text{${own[2]}m}`;
+    } else if (near) {
+      h = sci + ' 没有专属的词头，因此写成 ' + near.num + ' ' + near.sym + 'm，其数量级为 ' + oom;
+      r = `${sciTex} = ${near.num}\\ \\text{${near.sym}m}`;
+    } else {
+      h = sci + ' 超出了最大的词头“艾”所能方便表示的范围，其数量级为 ' + oom;
+      r = `${sciTex} = ${fmt(m, 1)} \\times 10^{${n - 18}}\\ \\text{Em}`;
+    }
+    headline(ctx, h + '。');
+    readout(d.readout, r);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the short drive home of Example 1.1. A car drives from school to
+   home along a strip marked in kilometers while a stopwatch counts the
+   minutes; the average speed is written in km/min, km/h and m/s. Finite
+   motion, one run per set time, so it gets the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-drive', 530);
+  const D = ctl(d.controls, { label: '\\kd', cls: 'position', min: 2, max: 40, step: 0.5, value: 10, unit: 'km', dec: 1, onInput: reset, aria: '距离' });
+  const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 5, max: 60, step: 1, value: 20, unit: 'min', dec: 1, onInput: reset, aria: '时间' });
+  const cy = cycle(() => T.v, 1.2);
+  function reset() { cy.reset(); }
+  /* The road is fixed at 0 to 40 km, the distance slider's maximum, so a 2 km trip and a 40 km
+     trip are drawn at the same scale and look as different as they are. The house stands at the
+     end of the trip, not at the end of the road. */
+  const KM_MAX = 40, VMAX = (40 / 5) * 60;   /* the fastest the sliders allow, 40 km in 5 min */
+  const L = 220, R = 1180, X = (km) => L + ((R - L) * km) / KM_MAX;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), done = tau >= T.v - 1e-9, pos = (D.v * tau) / T.v;
+    const kmMin = D.v / T.v, kmH = kmMin * 60, mS = (kmH * 1000) / 3600;
+    /* the road from school to home, marked in kilometers */
+    /* The school and the house stand on the far side of the road, at its far kerb, so the car drives
+       in front of them and never through them; each is named above its roof, clear of the kilometer ticks. */
+    const ys = 236, kerb = ys - 24;
+    const hx = X(D.v);
+    school(ctx, L - 70, kerb, F.ref('school')); house(ctx, hx + 60, kerb, F.ref('home'));
+    text(ctx, '学校', L - 70, kerb - 116, F.ref('school'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, '家', hx + 60, kerb - 106, F.ref('home'), { size: 20, weight: 600, align: 'center' });
+    strip(ctx, L, R, ys, 48);
+    scale(ctx, X, 0, KM_MAX, 5, ys + 34, 'km', 1);
+    hbracket(ctx, X(0), hx, ys - 138, C('position'), 'd = ' + fmt(D.v, 1) + ' km');
+    /* the car on the near lane, with its speed drawn as an arrow from its front bumper whose length is
+       fixed per km/h from the fastest trip the sliders allow, and held short of the canvas edge */
+    const cx = X(pos);
+    car(ctx, cx, ys + 4, F.ref('car'), 1.2);
+    const end = Math.min(cx + 56 + (230 * kmH) / VMAX, R + 90);
+    arrow(ctx, cx + 52, ys - 8, end, ys - 8, C('velocity'), 5);
+    /* the speed is written just past the arrow's tip, or, when the tip is near the end of the road, on the empty road behind the car */
+    if (end < R - 130) text(ctx, sig3(kmH) + ' km/h', end + 12, ys - 8, C('velocity'), { weight: 600, size: 20, align: 'left', bg: PAL.panel });
+    else text(ctx, sig3(kmH) + ' km/h', cx - 64, ys - 8, C('velocity'), { weight: 600, size: 20, align: 'right', bg: PAL.panel });
+    /* the stopwatch, one turn of the hand for the whole trip */
+    const sx = 330, sy = 404, r = 66;
+    stopwatch(ctx, sx, sy, r, tau / T.v);
+    text(ctx, 't = ' + fmt(tau, 1) + ' min', sx, sy + r + 34, C('time'), { weight: 600, size: 26, align: 'center' });
+    /* the speed, in the three units of the example */
+    pair(ctx, '平均速率  =', sig3(kmMin) + ' km/min', 520, 364, C('velocity'));
+    pair(ctx, '即', sig3(kmH) + ' km/h', 520, 410, C('velocity'));
+    pair(ctx, '或', sig3(mS) + ' m/s', 520, 456, C('velocity'));
+    headline(ctx, done ? '在 ' + fmt(T.v, 1) + ' min 内行驶 ' + fmt(D.v, 1) + ' km，平均速率为 ' + sig3(kmMin) + ' km/min，即 ' + sig3(kmH) + ' km/h，或 ' + sig3(mS) + ' m/s。'
+      : fmt(tau, 1) + ' min 后，汽车已行驶了 ' + fmt(D.v, 1) + ' km 中的 ' + fmt(pos, 1) + ' km。');
+    tex(d.readout, `\\text{平均速率} = \\frac{\\kd}{\\kt} = \\frac{${fmt(D.v, 1)}\\ \\text{km}}{${fmt(T.v, 1)}\\ \\text{min}} \\times \\frac{60\\ \\text{min}}{1\\ \\text{h}} = ${sig3(kmH)}\\ \\text{km/h}`);
+    const sm = d.readout.appendChild(el('small'));
+    tex(sm, `${sig3(kmH)}\\ \\text{km/h} \\times \\frac{1\\ \\text{h}}{3600\\ \\text{s}} \\times \\frac{1000\\ \\text{m}}{1\\ \\text{km}} = ${sig3(mS)}\\ \\text{m/s}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
+})();
+};

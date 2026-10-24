@@ -1,0 +1,504 @@
+{
+ "id": "6.4",
+ "module": "m42142",
+ "chapter": "6",
+ "title": "虚拟力与非惯性参考系：科里奥利力",
+ "short": "虚拟力与科里奥利力",
+ "lead": "乘喷气式飞机起飞、驾车转弯或乘坐旋转木马，你会感到一些<span data-concept=\"force\">力</span>，而站在地面上的物理学家说这些力根本不存在。这些虚拟力属于非惯性参考系，其中之一的科里奥利力，从在旋转木马上滑过的一个球，一直延伸到飓风和热带气旋的旋转。",
+ "objectives": [
+  "讨论惯性参考系。",
+  "讨论非惯性参考系。",
+  "描述科里奥利力的效应。"
+ ],
+ "summary_html": "<ul><li>转动的和加速的参考系都是非惯性的。</li><li>要解释这类参考系中的运动，就需要虚拟力，例如科里奥利力。</li></ul>",
+ "notes": "本节六道思考题中有两道，即关于超距作用的一道和关于轨道上的卫星是否处于自由落体运动的一道，在“牛顿万有引力定律”一节中也是逐字印出的，它们保留在那里，即引入引力的地方；通往牛顿运动定律一章的链接是纯文本，因为那一章尚未构建。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "本节没有印出理解检测栏目，也没有习题，因此它仅有的练习是六道思考题，书中均未给出答案。所以保留下来的每一道都是开放作答的题目，其建议思路由 AI 撰写并有相应标注，布鲁姆层级、概念标签和权重也是如此。六道中有两道被略去：fs-id3180041（关于超距作用）和 fs-id3042736（关于轨道上的卫星是否处于自由落体运动），与“牛顿万有引力定律”一节印出的 fs-id959677 和 fs-id3122954 两道逐字相同，由于引力是在那里引入的，这一对题目保留在 6.5 中，不在此重复。关于为什么太阳参考系并不严格是惯性参考系的那道题，设置在正文中，也就是读者刚刚遇到这两种参考系的地方。没有从其他小节取题：6.3 中那道思考题，问汽车绕过弯道时你为什么觉得自己被甩离中心，可以用本节引入的虚拟力来回答，但它与它所由出发的向心力印在一起，因此留在那里。",
+ "figures": [
+  {
+   "id": "sim-turn",
+   "kind": "sim",
+   "number": "6.12",
+   "originals": [
+    "/media/ch06/Figure_07_04_01a.jpg"
+   ],
+   "original_caption": "（a）汽车右转时，司机感到自己相对于汽车被迫向左。这是由于以汽车作为参考系而产生的虚拟力。（b）在地球参考系中，司机沿直线运动，服从牛顿第一定律，而汽车向右转。相对于地球，并没有向左作用在司机身上的真实力。有一个向右作用在汽车上的真实力使它转弯。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "force"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout writes the turn as an equation; note dropped; labels kept apart"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-merry",
+   "kind": "sim",
+   "number": "6.13",
+   "folds": [
+    "6.15"
+   ],
+   "originals": [
+    "/media/ch06/Figure_07_04_02a.jpg",
+    "/media/ch06/Figure_07_04_04a.jpg"
+   ],
+   "original_caption": "（a）旋转木马上的乘坐者觉得自己像是要被甩出去。这种虚拟力称为离心力——它在转动参考系中解释了乘坐者的运动。（b）在惯性参考系中，按照牛顿定律，把他带走的是他的惯性，而不是真实的力（无阴影的乘坐者 F_net = 0，沿直线运动）。要使物体沿圆周运动，需要一个真实的力 F_centripetal。",
+   "widths": [
+    500,
+    250
+   ],
+   "draws": [
+    "angular-rate",
+    "position",
+    "velocity",
+    "force",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note repeating the caption dropped; labels kept off the centers"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-centrifuge",
+   "kind": "sim",
+   "number": "6.14",
+   "originals": [
+    "/media/ch06/Figure_07_04_03a.jpg"
+   ],
+   "original_caption": "离心机利用惯性来完成它的工作。流体沉积物中的粒子被分离出来，是因为它们的惯性带着它们离开转动中心。离心机的大角速度加快了沉降。最终，粒子会与试管壁接触，试管壁随后提供使它们沿恒定半径的圆周运动所需的向心力。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "angular-rate",
+    "position",
+    "acceleration",
+    "force"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note repeating the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-cyclones",
+   "kind": "photo",
+   "number": "6.16",
+   "widths": [
+    475
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-cyclone",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "velocity",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "panel sentences wrapped apart; readout adds the turn; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "frames",
+   "concept": "non-inertial-frame",
+   "verb": "introduces"
+  },
+  {
+   "span": "frames",
+   "concept": "fictitious-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "frames",
+   "concept": "inertial-frame",
+   "verb": "reinforces"
+  },
+  {
+   "span": "frames",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "centrifugal",
+   "concept": "centrifugal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "centrifugal",
+   "concept": "fictitious-force",
+   "verb": "uses"
+  },
+  {
+   "span": "centrifugal",
+   "concept": "non-inertial-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "centrifugal",
+   "concept": "centripetal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "centrifugal",
+   "concept": "inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "centrifugal",
+   "concept": "centripetal-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "coriolis",
+   "concept": "coriolis-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "coriolis",
+   "concept": "fictitious-force",
+   "verb": "uses"
+  },
+  {
+   "span": "coriolis",
+   "concept": "non-inertial-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "weather",
+   "concept": "coriolis-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "weather",
+   "concept": "uniform-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "which-frame",
+   "concept": "fictitious-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "which-frame",
+   "concept": "inertial-frame",
+   "verb": "reinforces"
+  },
+  {
+   "span": "which-frame",
+   "concept": "inertia",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2405118",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weather",
+   "prompt": "冲马桶或排放水槽里的水时，水（以及其他物质）在流向排水口的过程中开始绕排水口旋转。假设一开始没有旋转，水流也是径直流向排水口的，请解释是什么引起了这种旋转，以及它在北半球沿什么方向。（注意，这是一个很小的效应，在大多数马桶中，旋转是由定向的水流喷口引起的。）如果水被迫向上流出排水口，旋转方向会反过来吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "并没有什么东西在排水口处给水以旋转；水是在流向排水口的途中获得旋转的。每一团水都是在转动的地球上运动，而在北半球，科里奥利力使任何运动向右偏转。它使在旋转木马上滑过的球、也使流入低气压区的风以同样的方式偏转。从四面八方流来的水都以同样的方向转弯，所以水流是逆时针的，就像北半球的飓风一样。地球的角速度很小，所以在一个水盆的范围内，这种效应微乎其微，通常是盆的形状或水流喷口决定了旋转方向。如果你迫使水向上流出排水口，每一团水都会向外运动，同样向右的偏转会使旋转变成顺时针。出于同样的原因，从高压区向外流动的风，在北半球是沿顺时针方向环流的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2453606",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centrifugal",
+   "prompt": "洗衣机在脱水程序中，是否有一个真实的力把水从衣物中甩出去？请解释水是怎样被除去的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "并没有一个真实的力把水向外甩。滚筒带着衣物转圈，而要沿圆周运动，每一块布和每一滴水都需要一个指向转轴的真实的力。滚筒壁把这个力提供给衣物，衣物再把它提供给所含的水，但滚筒上的孔什么也提供不了。到达孔处的水滴没有指向转轴的力，于是它的惯性带着它沿切线飞出，穿过孔。在滚筒的转动参考系中，虚拟的离心力说明了同样的运动，滚筒转得越快，这个力越大。在地球参考系中，水只是沿直线运动，而滚筒从它下方转开了。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1420070",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "centrifugal",
+   "prompt": "在一种游乐设施中，乘坐者进入一个大的竖直转筒，背靠筒壁站在它水平的底板上。转筒转动起来后，底板落下。乘坐者觉得自己像是被一个有点像重力的力钉在筒壁上。这是乘坐者感受到的一种虚拟力，他们用它来解释转筒的转动参考系中发生的事情。请在惯性参考系（地球近似是一个惯性参考系）中解释是什么把乘坐者钉在筒壁上，并指出作用在他们身上的所有真实的力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在地球参考系中，没有什么东西把乘坐者向外钉住。有三个真实的力作用在乘坐者身上。转筒的壁对他们施加一个水平的、指向转轴的向内的推力。这个法向力就是向心力，它使他们沿圆周运动，而不是沿着惯性本来会使他们走的那条直线运动。地球以他们的重力把他们向下拉。筒壁还沿其表面对他们施加向上的摩擦力，底板落下之后，是这个摩擦力托住他们。因此，这个游乐设施必须转得足够快，使法向力以及随之而来的摩擦力能够与重力平衡。乘坐者觉得背部被压在筒壁上，是因为根据牛顿第三定律，他们向外推筒壁的力与筒壁向内推他们的力一样大。在转筒的转动参考系中，虚拟的离心力说明了这种感觉，而它根本没有物理来源。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3121794",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "frames",
+   "prompt": "置于太阳中心的不转动的参考系非常接近于一个惯性参考系。为什么它不严格是惯性参考系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "惯性参考系是所有的力都是真实的参考系，也就是说，这个参考系本身没有加速。置于太阳中心且不转动的参考系非常接近这样一个参考系，因为太阳质量非常大，行星使它移动得很小，也因为这个参考系并不随它转动。它不严格是惯性的，是因为太阳并非不受力。行星拉着太阳，所以太阳围绕太阳系的质心沿一条自己的小轨道摆动，而且太阳整体在绕银河系中心的轨道上运行，这就是朝向那个中心的加速度。因此，随太阳一起运动的参考系是加速的，哪怕只是很轻微，在这个程度上它就是非惯性的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "coriolis-force"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "non-inertial-frame",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "centrifugal-force"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "fictitious-force"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "inertia",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "fictitious-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "centrifugal-force"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "centripetal-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "non-inertial-frame"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "inertial-frame",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "car",
+   "label": "过弯的汽车",
+   "figures": [
+    "sim-turn"
+   ]
+  },
+  {
+   "id": "driver",
+   "label": "司机",
+   "figures": [
+    "sim-turn"
+   ]
+  },
+  {
+   "id": "boards",
+   "label": "旋转木马",
+   "figures": [
+    "sim-merry"
+   ]
+  },
+  {
+   "id": "rider",
+   "label": "抓牢的乘坐者",
+   "figures": [
+    "sim-merry"
+   ]
+  },
+  {
+   "id": "free-rider",
+   "label": "不受力的乘坐者",
+   "figures": [
+    "sim-merry"
+   ]
+  },
+  {
+   "id": "ball",
+   "label": "在木板上滑过的球",
+   "figures": [
+    "sim-merry"
+   ]
+  },
+  {
+   "id": "tube",
+   "label": "试管",
+   "figures": [
+    "sim-centrifuge"
+   ]
+  },
+  {
+   "id": "particles",
+   "label": "试管中的粒子",
+   "figures": [
+    "sim-centrifuge"
+   ]
+  }
+ ]
+}

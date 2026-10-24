@@ -1,0 +1,814 @@
+{
+ "id": "12.1",
+ "module": "m42205",
+ "chapter": "12",
+ "title": "流量及其与速度的关系",
+ "short": "流量",
+ "lead": "<span data-concept=\"flow-rate\">流量</span>是在给定<span data-concept=\"time\">时间</span>内流过某一点的流体的<span data-concept=\"volume\">体积</span>，它与流体运动得多快并不是一回事：一条宽阔而缓慢的河流所输送的水，远多于一条湍急的山溪。你将借助<span data-concept=\"area\">横截面积</span>把<span data-concept=\"flow-rate\">流量</span>与平均速率联系起来，并跟随一种不可压缩流体流过一根变窄的管和一根分支的管。",
+ "objectives": [
+  "计算流量。",
+  "定义体积的单位。",
+  "描述不可压缩流体。",
+  "说明连续性方程的结果。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"flow-rate\">流量</span> $\\kQ$ 定义为在<span data-concept=\"time\">时间</span> $\\kt$ 内流过某一点的<span data-concept=\"volume\">体积</span> $V$，即 $\\kQ = \\frac{V}{\\kt}$，其中 $V$ 是<span data-concept=\"volume\">体积</span>，$\\kt$ 是<span data-concept=\"time\">时间</span>。</li><li><span data-concept=\"volume\">体积</span>的 SI 单位是 $\\text{m}^3$。</li><li>另一个常用的单位是升（L），等于 $10^{-3}\\;\\text{m}^3$。</li><li>流量与速度由 $\\kQ = A\\kvb$ 相联系，其中 $A$ 是流动的<span data-concept=\"area\">横截面积</span>，$\\kvb$ 是其<span data-concept=\"average-velocity\">平均速度</span>。</li><li>对于不可压缩流体，各处的<span data-concept=\"flow-rate\">流量</span>是恒定的。即，$$\\begin{aligned}\\kQone &= \\kQtwo\\\\ A_1\\kvbone &= A_2\\kvbtwo\\\\ n_1A_1\\kvbone &= n_2A_2\\kvbtwo.\\end{aligned}$$</li></ul>",
+ "notes": "书中没有给出答案的八道习题已略去：把心脏的流量换算成其他单位、2 mm 的动脉、分成 18 条较小动脉的动脉、十亿条毛细血管中每一条里的速率、通过一条毛细血管的流量、取暖器的风道、关于文丘里管收缩段的证明，以及“不合理的结果”中的山溪。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。八道习题没有给出答案，已略去：把心脏的 5.00 L/min 换算为 cm³/s 和 m³/s、2 mm 动脉的流量和体积、分成 18 条较小动脉的动脉、十亿条毛细血管中每一条里的平均速率、由一条毛细血管的流量求速率和毛细血管的数目、取暖器的风道、证明流体通过收缩段的速率按直径缩小倍数的平方增大，以及“不合理的结果”中的山溪。消防水带一题，（a）问和（b）问的答案以数值给出，（c）问的答案以文字给出，所以习题卡片核对那两个数值，并在解答中附上书中对（c）问的答案。胡卡瀑布一题在习题卡片上保留了书中的照片。本节的第一道 AP 题，即直径加倍的管子，答案为（b），设为判分选择题；第二道，即泳池玩具的开口，没有答案也没有选项，保留为开放题，并附上由 AI 撰写、已标明的建议思路。三道思考题的建议思路由 AI 撰写，并已标明。没有从别的小节取题，本节自己的题也没有留给后面的页面。本章没有理解检测框，所以所有题都放在末尾。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-flow-cylinder",
+   "kind": "sim",
+   "number": "12.2",
+   "originals": [
+    "/media/ch12/Figure_13_01_01a.jpg"
+   ],
+   "original_caption": "流量是单位时间内流过某一点、通过面积 A 的流体的体积。这里，阴影部分的流体圆柱体在时间 t 内流过均匀管中的点 P。圆柱体的体积为 Ad，平均速度为 v̄ = d/t，因此流量为 Q = Ad/t = Av̄。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "flow-rate",
+    "velocity",
+    "time",
+    "position",
+    "area",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: step notes typeset through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-continuity",
+   "kind": "sim",
+   "number": "12.3",
+   "originals": [
+    "/media/ch12/Figure_13_01_02a.jpg"
+   ],
+   "original_caption": "管变窄时，同样的体积占据更长的长度。为使同样的体积在给定的时间内通过点 1 和点 2，点 2 处的速率必须更大。这一过程是完全可逆的。如果流体沿相反方向流动，则管变宽时其速率将减小。（请注意，两个圆柱体的相对体积以及相应的速度矢量箭头并未按比例绘出。）",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "flow-rate",
+    "velocity",
+    "position",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: ratio in the note typeset through the macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: fluid in 2.00 cm³ parcels carried along the narrowing tube"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-branching",
+   "kind": "sim",
+   "draws": [
+    "flow-rate",
+    "velocity",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: branches shortened so the r2 label clears the walls"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "flow-rate",
+   "concept": "flow-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "flow-rate-units",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "metric-prefixes",
+   "verb": "uses"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "fluid-dynamics",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate",
+   "concept": "liter",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate-velocity",
+   "concept": "flow-rate-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "flow-rate-velocity",
+   "concept": "flow-rate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "flow-rate-velocity",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "continuity",
+   "concept": "equation-of-continuity",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity",
+   "concept": "incompressible-fluid",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "continuity",
+   "concept": "flow-rate-units",
+   "verb": "reinforces"
+  },
+  {
+   "span": "branching",
+   "concept": "continuity-branching",
+   "verb": "introduces"
+  },
+  {
+   "span": "branching",
+   "concept": "equation-of-continuity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "branching",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1549295",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "prompt": "流量与流体速度有什么区别？它们是如何联系的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "流量是在给定时间内流过某一点的流体的体积，$\\kQ = V/\\kt$，以立方米每秒或升每分来度量。流体速度是流体本身流过该点有多快，以米每秒来度量。一条宽阔而缓慢的河流和一条狭窄而湍急的溪流可以有相同的流量，所以这两个量中任何一个都不能单独决定另一个。它们通过流动的横截面积联系起来：在时间 $\\kt$ 内流过的流体是一个长为 $\\kvb\\kt$、横截面为 $A$ 的圆柱体，所以 $\\kQ = A\\kvb$。对于给定的流量，面积小处速率大，喷嘴就是这样做的；面积大处速率小，水库就是这样做的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1917833",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "书中的许多图都画出了流线。解释为什么流线最密集的地方流体速度最大。（提示：考虑流体速度与它所流过的横截面积之间的关系。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "流线是流体沿之运动的线，所以流体从不穿过流线，而且两条相邻流线之间的流体始终保持在它们之间。这意味着两条流线之间的空间本身就是一根管，同样的流量通过这根管的每一个横截面。流线靠近的地方，它们之间那根管的横截面积很小，而由连续性方程 $A_1\\kvbone = A_2\\kvbtwo$，同样的流量通过更小的面积就意味着更大的速率。流线散开的地方，面积变大，流体变慢。因此，流线密集正是流动快的图像，就像管子的窄处一样。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1434712",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "指出一些不可压缩的物质，和一些可压缩的物质。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "液体几乎是不可压缩的：水、血液、汽油、石油、汞和乙醇，无论你怎样用力去压，体积都几乎保持不变，所以连续性方程对它们都成立。钢、岩石和玻璃之类的固体在同样的意义上也是不可压缩的，尽管它们不会流动。气体是可压缩的。你可以把空气、氦、蒸汽、二氧化碳和天然气压缩到小得多的体积，也可以让它们膨胀到更大的体积。每当它们被压缩或膨胀时，如在发动机的气缸或泵中，对它们应用连续性方程都要谨慎。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1500776",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "水以 12 m/s 的速率流过一根水平的细管，进入管子中更粗的部分，该部分管子的直径加倍。水在管子较粗的部分中的速率是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0.75 m/s",
+     "3.0 m/s",
+     "6.0 m/s",
+     "12 m/s"
+    ],
+    "correct": 1,
+    "hint": "横截面积与直径的平方成正比，所以直径加倍使面积变为四倍，而连续性方程说明，同样的流量必须通过它。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2019349",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "一种流行的泳池玩具让使用者推动柱塞，压缩直径为 3.0 cm 的圆筒中的水。水以 1.2 m/s 的速率被压缩，并以 15 m/s 的速率从一个小开口流出。这个开口的直径是多少？假设玩具是水平放置的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "开口的直径约为 0.85 cm。水是不可压缩的，所以柱塞推动水流过圆筒的流量，就是从开口流出的流量，因此可应用连续性方程：$A_1\\kvbone = A_2\\kvbtwo$，下标 1 表示圆筒，下标 2 表示开口。对于直径 $d$，每个面积都是 $\\pi d^2/4$，所以因子 $\\pi/4$ 约去，得到 $d_1^2\\kvbone = d_2^2\\kvbtwo$。解出开口的直径，$d_2 = d_1\\sqrt{\\kvbone/\\kvbtwo} = (3.0\\ \\text{cm})\\sqrt{(1.2\\ \\text{m/s})/(15\\ \\text{m/s})} = (3.0\\ \\text{cm})(0.283) = 0.85\\ \\text{cm}$。速率增大到 12.5 倍，所以面积缩小的倍数就是这个因子，直径缩小的倍数是它的平方根，约为 3.5。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2115593",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate",
+   "prompt": "一辆汽车以 100 km/h 的速率行驶，如果它平均每升汽油行驶 10.0 km（10.0 km/L），那么流向发动机的汽油的平均流量是多少 $\\text{cm}^3\\text{/s}$？",
+   "answer": {
+    "type": "number",
+    "value": 2.78,
+    "unit": "cm³/s",
+    "generated_by": "source",
+    "hint": "以 100 km/h 行驶时，汽车一小时行驶 100 km，而按 10.0 km/L 计，这一小时要用 10.0 L 汽油。流量就是这个体积除以时间，再换算成立方厘米和秒。",
+    "solution": "$2.78\\;\\text{cm}^3\\text{/s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2017637",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "prompt": "血液以 5.0 L/min 的速率从心脏泵入主动脉（半径为 1.0 cm）。求血液通过主动脉的速率。",
+   "answer": {
+    "type": "number",
+    "value": 27,
+    "unit": "cm/s",
+    "generated_by": "source",
+    "hint": "用 $\\kQ = A\\kvb$，其中 $A = \\pi r^2$。先把 5.0 L/min 换算成立方厘米每秒，这样面积就以平方厘米为单位。",
+    "solution": "27 cm/s"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2438354",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "figure": {
+    "src": "/media/ch12/Figure_13_01_04a.jpg",
+    "alt": "水从瀑布上倾泻而下。",
+    "caption": "图 12.4 新西兰陶波的胡卡瀑布展示了流量。（来源：RaviGogna, Flickr）"
+   },
+   "prompt": "怀卡托河上的胡卡瀑布是新西兰游客最多的自然旅游景点之一（见图 12.4）。这条河的流量平均约为 300,000 L/s。在峡谷处，河道变窄到 20 m 宽，平均 20 m 深。（a）河水在峡谷中的平均速率是多少？（b）在瀑布下游，河道变宽到 60 m、深度增加到平均 40 m 时，河水的平均速率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.75,
+      "unit": "m/s",
+      "hint": "河流在峡谷处的横截面等于宽度乘以深度。把 300,000 L/s 换算成立方米每秒，再除以这个面积。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.13,
+      "unit": "m/s",
+      "hint": "下游的流量相同，所以每秒同样的体积通过 60 m 乘 40 m 的更大横截面。"
+     }
+    ],
+    "solution": "（a）0.75 m/s（b）0.13 m/s"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2677825",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "branching",
+   "prompt": "（a）血液流过器官中的毛细血管床时，毛细血管汇合形成微静脉（小静脉）。如果血液的速率增大到 4.00 倍，而微静脉的总横截面积为 $10.0\\;\\text{cm}^2$，那么汇入这些微静脉的毛细血管的总横截面积是多少？（b）如果毛细血管的平均直径为 $10.0\\;\\mu\\text{m}$，涉及多少条毛细血管？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 40,
+      "unit": "cm²",
+      "hint": "毛细血管和微静脉中的总流量相同，所以 $n_1A_1\\kvbone = n_2A_2\\kvbtwo$。如果汇入微静脉后速率增大到 4.00 倍，总横截面就必须按同样的倍数缩小。"
+     },
+     {
+      "part": "(b)",
+      "value": 50900000,
+      "unit": "",
+      "hint": "每条直径为 10.0 μm 的毛细血管，横截面为 $\\pi(5.0\\times10^{-6}\\ \\text{m})^2$。用换算成平方米的（a）问中的总面积除以它。"
+     }
+    ],
+    "solution": "（a）$40.0\\;\\text{cm}^2$（b）$5.09\\times10^{7}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1580788",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate",
+   "prompt": "（a）估算用出水量为 60 L/min 的花园软管给一个容量为 80,000 L 的私人游泳池注满水所需的时间。（b）如果你能把一条以 $5000\\;\\text{m}^3\\text{/s}$ 的流量流动的中等大小的河流引入池中，注满需要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 22,
+      "unit": "h",
+      "hint": "由 $\\kQ = V/\\kt$ 得时间 $\\kt = V/\\kQ$：80,000 L 除以 60 L/min，再把分换算成小时。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.016,
+      "unit": "s",
+      "hint": "仍用 $\\kt = V/\\kQ$，但要先把游泳池的 80,000 L 写成立方米，以与河流的流量一致。"
+     }
+    ],
+    "solution": "（a）22 h（b）0.016 s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3048002",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flow-rate-velocity",
+   "prompt": "（a）直径为 9.00 cm 的消防水带每秒输送 80.0 L 水，其中的流体速率是多少？（b）以立方米每秒计，流量是多少？（c）如果消防水带中的淡水换成咸水，你的答案会有所不同吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 12.6,
+      "unit": "m/s",
+      "hint": "消防水带的半径是其 9.00 cm 直径的一半。把 80.0 L/s 写成立方米每秒，再除以 $\\pi r^2$。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.08,
+      "unit": "m³/s",
+      "hint": "1 升等于 $10^{-3}\\;\\text{m}^3$，所以这一问是对已给的 80.0 L/s 作单位换算。"
+     }
+    ],
+    "solution": "（a）12.6 m/s（b）$0.0800\\;\\text{m}^3\\text{/s}$（c）不会，与密度无关。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3079662",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "水以 2.00 m/s 的速度流过内径为 1.60 cm 的软管。（a）以升每秒计，流量是多少？（b）这根软管的喷嘴中的流体速度为 15.0 m/s。喷嘴的内径是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.402,
+      "unit": "L/s",
+      "hint": "$\\kQ = A\\kvb$，其中 $A = \\pi r^2$，$r$ 为 1.60 cm 的一半；然后把立方米每秒换算成升每秒。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.584,
+      "unit": "cm",
+      "hint": "同样的流量通过喷嘴，所以由 $A_1\\kvbone = A_2\\kvbtwo$ 得到喷嘴的面积，再由 $A = \\pi d^2/4$ 求出直径。"
+     }
+    ],
+    "solution": "（a）0.402 L/s（b）0.584 cm"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2421219",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity",
+   "prompt": "水以 0.500 m/s 的速率从直径为 1.80 cm 的水龙头竖直向下流出。（由于水龙头的构造，水流横截面上各处的速率没有变化。）（a）以 $\\text{cm}^3\\text{/s}$ 计，流量是多少？（b）在水龙头下方 0.200 m 处，水流的直径是多少？忽略表面张力的任何影响。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 127,
+      "unit": "cm³/s",
+      "hint": "$\\kQ = A\\kvb$，面积取 1.80 cm 圆的面积，速率写成厘米每秒。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.89,
+      "unit": "cm",
+      "hint": "下落的水在重力作用下加速，所以先由 $\\kv^2 = \\kvo^2 + 2\\kg\\kh$ 求出它在下方 0.200 m 处的速率；流量不变，所以水流的面积以及它的直径，随速率增大而缩小。"
+     }
+    ],
+    "solution": "（a）$127\\;\\text{cm}^3\\text{/s}$（b）0.890 cm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "flow-rate",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "incompressible-fluid"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "flow-rate-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "flow-rate"
+  },
+  {
+   "exercise": "p1",
+   "concept": "flow-rate-units",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "flow-rate-units",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "continuity-branching"
+  },
+  {
+   "exercise": "p7",
+   "concept": "equation-of-continuity",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "flow-rate"
+  },
+  {
+   "exercise": "p9",
+   "concept": "flow-rate-units",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "flow-rate-velocity"
+  },
+  {
+   "exercise": "p11",
+   "concept": "flow-rate-units",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "incompressible-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "flow-rate-velocity",
+   "weight": 3
+  },
+  {
+   "exercise": "p15",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "p15",
+   "concept": "flow-rate-velocity",
+   "weight": 3
+  },
+  {
+   "exercise": "p15",
+   "concept": "v-squared",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "pipe",
+   "label": "粗细均匀的管子",
+   "figures": [
+    "sim-flow-cylinder"
+   ]
+  },
+  {
+   "id": "cylinder",
+   "label": "已经通过 P 的阴影圆柱形流体",
+   "figures": [
+    "sim-flow-cylinder"
+   ]
+  },
+  {
+   "id": "point-1",
+   "label": "点 1，管或软管的宽处",
+   "figures": [
+    "sim-continuity"
+   ]
+  },
+  {
+   "id": "point-2",
+   "label": "点 2，管或喷嘴的窄处",
+   "figures": [
+    "sim-continuity"
+   ]
+  },
+  {
+   "id": "vessel",
+   "label": "单根血管，即主动脉",
+   "figures": [
+    "sim-branching"
+   ]
+  },
+  {
+   "id": "branches",
+   "label": "各分支，即毛细血管",
+   "figures": [
+    "sim-branching"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-branching",
+   "kind": "correction",
+   "html": "书中印的是 $n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_1$。分支血管的连续性方程是 $n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_2$，右边是毛细血管中的速率，后面对 $n_2$ 的求解用的就是这个式子。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "flow-rate-velocity",
+   "what": "流量等于面积乘以平均速率",
+   "source": "《大学物理（第2版）》，12.1 流量及其与速度的关系",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "流体的阴影圆柱体在时间 $\\kt$ 内流过点 $\\text{P}$。",
+       "src": "12.1，图 12.2"
+      },
+      {
+       "tex": "\\kQ = \\dfrac{\\kvol}{\\kt}",
+       "src": "12.1"
+      },
+      {
+       "tex": "\\kvb = \\dfrac{\\kd}{\\kt}",
+       "src": "12.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kvol} = \\mk{A}{\\karea}\\mk{d}{\\kd}",
+      "uses": [],
+      "src": "12.1，图 12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{V}{\\kvol}}{\\mk{t1}{\\kt}} = \\dfrac{\\mk{A}{\\karea}\\mk{d}{\\kd}}{\\mk{t2}{\\kt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kQ} = \\dfrac{\\mk{A}{\\karea}\\mk{d}{\\kd}}{\\mk{t2}{\\kt}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "t1": "V"
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\kQ} = \\mk{A}{\\karea}\\mk{d}{\\kvb}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t2": "d"
+       }
+      }
+     ],
+     "src": "12.1"
+    }
+   ]
+  }
+ ]
+}

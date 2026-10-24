@@ -1,0 +1,300 @@
+/* Figures for section 23.11 Reactance, Inductive and Capacitive.
+   The page binds inductance, capacitance, resistance, frequency, voltage,
+   current and time, which is what ch23/COLOR.md gives 23.11. The two
+   reactances wear the resistance hue beside the resistance itself, since an
+   ohm is an ohm and the section's own argument is that each is an effective
+   resistance; they are told apart by their subscripts and their labels. The
+   voltage across the element and the current through it wear their own hues,
+   which is what lets the reader see which of the two leads. The source, the
+   inductor, the capacitor and the resistor are the section's referents and are
+   drawn in their referent colours through F.ref, with their names; the two
+   reactance curves are one curve per referent, so each wears its element's
+   colour, and the subscripts of X_L and X_C name the inductor and the
+   capacitor. The wires are ink. The first figure has a clock in it, because the
+   lead and the lag are the whole content of the section; the second has none,
+   because a reactance is an rms quantity with the time already averaged out
+   of it, so it answers its sliders and carries no transport (rule 14). */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['23.11'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+const VRMS = 120, V0 = VRMS * Math.SQRT2;      /* the rms voltage both worked examples apply, and its peak */
+/* A number of amps or ohms that may run from a thousandth to a few thousand. */
+const sig3 = (v) => fmt(v, v >= 100 ? 0 : v >= 10 ? 1 : v >= 1 ? 2 : 3);
+function big(x, unit) {
+  if (!isFinite(x)) return '∞ ' + unit;
+  if (x >= 1000) return sig3(x / 1000) + ' k' + unit;
+  if (x >= 0.1) return sig3(x) + ' ' + unit;
+  return sig3(x * 1000) + ' m' + unit;
+}
+/* The same number of ohms set for the readout, where a prefix must not come out
+   italic as a variable would. */
+function ohmTex(x) {
+  if (!isFinite(x)) return '\\infty';
+  if (x >= 1000) return sig3(x / 1000) + '\\ \\text{k}\\Omega';
+  if (x >= 0.1) return sig3(x) + '\\ \\Omega';
+  return sig3(x * 1000) + '\\ \\text{m}\\Omega';
+}
+/* A frequency in the unit that keeps it to three figures. */
+const fHz = (u) => (u >= 1000 ? fmt(u / 1000, u >= 10000 ? 1 : 2) + ' kHz' : fmt(u, 0) + ' Hz');
+const texHz = (u) => (u >= 1000 ? fmt(u / 1000, u >= 10000 ? 1 : 2) + '\\ \\text{kHz}' : fmt(u, 0) + '\\ \\text{Hz}');
+const wires = (ctx, pts) => { for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], PAL.ink, 3.5); };
+/* An AC source: a circle with one cycle of a sinusoid drawn inside it. */
+function source(ctx, x, y, r) {
+  ctx.save(); ctx.strokeStyle = F.ref('source'); ctx.lineWidth = 3.5; ctx.fillStyle = PAL.panel;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.beginPath();
+  for (let i = 0; i <= 40; i++) {
+    const u = -0.62 * r + (1.24 * r * i) / 40, v = -0.42 * r * Math.sin((i / 40) * 2 * Math.PI);
+    if (i) ctx.lineTo(x + u, y + v); else ctx.moveTo(x + u, y + v);
+  }
+  ctx.stroke(); ctx.restore();
+}
+/* The three elements, each drawn in its referent colour on the wire it sits on,
+   centred at (x, y) and about 190 units long. */
+function inductor(ctx, x, y) {
+  ctx.save(); ctx.strokeStyle = F.ref('inductor'); ctx.lineWidth = 3.5; ctx.beginPath();
+  ctx.moveTo(x - 95, y); ctx.lineTo(x - 72, y);
+  for (let i = 0; i < 4; i++) ctx.arc(x - 54 + i * 36, y, 18, Math.PI, 0, false);
+  ctx.moveTo(x + 72, y); ctx.lineTo(x + 95, y);
+  ctx.stroke(); ctx.restore();
+}
+function capacitor(ctx, x, y, q) {
+  ctx.save(); ctx.strokeStyle = F.ref('capacitor'); ctx.lineWidth = 3.5;
+  ctx.beginPath(); ctx.moveTo(x - 95, y); ctx.lineTo(x - 15, y); ctx.moveTo(x + 15, y); ctx.lineTo(x + 95, y); ctx.stroke();
+  ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.moveTo(x - 15, y - 42); ctx.lineTo(x - 15, y + 42); ctx.moveTo(x + 15, y - 42); ctx.lineTo(x + 15, y + 42); ctx.stroke();
+  ctx.restore();
+  /* the charge the plates carry at this instant, written as the signs a charged
+     plate is drawn with and fading out as the capacitor discharges */
+  const n = Math.round(Math.abs(q) * 3), s = q >= 0 ? '+' : '−';
+  for (let i = 0; i < n; i++) {
+    const yy = y - 26 + i * 26;
+    text(ctx, s, x - 36, yy, PAL.muted, { size: 22, align: 'center' });
+    text(ctx, s === '+' ? '−' : '+', x + 36, yy, PAL.muted, { size: 22, align: 'center' });
+  }
+}
+function resistorBox(ctx, x, y) {
+  ctx.save(); ctx.strokeStyle = F.ref('resistor'); ctx.lineWidth = 3.5; ctx.fillStyle = PAL.panel;
+  ctx.beginPath(); ctx.moveTo(x - 95, y); ctx.lineTo(x - 66, y); ctx.stroke();
+  ctx.beginPath(); ctx.roundRect(x - 66, y - 26, 132, 52, 6); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x + 66, y); ctx.lineTo(x + 95, y); ctx.stroke();
+  ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 23.43 + 23.44 + 23.45: one element at a time on an AC source,
+   with the voltage across it and the current through it drawn together.
+   The three book figures are one scene drawn three times and the whole
+   content of the section's first half is the difference between them, so
+   they are folded into one figure with a choice of element. Moving: a
+   quarter-cycle lead cannot be seen in a still drawing without the reader
+   animating it in their head, which is the test of rule 24.3.
+   Both curves are drawn as fractions of their own peaks, because the peak
+   current runs over three decades as the sliders move while the peak
+   voltage does not move at all; each peak is written beside its curve and
+   in the readout, and the frame's range is fixed at −1.15 to 1.15.
+===================================================================== */
+(function () {
+  const H = 900;
+  const d = sim('sim-ac-phase', H);
+  const kind = select(d.controls, {   /* three elements in a row that stacks beside two sliders, so a dropdown (rule 26.1) */
+    label: '\\text{接在电源上的元件}',
+    options: [{ value: 'L', label: '电感器' }, { value: 'C', label: '电容器' }, { value: 'R', label: '电阻器' }],
+    value: 'L', aria: '交流电源上接的是哪种元件',
+    onInput: () => show(),
+  });
+  const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 20, max: 2000, step: 10, value: 60, unit: 'Hz', dec: 0, aria: '交流电压源的频率' });
+  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 0.5, max: 10, step: 0.1, value: 3, unit: 'mH', dec: 2, aria: '电感器的电感' });
+  const lRow = d.controls.lastElementChild;
+  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 0.5, max: 20, step: 0.1, value: 5, unit: 'µF', dec: 2, aria: '电容器的电容' });
+  const cRow = d.controls.lastElementChild;
+  const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 1, max: 200, step: 1, value: 20, unit: 'Ω', dec: 0, aria: '电阻器的电阻' });
+  const rRow = d.controls.lastElementChild;
+  /* only the value slider of the element that is on the source is shown; the other
+     two would be controls with nothing in the figure to answer them (rule 24.6) */
+  const show = () => [[lRow, 'L'], [cRow, 'C'], [rRow, 'R']].forEach(([row, k]) => { row.style.display = kind.value === k ? '' : 'none'; });
+  show();
+  /* One loop is two periods of the source in five real seconds, whatever the
+     frequency, so the shape stays legible from 20 Hz to 2 kHz. */
+  const cy = cycle(() => 2, 0.6);
+  const BOX = { l: 250, r: 1230, t: 560, b: 830 };
+  /* a change of element slides the current a quarter cycle along against the voltage, and the
+     readout rewrites itself by meaning: 2π and f keep their places, while X_L, X_C and R are
+     three different quantities and cross-fade where they stand */
+  const { formula: eqHost, note: small } = F.readout(d);
+  const reactance = (m, f) => (m === 'L' ? 2 * Math.PI * f * (lS.v * 1e-3) : m === 'C' ? 1 / (2 * Math.PI * f * (cS.v * 1e-6)) : rS.v);
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = fS.v, T = 1 / f, mode = kind.value;
+    const X_ = reactance(mode, f);
+    const Irms = VRMS / X_, I0 = Irms * Math.SQRT2;
+    const cV = C('voltage'), cI = C('current'), cR = C('resistance'), cT = C('time'), cF = C('frequency');
+    /* θ is the phase of the source in cycles; the voltage is a cosine of it and the
+       current is a quarter cycle behind it in an inductor and a quarter cycle ahead
+       of it in a capacitor, which is what the book's three graphs show */
+    const lead = kind.mix((m) => (m === 'L' ? -0.25 : m === 'C' ? 0.25 : 0));
+    const vf = (u) => Math.cos(2 * Math.PI * u);
+    const iff = (u) => Math.cos(2 * Math.PI * (u + lead));
+    const now = cy.now();                    /* 0 to 2, in periods */
+
+    /* ---- the circuit ---- */
+    const y0 = 214, y1 = 440, xl = 330, xr = 1080;
+    wires(ctx, [[xl, y0], [xr, y0]]);
+    wires(ctx, [[xl, y0], [xl, y1], [xr, y1], [xr, y0]]);
+    source(ctx, xl, (y0 + y1) / 2, 54);
+    text(ctx, '交流电源', xl - 76, (y0 + y1) / 2 - 24, F.ref('source'), { size: 21, align: 'right', bg: PAL.panel });
+    text(ctx, fmt(VRMS, 0) + ' V 方均根值', xl - 76, (y0 + y1) / 2 + 12, cV, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, fHz(f), xl - 76, (y0 + y1) / 2 + 48, cF, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
+    const ex = 760;
+    /* the element on the source, one fading out where it stands as the next arrives */
+    ['L', 'C', 'R'].forEach((m) => {
+      const a = kind.a(m);
+      if (a <= 0) return;
+      ctx.save(); ctx.globalAlpha = a;
+      if (m === 'L') inductor(ctx, ex, y0);
+      else if (m === 'C') capacitor(ctx, ex, y0, Math.cos(2 * Math.PI * now));
+      else resistorBox(ctx, ex, y0);
+      const name = m === 'L' ? '电感器' : m === 'C' ? '电容器' : '电阻器';
+      const val = m === 'L' ? fmt(lS.v, 2) + ' mH' : m === 'C' ? fmt(cS.v, 2) + ' µF' : fmt(rS.v, 0) + ' Ω';
+      const sym = m === 'L' ? 'X_L = ' : m === 'C' ? 'X_C = ' : 'R = ';
+      text(ctx, name + '，' + val, ex, y0 - 86, F.ref(m === 'L' ? 'inductor' : m === 'C' ? 'capacitor' : 'resistor'), { size: 21, align: 'center', bg: PAL.panel });
+      text(ctx, sym + big(reactance(m, f), 'Ω'), ex, y0 - 50, cR, { size: 23, weight: 600, align: 'center', bg: PAL.panel });
+      ctx.restore();
+    });
+    /* the voltage across the element at this instant, bracketed above it */
+    const vNow = V0 * vf(now), iNow = I0 * iff(now);
+    text(ctx, 'v = ' + fmt(vNow, 1) + ' V', ex, y0 + 58, cV, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    /* the current in the return wire, an arrow that turns round with its sign */
+    const L = 40 + 90 * Math.min(1, Math.abs(iff(now)));
+    const dir = iNow >= 0 ? 1 : -1;
+    if (Math.abs(iff(now)) > 0.02) arrow(ctx, 560 + dir * L / 2, y1, 560 - dir * L / 2, y1, cI, 5);
+    else dot(ctx, 560, y1, cI, false, 9);
+    text(ctx, Math.abs(iff(now)) > 0.02 ? 'i = ' + big(Math.abs(iNow), 'A') + (dir > 0 ? '，沿箭头方向' : '，沿相反方向') : '电流正经过零',
+      560, y1 - 36, cI, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+
+    /* ---- the two curves, each as a fraction of its own peak ---- */
+    const { X, Y } = axes(ctx, BOX, [0, 2], [-1.15, 1.15], {
+      xl: '时间 t，以周期 T = 1/f 为单位', xc: cT, yl: '各占其自身峰值的比例', yc: PAL.ink,
+      nx: 4, ny: 2, fx: (u) => (u === 0 ? '0' : fmt(u, 1) + 'T'), fy: (u) => fmt(u, 1),
+    });
+    curve(ctx, vf, 0, 2, X, Y, cV, 5, 260);
+    /* the current is dashed throughout, so that a resistor, where the two curves
+       lie exactly on top of each other, still shows both, and so that the two are
+       told apart with the colour turned off */
+    ctx.save(); ctx.setLineDash([14, 10]); curve(ctx, iff, 0, 2, X, Y, cI, 5, 260); ctx.restore();
+    /* the key sits under the axis, where no curve reaches */
+    const kv = '电压，峰值 ' + fmt(V0, 0) + ' V';
+    text(ctx, kv, BOX.l, BOX.b + 54, cV, { size: 21, weight: 600, align: 'left' });
+    text(ctx, '电流，虚线，峰值 ' + big(I0, 'A'), BOX.l + F.measure(ctx, kv, { size: 21, weight: 600 }) + 36, BOX.b + 54, cI, { size: 21, weight: 600, align: 'left' });
+    line(ctx, X(now), BOX.t, X(now), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    pinned(ctx, BOX, X, Y, now, vf(now), cV);
+    pinned(ctx, BOX, X, Y, now, iff(now), cI);
+    /* the quarter cycle between the two peaks, bracketed where the book marks its
+       points a to d; a resistor has no gap to bracket and is told so instead */
+    const gap = Math.abs(lead) > 0.01;
+    if (gap && lead < 0) hbracket(ctx, X(1), X(1 - lead), Y(1) - 46, alpha(cT, Math.min(1, -lead * 4)), '四分之一个周期', { side: 'above', H });
+    else if (gap) hbracket(ctx, X(1 - lead), X(1), Y(1) - 46, alpha(cT, Math.min(1, lead * 4)), '四分之一个周期', { side: 'above', H });
+    if (kind.a('R') > 0) text(ctx, '在每个频率下两者同时达到峰值', BOX.r, 536, alpha(PAL.muted, kind.a('R')), { size: 20, align: 'right', bg: PAL.panel });
+
+    topline(ctx, mode === 'L'
+      ? '一个 ' + fmt(lS.v, 2) + ' mH 电感器在 ' + fHz(f) + ' 时，感抗为 ' + big(X_, 'Ω') + '，方均根电流为 ' + big(Irms, 'A') + '，电流在电压之后四分之一个周期达到峰值。'
+      : mode === 'C'
+        ? '一个 ' + fmt(cS.v, 2) + ' µF 电容器在 ' + fHz(f) + ' 时，容抗为 ' + big(X_, 'Ω') + '，方均根电流为 ' + big(Irms, 'A') + '，电流在电压之前四分之一个周期达到峰值。'
+        : '一个 ' + fmt(rS.v, 0) + ' Ω 电阻器在 ' + fHz(f) + ' 时，方均根电流为 ' + big(Irms, 'A') + '，电压和电流恰好一同起伏。');
+    const fv = `(\\mk{fv}{${texHz(f)}})`;
+    F.morph(eqHost, mode === 'L'
+      ? `\\mk{XL}{\\kXL} = \\mk{tp}{2\\pi} \\mk{f}{\\kf}\\mk{L}{\\kLind} = \\mk{tp2}{2\\pi}${fv}(\\mk{Lv}{${fmt(lS.v, 2)}}\\ \\text{mH}) = \\mk{rL}{${ohmTex(X_)}}`
+      : mode === 'C'
+        ? `\\mk{XC}{\\kXC} = \\dfrac{1}{\\mk{tp}{2\\pi} \\mk{f}{\\kf}\\mk{C}{\\kCap}} = \\dfrac{1}{\\mk{tp2}{2\\pi}${fv}(\\mk{Cv}{${fmt(cS.v, 2)}}\\ \\mu\\text{F})} = \\mk{rC}{${ohmTex(X_)}}`
+        : `\\mk{R}{\\kRes} = \\mk{Rv}{${fmt(rS.v, 0)}}\\ \\Omega`);
+    small.textContent = (mode === 'R' ? '无论频率如何，电阻都相同。' : '') + '这种形式的欧姆定律给出方均根电流 ' + big(Irms, 'A') + '，所用的是元件两端 ' + fmt(VRMS, 0) + ' V 的方均根电压，电源的一个周期为 ' + (T >= 0.01 ? fmt(T * 1000, 1) + ' ms' : fmt(T * 1e6, 0) + ' µs') + '。';
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
+})();
+
+/* =====================================================================
+   SIM: the two reactances against frequency, over the four decades that
+   carry both worked examples, with the current each element passes at
+   120 V drawn above the frame. The section computes two points of each
+   curve and asks the reader to conclude the shape of both; here the two
+   are drawn together, they cross, and the crossing is where the inductor
+   and the capacitor offer the same number of ohms. Still: a reactance is
+   an rms quantity with the time already averaged out of it, so the figure
+   answers its sliders and registers no cycle (rule 14). Both axes are
+   logarithmic and fixed: 10 Hz to 100 kHz across, and 0.01 Ω to 100 kΩ up,
+   which holds every setting of the two element sliders.
+===================================================================== */
+(function () {
+  const H = 860;
+  const d = sim('sim-reactance-against-frequency', H);
+  const fS = ctl(d.controls, {
+    label: '\\kf', cls: 'frequency', min: 60, max: 10000, step: 20, value: 60, unit: 'Hz', dec: 0,
+    aria: '交流电压源的频率',
+    detents: [{ v: 60, label: '60 Hz' }, { v: 10000, label: '10 kHz' }],
+  });
+  const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 0.5, max: 10, step: 0.1, value: 3, unit: 'mH', dec: 2, aria: '电感器的电感' });
+  const cS = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 0.5, max: 20, step: 0.1, value: 5, unit: 'µF', dec: 2, aria: '电容器的电容' });
+  const BOX = { l: 250, r: 1230, t: 420, b: 790 };
+  const LG = Math.log10;
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const f = fS.v, Lh = lS.v * 1e-3, Cf = cS.v * 1e-6;
+    const XL = (u) => 2 * Math.PI * u * Lh, XC = (u) => 1 / (2 * Math.PI * u * Cf);
+    const xl = XL(f), xc = XC(f), il = VRMS / xl, ic = VRMS / xc;
+    const fCross = 1 / (2 * Math.PI * Math.sqrt(Lh * Cf));       /* where the two lines meet */
+    const cI = C('current'), cR = C('resistance'), cF = C('frequency');
+
+    /* ---- the strip: the two elements and the current each passes at 120 V ---- */
+    const bar = (x, y, amps, label, id) => {
+      /* the arrow runs on the same logarithmic scale as the frame below, a
+         hundredth of an amp at nothing and a thousand amps at its full length */
+      const u = Math.min(1, Math.max(0, (LG(Math.max(amps, 1e-3)) + 3) / 6));
+      arrow(ctx, x, y, x + 40 + 300 * u, y, cI, 5);
+      text(ctx, label, x - 16, y - 34, id ? F.ref(id) : PAL.ink, { size: 21, align: 'right', bg: PAL.panel });
+      text(ctx, big(amps, 'A'), x - 16, y + 6, cI, { size: 23, weight: 600, align: 'right', bg: PAL.panel });
+    };
+    inductor(ctx, 300, 210);
+    text(ctx, fmt(lS.v, 2) + ' mH', 300, 262, C('inductance'), { size: 20, align: 'center' });
+    bar(430, 210, il, '电感器通过', 'inductor');
+    capacitor(ctx, 880, 210, 0);
+    text(ctx, fmt(cS.v, 2) + ' µF', 880, 268, C('capacitance'), { size: 20, align: 'center' });
+    bar(1010, 210, ic, '电容器通过', 'capacitor');
+    text(ctx, '各自单独加在 ' + fmt(VRMS, 0) + ' V 方均根值、' + fHz(f) + ' 下，电流采用对数标度',
+      700, 320, PAL.muted, { size: 19, align: 'center' });
+
+    /* ---- the frame: both reactances against frequency, logarithmic both ways ---- */
+    const { X, Y } = axes(ctx, BOX, [1, 5], [-2, 5], {
+      xl: '频率 f (Hz)', xc: cF, yl: '电抗 (Ω)', yc: cR, nx: 4, ny: 7,
+      fx: (u) => (u >= 3 ? fmt(Math.pow(10, u - 3), 0) + ' k' : fmt(Math.pow(10, u), 0)),
+      fy: (u) => (u >= 3 ? fmt(Math.pow(10, u - 3), 0) + ' k' : u >= 0 ? fmt(Math.pow(10, u), 0) : fmt(Math.pow(10, u), -u > 1 ? 2 : 1)),
+    });
+    ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
+    const cLi = F.ref('inductor'), cCa = F.ref('capacitor');
+    curve(ctx, (u) => LG(XL(Math.pow(10, u))), 1, 5, X, Y, cLi, 5, 60);
+    curve(ctx, (u) => LG(XC(Math.pow(10, u))), 1, 5, X, Y, cCa, 5, 60);
+    ctx.restore();
+    /* one curve for each element, so each wears its element's referent colour and is named on itself */
+    text(ctx, 'X_L = 2πfL，电感器', X(4.55), Y(LG(XL(Math.pow(10, 4.55)))) - 26, cLi, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'X_C = 1/2πfC，电容器', X(1.45), Y(LG(XC(Math.pow(10, 1.45)))) - 26, cCa, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
+    if (fCross > 10 && fCross < 1e5) {
+      dot(ctx, X(LG(fCross)), Y(LG(XL(fCross))), cR, false, 11);
+      text(ctx, '两者相交于 ' + fHz(fCross),
+        X(LG(fCross)), Y(LG(XL(fCross))) + 34, cR, { size: 20, align: 'center', bg: PAL.panel });
+    }
+    line(ctx, X(LG(f)), BOX.t, X(LG(f)), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    pinned(ctx, BOX, X, Y, LG(f), LG(xl), cLi, big(xl, 'Ω'));
+    pinned(ctx, BOX, X, Y, LG(f), LG(xc), cCa, big(xc, 'Ω'));
+
+    topline(ctx, '在 ' + fHz(f) + ' 时，' + fmt(lS.v, 2) + ' mH 电感器的电抗为 ' + big(xl, 'Ω') + '，通过 ' + big(il, 'A')
+      + '；而 ' + fmt(cS.v, 2) + ' µF 电容器的电抗为 ' + big(xc, 'Ω') + '，通过 ' + big(ic, 'A') + '。');
+    readout(d.readout,
+      `\\kXL = 2\\pi \\kf\\kLind = 2\\pi(${texHz(f)})(${fmt(lS.v, 2)}\\ \\text{mH}) = ${ohmTex(xl)}`,
+      '在同一频率下，电容器的电抗为 $\\kXC = 1/2\\pi\\kf\\kCap$ = ' + big(xc, 'Ω') + '。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

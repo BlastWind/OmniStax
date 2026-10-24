@@ -1,0 +1,1563 @@
+{
+ "id": "17.5",
+ "module": "m42296",
+ "chapter": "17",
+ "title": "声波的干涉与共振：气柱中的驻波",
+ "short": "声波的干涉与共振",
+ "lead": "声音是一种波，所以相遇的两个声音会相加和相减，降噪耳机正是这样消除外界噪声的。沿管送出的一个声音会返回并与自身相遇，只有某些<span data-concept=\"frequency\">频率</span>会同步返回；这些就是气柱所发出的音。",
+ "objectives": [
+  "定义波腹、波节、基频、泛音和谐波。",
+  "识别日常情境中的声波干涉实例。",
+  "描述在开管和闭管内发生的声波干涉如何改变声音的特性，以及这如何应用于乐器发出的声音。",
+  "利用声波的测量结果计算管的长度。"
+ ],
+ "summary_html": "<ul><li>声波的干涉与共振具有与所有波的定义相同的性质。</li><li>在气柱中，频率最低的共振称为基频，而所有更高的<span data-concept=\"natural-frequency\">共振频率</span>称为泛音。它们统称为谐波。</li><li>一端封闭的管的<span data-concept=\"natural-frequency\">共振频率</span>为：$\\kfn = n\\frac{\\kvw}{4L}\\text{,}n = 1, 3, 5\\text{.}\\text{.}\\text{.,}$ $\\kfone$ 是基频，$L$ 是管的<span data-concept=\"length\">长度</span>。</li><li>两端开口的管的<span data-concept=\"natural-frequency\">共振频率</span>为：$\\kfn = n\\frac{\\kvw}{2L}\\text{,}n = 1, 2, 3\\text{.}\\text{.}\\text{.}$</li></ul>",
+ "figures": [
+  {
+   "id": "sim-noise-cancelling",
+   "kind": "sim",
+   "number": "17.21",
+   "originals": [
+    "/media/ch17/Figure_18_05_02a.jpg"
+   ],
+   "original_caption": "用相消干涉来消除噪声的耳机，会产生一个与传入声音恰好相反的声波。这种耳机可以比大多数护耳装置所用的简单被动衰减更有效。这样的耳机曾用于创造纪录的“旅行者号”飞机不着陆环球飞行，以保护飞行员的听力不受发动机噪声的伤害。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "pressure",
+    "position",
+    "frequency",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend above the box, sum legend dropped; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tube-resonance",
+   "kind": "sim",
+   "number": "17.22",
+   "folds": [
+    "17.23",
+    "17.24",
+    "17.25",
+    "17.26"
+   ],
+   "originals": [
+    "/media/ch17/Figure_18_05_03aa.jpg",
+    "/media/ch17/Figure_18_05_03ab.jpg",
+    "/media/ch17/Figure_18_05_03ac.jpg",
+    "/media/ch17/Figure_18_05_03ad.jpg",
+    "/media/ch17/Figure_18_05_04ab.jpg"
+   ],
+   "original_caption": "音叉引起的、一端封闭的管中空气的共振。（图 17.22）一个扰动沿管传下去。（图 17.23）扰动在管的封闭端反射。（图 17.24）如果管的长度 L 恰好合适，扰动就在半个周期之后回到音叉处，并与音叉持续发出的声音发生相长干涉。这种干涉形成驻波，气柱发生共振。（图 17.25）空气位移沿管长度的图像显示，在运动受到限制的封闭端没有位移，而在开口端位移最大。这个驻波在管中有四分之一个波长，因此 λ = 4L。（图 17.26）在靠近管封闭端处引入的振动，也会在管中产生同样的驻波。",
+   "widths": [
+    250,
+    250,
+    250,
+    250,
+    350
+   ],
+   "draws": [
+    "position",
+    "frequency",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note no longer repeats the headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-vocal-tract",
+   "kind": "photo",
+   "number": "17.29",
+   "widths": [
+    450
+   ]
+  },
+  {
+   "id": "sim-harmonic-ladder",
+   "kind": "sim",
+   "number": "17.27",
+   "folds": [
+    "17.28",
+    "17.30"
+   ],
+   "originals": [
+    "/media/ch17/Figure_18_05_05aa.jpg",
+    "/media/ch17/CNX_HSPhysics_14_04_ClosedOver.jpg",
+    "/media/ch17/Figure_18_05_08a.jpg"
+   ],
+   "original_caption": "（图 17.27）一端封闭的管的另一种共振。它在开口端有最大的空气位移，在封闭端没有。波长较短，四分之三个 λ′ 等于管的长度，因此 λ′ = 4L/3。这种频率较高的振动是第一泛音。（图 17.28）一端封闭的管的基频和最低的三个泛音。它们在开口端都有最大的空气位移，在封闭端都没有。（图 17.30）图中给出了两端开口的管的共振频率，包括基频和前三个泛音。在所有情形中，最大的空气位移都出现在管的两端，这使它的固有频率不同于一端封闭的管。",
+   "widths": [
+    200,
+    550,
+    600
+   ],
+   "draws": [
+    "position",
+    "frequency",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "unpicked rung labels made readable"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tube-length",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "velocity",
+    "temperature",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-sounding-boxes",
+   "kind": "photo",
+   "number": "17.31",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "fig-marimba",
+   "kind": "photo",
+   "number": "17.32",
+   "widths": [
+    300
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "interference",
+   "concept": "sound-interference",
+   "verb": "introduces"
+  },
+  {
+   "span": "interference",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "interference",
+   "concept": "constructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "interference",
+   "concept": "destructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "interference",
+   "concept": "beats",
+   "verb": "uses"
+  },
+  {
+   "span": "interference",
+   "concept": "sound-intensity-level",
+   "verb": "uses"
+  },
+  {
+   "span": "air-column-resonance",
+   "concept": "air-column-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "air-column-resonance",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "air-column-resonance",
+   "concept": "standing-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "air-column-resonance",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "nodes-antinodes",
+   "concept": "nodes-and-antinodes",
+   "verb": "introduces"
+  },
+  {
+   "span": "nodes-antinodes",
+   "concept": "nodes-and-antinodes-on-a-string",
+   "verb": "uses"
+  },
+  {
+   "span": "nodes-antinodes",
+   "concept": "air-column-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "nodes-antinodes",
+   "concept": "antinode",
+   "verb": "introduces"
+  },
+  {
+   "span": "nodes-antinodes",
+   "concept": "node",
+   "verb": "introduces"
+  },
+  {
+   "span": "overtones",
+   "concept": "fundamental-and-overtones",
+   "verb": "introduces"
+  },
+  {
+   "span": "overtones",
+   "concept": "string-harmonics",
+   "verb": "uses"
+  },
+  {
+   "span": "overtones",
+   "concept": "nodes-and-antinodes",
+   "verb": "uses"
+  },
+  {
+   "span": "overtones",
+   "concept": "fundamental",
+   "verb": "introduces"
+  },
+  {
+   "span": "overtones",
+   "concept": "overtones",
+   "verb": "introduces"
+  },
+  {
+   "span": "overtones",
+   "concept": "harmonics",
+   "verb": "introduces"
+  },
+  {
+   "span": "closed-tube",
+   "concept": "closed-tube-resonances",
+   "verb": "introduces"
+  },
+  {
+   "span": "closed-tube",
+   "concept": "tube-length-from-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "closed-tube",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "closed-tube",
+   "concept": "speed-of-sound-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "closed-tube",
+   "concept": "fundamental-and-overtones",
+   "verb": "uses"
+  },
+  {
+   "span": "open-tube",
+   "concept": "open-tube-resonances",
+   "verb": "introduces"
+  },
+  {
+   "span": "open-tube",
+   "concept": "nodes-and-antinodes",
+   "verb": "uses"
+  },
+  {
+   "span": "open-tube",
+   "concept": "fundamental-and-overtones",
+   "verb": "uses"
+  },
+  {
+   "span": "open-tube",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "sounding-boxes",
+   "concept": "sounding-box-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "sounding-boxes",
+   "concept": "string-harmonics",
+   "verb": "uses"
+  },
+  {
+   "span": "sounding-boxes",
+   "concept": "air-column-resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sounding-boxes",
+   "concept": "fundamental-and-overtones",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1841930",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "interference"
+   },
+   "cite": "interference",
+   "prompt": "说明降噪耳机与用来阻挡外界声音的普通耳机有何不同。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "普通耳机只是用物理屏障阻挡声波。降噪耳机则利用相消干涉来降低外界声音的响度。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id2714920",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "nodes-antinodes"
+   },
+   "cite": "nodes-antinodes",
+   "prompt": "如何利用驻波的波节和波腹来确定一端封闭的管的长度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "当管以其固有频率共振时，波的波节位于管的封闭端，波腹位于开口端。管的长度等于这个波的波长的四分之一。因此，如果知道波的波长，就能确定管的长度。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1820207",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference",
+   "prompt": "一个常见的误解是，沿相反方向传播的两个波脉冲会相互反射。请概述你会用什么步骤来使别人相信，这两个波脉冲并不会相互反射，而是相互穿过。你可以用草图来表示你的理解。务必不仅提供证据来驳斥原来的说法，也要提供证据来支持你自己的说法。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沿一根拉紧的弹簧让两个脉冲相向而行，并标出每个脉冲出发的位置。如果脉冲发生了反射，每个脉冲都会返回它来的那一侧，从左边出发的脉冲就永远不会在右边出现。在三个时刻画出弹簧的草图：脉冲相遇之前、重叠期间和相遇之后。重叠期间，弹簧呈现出一个单一的形状，它是两个脉冲之和；两个脉冲分开之后，每个脉冲都带着先前的大小、形状和方向继续前进，这是反射所不可能产生的。声音给出同样的证据：两个人可以同时隔着房间交谈，而各自的话都能听得清楚，因为声波是相互穿过，而不是相互弹开的。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2716578",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference",
+   "figure": {
+    "src": "/media/ch17/CNX_APPhysics_17_M5_wavese1_img.jpg",
+    "alt": "两个大小相同、相位相反、都只有一个完整周期的正弦波正相向靠近。"
+   },
+   "prompt": "如下图所示，两个波脉冲在一根绳上相向传播。下列哪个图示正确地显示了两个脉冲重叠时的绳？<p>(a) <img src=\"/media/ch17/CNX_APPhysics_17_M5_wavese1a_img.jpg\" alt=\"一个与那两个波大小相同的正弦波，显示出一个半周期。\" width=\"80\"></p><p>(b) <img src=\"/media/ch17/CNX_APPhysics_17_M5_wavese1b_img.jpg\" alt=\"把两个正弦波在它们刚接触的点处连接起来形成的形状。\" width=\"80\"></p><p>(c) <img src=\"/media/ch17/CNX_APPhysics_17_M5_wavese1c_img.jpg\" alt=\"深蓝色的纯色背景，右侧有一道若隐若现的、较浅的蓝色竖向渐变，营造出轻微的纵深感。\" width=\"80\"></p><p>(d) <img src=\"/media/ch17/CNX_APPhysics_17_M5_wavese1d_img.jpg\" alt=\"一个大小为那两个波两倍、相位与其中一个波相同的正弦波。\" width=\"80\"></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（c），平直的绳。两个脉冲重叠处，绳的位移是每个脉冲单独引起的位移之和。从左边来的脉冲先升到波峰，再落到波谷；从右边来的脉冲大小和形状相同，但上下颠倒，先是波谷，后是波峰。当它们恰好完全重合时，一个脉冲抬起的每一点，另一个脉冲都以相同的量把它拉下来，所以各处的和为零，绳在这一时刻是平直的。这是两个振幅相等的扰动的相消干涉。选项（d），即加倍的波，是两个相同的脉冲的结果，而（a）和（b）是把两个形状首尾相接，而不是逐点相加。重叠的时刻过去之后，每个脉冲都保持原样继续前进。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1269390",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference",
+   "prompt": "一名学生沿一根一端系住的绳送出一个振幅为 <em>A</em> 的横波脉冲。当这个脉冲返回学生时，又沿绳的另一侧送出第二个振幅为 3<em>A</em> 的脉冲。两个脉冲相互作用时，所得的振幅是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "4<em>A</em>",
+     "<em>A</em>",
+     "2<em>A</em>，在原来的波脉冲一侧",
+     "2<em>A</em>，在第二个波脉冲一侧"
+    ],
+    "correct": 3,
+    "hint": "两个脉冲在绳的相反两侧，所以一个位移为正之处，另一个为负。把它们当作普通的数相加，看剩下的是哪个符号。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1334775",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference",
+   "prompt": "一名学生想用两个声源演示相消干涉。请说明这名学生可以如何布置这个演示，以及需要对声源施加哪些限制。在你的说明中，务必同时考虑空间的布局和所产生的声音。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用同一台信号发生器驱动两个扬声器，使它们发出同一个单一频率并保持同步，再让它们朝向一片几乎没有东西反射声音的开阔空间。两个声音必须频率相同、振幅几乎相同，否则一个声音的极大值永远不能抵消另一个的极小值。沿着扬声器前方几米处的一条直线慢慢走动：在从一个扬声器传来的路程比从另一个扬声器传来的路程长半个波长的地方，两个声音到达时恰好反相，声音几乎减弱到听不见，而在这些地方的正中间，声音则很响。低频使安静的位置相隔足够远，可以在它们之间舒适地走动，因为这时波长有一米或更多。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2321093",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "overtones",
+   "prompt": "一名学生有节奏地抖动一根系在木板上的柔软细绳。下列哪些做法会减小绳中的波长？<ol><li>学生可以用更高的频率来回摆动她的手。</li><li>学生可以用更大的振幅来回摆动她的手。</li><li>学生可以向后退离木板，以增大绳中的张力。</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "仅 I",
+     "I 和 II",
+     "I 和 III",
+     "II 和 III",
+     "I、II 和 III"
+    ],
+    "correct": 2,
+    "hint": "波长等于波速除以频率。问一问这三种做法中，哪一种改变绳上波的速率，哪一种改变频率，哪一种两者都不改变。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1891704",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference",
+   "figure": {
+    "src": "/media/ch17/CNX_APPhysics_17_M5_rippletnk_img.jpg",
+    "alt": "一个圆角矩形，靠近上边有两个对称间隔的点，分别标为 L1 和 L2。"
+   },
+   "prompt": "一个水波槽有两个位置（L1 和 L2），它们如下图所示同步振动。L1 和 L2 都在垂直于纸面的平面内振动，产生二维干涉图样。请描述一个实验步骤，用来确定水中所产生的波的速率，并列出你需要的所有额外设备。你可以借助下面的示意图来描述，也可以自己画一幅。请写得足够详细，使另一名学生能够做你的实验。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你需要一把米尺、一块秒表，以及驱动两个波源的频率，这个频率由信号发生器读出。让波源以已知的频率振动，并等图样稳定下来。把米尺横放在水槽上，量出从一个波峰到几个波长之外的波峰的距离，再除以你数出的波长个数；跨过许多个波长而不是一个来测量，可以使误差保持很小。波速就等于频率乘以这个波长。在三四个频率下重复：频率升高时波长应当缩短，而乘积保持不变，这就是检验你得到的确是波的速率、而不是数错了的办法。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1649301",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nodes-antinodes",
+   "figure": {
+    "src": "/media/ch17/CNX_APPhysics_17_M5_strngosc_img.jpg",
+    "alt": "图中显示在两根柱子之间振动的一根弦上有一个驻波，含有一个完整的波长。"
+   },
+   "prompt": "如上图所示，一根弦在两根柱子之间振动。学生们要确定这根弦中波的速率。他们已经测出了波上下振动一次所需的时间。为了确定波的速率，学生们还必须进行哪些其他测量？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "两根柱子之间的距离。",
+     "波的振幅",
+     "弦中的张力",
+     "波的振幅和弦中的张力",
+     "两根柱子之间的距离、波的振幅以及弦中的张力"
+    ],
+    "correct": 0,
+    "hint": "速率等于波长除以周期，而周期他们已经有了。数一数图中两根柱子之间容得下几个波长。"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1182208",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "prompt": "公认的室温空气中的声速是 346 m/s。得知学校比平时冷，一组学生被要求测定他们房间里的声速。他们可以使用任何必要的材料；但是，他们的实验步骤必须利用驻波图样。学生们收集到下面的信息。<table class=\"data\"><tr><th>试验序号</th><th>波长 (m)</th><th>频率 (Hz)</th><th></th></tr><tr><td>1</td><td>3.45</td><td>95</td><td></td></tr><tr><td>2</td><td>2.32</td><td>135</td><td></td></tr><tr><td>3</td><td>1.70</td><td>190</td><td></td></tr><tr><td>4</td><td>1.45</td><td>240</td><td></td></tr><tr><td>5</td><td>1.08</td><td>305</td><td></td></tr></table>（a）描述这组学生可能用来获得这些数据的实验步骤。请包括实验装置的示意图和过程中用到的所有设备。<br>（b）从表中选取一组数据点，并把这些点画在图上，以确定教室里的声速。对于你画图所用的、除所给数据之外的任何量，把它填入表中的空白一栏。标出坐标轴，并指明每个坐标轴的标度。<br>（c）利用图中的信息，确定学生所在教室里的声速，并说明图的哪一特征提供了这一证据。<br>（d）确定教室的温度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）把一根长管竖直放入一个盛水的高圆筒中，使水封住管的下端，并在管的开口端上方持一支已知频率的发声音叉。缓慢提起管子，使气柱变长。在声音第一次增强的长度处，气柱以其基频共振，对于一端封闭的管，这时管中容纳四分之一个波长，所以 $\\klam = 4\\kLlen$。用米尺量出这个长度，并用 95、135、190、240 和 305 Hz 的音叉重复；所需的最长气柱是 $3.45\\ \\text{m}/4 = 0.86\\ \\text{m}$。（b）由于 $\\kvw = \\kf\\klam$，波长与 $1/\\kf$ 成正比，而不是与 $\\kf$ 成正比，所以在空白一栏中填入 $1/\\kf$：0.01053 s、0.00741 s、0.00526 s、0.00417 s 和 0.00328 s。以米为单位的 $\\klam$ 作纵轴，范围 0 到 4 m，每格 0.5 m；以秒为单位的 $1/\\kf$ 作横轴，范围 0 到 0.012 s，每格 0.002 s，作图。（c）声速约为 327 m/s。这些点落在一条过原点的直线附近，这条直线的斜率为 $\\klam/(1/\\kf) = \\kf\\klam = \\kvw$。过试验 1 和 5（相距最远的两点）的直线，斜率为 $(3.45\\ \\text{m} - 1.08\\ \\text{m})/(0.01053\\ \\text{s} - 0.00328\\ \\text{s}) = 327\\ \\text{m/s}$。试验 2 和 4 分布在它的两侧，分别为 313 m/s 和 348 m/s，所以过原点的直线就是证据，而散布是测量误差。（d）由 $\\kvw = (331\\ \\text{m/s})\\sqrt{\\kTemp/273\\ \\text{K}}$，得 $\\kTemp = (273\\ \\text{K})(327/331)^2 = 266\\ \\text{K}$，即 $-7^\\circ\\text{C}$，远低于室温。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id2598783",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "prompt": "一根管一端开口。如果基频 <em>f</em> 由波长 <em>λ</em> 产生，那么下列哪一项描述了与该管的第四泛音相联系的频率和波长？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "4<em>f</em> 和 <em>λ</em>/4",
+     "4<em>f</em> 和 <em>λ</em>",
+     "9<em>f</em> 和 <em>λ</em>/9",
+     "9<em>f</em> 和 <em>λ</em>"
+    ],
+    "correct": 2,
+    "hint": "一端封闭的管只发出奇次谐波，所以数一数：基频、第一泛音、第二泛音、第三泛音、第四泛音。然后记住，波长等于波速除以频率。"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1175049",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-tube",
+   "prompt": "一组学生的任务是收集有关驻波的信息。下表给出了他们的一系列数据，显示了气柱的长度，以及敲击气柱时出现的一个共振频率。<table class=\"data\"><tr><th>长度 (m)</th><th>共振频率 (Hz)</th></tr><tr><td>1</td><td>85.75</td></tr><tr><td>2</td><td>43</td></tr><tr><td>3</td><td>29</td></tr><tr><td>4</td><td>21.5</td></tr></table>（a）根据他们的数据，判断这个气柱的每一端是开口的还是封闭的。<br>（b）预测气柱长度为 2.5 米时的共振频率。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）每一行的频率乘以长度都相同：85.75 Hz × 1 m = 85.75 m/s，43 Hz × 2 m = 86 m/s，依此类推。对于两端开口的管，基频是 v/2L，所以乘积会是 v/2，得到 v = 172 m/s；对于一端封闭的管，基频是 v/4L，得到 v = 343 m/s。只有第二个是空气中的声速，所以这个气柱是一端封闭的。（b）乘积保持不变，所以 f = 85.75 m/s ÷ 2.5 m = 34.3 Hz。"
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id2028864",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "prompt": "当一名学生对着盛有半杯水的玻璃杯口吹气时，杯中剩下的气柱内会产生一个共振频率。下列哪些做法能使学生提高这个共振频率？<ol><li>往杯里再加些水。</li><li>用密度更大的流体代替水。</li><li>提高房间的温度。</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "仅 I",
+     "I 和 III",
+     "II 和 III",
+     "以上全部"
+    ],
+    "correct": 1,
+    "hint": "共振频率等于气柱中的声速除以气柱长度的四倍。问一问这三种做法中，哪些会缩短气柱，哪些会改变空气中的声速。"
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "eip-781",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "air-column-resonance",
+   "prompt": "一名学生决定用一把木尺测试木头中的声速。学生把尺子放在桌上，使其一半长度伸出桌沿。然后学生用一只手按住一端，用另一只手敲击伸出的那一端，发出一个乐音，并数尺子的振动次数。请解释为什么这名学生用这种方法不能测出木头中的声速。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "敲击伸出的尺端会产生横波，而不是声波。任何可测量的、听得见的声音，都来自尺子对桌子的反复敲击。这名学生混淆了固体中的声速与空气中的声速。"
+   }
+  },
+  {
+   "id": "ap13",
+   "source_id": "fs-id1855919",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sounding-boxes",
+   "prompt": "一位音乐家站在户外的田野里，拨动一把原声吉他的一根弦。驻波最有可能出现在下列哪些介质中？选两个答案。<ol type=\"a\"><li>吉他弦</li><li>吉他内部的空气</li><li>吉他周围的空气</li><li>音乐家脚下的地面</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）、（b）"
+   }
+  },
+  {
+   "id": "ap14",
+   "source_id": "fs-id745043",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "figure": {
+    "src": "/media/ch17/CNX_APPhysics_17_M5_spkr_img.jpg",
+    "alt": "两根长度略有不同的管相互平行放置，较短的在上面。它们的开口端对着一个接在电源上的扬声器。"
+   },
+   "prompt": "这幅图显示了两根管，除了长度略有不同外，其余完全相同。两根管都是一端开口、一端封闭。如图所示，在管的前方放置一个与变频信号发生器相连的扬声器。扬声器被设定为打开时发出频率很低的音。然后缓慢提高频率，使管中产生共振。学生们观察到，起初每次只有一根管共振。后来，当频率变得很高时，有时两根管同时共振。请用清晰、连贯、段落长度的回答，解释为什么有一些高频率能使两根管同时共振，而没有低频率能做到。你可以在解释中加入示意图和/或方程。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有当某个频率是两根管各自的共振频率时，两根管才会同时共振，而由于两根管的长度只有微小差别，这样的共同频率必定是两者的高次谐波。一端封闭的管在 $\\kfn = n\\frac{\\kvw}{4\\kLlen}$（$n = 1, 3, 5, \\ldots$）处共振，所以这两根管有两个共振阶梯，间距略有不同，分别为 $\\kvw/2\\kLlen_1$ 和 $\\kvw/2\\kLlen_2$。要使一个频率同时位于两个阶梯上，需要 $n\\kvw/4\\kLlen_1 = m\\kvw/4\\kLlen_2$，这就要求 $m/n = \\kLlen_2/\\kLlen_1$，且 $n$ 和 $m$ 都是奇数。长度之比接近 1，而两个不同奇数之比只有在两个数都很大时才接近 1。因此低共振永远不会重合：两根管的基频和第一泛音靠得很近但互相错开，随着扬声器频率升高，先是一根管、然后是另一根管进入共振。例如，对于 0.95 m 和 1.05 m 长的两根管，$\\kLlen_2/\\kLlen_1 = 21/19$，所以较短的管的第 19 个谐波和较长的管的第 21 个谐波，二者都是 $19(343\\ \\text{m/s})/4(0.95\\ \\text{m}) = 1715\\ \\text{Hz}$，是使两根管同时发声的最低频率。在它之上，还会再次出现重合，而且由于每个共振都有一个很小的宽度，高频率下的近似重合也会使两根管同时发声。"
+   }
+  },
+  {
+   "id": "ap15",
+   "source_id": "fs-id1411822",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "overtones",
+   "figure": {
+    "src": "/media/ch17/image029.png",
+    "alt": "桌上放着一个振子，桌子一端有一个滑轮。这个振子用一根细绳绕过滑轮连接到一个质量块上。滑轮与细绳的连接处画有箭头，表示振子在使细绳运动。"
+   },
+   "prompt": "一名学生把一根质量可忽略的细绳的一端连到一个振子上。如上图所示，细绳的另一端绕过滑轮，系在一个悬挂的重物上。学生发现，当振子的频率为 <em>f</em><sub>0</sub> 时，绳上形成一个只有一个波腹的驻波。然后学生移动振子，把细绳水平部分的长度缩短为原来的一半。现在，频率为多少时绳上会形成只有一个波腹的驻波？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "<em>f</em><sub>0</sub>/2",
+     "<em>f</em><sub>0</sub>",
+     "2<em>f</em><sub>0</sub>",
+     "没有任何频率能形成驻波。"
+    ],
+    "correct": 2,
+    "hint": "张力和细绳都没有改变，所以波以同样的速率传播。长度减半，只有一个波腹的图样的波长也减半。"
+   }
+  },
+  {
+   "id": "ap16",
+   "source_id": "fs-id2581720",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "overtones",
+   "prompt": "一根长度为 <em>L</em> 的吉他弦两端固定。下表给出了这根弦被拨动时的各个谐波频率。<table class=\"data\"><tr><th>谐波次数</th><th>频率</th></tr><tr><td>1</td><td>225/<em>L</em></td></tr><tr><td>2</td><td>450/<em>L</em></td></tr><tr><td>3</td><td>675/<em>L</em></td></tr><tr><td>4</td><td>900/<em>L</em></td></tr></table>（a）根据上面的信息，弦中波的速率是多少？<br>（b）然后吉他手沿吉他琴颈滑动手指，从而改变弦长。如果弦长缩短为 2/3 <em>L</em>，求弦的基频和此时的波速。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）两端固定的弦，其基频为 v/2L，而表中给出的这个基频是 225/L，所以 v/2L = 225/L，波速为 450 m/s。（b）张力和弦本身都没有改变，所以波速仍是 450 m/s。新的长度是 2L/3，基频是 v 除以这个长度的两倍：450 ÷ (4L/3) = 337.5/L，是原来基频的 1.5 倍。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2026029",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sounding-boxes",
+   "prompt": "一把未经放大的吉他，发出的声音为什么比一根由简单木棍绷紧的、被拨动的弦所发出的声音强得多？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "被拨动的弦很细，它运动时只能推开很少的空气，所以它的几乎全部能量都留在弦里。吉他通过琴桥把弦与共鸣箱以及箱内的空气耦合起来，箱内空气会与弦的频率发生共振。箱子的大面板和其中的空气推动大量的空气，因此弦中同样的能量就以声音的形式被带走，比一根裸弦所能做到的快得多。木棍没有这样的耦合，所以它所绷紧的弦发出的音很微弱。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1992787",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-tube",
+   "prompt": "给你两件长度相同的管乐器。一件两端开口，另一件一端封闭。哪一件能够产生最低的频率？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一端封闭的那件。它的基频在管中容纳四分之一个波长，所以波长是长度的四倍，频率是声速除以长度的四倍。两端开口的那件容纳半个波长，所以它的基频是声速除以长度的两倍，高出一倍。因此，在长度相同的情况下，封闭的管发出的音低一个八度。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2653352",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "overtones",
+   "prompt": "泛音和谐波有什么区别？所有的谐波都是泛音吗？所有的泛音都是谐波吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "泛音是基频以上的任何共振频率，而谐波是基频及其泛音合在一起，按它们所处的基频倍数编号。所以每个泛音都是谐波，但并非每个谐波都是泛音：基频是一次谐波，根本不是泛音。因此这两种编号相差一步，而对于一端封闭的管，相差更大，因为只存在奇次谐波，而第一泛音是三次谐波。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2400166",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference",
+   "prompt": "一辆“炫耀型”的定制汽车有两个铜喇叭，它们本应发出相同的频率，实际上却分别发出 263.8 Hz 和 264.5 Hz。会产生多大的拍频？",
+   "answer": {
+    "type": "number",
+    "value": 0.7,
+    "unit": "Hz",
+    "generated_by": "source",
+    "solution": "0.7 Hz"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1397567",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interference",
+   "prompt": "如果钢琴的一个琴槌敲击三根弦，它们发出的频率分别为 127.8 Hz、128.1 Hz 和 128.3 Hz，会产生哪些拍频？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "127.8 Hz with 128.1 Hz",
+      "value": 0.3,
+      "unit": "Hz"
+     },
+     {
+      "part": "128.1 Hz with 128.3 Hz",
+      "value": 0.2,
+      "unit": "Hz"
+     },
+     {
+      "part": "127.8 Hz with 128.3 Hz",
+      "value": 0.5,
+      "unit": "Hz"
+     }
+    ],
+    "solution": "0.3 Hz, 0.2 Hz, 0.5 Hz"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2929531",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-tube",
+   "prompt": "（a）在声速为 344 m/s 的一天，一根 0.672 m 长、两端开口的管，其基频是多少？（b）它的二次谐波的频率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 256,
+      "unit": "Hz"
+     },
+     {
+      "part": "(b)",
+      "value": 512,
+      "unit": "Hz"
+     }
+    ],
+    "solution": "（a）256 Hz\n（b）512 Hz"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1003122",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-tube",
+   "prompt": "一支基频为 90.0 Hz 的大管，其前三个泛音是多少？它两端开口。（真实的大管的泛音比这个例子更复杂，因为它的双簧片使它的行为更像一端封闭的管。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "first overtone",
+      "value": 180,
+      "unit": "Hz"
+     },
+     {
+      "part": "second overtone",
+      "value": 270,
+      "unit": "Hz"
+     },
+     {
+      "part": "third overtone",
+      "value": 360,
+      "unit": "Hz"
+     }
+    ],
+    "solution": "180 Hz, 270 Hz, 360 Hz"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3423176",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-tube",
+   "prompt": "在声速为 343 m/s 的一天，一支双簧管要产生 110 Hz 的基频，应有多长？它两端开口。",
+   "answer": {
+    "type": "number",
+    "value": 1.56,
+    "unit": "m",
+    "generated_by": "source",
+    "solution": "1.56 m"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id2437914",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "prompt": "（a）求一根一端封闭的管风琴管的长度，它在空气温度为 $18.0^\\circ\\text{C}$ 时产生 256 Hz 的基频。（b）它在 $25.0^\\circ\\text{C}$ 时的基频是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.334,
+      "unit": "m"
+     },
+     {
+      "part": "(b)",
+      "value": 259,
+      "unit": "Hz"
+     }
+    ],
+    "solution": "（a）0.334 m\n（b）259 Hz"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3062629",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "prompt": "外耳道的共振像一端封闭的管。（见图 17.37。）如果在一般人群中，外耳道的长度范围是 1.80 到 2.60 cm，那么共振基频的范围是多少？取空气温度为 $37.0^\\circ\\text{C}$，即与体温相同。这个结果与人耳的强度—频率图像（图 17.35）有何关联？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the 2.60 cm canal",
+      "value": 3.39,
+      "unit": "kHz"
+     },
+     {
+      "part": "the 1.80 cm canal",
+      "value": 4.9,
+      "unit": "kHz"
+     }
+    ],
+    "solution": "3.39 到 4.90 kHz"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id3047060",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "prompt": "对发声的一种粗略近似，是把呼吸道和口腔看作一根一端封闭的共振管。（见图 17.29。）（a）如果这根管长 0.240 m，取空气温度为 $37.0^\\circ\\text{C}$，基频是多少？（b）如果这个人把空气换成氦气，这个频率会变成多少？假定氦气与空气有相同的温度依赖关系。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 367,
+      "unit": "Hz"
+     },
+     {
+      "part": "(b)",
+      "value": 1.07,
+      "unit": "kHz"
+     }
+    ],
+    "solution": "（a）367 Hz\n（b）1.07 kHz"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id3064877",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-tube",
+   "prompt": "在 $20.0^\\circ\\text{C}$ 时，一根 1.80 m 长的管在可听范围内会产生哪些频率，如果：（a）管一端封闭？（b）管两端开口？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$\\kfn = n(47.6\\ \\text{Hz}),\\;n = 1, 3, 5, \\ldots, 419$\n（b）$\\kfn = n(95.3\\ \\text{Hz}),\\;n = 1, 2, 3, \\ldots, 210$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "sound-interference"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "destructive-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "nodes-and-antinodes"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "tube-length-from-resonance"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "closed-tube-resonances",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "sound-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "destructive-interference"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "sound-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "destructive-interference"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "sound-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "destructive-interference"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "sound-interference"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "wave-speed-wavelength-frequency"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "standing-wave",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "constructive-interference"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "sound-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "standing-wave"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "nodes-and-antinodes-on-a-string"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "string-harmonics",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "tube-length-from-resonance"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "speed-of-sound-temperature"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "air-column-resonance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "fundamental-and-overtones"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "open-tube-resonances"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "fundamental-and-overtones",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "speed-of-sound-temperature"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "tube-length-from-resonance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "speed-of-sound-in-media"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "standing-wave",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "air-column-resonance"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "standing-wave"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "sounding-box-resonance"
+  },
+  {
+   "exercise": "ap14",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "ap14",
+   "concept": "fundamental-and-overtones"
+  },
+  {
+   "exercise": "ap14",
+   "concept": "air-column-resonance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap15",
+   "concept": "string-harmonics"
+  },
+  {
+   "exercise": "ap15",
+   "concept": "standing-wave",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap16",
+   "concept": "string-harmonics"
+  },
+  {
+   "exercise": "ap16",
+   "concept": "wave-speed-wavelength-frequency"
+  },
+  {
+   "exercise": "ap16",
+   "concept": "fundamental-and-overtones",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "sounding-box-resonance"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "air-column-resonance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "open-tube-resonances"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "fundamental-and-overtones",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "fundamental-and-overtones"
+  },
+  {
+   "exercise": "p1",
+   "concept": "beat-frequency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "beats",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sound-interference",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "beat-frequency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "beats",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "open-tube-resonances"
+  },
+  {
+   "exercise": "p5",
+   "concept": "fundamental-and-overtones",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "open-tube-resonances"
+  },
+  {
+   "exercise": "p7",
+   "concept": "fundamental-and-overtones",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "open-tube-resonances"
+  },
+  {
+   "exercise": "p9",
+   "concept": "tube-length-from-resonance"
+  },
+  {
+   "exercise": "p11",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "p11",
+   "concept": "tube-length-from-resonance"
+  },
+  {
+   "exercise": "p11",
+   "concept": "speed-of-sound-temperature"
+  },
+  {
+   "exercise": "p13",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "p13",
+   "concept": "tube-length-from-resonance"
+  },
+  {
+   "exercise": "p13",
+   "concept": "speed-of-sound-temperature",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "p15",
+   "concept": "tube-length-from-resonance"
+  },
+  {
+   "exercise": "p15",
+   "concept": "speed-of-sound-temperature",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p17",
+   "concept": "closed-tube-resonances"
+  },
+  {
+   "exercise": "p17",
+   "concept": "open-tube-resonances"
+  },
+  {
+   "exercise": "p17",
+   "concept": "fundamental-and-overtones",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "notes": "图 17.20 是本节开头的耳机及其插头的照片，作为题图略去；通往 PhET 仿真 Wave Interference 的链接略去；书中未给出答案的八道习题——音 A、C、D 和 F 的拍频、钢琴调音师的两种可能的琴弦频率、大号的泛音、演奏中央 C 的长笛、基频为 176 Hz 的管、10.0 与 30.0 °C 之间的频率之比、外耳道的第一泛音，以及灌水的共振管——也一并略去。",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成，权重是选定的、而非取自布鲁姆表的行已作标记。答案来自书后答案；书中未给出答案的八道习题已略去。十道 AP 题和全部三道思考题在书中没有答案，附有 AI 撰写的建议思路；提供四幅图的那道 AP 题没有答案，因此连同图片保持开放；要求从四项中选两个答案的那一道，则以书中自己的答案作为解。直尺那道题在原书中没有题型，列在 AP 标题之下，所以是一道 AP 备考题。关于脉冲和关于弦上驻波的 AP 题，以及四道拍的习题，考查的是 16.9 至 16.11 所介绍的内容，按本章 config 的要求，除本节自己的概念外，还标注了那些概念。数值答案接受 2% 的容差。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "referents": [
+  {
+   "id": "noise",
+   "label": "发动机噪声",
+   "figures": [
+    "sim-noise-cancelling"
+   ]
+  },
+  {
+   "id": "introduced",
+   "label": "耳机引入的声音",
+   "figures": [
+    "sim-noise-cancelling"
+   ]
+  },
+  {
+   "id": "fork",
+   "label": "音叉",
+   "figures": [
+    "sim-tube-resonance"
+   ]
+  },
+  {
+   "id": "tube",
+   "label": "一端封闭的管",
+   "figures": [
+    "sim-tube-resonance"
+   ]
+  },
+  {
+   "id": "ladder-tube",
+   "label": "画出其谐波的管",
+   "figures": [
+    "sim-harmonic-ladder"
+   ]
+  },
+  {
+   "id": "example-tube",
+   "label": "例题 17.5 的管",
+   "figures": [
+    "sim-tube-length"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "closed-tube-resonances",
+   "what": "一端封闭的管的共振频率",
+   "source": "《大学物理（第2版）》，17.5 声波的干涉与共振：气柱中的驻波",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\klam = 4\\kLlen",
+       "src": "17.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvw} = \\mk{f}{\\kf}\\mk{l}{\\klam}",
+      "uses": [],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{\\klam}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kf} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{4\\kLlen}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "17.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\klamprime = \\dfrac{4\\kLlen}{3}",
+       "src": "17.5，图 17.27"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfprime} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{\\klamprime}}",
+      "uses": [],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{4\\kLlen/3}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime} = \\mk{l}{3}\\dfrac{\\mk{v}{\\kvw}}{\\mk{l2}{4\\kLlen}}",
+       "uses": [],
+       "map": {
+        "l": [
+         "l",
+         "l2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime} = \\mk{l}{3}\\mk{v}{\\kf}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "l2": "v"
+       }
+      }
+     ],
+     "src": "17.5"
+    }
+   ]
+  }
+ ]
+}

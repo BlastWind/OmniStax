@@ -1,0 +1,1264 @@
+{
+ "id": "12.2",
+ "module": "m42206",
+ "chapter": "12",
+ "title": "伯努利方程",
+ "short": "伯努利方程",
+ "lead": "淋浴时，浴帘向内鼓起，汽车被拉向它所超越的卡车。你将遇到伯努利方程，即为运动流体写出的<span data-concept=\"energy\">能量</span>守恒，把它用到静止流体和等深度的情形，再进一步用于挟带、机翼与船帆，以及测量流体流动快慢的仪器。",
+ "objectives": [
+  "说明伯努利方程中各项的含义。",
+  "说明伯努利方程与能量守恒有什么关系。",
+  "说明如何由伯努利方程推导出伯努利原理。",
+  "用伯努利原理进行计算。",
+  "列举伯努利原理的一些应用。"
+ ],
+ "summary_html": "<ul><li>伯努利方程指出，在不可压缩、无摩擦的流体中，下面方程每一边的和都是恒定的，即在任意两点处相同：$\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo.$</li><li>伯努利原理就是应用于深度恒定情形的伯努利方程。含有深度（或高度 $\\kh$）的项相互消去，得到 $\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2.$</li><li>伯努利原理有许多应用，包括挟带、机翼与船帆，以及<span data-concept=\"velocity\">速度</span>测量。</li></ul>",
+ "notes": "书中没有给出答案的四道题被略去：风速必须增大到多少倍才能使压强计的高度加倍，例题 12.2 的软管最高能把水喷多高，每平方米帆所受的力，以及带汞压强计的皮托管所测的速率。思考题所涉及的文丘里管和香水瓶，随这些题目的卡片一起给出。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有四道题没有给出答案，已被略去：风速必须增大到多少倍才能使皮托管压强计中的高度加倍，例题 12.2 中的水在有喷嘴和没有喷嘴时最高能喷多高，空气沿前侧以 6.00 m/s、沿后侧以 3.50 m/s 流动时每平方米帆所受的力，以及由皮托管汞压强计的高度推导它所测速率。第一题要求读者验证压强的单位是单位体积的能量，书中给出了推导，因此它被设为带有该推导的开放题。本节的第一道 AP 题问湖面以下多深处的压强是大气压的两倍；书中原来引入这个湖的题干缺失，该题按书中所印保留。它的答案是（a），设为判分选择题，第三题关于压强恒定而单位体积的动能增大的题也是如此。第二道和第四道 AP 题，即把水提升到山坡上房子的泵，以及流体路径上的两种情形，没有答案，保留为开放题，附有 AI 撰写的建议思路，并加以标注。十四道思考题的建议思路由 AI 撰写并加以标注；文丘里管一题的卡片上保留书中画出的文丘里管，雾化器一题保留书中的香水瓶照片。没有从其他小节取题，本节自己的题也没有留给后面的页面。所有题目都放在末尾，因为本章没有理解检测框。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-car-truck",
+   "kind": "sim",
+   "number": "12.5",
+   "originals": [
+    "/media/ch12/Figure_13_02_01a.jpg"
+   ],
+   "original_caption": "俯视图：公路上一辆汽车超越一辆卡车。从两车之间通过的空气在较窄的通道中流动，必须增大速率（v_2 大于 v_1），使两车之间的压降低（P_i 小于 P_o）。外侧较大的压强把汽车和卡车推到一起。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "density",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: continuity in the note typeset through the macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: bits of air riding the streamlines, faster in the gap"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-bernoulli",
+   "kind": "sim",
+   "draws": [
+    "pressure",
+    "energy",
+    "velocity",
+    "position",
+    "density",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: h1, v and reference labels moved off lines; note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-entrainment",
+   "kind": "sim",
+   "number": "12.6",
+   "originals": [
+    "/media/ch12/Figure_13_02_02a.jpg"
+   ],
+   "original_caption": "挟带装置的例子。它们利用流体速率的增大来产生低压强，进而把一种流体挟带进另一种流体。（a）本生灯使用可调节的燃气喷嘴，挟带空气以保证充分燃烧。（b）雾化器用挤压球产生一股空气射流，挟带香水滴。喷漆器和化油器用非常相似的技术来输送各自的液体。（c）常见的抽气器用高速水流产生低压强区域。抽气器可在牙科和外科中用作抽吸泵，也可用来排空被淹的地下室，或在容器中产生低压强。（d）热水器的烟囱被设计成把空气挟带进穿过天花板的管道中。",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "density",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: water label off the beaker wall; note cut to two sentences"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: air riding the stream, water climbing, drops carried off"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-wing-sail",
+   "kind": "sim",
+   "number": "12.7",
+   "originals": [
+    "/media/ch12/Figure_13_02_03.jpg"
+   ],
+   "original_caption": "（a）伯努利原理有助于解释机翼产生的升力。（b）帆用同样的方法产生一部分推力。",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "density"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: pressure label off the wing; note says a downward push"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-manometer",
+   "kind": "sim",
+   "number": "12.8",
+   "originals": [
+    "/media/ch12/Figure_13_02_04a.jpg"
+   ],
+   "original_caption": "基于伯努利原理测量流体的速率。（a）压强计与两根靠得很近的管相连，管足够细，不会扰动流动。管 1 在迎着流动的一端开口，在那里形成速率为零的死区。管 2 在侧面有一个开口，所以流体以速率 v 流过该开口；因此那里的压降低。压强计处的压强差为 ½ρv_2²，所以 h 与 ½ρv_2² 成正比。（b）这种测速装置是普朗特管，也称皮托管。",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "velocity",
+    "pressure",
+    "position",
+    "density",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: note cut to two sentences, densities typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pressure-drop",
+   "concept": "pressure-drops-in-fast-fluid",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-drop",
+   "concept": "equation-of-continuity",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drop",
+   "concept": "work-energy-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drop",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drop",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "bernoullis-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "bernoulli-energy-per-volume",
+   "verb": "introduces"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "incompressible-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "bernoullis-equation",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "static-fluids",
+   "concept": "bernoulli-static-fluid",
+   "verb": "introduces"
+  },
+  {
+   "span": "static-fluids",
+   "concept": "bernoullis-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "static-fluids",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bernoullis-principle",
+   "concept": "bernoullis-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "bernoullis-principle",
+   "concept": "bernoullis-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "bernoullis-principle",
+   "concept": "pressure-drops-in-fast-fluid",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bernoullis-principle",
+   "concept": "equation-of-continuity",
+   "verb": "uses"
+  },
+  {
+   "span": "entrainment",
+   "concept": "entrainment",
+   "verb": "introduces"
+  },
+  {
+   "span": "entrainment",
+   "concept": "bernoullis-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "wings-and-sails",
+   "concept": "lift-from-bernoulli",
+   "verb": "introduces"
+  },
+  {
+   "span": "wings-and-sails",
+   "concept": "bernoullis-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "wings-and-sails",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-measurement",
+   "concept": "velocity-measurement",
+   "verb": "introduces"
+  },
+  {
+   "span": "velocity-measurement",
+   "concept": "bernoullis-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-measurement",
+   "concept": "manometer",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1292491",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "static-fluids",
+   "prompt": "在湖面以下多深处，水中的压强等于大气压的两倍？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "10 m",
+     "100 m",
+     "1000 m",
+     "10,000 m"
+    ],
+    "correct": 0,
+    "hint": "对于静止的流体，伯努利方程给出 $\\kPrtwo = \\kProne + \\krho\\kg\\khone$，其中 $\\kProne$ 是水面处的大气压。压强为大气压的两倍，意味着上方水的重力必须再增加一个大气压，即 $1.01 \\times 10^5\\ \\text{N/m}^2$，所以要问的是：多深的水才能使 $\\krho\\kg\\kh$ 等于这个值。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1479037",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-equation",
+   "prompt": "一台泵向一条长管道的下端提供压强，这条管道把水从水库输送到位于山坡上的一所房子，房子在管道下端竖直上方 150 m 处（水在被泵送之前，最初在管道下端是静止的）。管道的直径恒定为 3.5 cm，管道上端通大气。泵必须提供多大的压强，才能使水以 5.0 m/s 的速率从管道上端流出？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取点 1 在管道下端，即泵作用处、水静止处，点 2 在开口的上端，高出 150 m，水以 5.0 m/s 的速率从这里流出，压强为大气压。两点之间的伯努利方程为 $\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo$，其中 $\\kvone = 0$，$\\khone = 0$，$\\kvtwo = 5.0\\ \\text{m/s}$，$\\khtwo = 150\\ \\text{m}$，$\\kPrtwo = 1.01 \\times 10^5\\ \\text{N/m}^2$。解出泵的压强，$\\kProne = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo$。高度项为 $(1000\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(150\\ \\text{m}) = 1.47 \\times 10^6\\ \\text{N/m}^2$，速率项为 $\\frac{1}{2}(1000\\ \\text{kg/m}^3)(5.0\\ \\text{m/s})^2 = 1.25 \\times 10^4\\ \\text{N/m}^2$，再加上顶端的大气压，泵必须提供约 $1.6 \\times 10^6\\ \\text{N/m}^2$，大约是十六个标准大气压。请注意，管道的直径并不出现，因为两端的直径相同；花费最多的是高度，速率相对而言花费很少。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1497466",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-equation",
+   "prompt": "根据伯努利方程，如果某一流体中的压强恒定，而该流体单位体积的动能增大，下列哪一项是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "流体单位体积的势能减小。",
+     "流体单位体积的势能增大。",
+     "不能再把该流体看作不可压缩的。",
+     "流体的流量增大。"
+    ],
+    "correct": 0,
+    "hint": "沿路径，和式 $\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh$ 保持恒定。如果第一项不变而第二项增大，第三项必须怎样变化？",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1727123",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-equation",
+   "prompt": "考虑流体内部的下列情形，并用伯努利方程确定答案。（a）沿流体路径，压强和单位体积的动能增大。沿该流体路径，流体单位体积的势能必须满足什么条件？请解释。（b）沿流体路径，压强增大，而单位体积的动能保持不变。沿该流体路径，流体单位体积的势能必须满足什么条件？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "伯努利方程说明，$\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh$ 在路径上每一点都有相同的值，所以无论其中两项合起来如何变化，第三项都必须补足。（a）如果压强和单位体积的动能都增大，它们的和就增大了，单位体积的势能 $\\krho\\kg\\kh$ 就必须减小同样的量，才能保持总和不变；流体移到了较低的高度。（b）如果压强增大而单位体积的动能保持不变，压强的增加同样必须由单位体积的势能来补偿，后者恰好减小压强所增加的量；流体下降了，而且由于它的速率没有改变，它所失去的全部高度都变成了压强，这就是本节中的静止情形 $\\kPrtwo = \\kProne + \\krho\\kg\\khone$。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3078884",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-principle",
+   "prompt": "把拇指按在花园软管的出口端再松开，比让出口完全敞开，可以把水喷得远得多。请解释这是怎么回事。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你的拇指使出口变窄，而连续性方程说明，同样的流量通过较小的面积时，必须以更大的速率流出，所以水喷出得更快，在落到地面之前也就飞得更远。伯努利原理说明了多出来的动能从何而来：拇指按住出口时，软管里的水变慢，其压强朝着供水压强上升，正是这个压强做功，使水加速通过小开口，软管内部到外部空气的压降低量为 $\\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$。出口敞开时，水以软管本身的速率流出，管内的压强仅比大气压略高一点，所以几乎没有什么能把它推出得更快。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1596349",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-equation",
+   "prompt": "装饰性喷泉把水几乎竖直向上射出，可以观察到水柱在上升时变粗。反过来，从水龙头笔直落下的水流则变细。请解释原因，并讨论在这两种情形中，表面张力是增强还是削弱这一效应。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这两种效应都来自连续性方程，以及伯努利方程所描述的速率与高度之间的互换。上升的水在爬升时变慢，其单位体积的动能转变成单位体积的势能，而同样的流量必须通过每一个高度，所以 $A\\kv$ 恒定，较慢的水柱就必须较粗。下落的水在下落时加速，所以同样的流量通过更小的面积，水流变细。表面张力把水流的表面拉向它所能有的最小面积，这与上升水柱的变粗相抵触，并帮助它碎成水滴，而与下落水流的变细相一致，把它拉得更细，最终同样碎成水滴。所以，表面张力在喷泉中削弱这一效应，在水龙头下则增强这一效应。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2968273",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drop",
+   "prompt": "回头看图 12.5。回答下面两个问题。为什么 $P_\\text{o}$ 小于大气压？为什么 $P_\\text{o}$ 大于 $P_\\text{i}$？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在车辆的参考系中考虑，空气从车辆旁流过。远离道路处，空气是静止的，处于大气压，但在汽车和卡车的外侧，空气在运动，因为车身把它推开，它必须绕过车身流动，而根据伯努利原理，运动的空气比同样静止的气压低。这就是为什么车辆外侧的压强 $P_\\text{o}$ 小于大气压。在两车之间，同样的空气被挤入更窄的通道，所以根据连续性方程，它流得更快，它的压强 $P_\\text{i}$ 比 $P_\\text{o}$ 又低 $\\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$。于是外侧较大的压强把汽车和卡车推向彼此。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3454946",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entrainment",
+   "prompt": "举出一个课文中没有提到的挟带的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何一种装置，只要一种流体的快速流动把第二种流体吸入其中，就是一个例子。把肥料或肥皂混入水中的花园软管接头就是如此：水从瓶子顶部的小开口旁疾速流过，把液体吸进水流中。清洁液喷瓶、喷笔、潜水员呼吸调节器上的文丘里管，或化学实验室的水射流真空泵，都以同样的方式工作；壁炉在风吹过烟囱顶部时，把空气吸进房间的烟道。在每一种情形中，快速流动的流体压强较低，而处于外侧较高压强下的静止流体被推了进去。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3387506",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entrainment",
+   "figure": {
+    "src": "/media/ch12/Figure_13_02_05a.jpg",
+    "alt": "图中是一根文丘里管，这是一根圆柱形管，两端较宽，中间较窄。较窄的部分标为“文丘里管收缩段”。流体的流动用沿管长度向右的水平箭头表示。流线在中部靠得较近，在两端则分得较开。在窄段的上部有一个开口，供被挟带的流体进入。",
+    "caption": "图 12.9 为增强挟带而设计有一段窄管的管子称为文丘里管。它们非常普遍地用于化油器和抽气器。"
+   },
+   "prompt": "许多挟带装置都有一个称为文丘里管的收缩段，如图 12.9 所示。这如何增强挟带？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "收缩段使流体在被挟带流体进入的地方流得更快。根据连续性方程，同样的流量通过文丘里管较小的面积时必须有更大的速率，而根据伯努利原理，那里的压强比管的宽处低 $\\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$。供被挟带流体进入的开口设在收缩段处，所以它承受的是该装置所能产生的最低压强，而这一压强与外侧压强之差，就是把第二种流体推入的原因。如果没有收缩段，就必须沿整个长度把气流驱动得快得多，才能在开口处产生同样低的压强。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "eip-411",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entrainment",
+   "prompt": "有些烟囱管呈 T 形，顶部有一根横管，只要有一点微风，就有助于把气体抽上来。请用伯努利原理解释这是怎么回事。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "横管是一段两端开口的短水平管，任何微风都会从中吹过。根据伯努利原理，流过横管的空气比下方房间里静止的气压低，所以烟囱底部较大的压强把气体沿管推上去，推进流动的气流中，由气流把它们带走。这就是挟带：横管中的微风是快速流动的流体，烟囱中的气体是被它吸入的流体。横管还使风不能直接顺着烟囱敞开的顶部吹下去，否则会把气体推回房间。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2931718",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entrainment",
+   "prompt": "挟带装置能把流体提升的高度有没有限度？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有。挟带装置之所以能提升流体，是因为其快速气流中的压强低于流体表面上的大气压，两者之差把流体沿管向上推，直到被升起的液柱的重力 $\\krho\\kg\\kh$ 补足这一差值。气流中的压强最多只能降到零，所以可用的最大压强差就是大气压本身，约为 $1.01 \\times 10^5\\ \\text{N/m}^2$，最大高度是 $\\kh = \\kPr/\\krho\\kg$，对水来说约为 10 m。实际上限度更低，因为气流必须流得非常快，才能使其压强接近于零，而实际装置只能把水提升几米。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3415476",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wings-and-sails",
+   "prompt": "为什么飞机迎风起飞比顺风起飞更好？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "升力取决于空气流过机翼的快慢，而不取决于飞机相对地面运动的快慢。迎风起飞时，风速加到飞机相对空气的速率上，所以在任何对地速率下，空气流过机翼都更快，机翼上方的压强比下方的压强低得更多，离地所需的升力在较小的对地速率下、经过较短的滑跑就能达到。顺风起飞则相反，是从中减去风速，飞机必须在地面上跑得更远、更快，机翼上的空气才流得足够快，把它托起。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1128778",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drop",
+   "prompt": "热带气旋期间，屋顶有时会被竖直向上掀掉，而龙卷风袭来时，建筑物有时会向外爆裂。请用伯努利原理解释这些现象。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "建筑物内部的空气几乎静止，所以它的压强仍接近风暴到来之前的大气压。外面的风速非常大，根据伯努利原理，风的压强比静止空气低 $\\frac{1}{2}\\krho\\kv^2$。在屋顶上方风最快，所以屋顶上方的压强远低于其下方静止空气的压强，作用在屋顶整个面积上向上的合力就可能大到足以把它掀掉。龙卷风的风速还要大，其中心的压强远低于大气压，所以当它经过建筑物时，困在里面的空气的较高压强把墙壁和窗户向外推，建筑物就会爆裂，而不是被压垮。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3006966",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wings-and-sails",
+   "prompt": "帆船为什么需要龙骨？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "风对帆的作用力垂直于帆，从帆的后侧指向前侧，而当船横风航行或迎风航行时，这个力主要指向侧向，而不是沿船身方向。没有龙骨，船就会在这个推力的方向上侧向滑过水面。龙骨是船体下方的一块大平面，它对侧向运动的阻力比对向前运动的阻力大得多，因为侧向运动必须把大量的水推开，而向前运动只需推开很少的水。水对龙骨的反作用力抵消了风力的侧向部分，剩下的是向前的部分，它推动船前进。龙骨还把重量压在低处，使船不会被帆上同样的侧向推力掀翻。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id1427122",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drop",
+   "prompt": "当一列高速行驶的通勤列车驶过时，站在铁轨附近是危险的。请解释为什么大气压会把你推向行驶的列车。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "驶过的列车带着它旁边的空气以很高的速率一起运动，而根据伯努利原理，快速运动的空气比静止的气压低。因此，你与列车之间的空气的压强低于大气压，而你另一侧的静止空气则是完整的大气压。作用在你身体表面积上的压强差就是一个指向列车的合力，这和课文中外侧较大的压强把汽车与卡车推到一起完全一样。列车越快，压降低得越多，因为它随速率的平方增大，推力也就越大。"
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id2437386",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-equation",
+   "prompt": "伯努利方程做了哪些假设？在水在软管中流动的例子里，这些假设是否基本成立？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "伯努利方程假设流体是不可压缩的，因此各点的密度相同，并且是无摩擦的，因此它在流动时不会因黏度而损失能量。于是它陈述的是沿路径跟踪的一小体积流体的能量守恒。水几乎是不可压缩的，所以第一个假设在软管中成立得很好。水确实有一定的黏度，在长软管中会因贴着管壁而以热量的形式损失一些能量，所以第二个假设是一种近似。对于短软管和平稳的流动，这种损失与方程所描述的压强和速率的变化相比很小，因此软管中压强的结果是不错的。“建立联系”框中指出，在需要时，可以把方程扩展，把因黏度而耗散的热能包括进去。"
+   }
+  },
+  {
+   "id": "cq13",
+   "source_id": "fs-id2621156",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entrainment",
+   "figure": {
+    "src": "/media/ch12/Figure_13_02_06a.jpg",
+    "alt": "一个带喷雾盖的香水瓶。",
+    "caption": "图 12.10 雾化器：带管子的香水瓶，管子把香水从瓶中引上来。（来源：Antonia Foy, Flickr）"
+   },
+   "prompt": "香水瓶或雾化器会喷出瓶中的流体。（图 12.10。）流体是怎样在瓶中的竖直管里上升的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "挤压气囊或按下盖子，会使一股快速的空气射流从竖直管的顶端掠过。根据伯努利原理，这股快速运动的空气的压强低于大气压，而瓶中香水的液面与空气相通，处于完整的大气压。液面上较大的压强把香水沿管推向顶端的低压处，香水一到达射流，就被打碎成细小的液滴，随空气一起喷出。这就是挟带，与课文中的抽气器和化油器是同一种机理。"
+   }
+  },
+  {
+   "id": "cq14",
+   "source_id": "fs-id1931767",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drop",
+   "prompt": "如果在汽车行驶时降下车窗，一个空塑料袋有时会从车窗飞出去。这是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "车窗外的空气以汽车的速率从车旁疾速流过，而车内的空气几乎静止。根据伯努利原理，车外快速流动的空气比车内静止的气压低，所以有一个从车内指向敞开车窗的合推力，凡是靠近车窗的轻物，例如空塑料袋，就会被它带出去。一旦进入车外运动的空气，塑料袋就被卷走了。同样的压降低，也使浴帘向内鼓起，使屋顶在大风中被掀起。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3176552",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-equation",
+   "prompt": "验证压强具有单位体积的能量的单位。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{lll}\\kPr & = & \\frac{\\text{力}}{\\text{面积}}, \\\\ (\\kPr)_{\\text{单位}} & = & \\text{N/m}^2 = \\text{N}\\cdot\\text{m/m}^3 = \\text{J/m}^3 \\\\ & = & \\text{能量/体积}\\end{array}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3200825",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-measurement",
+   "prompt": "如果你的皮托管在速率为 200 km/h 时的压强读数为 15.0 mm Hg，那么在同一高度、速率为 700 km/h 时读数是多少？",
+   "answer": {
+    "type": "number",
+    "value": 184,
+    "unit": "mm Hg",
+    "generated_by": "source",
+    "hint": "读数是两个开口之间的压强差 $\\frac{1}{2}\\krho\\kvtwo^2$，所以它随速率的平方增大。速率增大到原来的 700/200 倍，所以把读数乘以这个倍数的平方；不需要把速率换算成米每秒。",
+    "solution": "184 mm Hg"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2423711",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-principle",
+   "prompt": "每隔几年，当早春急流下沉时，科罗拉多州博尔德的风会达到 45.0 m/s（约 100 mi/h）的持续风速。对一个面积为 $220\\ \\text{m}^2$ 的屋顶，伯努利效应产生的力大约是多少？博尔德典型的空气密度为 $1.14\\ \\text{kg/m}^3$，相应的大气压为 $8.89 \\times 10^4\\ \\text{N/m}^2$。（课文中所述的伯努利原理假定为层流。由于这里存在显著的湍流，用这一原理只能得到近似的结果。）",
+   "answer": {
+    "type": "number",
+    "value": 254000,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "房子里的空气是静止的，屋顶上方的空气以 45.0 m/s 的速率运动，所以伯努利原理给出屋顶上方的压降低量为 $\\frac{1}{2}\\krho\\kv^2$，其中密度取博尔德的空气密度。压强差乘以它所作用的面积就是力；大气压本身不出现，因为它作用在屋顶两侧。",
+    "solution": "$2.54 \\times 10^5\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1909948",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bernoullis-principle",
+   "prompt": "（a）当水以 40.0 L/s 的流量从直径 9.00 cm 的消防水带进入直径 3.00 cm 的喷嘴时，伯努利效应引起的压降是多少？（b）这些水在喷嘴上方最高能升到多高？（由于空气阻力，实际高度会小得多。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1580000,
+      "unit": "N/m²",
+      "hint": "由流量和两个横截面积求出软管中和喷嘴处的速率，注意给出的是直径，而面积要用半径，然后把两个速率代入伯努利原理，$\\kProne - \\kPrtwo = \\frac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2)$。"
+     },
+     {
+      "part": "(b)",
+      "value": 163,
+      "unit": "m",
+      "hint": "沿水从喷嘴（那里水以 $\\kvtwo$ 运动）一路跟踪到它上升的最高处，在那里它瞬时静止，压强又是大气压。于是伯努利方程把全部的 $\\frac{1}{2}\\krho\\kvtwo^2$ 换成 $\\krho\\kg\\kh$。"
+     }
+    ],
+    "solution": "（a）$1.58 \\times 10^6\\ \\text{N/m}^2$（b）163 m"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "bernoulli-static-fluid"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "ap2",
+   "concept": "bernoullis-equation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "equation-of-continuity",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "bernoulli-energy-per-volume"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "bernoullis-equation",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "bernoullis-equation"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "bernoulli-energy-per-volume",
+   "weight": 3
+  },
+  {
+   "exercise": "cq1",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "bernoullis-principle",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "equation-of-continuity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bernoullis-equation",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "surface-tension",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "pressure-drops-in-fast-fluid"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "bernoullis-principle",
+   "weight": 3
+  },
+  {
+   "exercise": "cq4",
+   "concept": "entrainment"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "entrainment"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "equation-of-continuity",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "bernoullis-principle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "entrainment"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "bernoullis-principle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "entrainment"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "cq8",
+   "concept": "lift-from-bernoulli"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "pressure-drops-in-fast-fluid"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "bernoullis-principle",
+   "weight": 3
+  },
+  {
+   "exercise": "cq10",
+   "concept": "lift-from-bernoulli"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "pressure-drops-in-fast-fluid"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "bernoullis-equation"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "incompressible-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "cq13",
+   "concept": "entrainment"
+  },
+  {
+   "exercise": "cq14",
+   "concept": "pressure-drops-in-fast-fluid"
+  },
+  {
+   "exercise": "cq14",
+   "concept": "bernoullis-principle",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "bernoulli-energy-per-volume"
+  },
+  {
+   "exercise": "p3",
+   "concept": "velocity-measurement"
+  },
+  {
+   "exercise": "p3",
+   "concept": "bernoullis-principle",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "bernoullis-principle"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pressure-drops-in-fast-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "force-from-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "bernoullis-principle"
+  },
+  {
+   "exercise": "p7",
+   "concept": "equation-of-continuity",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "bernoullis-equation",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "car",
+   "label": "汽车",
+   "figures": [
+    "sim-car-truck"
+   ]
+  },
+  {
+   "id": "truck",
+   "label": "卡车",
+   "figures": [
+    "sim-car-truck"
+   ]
+  },
+  {
+   "id": "point-1",
+   "label": "小块流体路径上的点 1",
+   "figures": [
+    "sim-bernoulli"
+   ]
+  },
+  {
+   "id": "point-2",
+   "label": "小块流体路径上的点 2",
+   "figures": [
+    "sim-bernoulli"
+   ]
+  },
+  {
+   "id": "tube",
+   "label": "气流挤过的管",
+   "figures": [
+    "sim-entrainment"
+   ]
+  },
+  {
+   "id": "side-tube",
+   "label": "插入水中的侧管",
+   "figures": [
+    "sim-entrainment"
+   ]
+  },
+  {
+   "id": "wing",
+   "label": "机翼",
+   "figures": [
+    "sim-wing-sail"
+   ]
+  },
+  {
+   "id": "sail",
+   "label": "帆",
+   "figures": [
+    "sim-wing-sail"
+   ]
+  },
+  {
+   "id": "tube-1",
+   "label": "管 1，迎着流动的一端开口",
+   "figures": [
+    "sim-manometer"
+   ]
+  },
+  {
+   "id": "tube-2",
+   "label": "管 2，开口在侧面",
+   "figures": [
+    "sim-manometer"
+   ]
+  },
+  {
+   "id": "manometer",
+   "label": "压强计",
+   "figures": [
+    "sim-manometer"
+   ]
+  },
+  {
+   "id": "prandtl",
+   "label": "普朗特管",
+   "figures": [
+    "sim-manometer"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "energy-per-volume",
+   "what": "把伯努利方程的各项写成单位体积的能量",
+   "source": "《大学物理（第2版）》，12.2 伯努利方程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kKE = \\tfrac{1}{2}\\km\\kv^2",
+       "src": "7.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\dfrac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\tfrac{1}{2}\\mk{r}{\\krho}\\mk{v}{\\kv^2} = \\dfrac{\\tfrac{1}{2}\\mk{m}{\\km}\\mk{v2}{\\kv^2}}{\\mk{V}{\\kvol}}",
+       "uses": []
+      },
+      {
+       "tex": "\\tfrac{1}{2}\\mk{r}{\\krho}\\mk{v}{\\kv^2} = \\dfrac{\\mk{m}{\\kKE}}{\\mk{V}{\\kvol}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "v2": "m"
+       }
+      }
+     ],
+     "src": "12.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kPEg = \\km\\kg\\kh",
+       "src": "7.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\dfrac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krho}\\mk{gh}{\\kg\\kh} = \\dfrac{\\mk{m}{\\km}\\mk{gh2}{\\kg\\kh}}{\\mk{V}{\\kvol}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\krho}\\mk{gh}{\\kg\\kh} = \\dfrac{\\mk{m}{\\kPEg}}{\\mk{V}{\\kvol}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "gh2": "m"
+       }
+      }
+     ],
+     "src": "12.2"
+    }
+   ]
+  },
+  {
+   "id": "bernoulli-static-fluid",
+   "what": "由伯努利方程求静止流体中的压强",
+   "source": "《大学物理（第2版）》，12.2 伯努利方程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvone = \\kvtwo = 0",
+       "src": "12.2"
+      },
+      {
+       "text": "任何高度都可以取作零，其余高度从它量起，所以取 $\\khtwo = 0$。",
+       "src": "12.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P1}{\\kProne} + \\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2} + \\mk{g2}{\\krho\\kg\\khtwo}",
+      "uses": [],
+      "src": "12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P1}{\\kProne} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{P2}{\\kPrtwo} + \\mk{g2}{\\krho\\kg\\khtwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{P2}{\\kPrtwo} = \\mk{P1}{\\kProne} + \\mk{g1}{\\krho\\kg\\khone}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "12.2"
+    }
+   ]
+  },
+  {
+   "id": "manometer-speed",
+   "what": "压强计所读出的流体速率",
+   "source": "《大学物理（第2版）》，12.2 伯努利方程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "迎着来流的管在它前方形成一个速度为零的死区：$\\kvone = 0$。",
+       "src": "12.2，图 12.8"
+      },
+      {
+       "text": "压强计中的流体升高的高度，与跨越它的压强差成正比。",
+       "src": "11.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P1}{\\kProne} + \\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+      "uses": [],
+      "src": "12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P1}{\\kProne} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{dP}{\\kProne - \\kPrtwo} = \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+       "uses": [],
+       "map": {
+        "P1": "dP",
+        "P2": "dP"
+       }
+      },
+      {
+       "tex": "\\mk{dP}{\\kh} \\propto \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k2}{\\kvtwo} \\propto \\mk{dP}{\\sqrt{\\kh}}",
+       "uses": []
+      }
+     ],
+     "src": "12.2"
+    }
+   ]
+  }
+ ]
+}

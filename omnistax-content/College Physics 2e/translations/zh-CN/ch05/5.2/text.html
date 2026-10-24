@@ -1,0 +1,126 @@
+<section id="drag">
+<h2>物体在流体中运动时受到的阻力</h2>
+<p class="cite-target">日常生活中另一种有趣的<span data-concept="force">力</span>，是物体在流体（气体或液体）中运动时所受的<span data-concept="force">阻力</span>。当你的手在水中移动时，你能感受到<span data-concept="drag-force">阻力</span>。在强风中移动手时，你也可能感受到它。手移动得越快，就越难移动。如果把手侧过来，只让侧面穿过空气，你感受到的<span data-concept="drag-force">阻力</span>就会小一些——你减小了手朝向<span data-concept="motion">运动</span><span data-concept="vector-direction">方向</span>的那部分<span data-concept="area">面积</span>。与<span data-concept="friction">摩擦力</span>一样，<strong><span data-concept="drag-force">阻力</span></strong>总是阻碍物体的<span data-concept="motion">运动</span>。与<span data-concept="friction">遵循简单规律的摩擦力</span>不同，<span data-concept="drag-force">阻力</span>与物体在该流体中的<span data-concept="velocity">速度</span>的某个函数成正比。这一函数关系很复杂，取决于物体的形状、大小、<span data-concept="velocity">速度</span>以及它所处的流体。对于大多数大型物体，例如骑自行车者、汽车和棒球，只要运动得不太慢，就会发现<span data-concept="drag-force">阻力</span> $\kFD$ 的<span data-concept="vector-magnitude">大小</span>与物体速率的平方成正比。我们可以把这一关系用数学式写成 <em>$\kFD \propto \kv^2$</em>。考虑其他因素后，这一关系变为</p>
+$$\kFD = \frac{1}{2}C\krhomat \karea\kv^2,$$
+<p>其中 $C$ 是阻力系数，$\karea$ 是物体的<span data-concept="area">迎流面积</span>，$\krhomat$ 是流体的<span data-concept="density">密度</span>。（回想一下，<span data-concept="density">密度</span>是单位<span data-concept="volume">体积</span>的<span data-concept="mass">质量</span>。）这个方程也可以写成更一般的形式 $\kFD = b\kv^2$，其中 $b$ 是一个等于 $0.5C\krhomat \karea$ 的常量。我们把这些方程中的指数取为 2，是因为当物体在空气中以高<span data-concept="velocity">速度</span>运动时，<span data-concept="drag-force">阻力</span>的<span data-concept="vector-magnitude">大小</span>与速率的平方成正比。正如我们将在后面几页讲<span data-concept="fluid-dynamics">流体动力学</span>时看到的，对于在流体中低速运动的小颗粒，指数等于 1。</p>
+<div class="note">
+<div class="eyebrow">阻力</div>
+<p><span data-concept="drag-force">阻力</span> $\kFD$ 与物体速率的平方成正比。用数学式表示为</p>
+$$\kFD \propto \kv^2$$
+$$\kFD = \frac{1}{2}C\krhomat \karea\kv^2,$$
+<p>其中 $C$ 是阻力系数，$\karea$ 是物体的<span data-concept="area">迎流面积</span>，$\krhomat$ 是流体的<span data-concept="density">密度</span>。</p>
+</div>
+<figure class="sim" id="sim-drag">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="body">一个物体</span>以<span data-type="velocity">你设定的速率</span>在空气中运动，<span data-ref="body">它</span>后面的一根箭头表示<span data-type="force">阻力</span>，箭头的<span data-concept="length">长度</span>就是<span data-concept="force">力</span>的大小。拖动<span data-type="velocity">速率</span>，观察箭头和下方的曲线。<span data-type="force">阻力</span>与<span data-type="velocity">速率</span>的平方成正比，所以<span data-type="velocity">速率</span>减半时，<span data-type="force">力只剩下四分之一</span>，在曲线上用空心点标出。阻力系数起初为 0.28，这是表 5.2 给出的丰田凯美瑞的值，<span data-type="area">迎流面积</span>起初为 0.70 m²；改变其中任何一个，整条曲线都会随之移动。滑块在表 5.2 的每个值处都有一个刻度，<span data-ref="body">所显示的物体</span>就是该值所对应的那一个。</span></div>
+</figure>
+</section>
+
+<section id="coefficient">
+<h2>阻力系数与物体的形状</h2>
+<p>运动员和汽车设计师都在设法减小<span data-concept="drag-force">阻力</span>，以缩短比赛<span data-concept="time">时间</span>。（见图 5.7。）汽车的“空气动力学”外形设计可以减小<span data-concept="drag-force">阻力</span>，从而改善汽车的油耗。</p>
+<figure class="photo" id="fig-bobsled" data-figure="5.7">
+  <img src="/media/ch05/Figure_06_02_02a.jpg" alt="雪车比赛中的一支两人队伍。雪车采用空气动力学设计，滑刀光滑，因此能跑得尽可能快。" data-width="250">
+  <figcaption><span class="eyebrow">Figure 5.7</span><span>从赛车到雪车运动员，空气动力学外形对于达到最高速率至关重要。雪车是为速率而设计的。它的形状像一颗带有渐缩尾翼的子弹。（来源：U.S. Army, via Wikimedia Commons）</span></figcaption>
+</figure>
+<p>阻力系数 $C$ 的值是由实验确定的，通常要借助风洞。（见图 5.8。）</p>
+<figure class="photo" id="fig-wind-tunnel" data-figure="5.8">
+  <img src="/media/ch05/Figure_06_02_03a.jpg" alt="图中可以看到一架飞机模型正在风洞中接受测试。" data-width="200">
+  <figcaption><span class="eyebrow">Figure 5.8</span><span>美国国家航空航天局的研究人员在风洞中测试一架飞机模型。（来源：NASA/Ames）</span></figcaption>
+</figure>
+<p class="cite-target">阻力系数可能取决于<span data-concept="velocity">速度</span>，但这里我们假定它是一个常量。表 5.2 列出了各种物体的一些典型阻力系数。请注意，阻力系数是无量纲量。在公路车速下，汽车超过 50% 的<span data-concept="power">功率</span>用于克服空气阻力。最省油的巡航速率约为 70–80 km/h（约 45–50 mi/h）。因此，在 20 世纪 70 年代美国的石油危机期间，公路上的最高速率被定为约 90 km/h（55 mi/h）。</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 5.2</span><span>阻力系数的值</span></div>
+  <table>
+    <thead><tr><th>物体</th><th><em>C</em></th></tr></thead>
+    <tbody>
+      <tr><td>翼型</td><td class="num">0.05</td></tr>
+      <tr><td>丰田凯美瑞</td><td class="num">0.28</td></tr>
+      <tr><td>福特福克斯</td><td class="num">0.32</td></tr>
+      <tr><td>本田思域</td><td class="num">0.36</td></tr>
+      <tr><td>法拉利Testarossa</td><td class="num">0.37</td></tr>
+      <tr><td>道奇Ram皮卡</td><td class="num">0.43</td></tr>
+      <tr><td>球体</td><td class="num">0.45</td></tr>
+      <tr><td>悍马H2 SUV</td><td class="num">0.64</td></tr>
+      <tr><td>跳伞者（脚朝下）</td><td class="num">0.70</td></tr>
+      <tr><td>自行车</td><td class="num">0.90</td></tr>
+      <tr><td>跳伞者（水平姿势）</td><td class="num">1.0</td></tr>
+      <tr><td>圆形平板</td><td class="num">1.12</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>体育界正在进行大量研究，以尽量减小阻力。高尔夫球上的凹坑正在被重新设计，运动员所穿的服装也是如此。自行车运动员以及一些游泳运动员和跑步者穿全身紧身服。澳大利亚的凯西·弗里曼在 2000 年悉尼奥运会上穿了全身紧身服，并赢得了 400 m 比赛的金牌。2008 年北京奥运会上，许多游泳运动员穿着（Speedo）紧身泳衣；这可能对打破许多世界纪录起了作用（见图 5.9）。大多数精英游泳运动员（和自行车运动员）会剃掉体毛。这类创新可以在比赛中削去几毫秒，有时就决定了金牌与银牌之别。其后果之一是，必须不断制定细致而精确的规范，以维护这项运动的公正性。</p>
+<figure class="photo" id="fig-body-suits" data-figure="5.9">
+  <img src="/media/ch05/Figure_06_02_05a.jpg" alt="三名游泳运动员各自穿着一件 LZR Racer 泳衣，这种泳衣由氨纶尼龙和聚氨酯制成。泳衣的接缝经超声波焊接，以减小阻力。" data-width="250">
+  <figcaption><span class="eyebrow">Figure 5.9</span><span>诸如这件 LZR Racer 泳衣之类的紧身泳衣，自 2008 年问世以来被认为促成了许多世界纪录。更光滑的“皮肤”和施加在游泳运动员身体上的更大的<span data-concept="force">压缩力</span>，使阻力至少减小 10%。（来源：NASA/Kathy Barnstorff）</span></figcaption>
+</figure>
+</section>
+
+<section id="terminal">
+<h2>终极速度</h2>
+<p class="cite-target">在考虑<span data-concept="drag-force">阻力</span>对运动物体的作用时，会出现一些与牛顿第二<span data-concept="law">定律</span>有关的有趣情形。例如，考虑<span data-ref="skydiver">一名跳伞者</span>在重力作用下穿过空气下落。作用在<span data-ref="skydiver">他</span>身上的<span data-type="force">两个<span data-concept="force">力</span></span>是<span data-type="force"><span data-concept="force">重力</span></span>和<span data-type="force"><span data-concept="drag-force">阻力</span></span>（忽略<span data-concept="buoyant-force">浮力</span>）。<span data-type="force">向下的<span data-concept="force">重力</span></span>保持不变，不论<span data-ref="skydiver">人</span>运动的<span data-type="velocity"><span data-concept="velocity">速度</span></span>是多少。然而，随着<span data-ref="skydiver">人的</span><span data-type="velocity"><span data-concept="velocity">速度</span></span>增大，<span data-type="force"><span data-concept="drag-force">阻力</span>的<span data-concept="vector-magnitude">大小</span></span>也增大，直到<span data-type="force"><span data-concept="drag-force">阻力</span>的<span data-concept="vector-magnitude">大小</span></span>等于<span data-type="force"><span data-concept="force">重力</span></span>，于是产生<span data-type="force">为零的<span data-concept="force">合力</span></span>。<span data-concept="force">合力</span>为零意味着没有<span data-concept="acceleration">加速度</span>，这正是牛顿第二<span data-concept="law">定律</span>所给出的。此时，<span data-ref="skydiver">人的</span><span data-type="velocity"><span data-concept="velocity">速度</span></span>保持不变，我们说<span data-ref="skydiver">此人</span>达到了<span data-ref="skydiver">他的</span><em><span data-concept="terminal-velocity">终极速度</span></em>（$\kvt$）。由于 $\kFD$ 与速率成正比，较重的跳伞者必须下落得更快，$\kFD$ 才能等于他的<span data-concept="weight">重力</span>。让我们更定量地看看结果如何。</p>
+<figure class="dv" id="drv-terminal-velocity"></figure>
+<p>假设<span data-type="density">空气的<span data-concept="density">密度</span></span>为 $\krhomat = 1.21\ \text{kg/m}^3$。<span data-ref="skydiver">一名 75 kg 的跳伞者</span>头朝下下降时，<span data-type="area">面积</span>约为 $\karea = 0.18\ \text{m}^2$，阻力系数约为 $C = 0.70$。我们得到</p>
+$$\begin{aligned}\kv &= \sqrt{\frac{2(75\ \text{kg})(9.80\ \text{m/s}^2)}{(1.21\ \text{kg/m}^3)(0.70)(0.18\ \text{m}^2)}}\\ &= 98\ \text{m/s}\\ &= 350\ \text{km/h}.\end{aligned}$$
+<p>这意味着<span data-ref="skydiver">跳伞者</span>若<span data-type="mass"><span data-concept="mass">质量</span>为 75 kg</span>，以头朝下的姿势运动时可达到<span data-type="velocity">约 350 km/h 的最大<span data-concept="velocity">终极速度</span></span>，这使<span data-type="area">面积</span>和<span data-ref="skydiver">他的</span><span data-type="force">阻力</span>最小。在四肢张开的姿势下，<span data-type="velocity">该<span data-concept="velocity">终极速度</span></span>可能降至约 200 km/h，因为<span data-type="area">面积</span>增大了。降落伞打开后，<span data-type="velocity">这一<span data-concept="velocity">终极速度</span></span>会小得多。</p>
+<figure class="sim" id="sim-terminal">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="skydiver">一名跳伞者</span>走出飞机并开始下落。<span data-type="force">重力</span>在每一时刻都是同一根箭头，而随着下落变快，<span data-type="force">阻力箭头</span>不断变长，它们旁边的<span data-type="acceleration">加速度箭头</span>则随着<span data-type="force">两个力</span>趋于相等而变短。观察图线逐渐变平：<span data-type="force">阻力</span>一旦增大到等于<span data-type="force">重力</span>，<span data-type="force">合力</span>就为零，根据牛顿第二定律，<span data-type="velocity">速率</span>不再变化。滑块起初设为例题 5.2 中四肢张开下落的<span data-ref="skydiver">85 kg 跳伞者</span>；把<span data-type="mass">质量</span>设为 75 kg，<span data-type="area">面积</span>设为 0.18 m²，系数设为 0.70，你得到的就是<span data-ref="skydiver">头朝下俯冲的跳伞者</span>，<span data-ref="skydiver">他</span>可达到约 350 km/h。</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">居家实验</div>
+<p>这个有趣的活动研究<span data-concept="weight">重力</span>对<span data-concept="terminal-velocity">终极速度</span>的影响。找一些叠放的咖啡滤纸。保持它们原来的形状，测量一张、两张、三张、四张和五张叠放的滤纸从同一高度（约 2 m）落到地面所用的<span data-concept="time">时间</span>。（注意，由于滤纸叠放的方式，阻力保持不变，只有<span data-concept="mass">质量</span>变化。）它们很快就达到<span data-concept="terminal-velocity">终极速度</span>，因此请求出这一<span data-concept="velocity">速度</span>随<span data-concept="mass">质量</span>变化的函数关系。作<span data-concept="terminal-velocity">终极速度</span> <em>$\kv$</em> 对<span data-concept="mass">质量</span>的图。再作 <em>$\kv^2$</em> 对<span data-concept="mass">质量</span>的图。这两种关系中哪一种更接近线性？你能从这两张图得出什么结论？</p>
+</div>
+<div class="example" id="ex-terminal-velocity">
+<h3>例题 5.2 · 求终极速度</h3>
+<p>求<span data-ref="skydiver">一名 85 kg 的跳伞者</span>以四肢张开的姿势下落时的<span data-type="velocity"><span data-concept="velocity">终极速度</span></span>。</p>
+<h4>思路</h4>
+<p>在<span data-concept="terminal-velocity">终极速度</span>下，$\kFnet = 0$。因此，<span data-ref="skydiver">跳伞者</span>所受的<span data-type="force"><span data-concept="drag-force">阻力</span></span>必须等于<span data-type="force"><span data-concept="force">重力</span></span>（即<span data-ref="skydiver">人的</span><span data-type="force"><span data-concept="weight">重力</span></span>）。利用<span data-concept="drag-force">阻力</span>公式，可得 $\km\kg = \frac{1}{2}\krhomat C \karea\kv^2$。</p>
+<p>于是<span data-type="velocity"><span data-concept="velocity">终极速度</span></span> $\kvt$ 可以写成</p>
+$$\kvt = \sqrt{\frac{2\km\kg}{\krhomat C \karea}}.$$
+<h4>解</h4>
+<p>除了<span data-ref="skydiver">人的</span><span data-type="area">投影面积</span>之外，所有量都是已知的。这是<span data-ref="skydiver">一名成年人</span>（85 kg）四肢张开下落。我们可以把<span data-type="area">迎流面积</span>估算为</p>
+$$\karea = (2\ \text{m})(0.35\ \text{m}) = 0.70\ \text{m}^2.$$
+<p>利用我们得到的 $\kvt$ 的方程，可得</p>
+$$\begin{aligned}\kvt &= \sqrt{\frac{2(85\ \text{kg})(9.80\ \text{m/s}^2)}{(1.21\ \text{kg/m}^3)(1.0)(0.70\ \text{m}^2)}}\\ &= 44\ \text{m/s.}\end{aligned}$$
+<h4>讨论</h4>
+<p>这一结果与前面提到的 $\kvt$ 的值一致。<span data-ref="skydiver">那位 75 kg 的跳伞者</span>脚朝下时的 $\kv = 98\ \text{m}/\text{s}$。<span data-ref="skydiver">他</span>的重力较小，但有着<span data-type="area">较小的迎流面积</span>，因此空气造成的<span data-type="force">阻力也较小</span>。</p>
+</div>
+</section>
+
+<section id="size">
+<h2>下落物体的大小</h2>
+<p class="cite-target">穿过空气下落的物体的大小，给出了空气阻力的另一个有趣应用。一只小松鼠的<span data-concept="terminal-velocity">终极速度</span>小于我们先前为<span data-ref="skydiver">跳伞者</span>求得的<span data-type="velocity"><span data-concept="velocity">终极速度</span></span>，因此松鼠可以从相当高的地方落下而不受伤。</p>
+<p>下面这段关于动物大小与<span data-concept="velocity">终极速度</span>的有趣引文，出自英国生物学家 J. B. S. 霍尔丹 1928 年的一篇题为《论适当的体型》的文章。</p>
+<p><em>对小鼠和任何更小的动物来说，[重力]实际上不构成危险。你可以把一只小鼠从一千码深的矿井中扔下去；它到达井底时只受到轻微的震动，然后走开，只要地面相当松软。一只大鼠会被摔死，一个人会被摔坏，一匹马会摔得四溅。因为空气对运动所呈现的阻力与运动物体的表面积成正比。把一只动物的<span data-concept="length">长度</span>、宽度和高度各除以十；它的<span data-concept="weight">重力</span>减小到千分之一，而它的表面积只减小到百分之一。所以，小动物下落时所受的阻力，相对于驱动<span data-concept="force">力</span>要大十倍。</em></p>
+<figure class="sim" id="sim-size">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="body-full body-small">两个物体</span>形状相同、大小不同，从<span data-type="position">同一高度</span>一起下落，并排落下。设定<span data-ref="body-small">第二个物体</span>小多少。当<span data-concept="length">长度</span>为十分之一时，<span data-ref="body-small">它的</span><span data-type="force">重力</span>是千分之一，<span data-ref="body-small">它的</span><span data-type="area">迎流面积</span>只有百分之一，所以<span data-ref="body-small">它</span>受到的<span data-type="force">阻力</span>相对大十倍，最后稳定在<span data-type="velocity">较慢的速率</span>。在图线上，<span data-ref="body-small">较小的物体</span>在几米之内就达到<span data-ref="body-small">它的</span><span data-type="velocity">终极速度</span>，而<span data-ref="body-full">原尺寸的物体</span>仍在加速。观察<span data-ref="body-full body-small">两个物体</span>中哪一个撞击地面更猛。</span></div>
+</figure>
+</section>
+
+<section id="stokes">
+<h2>斯托克斯定律：极小物体受到的阻力</h2>
+<p class="cite-target">上述空气阻力对<span data-concept="velocity">速度</span>的二次方依赖关系，在物体很小、运动很慢或处于密度比空气大的介质中时不再成立。这时我们发现，<span data-concept="drag-force">阻力</span>仅与<span data-concept="velocity">速度</span>成正比。这一关系由<strong>斯托克斯<span data-concept="law">定律</span></strong>给出，该定律指出</p>
+$$\kFs = 6\pi \krad\ketav\kv,$$
+<p>其中 $\krad$ 是物体的半径，$\ketav$ 是流体的<span data-concept="viscosity">黏度</span>，$\kv$ 是物体的<span data-concept="velocity">速度</span>。</p>
+<div class="note">
+<div class="eyebrow">斯托克斯定律</div>
+$$\kFs = 6\pi \krad\ketav\kv,$$
+<p>其中 $\krad$ 是物体的半径，$\ketav$ 是流体的<span data-concept="viscosity">黏度</span>，$\kv$ 是物体的<span data-concept="velocity">速度</span>。</p>
+</div>
+<figure class="sim" id="sim-stokes">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="bead">一颗钢珠</span>落入<span data-ref="oil">一罐机油</span>并下沉。<span data-type="force">斯托克斯阻力</span>随<span data-type="velocity">速率</span>增大，而不是随速率的平方增大，它几乎立刻就达到<span data-ref="bead">小珠</span>的<span data-type="force">重力</span>，所以<span data-ref="bead">小珠</span>以<span data-type="velocity">一个恒定的速率</span>下落<span data-type="position">整整 0.60 m</span>，你可以对此计时。拖动<span data-type="position">半径</span>，观察<span data-ref="oil">油罐</span>旁边的图线。<span data-type="velocity">这一稳定速率</span>与<span data-type="position">半径</span>的平方成正比，所以宽度为两倍的小珠下沉的速率是四倍。<span data-ref="bead">小珠</span>起初是本节最后一道习题中的<span data-ref="bead">1.5 mm 的滚珠</span>，放在<span data-ref="oil">机油</span>中，其<span data-type="viscosity">黏度</span>使<span data-ref="bead">它</span>用时 12 s。</span></div>
+</figure>
+<p>微生物、花粉和尘埃颗粒是这一<span data-concept="law">定律</span>的很好的例子。由于这些物体都非常小，我们发现，其中许多物体在不借助外力的情况下，只能以恒定的（终极）<span data-concept="velocity">速度</span>运动。细菌（大小约 $1\ \mu\text{m}$）的<span data-concept="terminal-velocity">终极速度</span>可以约为 $2\ \mu\text{m/s}$。为了以更大的速率运动，许多细菌利用鞭毛（形状像小尾巴的细胞器）游动，鞭毛由嵌在细胞中的小马达驱动。湖中的沉积物可以以更大的<span data-concept="terminal-velocity">终极速度</span>（约 $5\ \mu\text{m/s}$）运动，因此它沉积到湖面上之后，可能要花几天才能到达湖底。</p>
+</section>
+
+<section id="streamlining">
+<h2>自然界中的流线型</h2>
+<p>如果把生活在陆地上的动物与生活在水中的动物相比，就能看出阻力是如何影响进化的。鱼类、海豚，乃至庞大的鲸，其外形都是流线型的，以减小<span data-concept="drag-force">阻力</span>。鸟类也是流线型的，而飞行很长<span data-concept="distance">距离</span>的迁徙物种往往具有长颈等特殊特征。鸟群以矛头的形状飞行，因为鸟群构成了一种流线型的图案（见图 5.10）。在人类中，流线型的一个重要例子是精子的形状，精子在使用<span data-concept="energy">能量</span>上需要很高效。</p>
+<figure class="photo" id="fig-geese" data-figure="5.10">
+  <img src="/media/ch05/Figure_06_02_06a.jpg" alt="大雁排成 V 形飞过天空。" data-width="250">
+  <figcaption><span class="eyebrow">Figure 5.10</span><span>大雁在长途迁徙中排成 V 形飞行。这种队形减小了每只鸟的阻力和<span data-concept="energy">能量</span>消耗，也让它们有了更好的交流方式。（来源：Julo, Wikimedia Commons）</span></figcaption>
+</figure>
+<div class="note">
+<div class="eyebrow">伽利略的实验</div>
+<p>据说伽利略曾把两个<span data-concept="mass">质量</span>不同的物体从比萨斜塔上扔下。他测量了每个物体落到地面所用的时间。由于当时没有现成的秒表，你认为他是如何测量它们的下落<span data-concept="time">时间</span>的？如果这两个物体大小相同而<span data-concept="mass">质量</span>不同，你认为他应该观察到什么？如果在月球上做，结果会不同吗？</p>
+</div>
+</section>

@@ -1,0 +1,345 @@
+/* Figures for section 6.4 Fictitious Forces and Non-inertial Frames: The Coriolis Force.
+   Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['6.4'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, labeller } = F;
+const sim = (id, H) => F.sim(root, id, H);
+const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the figures ---------- */
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (n) => String(n).split('').map((ch) => SUP[ch] ?? ch).join('');
+/* a number written plainly where it is of a readable size and in powers of ten where it is not */
+function sci(x, d) {
+  if (x === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x)));
+  if (e >= -2 && e <= 3) return fmt(x, Math.max(0, d - e));
+  return fmt(x / Math.pow(10, e), d) + ' × 10' + sup(e);
+}
+function sciTex(x, d) {
+  if (x === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x)));
+  if (e >= -2 && e <= 3) return fmt(x, Math.max(0, d - e));
+  return `${fmt(x / Math.pow(10, e), d)} \\times 10^{${e}}`;
+}
+/* a curved arrow round the top of a circle, counterclockwise, for ω */
+function curl(ctx, cx, cy, r, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI * 0.35, -Math.PI * 0.65, true); ctx.stroke(); ctx.restore();
+  const a = -Math.PI * 0.65, tx = cx + r * Math.cos(a), ty = cy + r * Math.sin(a);
+  arrow(ctx, tx + 14 * Math.sin(a), ty - 14 * Math.cos(a), tx - 2 * Math.sin(a), ty + 2 * Math.cos(a), color, 3);
+}
+/* the heading over one half of a two-panel figure, and the rule between the halves */
+const panelTitle = (ctx, s, x, y) => text(ctx, s, x, y, PAL.muted, { size: 20, weight: 600, align: 'center' });
+const divider = (ctx, x, y1, y2) => line(ctx, x, y1, x, y2, PAL.rule, 2);
+/* a disc of boards with its eight spokes, turned through φ */
+function disc(ctx, cx, cy, R, phi, rim = PAL.muted) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.fill(); ctx.restore();
+  /* the spokes stop at the rim's inner edge, a half width back for the round
+     cap, and the rim is stroked over them, so no spoke crosses the rim */
+  const IN = R - 3;
+  for (let k = 0; k < 8; k++) { const a = phi + (k * TAU) / 8; line(ctx, cx, cy, cx + IN * Math.cos(a), cy - IN * Math.sin(a), PAL.panel, 3); }
+  ctx.save(); ctx.strokeStyle = rim; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.stroke(); ctx.restore();
+  dot(ctx, cx, cy, PAL.muted, true, 6);
+}
+/* a car seen from above, its nose along (ux, uy), centred on (x, y) */
+function carTop(ctx, x, y, ux, uy, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux) + Math.PI / 2); ctx.scale(s, s); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4 / s;
+  ctx.beginPath(); ctx.moveTo(-52, -96); ctx.quadraticCurveTo(0, -122, 52, -96); ctx.lineTo(52, 96); ctx.quadraticCurveTo(0, 118, -52, 96); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3 / s;
+  ctx.beginPath(); ctx.moveTo(-44, -52); ctx.lineTo(44, -52); ctx.moveTo(-44, 20); ctx.lineTo(44, 20); ctx.stroke();
+  ctx.restore();
+}
+/* a person seen from above at (x, y): the shoulders as a rounded bar and the head over them, facing along (ux, uy) */
+function personTop(ctx, x, y, ux, uy, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux)); ctx.scale(s, s); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.roundRect ? ctx.roundRect(-10, -30, 20, 60, 9) : ctx.rect(-10, -30, 20, 60); ctx.fill();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(2, 0, 13, 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.arc(-1, 0, 8, 0, TAU); ctx.fill();
+  ctx.restore();
+}
+/* a test tube whose mouth is at (x, y) and whose rounded end is `len` along (ux, uy) */
+function tube(ctx, x, y, ux, uy, len, half, color) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux)); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(0, -half); ctx.lineTo(len - half, -half); ctx.arc(len - half, 0, half, -Math.PI / 2, Math.PI / 2); ctx.lineTo(0, half); ctx.closePath();
+  ctx.fill(); ctx.stroke(); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 6.12: the tight right turn, drawn twice on one clock. On the
+   right, from Earth: the car follows the bend under a real force toward
+   the center while the driver keeps the straight line she was already
+   traveling. On the left, from inside the car: the car stands still and
+   the driver slides to the door under a fictitious force. The car
+   travels while the clock runs, so the figure moves.
+===================================================================== */
+(function () {
+  const d = sim('sim-turn', 640);
+  const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 30, step: 1, value: 15, unit: 'm/s', dec: 0, onInput: reset, aria: '汽车的速率' });
+  const R = ctl(d.controls, { label: '\\kr', cls: 'position', min: 10, max: 80, step: 1, value: 25, unit: 'm', dec: 0, onInput: reset, aria: '弯道的半径' });
+  const SWEEP = Math.PI / 2;                                  /* one quarter turn to the right per loop */
+  const T = () => (SWEEP * R.v) / V.v;
+  const cy = cycle(T, 1.2);
+  function reset() { cy.reset(); }
+  const OY = 556, SEATX = 350, SEATY = 345, DOOR = 0.6;   /* she is against the door 0.6 m across the seat */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const t = cy.now(), a = (V.v / R.v) * t, Rp = 150 + 1.4 * R.v, k = Rp / R.v, OX = 1035 + Rp / 2;
+    const lateral = R.v * (Math.cos(a) - 1 + a * Math.sin(a));   /* how far she has moved across the seat, in meters */
+    panelTitle(ctx, '在汽车参考系中', SEATX, 98);
+    panelTitle(ctx, '在地球参考系中', 1035, 98);
+    divider(ctx, 700, 128, 596);
+
+    /* ---- left: the car stands still and the driver slides toward the door ---- */
+    carTop(ctx, SEATX, SEATY, 0, -1, F.ref('car'), 1.2);
+    const LB = labeller(ctx, 640); LB.block(0, 0, 1400, 90);
+    const slide = Math.min(1, lateral / DOOR), px = SEATX - slide * 40;
+    /* the seat she slides along, then the driver herself, facing forward */
+    line(ctx, SEATX - 48, SEATY - 24, SEATX + 48, SEATY - 24, alpha(PAL.muted, 0.5), 2, [6, 6]);
+    personTop(ctx, px, SEATY - 24, 0, -1, F.ref('driver'), 1);
+    LB.add('司机', px, SEATY - 24, 1, 0, F.ref('driver'), 17, 26);
+    const L = 40 + 96 * Math.min(1, (V.v * V.v) / R.v / 15);
+    arrow(ctx, px - 18, SEATY - 24, px - 18 - L, SEATY - 24, C('force'), 5);
+    LB.add('虚拟力', px - 18 - L, SEATY - 24, -1, 0, C('force'), 18, 22);
+    text(ctx, slide >= 1 ? '她贴在车门上' : '她已在座椅上滑过 ' + fmt(lateral * 100, 0) + ' cm',
+      SEATX, 512, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, '并没有真实的力在推她', SEATX, 542, PAL.muted, { size: 17, align: 'center' });
+
+    /* ---- right: the bend, the car on it, and the straight line the driver keeps ---- */
+    ctx.save(); ctx.strokeStyle = PAL.soft; ctx.lineWidth = 60; ctx.beginPath(); ctx.arc(OX, OY, Rp, Math.PI, Math.PI + SWEEP); ctx.stroke(); ctx.restore();
+    for (const e of [-30, 30]) { ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(OX, OY, Rp + e, Math.PI, Math.PI + SWEEP); ctx.stroke(); ctx.restore(); }
+    dot(ctx, OX, OY, PAL.muted, true, 7);
+    text(ctx, '弯道的中心', OX + 18, OY + 4, PAL.muted, { size: 17 }); LB.block(OX + 8, OY - 14, OX + 190, OY + 18);
+    const th = Math.PI + a, cxp = OX + Rp * Math.cos(th), cyp = OY + Rp * Math.sin(th);
+    line(ctx, OX, OY, cxp, cyp, C('position'), 2, [10, 10]);
+    const ux = -Math.sin(th), uy = Math.cos(th);
+    LB.add('r = ' + fmt(R.v, 0) + ' m', OX + Rp * 0.3 * Math.cos(th), OY + Rp * 0.3 * Math.sin(th), -ux, -uy, C('position'), 18, 22);
+    carTop(ctx, cxp, cyp, ux, uy, F.ref('car'), 0.55);
+    personTop(ctx, cxp - 8 * ux + 6 * uy, cyp - 8 * uy - 6 * ux, ux, uy, F.ref('driver'), 0.5);
+    const fx = cxp + (OX - cxp) * 0.5, fy = cyp + (OY - cyp) * 0.5;
+    arrow(ctx, cxp, cyp, fx, fy, C('force'), 5);
+    LB.add('路面的真实力', fx, fy, (OX - cxp) / Rp, (OY - cyp) / Rp, C('force'), 18, 22);
+    const sx = OX - Rp, sy = OY, dy = sy - V.v * t * k;
+    line(ctx, sx, sy, sx, dy, C('velocity'), 3, [12, 10]);
+    dot(ctx, sx, sy, PAL.muted, false, 9);
+    personTop(ctx, sx, dy, 0, -1, alpha(F.ref('driver'), 0.6), 0.5);
+    LB.add('她的直线轨迹', sx, (sy + dy) / 2, -1, 0, C('velocity'), 18, 22);
+    LB.flush();
+
+    headline(ctx, '汽车已绕弯道转过 ' + fmt(a * DEG, 0) + '°，而司机沿直线前进了 ' + fmt(V.v * t, 1) + ' m。');
+    readout(d.readout, `\\kdtheta = \\frac{\\kv\\kt}{\\kr} = \\frac{(${fmt(V.v, 0)}\\ \\text{m/s})(${fmt(t, 2)}\\ \\text{s})}{${fmt(R.v, 0)}\\ \\text{m}} = ${fmt(a, 2)}\\ \\text{rad} = ${fmt(a * DEG, 0)}^\\circ`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 6.13 + 6.15: the merry-go-round, drawn twice on one clock. From
+   the ground, a real force holds the rider on his circle, an unshaded
+   rider leaves along the tangent, and the ball runs straight to the rim.
+   On the boards, the rider sits still under an outward fictitious force
+   and the ball's trail curves to the right. The ball crosses the boards
+   while the clock runs, so the figure moves.
+===================================================================== */
+(function () {
+  const d = sim('sim-merry', 800);
+  const W = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 0.3, max: 2, step: 0.05, value: 1, unit: 'rad/s', dec: 2, onInput: reset, aria: '角速度' });
+  const RR = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.6, max: 2.8, step: 0.1, value: 2.2, unit: 'm', dec: 1, onInput: reset, aria: '乘坐者圆周运动的半径' });
+  const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 1, max: 6, step: 0.1, value: 3, unit: 'm/s', dec: 1, onInput: reset, aria: '球的速率' });
+  const RD = 3;                                               /* the boards reach 3.00 m from the middle */
+  const T = () => RD / V.v;
+  const cy = cycle(T, 1.2);
+  function reset() { cy.reset(); }
+  const LX = 370, RX = 1030, CY = 450, RP = 250, S = RP / RD, A0 = Math.PI / 4;   /* the rider starts a quarter turn round from the line to B */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const t = cy.now(), phi = W.v * t, br = Math.min(RD, V.v * t);
+    panelTitle(ctx, '从地面看', LX, 98);
+    panelTitle(ctx, '在木板上看', RX, 98);
+    divider(ctx, 700, 128, 762);
+
+    /* ---- left: Earth's frame ---- */
+    disc(ctx, LX, CY, RP, phi, F.ref('boards'));
+    curl(ctx, LX, CY, RP + 30, C('angular-rate'));
+    text(ctx, 'ω', LX, CY - RP - 54, C('angular-rate'), { weight: 600, align: 'center' });
+    /* the unshaded rider: no net force on him, so he keeps the tangent he was on */
+    const rr = RR.v * S, c0 = Math.cos(A0), s0 = Math.sin(A0);
+    const gx0 = LX + rr * c0, gy0 = CY - rr * s0;
+    const cap = Math.max(0, Math.min(1.2 * RP, (gy0 - 168) / c0, (gx0 - 70) / s0));
+    const glen = Math.min(cap, rr * W.v * t), gx = gx0 - glen * s0, gy = gy0 - glen * c0;
+    const LB = labeller(ctx, 800); LB.block(0, 0, 1400, 90);
+    /* the two centers and their A marks keep the labels off them */
+    for (const X of [LX, RX]) { LB.block(X - 40, CY - 12, X + 12, CY + 44); }
+    line(ctx, gx0, gy0, gx, gy, PAL.muted, 2, [8, 8]);
+    ctx.save(); ctx.globalAlpha = 0.45; personTop(ctx, gx, gy, -s0, -c0, F.ref('free-rider'), 0.7); ctx.restore();
+    LB.add('F_net = 0', gx, gy, -c0, s0, F.ref('free-rider'), 17, 26);
+    /* the rider, held on his circle by a real force toward the middle */
+    const rx = LX + rr * Math.cos(phi + A0), ry = CY - rr * Math.sin(phi + A0);
+    line(ctx, LX, CY, rx, ry, C('position'), 2, [8, 8]);
+    personTop(ctx, rx, ry, -Math.sin(phi + A0), -Math.cos(phi + A0), F.ref('rider'), 0.7);
+    { const hx = rx + (LX - rx) * 0.46, hy = ry + (CY - ry) * 0.46; arrow(ctx, rx, ry, hx, hy, C('force'), 5); LB.add('他必须抓牢', hx, hy, (LX - rx) / rr, (CY - ry) / rr, C('force'), 17, 22); }
+    /* the ball, dead straight over the ground */
+    line(ctx, LX, CY, LX + br * S, CY, C('velocity'), 5);
+    dot(ctx, LX + br * S, CY, F.ref('ball'), true, 10);
+    dot(ctx, LX, CY, PAL.muted, false, 8);
+    text(ctx, 'A', LX - 10, CY + 28, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    dot(ctx, LX + RP, CY, PAL.muted, false, 9);
+    text(ctx, 'B', LX + RP + 8, CY + 26, PAL.muted, { size: 20, weight: 600 });
+    const bx = LX + RP * Math.cos(phi), by = CY - RP * Math.sin(phi);
+    dot(ctx, bx, by, PAL.ink, false, 10);
+    LB.add('B′', bx, by, Math.cos(phi), -Math.sin(phi), PAL.ink, 20, 22);
+
+    /* ---- right: the boards' own frame ---- */
+    disc(ctx, RX, CY, RP, 0, F.ref('boards'));
+    const qx = RX + rr * Math.cos(A0), qy = CY - rr * Math.sin(A0);
+    line(ctx, RX, CY, RX + RP, CY, PAL.muted, 2, [8, 8]);
+    personTop(ctx, qx, qy, -Math.sin(A0), -Math.cos(A0), F.ref('rider'), 0.7);
+    const ax2 = qx + 78 * Math.cos(A0), ay2 = qy - 78 * Math.sin(A0);
+    arrow(ctx, qx, qy, ax2, ay2, C('force'), 5);
+    LB.add('离心力', ax2, ay2, Math.cos(A0), -Math.sin(A0), C('force'), 17, 22);
+    /* the ball's trail in the dust: straight over the ground, curved to the right here */
+    ctx.save(); ctx.strokeStyle = C('velocity'); ctx.lineWidth = 5; ctx.beginPath();
+    const n = 120;
+    for (let i = 0; i <= n; i++) { const s = (br * i) / n, ang = -W.v * (s / V.v), ex = RX + s * S * Math.cos(ang), ey = CY - s * S * Math.sin(ang); if (i) ctx.lineTo(ex, ey); else ctx.moveTo(ex, ey); }
+    ctx.stroke(); ctx.restore();
+    const ea = -W.v * t, hx = RX + br * S * Math.cos(ea), hy = CY - br * S * Math.sin(ea);
+    dot(ctx, hx, hy, F.ref('ball'), true, 10);
+    dot(ctx, RX, CY, PAL.muted, false, 8);
+    text(ctx, 'A', RX - 10, CY + 28, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    dot(ctx, RX + RP, CY, PAL.ink, false, 10);
+    text(ctx, 'B', RX + RP + 24, CY + 22, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, '灰尘中的轨迹向右弯曲', RX, CY + RP + 48, PAL.muted, { size: 18, align: 'center' });
+    LB.flush();
+
+    headline(ctx, '球越过木板用时 ' + fmt(T(), 2) + ' s，这段时间里木板转过 ' + fmt(W.v * T() * DEG, 0) + '°，它的轨迹也弯过同样的角度。');
+    readout(d.readout, `\\kt = \\frac{${fmt(RD, 2)}\\ \\text{m}}{\\kv} = \\frac{${fmt(RD, 2)}\\ \\text{m}}{${fmt(V.v, 2)}\\ \\text{m/s}} = ${fmt(T(), 2)}\\ \\text{s},\\qquad \\kw\\kt = ${fmt(W.v * T(), 2)}\\ \\text{rad} = ${fmt(W.v * T() * DEG, 0)}°`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 6.14: the centrifuge. From the ground, the tangent along which
+   a particle's inertia would carry it and the real force from the wall
+   of the tube; in the tube's own frame, the particles pressed to the
+   outer end. A rotor at 200 rad/s turns thirty-two times a second, so
+   there is no honest way to animate it and none is drawn: the figure
+   answers its sliders, registers no cycle and takes no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-centrifuge', 600);
+  const W = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 20, max: 400, step: 5, value: 200, unit: 'rad/s', dec: 0, aria: '角速度' });
+  const R = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.05, max: 0.3, step: 0.005, value: 0.15, unit: 'm', dec: 3, aria: '试管的半径' });
+  const G = 9.8, AX = 270, AY = 350;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const ac = R.v * W.v * W.v, ratio = ac / G;
+    panelTitle(ctx, '从地面看', 380, 96);
+    panelTitle(ctx, '在试管参考系中', 1035, 96);
+    divider(ctx, 700, 126, 512);
+
+    /* ---- left: the rotor seen from above ---- */
+    const Rp = 85 + 340 * (R.v - 0.05);                       /* 0.05 m to 0.30 m across 85 to 170 logical units */
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([12, 12]); ctx.beginPath(); ctx.arc(AX, AY, Rp, 0, TAU); ctx.stroke(); ctx.restore();
+    curl(ctx, AX, AY, Rp + 34, C('angular-rate'));
+    text(ctx, 'ω', AX, AY - Rp - 52, C('angular-rate'), { weight: 600, align: 'center' });
+    line(ctx, AX, AY, AX + Rp, AY, PAL.muted, 5);
+    dot(ctx, AX, AY, PAL.muted, true, 8);
+    text(ctx, '转轴', AX - 18, AY, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'r = ' + fmt(R.v, 3) + ' m', AX + Rp * 0.5, AY - 46, C('position'), { size: 18, weight: 600, align: 'center', bg: PAL.bg });
+    tube(ctx, AX + Rp - 30, AY, 1, 0, 126, 30, F.ref('tube'));
+    const qx = AX + Rp + 40, qy = AY;
+    line(ctx, qx, qy + 66, qx, qy - 130, PAL.muted, 2, [10, 10]);
+    text(ctx, '惯性使它沿切线运动', qx, qy + 94, PAL.muted, { size: 17, align: 'center', bg: PAL.bg });
+    dot(ctx, qx, qy, F.ref('particles'), true, 9);
+    arrow(ctx, qx, qy, qx - 74, qy, C('force'), 5);
+    text(ctx, '管壁的真实力', qx - 37, qy + 54, C('force'), { size: 17, weight: 600, align: 'center', bg: PAL.bg });
+
+    /* ---- right: the tube as the sample meets it ---- */
+    const TX = 1035, TY = 150, TL = 320;
+    tube(ctx, TX, TY, 0, 1, TL, 52, F.ref('tube'));
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(TX - 48, TY + 6, 96, TL - 12); ctx.fill(); ctx.restore();
+    const pellet = Math.min(0.46, 0.1 + 0.14 * Math.log10(Math.max(2, ratio)));
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.3); ctx.beginPath(); ctx.rect(TX - 48, TY + TL - 24 - pellet * TL, 96, pellet * TL); ctx.fill(); ctx.restore();
+    for (let i = 0; i < 12; i++) { const fr = ((i * 7) % 12) / 12, yy = TY + TL - 40 - fr * fr * (TL - 90); dot(ctx, TX - 32 + ((i * 23) % 66), yy, F.ref('particles'), true, 6); }
+    arrow(ctx, TX + 90, TY + 56, TX + 90, TY + TL - 34, C('force'), 5);
+    text(ctx, '离心力', TX + 104, TY + TL / 2 - 12, C('force'), { size: 18, weight: 600 });
+    text(ctx, '没有物理来源', TX + 104, TY + TL / 2 + 16, PAL.muted, { size: 17 });
+    text(ctx, '转轴在这一边', TX, TY - 26, PAL.muted, { size: 17, align: 'center' });
+
+    /* the ladder of accelerations, in multiples of g */
+    const LL = 200, LR = 1200, LY = 540, X = (u) => LL + ((LR - LL) * Math.log10(u)) / 4;
+    line(ctx, LL, LY, LR, LY, PAL.muted, 3);
+    for (let e = 0; e <= 4; e++) { const xx = X(Math.pow(10, e)); line(ctx, xx, LY - 9, xx, LY + 9, PAL.muted, 2); text(ctx, e === 0 ? '1 g' : '10' + sup(e) + ' g', xx, LY + 30, PAL.muted, { size: 17, align: 'center' }); }
+    const mark = X(Math.min(10000, Math.max(1, ratio)));
+    dot(ctx, mark, LY, C('acceleration'), true, 10);
+    text(ctx, fmt(ratio, 0) + ' g', mark, LY - 28, C('acceleration'), { size: 18, weight: 600, align: 'center', bg: PAL.bg });
+
+    headline(ctx, '在 ' + fmt(W.v, 0) + ' rad/s、距转轴 ' + fmt(R.v, 3) + ' m 处，试管内物体的加速度为 ' + fmt(ratio, 0) + ' g。');
+    readout(d.readout, `\\kac = \\kr\\kw^2 = (${fmt(R.v, 3)}\\ \\text{m})(${fmt(W.v, 0)}\\ \\text{rad/s})^2 = ${sciTex(ac, 2)}\\ \\text{m/s}^2 = ${fmt(ratio, 0)}\\,\\kg`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the winds round a low, once in each hemisphere. Air flows in from
+   every side and is turned to the right of its motion in the north and
+   to the left in the south, so the inward winds become a circulation.
+   The parcels travel while the clock runs, so the figure moves.
+===================================================================== */
+(function () {
+  const d = sim('sim-cyclone', 780);
+  const R = ctl(d.controls, { label: '\\kr', cls: 'position', min: 50, max: 2000, step: 50, value: 1000, unit: 'km', dec: 0, onInput: reset, aria: '天气系统的半径' });
+  const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 40, step: 1, value: 20, unit: 'm/s', dec: 0, onInput: reset, aria: '风速' });
+  const FC = 1.0e-4;                                          /* Earth turns a moving parcel about this many radians each second */
+  const cy = cycle(() => 1, 1.2);
+  function reset() { cy.reset(); }
+  const LX = 370, RX = 1030, CY = 460, RP = 240, EYE = 0.08;
+  const secs = () => (R.v * 1000) / V.v;
+  /* the angle Earth turns a parcel through on its way in, which is the angle the drawn track sweeps
+     about the low. The track is a logarithmic spiral whose whole sweep is that angle, so 2000 km and
+     1000 km draw different spirals; four complete turns is as tight a spiral as the drawing can
+     hold, and past that the headline says the drawing has stopped following. */
+  const turnOf = () => FC * secs();
+  const TURN_MAX = 8 * Math.PI;
+  const sweepOf = () => Math.min(TURN_MAX, turnOf());
+  function at(cx, sweep, a0, sgn, tau) {
+    const rho = 1 - (1 - EYE) * tau, ph = a0 + sgn * sweep * (Math.log(1 / rho) / Math.log(1 / EYE));
+    return [cx + RP * rho * Math.cos(ph), CY - RP * rho * Math.sin(ph)];
+  }
+  function panel(ctx, cx, sgn, title) {
+    const ang = sweepOf(), tau = cy.now();
+    panelTitle(ctx, title, cx, 130);
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([12, 12]); ctx.beginPath(); ctx.arc(cx, CY, RP, 0, TAU); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.beginPath(); ctx.arc(cx, CY, 40, 0, TAU); ctx.fill(); ctx.restore();
+    for (let q = 0; q < 4; q++) {
+      const a0 = (q * TAU) / 4;
+      line(ctx, cx + RP * Math.cos(a0), CY - RP * Math.sin(a0), cx + RP * EYE * Math.cos(a0), CY - RP * EYE * Math.sin(a0), PAL.rule, 2, [10, 10]);
+      ctx.save(); ctx.strokeStyle = C('velocity'); ctx.lineWidth = 5; ctx.beginPath();
+      const n = 220;
+      for (let i = 0; i <= n; i++) { const [x, y] = at(cx, ang, a0, sgn, (tau * i) / n); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
+      ctx.stroke(); ctx.restore();
+      const [hx, hy] = at(cx, ang, a0, sgn, tau), [bx, by] = at(cx, ang, a0, sgn, Math.max(0, tau - 0.01));
+      if (tau > 0.012) arrow(ctx, bx, by, hx, hy, C('velocity'), 5);
+      dot(ctx, cx + RP * Math.cos(a0), CY - RP * Math.sin(a0), PAL.muted, false, 8);
+    }
+    text(ctx, '低压', cx, CY, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.bg });
+    /* two lines under each panel, so the two panels' sentences never meet in the middle */
+    text(ctx, sgn > 0 ? '每个气块向右偏转，' : '每个气块向左偏转，', cx, CY + RP + 48, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, sgn > 0 ? '于是流入的气流成为逆时针环流。' : '于是流入的气流成为顺时针环流。', cx, CY + RP + 72, PAL.muted, { size: 18, align: 'center' });
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const t = secs(), turn = FC * t, hours = t / 3600;
+    panel(ctx, LX, 1, '北半球');
+    panel(ctx, RX, -1, '南半球');
+    divider(ctx, 700, 150, 742);
+    const clause = turn < 0.3 ? '因此它几乎笔直地吹向中心。'
+      : turn < 1.5 ? '因此它盘旋而入，而不是笔直吹入。'
+        : '因此它在向内的途中绕低压中心转了 ' + fmt(turn / TAU, 1) + ' 圈。';
+    topline(ctx, '空气用了 ' + fmt(hours, 1) + ' h 到达中心，途中地球使它转过 ' + fmt(turn, 1) + ' rad，' + clause
+      + (turn > TURN_MAX ? '图中最多画出四整圈。' : ''));
+    readout(d.readout, `\\kt = \\frac{\\kr}{\\kv} = \\frac{${sciTex(R.v * 1000, 2)}\\ \\text{m}}{${fmt(V.v, 0)}\\ \\text{m/s}} = ${sciTex(t, 1)}\\ \\text{s} = ${fmt(hours, 1)}\\ \\text{h},\\quad (10^{-4}\\ \\text{rad/s})\\,\\kt = ${fmt(turn, 1)}\\ \\text{rad}`,
+      '地球自转使运动的气块每秒转过约 $10^{-4}$ rad，这在一条街的范围内微不足道。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
+})();
+};

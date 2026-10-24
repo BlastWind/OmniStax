@@ -1,0 +1,656 @@
+{
+ "types": [
+  {
+   "id": "stress",
+   "label": "应力",
+   "dimension": "N/m²"
+  },
+  {
+   "id": "elastic-modulus",
+   "label": "弹性模量",
+   "dimension": "N/m²"
+  },
+  {
+   "id": "area",
+   "label": "面积",
+   "dimension": "m²"
+  },
+  {
+   "id": "volume",
+   "label": "体积",
+   "dimension": "m³"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "A",
+   "latex": "A",
+   "macro": "\\karea"
+  },
+  {
+   "sym": "f_s",
+   "latex": "f_{\\text{s}}",
+   "macro": "\\kfs"
+  },
+  {
+   "sym": "f_smax",
+   "latex": "f_{\\text{s}(\\text{max})}",
+   "macro": "\\kfsmax"
+  },
+  {
+   "sym": "f_k",
+   "latex": "f_{\\text{k}}",
+   "macro": "\\kfk"
+  },
+  {
+   "sym": "v_t",
+   "latex": "v_{\\text{t}}",
+   "macro": "\\kvt"
+  },
+  {
+   "sym": "ΔL",
+   "latex": "\\Delta L",
+   "macro": "\\kdL"
+  },
+  {
+   "sym": "L_0",
+   "latex": "L_0",
+   "macro": "\\kLo"
+  },
+  {
+   "sym": "Y",
+   "latex": "Y",
+   "macro": "\\kY"
+  },
+  {
+   "sym": "S",
+   "latex": "S",
+   "macro": "\\kS"
+  },
+  {
+   "sym": "B_bulk",
+   "latex": "B",
+   "macro": "\\kBb"
+  },
+  {
+   "sym": "μ",
+   "latex": "\\mu"
+  },
+  {
+   "sym": "μ_s",
+   "latex": "\\mu_{\\text{s}}"
+  },
+  {
+   "sym": "μ_k",
+   "latex": "\\mu_{\\text{k}}"
+  },
+  {
+   "sym": "C_drag",
+   "latex": "C"
+  },
+  {
+   "sym": "ρ",
+   "latex": "\\rho",
+   "macro": "\\krhomat"
+  },
+  {
+   "sym": "η",
+   "latex": "\\eta",
+   "macro": "\\ketav"
+  },
+  {
+   "sym": "r",
+   "latex": "r",
+   "macro": "\\krad"
+  },
+  {
+   "sym": "ΔV",
+   "latex": "\\Delta V",
+   "macro": "\\kdvol"
+  },
+  {
+   "sym": "V_0",
+   "latex": "V_0",
+   "macro": "\\kvolo"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "kinetic-friction",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "滑动摩擦力",
+   "symbol": "f_k",
+   "terms": [
+    "滑动摩擦力"
+   ],
+   "type": "force",
+   "statement": "两个相接触的表面相对运动时，它们之间的摩擦力称为滑动摩擦力。它是使在冰上滑行的冰球慢下来的力，也是简单到可以写成单个乘积的那一种。"
+  },
+  {
+   "id": "static-friction",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "静摩擦力",
+   "symbol": "f_s",
+   "terms": [
+    "静摩擦力"
+   ],
+   "type": "force",
+   "statement": "当两个表面相对静止时，它们之间可以存在静摩擦力。它是一种响应式的力，会增大到与你所施的力大小相等、方向相反，直到某个极限，这就是为什么一只沉重的木箱可以越推越用力却仍然不动。"
+  },
+  {
+   "id": "coefficient-of-friction",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "摩擦因数",
+   "symbol": "μ_s",
+   "statement": "摩擦因数是承载着两种材料特性的数。它没有单位，大小通常在 0 到 1.0 之间，而对同一对表面，动摩擦因数比静摩擦因数小，这就是为什么让木箱保持运动比让它开始运动更容易。"
+  },
+  {
+   "id": "static-friction-magnitude",
+   "kind": "axiom",
+   "section": "5.1",
+   "name": "静摩擦力的大小",
+   "terms": [
+    "静摩擦力的大小"
+   ],
+   "statement": "静摩擦力的大小可以取从零到某个最大值之间的任何值，这个最大值等于静摩擦因数乘以法向力。摩擦力总是取保持表面静止所需要的值，直到外加力超过这个最大值，物体开始运动。",
+   "forms": [
+    {
+     "id": "eq-fs",
+     "latex": "f_{\\text{s}} \\le \\mu_{\\text{s}} N",
+     "ktex": "\\kfs \\le \\mu_{\\text{s}} \\kN",
+     "condition": "两个系统相互接触，且彼此之间没有相对运动",
+     "anchor": "5.1-magnitudes"
+    },
+    {
+     "id": "eq-fs-max",
+     "latex": "f_{\\text{s}(\\text{max})} = \\mu_{\\text{s}} N",
+     "ktex": "\\kfsmax = \\mu_{\\text{s}} \\kN",
+     "condition": "静摩擦力已达到最大值，物体即将开始运动",
+     "anchor": "5.1-magnitudes"
+    }
+   ]
+  },
+  {
+   "id": "kinetic-friction-magnitude",
+   "kind": "axiom",
+   "section": "5.1",
+   "name": "滑动摩擦力的大小",
+   "terms": [
+    "滑动摩擦力的大小"
+   ],
+   "statement": "物体一旦运动，作用在它上面的摩擦力等于动摩擦因数乘以法向力。服从这一规则的摩擦力被说成遵循简单规律，它的大小与接触面积无关，在很好的近似下也与速率无关。",
+   "forms": [
+    {
+     "id": "eq-fk",
+     "latex": "f_{\\text{k}} = \\mu_{\\text{k}} N",
+     "ktex": "\\kfk = \\mu_{\\text{k}} \\kN",
+     "condition": "两个系统彼此之间有相对运动，且摩擦力遵循简单规律",
+     "anchor": "5.1-magnitudes"
+    }
+   ]
+  },
+  {
+   "id": "friction-on-an-incline",
+   "kind": "result",
+   "section": "5.1",
+   "name": "斜坡上的摩擦",
+   "statement": "在斜坡上，法向力不是整个重力，而只是它垂直于表面的分量，所以滑动摩擦力等于动摩擦因数乘以 mg cos θ。因此，沿斜坡匀速下滑的物体，其动摩擦因数等于 tan θ。",
+   "forms": [
+    {
+     "id": "eq-fk-incline",
+     "latex": "f_{\\text{k}} = \\mu_{\\text{k}} mg\\cos\\theta",
+     "ktex": "\\kfk = \\mu_{\\text{k}} m\\kg\\cos\\theta",
+     "condition": "物体沿与水平面成角 θ 的斜坡下滑",
+     "anchor": "5.1-incline"
+    },
+    {
+     "id": "eq-mu-k-slope",
+     "latex": "\\mu_{\\text{k}} = \\frac{f_{\\text{k}}}{N} = \\frac{f_{\\text{k}}}{mg\\cos\\theta}",
+     "ktex": "\\mu_{\\text{k}} = \\frac{\\kfk}{\\kN} = \\frac{\\kfk}{m\\kg\\cos\\theta}",
+     "anchor": "5.1-incline"
+    },
+    {
+     "id": "eq-mu-tan",
+     "latex": "\\mu_{\\text{k}} = \\frac{mg\\sin\\theta}{mg\\cos\\theta} = \\tan\\theta",
+     "ktex": "\\mu_{\\text{k}} = \\frac{m\\kg\\sin\\theta}{m\\kg\\cos\\theta} = \\tan\\theta",
+     "condition": "物体沿斜坡匀速下滑，所以加速度为零",
+     "anchor": "5.1-incline"
+    }
+   ]
+  },
+  {
+   "id": "atomic-origin-of-friction",
+   "kind": "idea",
+   "section": "5.1",
+   "name": "摩擦的原子起源",
+   "statement": "摩擦力与法向力成正比，却不与总接触面积成正比，只有仔细观察表面才能解释其中的原因。它们在凸起处接触，实际接触面积随着它们被压紧而增大，而且因为摩擦使它们的原子晶格振动起来，它们会变热。"
+  },
+  {
+   "id": "drag-force-equation",
+   "kind": "axiom",
+   "section": "5.2",
+   "name": "阻力公式",
+   "statement": "对于运动不太慢的大物体，阻力与速率的平方成正比，前面的常量包含了阻力系数、迎流面积和流体的密度。因此，汽车的速率加倍，它受到的阻力大约变为原来的四倍。",
+   "forms": [
+    {
+     "id": "eq-drag-force",
+     "latex": "F_{\\text{D}} = \\frac{1}{2} C \\rho A v^2",
+     "ktex": "\\kFD = \\frac{1}{2} C \\rho A \\kv^2",
+     "condition": "像骑自行车者、汽车或棒球这样的大物体，运动得不太慢",
+     "anchor": "5.2-drag"
+    },
+    {
+     "id": "eq-drag-prop",
+     "latex": "F_{\\text{D}} \\propto v^2",
+     "ktex": "\\kFD \\propto \\kv^2",
+     "condition": "大物体在流体中运动得足够快",
+     "anchor": "5.2-drag"
+    },
+    {
+     "id": "eq-drag-b",
+     "latex": "F_{\\text{D}} = bv^2, \\quad b = 0.5 C \\rho A",
+     "ktex": "\\kFD = b\\kv^2, \\quad b = 0.5 C \\rho A",
+     "anchor": "5.2-drag"
+    }
+   ]
+  },
+  {
+   "id": "drag-coefficient",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "阻力系数",
+   "symbol": "C_drag",
+   "statement": "阻力系数是承载着物体形状的无量纲数。它由实验确定，通常在风洞中测得，这也是空气动力学外形设计很重要的原因：丰田凯美瑞的系数为 0.28，悍马H2的系数为 0.64，而跳伞者自己的系数则随下落时的姿势而变化。"
+  },
+  {
+   "id": "terminal-velocity",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "终极速度",
+   "symbol": "v_t",
+   "terms": [
+    "终极速率"
+   ],
+   "type": "velocity",
+   "statement": "下落的物体不断加速，直到阻力增大到与它的重力相等。此时合力为零，所以由牛顿第二定律，加速度为零，速率保持不变。一旦不再忽略空气，自由落体最终就成了终极速度。",
+   "forms": [
+    {
+     "id": "eq-terminal-balance",
+     "latex": "F_{\\text{net}} = mg - F_{\\text{D}} = ma = 0",
+     "ktex": "\\kFnet = m\\kg - \\kFD = m\\ka = 0",
+     "condition": "处于终极速度时",
+     "anchor": "5.2-terminal"
+    }
+   ]
+  },
+  {
+   "id": "terminal-velocity-magnitude",
+   "kind": "result",
+   "section": "5.2",
+   "name": "终极速度的大小",
+   "statement": "令阻力等于重力并解出速率，就得到用质量、阻力系数、迎流面积和流体密度表示的终极速度。这就是为什么一名 75 kg 的跳伞者头朝下时以约 350 km/h 下落，四肢张开时以约 200 km/h 下落。",
+   "forms": [
+    {
+     "id": "eq-vt",
+     "latex": "v_{\\text{t}} = \\sqrt{\\frac{2mg}{\\rho C A}}",
+     "ktex": "\\kvt = \\sqrt{\\frac{2m\\kg}{\\rho C A}}",
+     "condition": "阻力已增大到等于重力",
+     "anchor": "5.2-terminal"
+    }
+   ]
+  },
+  {
+   "id": "stokes-law",
+   "kind": "axiom",
+   "section": "5.2",
+   "name": "斯托克斯定律",
+   "terms": [
+    "斯托克斯定律"
+   ],
+   "statement": "当物体非常小、运动得非常慢，或处在比空气更稠密的介质中时，阻力与速率本身成正比，而不是与速率的平方成正比，力为 6πrηv。这就是细菌、一粒花粉或一粒尘埃所受到的阻力。",
+   "forms": [
+    {
+     "id": "eq-stokes",
+     "latex": "F_{\\text{s}} = 6\\pi r \\eta v",
+     "ktex": "\\kFs = 6\\pi r \\eta \\kv",
+     "condition": "物体非常小、运动得非常慢，或处在比空气更稠密的介质中",
+     "anchor": "5.2-stokes"
+    },
+    {
+     "id": "eq-stokes-sphere",
+     "latex": "F_{\\text{S}} = 6\\pi R\\eta v",
+     "ktex": "\\kFs = 6\\pi R\\keta\\kv",
+     "condition": "小球在流体中缓慢运动",
+     "section": "12.6",
+     "anchor": "12.6-viscous-drag"
+    }
+   ]
+  },
+  {
+   "id": "size-and-terminal-velocity",
+   "kind": "idea",
+   "section": "5.2",
+   "name": "大小与终极速度",
+   "statement": "把一只动物的长、宽、高各除以十，它的重力降为千分之一，而表面积只降为百分之一，所以较小的动物受到的阻力相对大十倍。这就是为什么松鼠可以从树上掉下来然后走开，而人不能。"
+  },
+  {
+   "id": "deformation",
+   "kind": "definition",
+   "section": "5.3",
+   "name": "形变",
+   "symbol": "ΔL",
+   "terms": [
+    "形变"
+   ],
+   "type": "position",
+   "statement": "形变是力引起的形状改变。即使很小的力也会引起一些形变，而小形变显示出两件事：力一去掉，物体就恢复原来的形状，并且形变的大小与力成正比。"
+  },
+  {
+   "id": "elastic-limit",
+   "kind": "idea",
+   "section": "5.3",
+   "name": "弹性区和拉伸强度",
+   "statement": "力与形变之间的正比关系只在一定范围内成立。越过图像中的直线部分，形变仍然是弹性的，再越过这一部分，物体就发生永久形变，到达拉伸强度时就断裂。骨是脆性的，所以它的弹性区很小，断裂很突然。"
+  },
+  {
+   "id": "youngs-modulus",
+   "kind": "axiom",
+   "section": "5.3",
+   "name": "杨氏模量",
+   "statement": "金属丝或杆的长度变化量与力和原长成正比，与横截面积成反比，承载着物质特性的常量就是杨氏模量。一根长的吉他弦比短的拉伸得更多，粗的比细的拉伸得更少。",
+   "forms": [
+    {
+     "id": "eq-delta-L",
+     "latex": "\\Delta L = \\frac{1}{Y}\\frac{F}{A}L_0",
+     "ktex": "\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo",
+     "condition": "力平行于金属丝或杆的长度方向施加，使其拉伸或压缩",
+     "anchor": "5.3-length"
+    },
+    {
+     "id": "eq-F-YA",
+     "latex": "F = YA\\frac{\\Delta L}{L_0}",
+     "ktex": "\\kF = \\kY A\\frac{\\kdL}{\\kLo}",
+     "anchor": "5.3-stress-strain"
+    },
+    {
+     "id": "eq-k-rod",
+     "latex": "k = \\frac{YA}{L_0}",
+     "ktex": "\\kk = \\frac{\\kY A}{\\kLo}",
+     "condition": "物体是横截面积为 A、长度为 L₀ 的均匀杆或金属丝",
+     "anchor": "5.3-stress-strain"
+    }
+   ]
+  },
+  {
+   "id": "stress",
+   "kind": "definition",
+   "section": "5.3",
+   "name": "应力",
+   "terms": [
+    "应力"
+   ],
+   "statement": "力与面积之比定义为应力，单位为牛每平方米。这样来写力，使得一个数就能描述一种材料，而不是某一根特定的杆，因为同样的力作用在更细的金属丝上，应力更大。"
+  },
+  {
+   "id": "strain",
+   "kind": "definition",
+   "section": "5.3",
+   "name": "应变",
+   "terms": [
+    "应变"
+   ],
+   "statement": "长度的变化量与原长之比定义为应变，它是一个无单位的量。当应变小于约 0.1% 时，大多数材料表现为弹性的，而像你腿部那样起支撑作用的肌腱，长度可以改变多达百分之十。"
+  },
+  {
+   "id": "stress-strain",
+   "kind": "result",
+   "section": "5.3",
+   "name": "应力与应变",
+   "statement": "把长度变化量的方程重新整理，可以说应力等于杨氏模量乘以应变。写成这种形式，它就又是胡克定律，只是以应力代替了力，以应变代替了形变，这就是为什么同一种形式的表述既适用于被拉伸的金属丝，也适用于被切变的书柜和被压缩的立方体。",
+   "forms": [
+    {
+     "id": "eq-stress-strain",
+     "latex": "\\text{应力} = Y \\times \\text{应变}",
+     "ktex": "\\text{应力} = \\kY \\times \\text{应变}",
+     "anchor": "5.3-stress-strain"
+    },
+    {
+     "id": "eq-stress-strain-form",
+     "latex": "\\frac{F}{A} = Y\\frac{\\Delta L}{L_0}",
+     "ktex": "\\frac{\\kF}{A} = \\kY\\frac{\\kdL}{\\kLo}",
+     "anchor": "5.3-stress-strain"
+    }
+   ]
+  },
+  {
+   "id": "shear-deformation",
+   "kind": "axiom",
+   "section": "5.3",
+   "name": "切变",
+   "symbol": "Δx",
+   "terms": [
+    "切变"
+   ],
+   "statement": "垂直于长度、平行于横截面积施加的力使物体向侧面切变，其中的常量是剪切模量。这个方程是合乎情理的：弯曲一支细长的铅笔比弯曲一支短粗的更容易，而且两者都比同样大小的钢杆更容易弯曲。",
+   "forms": [
+    {
+     "id": "eq-shear",
+     "latex": "\\Delta x = \\frac{1}{S}\\frac{F}{A}L_0",
+     "ktex": "\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo",
+     "condition": "力垂直于 L₀、平行于横截面积 A 施加",
+     "anchor": "5.3-shear"
+    },
+    {
+     "id": "eq-shear-F",
+     "latex": "F = \\frac{SA}{L_0}\\Delta x",
+     "ktex": "\\kF = \\frac{\\kS A}{\\kLo}\\kdx",
+     "anchor": "5.3-shear"
+    }
+   ]
+  },
+  {
+   "id": "bulk-deformation",
+   "kind": "axiom",
+   "section": "5.3",
+   "name": "体积的变化",
+   "statement": "在所有表面上受到均匀挤压的物体，改变的是体积而不是长度，其中的常量是体积模量。气体很容易压缩，因为它们的分子相距很远，而液体和固体则极难压缩，这就是为什么五千米深处的海水体积只减小了 2.3%。",
+   "forms": [
+    {
+     "id": "eq-bulk",
+     "latex": "\\Delta V = \\frac{1}{B}\\frac{F}{A}V_0",
+     "ktex": "\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0",
+     "condition": "单位面积上的力均匀地向内作用于所有表面",
+     "anchor": "5.3-bulk"
+    },
+    {
+     "id": "eq-dv-over-v0",
+     "latex": "\\frac{\\Delta V}{V_0} = \\frac{1}{B}\\frac{F}{A}",
+     "ktex": "\\frac{\\Delta V}{V_0} = \\frac{1}{\\kBb}\\frac{\\kF}{A}",
+     "anchor": "5.3-ex-water"
+    },
+    {
+     "id": "eq-bulk-volume-change",
+     "latex": "\\Delta V = \\frac{1}{B}\\frac{F}{A}V_0",
+     "ktex": "\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0",
+     "section": "13.2",
+     "anchor": "13.2-thermal-stress"
+    }
+   ]
+  },
+  {
+   "id": "tensile-strength",
+   "kind": "definition",
+   "section": "5.3",
+   "name": "拉伸强度",
+   "terms": [
+    "拉伸强度"
+   ],
+   "statement": "材料的拉伸强度是断裂应力，即会使材料发生永久形变或断裂的应力。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "kinetic-friction",
+   "prereq": "friction"
+  },
+  {
+   "concept": "static-friction",
+   "prereq": "friction"
+  },
+  {
+   "concept": "coefficient-of-friction",
+   "prereq": "static-friction"
+  },
+  {
+   "concept": "coefficient-of-friction",
+   "prereq": "kinetic-friction"
+  },
+  {
+   "concept": "static-friction-magnitude",
+   "prereq": "static-friction"
+  },
+  {
+   "concept": "static-friction-magnitude",
+   "prereq": "coefficient-of-friction"
+  },
+  {
+   "concept": "static-friction-magnitude",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "kinetic-friction-magnitude",
+   "prereq": "kinetic-friction"
+  },
+  {
+   "concept": "kinetic-friction-magnitude",
+   "prereq": "coefficient-of-friction"
+  },
+  {
+   "concept": "kinetic-friction-magnitude",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "kinetic-friction-magnitude"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "weight-components-on-incline"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "acceleration-on-frictionless-incline"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "friction-on-an-incline",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "atomic-origin-of-friction",
+   "prereq": "friction"
+  },
+  {
+   "concept": "atomic-origin-of-friction",
+   "prereq": "coefficient-of-friction"
+  },
+  {
+   "concept": "drag-force-equation",
+   "prereq": "drag-force"
+  },
+  {
+   "concept": "drag-coefficient",
+   "prereq": "drag-force-equation"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "drag-force-equation"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "terminal-velocity",
+   "prereq": "weight"
+  },
+  {
+   "concept": "terminal-velocity-magnitude",
+   "prereq": "terminal-velocity"
+  },
+  {
+   "concept": "stokes-law",
+   "prereq": "drag-force"
+  },
+  {
+   "concept": "size-and-terminal-velocity",
+   "prereq": "terminal-velocity-magnitude"
+  },
+  {
+   "concept": "deformation",
+   "prereq": "force"
+  },
+  {
+   "concept": "elastic-limit",
+   "prereq": "deformation"
+  },
+  {
+   "concept": "youngs-modulus",
+   "prereq": "deformation"
+  },
+  {
+   "concept": "stress",
+   "prereq": "force"
+  },
+  {
+   "concept": "strain",
+   "prereq": "deformation"
+  },
+  {
+   "concept": "stress-strain",
+   "prereq": "stress"
+  },
+  {
+   "concept": "stress-strain",
+   "prereq": "strain"
+  },
+  {
+   "concept": "stress-strain",
+   "prereq": "youngs-modulus"
+  },
+  {
+   "concept": "shear-deformation",
+   "prereq": "stress-strain"
+  },
+  {
+   "concept": "bulk-deformation",
+   "prereq": "stress-strain"
+  },
+  {
+   "concept": "tensile-strength",
+   "prereq": "stress"
+  },
+  {
+   "concept": "tensile-strength",
+   "prereq": "deformation"
+  },
+  {
+   "concept": "tensile-strength",
+   "prereq": "elastic-limit"
+  }
+ ]
+}

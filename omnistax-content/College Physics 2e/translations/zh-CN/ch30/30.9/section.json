@@ -1,0 +1,622 @@
+{
+ "id": "30.9",
+ "module": "m42618",
+ "chapter": "30",
+ "title": "泡利不相容原理",
+ "short": "不相容原理",
+ "lead": "除氢以外的每个原子都含有不止一个电子，这些电子如何排布，决定了原子的化学行为。本节陈述不让任何两个电子处于同一状态的规则，并沿着壳层和支壳层把它推演到元素周期表的排列顺序。",
+ "objectives": [
+  "定义原子的组成，包括其电子、中子和质子。",
+  "解释泡利不相容原理及其在原子中的应用。",
+  "指明壳层和支壳层的符号及其位置。",
+  "确定电子在原子不同壳层中的位置。",
+  "根据壳层填充，说明每种元素在元素周期表中的位置。"
+ ],
+ "summary_html": "<ul><li>系统的状态由一组完整的量子数完全描述。这一组量子数写作 $(n, l, m_{l}, m_{s})$。</li><li>泡利不相容原理指出，没有两个电子可以有相同的一组量子数；也就是说，没有两个电子可以处于同一状态。</li><li>这种不相容性限制了原子壳层和支壳层中的电子数。每个 $n$ 值对应一个壳层，每个 $l$ 值对应一个支壳层。</li><li>一个支壳层中最多可以有的电子数是 $$2(2l+1).$$</li><li>一个壳层中最多可以有的电子数是 $$2n^{2}.$$</li></ul>",
+ "notes": "本模块的正文一字未略；书中印成 C1⁻ 的卤素离子写成 Cl⁻，而要求证明一个支壳层最多容纳 2n² 个电子的那道习题（其本意是 2(2l + 1)），以及答案中对 s 和 p 支壳层写的“3 > (2l + 1) = 2”和“7 > (2l + 1) = 2(2 + 1) = 6”，都照印刷的样子保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案来自书后答案。本模块的习题有四道放在这里。另有十道有答案的习题印在这里，但考查的是前面的小节，因而放在那里：30.2 节中汤姆孙管里的力的方向、带有两个额外电子的密立根油滴，以及测量荷质比的电子束；30.3 节中远离的星系、脉冲星的莱曼线、铀中的 μ 子，以及碳的两步下落；30.4 节中 0.0100 fm 的 X 射线；30.5 节中外科用的二氧化碳激光器和准分子激光器。有十五道习题没有给出答案，因而略去：含 11 个电子的支壳层的最小 l，$n = 3$ 壳层的各个状态，第二组中允许的记号，质子的密度，用于巴耳末线的光栅，其氢俘获电子时发出 91.0 nm 谱线的恒星，用于 25.0 keV X 射线的双缝，月球的 l，氦氖激光器的粒子数反转，MRI 光子，旋转星系的谱线展宽，速度选择器的证明，589 nm 的黄线，以及两道自拟习题。两道思考题没有答案，附有由 AI 撰写并如此标注的建议思路。本模块没有印出“理解检测”框，也没有 AP 题，因此行文中没有设置任何题目。",
+ "figures": [
+  {
+   "id": "photo-pauli",
+   "kind": "photo",
+   "number": "30.54",
+   "widths": [
+    210
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-shell-filling",
+   "kind": "sim",
+   "number": "30.55",
+   "originals": [
+    "/media/ch30/Figure_31_09_02a.jpg"
+   ],
+   "original_caption": "泡利不相容原理解释了为什么电子的某些组态是允许的，而另一些则不被允许。由于电子不能有相同的一组量子数，$n=1$ 能级中最多只能有两个电子，第三个电子必须处于能量更高的 $n=2$ 能级。如果 $n=1$ 能级中有两个电子，它们的自旋方向必须相反。（更准确地说，它们的自旋磁量子数必须不同。）",
+   "widths": [
+    250
+   ],
+   "draws": [],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-notation",
+   "kind": "figure",
+   "number": "30.56",
+   "originals": [
+    "/media/ch30/Figure_31_09_05a.jpg"
+   ],
+   "widths": [
+    220
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-n2-states",
+   "kind": "figure",
+   "number": "30.57",
+   "originals": [
+    "/media/ch30/Figure_31_09_06a.jpg"
+   ],
+   "widths": [
+    350
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-shell-capacity",
+   "kind": "sim",
+   "draws": [],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-periodic-table",
+   "kind": "photo",
+   "number": "30.58",
+   "widths": [
+    400
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "pauli-exclusion-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "atomic-number",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "identical-particles",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "intrinsic-spin",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "quantum-number",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "principal-quantum-number",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "spin-projection-quantum-number",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-electron-atoms",
+   "concept": "allowed-quantum-numbers",
+   "verb": "uses"
+  },
+  {
+   "span": "shells-and-subshells",
+   "concept": "shell",
+   "verb": "introduces"
+  },
+  {
+   "span": "shells-and-subshells",
+   "concept": "subshell",
+   "verb": "introduces"
+  },
+  {
+   "span": "shells-and-subshells",
+   "concept": "shells-and-subshells",
+   "verb": "introduces"
+  },
+  {
+   "span": "shells-and-subshells",
+   "concept": "pauli-exclusion-principle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shells-and-subshells",
+   "concept": "principal-quantum-number",
+   "verb": "uses"
+  },
+  {
+   "span": "shells-and-subshells",
+   "concept": "angular-momentum-quantum-number",
+   "verb": "uses"
+  },
+  {
+   "span": "shells-and-subshells",
+   "concept": "probability-cloud",
+   "verb": "uses"
+  },
+  {
+   "span": "n-2-shell",
+   "concept": "shells-and-subshells",
+   "verb": "reinforces"
+  },
+  {
+   "span": "n-2-shell",
+   "concept": "pauli-exclusion-principle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "n-2-shell",
+   "concept": "allowed-quantum-numbers",
+   "verb": "uses"
+  },
+  {
+   "span": "shell-capacity",
+   "concept": "subshell-capacity",
+   "verb": "introduces"
+  },
+  {
+   "span": "shell-capacity",
+   "concept": "shell-capacity",
+   "verb": "introduces"
+  },
+  {
+   "span": "shell-capacity",
+   "concept": "spin-projection-quantum-number",
+   "verb": "uses"
+  },
+  {
+   "span": "shell-capacity",
+   "concept": "allowed-quantum-numbers",
+   "verb": "uses"
+  },
+  {
+   "span": "n-3-shell",
+   "concept": "subshell-capacity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "n-3-shell",
+   "concept": "shell-capacity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "n-3-shell",
+   "concept": "shells-and-subshells",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shell-filling",
+   "concept": "shell-filling-and-the-periodic-table",
+   "verb": "introduces"
+  },
+  {
+   "span": "shell-filling",
+   "concept": "pauli-exclusion-principle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shell-filling",
+   "concept": "shell-capacity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shell-filling",
+   "concept": "probability-cloud",
+   "verb": "uses"
+  },
+  {
+   "span": "shell-filling",
+   "concept": "ionization-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "shell-filling",
+   "concept": "atomic-number",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "p1",
+   "source_id": "fs-id3386479",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shell-capacity",
+   "prompt": "（a）$n=4$ 壳层中最多可以有多少个电子？（b）它有哪些支壳层，每个支壳层中最多可以有多少个电子？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) electrons in the $n=4$ shell",
+      "value": 32,
+      "tol": 0.001,
+      "hint": "一个壳层中最多可以有的电子数是 $2n^{2}$。"
+     },
+     {
+      "part": "(b) electrons in the $4s$ subshell",
+      "value": 2,
+      "tol": 0.001,
+      "hint": "当 $n = 4$ 时，$l$ 可以是 0、1、2 或 3，一个支壳层最多容纳 $2(2l+1)$ 个电子。"
+     },
+     {
+      "part": "(b) electrons in the $4p$ subshell",
+      "value": 6,
+      "tol": 0.001
+     },
+     {
+      "part": "(b) electrons in the $4d$ subshell",
+      "value": 10,
+      "tol": 0.001
+     },
+     {
+      "part": "(b) electrons in the $4f$ subshell",
+      "value": 14,
+      "tol": 0.001
+     }
+    ],
+    "solution": "（a）32。（b）$s$ 中 2 个，$p$ 中 6 个，$d$ 中 10 个，$f$ 中 14 个，共 32 个。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1412034",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shell-capacity",
+   "prompt": "（a）如果原子的某个支壳层中有 9 个电子，$l$ 的最小值是多少？（b）如果这个支壳层属于 $n=3$ 壳层，这个原子的光谱学记号是什么？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the minimum value of $l$",
+    "value": 2,
+    "tol": 0.001,
+    "hint": "一个支壳层最多容纳 $2(2l+1)$ 个电子。求使这个数至少为 9 的最小 $l$。",
+    "solution": "（a）2\n（b）$3d^{9}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3355596",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shell-capacity",
+   "prompt": "下列光谱学记号中哪些是不允许的？（a）$5s^{1}$ （b）$1d^{1}$ （c）$4s^{3}$ （d）$3p^{7}$ （e）$5g^{15}$。对每个不允许的记号，指出它违反了哪条规则。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（b）违反了 $n\\ge l$，\n（c）$s$ 支壳层中不能有 3 个电子，因为 $3>(2l+1)=2$\n（d）$p$ 支壳层中不能有 7 个电子，因为 $7>(2l+1)=2(2+1)=6$<sup class=\"fn\" data-note=\"c-p3-capacity\"></sup>"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1608615",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shell-capacity",
+   "prompt": "（a）利用泡利不相容原理和量子数 $(n, l, m_{l}, m_{s})$ 允许取值的规则，证明一个支壳层中的最大电子数是 $2n^{2}$<sup class=\"fn\" data-note=\"c-p4-subshell\"></sup>。（b）以类似的方式，证明一个壳层中的最大电子数是 $2n^{2}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）不同的 $m_l$ 值有 $\\pm l, \\pm(l-1), \\ldots, 0$（对每个 $l>0$），而 $l=0$ 时只有一个 $\\Rightarrow (2l+1)$。此外还有一个总的因子 2，因为每个 $m_l$ 对应的 $m_s$ 可以等于 $+1/2$ 或 $-1/2 \\Rightarrow 2(2l+1)$。\n（b）对每个 $l$ 值，得到 $2(2l+1)$，其中 $l = 0, 1, 2, \\ldots, (n-1)$ $\\Rightarrow 2\\{[(2)(0)+1]+[(2)(1)+1]+\\cdots+[(2)(n-1)+1]\\} = 2\\underbrace{[1+3+\\cdots+(2n-3)+(2n-1)]}_{n\\;\\text{项}}$；为了看出方框中的表达式 $=n^{2}$，设想从最后一项中取出 $(n-1)$，加到第一项上 $=2[1+(n-1)+3+\\cdots+(2n-3)+(2n-1)-(n-1)]=2[n+3+\\cdots+(2n-3)+n]$。现在从倒数第二项中取出 $(n-3)$，加到第二项上 $2\\underbrace{[n+n+\\cdots+n+n]}_{n\\;\\text{项}}=2n^{2}$。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2929510",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shells-and-subshells",
+   "prompt": "指出下列各项的壳层、支壳层和电子数：（a）$2p^{3}$。（b）$4d^{9}$。（c）$3s^{1}$。（d）$5g^{16}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个符号都读作 $nl^{x}$：数字是壳层 $n$，字母按 $l$ 的值给出支壳层（$l = 0, 1, 2, 3, 4$ 分别对应 $s$、$p$、$d$、$f$、$g$，见表 30.2），上标是该支壳层中的电子数。（a）$2p^{3}$：$n = 2$ 壳层，$p$ 支壳层（$l = 1$），3 个电子。（b）$4d^{9}$：$n = 4$ 壳层，$d$ 支壳层（$l = 2$），9 个电子。（c）$3s^{1}$：$n = 3$ 壳层，$s$ 支壳层（$l = 0$），1 个电子。（d）$5g^{16}$：$n = 5$ 壳层，$g$ 支壳层（$l = 4$），16 个电子；一个 $g$ 支壳层最多可容纳 $2(2l+1) = 18$ 个电子，所以有 16 个是可能的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1579143",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shell-capacity",
+   "prompt": "下列哪些是不允许的？对不允许的，指出违反了哪条规则。（a）$1p^{3}$ （b）$2p^{8}$ （c）$3g^{11}$ （d）$4f^{2}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对照两条规则检查每个记号：$l$ 最大为 $n - 1$，且一个支壳层最多容纳 $2(2l+1)$ 个电子。（a）$1p^{3}$ 不允许：$p$ 表示 $l = 1$，但在 $n = 1$ 壳层中 $l$ 只能是 0。（b）$2p^{8}$ 不允许：$n = 2$ 时 $l = 1$ 是可能的，但 $p$ 支壳层最多容纳 $2(2 + 1) = 6$ 个电子。（c）$3g^{11}$ 不允许：$g$ 表示 $l = 4$，大于 $n - 1 = 2$。（d）$4f^{2}$ 允许：$l = 3 = n - 1$，而且 2 个电子远低于 $f$ 支壳层可容纳的 14 个。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "p1",
+   "concept": "shell-capacity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "subshell-capacity"
+  },
+  {
+   "exercise": "p2",
+   "concept": "subshell-capacity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "shells-and-subshells"
+  },
+  {
+   "exercise": "p3",
+   "concept": "subshell-capacity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "allowed-quantum-numbers"
+  },
+  {
+   "exercise": "p3",
+   "concept": "shells-and-subshells"
+  },
+  {
+   "exercise": "p4",
+   "concept": "shell-capacity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "subshell-capacity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "pauli-exclusion-principle"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "shells-and-subshells",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "subshell-capacity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "subshell-capacity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "allowed-quantum-numbers"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "shells-and-subshells"
+  }
+ ],
+ "referents": [
+  {
+   "id": "sub-1s",
+   "label": "1s 支壳层",
+   "figures": [
+    "sim-shell-filling",
+    "sim-shell-capacity"
+   ]
+  },
+  {
+   "id": "sub-2s",
+   "label": "2s 支壳层",
+   "figures": [
+    "sim-shell-filling",
+    "fig-n2-states",
+    "sim-shell-capacity"
+   ]
+  },
+  {
+   "id": "sub-2p",
+   "label": "2p 支壳层",
+   "figures": [
+    "sim-shell-filling",
+    "fig-n2-states",
+    "sim-shell-capacity"
+   ]
+  },
+  {
+   "id": "sub-3s",
+   "label": "3s 支壳层",
+   "figures": [
+    "sim-shell-filling",
+    "sim-shell-capacity"
+   ]
+  },
+  {
+   "id": "sub-3p",
+   "label": "3p 支壳层",
+   "figures": [
+    "sim-shell-filling",
+    "sim-shell-capacity"
+   ]
+  },
+  {
+   "id": "sub-3d",
+   "label": "3d 支壳层",
+   "figures": [
+    "sim-shell-filling",
+    "sim-shell-capacity"
+   ]
+  },
+  {
+   "id": "sub-4s",
+   "label": "4s 支壳层",
+   "figures": [
+    "sim-shell-filling",
+    "sim-shell-capacity"
+   ]
+  },
+  {
+   "id": "sub-4d",
+   "label": "4d 支壳层",
+   "figures": [
+    "sim-shell-capacity"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p3-capacity",
+   "kind": "correction",
+   "html": "书中的答案把一个支壳层的容量写成 $(2l+1)$，又把 $p$ 支壳层写成 $2(2+1)$。容量是 $2(2l+1)$：$s$（$l = 0$）为 2，$p$（$l = 1$）为 $2(2\\cdot 1+1) = 6$。"
+  },
+  {
+   "id": "c-p4-subshell",
+   "kind": "correction",
+   "html": "书中把一个支壳层的最大电子数印成 $2n^{2}$。一个支壳层中最多可以有的电子数是 $2(2l+1)$，正如解答所证明的；$2n^{2}$ 是一个壳层中的电子数，即（b）部分。"
+  }
+ ]
+}

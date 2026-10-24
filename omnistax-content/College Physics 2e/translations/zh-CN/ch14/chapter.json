@@ -1,0 +1,683 @@
+{
+ "id": "14",
+ "dir": "ch14",
+ "title": "热量与热传递的方式",
+ "intro": {
+  "module": "m42221",
+  "slug": "14-introduction-to-heat-and-heat-transfer-methods"
+ },
+ "sections": [
+  {
+   "id": "14.1",
+   "module": "m42223",
+   "title": "热量",
+   "slug": "14-1-heat"
+  },
+  {
+   "id": "14.2",
+   "module": "m42224",
+   "title": "温度变化与热容",
+   "slug": "14-2-temperature-change-and-heat-capacity"
+  },
+  {
+   "id": "14.3",
+   "module": "m42225",
+   "title": "相变与潜热",
+   "slug": "14-3-phase-change-and-latent-heat"
+  },
+  {
+   "id": "14.4",
+   "module": "m42226",
+   "title": "热传递的方式",
+   "slug": "14-4-heat-transfer-methods"
+  },
+  {
+   "id": "14.5",
+   "module": "m42228",
+   "title": "热传导",
+   "slug": "14-5-conduction"
+  },
+  {
+   "id": "14.6",
+   "module": "m42229",
+   "title": "对流",
+   "slug": "14-6-convection"
+  },
+  {
+   "id": "14.7",
+   "module": "m42230",
+   "title": "辐射",
+   "slug": "14-7-radiation"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "Q_heat",
+   "concept": "heat",
+   "meaning": "热量，由温差引起的能量自发传递",
+   "unit": "J",
+   "section": "14.1",
+   "anchor": "14.1-heat"
+  },
+  {
+   "sym": "T_1temp",
+   "concept": "temperature",
+   "meaning": "软饮料与冰接触之前的温度",
+   "unit": "°C",
+   "section": "14.1",
+   "anchor": "14.1-heat",
+   "ref": "drink"
+  },
+  {
+   "sym": "T_2temp",
+   "concept": "temperature",
+   "meaning": "冰与软饮料接触之前的温度",
+   "unit": "°C",
+   "section": "14.1",
+   "anchor": "14.1-heat",
+   "ref": "ice"
+  },
+  {
+   "sym": "T_primetemp",
+   "concept": "temperature",
+   "meaning": "软饮料和冰在热平衡时达到的共同温度",
+   "unit": "°C",
+   "section": "14.1",
+   "anchor": "14.1-heat"
+  },
+  {
+   "sym": "W",
+   "concept": "work",
+   "meaning": "产生与热传递相同效果的功，在焦耳实验中是下落的重物所做的功",
+   "unit": "J",
+   "section": "14.1",
+   "anchor": "14.1-mechanical-equivalent"
+  },
+  {
+   "sym": "Q_heat",
+   "concept": "heat",
+   "meaning": "使物体温度改变所传递的热量",
+   "unit": "J",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "温度发生变化的物质的质量",
+   "unit": "kg",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "c_spec",
+   "concept": "specific-heat",
+   "meaning": "比热容，使 1.00 kg 物质的温度改变 1.00 °C 所需的热量；它取决于材料及其相",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "c_v",
+   "concept": "specific-heat",
+   "meaning": "气体的定容比热容",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-specific-heats"
+  },
+  {
+   "sym": "c_p",
+   "concept": "specific-heat",
+   "meaning": "气体的定压比热容",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-specific-heats"
+  },
+  {
+   "sym": "ΔT",
+   "concept": "temperature",
+   "meaning": "物体的温度变化，以开尔文计和以摄氏度计是相同的",
+   "unit": "°C",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "T_ftemp",
+   "concept": "temperature",
+   "meaning": "末温，即热传递之后或热平衡时的温度",
+   "unit": "°C",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "T_itemp",
+   "concept": "temperature",
+   "meaning": "初温，即热传递之前的温度",
+   "unit": "°C",
+   "section": "14.2",
+   "anchor": "14.2-heat-equation"
+  },
+  {
+   "sym": "Q_hot",
+   "concept": "heat",
+   "meaning": "量热学问题中高温物体失去的热量，为负量",
+   "unit": "J",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry"
+  },
+  {
+   "sym": "Q_cold",
+   "concept": "heat",
+   "meaning": "量热学问题中低温物体得到的热量，为正量",
+   "unit": "J",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry"
+  },
+  {
+   "sym": "Q_heat",
+   "concept": "heat",
+   "meaning": "使样品发生相变所需的热量，或它变回时所释放的热量",
+   "unit": "J",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "发生相变的样品的质量",
+   "unit": "kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "L_f",
+   "concept": "heat-of-fusion",
+   "meaning": "熔化热，使物质在熔点熔化的每千克热量，凝固时释放",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "L_v",
+   "concept": "heat-of-vaporization",
+   "meaning": "汽化热，使物质在沸点汽化的每千克热量，凝结时释放",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "L_s",
+   "concept": "heat-of-sublimation",
+   "meaning": "升华热，使物质由固相直接变为气相的每千克热量",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-sublimation"
+  },
+  {
+   "sym": "L_latent",
+   "concept": "latent-heat",
+   "meaning": "潜热系数，代表相变所要求的熔化热、汽化热或升华热中的某一个",
+   "unit": "J/kg",
+   "section": "14.3",
+   "anchor": "14.3-phase-change"
+  },
+  {
+   "sym": "T_ftemp",
+   "concept": "temperature",
+   "meaning": "冰熔化之后、水和汽水达到热平衡时的末温",
+   "unit": "°C",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda"
+  },
+  {
+   "sym": "c_spec",
+   "concept": "specific-heat",
+   "meaning": "相变后升温的液体的比热容，在例题中是水的比热容",
+   "unit": "J/(kg·°C)",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda"
+  },
+  {
+   "sym": "Q_heat",
+   "concept": "heat",
+   "meaning": "在时间 t 内通过平板传导的热量",
+   "unit": "J",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "传导热量所经历的时间",
+   "unit": "s",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "k_cond",
+   "concept": "thermal-conductivity",
+   "meaning": "材料的热导率，即其传导热量能力的性质",
+   "unit": "J/(s·m·°C)",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "热量所通过的平板的表面积",
+   "unit": "m²",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "d_thick",
+   "concept": "length",
+   "meaning": "平板的厚度，即热量被传导所经过的距离",
+   "unit": "m",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "T_2temp",
+   "concept": "temperature",
+   "meaning": "平板高温面的温度",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "T_1temp",
+   "concept": "temperature",
+   "meaning": "平板低温面的温度",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-conduction-rate"
+  },
+  {
+   "sym": "T_hottemp",
+   "concept": "temperature",
+   "meaning": "高温物体的温度，在驱动热流的温差中",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-collisions",
+   "ref": "hot-body"
+  },
+  {
+   "sym": "T_coldtemp",
+   "concept": "temperature",
+   "meaning": "低温物体的温度，在驱动热流的温差中",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-collisions",
+   "ref": "cold-body"
+  },
+  {
+   "sym": "ΔT",
+   "concept": "temperature",
+   "meaning": "高温物体与低温物体之间的温差，热流取决于它",
+   "unit": "°C",
+   "section": "14.5",
+   "anchor": "14.5-collisions"
+  },
+  {
+   "sym": "R_factor",
+   "concept": "r-factor",
+   "meaning": "隔热体的 R 值，即其厚度与热导率之比；它越大，隔热越好",
+   "unit": "ft²·°F·h/Btu",
+   "section": "14.5",
+   "anchor": "14.5-r-factor"
+  },
+  {
+   "sym": "L_f",
+   "concept": "heat-of-fusion",
+   "meaning": "保温箱例题中，被传导的热量所熔化的冰的熔化热",
+   "unit": "J/kg",
+   "section": "14.5",
+   "anchor": "14.5-ice-box"
+  },
+  {
+   "sym": "Q_heat",
+   "concept": "heat",
+   "meaning": "对流所移动的流体质量携带的热量",
+   "unit": "J",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "流体被移动或被替换所用的时间",
+   "unit": "s",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "对流所移动的流体的质量，或蒸发的水的质量",
+   "unit": "kg",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "c_spec",
+   "concept": "specific-heat",
+   "meaning": "流体的比热容，对空气是定压比热容",
+   "unit": "J/(kg·°C)",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "ΔT",
+   "concept": "temperature",
+   "meaning": "被移动的流体所经历的温度变化",
+   "unit": "°C",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "ρ_dens",
+   "concept": "density",
+   "meaning": "流体的密度，由它和体积得出质量",
+   "unit": "kg/m³",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "V",
+   "concept": "volume",
+   "meaning": "被移动的流体的体积，在例题中是房屋的体积",
+   "unit": "m³",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "L_v",
+   "concept": "heat-of-vaporization",
+   "meaning": "从皮肤蒸发的汗液的汽化热，体温下为 2430 kJ/kg",
+   "unit": "J/kg",
+   "section": "14.6",
+   "anchor": "14.6-phase-change"
+  },
+  {
+   "sym": "Q_heat",
+   "concept": "heat",
+   "meaning": "物体在时间 t 内辐射的热量",
+   "unit": "J",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "Q_net",
+   "concept": "heat",
+   "meaning": "物体通过辐射得到的净热量，即其吸收减去其发射",
+   "unit": "J",
+   "section": "14.7",
+   "anchor": "14.7-net-rate"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "发射或吸收辐射所经历的时间",
+   "unit": "s",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "σ_SB",
+   "concept": "stefan-boltzmann-constant",
+   "meaning": "斯特藩-玻尔兹曼常量，5.67 × 10⁻⁸ J/(s·m²·K⁴)",
+   "unit": "J/(s·m²·K⁴)",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "e_emis",
+   "concept": "emissivity",
+   "meaning": "物体的发射率，衡量它辐射得多好，黑体为 1，完全反射体为 0",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "辐射物体的表面积",
+   "unit": "m²",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "T_temp",
+   "concept": "temperature",
+   "meaning": "辐射物体的热力学温度，以开尔文计",
+   "unit": "K",
+   "section": "14.7",
+   "anchor": "14.7-stefan-boltzmann"
+  },
+  {
+   "sym": "T_1temp",
+   "concept": "temperature",
+   "meaning": "物体的热力学温度",
+   "unit": "K",
+   "section": "14.7",
+   "anchor": "14.7-net-rate"
+  },
+  {
+   "sym": "T_2temp",
+   "concept": "temperature",
+   "meaning": "物体周围环境的均匀热力学温度",
+   "unit": "K",
+   "section": "14.7",
+   "anchor": "14.7-net-rate"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "焦耳装置中两个下降的重物各自的质量",
+   "unit": "kg",
+   "section": "14.1",
+   "anchor": "14.1-mechanical-equivalent"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "例题 14.2 中下坡行驶的卡车的质量",
+   "unit": "kg",
+   "section": "14.2",
+   "anchor": "14.2-work-into-heat"
+  },
+  {
+   "sym": "m_Al",
+   "concept": "mass",
+   "meaning": "倒入冷水的铝锅的质量",
+   "unit": "kg",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry",
+   "ref": "pan"
+  },
+  {
+   "sym": "c_Al",
+   "concept": "specific-heat",
+   "meaning": "铝（锅的材料）的比热容，900 J/(kg·°C)",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry",
+   "ref": "pan"
+  },
+  {
+   "sym": "m_W",
+   "concept": "mass",
+   "meaning": "倒入锅中的冷水的质量",
+   "unit": "kg",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry",
+   "ref": "water"
+  },
+  {
+   "sym": "c_W",
+   "concept": "specific-heat",
+   "meaning": "倒入锅中的水的比热容，4186 J/(kg·°C)",
+   "unit": "J/(kg·°C)",
+   "section": "14.2",
+   "anchor": "14.2-calorimetry",
+   "ref": "water"
+  },
+  {
+   "sym": "m_ice",
+   "concept": "mass",
+   "meaning": "使汽水变凉的三块冰的质量",
+   "unit": "kg",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda",
+   "ref": "ice"
+  },
+  {
+   "sym": "m_soda",
+   "concept": "mass",
+   "meaning": "被冰块冷却的汽水的质量",
+   "unit": "kg",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda",
+   "ref": "soda"
+  },
+  {
+   "sym": "Q_ice",
+   "concept": "heat",
+   "meaning": "传给冰的热量，它使冰熔化，然后使融水升温",
+   "unit": "J",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda",
+   "ref": "ice"
+  },
+  {
+   "sym": "Q_soda",
+   "concept": "heat",
+   "meaning": "传给汽水的热量，为负，因为汽水冷却时放出热量",
+   "unit": "J",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda",
+   "ref": "soda"
+  },
+  {
+   "sym": "c_W",
+   "concept": "specific-heat",
+   "meaning": "水的比热容，例题对汽水和融水一律取此值",
+   "unit": "J/(kg·°C)",
+   "section": "14.3",
+   "anchor": "14.3-cooling-soda"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "保温箱中被传导的热量一天内熔化的冰的质量，或一秒内从锅中沸腾蒸发掉的水的质量",
+   "unit": "kg",
+   "section": "14.5",
+   "anchor": "14.5-ice-box"
+  },
+  {
+   "sym": "L_v",
+   "concept": "heat-of-vaporization",
+   "meaning": "铝锅中沸腾的水的汽化热，2256 kJ/kg",
+   "unit": "J/kg",
+   "section": "14.5",
+   "anchor": "14.5-pan"
+  },
+  {
+   "sym": "c_p",
+   "concept": "specific-heat",
+   "meaning": "空气的定压比热容，约 1000 J/(kg·°C)，房屋例题中取作 c",
+   "unit": "J/(kg·°C)",
+   "section": "14.6",
+   "anchor": "14.6-moving-mass"
+  },
+  {
+   "sym": "k_cond",
+   "concept": "thermal-conductivity",
+   "meaning": "材料的热导率，在热传导的策略中",
+   "unit": "J/(s·m·°C)",
+   "section": "14.7",
+   "anchor": "14.7-heat-transfer-strategy"
+  },
+  {
+   "sym": "d_thick",
+   "concept": "length",
+   "meaning": "热量所传导通过的材料的厚度，在热传导的策略中",
+   "unit": "m",
+   "section": "14.7",
+   "anchor": "14.7-heat-transfer-strategy"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "对流所移动的或发生相变的物质的质量，在热传递的策略中",
+   "unit": "kg",
+   "section": "14.7",
+   "anchor": "14.7-heat-transfer-strategy"
+  },
+  {
+   "sym": "c_spec",
+   "concept": "specific-heat",
+   "meaning": "对流所移动的流体的比热容，在热传递的策略中",
+   "unit": "J/(kg·°C)",
+   "section": "14.7",
+   "anchor": "14.7-heat-transfer-strategy"
+  },
+  {
+   "sym": "L_f",
+   "concept": "heat-of-fusion",
+   "meaning": "熔化热，用于伴随对流的相变",
+   "unit": "J/kg",
+   "section": "14.7",
+   "anchor": "14.7-heat-transfer-strategy"
+  },
+  {
+   "sym": "L_v",
+   "concept": "heat-of-vaporization",
+   "meaning": "汽化热，用于伴随对流的相变",
+   "unit": "J/kg",
+   "section": "14.7",
+   "anchor": "14.7-heat-transfer-strategy"
+  },
+  {
+   "sym": "m_w",
+   "concept": "mass",
+   "meaning": "焦耳装置的隔热罐中水的质量",
+   "unit": "kg",
+   "section": "14.1",
+   "anchor": "14.1-mechanical-equivalent",
+   "ref": "water"
+  },
+  {
+   "sym": "ΔT",
+   "concept": "temperature",
+   "meaning": "物体的温度变化，以开尔文计和以摄氏度计是相同的",
+   "unit": "°C",
+   "section": "14.3",
+   "anchor": "14.3-heating-curve"
+  },
+  {
+   "sym": "T_temp",
+   "concept": "temperature",
+   "meaning": "风寒温度表中流动空气的温度",
+   "unit": "°C",
+   "section": "14.6",
+   "anchor": "14.6-wind-chill"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "风寒温度表中风的速率",
+   "unit": "m/s",
+   "section": "14.6",
+   "anchor": "14.6-wind-chill"
+  },
+  {
+   "sym": "ΔT",
+   "concept": "temperature",
+   "meaning": "对流所移动的流体的温度变化，在热传递的策略中",
+   "unit": "°C",
+   "section": "14.7",
+   "anchor": "14.7-heat-transfer-strategy"
+  }
+ ]
+}

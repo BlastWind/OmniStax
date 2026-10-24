@@ -1,0 +1,1034 @@
+{
+ "id": "5.3",
+ "module": "m42081",
+ "chapter": "5",
+ "title": "弹性：应力与应变",
+ "short": "弹性",
+ "lead": "<span data-concept=\"force\">力</span>既能改变物体的运动，也能改变物体的形状，本节测量的就是这种变化。它讨论三种<span data-concept=\"deformation\">形变</span>：沿<span data-concept=\"length\">长度</span>方向的拉伸或压缩、侧向的<span data-concept=\"shear-deformation\">切变</span>以及体积的变化，每一种都有各自的弹性模量。",
+ "objectives": [
+  "陈述胡克定律。",
+  "利用形变与外加力之间的图像解释胡克定律。",
+  "讨论三种类型的形变，即长度的变化、侧向切变和体积的变化。",
+  "举例描述杨氏模量、剪切模量和体积模量。",
+  "已知质量、长度和半径，求长度的变化。"
+ ],
+ "summary_html": "<ul><li>胡克定律为 $\\kF = \\kk\\kdL$，其中 $\\kdL$ 是<span data-concept=\"deformation\">形变</span>量（长度的变化），$\\kF$ 是外加<span data-concept=\"force\">力</span>，$\\kk$ 是比例常量，取决于物体的形状和成分以及<span data-concept=\"force\">力</span>的方向。<span data-concept=\"deformation\">形变</span>与外加<span data-concept=\"force\">力</span>之间的关系也可以写成 $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$，其中 <em>$\\kY$</em> 是<em>杨氏模量</em>，取决于物质，<em>$A$</em> 是<span data-concept=\"area\">横截面积</span>，$\\kLo$ 是原来的<span data-concept=\"length\">长度</span>。</li><li><span data-concept=\"force\">力</span>与<span data-concept=\"area\">面积</span>之比 <em>$\\frac{\\kF}{A}$</em> 定义为<em>应力</em>，以 N/m<sup>2</sup> 为单位。</li><li><span data-concept=\"length\">长度</span>变化与<span data-concept=\"length\">长度</span>之比 $\\frac{\\kdL}{\\kLo}$ 定义为<em>应变</em>（无单位的量）。换句话说，$\\text{应力} = \\kY \\times \\text{应变}$。</li><li>切变的表达式为 $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$，其中 $\\kS$ 是剪切模量，$\\kF$ 是垂直于 $\\kLo$、平行于<span data-concept=\"area\">横截面积</span> $A$ 的<span data-concept=\"force\">力</span>。</li><li>体积变化与其他物理量之间的关系由 $\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0$ 给出，其中 $\\kBb$ 是体积模量，$V_0$ 是原<span data-concept=\"volume\">体积</span>，$\\frac{\\kF}{A}$ 是均匀地向内施加在所有表面上的单位<span data-concept=\"area\">面积</span>上的<span data-concept=\"force\">力</span>。</li></ul>",
+ "notes": "习题 2、4、6、8、10、12、14 和 16 在书后答案中没有给出，因而略去，习题 16 的电线杆图也随之略去；PhET 模拟的说明同样略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；八道偶数编号的习题（摔跤手的臂骨、电视天线、旗杆、钢琴弦、椎骨之间的椎间盘、交通信号灯杆、结冰的水和电线杆）在书后答案中没有给出，因而略去，电线杆的图也随它的习题一并略去。习题 3 和 5 的答案只给出第一问，所以每道题的答案是第一问的数值，书中对第二问的讨论放在解中。关于两个球形小珠在流体中以恒定速率下落的批判性思考题（exer-86622）虽然印在本节，但它涉及阻力和终极速度，而这些在 5.2 节才引入，因此按规则 12 将它与 5.2 节放在一起；5.2 节收入它时，其 source_section 为 5.3，并以书中半径对下落时间的图作为（c）小题的答案；5.2 节的说明中也写了这一点。第三道思考题问的是鞋底为什么那样设计，以及干燥和潮湿条件对鞋底有什么影响，它考查的是 5.1 节引入的摩擦因数，与本节所讲的内容无关，所以按同一规则将它与 5.1 节放在一起；5.1 节收入它时，其 source_section 为 5.3，5.1 节的说明中也写了这一点。没有任何一道思考题给出答案，所以这里每条建议思路都由 AI 撰写并已标明。本节没有理解检测栏目，也没有 AP 备考练习题，也没有从其他小节转来的此类题目，因为只有 5.1 节有 AP 题，而且它的四道题考查的都是摩擦。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-hooke-graph",
+   "kind": "sim",
+   "number": "5.11",
+   "originals": [
+    "/media/ch05/Figure_06_03_01a.jpg"
+   ],
+   "original_caption": "形变 ΔL 与外加力 F 的关系图像。直线段是遵从胡克定律的线性区。直线区的斜率为 1/k。力更大时，图像呈曲线，但形变仍是弹性的——撤去力后，ΔL 会回到零。更大的力会使物体发生永久形变，直到最终断裂。断裂附近曲线的形状取决于若干因素，包括力 F 是如何施加的。请注意，在这幅图像中，斜率在断裂之前增大，表明在断裂附近 F 的微小增大会使 L 产生很大的增大。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "force",
+    "position",
+    "stiffness"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label off the headline, readout true past fracture, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-strings",
+   "kind": "sim",
+   "number": "5.12",
+   "originals": [
+    "/media/ch05/Figure_06_03_02a.jpg"
+   ],
+   "original_caption": "同样的力——这里是重力（w）——作用在三根长度相同的不同吉他弦上，产生图中以阴影段表示的三种不同的形变。左边的弦是细尼龙弦，中间的是较粗的尼龙弦，右边的是钢弦。",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "moduli staggered, stretch labels off the strings, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rod",
+   "kind": "sim",
+   "number": "5.13",
+   "originals": [
+    "/media/ch05/Figure_06_03_03a-d0a3.jpg"
+   ],
+   "original_caption": "（a）拉伸。当平行于杆的长度施加力时，杆被拉长 ΔL。（b）压缩。同一根杆受到大小相同、方向相反的力而被压缩。对于非常小的形变和均匀的材料，大小相同的拉伸或压缩所产生的 ΔL 近似相同。对于较大的形变，杆被压缩或拉伸时横截面积会发生变化。",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "line names on panels, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-gondolas",
+   "kind": "photo",
+   "number": "5.14",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-tendon",
+   "kind": "sim",
+   "number": "5.15",
+   "originals": [
+    "/media/ch05/Figure_06_03_05_xa.jpg"
+   ],
+   "original_caption": "哺乳动物肌腱的典型应力-应变曲线。图中显示了三个区域：（1）趾区，（2）线性区，（3）失效区。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "stress",
+    "position",
+    "elastic-modulus"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "length bracket, note cut to one line through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-shear",
+   "kind": "sim",
+   "number": "5.16",
+   "originals": [
+    "/media/ch05/Figure_06_03_06a.jpg"
+   ],
+   "original_caption": "切向力垂直于长度 L₀、平行于面积 A 施加，产生形变 Δx。图中没有画出竖直方向的力，但应当记住，除了两个切向力 F 之外，还必须有支持力来防止物体转动。在这里的处理中，忽略这些支持力的扭曲效应。图中也没有画出物体的重力，因为与大到足以引起显著形变的力相比，它通常可以忽略不计。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "push arrow and labels clear of the case, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-nail",
+   "kind": "sim",
+   "number": "5.17",
+   "originals": [
+    "/media/ch05/Figure_06_03_08a.jpg"
+   ],
+   "original_caption": "挂着一幅画的钉子的侧视图。由于所支撑重力的切变作用，钉子发生了极其轻微的弯曲（图中画得比实际大得多）。图中还画出了墙对钉子向上的力，说明在钉子相对的两个横截面上作用着相等而反向的力。画的质量的计算见例题 5.5。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "elastic-modulus",
+    "mass",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "arrows capped, labels clear, note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cube",
+   "kind": "sim",
+   "number": "5.18",
+   "originals": [
+    "/media/ch05/Figure_06_03_09a.jpg"
+   ],
+   "original_caption": "作用在所有表面上的向内的力压缩了这个立方体。它的体积变化与单位面积上的力和原体积成正比，并与物质的压缩性有关。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "stress",
+    "elastic-modulus",
+    "volume",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "volume label off the arrow, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "deformation",
+   "concept": "deformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "deformation",
+   "concept": "elastic-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "deformation",
+   "concept": "hookes-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "deformation",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "deformation",
+   "concept": "tensile-strength",
+   "verb": "introduces"
+  },
+  {
+   "span": "k-depends",
+   "concept": "force-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "k-depends",
+   "concept": "deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "length",
+   "concept": "youngs-modulus",
+   "verb": "introduces"
+  },
+  {
+   "span": "length",
+   "concept": "deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "length",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-cable",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "tissues",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "tissues",
+   "concept": "elastic-limit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tissues",
+   "concept": "stress",
+   "verb": "uses"
+  },
+  {
+   "span": "tissues",
+   "concept": "strain",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-femur",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "stress",
+   "verb": "introduces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "strain",
+   "verb": "introduces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "stress-strain",
+   "verb": "introduces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "force-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "stress-strain",
+   "concept": "youngs-modulus",
+   "verb": "uses"
+  },
+  {
+   "span": "shear",
+   "concept": "shear-deformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "shear",
+   "concept": "stress",
+   "verb": "uses"
+  },
+  {
+   "span": "shear",
+   "concept": "stress-strain",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-nail",
+   "concept": "shear-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "bulk",
+   "concept": "bulk-deformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "bulk",
+   "concept": "stress",
+   "verb": "uses"
+  },
+  {
+   "span": "bulk",
+   "concept": "stress-strain",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-water",
+   "concept": "bulk-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-water",
+   "concept": "strain",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1165298797418",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tissues",
+   "prompt": "动脉的弹性对血流至关重要。请根据血流的特征（是脉动的还是连续的）解释这一点的重要性。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "心脏把血液一阵一阵地泵出，但组织需要稳定的供血。血液被泵入动脉时，动脉会伸张，所以它吸收了每次搏动的一部分；主动脉瓣关闭、压强下降时，动脉壁松弛，把这部分血液继续向前推。因此，到达小血管的血流比离开心脏的血流平稳得多。如果动脉是刚性的，它们就什么也储存不了：血液只会在心脏泵血时流动，在两次搏动之间则停滞不动，而血管在每次搏动时所要承受的压强也会高得多。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1165298867810",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tissues",
+   "prompt": "当你摸到自己的脉搏时，你感受到的是什么？分别测量你在 10 s 和 1 min 内的脉率。二者是否相差 6 倍？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你感受到的是动脉的弹性表现。心脏每泵一次，动脉中的压强就升高，动脉壁伸张；瓣膜关闭后，动脉壁又松弛下来；你在指尖下数到的搏动，就是这种伸张和恢复。把 10 s 内数到的次数乘以 6，应该与整整一分钟内数到的次数相近，但二者不会完全一致。心率每时每刻都有一点变化，而在 10 s 内数错一次，乘上去之后就变成数错六次，所以整整一分钟内数到的次数是两者中更可靠的。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1165298840083",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "你认为你的身高会因一天中的时间不同而不同吗？为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会，而且你在起床时最高。椎骨之间的椎间盘和关节中的软骨，在你站立和行走时被它们所承受的重力压缩，而根据胡克定律，这种压缩量与作用在它们上面的力成正比。夜里躺着时，几乎把这个力全部撤去，所以椎间盘恢复了原来的厚度。这个差别只占身高的一小部分，量级与课文中所说大多数材料保持弹性的 0.1% 应变相当，但已经足以测量出来。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1165298650751",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stress-strain",
+   "prompt": "你认为使蛛网发生形变需要大的应力还是小的应力？为什么这种弹性对蛛网是一个重要的特征？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "小的应力。表 5.3 给出蛛丝的杨氏模量为 $3 \\times 10^9\\ \\text{N/m}^2$，在所列的固体中属于最小的之一，所以很小的单位面积上的力就能产生很大的应变。这正是蛛网的用处所在。一只飞进刚性蛛网的昆虫会在很短的距离内被止住，这需要很大的力，会使蛛丝断裂；而能伸长很远的蛛丝则会让昆虫逐渐停下来，所以蛛丝上的力保持得足够小，蛛丝不会断。由于形变是弹性的，蛛网随后会恢复原状，可以去捕获下一只昆虫。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1165298550516",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "解释为什么孕妇在妊娠后期常常会背部劳损。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "妊娠后期所承载的重力位于脊柱前方，所以孕妇要把肩膀向后移以保持平衡，这就增大了脊柱的曲度。脊柱弯得越厉害，上半身的重力与它所压的椎间盘之间的夹角就越大，这个重力中横向作用于椎间盘、而不是沿椎间盘竖直向下作用的分量也就越大。椎间盘承受压缩的能力远好于承受切变，所以下部椎骨上的切应力增大，下背部的肌肉和韧带必须抵抗它，而最低、最呈楔形的腰骶椎间盘风险最大。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1165298545438",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "木匠有一个老窍门，可以防止钉子在被锤进硬材料时弯曲：用钳子牢牢夹住钉子的中部。为什么这样有帮助？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "切向力所产生的侧向形变与它所作用的长度成正比，$\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$。这里起作用的长度，是钉子可以自由弯曲的那一段的长度，也就是锤子与夹住钉子的地方之间的部分。用钳子夹住钉子的中部，大致使这个长度减半，所以同样的一锤使钉子弯曲的程度大约减半。这与课文中说的短而粗的铅笔比长而细的铅笔更难弯曲是同一个道理。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1165298771893",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulk",
+   "prompt": "玻璃醋瓶装满醋后受热时，醋和玻璃都会膨胀，但醋随温度的膨胀比玻璃显著得多。如果瓶子装到紧贴瓶盖，瓶子就会破裂。解释为什么，并解释醋上方的空气层为什么能防止破裂。（这就是玻璃容器中液体上方留有空气的作用。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把液体限制在比它本来要占据的体积更小的体积里，就等于把它压缩了那么多。不能膨胀的醋以单位面积上的力向外推玻璃，这个力由 $\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0$ 给出：它等于体积模量乘以被禁止发生的相对变化。液体的体积模量的量级为 $10^9\\ \\text{N/m}^2$，所以即使只有百分之零点几，也会产生每平方米数百万牛的力，超过玻璃所能承受的，于是瓶子破裂。醋上方的空气层之所以能防止这种情况，是因为气体容易压缩。它的分子相距很远，所以液体膨胀进入这个空气层，挤压的是空气而不是玻璃，瓶子上单位面积的力因此保持很小。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1165298795593",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "在一场马戏表演中，一位表演者倒挂在空中秋千上，抓着另一位同样倒挂的表演者的双腿。如果作用在下方那位表演者身上的向上的力是她的重力的三倍，她大腿中的骨（股骨）会伸长多少？可以假设每根都等效于一根长 35.0 cm、半径 1.80 cm 的均匀杆。她的质量为 60.0 kg。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0019,
+    "unit": "cm",
+    "hint": "三倍于她的重力由两根股骨分担，所以每根承受 $\\kF = \\tfrac{3}{2}mg$。使用 $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$，其中 $A = \\pi r^2$，并取表 5.3 中骨的杨氏模量的拉伸值。",
+    "solution": "$1.90 \\times 10^{-3}\\ \\text{cm}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1165298778825",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "（a）铅笔的“铅”是一种石墨混合物，杨氏模量约为 $1 \\times 10^9\\ \\text{N}/\\text{m}^2$。如果你用 4.0 N 的力把自动铅笔的“铅”笔直地敲进笔里，计算“铅”长度的变化。“铅”直径为 0.50 mm，长 60 mm。（b）这个答案合理吗？也就是说，它与你使用铅笔时观察到的情况相符吗？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 1,
+    "unit": "mm",
+    "hint": "直径已知，所以半径为 0.25 mm，$A = \\pi r^2$。然后用 $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$，其中 $\\kLo = 60$ mm。",
+    "solution": "（a）1 mm　（b）这看起来是合理的，因为用力按压时，“铅”确实好像会缩短一点。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1165298598606",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "（a）一位 65.0 kg 的登山者悬挂在岩石突出部下方 35.0 m 处时，她的直径 0.800 cm 的尼龙绳被拉长多少？（b）这个答案与你对尼龙绳的观察相符吗？如果这根绳子其实是蹦极绳，这个答案还说得通吗？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 9,
+    "unit": "cm",
+    "hint": "力是登山者的重力，原长是 35.0 m，表 5.3 给出尼龙的杨氏模量为 $5 \\times 10^9\\ \\text{N/m}^2$。",
+    "solution": "（a）9 cm　（b）对于尼龙登山绳，这似乎是合理的，因为它本来就不应该伸长太多。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1165296239036",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "钻油井时，每一节新的钻杆都要支撑它自身的重力，以及它下面的钻杆和钻头的重力。计算一节新的 6.00 m 长的钢制钻杆的伸长量，它支撑着 3.00 km 长、质量为 20.0 kg/m 的钻杆和一个 100 kg 的钻头。这根钻杆的刚度等效于一根直径为 5.00 cm 的实心圆柱体。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.59,
+    "unit": "mm",
+    "hint": "力是这节新钻杆下方悬挂的全部东西的重力：3.00 km 的钻杆（20.0 kg/m）加上 100 kg 的钻头。然后用 $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$，其中 $\\kLo = 6.00$ m，钢的模量取自表 5.3。",
+    "solution": "8.59 mm"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1165298982360",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "一块椎骨受到 500 N 的切向力。求其切变，把这块椎骨看作一个高 3.00 cm、直径 4.00 cm 的圆柱体。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.49e-07,
+    "unit": "m",
+    "hint": "使用 $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$，其中 $\\kLo$ 取 3.00 cm 的高度，$A = \\pi r^2$ 取直径 4.00 cm，剪切模量取表 5.3 中骨的值。",
+    "solution": "$1.49 \\times 10^{-7}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1165296255735",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shear",
+   "prompt": "用铅笔橡皮擦时，你在距离硬木与橡皮的接合处 2.00 cm 处施加一个 6.00 N 的竖直力。铅笔直径为 6.00 mm，与水平方向成 $20.0^\\circ$ 角握持。（a）木头在垂直于其长度的方向上弯曲多少？（b）它沿长度方向被压缩多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.99e-07,
+      "unit": "m",
+      "hint": "把 6.00 N 的力分解为垂直于铅笔的分量和沿铅笔的分量。垂直分量使木头发生切变，所以使用 $\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo$，其中 $\\kLo = 2.00$ cm，并取硬木的剪切模量。"
+     },
+     {
+      "part": "(b)",
+      "value": 9.67e-08,
+      "unit": "m",
+      "hint": "沿铅笔的分量压缩铅笔，所以使用 $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$，并取硬木的杨氏模量。"
+     }
+    ],
+    "solution": "（a）$3.99 \\times 10^{-7}\\ m$　（b）$9.67 \\times 10^{-8}\\ m$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1165298713046",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bulk",
+   "prompt": "一位农民制作葡萄汁时，把玻璃瓶灌满至瓶口并盖紧瓶盖。葡萄汁受热时膨胀得比玻璃多，使得相对于可用空间，体积增大了 0.2%（即 $\\Delta V/V_0 = 2 \\times 10^{-3}$）。如果葡萄汁的体积模量为 $1.8 \\times 10^9\\ \\text{N/m}^2$，假设瓶子没有破裂，计算葡萄汁每平方厘米所施加的法向力的大小。根据你的答案，你认为瓶子能保持完好吗？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4000000.0,
+    "unit": "N/m²",
+    "hint": "对单位面积上的力解 $\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0$：它等于体积模量乘以体积的相对变化。",
+    "solution": "$4 \\times 10^6\\ \\text{N/m}^2$。这约为 36 atm，超过了一般的罐子所能承受的。"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1165298740744",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "length",
+   "prompt": "这道题回到“法向力、张力及力的其他实例”中研究过的走钢丝者，她在钢丝中产生的张力为 $3.94 \\times 10^3\\ N$，在每根支撑杆处，钢丝都与水平方向成向下 $5.0^\\circ$ 的角。计算如果这根钢丝原来长 15 m、直径 0.50 cm，这个张力会使钢丝伸长多少。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.4,
+    "unit": "cm",
+    "hint": "力就是张力本身。使用 $\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo$，其中 $A = \\pi r^2$ 取直径 0.50 cm，杨氏模量取表 5.3 中钢的值。",
+    "solution": "1.4 cm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "deformation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "elastic-limit",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "deformation"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "deformation"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "youngs-modulus",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "stress"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "youngs-modulus",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "stress",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "bulk-deformation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "stress",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p3",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p5",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p7",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p9",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "p11",
+   "concept": "shear-deformation"
+  },
+  {
+   "exercise": "p11",
+   "concept": "youngs-modulus"
+  },
+  {
+   "exercise": "p13",
+   "concept": "bulk-deformation"
+  },
+  {
+   "exercise": "p13",
+   "concept": "stress",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "youngs-modulus"
+  }
+ ],
+ "referents": [
+  {
+   "id": "spring",
+   "label": "弹簧",
+   "figures": [
+    "sim-hooke-graph"
+   ]
+  },
+  {
+   "id": "string-thin",
+   "label": "细尼龙弦",
+   "figures": [
+    "sim-strings"
+   ]
+  },
+  {
+   "id": "string-thick",
+   "label": "较粗的尼龙弦",
+   "figures": [
+    "sim-strings"
+   ]
+  },
+  {
+   "id": "string-steel",
+   "label": "钢弦",
+   "figures": [
+    "sim-strings"
+   ]
+  },
+  {
+   "id": "rod",
+   "label": "杆",
+   "figures": [
+    "sim-rod"
+   ]
+  },
+  {
+   "id": "tendon",
+   "label": "肌腱",
+   "figures": [
+    "sim-tendon"
+   ]
+  },
+  {
+   "id": "bookcase",
+   "label": "书柜",
+   "figures": [
+    "sim-shear"
+   ]
+  },
+  {
+   "id": "nail",
+   "label": "钢钉",
+   "figures": [
+    "sim-nail"
+   ]
+  },
+  {
+   "id": "picture",
+   "label": "画",
+   "figures": [
+    "sim-nail"
+   ]
+  },
+  {
+   "id": "wall",
+   "label": "墙",
+   "figures": [
+    "sim-nail"
+   ]
+  },
+  {
+   "id": "cube",
+   "label": "立方体",
+   "figures": [
+    "sim-cube"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "rod-force-constant",
+   "what": "被拉伸的杆的劲度系数",
+   "source": "《大学物理（第2版）》，5.3 弹性：应力与应变",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF = \\kk\\kdL",
+       "src": "5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{FA}{\\frac{\\kF}{\\karea}} = \\mk{Y}{\\kY}\\mk{L}{\\frac{\\kdL}{\\kLo}}",
+      "src": "5.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{Y}{\\kY \\karea}\\mk{L}{\\frac{\\kdL}{\\kLo}}",
+       "uses": [],
+       "map": {
+        "FA": [
+         "F",
+         "Y"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kk\\kdL} = \\mk{Y}{\\kY \\karea}\\mk{L}{\\frac{\\kdL}{\\kLo}}",
+       "uses": [
+        0
+       ],
+       "cap": "这种形式的方程就是胡克定律，所以它的比例常量就是劲度系数 $\\kk$。"
+      },
+      {
+       "tex": "\\mk{F}{\\kk} = \\mk{Y}{\\frac{\\kY \\karea}{\\kLo}}",
+       "uses": [],
+       "map": {
+        "L": "Y"
+       }
+      }
+     ],
+     "src": "5.3"
+    }
+   ]
+  }
+ ]
+}

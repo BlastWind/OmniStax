@@ -1,0 +1,1109 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "r_curv",
+   "latex": "r",
+   "macro": "\\kr"
+  },
+  {
+   "sym": "Δs",
+   "latex": "\\Delta s",
+   "macro": "\\kds"
+  },
+  {
+   "sym": "Δθ",
+   "latex": "\\Delta\\theta",
+   "macro": "\\kdtheta"
+  },
+  {
+   "sym": "a_c",
+   "latex": "a_{\\text{c}}",
+   "macro": "\\kac"
+  },
+  {
+   "sym": "F_c",
+   "latex": "F_{\\text{c}}",
+   "macro": "\\kFc"
+  },
+  {
+   "sym": "M",
+   "latex": "M",
+   "macro": "\\kM"
+  },
+  {
+   "sym": "G",
+   "latex": "G"
+  },
+  {
+   "sym": "T_orb1",
+   "latex": "T_1",
+   "macro": "\\kTorbone"
+  },
+  {
+   "sym": "T_orb2",
+   "latex": "T_2",
+   "macro": "\\kTorbtwo"
+  },
+  {
+   "sym": "r_1",
+   "latex": "r_1",
+   "macro": "\\krone"
+  },
+  {
+   "sym": "r_2",
+   "latex": "r_2",
+   "macro": "\\krtwo"
+  },
+  {
+   "sym": "v_1",
+   "latex": "v_1",
+   "macro": "\\kvone"
+  },
+  {
+   "sym": "v_2",
+   "latex": "v_2",
+   "macro": "\\kvtwo"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "uniform-circular-motion",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "匀速圆周运动",
+   "terms": [
+    "匀速圆周运动"
+   ],
+   "statement": "匀速圆周运动是以恒定速率沿圆形路径的运动，是最简单的曲线运动形式。向心加速度、向心力和卫星的轨道都是先针对这种情形推导出来的。"
+  },
+  {
+   "id": "arc-length",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "弧长",
+   "symbol": "Δs",
+   "terms": [
+    "弧长"
+   ],
+   "type": "position",
+   "statement": "弧长是物体沿圆形路径走过的路程，也就是第 2 章中的距离，只不过沿曲线而不是沿直线来度量。圆周运动的每一个转角和每一个线速率都由它而来。",
+   "forms": [
+    {
+     "id": "eq-arc",
+     "latex": "s = L\\theta",
+     "ktex": "\\ks = L\\theta",
+     "section": "16.4",
+     "anchor": "16.4-small-angle"
+    }
+   ]
+  },
+  {
+   "id": "rotation-angle",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "转角",
+   "symbol": "Δθ",
+   "terms": [
+    "转角"
+   ],
+   "type": "angle",
+   "statement": "转角是转动的量，定义为弧长与曲率半径之比，它是代替线性距离的角量。由于它是两个长度之比，所以转动物体上的每一点在相同的时间内转过相同的转角，不论该点离转轴多远。",
+   "forms": [
+    {
+     "id": "eq-rotation-angle",
+     "latex": "\\Delta\\theta = \\frac{\\Delta s}{r}",
+     "ktex": "\\Delta\\theta = \\frac{\\kds}{\\kr}",
+     "anchor": "6.1-rotation-angle"
+    }
+   ]
+  },
+  {
+   "id": "radian",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "弧度",
+   "terms": [
+    "弧度"
+   ],
+   "statement": "转完一整圈，点沿圆周绕行一次，所以一圈的转角是 $2\\pi r / r = 2\\pi$。这就确定了单位：$2\\pi$ rad 是一圈，而一弧度约为 57.3º。弧度是两个长度之比，本身没有单位，所以你可以在答案中加上它，也可以略去它。",
+   "forms": [
+    {
+     "id": "eq-radian-revolution",
+     "latex": "2\\pi\\;\\text{rad} = 1\\;\\text{圈} = 360^\\circ",
+     "anchor": "6.1-radians"
+    },
+    {
+     "id": "eq-one-revolution",
+     "latex": "\\Delta\\theta = \\frac{2\\pi r}{r} = 2\\pi",
+     "ktex": "\\Delta\\theta = \\frac{2\\pi \\kr}{\\kr} = 2\\pi",
+     "condition": "转完一整圈",
+     "anchor": "6.1-radians"
+    },
+    {
+     "id": "eq-radian-degree",
+     "latex": "1\\;\\text{rad} = \\frac{360^\\circ}{2\\pi} \\approx 57.3^\\circ",
+     "anchor": "6.1-radians"
+    }
+   ]
+  },
+  {
+   "id": "angular-velocity",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "角速度",
+   "symbol": "ω",
+   "terms": [
+    "角速度"
+   ],
+   "type": "angular-rate",
+   "statement": "角速度是转角的变化率，它回答物体转得多快的问题。它是与线速度相类似的角量，以弧度每秒来度量，相对于转轴只有顺时针和逆时针两个方向。",
+   "forms": [
+    {
+     "id": "eq-omega",
+     "latex": "\\omega = \\frac{\\Delta\\theta}{\\Delta t}",
+     "ktex": "\\kw = \\frac{\\Delta\\theta}{\\kdt}",
+     "anchor": "6.1-angular-velocity"
+    },
+    {
+     "id": "eq-angular-velocity-recalled",
+     "latex": "\\omega = \\frac{\\Delta\\theta}{\\Delta t}",
+     "ktex": "\\kw = \\frac{\\Delta\\theta}{\\kdt}",
+     "section": "10.1",
+     "anchor": "10.1-uniform-circular-motion"
+    }
+   ]
+  },
+  {
+   "id": "linear-angular-velocity",
+   "kind": "result",
+   "section": "6.1",
+   "name": "线速度和角速度",
+   "statement": "转动的光盘上的一个凹坑在时间 $\\Delta t$ 内移动弧长 $\\Delta s = r\\Delta\\theta$，所以它的线速率为 $v = r\\omega$。从一个角度读这个关系，它说明边缘上的点比靠近转轴的点运动得快；从另一个角度读，$\\omega = v/r$ 说明小轮胎的汽车要想以同样的速率行驶，必须比大轮胎的汽车把轮胎转得更快。",
+   "forms": [
+    {
+     "id": "eq-v-romega",
+     "latex": "v = r\\omega \\quad\\text{或}\\quad \\omega = \\frac{v}{r}",
+     "ktex": "\\kv = \\kr\\kw \\quad\\text{或}\\quad \\kw = \\frac{\\kv}{\\kr}",
+     "anchor": "6.1-linear-angular"
+    },
+    {
+     "id": "eq-v-arc",
+     "latex": "v = \\frac{\\Delta s}{\\Delta t}",
+     "ktex": "\\kv = \\frac{\\kds}{\\kdt}",
+     "anchor": "6.1-linear-angular"
+    },
+    {
+     "id": "eq-omega-from-v",
+     "latex": "v = r\\omega \\quad\\text{或}\\quad \\omega = \\frac{v}{r}",
+     "ktex": "\\kv = \\kr\\kw \\quad\\text{或}\\quad \\kw = \\frac{\\kv}{\\kr}",
+     "section": "10.1",
+     "anchor": "10.1-uniform-circular-motion"
+    }
+   ]
+  },
+  {
+   "id": "circular-path-radius",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "曲率半径",
+   "symbol": "r_curv",
+   "terms": [
+    "曲率半径"
+   ],
+   "type": "position",
+   "statement": "曲率半径是圆形路径的半径，即从转动中心到运动的点的距离。"
+  },
+  {
+   "id": "cd-pit",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "凹坑",
+   "terms": [
+    "凹坑"
+   ],
+   "statement": "凹坑是光盘聚碳酸酯层顶部所压制的螺旋形轨道上的一个微小凹痕。"
+  },
+  {
+   "id": "centripetal-acceleration",
+   "kind": "definition",
+   "section": "6.2",
+   "name": "向心加速度",
+   "symbol": "a_c",
+   "terms": [
+    "向心加速度"
+   ],
+   "type": "acceleration",
+   "statement": "在匀速圆周运动中，速度的大小从不改变，但它的方向不断改变，所以存在加速度。取相邻两点处速度之差可知，速度的变化直指曲率中心，加速度也是如此。向心的意思是寻求中心，它就是你驾车转弯时所感到的侧向加速度。"
+  },
+  {
+   "id": "centripetal-acceleration-magnitude",
+   "kind": "result",
+   "section": "6.2",
+   "name": "向心加速度的大小",
+   "statement": "由两个速度构成的三角形与由两条半径构成的三角形相似，顺着这一点推下去得到 $a_{\\text{c}} = v^2/r$。代入 $v = r\\omega$ 得到第二种形式 $a_{\\text{c}} = r\\omega^2$，你可以使用其中更方便的一种。因为速率是以平方的形式出现的，所以以 100 km/h 过弯的难度是以 50 km/h 的四倍，而急转弯因为半径小，要求还要更高。",
+   "forms": [
+    {
+     "id": "eq-ac",
+     "latex": "a_{\\text{c}} = \\frac{v^2}{r}",
+     "ktex": "\\kac = \\frac{\\kv^2}{\\kr}",
+     "anchor": "6.2-magnitude"
+    },
+    {
+     "id": "eq-similar-triangles",
+     "latex": "\\frac{\\Delta v}{v} = \\frac{\\Delta s}{r}",
+     "ktex": "\\frac{\\kdv}{\\kv} = \\frac{\\kds}{\\kr}",
+     "condition": "速度构成的三角形与半径构成的三角形相似",
+     "anchor": "6.2-magnitude"
+    },
+    {
+     "id": "eq-dv-step",
+     "latex": "\\Delta v = \\frac{v}{r}\\Delta s",
+     "ktex": "\\kdv = \\frac{\\kv}{\\kr}\\kds",
+     "anchor": "6.2-magnitude"
+    },
+    {
+     "id": "eq-ac-omega",
+     "latex": "a_{\\text{c}} = r\\omega^2",
+     "ktex": "\\kac = \\kr\\kw^2",
+     "anchor": "6.2-magnitude"
+    }
+   ]
+  },
+  {
+   "id": "centrifuge",
+   "kind": "idea",
+   "section": "6.2",
+   "name": "离心机",
+   "statement": "离心机是用来分离不同密度样品的旋转装置，它之所以有效，是因为很高的向心加速度比重力快得多地把它们分开，并且只需少量样品。超速离心机是针对很高转速而优化的离心机，在真空中可以达到几十万 $g$ 的最大向心加速度。"
+  },
+  {
+   "id": "acceleration-in-multiples-of-g",
+   "kind": "skill",
+   "section": "6.2",
+   "name": "用 g 的倍数表示加速度",
+   "statement": "把向心加速度除以重力加速度，就是用 g 的倍数来表示它，这让你立刻知道它与我们静止站立时所感受到的加速度相比如何。离心机的额定值用 g 的倍数标出，航天员对发射和再入的耐受力也是这样表示的，而这个比值显示一次乘坐是会令人不适还是危险。"
+  },
+  {
+   "id": "ultracentrifuge",
+   "kind": "definition",
+   "section": "6.2",
+   "name": "超速离心机",
+   "terms": [
+    "超速离心机"
+   ],
+   "statement": "超速离心机是为使转子以很高的转速旋转而优化的离心机。"
+  },
+  {
+   "id": "centripetal-force",
+   "kind": "definition",
+   "section": "6.3",
+   "name": "向心力",
+   "symbol": "F_c",
+   "terms": [
+    "向心力"
+   ],
+   "type": "force",
+   "statement": "任何引起匀速圆周运动的合力都是向心力。它不是一种新的力：系绳球上绳中的张力、地球对月球的引力、冰鞋与溜冰场地面之间的摩擦力，以及倾斜路面对汽车的力，都可以是向心力。使一个力成为向心力的是它的方向，即指向曲率中心，而牛顿第二定律随后给出它的大小。",
+   "forms": [
+    {
+     "id": "eq-Fc-mac",
+     "latex": "F_{\\text{c}} = m a_{\\text{c}}",
+     "ktex": "\\kFc = m\\kac",
+     "anchor": "6.3-centripetal-force"
+    }
+   ]
+  },
+  {
+   "id": "centripetal-force-magnitude",
+   "kind": "result",
+   "section": "6.3",
+   "name": "向心力的大小",
+   "statement": "把向心加速度的两种形式代入 $F_{\\text{c}} = ma_{\\text{c}}$，得到向心力的两种形式，你可以使用其中更方便的一种：已知速率时用第一种，已知角速度时用第二种。这个力总是垂直于路径，并且总是指向曲率中心，因为加速度就是如此。",
+   "forms": [
+    {
+     "id": "eq-Fc",
+     "latex": "F_{\\text{c}} = m\\frac{v^2}{r}",
+     "ktex": "\\kFc = m\\frac{\\kv^2}{\\kr}",
+     "anchor": "6.3-two-forms"
+    },
+    {
+     "id": "eq-Fc-omega",
+     "latex": "F_{\\text{c}} = mr\\omega^2",
+     "ktex": "\\kFc = m\\kr\\kw^2",
+     "anchor": "6.3-two-forms"
+    }
+   ]
+  },
+  {
+   "id": "radius-and-centripetal-force",
+   "kind": "result",
+   "section": "6.3",
+   "name": "由向心力求半径",
+   "statement": "把向心力解出半径可知，对给定的质量和速率，大的力使曲线弯得急，小的力使曲线弯得缓。这样读就能说明为什么脚下摩擦力太小的汽车会向外冲出路面而不是停下来，也能说明为什么高速轮胎中的应力取决于轮胎的直径。",
+   "forms": [
+    {
+     "id": "eq-r-from-Fc",
+     "latex": "r = \\frac{mv^2}{F_{\\text{c}}}",
+     "ktex": "\\kr = \\frac{m\\kv^2}{\\kFc}",
+     "anchor": "6.3-radius"
+    }
+   ]
+  },
+  {
+   "id": "friction-as-centripetal-force",
+   "kind": "result",
+   "section": "6.3",
+   "name": "水平弯道上的摩擦力",
+   "statement": "在水平弯道上，作用在汽车上的唯一水平力是摩擦力，所以摩擦力就是全部的向心力。令 $mv^2/r$ 等于最大静摩擦力 $\\mu_{\\text{s}}N = \\mu_{\\text{s}}mg$ 并约去质量，就得到使汽车能以该速率通过弯道的最小摩擦因数。质量之所以能约去，是因为摩擦力与法向力成正比，所以汽车的载重无关紧要。",
+   "forms": [
+    {
+     "id": "eq-mu-s",
+     "latex": "\\mu_{\\text{s}} = \\frac{v^2}{rg}",
+     "ktex": "\\mu_{\\text{s}} = \\frac{\\kv^2}{\\kr\\kg}",
+     "condition": "水平弯道，取静摩擦力所允许的最大速率",
+     "anchor": "6.3-ex-flat-curve"
+    },
+    {
+     "id": "eq-friction-centripetal",
+     "latex": "F_{\\text{c}} = f = \\mu_{\\text{s}} N = \\mu_{\\text{s}} mg",
+     "ktex": "\\kFc = \\kff = \\mu_{\\text{s}} \\kN = \\mu_{\\text{s}} m\\kg",
+     "condition": "水平弯道，其中摩擦力是唯一的水平力",
+     "anchor": "6.3-ex-flat-curve"
+    }
+   ]
+  },
+  {
+   "id": "banked-curve",
+   "kind": "definition",
+   "section": "6.3",
+   "name": "倾斜弯道",
+   "terms": [
+    "倾斜弯道"
+   ],
+   "statement": "倾斜弯道使路面倾斜，使坡度有助于你通过弯道，角度越大，你通过的速度就可以越快。在理想倾斜的弯道上，你可以以某一个速率通过弯道而完全不需要摩擦力，因为单靠法向力就提供了向心力。"
+  },
+  {
+   "id": "ideal-banking-angle",
+   "kind": "result",
+   "section": "6.3",
+   "name": "理想倾斜角",
+   "terms": [
+    "理想倾斜角"
+   ],
+   "statement": "在无摩擦的倾斜弯道上，法向力的水平分量 $N\\sin\\theta$ 必须提供向心力，竖直分量 $N\\cos\\theta$ 必须与重力平衡。把一个除以另一个，就同时消去了法向力和质量，得到 $\\tan\\theta = v^2/rg$。因此，高速和急弯的道路必须有很陡的倾斜，而且这个角度与车辆的质量无关。",
+   "forms": [
+    {
+     "id": "eq-banking",
+     "latex": "\\theta = \\tan^{-1}\\left(\\frac{v^2}{rg}\\right)",
+     "ktex": "\\theta = \\tan^{-1}\\left(\\frac{\\kv^2}{\\kr\\kg}\\right)",
+     "condition": "理想倾斜弯道，无摩擦",
+     "anchor": "6.3-banked"
+    },
+    {
+     "id": "eq-N-sin",
+     "latex": "N\\sin\\theta = \\frac{mv^2}{r}",
+     "ktex": "\\kN\\sin\\theta = \\frac{m\\kv^2}{\\kr}",
+     "condition": "理想倾斜弯道，无摩擦",
+     "anchor": "6.3-banked"
+    },
+    {
+     "id": "eq-N-cos",
+     "latex": "N\\cos\\theta = mg",
+     "ktex": "\\kN\\cos\\theta = m\\kg",
+     "condition": "理想倾斜弯道，无摩擦",
+     "anchor": "6.3-banked"
+    },
+    {
+     "id": "eq-tan-theta",
+     "latex": "\\tan\\theta = \\frac{v^2}{rg}",
+     "ktex": "\\tan\\theta = \\frac{\\kv^2}{\\kr\\kg}",
+     "condition": "理想倾斜弯道，无摩擦",
+     "anchor": "6.3-banked"
+    }
+   ]
+  },
+  {
+   "id": "ideal-speed",
+   "kind": "result",
+   "section": "6.3",
+   "name": "理想速率",
+   "terms": [
+    "理想速率"
+   ],
+   "statement": "把倾斜关系反过来读，就得到某一给定半径和倾斜度的弯道所设计的速率，书中称之为理想速率。在这个速率下，仅靠路面就能让你保持在弯道上，而摩擦力随后让你能以更大或更小的速率通过弯道而不打滑。",
+   "forms": [
+    {
+     "id": "eq-ideal-speed",
+     "latex": "v = (rg\\tan\\theta)^{1/2}",
+     "ktex": "\\kv = (\\kr\\kg\\tan\\theta)^{1/2}",
+     "condition": "理想倾斜弯道，无摩擦",
+     "anchor": "6.3-ex-ideal-speed"
+    }
+   ]
+  },
+  {
+   "id": "free-body-circular-motion",
+   "kind": "skill",
+   "section": "6.3",
+   "name": "求解圆周运动问题",
+   "statement": "圆周运动问题是一个牛顿第二定律问题，其中你事先就知道加速度的方向：它指向曲率中心。画出受力图，取一个轴沿半径方向，令沿该轴的合力等于 $mv^2/r$。水平弯道、倾斜弯道、竖直圆环和摆动的吊笼都是这样处理的。"
+  },
+  {
+   "id": "ideal-banking",
+   "kind": "definition",
+   "section": "6.3",
+   "name": "理想倾斜",
+   "terms": [
+    "理想倾斜"
+   ],
+   "statement": "理想倾斜是公路弯道的倾斜，其角度使车辆能够以给定的速率通过弯道，而无需轮胎与路面之间的摩擦力的帮助。"
+  },
+  {
+   "id": "non-inertial-frame",
+   "kind": "definition",
+   "section": "6.4",
+   "name": "非惯性参考系",
+   "terms": [
+    "非惯性参考系"
+   ],
+   "statement": "非惯性参考系是加速的参考系。转弯的汽车和转动的旋转木马都是非惯性的，而在这样的参考系内，除非给牛顿定律加上没有物理来源的力，否则牛顿定律不能照原样成立。"
+  },
+  {
+   "id": "fictitious-force",
+   "kind": "definition",
+   "section": "6.4",
+   "name": "虚拟力",
+   "terms": [
+    "虚拟力"
+   ],
+   "statement": "虚拟力是没有物理来源的力，是为了能在加速或转动的参考系内应用牛顿定律而设想出来的。汽车向右转弯时，并没有什么在把乘客推向左边；乘客沿直线运动，是汽车在他下面向右运动。两种看法都能让我们描述自然，但从惯性参考系出发的看法最简单也最真实，因为在其中每一个力都有真实的起源。"
+  },
+  {
+   "id": "centrifugal-force",
+   "kind": "definition",
+   "section": "6.4",
+   "name": "离心力",
+   "terms": [
+    "离心力"
+   ],
+   "statement": "离心力是似乎要把你甩出转动参考系的虚拟力。不要把它与向心力混淆，向心力是真实的，指向相反的方向。在地球参考系中，没有什么东西把乘坐者甩出旋转木马；乘坐者必须抓牢才能作圆周运动，而不是沿直线径直飞出边缘。离心机出于同样的原因而起作用：试管转动时，粒子的惯性带着它们沿切线运动。"
+  },
+  {
+   "id": "coriolis-force",
+   "kind": "definition",
+   "section": "6.4",
+   "name": "科里奥利力",
+   "terms": [
+    "科里奥利力"
+   ],
+   "statement": "沿直线滑过转动的旋转木马的球，相对于地面走的是直线路径，但在木板上看却向右弯曲。在旋转木马的参考系中，一个虚拟力，即科里奥利力，说明了这个弯曲。从北极上空看，地球也以同样的方式转动，所以北半球的任何运动都向右偏，南半球的任何运动都向左偏。在天气系统的尺度上，这个效应使流入低气压区的风形成环流，北半球为逆时针，南半球为顺时针。"
+  },
+  {
+   "id": "universal-gravitation",
+   "kind": "axiom",
+   "section": "6.5",
+   "name": "牛顿万有引力定律",
+   "terms": [
+    "牛顿万有引力定律"
+   ],
+   "statement": "宇宙中的每个粒子都以一个沿二者连线方向的力吸引其他每个粒子，这个力与它们质量的乘积成正比，与它们之间距离的平方成反比。这个力永远是吸引力，它只取决于质量和间距，同一个公式对父亲和婴儿、对地球和月球、对一个星系和另一个星系都成立。无论两个质量相差多大，作用在这两个物体上的力的大小都相同，这与牛顿第三定律一致。",
+   "forms": [
+    {
+     "id": "eq-gravitation",
+     "latex": "F = G\\frac{mM}{r^2}",
+     "ktex": "\\kF = G\\frac{mM}{\\kr^2}",
+     "anchor": "6.5-universal-law"
+    },
+    {
+     "id": "eq-gravitational-force",
+     "latex": "F_{\\text{G}} = G\\frac{mM}{r^2}",
+     "ktex": "\\kFG = G\\frac{mM}{r^2}",
+     "section": "18.3",
+     "anchor": "18.3-against-gravity"
+    }
+   ]
+  },
+  {
+   "id": "gravitational-constant",
+   "kind": "axiom",
+   "section": "6.5",
+   "name": "引力常量",
+   "symbol": "G",
+   "terms": [
+    "引力常量 G"
+   ],
+   "statement": "$G$ 是万有引力定律中的比例因子，测得为 $6.674 \\times 10^{-11}\\ \\text{N}\\cdot\\text{m}^2/\\text{kg}^2$，并被认为在宇宙中处处相同。它之小，是两个相距 1.000 m 的 1.000 kg 质量只以 $6.674 \\times 10^{-11}$ N 相互吸引的原因，也是我们没有觉察到连山这样的大物体也对我们施加引力的原因。在物理学的所有基本常量中，$G$ 是测定得最不精确的。",
+   "forms": [
+    {
+     "id": "eq-G",
+     "latex": "G = 6.674 \\times 10^{-11}\\;\\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}",
+     "anchor": "6.5-gravitational-constant"
+    }
+   ]
+  },
+  {
+   "id": "center-of-mass",
+   "kind": "definition",
+   "section": "6.5",
+   "name": "质心",
+   "terms": [
+    "质心"
+   ],
+   "statement": "相互以引力吸引的物体往往很大，所以应用这个定律时要把每个物体看作它的全部质量都在一个点上，即它的质心。质心是质量的平均位置，一个系统对外力的响应就好像它的全部质量都位于那里。万有引力定律中的距离 $r$ 是两个质心之间的距离。"
+  },
+  {
+   "id": "g-from-gravitation",
+   "kind": "result",
+   "section": "6.5",
+   "name": "由引力求重力加速度",
+   "statement": "物体的重力 $mg$ 就是它与地球之间的引力，所以 $mg = GmM/r^2$。物体的质量约去，剩下 $g = GM/r^2$，代入地球的质量和半径得到 $9.80\\ \\text{m/s}^2$。这就是为什么所有质量下落时的加速度都相同，它把伽利略的观察又推进了一步，用力来解释它。同一个表达式给出月球上、火星上、月球距离处，或任何已知质量和距离之处的 $g$。",
+   "forms": [
+    {
+     "id": "eq-g-GM",
+     "latex": "g = G\\frac{M}{r^2}",
+     "ktex": "\\kg = G\\frac{M}{\\kr^2}",
+     "anchor": "6.5-g-from-gravity"
+    },
+    {
+     "id": "eq-mg-gravitation",
+     "latex": "mg = G\\frac{mM}{r^2}",
+     "ktex": "m\\kg = G\\frac{mM}{\\kr^2}",
+     "condition": "物体的重力就是它与地球之间的引力",
+     "anchor": "6.5-g-from-gravity"
+    }
+   ]
+  },
+  {
+   "id": "mass-from-g",
+   "kind": "skill",
+   "section": "6.5",
+   "name": "由表面重力加速度求天体的质量",
+   "statement": "一旦知道了 $G$，你就可以把 $g = GM/r^2$ 倒过来，求出物体的质量而不是它的表面重力。物理学家正是这样在牛顿发表这一定律一百多年之后，才最终得到地球质量的精确值，这也是 $G$ 的测量如此重要的原因之一。",
+   "forms": [
+    {
+     "id": "eq-M-from-g",
+     "latex": "M = \\frac{gr^2}{G}",
+     "ktex": "M = \\frac{\\kg\\kr^2}{G}",
+     "anchor": "6.5-cavendish"
+    }
+   ]
+  },
+  {
+   "id": "gravity-as-centripetal-force",
+   "kind": "result",
+   "section": "6.5",
+   "name": "引力与月球的轨道",
+   "statement": "牛顿自己对其定律的检验，是问地球引力在月球距离处产生的加速度是否就是月球轨道所需的加速度。在 $3.84 \\times 10^8$ m 处算出 $GM/r^2$ 得 $2.70 \\times 10^{-3}\\ \\text{m/s}^2$，而由月球 27.3 天的周期算出 $r\\omega^2$ 得 $2.72 \\times 10^{-3}\\ \\text{m/s}^2$。两者相差不到百分之一，明确的含义是地球的引力使月球绕地球运行。"
+  },
+  {
+   "id": "tides",
+   "kind": "idea",
+   "section": "6.5",
+   "name": "潮汐",
+   "statement": "月球对地球近侧的拉力比对地球的拉力更大，对地球的拉力又比对远侧水体的拉力更大，所以两侧的水同时升起。当地球在隆起部分之下转动时，隆起始终对准月球，这就给出每天两次高潮。太阳的影响约为月球的一半。最大的潮是大潮，出现在地球、月球和太阳排成一线时；最小的潮是小潮，出现在太阳与该连线成 90º 时。"
+  },
+  {
+   "id": "weightlessness",
+   "kind": "idea",
+   "section": "6.5",
+   "name": "失重与微重力",
+   "statement": "失重并不意味着引力已经停止作用在航天员身上；轨道上并没有零重力。航天员处于自由落体运动中，以重力加速度加速，就像缆绳断了的电梯里的乘客。微重力指的是这样一种环境：物体的表观合加速度与地球表面的加速度相比很小。长期停留其中会使肌肉和骨骼萎缩。"
+  },
+  {
+   "id": "cavendish-experiment",
+   "kind": "idea",
+   "section": "6.5",
+   "name": "卡文迪什实验",
+   "statement": "亨利·卡文迪什测量了悬挂在纤维上的两个普通大小的质量之间微小的引力，从而在 1798 年确定了 $G$ 的值，比牛顿发表该定律晚了一百多年；他的值与现代最佳值相差不到百分之一。这次测量之所以重要，是因为它决定了自然界四种力之一的强度，也因为它使地球的质量变得可以计算。同样设计的实验至今仍在进行，以研究引力是否除了与质量有关还与物质种类有关，以及平方反比定律在亚毫米距离上是否成立。"
+  },
+  {
+   "id": "microgravity",
+   "kind": "definition",
+   "section": "6.5",
+   "name": "微重力",
+   "terms": [
+    "微重力"
+   ],
+   "statement": "微重力是这样一种环境：物体的表观合加速度与地球在其表面产生的加速度相比很小。"
+  },
+  {
+   "id": "satellite-conditions",
+   "kind": "idea",
+   "section": "6.6",
+   "name": "简单轨道的条件",
+   "statement": "开普勒定律以及由它们推出的一切，对于在与其他质量隔绝的系统中绕一个大得多的质量 $M$ 运行的小质量 $m$ 都成立。第一个条件让你可以把运动看作 $M$ 是静止的，是从放在它上面的惯性参考系来看；第二个条件让你可以忽略其他一切的微小影响。地球的卫星（包括月球）、绕太阳运行的物体，以及其他行星的卫星，都在良好的近似下满足这两个条件，这就是为什么不用计算机就能对它们说出这么多东西。"
+  },
+  {
+   "id": "keplers-first-law",
+   "kind": "result",
+   "section": "6.6",
+   "name": "开普勒第一定律",
+   "statement": "每颗行星绕太阳的轨道都是椭圆，太阳位于一个焦点上。椭圆是这样一条闭合曲线：曲线上一点到两个焦点的距离之和为常量，而圆是两个焦点重合的特殊情形。这条定律对任何闭合的引力轨道都成立，而不仅限于它所陈述的行星。"
+  },
+  {
+   "id": "keplers-second-law",
+   "kind": "result",
+   "section": "6.6",
+   "name": "开普勒第二定律",
+   "statement": "每颗行星的运动，使得从太阳到行星所画的假想连线在相等的时间内扫过相等的面积。因为面积相等，所以行星在离太阳最近时必定运动得最快，在离太阳最远时运动得最慢。这条定律是为绕太阳运行的行星提出的，但它的适用范围更广。"
+  },
+  {
+   "id": "keplers-third-law",
+   "kind": "result",
+   "section": "6.6",
+   "name": "开普勒第三定律",
+   "statement": "任意两颗行星绕太阳的周期的平方之比，等于它们到太阳的平均距离的立方之比。它只是一个描述性的方程：开普勒是在第谷·布拉赫二十年的观测中发现它的，它并未给出这种相等的原因。不过，它足以由一个轨道的周期求出另一个轨道的周期，1500 km 高处卫星的周期就是这样由月球的周期得到的。",
+   "forms": [
+    {
+     "id": "eq-kepler3",
+     "latex": "\\frac{T_1^2}{T_2^2} = \\frac{r_1^3}{r_2^3}",
+     "ktex": "\\frac{\\kTorbone^2}{\\kTorbtwo^2} = \\frac{\\krone^3}{\\krtwo^3}",
+     "condition": "两个小质量绕同一个大质量运行",
+     "anchor": "6.6-keplers-laws"
+    }
+   ]
+  },
+  {
+   "id": "orbital-speed",
+   "kind": "result",
+   "section": "6.6",
+   "name": "轨道速率",
+   "statement": "对于圆轨道，引力就是全部合外力，所以 $GmM/r^2 = mv^2/r$。卫星自身的质量约去，剩下 $GM/r = v^2$：在给定的轨道半径上，所有质量都以相同的速率运行。这与所有质量下落时加速度相同是同一个事实，只是从更远处来看。",
+   "forms": [
+    {
+     "id": "eq-v2-orbit",
+     "latex": "G\\frac{M}{r} = v^2",
+     "ktex": "G\\frac{M}{\\kr} = \\kv^2",
+     "condition": "圆轨道",
+     "anchor": "6.6-derivation"
+    },
+    {
+     "id": "eq-Fnet-circular",
+     "latex": "F_{\\text{net}} = ma_{\\text{c}} = m\\frac{v^2}{r}",
+     "ktex": "\\kFnet = m\\kac = m\\frac{\\kv^2}{\\kr}",
+     "condition": "圆轨道",
+     "anchor": "6.6-derivation"
+    },
+    {
+     "id": "eq-gravity-is-centripetal",
+     "latex": "G\\frac{mM}{r^2} = m\\frac{v^2}{r}",
+     "ktex": "G\\frac{mM}{\\kr^2} = m\\frac{\\kv^2}{\\kr}",
+     "condition": "圆轨道，其中引力提供全部向心力",
+     "anchor": "6.6-derivation"
+    }
+   ]
+  },
+  {
+   "id": "kepler-third-law-derivation",
+   "kind": "result",
+   "section": "6.6",
+   "name": "由引力推导开普勒第三定律",
+   "statement": "把平均速率 $v = 2\\pi r/T$ 代入 $GM/r = v^2$ 得 $T^2 = 4\\pi^2 r^3/GM$，取同一中心天体的两颗卫星的这个表达式之比，就得到开普勒第三定律，$M$ 约去。这一推导表明，引力是开普勒只作了描述的现象的原因，也说明了为什么第三定律只比较同一中心天体的卫星。",
+   "forms": [
+    {
+     "id": "eq-T2",
+     "latex": "T^2 = \\frac{4\\pi^2}{GM} r^3",
+     "ktex": "\\kT^2 = \\frac{4\\pi^2}{GM} \\kr^3",
+     "condition": "绕质量 M 运行的圆轨道",
+     "anchor": "6.6-derivation"
+    },
+    {
+     "id": "eq-v-circumference",
+     "latex": "v = \\frac{2\\pi r}{T}",
+     "ktex": "\\kv = \\frac{2\\pi \\kr}{\\kT}",
+     "condition": "周期为 T 的圆轨道",
+     "anchor": "6.6-derivation"
+    }
+   ]
+  },
+  {
+   "id": "mass-from-orbit",
+   "kind": "skill",
+   "section": "6.6",
+   "name": "由轨道求质量",
+   "statement": "把 $T^2 = 4\\pi^2 r^3/GM$ 解出比值 $r^3/T^2$，得到的量对同一中心天体的每颗卫星都相同，并且只取决于 $G$ 和中心天体的质量。所以，如果你知道一颗卫星的半径和周期，就可以算出它所绕转的天体的质量。天文学家用这个原理来求有卫星的天体的质量。",
+   "forms": [
+    {
+     "id": "eq-r3-T2",
+     "latex": "\\frac{r^3}{T^2} = \\frac{G}{4\\pi^2} M",
+     "ktex": "\\frac{\\kr^3}{\\kT^2} = \\frac{G}{4\\pi^2} M",
+     "anchor": "6.6-parent-mass"
+    }
+   ]
+  },
+  {
+   "id": "descriptive-versus-causal-law",
+   "kind": "idea",
+   "section": "6.6",
+   "name": "描述与成因",
+   "statement": "开普勒定律描述行星如何运动；牛顿的万有引力定律说明为什么，而这一个方程涵盖了引力起作用的每一种情形。早先的托勒密模型是一堆事实的清单，每个天体有不同的规则，背后没有任何原因，而哥白尼模型只需要一小组规则和一个单一的基础力。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "uniform-circular-motion",
+   "prereq": "instantaneous-speed"
+  },
+  {
+   "concept": "uniform-circular-motion",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "arc-length",
+   "prereq": "distance-traveled"
+  },
+  {
+   "concept": "rotation-angle",
+   "prereq": "arc-length"
+  },
+  {
+   "concept": "radian",
+   "prereq": "rotation-angle"
+  },
+  {
+   "concept": "angular-velocity",
+   "prereq": "rotation-angle"
+  },
+  {
+   "concept": "angular-velocity",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "linear-angular-velocity",
+   "prereq": "angular-velocity"
+  },
+  {
+   "concept": "linear-angular-velocity",
+   "prereq": "arc-length"
+  },
+  {
+   "concept": "linear-angular-velocity",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "centripetal-acceleration",
+   "prereq": "uniform-circular-motion"
+  },
+  {
+   "concept": "centripetal-acceleration",
+   "prereq": "instantaneous-acceleration"
+  },
+  {
+   "concept": "centripetal-acceleration",
+   "prereq": "vector-subtraction"
+  },
+  {
+   "concept": "centripetal-acceleration-magnitude",
+   "prereq": "centripetal-acceleration"
+  },
+  {
+   "concept": "centripetal-acceleration-magnitude",
+   "prereq": "linear-angular-velocity"
+  },
+  {
+   "concept": "centrifuge",
+   "prereq": "centripetal-acceleration-magnitude"
+  },
+  {
+   "concept": "acceleration-in-multiples-of-g",
+   "prereq": "centripetal-acceleration-magnitude"
+  },
+  {
+   "concept": "acceleration-in-multiples-of-g",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "centripetal-force",
+   "prereq": "centripetal-acceleration"
+  },
+  {
+   "concept": "centripetal-force",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "centripetal-force",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "centripetal-force-magnitude",
+   "prereq": "centripetal-force"
+  },
+  {
+   "concept": "centripetal-force-magnitude",
+   "prereq": "centripetal-acceleration-magnitude"
+  },
+  {
+   "concept": "radius-and-centripetal-force",
+   "prereq": "centripetal-force-magnitude"
+  },
+  {
+   "concept": "friction-as-centripetal-force",
+   "prereq": "centripetal-force-magnitude"
+  },
+  {
+   "concept": "friction-as-centripetal-force",
+   "prereq": "static-friction"
+  },
+  {
+   "concept": "friction-as-centripetal-force",
+   "prereq": "static-friction-magnitude"
+  },
+  {
+   "concept": "friction-as-centripetal-force",
+   "prereq": "coefficient-of-friction"
+  },
+  {
+   "concept": "friction-as-centripetal-force",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "banked-curve",
+   "prereq": "centripetal-force"
+  },
+  {
+   "concept": "banked-curve",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "ideal-banking-angle",
+   "prereq": "banked-curve"
+  },
+  {
+   "concept": "ideal-banking-angle",
+   "prereq": "centripetal-force-magnitude"
+  },
+  {
+   "concept": "ideal-banking-angle",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "ideal-banking-angle",
+   "prereq": "weight"
+  },
+  {
+   "concept": "ideal-speed",
+   "prereq": "ideal-banking-angle"
+  },
+  {
+   "concept": "ideal-speed",
+   "prereq": "static-friction"
+  },
+  {
+   "concept": "free-body-circular-motion",
+   "prereq": "centripetal-force-magnitude"
+  },
+  {
+   "concept": "free-body-circular-motion",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "free-body-circular-motion",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "free-body-circular-motion",
+   "prereq": "resolve-forces-into-components"
+  },
+  {
+   "concept": "free-body-circular-motion",
+   "prereq": "newtons-laws-problem-solving"
+  },
+  {
+   "concept": "non-inertial-frame",
+   "prereq": "inertial-frame"
+  },
+  {
+   "concept": "fictitious-force",
+   "prereq": "non-inertial-frame"
+  },
+  {
+   "concept": "fictitious-force",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "centrifugal-force",
+   "prereq": "fictitious-force"
+  },
+  {
+   "concept": "centrifugal-force",
+   "prereq": "centripetal-force"
+  },
+  {
+   "concept": "centrifugal-force",
+   "prereq": "inertia"
+  },
+  {
+   "concept": "coriolis-force",
+   "prereq": "fictitious-force"
+  },
+  {
+   "concept": "coriolis-force",
+   "prereq": "uniform-circular-motion"
+  },
+  {
+   "concept": "coriolis-force",
+   "prereq": "inertia"
+  },
+  {
+   "concept": "universal-gravitation",
+   "prereq": "center-of-mass"
+  },
+  {
+   "concept": "universal-gravitation",
+   "prereq": "force"
+  },
+  {
+   "concept": "gravitational-constant",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "g-from-gravitation",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "g-from-gravitation",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "g-from-gravitation",
+   "prereq": "weight"
+  },
+  {
+   "concept": "mass-from-g",
+   "prereq": "g-from-gravitation"
+  },
+  {
+   "concept": "mass-from-g",
+   "prereq": "gravitational-constant"
+  },
+  {
+   "concept": "gravity-as-centripetal-force",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "gravity-as-centripetal-force",
+   "prereq": "centripetal-acceleration-magnitude"
+  },
+  {
+   "concept": "tides",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "weightlessness",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "weightlessness",
+   "prereq": "g-from-gravitation"
+  },
+  {
+   "concept": "weightlessness",
+   "prereq": "apparent-weight"
+  },
+  {
+   "concept": "cavendish-experiment",
+   "prereq": "gravitational-constant"
+  },
+  {
+   "concept": "cavendish-experiment",
+   "prereq": "mass-from-g"
+  },
+  {
+   "concept": "satellite-conditions",
+   "prereq": "inertial-frame"
+  },
+  {
+   "concept": "satellite-conditions",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "keplers-first-law",
+   "prereq": "satellite-conditions"
+  },
+  {
+   "concept": "keplers-second-law",
+   "prereq": "satellite-conditions"
+  },
+  {
+   "concept": "keplers-third-law",
+   "prereq": "satellite-conditions"
+  },
+  {
+   "concept": "orbital-speed",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "orbital-speed",
+   "prereq": "centripetal-force-magnitude"
+  },
+  {
+   "concept": "kepler-third-law-derivation",
+   "prereq": "orbital-speed"
+  },
+  {
+   "concept": "kepler-third-law-derivation",
+   "prereq": "keplers-third-law"
+  },
+  {
+   "concept": "kepler-third-law-derivation",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "mass-from-orbit",
+   "prereq": "kepler-third-law-derivation"
+  },
+  {
+   "concept": "descriptive-versus-causal-law",
+   "prereq": "keplers-third-law"
+  },
+  {
+   "concept": "descriptive-versus-causal-law",
+   "prereq": "kepler-third-law-derivation"
+  },
+  {
+   "concept": "descriptive-versus-causal-law",
+   "prereq": "law"
+  },
+  {
+   "concept": "descriptive-versus-causal-law",
+   "prereq": "model"
+  },
+  {
+   "concept": "circular-path-radius",
+   "prereq": "uniform-circular-motion"
+  },
+  {
+   "concept": "circular-path-radius",
+   "prereq": "distance"
+  },
+  {
+   "concept": "ultracentrifuge",
+   "prereq": "centrifuge"
+  },
+  {
+   "concept": "ideal-banking",
+   "prereq": "banked-curve"
+  },
+  {
+   "concept": "ideal-banking",
+   "prereq": "centripetal-force"
+  },
+  {
+   "concept": "ideal-banking",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "microgravity",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "microgravity",
+   "prereq": "weightlessness"
+  },
+  {
+   "concept": "ideal-banking-angle",
+   "prereq": "ideal-banking"
+  }
+ ]
+}

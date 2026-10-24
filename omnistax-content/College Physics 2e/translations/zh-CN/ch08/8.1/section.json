@@ -1,0 +1,613 @@
+{
+ "id": "8.1",
+ "module": "m42156",
+ "chapter": "8",
+ "title": "线动量与力",
+ "short": "线动量",
+ "lead": "动量是系统的<span data-concept=\"mass\">质量</span>与其<span data-concept=\"velocity\">速度</span>的乘积，它衡量一个运动的物体有多难被停住。你要比较<span data-ref=\"player\">一名奔跑的橄榄球运动员</span>与<span data-ref=\"football\">一只被用力掷出的橄榄球</span>的<span data-type=\"momentum\">动量</span>，然后遇到牛顿第二定律最初的表述形式，它是用<span data-concept=\"change-in-momentum\">动量变化</span>写成的。",
+ "objectives": [
+  "定义线动量。",
+  "解释动量与力之间的关系。",
+  "用动量表述牛顿第二定律。",
+  "已知质量和速度，计算动量。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"linear-momentum\">线动量</span>（简称<em>动量</em>）定义为系统的<span data-concept=\"mass\">质量</span>与其<span data-concept=\"velocity\">速度</span>的乘积。</li><li>用符号表示，<span data-concept=\"linear-momentum\">线动量</span> $\\kp$ 定义为 $$\\kp = m\\kv,$$ 其中 <em>$m$</em> 是系统的<span data-concept=\"mass\">质量</span>，$\\kv$ 是其<span data-concept=\"velocity\">速度</span>。</li><li>动量的 SI 单位是 $\\text{kg}\\cdot\\text{m/s}$。</li><li>用动量表述的牛顿第二定律指出，<span data-concept=\"net-external-force\">合外力</span>等于系统的<span data-concept=\"change-in-momentum\">动量变化</span>除以该变化所用的<span data-concept=\"time\">时间</span>。</li><li>用符号表示，牛顿第二定律定义为 $$\\kFnet = \\frac{\\kdp}{\\kdt},$$ $\\kFnet$ 是<span data-concept=\"net-external-force\">合外力</span>，$\\kdp$ 是<span data-concept=\"change-in-momentum\">动量变化</span>，$\\kdt$ 是变化<span data-concept=\"time\">时间</span>。</li></ul>",
+ "notes": "习题 2、4 和 6 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案：它给出了两道 AP 题中第一道的答案，以及习题 1、3 和 5 的答案。习题 2、4 和 6（大型船舶、垃圾车和地球的线动量）在书后答案中没有给出答案，因而略去。未给出答案的那道 AP 题（被球棒打回的棒球）作为开放题保留，附有标明由 AI 生成的建议思路，它列出方法而不直接算出力；四道思考题在本章中没有一道在书中给出答案，也以同样方式保留。关于小的力如何能传递与大的力相同的动量的那道题，放在例题 8.2 之后的行文中，因为它考查的正是那一段内容。没有任何内容留待后面的节，也没有任何内容取自其他节；8.5 节中关于橄榄球运动员接球的习题用到的是本节例题中的质量和速率，但它需要非弹性碰撞，所以仍归 8.5 节。",
+ "figures": [
+  {
+   "id": "sim-momentum",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline and note through the macros, note no longer repeats the headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-force",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "velocity",
+    "force",
+    "time",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline and note through the macros, note cut, clipped Δp said, TeX commas"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "momentum",
+   "concept": "linear-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "momentum",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "momentum",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "momentum",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating",
+   "concept": "calculate-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating",
+   "concept": "derived-units",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "newtons-second-law-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-law",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "second-law",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "constant-mass-second-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-mass",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tennis",
+   "concept": "newtons-second-law-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tennis",
+   "concept": "constant-mass-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tennis",
+   "concept": "calculate-momentum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1022532",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "一个男孩站在无摩擦的溜冰场上，起初静止。他沿 +<em>x</em> 方向抛出一个雪球，雪球沿弹道轨迹飞行，落在一段距离之外的地面上。下列关于这个男孩在抛出雪球的过程中的说法，哪一个是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "他感到一个向上的力，用来补偿雪球向下的轨迹。",
+     "他感到所抛雪球对他施加的一个向后的力。",
+     "他感到没有合力。",
+     "他感到一个向前的力，与推动雪球的力相同。"
+    ],
+    "correct": 1,
+    "hint": "他抛出雪球的过程中，雪球的动量在变化，所以男孩对雪球施加了力，而雪球反过来也对他施加一个大小相同的力。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1049937",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tennis",
+   "prompt": "一个 150 g 的棒球起初以 80 mi/h 的速率沿 –<em>x</em> 方向运动。与球棒碰撞 20 ms 后，棒球以 80 mi/h 的速率沿 +<em>x</em> 方向运动。球棒对棒球施加的平均力的大小和方向是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "平均力约为 $5.4 \\times 10^{2}\\ \\text{N}$，沿 $+x$ 方向，也就是球棒把球打出去的方向。取 $+x$ 为正，并采用 SI 单位：质量为 0.150 kg，接触时间为 $20 \\times 10^{-3}\\ \\text{s}$，80 mi/h 等于 $(80\\ \\text{mi/h})(1609\\ \\text{m/mi})/(3600\\ \\text{s/h}) = 35.8\\ \\text{m/s}$。球飞来时沿相反的方向运动，所以 $\\kvi = -35.8\\ \\text{m/s}$，$\\kvf = +35.8\\ \\text{m/s}$，速度的变化量是速率的两倍，$\\kdv = \\kvf - \\kvi = 71.5\\ \\text{m/s}$。动量变化为 $\\kdp = \\km\\kdv = (0.150\\ \\text{kg})(71.5\\ \\text{m/s}) = 10.7\\ \\text{kg}\\cdot\\text{m/s}$。与例题 8.2 中一样，$\\kFnet = \\kdp/\\kdt = (10.7\\ \\text{kg}\\cdot\\text{m/s})/(20 \\times 10^{-3}\\ \\text{s}) = 536\\ \\text{N}$，即 $5.4 \\times 10^{2}\\ \\text{N}$。答案为正，所以力沿 $+x$ 方向。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1522179",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "momentum",
+   "prompt": "质量小的物体和质量大的物体动量相同。哪个物体的动能最大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对同一个物体写出这两个量：它的动量为 $\\kp = m\\kv$，动能为 $\\kKE = \\tfrac{1}{2}m\\kv^2$。如果两个物体的动量相同，质量较小的那个必须运动得更快，速度增大的倍数恰好等于其质量减小的倍数。动能含有速度的平方，所以速度的这一增大要算两次，而质量的减小只算一次，因此质量小的物体动能更大。把动能用动量表示，也可以看出这一点，$\\kKE = \\kp^2/2m$：两个物体的 $\\kp$ 相同，动能就与质量成反比。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1522190",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "momentum",
+   "prompt": "质量小的物体和质量大的物体动能相同。哪个质量的动量最大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "再把这两个量写出来，$\\kKE = \\tfrac{1}{2}m\\kv^2$ 和 $\\kp = m\\kv$。如果两个物体的动能相同，质量较小的那个必须运动得更快，但由于速度在动能中是平方的，它多出的速度倍数只是其质量缩小倍数的平方根。动量中只含有一个速度因子，所以多出来的速度补偿不了缺少的质量，质量大的物体动量更大。把动量用动能表示，$\\kp = \\sqrt{2m\\kKE}$，说的也是同一件事：两个物体的动能相同时，动量随质量的平方根增大。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1522201",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "橄榄球教练建议球员脚踏实地地阻挡、撞击和擒抱，而不要腾空跃起。请利用动量、功和能量的概念，解释橄榄球运动员为什么脚踏实地会更有效。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "脚踏实地时，球员可以蹬踩地球，而地球会以大小相同的力回推他。这个力对他来说是外力，而由 $\\kFnet = \\kdp/\\kdt$，力作用一段时间会改变动量。所以只要他站稳脚跟，就能不断增加自己的动量，抵住对方球员带来的动量。他接触地面期间，腿也在对他自己做功，所以他的动能可以在冲撞中持续增大。腾空跃起的球员则没有可以蹬踩的东西。作用在他身上的外力只有他的重力，而重力是竖直的，所以他沿运动方向的动量无法改变。他离开地面时带着的动量和动能，就是他落地时仅有的动量和动能。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1522215",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tennis",
+   "prompt": "小的力怎么能给物体传递与大的力相同的动量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "动量变化等于合外力乘以它作用的时间，因为可以把 $\\kFnet = \\kdp/\\kdt$ 改写成 $\\kdp = \\kFnet\\kdt$。因此，大小相差很大的两个力，只要较小的力作用的时间相应更长，就能产生相同的动量变化：大小为十分之一的力，作用十倍的时间，就给出相同的变化。例题 8.2 中的球拍与网球只接触 5.0 ms，所以需要 661 N 才能给球 3.3 kg·m/s 的动量，而 6.61 N 的恒定推力作用半秒，就能给球同样的动量。出于同样的道理，把手向后缩着接球，比把手硬挺着接球，对手要温和得多。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1522230",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "（a）计算一头 2000 kg 的大象以 $7.50\\ \\text{m/s}$ 的速率冲向猎人时的动量。（b）把大象的动量与一支 0.0400 kg 的麻醉镖以 $600\\ \\text{m/s}$ 的速率射出时的动量作比较。（c）这位 90.0 kg 的猎人没有击中大象之后，以 $7.40\\ \\text{m/s}$ 的速率奔跑，他的动量是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 15000,
+      "unit": "kg·m/s",
+      "hint": "动量等于质量乘以速率，$\\kp = m\\kv$。"
+     },
+     {
+      "part": "(b) the ratio of the elephant’s momentum to the dart’s",
+      "value": 625,
+      "unit": "",
+      "hint": "用同样的方法求出麻醉镖的动量，再用它去除大象的动量。"
+     },
+     {
+      "part": "(c)",
+      "value": 666,
+      "unit": "kg·m/s",
+      "hint": "猎人是另一个以另一个速率运动的质量，所以同样适用这一定义。"
+     }
+    ],
+    "solution": "（a）$1.50 \\times 10^{4}\\ \\text{kg}\\cdot\\text{m/s}$（b）625 比 1（c）$6.66 \\times 10^{2}\\ \\text{kg}\\cdot\\text{m/s}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1493544",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "（a）一架 $2.00 \\times 10^{4}\\text{-kg}$ 的飞机要以多大的速率飞行，动量才能达到 $1.60 \\times 10^{9}\\ \\text{kg}\\cdot\\text{m/s}$（与上题中那艘船的动量相同）？（b）这架飞机以 $60.0\\ \\text{m/s}$ 的速率起飞时，它的动量是多少？（c）如果这艘船是一艘用弹射器发射这些飞机的航空母舰，请讨论你对（b）的答案对弹射器作用在船上的反冲效应有什么意义。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 80000,
+      "unit": "m/s",
+      "hint": "把 $\\kp = m\\kv$ 变形求速率，$\\kv = \\kp/m$。"
+     },
+     {
+      "part": "(b)",
+      "value": 1200000,
+      "unit": "kg·m/s",
+      "hint": "用飞机的质量乘以它的起飞速率。"
+     }
+    ],
+    "solution": "（a）$8.00 \\times 10^{4}\\ \\text{m/s}$（b）$1.20 \\times 10^{6}\\ \\text{kg}\\cdot\\text{m/s}$（c）因为飞机的动量比船的动量小 3 个数量级，所以船不会反冲得很厉害。反冲速度为 $-0.0100\\ \\text{m/s}$，很可能感觉不到。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1493884",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-law",
+   "prompt": "一节失控的列车车厢质量为 15,000 kg，以 $5.4\\ \\text{m/s}$ 的速率沿轨道行驶。计算 1500 N 的力使车厢停下来所需的时间。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 54,
+    "unit": "s",
+    "hint": "车厢被制动到静止，所以动量变化就是它起初所具有的全部动量。把 $\\kFnet = \\kdp/\\kdt$ 变形求时间。",
+    "solution": "54 s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "linear-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "calculate-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "constant-mass-second-law",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "linear-momentum",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "linear-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-momentum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "linear-momentum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-second-law-momentum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-momentum",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "player",
+   "label": "橄榄球运动员",
+   "figures": [
+    "sim-momentum"
+   ]
+  },
+  {
+   "id": "football",
+   "label": "被用力掷出的橄榄球",
+   "figures": [
+    "sim-momentum"
+   ]
+  },
+  {
+   "id": "tennis-ball",
+   "label": "网球",
+   "figures": [
+    "sim-force"
+   ]
+  },
+  {
+   "id": "racquet",
+   "label": "维纳斯·威廉姆斯的球拍",
+   "figures": [
+    "sim-force"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "second-law-constant-mass",
+   "what": "质量不变时的牛顿第二定律",
+   "source": "《大学物理（第2版）》，8.1 线动量与力",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "系统的质量是恒定的。",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kdp} = \\mk{mv}{\\Delta(\\km\\kv)}",
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kdp} = \\mk{mv}{\\km\\kdv}",
+       "uses": [
+        0
+       ],
+       "cap": "$\\km$ 固定时，只有 $\\kv$ 变化。"
+      }
+     ],
+     "src": "8.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\ka = \\dfrac{\\kdv}{\\kdt}",
+       "src": "2.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnet} = \\dfrac{\\mk{p}{\\kdp}}{\\mk{t}{\\kdt}}",
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnet} = \\dfrac{\\mk{m}{\\km}\\mk{v}{\\kdv}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "p": [
+         "m",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kFnet} = \\mk{m}{\\km}\\mk{v}{\\ka}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "t": "v"
+       }
+      }
+     ],
+     "src": "8.1"
+    }
+   ]
+  }
+ ]
+}

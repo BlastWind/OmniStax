@@ -1,0 +1,844 @@
+{
+ "id": "23.9",
+ "module": "m42420",
+ "chapter": "23",
+ "title": "电感",
+ "short": "电感",
+ "lead": "迄今为止，感应还没有一个属于它自己的数。本节给了它一个：并排的<span data-ref=\"coil-1 coil-2\">两个线圈</span>的<span data-concept=\"mutual-inductance\">互感</span>，单个器件的<span data-concept=\"self-inductance\">自感</span>；本节还考察电感器所储存的能量，以及从干衣机到闪光灯、利用电感工作的各种器件。",
+ "objectives": [
+  "计算电感器的电感。",
+  "计算电感器中储存的能量。",
+  "计算电感器中产生的电动势。"
+ ],
+ "summary_html": "<ul><li>电感是器件的一种性质，表明它在另一个器件中感应出电动势的效果有多好。</li><li><span data-concept=\"mutual-inductance\">互感</span>是两个器件相互感应出电动势的效应。</li><li>一个器件中<span data-concept=\"electric-current\">电流</span>的变化 $\\Delta \\kIcurone/\\kdt$ 在第二个器件中感应出电动势 $\\kemftwo$：$\\kemftwo = -\\kMind\\frac{\\Delta \\kIcurone}{\\kdt}$，其中 $\\kMind$ 被定义为这两个器件之间的<span data-concept=\"mutual-inductance\">互感</span>，负号来自楞次定律。</li><li>对称地，通过第二个器件的<span data-concept=\"electric-current\">电流</span>的变化 $\\Delta \\kIcurtwo/\\kdt$ 在第一个器件中感应出电动势 $\\kemfone$：$\\kemfone = -\\kMind\\frac{\\Delta \\kIcurtwo}{\\kdt}$，其中 $\\kMind$ 与反向过程中的<span data-concept=\"mutual-inductance\">互感</span>相同。</li><li>器件中的<span data-concept=\"electric-current\">电流</span>变化会在器件自身中感应出电动势。</li><li><span data-concept=\"self-inductance\">自感</span>是器件在自身中感应出电动势的效应。</li><li>这种器件称为电感器，通过它的<span data-concept=\"electric-current\">电流</span>的变化在其中感应出的电动势为 $\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt}$，其中 $\\kLind$ 是电感器的<span data-concept=\"self-inductance\">自感</span>，$\\kdIcur/\\kdt$ 是通过它的<span data-concept=\"electric-current\">电流</span>的变化率。负号表示电动势阻碍这一变化，这是楞次定律所要求的。</li><li>自感和<span data-concept=\"mutual-inductance\">互感</span>的单位是亨利（H），其中 $1\\;\\text{H} = 1\\;\\Omega\\cdot\\text{s}$。</li><li>电感器的<span data-concept=\"self-inductance\">自感</span> $\\kLind$ 与磁通量随<span data-concept=\"electric-current\">电流</span>变化的多少成正比。对 $N$ 匝的电感器，$\\kLind = N\\frac{\\kdPhi}{\\kdIcur}$。</li><li>螺线管的<span data-concept=\"self-inductance\">自感</span>为 $\\kLind = \\frac{\\mu_0 N^2 A}{\\ell}$，其中 $N$ 是它的匝数，$A$ 是它的<span data-concept=\"area\">横截面积</span>，$\\ell$ 是它的<span data-concept=\"length\">长度</span>，$\\mu_0 = 4\\pi\\times 10^{-7}\\;\\text{T}\\cdot\\text{m/A}$ 是真空磁导率。</li><li><span data-concept=\"energy-stored-in-an-inductor\">电感器中储存的能量</span> $\\kEind$ 为 $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$。</li></ul>",
+ "notes": "本节十四道习题中有八道书中没有给出答案，已略去：5.00 mH 的一对线圈及其被切断的 2.00 A 电流，在 0.100 ms 内达到 3.00 A 的器件，两道要求推导电感单位而不是求数值的题，闪光灯的通断时间，50.0 cm 长、1000 匝的螺线管，吹风机的加热线圈，通过 0.250 H 电感器的 150 A 电流，以及关于 25.0 H 电感器的“不合理的结果”一题。保留下来的答案，唯一的来源是书后答案。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示以及三道思考题的建议思路由 AI 生成，并已如此标明。所有数值答案都取自书后答案，这里没有计算任何东西；书中未给出答案的八道习题已略去，并在本节的注记中列出。本节没有印出“理解检测”框，也没有 AP 题，所以所有练习都放在末尾。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-mutual-inductance",
+   "kind": "sim",
+   "number": "23.37",
+   "originals": [
+    "/media/ch23/Figure_24_09_01.jpg"
+   ],
+   "original_caption": "这些线圈可以像一台低效率的变压器那样相互感应出电动势。它们的互感 M 表明二者之间耦合的效果。图中，线圈 1 中电流的变化在线圈 2 中感应出电动势。（注意，线圈 2 中的感应电动势记作 ℰ₂ induced。）",
+   "widths": [
+    330
+   ],
+   "draws": [
+    "inductance",
+    "current",
+    "voltage",
+    "magnetic-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note dropped, it repeated the caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-counterwound",
+   "kind": "sim",
+   "number": "23.38",
+   "originals": [
+    "/media/ch23/Figure_24_09_02.jpg"
+   ],
+   "original_caption": "电动干衣机的加热线圈可以反向绕制，使它们的磁场相互抵消，从而大大减小与干衣机外壳之间的互感。",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "inductance",
+    "magnetic-field",
+    "current",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels moved off the windings and inside the stage; note cut, through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-self-inductance",
+   "kind": "sim",
+   "number": "23.39",
+   "originals": [
+    "/media/ch23/Figure_24_09_05.jpg"
+   ],
+   "original_caption": "电感器的电路符号。",
+   "widths": [
+    100
+   ],
+   "draws": [
+    "inductance",
+    "current",
+    "voltage",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "source label off the battery; note cut to the slow-motion fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-camera-flash",
+   "kind": "sim",
+   "number": "23.40",
+   "originals": [
+    "/media/ch23/Figure_24_09_03.jpg"
+   ],
+   "original_caption": "通过对电感器的快速通断，1.5 V 的电池可以用来感应出几千伏的电动势。这个电压可以用来在电容器中储存电荷，以便日后使用，例如用于闪光灯附件。",
+   "widths": [
+    180
+   ],
+   "draws": [
+    "inductance",
+    "voltage",
+    "current",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "current rounded so the readout multiplies out; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-solenoid-inductance",
+   "kind": "sim",
+   "draws": [
+    "inductance",
+    "magnetic-field",
+    "magnetic-flux",
+    "area",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-security-gate",
+   "kind": "photo",
+   "number": "23.41",
+   "originals": [
+    "/media/ch23/OSX_CP2e_Figure_24_09_04.jpg"
+   ],
+   "original_caption": "我们熟悉的机场安检门不仅能探测金属，还能指出金属离地面的大致高度。（来源：shankar s/Flickr）",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-inductor-energy",
+   "kind": "sim",
+   "draws": [
+    "inductance",
+    "current",
+    "energy",
+    "magnetic-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "round energy ticks; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "inductors",
+   "concept": "inductance",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductors",
+   "concept": "mutual-inductance",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductors",
+   "concept": "henry",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductors",
+   "concept": "counterwinding-cancels-inductance",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductors",
+   "concept": "induction",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors",
+   "concept": "lenzs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "inductors",
+   "concept": "transformer-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "self-inductance",
+   "concept": "self-inductance",
+   "verb": "introduces"
+  },
+  {
+   "span": "self-inductance",
+   "concept": "lenzs-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "self-inductance",
+   "concept": "henry",
+   "verb": "reinforces"
+  },
+  {
+   "span": "self-inductance",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "self-inductance",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "self-inductance",
+   "concept": "inductor",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating-inductance",
+   "concept": "inductance-from-flux-and-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating-inductance",
+   "concept": "solenoid-inductance",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating-inductance",
+   "concept": "magnetic-flux",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating-inductance",
+   "concept": "faradays-law",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating-inductance",
+   "concept": "field-inside-a-solenoid",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating-inductance",
+   "concept": "permeability-of-free-space",
+   "verb": "uses"
+  },
+  {
+   "span": "inductor-energy",
+   "concept": "energy-stored-in-an-inductor",
+   "verb": "introduces"
+  },
+  {
+   "span": "inductor-energy",
+   "concept": "capacitor-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "inductor-energy",
+   "concept": "lenzs-law",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737917746",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-mutual-inductance",
+   "prompt": "怎样把两个相同的平面线圈接触地放在一起，才能使它们的互感最大？最小呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "互感衡量的是一个线圈产生的磁通量有多少穿过另一个线圈，所以问题在于两个线圈的平面彼此怎样放置。把两个线圈面对面平放在一起，使它们的轴线对齐，各匝正好一匝压着一匝，互感就最大。这时第一个线圈几乎每一条磁感线都径直穿过第二个线圈，任何一个线圈中电流的变化，都把磁通量的全部变化带入另一个线圈。把其中一个线圈转过一个直角，使两条轴线相互垂直，第二个线圈就侧立着面对第一个线圈的磁场，互感就最小。这时那个磁场沿着第二个线圈所在的平面延伸，而不是穿过它，无论电流怎样变化，磁通量都几乎为零，也就几乎不出现电动势。这与 $\\kPhi = \\kBmag A\\cos\\theta$ 在 $\\theta = 90^\\circ$ 时使磁通量为零的几何关系是同一回事。在第二种放法里，两个线圈靠得和第一种一样近：造成差别的是取向，而不是距离。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737938959",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-counterwound",
+   "prompt": "怎样把一段给定长度的导线做成适当的形状，使它的自感最大？最小呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "螺线管的自感为 $\\kLind = \\mu_0 N^2 A/\\ell$，匝数在其中以平方的形式出现。因此，一段给定长度的导线，最好用来绕尽可能多的匝数，并围住尽可能大的面积。把它绕成匝数很多的紧密线圈，所有匝的绕向相同，并挤在很短的长度内，如果允许的话再加上铁芯，这样每一匝的磁通量都穿过其余所有各匝。这就得到最大的自感。要使自感最小，就把使它变大的一切都反过来做。把导线拉直，或者更好些，把它对折，让两半并排走线，使电流沿一半出去、沿另一半回来。两半中的电流大小相等、方向相反，它们的磁场几乎处处抵消，所围的磁通量，连同自感，也就几乎为零。这就是反向绕制，正是本节为干衣机的加热元件所推荐的做法，也是关于精密实验室电阻器那道习题的（c）问所做的。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737042306",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inductors",
+   "prompt": "如例题 23.7 中未加证明就得出的那样，验证单位 $\\text{T}\\cdot\\text{m}^2/\\text{A} = \\Omega\\cdot\\text{s} = \\text{H}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从 $\\kLind = N\\kdPhi/\\kdIcur$ 出发，它的单位是磁通量除以电流，即 $\\text{T}\\cdot\\text{m}^2/\\text{A}$，因为匝数是纯粹的个数。现在把特斯拉拆开。磁力为 $F = qvB$，所以 $1\\;\\text{T} = 1\\;\\text{N}/(\\text{C}\\cdot\\text{m/s}) = 1\\;\\text{N}\\cdot\\text{s}/(\\text{C}\\cdot\\text{m})$。乘以 $\\text{m}^2$ 再除以安培（它是每秒一库仑），得到 $\\text{N}\\cdot\\text{s}\\cdot\\text{m}/\\text{C}$ 除以 $\\text{C}/\\text{s}$，即 $\\text{N}\\cdot\\text{m}\\cdot\\text{s}^2/\\text{C}^2$。牛·米是焦耳，每库仑的焦耳是伏特，所以这是 $\\text{V}\\cdot\\text{s}^2/\\text{C}$，而每秒一库仑是安培，所以它是 $\\text{V}\\cdot\\text{s}/\\text{A}$。最后，每安培的伏特是欧姆，剩下 $\\Omega\\cdot\\text{s}$。从另一个定义出发，结果来得快得多：$\\kemf = -\\kLind\\kdIcur/\\kdt$ 给出 $\\kLind = \\text{emf}\\cdot\\kdt/\\kdIcur$，它的单位是 $\\text{V}\\cdot\\text{s}/\\text{A} = \\Omega\\cdot\\text{s}$，这就是亨利。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737794488",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-mutual-inductance",
+   "prompt": "在物理实验室里，把两个线圈靠得很近放置，用来演示法拉第电磁感应定律。其中一个线圈中 5.00 A 的电流在 1.00 ms 内被切断，在另一个线圈中感应出 9.00 V 的电动势。它们的互感是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1.8,
+    "unit": "mH",
+    "generated_by": "source",
+    "hint": "由 $\\kemftwo = -\\kMind\\Delta \\kIcurone/\\kdt$ 解出 $\\kMind$。电流的变化量就是整个 5.00 A，时间间隔为 1.00 ms，所以变化率是 5000 A/s。",
+    "solution": "1.80 mH"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738117147",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-self-inductance",
+   "prompt": "通过一个 7.50 mH 电感器的 4.00 A 电流在 8.33 ms 内被切断。感应出的、对此起阻碍作用的电动势是多少？",
+   "answer": {
+    "type": "number",
+    "value": 3.6,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "这是 $\\kemf = -\\kLind\\kdIcur/\\kdt$，除电动势以外的每个量都已给出。相除之前，要把电感取为以亨利为单位、时间间隔取为以秒为单位。",
+    "solution": "3.60 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737740076",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-inductor-energy",
+   "prompt": "一台大型科研用螺线管的自感为 25.0 H。（a）当通过它的 100 A 电流在 80.0 ms 内被切断时，多大的感应电动势在阻碍把它关断？（b）电流最大时，电感器中储存了多少能量？（c）要在 80.0 ms 内把电流切断，能量必须以多大的功率（以瓦特为单位）耗散掉？（d）鉴于上一问的答案，这样快地把它关断很困难，令人意外吗？",
+   "answer": {
+    "type": "number",
+    "value": 31.3,
+    "unit": "kV",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "（a）问用 $\\kemf = -\\kLind\\kdIcur/\\kdt$，（b）问用 $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$，（c）问是把储存的能量除以同样的 80.0 ms，因为全部能量都必须在这段时间内有个去处。",
+    "solution": "（a）31.3 kV\n（b）125 kJ\n（c）1.56 MW\n（d）不令人意外，因为这个功率非常高。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169738086748",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-solenoid-inductance",
+   "prompt": "一个精密实验室电阻器由一个直径 1.50 cm、长 4.00 cm 的导线线圈绕成，共有 500 匝。（a）它的自感是多少？（b）如果通过它的 12.0 A 电流在 5.00 ms 内接通（对 50 Hz 的交流电而言是四分之一个周期），感应出的平均电动势是多少？（c）如果把它缩短到一半长度并反向绕制（两层各 250 匝，方向相反），它的电感是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1.39,
+    "unit": "mH",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "（a）问用 $\\kLind = \\mu_0 N^2 A/\\ell$，其中面积取直径 1.50 cm 的圆的面积；（b）问用 $\\kemf = -\\kLind\\kdIcur/\\kdt$；（c）问则要问一问，方向相反的两层绕组在线圈内部留下什么样的磁场。",
+    "solution": "（a）1.39 mH\n（b）3.33 V\n（c）零"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738146554",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-self-inductance",
+   "prompt": "当通过一个电感器的 20.0 A 电流在 1.50 ms 内被切断时，感应出 800 V 的电动势，阻碍这一变化。自感的值是多少？",
+   "answer": {
+    "type": "number",
+    "value": 60.0,
+    "unit": "mH",
+    "generated_by": "source",
+    "hint": "把 $\\kemf = -\\kLind\\kdIcur/\\kdt$ 改写成求电感的形式，电感等于电动势乘以时间间隔再除以电流的变化量。",
+    "solution": "60.0 mH"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169737861327",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-inductor-energy",
+   "prompt": "<strong>综合概念</strong> 一个非常大的超导螺线管，例如 MRI 扫描所用的那种，在通有 100 A 电流时，在其磁场中储存 1.00 MJ 的能量。（a）求它的自感。（b）如果线圈“转为正常态”，它们就获得电阻，并开始耗散热能。若全部储存的能量都用来加热这块 1000 kg 的磁体，已知其平均比热容为 200 J/kg·°C，会产生多大的温度升高？",
+   "answer": {
+    "type": "number",
+    "value": 200,
+    "unit": "H",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "（a）问由 $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$ 解出电感；（b）问用第 14 章的 $Q = mc\\Delta T$，储存的全部能量都进入磁体。",
+    "solution": "（a）200 H\n（b）5.00°C"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "mutual-inductance"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "inductance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "counterwinding-cancels-inductance"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "solenoid-inductance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "henry"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "inductance-from-flux-and-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "mutual-inductance"
+  },
+  {
+   "exercise": "p2",
+   "concept": "self-inductance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "self-inductance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "energy-stored-in-an-inductor"
+  },
+  {
+   "exercise": "p4",
+   "concept": "solenoid-inductance"
+  },
+  {
+   "exercise": "p4",
+   "concept": "self-inductance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "counterwinding-cancels-inductance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "self-inductance"
+  },
+  {
+   "exercise": "p6",
+   "concept": "energy-stored-in-an-inductor"
+  },
+  {
+   "exercise": "p6",
+   "concept": "self-inductance",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "coil-1",
+   "label": "线圈 1",
+   "figures": [
+    "sim-mutual-inductance"
+   ]
+  },
+  {
+   "id": "coil-2",
+   "label": "线圈 2",
+   "figures": [
+    "sim-mutual-inductance"
+   ]
+  },
+  {
+   "id": "galvanometer",
+   "label": "电流计",
+   "figures": [
+    "sim-mutual-inductance"
+   ]
+  },
+  {
+   "id": "element",
+   "label": "加热元件",
+   "figures": [
+    "sim-counterwound"
+   ]
+  },
+  {
+   "id": "switch",
+   "label": "开关",
+   "figures": [
+    "sim-self-inductance"
+   ]
+  },
+  {
+   "id": "flash-switch",
+   "label": "闪光灯的开关",
+   "figures": [
+    "sim-camera-flash"
+   ]
+  },
+  {
+   "id": "battery",
+   "label": "电池",
+   "figures": [
+    "sim-camera-flash"
+   ]
+  },
+  {
+   "id": "capacitor",
+   "label": "电容器",
+   "figures": [
+    "sim-camera-flash"
+   ]
+  },
+  {
+   "id": "solenoid",
+   "label": "螺线管",
+   "figures": [
+    "sim-solenoid-inductance",
+    "sim-inductor-energy"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "inductance-from-flux",
+   "what": "由磁通量的变化求自感",
+   "source": "《大学物理（第2版）》，23.9 电感",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kemf = -\\kLind\\dfrac{\\kdIcur}{\\kdt}",
+       "src": "23.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kemf} = -\\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}}",
+      "src": "23.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kemf} = -\\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}} = -\\mk{L}{\\kLind}\\dfrac{\\mk{I}{\\kdIcur}}{\\mk{t2}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{I}{\\kdIcur}}",
+       "uses": []
+      }
+     ],
+     "src": "23.9"
+    }
+   ]
+  },
+  {
+   "id": "solenoid-inductance",
+   "what": "螺线管的自感",
+   "source": "《大学物理（第2版）》，23.9 电感",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "螺线管的面积 $\\karea$ 是固定的。",
+       "src": "23.9"
+      },
+      {
+       "tex": "\\kdPhi = \\Delta(\\kBmag \\karea)",
+       "src": "23.1, 23.9"
+      },
+      {
+       "tex": "\\kBmag = \\mu_0 n\\kIcur = \\mu_0\\dfrac{N\\kIcur}{\\ell}",
+       "src": "22.9"
+      },
+      {
+       "text": "只有电流变化。",
+       "src": "23.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{I}{\\kdIcur}}",
+      "src": "23.9"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\karea\\Delta \\kBmag}}{\\mk{I}{\\kdIcur}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\mu_0 N\\karea\\frac{\\kdIcur}{\\ell}}}{\\mk{I}{\\kdIcur}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kLind} = \\dfrac{\\mk{N}{\\mu_0 N^2 \\karea}}{\\mk{l}{\\ell}}\\;\\text{(螺线管)}",
+       "uses": [],
+       "map": {
+        "P": [
+         "N",
+         "l"
+        ]
+       }
+      }
+     ],
+     "src": "23.9"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1738 @@
+{
+ "types": [
+  {
+   "id": "magnetic-flux",
+   "label": "磁通量",
+   "dimension": "Wb"
+  },
+  {
+   "id": "inductance",
+   "label": "电感",
+   "dimension": "H"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "Φ",
+   "latex": "\\Phi",
+   "macro": "\\kPhi"
+  },
+  {
+   "sym": "ΔΦ",
+   "latex": "\\Delta\\Phi",
+   "macro": "\\kdPhi"
+  },
+  {
+   "sym": "ΔI_curr",
+   "latex": "\\Delta I",
+   "macro": "\\kdIcur"
+  },
+  {
+   "sym": "L_ind",
+   "latex": "L",
+   "macro": "\\kLind"
+  },
+  {
+   "sym": "M_ind",
+   "latex": "M",
+   "macro": "\\kMind"
+  },
+  {
+   "sym": "E_ind",
+   "latex": "E_{\\text{ind}}",
+   "macro": "\\kEind"
+  },
+  {
+   "sym": "τ_RL",
+   "latex": "\\tau",
+   "macro": "\\ktauRL"
+  },
+  {
+   "sym": "X_L",
+   "latex": "X_L",
+   "macro": "\\kXL"
+  },
+  {
+   "sym": "X_C",
+   "latex": "X_C",
+   "macro": "\\kXC"
+  },
+  {
+   "sym": "Z_imp",
+   "latex": "Z",
+   "macro": "\\kZimp"
+  },
+  {
+   "sym": "emf_0",
+   "latex": "\\mathcal{E}_0",
+   "macro": "\\kemfo"
+  },
+  {
+   "sym": "V_prim",
+   "latex": "V_{\\text{p}}",
+   "macro": "\\kVprim"
+  },
+  {
+   "sym": "V_sec",
+   "latex": "V_{\\text{s}}",
+   "macro": "\\kVsec"
+  },
+  {
+   "sym": "N_prim",
+   "latex": "N_{\\text{p}}"
+  },
+  {
+   "sym": "N_sec",
+   "latex": "N_{\\text{s}}"
+  },
+  {
+   "sym": "I_prim",
+   "latex": "I_{\\text{p}}",
+   "macro": "\\kIprim"
+  },
+  {
+   "sym": "I_sec",
+   "latex": "I_{\\text{s}}",
+   "macro": "\\kIsec"
+  },
+  {
+   "sym": "P_prim",
+   "latex": "P_{\\text{p}}",
+   "macro": "\\kPprim"
+  },
+  {
+   "sym": "P_sec",
+   "latex": "P_{\\text{s}}",
+   "macro": "\\kPsec"
+  },
+  {
+   "sym": "V_R",
+   "latex": "V_R",
+   "macro": "\\kVR"
+  },
+  {
+   "sym": "V_L",
+   "latex": "V_L",
+   "macro": "\\kVL"
+  },
+  {
+   "sym": "V_C",
+   "latex": "V_C",
+   "macro": "\\kVC"
+  },
+  {
+   "sym": "V_0R",
+   "latex": "V_{0R}",
+   "macro": "\\kVoR"
+  },
+  {
+   "sym": "V_0L",
+   "latex": "V_{0L}",
+   "macro": "\\kVoL"
+  },
+  {
+   "sym": "V_0C",
+   "latex": "V_{0C}",
+   "macro": "\\kVoC"
+  },
+  {
+   "sym": "ϕ",
+   "latex": "\\phi",
+   "macro": "\\kphi"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "induction",
+   "kind": "axiom",
+   "section": "23.1",
+   "name": "电磁感应",
+   "terms": [
+    "电磁感应",
+    "电磁感应"
+   ],
+   "statement": "法拉第闭合开关，第二个线圈上的电流计指针随之摆动。他断开开关，指针朝相反方向摆动。开关保持闭合期间，铁环中的电流稳定、磁场也稳定，指针停在零位。产生电动势的是磁场的变化，而不是磁场本身，读者若从本章只带走一件事，就应当带走这一点。用条形磁铁做同样的实验，也说明了同一件事：磁体运动得越快，电动势越大，而静止在线圈内的磁体则完全不产生电动势。"
+  },
+  {
+   "id": "magnetic-flux",
+   "kind": "definition",
+   "section": "23.1",
+   "name": "磁通量",
+   "symbol": "Φ",
+   "terms": [
+    "磁通量"
+   ],
+   "type": "magnetic-flux",
+   "statement": "通过一块面积的磁通量等于磁感应强度乘以面积，再乘以磁场与该面积法线之间夹角的余弦，即 $\\Phi = BA\\cos\\theta$，其单位是 $\\text{T}\\cdot\\text{m}^2$。大线圈比小线圈聚拢更多的磁场，而边缘朝向磁场的线圈则一点也聚拢不到。本章中每一个感应电动势，都是这一个量的变化率。",
+   "forms": [
+    {
+     "id": "eq-magnetic-flux",
+     "latex": "\\Phi = BA\\cos\\theta",
+     "ktex": "\\kPhi = \\kBmag A\\cos\\theta",
+     "anchor": "23.1-flux-defined"
+    }
+   ]
+  },
+  {
+   "id": "flux-and-orientation",
+   "kind": "result",
+   "section": "23.1",
+   "name": "磁通量与取向",
+   "statement": "由于 $B\\cos\\theta$ 是磁场沿该面积法线方向的分量，磁通量也就是面积乘以笔直穿过它的那部分磁场。这种形式使棘手的情形一目了然：位于线圈平面内的磁场没有垂直分量，无论多强，都没有磁通量穿过线圈。心里有了这种形式，你就不必再去判断角度应当放在余弦里还是正弦里。",
+   "forms": [
+    {
+     "id": "eq-flux-perpendicular",
+     "latex": "\\Phi = B_{\\perp}A",
+     "ktex": "\\kPhi = \\kBmag_{\\perp}A",
+     "anchor": "23.1-flux-defined"
+    }
+   ]
+  },
+  {
+   "id": "ways-to-change-flux",
+   "kind": "skill",
+   "section": "23.1",
+   "name": "识别磁通量如何变化",
+   "statement": "由于磁通量是磁场、面积和余弦三者的乘积，改变它恰好有三种方式，而本章中产生电动势的每一种方法都是其中之一。法拉第通过接通和断开线圈来改变磁场；拿条形磁铁的实验者通过移动磁体来改变线圈处的磁场；发电机通过转动线圈来改变角度；而下一节中在导轨上滑动的杆则改变了面积。把一个新情形归入这三种之一，是本章每道习题的第一步。"
+  },
+  {
+   "id": "faradays-law",
+   "kind": "axiom",
+   "section": "23.2",
+   "name": "法拉第电磁感应定律",
+   "terms": [
+    "法拉第电磁感应定律"
+   ],
+   "statement": "法拉第的实验表明，感应电动势只取决于很少几样东西。它与磁通量的变化成正比，变化发生得越快，电动势越大，并且与线圈的匝数成正比。这三个事实合在一起就是一个方程，本章其余部分都建立在它之上。其单位是伏特，这是必然的，因为电动势是一种电势差。",
+   "forms": [
+    {
+     "id": "eq-faradays-law",
+     "latex": "\\text{emf} = -N\\frac{\\Delta\\Phi}{\\Delta t}",
+     "ktex": "\\kemf = -N\\frac{\\kdPhi}{\\kdt}",
+     "anchor": "23.2-faradays-and-lenzs-law"
+    }
+   ]
+  },
+  {
+   "id": "turns-multiply-emf",
+   "kind": "result",
+   "section": "23.2",
+   "name": "N 匝线圈的电动势",
+   "statement": "线圈的每一匝都围住同一变化的磁通量，并贡献它自己的电动势，又因为各匝首尾相连，这些电动势相加。这就是实际应用中的电磁感应使用线圈而不是单个线圈环的原因。例题中的单个线圈环得到 22.6 mV，书中称之为容易测量，但还不足以派上用场，而同样的导线绕一千匝，就能达到伏特的量级。"
+  },
+  {
+   "id": "lenzs-law",
+   "kind": "axiom",
+   "section": "23.2",
+   "name": "楞次定律",
+   "terms": [
+    "楞次定律"
+   ],
+   "statement": "法拉第定律中的负号不是记账用的。感应电动势驱动的电流，其自身的磁场会反抗产生它的磁通量变化。把北极推向线圈，线圈就升起一个北极来迎接它；把磁体拉开，线圈就升起一个南极来挽留它。方向与大小同样是物理的一部分，而这个符号是本章中唯一不能靠代入得到的部分。"
+  },
+  {
+   "id": "lenz-from-energy-conservation",
+   "kind": "idea",
+   "section": "23.2",
+   "name": "楞次定律与能量守恒",
+   "statement": "磁通量的变化就是能量的变化，能量可以进入或离开一个系统，但不能瞬间完成。如果感应电动势的方向相反，它就会加强产生它的那个变化，这一变化会自我助长，凭空给出没有任何来源的能量。因此楞次定律不是法拉第定律之外另需记忆的规则：它是该定律唯一可能有的符号，明白这一点的读者永远不会把它写反。"
+  },
+  {
+   "id": "apply-lenzs-law",
+   "kind": "skill",
+   "section": "23.2",
+   "name": "确定感应电流的方向",
+   "statement": "要把方向弄对，需要遵循固定的步骤顺序，因为同时有三个右手定则和两个磁场在起作用：画出情形的草图，找出磁场的方向，判断磁通量是在增大还是在减小，让感应磁场取反抗这一变化的方向，用右手定则 2 找出能产生这种磁场的电流，再由电流读出电动势的极性。本章中每一个方向问题，以及涡流那一整节，都是把这个序列运行一遍。"
+  },
+  {
+   "id": "induction-applications",
+   "kind": "idea",
+   "section": "23.2",
+   "name": "电磁感应的应用",
+   "statement": "电磁感应把变化的磁图样重新变回变化的电压，这就是磁记录的全部。磁带或硬盘带有朝一个方向或另一个方向磁化的区域，线圈从它们上方经过时，其中感应出的电动势重现了信号。同样的想法还能把信号传过导线无法穿越的屏障，例如人工耳蜗。它还能报告身体中的变化，例如呼吸暂停监测仪，其线圈的面积随婴儿胸部的起伏而变化。"
+  },
+  {
+   "id": "motional-emf",
+   "kind": "result",
+   "section": "23.3",
+   "name": "动生电动势",
+   "statement": "当长度为 $\\ell$ 的导体以速率 $v$ 横穿磁场 $B$，且三者互相垂直时，导体上出现大小为 $B\\ell v$ 的电动势。这与上一章中霍尔效应给出的表达式相同，而这正是要点所在：霍尔效应原来是电磁感应的一种情形，而不是一种单独的现象。它也是本章中第一个可以反过来使用的结果，即由电压来测量磁场或速率。",
+   "forms": [
+    {
+     "id": "eq-motional-emf",
+     "latex": "\\text{emf} = B\\ell v",
+     "ktex": "\\kemf = \\kBmag\\ell\\kv",
+     "anchor": "23.3-rod-on-rails"
+    }
+   ]
+  },
+  {
+   "id": "motional-emf-from-faradays-law",
+   "kind": "skill",
+   "section": "23.3",
+   "name": "由法拉第电磁感应定律得出动生电动势",
+   "statement": "这一推导很短，值得跟着做一遍，因为它表明动生电动势不是一条新定律。杆、导轨和电阻器围成的面积随杆的运动而增大；磁场垂直于该面积，所以 $\\Delta\\Phi = B\\Delta A = B\\ell\\Delta x$；除以 $\\Delta t$，$\\Delta x/\\Delta t$ 就是速率。能够走完这一论证的读者，也能处理公式所不涵盖的情形，例如与磁场不垂直的导体。",
+   "forms": [
+    {
+     "id": "eq-swept-area",
+     "latex": "\\Delta\\Phi = B\\Delta A = B\\ell\\Delta x",
+     "ktex": "\\kdPhi = \\kBmag\\Delta A = \\kBmag\\ell\\kdx",
+     "anchor": "23.3-rod-on-rails"
+    }
+   ]
+  },
+  {
+   "id": "relative-motion-induces",
+   "kind": "idea",
+   "section": "23.3",
+   "name": "只有相对运动才起作用",
+   "statement": "杆可以运动而磁场静止，磁场也可以运动而杆静止，电动势是一样的。运动的磁场通过它所感应的电动势产生电场，正如运动的电荷产生磁场一样，这也是如今把电力和磁力看作同一种力的两个面、而不是两种力的原因之一。"
+  },
+  {
+   "id": "motional-emf-power-conversion",
+   "kind": "idea",
+   "section": "23.3",
+   "name": "动生电动势的能量转换",
+   "statement": "凡感应电动势驱动电流之处，作用在该电流上的磁力都反抗运动，克服它所做的功提供了电能。绳系卫星实验就是这种情形的大规模演示。一条 20 km 长的缆绳以轨道速率穿过地球磁场，在电离层使回路闭合的情况下，本应产生 5 kV 的电动势，电流所受的阻力会从航天飞机自身的动能和势能中汲取能量。同样的核算也解释了为什么发电机在输出功率时很难转动。"
+  },
+  {
+   "id": "eddy-current",
+   "kind": "definition",
+   "section": "23.4",
+   "name": "涡流",
+   "terms": [
+    "涡流"
+   ],
+   "statement": "导体不必是导线，电磁感应也能驱动电流流过它。当一块实心金属穿过变化的磁通量时，感应电动势会驱动电流在金属内部形成闭合回路。这些回路就是涡流。它们是没有画出电路的电磁感应，也是金属板在同一实验中的表现与塑料板如此不同的原因。"
+  },
+  {
+   "id": "magnetic-damping",
+   "kind": "result",
+   "section": "23.4",
+   "name": "磁阻尼",
+   "terms": [
+    "磁阻尼"
+   ],
+   "statement": "穿过磁场的板中的涡流是磁场中的电流，因此受到磁力，而由楞次定律，这个力反抗产生它的运动。在磁体两极之间摆动的金属摆锤很快就会静止，而绝缘的摆锤则不受影响地继续摆动。这种阻力有两个特点值得注意。它在进入时和离开时都起作用，因为磁通量在一种情形中增大，在另一种情形中减小。它还与速率成正比，所以运动一停止它就消失，这正是灵敏仪器所需要的。"
+  },
+  {
+   "id": "slotting-reduces-eddy-currents",
+   "kind": "result",
+   "section": "23.4",
+   "name": "减小涡流",
+   "statement": "电流在必须折返之前能走多远，决定了涡流回路的大小。在板上开槽，或用被绝缘隔开的薄层构成板，就把一个大回路拆成许多小回路。相邻的小回路中电流方向相反，它们的力几乎完全抵消。这就是开槽的摆锤几乎不减速的原因，也是变压器铁芯是叠片的而不是实心的原因，本章后面的一节会说明这一点。"
+  },
+  {
+   "id": "applications-of-magnetic-damping",
+   "kind": "idea",
+   "section": "23.4",
+   "name": "磁阻尼的应用",
+   "statement": "磁阻尼在通常的意义上没有摩擦，并且随运动一同消失，所以仪器在必须迅速稳定下来然后保持不动的地方都使用它：实验室天平用一个在固定磁场中转动的圆盘来阻尼自身的振动。它只作用于导体，所以能把导体分拣出来：沿斜面滑过强磁体的垃圾，金属会被留下。附近的导体会改变线圈中的感应，所以能被探测到，手持金属探测器和机场安检门就是这样。过山车的制动用同样的阻力把能量从运动的车辆中取出，而在电磁炉中，加热的则是涡流本身。"
+  },
+  {
+   "id": "electric-generator",
+   "kind": "definition",
+   "section": "23.5",
+   "name": "发电机",
+   "terms": [
+    "发电机"
+   ],
+   "statement": "发电机是在磁场中转动的线圈，带有滑环和电刷把感应电动势引出。转动线圈改变了磁场与线圈法线之间的夹角，所以通过线圈的磁通量发生变化，由法拉第定律就出现电动势。发电机与上一章的电动机是同一种机器，只不过转轴由手转动，而不是由电流驱动。"
+  },
+  {
+   "id": "average-emf-of-a-generator",
+   "kind": "skill",
+   "section": "23.5",
+   "name": "求发电机的平均电动势",
+   "statement": "在讨论完整的时间依赖关系之前，书中先做了简单的情形：把线圈从磁通量最大的位置转到磁通量为零的位置，由法拉第定律，这四分之一转内的平均电动势为 $NAB/\\Delta t$，因为磁通量的变化恰好是 $AB$。例题中 200 匝、5.00 cm 的线圈在 15.0 ms 内给出 131 V，接近家用电压，这说明普通大小的发电机是一种实用的电源。"
+  },
+  {
+   "id": "generator-emf-versus-time",
+   "kind": "result",
+   "section": "23.5",
+   "name": "发电机的电动势",
+   "terms": [
+    "发电机线圈中感应的电动势"
+   ],
+   "statement": "平均电动势掩盖了你最想知道的东西，即每一时刻的电动势。取矩形线圈两条侧边导线上的动生电动势，每条都与磁场成角 $\\theta$ 运动，并对以恒定角速度转动的线圈写出 $\\theta = \\omega t$。于是电动势按 $\\sin\\omega t$ 变化。第 20 章中的正弦交流电压就来源于此：它不是一种约定，而是转动线圈产生的形状。",
+   "forms": [
+    {
+     "id": "eq-generator-emf",
+     "latex": "\\text{emf} = NAB\\omega\\sin\\omega t",
+     "ktex": "\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt",
+     "anchor": "23.5-the-emf-at-each-instant"
+    },
+    {
+     "id": "eq-two-side-emf",
+     "latex": "\\text{emf} = 2B\\ell v\\sin\\theta",
+     "ktex": "\\kemf = 2\\kBmag\\ell\\kv\\sin\\theta",
+     "anchor": "23.5-the-emf-at-each-instant"
+    },
+    {
+     "id": "eq-generator-emf-peak-form",
+     "latex": "\\text{emf} = \\text{emf}_0\\sin\\omega t",
+     "ktex": "\\kemf = \\kemfo\\sin\\kw\\kt",
+     "anchor": "23.5-the-emf-at-each-instant"
+    }
+   ]
+  },
+  {
+   "id": "peak-emf",
+   "kind": "result",
+   "section": "23.5",
+   "name": "峰值电动势",
+   "terms": [
+    "峰值电动势"
+   ],
+   "type": "voltage",
+   "statement": "电动势所能达到的最大值是 $NAB\\omega$，其中每个因子都说得通：匝数更多、线圈更大、磁场更强、转得更快，都给出更高的电压。最后一点还附带着一个故事，因为自行车发电机转得足够快，就会把它所供电的灯烧坏。峰值电动势也是交流问题通常给出的量，第 20 章的方均根值由它得出。",
+   "forms": [
+    {
+     "id": "eq-peak-emf",
+     "latex": "\\text{emf}_0 = NAB\\omega",
+     "ktex": "\\kemfo = NA\\kBmag\\kw",
+     "anchor": "23.5-the-emf-at-each-instant"
+    }
+   ]
+  },
+  {
+   "id": "commutator-pulsed-dc",
+   "kind": "idea",
+   "section": "23.5",
+   "name": "换向环与脉动直流电",
+   "statement": "把发电机的两个环换成一个分开的环，每半圈就使与外电路的连接反向。本应变为负的那半个周期反而变为正，输出就是一串正脉冲。上一章的电动机用电刷解决了同样的问题。线圈和换向环更精巧的布置可以使脉冲平滑，不过如今借助电子技术可以得到没有纹波的直流电。"
+  },
+  {
+   "id": "motor-is-a-generator",
+   "kind": "idea",
+   "section": "23.6",
+   "name": "作为发电机的电动机",
+   "statement": "电动机和发电机的构造相同，两者的区别只在于能量往哪个方向走。只要电动机的线圈在转动，无论是什么在使它转动，通过线圈的磁通量都会变化，线圈中就感应出电动势。这不是可以通过设计消除的不良副作用；它是不可避免的，本节其余部分就是讲由此引出的结果。"
+  },
+  {
+   "id": "back-emf",
+   "kind": "result",
+   "section": "23.6",
+   "name": "反电动势",
+   "terms": [
+    "反电动势"
+   ],
+   "statement": "由楞次定律，电动机产生的电动势反抗驱动它的电动势，所以我们称之为反电动势。电动机不转时它为零，并与角速度成正比地增大。因此空转的电动机会加速，直到它的反电动势几乎抵消驱动电压，此后它只吸取足以克服摩擦的电流。反电动势就是电动机自身的调节器。"
+  },
+  {
+   "id": "back-emf-and-current-drawn",
+   "kind": "result",
+   "section": "23.6",
+   "name": "反电动势与电动机电流",
+   "statement": "出现在电动机线圈两端的只是驱动电动势与反电动势之差，所以电流等于这个差除以线圈电阻。刚接通的电动机没有反电动势，吸取的电流最大，这就是冰箱启动时灯会变暗的原因；带负载的电动机转速降低，其反电动势下降，吸取更多的电流并做更多的功；而被拖得太慢的电动机吸取的电流大到足以烧坏线圈。书中自己的数字说明了这一点：静止时是 120 A 和 5.76 kW，运转时是 20 A 和 160 W。"
+  },
+  {
+   "id": "transformer",
+   "kind": "definition",
+   "section": "23.7",
+   "name": "变压器",
+   "terms": [
+    "变压器"
+   ],
+   "statement": "绕在同一个铁芯上的两个线圈，就是投入使用的法拉第装置。原线圈中的交流电产生随时间变化的磁通量，铁芯把这一磁通量输送到副线圈并加强它，变化的磁通量在副线圈中感应出电压。这种装置无处不在，从笔记本电脑上的插入式电源，到把电网电压降下来供应街道的变电站，它的全部行为都来自对法拉第定律的两次应用。"
+  },
+  {
+   "id": "transformer-equation",
+   "kind": "result",
+   "section": "23.7",
+   "name": "变压器方程",
+   "terms": [
+    "变压器方程"
+   ],
+   "statement": "两个线圈在同一个铁芯上，因此看到同一个 $\\Delta\\Phi/\\Delta t$；于是法拉第定律给出每个线圈的电压都与它自己的匝数成正比，把一个除以另一个，就剩下匝数之比。所以输出电压等于输入电压乘以匝数比，变压器的作用完全由它的两个线圈如何绕制决定。",
+   "forms": [
+    {
+     "id": "eq-transformer-equation",
+     "latex": "\\frac{V_{\\text{s}}}{V_{\\text{p}}} = \\frac{N_{\\text{s}}}{N_{\\text{p}}}",
+     "ktex": "\\frac{\\kVsec}{\\kVprim} = \\frac{N_{\\text{s}}}{N_{\\text{p}}}",
+     "anchor": "23.7-the-transformer-equation"
+    },
+    {
+     "id": "eq-secondary-voltage",
+     "latex": "V_{\\text{s}} = -N_{\\text{s}}\\frac{\\Delta\\Phi}{\\Delta t}",
+     "ktex": "\\kVsec = -N_{\\text{s}}\\frac{\\kdPhi}{\\kdt}",
+     "anchor": "23.7-the-transformer-equation"
+    },
+    {
+     "id": "eq-primary-voltage",
+     "latex": "V_{\\text{p}} = -N_{\\text{p}}\\frac{\\Delta\\Phi}{\\Delta t}",
+     "ktex": "\\kVprim = -N_{\\text{p}}\\frac{\\kdPhi}{\\kdt}",
+     "anchor": "23.7-the-transformer-equation"
+    }
+   ]
+  },
+  {
+   "id": "transformer-current-ratio",
+   "kind": "result",
+   "section": "23.7",
+   "name": "变压器的电流比",
+   "statement": "变压器不是能量的来源，好的变压器浪费得很少：变压器的效率常常超过 99%，所以输出功率等于输入功率。令 $I_\\text{p}V_\\text{p} = I_\\text{s}V_\\text{s}$ 并利用电压比，得到的电流比是把匝数比倒过来。电压升高多少，电流就按同样的比例降低，这就是电力以数百千伏输送到全国各地的原因，也是升压变压器那些壮观的电弧相对安全的原因。",
+   "forms": [
+    {
+     "id": "eq-transformer-current",
+     "latex": "\\frac{I_{\\text{s}}}{I_{\\text{p}}} = \\frac{N_{\\text{p}}}{N_{\\text{s}}}",
+     "ktex": "\\frac{\\kIsec}{\\kIprim} = \\frac{N_{\\text{p}}}{N_{\\text{s}}}",
+     "anchor": "23.7-currents-and-power"
+    },
+    {
+     "id": "eq-transformer-power",
+     "latex": "P_{\\text{p}} = I_{\\text{p}}V_{\\text{p}} = I_{\\text{s}}V_{\\text{s}} = P_{\\text{s}}",
+     "ktex": "\\kPprim = \\kIprim\\kVprim = \\kIsec\\kVsec = \\kPsec",
+     "anchor": "23.7-currents-and-power"
+    }
+   ]
+  },
+  {
+   "id": "step-up-and-step-down",
+   "kind": "skill",
+   "section": "23.7",
+   "name": "选择升压变压器还是降压变压器",
+   "statement": "副线圈匝数更多的变压器会升高电压，是升压变压器；匝数更少的则降低电压，是降压变压器。先确定你需要哪一种，然后由这两个比值求出匝数、电流或功率。算术永远只是一个比值和一次乘法。保证它不出错的检验是：输出功率必须等于输入功率。"
+  },
+  {
+   "id": "transformers-need-ac",
+   "kind": "result",
+   "section": "23.7",
+   "name": "变压器与直流电",
+   "statement": "由于次级电压取决于磁通量的变化率，稳定的初级电流根本不会感应出任何东西。把直流电接通再断开确实会产生一些东西，但那是一串尖脉冲，而不是大多数用电器所需要的正弦波。这是在电压必须升高或降低之处使用交流电的最明白的理由。一旦你知道了匝数比，就不要指望它能在电池上工作。"
+  },
+  {
+   "id": "step-up-transformer",
+   "kind": "definition",
+   "section": "23.7",
+   "name": "升压变压器",
+   "terms": [
+    "升压变压器"
+   ],
+   "statement": "升压变压器的副线圈匝数比原线圈多，所以它升高电压。"
+  },
+  {
+   "id": "step-down-transformer",
+   "kind": "definition",
+   "section": "23.7",
+   "name": "降压变压器",
+   "terms": [
+    "降压变压器"
+   ],
+   "statement": "降压变压器的副线圈匝数比原线圈少，所以它降低电压。"
+  },
+  {
+   "id": "three-wire-system",
+   "kind": "idea",
+   "section": "23.8",
+   "name": "三线制",
+   "terms": [
+    "三线制"
+   ],
+   "statement": "现代布线承载三根导线而不是两根。火线提供电压和电流。中性线是回路；它在电源处和用户处都与大地相连，这就迫使它保持零伏。地线也把用电器的外壳保持在零伏。断路器或保险丝串联在火线上，防止热过载，而外壳本身使人碰不到里面的东西。三者各有各的作用，各防各的危险。"
+  },
+  {
+   "id": "grounding-the-case",
+   "kind": "result",
+   "section": "23.8",
+   "name": "外壳接地",
+   "statement": "磨损的绝缘层可能使火线与金属外壳接触，而触摸该外壳和水龙头的人就构成了通向大地的回路。地线完好时，断路器会跳闸，必须修复故障。接地还处理了一个属于本章的更微妙的问题。用电器中的交流电会在它自己的外壳上感应出电动势，如果外壳没有保持在零伏，这个电动势就能驱动漏电流通过任何触摸它的人。"
+  },
+  {
+   "id": "ground-fault-interrupter",
+   "kind": "idea",
+   "section": "23.8",
+   "name": "漏电保护器",
+   "statement": "漏电保护器让两根导线穿过同一个线圈，使相等的电流在其中感应出大小相等、方向相反的电动势，于是什么也不会发生。如果一部分电流从另一条路径返回，两者就不相等，出现电动势，电路被切断，通常是在差值约为 5 mA 时，这是被认为无害的最大电击。它是本节中唯一靠电磁感应而不是靠发热工作的装置，也是唯一在人受重伤之前而不是之后起作用的装置。"
+  },
+  {
+   "id": "isolation-transformer",
+   "kind": "idea",
+   "section": "23.8",
+   "name": "隔离变压器",
+   "statement": "隔离变压器的输入电压和输出电压通常相等，所以它不改变用电器所接收的东西。它改变的是：两根输出导线都不与原来的电源或大地相连。因此触摸其中一根的人不是任何完整回路的一部分：电流要流动，就必须穿过线圈之间材料的高电阻。它是一种靠去掉一条通路而不是切断一条通路来工作的安全装置。"
+  },
+  {
+   "id": "inductance",
+   "kind": "definition",
+   "section": "23.9",
+   "name": "电感",
+   "terms": [
+    "电感"
+   ],
+   "statement": "有些布置对于给定的变化会感应出大的电动势，有些几乎感应不出，而电感说明的就是这一点。器件的几何形状一旦固定，就只有电流能改变磁通量，所以电感把感应电动势与电流的变化率联系起来。它是使变压器值得制造的性质，也是用电器的设计者要让它在线圈与外壳之间保持很小的性质。"
+  },
+  {
+   "id": "mutual-inductance",
+   "kind": "definition",
+   "section": "23.9",
+   "name": "互感",
+   "symbol": "M_ind",
+   "terms": [
+    "互感"
+   ],
+   "type": "inductance",
+   "statement": "互感是一个器件对另一个器件的影响：第一个器件中电流的变化在第二个器件中感应出电动势，$M$ 就是两者之间的常量。自然界在这里是对称的，同一个 $M$ 在反过来时也适用，所以倒着运行的变压器与顺着运行的一样好用。变压器的线圈需要大的 $M$；用电器的发热元件和外壳需要小的，这一区别在电气安全中又要用到。",
+   "forms": [
+    {
+     "id": "eq-mutual-inductance",
+     "latex": "\\text{emf}_2 = -M\\frac{\\Delta I_1}{\\Delta t}",
+     "ktex": "\\kemftwo = -\\kMind\\frac{\\Delta \\kIcurone}{\\kdt}",
+     "anchor": "23.9-inductors"
+    },
+    {
+     "id": "eq-mutual-inductance-reverse",
+     "latex": "\\text{emf}_1 = -M\\frac{\\Delta I_2}{\\Delta t}",
+     "ktex": "\\kemfone = -\\kMind\\frac{\\Delta \\kIcurtwo}{\\kdt}",
+     "anchor": "23.9-inductors"
+    }
+   ]
+  },
+  {
+   "id": "self-inductance",
+   "kind": "definition",
+   "section": "23.9",
+   "name": "自感",
+   "symbol": "L_ind",
+   "terms": [
+    "自感"
+   ],
+   "type": "inductance",
+   "statement": "器件也在它自身中感应出电动势：它自己变化的电流改变它自己的磁通量，而由楞次定律，感应电动势反抗这一变化。这个常量就是自感 $L$，自感大的器件就是电感器。这个负号在实践中和在形式上一样重要。很快地切断大电流可能升起数千伏的电压，并在开关两端打出电弧，这就是你不能在一毫秒内简单地切断通有 10 A 的 1 H 线圈的原因。",
+   "forms": [
+    {
+     "id": "eq-self-inductance",
+     "latex": "\\text{emf} = -L\\frac{\\Delta I}{\\Delta t}",
+     "ktex": "\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt}",
+     "anchor": "23.9-self-inductance"
+    }
+   ]
+  },
+  {
+   "id": "henry",
+   "kind": "definition",
+   "section": "23.9",
+   "name": "亨利",
+   "terms": [
+    "亨利"
+   ],
+   "statement": "互感和自感的单位都是亨利，以约瑟夫·亨利命名，它是伏特秒每安培，也就等于欧姆秒。知道这个恒等式不是记账：正是它使下一节中的时间常量 $L/R$ 的单位恰为秒，也使再下一节中的 $2\\pi fL$ 的单位恰为欧姆。1 H 的电感器是很大的，而普通大小的螺线管的电感约为一毫亨。",
+   "forms": [
+    {
+     "id": "eq-henry",
+     "latex": "1\\;\\text{H} = 1\\;\\Omega\\cdot\\text{s}",
+     "anchor": "23.9-inductors"
+    }
+   ]
+  },
+  {
+   "id": "inductance-from-flux-and-current",
+   "kind": "result",
+   "section": "23.9",
+   "name": "由磁通量和电流求电感",
+   "statement": "令法拉第定律与自感的定义相等并约去时间，得到一个完全不含时间的关系：电感等于匝数乘以电流每单位变化所引起的磁通量变化。这总是成立的，它说明了电感真正取决于什么，即器件自己的电流在它自己的各匝中产生磁通量的效率有多高。这也是通向书中唯一由形状算出的电感的途径。",
+   "forms": [
+    {
+     "id": "eq-inductance-from-flux",
+     "latex": "L = N\\frac{\\Delta\\Phi}{\\Delta I}",
+     "ktex": "\\kLind = N\\frac{\\kdPhi}{\\kdIcur}",
+     "anchor": "23.9-calculating-inductance"
+    }
+   ]
+  },
+  {
+   "id": "solenoid-inductance",
+   "kind": "result",
+   "section": "23.9",
+   "name": "螺线管的电感",
+   "statement": "对大多数形状，电感太难计算，书中只是直接给出。但螺线管内部的磁场近乎均匀，外部几乎没有，形状又简单，所以你可以由 $B = \\mu_0 NI/\\ell$ 和上面的关系求出它的电感。答案只取决于螺线管自己的几何形状，这正是电感的定义所要求的。它与匝数的平方成正比，因为匝数越多产生的磁通量越多，而且感受到它的匝数也越多。",
+   "forms": [
+    {
+     "id": "eq-solenoid-inductance",
+     "latex": "L = \\frac{\\mu_0 N^2 A}{\\ell}",
+     "ktex": "\\kLind = \\frac{\\mu_0 N^2 A}{\\ell}",
+     "anchor": "23.9-calculating-inductance"
+    }
+   ]
+  },
+  {
+   "id": "energy-stored-in-an-inductor",
+   "kind": "result",
+   "section": "23.9",
+   "name": "电感器中储存的能量",
+   "terms": [
+    "电感器中储存的能量"
+   ],
+   "type": "energy",
+   "statement": "还有第二种方式可以看出电感器为什么反抗电流的变化：它的磁场储存能量，而把能量放进去和取出来都需要时间。储存的能量是 $\\frac{1}{2}LI^2$，与电容器中的能量形式相同，电流突然中断时它能产生火花。它也是 RL 电路中指数式衰减所消耗的能量。",
+   "forms": [
+    {
+     "id": "eq-inductor-energy",
+     "latex": "E_{\\text{ind}} = \\frac{1}{2}LI^2",
+     "ktex": "\\kEind = \\frac{1}{2}\\kLind\\kIcur^2",
+     "anchor": "23.9-inductor-energy"
+    }
+   ]
+  },
+  {
+   "id": "counterwinding-cancels-inductance",
+   "kind": "skill",
+   "section": "23.9",
+   "name": "线圈的反向绕制",
+   "statement": "线圈产生的磁通量取决于它的绕向，所以一半匝数朝一个方向绕、另一半朝另一个方向绕，就使两个磁场抵消，电感也随之抵消。这使用电器的发热元件不会在它的外壳上感应出危险的电动势，也使实验室的电阻器在交流电下不会表现得像电感器。知道什么使电感变大，就是知道怎样使它变小。"
+  },
+  {
+   "id": "inductor",
+   "kind": "definition",
+   "section": "23.9",
+   "name": "电感器",
+   "terms": [
+    "电感器"
+   ],
+   "statement": "电感器是自感很大的器件，通常是线圈，其感应电动势强烈地反抗通过它的电流的任何变化。"
+  },
+  {
+   "id": "rl-circuit",
+   "kind": "definition",
+   "section": "23.10",
+   "name": "RL 电路",
+   "statement": "把电感器与电阻器和电池串联，电流不会一下子跳到它的终值。电感器自己的感应电动势反抗这一变化，在变化最快的开始时反抗最强。把电池拿掉，电流也不会停止，因为电感器使它继续流动，而电阻器耗散储存在其磁场中的能量。RL 电路显示了这种反抗持续多久。"
+  },
+  {
+   "id": "rl-time-constant",
+   "kind": "definition",
+   "section": "23.10",
+   "name": "RL 时间常量",
+   "symbol": "τ_RL",
+   "terms": [
+    "特征时间常量"
+   ],
+   "type": "time",
+   "statement": "一个数 $L/R$ 决定了全部的时间进程，它的单位是秒，因为一亨利就是一欧姆秒。两种依赖关系都说得通。电感越大，对变化的反抗越强，而电阻越小，意味着终值电流越大，因此要做的变化越大。无论哪种情形，电感器都储存更多的能量，需要更多的时间把它存进去和取出来。这是第 21 章的 RC 时间常量，只是换了一对元件。",
+   "forms": [
+    {
+     "id": "eq-rl-time-constant",
+     "latex": "\\tau = \\frac{L}{R}",
+     "ktex": "\\ktauRL = \\frac{\\kLind}{\\kRes}",
+     "anchor": "23.10-current-turning-on"
+    }
+   ]
+  },
+  {
+   "id": "current-growth-in-an-rl-circuit",
+   "kind": "result",
+   "section": "23.10",
+   "name": "RL 电路中电流的增长",
+   "statement": "反抗的电动势与剩余的变化量成正比，这是指数行为的标志，所以电流沿一条永远到不了的曲线向它的终值 $V/R$ 攀升。在第一个时间常量内它走完 0.632 的路程，此后每个时间常量走完剩余部分的 0.632。经过几个 $\\tau$ 之后，就一切实际目的而言它已经到达了。",
+   "forms": [
+    {
+     "id": "eq-rl-current-on",
+     "latex": "I = I_0(1 - e^{-t/\\tau})",
+     "ktex": "\\kIcur = \\kIocur(1 - e^{-\\kt/\\ktauRL})",
+     "anchor": "23.10-current-turning-on"
+    }
+   ]
+  },
+  {
+   "id": "current-decay-in-an-rl-circuit",
+   "kind": "result",
+   "section": "23.10",
+   "name": "RL 电路中电流的衰减",
+   "statement": "电池断开后，电感器驱动电流继续流动，而电阻器耗散储存的能量，又因为耗散率是 $I^2R$，随着电流下降，衰减也变慢。在每个时间常量内，电流降到它原来值的 0.368。同一个 $\\tau$ 既支配增长又支配衰减，正如它在 RC 电路中一样。",
+   "forms": [
+    {
+     "id": "eq-rl-current-off",
+     "latex": "I = I_0 e^{-t/\\tau}",
+     "ktex": "\\kIcur = \\kIocur e^{-\\kt/\\ktauRL}",
+     "anchor": "23.10-current-turning-off"
+    }
+   ]
+  },
+  {
+   "id": "fraction-per-time-constant-rl",
+   "kind": "skill",
+   "section": "23.10",
+   "name": "以时间常量计数",
+   "statement": "因为在每个时间常量内电流走过的比例相同，所以许多问题可以靠数数来回答。经过一个 $\\tau$，电流是原来的 0.368，经过两个是那个值的 0.368，依此类推；向上数则用 0.632 回答增长问题。书中自己的例题就是这样做的，分两步，而不是代入指数式。这一近似精确到百分之几，有一道习题正好测量了它有多精确。"
+  },
+  {
+   "id": "inductor-voltage-leads-current",
+   "kind": "result",
+   "section": "23.11",
+   "name": "电感器中的相位超前",
+   "statement": "用正弦电压驱动电感器，电流并不与它同步。电流从零开始，在驱动它的电压之后四分之一周期达到峰值，正如直流电压在 RL 电路中接通时电流滞后那样。电感器反抗电流的变化，所以电流总是落后。在计算任何电抗之前先弄懂这一点，因为 RLC 电路的代数就建立在它之上。"
+  },
+  {
+   "id": "inductive-reactance",
+   "kind": "result",
+   "section": "23.11",
+   "name": "感抗",
+   "symbol": "X_L",
+   "terms": [
+    "感抗"
+   ],
+   "type": "resistance",
+   "statement": "电感器对交流电的反抗表现得像电阻：方均根电流等于方均根电压除以一个以欧姆计量的量，这个量是 $2\\pi fL$。两个因子都说得通，因为电感越大对变化的反抗越强，频率越高意味着要反抗的变化越快。其后果是电感器对高频的阻碍最大，这就是与计算机电源串联的滤波器的用途。",
+   "forms": [
+    {
+     "id": "eq-inductive-reactance",
+     "latex": "X_L = 2\\pi fL",
+     "ktex": "\\kXL = 2\\pi \\kf\\kLind",
+     "anchor": "23.11-inductors-and-inductive-reactance"
+    },
+    {
+     "id": "eq-ohms-law-inductor",
+     "latex": "I = \\frac{V}{X_L}",
+     "ktex": "\\kIcur = \\frac{\\kV}{\\kXL}",
+     "anchor": "23.11-inductors-and-inductive-reactance"
+    }
+   ]
+  },
+  {
+   "id": "capacitor-voltage-follows-current",
+   "kind": "result",
+   "section": "23.11",
+   "name": "电容器中的相位滞后",
+   "statement": "电容器的作用与电感器相反。它的电压在充满电、电流已经停止时最大，而电流在电容器放空、电压为零时最大，所以电压落后于电流四分之一周期。把这两条规则并排放在一起，电感器中电压超前、电容器中电压滞后，那么 RLC 电路中的抵消就变得在意料之中，而不再令人惊讶。"
+  },
+  {
+   "id": "capacitive-reactance",
+   "kind": "result",
+   "section": "23.11",
+   "name": "容抗",
+   "symbol": "X_C",
+   "terms": [
+    "容抗"
+   ],
+   "type": "resistance",
+   "statement": "电容器也限制交流电，它所提供的欧姆数是 $1/2\\pi fC$。两个依赖关系都是反比，也都合理：电容越大储存的电荷越多，通过的电流越大，而频率越高，留给充电并阻止电流的时间越少。因此电容器对低频的阻碍最大，这与电感器恰好相反，也是串联一个电容器就能去掉 60 Hz 交流声的原因。",
+   "forms": [
+    {
+     "id": "eq-capacitive-reactance",
+     "latex": "X_C = \\frac{1}{2\\pi fC}",
+     "ktex": "\\kXC = \\frac{1}{2\\pi \\kf\\kCap}",
+     "anchor": "23.11-capacitors-and-capacitive-reactance"
+    },
+    {
+     "id": "eq-ohms-law-capacitor",
+     "latex": "I = \\frac{V}{X_C}",
+     "ktex": "\\kIcur = \\frac{\\kV}{\\kXC}",
+     "anchor": "23.11-capacitors-and-capacitive-reactance"
+    }
+   ]
+  },
+  {
+   "id": "resistor-voltage-in-phase",
+   "kind": "result",
+   "section": "23.11",
+   "name": "电阻器中的相位",
+   "statement": "单纯的电阻不在乎频率，完全不引入相位差：电阻器两端的电压随通过它的电流一同升降。这是三条规则中最简单的一条，但不要想当然。在 RLC 电路中，电阻器决定了总电压处于电感器的超前和电容器的滞后之间的什么位置。"
+  },
+  {
+   "id": "filtering-by-frequency",
+   "kind": "skill",
+   "section": "23.11",
+   "name": "按频率滤波",
+   "statement": "两个电抗随频率的变化方向相反，所以在它们之间做选择，就能让电路通过某些频率而阻挡另一些。串联的电感器阻挡高频，使电力线噪声进不了计算机。串联的电容器阻挡低频，使扬声器里没有交流声。接地的电容器则把高频短路掉。知道每个电抗朝哪个方向变化，你无需计算就能回答所有这些问题。"
+  },
+  {
+   "id": "impedance",
+   "kind": "result",
+   "section": "23.12",
+   "name": "阻抗",
+   "terms": [
+    "阻抗"
+   ],
+   "type": "resistance",
+   "statement": "把电阻器、电感器和电容器串联在同一个交流电源上，它们的反抗并不简单相加。电感器的电压超前电流，电容器的电压则滞后同样的四分之一周期，所以两者相反，部分抵消。剩下的就是阻抗：电阻与电抗之差像直角三角形的两条直角边那样合成。它是像其他欧姆一样的欧姆，在交流电路中起着电阻在直流电路中所起的作用。",
+   "forms": [
+    {
+     "id": "eq-impedance",
+     "latex": "Z = \\sqrt{R^{2} + (X_L - X_C)^{2}}",
+     "ktex": "\\kZimp = \\sqrt{\\kRes^{2} + (\\kXL - \\kXC)^{2}}",
+     "anchor": "23.12-impedance"
+    }
+   ]
+  },
+  {
+   "id": "ac-ohms-law-with-impedance",
+   "kind": "result",
+   "section": "23.12",
+   "name": "交流电路的欧姆定律",
+   "statement": "有了阻抗，电流就可由第 20 章的定律得出：电流等于电压除以阻抗，用峰值或用方均根值皆可，看习题给的是哪一种。阻抗越大，电流越小，而计算 $Z$ 的全部理由就是这一行随即回答了整个电路。",
+   "forms": [
+    {
+     "id": "eq-ac-ohms-law",
+     "latex": "I_0 = \\frac{V_0}{Z}\\;\\text{或}\\;I_{\\text{rms}} = \\frac{V_{\\text{rms}}}{Z}",
+     "ktex": "\\kIocur = \\frac{\\kVo}{\\kZimp}\\;\\text{或}\\;\\kIrms = \\frac{\\kVrms}{\\kZimp}",
+     "anchor": "23.12-impedance"
+    }
+   ]
+  },
+  {
+   "id": "voltages-do-not-simply-add",
+   "kind": "result",
+   "section": "23.12",
+   "name": "RLC 电路中电压的相加",
+   "statement": "串联电路中各处的电流相同，并且与自身同相，但三个电压在不同的时刻达到峰值：$V_R$ 与电流同时，$V_L$ 超前四分之一周期，$V_C$ 落后四分之一周期。所以 $V_L$ 和 $V_C$ 相差半个周期，趋向于抵消，电源的峰值电压不是三个峰值之和，而是 $\\sqrt{V_{0R}^2 + (V_{0L} - V_{0C})^2}$。这是整节所依据的事实，也是读者最容易因把交流电路当作直流电路而弄错的事实。",
+   "forms": [
+    {
+     "id": "eq-peak-voltage-sum",
+     "latex": "V_0 = \\sqrt{V_{0R}^{2} + (V_{0L} - V_{0C})^{2}}",
+     "ktex": "\\kVo = \\sqrt{\\kVoR^{2} + (\\kVoL - \\kVoC)^{2}}",
+     "anchor": "23.12-impedance"
+    }
+   ]
+  },
+  {
+   "id": "resonant-frequency-of-an-rlc-circuit",
+   "kind": "result",
+   "section": "23.12",
+   "name": "RLC 电路的共振频率",
+   "terms": [
+    "共振频率"
+   ],
+   "type": "frequency",
+   "statement": "一个电抗随频率增大，另一个随频率减小，所以在两者之间某处它们相等并恰好抵消。在那里阻抗恰好就是电阻，这是它所能达到的最小值，电流最大。令 $X_L = X_C$ 并求解就得到该频率，它只取决于电感和电容。这是电路自己振荡时的固有频率，是第 16 章的共振出现在电气系统而不是机械系统中。",
+   "forms": [
+    {
+     "id": "eq-resonant-frequency",
+     "latex": "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}",
+     "ktex": "\\kfo = \\frac{1}{2\\pi\\sqrt{\\kLind\\kCap}}",
+     "anchor": "23.12-resonance-in-rlc-series-ac-circuits"
+    },
+    {
+     "id": "eq-resonance-condition",
+     "latex": "X_L = X_C",
+     "ktex": "\\kXL = \\kXC",
+     "anchor": "23.12-resonance-in-rlc-series-ac-circuits"
+    },
+    {
+     "id": "eq-rlc-resonant-frequency",
+     "latex": "f_0 = \\frac{1}{2\\pi\\sqrt{LC}}",
+     "ktex": "\\kfo = \\frac{1}{2\\pi\\sqrt{LC}}",
+     "section": "24.1",
+     "anchor": "24.1-hertz"
+    }
+   ]
+  },
+  {
+   "id": "resonance-peak-and-resistance",
+   "kind": "idea",
+   "section": "23.12",
+   "name": "共振峰与电阻",
+   "statement": "画出电流随频率变化的曲线，在 $f_0$ 处有一个峰，其形状取决于电阻：电阻小则峰又高又窄，电阻大则峰又低又宽。无线电接收机是靠可变电容器调谐的 RLC 电路，它的峰有多窄，决定了它能选中一个电台而排除下一个电台，所以电阻太大的电路就没有选择性。这与第 16 章为受迫振子所画出的阻尼与共振尖锐程度之间的关系相同。"
+  },
+  {
+   "id": "phase-angle",
+   "kind": "result",
+   "section": "23.12",
+   "name": "相位角",
+   "terms": [
+    "相位角"
+   ],
+   "statement": "因为电源电压与电流不同步，它们之间有一个夹角，它由阻抗中有多少是电阻决定：$\\cos\\phi = R/Z$。在共振时，或在只有电阻的电路中，$Z = R$，夹角为零。在电容占主导的地方，例如低频时，夹角趋近 90°，这就是纯电容电路给出的值。",
+   "forms": [
+    {
+     "id": "eq-power-factor",
+     "latex": "\\cos\\phi = \\frac{R}{Z}",
+     "ktex": "\\cos\\phi = \\frac{\\kRes}{\\kZimp}",
+     "anchor": "23.12-power-in-rlc-series-ac-circuits"
+    }
+   ]
+  },
+  {
+   "id": "power-factor",
+   "kind": "result",
+   "section": "23.12",
+   "name": "功率因数",
+   "terms": [
+    "功率因数"
+   ],
+   "statement": "在电压与电流不同步的电路中，平均功率不是它们的乘积那么简单。它是它们的乘积乘以 $\\cos\\phi$，即功率因数，其值在 0 到 1 之间。电阻耗散全部功率；电感器和电容器吸入能量再还回去，而不消耗任何能量。工程师把高效电动机设计成功率因数接近 1，而在共振时该因数恰好是 1。",
+   "forms": [
+    {
+     "id": "eq-average-power",
+     "latex": "P_{\\text{ave}} = I_{\\text{rms}}V_{\\text{rms}}\\cos\\phi",
+     "ktex": "\\kPave = \\kIrms\\kVrms\\cos\\phi",
+     "anchor": "23.12-power-in-rlc-series-ac-circuits"
+    }
+   ]
+  },
+  {
+   "id": "lc-oscillation-analogy",
+   "kind": "idea",
+   "section": "23.12",
+   "name": "LC 振荡",
+   "statement": "在电阻可以忽略时，能量在电容器的电场与电感器的磁场之间来回运动，电路以 $f_0$ 自行振荡。数字手表中的时钟电路就是这样计时的。力学上的对应物是精确的：电容器上的电荷是弹簧的伸长量，电流是质量块的速率，电阻是在搓板路上阻尼汽车车轮的减震器。这是全书中两个系统之间最接近的类比，它作为物理学成立，而不只是一种修辞。"
+  },
+  {
+   "id": "rlc-circuit",
+   "kind": "definition",
+   "section": "23.12",
+   "name": "RLC 电路",
+   "terms": [
+    "RLC 电路"
+   ],
+   "statement": "RLC 电路包含一个电阻器、一个电感器和一个电容器，而在 RLC 串联电路中，同一个交流电流通过这三者。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "induction",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "induction",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "induction",
+   "prereq": "emf"
+  },
+  {
+   "concept": "magnetic-flux",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "magnetic-flux",
+   "prereq": "direction-of-field-lines"
+  },
+  {
+   "concept": "flux-and-orientation",
+   "prereq": "magnetic-flux"
+  },
+  {
+   "concept": "ways-to-change-flux",
+   "prereq": "magnetic-flux"
+  },
+  {
+   "concept": "ways-to-change-flux",
+   "prereq": "induction"
+  },
+  {
+   "concept": "ways-to-change-flux",
+   "prereq": "flux-and-orientation"
+  },
+  {
+   "concept": "faradays-law",
+   "prereq": "magnetic-flux"
+  },
+  {
+   "concept": "faradays-law",
+   "prereq": "induction"
+  },
+  {
+   "concept": "faradays-law",
+   "prereq": "ways-to-change-flux"
+  },
+  {
+   "concept": "faradays-law",
+   "prereq": "emf"
+  },
+  {
+   "concept": "turns-multiply-emf",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "turns-multiply-emf",
+   "prereq": "sources-in-series"
+  },
+  {
+   "concept": "lenzs-law",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "lenzs-law",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "lenzs-law",
+   "prereq": "field-at-the-centre-of-a-loop"
+  },
+  {
+   "concept": "lenz-from-energy-conservation",
+   "prereq": "lenzs-law"
+  },
+  {
+   "concept": "lenz-from-energy-conservation",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "apply-lenzs-law",
+   "prereq": "lenzs-law"
+  },
+  {
+   "concept": "apply-lenzs-law",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "apply-lenzs-law",
+   "prereq": "direction-of-field-lines"
+  },
+  {
+   "concept": "induction-applications",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "induction-applications",
+   "prereq": "magnetic-domains"
+  },
+  {
+   "concept": "motional-emf",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "motional-emf",
+   "prereq": "hall-emf"
+  },
+  {
+   "concept": "motional-emf",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "motional-emf-from-faradays-law",
+   "prereq": "motional-emf"
+  },
+  {
+   "concept": "motional-emf-from-faradays-law",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "motional-emf-from-faradays-law",
+   "prereq": "ways-to-change-flux"
+  },
+  {
+   "concept": "relative-motion-induces",
+   "prereq": "motional-emf"
+  },
+  {
+   "concept": "relative-motion-induces",
+   "prereq": "induction"
+  },
+  {
+   "concept": "motional-emf-power-conversion",
+   "prereq": "motional-emf"
+  },
+  {
+   "concept": "motional-emf-power-conversion",
+   "prereq": "lenz-from-energy-conservation"
+  },
+  {
+   "concept": "motional-emf-power-conversion",
+   "prereq": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "concept": "eddy-current",
+   "prereq": "motional-emf"
+  },
+  {
+   "concept": "eddy-current",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "magnetic-damping",
+   "prereq": "eddy-current"
+  },
+  {
+   "concept": "magnetic-damping",
+   "prereq": "lenzs-law"
+  },
+  {
+   "concept": "magnetic-damping",
+   "prereq": "magnetic-force-on-a-current-carrying-wire"
+  },
+  {
+   "concept": "magnetic-damping",
+   "prereq": "damped-harmonic-motion"
+  },
+  {
+   "concept": "slotting-reduces-eddy-currents",
+   "prereq": "eddy-current"
+  },
+  {
+   "concept": "slotting-reduces-eddy-currents",
+   "prereq": "magnetic-damping"
+  },
+  {
+   "concept": "applications-of-magnetic-damping",
+   "prereq": "magnetic-damping"
+  },
+  {
+   "concept": "applications-of-magnetic-damping",
+   "prereq": "slotting-reduces-eddy-currents"
+  },
+  {
+   "concept": "electric-generator",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "electric-generator",
+   "prereq": "ways-to-change-flux"
+  },
+  {
+   "concept": "electric-generator",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "electric-generator",
+   "prereq": "brushes-reverse-the-current"
+  },
+  {
+   "concept": "average-emf-of-a-generator",
+   "prereq": "electric-generator"
+  },
+  {
+   "concept": "average-emf-of-a-generator",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "average-emf-of-a-generator",
+   "prereq": "magnetic-flux"
+  },
+  {
+   "concept": "generator-emf-versus-time",
+   "prereq": "electric-generator"
+  },
+  {
+   "concept": "generator-emf-versus-time",
+   "prereq": "motional-emf"
+  },
+  {
+   "concept": "generator-emf-versus-time",
+   "prereq": "angular-velocity"
+  },
+  {
+   "concept": "generator-emf-versus-time",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "peak-emf",
+   "prereq": "generator-emf-versus-time"
+  },
+  {
+   "concept": "commutator-pulsed-dc",
+   "prereq": "generator-emf-versus-time"
+  },
+  {
+   "concept": "commutator-pulsed-dc",
+   "prereq": "brushes-reverse-the-current"
+  },
+  {
+   "concept": "commutator-pulsed-dc",
+   "prereq": "direct-current"
+  },
+  {
+   "concept": "motor-is-a-generator",
+   "prereq": "electric-generator"
+  },
+  {
+   "concept": "motor-is-a-generator",
+   "prereq": "torque-on-a-current-loop"
+  },
+  {
+   "concept": "back-emf",
+   "prereq": "motor-is-a-generator"
+  },
+  {
+   "concept": "back-emf",
+   "prereq": "lenzs-law"
+  },
+  {
+   "concept": "back-emf",
+   "prereq": "peak-emf"
+  },
+  {
+   "concept": "back-emf-and-current-drawn",
+   "prereq": "back-emf"
+  },
+  {
+   "concept": "back-emf-and-current-drawn",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "back-emf-and-current-drawn",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "back-emf-and-current-drawn",
+   "prereq": "ir-drop"
+  },
+  {
+   "concept": "transformer",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "transformer",
+   "prereq": "induction"
+  },
+  {
+   "concept": "transformer",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "transformer",
+   "prereq": "slotting-reduces-eddy-currents"
+  },
+  {
+   "concept": "transformer-equation",
+   "prereq": "transformer"
+  },
+  {
+   "concept": "transformer-equation",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "transformer-equation",
+   "prereq": "turns-multiply-emf"
+  },
+  {
+   "concept": "transformer-current-ratio",
+   "prereq": "transformer-equation"
+  },
+  {
+   "concept": "transformer-current-ratio",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "step-up-and-step-down",
+   "prereq": "transformer-equation"
+  },
+  {
+   "concept": "step-up-and-step-down",
+   "prereq": "transformer-current-ratio"
+  },
+  {
+   "concept": "step-up-and-step-down",
+   "prereq": "high-voltage-transmission"
+  },
+  {
+   "concept": "transformers-need-ac",
+   "prereq": "transformer"
+  },
+  {
+   "concept": "transformers-need-ac",
+   "prereq": "induction"
+  },
+  {
+   "concept": "transformers-need-ac",
+   "prereq": "direct-current"
+  },
+  {
+   "concept": "three-wire-system",
+   "prereq": "thermal-hazard"
+  },
+  {
+   "concept": "three-wire-system",
+   "prereq": "shock-hazard"
+  },
+  {
+   "concept": "three-wire-system",
+   "prereq": "short-circuit"
+  },
+  {
+   "concept": "grounding-the-case",
+   "prereq": "three-wire-system"
+  },
+  {
+   "concept": "grounding-the-case",
+   "prereq": "induction"
+  },
+  {
+   "concept": "grounding-the-case",
+   "prereq": "shock-hazard"
+  },
+  {
+   "concept": "ground-fault-interrupter",
+   "prereq": "three-wire-system"
+  },
+  {
+   "concept": "ground-fault-interrupter",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "ground-fault-interrupter",
+   "prereq": "lenzs-law"
+  },
+  {
+   "concept": "isolation-transformer",
+   "prereq": "transformer"
+  },
+  {
+   "concept": "isolation-transformer",
+   "prereq": "three-wire-system"
+  },
+  {
+   "concept": "isolation-transformer",
+   "prereq": "shock-hazard"
+  },
+  {
+   "concept": "inductance",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "inductance",
+   "prereq": "transformer"
+  },
+  {
+   "concept": "mutual-inductance",
+   "prereq": "inductance"
+  },
+  {
+   "concept": "mutual-inductance",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "mutual-inductance",
+   "prereq": "transformer-equation"
+  },
+  {
+   "concept": "self-inductance",
+   "prereq": "inductance"
+  },
+  {
+   "concept": "self-inductance",
+   "prereq": "lenzs-law"
+  },
+  {
+   "concept": "self-inductance",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "henry",
+   "prereq": "mutual-inductance"
+  },
+  {
+   "concept": "henry",
+   "prereq": "self-inductance"
+  },
+  {
+   "concept": "henry",
+   "prereq": "ohm"
+  },
+  {
+   "concept": "inductance-from-flux-and-current",
+   "prereq": "self-inductance"
+  },
+  {
+   "concept": "inductance-from-flux-and-current",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "inductance-from-flux-and-current",
+   "prereq": "magnetic-flux"
+  },
+  {
+   "concept": "solenoid-inductance",
+   "prereq": "inductance-from-flux-and-current"
+  },
+  {
+   "concept": "solenoid-inductance",
+   "prereq": "field-inside-a-solenoid"
+  },
+  {
+   "concept": "solenoid-inductance",
+   "prereq": "permeability-of-free-space"
+  },
+  {
+   "concept": "energy-stored-in-an-inductor",
+   "prereq": "self-inductance"
+  },
+  {
+   "concept": "energy-stored-in-an-inductor",
+   "prereq": "capacitor-energy"
+  },
+  {
+   "concept": "counterwinding-cancels-inductance",
+   "prereq": "self-inductance"
+  },
+  {
+   "concept": "counterwinding-cancels-inductance",
+   "prereq": "mutual-inductance"
+  },
+  {
+   "concept": "counterwinding-cancels-inductance",
+   "prereq": "slotting-reduces-eddy-currents"
+  },
+  {
+   "concept": "rl-circuit",
+   "prereq": "self-inductance"
+  },
+  {
+   "concept": "rl-circuit",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "rl-circuit",
+   "prereq": "rc-circuit"
+  },
+  {
+   "concept": "rl-time-constant",
+   "prereq": "rl-circuit"
+  },
+  {
+   "concept": "rl-time-constant",
+   "prereq": "henry"
+  },
+  {
+   "concept": "rl-time-constant",
+   "prereq": "time-constant"
+  },
+  {
+   "concept": "current-growth-in-an-rl-circuit",
+   "prereq": "rl-time-constant"
+  },
+  {
+   "concept": "current-growth-in-an-rl-circuit",
+   "prereq": "charging-a-capacitor"
+  },
+  {
+   "concept": "current-decay-in-an-rl-circuit",
+   "prereq": "rl-time-constant"
+  },
+  {
+   "concept": "current-decay-in-an-rl-circuit",
+   "prereq": "discharging-a-capacitor"
+  },
+  {
+   "concept": "current-decay-in-an-rl-circuit",
+   "prereq": "energy-stored-in-an-inductor"
+  },
+  {
+   "concept": "fraction-per-time-constant-rl",
+   "prereq": "current-growth-in-an-rl-circuit"
+  },
+  {
+   "concept": "fraction-per-time-constant-rl",
+   "prereq": "current-decay-in-an-rl-circuit"
+  },
+  {
+   "concept": "fraction-per-time-constant-rl",
+   "prereq": "fraction-per-time-constant"
+  },
+  {
+   "concept": "inductor-voltage-leads-current",
+   "prereq": "self-inductance"
+  },
+  {
+   "concept": "inductor-voltage-leads-current",
+   "prereq": "current-growth-in-an-rl-circuit"
+  },
+  {
+   "concept": "inductor-voltage-leads-current",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "inductive-reactance",
+   "prereq": "inductor-voltage-leads-current"
+  },
+  {
+   "concept": "inductive-reactance",
+   "prereq": "henry"
+  },
+  {
+   "concept": "inductive-reactance",
+   "prereq": "ac-ohms-law"
+  },
+  {
+   "concept": "inductive-reactance",
+   "prereq": "rms-values"
+  },
+  {
+   "concept": "capacitor-voltage-follows-current",
+   "prereq": "capacitor"
+  },
+  {
+   "concept": "capacitor-voltage-follows-current",
+   "prereq": "charging-a-capacitor"
+  },
+  {
+   "concept": "capacitor-voltage-follows-current",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "capacitive-reactance",
+   "prereq": "capacitor-voltage-follows-current"
+  },
+  {
+   "concept": "capacitive-reactance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "capacitive-reactance",
+   "prereq": "ac-ohms-law"
+  },
+  {
+   "concept": "resistor-voltage-in-phase",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "resistor-voltage-in-phase",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "filtering-by-frequency",
+   "prereq": "inductive-reactance"
+  },
+  {
+   "concept": "filtering-by-frequency",
+   "prereq": "capacitive-reactance"
+  },
+  {
+   "concept": "voltages-do-not-simply-add",
+   "prereq": "inductor-voltage-leads-current"
+  },
+  {
+   "concept": "voltages-do-not-simply-add",
+   "prereq": "capacitor-voltage-follows-current"
+  },
+  {
+   "concept": "voltages-do-not-simply-add",
+   "prereq": "resistor-voltage-in-phase"
+  },
+  {
+   "concept": "voltages-do-not-simply-add",
+   "prereq": "series-connection"
+  },
+  {
+   "concept": "impedance",
+   "prereq": "inductive-reactance"
+  },
+  {
+   "concept": "impedance",
+   "prereq": "capacitive-reactance"
+  },
+  {
+   "concept": "impedance",
+   "prereq": "resistor-voltage-in-phase"
+  },
+  {
+   "concept": "impedance",
+   "prereq": "voltages-do-not-simply-add"
+  },
+  {
+   "concept": "ac-ohms-law-with-impedance",
+   "prereq": "impedance"
+  },
+  {
+   "concept": "ac-ohms-law-with-impedance",
+   "prereq": "ac-ohms-law"
+  },
+  {
+   "concept": "ac-ohms-law-with-impedance",
+   "prereq": "rms-values"
+  },
+  {
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "prereq": "impedance"
+  },
+  {
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "prereq": "inductive-reactance"
+  },
+  {
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "prereq": "capacitive-reactance"
+  },
+  {
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "prereq": "natural-frequency"
+  },
+  {
+   "concept": "resonance-peak-and-resistance",
+   "prereq": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "concept": "resonance-peak-and-resistance",
+   "prereq": "resonance-curve-damping"
+  },
+  {
+   "concept": "phase-angle",
+   "prereq": "impedance"
+  },
+  {
+   "concept": "phase-angle",
+   "prereq": "voltages-do-not-simply-add"
+  },
+  {
+   "concept": "power-factor",
+   "prereq": "phase-angle"
+  },
+  {
+   "concept": "power-factor",
+   "prereq": "ac-power"
+  },
+  {
+   "concept": "power-factor",
+   "prereq": "rms-values"
+  },
+  {
+   "concept": "lc-oscillation-analogy",
+   "prereq": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "concept": "lc-oscillation-analogy",
+   "prereq": "energy-stored-in-an-inductor"
+  },
+  {
+   "concept": "lc-oscillation-analogy",
+   "prereq": "capacitor-energy"
+  },
+  {
+   "concept": "lc-oscillation-analogy",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "lc-oscillation-analogy",
+   "prereq": "shm-energy"
+  },
+  {
+   "concept": "solenoid-inductance",
+   "prereq": "solenoid"
+  },
+  {
+   "concept": "step-up-transformer",
+   "prereq": "transformer-equation"
+  },
+  {
+   "concept": "step-down-transformer",
+   "prereq": "transformer-equation"
+  },
+  {
+   "concept": "inductor",
+   "prereq": "self-inductance"
+  },
+  {
+   "concept": "rlc-circuit",
+   "prereq": "resistor"
+  },
+  {
+   "concept": "rlc-circuit",
+   "prereq": "inductor"
+  },
+  {
+   "concept": "rlc-circuit",
+   "prereq": "capacitor"
+  },
+  {
+   "concept": "rlc-circuit",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "energy-stored-in-an-inductor",
+   "prereq": "inductor"
+  },
+  {
+   "concept": "inductor-voltage-leads-current",
+   "prereq": "inductor"
+  },
+  {
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "prereq": "rlc-circuit"
+  }
+ ]
+}

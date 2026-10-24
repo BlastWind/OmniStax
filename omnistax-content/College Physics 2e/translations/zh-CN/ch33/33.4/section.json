@@ -1,0 +1,947 @@
+{
+ "id": "33.4",
+ "module": "m42674",
+ "chapter": "33",
+ "title": "粒子、规律与守恒定律",
+ "short": "粒子与守恒定律",
+ "lead": "粒子被分为物质与<span data-concept=\"antimatter\">反物质</span>、<span data-concept=\"hadron\">强子</span>与<span data-concept=\"lepton\">轻子</span>，以及<span data-concept=\"meson\">介子</span>与<span data-concept=\"baryon\">重子</span>。本节介绍衰变前后要相加比较的量子数：<span data-concept=\"baryon-number\">重子数</span>、<span data-concept=\"lepton-family-numbers\">轻子数</span>和<span data-concept=\"strangeness\">奇异数</span>，并说明粒子的寿命如何指向使它衰变的<span data-concept=\"strong-and-weak-nuclear-forces\">力</span>。",
+ "objectives": [
+  "定义物质和反物质。",
+  "概述强子与轻子之间的差别。",
+  "说明介子与重子之间的差别。"
+ ],
+ "summary_html": "<ul><li>所有物质粒子都有一个<span data-concept=\"antimatter\">反物质</span>对应粒子，它具有相反的<span data-concept=\"electric-charge\">电荷</span>以及表 33.2 中所见的某些其他量子数。这些物质—<span data-concept=\"antimatter\">反物质</span>对在其他方面非常相似，但被放到一起时会<span data-concept=\"antimatter-and-annihilation\">湮没</span>。已知粒子可分为三大类——<span data-concept=\"lepton\">轻子</span>、<span data-concept=\"hadron\">强子</span>和<span data-concept=\"carrier-particle\">媒介粒子（规范玻色子）</span>。</li><li><span data-concept=\"lepton\">轻子</span>不感受<span data-concept=\"strong-and-weak-nuclear-forces\">强核力</span>，并进一步分为三组——电子族，以<span data-concept=\"electron-family-number\">电子轻子数</span> $L_{e}$ 标记；μ 子族，以<span data-concept=\"muon-family-number\">μ 子轻子数</span> $L_{\\mu}$ 标记；τ 子族，以<span data-concept=\"tau-family-number\">τ 子轻子数</span> $L_{\\tau}$ 标记。由于<span data-concept=\"neutrino\">中微子</span>振荡，这些轻子数并不普遍守恒。</li><li><span data-concept=\"hadron\">强子</span>是感受<span data-concept=\"strong-and-weak-nuclear-forces\">强核力</span>的粒子，分为<span data-concept=\"baryon\">重子</span>和<span data-concept=\"meson\">介子</span>，其中<span data-concept=\"baryon-number\">重子数</span> $B$ 守恒。</li></ul>",
+ "notes": "书中未给出答案的四道习题被略去，另有三处按书中所印保留：例题 33.3（b）称电荷守恒“因为 $s \\to d$”，正 τ 子那道习题的答案把负 τ 子衰变中的两个中微子写得与正文相反，并且该习题与例题 33.1 共用同一个来源 id。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。八道习题中有四道没有给出答案，被略去：负 π 介子衰变时释放的能量、负 μ 子衰变时释放的能量和守恒定律、Σ⁰ 超子的衰变，以及负 τ 子的能量不确定度。正 τ 子那道习题与“再论汤川粒子与海森伯不确定性原理”中的例题 33.1 共用同一个来源 id，因此以自己的习题卡片 id 编排。关于 $K^{-}$ 产生 $\\Omega$ 所需动能的 AP 题，以及无答案的、关于 $Z$ 玻色子可以衰变成多少个 $K^{0}$ 或多少个电子和正电子的一题，印在“加速器由能量创造物质”中，这里把它们编排在它们所用到的表 33.2 旁边，后者为开放题，附有 AI 标记的建议思路；关于自由中子衰变产物的 AP 题没有答案，保留为开放题，附有 AI 标记的建议思路。九道思考题都没有答案，附有 AI 标记的建议思路。书中没有印出理解检测框，因此行文中没有嵌入任何题目。",
+ "figures": [
+  {
+   "id": "photo-dirac",
+   "kind": "photo",
+   "number": "33.12",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-annihilation",
+   "kind": "sim",
+   "number": "33.13",
+   "originals": [
+    "/media/ch33/Figure_34_04_02.jpg"
+   ],
+   "original_caption": "当一个粒子遇到它的反粒子时，它们会湮没，常常产生以光子形式出现的纯能量。在这个例子中，一个电子和一个正电子把全部质量转化为两条相同的能量射线，二者沿相反方向离开，使总动量保持为零，与之前一样。粒子与其反粒子的其他组合也会发生类似的湮没，有时产生更多的粒子，同时遵守所有守恒定律。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "e-",
+    "e+",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-decay-checker",
+   "kind": "sim",
+   "draws": [
+    "charge",
+    "time"
+   ],
+   "conventions": [
+    "e-",
+    "nu",
+    "p+",
+    "n0",
+    "Be",
+    "He"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-gell-mann",
+   "kind": "photo",
+   "number": "33.14",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "xi-minus",
+   "label": "Ξ⁻",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "lambda-zero",
+   "label": "Λ⁰",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "pi-minus",
+   "label": "π⁻",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "k-plus",
+   "label": "K⁺",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "mu-plus",
+   "label": "μ⁺",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "particle-zoo",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "quantum-electrodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "positron",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "antimatter",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "pion",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "antimatter-and-annihilation",
+   "verb": "introduces"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "antimatter",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "positron",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "intrinsic-spin",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "hadrons-and-leptons",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "hadron",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "lepton",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "bosons-and-fermions",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "boson",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "fermion",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "electromagnetic-force",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "carrier-particle",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "four-basic-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "intrinsic-spin",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "pauli-exclusion-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "electron-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "muon-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "tau-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "lepton-family-numbers",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "muon-family-number-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "lepton",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "conservation-of-electron-family-number",
+   "verb": "uses"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "beta-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "mesons-and-baryons",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "baryon",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "baryon-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "baryon-number-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "hadron",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "meson",
+   "verb": "uses"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "conservation-of-nucleon-number",
+   "verb": "uses"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "nucleons",
+   "verb": "uses"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "particle-lifetime-and-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "strangeness",
+   "verb": "introduces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "strangeness-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "hadrons-and-leptons",
+   "verb": "reinforces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "beta-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "check-conservation-in-decays",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "strangeness-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "baryon-number-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "lepton-family-numbers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "particle-lifetime-and-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "substructure",
+   "concept": "hadrons-and-leptons",
+   "verb": "reinforces"
+  },
+  {
+   "span": "substructure",
+   "concept": "quark",
+   "verb": "uses"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "particle-decay",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1858217",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lepton-families",
+   "prompt": "当 $\\pi^{-}$ 衰变时，产物可能包括：",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "一个正电子。",
+     "一个 μ 子。",
+     "一个质子。",
+     "以上全部。"
+    ],
+    "correct": 1,
+    "hint": "利用表 33.2，把每个可能产物的电荷、重子数和轻子数相加，并与 $\\pi^{-}$ 的相比较。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3217300",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forces-reactions",
+   "prompt": "请注意，表 33.2 中中子的半衰期为 882 秒。这只是自由中子的半衰期，即不与其他中子和质子一起束缚在原子核中的中子。根据表中的其他粒子，并同时利用它们的电荷和质量，你认为中子最可能的衰变产物是什么？请说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个质子、一个电子和一个电子反中微子，$n \\to p + e^{-} + \\bar{\\nu}_{e}$。产物的总质量必须小于中子的 939.6 MeV/$c^{2}$，这样在表 33.2 的粒子中就只剩下质子（938.3）、电子（0.511）和中微子。重子数必须保持为 $+1$，所以质子必须是产物之一；电荷必须保持为 0，所以必须有一个负粒子与之同时产生，而电子是唯一足够轻的。电子的 $L_{e} = +1$，所以必须产生一个 $L_{e} = -1$ 的反中微子，以使电子轻子数保持为 0。多出的质量约 0.8 MeV/$c^{2}$，变为产物的动能。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2783273",
+   "source_section": "33.3",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hadrons-and-leptons",
+   "prompt": "利用表 33.2 中的信息回答下列问题。只考虑能量和质量，$K^{-}$ 与静止的质子碰撞以产生一个 $\\Omega$ 时，至少必须具有多少动能？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "240.5 MeV",
+     "120.0 MeV",
+     "15.5 MeV",
+     "57.6 GeV"
+    ],
+    "correct": 0,
+    "hint": "动能必须补足 $\\Omega$ 的静能与 $K^{-}$ 和质子的静能之差，数据取自表 33.2。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738093112",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "与普通物质隔离开的大量反物质，其行为应当与普通物质完全相同。例如，由正电子、反质子和反中子组成的反原子，应当与其对应的物质原子具有相同的原子光谱。你能否通过它发射的反光子来辨别它是反物质？请简要解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。光子是它自身的反粒子，所以不存在与光子不同的反光子。反原子发射的是普通光子，其能量与对应的物质原子相同，所以它的光不能告诉你它是反物质。只有它遇到普通物质时发生的湮没才能做到这一点。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738138014",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hadrons-and-leptons",
+   "prompt": "无质量粒子不仅是中性的，而且是不带电荷的（不像中子）。这是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "中子整体上是中性的，但其内部分布着电荷，这使它具有磁矩，而磁矩需要有能够相对运动的组成部分。无质量粒子总是以光速运动，所以对它来说没有时间流逝，它不可能有内部运动或结构，因而也没有内部的电荷分布。它也不可能带有净电荷：已知的每一种带电粒子都有质量，而电荷周围有储存能量的电场，这些能量本身就会使粒子具有质量。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737778376",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "无质量粒子必须以光速运动，而其他粒子则不能达到这一速率。为什么所有无质量粒子都是稳定的？如果发现中微子会自发衰变为其他粒子，这是否意味着它们有质量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "以光速运动的粒子具有无穷大的时间延缓：对它来说没有时间流逝，所以它不可能发生变化，而衰变是一种需要时间的变化。换一种说法，无质量粒子没有可供其衰变的静止参考系。所以会衰变的中微子必须以低于光速的速率运动，必定有质量，中微子衰变的证据将意味着中微子质量不为零。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738178590",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lepton-families",
+   "prompt": "当恒星以超新星爆发的形式爆炸时，核反应中会形成大量电子中微子。来自相对较近的麦哲伦云中 1987A 超新星的这类中微子，在最初增亮后的数小时内被观测到，表明它们以近似光速的速率抵达地球。请解释如何利用这些数据给出中微子质量的上限，并注意：如果质量很小，中微子就可以非常接近光速运动，并具有合理的能量（MeV 量级）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "光和中微子几乎在同一时刻离开超新星，行进了约 160,000 光年。质量为 $m$、总能量为 $E$ 的中微子，其速率由 $E = \\gamma m c^{2}$ 决定，所以在能量为几 MeV 的情况下，质量越大，它落在光后面就越多。经过 160,000 年，即使很小的相对落后量也会累积成很长的延迟。既然中微子在光到达后数小时内就到达了，它们的速率比 $c$ 小的那一部分就必须小于几小时除以 160,000 年，这就给 $\\gamma = E/mc^{2}$ 设定了很大的下限，从而给 $m$ 设定了上限。能量不同的中微子到达时刻的分散，也可以用同样的方式给出一个限值。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737918057",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "particle-zoo",
+   "prompt": "理论家在预言此前未知的粒子方面取得了惊人的成功。考虑到过去理论上的这些胜利，我们为什么还要费心去做实验？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个理论只有在它的预言得到证实之后才会被接受，而那些成功的预言之所以被知道是成功的，只是因为实验找到了那些粒子。实验还会发现没有任何理论预言过的东西：μ 子、奇异粒子和粒子“动物园”本身都是意外，它们迫使人们引入新的量子数和夸克模型。实验在相互竞争的理论之间做出裁决，测量理论尚无法计算的质量、寿命和其他数值，并检验一个成功的理论在哪里失效，中微子振荡就是如此。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169737713897",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "你预计与普通物质隔离的反中子的寿命是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "与中子相同，为 882 s。反物质与其物质对应粒子具有相同的质量、内禀自旋和半衰期，所以孤立的反中子的衰变模式与自由中子相同，衰变为一个反质子、一个正电子和一个电子中微子。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169737802989",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "为什么 $\\eta^{0}$ 介子的寿命比大多数其他介子短得多？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "表 33.2 将 $\\eta^{0}$ 列为它自身的反粒子。与 $\\pi^{0}$ 一样，作为自身反粒子的中性粒子可以自己与自己湮没，通过电磁力把质量转化为光子，这类粒子的寿命相应地很短。不是自身反粒子的介子，例如 $\\pi^{\\pm}$ 和 $K^{\\pm}$，则必须通过弱得多的弱力衰变，寿命长得多。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169737710722",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mesons-and-baryons",
+   "prompt": "（a）强子一定是重子吗？（b）重子一定是强子吗？（c）不稳定的重子能否衰变为介子而不留下其他重子？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）不是。强子分为介子和重子，所以强子可能是介子。（b）是。重子是强子的两个子类之一。（c）不能。重子的 $B = +1$，介子的 $B = 0$，所以不留下重子的衰变会改变总重子数，而总重子数总是守恒的；重子总是衰变为另一个重子。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169738086422",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mesons-and-baryons",
+   "prompt": "请解释重子数守恒为何会导致核衰变和核反应中总原子质量（核子总数）守恒。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "质子和中子是原子核中仅有的重子，二者的 $B$ 都是 $+1$，所以一组原子核的总重子数等于其中核子的总数。核衰变和核反应不产生其他重子，所以总重子数守恒就意味着核子总数，即总质量数，在反应前后相同。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737757656",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "$\\pi^{0}$ 是它自身的反粒子，按下面的方式衰变：$\\pi^{0} \\to \\gamma + \\gamma$。如果 $\\pi^{0}$ 在衰变时是静止的，每个 $\\gamma$ 射线的能量是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 67.5,
+    "unit": "MeV",
+    "hint": "衰变之前动量为零，所以两个光子背靠背离开，能量相等，二者合起来携带表 33.2 中 $\\pi^{0}$ 的静能。",
+    "solution": "67.5 MeV"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738110551",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hadrons-and-leptons",
+   "prompt": "一种可能与电弱力和强力的统一有关的理论粒子，其质量为 $10^{14}\\;\\text{GeV}/c^{2}$。（a）这相当于多少个质子质量？（b）这相当于多少个电子质量？（这表明为了产生这种粒子，加速器必须达到何等极端的相对论性，以及相对论性的量 $\\gamma$ 必须有多大。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the mass in proton masses",
+      "value": 100000000000000.0,
+      "tol": 0.1,
+      "hint": "除以表 33.2 中质子的静质量 $938.3\\;\\text{MeV}/c^{2}$，单位要一致。"
+     },
+     {
+      "part": "(b) the mass in electron masses",
+      "value": 2e+17,
+      "tol": 0.05,
+      "hint": "除以电子的静质量 $0.511\\;\\text{MeV}/c^{2}$。"
+     }
+    ],
+    "solution": "（a）$1\\times 10^{14}$ （b）$2\\times 10^{17}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738123938",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lepton-families",
+   "prompt": "正 τ 子的衰变模式是 $\\tau^{+} \\to \\mu^{+} + \\nu_{\\mu} + \\bar{\\nu}_{\\tau}$。（a）释放的能量是多少？（b）验证电荷和轻子数守恒。（c）$\\tau^{+}$ 是 $\\tau^{-}$ 的反粒子。验证 $\\tau^{+}$ 的所有衰变产物，都是正文中给出的 $\\tau^{-}$ 衰变产物的反粒子。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the energy released",
+    "value": 1671,
+    "unit": "MeV",
+    "hint": "释放的能量就是损失的静能：$\\tau^{+}$ 的静能减去各产物的静能，数据取自表 33.2，中微子的质量取为零。",
+    "solution": "（a）1671 MeV （b）$Q = 1,\\; Q' = 1 + 0 + 0 = 1.\\; L_{\\tau} = -1;\\; L'_{\\tau} = -1;\\; L_{\\mu} = 0;\\; L'_{\\mu} = -1 + 1 = 0$ （c）$\\tau^{-} \\to \\mu^{-} + \\nu_{\\mu} + \\bar{\\nu}_{\\tau} \\Rightarrow \\mu^{-}$ 是 $\\mu^{+}$ 的反粒子；$\\nu_{\\mu}$ 是 $\\bar{\\nu}_{\\mu}$ 的反粒子；$\\bar{\\nu}_{\\tau}$ 是 $\\nu_{\\tau}$ 的反粒子<sup class=\"fn\" data-note=\"c-p3-tau\"></sup>"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169737817502",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forces-reactions",
+   "prompt": "（a）$\\pi^{0}$ 的衰变所释放的能量，由于它的寿命很短而带来的不确定度是多少？（b）这占衰变能量的多大比例？注意衰变模式是 $\\pi^{0} \\to \\gamma + \\gamma$（所以 $\\pi^{0}$ 的全部质量都消失了）。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the uncertainty in the energy, in eV",
+      "value": 3.9,
+      "unit": "eV",
+      "tol": 0.05,
+      "hint": "把表 33.2 中的寿命取作 $\\kdt$，并利用 $\\kdE\\,\\kdt \\approx h/4\\pi$。"
+     },
+     {
+      "part": "(b) the fraction of the decay energy",
+      "value": 2.9e-08,
+      "tol": 0.05,
+      "hint": "除以 $\\pi^{0}$ 的全部静能 135.0 MeV。"
+     }
+    ],
+    "solution": "（a）3.9 eV （b）$2.9\\times 10^{-8}$"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2432948",
+   "source_section": "33.3",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hadrons-and-leptons",
+   "prompt": "只考虑能量与质量，一个 Z 玻色子可以衰变成多少个 K<sup>0</sup>？以这种方式可以产生多少个电子和正电子？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个 $Z^{0}$ 最多可以衰变成 183 个 $K^{0}$，或衰变成约 $8.9\\times 10^{4}$ 个电子以及同样多的正电子。表 33.2 给出 $Z^{0}$ 的静能为 $91.19\\;\\text{GeV} = 91{,}190\\;\\text{MeV}$，$K^{0}$ 的静能为 $497.6\\;\\text{MeV}$。K 介子的个数就是能容纳的整数，$91{,}190\\;\\text{MeV}/497.6\\;\\text{MeV} = 183.3$，所以是 183。电子和正电子为了守恒电荷必须成对产生，每一对需要 $2 \\times 0.511\\;\\text{MeV} = 1.022\\;\\text{MeV}$，所以 $91{,}190\\;\\text{MeV}/1.022\\;\\text{MeV} = 89{,}227$ 对：$8.9\\times 10^{4}$ 个电子和 $8.9\\times 10^{4}$ 个正电子，总共约 $1.8\\times 10^{5}$ 个粒子。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "check-conservation-in-decays"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "lepton-family-numbers"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "check-conservation-in-decays"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "lepton-family-numbers"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "accelerators-create-matter"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bosons-and-fermions"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "lepton"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "lepton"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "particle-lifetime-and-force"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "particle-lifetime-and-force"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "mesons-and-baryons"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "baryon-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "p2",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "p2",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "p3",
+   "concept": "lepton-family-numbers"
+  },
+  {
+   "exercise": "p3",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "p3",
+   "concept": "check-conservation-in-decays"
+  },
+  {
+   "exercise": "p4",
+   "concept": "particle-lifetime-and-force"
+  },
+  {
+   "exercise": "p4",
+   "concept": "energy-time-uncertainty"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "accelerators-create-matter"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "mass-energy-equivalence"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p3-tau",
+   "kind": "correction",
+   "html": "书中的答案把 $\\tau^{-}$ 的衰变写成 $\\tau^{-} \\to \\mu^{-} + \\nu_{\\mu} + \\bar{\\nu}_{\\tau}$。正文给出的是 $\\tau^{-} \\to \\mu^{-} + \\bar{\\nu}_{\\mu} + \\nu_{\\tau}$，其产物是 $\\mu^{+}$、$\\nu_{\\mu}$ 和 $\\bar{\\nu}_{\\tau}$ 的反粒子。"
+  }
+ ]
+}

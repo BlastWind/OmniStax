@@ -1,0 +1,654 @@
+{
+ "id": "13.6",
+ "module": "m42219",
+ "chapter": "13",
+ "title": "湿度、蒸发与沸腾",
+ "short": "湿度与沸腾",
+ "lead": "汗水只有蒸发了才能使你凉爽，而蒸发得多快，取决于空气中已经含有的水蒸气量与该<span data-concept=\"temperature\">温度</span>下空气所能含有的最大量相比是多少。相对湿度、饱和和露点通过水的<span data-concept=\"vapor-pressure\">蒸气压</span>把这种比较化为数值，蒸气压也与水在给定<span data-concept=\"pressure\">压强</span>下何时沸腾有关。",
+ "objectives": [
+  "说明水的蒸气压与空气容纳水蒸气的能力之间的关系。",
+  "说明相对湿度与空气中水蒸气分压之间的关系。",
+  "利用蒸气压计算蒸气密度。",
+  "计算湿度和露点。"
+ ],
+ "summary_html": "<ul><li>相对湿度是气体中水蒸气相对于饱和值所占的比例。</li><li>对于给定的<span data-concept=\"temperature\">温度</span>，饱和蒸气<span data-concept=\"density\">密度</span>可由<span data-concept=\"vapor-pressure\">蒸气压</span>确定。</li><li>相对湿度百分比定义为 $$\\text{相对湿度百分比} = \\frac{\\text{蒸气密度}}{\\text{饱和蒸气密度}}\\times 100.$$</li><li>露点是空气达到 100% 相对湿度时的<span data-concept=\"temperature\">温度</span>。</li></ul>",
+ "notes": "香蕉叶上露珠的照片（图 13.31）和关于物态的 PhET 说明已略去，本节末尾检验其他各节思想的七道习题则编入那些小节。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。关于冷冻干燥的理解检测有答案，排在正文中讲沸腾的段落之后。三道思考题的建议思路由 AI 撰写并已标明。十道习题没有给出答案，因而略去：水在 20.0 °C 时的蒸气压占大气压的份额、1500 m 和 3000 m 处的沸点、安第斯山高处的压强、干燥的沙漠日的蒸气密度、40.0 °C 时由理想气体定律求出的蒸气密度、闷热的夏日早晨、珠穆朗玛峰顶的氧、25.0 °C 的空气冷却到 15.0 °C 时的露或雾、150 °C 的高压锅，以及关于 80% 湿度的“不合理的结果”一题。本书在此处印出的“综合概念”和“不合理的结果”习题中，有七道检验的是前面各节引入的内容，因此归入那些小节，并把本节注明为其来源：冷水和热水中的铜块（fs-id1543836）编入 13.2，$1.00\\times10^{14}\\ \\text{N/m}^2$ 下每立方米的物质的量（fs-id1582923）编入 13.3，超新星中的方均根速率（fs-id2705483）编入 13.4，氮的分压（fs-id1893897）和潜水员的氧（fs-id2377418）编入 13.5；孔中的铝棒（fs-id1669904）本应与 13.2 同处，深处的临界压强（fs-id2298434）本应与 13.5 同处，二者都没有给出答案，因此两节都不收。120.0 °C 的高压锅和呼出空气中的水两题的各小问都有答案。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-evaporation",
+   "kind": "sim",
+   "number": "13.32",
+   "originals": [
+    "/media/ch13/Figure_14_06_01.jpg"
+   ],
+   "original_caption": "（a）由于速率和动能的分布，即使在低于通常沸点的温度下，也有一些水分子能够脱离而进入气相。（b）如果容器是密封的，蒸发将持续进行，直到蒸气密度足够大，使凝结速率等于蒸发速率。这个蒸气密度及其产生的分压就是饱和值。它们随温度升高而增大，与是否存在其他气体（如空气）无关。它们只取决于水的蒸气压。",
+   "widths": [
+    331
+   ],
+   "draws": [
+    "temperature",
+    "pressure",
+    "density"
+   ],
+   "conventions": [
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "saturation labels apart, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-humidity",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "density"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph top lowered, labels placed, readout true above saturation"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-boiling",
+   "kind": "sim",
+   "number": "13.33",
+   "originals": [
+    "/media/ch13/graphics4-cef9.jpg"
+   ],
+   "original_caption": "（a）水中的一个空气气泡起初被 20 °C 的水蒸气所饱和。（b）随着温度升高，水蒸气进入气泡，因为它的蒸气压增大。气泡膨胀，使其压强保持为 1.00 atm。（c）在 100 °C 时，水蒸气持续进入气泡，因为水的蒸气压超过它在气泡中的分压，而这个分压必须小于 1.00 atm。气泡不断增大并上升到水面。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "pressure"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bar caption line shortened and lowered"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "humidity",
+   "concept": "relative-humidity",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity",
+   "concept": "evaporative-cooling",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity",
+   "concept": "dew-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity",
+   "concept": "saturation",
+   "verb": "introduces"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "vapor-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "phase-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "daltons-law",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "maxwell-boltzmann-distribution",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-pressure",
+   "concept": "relative-humidity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "vapor-density-from-vapor-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "ideal-gas-law-moles",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "vapor-density",
+   "concept": "vapor-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "percent-humidity",
+   "concept": "percent-relative-humidity",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity-example",
+   "concept": "humidity-from-the-table",
+   "verb": "introduces"
+  },
+  {
+   "span": "humidity-example",
+   "concept": "percent-relative-humidity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "humidity-example",
+   "concept": "dew-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "boiling",
+   "concept": "boiling",
+   "verb": "introduces"
+  },
+  {
+   "span": "boiling",
+   "concept": "vapor-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "boiling",
+   "concept": "daltons-law",
+   "verb": "uses"
+  },
+  {
+   "span": "boiling",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "boiling",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2722050",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "boiling"
+   },
+   "cite": "boiling",
+   "prompt": "冷冻干燥是一种干燥食品等物质的过程，做法是把它们放进真空室，降低它们周围的大气压。降低大气压为什么能加快干燥过程？又为什么会使食物的温度下降？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "大气压降低，使水的分压降低，因而湿度变低。这样，例如食物中水的蒸发就会增强。最有可能脱离食物的水分子是速度最大的那些。因此，留下来的分子平均速度较小，温度也较低。这可能（而且确实）导致食物冻结并干燥；所以这一过程被恰当地命名为冷冻干燥。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1439139",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vapor-pressure",
+   "prompt": "因为湿度只取决于水的蒸气压和温度，那么表 13.5 中列出的饱和蒸气密度，在压强为 $1.01\\times10^{5}\\ \\text{N/m}^2$ 的氦气大气而不是空气中是否有效？这些值是否受地球上海拔的影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的，这些值在氦气中同样有效。饱和蒸气密度是分压等于水在该温度下蒸气压的水蒸气的密度，而水的蒸气压只取决于温度。图 13.32 的说明正是这么讲的：饱和值与是否存在其他气体（如空气）无关。根据道尔顿分压定律，氦气会把它自己的分压加到总压强上，但它不会改变所能存在的水蒸气的量。出于同样的原因，这些值本身不受海拔影响。海拔高处的空气较稀薄，但其中的水蒸气仍然在表 13.5 给出的、对应其温度的密度下达到饱和。海拔改变的是温度，那里的温度通常较低，因此饱和蒸气密度通常较小；海拔还改变水沸腾时的压强，这是沸腾习题所涉及的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1438869",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "boiling",
+   "prompt": "为什么把一烧杯 40.0 °C 的水放进真空室，随着真空室被抽空（空气被泵出真空室），水会开始沸腾？沸腾在多大的压强下开始？在这样的烧杯里，食物会煮得更快吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水在其蒸气压等于水面上方的压强时沸腾，因为这时水蒸气可以无限制地进入气泡，气泡增大、脱离并上升。由表 13.5，40.0 °C 时水的蒸气压为 $7.34\\times10^{3}\\ \\text{Pa}$，所以当泵把真空室内的压降到 $7.34\\times10^{3}\\ \\text{N/m}^2$，约为大气压的 7% 时，水就开始沸腾。食物不会煮得更快。烹饪取决于水的温度，而这里的水只有 40.0 °C，远低于大气压下沸腾的水的 100 °C。如果说有什么影响，那就是沸腾使水变冷，因为逸出的是速度最大的分子，这正是“理解检测”框中冷冻干燥的道理。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1854910",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "humidity",
+   "prompt": "为什么在标准状况（标准温度和压强）下，消毒酒精比水蒸发得快得多？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "消毒酒精蒸发得更快，因为在相同温度下它的蒸气压比水的高。液体的蒸发，是其中速度最大的分子挣脱相邻分子而逸出，而蒸气压衡量的就是它们逸出的难易程度。酒精分子之间的吸引力比水分子之间的弱，所以在 0 °C 时，有足够动能逸出的分子所占的比例更大。酒精在 0 °C 时的蒸气压是水的两倍多，表 13.5 给出水的蒸气压为 $6.10\\times10^{2}\\ \\text{Pa}$。每秒有更多的分子离开液面，所以酒精蒸发得快得多。它从你皮肤上带走热量也更快，因为逸出的分子带走的能量最多，这就是它摸起来比水更凉的原因。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2720918",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "boiling",
+   "prompt": "高压锅通过把水的沸腾温度提高到大气压下的值以上来加快烹饪。（a）要把沸点提高到 120.0 °C，需要多大的压强？（b）这对应多大的表压强？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 199000.0,
+      "unit": "Pa",
+      "hint": "水在其蒸气压等于水面上方的压强时沸腾，所以所需的压强就是水在 120 °C 时的蒸气压，表 13.5 给出了这个值。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.97,
+      "unit": "atm",
+      "hint": "表压强是绝对压强减去大气压 $1.01\\times10^{5}\\ \\text{Pa}$，本书用标准大气压为单位给出。"
+     }
+    ],
+    "solution": "（a）$1.99\\times10^{5}\\ \\text{Pa}$（b）0.97 atm"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2385042",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "boiling",
+   "prompt": "在珠穆朗玛峰顶，某天水在 70.0 °C 沸腾，那么当天峰顶的大气压是多少？",
+   "answer": {
+    "type": "number",
+    "value": 31200.0,
+    "unit": "Pa",
+    "generated_by": "source",
+    "hint": "水在其蒸气压等于水面上方大气压的地方沸腾，所以从表 13.5 读出 70 °C 时的蒸气压即可。",
+    "solution": "$3.12\\times10^{4}\\ \\text{Pa}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2378107",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "percent-humidity",
+   "prompt": "某天温度为 25.0 °C，空气中含有 $18.0\\ \\text{g/m}^3$ 的水蒸气，相对湿度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 78.3,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "相对湿度百分比是蒸气密度除以 25.0 °C 时的饱和蒸气密度（取自表 13.5），再乘以 100。",
+    "solution": "78.3%"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id2094936",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vapor-density",
+   "prompt": "人肺中空气的温度为 37.0 °C，饱和蒸气密度为 $44.0\\ \\text{g/m}^3$。（a）如果呼出 2.00 L 空气，吸入的是非常干燥的空气，这个人损失的水蒸气最多是多少？（b）计算具有这一密度的水蒸气的分压，并与 $6.31\\times10^{3}\\ \\text{N/m}^2$ 的蒸气压作比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.088,
+      "unit": "g",
+      "hint": "2.00 L 饱和空气中水蒸气的质量，等于饱和蒸气密度乘以以立方米为单位的体积 $2.00\\times10^{-3}\\ \\text{m}^3$。"
+     },
+     {
+      "part": "(b)",
+      "value": 6300.0,
+      "unit": "Pa",
+      "hint": "把例题 13.10 倒过来做：以 g/m³ 为单位的密度除以 18.0 g/mol 就是 $n/V$，而 $\\kPr = (n/V)R\\kTemp$，其中温度以开尔文为单位。"
+     }
+    ],
+    "solution": "（a）$8.80\\times10^{-2}\\ \\text{g}$（b）$6.30\\times10^{3}\\ \\text{Pa}$；两个值几乎相同。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2599998",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "humidity-example",
+   "prompt": "某个秋日傍晚，相对湿度为 45.0%，温度为 20.0 °C。假设水蒸气密度不变，当晚温度降到 10.0 °C 时，相对湿度将是多少？",
+   "answer": {
+    "type": "number",
+    "value": 82.3,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "空气中的蒸气密度是 20.0 °C 时饱和蒸气密度的 45.0%。同一个密度除以 10.0 °C 时的饱和蒸气密度，就是晚上的湿度。",
+    "solution": "82.3%"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1509093",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "humidity-example",
+   "prompt": "某天温度为 20.0 °C 时相对湿度为 39.0%，这天的露点（出现 100% 相对湿度时的温度）是多少？",
+   "answer": {
+    "type": "number",
+    "value": 4.77,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "蒸气密度是 20.0 °C 时饱和蒸气密度的 39.0%。露点就是该密度恰为饱和值时的温度，按表 13.5 中 0 °C 与 5 °C 两行之间的直线读出。",
+    "solution": "$4.77^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id2386969",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "tag": "综合概念",
+   "cite": "boiling",
+   "prompt": "水的沸点随深度增加而升高，因为压强随深度增加。如果水面位于海平面，淡水在多深处的沸点为 150 °C？",
+   "answer": {
+    "type": "number",
+    "value": 38.3,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "水在压强等于其 150 °C 蒸气压（取自表 13.5）的地方于 150 °C 沸腾。该压强等于大气压加上水的重力所产生的压强 $\\kh\\krho\\kg$，所以用淡水的密度解出深度。",
+    "solution": "$38.3\\ \\text{m}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "evaporative-cooling"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "relative-humidity",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "relative-humidity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "vapor-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "humidity-from-the-table",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "vapor-pressure"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "evaporative-cooling",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "p3",
+   "concept": "humidity-from-the-table",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "gauge-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "p5",
+   "concept": "humidity-from-the-table",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "percent-relative-humidity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "humidity-from-the-table",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "vapor-density-from-vapor-pressure"
+  },
+  {
+   "exercise": "p11",
+   "concept": "ideal-gas-law-moles",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "percent-relative-humidity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "humidity-from-the-table",
+   "weight": 3
+  },
+  {
+   "exercise": "p15",
+   "concept": "dew-point"
+  },
+  {
+   "exercise": "p15",
+   "concept": "humidity-from-the-table",
+   "weight": 3
+  },
+  {
+   "exercise": "p17",
+   "concept": "boiling"
+  },
+  {
+   "exercise": "p17",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "container",
+   "label": "盛水的容器",
+   "figures": [
+    "sim-evaporation"
+   ]
+  },
+  {
+   "id": "lid",
+   "label": "密封容器的盖子",
+   "figures": [
+    "sim-evaporation"
+   ]
+  },
+  {
+   "id": "beaker",
+   "label": "自下方加热的盛水烧杯",
+   "figures": [
+    "sim-boiling"
+   ]
+  },
+  {
+   "id": "bubble",
+   "label": "含空气和水蒸气的气泡",
+   "figures": [
+    "sim-boiling"
+   ]
+  }
+ ]
+}

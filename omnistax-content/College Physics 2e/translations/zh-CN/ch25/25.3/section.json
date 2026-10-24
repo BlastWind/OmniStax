@@ -1,0 +1,817 @@
+{
+ "id": "25.3",
+ "module": "m42459",
+ "chapter": "25",
+ "title": "折射定律",
+ "short": "折射定律",
+ "lead": "光从一种材料进入另一种材料时会改变方向，插在水中的铅笔就表明了这一点。光在真空中的速率、材料使它变慢的方式，以及光线在界面处偏折多少，都是折射定律的组成部分。",
+ "objectives": [
+  "已知介质中的光速，确定折射率。"
+ ],
+ "summary_html": "<ul><li>光线的方向在穿过物质的变化处时发生的改变称为折射。</li><li>真空中的<span data-concept=\"speed-of-light-in-vacuum\">光速</span> $\\kc = 2.99792458\\times 10^{8}\\;\\text{m/s} \\approx 3.00\\times 10^{8}\\;\\text{m/s}.$</li><li>折射率 $n = \\frac{\\kc}{\\kv}$，其中 $\\kv$ 是材料中的<span data-concept=\"instantaneous-speed\">光速</span>，$\\kc$ 是真空中的<span data-concept=\"speed-of-light-in-vacuum\">光速</span>，$n$ 是折射率。</li><li>斯涅耳定律，即折射定律，用方程表示为 $n_1\\sin\\theta_1 = n_2\\sin\\theta_2$。</li></ul>",
+ "notes": "本节的十五道习题中有八道没有给出答案，已略去：空气中和冕牌玻璃中的光速，光在其中以 2.290 × 10⁸ m/s 传播的物质，关于水肺潜水员及其教练的两道习题连同其图，月球上的角反射器，冕牌玻璃造成的光线位移，证明中间介质不改变最终方向及其图，以及关于日出时阳光的“自拟习题”一题。关于温度计弧形前壁的思考题与 25.6 编在一起。书中表 25.1 里的 0ºC 写作 0°C。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案，读自源文本。十五道习题中有八道没有给出答案，已略去，这些习题在本节的说明中列出。宝石一题的答案是 c/5.00，不是一个数，所以作为开放题并附上书中的答案。七道 AP 题中有四道有答案；另外三道是选择题，其解答已被出版方在源文本中注释掉，所以书中没有给出答案，每道都作为开放题保留，附上选项和标明为 AI 撰写的建议思路，不予评分。七道思考题都附有标明为 AI 撰写的建议思路。关于温度计弧形前壁的思考题是一道关于放大镜的问题，与 25.6 编在一起，来源标为本节。本节没有印出理解检测框，所以没有插入行内题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-fish-tank",
+   "kind": "sim",
+   "number": "25.10",
+   "originals": [
+    "/media/ch25/Figure_26_03_01.jpg"
+   ],
+   "original_caption": "如图所示观察鱼缸，我们可以在两个不同的位置看到同一条鱼，因为光从水进入空气时会改变方向。在这种情形下，光可以沿两条不同的路径到达观察者，因此这条鱼看上去处在两个不同的位置。光的这种偏折称为折射，许多光学现象都由它造成。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "one-path headline and live readout at the sides; tank label off the image"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-michelson",
+   "kind": "sim",
+   "number": "25.11",
+   "originals": [
+    "/media/ch25/Figure_26_03_02.jpg"
+   ],
+   "original_caption": "迈克耳孙等人用来测定光速的早期装置的示意图。随着各镜转动，反射光线只在短暂的时间内射向固定镜。只有当下一面镜子恰好在光线返回的时候转到正确的位置时，返回的光线才会被反射进观察者的眼睛。通过测量出正确的转速，就可以测得往返所用的时间，并算出光速。迈克耳孙算得的光速值与今天所用的值只相差 0.04%。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-refraction",
+   "kind": "sim",
+   "number": "25.12",
+   "originals": [
+    "/media/ch25/Figure_26_03_03.jpg"
+   ],
+   "original_caption": "光线方向的改变取决于光从一种介质进入另一种介质时光速如何变化。在这里所示的情形中，光速在介质 1 中大于在介质 2 中。（a）光线变慢时更靠近法线。这类似于割草机从小路进入草地时发生的情形。（b）光线变快时偏离法线。这类似于割草机从草地进入小路时发生的情形。光路是完全可逆的。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated stage and readout dropped; reflection note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "refraction",
+   "concept": "refraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "speed-of-light",
+   "concept": "speed-of-light-in-vacuum",
+   "verb": "introduces"
+  },
+  {
+   "span": "speed-of-light",
+   "concept": "index-of-refraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "speed-of-light",
+   "concept": "speed-in-a-medium-from-the-index",
+   "verb": "introduces"
+  },
+  {
+   "span": "law-of-refraction",
+   "concept": "snells-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "law-of-refraction",
+   "concept": "bending-toward-or-away-from-the-normal",
+   "verb": "introduces"
+  },
+  {
+   "span": "law-of-refraction",
+   "concept": "find-an-index-or-an-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "law-of-refraction",
+   "concept": "index-of-refraction",
+   "verb": "uses"
+  },
+  {
+   "span": "law-of-refraction",
+   "concept": "speed-of-light-in-vacuum",
+   "verb": "uses"
+  },
+  {
+   "span": "law-of-refraction",
+   "concept": "refraction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "law-of-refraction",
+   "concept": "angle-of-refraction",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2040860",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed-of-light",
+   "prompt": "当光从空气进入水中时，下列哪个说法是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "波长变小，速率变小。",
+     "波长变小，速率变大。",
+     "波长变大，速率变小。",
+     "波长变大，速率变大。"
+    ],
+    "correct": 0,
+    "hint": "水的折射率较大，所以光在水中较慢，而光穿过水面时光的频率不变。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1292246",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "当光线从空气进入玻璃时，光进入玻璃后，下列哪个说法是正确的？（a）光线偏离法线，速率减小。（b）光线偏离法线，速率增大。（c）光线向法线偏折，速率增大。（d）光线向法线偏折，速率减小。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "玻璃的折射率大于空气，冕牌玻璃约为 1.52，空气为 1.00，而由于 $n = \\kc/\\kv$，折射率越大，速率越小，所以光进入玻璃时变慢。穿过表面时变慢的光线更靠近法线，就像把割草机从小路推上草地时，它会朝草地的边缘偏转。光线向法线偏折，速率减小，这就是说法（d）。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1723704",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "figure": {
+    "src": "/media/ch25/CNX_APPhysics_25_M3_twopaths_img.jpg",
+    "alt": "图中有两个箭头，从点 A 出发，指向一个阴影方框的顶部。箭头与阴影方框相遇处，方框内部又出现两个新的箭头。这两个箭头在方框内的点 B 相交。"
+   },
+   "prompt": "图中给出了从点 A 到点 B 的两条不同的可能路径。点 A 在空气中，点 B 在水中。光沿这两条路径（上方的还是下方的）中的哪一条从点 A 到点 B 更快？这两条路径中，哪一条更准确地表示光线从点 A 到点 B 的传播路径？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "由于光进入折射率较高的介质时向法线偏折，上方的路径更准确地表示了光线从 A 到 B 的传播。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2702712",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "实验小组的学生拿到一个塑料立方体，其中间有一个立方体形的空腔，占立方体体积的一半左右。已知塑料的折射率。空腔中充满某种气体，要求学生收集确定该气体折射率所需的数据。学生们测得下列一组数据：塑料块上方空气中光的入射角，30°；光束从空气进入塑料时的折射角，45°；光束从气体进入塑料时的折射角，45°。这三个测量值被分享给第二个实验小组。第二个小组仅凭这些数据能确定气体的折射率吗？（a）能，因为他们有关于空气中和气体上方塑料中光束的信息。（b）能，因为他们有关于气体两侧光束的信息。（c）不能，因为他们还需要额外的信息才能确定气体中光束的角度。（d）不能，因为他们没有多个数据点可供分析。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "塑料与气体界面上的斯涅耳定律为 $n_{\\text{plastic}}\\sin\\theta_{\\text{plastic}} = n_{\\text{gas}}\\sin\\theta_{\\text{gas}}$。你知道塑料的折射率，也测得了塑料中的角度 45°，但不知道光束在气体中的角度。这条定律仍有两个未知量，$n_{\\text{gas}}$ 和 $\\theta_{\\text{gas}}$。这三个测量值中没有给出气体中的角度，所以仅凭它们不能得出气体的折射率，这就是说法（c）。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1757613",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "实验小组的学生拿到一个塑料立方体，其中间有一个立方体形的空腔，占立方体体积的一半左右。已知塑料的折射率。空腔中充满某种气体，要求学生收集确定该气体折射率所需的数据。你需要收集哪些信息？你将如何利用这些信息推断立方体中气体的折射率？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "首先，测量光从空气进入塑料时的入射角和折射角。由于这两个角都可以测量，而空气的折射率已知，学生就可以求出塑料的折射率。\n\n接着，测量光从塑料进入气体时的入射角和折射角。由于这两个角都可以测量，而塑料的折射率已知，学生就可以求出气体的折射率。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1379992",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "光在水中传播，并以非法向的角度穿过界面，进入折射率未知的另一种流体。下列关于光穿过界面后的路径的说法，哪一个是正确的？（a）如果该流体的折射率高于水，光将加速并向法线偏折。（b）如果该流体的折射率高于水，光将减速并偏离法线。（c）如果该流体的折射率低于水，光将加速并偏离法线。（d）如果该流体的折射率低于水，光将减速并向法线偏折。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用两个事实逐条检验各说法。折射率越高，速率越小，因为 $\\kv = \\kc/n$；速率变小的光线向法线偏折，速率变大的光线偏离法线。说法（a）和（b）都把较高的折射率与错误的一半配对，（a）配的是加速，（b）配的是偏离法线。说法（d）把较低的折射率与减速配对，这也是错的。只有（c）是自洽的：折射率比水低的流体中，光传播得更快，加速的光偏离法线。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id2377940",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "从湖（$n = 1.33$）面下的一艘潜艇上发射一束激光。激光以 67° 的折射角从湖中进入空气。光在水中的速率有多大？激光穿过湖水与空气的界面时，入射角是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the speed of light in the water",
+      "value": 225000000.0,
+      "unit": "m/s",
+      "hint": "介质中的速率等于真空中的速率除以折射率。"
+     },
+     {
+      "part": "the angle of incidence in the water",
+      "value": 44,
+      "unit": "°",
+      "hint": "斯涅耳定律，水为介质 1，空气（$n = 1.00$）为介质 2。"
+     }
+    ],
+    "solution": "介质中的光速就是 $\\kc/n$，所以水中的光速为 $2.25\\times 10^{8}\\;\\text{m/s}$。由斯涅耳定律，入射角为 44°。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1931991",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "本章介绍了粗糙表面反射造成的漫射。光也可以通过折射而漫射。请描述在某个具体情形中这是如何发生的，例如光与碎冰的相互作用。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一堆碎冰由许多小冰块组成，每块的各个面朝向各不相同。一束平行光落在上面时，在每个面上的入射角都不同，所以在每个面上，折射定律都使光射向不同的方向，而光在离开每块冰、进入下一块冰或空气时又会再次偏折。经过几次这样的穿越，原来平行的光线就朝各个方向传播，正如从粗糙表面反射的光线一样。这就是为什么一整块清澈的冰能让你透过它看见东西，而碎冰看起来却是白色而浑浊的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1680511",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed-of-light",
+   "prompt": "为什么折射率总是大于或等于 1？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "折射率是真空中的光速与材料中的光速之比 $n = \\kc/\\kv$。光与它所穿过的任何材料的原子相互作用，并被它们减慢，所以物质中的光速总是小于 $\\kc$，仅在真空中才等于 $\\kc$。分子永不小于分母的比值，永远不会小于 1。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1553873",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed-of-light",
+   "prompt": "雷电的闪光先于其声音到达你，这一事实证明的是光速极大，还是仅仅证明光速大于声速？讨论如何利用这一效应来估算光速。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它只能证明光比声音快。如果光需要可察觉的时间才能到达，那么闪光与雷声之间的延迟就只会比声音的传播时间略短一些，闪光仍然会先到。要估算光速，你需要测量光自身行程所用的时间。你可以对几个已知距离的雷击测量闪光与雷声之间的延迟，由声速（约 340 m/s）求出距离，然后找出延迟中声音本身不能解释的那一部分；对于几千米外的雷击，这一部分只有微秒量级，用眼睛或耳朵根本察觉不到，这样只能给出光速的一个下限，也说明了为什么需要像迈克耳孙那样的方法，即直接测量光在长路径上的传播时间。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1560193",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "光从空气进入水中时，方向会向法线偏折还是偏离法线？从水进入玻璃呢？从玻璃进入空气呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "查表 25.1 中的折射率并加以比较。空气到水，折射率从 1.00 变为 1.333，折射率变大，速率变小，所以光向法线偏折。水到玻璃，从 1.333 变为约 1.52，折射率再次变大，所以光再次向法线偏折。玻璃到空气，从约 1.52 变为 1.00，折射率变小，速率变大，所以光偏离法线。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1766488",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "解释为什么水中的物体看上去总是比它实际所在的位置浅？为什么人们在跳入不熟悉的池塘或水域时有时会颈部和脊柱受伤？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水下物体发出的光离开水时偏离法线，因为它进入空气时速率变大。眼睛假定光是沿直线传来的，于是沿光到达的方向把光线追溯回去，这条线与竖直线相交于水面以下、物体上方的一点。因此物体看上去比实际更靠近水面，就像鱼缸里的鱼出现在它并不在的位置一样。池塘的底部也是如此，所以跳水者凭眼睛判断深度会判断错误。在不熟悉的水域，水往往浑浊，还有岩石或倾斜的底部，跳水者不能依靠看到的景象判断水是否足够深。猜错的跳水者会头朝下撞到水底，力就落在颈部和脊柱上。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1824709",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "解释为什么一个人在池中涉水行走时，腿看起来很短。请用一幅光线图来证明你的解释，图中画出从脚到水外观察者眼睛的光线路径。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "画出水面、水底的脚，以及水面上方一侧的观察者的眼睛。从脚发出的光线向上射到水面，在进入空气处偏离法线，然后到达眼睛。把到达眼睛的那条光线沿直线向水面以下反向延长：它与过脚的竖直线相交于脚的上方。眼睛看到脚在那一点，比实际更靠近水面，而水面以上的那部分腿，眼睛看到的则是在它实际所在的位置。水面以下的腿按视深度的同样比例显得缩短，所以整个人看上去腿很短。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1692299",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "假设光从空气入射到折射率为负的材料上，比如 –1.3；折射光线往哪里走？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把数值代入斯涅耳定律 $n_1\\sin\\theta_1 = n_2\\sin\\theta_2$，其中 $n_1 = 1.00$，$n_2 = -1.3$。于是 $\\sin\\theta_2 = -\\sin\\theta_1/1.3$，所以折射角与入射角符号相反。折射光线向法线偏折，就像进入折射率为 1.3 的普通材料时那样，但它出现在法线与入射光线相同的一侧，而不是跨到另一侧。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1853033",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed-of-light",
+   "prompt": "水中的光速是多少？甘油中呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "in water",
+      "value": 225000000.0,
+      "unit": "m/s",
+      "hint": "利用 $\\kv = \\kc/n$，折射率取自表 25.1 中水的数值。"
+     },
+     {
+      "part": "in glycerine",
+      "value": 204000000.0,
+      "unit": "m/s",
+      "hint": "甘油的折射率为 1.473。"
+     }
+    ],
+    "solution": "$\\kv = \\kc/n$：水中为 $2.25\\times 10^{8}\\;\\text{m/s}$，甘油中为 $2.04\\times 10^{8}\\;\\text{m/s}$。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "eip-332",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed-of-light",
+   "prompt": "计算光速为 $2.012\\times 10^{8}\\;\\text{m/s}$ 的介质的折射率，并根据表 25.1 指出最可能是哪种物质。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.49,
+    "unit": "",
+    "part": "the index of refraction",
+    "hint": "用真空中的光速除以介质中的光速，然后在表 25.1 中找这个折射率。",
+    "solution": "$n = \\kc/\\kv = 1.490$，聚苯乙烯。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2074758",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed-of-light",
+   "prompt": "中世纪，一颗小行星与月球发生了一次大碰撞。英格兰坎特伯雷大教堂的僧侣们把它描述为月球上及其周围的红色光辉。月球距离地球 $3.84\\times 10^{5}\\;\\text{km}$，那么在小行星撞上月球之后，光要多久才第一次到达地球？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.28,
+    "unit": "s",
+    "hint": "时间等于距离除以光速；先把距离换算成米。",
+    "solution": "$\\kt = \\kd/\\kc = 1.28\\;\\text{s}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1555322",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "speed-of-light",
+   "prompt": "某些计算机的部件通过折射率 $n = 1.55$ 的光纤相互通信。一个信号通过这样的光纤传播 0.200 m 需要多少时间（以纳秒计）？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.03,
+    "unit": "ns",
+    "hint": "由折射率求出光纤中的速率，再用距离除以该速率。",
+    "solution": "$1.03\\;\\text{ns}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-955",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "假设你有一种浸在水中的未知透明物质，你希望通过求出它的折射率来辨认它。你安排一束光以 45.0° 的角度射入它，并观察到折射角为 40.3°。这种物质的折射率是多少，它可能是什么物质？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.46,
+    "unit": "",
+    "part": "the index of refraction",
+    "hint": "这里介质 1 是水，$n_1 = 1.333$，不是空气。",
+    "solution": "$n = 1.46$，熔融石英"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "eip-932",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "不合理的结果。设光从水进入另一种物质，入射角为 10.0°，折射角为 14.9°。（a）另一种物质的折射率是多少？（b）这个结果有什么不合理之处？（c）哪些假设不合理或不自洽？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.898,
+    "unit": "",
+    "part": "(a)",
+    "hint": "解斯涅耳定律求 $n_2$，其中水为介质 1。",
+    "solution": "（a）0.898。（b）不可能有 $n < 1.00$，因为这意味着速率大于 $\\kc$。（c）折射角相对于入射角太大。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "eip-617",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "law-of-refraction",
+   "prompt": "不合理的结果。光从水射向一块宝石，在表面上的入射角为 80.0°，折射角为 15.2°。（a）光在宝石中的速率是多少？（b）这个结果有什么不合理之处？（c）哪些假设不合理或不自洽？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$\\kc/5.00$。（b）光速过慢，因为折射率远大于金刚石的折射率。（c）折射角相对于入射角不合理。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "speed-in-a-medium-from-the-index"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "index-of-refraction"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "index-of-refraction"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "snells-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "snells-law"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "find-an-index-or-an-angle",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "find-an-index-or-an-angle"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "snells-law"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "speed-in-a-medium-from-the-index"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "speed-in-a-medium-from-the-index"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "find-an-index-or-an-angle",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "snells-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "refraction"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "index-of-refraction"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "speed-of-light-in-vacuum"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "speed-of-light-in-vacuum"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "index-of-refraction"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "refraction"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "refraction"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "bending-toward-or-away-from-the-normal"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "snells-law"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "find-an-index-or-an-angle"
+  },
+  {
+   "exercise": "p1",
+   "concept": "speed-in-a-medium-from-the-index"
+  },
+  {
+   "exercise": "p2",
+   "concept": "index-of-refraction"
+  },
+  {
+   "exercise": "p3",
+   "concept": "speed-of-light-in-vacuum"
+  },
+  {
+   "exercise": "p4",
+   "concept": "speed-in-a-medium-from-the-index"
+  },
+  {
+   "exercise": "p5",
+   "concept": "find-an-index-or-an-angle"
+  },
+  {
+   "exercise": "p5",
+   "concept": "snells-law"
+  },
+  {
+   "exercise": "p6",
+   "concept": "find-an-index-or-an-angle"
+  },
+  {
+   "exercise": "p6",
+   "concept": "index-of-refraction",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "find-an-index-or-an-angle"
+  },
+  {
+   "exercise": "p7",
+   "concept": "speed-in-a-medium-from-the-index"
+  }
+ ],
+ "referents": [
+  {
+   "id": "fish",
+   "label": "鱼",
+   "figures": [
+    "sim-fish-tank"
+   ]
+  },
+  {
+   "id": "tank",
+   "label": "鱼缸",
+   "figures": [
+    "sim-fish-tank"
+   ]
+  },
+  {
+   "id": "viewer",
+   "label": "在鱼缸处观察的眼睛",
+   "figures": [
+    "sim-fish-tank"
+   ]
+  },
+  {
+   "id": "rotating-mirror",
+   "label": "迈克耳孙的八面转镜",
+   "figures": [
+    "sim-michelson"
+   ]
+  },
+  {
+   "id": "stationary-mirror",
+   "label": "相距数千米的固定镜",
+   "figures": [
+    "sim-michelson"
+   ]
+  },
+  {
+   "id": "source",
+   "label": "光源",
+   "figures": [
+    "sim-michelson"
+   ]
+  },
+  {
+   "id": "observer",
+   "label": "在迈克耳孙装置处观察的眼睛",
+   "figures": [
+    "sim-michelson"
+   ]
+  },
+  {
+   "id": "medium-1",
+   "label": "介质 1，光起初所在的介质",
+   "figures": [
+    "sim-refraction"
+   ]
+  },
+  {
+   "id": "medium-2",
+   "label": "介质 2，光进入的介质",
+   "figures": [
+    "sim-refraction"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1016 @@
+{
+ "id": "21.2",
+ "module": "m42357",
+ "chapter": "21",
+ "title": "电动势：端电压",
+ "short": "电动势与端电压",
+ "lead": "电池是带有自身<span data-concept=\"resistance\">电阻</span>的电能来源，一旦有<span data-concept=\"electric-current\">电流</span>流过，二者共同决定你在其接线端之间测得的量。这里讲述<span data-concept=\"emf\">电动势</span>、<span data-concept=\"internal-resistance\">内阻</span>和<span data-concept=\"terminal-voltage\">端电压</span>，并讲述电源的串联与并联，如手电筒、电池充电器和太阳电池阵列中那样。",
+ "objectives": [
+  "比较并对比电源的电压与电磁力。",
+  "描述当电压源的内阻增大（例如由于电池老化）时，输送给负载的端电压、电流和功率会发生什么变化。",
+  "解释为什么使用多个并联的电压源是有益的。"
+ ],
+ "summary_html": "<ul><li>所有<span data-concept=\"potential-difference\">电压</span>源都有两个基本组成部分——具有特征<span data-concept=\"emf\">电动势</span>（emf）的电能来源，以及<span data-concept=\"internal-resistance\">内阻</span> $\\krint$。</li><li>电动势是电源在没有<span data-concept=\"electric-current\">电流</span>流过时的<span data-concept=\"potential-difference\">电势差</span>。</li><li>电动势的数值取决于<span data-concept=\"potential-difference\">电势差</span>的来源。</li><li><span data-concept=\"potential-difference\">电压</span>源的<span data-concept=\"internal-resistance\">内阻</span> $\\krint$ 在有<span data-concept=\"electric-current\">电流</span>流过时会影响输出<span data-concept=\"potential-difference\">电压</span>。</li><li>器件的输出<span data-concept=\"potential-difference\">电压</span>称为它的<span data-concept=\"terminal-voltage\">端电压</span> $\\kV$，由 $\\kV = \\kemf - \\kIcur\\krint$ 给出，其中 $\\kIcur$ 是<span data-concept=\"electric-current\">电流</span>，当电流从<span data-concept=\"potential-difference\">电压</span>源的正极流出时为正。</li><li>当多个<span data-concept=\"potential-difference\">电压</span>源串联时，它们的<span data-concept=\"internal-resistance\">内阻</span>相加，电动势按代数相加。</li><li>太阳电池可以串联或并联，分别提供更高的<span data-concept=\"potential-difference\">电压</span>或<span data-concept=\"electric-current\">电流</span>。</li></ul>",
+ "notes": "书中未给出答案的十道习题已略去，表现单个电池组合成电池组的一幅旧版画也已略去，因为正文并未指引读者去看它。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "可以认为从图中取得的数据精确到三位有效数字。",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十七道习题中有七道附有答案，在此收录；其余十道略去：9 V 电池中碳锌电池的节数，1.54 V 电池输出 2.00 A 时的端电压和功率，正在充电的摩托车蓄电池，以 60 A 充电的汽车蓄电池，用镍镉电池和碱性电池供电的收音机，用四节电池供电的儿童玩具，手握的 20.0 kV 电源，电鳗的电板，温度升高的综合概念电池题，以及输出 1.00 W 的不合理干电池。六道思考题附有标明为 AI 撰写的建议思路，而不是评分答案。两道 AP 题在原书中都附有答案：选择题按书中答案评分，多部分题则是开放式题目，以书中答案作为其解答。",
+ "figures": [
+  {
+   "id": "fig-sources",
+   "kind": "photo",
+   "number": "21.8",
+   "widths": [
+    271
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-source-parts",
+   "kind": "sim",
+   "number": "21.9",
+   "originals": [
+    "/media/ch21/Figure_22_02_02.jpg"
+   ],
+   "original_caption": "任何电压源（此处为一节碱性干电池）都有一个与其电势差来源相关的电动势，以及一个与其构造相关的内阻 r。（注意，花体 E 代表电动势。）图中还标出了输出端，端电压 V 就是在输出端之间测得的。由于 V = 电动势 − Ir，只有在没有电流流过时，端电压才等于电动势。",
+   "widths": [
+    229
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label moved off the case border and the resistor; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-lead-acid-cell",
+   "kind": "figure",
+   "number": "21.10",
+   "originals": [
+    "/media/ch21/Figure_22_02_03.jpg"
+   ],
+   "original_caption": "铅酸蓄电池的单格电池的艺术构想图。铅酸蓄电池的单格电池中的化学反应使电荷分离，把负电荷送到阳极，阳极与铅板相连。氧化铅板连接到电池的正极，即阴极接线端。硫酸既传导电荷，又参与化学反应。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the fact the caption lacks"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-charge-separation",
+   "kind": "figure",
+   "number": "21.11",
+   "originals": [
+    "/media/ch21/Figure_22_02_04.jpg"
+   ],
+   "original_caption": "艺术构想图：两个电子被迫放到电池的阳极上，两个电子从电池的阴极移走。铅酸蓄电池中的化学反应在阳极上放入两个电子，并从阴极移走两个电子。它需要闭合电路才能进行，因为必须向阴极提供这两个电子。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage",
+    "charge"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence the caption lacks"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-load",
+   "kind": "sim",
+   "number": "21.12",
+   "originals": [
+    "/media/ch21/Figure_22_02_05.jpg"
+   ],
+   "original_caption": "电压源及其负载 R_load 的示意图。由于内阻 r 与负载串联，它会显著影响端电压和输送给负载的电流。（注意，花体 E 代表电动势。）",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current",
+    "power"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut; no longer repeats the headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-battery-testers",
+   "kind": "photo",
+   "number": "21.13",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-charger",
+   "kind": "figure",
+   "number": "21.14",
+   "originals": [
+    "/media/ch21/Figure_22_02_07.jpg"
+   ],
+   "original_caption": "汽车蓄电池充电器使通过电池的电流的正常方向反过来，使其化学反应逆转，并补充其化学势。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "current",
+    "voltage",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-series-sources",
+   "kind": "sim",
+   "number": "21.15",
+   "originals": [
+    "/media/ch21/Figure_22_02_08.jpg"
+   ],
+   "original_caption": "两个电压源的串联。电动势（各用花体 E 标出）和内阻相加，得到的总电动势为电动势₁ + 电动势₂，总内阻为 r₁ + r₂。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence, plain r1 + r2 dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-charging",
+   "kind": "sim",
+   "number": "21.17",
+   "originals": [
+    "/media/ch21/Figure_22_02_10.jpg"
+   ],
+   "original_caption": "这两个电压源串联，且电动势相对。电流沿较大电动势的方向流动，并受内阻之和的限制。（注意，图中每个电动势都用花体 E 表示。）接在电池上的电池充电器就是这种连接的一个例子。充电器的电动势必须大于电池的电动势，才能使电流反向通过电池。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-flashlight",
+   "kind": "sim",
+   "number": "21.18",
+   "originals": [
+    "/media/ch21/Figure_22_02_11.jpg"
+   ],
+   "original_caption": "此示意图表示一支手电筒，其中两节电池（电压源）和一个灯泡（负载电阻）相串联。流过的电流等于电动势之和除以两个内阻与负载电阻之和。（注意，图中每个电动势都用花体 E 表示。）",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current",
+    "power"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-parallel-sources",
+   "kind": "sim",
+   "number": "21.19",
+   "originals": [
+    "/media/ch21/Figure_22_02_12.jpg"
+   ],
+   "original_caption": "两个电动势相同（各用花体 E 标出）的电压源并联，产生的电动势不变，但总内阻比单个电源的更小。并联组合常用来输出更多的电流。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current",
+    "power"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut; no longer repeats the headline current"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-shark",
+   "kind": "photo",
+   "number": "21.20",
+   "widths": [
+    400
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "dimming",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "emf-defined",
+   "concept": "emf",
+   "verb": "introduces"
+  },
+  {
+   "span": "internal",
+   "concept": "internal-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "internal",
+   "concept": "battery-voltage-from-chemistry",
+   "verb": "introduces"
+  },
+  {
+   "span": "internal",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "terminal-voltage",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "current-with-load",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "charging-reverses-the-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminal",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "terminal",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "sources-in-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "sources-in-parallel",
+   "verb": "introduces"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "charging-reverses-the-current",
+   "verb": "reinforces"
+  },
+  {
+   "span": "multiple-sources",
+   "concept": "current-with-load",
+   "verb": "uses"
+  },
+  {
+   "span": "animals",
+   "concept": "sources-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "animals",
+   "concept": "sources-in-parallel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "animals",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "solar-cells",
+   "concept": "sources-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "solar-cells",
+   "concept": "sources-in-parallel",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3188757",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "emf-defined",
+   "prompt": "每个电动势都是电势差吗？每个电势差都是电动势吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每个电动势都是电势差，因为电动势以伏特为单位，是电源在没有电流流过时的电势差。然而，并非每个电势差都是电动势。电阻器上的电压降是一个电势差，正在输出电流的电池的端电压也是，但二者都不是电能的来源。电动势属于使电荷分离并驱动电流的器件，而电势差只是两点之间电势的差。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2968688",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "请解释下图中哪块电池在充电，哪块电池在被充电。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "18 V 的电源在充电，12 V 的电源在被充电。两个电源正极对正极，所以它们的电动势相对，电流沿较大电动势驱动的方向流动。那就是 18 V 的电源，所以电流从它的正极流出，被迫流入 12 V 电源的正极，即反向流过它，这就是充电的含义。电流为 $\\kIcur = (\\kemftwo - \\kemfone)/(\\krintone + \\krinttwo) = (18\\ \\text{V} - 12\\ \\text{V})/(1.0\\ Ω + 0.50\\ Ω) = 4.0\\ \\text{A}$，12 V 的电源被充电时，其端电压高于自身的电动势，为 $12\\ \\text{V} + (4.0\\ \\text{A})(1.0\\ Ω) = 16\\ \\text{V}$。"
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_02_14.jpg",
+    "alt": "该图显示两节电池相连：一节的电动势 花体 E 下标一 等于十二伏，内阻 r 下标一 等于一欧姆；另一节的电动势 花体 E 下标二 等于十八伏，内阻 r 下标二 等于零点五欧姆。两节电池以正极相对的方式接成闭合电路。",
+    "caption": "两个电压源连成回路，正极相对，一个电动势为 12 V、内阻为 1 Ω，另一个电动势为 18 V、内阻为 0.5 Ω。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3199702",
+   "kind": "conceptual-question",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "internal",
+   "prompt": "给定一块电池、各种电阻器，以及各种测量电压和电流的仪器，请描述你将如何测定这块电池的内阻。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在不接负载时用电压表测量电池的端电压，由于此时没有电流流过，测得的就是电动势。然后把其中一只电阻器作为负载接在电池两端，用与负载串联的电流表测量端电压和电流。此时端电压已经下降，由 $\\kV = \\kemf - \\kIcur\\krint$ 得，内阻等于电压降除以电流，$\\krint = (\\kemf - \\kV)/\\kIcur$。用几个不同的负载电阻重复测量，并把这些值放在一起考虑，可以防止某一次读数有误，也能看出内阻本身是否随电流而变化。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2017484",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "商店货架上两块不同的 12 V 汽车蓄电池，额定值分别为 600 和 850“冷启动电流”。哪一块的内阻最小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "额定值为 850 冷启动电流的那块内阻较小。冷启动额定值是电池能向起动机这一极低电阻输出的电流，而电源能驱动的电流为 $\\kIcur = \\kemf/(\\kRload + \\krint)$。两块电池的电动势都是 12 V，要驱动同一台起动机，因此输出电流较大的那块，其内阻必然较小。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3192560",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "multiple-sources",
+   "prompt": "电池串联有哪些优缺点？并联呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "串联时电动势相加，所以一排电池能产生比单个电池更大的总电动势，手电筒或玩具就是这样获得所需电压的。缺点是内阻也相加，所以这个组合输出不了那么大的电流，而且装反的电池会从总电动势中减去自己的电动势。并联时总电动势就是单个电源的电动势，所以电压方面没有任何收益，但内阻是并联的，合起来小于其中任何一个，因此这个组合可以输出更大的电流。缺点是各电源的电动势必须相同，否则较强的一个会驱动电流反向通过较弱的一个。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2406665",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "multiple-sources",
+   "prompt": "半挂牵引车使用四块大型 12 V 电池。起动系统需要 24 V，而卡车其他电气部件的正常工作使用 12 V。怎样连接这四块电池才能得到 24 V？得到 12 V？为什么对起动卡车的发动机（一个很重的负载）来说，24 V 比 12 V 更好？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "要得到 24 V，把电池接成两对串联，每对给出 24 V，再把这两对并联。要得到 12 V，把四块全部并联，这样电动势保持为 12 V。起动机是很重的负载，所以电流很大，内阻上的电压降也随之很大。在 24 V 下，同一台起动机取用的电流约为两倍，获得的功率约为四倍，并且电动势足够大，使电池内部的压降只占它的较小一部分，所以电池产生的能量有更多到达电动机。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1798228",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "假设有两个电压源——电源 A 和电源 B——电动势相同但内阻不同，即电源 A 的内阻低于电源 B。如果它们在各自电路中输出相同的电流，下列哪项说法正确？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "电源 A 电路中的外电阻大于电源 B 电路中的外电阻。",
+     "电源 A 电路中的外电阻小于电源 B 电路中的外电阻。",
+     "电源 A 电路中的外电阻等于电源 B 电路中的外电阻。",
+     "两个电路中外电阻之间的关系无法确定。"
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "hint": "电源输出的电流为 $\\kIcur = \\kemf/(\\kRload + \\krint)$，所以电动势相等、电流相等，就意味着两个电路中负载与内阻合起来的总和相同。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1801021",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "当所供给的电流减小 4 A 时，若某电压源的端电压增大 1 V，求该电压源的内阻。假设把这个电源与另一个电压不同但内阻相同的电源串联（方向相同）。总内阻是多少？如果两个电源反方向连接，总内阻将如何变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0.25 Ω，0.50 Ω，不变"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2035108",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "multiple-sources",
+   "prompt": "标准汽车蓄电池由六个铅酸蓄电池的单格电池串联而成，总电动势为 12.0 V。单个铅酸蓄电池的单格电池的电动势是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "2.00 V"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3258411",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "一块 3.0000 V 的锂电池用于数字手表，手表取用 0.300 mA 的电流，若电池的内阻为 2.00 Ω，其输出电压是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "2.9994 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2449779",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "一块汽车蓄电池的电动势为 12.0 V，在以 8.00 A 的电流给它充电时，端电压为 15.0 V，它的内阻是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0.375 Ω"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1245690",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "手电筒灯泡的热态电阻为 2.30 Ω，由一节 1.58 V 的碱性电池供电，电池的内阻为 0.100 Ω。（a）流过的电流是多少？（b）用 $\\kIcur^{2}\\kRes$ 计算供给灯泡的功率。（c）这个功率与用 $\\kV^{2}/\\kRes$ 算出的相同吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）0.658 A\n（b）0.997 W\n（c）0.997 W；是"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1997028",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "汽车起动机的等效电阻为 0.0500 Ω，由一块 12.0 V 的电池供电，电池内阻为 0.0100 Ω。（a）流过电动机的电流是多少？（b）加在电动机上的电压是多少？（c）供给电动机的功率是多少？（d）当电池接线腐蚀，在电路中增加 0.0900 Ω 的电阻时，重复这些计算。（在低电压、大电流的应用中，哪怕很小的多余电阻也会造成严重问题。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）200 A\n（b）10.0 V\n（c）2.00 kW\n（d）0.1000 Ω；80.0 A，4.0 V，320 W"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1845197",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "（a）若某电压源所供电流增大 5.00 A 时端电压下降 2.00 V，其内阻是多少？（b）根据所给信息能求出该电压源的电动势吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）0.400 Ω\n（b）不能，只有一个独立方程，所以只能求出 $\\krint$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1386234",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminal",
+   "prompt": "不合理的结果。一节 1.58 V 的碱性电池，内阻为 0.200 Ω，正在向负载供给 8.50 A 的电流。（a）其端电压是多少？（b）负载电阻的值是多少？（c）这些结果有什么不合理之处？（d）哪些假设是不合理或前后不一致的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）–0.120 V\n（b）$-1.41 \\times 10^{-2}\\ Ω$\n（c）端电压为负；负载电阻为负。\n（d）认为这样的电池能提供 8.50 A 电流的假设与其内阻不一致。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "emf"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "charging-reverses-the-current"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sources-in-series",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "internal-resistance"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "internal-resistance"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "current-with-load",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "sources-in-series"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "sources-in-parallel"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "sources-in-series"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "sources-in-parallel"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "current-with-load"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "internal-resistance"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "sources-in-series",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sources-in-series"
+  },
+  {
+   "exercise": "p1",
+   "concept": "emf",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "charging-reverses-the-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "current-with-load"
+  },
+  {
+   "exercise": "p4",
+   "concept": "terminal-voltage",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "current-with-load"
+  },
+  {
+   "exercise": "p5",
+   "concept": "terminal-voltage",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p6",
+   "concept": "internal-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "terminal-voltage"
+  },
+  {
+   "exercise": "p7",
+   "concept": "internal-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "source-1",
+   "label": "第一个电源：第一节电池，或充电器",
+   "figures": [
+    "sim-flashlight",
+    "fig-charger",
+    "sim-series-sources",
+    "sim-charging",
+    "sim-parallel-sources"
+   ]
+  },
+  {
+   "id": "source-2",
+   "label": "第二个电源：第二节电池，或充电中的电池",
+   "figures": [
+    "sim-flashlight",
+    "fig-charger",
+    "sim-series-sources",
+    "sim-charging",
+    "sim-parallel-sources"
+   ]
+  },
+  {
+   "id": "load",
+   "label": "电源所驱动的负载",
+   "figures": [
+    "sim-flashlight",
+    "sim-load",
+    "sim-parallel-sources"
+   ]
+  },
+  {
+   "id": "anode",
+   "label": "阳极，即铅板",
+   "figures": [
+    "fig-lead-acid-cell",
+    "fig-charge-separation"
+   ]
+  },
+  {
+   "id": "cathode",
+   "label": "阴极，即氧化铅板",
+   "figures": [
+    "fig-lead-acid-cell",
+    "fig-charge-separation"
+   ]
+  }
+ ]
+}

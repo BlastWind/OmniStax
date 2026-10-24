@@ -1,0 +1,695 @@
+{
+ "id": "7.8",
+ "module": "m42153",
+ "chapter": "7",
+ "title": "人体中的功、能量与功率",
+ "short": "人体中的能量",
+ "lead": "你自己的身体就是一台<span data-concept=\"energy\">能量</span>转化机器，<span data-concept=\"conservation-of-energy\">能量守恒</span>对它同样成立，就像对过山车一样。顺着食物中的<span data-concept=\"energy\">能量</span>在体内的去向，就会引出<span data-concept=\"metabolic-rate\">代谢率</span>、用来测量它的氧，以及一个人所做的<span data-concept=\"useful-work\">有用功</span>。",
+ "objectives": [
+  "解释人体静息时与从事做有用功的活动时的能量消耗有何不同。",
+  "计算食物中的化学能向有用功的转化。"
+ ],
+ "summary_html": "<ul><li>人体把储存在食物中的<span data-concept=\"energy\">能量</span>转化为<span data-concept=\"work\">功</span>、<span data-concept=\"thermal-energy\">热能</span>，和/或储存在脂肪组织中的化学能。</li><li>身体利用食物<span data-concept=\"energy\">能量</span>来维持生命和进行各种活动的<em>速率</em>称为<span data-concept=\"metabolic-rate\">代谢率</span>，静息时相应的速率称为基础代谢率（BMR）</li><li>基础代谢率所包含的<span data-concept=\"energy\">能量</span>分配给身体的各个系统，最大的一份用于肝脏和脾脏，其次是脑。</li><li>食物中约 75% 的大卡用于维持基础代谢率所包含的基本身体功能。</li><li>人们在各种活动中的<span data-concept=\"energy\">能量</span>消耗可以通过测量其氧的使用量来确定，因为消化过程基本上就是食物被氧化的过程。</li></ul>",
+ "notes": "短跑运动员的输出功率、缺乏锻炼者的效率、由表 7.5 读出的每日能量需求、铲雪、慢跑者的腿、Daedalus 88 的飞行、登山者的瓶装氧气和糖果棒，是本节没有给出答案的习题，这八道题全部略去；书中 Daedalus 88 的照片属于其中一道题，没有复制。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成，答案只来自书后答案。十六道习题中有八道没有给出答案，已略去：10.0 m/s、3.00 s 的短跑运动员（fs-id2501866）、代谢 500 kcal 的缺乏锻炼者（fs-id1844080）、按表 7.5 核算睡眠、步行、上课和骑自行车的一天（fs-id1525034）、铲雪（fs-id1009686）、在 1.50 cm 内停下的慢跑者的腿（fs-id1802434）、Daedalus 88 的飞行（fs-id1593504，它也是本节唯一让读者去看表 7.2 查骑自行车效率的习题）、登山者的瓶装氧气（eip-367），以及糖果棒和网球比赛（fs-id1655352）。第 9 题关于跳跃者关节中的力，前两问有答案，第三问是通过把两个力与重力比较来回答的，所以它被设为两个数值，并把书中的完整答案放在解答里，如同 7.1 的电梯习题。四道思考题都没有给出答案，所以每道都带有一份 AI 撰写的建议思路，并加以标注；关于搓手的那道思考题是对有用功定义的简短检测，放在那一段之后；因为本章在任何地方都没有印出“理解检测”框，所以其余三道思考题属于习题集的内容。本节没有留给后面各节的习题，也没有从别处取来习题。它的有答案的习题中有两道可以算作前面某一节的：从 0.600 m 高台边缘落下着地的人（fs-id1700259）是由下落的能量求停止力，这属于 7.3；游泳者的划水动作（fs-id1888740）是恒力所做的功，这属于 7.1。两道仍留在这里，因为书把它们放在人体的力和功率之中，而这正是本节的主题，并且两道都标注了前面各节的概念以及本节的概念。书在习题集中印有四幅无编号的图，其中属于有答案习题的三幅附在各自的卡片上：推铅球运动员、游泳者的划水动作和阶梯金字塔。游泳者的图在这里复制了一次，7.9 的第三题在自己的卡片上用同一文件附有这幅图。",
+ "figures": [
+  {
+   "id": "sim-food-energy",
+   "kind": "sim",
+   "number": "7.23",
+   "originals": [
+    "/media/ch07/Figure_08_08_01a.jpg"
+   ],
+   "original_caption": "人体摄入的能量被转化为功、热能和储存的脂肪。其中绝大部分变成了热能，不过这一比例随身体活动的类型而异。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bar name moved inside its bar off the headline; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-day",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "energy",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "clock marks the strip at its edges; in-graph note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-oxymeter",
+   "kind": "photo",
+   "number": "7.24",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-fmri",
+   "kind": "photo",
+   "number": "7.25",
+   "widths": [
+    250
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "conversion",
+   "concept": "energy-conversion-in-humans",
+   "verb": "introduces"
+  },
+  {
+   "span": "conversion",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conversion",
+   "concept": "forms-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "at-rest",
+   "concept": "metabolic-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "at-rest",
+   "concept": "oxygen-consumption-measures-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "at-rest",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "at-rest",
+   "concept": "watt",
+   "verb": "uses"
+  },
+  {
+   "span": "at-rest",
+   "concept": "basal-metabolic-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "useful-work",
+   "concept": "useful-work",
+   "verb": "introduces"
+  },
+  {
+   "span": "useful-work",
+   "concept": "body-efficiency",
+   "verb": "introduces"
+  },
+  {
+   "span": "useful-work",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "useful-work",
+   "concept": "nonconservative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "useful-work",
+   "concept": "mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "useful-work",
+   "concept": "energy-from-power",
+   "verb": "uses"
+  },
+  {
+   "span": "useful-work",
+   "concept": "efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "useful-work",
+   "concept": "energy-conversion-in-humans",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bodily-functions",
+   "concept": "metabolic-rate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bodily-functions",
+   "concept": "energy-transformation",
+   "verb": "uses"
+  },
+  {
+   "span": "bodily-functions",
+   "concept": "forms-of-energy",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1466781",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "useful-work",
+   "prompt": "解释为什么沿之字形路线爬山比笔直地从山侧爬上去更容易。两种情况下你增加的重力势能相同吗？两种情况下你的能量消耗相同吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "之字形路线更长，但上升的角度更平缓，所以每走一步，你沿着路线克服的那部分重力都更小，你的腿在任何时刻施加的力也更小。两条路线上增加的重力势能相同，因为它等于 $m\\kg\\kh$，只取决于上升的高度，而重力是保守力。你的能量消耗并不相同。之字形路线耗时更长，而你的身体在整个过程中都按其代谢率消耗食物能量。无论走哪条路线，你所代谢的能量大部分都变成热能，用于抬起和放下你的腿，而不是变成你质心的势能。之字形路线让人觉得更轻松，是因为它在任何时刻要求的力更小，而不是所需的能量更少，而且它通常要多耗一点能量。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1912970",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "useful-work",
+   "prompt": "你搓手取暖时，对外界做功了吗？这项活动的效率是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你没有做有用功。每只手都压着另一只手并在其上滑动，而两只手都是你身体的一部分，所以你施加的任何力都没有使外界的任何东西通过一段距离。你的肌肉所做的功用于克服两个手掌之间的摩擦，并变成热能，而这正是搓手的全部目的。由于有用功是对外界所做的功，有用功的输出为零，而效率，即有用功除以为做这些功而代谢的食物能量，也为零。这在这里并不是失败：暖手恰恰是你想要热能的情形，所以零效率正是你想要的。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1772665",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bodily-functions",
+   "prompt": "颤抖是对体温降低的一种不随意反应。颤抖时人体的效率是多少？这个值是否理想？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "颤抖使肌肉相互对抗，所以它们施加的力作用在你自己身体的其他部位上，外界没有任何东西被移动一段距离。有用功的输出为零，因此颤抖时人体的效率为零。在这里，这正是你想要的值。颤抖是对低体温的不随意反应，其目的是尽可能快地在体内把食物能量转换为热能；任何以有用功的形式离开的能量，都是没有使你变暖的能量。表 7.5 显示了这需要多少能量：颤抖消耗 425 W，约为静坐时速率的三倍半。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1727470",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conversion",
+   "prompt": "讨论节食与运动的相对影响，注意到大多数体育活动消耗食物能量的速率为 400 至 500 W，而一杯酸奶就可能含有 1360 kJ（325 kcal）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把二者当作速率来比较。一杯酸奶含有 1360 kJ，而以 450 W 的速率消耗食物能量的活动，大约需要 3000 s 才能把这些能量消耗掉，也就是为一杯酸奶进行大约五十分钟的持续运动。选择不吃酸奶则完全不花时间，所以作为改变摄入能量与消耗能量之间平衡的办法，节食比运动见效快得多。例题 7.13 从另一面说明了同样的道理：仅仅 1000 kJ 的盈余，还不到一天食物能量的十分之一，就需要骑 42 分钟自行车才能消耗掉。运动仍然重要，因为运动持续期间会提高身体消耗能量的速率，因为肌肉比体脂消耗更多的大卡，从而提高基础代谢率，还因为它对身体有好处，而少吃做不到这一点。但算术告诉我们，想要减少脂肪的人会发现，少吃比通过运动消耗同样多的能量更容易。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1858528",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "at-rest",
+   "prompt": "（a）你以每分钟 116 级的速度快速爬楼梯，靠一小块 10.0 g 黄油中的 93.0 kcal 能量能爬多久？（b）如果每段楼梯有 16 级，这相当于多少段楼梯？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "time",
+      "value": 9.5,
+      "unit": "min",
+      "hint": "表 7.5 给出每分钟爬 116 级楼梯为 685 W，而 1 大卡等于 4186 J，所以时间等于食物能量除以这一速率。"
+     },
+     {
+      "part": "flights",
+      "value": 69,
+      "unit": "flights",
+      "hint": "以每分钟 116 级的速度，按（a）中求得的时间数出台阶数，再除以每段的 16 级。"
+     }
+    ],
+    "solution": "（a）9.5 min （b）69 段楼梯"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1636804",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "useful-work",
+   "figure": {
+    "src": "/media/ch07/Figure_08_08_04a.jpg",
+    "alt": "近距离拍摄的一位推铅球运动员正在投掷铅球。",
+    "caption": "2007 年多诺赫高地运动会上的一位推铅球运动员。（来源：John Haslam, Flickr）"
+   },
+   "prompt": "计算一位推铅球运动员的输出功率，以瓦特和马力为单位。他用 1.20 s 使 7.27 kg 的铅球从静止加速到 14.0 m/s，同时将它抬高 0.800 m。（不计使他自己身体加速所产生的功率。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "power output",
+      "value": 641,
+      "unit": "W",
+      "hint": "有用功等于铅球获得的动能加上将它抬高 0.800 m 的势能，功率就是这一功除以 1.20 s。"
+     },
+     {
+      "part": "in horsepower",
+      "value": 0.86,
+      "unit": "hp",
+      "hint": "1 马力等于 746 W。"
+     }
+    ],
+    "solution": "641 W，0.860 hp"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1436610",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "at-rest",
+   "prompt": "没有用于做功或热传递的能量，会转化为体脂的化学能，体脂约含 39 kJ/g。如果某一天你吃了 10,000 kJ（约 2500 kcal），除了放松地坐 16.0 h、睡 8.00 h 之外什么也不做，你会增加多少克脂肪？用表 7.5 中的数据求这些活动的能量消耗率。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 31,
+    "unit": "g",
+    "hint": "表 7.5 给出静坐为 120 W、睡眠为 83 W。求出这一天消耗的能量，从你吃下的 10,000 kJ 中减去它，再把剩余的部分除以每克脂肪所含的 39 kJ。",
+    "solution": "31 g"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1207949",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "at-rest",
+   "prompt": "一位受试者在跑步机上以 100 W 的功率输出功，同时以 2.00 L/min 的速率消耗氧，他的效率是多少？（提示：见表 7.5。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 14.3,
+    "unit": "%",
+    "hint": "每消耗 1 升氧大约产生 20 kJ 的能量，所以 2.00 L/min 就是一个以瓦特计的食物能量速率；效率等于 100 W 的有用功除以这一速率。",
+    "solution": "14.3%"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1700259",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "useful-work",
+   "prompt": "人从一定高度跳到地面时，关节中会产生非常大的力。（a）一个 80.0 kg 的人从 0.600 m 高的高台边缘跳下，身体僵硬地着地，使关节材料被压缩 1.50 cm，求所产生的力的大小。（一定要把人的重力计算在内。）（b）实际上，膝盖几乎不由自主地弯曲，以帮助延长你停下来所经过的距离。如果停止距离是 0.300 m，求所产生的力的大小。（c）把这两个力与人的重力相比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "force, landing stiffly",
+      "value": 32100,
+      "unit": "N",
+      "hint": "关节材料被压缩时人还在继续下落，所以整个下落过程中损失的重力势能（高台的高度加上那 1.50 cm）就变成停止力在 1.50 cm 距离内所做的功。"
+     },
+     {
+      "part": "force, knees bending",
+      "value": 2350,
+      "unit": "N",
+      "hint": "用 0.300 m 的停止距离代替 1.50 cm，按同样的能量账目再算一遍，看看力小了多少。"
+     }
+    ],
+    "solution": "（a）$3.21\\times 10^{4}\\ \\text{N}$ （b）$2.35\\times 10^{3}\\ \\text{N}$ （c）合力与人的重力之比，在（a）中为 41.0，在（b）中为 3.00。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id955139",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "useful-work",
+   "prompt": "（a）一个 55.0 kg 的人做 50 次深蹲，每次其质心下降并升高 0.400 m。（他在两个方向上都做功。）求他所用的能量，以 kJ 为单位。可以假定他的效率为 20%。（b）如果他在 3.00 min 内做完，平均功率消耗率是多少瓦特？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "energy used",
+      "value": 108,
+      "unit": "kJ",
+      "hint": "每次下蹲使质心降低又升高 0.400 m，两个方向上都做功，所以有用功是 $m\\kg\\kh$ 的两倍再乘以 50；食物能量等于这一功除以 20% 的效率。"
+     },
+     {
+      "part": "average power",
+      "value": 599,
+      "unit": "W",
+      "hint": "把食物能量除以以秒表示的 3.00 min。"
+     }
+    ],
+    "solution": "（a）108 kJ （b）599 W"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1888740",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "useful-work",
+   "figure": {
+    "src": "/media/ch07/Figure_08_08_06a-6b66.jpg",
+    "alt": "图中表示一个人在游泳，以及他每次划水动作中手臂的运动。手臂的动作用一段圆弧表示，圆弧从他的手进入水面处开始，到他的手露出水面处结束。这个人的指尖在一次划水动作中画出的这段圆弧的直径是一点八米。"
+   },
+   "prompt": "图中的游泳者在每次 1.80 m 长的划水动作中，用手臂施加平均 80.0 N 的水平向后的力。（a）他每次划水动作的输出功是多少？（b）如果他每分钟划水 120 次，求他手臂的输出功率。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "work output in each stroke",
+      "value": 144,
+      "unit": "J",
+      "hint": "力沿着划水的方向，所以在一次划水动作的 1.80 m 上，功为 $\\kW = \\kF\\kd$。"
+     },
+     {
+      "part": "power output",
+      "value": 288,
+      "unit": "W",
+      "hint": "每分钟 120 次就是每秒 2 次，所以功率等于一次划水动作的功乘以每秒的次数。"
+     }
+    ],
+    "solution": "（a）144 J （b）288 W"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2206966",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "useful-work",
+   "figure": {
+    "src": "/media/ch07/graphics7-578d.png",
+    "alt": "图中是一座阶梯金字塔的模型，每级台阶的侧面都有坡道。",
+    "caption": "古代金字塔很可能是借助坡道这种简单机械建造的。（来源：Franck Monnier, Wikimedia Commons）"
+   },
+   "prompt": "令人敬畏的胡夫金字塔建于 4500 多年前。它的方形底面，原先每边 230 m，占地 13.1 英亩，高 146 m，质量约为 $7\\times {10}^{9}\\;\\text{kg}$。（由于采石和一定程度的下沉，金字塔今天的尺寸略有不同。）历史学家估计，有 20,000 名工人花了 20 年建造它，每天工作 12 小时，每年工作 330 天。（a）已知金字塔的质心位于其高度的四分之一处，求储存在金字塔中的重力势能。（b）只有一部分工人搬运石块；大多数人从事后勤工作，如修建坡道（见图）、运来食物和水，以及把石块拖运到工地。假定搬运石块的工人有 1000 人，他们消耗食物能量的速率为 300 kcal/h，求这些工人的效率。你的答案意味着，他们的功中有多少用于搬运石块，又有多少用于克服摩擦以及举起和放下他们自己的身体？（c）假定平均每个工人每天需要 3600 kcal，且他们的饮食是 5% 蛋白质、60% 碳水化合物和 35% 脂肪，求每天必须供应的食物的质量。（这些比例没有计入所摄入的粗纤维和不可消化物质的质量。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "gravitational potential energy",
+      "value": 2500000000000.0,
+      "unit": "J",
+      "hint": "质心位于 146 m 的四分之一处，所以势能为 $m\\kg\\kh$，高度取这个值。"
+     },
+     {
+      "part": "efficiency of the lifters",
+      "value": 2.52,
+      "unit": "%",
+      "hint": "算出 1000 名搬运工人在 20 年、每年 330 个 12 小时工作日里按每小时 300 kcal 代谢的食物能量，再用金字塔的势能除以它。"
+     },
+     {
+      "part": "mass of food each day",
+      "value": 14000,
+      "unit": "kg",
+      "hint": "求出每克蛋白质、碳水化合物和脂肪提供的能量，按所给的比例取这种混合物，再按 20,000 名工人每人每天 3600 kcal 来换算。"
+     }
+    ],
+    "solution": "（a）$2.50\\times 10^{12}\\ \\text{J}$ （b）2.52% （c）$1.4\\times 10^{4}\\ \\text{kg}$（14 吨）"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "useful-work"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "path-independence-of-gravity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "body-efficiency",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "useful-work"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "body-efficiency",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "useful-work"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "body-efficiency",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "metabolic-rate",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "energy-conversion-in-humans"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "metabolic-rate",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "energy-from-power"
+  },
+  {
+   "exercise": "p1",
+   "concept": "metabolic-rate",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p3",
+   "concept": "useful-work",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "gravitational-potential-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "metabolic-rate"
+  },
+  {
+   "exercise": "p5",
+   "concept": "energy-conversion-in-humans"
+  },
+  {
+   "exercise": "p5",
+   "concept": "energy-from-power",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "body-efficiency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "oxygen-consumption-measures-energy"
+  },
+  {
+   "exercise": "p7",
+   "concept": "useful-work",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "stopping-force-from-energy"
+  },
+  {
+   "exercise": "p9",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "useful-work",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "body-efficiency"
+  },
+  {
+   "exercise": "p11",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "calculate-power",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "calculate-work"
+  },
+  {
+   "exercise": "p13",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p13",
+   "concept": "useful-work",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "body-efficiency"
+  },
+  {
+   "exercise": "p15",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "metabolic-rate",
+   "weight": 2
+  }
+ ]
+}

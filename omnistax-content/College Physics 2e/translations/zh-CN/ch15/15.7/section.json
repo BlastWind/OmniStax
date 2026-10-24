@@ -1,0 +1,635 @@
+{
+ "id": "15.7",
+ "module": "m42238",
+ "chapter": "15",
+ "title": "熵与热力学第二定律的统计解释：其背后的解释",
+ "short": "熵的统计解释",
+ "lead": "热力学第二定律的其他表述说的是会发生什么；统计则说明为什么。宏观态是你能看到的系统的状态，例如一次掷<span data-ref=\"coins\">硬币</span>所得的正面数，或气体的<span data-concept=\"pressure\">压强</span>和<span data-concept=\"temperature\">温度</span>；微观态是产生它的一种详细排布；玻尔兹曼把一个宏观态的<span data-concept=\"entropy\">熵</span>与它的微观态数联系了起来。",
+ "objectives": [
+  "找出熵中的概率。",
+  "分析熵所涉系统中的统计概率。"
+ ],
+ "summary_html": "<ul><li>无序比有序的可能性大得多，这可以从统计上看出来。</li><li>处于给定状态（即一个宏观态）的系统的<span data-concept=\"entropy\">熵</span>可以写成 $$\\kSent = k\\ln W,$$ 其中 $k = 1.38\\times10^{-23}\\ \\text{J/K}$ 是玻尔兹曼常量，$\\ln W$ 是与给定宏观态对应的微观态数 $W$ 的自然对数。</li></ul>",
+ "notes": "图 15.37，即本节开头那张掷出的硬币的照片，作为题图略去；书中没有给出答案的四道题也略去了：从 60 个正面到 40 个正面之间的投掷所占的百分比，100 枚硬币从 45 个正面掷到 51 个和 75 个正面，10 枚硬币最可能的三个宏观态以及掷出 10 个正面所需的时间，以及其热传递以融化的冰来度量的空调；书中小写的熵 s，以及表 15.3 在 3 个正面一行中重复印出的五个微观态，均保持原样。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。第 2、4、6、8 题没有给出答案，已略去：100 枚硬币的投掷中落在 60 个正面到 40 个正面之间的百分比，100 枚硬币从 45 个正面掷到 51 个正面和 75 个正面的熵变，10 枚硬币最可能的三个宏观态以及掷出 10 个正面或 10 个反面所需的时间，以及其 12.65 MJ 热传递以融化的冰来度量的空调。第 5 题的（a）（b）两问的答案是数，（c）问的答案是文字，卡片把它放在解中；第 7 题给出（b）至（e）问的答案，而（a）问，即 6 枚硬币的微观态表，则由读者自己列出。两道 AP 题中，被瞬间加热的那一层气体的题有答案，并设为判分选择题；设计宏观模拟的题没有答案，是开放题，附有 AI 撰写的建议思路并如此标明。唯一一道思考题，即砖砌建筑物与那堆砖的题，在原书中不分题型印出，按其标题归类；它与 15.6 的最后一道思考题一字不差，两节都保留，因为书中两处都印了它，而它所要求的微观态数在本节讲授。它的建议思路由 AI 撰写并已标明。本章没有理解检测框，所以没有内嵌任何题。没有从其他节取题。数值答案接受 2% 的误差。",
+ "figures": [
+  {
+   "id": "sim-coin-tosses",
+   "kind": "sim",
+   "draws": [
+    "entropy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "S chart lowered off the tick row, 5-coin detent unlabelled, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-gas-disorder",
+   "kind": "sim",
+   "number": "15.38",
+   "originals": [
+    "/media/ch15/Figure_16_07_02.jpg"
+   ],
+   "original_caption": "（a）容器中气体的通常状态，是原子或分子无序、随机的分布，其速率服从麦克斯韦-玻尔兹曼分布。这些原子或分子最终全都聚在容器一角的可能性是如此之小，以至于不妨认为它不可能发生。（b）借助能量传递，可以把气体压到一个角上，使它的熵大大减小。但只要不去管它，它就会自发地增大熵，回到正常状态，因为正常状态的可能性要大得多。",
+   "widths": [
+    220
+   ],
+   "draws": [
+    "entropy",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the two counts"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-entropy-change",
+   "kind": "sim",
+   "draws": [
+    "entropy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "ΔS label inside the stage, labels off the axis, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "why-disorder",
+   "concept": "statistical-second-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "why-disorder",
+   "concept": "second-law-entropy-statement",
+   "verb": "uses"
+  },
+  {
+   "span": "why-disorder",
+   "concept": "entropy-and-disorder",
+   "verb": "uses"
+  },
+  {
+   "span": "why-disorder",
+   "concept": "unavailable-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "macrostate-and-microstate",
+   "verb": "introduces"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "disorder-is-more-probable",
+   "verb": "introduces"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "entropy-and-disorder",
+   "verb": "uses"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "statistical-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "macrostate",
+   "verb": "introduces"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "microstate",
+   "verb": "introduces"
+  },
+  {
+   "span": "coin-tosses",
+   "concept": "statistical-analysis",
+   "verb": "introduces"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "boltzmann-entropy",
+   "verb": "introduces"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "statistical-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "macrostate-and-microstate",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "disorder-is-more-probable",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "kinetic-theory",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "maxwell-boltzmann-distribution",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "ideal-gas",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "boltzmann-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "change-in-entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "entropy-and-life",
+   "verb": "uses"
+  },
+  {
+   "span": "disorder-in-a-gas",
+   "concept": "second-law-entropy-statement",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-change",
+   "concept": "calculate-entropy-from-microstates",
+   "verb": "introduces"
+  },
+  {
+   "span": "entropy-change",
+   "concept": "boltzmann-entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-change",
+   "concept": "macrostate-and-microstate",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-change",
+   "concept": "disorder-is-more-probable",
+   "verb": "reinforces"
+  },
+  {
+   "span": "entropy-change",
+   "concept": "change-in-entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-change",
+   "concept": "calculate-entropy-change",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-strategy",
+   "concept": "entropy-problem-solving",
+   "verb": "introduces"
+  },
+  {
+   "span": "entropy-strategy",
+   "concept": "change-in-entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-strategy",
+   "concept": "second-law-entropy-statement",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-strategy",
+   "concept": "irreversible-process-increases-entropy",
+   "verb": "uses"
+  },
+  {
+   "span": "entropy-strategy",
+   "concept": "disorder-is-more-probable",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "eip-558",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coin-tosses",
+   "prompt": "解释为什么由砖砌成的建筑物比同样这些砖杂乱堆成的一堆具有更小的熵。请通过考虑二者各自可以形成的方式数（每个宏观态中的微观态数）来作答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把砖看作系统的组成部分，把两个宏观态看作建筑物和那堆砖。建筑物是一种特定的排布。每块砖都有它必须占据的位置和必须朝向的方向，一块砖若不在原位或朝向错误，就不再构成那座建筑物，所以形成它基本上只有一种方式，至多是少数几种方式。杂乱的一堆则是任何一种排布。砖可以按任意次序、以任意角度、堆成任意形状，而每一种这样的排布仍然是同一堆砖，所以这一堆具有数量极大的微观态。一个宏观态的熵是 $\\kSent = k\\ln W$，其中 $W$ 是产生它的微观态数。建筑物的微观态很少，所以它的熵比那一堆砖小得多。这也就是为什么建筑物可以倒塌成一堆，而一堆砖永远不会自己聚成建筑物：那一堆是压倒性地更可能出现的宏观态，而从建筑物变成一堆使熵增加。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2253927",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disorder-in-a-gas",
+   "prompt": "一个活塞静止在气缸中，伸入气缸一半，气缸内的气体处于热平衡。紧邻气缸封闭端的那一层分子突然被瞬间加热到很高的温度。下列哪一项最能描述接下来发生的情形？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "高温分子把活塞推出去，直到它们的能量降到足够低，使系统处于平衡。",
+     "温度最高的分子与相邻的分子相碰而弹开，把能量传给它们，如此继续，直到系统达到新的平衡，活塞被推出。",
+     "温度最高的分子与相邻的分子相碰而弹开，把能量传给它们，如此继续，直到系统达到新的平衡，活塞仍在原来的位置。",
+     "高温分子把活塞推出去，直到它们的能量降到足够低，使系统处于平衡，然后活塞又被吸了回去。"
+    ],
+    "correct": 1,
+    "hint": "被瞬间加热的那一层离活塞很远，只在与相邻的分子碰撞之前保有它多出来的能量。想一想能量如何通过碰撞在气体中扩散，再想一想比原来更暖的气体对它所推的活塞会怎样。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3590952",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disorder-in-a-gas",
+   "prompt": "用比较常见的材料设计一个宏观模拟，来表示一个能量很高的粒子把能量逐渐传给一群能量较低的粒子，并判断最终是否会达到某种平衡。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用水平托盘上的弹珠就可以做这个模拟，它们确实能达到某种平衡：经过几十次碰撞之后，那颗快弹珠的能量就在所有弹珠之间分配开来，并保持这种分配。把二十颗弹珠铺在带高边沿的托盘上，让它们静止或缓慢滚动，然后用力弹出一颗弹珠；它就是能量很高的粒子。它撞上一颗相邻的弹珠，把一部分动能传给它，这两颗再去撞别的弹珠，每次碰撞都使动量守恒，并把能量从较快的弹珠传给较慢的弹珠，就像第 8 章的碰撞那样。从上方拍摄，弹珠很快就显出一种速率分布、方向随机的状态，其中最初那颗快弹珠已无法再被挑出来，而这种稳定的分布就是平衡。弹珠绝不会把能量重新还给一颗弹珠，因为所有弹珠共同分享能量的那个宏观态所含的微观态要多得多，在 $\\kSent = k\\ln W$ 中的 $W$ 要大得多，远远超过一颗弹珠独占全部能量的那个宏观态。这个平衡并不持久，因为滚动摩擦会耗散气体原子所能保持的能量，所以弹珠会慢下来并停住；气垫台上的冰球能把这种平衡保持得久得多。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737789408",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coin-tosses",
+   "prompt": "利用表 15.4，验证这样一种论断：如果你每秒把 100 枚硬币掷一次，可以预期每隔 $2\\times10^{22}$ 年才会出现一次 100 个正面或 100 个反面；请把这个时间算到两位数字的精度。",
+   "answer": {
+    "type": "number",
+    "value": 2e+22,
+    "unit": "y",
+    "generated_by": "source",
+    "hint": "表 15.4 给出了 100 枚硬币的微观态总数，全是正面和全是反面各是一个微观态，所以二者合起来在每 $1.27\\times10^{30}$ 次投掷中出现两次。每秒掷一次，这个投掷次数就是秒数，要把它换算成年。",
+    "solution": "它应当在每 $1.27\\times10^{30}\\ \\text{s}$ 中出现两次，即每 $6.35\\times10^{29}\\ \\text{s}$ 出现一次。$(6.35\\times10^{29}\\ \\text{s})\\left(\\frac{1\\ \\text{h}}{3600\\ \\text{s}}\\right)\\left(\\frac{1\\ \\text{d}}{24\\ \\text{h}}\\right)\\left(\\frac{1\\ \\text{y}}{365.25\\ \\text{d}}\\right) = 2.0\\times10^{22}\\ \\text{y}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738042871",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coin-tosses",
+   "prompt": "（a）掷 100 枚硬币时，得到 49 个正面和 51 个反面、50 个正面和 50 个反面、51 个正面和 49 个反面这三个最可能的宏观态，共有多少种方式（微观态）？（b）这占全部可能性的百分之几？（参见表 15.4。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3e+29,
+      "unit": "microstates",
+      "hint": "从表 15.4 中读出这三个宏观态各自的微观态数，再把它们相加。"
+     },
+     {
+      "part": "(b)",
+      "value": 24,
+      "unit": "%",
+      "hint": "用这个和除以 100 枚硬币的微观态总数 $1.27\\times10^{30}$，再把所得的分数写成百分数。"
+     }
+    ],
+    "solution": "（a）$3.0\\times10^{29}$（b）24%"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737855554",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "entropy-change",
+   "prompt": "（a）如果你从处于 5 个正面和 5 个反面这一宏观态的 10 枚硬币出发，把它们掷一遍，得到 2 个正面和 8 个反面，熵变是多少？（b）5 个正面和 5 个反面比 2 个正面和 8 个反面可能多少倍？（取微观态数之比即可求得。）（c）如果你押的是 2 个正面和 8 个反面，你会接受 252 比 45 的赔率吗？说明接受或不接受的理由。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -2.38e-23,
+      "unit": "J/K",
+      "hint": "表 15.5 给出：5 个正面和 5 个反面的 $W = 252$，2 个正面和 8 个反面的 $W = 45$。变化为 $\\kdS = k\\ln W_{\\text{f}} - k\\ln W_{\\text{i}}$，它是负的，因为末宏观态是较有序的那个。"
+     },
+     {
+      "part": "(b), how many times more likely",
+      "value": 5.6,
+      "hint": "一个宏观态比另一个可能多少倍，就是二者微观态数之比。"
+     }
+    ],
+    "solution": "（a）$-2.38\\times10^{-23}\\ \\text{J/K}$（b）可能 5.6 倍（c）如果你押的是两个正面和 8 个反面，持平的赔率是 252 比 45，所以平均而言你不赚不赔。因此，不会，你不会接受 252 比 45 的赔率。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738036628",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coin-tosses",
+   "prompt": "（a）列一张表，给出掷 6 枚硬币时的各个宏观态及其所有的各个微观态。（可参照表 15.5。）（b）共有多少个宏观态？（c）微观态的总数是多少？（d）掷出 5 个正面和 1 个反面的机会是百分之几？（e）掷出 3 个正面和 3 个反面比掷出 5 个正面和 1 个反面可能多少倍？（取微观态数之比即可求得。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(b)",
+      "value": 7,
+      "unit": "macrostates",
+      "hint": "有 6 枚硬币时，正面数从 0 到 6，每个数目是一个宏观态。"
+     },
+     {
+      "part": "(c)",
+      "value": 64,
+      "unit": "microstates",
+      "hint": "每枚硬币有两面，所以序列的总数是 2 自乘六次。"
+     },
+     {
+      "part": "(d)",
+      "value": 9.38,
+      "unit": "%",
+      "hint": "数一数恰有一个反面的序列有几种，这个反面可以是六枚硬币中的任意一枚，再除以微观态的总数。"
+     },
+     {
+      "part": "(e), how many times more likely",
+      "value": 3.33,
+      "hint": "取 3 个正面和 3 个反面的微观态数与 5 个正面和 1 个反面的微观态数之比。"
+     }
+    ],
+    "solution": "（b）7（c）64（d）9.38%（e）可能 3.33 倍（20 比 6）"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "macrostate-and-microstate"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "entropy-and-disorder",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "statistical-second-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "kinetic-theory",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "statistical-second-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "thermal-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "disorder-is-more-probable"
+  },
+  {
+   "exercise": "p1",
+   "concept": "macrostate-and-microstate",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "disorder-is-more-probable"
+  },
+  {
+   "exercise": "p3",
+   "concept": "macrostate-and-microstate",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-entropy-from-microstates"
+  },
+  {
+   "exercise": "p5",
+   "concept": "boltzmann-entropy",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "disorder-is-more-probable",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "macrostate-and-microstate"
+  },
+  {
+   "exercise": "p7",
+   "concept": "disorder-is-more-probable",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "coins",
+   "label": "硬币",
+   "figures": [
+    "sim-coin-tosses"
+   ]
+  },
+  {
+   "id": "gas",
+   "label": "气体",
+   "figures": [
+    "sim-gas-disorder"
+   ]
+  },
+  {
+   "id": "container",
+   "label": "容器",
+   "figures": [
+    "sim-gas-disorder"
+   ]
+  },
+  {
+   "id": "initial",
+   "label": "初宏观态",
+   "figures": [
+    "sim-entropy-change"
+   ]
+  },
+  {
+   "id": "final",
+   "label": "末宏观态",
+   "figures": [
+    "sim-entropy-change"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-three-heads",
+   "kind": "correction",
+   "html": "书中把 3 个正面和 2 个反面的同样五个序列列了两遍。十个互不相同的微观态是 HHHTT、HHTHT、HHTTH、HTHHT、HTHTH、HTTHH、THHHT、THHTH、THTHH 和 TTHHH，所以 10 这个数是成立的。"
+  }
+ ]
+}

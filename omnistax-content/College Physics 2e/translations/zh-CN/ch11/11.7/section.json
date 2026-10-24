@@ -1,0 +1,1155 @@
+{
+ "id": "11.7",
+ "module": "m42196",
+ "chapter": "11",
+ "title": "阿基米德原理",
+ "short": "阿基米德原理",
+ "lead": "流体中的每个物体都受到向上的推力，无论它是像船那样漂浮，还是像锚那样下沉。你要找出这个<span data-concept=\"buoyant-force\">浮力</span>等于什么，并用它判断物体是否漂浮、浸入多深，以及密度有多大。",
+ "objectives": [
+  "定义浮力。",
+  "陈述阿基米德原理。",
+  "理解物体为什么会漂浮或下沉。",
+  "理解密度与阿基米德原理之间的关系。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"buoyant-force\">浮力</span>是任何流体中的任何物体所受的向上的<span data-concept=\"force\">合力</span>。如果<span data-concept=\"buoyant-force\">浮力</span>大于物体的<span data-concept=\"weight\">重力</span>，物体就会上升到表面并漂浮。如果<span data-concept=\"buoyant-force\">浮力</span>小于物体的<span data-concept=\"weight\">重力</span>，物体就会下沉。如果<span data-concept=\"buoyant-force\">浮力</span>等于物体的<span data-concept=\"weight\">重力</span>，物体就会悬浮在该深度。无论物体在流体中是漂浮、下沉还是悬浮，<span data-concept=\"buoyant-force\">浮力</span>始终存在。</li><li>阿基米德原理指出，物体所受的<span data-concept=\"buoyant-force\">浮力</span>等于它所排开的流体的<span data-concept=\"weight\">重力</span>。</li><li>比重是物体的<span data-concept=\"density\">密度</span>与流体（通常是水）的密度之比。</li></ul>",
+ "notes": "书中未给出答案的九道题——竖直漂浮的原木、密度为 995 kg/m³ 的物体、岩石、对一位女士的浸入测量、氦气球、被空气托起的男子、铁锚、气垫床和肺容量——均未收录。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有九道题没有给出答案，因而未收录：竖直漂浮的原木、密度为 995 kg/m³ 的物体在淡水和咸水中的情形、岩石与花岗岩的比较、对一位女士的浸入测量及其肺容量、2.00 L 的氦气球、被空气托起的男子、咸水中的铁锚、气垫床，以及由两次漂浮求出的肺容量。证明圆柱体所受的浮力等于它排开的流体的重力，附有本书自己的推导作为答案，被设为开放题，并以该推导作为其解答。有四道题来自其他小节，因为本节是引入它们所考查内容的地方，每道题都带有 source_section：部分浸没的聚苯乙烯立方体，即 11.2 中印出的一道 AP 题，它考的就是浸入的比例，别无其他，附有答案，被设为多项题，检查（a）和（b）两部分，整个答案放在其解答中；11.3 中印出的关于冰山和冰川的思考题；11.4 中印出的关于在大盐湖中潜泳的思考题；以及 11.8 中印出的关于满载油轮的思考题。这三个来源小节的说明里也写了这一点。七道思考题的建议思路由 AI 撰写并已标明。第三道思考题，即同一条船在咸水中是否漂得更高，是对浸入的比例的一次简短检查，设在该段之后的行文中；其余的都在末尾。本节自己的内容没有留待以后的页面。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-buoyancy",
+   "kind": "photo",
+   "number": "11.17",
+   "widths": [
+    480
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-cylinder",
+   "kind": "sim",
+   "number": "11.18",
+   "folds": [
+    "11.19"
+   ],
+   "originals": [
+    "/media/ch11/Figure_12_07_02a.jpg",
+    "/media/ch11/Figure_12_07_03a.jpg"
+   ],
+   "original_caption": "（图 11.18）流体的重力所产生的压强随深度增大，因为 P = hρg。这个压强以及随之而来的作用在圆柱体底部的向上的力，大于作用在圆柱体顶部的向下的力。它们的差就是浮力 F_B。（水平方向的力相互抵消。）（图 11.19）（a）浸没在流体中的物体受到浮力 F_B。如果 F_B 大于物体的重力，物体将上升。如果 F_B 小于物体的重力，物体将下沉。（b）如果把物体取走，取代它的是重力为 w_fl 的流体。由于这部分流体的重力由周围的流体支撑，浮力必定等于排开的流体的重力。即 F_B = w_fl，这就是阿基米德原理的一种表述。",
+   "widths": [
+    275,
+    380
+   ],
+   "draws": [
+    "force",
+    "density",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "fluid and cylinder labels moved inside the stage; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ship",
+   "kind": "sim",
+   "number": "11.20",
+   "originals": [
+    "/media/ch11/Figure_12_07_04a.jpg"
+   ],
+   "original_caption": "空载的船（a）比装载的船（b）在水中漂得更高。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "force",
+    "density",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "free-body labels at the arrow tips; seabed force; sinking readout true"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hydrometer",
+   "kind": "sim",
+   "number": "11.21",
+   "originals": [
+    "/media/ch11/Figure_12_07_05a.jpg"
+   ],
+   "original_caption": "这支液体比重计漂浮在比重为 0.87 的流体中。这支玻璃液体比重计内充满空气，底部加了铅作配重。它在密度最大的流体中漂得最高，并已经过标定和标注，因此可以直接从上面读出比重。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "density"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "stem labels thinned; reading label outside the inset; note trimmed"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "stem labels thinned; reading label outside the inset; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-hydrostatic",
+   "kind": "photo",
+   "number": "11.22",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-floating",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "density"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "fluid label clear of the block; bottom's force; sinking readout true"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "fluid label clear of the block; bottom's force; sinking readout true"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-coin",
+   "kind": "sim",
+   "number": "11.23",
+   "originals": [
+    "/media/ch11/Figure_12_07_07a.jpg"
+   ],
+   "original_caption": "（a）在空气中称量一枚硬币。（b）在硬币完全浸没于已知密度的流体中时，测定它的视重。用这两次测量来计算硬币的密度。",
+   "widths": [
+    590
+   ],
+   "draws": [
+    "force",
+    "density",
+    "mass",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "tension label inside the tank; name line reworded; note trimmed"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "tension label inside the tank; name line reworded; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "buoyant-force",
+   "concept": "buoyant-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "buoyant-force",
+   "concept": "float-sink-suspend",
+   "verb": "introduces"
+  },
+  {
+   "span": "buoyant-force",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "buoyant-force",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "buoyant-force",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "archimedes",
+   "concept": "archimedes-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "archimedes",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  },
+  {
+   "span": "archimedes",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "archimedes",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "floating-sinking",
+   "concept": "archimedes-principle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "floating-sinking",
+   "concept": "float-sink-suspend",
+   "verb": "reinforces"
+  },
+  {
+   "span": "floating-sinking",
+   "concept": "calculate-mass-from-density",
+   "verb": "uses"
+  },
+  {
+   "span": "floating-sinking",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "floating-sinking",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "density-and-archimedes",
+   "concept": "average-density-decides-floating",
+   "verb": "introduces"
+  },
+  {
+   "span": "density-and-archimedes",
+   "concept": "fraction-submerged",
+   "verb": "introduces"
+  },
+  {
+   "span": "density-and-archimedes",
+   "concept": "archimedes-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "density-and-archimedes",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "density-and-archimedes",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  },
+  {
+   "span": "specific-gravity",
+   "concept": "specific-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "specific-gravity",
+   "concept": "fraction-submerged",
+   "verb": "uses"
+  },
+  {
+   "span": "specific-gravity",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "specific-gravity",
+   "concept": "average-density-decides-floating",
+   "verb": "reinforces"
+  },
+  {
+   "span": "specific-gravity",
+   "concept": "float-sink-suspend",
+   "verb": "reinforces"
+  },
+  {
+   "span": "density-measurements",
+   "concept": "apparent-weight-loss",
+   "verb": "introduces"
+  },
+  {
+   "span": "density-measurements",
+   "concept": "archimedes-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "density-measurements",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "density-measurements",
+   "concept": "density-identifies-substance",
+   "verb": "uses"
+  },
+  {
+   "span": "density-measurements",
+   "concept": "weight",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1870728",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "buoyant-force",
+   "prompt": "拔掉盛满水的浴缸的塞子，比拔掉空浴缸的塞子需要更大的力。这与阿基米德原理矛盾吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "并不矛盾。阿基米德原理说的是，水对塞子施加一个向上的浮力，大小等于塞子所排开的水的重力，而这个力在盛满水的浴缸中确实存在。但塞子位于排水口中。水以整个浴缸的深度向下压在它的上表面，而只有管道里的空气向上顶着它的下面。要提起塞子，你必须克服它上方水的重力 $P A = h\\krho g A$，这个重力随浴缸的深度增大，远远超过作用在这么小的物体上的浮力。浮力是底部所受向上的推力与顶部所受向下的推力之差。底部通向排水管而敞开时，水不产生向上的推力，只剩下向下的推力。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id937576",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "buoyant-force",
+   "prompt": "在“失重”环境中，例如在航天飞机里，流体会施加浮力吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不会。浮力来自流体的压强随深度增大，而压强随深度增大，只是因为流体有重力，$P = h\\krho g$。在绕轨道运行的航天飞机里，里面的一切都一起处于自由落体状态，所以流体在容器底部的压强并不比在顶部更大，物体底部所受向上的推力等于其顶部所受向下的推力，合力为零。阿基米德原理说的是同一件事：浮力等于排开的流体的重力，而在失重环境中，那部分流体的重力为零。航天飞机上一杯水中的气泡不会上升，水中的球既不漂浮也不下沉。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2054662",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "同一条船在咸水中会比在淡水中漂得更高吗？请解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会。船所排开的水的重力等于它自身的重力时，船就漂浮；咸水比淡水密度更大，约为 1025 kg/m³，而淡水为 1000 kg/m³，所以体积较小的咸水就与船一样重。船体浸在水面以下的比例是 $\\krhoobj/\\krhofl$，即船的平均密度除以水的密度，除以更大的密度，得到的比例更小。因此，船在海里比在河里或湖里漂得略高一些，高出的部分约为其吃水深度的 2.5%。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2604080",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "archimedes",
+   "prompt": "把弹珠丢进只盛了一部分水的浴缸，它们会沉到底部。它们的一部分重力由浮力支撑，但浴缸底部所受的向下的力却恰好增加了这些弹珠的重力。请解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "顺着浮力追溯它的来源。水对每颗弹珠施加的向上的浮力，等于该弹珠所排开的水的重力，所以弹珠压在浴缸底部的力只是它的重力减去这个浮力。但根据牛顿第三定律，弹珠以同样大小的浮力向下推水，水再把这个推力传给浴缸底部。等价地说，弹珠排开了水，所以水面升高，变深的水对底部的压力恰好多出 $\\Delta h\\krho g A$，这就是排开的水的重力，也就是浮力。把二者相加：弹珠的直接推力（它们的重力减去浮力），加上水多出的推力（浮力），合起来等于弹珠的重力。什么也没有损失；浮力只是决定了这份重力有多少通过弹珠、有多少通过水传到底部。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2590796",
+   "source_section": "11.3",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "在北极附近一个偏远的地方，一座冰山漂浮在一个湖中。湖边（假设湖没有结冰）有一条大小相当的冰川位于陆地上。如果由于全球气温上升，这两块冰都融化了（融化后的水全部流入湖中），那么哪一块冰会使湖水水位升得最高，如果有的话？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "冰川会使湖面升高，冰山不会。根据阿基米德原理，漂浮的冰山排开的湖水体积，其重力等于冰山自身的重力。它融化后变成重力恰好相同的水，而这么重的水所占的体积，恰好就是冰山原先排开的体积，所以融化后的冰山填满了它在湖中造成的那个空穴，水位不变。冰川在陆地上时并不排开湖水，所以它融化的每一点水都是新增加到湖中的水，水位上升的高度就是这部分体积摊在湖面面积上的结果。这就是融化海冰对海洋的影响很小，而融化陆地冰川的影响很大的原因。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1868222",
+   "source_section": "11.4",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "为什么在大盐湖里很难潜泳？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "大盐湖的水含盐量极高，它的密度远高于人体的密度，而人体的密度接近淡水。游泳者所受的浮力等于排开的水的重力，在比人体密度大这么多的水中，完全浸没的游泳者所受的浮力远大于他的重力。合力强烈地向上，所以想待在水下的游泳者必须持续用力向下压，一松劲就会浮回水面。另一方面，在那里漂浮毫不费力，身体露出水面的部分比在海里更多。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3245014",
+   "source_section": "11.8",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "石油的密度小于水的密度，可是满载的油轮却比空载的油轮在水中浸得更深。为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "决定一条船浸入水中多深的，是它的平均密度，即船的全部质量除以船体的全部体积，而不是单单货物的密度。空载的油轮在钢制船体里面大部分是空气，所以它的平均密度很低，只有一小部分船体浸在水中。把油舱装满，就是用石油取代了那些空气，而石油虽然密度比水小，却比空气大几百倍，所以船的质量大幅增加，而船体的体积不变。平均密度向水的密度靠近，浸入的比例 $\\krhoobj/\\krhofl$ 随之增大，满载的船就浸得更深。它仍然漂浮，是因为船体里装满石油时，石油和钢合在一起的平均密度仍低于水的密度。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id889976",
+   "source_section": "11.2",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "一个边长 10 cm 的聚苯乙烯立方体部分浸入一大容器的水中。（a）如果聚苯乙烯有 90% 露在水面之上，聚苯乙烯的密度是多少？（注：水的密度为 1000 kg/m<sup>3</sup>。）（b）把一个 0.5 kg 的质量块放在这块聚苯乙烯上。现在这块聚苯乙烯露在水面之上的部分占百分之几？（c）把容器中的水倒掉，换成乙醇（密度 = 790 kg/m<sup>3</sup>）。<ol><li>这块聚苯乙烯在这种新的流体中还能保持部分浸入吗？请解释。</li><li>在这块聚苯乙烯上放着那个 0.5 kg 的质量块时，它在这种新的流体中还能保持部分浸入吗？请解释。</li></ol>（d）如果上述聚苯乙烯材料改为球形，不使用盛水的容器，请解释你如何确定它的密度。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 100,
+      "unit": "kg/m³",
+      "hint": "浸入的比例是物块的密度除以水的密度，而物块有十分之一在水下。"
+     },
+     {
+      "part": "(b)",
+      "value": 60,
+      "unit": "%",
+      "hint": "物块和质量块合在一起排开的水，其重力必须等于它们合起来的重力；物块体积为 1000 cm³，自身质量为 0.1 kg。"
+     }
+    ],
+    "solution": "（a）100 kg/m<sup>3</sup>（b）60%（c）能；能（76% 将浸入水中）（d）答案不一"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1958439",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "已知 0°C 时水的密度非常接近 $1000\\ \\text{kg/m}^3$，冰漂浮在淡水中时有多大比例浸入水中？",
+   "answer": {
+    "type": "number",
+    "value": 91.7,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "浸入的比例是冰的密度除以水的密度；表 11.1 给出 0°C 时冰的密度为 0.917 × 10³ kg/m³。",
+    "solution": "$91.7\\%$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2054828",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "specific-gravity",
+   "prompt": "求一种流体的密度：密度为 $0.750\\ \\text{g/mL}$ 的液体比重计漂浮在其中时，有 $92.0\\%$ 的体积浸没。",
+   "answer": {
+    "type": "number",
+    "value": 815,
+    "unit": "kg/m³",
+    "generated_by": "source",
+    "hint": "对浸入的比例 $\\krhoobj/\\krhofl$ 求解流体的密度，并把克每毫升换算成千克每立方米。",
+    "solution": "$815\\ \\text{kg/m}^3$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2446854",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-measurements",
+   "prompt": "鸟类的骨头里有气腔以减轻它们的重量——这也使它们的平均密度明显小于其他动物骨头的平均密度。假设一位鸟类学家分别在空气中和水中称一块鸟骨，发现它的质量为 $45.0\\ \\text{g}$，浸没时的视质量为 $3.60\\ \\text{g}$（这块骨头不透水）。（a）排开的水的质量是多少？（b）这块骨头的体积是多少？（c）它的平均密度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 41.4,
+      "unit": "g",
+      "hint": "视质量减小量就是排开的水的质量。"
+     },
+     {
+      "part": "(b)",
+      "value": 41.4,
+      "unit": "cm³",
+      "hint": "水的密度为 1.000 g/cm³，所以排开的水的体积，也就是骨头的体积，随即可得。"
+     },
+     {
+      "part": "(c)",
+      "value": 1.09,
+      "unit": "g/cm³",
+      "hint": "用骨头在空气中的质量除以它的体积。"
+     }
+    ],
+    "solution": "（a）41.4 g（b）$41.4\\ \\text{cm}^3$（c）$1.09\\ \\text{g/cm}^3$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3008964",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-measurements",
+   "prompt": "阿基米德原理既可用来计算固体的密度，也可用来计算流体的密度。假设一块铁在空气中的质量为 390.0 g，完全浸没在一种未知液体中时，发现它的视质量为 350.5 g。（a）这块铁排开的流体的质量是多少？（b）利用表 11.1 中给出的铁的密度，求这块铁的体积（c）计算该流体的密度并确定它是什么。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 39.5,
+      "unit": "g",
+      "hint": "视质量减小量就是排开的流体的质量。"
+     },
+     {
+      "part": "(b)",
+      "value": 50,
+      "unit": "cm³",
+      "hint": "表 11.1 给出铁的密度为 7.8 g/cm³；体积等于空气中的质量除以这个密度。"
+     },
+     {
+      "part": "(c)",
+      "value": 0.79,
+      "unit": "g/cm³",
+      "hint": "排开的流体的体积等于铁的体积，质量就是（a）中求得的；把求得的密度与表 11.1 中的液体比较。"
+     }
+    ],
+    "solution": "（a）39.5 g（b）$50\\ \\text{cm}^3$（c）$0.79\\ \\text{g/cm}^3$。它是乙醇。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3011795",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "有些鱼的密度略小于水，必须施加一个力（游动）才能保持浸没。一条质量为 85.0 kg 的石斑鱼，如果它的身体密度为 $1015\\ \\text{kg/m}^3$，要在咸水中保持浸没，必须施加多大的力？",
+   "answer": {
+    "type": "number",
+    "value": 8.21,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "由鱼的质量和密度求出它的体积，再把浮力求成同体积咸水的重力（表 11.1 中为 1025 kg/m³）；鱼必须向下施加的力等于浮力减去它的重力。",
+    "solution": "8.21 N"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3201670",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "（a）一位女士漂浮在淡水中时，她的体积有 $4.00\\%$ 露出水面，她的密度是多少？这可以通过把她放进一个侧面带有刻度的水箱中来测量，看她漂浮时和（短暂地）被按到水下时分别排开多少水。（b）她漂浮在海水中时，体积的百分之几露出水面？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 960,
+      "unit": "kg/m³",
+      "hint": "浸入的比例 0.960 等于她的密度除以水的密度。"
+     },
+     {
+      "part": "(b)",
+      "value": 6.34,
+      "unit": "%",
+      "hint": "在 1025 kg/m³ 的海水中，浸入的比例等于她的密度除以这个值，剩下的部分就露出水面。"
+     }
+    ],
+    "solution": "（a）$960\\ \\text{kg/m}^3$（b）$6.34\\%$。她在海水中确实漂得更高。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3402778",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-and-archimedes",
+   "prompt": "把一块小条形磁铁放在漂浮于水中的软木塞上，就可以做成一个简易指南针。（a）一个普通软木塞漂浮在水中时，有多大比例浸入水中？（b）如果软木塞的质量为 10.0 g，在它上面放一块 20.0 g 的磁铁，软木塞有多大比例浸入水中？（c）这块条形磁铁和软木塞能漂浮在乙醇中吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.24,
+      "hint": "表 11.1 给出软木的密度为 0.24 × 10³ kg/m³，浸入的比例就是它除以水的密度。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.68,
+      "hint": "软木塞和磁铁合在一起必须排开 30.0 g 的水；软木塞的体积可由它的质量和密度求得。"
+     }
+    ],
+    "solution": "（a）$0.24$（b）$0.68$（c）能，软木塞会漂浮，因为 $\\krhoobj < \\krho_{\\text{乙醇}}\\ (0.678\\ \\text{g/cm}^3 < 0.79\\ \\text{g/cm}^3)$"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2442091",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "density-measurements",
+   "prompt": "众所周知，一些卑劣的骗子会把镀金的钨锭冒充成纯金出售，售价远低于黄金的价值，但理所当然地远高于钨的成本。要看出这样的锭几乎是纯钨而不是纯金，你在水中和水外测量它的质量时，必须达到多高的准确度？",
+   "answer": {
+    "type": "number",
+    "value": 0.006,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "视质量减小量就是排开的水的质量，也就是锭的质量除以它的密度；把金（19.32 g/cm³）和钨（19.30 g/cm³）的这一减小量各自表示为空气中质量的比例，加以比较。",
+    "solution": "差别为 $0.006\\%.$"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id1945983",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "buoyant-force",
+   "prompt": "参照图 11.19，证明圆柱体所受的浮力等于它排开的流体的重力（阿基米德原理）。你可以假设浮力为 $\\kFtwo - \\kFone$，且圆柱体两个端面的面积相等，均为 $A$。注意，圆柱体的体积（以及它所排开的流体的体积）等于 $(h_2 - h_1)A$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F_{\\text{net}} = \\kFtwo - \\kFone = P_2 A - P_1 A = (P_2 - P_1)A = (h_2\\krhofl g - h_1\\krhofl g)A = (h_2 - h_1)\\krhofl gA$，其中 $\\krhofl$ 为流体的密度。因此， $F_{\\text{net}} = (h_2 - h_1)A\\krhofl g = V_{\\text{fl}}\\krhofl g = m_{\\text{fl}}g = \\kwfl$，其中 $\\kwfl$ 是排开的流体的重力。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "buoyant-force"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "archimedes-principle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "buoyant-force"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "fraction-submerged"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "average-density-decides-floating",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "archimedes-principle"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "buoyant-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "archimedes-principle"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "fraction-submerged",
+   "weight": 3
+  },
+  {
+   "exercise": "cq6",
+   "concept": "fraction-submerged"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "average-density-decides-floating",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "fraction-submerged"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "average-density-decides-floating",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "fraction-submerged"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "float-sink-suspend",
+   "weight": 3
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-density-decides-floating",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "fraction-submerged"
+  },
+  {
+   "exercise": "p1",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "specific-gravity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "fraction-submerged",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "apparent-weight-loss"
+  },
+  {
+   "exercise": "p5",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "apparent-weight-loss"
+  },
+  {
+   "exercise": "p7",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "density-identifies-substance",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "archimedes-principle"
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-mass-from-density",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "fraction-submerged"
+  },
+  {
+   "exercise": "p11",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "fraction-submerged"
+  },
+  {
+   "exercise": "p13",
+   "concept": "average-density-decides-floating",
+   "weight": 3
+  },
+  {
+   "exercise": "p15",
+   "concept": "apparent-weight-loss"
+  },
+  {
+   "exercise": "p15",
+   "concept": "density",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "density-identifies-substance",
+   "weight": 2
+  },
+  {
+   "exercise": "p17",
+   "concept": "buoyant-force"
+  },
+  {
+   "exercise": "p17",
+   "concept": "archimedes-principle",
+   "weight": 4
+  },
+  {
+   "exercise": "p17",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "cylinder",
+   "label": "圆柱体",
+   "figures": [
+    "sim-cylinder"
+   ]
+  },
+  {
+   "id": "ship",
+   "label": "例题 11.8 中的钢船",
+   "figures": [
+    "sim-ship"
+   ]
+  },
+  {
+   "id": "cargo",
+   "label": "甲板上的货物",
+   "figures": [
+    "sim-ship"
+   ]
+  },
+  {
+   "id": "hydrometer",
+   "label": "液体比重计",
+   "figures": [
+    "sim-hydrometer"
+   ]
+  },
+  {
+   "id": "block",
+   "label": "漂浮的物块",
+   "figures": [
+    "sim-floating"
+   ]
+  },
+  {
+   "id": "coin",
+   "label": "例题 11.10 中的硬币",
+   "figures": [
+    "sim-coin"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-steel-weight",
+   "kind": "correction",
+   "html": "书中把钢的重力印作 $m_{\\text{s}}w$；原意是 $m_{\\text{s}}g$，即钢的质量乘以重力加速度。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "fraction-submerged",
+   "what": "漂浮物体浸入的比例",
+   "source": "《大学物理（第2版）》，11.7 阿基米德原理",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "物体漂浮，所以作用在它上面的浮力与它的重力平衡。",
+       "src": "11.7"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kFB = \\kwfl",
+       "src": "11.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{B}{\\kFB} = \\mk{w}{\\kmobj\\kg}",
+      "src": "11.7",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{B}{\\kwfl} = \\mk{w}{\\kmobj\\kg}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\kmfl\\kg} = \\mk{w}{\\kmobj\\kg}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\kmfl} = \\mk{w}{\\kmobj}",
+       "uses": []
+      }
+     ],
+     "src": "11.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "浸入的体积等于排开的流体的体积。",
+       "src": "11.7"
+      },
+      {
+       "tex": "\\krho = \\frac{\\km}{\\kvol}",
+       "src": "11.2"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\text{浸入的比例}} = \\frac{\\mk{s}{\\kvolsub}}{\\mk{o}{\\kvolobj}}",
+      "src": "11.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\text{浸入的比例}} = \\frac{\\mk{s}{\\kvolfl}}{\\mk{o}{\\kvolobj}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\text{浸入的比例}} = \\frac{\\mk{s}{\\kmfl/\\krhofl}}{\\mk{o}{\\kmobj/\\krhoobj}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\text{浸入的比例}} = \\frac{\\mk{mf}{\\kmfl}\\,\\mk{o}{\\krhoobj}}{\\mk{mo}{\\kmobj}\\,\\mk{s}{\\krhofl}}",
+       "uses": [],
+       "map": {
+        "s": [
+         "mf",
+         "s"
+        ],
+        "o": [
+         "mo",
+         "o"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\text{浸入的比例}} = \\frac{\\mk{o}{\\krhoobj}}{\\mk{s}{\\krhofl}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.7"
+    }
+   ]
+  }
+ ]
+}

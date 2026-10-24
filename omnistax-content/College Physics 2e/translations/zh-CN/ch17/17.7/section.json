@@ -1,0 +1,851 @@
+{
+ "id": "17.7",
+ "module": "m42298",
+ "chapter": "17",
+ "title": "超声",
+ "short": "超声",
+ "lead": "超声是任何高于 20,000 Hz 的声音，医学把它用于两种不同的用途。聚焦到高<span data-concept=\"intensity\">强度</span>时，它能击碎胆结石，并<span data-concept=\"heat\">加热</span>皮肤下深处的组织；在低得多的<span data-concept=\"intensity\">强度</span>下，它的回声则构成体内情形的图像。",
+ "objectives": [
+  "定义声阻抗和强度反射系数。",
+  "描述超声技术在医学及其他方面的应用。",
+  "利用密度值和超声的速率计算声阻抗。",
+  "利用多普勒频移超声计算运动物体的速度。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"acoustic-impedance\">声阻抗</span>定义为 $Z = \\krho\\kv,$ 其中 $\\krho$ 是声音所通过的介质的<span data-concept=\"density\">密度</span>，$\\kv$ 是该介质中的声速。</li><li>强度反射系数 $a$ 是在两种介质之间的界面上反射的波的<span data-concept=\"intensity\">强度</span>相对于入射波的<span data-concept=\"intensity\">强度</span>之比的一种度量，由 $a = \\frac{(Z_2 - Z_1)^2}{(Z_1 + Z_2)^2}.$ 给出。</li><li>强度反射系数是一个无单位的量。</li></ul>",
+ "notes": "书中没有给出答案的六道习题已略去。书中自身的疏漏照原样保留：“选用减号是因为运动朝向观察者。”这句话在例题 17.8 的（b）的解中出现了两次；在讲回声混频的那一段里，拍频写成了大写的 F 加下标 B，而本节其余部分和小结写的是带有同一下标的小写 f。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案。书中在习题组前给出一条说明：除非另有指明，人体组织中的声速取为 1540 m/s。六道习题没有给出答案，因此略去：155 dB 的超声是否处于深部加热所用的范围；在脂肪组织中 0.13 ms 后应答的反射所在的深度；分辨 0.250 mm 细节所需的最小频率及其到达的深度；来自 3.50 cm 和 3.60 cm 的回声时间之差；能探测到相隔 1.00 ms 的回声的蝙蝠；返回 500 Hz 频移的血流速度。四道思考题的建议思路由 AI 撰写并已标明，因为书中没有给出其中任何一道的答案。本节没有印出 AP 备考题。唯一的一个“理解检测”框按书中印出的位置，内联设在叙述的末尾。没有从其他小节取用任何内容，本节自身的内容也没有留给后面的页面；三道要求求声强级的习题，在本节自身的概念之外还标注了 17.3 节的声强级。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-fetus",
+   "kind": "photo",
+   "number": "17.40",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-probe",
+   "kind": "photo",
+   "number": "17.41",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-acoustic-boundary",
+   "kind": "sim",
+   "draws": [
+    "intensity",
+    "density",
+    "velocity",
+    "acoustic-impedance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the gel"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-echo-ranging",
+   "kind": "sim",
+   "number": "17.42",
+   "originals": [
+    "/media/ch17/Figure_18_07_03a.jpg"
+   ],
+   "original_caption": "（a）超声扬声器兼作传声器。发出短促的脉冲，并记录来自不同深度的回声。（b）回声强度随时间变化的图。回声返回所需的时间与反射体的距离成正比，由此无创地获得这一信息。",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "intensity",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "thickness from 3 cm so labels stay apart; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-abdominal",
+   "kind": "photo",
+   "number": "17.43",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-3d-fetus",
+   "kind": "photo",
+   "number": "17.44",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-resolution-depth",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-artery",
+   "kind": "photo",
+   "number": "17.45",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-doppler-ultrasound",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "frequency",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout commas braced; blood label at rest; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-hand-probe",
+   "kind": "photo",
+   "number": "17.46",
+   "widths": [
+    150
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "ultrasound",
+   "concept": "audible-range",
+   "verb": "uses"
+  },
+  {
+   "span": "ultrasound",
+   "concept": "sound",
+   "verb": "uses"
+  },
+  {
+   "span": "therapy",
+   "concept": "ultrasound-therapy",
+   "verb": "introduces"
+  },
+  {
+   "span": "therapy",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "therapy",
+   "concept": "sound-intensity-level",
+   "verb": "uses"
+  },
+  {
+   "span": "therapy",
+   "concept": "sound-pressure-level",
+   "verb": "uses"
+  },
+  {
+   "span": "therapy",
+   "concept": "wave-energy-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "diagnostics",
+   "concept": "sound-longitudinal-pressure-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "diagnostics",
+   "concept": "echo-ranging",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "acoustic-impedance",
+   "verb": "introduces"
+  },
+  {
+   "span": "impedance",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "impedance",
+   "concept": "speed-of-sound-in-media",
+   "verb": "uses"
+  },
+  {
+   "span": "reflection",
+   "concept": "intensity-reflection-coefficient",
+   "verb": "introduces"
+  },
+  {
+   "span": "reflection",
+   "concept": "acoustic-impedance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reflection",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "reflection",
+   "concept": "ultrasound-therapy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "imaging",
+   "concept": "ultrasound-imaging-resolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "imaging",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "imaging",
+   "concept": "echo-ranging",
+   "verb": "uses"
+  },
+  {
+   "span": "imaging",
+   "concept": "acoustic-impedance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "imaging",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler",
+   "concept": "doppler-shifted-ultrasound",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler",
+   "concept": "doppler-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler",
+   "concept": "doppler-shift-moving-observer",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler",
+   "concept": "doppler-shift-moving-source",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler",
+   "concept": "doppler-shift-source-and-observer",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler",
+   "concept": "beats",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler",
+   "concept": "beat-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "ultrasound-therapy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "echo-ranging",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applications",
+   "concept": "density",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2706418",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "applications"
+   },
+   "cite": "therapy",
+   "prompt": "为什么超声既能用来观察子宫里的胎儿，又能用来摧毁体内的癌性肿瘤？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "超声在医学上可以使用不同的强度。较低的强度不会造成损伤，用于医学成像。较高的强度可以粉碎并摧毁体内的目标物质，例如肿瘤。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1355290",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "imaging",
+   "prompt": "如果可听声音在被吸收方面遵循与超声类似的经验法则，你预计邻居音响发出的高频还是低频会穿透进你的房子？这一预期与你的经验相比如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "从本节给出的超声经验法则出发，即波穿透的深度约为 500 个波长，并记住波长是 $\\klam = \\kvw/\\kf$，所以高频的波长短，因此到达的距离也短。把这一法则用于可听声音，就是说低频应当能穿过墙传得最远，而高频则在墙内被吸收。这正是你听到的情形：从邻居的音响穿过墙传来的是低音，鼓的咚咚声和最低的音符，而钹声、歌词和较高音的乐器都听不到了。法则与经验符合得很好，这也是相信这条法则同样适用于超声的一个理由。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3045900",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "imaging",
+   "prompt": "已知大象和鲸利用次声进行远距离交流。次声在远距离通信方面有哪些优势？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "次声是低于 20 Hz 的声音，所以它在空气或水中的波长很长，有几十米甚至更长。使超声只能传几百个波长的同一条经验法则，使次声拥有极远的传播距离。介质对长波的吸收很弱，所以它在很远的距离上损失的强度很少。长波还能绕过障碍物，例如小山、一片树林或海底的山脊，这些东西会使短波反射或散射。动物之间没有任何东西挡住信号。代价与任何长波长相同：它不能携带精细的细节，这就是次声用于呼叫而不用于成像的原因。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3044088",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reflection",
+   "prompt": "要在超重者的腹部获得高分辨率的超声图像，比在体型瘦小者身上更困难。请解释为什么这种说法是正确的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "想想本节所说决定图像的两件事：探头必须到达多深，以及它的强度在途中有多少留存下来。体型较胖的患者，所关注的器官位于皮肤下更深处，所以超声必须在更多的组织中往返，并且在两个行程中都被部分吸收，留下的回声更弱而难以记录。要到达更深处，还意味着要选用较低的频率，因为有效深度只有约 500 个波长，而较低的频率波长较长，所以分辨的细节较少。还有第三种效应：脂肪和肌肉的声阻抗不同，分别为 $1.34 \\times 10^{6}$ 和 $1.70 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$，所以每一层脂肪都是又一个界面，会反射一小部分声束，并把它散射出路径之外。这三者作用方式相同，图像因而更暗、更粗糙。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3105144",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "therapy",
+   "prompt": "假设你读到 210 dB 的超声正被用于粉碎癌性肿瘤。你计算出以瓦每平方厘米为单位的强度，发现高得不合理（$10^5\\ \\text{W/cm}^2$）。一种可能的解释是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把这个数字与这种用途所给的强度对照一下。超声在 $10^3$ 至 $10^5\\ \\text{W/m}^2$ 时粉碎组织，而 $10^5\\ \\text{W/cm}^2$ 是 $10^9\\ \\text{W/m}^2$，比其中最大者大一万倍。照字面读出的数字不可能是本书所用的声强级。解释在于另一种分贝标度。在水和生物组织中，声音常以声压级给出，对同一声音，这类数值比声强级高 60 到 70 dB。减去这个量，剩下约 140 到 150 dB，即 $10^2$ 至 $10^3\\ \\text{W/m}^2$，正好处在外科超声的范围内。这个数字没有错，但你必须先知道它的标度，才能读懂它。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1426250",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "therapy",
+   "prompt": "用于手术中粉碎组织的强度为 $10^5\\ \\text{W/m}^2$ 的超声，声强级是多少分贝？",
+   "answer": {
+    "type": "number",
+    "value": 170,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "把强度和阈值 $\\kIo = 10^{-12}\\ \\text{W/m}^2$ 代入 $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$。比值是十的幂，所以对数就是指数。",
+    "solution": "170 dB"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2999852",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "therapy",
+   "prompt": "求用于医学诊断的 $2.00 \\times 10^{-2}\\ \\text{W/m}^2$ 超声的声强级（单位为分贝）。",
+   "answer": {
+    "type": "number",
+    "value": 103,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "取 $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$，其中 $\\kIo = 10^{-12}\\ \\text{W/m}^2$。比值是 $2.00 \\times 10^{10}$。",
+    "solution": "103 dB"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3157929",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reflection",
+   "prompt": "在超声的临床使用中，换能器总是通过一薄层凝胶或油与皮肤耦合，取代了换能器与皮肤之间原本会存在的空气。（a）利用表 17.5 中给出的声阻抗值，计算换能器材料与空气之间的强度反射系数。（b）计算换能器材料与凝胶之间的强度反射系数（本题假定凝胶的声阻抗与水相同）。（c）根据你的计算结果，解释为什么要使用凝胶。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.0,
+      "hint": "表 17.5 给出空气为 429，钛酸钡为 $30.8 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$。把它们代入 $a = (Z_2 - Z_1)^2/(Z_1 + Z_2)^2$；429 几乎不改变两者之差，也几乎不改变两者之和。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.823,
+      "hint": "同一个公式，用水的声阻抗 $1.5 \\times 10^{6}\\ \\text{kg/}(\\text{m}^2\\cdot\\text{s})$ 代替空气的。"
+     }
+    ],
+    "solution": "（a）1.00<br>（b）0.823<br>（c）使用凝胶是为了便于超声在换能器与患者身体之间传递。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2406620",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "imaging",
+   "prompt": "（a）求用 20.0 MHz 超声在人体组织中可观察到的最小细节的大小。（b）它的有效穿透深度是否大到足以检查整个眼（需要约 3.00 cm）？（c）这种超声在 $0^\\circ\\text{C}$ 空气中的波长是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 7.7e-05,
+      "unit": "m",
+      "hint": "最小的细节就是波长 $\\klam = \\kvw/\\kf$，组织中的声速取 1540 m/s。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.85,
+      "unit": "cm",
+      "hint": "有效深度约为 $500\\klam$。把它与眼睛所需的 3.00 cm 比较。"
+     },
+     {
+      "part": "(c)",
+      "value": 1.66e-05,
+      "unit": "m",
+      "hint": "同样的关系，用 $0^\\circ\\text{C}$ 空气中的声速 331 m/s。"
+     }
+    ],
+    "solution": "（a）$77.0\\ \\mu\\text{m}$<br>（b）有效穿透深度 = 3.85 cm，足以检查眼。<br>（c）$16.6\\ \\mu\\text{m}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1405914",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "imaging",
+   "prompt": "（a）两层组织产生的回声，其往返时间（用来测量距离）相差 $0.750\\ \\mu\\text{s}$，这两层组织相距多远？（b）要看到这么小的细节，超声的频率至少要多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.000578,
+      "unit": "m",
+      "hint": "多出的时间是一个往返，所以声音在其中走过的是间距的两倍：间距为 $\\kvw t/2$，取 1540 m/s。"
+     },
+     {
+      "part": "(b)",
+      "value": 2670000,
+      "unit": "Hz",
+      "hint": "这么小的细节要求波长不大于间距，所以 $\\kf = \\kvw/\\klam$。"
+     }
+    ],
+    "solution": "（a）$5.78 \\times 10^{-4}\\ \\text{m}$<br>（b）$2.67 \\times 10^{6}\\ \\text{Hz}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1998767",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "imaging",
+   "prompt": "海豚在黑暗中能够分辨出从两条鲨鱼接收到的超声回声来自两个不同的物体，前提是两条鲨鱼相距 3.50 m，即其中一条比另一条远这么多。（a）如果超声的频率为 100 kHz，证明这种能力不受其波长的限制。（b）如果这种能力是由于海豚能探测回声的到达时间，它所能感知的最小时间差是多少？",
+   "answer": {
+    "type": "number",
+    "value": 4.55,
+    "unit": "ms",
+    "part": "(b)",
+    "generated_by": "source",
+    "hint": "对于（a），由 $\\kvw = \\kf\\klam$ 求出波长，并与 3.50 m 比较。对于（b），多出的 3.50 m 要走两遍，一去一回，声速为 1540 m/s。",
+    "solution": "（a）$\\kvw = 1540\\ \\text{m/s} = \\kf\\klam \\Rightarrow \\klam = \\frac{1540\\ \\text{m/s}}{100 \\times 10^{3}\\ \\text{Hz}} = 0.0154\\ \\text{m} < 3.50\\ \\text{m}.$ 因为波长远小于所论的距离，所以波长不是限制因素。<br>（b）4.55 ms"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2423508",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "doppler",
+   "prompt": "从以 30.0 cm/s 迎面流来的血流反射回来的超声，与原来 2.50 MHz 的频率混合，产生拍。拍频是多少？（假定 2.50 MHz 的频率准确到七位有效数字。）",
+   "answer": {
+    "type": "number",
+    "value": 974,
+    "unit": "Hz",
+    "generated_by": "source",
+    "hint": "像例题 17.8 那样把频率移两次：一次是血液作为运动的观察者，一次是血液作为运动的声源，然后取 $\\kfB = |\\kfobs - \\kfsrc|$。两次频移中每一位数字都要保留，因为差很小。",
+    "solution": "974 Hz<br>（注：为了显示差值，保留了额外的数字。）"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "ultrasound-therapy"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "ultrasound-imaging-resolution",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ultrasound-imaging-resolution"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ultrasound-imaging-resolution"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "audible-range",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "intensity-reflection-coefficient"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "ultrasound-imaging-resolution",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "sound-pressure-level"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "ultrasound-therapy",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ultrasound-therapy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sound-intensity-level",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ultrasound-therapy"
+  },
+  {
+   "exercise": "p3",
+   "concept": "sound-intensity-level",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "intensity-reflection-coefficient"
+  },
+  {
+   "exercise": "p5",
+   "concept": "acoustic-impedance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "ultrasound-imaging-resolution"
+  },
+  {
+   "exercise": "p7",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "ultrasound-imaging-resolution"
+  },
+  {
+   "exercise": "p9",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "ultrasound-imaging-resolution"
+  },
+  {
+   "exercise": "p11",
+   "concept": "echo-ranging",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "doppler-shifted-ultrasound"
+  },
+  {
+   "exercise": "p13",
+   "concept": "beat-frequency",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "medium-1",
+   "label": "第一种介质，即超声到达所经的介质",
+   "figures": [
+    "sim-acoustic-boundary"
+   ]
+  },
+  {
+   "id": "medium-2",
+   "label": "第二种介质，位于界面另一侧",
+   "figures": [
+    "sim-acoustic-boundary"
+   ]
+  },
+  {
+   "id": "echo-transducer",
+   "label": "贴在腹部的换能器",
+   "figures": [
+    "sim-echo-ranging"
+   ]
+  },
+  {
+   "id": "probe",
+   "label": "探头",
+   "figures": [
+    "sim-resolution-depth"
+   ]
+  },
+  {
+   "id": "transducer",
+   "label": "换能器，即扬声器兼传声器",
+   "figures": [
+    "sim-doppler-ultrasound"
+   ]
+  },
+  {
+   "id": "artery",
+   "label": "动脉",
+   "figures": [
+    "sim-doppler-ultrasound"
+   ]
+  },
+  {
+   "id": "blood",
+   "label": "动脉中的血液",
+   "figures": [
+    "sim-doppler-ultrasound",
+    "sim-acoustic-boundary"
+   ]
+  }
+ ]
+}

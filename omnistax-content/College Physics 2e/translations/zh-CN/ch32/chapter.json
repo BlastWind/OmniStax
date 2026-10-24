@@ -1,0 +1,489 @@
+{
+ "id": "32",
+ "dir": "ch32",
+ "title": "核物理学的医学应用",
+ "intro": {
+  "module": "m42646",
+  "slug": "32-introduction-to-applications-of-nuclear-physics"
+ },
+ "sections": [
+  {
+   "id": "32.1",
+   "module": "m42649",
+   "title": "诊断与医学成像",
+   "slug": "32-1-diagnostics-and-medical-imaging"
+  },
+  {
+   "id": "32.2",
+   "module": "m42652",
+   "title": "电离辐射的生物效应",
+   "slug": "32-2-biological-effects-of-ionizing-radiation"
+  },
+  {
+   "id": "32.3",
+   "module": "m42654",
+   "title": "电离辐射的治疗用途",
+   "slug": "32-3-therapeutic-uses-of-ionizing-radiation"
+  },
+  {
+   "id": "32.4",
+   "module": "m42656",
+   "title": "食品辐照",
+   "slug": "32-4-food-irradiation"
+  },
+  {
+   "id": "32.5",
+   "module": "m42659",
+   "title": "聚变",
+   "slug": "32-5-fusion"
+  },
+  {
+   "id": "32.6",
+   "module": "m42662",
+   "title": "裂变",
+   "slug": "32-6-fission"
+  },
+  {
+   "id": "32.7",
+   "module": "m42665",
+   "title": "核武器",
+   "slug": "32-7-nuclear-weapons"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "R_act",
+   "concept": "activity",
+   "meaning": "放射性药物剂量的活度，通常为几毫居里",
+   "unit": "Bq",
+   "section": "32.1",
+   "anchor": "32.1-medical-application"
+  },
+  {
+   "sym": "t_half",
+   "concept": "half-life",
+   "meaning": "所用核素的半衰期，较短以限制患者所受的剂量",
+   "unit": "s",
+   "section": "32.1",
+   "anchor": "32.1-medical-application"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "单个 $\\gamma$ 射线或一次核反应的能量，量级为 MeV",
+   "unit": "MeV",
+   "section": "32.1",
+   "anchor": "32.1-medical-application"
+  },
+  {
+   "sym": "dose",
+   "concept": "absorbed-dose-rad-and-gray",
+   "meaning": "辐射剂量，即每千克组织所沉积的电离能量，单位为 Gy 或 rad；乘以 RBE 就是剂量当量，单位为 Sv 或 rem",
+   "unit": "Gy",
+   "section": "32.2",
+   "anchor": "32.2-dose-units"
+  },
+  {
+   "sym": "RBE",
+   "concept": "relative-biological-effectiveness",
+   "meaning": "某种辐射的相对生物效能，或称品质因数",
+   "section": "32.2",
+   "anchor": "32.2-rbe"
+  },
+  {
+   "sym": "BE",
+   "concept": "binding-energy",
+   "meaning": "核的结合能；$\\text{BE}/A$ 是每核子结合能",
+   "unit": "MeV",
+   "section": "32.5",
+   "anchor": "32.5-nuclear-fusion"
+  },
+  {
+   "sym": "A_nuc",
+   "concept": "mass-number",
+   "meaning": "核的质量数",
+   "section": "32.5",
+   "anchor": "32.5-nuclear-fusion"
+  },
+  {
+   "sym": "m_i",
+   "concept": "mass",
+   "meaning": "反应物的总质量",
+   "unit": "u",
+   "section": "32.5",
+   "anchor": "32.5-nuclear-fusion"
+  },
+  {
+   "sym": "m_f",
+   "concept": "mass",
+   "meaning": "产物的总质量",
+   "unit": "u",
+   "section": "32.5",
+   "anchor": "32.5-nuclear-fusion"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，其平方把被消灭的质量换算为释放的能量",
+   "unit": "m/s",
+   "section": "32.5",
+   "anchor": "32.5-nuclear-fusion"
+  },
+  {
+   "sym": "E_gamma",
+   "concept": "energy",
+   "meaning": "一次反应的 $\\gamma$ 射线带走的能量",
+   "unit": "MeV",
+   "section": "32.5",
+   "anchor": "32.5-proton-proton-cycle"
+  },
+  {
+   "sym": "T_temp",
+   "concept": "temperature",
+   "meaning": "聚变燃料的温度，使核相接触需要的量级为 $10^{8}$ K",
+   "unit": "K",
+   "section": "32.5",
+   "anchor": "32.5-fusion-by-tunneling"
+  },
+  {
+   "sym": "P",
+   "concept": "power",
+   "meaning": "聚变或裂变源的平均输出功率",
+   "unit": "W",
+   "section": "32.5",
+   "anchor": "32.5-fusion-energy-and-power"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "释放能量所用的时间",
+   "unit": "s",
+   "section": "32.5",
+   "anchor": "32.5-fusion-energy-and-power"
+  },
+  {
+   "sym": "Δm",
+   "concept": "mass",
+   "meaning": "一次裂变或聚变反应中被消灭的质量",
+   "unit": "u",
+   "section": "32.6",
+   "anchor": "32.6-fission-energy-example"
+  },
+  {
+   "sym": "m_products",
+   "concept": "mass",
+   "meaning": "裂变产物的总质量",
+   "unit": "u",
+   "section": "32.6",
+   "anchor": "32.6-fission-energy-example"
+  },
+  {
+   "sym": "FF_1",
+   "concept": "fission-fragments",
+   "meaning": "第一个裂变碎片，是裂变产生的两个子核之一",
+   "section": "32.6",
+   "anchor": "32.6-neutron-induced-fission",
+   "ref": "ff-1"
+  },
+  {
+   "sym": "FF_2",
+   "concept": "fission-fragments",
+   "meaning": "第二个裂变碎片",
+   "section": "32.6",
+   "anchor": "32.6-neutron-induced-fission",
+   "ref": "ff-2"
+  },
+  {
+   "sym": "x_fis",
+   "concept": "neutron-induced-fission",
+   "meaning": "一次裂变产生的中子数；链式反应需要 $x > 1$",
+   "section": "32.6",
+   "anchor": "32.6-neutron-induced-fission"
+  },
+  {
+   "sym": "d",
+   "concept": "distance",
+   "meaning": "肿瘤在头部朝向照相机一侧之下的深度",
+   "section": "32.1",
+   "anchor": "32.1-anger-camera",
+   "unit": "cm"
+  },
+  {
+   "sym": "x",
+   "concept": "position",
+   "meaning": "源在 PET 环上的位置，从环的轴线量起",
+   "section": "32.1",
+   "anchor": "32.1-pet",
+   "unit": "cm"
+  },
+  {
+   "sym": "r_1",
+   "concept": "distance",
+   "meaning": "从湮没处到较远探测器的距离",
+   "section": "32.1",
+   "anchor": "32.1-pet",
+   "unit": "cm"
+  },
+  {
+   "sym": "r_2",
+   "concept": "distance",
+   "meaning": "从湮没处到较近探测器的距离",
+   "section": "32.1",
+   "anchor": "32.1-pet",
+   "unit": "cm"
+  },
+  {
+   "sym": "Δt",
+   "concept": "time",
+   "meaning": "一次湮没的两个 $\\gamma$ 射线到达时刻之差",
+   "section": "32.1",
+   "anchor": "32.1-pet",
+   "unit": "ns"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，一次湮没的两个 $\\gamma$ 射线都以此速率传播",
+   "section": "32.1",
+   "anchor": "32.1-pet",
+   "unit": "m/s"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "组织所吸收的电离能量",
+   "section": "32.2",
+   "anchor": "32.2-dose-units",
+   "unit": "J"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "受影响组织的质量",
+   "section": "32.2",
+   "anchor": "32.2-dose-units",
+   "unit": "kg"
+  },
+  {
+   "sym": "R_act",
+   "concept": "activity",
+   "meaning": "被吸入的钚的活度",
+   "section": "32.2",
+   "anchor": "32.2-rbe",
+   "unit": "Bq"
+  },
+  {
+   "sym": "t_half",
+   "concept": "half-life",
+   "meaning": "被吸入的核素的半衰期",
+   "section": "32.2",
+   "anchor": "32.2-rbe",
+   "unit": "y"
+  },
+  {
+   "sym": "λ_dec",
+   "concept": "decay-constant",
+   "meaning": "被吸入的核素的衰变常量",
+   "section": "32.2",
+   "anchor": "32.2-rbe",
+   "unit": "1/s"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "受照时间",
+   "section": "32.2",
+   "anchor": "32.2-rbe",
+   "unit": "s"
+  },
+  {
+   "sym": "d",
+   "concept": "distance",
+   "meaning": "与辐射源的距离",
+   "section": "32.2",
+   "anchor": "32.2-radiation-protection",
+   "unit": "m",
+   "redefines": true
+  },
+  {
+   "sym": "x",
+   "concept": "length",
+   "meaning": "铅屏蔽的厚度",
+   "section": "32.2",
+   "anchor": "32.2-radiation-protection",
+   "unit": "cm",
+   "redefines": true
+  },
+  {
+   "sym": "dose",
+   "concept": "dose-equivalent-rem-and-sievert",
+   "meaning": "肿瘤和皮肤在一次治疗中所受的剂量",
+   "section": "32.3",
+   "anchor": "32.3-crossfire",
+   "unit": "Sv",
+   "redefines": true
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "⁶⁰Co 源绕患者扫过的弧",
+   "section": "32.3",
+   "anchor": "32.3-crossfire",
+   "unit": "°"
+  },
+  {
+   "sym": "Δθ",
+   "concept": "angle",
+   "meaning": "射线束穿过一小块皮肤时，源的路径所对应的弧",
+   "section": "32.3",
+   "anchor": "32.3-crossfire",
+   "unit": "°"
+  },
+  {
+   "sym": "d",
+   "concept": "distance",
+   "meaning": "肿瘤的宽度，以及对准它的准直射线束的宽度",
+   "section": "32.3",
+   "anchor": "32.3-crossfire",
+   "unit": "cm",
+   "redefines": true
+  },
+  {
+   "sym": "dose",
+   "concept": "absorbed-dose-rad-and-gray",
+   "meaning": "一包食品所受的剂量",
+   "section": "32.4",
+   "anchor": "32.4-irradiation-sources",
+   "unit": "Gy",
+   "redefines": true
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "一包食品在辐照室中的受照时间",
+   "section": "32.4",
+   "anchor": "32.4-irradiation-sources",
+   "unit": "min"
+  },
+  {
+   "sym": "E_gamma",
+   "concept": "energy",
+   "meaning": "工厂辐射源发出的 $\\gamma$ 射线的能量，⁶⁰Co 为 1.25 MeV，¹³⁷Cs 为 0.67 MeV",
+   "section": "32.4",
+   "anchor": "32.4-irradiation-sources",
+   "unit": "MeV"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "一次反应或一定质量的燃料所释放的能量",
+   "section": "32.5",
+   "anchor": "32.5-nuclear-fusion",
+   "unit": "MeV"
+  },
+  {
+   "sym": "KE",
+   "concept": "kinetic-energy",
+   "meaning": "相距很远的两个核的动能",
+   "section": "32.5",
+   "anchor": "32.5-coulomb-barrier",
+   "unit": "MeV"
+  },
+  {
+   "sym": "PE",
+   "concept": "electric-potential-energy",
+   "meaning": "两个核的势能",
+   "section": "32.5",
+   "anchor": "32.5-coulomb-barrier",
+   "unit": "MeV"
+  },
+  {
+   "sym": "r",
+   "concept": "distance",
+   "meaning": "两个核中心之间的距离",
+   "section": "32.5",
+   "anchor": "32.5-coulomb-barrier",
+   "unit": "fm"
+  },
+  {
+   "sym": "P",
+   "concept": "power",
+   "meaning": "反应堆的功率，以其起始值的倍数表示",
+   "section": "32.6",
+   "anchor": "32.6-reactors"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "一次裂变或一千克燃料所释放的能量",
+   "section": "32.6",
+   "anchor": "32.6-fission-energy-example",
+   "unit": "MeV"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，其平方把被消灭的质量换算为释放的能量",
+   "section": "32.6",
+   "anchor": "32.6-fission-energy-example",
+   "unit": "m/s"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "某种核素或中子的质量",
+   "section": "32.6",
+   "anchor": "32.6-fission-energy-example",
+   "unit": "u"
+  },
+  {
+   "sym": "BE",
+   "concept": "binding-energy",
+   "meaning": "核的结合能；$\\text{BE}/A$ 是每核子结合能",
+   "section": "32.6",
+   "anchor": "32.6-fission",
+   "unit": "MeV"
+  },
+  {
+   "sym": "t_half",
+   "concept": "half-life",
+   "meaning": "²³⁹U、²³⁹Np 或 ²³⁹Pu 的半衰期",
+   "section": "32.6",
+   "anchor": "32.6-breeding",
+   "unit": "min"
+  },
+  {
+   "sym": "E",
+   "concept": "energy",
+   "meaning": "核武器所释放的能量，即它的当量",
+   "section": "32.7",
+   "anchor": "32.7-energy-output",
+   "unit": "J"
+  },
+  {
+   "sym": "Δm",
+   "concept": "mass",
+   "meaning": "一次裂变或聚变反应中被消灭的质量",
+   "section": "32.7",
+   "anchor": "32.7-energy-output",
+   "unit": "kg"
+  },
+  {
+   "sym": "c",
+   "concept": "speed-of-light-in-vacuum",
+   "meaning": "光速，其平方把被消灭的质量换算为释放的能量",
+   "section": "32.7",
+   "anchor": "32.7-energy-output",
+   "unit": "m/s"
+  },
+  {
+   "sym": "x",
+   "concept": "position",
+   "meaning": "沿穿过胸部和肿瘤的一条直线上的位置，在该处读取剂量",
+   "unit": "cm",
+   "section": "32.3",
+   "anchor": "32.3-crossfire",
+   "redefines": true
+  }
+ ]
+}

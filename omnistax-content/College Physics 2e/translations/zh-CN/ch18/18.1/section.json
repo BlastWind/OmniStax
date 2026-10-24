@@ -1,0 +1,943 @@
+{
+ "id": "18.1",
+ "module": "m42300",
+ "chapter": "18",
+ "title": "静电与电荷：电荷守恒",
+ "short": "静电与电荷",
+ "lead": "自古希腊人起，人们就知道用丝绸摩擦过的琥珀能吸引稻草，而<span data-concept=\"electric-charge\">电荷</span>解释了摩擦所起的作用。电荷有两种，分别由电子和质子携带；问题在于，被摩擦物体的电荷从何而来，以及是否有任何过程，哪怕是<span data-concept=\"energy\">能量</span>变成一对粒子，能够改变总量。",
+ "objectives": [
+  "定义电荷，并描述两种电荷如何相互作用。",
+  "描述产生静电的三种常见情形。",
+  "陈述电荷守恒定律。"
+ ],
+ "summary_html": "<ul><li>电荷只有两种，我们称之为正电荷和负电荷。</li><li>同号电荷相斥，异号电荷相吸，电荷之间的<span data-concept=\"force\">力</span>随<span data-concept=\"distance\">距离</span>的平方而减小。</li><li>自然界中绝大部分正电荷由质子携带，而绝大部分负电荷由电子携带。</li><li>一个电子的<span data-concept=\"electric-charge\">电荷</span>与一个质子的电荷大小相等、符号相反。</li><li>离子是总电荷不为零的原子或分子，这是由于其电子数与质子数不相等。</li><li>电荷的 SI 单位是库仑（C），质子和电子的电荷符号相反而大小相等；这个元电荷的大小 $|\\kqe|$ 为 $|\\kqe| = 1.60 \\times 10^{-19}\\ \\text{C}$。</li><li>每当电荷被产生或消灭时，所涉及的正电荷与负电荷数量相等。</li><li>最常见的情形是，从电中性的物体上分离出已有的电荷，从而得到一些净电荷。</li><li>电中性的物体中既有正电荷也有负电荷，用一个物体摩擦另一个物体可以将它们分离。对于宏观物体，带负电意味着电子过剩，带正电意味着电子缺失。</li><li>电荷守恒定律保证，每当产生一份电荷时，同时也产生一份等量而符号相反的电荷。</li></ul>",
+ "notes": "略去了 PhET 模拟“气球与静电”，书中未给出答案的两道习题也一并略去，即一天内通过袖珍计算器的电子，以及闪电中的电荷基本单位数。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有两道习题没有给出答案，因此略去：$1.80 \\times 10^{20}$ 个电子在袖珍计算器中移动的库仑数，以及移动 40.0 C 的一次闪电中电荷基本单位的个数。11 道 AP 题中有 6 道给出了答案：4 道设为评分的选择题；得到 $6.88 \\times 10^{18}$ 个电子的物体那一题核对书中给出的三个数，并在解中给出第（c）问的答案；W、X、Y、Z 四个物体那一题用文字给出书中自己的答案。其余 5 道没有答案的 AP 题是开放题，选项照书中印出的样子给出，并附有 AI 撰写的建议思路，且已标明；三个乳胶球那一题的选项以书中印出的表格形式给出。两道思考题的建议思路由 AI 撰写，并已标明。第一道思考题是对那段说明物质含有等量两种电荷的文字的简短检测，设在该段之后，随文给出；其余各题都在本节末尾。有六道题依赖 18.2 才引入的概念，即电中性的物体被任一种符号的电荷吸引，以及电荷通过接触而共享，它们在本章内以这些概念作占位标签；这些题仍留在此处，因为 18.1 所述的事实能回答它们。没有任何内容取自其他小节，也没有任何内容留待以后的页面。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-amber",
+   "kind": "photo",
+   "number": "18.3",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-rods-and-silk",
+   "kind": "sim",
+   "number": "18.4",
+   "originals": [
+    "/media/ch18/Figure_19_01_02a.jpg"
+   ],
+   "original_caption": "玻璃棒被丝绸摩擦后带正电，而丝绸带负电。（a）玻璃棒被丝绸吸引，因为它们的电荷相反。（b）两根带同样电荷的玻璃棒相互排斥。（c）两块带同样电荷的丝绸相互排斥。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "charge",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: locked perspective, rod turning level, cloth pendulum, library hands"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-atom",
+   "kind": "sim",
+   "number": "18.5",
+   "originals": [
+    "/media/ch18/Figure_19_01_03a.jpg"
+   ],
+   "original_caption": "这幅原子的简化图（未按比例）称为原子的行星模型。带负电的电子绕着重得多的带正电的原子核运行，就像行星绕着重得多的太阳运行一样。相似之处仅此而已，因为原子中的力是电磁力，而行星系统中的力是引力。宏观数量的物质含有极其大量的原子和分子，因而含有数量更为庞大的单个负电荷和正电荷。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "charge"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note through the macros, label clear of electrons, headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-van-de-graaff",
+   "kind": "photo",
+   "number": "18.6",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-quarks",
+   "kind": "sim",
+   "number": "18.7",
+   "originals": [
+    "/media/ch18/Figure_19_01_05a.jpg"
+   ],
+   "original_caption": "艺术家构想的质子内部夸克的分数电荷。一组三个夸克的电荷相加，等于质子上的单个正电荷：−1/3 q_e + 2/3 q_e + 2/3 q_e = +1 q_e。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline fractions typeset; side tally and repeating note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rubbing",
+   "kind": "sim",
+   "number": "18.8",
+   "originals": [
+    "/media/ch18/Figure_19_01_06a.jpg"
+   ],
+   "original_caption": "当材料相互摩擦时，电荷可以被分离，尤其是当一种材料比另一种对电子有更大的亲和力时。（a）琥珀和布最初都是电中性的，带有等量的正电荷和负电荷。参与其中的只是电荷中极小的一部分，这里也只画出了其中的几个。（b）相互摩擦时，一些负电荷转移到琥珀上，使布带有净正电荷。（c）分开后，琥珀和布现在都带有净电荷，但净正电荷与净负电荷的绝对值相等。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "charge"
+   ],
+   "conventions": [
+    "p+",
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene total and repeating note dropped; headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-pair",
+   "kind": "sim",
+   "number": "18.9",
+   "originals": [
+    "/media/ch18/Figure_19_01_07a.jpg"
+   ],
+   "original_caption": "（a）当有足够的能量时，它可以转化为物质。这里产生的物质是一对电子—反电子。（m_e 是电子的质量。）此事件前后的总电荷为零。（b）物质和反物质碰撞时，它们相互湮没；湮没前后总电荷守恒，保持为零。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "charge",
+    "energy"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "static-electricity",
+   "concept": "electric-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "static-electricity",
+   "concept": "physical-quantity",
+   "verb": "uses"
+  },
+  {
+   "span": "static-electricity",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "static-electricity",
+   "concept": "static-electricity",
+   "verb": "introduces"
+  },
+  {
+   "span": "static-electricity",
+   "concept": "electromagnetic-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-types-of-charge",
+   "concept": "like-charges-repel",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-types-of-charge",
+   "concept": "electric-charge",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-types-of-charge",
+   "concept": "four-basic-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "electrons-and-protons",
+   "concept": "charge-of-electron-and-proton",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrons-and-protons",
+   "concept": "elementary-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrons-and-protons",
+   "concept": "count-charges-from-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrons-and-protons",
+   "concept": "model",
+   "verb": "uses"
+  },
+  {
+   "span": "electrons-and-protons",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "electrons-and-protons",
+   "concept": "electron",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrons-and-protons",
+   "concept": "proton",
+   "verb": "introduces"
+  },
+  {
+   "span": "origin-of-charge",
+   "concept": "charge-of-electron-and-proton",
+   "verb": "reinforces"
+  },
+  {
+   "span": "origin-of-charge",
+   "concept": "elementary-charge",
+   "verb": "reinforces"
+  },
+  {
+   "span": "origin-of-charge",
+   "concept": "like-charges-repel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "separation-of-charge",
+   "concept": "charge-separation-by-rubbing",
+   "verb": "introduces"
+  },
+  {
+   "span": "separation-of-charge",
+   "concept": "conservation-of-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "separation-of-charge",
+   "concept": "charge-of-electron-and-proton",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pair-creation",
+   "concept": "conservation-of-charge",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pair-creation",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "pair-creation",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "pair-creation",
+   "concept": "conservation-of-angular-momentum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2222446",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electrons-and-protons",
+   "prompt": "大多数物体中都含有极大数量的带电粒子。那么，为什么大多数物体并不表现出静电？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为普通物体中的电荷分成两种，彼此抵消。每个原子所含的电子数与质子数相等，而电子的电荷与质子的电荷大小相等、符号相反，所以一块物质中数量巨大的正电荷和负电荷加起来为零。物体向外界显示的是它的净电荷，那是两个巨大数目之间的微小差值，而不是这两个数目本身。只有当某种作用（通常是摩擦）把一小部分电子从一个物体移到另一个物体，使两者带上符号相反的净电荷时，才会出现静电。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1714026",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-of-charge",
+   "prompt": "为什么大多数物体往往含有数目几乎相等的正电荷和负电荷？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为异号电荷相吸。质子数远多于电子数的物体，会从周围的一切物体上把电子拉向自己；电子过多的物体，则同样容易地把它们放出去，直到两种数目再次几乎相等。两种电荷之间的吸引非常强，所以大的失衡无法维持：物质趋于形成电子数与质子数相等的原子，由这些原子构成的物体在很好的近似下是电中性的。摩擦所分离的电荷，只是物体所含电荷中极小的一部分。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1943517",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-of-charge",
+   "prompt": "用丝绸摩擦玻璃棒时，下列哪个说法是正确的？<ol type=\"a\"><li>电子从丝绸上被移走。</li><li>电子从棒上被移走。</li><li>质子从丝绸上被移走。</li><li>质子从棒上被移走。</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "电子从丝绸上被移走。",
+     "电子从棒上被移走。",
+     "质子从丝绸上被移走。",
+     "质子从棒上被移走。"
+    ],
+    "correct": 1,
+    "hint": "摩擦移动的是电子，绝不是质子，而且玻璃最终带正电。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3322928",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-of-charge",
+   "prompt": "在一次实验中，三个微观乳胶球被喷入一个腔室，分别带上 +3<em>e</em>、+5<em>e</em> 和 −3<em>e</em> 的电荷。后来，三个球同时碰撞，然后分开。下列哪些是各球最终电荷的可能值？请选出<em>两个</em>答案。<table class=\"data\"><tr><th></th><th>X</th><th>Y</th><th>Z</th></tr><tr><td>(a)</td><td>+4<em>e</em></td><td>−4<em>e</em></td><td>+5<em>e</em></td></tr><tr><td>(b)</td><td>−4<em>e</em></td><td>+4.5<em>e</em></td><td>+5.5<em>e</em></td></tr><tr><td>(c)</td><td>+5<em>e</em></td><td>−8<em>e</em></td><td>+7<em>e</em></td></tr><tr><td>(d)</td><td>+6<em>e</em></td><td>+6<em>e</em></td><td>−7<em>e</em></td></tr></table>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两个条件必须同时成立。电荷守恒定律说，三个最终电荷之和必须等于球一开始的总电荷，即 $+3e + 5e - 3e = +5e$；而元电荷则要求每个电荷都必须是 $e$ 的整数倍，因为所有观察到的电荷都是元电荷的整数倍。把每一行加起来，并看看有没有分数。(a) 行之和为 $+5e$，且各项均为整数。(b) 行之和为 $+6e$，并带有 $e$ 的半数，所以两项检验都不通过。(c) 行之和为 $+4e$，不等于球一开始的电荷。(d) 行之和为 $+5e$，且各项均为整数。因此，两组可能的值是 (a) 和 (d)。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2013498",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-types-of-charge",
+   "prompt": "如果物体 X 和 Y 相互吸引，下列哪个说法是错误的？<ol type=\"a\"><li>X 带正电，Y 带负电。</li><li>X 带负电，Y 带正电。</li><li>X 和 Y 都带正电。</li><li>X 为电中性，Y 带电。</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "X 带正电，Y 带负电。",
+     "X 带负电，Y 带正电。",
+     "X 和 Y 都带正电。",
+     "X 为电中性，Y 带电。"
+    ],
+    "correct": 2,
+    "hint": "同号电荷相斥。问一问，四种情形中哪一种是唯一使两个物体带同号电荷的。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1456969",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-of-charge",
+   "prompt": "假设在一个封闭系统中，带正电的物体 A 与不带电的物体 B 接触。物体 B 上最终会留下哪种电荷？<ol type=\"a\"><li>负电</li><li>正电</li><li>电中性</li><li>无法确定</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "系统是封闭的，所以总电荷不能改变：B 得到的，A 就失去。A 带正电意味着 A 缺少电子，所以两者接触时，电子从 B 转移到 A。于是 B 也缺少电子，而缺少电子就是带正电。所以 B 最终带正电，即选项 (b)，而这两份正电荷加在一起仍等于 A 一开始的电荷。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1306825",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-types-of-charge",
+   "prompt": "一个物体能吸引电中性的纸片，却排斥带负电的气球，这个物体的净电荷是什么？<ol type=\"a\"><li>负电</li><li>正电</li><li>电中性</li><li>无法确定</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "负电",
+     "正电",
+     "电中性",
+     "无法确定"
+    ],
+    "correct": 0,
+    "hint": "排斥才是关键的观察结果：只有同号电荷才相斥，而电中性的物体对任一种符号的电荷都会吸引。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1450214",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-of-charge",
+   "prompt": "两个电中性的物体相互摩擦时，第一个物体得到 3<em>e</em> 的净电荷。下列哪个说法是正确的？<ol type=\"a\"><li>第二个物体得到 3<em>e</em>，带负电。</li><li>第二个物体失去 3<em>e</em>，带负电。</li><li>第二个物体得到 3<em>e</em>，带正电。</li><li>第二个物体失去 3<em>e</em>，带正电。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两个物体一开始都是电中性的，所以摩擦前总电荷为零，摩擦后也必须仍为零。如果第一个物体的净电荷为 $+3e$，第二个就必须带 $-3e$，而负电荷就是电子过剩。第一个物体把三个电子给了第二个，所以第二个得到了总电量为 $3e$ 的电子，带负电，这就是选项 (a)。摩擦没有创造任何东西；它只是把电荷从一个物体移到了另一个物体。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1049967",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-types-of-charge",
+   "prompt": "在一次实验中，一名学生用梳子梳了几次头发，然后把它靠近小纸片。他会观察到下列哪种现象？<ol type=\"a\"><li>纸片排斥梳子。</li><li>纸片被梳子吸引。</li><li>一些纸片被吸引，一些排斥梳子。</li><li>纸片与梳子之间既没有吸引也没有排斥。</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "纸片排斥梳子。",
+     "纸片被梳子吸引。",
+     "一些纸片被吸引，一些排斥梳子。",
+     "纸片与梳子之间既没有吸引也没有排斥。"
+    ],
+    "correct": 1,
+    "hint": "梳子梳过头发，会因摩擦而带电。纸片是电中性的，而电中性的物体会被任一种符号的电荷吸引。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id2399594",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-types-of-charge",
+   "prompt": "在一次实验中，一个带负电的气球（气球 X）被另一个带电的气球 Y 排斥。然而，物体 Z 被气球 Y 吸引。下列哪些可能是 Z 上的电荷？请选出<em>两个</em>答案。<ol type=\"a\"><li>负电</li><li>正电</li><li>电中性</li><li>无法确定</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先弄清气球 Y。X 带负电，而 Y 排斥它，只有同号电荷才相斥，所以 Y 也带负电。现在 Z 被 Y 吸引。异号电荷相吸，所以 Z 可能带正电，这就是选项 (b)。电中性的物体也会被任一种符号的电荷吸引，就像纸片被梳子吸引一样，所以 Z 也可能是电中性的，这就是选项 (c)。它不可能带负电，因为两个负电荷会相斥。因此两个答案是 (b) 和 (c)。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id1337782",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electrons-and-protons",
+   "prompt": "假设一个物体带有 1 C 的电荷，并得到 6.88×10<sup>18</sup> 个电子。(a) 该物体的净电荷是多少？(b) 如果该物体是从一个电中性的物体上得到这些电子的，那么那个电中性的物体上的电荷将是多少？(c) 求出并解释转移前后两个物体总电荷之间的关系。(d) 当第三个物体与第一个物体（在其得到电子之后）接触时，第三个物体上最终的电荷为 0.4 C。它原来的电荷是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -0.1,
+      "unit": "C",
+      "hint": "得到的电子所带的电荷为 $6.88 \\times 10^{18}$ 乘以 $-1.60 \\times 10^{-19}$ C。把它加到物体原有的 1 C 上。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.1,
+      "unit": "C",
+      "hint": "第二个物体一开始是电中性的，失去的恰好是第一个物体得到的电子，所以它剩下的电荷与转移的电荷相反。"
+     },
+     {
+      "part": "(d)",
+      "value": 0.9,
+      "unit": "C",
+      "hint": "两个接触的物体共同分配它们的总电荷，而总电荷与接触前相同。"
+     }
+    ],
+    "solution": "(a) −0.1 C，(b) 1.1 C，(c) 两个电荷都将等于 1 C，电荷守恒定律，(d) 0.9 C"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1860256",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electrons-and-protons",
+   "prompt": "两个相同的金属球（置于封闭系统中）所带的电荷分别为 -2.4×10<sup>−17</sup> C 和 -4.8×10<sup>−17</sup> C。(a) 与每个球所带电荷相当的电子有多少个？(b) 如果使两球接触后再分开，求每个球所带的电荷。(c) 计算与每个球最终所带电荷相当的电子数。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) 用每个电荷除以元电荷。第一个球带有 $(2.4 \\times 10^{-17}\\ \\text{C})/(1.60 \\times 10^{-19}\\ \\text{C}) = 150$ 个过剩电子，第二个球带有 $(4.8 \\times 10^{-17}\\ \\text{C})/(1.60 \\times 10^{-19}\\ \\text{C}) = 300$ 个，都是负的。(b) 系统是封闭的，所以总电荷 $-2.4 \\times 10^{-17}\\ \\text{C} - 4.8 \\times 10^{-17}\\ \\text{C} = -7.2 \\times 10^{-17}\\ \\text{C}$ 在接触之后与之前相同。两球相同，所以它们平均分配这些电荷，每个球剩下 $-3.6 \\times 10^{-17}\\ \\text{C}$。(c) 这个电荷是 $(3.6 \\times 10^{-17}\\ \\text{C})/(1.60 \\times 10^{-19}\\ \\text{C}) = 225$ 个过剩电子，每个球上都是，也就是 (a) 问中的 150 个和 300 个在两球之间重新分配的结果。"
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id1409750",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-types-of-charge",
+   "prompt": "在一次实验中，一名学生对 W、X、Y、Z 四个带电体做出了下列观察：<ul><li>用丝绸摩擦过的玻璃棒吸引 W。</li><li>W 吸引 Z，但排斥 X。</li><li>X 吸引 Z，但排斥 Y。</li><li>Y 吸引 W 和 Z。</li></ul>请判断这四个物体各自所带的电荷是正、负还是电中性。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "W 带负电，X 带正电，Y 带负电，Z 为电中性。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2878870",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electrons-and-protons",
+   "prompt": "常见的静电涉及的电荷从纳库仑到微库仑不等。(a) 形成 $-2.00\\ \\text{nC}$ 的电荷需要多少个电子？(b) 要使一个电中性的物体留下 $0.500\\ \\mu\\text{C}$ 的净电荷，必须移走多少个电子？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 12500000000.0,
+      "unit": "electrons",
+      "hint": "用电荷除以元电荷 $|\\kqe| = 1.60 \\times 10^{-19}$ C，并记住一纳库仑是 $10^{-9}$ C。"
+     },
+     {
+      "part": "(b)",
+      "value": 3130000000000.0,
+      "unit": "electrons",
+      "hint": "正电荷就是缺少电子，所以用 $0.500\\ \\mu\\text{C}$，即 $0.500 \\times 10^{-6}$ C，除以同一个元电荷。"
+     }
+    ],
+    "solution": "(a) $1.25 \\times 10^{10}$ (b) $3.13 \\times 10^{12}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1969597",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electrons-and-protons",
+   "prompt": "为了启动汽车发动机，汽车蓄电池使 $3.75 \\times 10^{21}$ 个电子通过起动机。移动了多少库仑的电荷？",
+   "answer": {
+    "type": "number",
+    "value": -600,
+    "unit": "C",
+    "generated_by": "source",
+    "hint": "用电子数乘以每个电子所带的电荷 $-1.60 \\times 10^{-19}$ C；答案的正负号说明移动的是哪一种电荷。",
+    "solution": "−600 C"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "charge-of-electron-and-proton"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electric-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "charge-of-electron-and-proton"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "like-charges-repel"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charge-separation-by-rubbing"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charge-of-electron-and-proton",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "elementary-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "like-charges-repel"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "attraction-of-neutral-objects",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "charging-by-contact",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "like-charges-repel"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "attraction-of-neutral-objects",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "charge-separation-by-rubbing",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "charge-separation-by-rubbing"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "attraction-of-neutral-objects",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "like-charges-repel"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "attraction-of-neutral-objects",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "count-charges-from-charge"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "count-charges-from-charge"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "charging-by-contact",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "like-charges-repel"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "attraction-of-neutral-objects",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "count-charges-from-charge"
+  },
+  {
+   "exercise": "p1",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "count-charges-from-charge"
+  },
+  {
+   "exercise": "p3",
+   "concept": "elementary-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "rod-1",
+   "label": "悬挂在细线上、用丝绸摩擦过的玻璃棒",
+   "figures": [
+    "sim-rods-and-silk"
+   ]
+  },
+  {
+   "id": "rod-2",
+   "label": "移近第一根玻璃棒的、同样用丝绸摩擦过的第二根玻璃棒",
+   "figures": [
+    "sim-rods-and-silk"
+   ]
+  },
+  {
+   "id": "silk",
+   "label": "摩擦过玻璃棒、被移近它的丝绸",
+   "figures": [
+    "sim-rods-and-silk"
+   ]
+  },
+  {
+   "id": "cloth-1",
+   "label": "挂在玻璃棒位置上的一块丝绸",
+   "figures": [
+    "sim-rods-and-silk"
+   ]
+  },
+  {
+   "id": "cloth-2",
+   "label": "移近第一块丝绸的第二块丝绸",
+   "figures": [
+    "sim-rods-and-silk"
+   ]
+  },
+  {
+   "id": "nucleus",
+   "label": "原子行星模型中的原子核",
+   "figures": [
+    "sim-atom"
+   ]
+  },
+  {
+   "id": "amber",
+   "label": "用布摩擦的那块琥珀",
+   "figures": [
+    "sim-rubbing"
+   ]
+  },
+  {
+   "id": "cloth",
+   "label": "摩擦琥珀的布",
+   "figures": [
+    "sim-rubbing"
+   ]
+  }
+ ]
+}

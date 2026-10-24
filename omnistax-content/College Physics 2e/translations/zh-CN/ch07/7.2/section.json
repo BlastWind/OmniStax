@@ -1,0 +1,1118 @@
+{
+ "id": "7.2",
+ "module": "m42147",
+ "chapter": "7",
+ "title": "动能与动能定理",
+ "short": "动能",
+ "lead": "<span data-concept=\"work\">功</span>输入系统的<span data-concept=\"energy\">能量</span>最终如何，取决于是哪些<span data-concept=\"force\">力</span>在做<span data-concept=\"work\">功</span>。顺着<span data-concept=\"net-external-force\">合外力</span>所做的<span data-concept=\"work\">功</span>追究下去，就得到运动的<span data-concept=\"energy\">能量</span>，即<span data-concept=\"kinetic-energy\">动能</span>，以及动能定理。",
+ "objectives": [
+  "解释功是能量的传递，合外力的功是合力所做的功。",
+  "解释并应用动能定理。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"net-work\">合外力的功</span> $\\kWnet$ 是作用在物体上的合<span data-concept=\"force\">力</span>所做的<span data-concept=\"work\">功</span>。</li><li>对物体所做的<span data-concept=\"work\">功</span>把<span data-concept=\"energy\">能量</span>传递给物体。</li><li><span data-concept=\"mass\">质量</span>为 $m$、以速率 $\\kv$ 运动的物体，其平动<span data-concept=\"kinetic-energy\">动能</span>为 $\\kKE = \\tfrac{1}{2}m\\kv^2$。</li><li>动能定理指出，系统所受的<span data-concept=\"net-work\">合外力的功</span> $\\kWnet$ 改变它的<span data-concept=\"kinetic-energy\">动能</span>，$\\kWnet = \\tfrac{1}{2}m\\kv^2 - \\tfrac{1}{2}m\\kvo^2$。</li></ul>",
+ "notes": "习题 2、4 和 6 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4 和 6（大象与短跑运动员、在 120 m 内停下的汽车与撞上桥台的汽车、拳击手套）没有给出答案，因而略去。三道思考题在书后答案中都没有给出，因此每道都附有 AI 撰写的建议思路，并已标明；其中最短的一道要求举出功把能量输入系统、又把能量取走的例子，它被放在所检测段落的旁边，作为行内练习。十三道 AP 题中有七道没有答案，它们作为开放题保留，选项照书中印出的样子给出，并附有标明为 AI 撰写的建议思路，绝不作为判分选择题；其余六道附有书中自己的答案。书中印在其他小节的三道题被放在这里，因为一道练习应放在介绍它所检测内容的小节：7.1 的火箭有效载荷题（fs-id2527597，附有距离与末速度的表）和 7.1 的起重机题（fs-id2714107，附有力-距离图像）考查的是动能定理和力-距离图像下的面积，两道都有答案，因此都作为书中自己的选择题保留；7.9 的批判性思考题（exer-86622，两个箱子被两个活塞释放）围绕同样的两个概念，也有答案，书后答案第（c）部分印出的 $W$ 对 $x$ 的图像随它一起放在这里。本节的两道机械能题（fs-id1130691 和 fs-id1353464）提到了机械能，而机械能是 7.4 才定义的，但它们与这一组中的其余各题一样，问的都是功的正负，并且都只用动能定理就能解答，因此都留在这里。",
+ "figures": [
+  {
+   "id": "sim-area",
+   "kind": "sim",
+   "number": "7.3",
+   "originals": [
+    "/media/ch07/Figure_08_02_02a.jpg"
+   ],
+   "original_caption": "（a）F cos θ 为恒定值时，F cos θ 与 d 的关系图像。曲线下的面积表示力所做的功。（b）力变化时，F cos θ 与 d 的关系图像。每个区间内所做的功等于每个窄条的面积；因此，曲线下的总面积等于所做的总功。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "force",
+    "position",
+    "energy",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "d_i bracket off the ticks, steady note dropped, sum through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-package",
+   "kind": "sim",
+   "number": "7.4",
+   "originals": [
+    "/media/ch07/Figure_08_02_03a.jpg"
+   ],
+   "original_caption": "滚筒输送带上的一个包裹被水平推过一段距离 d。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "position",
+    "velocity",
+    "energy",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene note dropped, slope and friction labels off their lines"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ke",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "energy",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bar caption off the speed labels, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "transfers",
+   "concept": "work-transfers-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "transfers",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "transfers",
+   "concept": "work-sign",
+   "verb": "uses"
+  },
+  {
+   "span": "net-work",
+   "concept": "net-work",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-work",
+   "concept": "work-as-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-work",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "net-work",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "net-work",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "net-work",
+   "concept": "straight-line-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "theorem",
+   "concept": "work-energy-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "theorem",
+   "concept": "net-work",
+   "verb": "reinforces"
+  },
+  {
+   "span": "theorem",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "theorem",
+   "concept": "v-squared",
+   "verb": "uses"
+  },
+  {
+   "span": "theorem",
+   "concept": "kinetic-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "theorem",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "kinetic-energy",
+   "concept": "kinetic-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "kinetic-energy",
+   "concept": "instantaneous-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "kinetic-energy",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "worked",
+   "concept": "speed-from-work-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "worked",
+   "concept": "work-energy-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "worked",
+   "concept": "kinetic-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "worked",
+   "concept": "net-work",
+   "verb": "reinforces"
+  },
+  {
+   "span": "worked",
+   "concept": "work-sign",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2008777",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transfers",
+   "figure": {
+    "src": "/media/ch07/OSX_CP2e_Figure_08_02_04.jpg",
+    "alt": "一个人用力 F 推着割草机。力用一个与水平线成 θ 角、指向水平线下方的矢量表示，割草机移动的距离用矢量 d 表示。矢量 F 沿矢量 d 方向的分量是 F cos θ。这个人所做的功 W 等于 F d cos θ。"
+   },
+   "prompt": "下图中的人对割草机做功。在什么条件下割草机会获得能量？在什么条件下它会失去能量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "人所做的功把能量输入割草机，而摩擦力又以热传递的形式不断把能量取走，所以割草机是获得还是失去能量，取决于二者哪个更大。当对它所做的合外力的功为正时，割草机获得能量。这发生在人推得比摩擦力阻碍运动的力更大时：合力指向前方，割草机加速，根据动能定理，它的动能增大。当合外力的功为负时，它失去能量。这发生在人减小用力或停止推动时：此时摩擦力是唯一的水平力，它的方向与位移相反，所以做负功，割草机减速直至停下。如果推得刚好足以使割草机以恒定速率运动，它既不获得也不失去能量，因为人所做的功与摩擦力所做的功大小相等、符号相反。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1422290",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transfers",
+   "prompt": "对系统所做的功把能量输入系统。系统所做的功把能量从系统中移走。请为这两个说法各举一个例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沿滚筒输送带推动那个 30.0 kg 的包裹，就是对系统做功。外加力做功 $96.0\\ \\text{J}$，摩擦力做功 $-4.00\\ \\text{J}$，所以有 $\\kWnet = 92.0\\ \\text{J}$ 进入包裹，使它的动能从 $3.75\\ \\text{J}$ 增大到 $95.75\\ \\text{J}$，速率从 0.500 m/s 增大到 2.53 m/s。把公文包举到搁板上是另一个例子：向上的力作用在向上的位移上，公文包-地球系统把能量以重力势能的形式储存起来。同一个包裹在推动停止后滑行时，就是一个做功的系统。它克服 5.00 N 的摩擦力做功，滑行 19.2 m 之后，它已经交出了全部 $95.75\\ \\text{J}$ 的动能，处于静止。被压缩的弹簧把滑块推开是又一个例子：弹簧对滑块做功，失去了它原先储存的能量。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1527618",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "worked",
+   "prompt": "在例题 7.4 中求速率时，我们只保留了正根。为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "由 $\\tfrac{1}{2}m\\kv^2 = 95.75\\ \\text{J}$ 解出 $\\kv$，要对两边取平方根，这会得到两个答案：$+2.53\\ \\text{m/s}$ 和 $-2.53\\ \\text{m/s}$。动能含有速率的平方，所以它只说明包裹运动得多快，而不说明朝哪个方向。负根描述的是包裹以 2.53 m/s 沿输送带向后运动。这个例子不允许出现这种运动：包裹本来就以 0.500 m/s 向前运动，而合力自始至终把它向前推，所以它的速度从不改变符号。负根满足方程，但在这个问题中并不对应任何运动，所以要舍去。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id3219139",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "一辆玩具小车正沿回环轨道运动。重力在圆环的上升一侧____动能，在顶端____动能，在圆环的下降一侧____动能。<ol type=\"a\"><li>增大，减小，不影响</li><li>减小，不影响，增大</li><li>增大，不影响，减小</li><li>减小，增大，不影响</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在圆环的每一点上，重力都竖直向下，所以它所做的功取决于重力与位移之间的夹角。在上升一侧，小车在向上爬，位移有向上的分量，夹角大于 $90^\\circ$，功为负，所以动能减小。在最顶端，小车沿水平方向运动，重力垂直于位移，$\\cos\\theta = 0$，重力完全不做功，所以动能在那一时刻不变。在下降一侧，位移有向下的分量，功为正，动能增大。第二个选项说的就是这一点。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3918076",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "一个过山车的轨道被设置成标准的余弦曲线形状。请描述并画出小车在通过轨道的第一个完整周期时，其动能发生的变化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "动能应按 –cos 的形式变化，初值为 0 或略高于 0，并在同一水平上结束。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1978911",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-work",
+   "prompt": "如果风沿水平方向朝一辆汽车吹来，风向与行进方向成 30 度角，则动能将____。如果风朝汽车吹来，风向与行进方向成 135 度角，则动能将____。<ol type=\"a\"><li>增大，增大</li><li>增大，减小</li><li>减小，增大</li><li>减小，减小</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（b）：风向成 $30^\\circ$ 角时动能增大，成 $135^\\circ$ 角时动能减小。风的力对汽车所做的功为 $\\kW = \\kF\\kd\\cos\\ktheta$，其中 $\\ktheta$ 是力与行进方向之间的夹角，根据动能定理，这个功为正时动能增大，为负时动能减小。在 $30^\\circ$ 时，$\\cos 30^\\circ = 0.866$，所以力有沿运动方向的分量，功为正，动能增大。在 $135^\\circ$ 时，$\\cos 135^\\circ = -0.707$，所以力有与运动方向相反的分量，功为负，动能减小。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id980483",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-work",
+   "prompt": "相对于行进方向，作用在汽车（在水平地面上行驶）上的力沿什么方向时，不会改变动能？你能举出这类力的例子吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "任何垂直作用的力都不会影响动能。明显的例子是重力和法向力，其他的还包括正侧面吹来的风，以及笔直落下的雨或其他降水。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1847181",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "一架 2000 kg 的飞机正在进场着陆，速度方向在水平方向下方 5 度，并受到 40 kN、直接指向后方的阻力。忽略飞机所受的推力和升力，动能将____，这是由于合力为____。<ol type=\"a\"><li>增大，20 kN</li><li>减小，40 kN</li><li>增大，45 kN</li><li>减小，45 kN</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "忽略推力和升力之后，还剩两个力：40 kN 的阻力，沿飞行路径直接指向后方；以及重力 $m\\kg = (2000\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 19.6\\ \\text{kN}$，竖直向下。路径只在水平方向下方 $5^\\circ$，所以这两个力几乎互相垂直，合力的大小接近 $\\sqrt{(40\\ \\text{kN})^2 + (19.6\\ \\text{kN})^2} = 45\\ \\text{kN}$。只有沿运动方向的分量才会改变动能。阻力完全与运动方向相反，而重力只贡献一个很小的向前分量 $m\\kg\\sin 5^\\circ = 1.7\\ \\text{kN}$，所以合外力的功为负，动能减小。第四个选项把这两点都说到了。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1927755",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-work",
+   "prompt": "你正在参加艾迪塔罗德雪橇犬大赛，雪橇犬用 1200 N 的力拉着你穿过结冰的湖面，同时有一股 300 N 的风以与你的行进方向成 135 度角的方向朝你吹来。合力是多少？你的动能将增大还是减小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "注意，风是从后方和一侧吹来的，所以你的动能将增大。合力在行进方向上的分量为 1400 N，垂直于行进方向的分量为 212 N。因此，合力为 1420 N，与行进方向成 8.5 度角。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1564751",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "一辆模型直线加速赛车由电动机以 75 N 的力沿轨道从静止开始加速，但轨道对它有 30 N 的阻力。行进 2 m 之后，动能是多少？<ol type=\"a\"><li>90 J</li><li>150 J</li><li>210 J</li><li>60 J</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电动机把小车向前推，轨道的阻力阻碍它，二者都沿着运动方向，所以合力为 $\\kFnet = 75\\ \\text{N} - 30\\ \\text{N} = 45\\ \\text{N}$，沿行进方向。在这 2 m 内，合外力的功为 $\\kWnet = \\kFnet\\kd = (45\\ \\text{N})(2\\ \\text{m}) = 90\\ \\text{J}$。小车从静止开始，所以初动能为零，根据动能定理，末动能等于合外力的功 90 J，这就是第一个选项。第二个选项的 150 J 是仅由电动机提供的功，它偏大，因为忽略了阻力又取走的功。"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1859034",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "你正在用土豆炮抛出一个 0.315 kg 的土豆。土豆炮长 1.5 m，瞄准水平方向上方 30.0 度。它对土豆施加平均 45 N 的力。忽略摩擦，土豆离开土豆炮炮口时的动能是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "重力有一个垂直于土豆炮（也垂直于位移，因此无关紧要）的分量，也有一个平行于土豆炮的分量。后者等于 9.8 N。因此沿位移方向的合力为 45 N − 9.8 N，动能为 53 J。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id1130691",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "当作用在物体上的力平行于质心的运动方向时，机械能____。当作用在物体上的力与质心的方向反平行时，机械能____。<ol type=\"a\"><li>增大，增大</li><li>增大，减小</li><li>减小，增大</li><li>减小，减小</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "与质心位移平行的力使 $\\theta = 0^\\circ$、$\\cos\\theta = 1$，所以它所做的功为正；根据动能定理，系统的动能增大，系统的能量也随之增大。与位移反平行的力使 $\\theta = 180^\\circ$、$\\cos\\theta = -1$，所以功为负，能量减小。第二个选项说的是先增大后减小。"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1353464",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transfers",
+   "prompt": "描述一个系统，其中起主要作用的力与质心平行或反平行，并说明你的理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "上面的土豆炮（以及许多其他抛体发射器）就是一个选择，其中有发射抛体的力、摩擦力，还可能有重力（取决于它所指的方向）等。一辆正在加速的直线加速赛车（或其他赛车）是另一种可能。"
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id1893751",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "一个儿童拉着两辆红色四轮小车，第二辆用一根（不可伸长的）绳拴在第一辆上。每辆小车的质量为 10 kg。如果这个儿童施加 30 N 的力，持续 5.0 m 的距离，两辆小车组成的系统的动能改变了多少？<ol type=\"a\"><li>300 J</li><li>150 J</li><li>75 J</li><li>60 J</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为绳不伸长，两辆小车一起运动，可以当作一个质量为 20 kg 的系统。绳中的张力对这个系统来说是内力，沿位移方向有分量的外力只有儿童的 30 N 拉力，它沿着运动方向作用。因此，系统所受合外力的功为 $\\kWnet = \\kFnet\\kd = (30\\ \\text{N})(5.0\\ \\text{m}) = 150\\ \\text{J}$，根据动能定理，两辆小车组成的系统的动能就改变这么多。答案是第二个选项。请注意，质量始终没有出现：它决定小车最终走得多快，而不决定这个功输入了多少能量。"
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "fs-id1396556",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "一个儿童有两辆红色四轮小车，后面一辆用一根（不可伸长的）绳拴在前面一辆上。如果这个儿童推后面的小车，每辆小车以及两辆小车组成的系统的动能会怎样变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "后面那辆小车的动能增大。前面那辆则不会，直到后面的小车与它碰撞。整个系统可以按其质心来处理，质心位于两辆小车的正中间，系统能量的增加量与两辆小车各自增加量之和相同。"
+   }
+  },
+  {
+   "id": "ap13",
+   "source_id": "fs-id872246",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-work",
+   "prompt": "画出沿位移方向作用在通过回环轨道的特技摩托车上的力，随绕圆环行进的路程变化的图像。解释能量的净变化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把从圆环底部起算、绕圆环行进的路程 $\\kd$ 放在横轴上，把合力沿运动方向的分量放在纵轴上。轨道的法向力在各处都垂直于运动方向，因此在这个图像中没有贡献；重力是唯一沿路径有分量的力。对于半径为 $r$ 的圆环，转过的角度是 $\\kd/r$，所以这个分量是 $-m\\kg\\sin(\\kd/r)$：曲线从圆环底部的零出发，摩托车上升时变为负值，在绕行四分之一圈、轨道竖直的地方负得最多，在顶端回到零，在绕行四分之三圈处升到最大的正值，并在底部回到零。这条曲线下的面积就是所做的功，负的一半和正的一半面积相同，所以绕完整一圈的合外力的功为零。因此，忽略摩擦和空气阻力，摩托车回到圆环底部时的动能与出发时恰好相同。"
+   }
+  },
+  {
+   "id": "ap-rocket",
+   "source_id": "fs-id2527597",
+   "source_section": "7.1",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "theorem",
+   "prompt": "根据下表，火箭发动机对 3.0 kg 的有效载荷施加的力大约是多大？<table class=\"data\"><tr><th>火箭发动机点火时行进的距离（m）</th><th>有效载荷的末速度（m/s）</th></tr><tr><td>500</td><td>310</td></tr><tr><td>490</td><td>300</td></tr><tr><td>1020</td><td>450</td></tr><tr><td>505</td><td>312</td></tr></table>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "150 N",
+     "300 N",
+     "450 N",
+     "600 N"
+    ],
+    "correct": 1,
+    "hint": "有效载荷从静止开始，所以合外力的功就是它全部的末动能：令 $\\kFnet\\kd = \\tfrac{1}{2}m\\kv^2$，并从表中读取一对数值。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap-crane",
+   "source_id": "fs-id2714107",
+   "source_section": "7.1",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-work",
+   "figure": {
+    "src": "/media/ch07/CNX_APPhysics_07_M1_cranegraph_img.jpg",
+    "alt": "这幅图像的 x 轴为米，y 轴为千牛。一条直线从点 (0, 0) 延伸到点 (10, 10)。另一条直线从 (10, 10) 延伸到 (50, 10)。第三条直线从 (50, 10) 延伸到 (60, 0)。"
+   },
+   "prompt": "一台起重机把建筑材料从地面提升到 60 m 的高度。在最初的 10 m 内，电动机施加的力从 0 线性增大到 10 kN。在接下来的 40 m 内它施加这个恒定的力，然后在最后 10 m 内又逐渐减小到 0 N，如图所示。对建筑材料所做的总功是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "500 kJ",
+     "600 kJ",
+     "300 kJ",
+     "18 MJ"
+    ],
+    "correct": 0,
+    "hint": "功就是力-距离图像下的面积，这幅图像是两个三角形，中间夹着一个矩形。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ct1",
+   "source_id": "exer-86622",
+   "source_section": "7.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-work",
+   "tag": "批判性思考",
+   "prompt": "两个质量相同的箱子被压在活塞上，活塞在无摩擦表面上压缩并释放箱子。箱子 A 的活塞在释放箱子之前，在距离 $\\kx$ 内施加恒定的力 $\\kF$；而箱子 B 从零力开始，线性增大到 $2\\kF$，然后在 $\\tfrac{1}{2}d$ 的距离处释放箱子。（a）这两个箱子中，哪一个从活塞释放后速率最大？（b）根据与箱子 A 类似的各次试验的实验数据，有人提出了一个与数据吻合的方程来表示动能的变化 $\\kdKE$，但它可能并不正确：$\\kdKE = KF^{1/2}x^{1/2}$，其中 $K$ 是带有适当单位的常数，$F$ 是外加力，$x$ 是活塞与箱子接触期间移动的距离。这个方程与你在（a）中的答案一致吗？请说明理由。这个方程合理吗？请说明理由。（c）如果活塞的外加力与它和箱子接触的距离成正比，请画出对箱子所做的功随活塞与箱子接触距离变化的图像。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）箱子 A 的速率最大，因为它所受的功最大；功等于动能的变化，因此速率最快。（b）i. 是的，这个方程是一致的。力或距离增大，所做的功就增大，因而动觉能量的变化也增大。ii. 不，这个方程没有意义。（c）<figure class=\"photo\"><img src=\"/media/ch07/OSX_CP2e_Figure_07_09Sol_CTQ01c.jpg\" alt=\"该图是 W 作为 x 的函数的曲线图。曲线从原点出发，数值和斜率都单调增大。图旁给出了方程 W 等于 k 乘以 x 的平方。\" data-width=\"200\"></figure>"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1688607",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "kinetic-energy",
+   "prompt": "比较一辆以 110 km/h 行驶的 20,000 kg 的卡车与一位以 27,500 km/h 在轨道上运动的 80.0 kg 的航天员的动能。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.004,
+    "hint": "用 SI 单位分别算出两者的 $\\tfrac{1}{2}m\\kv^2$，再用卡车的除以航天员的；书中给出的答案是比值，而不是能量。",
+    "solution": "$1/250$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2628495",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "kinetic-energy",
+   "prompt": "验证表 7.1 中给出的航空母舰的动能值。你需要查一下海里的定义（1 节 = 1 海里/h）。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 11000000000.0,
+    "unit": "J",
+    "hint": "先把航空母舰以节为单位的速率换算成米每秒，记住 1 海里是 1852 m，然后把质量和速率代入 $\\kKE = \\tfrac{1}{2}m\\kv^2$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1909004",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "worked",
+   "prompt": "汽车保险杠的设计，能承受以 4.0 km/h（1.12 m/s）的速率撞上不动的物体，而不损坏车身。保险杠通过在一段距离内吸收力来缓冲冲击。计算一个保险杠所受平均力的大小：它在使一辆 900 kg 的汽车从 1.12 m/s 的初速率减到静止的过程中压缩了 0.200 m。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2800,
+    "unit": "N",
+    "hint": "汽车被减到静止，所以合外力的功就是它全部初动能取相反的符号；再除以保险杠压缩的 0.200 m。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1663871",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "worked",
+   "prompt": "利用能量的考虑，计算一位 60.0 kg 的短跑运动员为了在 25.0 m 的距离内从 2.00 m/s 加速到 8.00 m/s，向后蹬踏跑道的平均力，已知他遇到逆风，逆风对他施加平均 30.0 N 的阻力。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 102,
+    "unit": "N",
+    "hint": "动能的变化给出合外力的功，合外力的功除以 25.0 m 给出合力，而短跑运动员自己的力等于合力加上逆风带走的 30.0 N。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "work-transfers-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "work-energy-theorem",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "work-transfers-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "work-sign",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "speed-from-work-energy"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "work-sign",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "work-sign",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "calculate-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "net-work"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "work-energy-theorem",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "net-work",
+   "weight": 3
+  },
+  {
+   "exercise": "ap5",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "net-work"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "work-energy-theorem",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "net-work",
+   "weight": 3
+  },
+  {
+   "exercise": "ap7",
+   "concept": "speed-from-work-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "net-work",
+   "weight": 3
+  },
+  {
+   "exercise": "ap8",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "work-transfers-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "work-sign",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "work-transfers-energy"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap11",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap12",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "work-transfers-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap12",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "work-as-area"
+  },
+  {
+   "exercise": "ap13",
+   "concept": "work-energy-theorem",
+   "weight": 2
+  },
+  {
+   "exercise": "ap13",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap-rocket",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ap-rocket",
+   "concept": "speed-from-work-energy",
+   "weight": 3
+  },
+  {
+   "exercise": "ap-rocket",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap-crane",
+   "concept": "work-as-area"
+  },
+  {
+   "exercise": "ap-crane",
+   "concept": "net-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap-crane",
+   "concept": "calculate-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "work-as-area"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "ct1",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ct1",
+   "concept": "speed-from-work-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "p3",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "p5",
+   "concept": "speed-from-work-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "work-energy-theorem"
+  },
+  {
+   "exercise": "p7",
+   "concept": "speed-from-work-energy"
+  },
+  {
+   "exercise": "p7",
+   "concept": "net-work",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "package",
+   "label": "30.0 kg 的包裹",
+   "figures": [
+    "sim-package"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "work-energy-theorem",
+   "what": "动能定理",
+   "source": "《大学物理（第2版）》，7.2 动能与动能定理",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "合力平行于位移，所以 $\\ktheta = 0^\\circ$，$\\cos\\ktheta = 1$。",
+       "src": "7.2"
+      },
+      {
+       "tex": "\\kFnet = \\km\\ka",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnet} = \\mk{F}{\\kFnet}\\,\\mk{d}{\\kd}\\,\\mk{c}{\\cos\\ktheta}",
+      "src": "7.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{F}{\\kFnet}\\,\\mk{d}{\\kd}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\ka}\\mk{d}{\\kd}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "F": [
+         "m",
+         "a"
+        ]
+       }
+      }
+     ],
+     "src": "7.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "加速度具有恒定值 $\\ka$。",
+       "src": "7.2"
+      },
+      {
+       "tex": "\\kd = \\kx - \\kxo",
+       "src": "7.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{d}{(\\kx - \\kxo)}",
+      "src": "2.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{d}{\\kd}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{two}{2}\\mk{a}{\\ka}\\mk{d}{\\kd} = \\mk{v}{\\kv^2} - \\mk{vo}{\\kvo^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\ka} = \\dfrac{\\mk{v}{\\kv^2} - \\mk{vo}{\\kvo^2}}{\\mk{two}{2}\\mk{d}{\\kd}}",
+       "uses": []
+      }
+     ],
+     "src": "7.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\ka}\\mk{d}{\\kd}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\left(\\dfrac{\\kv^2 - \\kvo^2}{2\\kd}\\right)}\\mk{d}{\\kd}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\left(\\dfrac{\\kv^2 - \\kvo^2}{2}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{k}{\\tfrac{1}{2}\\km\\kv^2} - \\mk{k0}{\\tfrac{1}{2}\\km\\kvo^2}",
+       "uses": [],
+       "map": {
+        "m": [
+         "k",
+         "k0"
+        ],
+        "a": [
+         "k",
+         "k0"
+        ]
+       }
+      }
+     ],
+     "src": "7.2"
+    }
+   ]
+  }
+ ]
+}

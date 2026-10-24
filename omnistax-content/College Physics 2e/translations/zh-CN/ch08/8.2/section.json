@@ -1,0 +1,1090 @@
+{
+ "id": "8.2",
+ "module": "m42159",
+ "chapter": "8",
+ "title": "冲量",
+ "short": "冲量",
+ "lead": "用<span data-concept=\"change-in-momentum\">动量变化</span>写出的牛顿第二定律，给<span data-concept=\"force\">力</span>与它作用的<span data-concept=\"time\">时间</span>的乘积起了一个专门的名字，即冲量。你将看到它对<span data-ref=\"ball\">一只球</span>在<span data-ref=\"wall\">一面刚性墙壁</span>上的反弹意味着什么，对被仪表板或安全气囊停住的<span data-ref=\"passenger\">一名乘客</span>意味着什么，以及对一个从不恒定的<span data-concept=\"force\">力</span>意味着什么。",
+ "objectives": [
+  "定义冲量。",
+  "描述冲量在日常生活中的效应。",
+  "利用图像表示确定平均等效力。",
+  "已知质量、速度和时间，计算平均力和冲量。"
+ ],
+ "summary_html": "<ul><li>冲量，即<span data-concept=\"change-in-momentum\">动量变化</span>，等于平均<span data-concept=\"net-external-force\">合外力</span>乘以这个<span data-concept=\"force\">力</span>作用的<span data-concept=\"time\">时间</span>：$\\kdp = \\kFnet\\kdt.$</li><li><span data-concept=\"force\">力</span>在一段<span data-concept=\"time\">时间</span>内通常并不恒定。</li></ul>",
+ "notes": "习题 2、4、6、8、10、12、14 和 16 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6、8、10、12、14 和 16 没有给出答案，因而略去。十二道 AP 题中有六道在书后答案中给出，保留为本书所给的样子；另外六道——反弹的球、玻璃小雕像、碰撞试验、待设计的实验、冰球的动量变化和梯形图像——没有答案，每一道都是开放题，附有一份由 AI 撰写并已标明的建议思路，它列出计算的设置，但不算出最终数值。这六道都没有给出选项，因此没有一道需要把选择题改成开放题。三道思考题在本章中都没有任何答案，因此每一道同样附有一份 AI 撰写的建议思路，其中最短的一道，即关于衬垫如何减小力的一道，被放在它所检测的段落旁边。习题 3 的（a）问以数值给出答案，（b）问的理由保留在解中；习题 5 和 7 的两问都有答案；习题 13 是本书自己的推导，作为开放题保留，并以该推导作为答案。没有习题留给后面的小节，也没有习题取自别的小节：8.1 节的第二道 AP 题，即被球棒击打 20 ms 的棒球，曾被考虑放入本页，但仍留在 8.1 节，因为用该节自己的 $\\kFnet = \\kdp/\\kdt$ 就能解答，本节新增的内容一点也用不上。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-impulse",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "force",
+    "velocity",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "padding gives under the passenger, arrows clear of it, clipped curve, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-billiard",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "velocity",
+    "force",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene moved left so the momentum triangle clears the wall"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-effective-force",
+   "kind": "sim",
+   "number": "8.2",
+   "originals": [
+    "/media/ch08/Figure_09_02_01a.jpg"
+   ],
+   "original_caption": "力与时间的关系图，时间沿 x 轴，力沿 y 轴，画出了一个实际的力和一个与之等效的力。两条曲线下的面积相等。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "time",
+    "momentum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped, headline shortened, TeX commas"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-bounce",
+   "kind": "figure",
+   "originals": [
+    "/media/ch08/Figure_08_M2_Bounce.jpg"
+   ],
+   "original_caption": "这是一幅表示刚性墙壁所施的力与时间关系的图。",
+   "draws": [
+    "force",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-collision",
+   "kind": "figure",
+   "originals": [
+    "/media/ch08/Figure_08_M2_Collision.jpg"
+   ],
+   "original_caption": "这是一幅表示刚性墙壁所施的力与时间关系的图。",
+   "draws": [
+    "force",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "impulse",
+   "concept": "change-in-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "impulse",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "extending-collision-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "average-force-from-impulse",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse",
+   "concept": "linear-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "impulse",
+   "concept": "newtons-second-law-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "impulse",
+   "concept": "calculate-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "billiard",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "billiard",
+   "concept": "change-in-momentum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "billiard",
+   "concept": "average-force-from-impulse",
+   "verb": "reinforces"
+  },
+  {
+   "span": "billiard",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "billiard",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "effective-force",
+   "concept": "effective-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "effective-force",
+   "concept": "impulse",
+   "verb": "uses"
+  },
+  {
+   "span": "effective-force",
+   "concept": "interpret-motion-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "exercise-figures",
+   "concept": "effective-force",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1247228",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "用冲量解释衬垫为何能减小碰撞中的力。请用一个真实的例子来说明，比如托儿所里铺地毯的地面相对于瓷砖地面的优势。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "衬垫的作用是把碰撞在时间上拉长。无论你落在什么上面，你的动量都必须降为零，而你的质量和速率决定了动量变化；它在地毯上和在瓷砖上是一样的。衬垫改变的是停下所用的时间。动量变化等于平均合外力乘以这个力作用的时间，所以持续时间长十倍的停止，只需要十分之一的力。在托儿所里，铺地毯的地面让孩子的头或手腕在百分之几秒内停下，而不是千分之几秒。骨头所受的力按同样的比例减小，这往往就是淤青与骨折之别。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1126726",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "在蹦床上跳跃时，你有时背部着床，有时双脚着床。哪种情形下你能跳得更高，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "双脚着床时你能跳得更高。两种着床方式中，蹦床都必须使你的动量反向，它给你的冲量等于它的力乘以作用时间。双脚着床时，你以很小的面积接触床面，床面被拉伸得很深，而你的双腿横在你与床面之间。床面向回推时，你可以伸直双腿，把你自己做的功加到床面返还的功上，所以向上的冲量大于使你停下的冲量。背部着床时，接触分散在很大的面积上，床面拉伸得小得多，你所做的任何事都不会增加这一推力。更多的能量用在了使你和床面变形上，而不是把你向上抛回去。背部着床比较柔和，损失的高度就是它的代价。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1700394",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "网球拍有“最佳击球点”。如果球击中最佳击球点，球员的手臂所受的震动就不会像其他情形那样大。解释为什么会这样。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "握在手中的球拍可以随球向后运动，也可以绕你握住它的位置转动。球若打在远离最佳击球点之处，两种情形都会发生：它把拍头向后推，并使拍柄扭转，而你的手臂必须提供使拍柄保持原位的任何力。这个力作用在球停留于拍线上的那几千分之一秒内，使你感到震麻的正是它。在最佳击球点，转动与向后的推动在拍柄处相互抵消。球拍在你手中移动而不扭转，你的手臂只需提供与整个球拍的反冲相对应的很小的冲量。无论球击在哪里，球的动量变化大致相同；变化的是球背后的力有多少传到了你的手臂。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2018730",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一团 1.0 kg 的油灰球由静止释放，竖直下落 1.5 m 后撞到坚硬的地板，并在 0.045 s 的时间间隔内停下。在碰撞过程中，地板对球施加的平均力的大小和方向是什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "33 N，向上",
+     "120 N，向上",
+     "120 N，向下",
+     "240 N，向下"
+    ],
+    "correct": 1,
+    "hint": "求出油灰落下 1.5 m 后达到的速率，把它换成动量，再除以地板消去这一动量所用的时间。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1463188",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一只 75 g 的球从 2.2 m 的高度由静止落下。它在地板上反弹，上升到最大高度 1.7 m。如果球与地板接触 0.024 s，那么在碰撞过程中，地板对球施加的平均力的大小和方向是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "地板施加的平均力约为 39 N，方向向上。取向上为正。从静止下落 2.2 m，球到达地板时的速率为 $\\sqrt{2\\kg\\kh} = \\sqrt{2(9.80\\ \\text{m/s}^2)(2.2\\ \\text{m})} = 6.57\\ \\text{m/s}$，所以 $\\kvi = -6.57\\ \\text{m/s}$。上升到 1.7 m 意味着它离开地板时的速率为 $\\sqrt{2(9.80\\ \\text{m/s}^2)(1.7\\ \\text{m})} = 5.77\\ \\text{m/s}$，所以 $\\kvf = +5.77\\ \\text{m/s}$。动量变化为 $\\kdp = \\km(\\kvf - \\kvi) = (0.075\\ \\text{kg})(12.34\\ \\text{m/s}) = 0.926\\ \\text{kg}\\cdot\\text{m/s}$，方向向上。平均合力为 $\\kFnet = \\kdp/\\kdt = (0.926\\ \\text{kg}\\cdot\\text{m/s})/(0.024\\ \\text{s}) = 38.6\\ \\text{N}$。合力等于地板的推力减去球的重力，$\\km\\kg = (0.075\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 0.74\\ \\text{N}$，所以地板的力为 $38.6\\ \\text{N} + 0.74\\ \\text{N} = 39\\ \\text{N}$，方向向上。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id3561525",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一只 2.4 kg 的陶瓷碗掉落到地板上。在 0.018 s 的撞击过程中，碗受到地板的平均力为 750 N。撞击后碗静止。碗是从多高的初始高度落下的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1.6 m",
+     "2.8 m",
+     "3.2 m",
+     "5.6 m"
+    ],
+    "correct": 0,
+    "hint": "地板给碗的冲量就是碗到达时所带的动量，所以先由力和时间倒推出速率，再由速率倒推出高度。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2377967",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "物体（如盘子、玻璃杯或骨头）受撞击时是否破裂，取决于表面对该物体施加的平均力。一只 1.2 kg 的玻璃小雕像撞到地板时，如果受到 330 N 的平均力，它就会破裂。当它撞到瓷砖地面时，玻璃在 0.015 s 内停下。玻璃至少必须从多高处落下，才会受到足以使它破裂的力？如果雕像落到有衬垫或铺有地毯的表面上，你的答案会有什么变化？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "玻璃至少必须从约 0.87 m 的高度落下，而落到有衬垫或铺有地毯的表面上，则必须从更高处落下。330 N 的力作用 0.015 s，使玻璃的动量变化 $\\kdp = \\kFnet\\kdt = (330\\ \\text{N})(0.015\\ \\text{s}) = 4.95\\ \\text{kg}\\cdot\\text{m/s}$；玻璃 12 N 的重力与 330 N 相比很小，予以忽略。玻璃最后静止，所以这就是它到达时的动量，其到达时的速率为 $\\kv = \\kdp/\\km = (4.95\\ \\text{kg}\\cdot\\text{m/s})/(1.2\\ \\text{kg}) = 4.13\\ \\text{m/s}$。从静止下落的物体下落 $\\kh = \\kv^2/2\\kg = (4.13\\ \\text{m/s})^2/2(9.80\\ \\text{m/s}^2) = 0.87\\ \\text{m}$ 后达到这一速率。较低的下落高度使到达速率更小，在同样的 0.015 s 内动量变化更小，因而力小于 330 N。有衬垫或铺有地毯的表面使玻璃在更长的时间内停下。同样的动量变化分摊在更长的 $\\kdt$ 上，意味着力更小，所以玻璃必须以更快的速率到达，即从更高处落下，力才会达到 330 N。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2871828",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一块 2.5 kg 的物块在无摩擦的桌面上滑向一根水平弹簧。物块被弹簧弹回时，一根探针测量物块的速度（起初为负，即背离探针运动）随时间的变化如下：<table class=\"data\"><tr><th>速度（m/s）</th><th>时间（s）</th></tr><tr><td>−12.0</td><td>0</td></tr><tr><td>−10.0</td><td>0.10</td></tr><tr><td>−6.0</td><td>0.20</td></tr><tr><td>0</td><td>0.30</td></tr><tr><td>6.0</td><td>0.40</td></tr><tr><td>10.0</td><td>0.50</td></tr><tr><td>12.0</td><td>0.60</td></tr></table>在 0.60 s 的整个碰撞时间间隔内，弹簧对物块施加的平均力是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "50 N",
+     "60 N",
+     "100 N",
+     "120 N"
+    ],
+    "correct": 2,
+    "hint": "只有表中的第一行和最后一行有用：它们给出了之前和之后的速度，而全部变化都发生在 0.60 s 内。",
+    "solution": "（c）（根据 $F = \\frac{m\\Delta v}{\\Delta t}$ 计算）"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id938074",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "在一次汽车碰撞试验中，测得坚固的墙壁对撞墙的 2500 kg 汽车所施加的平均力，在 0.22 s 的时间间隔内为 740,000 N。假设汽车在该时间间隔末静止，那么碰撞前汽车的初速率是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "汽车的行驶速率约为 65 m/s。墙壁使汽车停下，所以它传递的冲量等于汽车初动量的全部。该冲量的大小为 $\\kFnet\\kdt = (740{,}000\\ \\text{N})(0.22\\ \\text{s}) = 1.63 \\times 10^{5}\\ \\text{kg}\\cdot\\text{m/s}$。这个力与运动方向相反，所以 $\\kdp = \\km(0 - \\kvi) = -1.63 \\times 10^{5}\\ \\text{kg}\\cdot\\text{m/s}$，由此得 $\\kvi = (1.63 \\times 10^{5}\\ \\text{kg}\\cdot\\text{m/s})/(2500\\ \\text{kg}) = 65\\ \\text{m/s}$，朝向墙壁。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id2498125",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一辆试验用汽车正以 45 mi/h 的速率驶向一堵坚固的碰撞试验壁障。在撞击前两秒，汽车开始制动，但它撞到墙上时仍在运动。与墙壁碰撞后，汽车有所溃缩并完全停下。为了估算墙壁对汽车施加的平均力，你需要收集哪些信息？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "汽车撞墙之前的（负）加速度，以及汽车在制动过程中行驶的距离。",
+     "汽车撞墙之前的（负）加速度，以及汽车在撞击前一刻的速度。",
+     "汽车在撞击前一刻的速度，以及与墙壁碰撞的持续时间。",
+     "与墙壁碰撞的持续时间，以及汽车在制动过程中行驶的距离。"
+    ],
+    "correct": 2,
+    "hint": "碰撞过程中的力由动量变化和碰撞所用的时间决定，制动期间发生的任何事情都与它无关。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1515775",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "设计一个实验来验证施加在物体上的平均力与该物体的动量变化之间的关系。作为解释的一部分，列出你将使用的器材并描述你的实验装置。你将测量什么，怎样测量？你究竟如何验证这一关系？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "让小车撞向带弹簧的力传感器，可以验证这一关系。器材有：一辆已知质量的小车，放在水平、低摩擦的轨道上；一个装在小车前端、带弹簧缓冲器的力传感器；轨道末端的一个刚性挡板；轨道远端一台观察小车的运动传感器；以及一台用来称量装有传感器的小车的天平。把小车推向挡板，力传感器记录力随时间的变化，同时运动传感器记录整个碰撞过程中速度随时间的变化。动量变化等于小车的质量乘以反弹前后稳定速度之差，$\\kdp = \\km(\\kvf - \\kvi)$。冲量是力-时间图像下的面积，它等于平均力与接触时间的乘积 $\\kFnet\\kdt$。以几种不同的速率、并用劲度不同的缓冲器重复实验，会得到一系列数值，如果冲量对动量变化的图像上的点落在过原点、斜率为 1 的直线上，就验证了这一关系。最大的不确定度来自摩擦和轨道不够水平，它们会引入外力，也来自力脉冲的边缘；使轨道水平，并使速率相对于摩擦足够大，可以减小这些不确定度。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id3187844",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一只 22 g 的冰球以 14 m/s 的初速率垂直撞向气垫冰球桌的桌壁。冰球与桌壁接触 0.0055 s，并以 14 m/s 的速率沿相反方向从桌壁反弹。桌壁对冰球施加的平均力的大小是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0.308 N",
+     "0.616 N",
+     "56 N",
+     "112 N"
+    ],
+    "correct": 3,
+    "hint": "冰球沿一个方向到来，又沿相反方向离开，所以它的动量变化是 $m\\kv$ 的两倍，而不是一倍。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1478146",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一只 22 g 的冰球以 7 m/s 的初速率垂直撞向气垫冰球桌的桌壁。冰球与桌壁接触 0.011 s，在这段时间内桌壁对冰球施加 28 N 的平均力。计算冰球动量变化的大小和方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "动量变化为 0.31 kg·m/s，方向背离桌壁。动量变化等于冲量，$\\kdp = \\kFnet\\kdt = (28\\ \\text{N})(0.011\\ \\text{s}) = 0.308\\ \\text{kg}\\cdot\\text{m/s}$，它的方向与力相同，即从桌壁向外，与冰球原来的运动方向相反。冰球到达时的动量为 $\\km\\kv = (0.022\\ \\text{kg})(7\\ \\text{m/s}) = 0.154\\ \\text{kg}\\cdot\\text{m/s}$，朝向桌壁。变化量是它的两倍，所以桌壁先消去冰球的全部动量，然后再沿相反方向给它同样多的动量：冰球以 7 m/s 的速率反弹。"
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id3327236",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "effective-force",
+   "figure": {
+    "src": "/media/ch08/Figure_08_M2_Bounce.jpg",
+    "alt": "墙壁对物体所施的力，从 t = 0.080 s 到 t = 0.24 s 恒为 15 N，在这一时刻力降为零。",
+    "caption": "这是一幅表示刚性墙壁所施的力与时间关系的图。"
+   },
+   "prompt": "图中所示为碰撞过程中施加在一个粒子上的力。碰撞使该粒子产生的动量变化的大小是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1.2 kg • m/s",
+     "2.4 kg • m/s",
+     "3.6 kg • m/s",
+     "4.8 kg • m/s"
+    ],
+    "correct": 1,
+    "hint": "动量变化就是力-时间图像下的面积，这里该面积是一个单独的矩形。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap12",
+   "source_id": "fs-id2014894",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "effective-force",
+   "figure": {
+    "src": "/media/ch08/Figure_08_M2_Collision.jpg",
+    "alt": "墙壁对物体所施的力在 t = 0 时为零，并以线性方式上升，在时刻 t = 0.080 s 时达到 15 N。力保持为 15 N 不变，直到时刻 t = 0.24 s。从 0.24 s 到 0.32 s，力以线性方式从 15 N 降为零。",
+    "caption": "这是一幅表示刚性墙壁所施的力与时间关系的图。"
+   },
+   "prompt": "图中所示为碰撞过程中施加在一个粒子上的力。碰撞使该粒子产生的动量变化的大小是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "动量变化为 $3.6\\ \\text{kg}\\cdot\\text{m/s}$。动量变化等于冲量，即力-时间图像下的面积。力从 $\\kt = 0$ 时的中性线性上升到 0.080 s 时的 15 N，保持 15 N 直到 0.24 s，再线性下降到 0.32 s 时的零，所以该面积是一个梯形。它的下底跨越 0.32 s，上底跨越 $0.24\\ \\text{s} - 0.080\\ \\text{s} = 0.16\\ \\text{s}$，所以面积为 $\\tfrac{1}{2}(0.32\\ \\text{s} + 0.16\\ \\text{s})(15\\ \\text{N}) = 3.6\\ \\text{N}\\cdot\\text{s}$。把图形切成两个三角形和一个矩形，得到相同的结果：$\\tfrac{1}{2}(0.080\\ \\text{s})(15\\ \\text{N}) + (0.16\\ \\text{s})(15\\ \\text{N}) + \\tfrac{1}{2}(0.080\\ \\text{s})(15\\ \\text{N}) = 0.60 + 2.4 + 0.60 = 3.6\\ \\text{N}\\cdot\\text{s}$，而 $1\\ \\text{N}\\cdot\\text{s} = 1\\ \\text{kg}\\cdot\\text{m/s}$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1525993",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "子弹在枪管内被火药燃烧产生的高温气体加速。要在 2.00 ms（毫秒）的时间内把一颗 0.0300 kg 的子弹加速到 600.0 m/s 的速率，作用在子弹上的平均力是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9000,
+    "unit": "N",
+    "hint": "子弹从静止开始，所以动量变化就是整个 $m\\kv$。相除之前先把毫秒换算成秒。",
+    "solution": "$9.00\\times 10^{3}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1259039",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一个人用手拍打自己的腿，使手以 4.00 m/s 的初速率在 2.50 毫秒内停下。（a）取手和前臂的等效质量为 1.50 kg，施加在腿上的平均力是多少？（b）如果这位女士以同样的速率把双手拍在一起，并在相同的时间内使它们停下，力会有什么不同吗？请解释原因。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2400,
+    "unit": "N",
+    "part": "(a)",
+    "hint": "取手和前臂的动量变化，除以停下所用的 2.50 ms。",
+    "solution": "（a）$2.40\\times 10^{3}\\ \\text{N}$，指向腿部。（b）每只手所受力的大小与（a）问求得的相同（但根据牛顿第三定律方向相反），因为动量变化和时间间隔相同。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1672015",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "假设一个孩子驾驶碰碰车正面撞向侧边护栏，护栏对车施加 4000 N 的力，持续 0.200 s。（a）这个力给予的冲量是多少？（b）若碰碰车的初速度为 2.80 m/s，车和驾驶者的总质量为 200 kg，求碰碰车的末速度。可忽略车与地面之间的摩擦。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 800,
+      "unit": "kg·m/s",
+      "hint": "冲量是力乘以它作用的时间，（a）问中不涉及其他任何量。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.2,
+      "unit": "m/s",
+      "hint": "把冲量加到初动量上，注意正负号，再除以质量。"
+     }
+    ],
+    "solution": "（a）800 kg⋅m/s，背离墙壁。（b）1.20 m/s，背离墙壁。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1107691",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "专业应用",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一个 75.0 kg 的人乘坐一辆以 20.0 m/s 行驶的汽车，汽车撞上了桥台。（a）若他被带衬垫的仪表板截停，仪表板平均压缩 1.00 cm，求作用在这个人身上的平均力。（b）若他被安全气囊截停，气囊平均压缩 15.0 cm，求作用在这个人身上的平均力。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1500000,
+      "unit": "N",
+      "hint": "距离决定了时间：在这次停止过程中，平均速率是初速率的一半，所以以 10.0 m/s 通过 1.00 cm 需要千分之一秒。"
+     },
+     {
+      "part": "(b)",
+      "value": 100000,
+      "unit": "N",
+      "hint": "动量变化相同，但气囊让它发生的时间长了十五倍。"
+     }
+    ],
+    "solution": "（a）$1.50\\times 10^{6}\\ \\text{N}$，背离仪表板。（b）$1.00\\times 10^{5}\\ \\text{N}$，背离仪表板。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id495190",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "一艘质量为 $1.00\\times 10^{7}\\ \\text{kg}$ 的游轮以 0.750 m/s 的速率撞上码头。它在 6.00 m 之后停下，损坏了船、码头，也损害了拖船船长的财务状况。利用冲量的概念，计算施加在码头上的平均力。（提示：先计算使船停下所用的时间。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 469000,
+    "unit": "N",
+    "hint": "船是匀减速地慢下来的，所以它在这 6.00 m 上的平均速率是 0.750 m/s 的一半，由此可得时间。",
+    "solution": "$4.69\\times 10^{5}\\ \\text{N}$，沿船原来的运动方向"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1465317",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "消防水带中的水以 50.0 kg/s 的流量、42.0 m/s 的速率水平射向一堵墙。假设水的水平动量减小到零，计算墙所受力的大小。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2100,
+    "unit": "N",
+    "hint": "以千克每秒计的流量本身已经是质量除以时间，所以每秒消去的动量就是这个流量乘以速率。",
+    "solution": "$2.10\\times 10^{3}\\ \\text{N}$，背离墙壁"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1357831",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "从动量和动能的定义出发，推导一个以动量为变量表示粒子动能的方程。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$\\begin{array}{l}\\kp = m\\kv \\Rightarrow \\kp^{2} = m^{2}\\kv^{2} \\Rightarrow \\dfrac{\\kp^{2}}{m} = m\\kv^{2} \\\\ \\Rightarrow \\dfrac{\\kp^{2}}{2m} = \\dfrac{1}{2}m\\kv^{2} = \\kKE \\\\ \\kKE = \\dfrac{\\kp^{2}}{2m}\\end{array}$$"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id1523810",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse",
+   "prompt": "发网球时，球员在球的速度为零（竖直抛球的最高点）时击球。球拍对球施加 540 N 的力，持续 5.00 ms，使球获得 45.0 m/s 的末速度。利用这些数据求球的质量。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 60.0,
+    "unit": "g",
+    "hint": "先算出冲量；球从静止开始，所以这个冲量就是 $m\\kv$，剩下的未知量只有质量。",
+    "solution": "60.0 g"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "impulse",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "change-in-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "free-fall-kinematics",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "free-fall-kinematics",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "free-fall-kinematics",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "extending-collision-time",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "free-fall-kinematics",
+   "weight": 1
+  },
+  {
+   "exercise": "ap5",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "effective-force"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "effective-force"
+  },
+  {
+   "exercise": "ap12",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p1",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p3",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-third-law",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p5",
+   "concept": "change-in-momentum"
+  },
+  {
+   "exercise": "p5",
+   "concept": "average-force-from-impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "extending-collision-time"
+  },
+  {
+   "exercise": "p7",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p7",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p9",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p11",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p11",
+   "concept": "impulse"
+  },
+  {
+   "exercise": "p13",
+   "concept": "linear-momentum"
+  },
+  {
+   "exercise": "p13",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "p13",
+   "concept": "impulse",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "change-in-momentum",
+   "weight": 1
+  },
+  {
+   "exercise": "p15",
+   "concept": "average-force-from-impulse"
+  },
+  {
+   "exercise": "p15",
+   "concept": "impulse"
+  }
+ ],
+ "referents": [
+  {
+   "id": "passenger",
+   "label": "乘客",
+   "figures": [
+    "sim-impulse"
+   ]
+  },
+  {
+   "id": "padding",
+   "label": "带衬垫的护栏",
+   "figures": [
+    "sim-impulse"
+   ]
+  },
+  {
+   "id": "ball",
+   "label": "台球",
+   "figures": [
+    "sim-billiard"
+   ]
+  },
+  {
+   "id": "wall",
+   "label": "刚性墙壁",
+   "figures": [
+    "sim-billiard"
+   ]
+  }
+ ]
+}

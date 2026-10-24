@@ -1,0 +1,496 @@
+{
+ "id": "29.1",
+ "module": "m42554",
+ "chapter": "29",
+ "title": "能量的量子化",
+ "short": "能量的量子化",
+ "lead": "有些系统只能具有某些特定的<span data-concept=\"energy\">能量</span>，而不能具有连续分布的能量。第一条线索来自热的理想辐射体的光谱，而热气体的分立线状光谱对单个原子和分子也指向同一结论。",
+ "objectives": [
+  "说明马克斯·普朗克对量子力学发展的贡献。",
+  "说明为什么原子光谱表明存在量子化。"
+ ],
+ "summary_html": "<ul><li>表明<span data-concept=\"energy\">能量</span>有时是量子化的最早迹象，来自黑体辐射，即发射率为 1 的物体对电磁辐射的发射。</li><li>普朗克认识到，发射辐射的原子和分子的<span data-concept=\"energy\">能级</span>是量子化的，只允许取 $\\kE = \\left(n + \\frac{1}{2}\\right)h\\kf$ 给出的值，其中 $n$ 是任意非负整数（0、1、2、3、…）。</li><li>$h$ 是普朗克常量，其值为 $h = 6.626 \\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$。</li><li>因此，黑体中原子和分子的振荡吸收与发射<span data-concept=\"energy\">能量</span>只能以大小为 $\\kdE = h\\kf$ 的间隔增大或减小，其中 $\\kf$ 是电磁辐射吸收与发射的振荡性质的<span data-concept=\"frequency\">频率</span>。</li><li>表明原子和分子中的<span data-concept=\"energy\">能级</span>是量子化的另一个迹象，来自原子光谱中的谱线，它们是单个原子和分子的电磁发射。</li></ul>",
+ "notes": "略去了 PhET 模拟“氢原子模型”的链接，全书都略去了出版方互动内容的链接。关于 HBr 分子振荡频率的题目没有给出答案，因而一并略去。书中的答案把红毛猩猩一题的（a）部分印作 2.21 × 10³⁴ J，其指数的负号丢失了，这里排作 2.21 × 10⁻³⁴ J。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。三道习题中的一道，即 HBr 分子的振荡频率，没有给出答案，因而略去。书中答案把红毛猩猩一题（a）部分印作 $2.21\\times 10^{34}$ J，其指数的负号丢失了，这里排作 $2.21\\times 10^{-34}$ J，这是题目唯一允许的读法。第一道 AP 题有答案，设为判分选择题；第二道的解答在原文中被注释掉了，书中没有给出，因此保留为开放题，附有标明由 AI 生成的建议思路，五道思考题也都如此，书中没有给出它们的答案。本模块没有印出“理解检测”框，因而没有设置内嵌题。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-blackbody",
+   "kind": "sim",
+   "number": "29.3",
+   "originals": [
+    "/media/ch29/Figure_30_01_01a.jpg"
+   ],
+   "original_caption": "黑体辐射（来自理想辐射体）在三种不同辐射体温度下的图线。辐射发射的强度或速率随温度急剧增大，光谱的峰值向光谱的可见光部分和紫外线部分移动。光谱的形状无法用经典物理学来描述。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "intensity",
+    "position"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated the headline dropped; low peak label lifted off the axis"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-oscillator-ladder",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped; classical bar moved clear of the step label, its name on one line"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-planck",
+   "kind": "photo",
+   "number": "29.4",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "photo-oxygen-spectrum",
+   "kind": "photo",
+   "number": "29.5",
+   "widths": [
+    550
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-line-spectrum",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "frequency",
+    "energy"
+   ],
+   "facts": [
+    "#000000",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "plancks-contribution",
+   "concept": "energy-quantization",
+   "verb": "introduces"
+  },
+  {
+   "span": "plancks-contribution",
+   "concept": "blackbody-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "plancks-contribution",
+   "concept": "planck-oscillator-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "plancks-contribution",
+   "concept": "quantum-energy-step",
+   "verb": "introduces"
+  },
+  {
+   "span": "plancks-contribution",
+   "concept": "correspondence-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "plancks-contribution",
+   "concept": "quantized",
+   "verb": "introduces"
+  },
+  {
+   "span": "plancks-contribution",
+   "concept": "blackbody",
+   "verb": "introduces"
+  },
+  {
+   "span": "plancks-contribution",
+   "concept": "plancks-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "atomic-spectra",
+   "concept": "atomic-spectra-quantized",
+   "verb": "introduces"
+  },
+  {
+   "span": "atomic-spectra",
+   "concept": "quantum-energy-step",
+   "verb": "uses"
+  },
+  {
+   "span": "atomic-spectra",
+   "concept": "energy-quantization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "atomic-spectra",
+   "concept": "atomic-spectra",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id3425592",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "atomic-spectra",
+   "prompt": "太阳光的可见光谱显示出从红到紫的一系列颜色。这个光谱中分布着许多暗线。注意到太阳表面比内部冷得多，因此表面可与光穿过的一团冷气体相比，下列哪一项陈述正确地解释了这些暗线？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "较冷而较致密的表面物质使某些波长的光发生散射，形成暗线。",
+     "表面的原子吸收某些波长的光，在这些波长处形成暗线。",
+     "太阳内部的原子发射特定波长的光，因此光谱的某些部分是暗的。",
+     "表面的原子被内部的高温激发，因此暗线只是这些原子不发射能量的波长。"
+    ],
+    "correct": 1,
+    "hint": "气体中原子的能量是量子化的，所以冷气体只能以 $\\kdE = h\\kf$ 的间隔从穿过它的光中取走能量，这意味着只能在某些特定的频率上取走。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1392909",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "壁炉里的一根木柴燃烧了将近一小时，此时它主要由小而热的余烬组成。这些余烬发出明亮的橙色和泛白的黄色光。请从能量传递和黑体的量子行为两方面，描述这个系统的能量的特征。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "燃烧把储存在木柴中的化学能释放出来，成为余烬的热能，余烬再通过辐射，以及对流和传导，把能量传递给房间。热的余烬很像黑体，因此它们辐射的光谱取决于它们的温度。它们的原子和分子像振子一样，具有量子化的能量 $\\kE = (n + \\frac{1}{2})h\\kf$，并在从一个允许的能量降到另一个允许的能量时，以 $\\kdE = h\\kf$ 的间隔发射辐射。在余烬的温度下，光谱的峰值位于红外区，但仍有足够多的部分伸入可见光区，使余烬发出橙色和泛白的黄色光。较热的部分发光更白，因为它们的峰值已移向较短的波长。随着余烬冷却，它们的总强度按热力学温度的四次方下降，颜色则向红色移动。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1254787",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "举一个被量子化的物理实体的例子。具体说明这个实体是什么，其取值受到什么限制。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "振动的原子或分子的能量是量子化的。频率为 $\\kf$ 的振子只能具有能量 $\\kE = (n + \\frac{1}{2})h\\kf$，其中 $n$ 是非负整数，因此它的能量只能以 $\\kdE = h\\kf$ 的间隔改变，而且永远不会小于 $\\frac{1}{2}h\\kf$。电荷是另一个例子：每一个电荷都是电子电荷的整数倍。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1268120",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "举一个不被量子化的物理实体的例子，即它是连续的，可以在一个连续的范围内取值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "就我们所能测量的而言，汽车的速率可以在一个连续的范围内取任何值，它在道路上的位置也是如此。像摆动的摆这样的宏观物体的能量看起来也是连续的，因为量子间隔小得根本无法察觉。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1250135",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "黑体辐射谱的哪一方面迫使普朗克提出其原子和分子的能级是量子化的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "强度对波长的曲线的形状。经典物理学预言强度会向短波长方向不断增大，即紫外灾难，而实测的光谱上升到一个峰值，然后在短波长处降向零。只有允许振动的原子和分子具有能量 $\\kE = (n + \\frac{1}{2})h\\kf$ 而不具有其他能量，普朗克才能正确描述实测的形状。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id977492",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "如果普朗克常量很大，比如说比它现在的值大 $10^{34}$ 倍，我们就会观察到宏观实体是量子化的。请描述在这种情况下儿童秋千的运动。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个大约每 3 s 振动一次的秋千，频率接近 0.3 Hz，而 $h$ 约为 6.6 J·s，因此能量间隔 $\\kdE = h\\kf$ 约为 2 J，与轻轻摆动的秋千的能量相当。这样，秋千就只能以某些特定的振幅摆动。一次推动要么使它升高一个完整的间隔，达到下一个较大的振幅，要么完全不起作用；而当摩擦带走能量时，秋千会突然从一个振幅降到较小的振幅，而不是平滑地逐渐衰减。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1267708",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "为什么我们在日常事件中注意不到量子化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "普朗克常量非常小，所以日常物体（它们以低频率振动）的能量间隔 $\\kdE = h\\kf$ 与它们的能量（数量级为焦耳）相比微不足道。这些间隔小得根本无法察觉，而且正如对应原理所说，对于大物体，量子力学给出的结果与经典物理学相同。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1296980",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "一个 LiBr 分子以 $1.7\\times 10^{13}\\;\\text{Hz}$ 的频率振动。（a）允许的振子态之间的能量差是多少电子伏？（b）能量为 1.0 eV 的态，其 $n$ 的近似值是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the difference in energy",
+      "value": 0.07,
+      "unit": "eV",
+      "hint": "允许的态之间的间隔是 $\\kdE = h\\kf$；用 $1\\;\\text{eV} = 1.60\\times 10^{-19}\\;\\text{J}$ 把焦耳换算成电子伏。"
+     },
+     {
+      "part": "(b) the value of n",
+      "value": 14,
+      "hint": "对 $n$ 解 $\\kE = (n + \\frac{1}{2})h\\kf$，取 $\\kE = 1.0$ eV，并四舍五入为整数。"
+     }
+    ],
+    "solution": "（a）0.070 eV\n\n（b）14"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1319731",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plancks-contribution",
+   "prompt": "一位物理学家在动物园里看着一只 15 kg 的红毛猩猩坐在绳端的轮胎里悠闲地摆动。他（这位物理学家）注意到每次振动用时 3.00 s，于是假设能量是量子化的。（a）允许的振子态之间的能量差是多少焦耳？（b）在能量为 5.00 J 的态上，$n$ 的值是多少？（c）能观察到这种量子化吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the difference in energy",
+      "value": 2.21e-34,
+      "unit": "J",
+      "hint": "频率是周期的倒数，允许的态之间的间隔是 $\\kdE = h\\kf$。"
+     },
+     {
+      "part": "(b) the value of n",
+      "value": 2.26e+34,
+      "hint": "对 $n$ 解 $\\kE = (n + \\frac{1}{2})h\\kf$；对这样大的数，其中的二分之一不起任何作用。"
+     }
+    ],
+    "solution": "（a）$2.21\\times 10^{-34}\\;\\text{J}$<sup class=\"fn\" data-note=\"c-p2-exponent\"></sup>\n\n（b）$2.26\\times 10^{34}$\n\n（c）不能"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "atomic-spectra-quantized"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "quantum-energy-step",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "blackbody-radiation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "planck-oscillator-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "energy-quantization"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "energy-quantization"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "correspondence-principle",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "blackbody-radiation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "planck-oscillator-energy"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "quantum-energy-step"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "correspondence-principle"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "correspondence-principle"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "quantum-energy-step",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "quantum-energy-step"
+  },
+  {
+   "exercise": "p1",
+   "concept": "planck-oscillator-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "quantum-energy-step"
+  },
+  {
+   "exercise": "p2",
+   "concept": "planck-oscillator-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "correspondence-principle"
+  }
+ ],
+ "referents": [
+  {
+   "id": "oscillator",
+   "label": "振子",
+   "figures": [
+    "sim-oscillator-ladder"
+   ]
+  },
+  {
+   "id": "classical-oscillator",
+   "label": "经典振子",
+   "figures": [
+    "sim-oscillator-ladder"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p2-exponent",
+   "kind": "correction",
+   "html": "书中的答案印作 $2.21\\times 10^{34}$ J。间隔 $\\Delta E = hf = (6.63\\times 10^{-34}\\ \\text{J·s})/(3.00\\ \\text{s})$ 为 $2.21\\times 10^{-34}$ J。"
+  }
+ ]
+}

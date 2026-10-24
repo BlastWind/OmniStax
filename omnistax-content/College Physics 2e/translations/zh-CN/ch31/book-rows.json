@@ -1,0 +1,1449 @@
+{
+ "types": [
+  {
+   "id": "activity",
+   "label": "活度",
+   "dimension": "Bq"
+  },
+  {
+   "id": "decay-constant",
+   "label": "衰变常量",
+   "dimension": "1/s"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "t_half",
+   "latex": "t_{1/2}",
+   "macro": "\\kthalf"
+  },
+  {
+   "sym": "λ_dec",
+   "latex": "\\lambda",
+   "macro": "\\klamdec"
+  },
+  {
+   "sym": "R_act",
+   "latex": "R",
+   "macro": "\\kRact"
+  },
+  {
+   "sym": "R_0act",
+   "latex": "R_0",
+   "macro": "\\kRoact"
+  },
+  {
+   "sym": "N_0nuc",
+   "latex": "N_0"
+  },
+  {
+   "sym": "ΔN",
+   "latex": "\\Delta N"
+  },
+  {
+   "sym": "N_neut",
+   "latex": "N"
+  },
+  {
+   "sym": "A_nuc",
+   "latex": "A"
+  },
+  {
+   "sym": "BE",
+   "latex": "\\text{BE}",
+   "macro": "\\kBE"
+  },
+  {
+   "sym": "r_nuc",
+   "latex": "r",
+   "macro": "\\krnuc"
+  },
+  {
+   "sym": "r_0nuc",
+   "latex": "r_0",
+   "macro": "\\kronuc"
+  },
+  {
+   "sym": "m_n",
+   "latex": "m_{\\text{n}}",
+   "macro": "\\kmn"
+  },
+  {
+   "sym": "m_tot",
+   "latex": "m_{\\text{tot}}",
+   "macro": "\\kmtot"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "nuclear-radioactivity",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "放射性",
+   "terms": [
+    "放射性"
+   ],
+   "statement": "放射性是某些原子核的自发衰变，它使这些原子核损失一小部分质量，并从核中发射出高能射线。"
+  },
+  {
+   "id": "radiation-is-nuclear-in-origin",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "辐射的核起源",
+   "statement": "放射性的射线来自原子核，而不是电子：它们不随化学状态、温度、压强或电离状态而变化，而这些因素都会影响电子；并且每次事件所带的能量约为一百万电子伏，远大于几 eV 的原子能量。"
+  },
+  {
+   "id": "alpha-beta-gamma-rays",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "α 射线、β 射线和 γ 射线",
+   "statement": "物理学家在没有人知道这三种核辐射是什么之前就给它们命名了。磁场使 α 射线和 β 射线向相反方向偏转，而对 γ 射线没有影响，这显示出它们的电荷。后来的研究表明，α 粒子是氦核，β 粒子是在衰变瞬间产生的电子，γ 射线是来自原子核的高能光子。"
+  },
+  {
+   "id": "ionizing-radiation",
+   "kind": "definition",
+   "section": "31.1",
+   "name": "电离辐射",
+   "terms": [
+    "电离辐射"
+   ],
+   "statement": "电离辐射是使吸收它的物质电离的辐射，无论它是否起源于核。核衰变每次事件发射的能量从几 keV 到超过 10 MeV，而使一个原子电离只需要几 eV，所以这种辐射会损伤组织和电子器件，也能被探测到。"
+  },
+  {
+   "id": "range-of-radiation",
+   "kind": "idea",
+   "section": "31.1",
+   "name": "辐射的射程",
+   "terms": [
+    "辐射的射程"
+   ],
+   "statement": "辐射的射程是它穿过某种物质所走的距离。能量越高，辐射的射程越大；电子密度大的物质使辐射的射程变小；在相同能量下，α 粒子最先被阻止，β 粒子走得更远，γ 射线走得最远，因为更大的电荷和更低的速率使粒子更容易电离。"
+  },
+  {
+   "id": "nuclear-radiation",
+   "kind": "definition",
+   "section": "31.1",
+   "name": "核辐射",
+   "terms": [
+    "核辐射"
+   ],
+   "statement": "核辐射是起源于原子核的射线，其第一批例子是由贝克勒尔发现的。"
+  },
+  {
+   "id": "radioactive",
+   "kind": "definition",
+   "section": "31.1",
+   "name": "放射性的",
+   "terms": [
+    "放射性的"
+   ],
+   "statement": "当一种物质或物体发射核辐射时，它就是放射性的。"
+  },
+  {
+   "id": "alpha-rays",
+   "kind": "definition",
+   "section": "31.1",
+   "name": "α 射线",
+   "terms": [
+    "α 射线"
+   ],
+   "statement": "α 射线是一种核辐射，在磁场中像正电荷一样偏转，后来发现它们是氦核。"
+  },
+  {
+   "id": "beta-rays",
+   "kind": "definition",
+   "section": "31.1",
+   "name": "β 射线",
+   "terms": [
+    "β 射线"
+   ],
+   "statement": "β 射线是一种核辐射，在磁场中的偏转方向与 α 射线相反，后来发现它们是在衰变瞬间产生的电子。"
+  },
+  {
+   "id": "ionization-energy-to-count",
+   "kind": "skill",
+   "section": "31.2",
+   "name": "离子对的计数",
+   "statement": "一个粒子能产生的离子对数目等于它沉积的能量除以产生每个离子对所需的能量，这把核辐射的 MeV 量级能量与一次电离所需的几十 eV 联系起来。"
+  },
+  {
+   "id": "radiation-detection-by-ionization",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "基于电离的探测",
+   "statement": "电离辐射无法被直接感知，而每一种辐射探测器，从照相底板到半导体，都是把辐射产生的电离或激发转变为可以看到或测量的东西。"
+  },
+  {
+   "id": "geiger-tube",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "盖革管",
+   "terms": [
+    "盖革管"
+   ],
+   "statement": "在盖革管中，圆筒与沿其轴线的导线之间的电压把辐射在气体中产生的离子对扫集起来，计数器把这一短暂的电流记录为一次计数。一次计数并不能给出辐射的能量、电荷或类型。"
+  },
+  {
+   "id": "scintillator-and-photomultiplier",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "闪烁体与光电倍增管",
+   "statement": "第二类探测器记录的是光而不是电荷。闪烁体把辐射的能量转换为短暂的闪光，光电倍增管则在一系列倍增极上把每次闪光产生的光电子倍增为与所沉积能量成正比的可测电流。因为输出是成正比的，这些探测器能够分辨能量、电荷和类型，而盖革管做不到。"
+  },
+  {
+   "id": "solid-state-detector",
+   "kind": "idea",
+   "section": "31.2",
+   "name": "固体探测器",
+   "terms": [
+    "固体辐射探测器"
+   ],
+   "statement": "一块被制成只有在电离释放其中的电荷时才导电的半导体，其作用就像一个固体盖革管，并且因为它是固体，所以能在很短的距离内阻止辐射，漏掉的粒子很少。其电流与所沉积的能量密切相关，所以这些探测器像闪烁体一样给出精细的信息。"
+  },
+  {
+   "id": "radiation-detector",
+   "kind": "definition",
+   "section": "31.2",
+   "name": "辐射探测器",
+   "terms": [
+    "辐射探测器"
+   ],
+   "statement": "辐射探测器是探测和追踪放射性衰变所产生辐射的装置，可以直接探测，也可以通过辐射产生的电离间接探测。"
+  },
+  {
+   "id": "scintillator",
+   "kind": "definition",
+   "section": "31.2",
+   "name": "闪烁体",
+   "terms": [
+    "闪烁体"
+   ],
+   "statement": "闪烁体是一种辐射探测器，它记录辐射与其材料相互作用时产生的光。"
+  },
+  {
+   "id": "photomultiplier",
+   "kind": "definition",
+   "section": "31.2",
+   "name": "光电倍增管",
+   "terms": [
+    "光电倍增管"
+   ],
+   "statement": "光电倍增管是一种通过使一次闪光产生的光电子倍增而把光转换为电信号的装置。"
+  },
+  {
+   "id": "nucleons",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "核子",
+   "terms": [
+    "核子"
+   ],
+   "statement": "核子是在原子核内部发现的粒子，即带正电的质子和电中性的中子，二者质量几乎相同，并且都比电子重得多。"
+  },
+  {
+   "id": "atomic-mass-unit",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "原子质量单位",
+   "statement": "原子质量单位的定义使一个中性的 $^{12}$C 原子的质量恰好为 12 u，并且 $1\\;\\text{u} = 1.6605 \\times 10^{-27}$ kg $= 931.5$ MeV/$c^{2}$。以 MeV/$c^{2}$ 为单位的质量乘以 $c^{2}$ 就变为以 MeV 为单位的能量。",
+   "forms": [
+    {
+     "id": "eq-atomic-mass-unit",
+     "latex": "1\\;\\text{u} = 1.6605\\times10^{-27}\\;\\text{kg} = 931.5\\;\\text{MeV}/c^{2}",
+     "ktex": "1\\;\\text{u} = 1.6605\\times10^{-27}\\;\\text{kg} = 931.5\\;\\text{MeV}/\\kc^{2}",
+     "anchor": "31.3-nucleons"
+    },
+    {
+     "id": "eq-proton-rest-energy",
+     "latex": "E = mc^{2} = (938.27\\;\\text{MeV}/c^{2})c^{2} = 938.27\\;\\text{MeV}",
+     "ktex": "\\kE = mc^{2} = (938.27\\;\\text{MeV}/\\kc^{2})\\kc^{2} = 938.27\\;\\text{MeV}",
+     "anchor": "31.3-nucleons"
+    }
+   ]
+  },
+  {
+   "id": "nuclide-notation",
+   "kind": "skill",
+   "section": "31.3",
+   "name": "核素的写法",
+   "statement": "核素写成 ${}^{A}_{Z}\\text{X}_{N}$，质量数 $A$ 在上方，原子序数 $Z$ 在下方，接着是元素符号，中子数 $N$ 在其后，而由于 $A = N + Z$，这几个量中的任何一个都可以由其余的求出。",
+   "forms": [
+    {
+     "id": "eq-nuclide-notation",
+     "latex": "{}^{A}_{Z}\\text{X}_{N}",
+     "anchor": "31.3-nuclides"
+    }
+   ]
+  },
+  {
+   "id": "isotopes",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "同位素",
+   "terms": [
+    "同位素"
+   ],
+   "statement": "同位素是 $Z$ 相同而 $N$ 不同的原子核，例如氢、氘和氚。它们的化学性质取决于 $Z$，而它们的质量和稳定性取决于整个原子核。"
+  },
+  {
+   "id": "nuclear-radius",
+   "kind": "axiom",
+   "section": "31.3",
+   "name": "核半径",
+   "terms": [
+    "核半径"
+   ],
+   "statement": "原子核的半径是 $r = r_0 A^{1/3}$，其中 $r_0 = 1.2$ fm，所以它的体积与核子数 $A$ 成正比。如果核子被紧密堆积到彼此之间没有空隙，就会出现这种情况。",
+   "forms": [
+    {
+     "id": "eq-nuclear-radius",
+     "latex": "r = r_0 A^{1/3}",
+     "ktex": "\\krnuc = \\kronuc A^{1/3}",
+     "anchor": "31.3-nuclear-size"
+    }
+   ]
+  },
+  {
+   "id": "nuclear-density",
+   "kind": "skill",
+   "section": "31.3",
+   "name": "求核密度",
+   "statement": "核物质的密度由 $r = r_0 A^{1/3}$ 和 $A$ u 的质量求得；每个原子核的密度都大致相同，约为水的 $2 \\times 10^{14}$ 倍。",
+   "forms": [
+    {
+     "id": "eq-nuclear-density",
+     "latex": "\\rho = \\frac{m}{V} = \\frac{m}{(4/3)\\pi r^{3}}",
+     "ktex": "\\krho = \\frac{m}{V} = \\frac{m}{(4/3)\\pi \\krnuc^{3}}",
+     "anchor": "31.3-nuclear-density"
+    }
+   ]
+  },
+  {
+   "id": "strong-and-weak-nuclear-forces",
+   "kind": "axiom",
+   "section": "31.3",
+   "name": "强核力和弱核力",
+   "statement": "在原子核中，除库仑力之外还有两种力在起作用：强核力，其吸引作用约比质子之间的电磁排斥力强 100 倍，但在几 fm 之内就降为零；以及弱核力。它们的强度正是核衰变能量如此之大的原因。"
+  },
+  {
+   "id": "chart-of-the-nuclides",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "核素图",
+   "terms": [
+    "核素图"
+   ],
+   "statement": "核素图把每一种已知的核素按 $N$ 对 $Z$ 画出。稳定的原子核，轻核位于 $N = Z$ 附近，较重的核则中子数比质子数逐渐增多；偏离这一带的原子核向它衰变。"
+  },
+  {
+   "id": "magic-numbers",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "幻数",
+   "terms": [
+    "幻数"
+   ],
+   "statement": "质子数或中子数为某些特定值的原子核，即幻数，异常稳定，这意味着原子核像原子一样有壳层，而闭壳层更稳定。"
+  },
+  {
+   "id": "nucleus",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "原子核",
+   "terms": [
+    "原子核"
+   ],
+   "statement": "原子核是原子中心的区域，由质子和中子组成。"
+  },
+  {
+   "id": "neutron",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "中子",
+   "terms": [
+    "中子"
+   ],
+   "statement": "中子是在原子核中发现的一种电中性粒子，质量与质子几乎相同。"
+  },
+  {
+   "id": "nuclide",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "核素",
+   "terms": [
+    "核素"
+   ],
+   "statement": "核素是一种原子，其原子核具有特定数目的质子和中子。"
+  },
+  {
+   "id": "mass-number",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "质量数",
+   "symbol": "A_nuc",
+   "terms": [
+    "质量数"
+   ],
+   "statement": "质量数 $A$ 是原子核中核子的数目，等于其中子数 $N$ 与原子序数 $Z$ 之和。",
+   "forms": [
+    {
+     "id": "eq-mass-number",
+     "latex": "A = N + Z",
+     "anchor": "31.3-nuclides"
+    }
+   ]
+  },
+  {
+   "id": "neutron-number",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "中子数",
+   "symbol": "N_neut",
+   "statement": "中子数 $N$ 是原子核中中子的数目。"
+  },
+  {
+   "id": "atomic-mass",
+   "kind": "definition",
+   "section": "31.3",
+   "name": "原子质量",
+   "symbol": "m_tot",
+   "terms": [
+    "原子质量"
+   ],
+   "type": "mass",
+   "statement": "原子质量是单个原子中质子、中子和电子的总质量。"
+  },
+  {
+   "id": "parent-daughter-decay-series",
+   "kind": "idea",
+   "section": "31.4",
+   "name": "母核素和子核素",
+   "statement": "一次衰变使母核变成子核，而子核本身可能不稳定，所以有些母核开始一整个衰变系列，直到一个稳定的核素才结束，就像 $^{238}$U 系列终止于 $^{206}$Pb。"
+  },
+  {
+   "id": "alpha-decay",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "写出 α 衰变方程",
+   "statement": "写 $\\alpha$ 衰变方程时，从母核中去掉一个 $^{4}$He 核，${}^{A}_{Z}\\text{X}_{N} \\to {}^{A-4}_{Z-2}\\text{Y}_{N-2} + {}^{4}_{2}\\text{He}_{2}$：子核是元素周期表中低两位的元素，质量数小 4。",
+   "forms": [
+    {
+     "id": "eq-alpha-decay",
+     "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A-4}_{Z-2}\\text{Y}_{N-2} + {}^{4}_{2}\\text{He}_{2}",
+     "anchor": "31.4-alpha-decay"
+    }
+   ]
+  },
+  {
+   "id": "nuclear-reaction-energy",
+   "kind": "result",
+   "section": "31.4",
+   "name": "核反应能",
+   "terms": [
+    "核反应能"
+   ],
+   "statement": "核反应中释放的能量来自其中被消灭的质量，$E = (\\Delta m)c^{2}$。当产物的总质量小于母核时，该反应释放能量，并且可以自发发生；当产物的总质量更大时，则需要输入能量。",
+   "type": "energy",
+   "forms": [
+    {
+     "id": "eq-nuclear-reaction-energy",
+     "latex": "E = (\\Delta m)c^{2}",
+     "ktex": "\\kE = (\\Delta m)\\kc^{2}",
+     "anchor": "31.4-decay-energy"
+    },
+    {
+     "id": "eq-fusion-energy-from-masses",
+     "latex": "E = (m_{\\text{i}} - m_{\\text{f}})c^{2}",
+     "ktex": "\\kE = (m_{\\text{i}} - m_{\\text{f}})\\kc^{2}",
+     "section": "32.5",
+     "anchor": "32.5-nuclear-fusion"
+    },
+    {
+     "id": "eq-fission-energy",
+     "latex": "E = (\\Delta m)c^{2}",
+     "ktex": "\\kE = (\\Delta m)\\kc^{2}",
+     "section": "32.6",
+     "anchor": "32.6-fission-energy-example"
+    }
+   ]
+  },
+  {
+   "id": "decay-energy-from-atomic-masses",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "求衰变能量",
+   "statement": "衰变能量由表中的原子质量求得，表中的是中性原子的质量，所以必须把电子计入。在 $\\alpha$ 衰变和 $\\beta^{-}$ 衰变中电子相互平衡，原子质量可以直接相减；在 $\\beta^{+}$ 衰变中，还必须再减去两个电子的质量。",
+   "forms": [
+    {
+     "id": "eq-beta-plus-mass-difference",
+     "latex": "\\Delta m = m(\\text{母核}) - [m(\\text{子核}) + 2m_{\\text{e}}]",
+     "anchor": "31.4-positron-decay"
+    }
+   ]
+  },
+  {
+   "id": "beta-minus-decay-and-the-neutrino",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "β⁻ 衰变与中微子",
+   "statement": "在 $\\beta^{-}$ 衰变中，原子核中的一个中子变成一个质子，原子核产生并发射一个电子和一个电子反中微子，${}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z+1}\\text{Y}_{N-1} + \\beta^{-} + \\bar{\\nu}_{e}$。如果没有反中微子，能量、线动量和角动量就不守恒。",
+   "forms": [
+    {
+     "id": "eq-beta-minus-decay",
+     "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z+1}\\text{Y}_{N-1} + \\beta^{-} + \\bar{\\nu}_{e}",
+     "anchor": "31.4-beta-minus-decay"
+    },
+    {
+     "id": "eq-neutron-decay",
+     "latex": "\\text{n} \\to \\text{p} + \\beta^{-} + \\bar{\\nu}_{e}",
+     "anchor": "31.4-beta-minus-decay"
+    }
+   ]
+  },
+  {
+   "id": "beta-plus-decay-and-electron-capture",
+   "kind": "skill",
+   "section": "31.4",
+   "name": "β⁺ 衰变与电子俘获",
+   "statement": "质子过多而不稳定的原子核使 $Z$ 减少一，方式是发射一个正电子和一个电子中微子，${}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\beta^{+} + \\nu_{e}$，或者俘获自身的一个内层电子。这两种方式对原子核的效果相同。",
+   "forms": [
+    {
+     "id": "eq-beta-plus-decay",
+     "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\beta^{+} + \\nu_{e}",
+     "anchor": "31.4-positron-decay"
+    }
+   ]
+  },
+  {
+   "id": "conservation-of-electron-family-number",
+   "kind": "axiom",
+   "section": "31.4",
+   "name": "电子轻子数守恒",
+   "terms": [
+    "总电子轻子数守恒"
+   ],
+   "statement": "电子族成员的总数是恒定的：电子和电子中微子计为 $+1$，它们的反物质伙伴计为 $-1$，所以电子永远不能在没有一个反物质族成员的情况下产生。"
+  },
+  {
+   "id": "conservation-of-nucleon-number",
+   "kind": "axiom",
+   "section": "31.4",
+   "name": "核子数守恒",
+   "statement": "在每一次衰变中，核子总数 $A$ 在衰变前后都相同，即使质子变成中子或者反过来也是如此，并且总电荷像往常一样守恒。"
+  },
+  {
+   "id": "gamma-decay",
+   "kind": "idea",
+   "section": "31.4",
+   "name": "γ 衰变",
+   "terms": [
+    "γ 衰变"
+   ],
+   "statement": "在 $\\gamma$ 衰变中，处于激发态的原子核通过发射光子落到较低的能级，就像受激原子那样，但能量是 MeV 量级。$\\gamma$ 衰变不改变核素。",
+   "forms": [
+    {
+     "id": "eq-gamma-decay",
+     "latex": "{}^{A}_{Z}\\text{X}^{*}_{N} \\to {}^{A}_{Z}\\text{X}_{N} + \\gamma_{1} + \\gamma_{2} + \\cdots",
+     "anchor": "31.4-gamma-decay"
+    }
+   ]
+  },
+  {
+   "id": "parent-nuclide",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "母核",
+   "terms": [
+    "母核"
+   ],
+   "statement": "母核是衰变之前最初的原子核。"
+  },
+  {
+   "id": "daughter-nuclide",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "子核",
+   "terms": [
+    "子核"
+   ],
+   "statement": "子核是母核衰变时产生的原子核。"
+  },
+  {
+   "id": "nuclear-decay",
+   "kind": "definition",
+   "section": "31.1",
+   "name": "衰变",
+   "terms": [
+    "衰变"
+   ],
+   "statement": "衰变是不稳定原子的原子核通过发射辐射而损失质量和能量的过程。"
+  },
+  {
+   "id": "alpha-decay-process",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "α 衰变",
+   "terms": [
+    "α 衰变"
+   ],
+   "statement": "α 衰变是一种放射性衰变，其中原子核发射一个 α 粒子，即一个 $^{4}$He 核。"
+  },
+  {
+   "id": "beta-decay",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "β 衰变",
+   "terms": [
+    "β 衰变"
+   ],
+   "statement": "β 衰变是一种放射性衰变，其中原子核发射一个 β 粒子，即一个电子或一个正电子。"
+  },
+  {
+   "id": "positron",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "正电子",
+   "terms": [
+    "正电子",
+    "反电子"
+   ],
+   "statement": "正电子，即反电子，是电子的反粒子，质量与电子相同而带正电；它在正 β 衰变中发射。"
+  },
+  {
+   "id": "positron-decay",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "正电子衰变",
+   "terms": [
+    "正电子衰变"
+   ],
+   "statement": "正电子衰变是 β 衰变的一种，其中原子核里的一个质子转变为一个中子，释放出一个正电子和一个电子中微子。"
+  },
+  {
+   "id": "neutrino",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "中微子",
+   "terms": [
+    "中微子"
+   ],
+   "statement": "中微子是一种电中性、弱相互作用的基本粒子。"
+  },
+  {
+   "id": "electron-neutrino",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "电子中微子",
+   "terms": [
+    "电子中微子"
+   ],
+   "statement": "电子中微子是电子族的中微子，是一种不带净电荷的基本粒子。"
+  },
+  {
+   "id": "electron-antineutrino",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "电子反中微子",
+   "terms": [
+    "电子反中微子"
+   ],
+   "statement": "电子反中微子是电子中微子的反粒子。"
+  },
+  {
+   "id": "antimatter",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "反物质",
+   "terms": [
+    "反物质"
+   ],
+   "statement": "反物质是由反粒子组成的物质，每种反粒子与其伙伴质量相同而电荷相反。"
+  },
+  {
+   "id": "decay-series",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "衰变系",
+   "terms": [
+    "衰变系"
+   ],
+   "statement": "衰变系是一连串衰变，其中每个子核本身也不稳定并依次衰变，直到产生一个稳定的核素。"
+  },
+  {
+   "id": "electron-capture",
+   "kind": "definition",
+   "section": "31.4",
+   "name": "电子俘获",
+   "terms": [
+    "电子俘获",
+    "电子俘获方程"
+   ],
+   "statement": "电子俘获是这样一种过程：富质子的核素吸收自身的一个内层原子电子，并发射一个电子中微子，${}^{A}_{Z}\\text{X}_{N} + e^{-} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\nu_{e}$。",
+   "forms": [
+    {
+     "id": "eq-electron-capture",
+     "latex": "{}^{A}_{Z}\\text{X}_{N} + e^{-} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\nu_{e}",
+     "anchor": "31.4-positron-decay"
+    }
+   ]
+  },
+  {
+   "id": "half-life",
+   "kind": "definition",
+   "section": "31.5",
+   "name": "半衰期",
+   "symbol": "t_half",
+   "terms": [
+    "半衰期"
+   ],
+   "type": "time",
+   "statement": "半衰期 $t_{1/2}$ 是每个原子核有 50% 的概率发生衰变所需的时间，不论其经历如何。一个大样品在一个半衰期内降到一半，在下一个半衰期内降到四分之一，依此类推。"
+  },
+  {
+   "id": "exponential-decay-law",
+   "kind": "result",
+   "section": "31.5",
+   "name": "放射性衰变定律",
+   "terms": [
+    "衰变方程"
+   ],
+   "statement": "任一时刻剩下的放射性原子核的数目为 $N = N_0 e^{-\\lambda t}$，这是一种指数式衰减，每个半衰期减半。",
+   "forms": [
+    {
+     "id": "eq-exponential-decay",
+     "latex": "N = N_0 e^{-\\lambda t}",
+     "ktex": "N = N_0 e^{-\\klamdec \\kt}",
+     "anchor": "31.5-half-life"
+    }
+   ]
+  },
+  {
+   "id": "decay-constant",
+   "kind": "result",
+   "section": "31.5",
+   "name": "衰变常量",
+   "terms": [
+    "衰变常量"
+   ],
+   "type": "decay-constant",
+   "statement": "衰变常量 $\\lambda$ 决定指数式衰减下降的快慢，它与半衰期的关系为 $\\lambda = 0.693/t_{1/2}$：半衰期越短，$\\lambda$ 越大。",
+   "forms": [
+    {
+     "id": "eq-decay-constant",
+     "latex": "\\lambda = \\frac{\\ln 2}{t_{1/2}} \\approx \\frac{0.693}{t_{1/2}}",
+     "ktex": "\\klamdec = \\frac{\\ln 2}{\\kthalf} \\approx \\frac{0.693}{\\kthalf}",
+     "anchor": "31.5-half-life"
+    }
+   ]
+  },
+  {
+   "id": "radioactive-dating",
+   "kind": "skill",
+   "section": "31.5",
+   "name": "测定物体的年代",
+   "statement": "在已知起始丰度的情况下，由一个物体中剩余的放射性核素所占的比例 $N/N_0$ 及其半衰期，可以求出年代。碳-14 鉴年法可追溯到五六万年前，而 $^{238}$U 鉴年法可追溯到数十亿年前。"
+  },
+  {
+   "id": "activity",
+   "kind": "definition",
+   "section": "31.5",
+   "name": "活度",
+   "symbol": "R_act",
+   "terms": [
+    "活度",
+    "衰变率"
+   ],
+   "type": "activity",
+   "statement": "放射源的活度 $R = \\Delta N/\\Delta t$ 是它的衰变率，即单位时间内的衰变次数，以贝可勒尔或居里为单位来测量。",
+   "forms": [
+    {
+     "id": "eq-activity-definition",
+     "latex": "R = \\frac{\\Delta N}{\\Delta t}",
+     "ktex": "\\kRact = \\frac{\\Delta N}{\\kdt}",
+     "anchor": "31.5-activity"
+    }
+   ]
+  },
+  {
+   "id": "activity-from-number-and-half-life",
+   "kind": "result",
+   "section": "31.5",
+   "name": "放射源的活度",
+   "statement": "放射源的活度随放射性原子核数目的增多而增大，随其半衰期的增大而减小，$R = 0.693N/t_{1/2}$。",
+   "forms": [
+    {
+     "id": "eq-activity-number-half-life",
+     "latex": "R = \\frac{0.693N}{t_{1/2}}",
+     "ktex": "\\kRact = \\frac{0.693N}{\\kthalf}",
+     "anchor": "31.5-activity"
+    }
+   ]
+  },
+  {
+   "id": "activity-decays-exponentially",
+   "kind": "result",
+   "section": "31.5",
+   "name": "活度的指数式衰减",
+   "statement": "由于活度与放射性原子核的数目成正比，它与这些原子核一起按指数下降，$R = R_0 e^{-\\lambda t}$，每个半衰期减半。",
+   "forms": [
+    {
+     "id": "eq-activity-exponential",
+     "latex": "R = R_0 e^{-\\lambda t}",
+     "ktex": "\\kRact = \\kRoact e^{-\\klamdec \\kt}",
+     "anchor": "31.5-activity-decays"
+    }
+   ]
+  },
+  {
+   "id": "becquerel",
+   "kind": "definition",
+   "section": "31.5",
+   "name": "贝可勒尔",
+   "terms": [
+    "贝可勒尔"
+   ],
+   "statement": "贝可勒尔是活度的 SI 单位，每秒一次衰变。",
+   "forms": [
+    {
+     "id": "eq-becquerel",
+     "latex": "1\\;\\text{Bq} = 1\\;\\text{衰变/s}",
+     "anchor": "31.5-activity"
+    }
+   ]
+  },
+  {
+   "id": "curie",
+   "kind": "definition",
+   "section": "31.5",
+   "name": "居里",
+   "terms": [
+    "居里"
+   ],
+   "statement": "居里是活度的一种单位，等于 1 g $^{226}$Ra 的活度，即 $3.70 \\times 10^{10}$ Bq。",
+   "forms": [
+    {
+     "id": "eq-curie",
+     "latex": "1\\;\\text{Ci} = 3.70\\times10^{10}\\;\\text{Bq}",
+     "anchor": "31.5-activity"
+    }
+   ]
+  },
+  {
+   "id": "radioactive-dating-technique",
+   "kind": "definition",
+   "section": "31.5",
+   "name": "放射性鉴年法",
+   "terms": [
+    "放射性鉴年法"
+   ],
+   "statement": "放射性鉴年法是利用放射性衰变，由材料中剩余的放射性核素的量来确定材料年代的方法。"
+  },
+  {
+   "id": "carbon-14-dating",
+   "kind": "idea",
+   "section": "31.5",
+   "name": "碳-14 鉴年法",
+   "terms": [
+    "碳-14 鉴年法"
+   ],
+   "statement": "碳-14 鉴年法是一种基于碳-14 衰变的放射性鉴年法，碳-14 在生物组织中的丰度在生物体死亡之前是固定的。"
+  },
+  {
+   "id": "binding-energy",
+   "kind": "definition",
+   "section": "31.6",
+   "name": "结合能",
+   "symbol": "BE",
+   "terms": [
+    "结合能"
+   ],
+   "type": "energy",
+   "statement": "原子核的结合能是把它完全拆散成单独的质子和中子所需的能量。原子核结合得越紧密，其结合能越大。"
+  },
+  {
+   "id": "mass-defect",
+   "kind": "result",
+   "section": "31.6",
+   "name": "质量亏损",
+   "statement": "把原子核拆开要输入能量，这些能量表现为分离后各部分额外的静质量。所以原子核的质量比其质子和中子分开时的质量小 $\\text{BE}/c^{2}$。这就是为什么自发衰变的产物的质量比母核小。",
+   "forms": [
+    {
+     "id": "eq-mass-defect",
+     "latex": "\\Delta m = (Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}",
+     "anchor": "31.6-mass-defect"
+    },
+    {
+     "id": "eq-binding-energy-nuclear",
+     "latex": "\\text{BE} = (\\Delta m)c^{2} = [(Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}]c^{2}",
+     "ktex": "\\kBE = (\\Delta m)\\kc^{2} = [(Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}]\\kc^{2}",
+     "anchor": "31.6-mass-defect"
+    }
+   ]
+  },
+  {
+   "id": "binding-energy-from-atomic-masses",
+   "kind": "skill",
+   "section": "31.6",
+   "name": "计算结合能",
+   "statement": "原子核的结合能由原子质量求得：$\\text{BE} = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}c^{2}$，再除以 $A$ 就得到比结合能。",
+   "forms": [
+    {
+     "id": "eq-binding-energy",
+     "latex": "\\text{BE} = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}c^{2}",
+     "ktex": "\\kBE = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}\\kc^{2}",
+     "anchor": "31.6-mass-defect"
+    }
+   ]
+  },
+  {
+   "id": "binding-energy-per-nucleon-curve",
+   "kind": "idea",
+   "section": "31.6",
+   "name": "比结合能曲线",
+   "statement": "比结合能平均约为 8 MeV，对轻核急剧上升，在 $A = 60$ 附近达到峰值，对重核缓慢下降，并在结合得特别紧密的原子核（如 $^{4}$He）处出现尖峰。BE/$A$ 越大，原子核越稳定。"
+  },
+  {
+   "id": "short-range-nuclear-force-and-coulomb-repulsion",
+   "kind": "idea",
+   "section": "31.6",
+   "name": "重核的比结合能",
+   "statement": "核力很强但作用范围很短，所以超过 $A = 60$ 左右时，一个新的核子只感受到它的近邻，而库仑斥力却作用于每一个质子。原子核越重，排斥力越增大而核吸引力不增大，所以 BE/$A$ 下降，并且重的稳定核带有多余的中子。"
+  },
+  {
+   "id": "binding-energy-per-nucleon",
+   "kind": "definition",
+   "section": "31.6",
+   "name": "比结合能",
+   "terms": [
+    "比结合能"
+   ],
+   "statement": "比结合能是原子核的结合能除以其核子数；它揭示核力的细节，比结合能越大，原子核越稳定。"
+  },
+  {
+   "id": "bound-in-a-potential-well",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "束缚在势阱中的粒子",
+   "statement": "核子被束缚在原子核中，就像弹珠停在碗里：它们到处运动，却没有足够的能量越过碗沿，而在碗沿之外，库仑斥力会把一个 $\\alpha$ 粒子推开。按经典理论，这样的粒子永远被困住。"
+  },
+  {
+   "id": "quantum-tunneling",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "隧穿",
+   "terms": [
+    "势垒贯穿",
+    "量子力学隧穿",
+    "隧穿"
+   ],
+   "statement": "量子粒子的波函数在势垒处并不中止，而是在其内部按指数减小，所以其中一小部分到达另一侧，粒子有很小的概率在那里被发现。它从一侧到达另一侧，却从未处在两者之间。势垒越薄，概率越大，这就是为什么隧穿对任何经典物体都可以忽略。"
+  },
+  {
+   "id": "alpha-decay-by-tunneling",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "通过隧穿的 α 衰变",
+   "statement": "一个 $\\alpha$ 粒子通过隧穿势垒而逃出原子核。能量更高的 $\\alpha$ 粒子遇到的势垒更薄，更容易逃出，所以其半衰期更短，横跨 17 个数量级。"
+  },
+  {
+   "id": "scanning-tunneling-microscope",
+   "kind": "idea",
+   "section": "31.7",
+   "name": "扫描隧穿显微镜",
+   "statement": "电子可以隧穿过两个物体之间的薄间隙，并且由于概率对厚度极其敏感，扫描隧穿显微镜中探针与表面之间的电流揭示出小至单个原子的表面特征。"
+  },
+  {
+   "id": "nuclear-shell",
+   "kind": "idea",
+   "section": "31.3",
+   "name": "核壳层",
+   "terms": [
+    "核壳层",
+    "闭壳层"
+   ],
+   "statement": "原子核中的质子和中子填充壳层，很像原子中的电子。壳层封闭的原子核更稳定，幻数标志的正是这一点，核壳层理论解释核能级、核衰变和这种更高的稳定性。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "nuclear-radioactivity",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "radiation-is-nuclear-in-origin",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "force-reverses-with-sign-of-charge"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "ionizing-radiation",
+   "prereq": "alpha-beta-gamma-rays"
+  },
+  {
+   "concept": "ionizing-radiation",
+   "prereq": "radiation-and-living-tissue"
+  },
+  {
+   "concept": "range-of-radiation",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "radiation-detection-by-ionization",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "ionization-energy-to-count",
+   "prereq": "radiation-detection-by-ionization"
+  },
+  {
+   "concept": "geiger-tube",
+   "prereq": "radiation-detection-by-ionization"
+  },
+  {
+   "concept": "scintillator-and-photomultiplier",
+   "prereq": "radiation-detection-by-ionization"
+  },
+  {
+   "concept": "solid-state-detector",
+   "prereq": "geiger-tube"
+  },
+  {
+   "concept": "nucleons",
+   "prereq": "alpha-beta-gamma-rays"
+  },
+  {
+   "concept": "atomic-mass-unit",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "isotopes",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "nuclear-radius",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "nuclear-density",
+   "prereq": "nuclear-radius"
+  },
+  {
+   "concept": "nuclear-density",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "strong-and-weak-nuclear-forces",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "chart-of-the-nuclides",
+   "prereq": "nuclide-notation"
+  },
+  {
+   "concept": "chart-of-the-nuclides",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "magic-numbers",
+   "prereq": "chart-of-the-nuclides"
+  },
+  {
+   "concept": "parent-daughter-decay-series",
+   "prereq": "chart-of-the-nuclides"
+  },
+  {
+   "concept": "alpha-decay",
+   "prereq": "parent-daughter-decay-series"
+  },
+  {
+   "concept": "nuclear-reaction-energy",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "nuclear-reaction-energy",
+   "prereq": "alpha-decay"
+  },
+  {
+   "concept": "decay-energy-from-atomic-masses",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "decay-energy-from-atomic-masses",
+   "prereq": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "parent-daughter-decay-series"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "conservation-of-momentum"
+  },
+  {
+   "concept": "beta-plus-decay-and-electron-capture",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "conservation-of-electron-family-number",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "conservation-of-nucleon-number",
+   "prereq": "alpha-decay"
+  },
+  {
+   "concept": "conservation-of-nucleon-number",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "gamma-decay",
+   "prereq": "parent-daughter-decay-series"
+  },
+  {
+   "concept": "half-life",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "exponential-decay-law",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "decay-constant",
+   "prereq": "exponential-decay-law"
+  },
+  {
+   "concept": "radioactive-dating",
+   "prereq": "decay-constant"
+  },
+  {
+   "concept": "activity",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "activity-from-number-and-half-life",
+   "prereq": "activity"
+  },
+  {
+   "concept": "activity-from-number-and-half-life",
+   "prereq": "decay-constant"
+  },
+  {
+   "concept": "activity-decays-exponentially",
+   "prereq": "activity-from-number-and-half-life"
+  },
+  {
+   "concept": "binding-energy",
+   "prereq": "nuclear-reaction-energy"
+  },
+  {
+   "concept": "mass-defect",
+   "prereq": "binding-energy"
+  },
+  {
+   "concept": "binding-energy-from-atomic-masses",
+   "prereq": "mass-defect"
+  },
+  {
+   "concept": "binding-energy-per-nucleon-curve",
+   "prereq": "binding-energy-from-atomic-masses"
+  },
+  {
+   "concept": "binding-energy-per-nucleon-curve",
+   "prereq": "magic-numbers"
+  },
+  {
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "prereq": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "concept": "bound-in-a-potential-well",
+   "prereq": "binding-energy"
+  },
+  {
+   "concept": "quantum-tunneling",
+   "prereq": "bound-in-a-potential-well"
+  },
+  {
+   "concept": "alpha-decay-by-tunneling",
+   "prereq": "quantum-tunneling"
+  },
+  {
+   "concept": "alpha-decay-by-tunneling",
+   "prereq": "half-life"
+  },
+  {
+   "concept": "scanning-tunneling-microscope",
+   "prereq": "quantum-tunneling"
+  },
+  {
+   "concept": "nuclear-radiation",
+   "prereq": "nucleus"
+  },
+  {
+   "concept": "nuclear-radiation",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "radioactive",
+   "prereq": "nuclear-radiation"
+  },
+  {
+   "concept": "alpha-rays",
+   "prereq": "nuclear-radiation"
+  },
+  {
+   "concept": "beta-rays",
+   "prereq": "nuclear-radiation"
+  },
+  {
+   "concept": "beta-rays",
+   "prereq": "electron"
+  },
+  {
+   "concept": "radiation-detector",
+   "prereq": "ionizing-radiation"
+  },
+  {
+   "concept": "scintillator",
+   "prereq": "radiation-detector"
+  },
+  {
+   "concept": "photomultiplier",
+   "prereq": "photoelectric-effect"
+  },
+  {
+   "concept": "nucleus",
+   "prereq": "proton"
+  },
+  {
+   "concept": "nucleus",
+   "prereq": "neutron"
+  },
+  {
+   "concept": "neutron",
+   "prereq": "mass"
+  },
+  {
+   "concept": "nuclide",
+   "prereq": "nucleus"
+  },
+  {
+   "concept": "nuclide",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "mass-number",
+   "prereq": "nucleons"
+  },
+  {
+   "concept": "mass-number",
+   "prereq": "atomic-number"
+  },
+  {
+   "concept": "mass-number",
+   "prereq": "neutron-number"
+  },
+  {
+   "concept": "neutron-number",
+   "prereq": "neutron"
+  },
+  {
+   "concept": "atomic-mass",
+   "prereq": "atom"
+  },
+  {
+   "concept": "atomic-mass",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "parent-nuclide",
+   "prereq": "nuclide"
+  },
+  {
+   "concept": "parent-nuclide",
+   "prereq": "nuclear-decay"
+  },
+  {
+   "concept": "daughter-nuclide",
+   "prereq": "parent-nuclide"
+  },
+  {
+   "concept": "nuclear-decay",
+   "prereq": "nuclear-radioactivity"
+  },
+  {
+   "concept": "nuclear-decay",
+   "prereq": "nucleus"
+  },
+  {
+   "concept": "alpha-decay-process",
+   "prereq": "nuclear-decay"
+  },
+  {
+   "concept": "alpha-decay-process",
+   "prereq": "alpha-rays"
+  },
+  {
+   "concept": "beta-decay",
+   "prereq": "nuclear-decay"
+  },
+  {
+   "concept": "beta-decay",
+   "prereq": "beta-rays"
+  },
+  {
+   "concept": "positron",
+   "prereq": "antimatter"
+  },
+  {
+   "concept": "positron-decay",
+   "prereq": "beta-decay"
+  },
+  {
+   "concept": "positron-decay",
+   "prereq": "positron"
+  },
+  {
+   "concept": "positron-decay",
+   "prereq": "electron-neutrino"
+  },
+  {
+   "concept": "neutrino",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "electron-neutrino",
+   "prereq": "neutrino"
+  },
+  {
+   "concept": "electron-antineutrino",
+   "prereq": "electron-neutrino"
+  },
+  {
+   "concept": "electron-antineutrino",
+   "prereq": "antimatter"
+  },
+  {
+   "concept": "antimatter",
+   "prereq": "electron"
+  },
+  {
+   "concept": "decay-series",
+   "prereq": "daughter-nuclide"
+  },
+  {
+   "concept": "electron-capture",
+   "prereq": "nuclear-decay"
+  },
+  {
+   "concept": "electron-capture",
+   "prereq": "electron-neutrino"
+  },
+  {
+   "concept": "becquerel",
+   "prereq": "activity"
+  },
+  {
+   "concept": "curie",
+   "prereq": "becquerel"
+  },
+  {
+   "concept": "radioactive-dating-technique",
+   "prereq": "exponential-decay-law"
+  },
+  {
+   "concept": "carbon-14-dating",
+   "prereq": "radioactive-dating-technique"
+  },
+  {
+   "concept": "binding-energy-per-nucleon",
+   "prereq": "binding-energy"
+  },
+  {
+   "concept": "binding-energy-per-nucleon",
+   "prereq": "mass-number"
+  },
+  {
+   "concept": "nuclide-notation",
+   "prereq": "nuclide"
+  },
+  {
+   "concept": "decay-energy-from-atomic-masses",
+   "prereq": "atomic-mass"
+  },
+  {
+   "concept": "binding-energy-from-atomic-masses",
+   "prereq": "atomic-mass"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "neutrino"
+  },
+  {
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "prereq": "beta-decay"
+  },
+  {
+   "concept": "beta-plus-decay-and-electron-capture",
+   "prereq": "electron-capture"
+  },
+  {
+   "concept": "parent-daughter-decay-series",
+   "prereq": "decay-series"
+  },
+  {
+   "concept": "radioactive-dating",
+   "prereq": "radioactive-dating-technique"
+  },
+  {
+   "concept": "binding-energy-per-nucleon-curve",
+   "prereq": "binding-energy-per-nucleon"
+  },
+  {
+   "concept": "nuclear-radioactivity",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "alpha-beta-gamma-rays",
+   "prereq": "photon"
+  },
+  {
+   "concept": "gamma-decay",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "radiation-is-nuclear-in-origin",
+   "prereq": "atomic-spectra"
+  },
+  {
+   "concept": "nucleus",
+   "prereq": "rutherford-scattering"
+  },
+  {
+   "concept": "quantum-tunneling",
+   "prereq": "probability-distribution"
+  },
+  {
+   "concept": "ionizing-radiation",
+   "prereq": "ionizing-photons"
+  },
+  {
+   "concept": "nuclear-shell",
+   "prereq": "shell"
+  },
+  {
+   "concept": "nuclear-shell",
+   "prereq": "nucleons"
+  }
+ ]
+}

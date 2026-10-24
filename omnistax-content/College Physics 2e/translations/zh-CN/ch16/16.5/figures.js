@@ -1,0 +1,141 @@
+/* Figures for section 16.5 Energy and the Simple Harmonic Oscillator. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['16.5'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, pinned, curve, spring, block, fixed } = F;
+const sim = (id, H) => F.sim(root, id, H);
+const TAU = 2 * Math.PI;
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
+const sgn = (v) => (v < 0 ? '−' : '+');
+function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
+/* The marks x = −X, 0, +X under a floor at y. When the amplitude is small the outer two labels
+   step down a row and lean away from the centre, so that no label sits on another. */
+function marks(ctx, eq, SC, X, y, tick, dy) {
+  const close = 2 * X * SC < 150;
+  [[-X, '−X', -1], [0, 'x = 0', 0], [X, '+X', 1]].forEach(([val, lab, i]) => {
+    const px = eq + val * SC; line(ctx, px, y, px, y + tick, C('position'), 3);
+    const out = close && i !== 0;
+    text(ctx, lab, px + (out ? i * 8 : 0), y + dy + (out ? 24 : 0), C('position'), { size: 18, weight: 600, align: out ? (i < 0 ? 'right' : 'left') : 'center' });
+  });
+}
+/* one entry of a legend: a stroke of the curve's own colour and its name */
+function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color, dash ? 2 : 4, dash); text(ctx, name, x + 46, y, color, { size: 17, weight: 600, tex: true }); }
+
+/* =====================================================================
+   SIM 1: energy going back and forth. The block on a spring, two energy
+   bars, and energy against position below. Endless.
+===================================================================== */
+(function () {
+  const d = sim('sim-energy-transfer', 740);
+  const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.01, value: 0.1, unit: 'm', dec: 2, onInput: reset, aria: '振幅' });
+  const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: '质量' });
+  const cy = cycle(() => Infinity, 0);
+  function reset() { cy.reset(); }
+  const w = () => Math.sqrt(k.v / m.v), T = () => TAU / w();
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = REDUCED ? T() / 8 : cy.now();
+    const x = X.v * Math.cos(w() * tau), v = -X.v * w() * Math.sin(w() * tau);
+    const E = 0.5 * k.v * X.v * X.v, PE = 0.5 * k.v * x * x, KE = 0.5 * m.v * v * v;
+    /* the scene */
+    const floorY = 300, eq = 620, SC = 1500;
+    strip(ctx, 100, 1040, floorY + 12, 24);
+    fixed(ctx, 156, floorY - 116, 44, 116);
+    const bx = eq + x * SC, by = floorY - 40;
+    line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
+    spring(ctx, 200, by, bx - 48, by, 12, 22, PAL.ink, 4); block(ctx, bx, by, 96, 80, F.ref('object'));
+    text(ctx, 'm = ' + fmt(m.v, 1) + ' kg', bx, by - 104, C('mass'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    marks(ctx, eq, SC, X.v, floorY + 24, 16, 38);
+    if (Math.abs(v) > 0.02 * X.v * w()) { const al = 40 + 160 * Math.abs(v) / (X.v * w()), s = v < 0 ? -1 : 1; arrow(ctx, bx, by - 70, bx + s * al, by - 70, C('velocity'), 5); text(ctx, 'v', bx + s * (al + 16), by - 70, C('velocity'), { weight: 600, align: s < 0 ? 'right' : 'left' }); }
+    /* The bars and the graph share one fixed energy scale, 0 to 1.00 J, and one fixed position
+       scale, the amplitude slider's own ±0.20 m; neither is ever rescaled. The scale is taken from
+       the state the book draws (k = 50 N/m and X = 0.100 m, so ½kX² = 0.25 J), because taking it
+       from the slider maxima, where ½kX² reaches 4 J, would leave the book's own bars and curves a
+       sliver. A total above the top of the scale is drawn at the top with its true value beside it,
+       and the live points are pinned at the edge. */
+    const EM = 1, XM = 0.2;
+    /* the bars */
+    const b0 = 320, bh = 200, bw = 70, bxs = [1130, 1240];
+    const yTot = b0 - bh * Math.min(1, E / EM);
+    /* the total's name sits above the pair of bars, never across them, and its dashed level runs between them */
+    line(ctx, bxs[0] - 8, yTot, bxs[1] + bw + 8, yTot, C('energy'), 2, [8, 6]); text(ctx, '总能量 $\\tfrac{1}{2}\\kk\\kX^2$ = ' + fmt(E, 3) + ' J', (bxs[0] + bxs[1] + bw) / 2, b0 - bh - 26, C('energy'), { size: 18, weight: 600, align: 'center', tex: true });
+    for (const [i, val, lab] of [[0, KE, 'KE'], [1, PE, 'PE_el']]) {
+      const h = bh * Math.min(1, val / EM); ctx.save(); ctx.fillStyle = alpha(C('energy'), i ? 0.35 : 0.8); ctx.fillRect(bxs[i], b0 - h, bw, h); ctx.restore();
+      ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(bxs[i], b0 - bh, bw, bh); ctx.restore();
+      text(ctx, lab, bxs[i] + bw / 2, b0 + 22, C('energy'), { size: 18, weight: 600, align: 'center' }); text(ctx, fmt(val, 3) + ' J', bxs[i] + bw / 2, b0 + 46, C('energy'), { size: 17, align: 'center' });
+    }
+    text(ctx, fmt(EM, 2) + ' J', bxs[0] - 38, b0 - bh, C('energy'), { size: 17, align: 'right' });
+    /* the graph: energy against position */
+    const box = { l: 200, r: 1240, t: 440, b: 660 };
+    const { X: gx, Y: gy } = axes(ctx, box, [-XM, XM], [0, EM], { xl: '位置 x (m)', xc: C('position'), yl: '能量 (J)', yc: C('energy'), nx: 4, ny: 4, fx: (val) => fmt(val, 1), fy: (val) => fmt(val, 2) });
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    line(ctx, gx(-XM), gy(E), gx(XM), gy(E), C('energy'), 2, [8, 6]);
+    curve(ctx, (s) => 0.5 * k.v * s * s, -X.v, X.v, gx, gy, alpha(C('energy'), 0.55), 4, 80);
+    curve(ctx, (s) => Math.max(0, E - 0.5 * k.v * s * s), -X.v, X.v, gx, gy, C('energy'), 4, 80);
+    ctx.restore();
+    const inBox = (y) => Math.min(box.b - 18, Math.max(box.t + 18, y));
+    /* the three curves are named in a legend row above the box, clear of the axis title on the left, so no name sits on a curve at any setting */
+    legend(ctx, 470, box.t - 16, alpha(C('energy'), 0.55), '$\\kPE = \\tfrac{1}{2}\\kk\\kx^2$'); legend(ctx, 700, box.t - 16, C('energy'), '$\\kKE = \\tfrac{1}{2}\\kk\\kX^2 - \\tfrac{1}{2}\\kk\\kx^2$'); legend(ctx, 1060, box.t - 16, C('energy'), '总能量', [8, 6]);
+    line(ctx, gx(x), box.b, gx(x), inBox(gy(E)), C('position'), 2, [4, 8]);
+    pinned(ctx, box, gx, gy, x, PE, alpha(C('energy'), 0.7), fmt(PE, 3) + ' J'); pinned(ctx, box, gx, gy, x, KE, C('energy'), fmt(KE, 3) + ' J');
+    headline(ctx, KE < 0.02 * E ? '在 x = ' + sgn(x) + 'X 处，滑块瞬时静止，全部 ' + fmt(E, 3) + ' J 的能量都储存在弹簧中'
+      : PE < 0.02 * E ? '滑块正经过平衡位置，此处弹簧处于原长，全部 ' + fmt(E, 3) + ' J 都是动能'
+      : '在 x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m 处，弹簧储存 ' + fmt(PE, 3) + ' J，滑块具有 ' + fmt(KE, 3) + ' J，总量始终保持 ' + fmt(E, 3) + ' J');
+    readout(d.readout, `\\tfrac{1}{2}\\km\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = ${fmt(KE, 3)}\\ \\text{J} + ${fmt(PE, 3)}\\ \\text{J} = ${fmt(E, 3)}\\ \\text{J} = \\tfrac{1}{2}\\kk\\kX^2`,
+      '质量决定能量转手的快慢，而不决定能量有多少。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
+})();
+
+/* =====================================================================
+   SIM 2: the maximum speed. Example 16.6's car bouncing, and v against
+   x beside it: the ellipse with v_max at x = 0. Endless.
+===================================================================== */
+(function () {
+  const d = sim('sim-max-speed', 620);
+  const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.005, value: 0.1, unit: 'm', dec: 3, onInput: reset, aria: '振幅' });
+  const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10000, max: 200000, step: 100, value: 65300, unit: 'N/m', dec: 0, onInput: reset });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 100, max: 2000, step: 10, value: 900, unit: 'kg', dec: 0, onInput: reset, aria: '质量' });
+  const cy = cycle(() => Infinity, 0);
+  function reset() { cy.reset(); }
+  const w = () => Math.sqrt(k.v / m.v), T = () => TAU / w(), vmax = () => X.v * w();
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = REDUCED ? T() / 8 : cy.now();
+    const x = X.v * Math.cos(w() * tau), v = -vmax() * Math.sin(w() * tau);
+    /* the scene: a car body on two springs over its wheels */
+    const cx = 330, road = 540, y0 = 330, SC = 900, by = y0 - x * SC;
+    strip(ctx, 80, 600, road + 12, 24);
+    for (const wx of [cx - 110, cx + 110]) { dot(ctx, wx, road - 22, PAL.ink, false, 22); dot(ctx, wx, road - 22, PAL.ink, true, 6); spring(ctx, wx, road - 44, wx, by + 36, 7, 18, PAL.ink, 3); }
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('car'); ctx.lineWidth = 4; ctx.beginPath();
+    ctx.moveTo(cx - 170, by + 36); ctx.lineTo(cx - 170, by - 6); ctx.lineTo(cx - 120, by - 12); ctx.lineTo(cx - 80, by - 56); ctx.lineTo(cx + 60, by - 56); ctx.lineTo(cx + 120, by - 12); ctx.lineTo(cx + 170, by - 6); ctx.lineTo(cx + 170, by + 36); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, fmt(m.v, 0) + ' kg', cx - 10, by + 14, C('mass'), { size: 20, weight: 600, align: 'center' });   /* on the car's body, so it never climbs into the headline */
+    line(ctx, 80, y0 + 36, 600, y0 + 36, PAL.muted, 2, [8, 8]); text(ctx, 'x = 0', 84, y0 + 20, C('position'), { size: 18, weight: 600 });
+    if (Math.abs(v) > 0.02 * vmax()) { const al = 40 + 140 * Math.abs(v) / vmax(), s = v > 0 ? -1 : 1; arrow(ctx, cx + 200, by + 36, cx + 200, by + 36 + s * al, C('velocity'), 5); text(ctx, 'v = ' + sgn(v) + fmt(Math.abs(v), 2) + ' m/s', cx + 214, by + 36 + s * al * 0.5, C('velocity'), { size: 18, weight: 600 }); }
+    /* the graph beside: v against x */
+    /* Both ranges are fixed and never rescaled: the position axis is the amplitude slider's own
+       ±0.20 m, and the velocity axis is ±2.0 m/s, taken from the state the book draws (0.100 m on
+       a 6.53×10⁴ N/m suspension carrying 900 kg, so v_max = 0.852 m/s). Taking it from the slider
+       maxima, where v_max reaches 8.9 m/s, would flatten the book's own ellipse to a line. A stiffer
+       or lighter car now runs off the top of the scale, drawn clipped with its point pinned at the
+       edge, so the ellipse changes shape with every setting. */
+    const XM = 0.2, VM = 2;
+    const box = { l: 760, r: 1320, t: 110, b: 520 };
+    const { X: gx, Y: gy } = axes(ctx, box, [-XM, XM], [-VM, VM], { xl: '位置 x (m)', xc: C('position'), yl: '速度 v (m/s)', yc: C('velocity'), nx: 4, ny: 4, fx: (val) => fmt(val, 1), fy: (val) => fmt(val, 1) });
+    const vOf = (s) => vmax() * Math.sqrt(Math.max(0, 1 - (s * s) / (X.v * X.v)));
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    curve(ctx, vOf, -X.v, X.v, gx, gy, C('velocity'), 4, 120); curve(ctx, (s) => -vOf(s), -X.v, X.v, gx, gy, C('velocity'), 4, 120);
+    ctx.restore();
+    pinned(ctx, box, gx, gy, 0, vmax(), C('velocity'), 'v_max = ' + fmt(vmax(), 3) + ' m/s');
+    pinned(ctx, box, gx, gy, 0, -vmax(), C('velocity'), '');
+    line(ctx, gx(x), box.b, gx(x), Math.min(box.b, Math.max(box.t, gy(v))), C('position'), 2, [4, 8]);
+    pinned(ctx, box, gx, gy, x, v, C('velocity'), vmax() > VM ? '' : fmt(v, 2) + ' m/s');   /* clipped, the v_max label speaks for the curve */
+    headline(ctx, Math.abs(x) < 0.03 * X.v ? '经过 $\\kx$ = 0 时，汽车的速率最大，$\\kvmax = \\kX\\sqrt{\\kk/\\km}$ = ' + fmt(vmax(), 3) + ' m/s'
+      : Math.abs(x) > 0.97 * X.v ? '在 x = ' + sgn(x) + 'X 处，汽车瞬时静止并折返'
+      : '在 x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m 处，汽车的速率为 ' + fmt(Math.abs(v), 2) + ' m/s，其最大速率 ' + fmt(vmax(), 3) + ' m/s 出现在 x = 0 处');
+    readout(d.readout, `\\kvmax = \\kX\\sqrt{\\frac{\\kk}{\\km}} = (${fmt(X.v, 3)}\\ \\text{m})\\sqrt{\\frac{${sci(k.v)}\\ \\text{N/m}}{${fmt(m.v, 0)}\\ \\text{kg}}} = ${fmt(vmax(), 3)}\\ \\text{m/s}`,
+      '$\\kX$ 增为两倍，则 $\\kvmax$ 加倍；$\\kk$ 增为四倍，同样使它加倍；$\\km$ 增为四倍，则使它减半。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
+})();
+};

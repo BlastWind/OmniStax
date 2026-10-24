@@ -1,0 +1,600 @@
+{
+ "id": "4",
+ "dir": "ch04",
+ "title": "动力学：力与牛顿运动定律",
+ "intro": {
+  "module": "m42129",
+  "slug": "4-introduction-to-dynamics-newtons-laws-of-motion"
+ },
+ "sections": [
+  {
+   "id": "4.1",
+   "module": "m42069",
+   "title": "力的概念的发展",
+   "slug": "4-1-development-of-force-concept"
+  },
+  {
+   "id": "4.2",
+   "module": "m42130",
+   "title": "牛顿第一定律：惯性",
+   "slug": "4-2-newtons-first-law-of-motion-inertia"
+  },
+  {
+   "id": "4.3",
+   "module": "m42073",
+   "title": "牛顿第二定律：系统的概念",
+   "slug": "4-3-newtons-second-law-of-motion-concept-of-a-system"
+  },
+  {
+   "id": "4.4",
+   "module": "m42074",
+   "title": "牛顿第三定律：力的对称性",
+   "slug": "4-4-newtons-third-law-of-motion-symmetry-in-forces"
+  },
+  {
+   "id": "4.5",
+   "module": "m42075",
+   "title": "法向力、张力及力的其他实例",
+   "slug": "4-5-normal-tension-and-other-examples-of-forces"
+  },
+  {
+   "id": "4.6",
+   "module": "m42076",
+   "title": "解题策略",
+   "slug": "4-6-problem-solving-strategies"
+  },
+  {
+   "id": "4.7",
+   "module": "m42132",
+   "title": "牛顿运动定律的进一步应用",
+   "slug": "4-7-further-applications-of-newtons-laws-of-motion"
+  },
+  {
+   "id": "4.8",
+   "module": "m42137",
+   "title": "拓展专题：四种基本力简介",
+   "slug": "4-8-extended-topic-the-four-basic-forces-an-introduction"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "力的大小，即一个物体对另一个物体施加的推或拉",
+   "unit": "N",
+   "section": "4.1",
+   "anchor": "4.1-force"
+  },
+  {
+   "sym": "F_1",
+   "concept": "force",
+   "meaning": "第一位滑冰者对第三位滑冰者施加的力",
+   "unit": "N",
+   "section": "4.1",
+   "anchor": "4.1-force",
+   "ref": "skater-1"
+  },
+  {
+   "sym": "F_2",
+   "concept": "force",
+   "meaning": "第二位滑冰者对第三位滑冰者施加的力",
+   "unit": "N",
+   "section": "4.1",
+   "anchor": "4.1-force",
+   "ref": "skater-2"
+  },
+  {
+   "sym": "F_tot",
+   "concept": "net-external-force",
+   "meaning": "物体所受的合力，即作用于它的各力的矢量和",
+   "unit": "N",
+   "section": "4.1",
+   "anchor": "4.1-force"
+  },
+  {
+   "sym": "F_restore",
+   "concept": "force",
+   "meaning": "拉伸的弹簧在自己恢复到松弛形状时施加的回复力，这里用作力的标准单位",
+   "unit": "N",
+   "section": "4.1",
+   "anchor": "4.1-standard"
+  },
+  {
+   "sym": "x",
+   "concept": "length",
+   "meaning": "弹簧未变形时的长度",
+   "unit": "m",
+   "section": "4.1",
+   "anchor": "4.1-standard"
+  },
+  {
+   "sym": "Δx",
+   "concept": "displacement",
+   "meaning": "弹簧从未变形长度被拉伸的距离",
+   "unit": "m",
+   "section": "4.1",
+   "anchor": "4.1-standard"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体的速度，除非有合外力作用于该物体，否则它保持不变",
+   "unit": "m/s",
+   "section": "4.2",
+   "anchor": "4.2-first-law"
+  },
+  {
+   "sym": "F_net",
+   "concept": "net-external-force",
+   "meaning": "系统所受的合外力，即作用于它的所有外力的矢量和",
+   "unit": "N",
+   "section": "4.3",
+   "anchor": "4.3-net-force"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "系统的加速度，其方向与合外力相同",
+   "unit": "m/s²",
+   "section": "4.3",
+   "anchor": "4.3-system"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "物体的重力，即作用于它的引力",
+   "unit": "N",
+   "section": "4.3",
+   "anchor": "4.3-weight"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度的大小，在地球上为 9.80 m/s²",
+   "unit": "m/s²",
+   "section": "4.3",
+   "anchor": "4.3-weight"
+  },
+  {
+   "sym": "f_fric",
+   "concept": "friction",
+   "meaning": "摩擦力，它阻碍相互接触的物体彼此相对运动",
+   "unit": "N",
+   "section": "4.3",
+   "anchor": "4.3-net-force"
+  },
+  {
+   "sym": "N",
+   "concept": "normal-force",
+   "meaning": "地面对系统的支持力，假定在没有竖直加速度时它与重力相抵消",
+   "unit": "N",
+   "section": "4.3",
+   "anchor": "4.3-net-force"
+  },
+  {
+   "sym": "T_force",
+   "concept": "thrust",
+   "meaning": "驱动滑橇的四火箭推进系统中一枚火箭的推力",
+   "unit": "N",
+   "section": "4.3",
+   "anchor": "4.3-sled"
+  },
+  {
+   "sym": "F_net",
+   "concept": "net-external-force",
+   "meaning": "所研究的系统所受的合外力，它随所选的系统而变",
+   "unit": "N",
+   "section": "4.4",
+   "anchor": "4.4-choosing-a-system"
+  },
+  {
+   "sym": "F_floor",
+   "concept": "force",
+   "meaning": "教授向后蹬地时地板对她施加的向前的反作用力",
+   "unit": "N",
+   "section": "4.4",
+   "anchor": "4.4-choosing-a-system",
+   "ref": "floor"
+  },
+  {
+   "sym": "F_prof",
+   "concept": "force",
+   "meaning": "教授对手推车施加的力，它对系统 1 是内力，对系统 2 是外力",
+   "unit": "N",
+   "section": "4.4",
+   "anchor": "4.4-choosing-a-system",
+   "ref": "professor"
+  },
+  {
+   "sym": "f_fric",
+   "concept": "friction",
+   "meaning": "所有阻碍运动的力，例如手推车车轮上的摩擦力和空气阻力，合在一起",
+   "unit": "N",
+   "section": "4.4",
+   "anchor": "4.4-choosing-a-system"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "所研究的系统因作用于它的合外力而获得的加速度",
+   "unit": "m/s²",
+   "section": "4.4",
+   "anchor": "4.4-choosing-a-system"
+  },
+  {
+   "sym": "N",
+   "concept": "normal-force",
+   "meaning": "法向力，即表面垂直于自身所给的支持力",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-normal-force"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "表面或绳所支撑的物体的重力",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-normal-force"
+  },
+  {
+   "sym": "w_par",
+   "concept": "weight",
+   "meaning": "重力平行于斜面的分量，它使物体沿斜面加速向下",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-weight-on-incline"
+  },
+  {
+   "sym": "w_perp",
+   "concept": "weight",
+   "meaning": "重力垂直于斜面的分量，它由法向力平衡",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-weight-on-incline"
+  },
+  {
+   "sym": "f_fric",
+   "concept": "friction",
+   "meaning": "物体与斜面之间的摩擦力，它平行于表面并阻碍运动",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-weight-on-incline"
+  },
+  {
+   "sym": "a_par",
+   "concept": "acceleration",
+   "meaning": "平行于斜面的加速度",
+   "unit": "m/s²",
+   "section": "4.5",
+   "anchor": "4.5-weight-on-incline"
+  },
+  {
+   "sym": "T_force",
+   "concept": "tension",
+   "meaning": "绳或缆绳中的张力，即它沿自身长度方向传递的拉力",
+   "redefines": true,
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-tension"
+  },
+  {
+   "sym": "T_L",
+   "concept": "tension",
+   "meaning": "走钢丝者左侧钢丝中的张力",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-tightrope"
+  },
+  {
+   "sym": "T_R",
+   "concept": "tension",
+   "meaning": "走钢丝者右侧钢丝中的张力",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-tightrope"
+  },
+  {
+   "sym": "F_perp",
+   "concept": "force",
+   "meaning": "在柔索中间施加的、垂直于其长度的力",
+   "unit": "N",
+   "section": "4.5",
+   "anchor": "4.5-large-tension"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度的大小",
+   "unit": "m/s²",
+   "section": "4.5",
+   "anchor": "4.5-normal-force"
+  },
+  {
+   "sym": "F_netpar",
+   "concept": "net-external-force",
+   "meaning": "滑雪者所受的平行于斜面的合外力",
+   "unit": "N",
+   "section": "4.5"
+  },
+  {
+   "sym": "F_netx",
+   "concept": "net-external-force",
+   "meaning": "沿水平轴的合外力",
+   "unit": "N",
+   "section": "4.6",
+   "anchor": "4.6-axes"
+  },
+  {
+   "sym": "F_nety",
+   "concept": "net-external-force",
+   "meaning": "沿竖直轴的合外力",
+   "unit": "N",
+   "section": "4.6",
+   "anchor": "4.6-axes"
+  },
+  {
+   "sym": "T_force",
+   "concept": "tension",
+   "meaning": "泰山上方藤蔓中的张力",
+   "redefines": true,
+   "unit": "N",
+   "section": "4.6",
+   "anchor": "4.6-steps"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "所研究的系统的重力",
+   "unit": "N",
+   "section": "4.6",
+   "anchor": "4.6-steps"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "系统沿着各力相加所沿的那个轴的加速度",
+   "unit": "m/s²",
+   "section": "4.6",
+   "anchor": "4.6-axes"
+  },
+  {
+   "sym": "F_x",
+   "concept": "force",
+   "meaning": "第一艘拖船沿 x 轴对驳船施加的力",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-drag",
+   "ref": "tug-1"
+  },
+  {
+   "sym": "F_y",
+   "concept": "force",
+   "meaning": "第二艘拖船沿 y 轴对驳船施加的力",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-drag",
+   "ref": "tug-2"
+  },
+  {
+   "sym": "F_app",
+   "concept": "force",
+   "meaning": "两艘拖船对驳船施加的外加合力",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-drag"
+  },
+  {
+   "sym": "F_D",
+   "concept": "drag-force",
+   "meaning": "水对驳船的阻力，它阻碍运动",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-drag"
+  },
+  {
+   "sym": "T_1",
+   "concept": "tension",
+   "meaning": "交通信号灯左侧钢丝中的张力，它与水平方向所成的角较小",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-tensions",
+   "ref": "wire-1"
+  },
+  {
+   "sym": "T_2",
+   "concept": "tension",
+   "meaning": "交通信号灯右侧钢丝中的张力，它与水平方向所成的角较大",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-tensions",
+   "ref": "wire-2"
+  },
+  {
+   "sym": "F_s",
+   "concept": "apparent-weight",
+   "meaning": "秤对人的力，也就是秤所显示的数值",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-scale",
+   "ref": "scale"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "站在秤上的人的重力",
+   "unit": "N",
+   "section": "4.7",
+   "anchor": "4.7-scale"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "系统的加速度，例如电梯的加速度",
+   "unit": "m/s²",
+   "section": "4.7",
+   "anchor": "4.7-drag"
+  },
+  {
+   "sym": "T_1x",
+   "concept": "tension",
+   "meaning": "张力 T_1 的水平分量",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-1"
+  },
+  {
+   "sym": "T_1y",
+   "concept": "tension",
+   "meaning": "张力 T_1 的竖直分量",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-1"
+  },
+  {
+   "sym": "T_2x",
+   "concept": "tension",
+   "meaning": "张力 T_2 的水平分量",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-2"
+  },
+  {
+   "sym": "T_2y",
+   "concept": "tension",
+   "meaning": "张力 T_2 的竖直分量",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-2"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "物体的质量，它度量物体的惯性，也是物体所含物质的量",
+   "unit": "kg",
+   "section": "4.2",
+   "anchor": "4.2-mass"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "系统的质量，合外力除以它就得到加速度",
+   "unit": "kg",
+   "section": "4.3",
+   "anchor": "4.3-net-force"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "所研究的系统的质量",
+   "unit": "kg",
+   "section": "4.4",
+   "anchor": "4.4-choosing-a-system"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "斜面与水平方向所成的角，或下垂的柔索与水平方向所成的角",
+   "unit": "°",
+   "section": "4.5",
+   "anchor": "4.5-weight-on-incline"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "表面或绳所支撑的质量",
+   "unit": "kg",
+   "section": "4.5",
+   "anchor": "4.5-normal-force"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "所研究的系统的质量",
+   "unit": "kg",
+   "section": "4.6",
+   "anchor": "4.6-axes"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "所研究的系统的质量",
+   "unit": "kg",
+   "section": "4.7",
+   "anchor": "4.7-drag"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "钢丝与水平方向所成的角",
+   "unit": "°",
+   "section": "4.7",
+   "anchor": "4.7-tensions"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "第一位和第二位滑冰者的推力之间的夹角",
+   "unit": "°",
+   "section": "4.1"
+  },
+  {
+   "sym": "F_wallfeet",
+   "concept": "force",
+   "ref": "wall",
+   "meaning": "泳池池壁对游泳者的脚施加的力，对游泳者来说是外力",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_feetwall",
+   "concept": "force",
+   "ref": "swimmer",
+   "meaning": "游泳者的脚对池壁施加的力，它作用在池壁上而不是作用在游泳者身上",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_foot",
+   "concept": "force",
+   "ref": "professor",
+   "meaning": "教授的脚对地板施加的向后的力，它作用在地板上而不是作用在系统 1 上",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_cart",
+   "concept": "force",
+   "ref": "cart",
+   "meaning": "手推车反过来对教授施加的力，对系统 1 是内力",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_p",
+   "concept": "force",
+   "ref": "man",
+   "meaning": "人向下对秤施加的力，其大小等于秤的示数",
+   "unit": "N",
+   "section": "4.7"
+  },
+  {
+   "sym": "F_1",
+   "concept": "force",
+   "ref": "thrower",
+   "meaning": "在球离开时把抛球者向后推的力",
+   "unit": "N",
+   "section": "4.8"
+  },
+  {
+   "sym": "F_2",
+   "concept": "force",
+   "ref": "catcher",
+   "meaning": "在球到达时把接球者向后推的力",
+   "unit": "N",
+   "section": "4.8"
+  }
+ ]
+}

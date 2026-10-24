@@ -1,0 +1,1046 @@
+{
+ "id": "3.5",
+ "module": "m42045",
+ "chapter": "3",
+ "title": "速度的合成",
+ "short": "速度的合成",
+ "lead": "<span data-ref=\"boat\">一条小船</span>船头正对着<span data-ref=\"river\">一条河</span>的对岸，却会向下游漂去，<span data-ref=\"plane\">一架飞机</span>在<span data-ref=\"air\">侧风</span>中机头朝北，却会向西漂去，这是因为每个<span data-concept=\"velocity\">速度</span>都是相对于某个观察者来测量的。不同观察者测得的速度按矢量相加，而相对论要问的是，两个彼此相对运动的观察者对同一运动会看到什么。",
+ "objectives": [
+  "应用矢量加法的原理来确定相对速度。",
+  "说明观察者在速度测量中的意义。"
+ ],
+ "summary_html": "<ul><li>二维情形中的<span data-concept=\"velocity\">速度</span>用同样的解析矢量方法相加，这些方法可改写为 $$\\kvx = \\kv\\cos\\theta$$ $$\\kvy = \\kv\\sin\\theta$$ $$\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$$ $$\\theta = \\tan^{-1}(\\kvy / \\kvx).$$</li><li>相对速度是物体从某个特定参考系中观察到的<span data-concept=\"velocity\">速度</span>，它随参考系的不同而变化很大。</li><li><em>相对论</em>是研究不同观察者如何测量同一现象的学科，特别是当观察者彼此相对运动时。<em>经典相对性原理</em>仅限于速率小于<span data-concept=\"speed-of-light-in-vacuum\">光速</span>约 1% 的情形（3000 km/s）。</li></ul>",
+ "notes": "习题 2、4、6、8、10、12、14、16、17、18 和 19 在书后答案中没有给出，因此略去；关于两个弹簧发射器的批判性思考题检验的是抛体的最大高度，与第 3.4 节放在一起；指向 Motion in 2D 模拟的 PhET 链接也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案；习题 2、4、6、8、10、12、14、16、17、18 和 19 没有给出答案，因此略去。习题 3 的（b）问和习题 7 的（b）问是用文字作答的，所以与数值一起保留在解答中。关于两个弹簧发射器的批判性思考题（exer-14790）考查的是抛体的最大高度，而这是第 3.4 节介绍的内容，所以它放在那一页，该页以 source_section 3.5 收入它，并连同本书给出的（c）问的图像。五道思考题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-boat",
+   "kind": "sim",
+   "number": "3.40",
+   "folds": [
+    "3.43"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_05_01a.jpg",
+    "/media/ch03/Figure_03_05_09a.jpg"
+   ],
+   "original_caption": "试图径直驶向河对岸的小船，实际上会如图所示相对于河岸斜向运动。它相对于河岸的合速度（实线箭头）等于它相对于河水的速度与河水相对于河岸的速度之和。",
+   "widths": [
+    350,
+    400
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "moving label dropped, sliver angle unnamed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-plane",
+   "kind": "sim",
+   "number": "3.41",
+   "originals": [
+    "/media/ch03/Figure_03_05_02a.jpg"
+   ],
+   "original_caption": "一架径直朝北飞行的飞机，却被风带向西并被减慢。飞机相对于地面并不沿着它所指的方向运动，而是沿着它的合速度（实线箭头）的方向运动。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "moving label dropped, triangle kept on the canvas"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-components",
+   "kind": "sim",
+   "number": "3.42",
+   "originals": [
+    "/media/ch03/Figure_03_05_03a.jpg"
+   ],
+   "original_caption": "物体沿与水平轴成角 θ 的方向运动时，它的速度 v 是分矢量 v_x 与 v_y 之和。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-wind",
+   "kind": "sim",
+   "number": "3.44",
+   "originals": [
+    "/media/ch03/Figure_03_05_04a.jpg"
+   ],
+   "original_caption": "已知一架飞机以 45.0 m/s 的速度向北飞行，而它相对于地面的速度为 38.0 m/s，方向为北偏西某一角度。风的速率和方向是什么？",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeated panel dropped, east of north named"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-binoculars",
+   "kind": "sim",
+   "number": "3.45",
+   "originals": [
+    "/media/ch03/Figure_03_05_05.jpg"
+   ],
+   "original_caption": "经典相对性原理。两个不同的观察者所看到的同一个运动。行驶中的船上的观察者看到从桅杆顶端掉落的双筒望远镜笔直下落。岸上的观察者看到双筒望远镜沿着弯曲的路径运动，随船一起向前。两位观察者都看到双筒望远镜落在桅杆底部的甲板上。相对于这两个观察者，初始水平速度是不同的。（图中的船画得运动得相当快，以突出这一效应。）",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "moving labels dropped, binoculars named, note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-coin",
+   "kind": "sim",
+   "number": "3.46",
+   "originals": [
+    "/media/ch03/Figure_03_05_06a.jpg"
+   ],
+   "original_caption": "两个不同的观察者所看到的、在飞机内掉落的硬币的运动。（a）飞机上的观察者看到硬币笔直下落。（b）地面上的观察者看到硬币几乎沿水平方向运动。",
+   "draws": [
+    "position",
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "moving label dropped, labels clear of the edge and the axis"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-galaxies",
+   "kind": "figure",
+   "originals": [
+    "/media/ch03/Figure_03_05_07-12c0.jpg"
+   ],
+   "original_caption": "位于一条直线上的五个星系，图中给出了它们相对于银河系（MW）的距离和速度。距离以百万光年（Mly）为单位，一光年是光在一年内传播的距离。速度近似与距离成正比。图中星系的大小被大大夸大了；一个普通星系的直径约为 0.1 百万光年。",
+   "draws": [
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "relative-velocity",
+   "concept": "relative-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "relative-velocity",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "relative-velocity",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "relative-velocity",
+   "concept": "velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "velocity-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-addition",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-boat",
+   "concept": "velocity-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-boat",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-boat",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "velocity-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-plane",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "relativity",
+   "concept": "classical-relativity",
+   "verb": "introduces"
+  },
+  {
+   "span": "relativity",
+   "concept": "relative-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relativity",
+   "concept": "reference-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "relativity",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "classical-relativity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "velocity-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "projectile-vertical-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "free-fall-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coin",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "galaxies",
+   "concept": "relative-velocity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1125168",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "驾驶汽车时，你会本能地使用什么参考系？乘坐商用喷气式客机飞行时呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "驾驶时，你会本能地使用一个固定在道路和地面上的参考系。你判断速度计、路标和其他汽车，都是相对于地球而言的，并且你描述前方汽车的速度，也是相对于道路。在商用喷气式客机里，机舱本身成了你的参考系，因为你和周围的一切都具有飞机的速度。你在过道里行走、倒饮料、掉落硬币，就像在地面上一样。只有窗外的景象或一阵颠簸的气流，才会提醒你，相对于地球，整个参考系正以约 250 m/s 的速度运动。每个速度都是相对于你所选定的参考系而言的，同一运动在这两个参考系中给出的值大不相同。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1462868",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "一名篮球运动员在球场上运球前进时，通常会把目光盯在周围的球员身上。他跑得很快。为什么他不需要盯着球呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "相对于这名球员，球没有水平速度：他和球具有相同的沿球场向前的速度，所以在他的参考系中，球只是在他身旁笔直地上下弹跳，每次都回到他的手中。这与从行驶中的船的桅杆上掉落的双筒望远镜的情形相同：在船的参考系中它们笔直下落，尽管岸上的观察者看到的是一条弯曲的路径。因为球相对于他的运动如此简单而可重复，他可以把手放在球将要回来的位置，而把目光放在周围的球员身上，这些球员相对于他的速度才是会变化的。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1635072",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "如果有人坐在皮卡车的车厢里，把一只垒球笔直向后抛出，那么在站在路边的人看来，球有可能笔直下落吗？这在什么条件下会发生？在抛球的人看来，球的运动是什么样的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "可能。球相对于地面的速度，等于它相对于卡车的速度与卡车相对于地面的速度之和。如果你向后抛球的速率恰好等于卡车的速率，那么两个水平速度相互抵消。于是球相对于地面没有水平速度，路边的人看到它从释放点笔直下落。对抛球的人来说，球在下落的同时以抛出的速率向后运动，所以它沿着一条弯曲的路径远离卡车，落在卡车的远后方，落点在路面上它离手处的正下方。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1912925",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "一位以恒定速度奔跑的慢跑者的帽子从后脑勺掉了下来。画一幅草图，表示在慢跑者的参考系中帽子的路径。再画出静止观察者所看到的路径。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在慢跑者的参考系中，帽子一开始相对于他没有速度，所以它从他的后脑勺笔直下落；草图是一条从头部到地面的竖直线，终点在帽子掉落处的正下方。静止的观察者看到帽子在下落时保持着慢跑者的向前速度，所以草图是一条弯曲的路径，即水平抛出的抛体所沿的抛物线，它把帽子向前带出的距离，等于慢跑者在下落期间跑过的距离。两幅草图终止于同一个地方：帽子落在慢跑者的脚边，而不是落在他的身后，就像图 3.45 中的双筒望远镜落在桅杆的底部一样。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1551935",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "prompt": "一块土块从行驶中的卡车车厢上掉下。它落在卡车尾部的正下方。就在落地之前，它相对于卡车的速度方向是什么？这与它相对于地面的速度方向相同吗？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "相对于卡车，土块一开始没有水平速度，而且也不会获得水平速度，因为重力只沿竖直方向作用。就在落地之前，它相对于卡车的速度笔直向下，所以它落在卡车尾部的正下方。相对于地面，土块在整个下落过程中保持着卡车的向前速度，同时重力使向下的速度不断增大。就在落地之前，它的速度指向前下方，与水平方向的夹角由两个分量之比决定。两个方向不同，是因为这两个速度相差一个卡车相对于地面的速度。地面上的观察者看到土块在下落时向前运动，而卡车上的观察者看到它笔直下落。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1533507",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "布赖恩·艾伦驾驶一架人力飞机，于 1979 年 6 月 12 日从多佛的悬崖出发，飞越英吉利海峡，到达格里内角。（a）他以 3.53 m/s 的平均速度、沿东偏南 $45^\\circ$ 的方向飞行了 169 min。他的总位移是多少？（b）艾伦遇到了平均 2.00 m/s 的逆风，其方向几乎正好与他相对于地球的运动方向相反。他相对于空气的平均速度是多少？（c）他相对于气团的总位移是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 35.8,
+      "unit": "km",
+      "hint": "位移等于平均速度乘以时间间隔，其中分钟要换算成秒；位移的方向就是速度的方向。"
+     },
+     {
+      "part": "(b)",
+      "value": 5.53,
+      "unit": "m/s",
+      "hint": "逆风的方向与他的运动方向相反，所以相对于空气，他运动得更快，快出的量就是风速；在一维情形中，速度像普通数那样相加。"
+     },
+     {
+      "part": "(c)",
+      "value": 56.1,
+      "unit": "km",
+      "hint": "用（b）问中求得的相对于空气的速度，以及同样的飞行时间。"
+     }
+    ],
+    "solution": "（a）$35.8\\ \\text{km}$，东偏南 $45^\\circ$（b）$5.53\\ \\text{m/s}$，东偏南 $45^\\circ$（c）$56.1\\ \\text{km}$，东偏南 $45^\\circ$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1374901",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relative-velocity",
+   "prompt": "马拉松比赛接近终点时，前两名跑步者相距 45.0 m。领先的跑步者的速度为 3.50 m/s，第二名跑步者的速度为 4.20 m/s。（a）第二名跑步者相对于第一名跑步者的速度是多少？（b）如果领先的跑步者距离终点线 250 m，假设他们都以恒定速度奔跑，谁会赢得比赛？（c）获胜者冲过终点线时，她领先多远？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.7,
+      "unit": "m/s",
+      "hint": "在一维情形中，一名跑步者相对于另一名跑步者的速度，等于他们各自相对于地面的速度之差。"
+     },
+     {
+      "part": "(c)",
+      "value": 4.17,
+      "unit": "m",
+      "hint": "求出每名跑步者到达终点线所需的时间，再用这两个时间之差乘以落败者的速率，求出获胜者冲线时落败者落后多远。"
+     }
+    ],
+    "solution": "（a）快 0.70 m/s（b）第二名跑步者获胜（c）4.17 m"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1678133",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "一名橄榄球四分卫以 2.00 m/s 的速率笔直向后退，同时向场上正前方 18.0 m 处的一名球员传球。球以相对于地面 $25.0^\\circ$ 的角度抛出，并在与抛出时相同的高度被接住。球<em>相对于四分卫</em>的初速度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "speed",
+      "value": 17.0,
+      "unit": "m/s",
+      "hint": "由于球是在抛出时的高度被接住的，首先用抛体运动的射程方程求出球相对于地面的初速率；然后用球的速度减去四分卫的速度，逐个分量地相减。"
+     },
+     {
+      "part": "angle above the ground",
+      "value": 22.1,
+      "unit": "°",
+      "hint": "相对于向后退的四分卫，球的水平分量比相对于地面时更大，而竖直分量不变，所以角度更小。"
+     }
+    ],
+    "solution": "$17.0\\ \\text{m/s}$，$22.1^\\circ$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "eip-741",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "（a）一架从澳大利亚达尔文起飞的喷气式飞机，空速为 260 m/s，方向为西偏南 $5.0^\\circ$。它处在急流中，急流以 35.0 m/s 的速度吹向东偏南 $15^\\circ$ 的方向。这架飞机相对于地球的速度是多少？（b）讨论你的答案是否与你对风对飞机路径的影响的预期一致。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) speed",
+      "value": 230,
+      "unit": "m/s",
+      "hint": "相对于地球的速度，等于相对于空气的速度与空气的速度之和；把两者分别沿东向和北向分解，将分量相加，再合成。"
+     },
+     {
+      "part": "(a) angle south of west",
+      "value": 8.0,
+      "unit": "°",
+      "hint": "方向由求和后的分量之比的反正切得出。"
+     }
+    ],
+    "solution": "（a）$230\\ \\text{m/s}$，西偏南 $8.0^\\circ$（b）风应使飞机飞得更慢，并更偏向南，这正是计算得出的结果。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1545174",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "（a）另一架飞机在一股急流中飞行，急流以 45.0 m/s 的速度吹向东偏南 $20^\\circ$ 的方向（如上面关于从达尔文起飞的喷气式飞机的习题）。它相对于地球的运动方向为西偏南 $45.0^\\circ$，而它相对于空气的行进方向为西偏南 $5.00^\\circ$。这架飞机相对于气团的速率是多少？（b）这架飞机相对于地球的速率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 63.5,
+      "unit": "m/s",
+      "hint": "两个速率未知而两个方向已知，所以写出和的东向分量和北向分量，各列一个方程，联立解出这两个速率。"
+     },
+     {
+      "part": "(b)",
+      "value": 29.6,
+      "unit": "m/s",
+      "hint": "一旦知道了空速，任何一个分量方程都能给出相对于地球的速率。"
+     }
+    ],
+    "solution": "（a）63.5 m/s（b）29.6 m/s"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1924931",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "风相对于水的速度对帆船至关重要。假设一艘帆船处在一股洋流中，洋流相对于地球的速度为 2.20 m/s，方向为北偏东 $30.0^\\circ$。它遇到一阵风，风相对于地球的速度为 4.50 m/s，方向为西偏南 $50.0^\\circ$。风相对于水的速度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "speed",
+      "value": 6.68,
+      "unit": "m/s",
+      "hint": "风相对于水的速度，等于风相对于地球的速度减去水相对于地球的速度；逐个分量地相减。"
+     },
+     {
+      "part": "angle south of west",
+      "value": 53.3,
+      "unit": "°",
+      "hint": "用反正切把分量合成起来，并根据各分量的正负号检查象限。"
+     }
+    ],
+    "solution": "$6.68\\ \\text{m/s}$，西偏南 $53.3^\\circ$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1781067",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "relativity",
+   "figure": {
+    "src": "/media/ch03/Figure_03_05_07-12c0.jpg",
+    "alt": "图中画出了位于一条水平直线上的五个星系。最左边的第一个星系的距离为三亿光年，正向左运动。图中第二个和第三个星系没有标出速度。第四个和第五个星系的速度向右。",
+    "caption": "位于一条直线上的五个星系，图中给出了它们相对于银河系（MW）的距离和速度。距离以百万光年（Mly）为单位，一光年是光在一年内传播的距离。速度近似与距离成正比。图中星系的大小被大大夸大了；一个普通星系的直径约为 0.1 百万光年。"
+   },
+   "prompt": "（a）利用星系图中的距离和速度数据，求出膨胀率随距离变化的关系。（b）如果向过去外推，所有星系大约在多久以前处于大致相同的位置？本题的两个部分，分别让你对宇宙膨胀的哈勃常数和回溯到大爆炸的时间是如何确定的有所了解。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 14.9,
+      "unit": "km/s per Mly",
+      "hint": "用每个星系的退行速率除以它的距离，再对四个比值取平均。"
+     },
+     {
+      "part": "(b)",
+      "value": 20.2,
+      "unit": "billion years",
+      "hint": "以恒定速度退行的星系，走完它现在的距离所用的时间等于距离除以速度，这是（a）问中那个率的倒数；要把光年换算成千米，把秒换算成年。"
+     }
+    ],
+    "solution": "（a）$H_{\\text{average}} = 14.9\\ \\frac{\\text{km/s}}{\\text{Mly}}$（b）202 亿年"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2040310",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocity-addition",
+   "prompt": "一艘航行在墨西哥湾流中的船，相对于水的航向为北偏西 $25.0^\\circ$，速率为 4.00 m/s。它相对于地球的速度为 $4.80\\ \\text{m/s}$，方向为北偏西 $5.00^\\circ$。墨西哥湾流的速度是多少？（所得的速度对于离美国东海岸几百千米处的墨西哥湾流是典型的。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "speed",
+      "value": 1.72,
+      "unit": "m/s",
+      "hint": "与例题 3.7 一样，你知道合速度；水流就是加到船相对于水的速度上而得到合速度的那个速度。用相减求出它的分量。"
+     },
+     {
+      "part": "angle north of east",
+      "value": 42.3,
+      "unit": "°",
+      "hint": "用反正切把水流的两个分量合成起来。"
+     }
+    ],
+    "solution": "$1.72\\ \\text{m/s}$，东偏北 $42.3^\\circ$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "reference-frame"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "projectile-motion",
+   "weight": 1
+  },
+  {
+   "exercise": "cq5",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p1",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p1",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p5",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "range",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p7",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "analytical-vector-addition",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p9",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "analytical-vector-addition",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p11",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p11",
+   "concept": "vector-subtraction",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "relative-velocity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "classical-relativity"
+  },
+  {
+   "exercise": "p13",
+   "concept": "average-velocity",
+   "weight": 1
+  },
+  {
+   "exercise": "p15",
+   "concept": "velocity-addition"
+  },
+  {
+   "exercise": "p15",
+   "concept": "relative-velocity"
+  }
+ ],
+ "referents": [
+  {
+   "id": "boat",
+   "label": "横渡河流的小船",
+   "figures": [
+    "sim-boat"
+   ]
+  },
+  {
+   "id": "river",
+   "label": "河流及其水流",
+   "figures": [
+    "sim-boat"
+   ]
+  },
+  {
+   "id": "plane",
+   "label": "在风中机头朝北的飞机",
+   "figures": [
+    "sim-plane"
+   ]
+  },
+  {
+   "id": "air",
+   "label": "气团，即风",
+   "figures": [
+    "sim-plane"
+   ]
+  },
+  {
+   "id": "ship",
+   "label": "船及其桅杆",
+   "figures": [
+    "sim-binoculars"
+   ]
+  },
+  {
+   "id": "binoculars",
+   "label": "从桅杆上掉落的双筒望远镜",
+   "figures": [
+    "sim-binoculars"
+   ]
+  },
+  {
+   "id": "ship-observer",
+   "label": "船上的观察者",
+   "figures": [
+    "sim-binoculars"
+   ]
+  },
+  {
+   "id": "shore-observer",
+   "label": "岸上的观察者",
+   "figures": [
+    "sim-binoculars"
+   ]
+  },
+  {
+   "id": "airliner",
+   "label": "例题 3.8 中的客机",
+   "figures": [
+    "sim-coin"
+   ]
+  },
+  {
+   "id": "coin",
+   "label": "硬币",
+   "figures": [
+    "sim-coin"
+   ]
+  },
+  {
+   "id": "passenger",
+   "label": "掉落硬币的乘客",
+   "figures": [
+    "sim-coin"
+   ]
+  },
+  {
+   "id": "milky-way",
+   "label": "银河系",
+   "figures": [
+    "fig-galaxies"
+   ]
+  }
+ ]
+}

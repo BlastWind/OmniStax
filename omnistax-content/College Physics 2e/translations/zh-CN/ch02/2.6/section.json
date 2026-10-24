@@ -1,0 +1,188 @@
+{
+ "id": "2.6",
+ "module": "m42125",
+ "chapter": "2",
+ "title": "一维运动学的解题基础",
+ "short": "解题基础",
+ "lead": "解决一个物理问题，就是把广泛的物理原理应用到特定的情境中，而从列出已知量和未知量到检查答案是否说得通的六个一般步骤，能使这件事更容易、更有意义。不合理的结果，例如<span data-ref=\"runner\">一个跑步者</span>比任何人所能跑的都快，会把人引回到造成它的前提上。",
+ "objectives": [
+  "应用解题步骤和策略解决一维运动学问题。",
+  "应用策略判断问题的结果是否合理，如果不合理，则找出原因。"
+ ],
+ "summary_html": "<ul><li><em>物理学解题的六个基本步骤是：</em><ul><li><em>步骤 1</em>。审视情境，确定涉及哪些物理原理。</li><li><em>步骤 2</em>。列出题目所述中已给出或可以推知的内容（确定已知量）。</li><li><em>步骤 3</em>。确定题目究竟要求什么（确定未知量）。</li><li><em>步骤 4</em>。找出有助于解决问题的一个方程或一组方程。</li><li><em>步骤 5</em>。把已知量连同其单位代入适当的方程，求得带有单位的数值解。</li><li><em>步骤 6</em>。检查答案是否合理：说得通吗？</li></ul></li></ul>",
+ "notes": "本节开头那张一只手在计算器旁的笔记本上书写的照片，作为装饰而略去；本节没有设置习题，因此没有因缺少答案而略去的内容。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。本节设有两道思考题而没有习题，书中对这两道题都没有给出答案，因此两条建议思路均由 AI 撰写并已标明。第 3.4 节和第 3.5 节的“不合理的结果”习题考查的正是本节所教的检查技能，但它们涉及抛体的射程和相对速度，仍留在那两节。",
+ "figures": [
+  {
+   "id": "sim-runner",
+   "kind": "sim",
+   "draws": [
+    "time",
+    "velocity",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note that repeated the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "steps",
+   "concept": "problem-solving-steps",
+   "verb": "introduces"
+  },
+  {
+   "span": "steps",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "unreasonable",
+   "concept": "unreasonable-results",
+   "verb": "introduces"
+  },
+  {
+   "span": "unreasonable",
+   "concept": "problem-solving-steps",
+   "verb": "uses"
+  },
+  {
+   "span": "unreasonable",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "unreasonable",
+   "concept": "physical-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "unreasonable",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id4087579",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "step-4",
+   "prompt": "为了选择用哪个或哪些方程来解题，你需要哪些信息？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你需要三样东西：涉及的物理原理、已知量清单（题目给出或隐含的内容）和未知量清单（你必须确定的究竟是什么）。有了这些清单，就去找只含一个未知量的方程，这样它的其余变量都已知，你就可以解出那个未知的变量。如果你找到的每个方程都含有多于一个未知量，就需要再加一个方程，你可能要用两个或更多方程才能得到最终答案。画一幅简单的草图并决定哪个方向为正也会有帮助，因为已知量的正负号取决于这一选择。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1986766",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "step-6",
+   "prompt": "解题时你应该做的最后一件事是什么？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "最后要做的是检查答案是否合理，也就是说得通吗。检查它的大小、正负号和单位。物理学的目标是准确地描述自然，一个大得离谱或小得离谱、方向指错或单位不对的答案，告诉你的不是出了错，就是题目的某个前提不合理，就像那位跑步者的 100 s 时间那样。检查结果把问题带回到它的概念含义上，而你对什么合理的判断力，会随着解题越来越多而不断提高。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "problem-solving-steps"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "choose-equation",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "problem-solving-steps"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "unreasonable-results",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "runner",
+   "label": "赛跑中起跑的跑步者",
+   "figures": [
+    "sim-runner"
+   ]
+  }
+ ]
+}

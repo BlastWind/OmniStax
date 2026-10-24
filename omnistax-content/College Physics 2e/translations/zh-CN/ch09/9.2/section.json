@@ -1,0 +1,734 @@
+{
+ "id": "9.2",
+ "module": "m42171",
+ "chapter": "9",
+ "title": "平衡的第二条件",
+ "short": "第二条件",
+ "lead": "力矩是<span data-concept=\"force\">力</span>的转动效果，由力作用在哪里以及指向哪个方向决定，它的两种形式共用<span data-concept=\"perpendicular-lever-arm\">垂直力臂</span>。你会先在一扇门和一根被钉住的冰球杆上遇到它，然后陈述平衡的第二条件，并用<span data-ref=\"child-1 child-2\">两个孩子</span>让<span data-ref=\"seesaw\">跷跷板</span>保持平衡的例子把它演算一遍。",
+ "objectives": [
+  "陈述达到平衡所必需的第二条件。",
+  "解释力矩及其所依赖的因素。",
+  "描述力矩在转动力学中的作用。"
+ ],
+ "summary_html": "<ul><li>第二条件保证这些力矩也是平衡的。力矩是在产生转动方面与<span data-concept=\"force\">力</span>相对应的转动量，定义为 $\\ktau = \\krlev\\kF\\sin\\theta$，其中 $\\ktau$ 是力矩，$\\krlev$ 是从支点到<span data-concept=\"force\">力</span>作用点的<span data-concept=\"distance\">距离</span>，$\\kF$ 是<span data-concept=\"force\">力</span>的大小，$\\theta$ 是 $\\kF$ 与从<span data-concept=\"force\">力</span>的作用点指向支点的矢量之间的<span data-concept=\"angle\">夹角</span>。<span data-concept=\"perpendicular-lever-arm\">垂直力臂</span> $\\krperp$ 定义为 $\\krperp = \\krlev\\sin\\theta$，于是 $\\ktau = \\krperp\\kF$。</li><li><span data-concept=\"perpendicular-lever-arm\">垂直力臂</span> $\\krperp$ 是从支点到 $\\kF$ 的作用线的最短<span data-concept=\"distance\">距离</span>。力矩的 SI 单位是牛·米（N·m）。达到平衡所必需的第二条件是，系统所受的合外力矩必须为零：$\\text{合力矩}\\;\\ktau = 0$。按约定，逆时针力矩为正，顺时针力矩为负。</li></ul>",
+ "notes": "书中没有给出答案的两道习题，即要把力矩换算成英尺磅的扳手一题，和只用第二条件求支持力的一题，均略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。习题 2 和 4 没有给出答案，因而略去：一道是要把力矩换算成英尺磅的扳手，另一道是只用第二条件求例题 9.1 的支持力 $\\kFp$ 的题目。习题 1 的书后答案只给出（a）部分，所以题卡核对的是那个数，并在解中附上书中对（b）部分的答案。本节的第一道 AP 题问哪种情形不涉及力矩，有书后答案，设为判分选择题；第二道关于作用在一个被固定物体上的五个相等的力，没有答案，保留为开放题，其五个选项照书中印出的样子给出，题卡上附有书中的图，以及一条由 AI 撰写的建议思路，并已标明。第 9.4 节的 AP 题要求对坐在跷跷板一端的孩子所产生的力矩作出最佳估算，它考的只是力矩的大小，别无其他，所以放在这里，source_section 为 9.4，没有答案，作为开放题，其四个选项照书中印出的样子给出，并附有一条由 AI 撰写的思路；9.4 节的说明里也这样写了。本节自己的内容没有一项留到后面的页面，因为掌握了两个条件的读者就能做完本章后面印出的每一道习题。三道思考题的建议思路由 AI 撰写，并已标明。第一道思考题是对定义力矩的那段文字的简短检测，就地放在该段之后；其余的都在末尾。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-door",
+   "kind": "sim",
+   "number": "9.6",
+   "originals": [
+    "/media/ch09/Figure_10_02_01a.jpg"
+   ],
+   "original_caption": "力矩是力的转动或扭转效果，这里以门绕其铰链的转动为例说明（从上方看）。力矩既有大小，也有方向。（a）这个力产生逆时针力矩，这意味着门在 F 的作用下将沿逆时针方向转动。注意，r_⊥ 是支点到力的作用线的垂直距离。（b）较小的力 F′ 作用在离铰链（即支点）同样远的位置，产生较小的逆时针力矩。（c）与（a）中相同的力，作用在离铰链较近处时，产生较小的逆时针力矩。（d）与（a）中相同的力，但作用方向相反，产生顺时针力矩。（e）大小相同的力作用在同一点上，但方向不同，产生较小的逆时针力矩。这里 θ 小于 90°。（f）这里的力矩为零，因为力只是在拉铰链，不产生转动。此时 θ = 0°。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels through the labeller; headline and note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hockey-stick",
+   "kind": "sim",
+   "number": "9.7",
+   "originals": [
+    "/media/ch09/Figure_10_02_02abc.jpg"
+   ],
+   "original_caption": "作用在物体上的力可以产生力矩，力矩取决于支点的位置。（a）物体上支点 A 对应的三个因素 r、F 和 θ 如图所示——r 是从所选支点到力 F 的作用点的距离，θ 是 F 与从作用点指向支点的矢量之间的夹角。如果物体能绕 A 点转动，它将沿逆时针方向转动。这意味着相对于支点 A，力矩是逆时针的。（b）在这种情况下，B 点是支点。所施加的力产生的力矩会使物体绕 B 点沿顺时针方向转动，因此相对于 B，它是顺时针力矩。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library hand, filled stick from overhead, labeller, table dropped"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: the stick rocks about the nail the way the torque turns it"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-seesaw",
+   "kind": "sim",
+   "number": "9.8",
+   "originals": [
+    "/media/ch09/Figure_10_02_03.jpg"
+   ],
+   "original_caption": "两个孩子使跷跷板保持平衡，满足平衡的两个条件。较轻的孩子坐得离支点更远，以产生与较重的孩子大小相等的力矩。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "children enlarged; note cut to one line through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-any-pivot",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeated pivot line and note cut; bracket rows spaced"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-forces",
+   "kind": "figure",
+   "originals": [
+    "/media/ch09/Figure_09_S2_02.jpg"
+   ],
+   "original_caption": "作用在一个物体上的五个力。",
+   "draws": [
+    "force"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "torque-defined",
+   "concept": "torque",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "perpendicular-lever-arm",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "torque-from-lever-arm",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "point-of-application",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-defined",
+   "concept": "resolving-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot",
+   "concept": "torque-depends-on-pivot",
+   "verb": "introduces"
+  },
+  {
+   "span": "pivot",
+   "concept": "torque-sign-convention",
+   "verb": "introduces"
+  },
+  {
+   "span": "pivot",
+   "concept": "perpendicular-lever-arm",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pivot",
+   "concept": "torque-from-lever-arm",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pivot",
+   "concept": "newton-meter",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-condition",
+   "concept": "second-condition-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-condition",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "second-condition",
+   "concept": "torque-sign-convention",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-condition",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "balanced-seesaw",
+   "verb": "introduces"
+  },
+  {
+   "span": "seesaw",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "torque-sign-convention",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "center-of-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "torque-depends-on-pivot",
+   "verb": "reinforces"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "balanced-seesaw",
+   "verb": "reinforces"
+  },
+  {
+   "span": "seesaw-lessons",
+   "concept": "center-of-mass",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2659358",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-defined",
+   "prompt": "对于一个特定的支点，有哪三个因素会影响一个力所产生的力矩？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "力的大小、从支点到力的作用点的距离，以及力的方向。定义式 $\\ktau = \\krlev\\kF\\sin\\theta$ 把这三者都包含在内。推得越用力，力矩越大；推的位置离支点越远，力矩也越大。只有力垂直于回到支点的连线的那一部分才起作用，而因子 $\\sin\\theta$ 衡量的正是这一部分。直指支点的力，$\\theta = 0^\\circ$，无论它多大，都完全不产生力矩。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3564976",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pivot",
+   "prompt": "正在用拆房铁球拆毁一栋建筑。一堵没有支撑的高大混凝土墙仍然立着。如果拆房铁球击中这堵墙靠近顶部的位置，这堵墙更可能是绕其底部转动而倒下，还是直直地向下塌落？请解释你的答案。如果用同样大小的力击打它的底部，它最可能怎样倒下？请注意，这取决于墙的底部固定得有多牢。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取墙的底部，即它与地面相接处，作为支点。靠近顶部的一击，作用点离这个支点很远，所以它的垂直力臂几乎是整堵墙的高度，它关于底部的力矩很大。因此，这堵墙更可能绕其底部转动而倒下，而不是被直直地砸下去。同样大小的力作用在底部，关于该点几乎没有力臂，几乎不产生力矩；它反而把墙的底部向侧面推。底部固定牢固的墙既不容易滑动也不容易转动，所以这一击只造成局部损坏，而不会把墙推倒。如果底部能够移动，这一击就会把墙底打掉，墙就差不多在原地塌下来。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1430926",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-defined",
+   "prompt": "机修工有时在试图拧下一个非常紧的螺栓时，会把一段管子套在扳手的手柄上。这有什么帮助？（这样做也有危险，因为可能把螺栓拧断。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "管子加长了手柄，所以机修工的手作用在离螺栓中心更远处，垂直力臂 $\\krperp$ 变长。由于 $\\ktau = \\krperp\\kF$，同样的推力就会在螺栓上产生更大的力矩，于是螺栓会在一个力的作用下转动，而这个力若只作用在扳手原来的末端，是推不动它的。它的危险也正是同一个原因：很容易使力矩大于螺栓所能承受的，螺栓就会被剪断而不是转动。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1330781",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-defined",
+   "prompt": "下列哪一项不是物体受到力矩的例子？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "一辆汽车以恒定速率拐弯。",
+     "旋转木马从静止加速到恒定的转速。",
+     "摆来回摆动。",
+     "保龄球沿保龄球道滚动。"
+    ],
+    "correct": 0,
+    "hint": "力矩改变转动。对每种情形问一问：是否有什么东西正被迫绕着它自己的轴转得更快、更慢，或者朝相反方向转。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1495433",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pivot",
+   "figure": {
+    "src": "/media/ch09/Figure_09_S2_02.jpg",
+    "alt": "图中是一个灰色的物体，形状圆润，像一只鞋。稍偏中心右侧有一个黑点，标记为 P。有 5 个红色箭头，几乎垂直于表示物体边缘的曲线。箭头 A 竖直向下，指向曲线绕过顶部的位置。箭头 B 是一条水平线，指向远离物体的方向，此处边缘微微弯曲，几乎竖直。箭头 C 位于 P 的正下方，从边缘向下指。在这一点上，物体开始从水平方向向上弯曲。箭头 D 竖直向上，指向物体的边缘，此处物体向上弯曲得比 C 点更厉害。箭头 E 指向左侧边缘，以约 45 度角指向物体，并且再次大致垂直于物体。",
+    "caption": "作用在一个物体上的五个力。"
+   },
+   "prompt": "五个大小相等的力，标记为 <strong><em>A</em></strong>–<strong><em>E</em></strong>，作用在下图所示的物体上。如果物体被固定在点 <strong><em>P</em></strong>，哪个力将提供最大的力矩？<ol type=\"a\"><li>力 <strong><em>A</em></strong></li><li>力 <strong><em>B</em></strong></li><li>力 <strong><em>C</em></strong></li><li>力 <strong><em>D</em></strong></li><li>力 <strong><em>E</em></strong></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "力 $D$，选项（d）。五个力的大小相同，所以由 $\\ktau = \\krperp\\kF$，最大的力矩属于垂直力臂最长的那个力，垂直力臂即从 $P$ 到该力的作用线的最短距离。力 $B$ 和 $C$ 沿着几乎穿过 $P$ 的直线指向，所以它们的力臂和力矩都接近零。$A$ 的竖直线在 $P$ 右侧只隔很短的距离，而 $E$ 的作用线向右上方延伸穿过物体，在 $P$ 上方经过，距离也大致同样短。力 $D$ 在物体最左端竖直向上推，它的竖直线离 $P$ 比其他任何一条都远，大约是 $A$ 或 $E$ 的力臂的两倍。因此力 $D$ 产生最大的力矩。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1383310",
+   "source_section": "9.4",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seesaw",
+   "prompt": "一个孩子坐在游乐场跷跷板的一端。下列哪个值是对这个孩子所产生的力矩的最合适的估算？<ol type=\"a\"><li>6 N•m</li><li>60 N•m</li><li>600 N•m</li><li>6000 N•m</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "约 $600\\ \\text{N}\\cdot\\text{m}$，选项（c）。力矩为 $\\ktau = \\krlev\\kF\\sin\\theta$，所以估算力和距离，再把它们相乘。一个学龄儿童的质量约为 30 kg，所以重力约为 $(30\\ \\text{kg})(9.80\\ \\text{m/s}^2) \\approx 300\\ \\text{N}$。从支点到坐在端点的孩子的距离，是游乐场跷跷板长度的一半，约 2 m。重力竖直向下，而木板水平伸出，所以 $\\theta$ 接近 $90^\\circ$，$\\sin\\theta$ 接近 1。于是 $\\ktau \\approx (2\\ \\text{m})(300\\ \\text{N}) = 600\\ \\text{N}\\cdot\\text{m}$。一个孩子重几百牛顿，坐在离支点两米左右的地方，所以力矩是几百牛·米，而不是几十或几千。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1405750",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-defined",
+   "prompt": "（a）开门时，你以 55.0 N 的力垂直地推门，推的位置离铰链 0.850 m。你相对于铰链施加的力矩是多少？（b）如果你推的高度与铰链相同，有关系吗？",
+   "answer": {
+    "type": "number",
+    "value": 46.8,
+    "unit": "N·m",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "推力垂直于门，所以 $\\theta = 90^\\circ$，$\\sin\\theta = 1$，垂直力臂就是到铰链的整段距离。",
+    "solution": "（a）46.8 N·m。（b）你在什么高度推没有关系。力矩只取决于所施加的力的大小，以及力的作用处到铰链的垂直距离。（孩子开门更费劲，并不是因为他们推的位置比成年人低，而是因为他们推的位置离铰链不够远。）"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2699718",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-condition",
+   "prompt": "两个孩子在玩耍时在门的两侧推门。两人都沿水平方向、垂直于门推。一个孩子以 17.5 N 的力推，推的位置离铰链 0.600 m，第二个孩子推的位置离铰链 0.450 m。第二个孩子必须施加多大的力，才能使门不动？假设摩擦可以忽略。",
+   "answer": {
+    "type": "number",
+    "value": 23.3,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "门不动，所以关于铰链的合力矩为零，两个力矩大小相等、符号相反。两个推力都垂直于门，所以每个力矩就是距离乘以力。",
+    "solution": "23.3 N"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2989327",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seesaw",
+   "prompt": "重做例题 9.1 中的跷跷板问题，但跷跷板的质心在支点左侧 0.160 m 处（在较轻的孩子那一侧），并假设跷跷板的质量为 12.0 kg。例题中给出的其他数据不变。请明确写出你是如何遵循静态平衡的解题策略中的步骤的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$\\krtwo$",
+      "value": 1.36,
+      "unit": "m",
+      "hint": "跷跷板的重力现在作用在它自己的重心上，即支点左侧 0.160 m 处，所以它在较轻的孩子所产生的力矩之外，又增加了第三个逆时针力矩。"
+     },
+     {
+      "part": "$\\kFp$",
+      "value": 686,
+      "unit": "N",
+      "hint": "第一条件中现在有四个竖直方向的力：向上的支持力，向下的两个孩子和跷跷板。"
+     }
+    ],
+    "solution": "已知：$m_1 = 26.0\\ \\text{kg}$，$m_2 = 32.0\\ \\text{kg}$，$m_\\text{s} = 12.0\\ \\text{kg}$，$\\krone = 1.60\\ \\text{m}$，$r_\\text{s} = 0.160\\ \\text{m}$；求（a）$\\krtwo$ 和（b）$\\kFp$。（a）因为两个孩子保持平衡，$\\text{合力矩}\\;\\tau_\\text{cw} = -\\text{合力矩}\\;\\tau_\\text{ccw}$，所以 $\\kwone\\krone + m_\\text{s}\\kg r_\\text{s} = \\kwtwo\\krtwo$。解出 $\\krtwo$ 得 $\\krtwo = \\frac{\\kwone\\krone + m_\\text{s}\\kg r_\\text{s}}{\\kwtwo} = \\frac{m_1\\krone + m_\\text{s} r_\\text{s}}{m_2} = \\frac{(26.0\\ \\text{kg})(1.60\\ \\text{m}) + (12.0\\ \\text{kg})(0.160\\ \\text{m})}{32.0\\ \\text{kg}} = 1.36\\ \\text{m}$。（b）因为两个孩子没有运动，$\\text{合力}\\;\\kF = 0 = \\kFp - \\kwone - \\kwtwo - w_\\text{s}$，所以 $\\kFp = \\kwone + \\kwtwo + w_\\text{s} = (26.0\\ \\text{kg} + 32.0\\ \\text{kg} + 12.0\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 686\\ \\text{N}$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "torque"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "torque"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "torque-depends-on-pivot",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "perpendicular-lever-arm"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "perpendicular-lever-arm"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "torque",
+   "weight": 3
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque-from-lever-arm",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque"
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque-from-lever-arm",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "balanced-seesaw"
+  },
+  {
+   "exercise": "p5",
+   "concept": "second-condition-equilibrium",
+   "weight": 4
+  },
+  {
+   "exercise": "p5",
+   "concept": "first-condition-equilibrium",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "center-of-gravity",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "door",
+   "label": "门",
+   "figures": [
+    "sim-door"
+   ]
+  },
+  {
+   "id": "hinges",
+   "label": "铰链",
+   "figures": [
+    "sim-door"
+   ]
+  },
+  {
+   "id": "stick",
+   "label": "冰球杆",
+   "figures": [
+    "sim-hockey-stick"
+   ]
+  },
+  {
+   "id": "nail",
+   "label": "钉子",
+   "figures": [
+    "sim-hockey-stick"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "手",
+   "figures": [
+    "sim-hockey-stick"
+   ]
+  },
+  {
+   "id": "child-1",
+   "label": "第一个孩子",
+   "figures": [
+    "sim-seesaw",
+    "sim-any-pivot"
+   ]
+  },
+  {
+   "id": "child-2",
+   "label": "第二个孩子",
+   "figures": [
+    "sim-seesaw",
+    "sim-any-pivot"
+   ]
+  },
+  {
+   "id": "seesaw",
+   "label": "跷跷板",
+   "figures": [
+    "sim-seesaw",
+    "sim-any-pivot"
+   ]
+  },
+  {
+   "id": "pivot",
+   "label": "支点",
+   "figures": [
+    "sim-seesaw",
+    "sim-any-pivot"
+   ]
+  },
+  {
+   "id": "object",
+   "label": "被固定的物体",
+   "figures": [
+    "fig-forces"
+   ]
+  }
+ ]
+}

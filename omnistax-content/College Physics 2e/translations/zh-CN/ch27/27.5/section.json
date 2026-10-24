@@ -1,0 +1,538 @@
+{
+ "id": "27.5",
+ "module": "m42515",
+ "chapter": "27",
+ "title": "单缝衍射",
+ "short": "单缝衍射",
+ "lead": "光通过单缝时会自身发生干涉，因为狭缝的每一部分都发出自己的子波。它在屏上形成的图样，即宽而亮的中央和两侧较暗的条带，显示出这些子波在哪里相互抵消。",
+ "objectives": [
+  "讨论单缝衍射图样。"
+ ],
+ "summary_html": "<ul><li>单缝产生的干涉图样的特点是：中央极大宽而亮，两侧的极大较窄、较暗。</li><li>单缝产生相消干涉的条件是 $\\kDslit\\;\\text{sin}\\;\\theta = m\\klam\\;\\text{(对于}\\;m=1,\\;-1,\\;2,\\;-2,\\;3,\\;\\ldots)$，其中 $\\kDslit$ 是缝宽，$\\klam$ 是光的<span data-concept=\"wavelength\">波长</span>，$\\theta$ 是相对于光原来方向的<span data-concept=\"angle\">角</span>，$m$ 是极小的级次。请注意，不存在 $m=0$ 的极小。</li></ul>",
+ "notes": "这里还安排了来自其他小节的两道思考题：一是来自 27.3 节的红色亮点图样及其照片，它同时显示出单缝干涉和双缝干涉；二是来自 27.4 节的没有极小的单缝。本模块的十四道习题中有七道没有给出答案，已略去：410 nm 和 700 nm 的光通过宽 2.00 μm 的狭缝时的一级极小，一级极小分别在 60.0° 和 62.0° 时的缝宽和波长，一级极小在 36.9° 的波长，633 nm 的光通过宽 20.0 μm 的狭缝时的三级极小，出现一个、50 个和 1000 个极小所需的最小缝宽，使双缝的第五个极大消失的缝宽与缝间距之比，以及声音通过机库门时的一级极小。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十四道习题中有七道没有给出答案，已略去，它们在本节的说明中列出。两道 AP 题中，有答案的那一道设为判分选择题；另一道没有答案，保留为开放题，并附有标明由 AI 生成的建议思路。思考题没有答案，附有标明由 AI 生成的建议思路；第二道原印在 27.3 节，第三道原印在 27.4 节，都安排在这里，即讲授单缝的地方。本模块没有印出“理解检测”框，所以没有行内题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-single-slit-pattern",
+   "kind": "sim",
+   "number": "27.21",
+   "folds": [
+    "27.23"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_05_01a.jpg",
+    "/media/ch27/Figure_28_05_03a.jpg"
+   ],
+   "original_caption": "（图 27.21）（a）单缝衍射图样。单色光通过单缝，形成一个中央极大，两侧有许多更小、更暗的极大。中央极大的高度是图中所示的六倍。（b）图中画出了明亮的中央极大，以及两侧更暗、更窄的极大。（图 27.23）单缝衍射强度的曲线，显示中央极大比两侧的极大更宽、也强得多。事实上，中央极大的高度是此处所示的六倍。",
+   "widths": [
+    160,
+    165
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#000000",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset and true when one minimum fits"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-slit-rays",
+   "kind": "sim",
+   "number": "27.22",
+   "folds": [
+    "27.24"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_05_02a.jpg",
+    "/media/ch27/Figure_28_05_04a.jpg"
+   ],
+   "original_caption": "（图 27.22）光通过单缝向各个方向衍射，根据角度的不同，可能发生相长干涉或相消干涉。从狭缝两侧出发的光线的波程差为 $D\\sin\\theta$。（图 27.24）本例题中分析的单缝衍射图样的曲线。",
+   "widths": [
+    400,
+    190
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline theta typeset; the 1.5-wavelength sentence corrected"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "single-slit-pattern",
+   "concept": "single-slit-pattern",
+   "verb": "introduces"
+  },
+  {
+   "span": "single-slit-minima",
+   "concept": "single-slit-minima",
+   "verb": "introduces"
+  },
+  {
+   "span": "single-slit-minima",
+   "concept": "single-slit-pattern",
+   "verb": "reinforces"
+  },
+  {
+   "span": "single-slit-minima",
+   "concept": "path-length-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "single-slit-example",
+   "concept": "single-slit-calculations",
+   "verb": "introduces"
+  },
+  {
+   "span": "single-slit-example",
+   "concept": "single-slit-minima",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1549484",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-minima",
+   "prompt": "波长为 410 nm 的光通过宽 1 μm 的单缝时，在屏上形成衍射图样。如果把光源换成波长为 700 nm 的另一种光，缝宽应为多少，才能使新的光产生间距相同的图样？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "0.6 μm",
+     "1 μm",
+     "1.4 μm",
+     "1.7 μm"
+    ],
+    "correct": 3,
+    "hint": "当 $\\klam/\\kDslit$ 保持不变时，各极小保持在相同的角度，所以缝宽必须与波长成正比地增大。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2504051",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-minima",
+   "prompt": "单色光通过单缝，在屏上形成衍射图样。如果二级极小出现在 15° 的角度处，求四级极小的角度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "各极小满足 $\\kDslit\\sin\\theta = m\\klam$，所以 $\\sin\\theta$ 与级次 $m$ 成正比。因此四级极小的正弦是二级极小的两倍：$\\sin\\theta_4 = 2\\sin 15^\\circ = 2(0.259) = 0.518$，$\\theta_4 = \\sin^{-1} 0.518 = 31.2^\\circ$。请注意，这个角度比 15° 的两倍略大一些，因为加倍的是正弦，而不是角度。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738014394",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-minima",
+   "prompt": "产生单缝衍射图样的狭缝的宽度减小时，所产生的衍射图样将如何变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "图样向外展开。各极小位于 $\\sin\\theta = m\\klam/\\kDslit$ 处，所以缝宽 $\\kDslit$ 越小，每个极小的 $\\sin\\theta$ 就越大，中央极大和它两侧较暗的极大都变宽。当狭缝窄到与波长相当时，一级极小达到 90°，中央极大就铺满整个屏。通过较窄狭缝的光也较少，所以图样也较暗。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737897920",
+   "source_section": "27.3",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-pattern",
+   "figure": {
+    "src": "/media/ch27/Figure_28_03_07a.jpg",
+    "alt": "黑色背景上一条水平排列的、等间距的红色光点。中央的光点最亮，向两侧数到第六个光点时几乎暗到看不见，再往外略微变亮，到离中心十二个和十八个光点处又变暗。",
+    "caption": "这个双缝干涉图样也显示出单缝干涉的迹象。（来源：PASCO）"
+   },
+   "prompt": "图中显示的是一束单一波长的红光投射到双缝上所形成的干涉图样的中央部分。这个图样实际上是单缝干涉与双缝干涉的结合。请注意亮斑是等间距的。这是双缝的特征还是单缝的特征？请注意，中心两侧的一些亮斑很暗。这是单缝的特征还是双缝的特征？缝宽与缝间距哪个更小？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "亮斑等间距是双缝的特征：双缝的极大位于 $\\kd\\sin\\theta = m\\klam$ 处，在小角度时等间距。中心两侧一些亮斑变暗是单缝的特征：每条狭缝单独形成的图样的极小位于 $\\kDslit\\sin\\theta = m\\klam$ 处，在这些极小出现的地方，双缝的亮斑几乎被抹去。单缝的极小大约每隔六个亮斑出现一次，所以它们之间的间隔约为双缝极大间隔的六倍。由于图样的间隔随狭缝尺寸的减小而增大，缝宽是两者中较小的，约为两缝间距的六分之一。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738212208",
+   "source_section": "27.4",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-minima",
+   "prompt": "单缝的干涉图样中有可能没有极小。请解释原因。双缝和衍射光栅是否也是如此？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "单缝的一级极小位于 $\\sin\\theta = \\klam/\\kDslit$ 处。如果狭缝比波长还窄，$\\klam/\\kDslit$ 就大于 1，没有哪个角的正弦等于它，于是根本没有极小：光从狭缝向外扩散，强度平滑地减弱。双缝和光栅也是如此。它们的一级极小位于 $\\kd\\sin\\theta = \\klam/2$ 处，所以如果两缝之间的距离小于半个波长，同样没有极小，只剩下中央极大。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737804202",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-minima",
+   "prompt": "（a）550 nm 的光照射到宽 1.00 μm 的单缝上，一级极小出现在多大的角度？（b）会有二级极小吗？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 33.4,
+    "unit": "°",
+    "part": "(a) the angle of the first minimum",
+    "hint": "在 $\\kDslit\\sin\\theta = m\\klam$ 中取 $m = 1$；对于（b），问 $\\sin\\theta = 2\\klam/\\kDslit$ 是否可能小于 1。",
+    "solution": "（a）$33.4^\\circ$\n\n（b）没有"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737804903",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-example",
+   "prompt": "（a）要使 633 nm 的光在 28.0° 的角度处产生一级极小，单缝的宽度应为多大？（b）二级极小在多大的角度处？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the width of the slit",
+      "value": 1.35e-06,
+      "unit": "m",
+      "hint": "取 $m = 1$，由 $\\kDslit\\sin\\theta = m\\klam$ 解出 $\\kDslit$。"
+     },
+     {
+      "part": "(b) the angle of the second minimum",
+      "value": 69.9,
+      "unit": "°",
+      "hint": "缝宽已知，取 $m = 2$，解出 $\\theta$。"
+     }
+    ],
+    "solution": "（a）$1.35\\times 10^{-6}\\;\\text{m}$\n\n（b）$69.9^\\circ$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737760884",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-example",
+   "prompt": "波长为多少的光，照射到宽 3.00 μm 的单缝上时，其三级极小在 48.6° 的角度处？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 750,
+    "unit": "nm",
+    "hint": "取 $m = 3$，由 $\\kDslit\\sin\\theta = m\\klam$ 解出 $\\klam$。",
+    "solution": "750 nm"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169736634099",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-example",
+   "prompt": "（a）平均波长为 589 nm 的钠蒸气灯光照射到宽 7.50 μm 的单缝上。它的二级极小出现在多大的角度？（b）所产生的最高级次的极小是几级？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angle of the second minimum",
+      "value": 9.04,
+      "unit": "°",
+      "hint": "在 $\\kDslit\\sin\\theta = m\\klam$ 中取 $m = 2$。"
+     },
+     {
+      "part": "(b) the highest-order minimum",
+      "value": 12,
+      "hint": "最高级次是使 $m\\klam/\\kDslit$ 仍小于 1 的最大整数 $m$。"
+     }
+    ],
+    "solution": "（a）$9.04^\\circ$\n\n（b）12"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737875290",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-example",
+   "prompt": "（a）波长分别为 589.1 nm 和 589.6 nm 的两条钠蒸气谱线，照射到宽 2.00 μm 的单缝上，求它们的一级极小之间的夹角。（b）如果衍射图样落在离狭缝 1.00 m 的屏上，这两个极小之间的距离是多少？（c）讨论测量这样一段距离的难易。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angle between the first minima",
+      "value": 0.015,
+      "unit": "°",
+      "hint": "分别求出两个波长的一级极小的角度再相减，保留足够的位数，使这个很小的差值不致丢失。"
+     },
+     {
+      "part": "(b) the distance between the minima",
+      "value": 0.262,
+      "unit": "mm",
+      "hint": "每个极小到屏中心的距离是 1.00 m 乘以 $\\tan\\theta$；把两者相减。"
+     }
+    ],
+    "solution": "（a）$0.0150^\\circ$\n\n（b）0.262 mm\n\n（c）这个距离用肉眼不易测量，但在显微镜或放大镜下相当容易测量。"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169737739352",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-example",
+   "prompt": "（a）如果单缝的一级极小在 14.5° 处，二级极小在多大的角度处？（b）三级极小的角度是多少？（c）有四级极小吗？（d）用你的答案说明：中央极大的角宽度约为下一个极大（即一级极小与二级极小之间的夹角）的角宽度的两倍。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the second-order minimum",
+      "value": 30.1,
+      "unit": "°",
+      "hint": "因为 $\\sin\\theta$ 与 $m$ 成正比，所以 $\\sin\\theta_2 = 2\\sin\\theta_1$。"
+     },
+     {
+      "part": "(b) the third-order minimum",
+      "value": 48.7,
+      "unit": "°",
+      "hint": "用 $\\sin\\theta_3 = 3\\sin\\theta_1$。"
+     }
+    ],
+    "solution": "（a）$30.1^\\circ$\n\n（b）$48.7^\\circ$\n\n（c）没有\n\n（d）$2\\theta_1 = (2)(14.5^\\circ) = 29^\\circ$，$\\theta_2 - \\theta_1 = 30.05^\\circ - 14.5^\\circ = 15.56^\\circ$。因此，$29^\\circ \\approx (2)(15.56^\\circ) = 31.1^\\circ$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737725313",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "single-slit-example",
+   "prompt": "<strong>综合概念</strong> 港口入口处的防波堤由一道岩石屏障构成，留有一个 50.0 m 宽的开口。波长 20.0 m 的海浪正对着开口传来。在与入射方向成多大角度处，港内的船只受波浪作用的影响最小？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the first minimum",
+      "value": 23.6,
+      "unit": "°",
+      "hint": "开口相当于单缝，所以平静的方向就是极小，即取 $m = 1$ 的 $\\kDslit\\sin\\theta = m\\klam$。"
+     },
+     {
+      "part": "the second minimum",
+      "value": 53.1,
+      "unit": "°",
+      "hint": "取 $m = 2$ 重复；三级极小要求 $\\sin\\theta$ 大于 1。"
+     }
+    ],
+    "solution": "$23.6^\\circ$ 和 $53.1^\\circ$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "single-slit-minima"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "single-slit-calculations",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "single-slit-minima"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "single-slit-calculations",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "single-slit-pattern"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "single-slit-minima",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "single-slit-pattern"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "double-slit-constructive",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "single-slit-minima"
+  },
+  {
+   "exercise": "p1",
+   "concept": "single-slit-minima"
+  },
+  {
+   "exercise": "p1",
+   "concept": "single-slit-calculations",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "single-slit-calculations"
+  },
+  {
+   "exercise": "p3",
+   "concept": "single-slit-calculations"
+  },
+  {
+   "exercise": "p4",
+   "concept": "single-slit-calculations"
+  },
+  {
+   "exercise": "p5",
+   "concept": "single-slit-calculations"
+  },
+  {
+   "exercise": "p6",
+   "concept": "single-slit-calculations"
+  },
+  {
+   "exercise": "p6",
+   "concept": "single-slit-pattern",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "single-slit-calculations"
+  }
+ ],
+ "referents": [
+  {
+   "id": "slit",
+   "label": "狭缝",
+   "figures": [
+    "sim-slit-rays"
+   ]
+  }
+ ]
+}

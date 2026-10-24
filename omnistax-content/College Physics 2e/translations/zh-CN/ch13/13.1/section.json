@@ -1,0 +1,716 @@
+{
+ "id": "13.1",
+ "module": "m42214",
+ "chapter": "13",
+ "title": "温度",
+ "short": "温度",
+ "lead": "你的双手无法可靠地告诉你什么热、什么冷，所以<span data-concept=\"temperature\">温度</span>被定义为温度计所测量的量。温度计依赖多种物理性质，摄氏、华氏和开尔文温标为它们的读数标上数值，而热平衡说明两个物体何时具有同一<span data-concept=\"temperature\">温度</span>。",
+ "objectives": [
+  "定义温度。",
+  "在摄氏、华氏和开尔文温标之间换算温度。",
+  "定义热平衡。",
+  "陈述热力学第零定律。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"temperature\">温度</span>是温度计所测量的量。</li><li><span data-concept=\"temperature\">温度</span>与系统中原子和分子的平均<span data-concept=\"kinetic-energy\">动能</span>有关。</li><li>绝对零度是没有分子运动时的<span data-concept=\"temperature\">温度</span>。</li><li>主要的温标有三种：摄氏温标、华氏温标和开尔文温标。</li><li>一种温标上的<span data-concept=\"temperature\">温度</span>可以用下列公式换算为另一种温标上的<span data-concept=\"temperature\">温度</span>：$\\kTempF = \\frac{9}{5}\\kTempC + 32$，$\\kTempC = \\frac{5}{9}(\\kTempF - 32)$，$\\kTempK = \\kTempC + 273.15$，$\\kTempC = \\kTempK - 273.15$。</li><li>当系统具有相同的<span data-concept=\"temperature\">温度</span>时，它们处于热平衡。</li><li>当两个物体相互接触并且可以自由交换<span data-concept=\"energy\">能量</span>时，就出现热平衡。</li><li>热力学第零定律指出：当两个系统 A 和 B 彼此处于热平衡，并且 B 与第三个系统 C 处于热平衡时，A 也与 C 处于热平衡。</li></ul>",
+ "notes": "书中未给出答案的四道习题，即以开尔文表示的 28.0 °F 下的霜冻损害、2900 K 的钨丝、死谷的 134 °F，以及两种温标读数相同的温度，均略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。四道习题没有给出答案，因而略去：以开尔文温标表示的 28.0 °F 下的霜冻损害、2900 K 的钨丝、死谷记录到的 134 °F，以及华氏温标与摄氏温标、与开尔文温标读数相同的温度。冷锋习题给出的 (a) 问答案是 22.2 °C，所以题卡核对这个数，并在解中给出本书对 (b) 问的推导；冬季和夏季的习题给出了两个温度，设为两问。四道思考题的建议思路由 AI 撰写，并已标明。理解检测框有答案，设在关于第零定律的段落之后。本节没有 AP 题，也没有从其他小节取来或留给其他小节的内容。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-alcohol-thermometer",
+   "kind": "photo",
+   "number": "13.3",
+   "draws": []
+  },
+  {
+   "id": "sim-bimetallic-strip",
+   "kind": "sim",
+   "number": "13.4",
+   "originals": [
+    "/media/ch13/Figure_14_01_01.jpg"
+   ],
+   "original_caption": "双金属片的曲率取决于温度。（a）在初温下金属片是直的，此时它的两种组分长度相同。（b）在较高温度下，这条金属片向右弯曲，因为左侧的金属比右侧的金属膨胀得更多。",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "clamp label clear, T0 typeset in headline and note, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-plastic-thermometer",
+   "kind": "photo",
+   "number": "13.5",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-pyrometer",
+   "kind": "photo",
+   "number": "13.6",
+   "widths": [
+    175
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-three-scales",
+   "kind": "sim",
+   "number": "13.7",
+   "originals": [
+    "/media/ch13/Figure_14_01_07.jpg"
+   ],
+   "original_caption": "华氏、摄氏和开尔文温标之间的关系，取整到最接近的整数度。图中还显示了各温标的相对大小。",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "landmark labels staggered, tick labels backed, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-thermograph",
+   "kind": "photo",
+   "number": "13.8",
+   "widths": [
+    268
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-temperature-ladder",
+   "kind": "sim",
+   "number": "13.9",
+   "originals": [
+    "/media/ch13/Figure_14_01_05.jpg"
+   ],
+   "original_caption": "这个对数标尺上的每一格表示增大到 10 倍，因而说明了自然界中温度范围之巨大。注意，对数标尺上的零点会出现在页面底端之外的无穷远处。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "collider label shortened, axis title moved, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-gas-extrapolation",
+   "kind": "sim",
+   "number": "13.10",
+   "originals": [
+    "/media/ch13/Figure_14_01_04.jpg"
+   ],
+   "original_caption": "保持体积不变的各种气体的压强随温度变化的图线。注意，所有图线都外推到同一温度处压强为零。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "temperature",
+    "pressure"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout labels off the lines, note cut to one sentence via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-thermal-equilibrium",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the fact the figure shows"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "temperature-defined",
+   "concept": "temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-defined",
+   "concept": "physical-quantity",
+   "verb": "uses"
+  },
+  {
+   "span": "thermometers",
+   "concept": "thermometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermometers",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "temperature-scales",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "convert-temperature-scales",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "celsius-scale",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "degree-celsius",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "fahrenheit-scale",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "degree-fahrenheit",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-scales",
+   "concept": "kelvin-scale",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-ranges",
+   "concept": "absolute-zero",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-ranges",
+   "concept": "temperature-scales",
+   "verb": "reinforces"
+  },
+  {
+   "span": "temperature-ranges",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature-ranges",
+   "concept": "straight-line-graph",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-equilibrium",
+   "concept": "thermal-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-equilibrium",
+   "concept": "thermometer",
+   "verb": "reinforces"
+  },
+  {
+   "span": "zeroth-law",
+   "concept": "zeroth-law-of-thermodynamics",
+   "verb": "introduces"
+  },
+  {
+   "span": "zeroth-law",
+   "concept": "thermal-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "zeroth-law",
+   "concept": "temperature",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-959",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "zeroth-law"
+   },
+   "cite": "zeroth-law",
+   "prompt": "处于内部热平衡的物体，其温度取决于它的大小吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "不取决。这个系统可以分成更小的部分。由于没有热量流动，每一部分都与相邻的部分处于平衡，而根据第零定律，这意味着所有部分彼此处于平衡，并且处于同一温度。与大小无关的量称为强度量。温度是一个强度量。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1802189",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-equilibrium",
+   "prompt": "说两个系统处于热平衡，是什么意思？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两个系统处于热接触，使得热量可以在它们之间传递，并且没有热量从其中任何一个流向另一个，这时它们就处于热平衡。热量从较热的物体流向较冷的物体，所以这恰好发生在两者温度相同的时候，而且一旦它们处于平衡，两者的温度就都不再进一步变化。温度计之所以可信，正是因为这一点：让温度计与一个物体接触足够长的时间，它就与该物体达到热平衡，于是它所显示的温度（也就是它自己的温度）同时也是该物体的温度。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1795880",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermometers",
+   "prompt": "举出一个随温度变化的物理性质的例子，并描述如何用它来测量温度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何依赖于温度、并且可复现的性质都可以。液体的体积是最为人熟悉的一种。在酒精温度计中，酒精受热时比周围的玻璃膨胀得更多，因此沿细管上升。液柱的长度，对照在两个已知温度（例如水的凝固点和沸点）处所作的刻度读出，就给出温度。因为两种金属的膨胀量不同，双金属片卷曲的程度取决于温度。电阻、液晶薄膜的颜色以及物体发射的红外辐射是另外三种，每一种都由一台依据已知温度标定过的仪器读出。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1466328",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermometers",
+   "prompt": "把一支冷的酒精温度计放入热液体中时，酒精柱会先略微<em>下降</em>，然后才上升。解释其原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "温度计读出的是酒精的体积相对于盛放它的玻璃泡的体积。热液体先接触到玻璃，所以在热量来得及传到玻璃泡内的酒精之前，玻璃泡就已受热膨胀。更大的玻璃泡盛放同样多的酒精还有富余，于是液柱略微下降。只有当酒精本身也受热，并且膨胀得比玻璃更多时，它才被挤上细管，越过起始位置。下降幅度很小，因为玻璃的膨胀比酒精小得多，而且它只持续到热量穿过玻璃泡壁所需的那段时间。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1823709",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "zeroth-law",
+   "prompt": "如果你把沸水倒入一只处于室温的杯子，你预期这个整体的最终平衡温度是多少？你需要把周围环境也算作系统的一部分。请考虑热力学第零定律。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先只考虑水和杯子。热量从沸水流入较冷的杯子，直到两者在某一个温度下处于热平衡，这个温度介于 100 °C 与室温之间，而且由于通常水比杯子多，它要接近水的温度得多。但是杯子和水并不是孤立的：两者都与房间的空气处于热接触，热量不断从它们流入周围环境，直到它们也与房间处于平衡。房间比一杯水大得多，它自己的温度几乎不变。根据第零定律，一旦水与杯子处于平衡，杯子又与房间处于平衡，水也就与房间处于平衡，因而整体的末温就是室温。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1394420",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature-scales",
+   "prompt": "一个发热到 39.0 °C 的人，其华氏温度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 102,
+    "unit": "°F",
+    "generated_by": "source",
+    "hint": "摄氏换算为华氏的公式是 $\\kTempF = \\frac{9}{5}\\kTempC + 32$。",
+    "solution": "102 °F"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1566976",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature-scales",
+   "prompt": "为了节约能源，室温在冬季保持在 68.0 °F，在夏季保持在 78.0 °F。这些温度用摄氏温标表示是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "winter",
+      "value": 20.0,
+      "unit": "°C",
+      "hint": "华氏换算为摄氏的公式是 $\\kTempC = \\frac{5}{9}(\\kTempF - 32)$；先减去 32，再乘以九分之五。"
+     },
+     {
+      "part": "summer",
+      "value": 25.6,
+      "unit": "°C",
+      "hint": "同一个公式，把 68.0 °F 换成 78.0 °F。"
+     }
+    ],
+    "solution": "20.0 °C 和 25.6 °C"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1448440",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature-scales",
+   "prompt": "太阳表面的温度约为 5750 K。这个温度用华氏温标表示是多少？",
+   "answer": {
+    "type": "number",
+    "value": 9890,
+    "unit": "°F",
+    "generated_by": "source",
+    "hint": "借助摄氏温标：先减去 273.15 得到 $\\kTempC$，再用 $\\kTempF = \\frac{9}{5}\\kTempC + 32$。表 13.1 把这两步写成一个公式。",
+    "solution": "9890 °F"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1426187",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature-scales",
+   "prompt": "（a）假设一股冷锋吹到你所在的地方，使温度下降了 40.0 华氏度。当温度下降 40.0 °F 时，用摄氏度表示温度下降了多少度？（b）证明：以华氏度表示的任何温度变化，都是以摄氏度表示的变化的五分之九。",
+   "answer": {
+    "type": "number",
+    "value": 22.2,
+    "unit": "°C",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "温度的变化量中不含 32。两个温度各加 32，再用一个减去另一个，32 就被抵消了，只剩下五分之九这个因子。",
+    "solution": "（a）22.2 °C。（b）$\\Delta T({}^\\circ\\text{F}) = T_2({}^\\circ\\text{F}) - T_1({}^\\circ\\text{F}) = \\frac{9}{5}T_2({}^\\circ\\text{C}) + 32.0^\\circ - \\left(\\frac{9}{5}T_1({}^\\circ\\text{C}) + 32.0^\\circ\\right) = \\frac{9}{5}\\left(T_2({}^\\circ\\text{C}) - T_1({}^\\circ\\text{C})\\right) = \\frac{9}{5}\\Delta T({}^\\circ\\text{C})$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "zeroth-law-of-thermodynamics"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "thermal-equilibrium",
+   "weight": 3
+  },
+  {
+   "exercise": "cq1",
+   "concept": "thermal-equilibrium"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "temperature",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "thermometer"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "thermometer"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "temperature",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "thermal-equilibrium"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "zeroth-law-of-thermodynamics",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "convert-temperature-scales"
+  },
+  {
+   "exercise": "p1",
+   "concept": "temperature-scales",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "convert-temperature-scales"
+  },
+  {
+   "exercise": "p3",
+   "concept": "temperature-scales",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "convert-temperature-scales"
+  },
+  {
+   "exercise": "p5",
+   "concept": "temperature-scales",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "convert-temperature-scales"
+  },
+  {
+   "exercise": "p7",
+   "concept": "temperature-scales",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "brass",
+   "label": "黄铜，即双金属片左侧膨胀较多的金属",
+   "figures": [
+    "sim-bimetallic-strip"
+   ]
+  },
+  {
+   "id": "steel",
+   "label": "钢，即双金属片右侧膨胀较少的金属",
+   "figures": [
+    "sim-bimetallic-strip"
+   ]
+  },
+  {
+   "id": "gas-1",
+   "label": "气体 1，保持体积不变",
+   "figures": [
+    "sim-gas-extrapolation"
+   ]
+  },
+  {
+   "id": "gas-2",
+   "label": "气体 2，保持体积不变",
+   "figures": [
+    "sim-gas-extrapolation"
+   ]
+  },
+  {
+   "id": "gas-3",
+   "label": "气体 3，保持体积不变",
+   "figures": [
+    "sim-gas-extrapolation"
+   ]
+  },
+  {
+   "id": "gas-4",
+   "label": "气体 4，保持体积不变",
+   "figures": [
+    "sim-gas-extrapolation"
+   ]
+  },
+  {
+   "id": "block-a",
+   "label": "物块 A，较冷的物块",
+   "figures": [
+    "sim-thermal-equilibrium"
+   ]
+  },
+  {
+   "id": "block-b",
+   "label": "物块 B，较热的物块",
+   "figures": [
+    "sim-thermal-equilibrium"
+   ]
+  },
+  {
+   "id": "plate",
+   "label": "处于室温的金属板",
+   "figures": [
+    "sim-thermal-equilibrium"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,298 @@
+/* Figures for section 1.3 Accuracy, Precision, and Significant Figures. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['1.3'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, dot, text, headline, hbracket, vbracket, strip, nice } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- helpers for the whole section ---------- */
+/* The significant figures of a number written with dec decimals: start at the first nonzero digit on the left and count through the last digit written on the right. */
+function sigfigs(x, dec) { return Math.abs(x).toFixed(dec).replace('.', '').replace(/^0+/, '').length; }
+/* A number rounded to n significant figures, as a string: plain digits where they fit, and JavaScript's e-notation where the number has more digits before the point than n. */
+function roundSig(x, n) { return Number(x).toPrecision(Math.max(1, n)); }
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+/* The rounded string for the canvas ("4.0 × 10²") and for KaTeX ("4.0 \times 10^{2}"). */
+const plainSig = (s) => (s.includes('e') ? s.split('e')[0] + ' × 10' + s.split('e')[1].replace('+', '').split('').map((c) => SUP[c]).join('') : s);
+const texSig = (s) => (s.includes('e') ? s.split('e')[0] + ' \\times 10^{' + s.split('e')[1].replace('+', '') + '}' : s);
+const WORDS = ['零', '一', '两', '三', '四', '五', '六', '七', '八', '九'];
+const words = (n) => WORDS[n] ?? String(n);
+/* A fixed set of eight offsets for the GPS attempts, so the picture is the same on every visit. They sum to zero, so the hollow marker sits exactly where the offset slider puts it, and their root-mean-square distance is one, so the spread slider reads in rings. */
+const ATTEMPTS = (() => {
+  const raw = [[-1.2, 0.5], [0.9, -1.1], [0.3, 1.3], [-0.6, -0.9], [1.4, 0.4], [-1.1, -0.3], [0.5, 0.2], [-0.2, -0.1]];
+  const rms = Math.sqrt(raw.reduce((s, [x, y]) => s + x * x + y * y, 0) / raw.length);
+  return raw.map(([x, y]) => ({ x: x / rms, y: y / rms }));
+})();
+/* sprites */
+/* the restaurant, a shopfront centred on (x, y): a scalloped awning over a door and a window, and a sign above */
+function restaurant(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.fillRect(x - 30, y - 14, 60, 40); ctx.strokeRect(x - 30, y - 14, 60, 40);          /* the front */
+  ctx.fillStyle = color; ctx.fillRect(x - 34, y - 30, 68, 12);                              /* the sign */
+  ctx.beginPath(); for (let i = 0; i < 4; i++) ctx.arc(x - 25 + 17 * i, y - 4, 8.5, 0, Math.PI); ctx.fill();   /* the awning */
+  ctx.fillRect(x - 8, y + 4, 16, 22);                                                        /* the door */
+  ctx.strokeRect(x + 12, y + 6, 12, 10);                                                     /* the window */
+  ctx.restore();
+}
+function bar(ctx, x, y, w, h, filled, color = PAL.ink) {
+  ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = color; ctx.fillStyle = filled ? color : PAL.panel; ctx.fillRect(x, y - h / 2, w, h); ctx.strokeRect(x, y - h / 2, w, h); ctx.restore();
+}
+/* one line of text in several colours: runs of [string, colour, weight], left-aligned at x */
+function runs(ctx, parts, x, y, size) {
+  let cx = x;
+  for (const [s, c, w] of parts) { if (!s) continue; text(ctx, s, cx, y, c, { size, weight: w || 400 }); cx += F.measure(ctx, s, { size, weight: w || 400 }); }
+}
+
+/* =====================================================================
+   FIGURE 1.23: the bull's-eye. Eight GPS attempts scatter about a centre
+   that the offset slider moves away from the restaurant, with a spread
+   the spread slider sets. Nothing moves; the picture answers the sliders.
+===================================================================== */
+(function () {
+  const d = sim('sim-target', 620);
+  const S = ctl(d.controls, { label: '\\text{分散度}', cls: '', min: 0.1, max: 3, step: 0.1, value: 2, unit: '环', dec: 1, aria: '各次尝试的分散度' });
+  const O = ctl(d.controls, { label: '\\text{偏移量}', cls: '', min: 0, max: 3, step: 0.1, value: 0.3, unit: '环', dec: 1, aria: '各次尝试中心的偏移量' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
+  const CX = 400, CY = 340, RING = 44, ANG = (-25 * Math.PI) / 180;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const lowP = S.v >= 1, lowA = O.v >= 1;
+    /* the target: five rings about the restaurant */
+    for (let i = 5; i >= 1; i--) { ctx.save(); ctx.beginPath(); ctx.arc(CX, CY, i * RING, 0, Math.PI * 2); ctx.fillStyle = i % 2 ? PAL.soft : PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.stroke(); ctx.restore(); }
+    line(ctx, CX - 5 * RING - 16, CY, CX + 5 * RING + 16, CY, PAL.rule, 1.5); line(ctx, CX, CY - 5 * RING - 16, CX, CY + 5 * RING + 16, PAL.rule, 1.5);
+    restaurant(ctx, CX, CY, F.ref('restaurant'));
+    text(ctx, '餐馆，位于中心', CX, CY + 5 * RING + 40, F.ref('restaurant'), { size: 20, weight: 600, align: 'center' });
+    /* the attempts about their centre, and the centre against the restaurant */
+    const mx = CX + O.v * RING * Math.cos(ANG), my = CY + O.v * RING * Math.sin(ANG);
+    line(ctx, mx, my, CX, CY, PAL.ink, 2.5, [6, 8]);
+    for (const p of ATTEMPTS) dot(ctx, mx + S.v * RING * p.x, my + S.v * RING * p.y, PAL.ink, true, 9);
+    dot(ctx, mx, my, PAL.ink, false, 11);
+    /* the legend */
+    const lx = 790;
+    text(ctx, lowP ? '低精密度' : '高精密度', lx, 170, PAL.ink, { size: 44, weight: 700 });
+    text(ctx, lowP ? '各次尝试彼此分散得很开' : '各次尝试彼此非常一致', lx, 214, PAL.muted, { size: 20 });
+    text(ctx, lowA ? '低准确度' : '高准确度', lx, 300, PAL.ink, { size: 44, weight: 700 });
+    text(ctx, lowA ? '它们的中心离餐馆很远' : '它们的中心离餐馆很近', lx, 344, PAL.muted, { size: 20 });
+    dot(ctx, lx + 10, 440, PAL.ink, true, 9); text(ctx, 'GPS 确定餐馆位置的一次尝试', lx + 34, 440, PAL.muted, { size: 20 });
+    dot(ctx, lx + 10, 482, PAL.ink, false, 11); text(ctx, '八次尝试的中心', lx + 34, 482, PAL.muted, { size: 20 });
+    line(ctx, lx, 524, lx + 20, 524, PAL.ink, 2.5, [6, 8]); text(ctx, '从该中心到餐馆', lx + 34, 524, PAL.muted, { size: 20 });
+    headline(ctx, '分散度为 ' + fmt(S.v, 1) + ' 环意味着' + (lowP ? '低' : '高') + '精密度，偏移量为 ' + fmt(O.v, 1) + ' 环意味着' + (lowA ? '低' : '高') + '准确度。');
+    readout(d.readout, `\\text{分散度} = ${fmt(S.v, 1)}\\ \\text{环}, \\quad \\text{中心的偏移量} = ${fmt(O.v, 1)}\\ \\text{环}`,
+      '精密度关乎各次尝试彼此一致的程度，准确度关乎它们与正确值的接近程度。一个系统可以具备其中一个而不具备另一个。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: percent uncertainty. The four weekly weights of Example 1.2 on a
+   number line, the average with its band A ± δA, and beneath it a bag
+   half as heavy with the same δA. Nothing moves.
+===================================================================== */
+(function () {
+  const d = sim('sim-percent', 560);
+  const A = ctl(d.controls, { label: 'A', cls: 'force', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, specials: [{ at: 5.1, label: '例题 1.2' }], aria: '平均重量' });
+  const dA = ctl(d.controls, { label: '\\delta A', cls: '', min: 0.1, max: 1, step: 0.1, value: 0.4, unit: 'lb', dec: 1, aria: '重量的不确定度' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
+  const WEEKS = [4.8, 5.3, 4.9, 5.4];
+  const pct = (a, u) => Math.round((100 * u) / a);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const half = A.v / 2, p = pct(A.v, dA.v), ph = pct(half, dA.v);
+    /* The line runs a fixed 0 to 11 lb, the widest the sliders reach (A up to 10 lb plus δA up to
+       1 lb), so moving a slider moves the marker and not the ticks. A band that would run below
+       zero is clamped to the end of the line, and the bracket's label still writes the true numbers. */
+    const span = { lo: 0, hi: 11, n: 11 }, step = 1;
+    const L = 180, R = 1300, X = (w) => L + ((R - L) * (w - span.lo)) / (span.hi - span.lo);
+    const Xc = (w) => X(Math.min(span.hi, Math.max(span.lo, w)));
+    /* The four weights of Example 1.2 have the average 5.1 lb, so they are drawn only while the
+       average slider is at that value; away from it they are not the readings of that example. */
+    const atExample = Math.abs(A.v - 5.1) < 0.05;
+    const lines = [{ y: 210, a: A.v, dec: 1, title: '这袋苹果', weeks: true }, { y: 430, a: half, dec: 2, title: '只有一半重、不确定度相同的袋子', weeks: false }];
+    for (const ln of lines) {
+      const { y, a } = ln;
+      text(ctx, ln.title, L, y - 104, PAL.ink, { size: 22, weight: 600 });
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.fillRect(Xc(a - dA.v), y - 16, Xc(a + dA.v) - Xc(a - dA.v), 32); ctx.restore();
+      line(ctx, L, y, R, y, PAL.muted, 3);
+      for (let m = span.lo; m <= span.hi + 1e-9; m += step) { line(ctx, X(m), y - 8, X(m), y + 8, PAL.muted, 2); text(ctx, fmt(m, 0) + ' lb', X(m), y + 28, PAL.muted, { size: 17, align: 'center' }); }
+      if (ln.weeks && atExample) {
+        /* each label beside the top of its own leader, away from the average; the weight nearer the average stands a row higher, so no leader passes a label */
+        WEEKS.forEach((w) => { const near = WEEKS.filter((v) => (v < a) === (w < a) && Math.abs(v - a) < Math.abs(w - a)).length === 0, ty = y - 44 - (near ? 26 : 0), left = w < a;
+          line(ctx, X(w), ty, X(w), y - 4, C('force'), 3); text(ctx, fmt(w, 1) + ' lb', X(w) + (left ? -6 : 6), ty, C('force'), { size: 17, weight: 600, align: left ? 'right' : 'left' }); });
+        text(ctx, '例题 1.2 的四个每周重量', R, y - 104, PAL.muted, { size: 17, align: 'right' });
+      }
+      dot(ctx, Xc(a), y, C('force'), true, 10);
+      hbracket(ctx, Xc(a - dA.v), Xc(a + dA.v), y + 84, PAL.ink, fmt(a, ln.dec) + ' lb ± ' + fmt(dA.v, 1) + ' lb，即 ± ' + pct(a, dA.v) + '%');
+    }
+    headline(ctx, '重量 ' + fmt(A.v, 1) + ' lb 已知到 ± ' + fmt(dA.v, 1) + ' lb，即已知到 ± ' + p + '%。');
+    readout(d.readout, `\\%\\,\\text{unc} = \\frac{\\delta A}{A} \\times 100\\% = \\frac{${fmt(dA.v, 1)}\\ \\text{lb}}{${fmt(A.v, 1)}\\ \\text{lb}} \\times 100\\% = ${p}\\%`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the floor. The 4.00 m by 3.00 m floor to scale, the largest and
+   smallest floors the uncertainties allow as dashed outlines about the
+   same centre, and the ring between them shaded. Nothing moves.
+===================================================================== */
+(function () {
+  const d = sim('sim-area', 620);
+  const pL = ctl(d.controls, { label: '\\text{长度}', cls: '', min: 0, max: 10, step: 0.5, value: 2, unit: '%', dec: 1, aria: '长度的百分不确定度' });
+  const pW = ctl(d.controls, { label: '\\text{宽度}', cls: '', min: 0, max: 10, step: 0.5, value: 1, unit: '%', dec: 1, aria: '宽度的百分不确定度' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
+  const LEN = 4, WID = 3, K = 130, CX = 420, CY = 330;
+  const pc = (p) => (Number.isInteger(p) ? fmt(p, 0) : fmt(p, 1)) + '%';
+  const pcTex = (p) => (Number.isInteger(p) ? fmt(p, 0) : fmt(p, 1)) + '\\%';
+  function outline(ctx, w, h, width, dash) { ctx.save(); ctx.strokeStyle = C('area'); ctx.lineWidth = width; if (dash) ctx.setLineDash(dash); ctx.strokeRect(CX - w / 2, CY - h / 2, w, h); ctx.restore(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const a = LEN * (1 + pL.v / 100), b = WID * (1 + pW.v / 100), a2 = LEN * (1 - pL.v / 100), b2 = WID * (1 - pW.v / 100);
+    const pA = pL.v + pW.v, dArea = (LEN * WID * pA) / 100;
+    /* the ring between the largest and the smallest floor */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.beginPath(); ctx.rect(CX - (a * K) / 2, CY - (b * K) / 2, a * K, b * K); ctx.rect(CX - (a2 * K) / 2, CY - (b2 * K) / 2, a2 * K, b2 * K); ctx.fill('evenodd'); ctx.restore();
+    outline(ctx, a * K, b * K, 2.5, [10, 10]); outline(ctx, a2 * K, b2 * K, 2.5, [10, 10]); outline(ctx, LEN * K, WID * K, 4);
+    text(ctx, '12.0 m²', CX, CY, C('area'), { size: 26, weight: 600, align: 'center' });
+    const bot = CY + (b * K) / 2, rgt = CX + (a * K) / 2;
+    hbracket(ctx, CX - (LEN * K) / 2, CX + (LEN * K) / 2, bot + 50, C('position'), '4.00 m ± ' + pc(pL.v));
+    vbracket(ctx, rgt + 40, CY - (WID * K) / 2, CY + (WID * K) / 2, C('position'), '3.00 m ± ' + pc(pW.v), 1);
+    /* the key */
+    const px = 930;
+    const row = (y, swatch, head, val) => { swatch(y); text(ctx, head, px + 44, y, PAL.muted, { size: 20, weight: 600 }); text(ctx, val, px + 44, y + 34, PAL.ink, { size: 22 }); };
+    const dashed = (y) => line(ctx, px, y, px + 30, y, C('area'), 2.5, [8, 8]);
+    row(150, (y) => line(ctx, px, y, px + 30, y, C('area'), 4), '测得的地板', '长 4.00 m、宽 3.00 m，12.0 m²');
+    row(250, dashed, '允许的最大地板', '(' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m²');
+    row(350, dashed, '允许的最小地板', '(' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m²');
+    row(450, (y) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(px, y - 12, 30, 24); ctx.restore(); }, '面积的不确定度', '12.0 m² 的 ± ' + pc(pA) + '，即 ± ' + fmt(dArea, 1) + ' m²');
+    headline(ctx, '长 4.00 m、宽 3.00 m 的地板，已知到 ' + pc(pL.v) + ' 和 ' + pc(pW.v) + '，其面积 12.0 m² 已知到 ' + pc(pA) + '。');
+    readout(d.readout, `\\karea = 12.0\\ \\text{m}^2 \\pm (${pcTex(pL.v)} + ${pcTex(pW.v)}) = 12.0\\ \\text{m}^2 \\pm ${fmt(dArea, 1)}\\ \\text{m}^2`,
+      pA ? '最大地板比 12.0 m² 大 ' + fmt(100 * (a * b / 12 - 1), 1) + '%，最小地板比它小 ' + fmt(100 * (1 - a2 * b2 / 12), 1) + '%。' : '');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the ruler. A stick of true length L on a strip; a ruler slides in
+   from the left over four seconds and stops with its zero at the stick's
+   left end. Beneath, a magnified view of the end of the stick against
+   the ruler's marks at the chosen division, with the two marks the end
+   lies between bracketed as the estimated digit. The slide is the
+   figure's arrival on first view, not a clock: a reading has no time in
+   it, so there is no transport and a control redraws at once.
+===================================================================== */
+(function () {
+  const d = sim('sim-ruler', 500);
+  const Lc = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, aria: '木棍的真实长度' });
+  /* The smallest division is one of three rulers, not a quantity to slide through, so it is a choice (rule 26.1). */
+  const DIVS = { cm: { cm: 1, dec: 0, name: '厘米分度' }, mm: { cm: 0.1, dec: 1, name: '毫米分度' }, tenth: { cm: 0.01, dec: 2, name: '0.1 mm 分度' } };
+  const Dv = F.choice(d.controls, { label: '\\text{分度值}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: '直尺的分度值' });
+  const X0 = 200, K = 22, YS = 140, SLIDE = 760;
+  const BOX = { l: 175, r: 1225, t: 262, b: 470 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const dv = DIVS[Dv.value] ?? DIVS.mm;
+    const u = F.ease.out(F.arrival(d)), aligned = u >= 1 - 1e-6;
+    const L = Lc.v, reading = L.toFixed(dv.dec), n = sigfigs(L, dv.dec), last = reading[reading.length - 1];
+    const slide = -(1 - u) * SLIDE, sw = slide / K;
+    /* the scene: the stick on a strip, the ruler sliding in beneath it */
+    strip(ctx, 60, 1340, YS, 44);
+    bar(ctx, X0, YS - 2, L * K, 20, true, F.ref('stick'));
+    text(ctx, '木棍，长 ' + fmt(L, 2) + ' cm', X0, 104, F.ref('stick'), { size: 17 });
+    const rx = X0 + slide, rt = YS + 30;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 3; ctx.fillRect(rx, rt, 50 * K + 36, 50); ctx.strokeRect(rx, rt, 50 * K + 36, 50); ctx.restore();
+    for (let c = 0; c <= 50; c++) { const len = c % 10 ? (c % 5 ? 12 : 18) : 26; line(ctx, rx + c * K, rt, rx + c * K, rt + len, PAL.ink, c % 10 ? 1.5 : 2.5); if (c % 10 === 0) text(ctx, c === 50 ? '50 cm' : String(c), rx + c * K, rt + 38, PAL.ink, { size: 17, align: 'center' }); }
+    /* the magnifier: from the end of the stick down to the box */
+    const xe = X0 + L * K;
+    line(ctx, xe, YS + 8, BOX.l, BOX.t, PAL.rule, 1.5); line(ctx, xe, YS + 8, BOX.r, BOX.t, PAL.rule, 1.5);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.fillRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.strokeRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.restore();
+    /* a caliper's window is ten times narrower than a ruler's, so its 0.1 mm marks stand as far apart as a ruler's millimeters */
+    const S = dv.cm === 1 ? 1 : dv.cm * 10, WIN = 1.5 * S, KM = (BOX.r - BOX.l) / WIN, w0 = Math.floor(L / S + 1e-9) * S - 0.25 * S, Xm = (c) => BOX.l + (c - w0) * KM;
+    ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
+    text(ctx, '放大视图，直尺为' + dv.name, BOX.l + 16, BOX.t + 20, PAL.muted, { size: 17 });
+    bar(ctx, Xm(w0) - 20, 360, Xm(L) - Xm(w0) + 20, 26, true, F.ref('stick'));
+    /* the ruler's marks where the ruler is */
+    const lo = Math.max(w0, sw), hi = Math.min(w0 + WIN, 50 + 36 / K + sw);   /* the ruler runs on past its 50 mark, as the one above does */
+    if (hi > lo) {
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 3; ctx.fillRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.strokeRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.restore();
+      const dcm = dv.cm, i0 = Math.ceil((lo - sw) / dcm - 1e-9), i1 = Math.floor((hi - sw) / dcm + 1e-9);
+      for (let i = Math.max(0, i0); i <= Math.min(i1, Math.round(50 / dcm)); i++) {
+        const c = i * dcm, x = Xm(c + sw), labelled = dcm === 1 || i % 10 === 0, medium = i % 5 === 0;
+        line(ctx, x, 390, x, 390 + (labelled ? 34 : medium ? 24 : 14), PAL.ink, labelled ? 3 : medium ? 2.5 : 1.5);
+        if (labelled) text(ctx, dcm === 0.01 ? fmt(c, 1) : String(Math.round(c)), x, 446, PAL.ink, { size: 17, align: 'center' });
+      }
+    }
+    /* the estimated digit, once the ruler is aligned */
+    if (aligned) {
+      const m0 = Math.floor(L / dv.cm + 1e-6) * dv.cm, m1 = m0 + dv.cm, x0 = Xm(m0), x1 = Xm(m1);
+      hbracket(ctx, x0, x1, 330, PAL.ink);
+      const lx = Math.min(Math.max((x0 + x1) / 2, BOX.l + 250), BOX.r - 250);
+      text(ctx, '最后一位数字在这两条刻线之间估读', lx, 308, PAL.ink, { size: 20, weight: 600, align: 'center' });
+      text(ctx, '测量者写下 ' + reading + ' cm', BOX.r - 16, BOX.t + 20, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    }
+    ctx.restore();
+    headline(ctx, aligned ? '用' + dv.name + '时，木棍读数为 ' + reading + ' cm，有' + words(n) + '位数字，其中 ' + last + ' 是估读的。'
+      : '直尺滑到木棍下方，直到它的零刻线与木棍的左端对齐。');
+    readout(d.readout, `\\kLlen = ${reading}\\ \\text{cm}`,
+      '写下的最后一位数字是第一位含有一定不确定度的数字。以厘米为刻度的直尺给出 ' + L.toFixed(0) + ' cm，' + words(sigfigs(L, 0)) + '位数字，而读数到 0.1 mm 的卡尺给出 ' + L.toFixed(2) + ' cm，' + words(sigfigs(L, 2)) + '位。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the two rules. Two measured lengths a and b, each known to its
+   own decimals, laid end to end for the sum and set as the sides of a
+   rectangle for the product; the calculator's result for each is printed
+   with the rejected digits in muted type. Nothing moves.
+===================================================================== */
+(function () {
+  const d = sim('sim-calc', 560);
+  const a0 = ctl(d.controls, { label: 'a', cls: 'position', min: 1, max: 20, step: 0.01, value: 7.56, unit: '', dec: 2, aria: '长度 a' });
+  const da = ctl(d.controls, { label: 'a\\ \\text{的小数位数}', cls: '', min: 0, max: 3, step: 1, value: 2, unit: '', dec: 0, aria: 'a 的小数位数' });
+  const b0 = ctl(d.controls, { label: 'b', cls: 'position', min: 1, max: 20, step: 0.001, value: 6.052, unit: '', dec: 3, aria: '长度 b' });
+  const db = ctl(d.controls, { label: 'b\\ \\text{的小数位数}', cls: '', min: 0, max: 3, step: 1, value: 3, unit: '', dec: 0, aria: 'b 的小数位数' });
+  /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
+  const PLACES = ['个位', '十分位', '百分位', '千分位'];
+  /* the raw digits split after the nth significant one */
+  function splitSig(raw, n) {
+    let seen = 0, started = false, i = 0;
+    for (; i < raw.length; i++) { const ch = raw[i]; if (ch === '.') continue; if (ch !== '0') started = true; if (started && ++seen === n) { i++; break; } }
+    return [raw.slice(0, i), raw.slice(i)];
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const A = +a0.v.toFixed(da.v), B = +b0.v.toFixed(db.v), As = A.toFixed(da.v), Bs = B.toFixed(db.v);
+    const na = sigfigs(A, da.v), nb = sigfigs(B, db.v), n = Math.min(na, nb), dec = Math.min(da.v, db.v);
+    /* the sum: the calculator's digits, and the written answer to the fewer decimals */
+    const rawSum = (A + B).toFixed(Math.max(da.v, db.v)), sumKept = (A + B).toFixed(dec);
+    const intLen = rawSum.indexOf('.') < 0 ? rawSum.length : rawSum.indexOf('.'), keepLen = intLen + (dec > 0 ? dec + 1 : 0);
+    const sumShow = rawSum.slice(0, keepLen), sumCut = rawSum.slice(keepLen);
+    /* the product: the calculator's digits, and the written answer to the fewer significant figures */
+    const rawP = (A * B).toFixed(da.v + db.v), [pShow, pCut] = splitSig(rawP, n), pRound = roundSig(A * B, n);
+    /* the scene: the sticks end to end, then as the sides of a rectangle */
+    const k = Math.min(1100 / (A + B), 220 / B, 480 / A), x0 = 150, wa = A * k, wb = B * k, hb = B * k;
+    const ys = 140, yt = 262;
+    text(ctx, '和', 60, ys, PAL.muted, { size: 20, weight: 600 });
+    bar(ctx, x0, ys, wa, 26, true, C('position')); bar(ctx, x0 + wa, ys, wb, 26, false, C('position'));
+    text(ctx, 'a = ' + As, x0 + wa / 2, ys - 30, C('position'), { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'b = ' + Bs, x0 + wa + wb / 2, ys - 30, C('position'), { size: 22, weight: 600, align: 'center' });
+    hbracket(ctx, x0, x0 + wa + wb, ys + 52, C('position'), 'a + b = ' + sumKept);
+    text(ctx, '积', 60, yt + hb / 2, PAL.muted, { size: 20, weight: 600 });
+    ctx.save(); ctx.fillStyle = alpha(C('area'), 0.08); ctx.fillRect(x0, yt, wa, hb); ctx.strokeStyle = C('area'); ctx.lineWidth = 4; ctx.strokeRect(x0, yt, wa, hb); ctx.restore();
+    hbracket(ctx, x0, x0 + wa, yt - 16, C('position'), 'a = ' + As);
+    vbracket(ctx, x0 + wa + 24, yt, yt + hb, C('position'), 'b = ' + Bs, 1);
+    text(ctx, 'a × b = ' + plainSig(pRound), x0, yt + hb + 34, C('area'), { size: 22, weight: 600 });
+    /* the calculator's results, the rejected digits muted */
+    const px = 820;
+    text(ctx, '和按' + (da.v === db.v ? '两者' : da.v < db.v ? ' a ' : ' b ') + '保留到' + PLACES[dec], px, 120, PAL.muted, { size: 20, weight: 600 });
+    runs(ctx, [[As + ' + ' + Bs + ' = ', PAL.ink], [sumShow, PAL.ink, 600], [sumCut, PAL.muted]], px, 160, 26);
+    text(ctx, '写作 ' + sumKept, px, 196, PAL.ink, { size: 20 });
+    text(ctx, '积保留' + words(n) + '位有效数字', px, 300, PAL.muted, { size: 20, weight: 600 });
+    runs(ctx, [[As + ' × ' + Bs + ' = ', PAL.ink], [pShow, PAL.ink, 600], [pCut, PAL.muted]], px, 340, 26);
+    text(ctx, '写作 ' + plainSig(pRound) + '，因为' + (na === nb ? '两者都有' : (na < nb ? ' a ' : ' b ') + '只有') + words(n) + '位', px, 376, PAL.ink, { size: 20 });
+    headline(ctx, da.v === db.v
+      ? '计算器给出 ' + As + ' + ' + Bs + ' = ' + rawSum + '，没有舍去任何数字，因为两者都已知到' + PLACES[dec] + '。'
+      : '计算器给出 ' + As + ' + ' + Bs + ' = ' + rawSum + '，写作 ' + sumKept + '，因为 ' + (da.v < db.v ? As : Bs) + ' 只已知到' + PLACES[dec] + '。');
+    const sumTex = rawSum === sumKept ? rawSum : rawSum + ' = ' + sumKept, pTex = rawP === pRound ? rawP : rawP + ' = ' + texSig(pRound);
+    readout(d.readout, `\\begin{aligned} a + b &= ${As} + ${Bs} = ${sumTex} \\\\ a \\times b &= ${As} \\times ${Bs} = ${pTex} \\end{aligned}`,
+      '对于加法和减法，答案保留最不精密测量的小数位数；对于乘法和除法，答案保留有效数字最少的那个量的有效数字位数。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

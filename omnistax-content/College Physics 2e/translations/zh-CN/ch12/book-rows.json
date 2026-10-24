@@ -1,0 +1,1237 @@
+{
+ "types": [
+  {
+   "id": "flow-rate",
+   "label": "流量",
+   "dimension": "m³/s"
+  },
+  {
+   "id": "viscosity",
+   "label": "黏度",
+   "dimension": "Pa·s"
+  },
+  {
+   "id": "diffusion-constant",
+   "label": "扩散常量",
+   "dimension": "m²/s"
+  },
+  {
+   "id": "flow-resistance",
+   "label": "流阻",
+   "dimension": "Pa·s/m³"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "Q",
+   "latex": "Q",
+   "macro": "\\kQ"
+  },
+  {
+   "sym": "Q_1",
+   "latex": "Q_1",
+   "macro": "\\kQone"
+  },
+  {
+   "sym": "Q_2",
+   "latex": "Q_2",
+   "macro": "\\kQtwo"
+  },
+  {
+   "sym": "η_visc",
+   "latex": "\\eta",
+   "macro": "\\keta"
+  },
+  {
+   "sym": "v_bar1",
+   "latex": "\\bar{v}_1",
+   "macro": "\\kvbone"
+  },
+  {
+   "sym": "v_bar2",
+   "latex": "\\bar{v}_2",
+   "macro": "\\kvbtwo"
+  },
+  {
+   "sym": "h_1",
+   "latex": "h_1",
+   "macro": "\\khone"
+  },
+  {
+   "sym": "h_2",
+   "latex": "h_2",
+   "macro": "\\khtwo"
+  },
+  {
+   "sym": "x_rms",
+   "latex": "x_{\\text{rms}}",
+   "macro": "\\kxrms"
+  },
+  {
+   "sym": "n_1",
+   "latex": "n_1"
+  },
+  {
+   "sym": "n_2",
+   "latex": "n_2"
+  },
+  {
+   "sym": "l",
+   "latex": "l",
+   "macro": "\\kl"
+  },
+  {
+   "sym": "R_flow",
+   "latex": "R"
+  },
+  {
+   "sym": "R_sphere",
+   "latex": "R",
+   "macro": "\\kRsphere"
+  },
+  {
+   "sym": "N_R",
+   "latex": "N_{\\text{R}}"
+  },
+  {
+   "sym": "N_Rprime",
+   "latex": "{N'}_{\\text{R}}"
+  },
+  {
+   "sym": "D_diff",
+   "latex": "D",
+   "macro": "\\kDdiff"
+  },
+  {
+   "sym": "L_len",
+   "latex": "L",
+   "macro": "\\kLlen"
+  },
+  {
+   "sym": "P_i",
+   "latex": "P_{\\text{i}}",
+   "macro": "\\kPrin"
+  },
+  {
+   "sym": "P_o",
+   "latex": "P_{\\text{o}}",
+   "macro": "\\kProut"
+  },
+  {
+   "sym": "P_front",
+   "latex": "P_\\text{front}",
+   "macro": "\\kPrfront"
+  },
+  {
+   "sym": "P_back",
+   "latex": "P_\\text{back}",
+   "macro": "\\kPrback"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "flow-rate",
+   "kind": "definition",
+   "section": "12.1",
+   "name": "流量",
+   "symbol": "Q",
+   "terms": [
+    "流量"
+   ],
+   "type": "flow-rate",
+   "statement": "流量是在一段时间内通过某一位置的某一面积的流体体积。几乎每一个关于运动流体的问题都要问到它：心脏泵出多少血液，水管送出多少水，风道输送多少空气。因为它数的是体积而不是距离，所以它本身并不告诉你流体运动得有多快或导管有多宽，只告诉你这两者的乘积。",
+   "forms": [
+    {
+     "id": "eq-flow-rate",
+     "latex": "Q = \\frac{V}{t}",
+     "ktex": "\\kQ = \\frac{V}{\\kt}",
+     "anchor": "12.1-flow-rate"
+    }
+   ]
+  },
+  {
+   "id": "flow-rate-units",
+   "kind": "skill",
+   "section": "12.1",
+   "name": "流量单位的换算",
+   "statement": "流量的国际单位是立方米每秒，但几乎没有什么场合用它：心脏每分钟泵出若干升，消防水带每秒送出若干升，毛细血管每秒输送若干立方厘米。一升是一立方米的千分之一。要用对当前情形最方便的公制单位，并预期几乎每道题都要在它们之间换算。"
+  },
+  {
+   "id": "flow-rate-velocity",
+   "kind": "result",
+   "section": "12.1",
+   "name": "流量与速度",
+   "statement": "流量等于导管的横截面积乘以流体穿过它的平均速度，$Q = A\\bar{v}$。因此流量和速度是相关但不同的量：宽而缓的河流可以比窄而急的河流输送更多的水。",
+   "forms": [
+    {
+     "id": "eq-flow-rate-velocity",
+     "latex": "Q = A\\bar{v}",
+     "ktex": "\\kQ = A\\kvb",
+     "anchor": "12.1-flow-rate-velocity"
+    }
+   ]
+  },
+  {
+   "id": "incompressible-fluid",
+   "kind": "definition",
+   "section": "12.1",
+   "name": "不可压缩流体",
+   "statement": "当一定量的流体无论受到多大的挤压都始终占据相同的体积时，这种流体是不可压缩的。液体几乎是不可压缩的，所以连续性方程对所有液体都成立。气体是可压缩的，当它们被压缩或膨胀时，应用这个方程必须谨慎。本章的每一个结果，包括伯努利方程和泊肃叶定律在内，都假定流体是不可压缩的。"
+  },
+  {
+   "id": "equation-of-continuity",
+   "kind": "result",
+   "section": "12.1",
+   "name": "连续性方程",
+   "statement": "因为流体是不可压缩的，所以在给定的时间内，同样多的流体必定流过管子的任何一点，因此沿管各点的流量相同。在横截面积减小的地方，速度必然增大；在横截面积增大的地方，速度就下降。这正是喷嘴的用途，也是河流汇入水库时水流明显变缓、离开水库时又重新加快的原因。",
+   "forms": [
+    {
+     "id": "eq-continuity",
+     "latex": "Q_1 = Q_2,\\quad A_1\\bar{v}_1 = A_2\\bar{v}_2",
+     "ktex": "\\kQone = \\kQtwo,\\quad A_1\\kvbone = A_2\\kvbtwo",
+     "condition": "不可压缩流体",
+     "anchor": "12.1-continuity"
+    }
+   ]
+  },
+  {
+   "id": "continuity-branching",
+   "kind": "result",
+   "section": "12.1",
+   "name": "分支流动中的连续性",
+   "statement": "在心血管系统和任何其他分支网络中，流动并不停留在一根管子里。连续性仍然成立，但它针对的是沿管任一部分中所有分支的流量之和，所以分支的数目与它们的面积和速率一起进入方程。毛细血管的总横截面积比主动脉大得多，所以其中的血液以大约每秒一毫米的速率流动。这个速率慢得足以让血液与细胞交换物质，又快得足以避免凝血。",
+   "forms": [
+    {
+     "id": "eq-continuity-branching",
+     "latex": "n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_2",
+     "ktex": "n_1A_1\\kvbone = n_2A_2\\kvbtwo",
+     "condition": "不可压缩流体发生分支",
+     "anchor": "12.1-branching"
+    }
+   ]
+  },
+  {
+   "id": "fluid-dynamics",
+   "kind": "definition",
+   "section": "12.1",
+   "name": "流体动力学",
+   "terms": [
+    "流体动力学"
+   ],
+   "statement": "流体动力学是研究运动流体的物理学。"
+  },
+  {
+   "id": "liter",
+   "kind": "definition",
+   "section": "12.1",
+   "name": "升",
+   "terms": [
+    "升"
+   ],
+   "statement": "升是体积单位，等于 $10^{-3}\\;\\text{m}^3$，即 1000 立方厘米。"
+  },
+  {
+   "id": "pressure-drops-in-fast-fluid",
+   "kind": "result",
+   "section": "12.2",
+   "name": "高速流体中的压降低",
+   "statement": "流体加速的地方，它的压强下降。流入较窄通道的流体获得动能，而这些能量来自后方较高的压强把它推入通道时所做的合外力的功。"
+  },
+  {
+   "id": "bernoullis-equation",
+   "kind": "result",
+   "section": "12.2",
+   "name": "伯努利方程",
+   "terms": [
+    "伯努利方程"
+   ],
+   "statement": "伯努利方程定量地给出了流体中压强与速度之间的关系：对于不可压缩、无摩擦的流体，压强、含速率平方的项和含高度的项这三者之和，沿着一小块流体所经过的路径保持不变。和中的各个量可以随流体的运动而变化，但总和不变，所以速率或高度的增加必须由压强来支付。",
+   "forms": [
+    {
+     "id": "eq-bernoulli",
+     "latex": "P + \\frac{1}{2}\\rho v^2 + \\rho gh = \\text{常量}",
+     "ktex": "\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{常量}",
+     "condition": "不可压缩、无摩擦的流体",
+     "anchor": "12.2-bernoullis-equation"
+    },
+    {
+     "id": "eq-bernoulli-two-points",
+     "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho gh_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho gh_2",
+     "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo",
+     "condition": "不可压缩、无摩擦的流体",
+     "anchor": "12.2-bernoullis-equation"
+    }
+   ]
+  },
+  {
+   "id": "bernoulli-energy-per-volume",
+   "kind": "idea",
+   "section": "12.2",
+   "name": "伯努利方程：单位体积的能量",
+   "statement": "伯努利方程是能量守恒原理的一种形式。第二项和第三项分别是动能和重力势能，只是把质量换成了密度，所以每一项都是能量除以体积，而压强也是单位体积的能量，因为牛顿每平方米乘以米比米等于焦耳每立方米。事实上，伯努利方程只是对没有摩擦的不可压缩流体的能量守恒的一种方便的表述。",
+   "forms": [
+    {
+     "id": "eq-ke-per-volume",
+     "latex": "\\frac{1}{2}\\rho v^2 = \\frac{\\frac{1}{2}mv^2}{V} = \\frac{\\text{KE}}{V}",
+     "ktex": "\\frac{1}{2}\\krho\\kv^2 = \\frac{\\frac{1}{2}m\\kv^2}{V} = \\frac{\\kKE}{V}",
+     "anchor": "12.2-bernoullis-equation"
+    },
+    {
+     "id": "eq-pe-per-volume",
+     "latex": "\\rho gh = \\frac{mgh}{V} = \\frac{\\text{PE}_{\\text{g}}}{V}",
+     "ktex": "\\krho\\kg\\kh = \\frac{m\\kg\\kh}{V} = \\frac{\\kPEg}{V}",
+     "anchor": "12.2-bernoullis-equation"
+    }
+   ]
+  },
+  {
+   "id": "bernoulli-static-fluid",
+   "kind": "result",
+   "section": "12.2",
+   "name": "静止流体的伯努利方程",
+   "statement": "当流体不运动时，两个速率项都消失，伯努利方程说明压强随深度增加：向下一段高度，就在压强上加上那一段流体柱的重力。在最简单的情形下，顶部的压强为零，你就得到了流体的重力所产生的压强这一熟悉的关系。所以，虽然伯努利方程描述的是流体的流动，它却包含了上一章对静止流体所得到的许多内容。",
+   "forms": [
+    {
+     "id": "eq-bernoulli-static",
+     "latex": "P_2 = P_1 + \\rho gh_1",
+     "ktex": "\\kPrtwo = \\kProne + \\krho\\kg\\khone",
+     "condition": "静止流体，取较低点为参考高度",
+     "anchor": "12.2-static-fluids"
+    }
+   ]
+  },
+  {
+   "id": "bernoullis-principle",
+   "kind": "result",
+   "section": "12.2",
+   "name": "伯努利原理",
+   "terms": [
+    "伯努利原理"
+   ],
+   "statement": "当流体在运动但其深度不变时，含高度的项相减抵消，伯努利方程就成了只关于压强和速率的表述。这类情形非常重要，所以这个方程有了自己的名称。它说的正是本节开头所论证的：如果某一点的速率较大，则为了使等式成立，该点的压强必定较小。",
+   "forms": [
+    {
+     "id": "eq-bernoullis-principle",
+     "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 = P_2 + \\frac{1}{2}\\rho v_2^2",
+     "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2",
+     "condition": "等深度",
+     "anchor": "12.2-bernoullis-principle"
+    }
+   ]
+  },
+  {
+   "id": "entrainment",
+   "kind": "idea",
+   "section": "12.2",
+   "name": "挟带",
+   "statement": "人们早就利用伯努利原理，用高速流体中降低的压强来推动东西：外侧压强较高，快速的流束就迫使其他流体进入它自身。挟带装置自古就被用作把水提升小高度的泵，同样的手法还驱动着本生灯、雾化器、喷漆器、抽气器和热水器的烟囱。"
+  },
+  {
+   "id": "lift-from-bernoulli",
+   "kind": "idea",
+   "section": "12.2",
+   "name": "机翼上的升力",
+   "statement": "飞机机翼是伯努利原理实际应用的绝佳例子。机翼以小角度向上倾斜，上表面较长，所以空气在上方流得更快，那里的压强下降，压强差就是一个向上的合力。帆也具有机翼的特征形状：帆前面的压强比后面的压强低，这产生一个向前的力，甚至使船能够迎风航行。机翼还通过把空气向下推来获得升力，被偏转的空气根据牛顿第三定律反过来推机翼。"
+  },
+  {
+   "id": "velocity-measurement",
+   "kind": "result",
+   "section": "12.2",
+   "name": "流体速率的测量",
+   "statement": "用压强计连接两根细到不会扰动流动的管子，可以测量流体的速率。迎着来流的那根管子在其前方形成一个速度为零的死区，而流经另一根管子的流体保持它的速率，所以第二个开口处的压强比前者低，低的量就是含速率平方的那一项。压强计中的流体升高的高度与该项成正比，因此速率与高度的平方根成正比。基于这一原理制成的皮托管就是飞机的空速表。",
+   "forms": [
+    {
+     "id": "eq-speed-from-manometer",
+     "latex": "v_2 \\propto \\sqrt{h}",
+     "ktex": "\\kvtwo \\propto \\sqrt{\\kh}",
+     "anchor": "12.2-velocity-measurement"
+    },
+    {
+     "id": "eq-manometer-height",
+     "latex": "h \\propto \\frac{1}{2}\\rho v_2^2",
+     "ktex": "\\kh \\propto \\frac{1}{2}\\krho\\kvtwo^2",
+     "anchor": "12.2-velocity-measurement"
+    }
+   ]
+  },
+  {
+   "id": "torricellis-theorem",
+   "kind": "result",
+   "section": "12.3",
+   "name": "托里拆利定理",
+   "statement": "流体从水库表面以下高度 $h$ 处的开口流出时，其出流速率等于它自由下落这一高度所具有的速率，$v_2^2 = v_1^2 + 2gh$，与开口大小无关。",
+   "forms": [
+    {
+     "id": "eq-torricelli",
+     "latex": "v_2^2 = v_1^2 + 2gh",
+     "ktex": "\\kvtwo^2 = \\kvone^2 + 2\\kg\\kh",
+     "anchor": "12.3-torricellis-theorem"
+    }
+   ]
+  },
+  {
+   "id": "bernoulli-general-application",
+   "kind": "skill",
+   "section": "12.3",
+   "name": "伯努利方程的应用",
+   "statement": "伯努利方程以前的每一次应用都先将它简化，或者令高度不变，或者令两点的压强相等。一般情形则在两点都保留全部三项。由流量和两处横截面积求出速率，从你取作参考的那一点量起测量高度，然后解出其余的压强。一条沿梯子向上延伸十米、接到窄喷嘴的消防水带正是这种情形，它的压强同时由于两个原因而下降。"
+  },
+  {
+   "id": "power-in-fluid-flow",
+   "kind": "result",
+   "section": "12.3",
+   "name": "流体流动中的功率",
+   "statement": "功率是做功或使用或提供能量的快慢。伯努利方程的每一项都是单位体积的能量，所以把整个方程乘以流量（即单位时间的体积）就得到功率。于是每一项都有明确的物理意义：一项是为使流体具有其压强而提供的功率，一项是为使它具有其动能而提供的功率，还有一项是用于重力势能的功率。",
+   "forms": [
+    {
+     "id": "eq-power-in-fluid-flow",
+     "latex": "\\left(P + \\frac{1}{2}\\rho v^2 + \\rho gh\\right)Q = \\text{功率}",
+     "ktex": "\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{功率}",
+     "anchor": "12.3-power-in-fluid-flow"
+    }
+   ]
+  },
+  {
+   "id": "pump-power",
+   "kind": "skill",
+   "section": "12.3",
+   "name": "求泵的功率",
+   "statement": "一台泵把流体吸入，再通过同样直径、同样高度的水带送出，它既不改变流体的速率，也不改变流体的高度。流体的动能和重力势能保持不变，只剩下压强项。于是泵提供的功率就是它增加的压强乘以流量。像心脏那样同时提高速度和高度的泵，则需要全部三项。",
+   "forms": [
+    {
+     "id": "eq-power-from-pressure",
+     "latex": "\\text{功率} = PQ",
+     "ktex": "\\text{功率} = \\kPr\\kQ",
+     "anchor": "12.3-pump-power"
+    }
+   ]
+  },
+  {
+   "id": "laminar-flow",
+   "kind": "definition",
+   "section": "12.4",
+   "name": "层流",
+   "terms": [
+    "层流"
+   ],
+   "statement": "在层流中，流体分层平滑地运动，各层互不混合。本章图中的线条是流线，即小体积流体所遵循的路径，在层流中它们平滑而连续。黏度的精确定义建立在层流的基础上，泊肃叶定律也是如此。"
+  },
+  {
+   "id": "turbulent-flow",
+   "kind": "definition",
+   "section": "12.4",
+   "name": "湍流",
+   "terms": [
+    "湍流"
+   ],
+   "statement": "湍流的特征是涡旋和旋涡把各层流体混合在一起，它的流线断裂而不是平滑地延伸。它有两个主要原因：任何障碍物或急转弯都会产生垂直于流动方向的速度，而仅仅高速也足以引起湍流，因为只要速率足够大，相邻各层之间以及流体与周围环境之间的阻力就会形成旋涡。湍流使流体混合，使它发热更多，所受的阻力也比层流大。"
+  },
+  {
+   "id": "viscosity",
+   "kind": "definition",
+   "section": "12.4",
+   "name": "黏度",
+   "symbol": "η_visc",
+   "terms": [
+    "黏度"
+   ],
+   "type": "viscosity",
+   "statement": "黏度是流体摩擦，既包括流体内部的，也包括流体与周围环境之间的：果汁倒起来很顺畅，糖浆却黏在壶上。要测量它，就让流体在两块板之间受剪切，一块固定，另一块以恒定速率运动，然后求出保持上板运动的力。这个力随速率、板的面积和黏度的增大而增大，随两板的分开而减小。因此黏度等于力乘以间距再除以速率乘以面积。不同流体的黏度相差几个数量级，气体的黏度远小于液体，而且大多数流体的黏度都与温度有关。",
+   "forms": [
+    {
+     "id": "eq-viscosity-force",
+     "latex": "F = \\eta\\frac{vA}{L}",
+     "ktex": "\\kF = \\keta\\frac{\\kv A}{L}",
+     "condition": "层流",
+     "anchor": "12.4-laminar-viscosity"
+    },
+    {
+     "id": "eq-viscosity-definition",
+     "latex": "\\eta = \\frac{FL}{vA}",
+     "ktex": "\\keta = \\frac{\\kF L}{\\kv A}",
+     "anchor": "12.4-laminar-viscosity"
+    }
+   ]
+  },
+  {
+   "id": "velocity-profile-in-tube",
+   "kind": "idea",
+   "section": "12.4",
+   "name": "管内的速度分布",
+   "statement": "如果管中的流动阻力可以忽略，速率在管内各处相同。当黏性流体流动时，与管壁接触的那一层完全不动，速率稳定地增大，在管的中心达到最大值。本生灯火焰的形状就是这种速度分布的可见化，尽管天然气的黏度很小。"
+  },
+  {
+   "id": "flow-resistance",
+   "kind": "definition",
+   "section": "12.4",
+   "name": "流阻",
+   "symbol": "R_flow",
+   "statement": "流阻由流量与压强差之间的关系来定义：流量等于压强差除以流阻，$Q = (P_2 - P_1)/R$，方向是从高压指向低压。流阻包括除压强以外一切影响流量的因素。",
+   "forms": [
+    {
+     "id": "eq-flow-from-resistance",
+     "latex": "Q = \\frac{P_2 - P_1}{R}",
+     "ktex": "\\kQ = \\frac{\\kPrtwo - \\kProne}{R}",
+     "anchor": "12.4-poiseuille"
+    }
+   ],
+   "type": "flow-resistance"
+  },
+  {
+   "id": "poiseuilles-law-resistance",
+   "kind": "result",
+   "section": "12.4",
+   "name": "流阻的泊肃叶定律",
+   "terms": [
+    "流阻的泊肃叶定律"
+   ],
+   "statement": "对于不可压缩流体通过半径均匀的水平管的层流，流阻等于八倍的黏度乘以长度，再除以圆周率乘以半径的四次方。流阻与黏度和长度成正比，这很合乎直觉，因为两者都直接影响所遇到的摩擦量。半径的四次方才是出人意料之处。J. L. 泊肃叶为了弄清血液的流动而推导出了这条定律。",
+   "forms": [
+    {
+     "id": "eq-poiseuille-resistance",
+     "latex": "R = \\frac{8\\eta l}{\\pi r^4}",
+     "ktex": "R = \\frac{8\\keta l}{\\pi r^4}",
+     "condition": "半径均匀的水平管中的层流",
+     "anchor": "12.4-poiseuille"
+    }
+   ]
+  },
+  {
+   "id": "poiseuilles-law",
+   "kind": "result",
+   "section": "12.4",
+   "name": "泊肃叶定律",
+   "terms": [
+    "泊肃叶定律"
+   ],
+   "statement": "把流阻代入流量与压强差之间的关系，就得到通过管的层流的一个方程：流量等于压强差乘以圆周率乘以半径的四次方，再除以八倍的黏度乘以长度。它是本节的工作方程，也是本章每一个医学应用的工作方程。",
+   "forms": [
+    {
+     "id": "eq-poiseuille",
+     "latex": "Q = \\frac{(P_2 - P_1)\\pi r^4}{8\\eta l}",
+     "ktex": "\\kQ = \\frac{(\\kPrtwo - \\kProne)\\pi r^4}{8\\keta l}",
+     "condition": "半径均匀的水平管中的层流",
+     "anchor": "12.4-poiseuille"
+    }
+   ]
+  },
+  {
+   "id": "radius-fourth-power-sensitivity",
+   "kind": "idea",
+   "section": "12.4",
+   "name": "流量对半径的敏感性",
+   "statement": "半径以四次方进入，所以它的任何变化都对流阻有很大的影响。半径加倍使流阻减小为原来的十六分之一，而血管的半径只减小百分之五，就会使流量降到原来的约百分之八十一。这就是为什么身体主要通过扩张和收缩血管而不是让心脏更加费力地工作来调节血流，也是为什么动脉中的斑块与它的厚度极不相称地危险。身体可以通过升高血压来补偿，但这会使心脏和任何已经变弱的血管面临风险。"
+  },
+  {
+   "id": "pressure-drop-from-resistance",
+   "kind": "result",
+   "section": "12.4",
+   "name": "流阻引起的压降",
+   "statement": "把流量、压强差和流阻之间的关系改写一下，就是说流体通过流阻时，沿途压强下降。这就是为什么在炎热的夏日，附近居民大量用水时，房屋里的水压会较低：干管中的流量很大，所以沿管的压降很大，到达的压强就变小了。这一关系对湍流和层流都成立。它也适用于半径变化的系统，在那里压降在最窄处最大。",
+   "forms": [
+    {
+     "id": "eq-pressure-drop",
+     "latex": "P_2 - P_1 = RQ",
+     "ktex": "\\kPrtwo - \\kProne = R\\kQ",
+     "anchor": "12.4-pressure-drops"
+    }
+   ]
+  },
+  {
+   "id": "reynolds-number",
+   "kind": "definition",
+   "section": "12.5",
+   "name": "管内流动的雷诺数",
+   "symbol": "N_R",
+   "terms": [
+    "雷诺数"
+   ],
+   "statement": "管内流动的雷诺数 $N_{\\text{R}} = 2\\rho vr/\\eta$ 是一个无量纲的量，它揭示流动可能是层流还是湍流。",
+   "forms": [
+    {
+     "id": "eq-reynolds-tube",
+     "latex": "N_{\\text{R}} = \\frac{2\\rho vr}{\\eta}",
+     "ktex": "N_{\\text{R}} = \\frac{2\\krho\\kv r}{\\keta}",
+     "condition": "直径均匀的管内的流动",
+     "anchor": "12.5-reynolds-number"
+    }
+   ]
+  },
+  {
+   "id": "turbulence-onset-thresholds",
+   "kind": "axiom",
+   "section": "12.5",
+   "name": "湍流的发生",
+   "statement": "雷诺数低于约 2000 时，流动是层流；高于约 3000 时，流动是湍流。在 2000 到 3000 之间，流动是不稳定的：它可以是层流，但微小的障碍物和表面粗糙度都可能使它变成湍流，而且它可能在这两者之间随机振动。人体内的大部分血流是平静的层流；主动脉是个例外，那里的速率上升到临界值以上，流动变成湍流。"
+  },
+  {
+   "id": "turbulence-in-circulation",
+   "kind": "idea",
+   "section": "12.5",
+   "name": "循环系统中的湍流",
+   "statement": "动脉的阻塞或变窄很可能引起湍流，既因为阻塞物形状不规则，也因为血液作为流体很复杂。循环系统中的湍流是有声音的，常常可以听到：松开血压计袖带时通过听诊器听到的科罗特科夫音、动脉瘤的声音，以及关闭不严的受损瓣膜产生的心脏杂音。超声检测同样的湍流，方式类似于多普勒频移雷达探测风暴。"
+  },
+  {
+   "id": "chaotic-flow",
+   "kind": "definition",
+   "section": "12.5",
+   "name": "混沌行为",
+   "statement": "当一个系统的行为对某个因素极其敏感，以至于极难预测时，这个系统就是混沌的。雷诺数在 2000 到 3000 之间的流动就是一个很好的例子：它是否为湍流难以预测但并非不可能预测，难点在于它极其敏感地依赖于粗糙度和障碍物，其中某个因素的微小变化会对流动产生被夸大的影响。湍流、冥王星的轨道和不规则心跳的发生，这些截然不同的现象都是混沌的，可以用类似的技术来分析。"
+  },
+  {
+   "id": "reynolds-number-object",
+   "kind": "definition",
+   "section": "12.6",
+   "name": "物体的雷诺数",
+   "symbol": "N_Rprime",
+   "statement": "在流体中运动的物体的雷诺数 ${N'}_{\\text{R}} = \\rho vL/\\eta$（其中 $L$ 是物体的特征长度）表明物体周围的流动是层流还是湍流。静止流体中运动的物体等价于流动水流中静止的物体。",
+   "forms": [
+    {
+     "id": "eq-reynolds-object",
+     "latex": "{N'}_{\\text{R}} = \\frac{\\rho vL}{\\eta}",
+     "ktex": "{N'}_{\\text{R}} = \\frac{\\krho\\kv L}{\\keta}",
+     "condition": "物体在流体中运动",
+     "anchor": "12.6-reynolds-object"
+    }
+   ]
+  },
+  {
+   "id": "flow-regimes-around-object",
+   "kind": "idea",
+   "section": "12.6",
+   "name": "绕物体的流动",
+   "statement": "雷诺数低于约 1 时，物体周围的流动可以是层流，尤其是当物体形状光滑时。在 1 到约 10 之间，流动变成湍流，确切的位置取决于表面粗糙度，物体后面形成湍流尾流，而其表面上仍保留一些层流。在 10 到一百万之间，流动可能是其中任何一种，也可能在两者之间振动；高于一百万时，流动处处都是湍流，连表面也不例外。层流主要出现在物体很小的时候，例如雨滴、花粉和血浆中的血细胞，所以大多数大型物体，包括飞机和帆船，在运动时都会产生显著的湍流。"
+  },
+  {
+   "id": "viscous-drag",
+   "kind": "definition",
+   "section": "12.6",
+   "name": "黏性阻力",
+   "symbol": "F_V",
+   "terms": [
+    "黏性阻力"
+   ],
+   "type": "force",
+   "statement": "黏性的一个后果是一种叫作黏性阻力的力，作用在穿过流体运动的物体上。与简单的摩擦不同，它依赖于物体的速率，而且这种依赖关系随雷诺数而变化。对于层流，阻力与速率成正比，而在约 10 到一百万之间，它与速率的平方成正比。这就是为什么即使是很小的逆风也使自行车赛车手付出这么大的代价，也是为什么骑手们轮流在车群中领骑。对于绕球体的层流，阻力与黏度、物体的大小及其速率成正比：黏度更大的流体和更大的物体都意味着更大的阻力。斯托克斯定律给出了其中的常量。"
+  },
+  {
+   "id": "sedimentation-rate",
+   "kind": "idea",
+   "section": "12.6",
+   "name": "沉降与离心机",
+   "statement": "因为黏性阻力随速率增大，所以在流体中下落的物体不会无限地加速。阻力增大，加速度减小，到了终极速率时，物体就以恒定的速率继续下落。海洋中下落的沙粒、离心机中下落的细胞和穿过空气下落的跳伞者都是这种情形，而终极速率在低黏度流体中以及对密度大而体积小的物体最大，这就是为什么跳伞者四肢张开时比屈体姿势下落得更慢。了解它有助于估算小颗粒沉降的快慢，而离心机用大得多的向心加速度取代重力加速度，从而加快这种沉降。"
+  },
+  {
+   "id": "diffusion",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "扩散",
+   "terms": [
+    "扩散"
+   ],
+   "statement": "原子和分子在任何温度下都在不停地运动，在流体中，即使没有宏观的流动，它们也在随机地运动。这种运动是无规行走，而扩散就是它所产生的物质迁移。它解释了冰块如何沾上冷冻室里的气味，流体甚至可以在固体中扩散。在宏观距离上这是一个缓慢的过程，因为常见材料的密度大得足以使一个分子在被碰撞向任意方向（包括直接向后）散射之前走不远。"
+  },
+  {
+   "id": "random-walk-distance",
+   "kind": "result",
+   "section": "12.7",
+   "name": "扩散距离",
+   "type": "position",
+   "statement": "分子通过扩散行进的方均根距离与时间的平方根成正比，$x_{\\text{rms}} = \\sqrt{2Dt}$，而不是与时间本身成正比，这正是扩散在任何较大距离上都如此缓慢的原因。",
+   "forms": [
+    {
+     "id": "eq-rms-distance",
+     "latex": "x_{\\text{rms}} = \\sqrt{2Dt}",
+     "ktex": "\\kxrms = \\sqrt{2D\\kt}",
+     "anchor": "12.7-diffusion"
+    }
+   ]
+  },
+  {
+   "id": "diffusion-constant",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "扩散常量",
+   "symbol": "D_diff",
+   "type": "diffusion-constant",
+   "statement": "扩散常量由实验确定，它把决定速率的大部分因素汇集成一个数：分子、介质、温度以及内聚力和附着力。分子越重，它越小，因为给定温度下的平均分子速率与分子质量成反比；它在水中比在空气中小得多，因为水中的分子在无规行走中发生的碰撞多得多。它随温度升高而增大，因为分子的平均动能与热力学温度成正比。"
+  },
+  {
+   "id": "diffusion-rate-direction",
+   "kind": "idea",
+   "section": "12.7",
+   "name": "扩散的速率和方向",
+   "statement": "小心地滴入静水中的一滴食用色素会扩散，直到各处浓度相同，这是自由扩散，因为没有屏障阻碍它。分子运动的方向是随机的，所以单凭机会就决定了离开高浓度区域的分子比进入的多，净扩散速率与浓度差成正比；如果浓度相同，就根本没有净移动。净速率在开始时比过程完成一部分之后更高，而且它也与扩散常量成正比。"
+  },
+  {
+   "id": "semipermeable-membrane",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "半透膜",
+   "terms": [
+    "半透的"
+   ],
+   "statement": "半透膜只允许某些小分子通过。生物体内的膜一般都是这一类，它们影响物质扩散穿过它们的速率。"
+  },
+  {
+   "id": "osmosis",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "渗透",
+   "terms": [
+    "渗透"
+   ],
+   "statement": "渗透是水通过半透膜从高浓度区域向低浓度区域的输运，它由水的浓度失衡所驱动。水在体内的浓度比在泻盐中高，所以把肿胀的脚踝浸泡在泻盐中，会使水从体内移向盐中浓度较低的区域。肾既利用渗透也利用透析来净化血液。"
+  },
+  {
+   "id": "dialysis",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "透析",
+   "terms": [
+    "透析"
+   ],
+   "statement": "透析是水以外的任何分子因其浓度差而通过半透膜的输运。它与渗透是同一个过程，只是移动的物质不同，而且和渗透一样，它可以产生可观的压强。肾两者都用。"
+  },
+  {
+   "id": "osmotic-pressure",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "渗透压与背压",
+   "terms": [
+    "渗透压"
+   ],
+   "statement": "渗透可以产生可观的压强。水通过膜移动，使低浓度一侧的溶液升高，这种移动一直持续到多出的那段流体高度的压强阻止了进一步的渗透为止。如果两种溶液都不是纯水，这个背压就是相对渗透压；如果其中一种是纯水，它就是渗透压。它可以非常大。被一张不让盐通过的膜隔开的纯水和海水在 25.9 个大气压下达到平衡，这会使盐水比纯水高出 268 米。膨压，即植物细胞液对细胞壁的压强，是同一种效应，它使植物挺立。当背压大到足以使正常方向反转时，这一过程就成为反渗透或反透析，它使水脱盐，并使膜起到过滤器的作用。"
+  },
+  {
+   "id": "active-transport",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "主动运输",
+   "terms": [
+    "主动运输"
+   ],
+   "statement": "物质有时沿着与预期相反的方向通过膜。柏树的根从盐水中提取纯水，尽管渗透会使水朝相反的方向移动。这不是反渗透，因为没有背压引起它。这是主动运输，其中生物膜消耗能量使物质穿过它。许多生物膜都这样做，肾就是其中之一，而且据一些估计，人体至少有四分之一的能量用于细胞层面的主动运输。"
+  },
+  {
+   "id": "relative-osmotic-pressure",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "相对渗透压",
+   "terms": [
+    "相对渗透压"
+   ],
+   "statement": "相对渗透压是当两种溶液都不是纯水时，阻止渗透过程的背压。"
+  },
+  {
+   "id": "reverse-osmosis",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "反渗透",
+   "terms": [
+    "反渗透"
+   ],
+   "statement": "反渗透是当背压大到足以使渗透的正常方向反转时发生的过程，它把水从浓度更高的溶液中驱出。它通过迫使水穿过不让盐通过的膜来使水脱盐。"
+  },
+  {
+   "id": "reverse-dialysis",
+   "kind": "definition",
+   "section": "12.7",
+   "name": "反透析",
+   "terms": [
+    "反透析"
+   ],
+   "statement": "反透析是当背压大到足以使透析的正常方向反转时发生的过程，它可以用来滤除膜不让通过的物质。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "flow-rate",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "flow-rate-units",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "flow-rate-units",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "flow-rate-units",
+   "prereq": "metric-prefixes"
+  },
+  {
+   "concept": "flow-rate-units",
+   "prereq": "derived-units"
+  },
+  {
+   "concept": "flow-rate-velocity",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "flow-rate-velocity",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "equation-of-continuity",
+   "prereq": "flow-rate-velocity"
+  },
+  {
+   "concept": "equation-of-continuity",
+   "prereq": "incompressible-fluid"
+  },
+  {
+   "concept": "continuity-branching",
+   "prereq": "equation-of-continuity"
+  },
+  {
+   "concept": "pressure-drops-in-fast-fluid",
+   "prereq": "equation-of-continuity"
+  },
+  {
+   "concept": "pressure-drops-in-fast-fluid",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "pressure-drops-in-fast-fluid",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "pressure-drops-in-fast-fluid",
+   "prereq": "force"
+  },
+  {
+   "concept": "bernoullis-equation",
+   "prereq": "pressure-drops-in-fast-fluid"
+  },
+  {
+   "concept": "bernoullis-equation",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "bernoullis-equation",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "bernoullis-equation",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "bernoullis-equation",
+   "prereq": "incompressible-fluid"
+  },
+  {
+   "concept": "bernoulli-energy-per-volume",
+   "prereq": "bernoullis-equation"
+  },
+  {
+   "concept": "bernoulli-energy-per-volume",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "bernoulli-energy-per-volume",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "bernoulli-static-fluid",
+   "prereq": "bernoullis-equation"
+  },
+  {
+   "concept": "bernoullis-principle",
+   "prereq": "bernoullis-equation"
+  },
+  {
+   "concept": "entrainment",
+   "prereq": "bernoullis-principle"
+  },
+  {
+   "concept": "lift-from-bernoulli",
+   "prereq": "bernoullis-principle"
+  },
+  {
+   "concept": "lift-from-bernoulli",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "velocity-measurement",
+   "prereq": "bernoullis-principle"
+  },
+  {
+   "concept": "torricellis-theorem",
+   "prereq": "bernoullis-equation"
+  },
+  {
+   "concept": "torricellis-theorem",
+   "prereq": "free-fall-kinematics"
+  },
+  {
+   "concept": "torricellis-theorem",
+   "prereq": "conservation-of-mechanical-energy"
+  },
+  {
+   "concept": "bernoulli-general-application",
+   "prereq": "bernoullis-equation"
+  },
+  {
+   "concept": "bernoulli-general-application",
+   "prereq": "flow-rate-velocity"
+  },
+  {
+   "concept": "bernoulli-general-application",
+   "prereq": "problem-solving-steps"
+  },
+  {
+   "concept": "power-in-fluid-flow",
+   "prereq": "bernoulli-energy-per-volume"
+  },
+  {
+   "concept": "power-in-fluid-flow",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "power-in-fluid-flow",
+   "prereq": "power"
+  },
+  {
+   "concept": "pump-power",
+   "prereq": "power-in-fluid-flow"
+  },
+  {
+   "concept": "pump-power",
+   "prereq": "calculate-power"
+  },
+  {
+   "concept": "laminar-flow",
+   "prereq": "friction"
+  },
+  {
+   "concept": "turbulent-flow",
+   "prereq": "laminar-flow"
+  },
+  {
+   "concept": "viscosity",
+   "prereq": "laminar-flow"
+  },
+  {
+   "concept": "viscosity",
+   "prereq": "friction"
+  },
+  {
+   "concept": "viscosity",
+   "prereq": "shear-deformation"
+  },
+  {
+   "concept": "velocity-profile-in-tube",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "velocity-profile-in-tube",
+   "prereq": "laminar-flow"
+  },
+  {
+   "concept": "flow-resistance",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "flow-resistance",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "poiseuilles-law-resistance",
+   "prereq": "flow-resistance"
+  },
+  {
+   "concept": "poiseuilles-law-resistance",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "poiseuilles-law-resistance",
+   "prereq": "laminar-flow"
+  },
+  {
+   "concept": "poiseuilles-law",
+   "prereq": "poiseuilles-law-resistance"
+  },
+  {
+   "concept": "poiseuilles-law",
+   "prereq": "flow-resistance"
+  },
+  {
+   "concept": "radius-fourth-power-sensitivity",
+   "prereq": "poiseuilles-law"
+  },
+  {
+   "concept": "pressure-drop-from-resistance",
+   "prereq": "flow-resistance"
+  },
+  {
+   "concept": "reynolds-number",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "reynolds-number",
+   "prereq": "laminar-flow"
+  },
+  {
+   "concept": "reynolds-number",
+   "prereq": "turbulent-flow"
+  },
+  {
+   "concept": "turbulence-onset-thresholds",
+   "prereq": "reynolds-number"
+  },
+  {
+   "concept": "turbulence-in-circulation",
+   "prereq": "turbulent-flow"
+  },
+  {
+   "concept": "turbulence-in-circulation",
+   "prereq": "radius-fourth-power-sensitivity"
+  },
+  {
+   "concept": "chaotic-flow",
+   "prereq": "turbulence-onset-thresholds"
+  },
+  {
+   "concept": "reynolds-number-object",
+   "prereq": "reynolds-number"
+  },
+  {
+   "concept": "reynolds-number-object",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "flow-regimes-around-object",
+   "prereq": "reynolds-number-object"
+  },
+  {
+   "concept": "flow-regimes-around-object",
+   "prereq": "turbulent-flow"
+  },
+  {
+   "concept": "flow-regimes-around-object",
+   "prereq": "laminar-flow"
+  },
+  {
+   "concept": "viscous-drag",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "viscous-drag",
+   "prereq": "drag-force"
+  },
+  {
+   "concept": "viscous-drag",
+   "prereq": "drag-force-equation"
+  },
+  {
+   "concept": "viscous-drag",
+   "prereq": "stokes-law"
+  },
+  {
+   "concept": "sedimentation-rate",
+   "prereq": "viscous-drag"
+  },
+  {
+   "concept": "sedimentation-rate",
+   "prereq": "terminal-velocity"
+  },
+  {
+   "concept": "sedimentation-rate",
+   "prereq": "size-and-terminal-velocity"
+  },
+  {
+   "concept": "sedimentation-rate",
+   "prereq": "centrifuge"
+  },
+  {
+   "concept": "diffusion",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "random-walk-distance",
+   "prereq": "diffusion"
+  },
+  {
+   "concept": "random-walk-distance",
+   "prereq": "distance"
+  },
+  {
+   "concept": "diffusion-constant",
+   "prereq": "random-walk-distance"
+  },
+  {
+   "concept": "diffusion-constant",
+   "prereq": "mass"
+  },
+  {
+   "concept": "diffusion-rate-direction",
+   "prereq": "diffusion"
+  },
+  {
+   "concept": "semipermeable-membrane",
+   "prereq": "diffusion"
+  },
+  {
+   "concept": "osmosis",
+   "prereq": "semipermeable-membrane"
+  },
+  {
+   "concept": "osmosis",
+   "prereq": "diffusion-rate-direction"
+  },
+  {
+   "concept": "dialysis",
+   "prereq": "semipermeable-membrane"
+  },
+  {
+   "concept": "dialysis",
+   "prereq": "diffusion-rate-direction"
+  },
+  {
+   "concept": "osmotic-pressure",
+   "prereq": "osmosis"
+  },
+  {
+   "concept": "active-transport",
+   "prereq": "osmosis"
+  },
+  {
+   "concept": "active-transport",
+   "prereq": "dialysis"
+  },
+  {
+   "concept": "flow-rate",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "incompressible-fluid",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "incompressible-fluid",
+   "prereq": "density"
+  },
+  {
+   "concept": "pressure-drops-in-fast-fluid",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "pressure-drops-in-fast-fluid",
+   "prereq": "force-from-pressure"
+  },
+  {
+   "concept": "bernoullis-equation",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "bernoullis-equation",
+   "prereq": "density"
+  },
+  {
+   "concept": "bernoulli-static-fluid",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "bernoulli-static-fluid",
+   "prereq": "pressure-independent-of-container"
+  },
+  {
+   "concept": "bernoullis-principle",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "velocity-measurement",
+   "prereq": "manometer"
+  },
+  {
+   "concept": "torricellis-theorem",
+   "prereq": "atmospheric-pressure"
+  },
+  {
+   "concept": "bernoulli-general-application",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "pump-power",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "laminar-flow",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "viscosity",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "flow-resistance",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "pressure-drop-from-resistance",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "turbulence-in-circulation",
+   "prereq": "blood-pressure-measurement"
+  },
+  {
+   "concept": "reynolds-number",
+   "prereq": "density"
+  },
+  {
+   "concept": "reynolds-number-object",
+   "prereq": "density"
+  },
+  {
+   "concept": "sedimentation-rate",
+   "prereq": "buoyant-force"
+  },
+  {
+   "concept": "sedimentation-rate",
+   "prereq": "archimedes-principle"
+  },
+  {
+   "concept": "diffusion",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "osmotic-pressure",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "osmotic-pressure",
+   "prereq": "pressure-from-weight-of-fluid"
+  },
+  {
+   "concept": "fluid-dynamics",
+   "prereq": "fluid"
+  },
+  {
+   "concept": "liter",
+   "prereq": "volume"
+  },
+  {
+   "concept": "relative-osmotic-pressure",
+   "prereq": "osmotic-pressure"
+  },
+  {
+   "concept": "reverse-osmosis",
+   "prereq": "osmosis"
+  },
+  {
+   "concept": "reverse-osmosis",
+   "prereq": "osmotic-pressure"
+  },
+  {
+   "concept": "reverse-dialysis",
+   "prereq": "dialysis"
+  },
+  {
+   "concept": "reverse-dialysis",
+   "prereq": "osmotic-pressure"
+  }
+ ]
+}

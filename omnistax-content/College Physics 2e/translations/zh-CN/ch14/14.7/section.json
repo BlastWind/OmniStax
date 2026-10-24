@@ -1,0 +1,1135 @@
+{
+ "id": "14.7",
+ "module": "m42230",
+ "chapter": "14",
+ "title": "辐射",
+ "short": "辐射",
+ "lead": "<span data-concept=\"heat\">热量</span>从火堆和<span data-ref=\"sun\">太阳</span>穿过空旷空间传到你身上，由每个物体都发射和吸收的电磁波携带，物体越热，发射得越强，<span data-concept=\"wavelength\">波长</span>也越短。同样的辐射决定了<span data-ref=\"person\">一个人</span>在<span data-ref=\"walls\">黑暗的房间</span>里损失多少，也决定了<span data-ref=\"sun\">太阳</span>、<span data-ref=\"earth\">地球</span>和黑暗的天空之间的平衡如何使表面变暖。",
+ "objectives": [
+  "讨论通过辐射的热传递。",
+  "解释不同材料的功率。"
+ ],
+ "summary_html": "<ul><li>辐射是通过发射或吸收电磁波而进行的<span data-concept=\"heat\">热</span>传递的速率。</li><li><span data-concept=\"heat\">热</span>传递速率取决于表面<span data-concept=\"area\">面积</span>和热力学<span data-concept=\"temperature\">温度</span>的四次方：$$\\frac{\\kQh}{\\kt} = \\sigma e A \\kTemp^4,$$ 其中 $\\sigma = 5.67 \\times 10^{-8}\\;\\text{J/s}\\cdot\\text{m}^2\\cdot\\text{K}^4$ 是斯特藩-玻尔兹曼常量，$e$ 是该物体的发射率。对于黑体，$e = 1$，而光亮的白色物体或完全反射体的 $e = 0$，实际物体的 $e$ 值介于 1 和 0 之间。辐射的净热传递速率为 $$\\frac{\\kQnet}{\\kt} = \\sigma e A\\left(\\kTemptwo^4 - \\kTempone^4\\right)$$ 其中 $\\kTempone$ 是被<span data-concept=\"temperature\">温度</span>均匀为 $\\kTemptwo$ 的环境所包围的物体的<span data-concept=\"temperature\">温度</span>，$e$ 是<em>物体</em>的发射率。</li></ul>",
+ "notes": "书中未给出答案的十四道习题已被略去，其中包括壁炉余烬、汽车散热器、桑拿、太阳的表面温度、天空的有效温度、五道综合概念题、两道不合理的结果题以及两道自拟习题；关于一天消耗 2500 kcal 的人和 1.46 kW 的窗户的不合理的结果题，分别编排在 14.2 和 14.5 中，因为它们考查的是那两节的思想。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。有十四道题没有给出答案，已被略去：壁炉余烬、汽车散热器、桑拿、太阳的表面温度和太阳常量、天空的有效温度、关于潮湿空气的凝结、飞机的冰冻废物、Stairmaster 健身器、热花岗岩和尼亚加拉瀑布的综合概念题、关于北极发明家和辐射陨石的不合理的结果题，以及两道自拟习题。书中印在此处的两道不合理的结果题仅取决于更早的一节，已编排到那一节，其 source_section 为 14.7：14.2 中一天消耗 2500 kcal 的人，以及 14.5 中 1.46 kW 的窗户。马戏团帐篷题只给出（a）部分的答案，所以该卡片核对这个数，并在解中附上书中对（b）部分的答案；冷却塔题给出（a）部分的答案，并附上书中对（b）部分的讨论。理解检测框的答案以文字给出，约 30%，作为开放题嵌在关于四次方依赖关系的段落之后；第一道 AP 题有答案，是判分选择题，第二道没有答案，是开放题，附有 AI 撰写的建议思路并如此标明，五道思考题的思路也是如此。数值答案接受 2% 的误差。",
+ "figures": [
+  {
+   "id": "fig-campfire",
+   "kind": "photo",
+   "number": "14.28",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-spectrum",
+   "kind": "sim",
+   "number": "14.29",
+   "originals": [
+    "/media/ch14/Figure_15_07_02a.jpg"
+   ],
+   "original_caption": "（a）理想辐射体在三种不同温度下发射的电磁波的光谱图。辐射发射的强度或速率随温度急剧增大，光谱向光谱的可见光和紫外部分移动。阴影部分表示光谱的可见光部分。显然，随着温度升高，向紫外方向的移动使可见的外观由红变白再变蓝。（b）火焰的上部由于黑体辐射而呈橙色。（下部由于火焰的化学成分——此处为乙醇——而呈蓝色。）（来源：Tuohirulla）",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "temperature",
+    "energy",
+    "time",
+    "area"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "peak label clear of the axis ticks; note cut to the visible share"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-pavement-ice",
+   "kind": "photo",
+   "number": "14.30",
+   "widths": [
+    230
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-blocks",
+   "kind": "sim",
+   "number": "14.31",
+   "originals": [
+    "/media/ch14/Figure_15_07_04a.jpg"
+   ],
+   "original_caption": "黑色物体是良好的吸收体，也是良好的辐射体；而白色（或银色）物体是较差的吸收体，也是较差的辐射体。就好像来自内部的辐射被反射回银色物体里面，而来自黑色物体内部的辐射在到达表面、发现自己处在外面时被“吸收”，并被强烈地发射出去。",
+   "draws": [
+    "power"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "incident label off its beam and the headline; note one sentence via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-building-thermograph",
+   "kind": "photo",
+   "number": "14.32",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-fourth-power",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "power",
+    "energy",
+    "time",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "emissivity floor 0.05 so the ratio holds; note cut to the kelvin point"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-radiation-balance",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "temperature",
+    "energy",
+    "time",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "walls label off the wavy arrows; note cut to the two rates and sign"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-greenhouse",
+   "kind": "sim",
+   "number": "14.33",
+   "originals": [
+    "/media/ch14/Figure_15_07_06a.jpg"
+   ],
+   "original_caption": "温室效应是对能量被截留在地球大气中的现象的称呼，其过程类似于温室中所用的过程。大气像窗玻璃一样，对入射的可见光和太阳的大部分红外线是透明的。这些波长被地球吸收，并以红外线的形式重新发射。由于地球的温度比太阳低得多，地球辐射的红外线波长要长得多。大气像玻璃一样，截留这些波长较长的红外线，使地球比原本更暖。截留的多少取决于二氧化碳等痕量气体的浓度，这些气体浓度的变化被认为会影响地表温度。",
+   "widths": [
+    345
+   ],
+   "draws": [
+    "power",
+    "temperature"
+   ],
+   "facts": [
+    "#f2c14e"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "returned label inside the stage, gone at f = 0; arrow below headline; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-solar-cooker",
+   "kind": "photo",
+   "number": "14.34",
+   "widths": [
+    350
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "radiation-across-space",
+   "concept": "radiation-spectrum-and-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiation-across-space",
+   "concept": "radiation-heat-transfer",
+   "verb": "uses"
+  },
+  {
+   "span": "radiation-across-space",
+   "concept": "frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "absorbers-emitters",
+   "concept": "absorbers-and-emitters",
+   "verb": "introduces"
+  },
+  {
+   "span": "absorbers-emitters",
+   "concept": "radiation-heat-transfer",
+   "verb": "uses"
+  },
+  {
+   "span": "stefan-boltzmann",
+   "concept": "stefan-boltzmann-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "stefan-boltzmann",
+   "concept": "emissivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "stefan-boltzmann",
+   "concept": "absorbers-and-emitters",
+   "verb": "uses"
+  },
+  {
+   "span": "stefan-boltzmann",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "stefan-boltzmann",
+   "concept": "absolute-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "stefan-boltzmann",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "stefan-boltzmann",
+   "concept": "stefan-boltzmann-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "fourth-power",
+   "concept": "radiation-fourth-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "fourth-power",
+   "concept": "stefan-boltzmann-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fourth-power",
+   "concept": "emissivity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "net-rate",
+   "concept": "net-radiation-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "net-rate",
+   "concept": "stefan-boltzmann-law",
+   "verb": "uses"
+  },
+  {
+   "span": "net-rate",
+   "concept": "emissivity",
+   "verb": "uses"
+  },
+  {
+   "span": "net-rate",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "greenhouse",
+   "concept": "greenhouse-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "greenhouse",
+   "concept": "net-radiation-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "greenhouse",
+   "concept": "absorbers-and-emitters",
+   "verb": "reinforces"
+  },
+  {
+   "span": "greenhouse",
+   "concept": "emissivity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "greenhouse",
+   "concept": "radiation-spectrum-and-temperature",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "heat-transfer-methods-strategy",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "rate-of-conductive-heat-transfer",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "convection-heat-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "heat-of-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "heat-of-vaporization",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "net-radiation-rate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-transfer-strategy",
+   "concept": "energy-problem-solving",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3153791",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fourth-power"
+   },
+   "cite": "fourth-power",
+   "prompt": "物体在温度 $\\kTempone = 20^\\circ\\text{C}$ 时，与在温度 $\\kTemptwo = 40^\\circ\\text{C}$ 时相比，辐射热量的速率变化是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "辐射的热量与<em>热力学温度</em>的四次方成正比。因为 $\\kTempone = 293\\;\\text{K}$，$\\kTemptwo = 313\\;\\text{K}$，热传递速率增加约为原速率的 30%。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1484614",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stefan-boltzmann",
+   "prompt": "两个理想的黑体辐射体，温度分别为 275 K 和 1100 K。后者的热传递速率是前者的多少倍？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "4",
+     "16",
+     "64",
+     "256"
+    ],
+    "correct": 3,
+    "hint": "速率与热力学温度的四次方成正比，而 1100 K 是 275 K 的四倍。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2278122",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "greenhouse",
+   "prompt": "在一个温暖晴朗的日子，一辆汽车停在一条没有遮阴的街道旁。车窗是关着的。车内的空气明显比车外的空气暖和。是哪些因素导致了较高的温度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "汽车就是一个小温室。阳光（主要是可见光和短波红外线）穿过玻璃，座椅、仪表板和地板吸收阳光而升温。它们的温度远低于太阳，因此以长得多的红外波长辐射，而玻璃对这些波长几乎不透明，所以玻璃吸收其中大部分辐射，或把它返还给车内。关着的车窗还阻止了对流：靠近炽热车内表面的暖空气无法离开、也无法让较冷的车外空气进来，而车窗打开时就可以。通过玻璃和车身的热传导很慢。能量通过辐射进入的速率快于它通过辐射、对流或热传导离开的速率，于是车内稳定在远高于车外空气的温度上。深色的车内吸收更多阳光，使这一效应更强；挡风玻璃上的反光遮阳板或颜色更浅的内饰会减弱这一效应。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id953571",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absorbers-emitters",
+   "prompt": "在一顶深色的大帐篷里观看日场马戏时，你会感觉到帐篷传来明显的热传递。解释为什么会这样。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "深色表面是良好的吸收体，所以被阳光照射的帆布吸收落在它上面的大部分阳光，温度升得远高于气温。良好的吸收体同时也是良好的发射体，所以温暖的深色帆布辐射很强，其中很大一部分是射入帐篷内的红外辐射。你的皮肤在红外波段的发射率为 0.97，几乎全部吸收这些辐射，这就是你无需接触顶篷就能感觉到它的热量的原因，就像你能感觉到火一样。白色帐篷吸收的阳光要少得多，会保持较凉，向帐篷里的人辐射的也少得多。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3491348",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-rate",
+   "prompt": "用来观测来自寒冷（3 K）的黑暗太空的辐射的卫星，其传感器被遮挡以避开太阳、地球和月球，并被冷却到极低的温度。为什么传感器必须处于低温？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "传感器自身以速率 $\\sigma e A \\kTemp^4$ 发射辐射，它测量的是自己与所观测对象之间的净交换。来自 3 K 太空的辐射极其微弱，因为速率与热力学温度的四次方成正比。处于室温（约 300 K）的传感器，其发射量是它想要观测的天空的 $(300/3)^4 = 10^8$ 倍，它自身的光辉和涨落会淹没天空的信号。把传感器冷却到几开尔文，使它自身的发射降到接近天空的水平，这样它记录到的净信号就是天空的信号。把它遮挡起来避开太阳、地球和月球，可以防止它们强得多的辐射使传感器升温，淹没测量。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1332236",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "greenhouse",
+   "prompt": "为什么多云的夜晚通常比晴朗的夜晚更暖和？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "夜间，地面向上辐射红外线，热传递的净速率取决于地面所面对的物体的温度。晴朗的夜晚，地面面对的是约 3 K 的黑暗太空，所以它可以自由地辐射，几乎吸收不到任何回来的辐射，冷却得很快；这就是为什么即使在温暖的纬度地区，晴朗的傍晚也会结霜。多云的夜晚，地面面对的是云层的底面，云层的温度比地面的温度低得不多；云吸收地面的红外线，并向下辐射红外线，所以从地面传出的净速率小得多，地面保持较暖。云的作用就像温室效应中的大气，把红外线的很大一部分返还给地表。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1405666",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-rate",
+   "prompt": "为什么气象站使用的温度计要遮蔽阳光？温度计在被遮蔽阳光时测量的是什么，在未被遮蔽时又测量的是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "温度计读出的是它自身的温度，这个温度稳定在它得到的热量与失去的热量相平衡之处。在阴凉处，它仅有的交换是与周围空气的热传导和对流，以及与温度接近气温的周围环境的辐射。它稳定在气温上，这正是气象站想要记录的。在阳光直射下，它还吸收来自太阳的辐射，太阳表面约为 6000 K，这比空气提供的任何东西都快得多。它必须升温到高于气温，直到它通过辐射和对流多损失的能量把这份能量带走。因此，未遮蔽的温度计读数高于气温，高出的量取决于它有多黑、有多大，以及风和太阳的角度。这个数既不是气温，也不是其他任何特定物体的温度。居家实验显示了这种差别，而浸了洗甲水的手帕显示出第三种读数，因蒸发而降低。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1187288",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "greenhouse",
+   "prompt": "平均而言，没有大气，地球会更暖还是更冷？解释你的答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "更冷。地表温度来自它吸收的阳光与它辐射的红外线之间的平衡。大气对入射的阳光几乎是透明的，所以在吸收一侧几乎没有改变。然而，大气中的二氧化碳和水蒸气吸收表面发射的大部分长波红外线，并把其中一部分向下辐射回来。有了这部分返还，表面就必须辐射得更多，因而温度更高，逸入太空的辐射才能与吸收的阳光相平衡。没有大气，表面发射的每一点红外线都会直接射向黑暗的太空，表面将稳定在比现在低约 40 °C 的温度上。没有大气的月球显示了与太阳的距离等于地球的物体会变得多冷。云使平均情况复杂化，因为它们既反射阳光，又返还红外线，但大气的净效应是使表面变暖。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1411839",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-rate",
+   "prompt": "在一个夜晚，屋顶温度为 $30.0^\\circ\\text{C}$，周围温度为 $15.0^\\circ\\text{C}$，一个 $275\\text{-m}^2$ 的黑色屋顶以多大的净速率辐射热量？屋顶的发射率为 0.900。",
+   "answer": {
+    "type": "number",
+    "value": -21.7,
+    "unit": "kW",
+    "generated_by": "source",
+    "hint": "取四次方之前，先把两个温度都换算成开尔文；屋顶是 $\\kTempone$，周围环境是 $\\kTemptwo$，所以净速率为负，即热量离开屋顶。",
+    "solution": "$-21.7\\;\\text{kW}$。注意，负的答案意味着热损失给了周围环境。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1237994",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-rate",
+   "prompt": "辐射使人无法站在炽热的熔岩流附近。假设熔岩的发射率为 1.00，计算 $1.00\\;\\text{m}^2$、$1200^\\circ\\text{C}$ 的新鲜熔岩向 $30.0^\\circ\\text{C}$ 的周围环境通过辐射传递热量的速率。",
+   "answer": {
+    "type": "number",
+    "value": -266,
+    "unit": "kW",
+    "generated_by": "source",
+    "hint": "熔岩为 1473 K，周围环境为 303 K；取四次方后，周围环境那一项不到熔岩那一项的千分之一。",
+    "solution": "$-266\\;\\text{kW}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2581360",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-rate",
+   "prompt": "已知如下条件，求站在阴凉处的一位滑雪者通过辐射的净热传递速率。她从头到脚完全穿着白色衣服（包括滑雪面罩），衣服的发射率为 0.200，表面温度为 $10.0^\\circ\\text{C}$，周围环境温度为 $-15.0^\\circ\\text{C}$，她的表面积为 $1.60\\;\\text{m}^2$。",
+   "answer": {
+    "type": "number",
+    "value": -36.0,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "净速率方程中的发射率是滑雪者自身的，她的白色衣服为 0.200；两个温度分别为 283 K 和 258 K。",
+    "solution": "$-36.0\\;\\text{W}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1378944",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fourth-power",
+   "figure": {
+    "src": "/media/ch14/Figure_15_07_09a-e4f4.jpg",
+    "alt": "图中是一位患者胸部区域的热像图。不同的颜色表示不同的热区。",
+    "caption": "一位患者上身热像图的艺术效果图，用不同的颜色表示热量的分布。"
+   },
+   "prompt": "热成像是一种测量辐射热、检测表面温度变化的技术，这些变化在医学、环境或军事上可能有重要意义。（a）对于给定面积，例如人的皮肤上，温度为 $34.0^\\circ\\text{C}$ 时通过辐射的热传递速率比 $33.0^\\circ\\text{C}$ 时增加了百分之几？（b）对于给定面积，例如温暖和凉爽的汽车发动机罩，温度为 $34.0^\\circ\\text{C}$ 时通过辐射的热传递速率比 $20.0^\\circ\\text{C}$ 时增加了百分之几？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.31,
+      "unit": "%",
+      "hint": "两个速率之比等于热力学温度之比的四次方，即 $(307.15/306.15)^4$；增加的百分数是该比值减一再乘以 100。"
+     },
+     {
+      "part": "(b)",
+      "value": 20.5,
+      "unit": "%",
+      "hint": "现在比值是 $(307.15/293.15)^4$。"
+     }
+    ],
+    "solution": "（a）1.31%（b）20.5%"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1940871",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-transfer-strategy",
+   "prompt": "火山喷出的一大块熔岩已停止流动，正在缓慢冷却。熔岩内部为 $1200^\\circ\\text{C}$，表面为 $450^\\circ\\text{C}$，周围环境为 $27.0^\\circ\\text{C}$。（a）假设发射率为 1.00，计算 $1.00\\;\\text{m}^2$ 表面熔岩通过辐射向周围环境传递能量的速率。（b）假设向表面的热传导以同样的速率发生。假设熔岩的热导率与砖相同，$450^\\circ\\text{C}$ 的表面与 $1200^\\circ\\text{C}$ 的内部之间的熔岩厚度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -15.0,
+      "unit": "kW",
+      "hint": "表面在 723 K 下向 300 K 的周围环境辐射；使用净速率方程，取 $e = 1$，$A = 1.00\\;\\text{m}^2$。"
+     },
+     {
+      "part": "(b)",
+      "value": 4.2,
+      "unit": "cm",
+      "hint": "令热传导速率 $kA(\\kTemptwo - \\kTempone)/d$ 等于辐射速率的大小，砖的热导率取自表 14.3，温差为 750 °C，然后解出 $d$。"
+     }
+    ],
+    "solution": "（a）$-15.0\\;\\text{kW}$（b）4.2 cm"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1920945",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-rate",
+   "prompt": "（a）一位光着上身的骑手在马戏团帐篷下，感到帐篷被阳光照射的部分辐射来的热量。根据以下信息计算帐篷帆布的温度：这位光着上身的骑手的皮肤温度为 $34.0^\\circ\\text{C}$，发射率为 0.970。裸露的皮肤面积为 $0.400\\;\\text{m}^2$。他接收辐射的速率为 20.0 W——这是假如他身后的整个区域都很热时你所算出的值的一半。其余周围环境的温度为 $34.0^\\circ\\text{C}$。（b）讨论如果帐篷被阳光照射的一面近乎纯白，并且骑手披着白色束腰外衣，这种情形会有什么变化。",
+   "answer": {
+    "type": "number",
+    "value": 48.5,
+    "unit": "°C",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "取进入骑手的净速率为 40.0 W，即他所接收值的两倍，因为只有他一半的周围环境是热帆布；然后用 $\\kTempone = 307\\;\\text{K}$ 对净速率方程解出 $\\kTemptwo$；再把开尔文的答案换算回摄氏度。",
+    "solution": "（a）$48.5^\\circ\\text{C}$（b）纯白色的物体会反射更多落在它上面的辐射能，所以白色帐篷会阻止更多的阳光使帐篷内部升温，而白色束腰外衣会阻止进入帐篷的热量使骑手升温。因此，对于白色帐篷，温度会低于 $48.5^\\circ\\text{C}$，传给骑手的辐射热量的速率会小于 20.0 W。"
+   }
+  },
+  {
+   "id": "ic2",
+   "source_id": "fs-id3176909",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-transfer-strategy",
+   "prompt": "大流星有时会撞击地球，把它们的大部分动能转化为热能。（a）一颗质量为 $10^9\\;\\text{kg}$、以 25.0 km/s 运动的流星，动能是多少？（b）如果这颗流星落入深海，其动能的 $80\\%$ 用于加热水，它能使多少千克的水升温 $5.0^\\circ\\text{C}$？（c）讨论流星的能量更可能以何种方式沉积在海洋中，以及这些能量可能产生的影响。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3e+17,
+      "unit": "J",
+      "hint": "$\\tfrac{1}{2}mv^2$，速率以米每秒为单位。"
+     },
+     {
+      "part": "(b)",
+      "value": 10000000000000.0,
+      "unit": "kg",
+      "hint": "令动能的 80% 等于水的 $mc\\kdTemp$，解出质量。"
+     }
+    ],
+    "solution": "（a）$3 \\times 10^{17}\\;\\text{J}$（b）$1 \\times 10^{13}\\;\\text{kg}$（c）当大流星撞击海洋时，它会引起巨大的海啸，把其大量能量以水的动能形式耗散掉。"
+   }
+  },
+  {
+   "id": "ic4",
+   "source_id": "fs-id3353126",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-transfer-strategy",
+   "prompt": "（a）一座大型电力设施产生 1600 MW 的“废热”，这些废热在冷却塔中通过使流经塔的空气升温 $5.00^\\circ\\text{C}$ 而耗散到环境中。所需的空气流量是多少 $\\text{m}^3\\text{/s}$？（b）你的结果与许多大型发电厂使用的大型冷却塔相符吗？",
+   "answer": {
+    "type": "number",
+    "value": 344000.0,
+    "unit": "m³/s",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "每秒带走的热量为 $(m/t)\\,c\\,\\kdTemp$，空气的定压比热容取自表 14.1；每秒的质量等于空气密度乘以每秒的体积。",
+    "solution": "（a）$3.44 \\times 10^5\\;\\text{m}^3\\text{/s}$（b）这相当于每秒 1200 万立方英尺的空气。这是巨大的。仅靠把空气加热 $5^\\circ\\text{C}$，这么大的量是无法耗散掉的。这些冷却塔中有许多利用较冷的空气在较暖的水上方的循环来提高蒸发速率。这样所需的空气量就小得多，就能带走如此大量的热量，因为蒸发带走的热量比（a）部分所考虑的更多。"
+   }
+  },
+  {
+   "id": "ic6",
+   "source_id": "fs-id2400920",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-transfer-strategy",
+   "prompt": "一位质量为 76.0 kg、患有低体温症的人进入室内，并剧烈地颤抖。如果所有其他形式的热传递都达到平衡，这种热传递要用多长时间才能使此人的体温升高 $2.00^\\circ\\text{C}$？",
+   "answer": {
+    "type": "number",
+    "value": 20.9,
+    "unit": "min",
+    "generated_by": "source",
+    "hint": "所需热量为 $mc\\kdTemp$，人体的比热容取自表 14.1；用它除以颤抖的功率，该功率取自“功、能量和能源”中的能量消耗速率表。",
+    "solution": "20.9 min"
+   }
+  },
+  {
+   "id": "ic8",
+   "source_id": "fs-id3012447",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-transfer-strategy",
+   "prompt": "热量通过蒸发水分从你的肺和呼吸道传出。（a）当你吸入 1.50 L、原始相对湿度为 40.0% 的 $37^\\circ\\text{C}$ 空气时，计算最多可以蒸发多少克水。（假设体温也是 $37^\\circ\\text{C}$。）（b）蒸发这么多水需要多少焦耳的能量？（c）如果你以休息时每分钟 10.0 次呼吸的正常速率呼吸，通过这种方式的热传递速率是多少瓦特？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.0396,
+      "unit": "g",
+      "hint": "呼出的空气是饱和的，所以蒸发的水为 37 °C 时饱和蒸气密度的 60.0%（取自“温度、气体动理论与气体定律”中的表）乘以 1.50 L。"
+     },
+     {
+      "part": "(b)",
+      "value": 96.2,
+      "unit": "J",
+      "hint": "$Q = mL_{\\text{v}}$，体温下的汽化热为 2430 kJ/kg。"
+     },
+     {
+      "part": "(c)",
+      "value": 16.0,
+      "unit": "W",
+      "hint": "每分钟十次呼吸，即每 6.00 s 一次。"
+     }
+    ],
+    "solution": "（a）$3.96 \\times 10^{-2}\\;\\text{g}$（b）96.2 J（c）16.0 W"
+   }
+  },
+  {
+   "id": "ic10",
+   "source_id": "fs-id1945562",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-transfer-strategy",
+   "prompt": "热空气上升是因为它膨胀了。于是它排开更大体积的冷空气，这增大了它所受的浮力。（a）计算被 $20.0^\\circ\\text{C}$ 空气包围的 $50.0^\\circ\\text{C}$ 空气所受浮力与其重力之比。（b）使 $1.00\\;\\text{m}^3$ 的空气从 $20.0^\\circ\\text{C}$ 升到 $50.0^\\circ\\text{C}$ 需要多少能量？（c）如果这部分体积的空气上升 1.00 m，它获得多少重力势能？这会使空气显著冷却吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.102,
+      "unit": "",
+      "hint": "在压强恒定时，气体的密度与其热力学温度成反比，所以浮力与重力之比等于两个密度之比，即 $323.15/293.15$。"
+     },
+     {
+      "part": "(b)",
+      "value": 27900.0,
+      "unit": "J",
+      "hint": "质量等于空气密度乘以 $1.00\\;\\text{m}^3$；使用表 14.1 中空气的定压比热容和 $Q = mc\\kdTemp$。"
+     },
+     {
+      "part": "(c)",
+      "value": 12.6,
+      "unit": "J",
+      "hint": "同样质量上升 1.00 m 的 $mgh$；把它与（b）部分的热量作比较。"
+     }
+    ],
+    "solution": "（a）1.102（b）$2.79 \\times 10^4\\;\\text{J}$（c）12.6 J。这不会使空气显著冷却，因为它远小于（b）部分求得的能量，后者是使空气从 $20.0^\\circ\\text{C}$ 升温到 $50.0^\\circ\\text{C}$ 所需的能量。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "radiation-fourth-power"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "stefan-boltzmann-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "stefan-boltzmann-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "radiation-fourth-power",
+   "weight": 3
+  },
+  {
+   "exercise": "ap2",
+   "concept": "greenhouse-effect"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "absorbers-and-emitters",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "absorbers-and-emitters"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "emissivity",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "net-radiation-rate"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "radiation-fourth-power",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "greenhouse-effect"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "net-radiation-rate",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "net-radiation-rate"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "absorbers-and-emitters",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "greenhouse-effect"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "net-radiation-rate",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "net-radiation-rate"
+  },
+  {
+   "exercise": "p1",
+   "concept": "emissivity",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "net-radiation-rate"
+  },
+  {
+   "exercise": "p3",
+   "concept": "stefan-boltzmann-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "net-radiation-rate"
+  },
+  {
+   "exercise": "p5",
+   "concept": "emissivity",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "radiation-fourth-power"
+  },
+  {
+   "exercise": "p7",
+   "concept": "stefan-boltzmann-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "net-radiation-rate"
+  },
+  {
+   "exercise": "p9",
+   "concept": "rate-of-conductive-heat-transfer",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "heat-transfer-methods-strategy",
+   "weight": 3
+  },
+  {
+   "exercise": "p11",
+   "concept": "net-radiation-rate"
+  },
+  {
+   "exercise": "p11",
+   "concept": "absorbers-and-emitters",
+   "weight": 2
+  },
+  {
+   "exercise": "ic2",
+   "concept": "heat-transfer-methods-strategy"
+  },
+  {
+   "exercise": "ic2",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ic2",
+   "concept": "heat-and-temperature-change",
+   "weight": 3
+  },
+  {
+   "exercise": "ic4",
+   "concept": "heat-transfer-methods-strategy"
+  },
+  {
+   "exercise": "ic4",
+   "concept": "convection-heat-rate",
+   "weight": 3
+  },
+  {
+   "exercise": "ic6",
+   "concept": "heat-transfer-methods-strategy"
+  },
+  {
+   "exercise": "ic6",
+   "concept": "heat-and-temperature-change",
+   "weight": 3
+  },
+  {
+   "exercise": "ic6",
+   "concept": "power",
+   "weight": 2
+  },
+  {
+   "exercise": "ic8",
+   "concept": "heat-transfer-methods-strategy"
+  },
+  {
+   "exercise": "ic8",
+   "concept": "heat-of-vaporization",
+   "weight": 3
+  },
+  {
+   "exercise": "ic8",
+   "concept": "relative-humidity",
+   "weight": 2
+  },
+  {
+   "exercise": "ic10",
+   "concept": "heat-transfer-methods-strategy"
+  },
+  {
+   "exercise": "ic10",
+   "concept": "buoyant-force",
+   "weight": 2
+  },
+  {
+   "exercise": "ic10",
+   "concept": "heat-and-temperature-change",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "block",
+   "label": "画了两次的物块",
+   "figures": [
+    "sim-blocks"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "例题 14.9 中的人",
+   "figures": [
+    "sim-radiation-balance"
+   ]
+  },
+  {
+   "id": "walls",
+   "label": "房间的墙壁",
+   "figures": [
+    "sim-radiation-balance"
+   ]
+  },
+  {
+   "id": "sun",
+   "label": "太阳",
+   "figures": [
+    "sim-greenhouse"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球及其表面",
+   "figures": [
+    "sim-greenhouse"
+   ]
+  },
+  {
+   "id": "atmosphere",
+   "label": "大气",
+   "figures": [
+    "sim-greenhouse"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1500 @@
+{
+ "types": [
+  {
+   "id": "charge",
+   "label": "电荷",
+   "dimension": "C"
+  },
+  {
+   "id": "electric-field",
+   "label": "电场",
+   "dimension": "N/C"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "q",
+   "latex": "q",
+   "macro": "\\kq"
+  },
+  {
+   "sym": "Q_charge",
+   "latex": "Q",
+   "macro": "\\kQch"
+  },
+  {
+   "sym": "q_1",
+   "latex": "q_1",
+   "macro": "\\kqone"
+  },
+  {
+   "sym": "q_2",
+   "latex": "q_2",
+   "macro": "\\kqtwo"
+  },
+  {
+   "sym": "q_e",
+   "latex": "q_{\\text{e}}",
+   "macro": "\\kqe"
+  },
+  {
+   "sym": "q_tot",
+   "latex": "q_{\\text{tot}}",
+   "macro": "\\kqtot"
+  },
+  {
+   "sym": "q_a",
+   "latex": "q_{\\text{a}}",
+   "macro": "\\kqa"
+  },
+  {
+   "sym": "q_b",
+   "latex": "q_{\\text{b}}",
+   "macro": "\\kqb"
+  },
+  {
+   "sym": "q_c",
+   "latex": "q_{\\text{c}}",
+   "macro": "\\kqc"
+  },
+  {
+   "sym": "q_d",
+   "latex": "q_{\\text{d}}",
+   "macro": "\\kqd"
+  },
+  {
+   "sym": "E_field",
+   "latex": "E",
+   "macro": "\\kEf"
+  },
+  {
+   "sym": "E_field1",
+   "latex": "E_1",
+   "macro": "\\kEfone"
+  },
+  {
+   "sym": "E_field2",
+   "latex": "E_2",
+   "macro": "\\kEftwo"
+  },
+  {
+   "sym": "E_tot",
+   "latex": "E_{\\text{tot}}",
+   "macro": "\\kEftot"
+  },
+  {
+   "sym": "E_par",
+   "latex": "E_{\\parallel}",
+   "macro": "\\kEfpar"
+  },
+  {
+   "sym": "E_perp",
+   "latex": "E_{\\perp}",
+   "macro": "\\kEfperp"
+  },
+  {
+   "sym": "F_G",
+   "latex": "F_{\\text{G}}",
+   "macro": "\\kFG"
+  },
+  {
+   "sym": "F_par",
+   "latex": "F_{\\parallel}",
+   "macro": "\\kFpar"
+  },
+  {
+   "sym": "k_coul",
+   "latex": "k"
+  },
+  {
+   "sym": "m_e",
+   "latex": "m_{\\text{e}}",
+   "macro": "\\kme"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "electric-charge",
+   "kind": "definition",
+   "section": "18.1",
+   "name": "电荷",
+   "symbol": "q",
+   "terms": [
+    "电荷"
+   ],
+   "type": "charge",
+   "statement": "一个此前没有引入过的物理量，即电荷，解释了静电的各种效应。电荷只有两种，一种叫正电荷，另一种叫负电荷。我们知道有两种，是因为以受控的方式把某些材料相互摩擦，总是在一种材料上产生一种电荷，在另一种材料上产生相反的电荷。用丝绸摩擦过的玻璃带正电，丝绸带负电，这些名称是一种约定，可以追溯到富兰克林。"
+  },
+  {
+   "id": "like-charges-repel",
+   "kind": "axiom",
+   "section": "18.1",
+   "name": "同号电荷相斥",
+   "statement": "两根用丝绸摩擦过的玻璃棒相互排斥，因为每一根都带正电荷；两块这样摩擦过的丝绸也相互排斥，而玻璃棒和丝绸则相互吸引，因为它们的电荷相反。电荷之间的力随距离增大而减小。这两个事实解释了静电吸附、贴在墙上的气球和竖起来的头发。库仑定律随后将准确地说明这个力如何取决于电荷和它们之间的距离。"
+  },
+  {
+   "id": "charge-of-electron-and-proton",
+   "kind": "idea",
+   "section": "18.1",
+   "name": "电子和质子的电荷",
+   "statement": "通常物质由原子构成，而原子含有正电荷和负电荷，且通常数量相等。在行星模型中，带负电的电子绕着重得多的带正电的原子核运行，原子核的电荷来自它的质子；中子不带电。自然界中几乎所有的电荷都来自电子和质子，它们的电荷大小相同而符号相反，在宇宙线和加速器中看到的其他带电粒子只能存在很短的时间。"
+  },
+  {
+   "id": "elementary-charge",
+   "kind": "axiom",
+   "section": "18.1",
+   "name": "元电荷",
+   "statement": "自然界中所有带电的物体，其电荷都是一个基本电荷量的整数倍，这个基本电荷量就是单个电子或质子所带电荷的大小，$|q_\\text{e}| = 1.60 \\times 10^{-19}$ C。符号 $q$ 代表电荷，下标 e 标记单个电子或质子的电荷。直接观察到的电荷没有比它更小的。质子内部的夸克带有它的 $-\\tfrac13$ 和 $+\\tfrac23$，但从来没有人见过单独存在的夸克。",
+   "forms": [
+    {
+     "id": "eq-elementary-charge",
+     "latex": "|q_{\\text{e}}| = 1.60 \\times 10^{-19}\\ \\text{C}",
+     "ktex": "|\\kqe| = 1.60 \\times 10^{-19}\\ \\text{C}",
+     "anchor": "18.1-electrons-and-protons"
+    }
+   ]
+  },
+  {
+   "id": "count-charges-from-charge",
+   "kind": "skill",
+   "section": "18.1",
+   "name": "由电荷量求电荷的个数",
+   "statement": "电荷的 SI 单位是库仑，构成 1.00 C 所需的质子数是 $6.25 \\times 10^{18}$，即一库仑除以一个质子所带的电荷。同样数目的电子带有 $-1.00$ C。要把任一电荷换算成电子的个数，就除以 $|q_\\text{e}|$。要把通过导线移动的电子数，或从电中性物体上移走的电子数，换回库仑，就相乘。",
+   "forms": [
+    {
+     "id": "eq-protons-per-coulomb",
+     "latex": "1.00\\ \\text{C} \\times \\frac{1\\ \\text{质子}}{1.60 \\times 10^{-19}\\ \\text{C}} = 6.25 \\times 10^{18}\\ \\text{质子}",
+     "anchor": "18.1-electrons-and-protons"
+    }
+   ]
+  },
+  {
+   "id": "charge-separation-by-rubbing",
+   "kind": "idea",
+   "section": "18.1",
+   "name": "摩擦使已有的电荷分离",
+   "statement": "把材料相互摩擦，使原子和分子中的电荷分离。有些原子和分子对电子的亲和力比另一些更大，通过紧密接触而带负电，使另一种材料带正电。电池则是通过化学相互作用使电荷分离。以这种方式分离电荷既不产生也不消灭任何电荷，只是使已有的电荷移动位置。对于宏观物体，带负电意味着电子过剩，带正电意味着电子缺失。"
+  },
+  {
+   "id": "conservation-of-charge",
+   "kind": "axiom",
+   "section": "18.1",
+   "name": "电荷守恒定律",
+   "terms": [
+    "电荷守恒定律"
+   ],
+   "statement": "在任何过程中，总电荷保持不变。摩擦只是使已有的电荷移动位置。即使在粒子加速器中，能量变成质量，质量为 $\\Delta m = E/c^2$，每个带电粒子也总是与另一个带相反电荷的粒子一同出现，所以产生的总电荷为零。当一个粒子与其反物质对应粒子湮没时，湮没前后的总电荷都为零。没有任何实验发现这条定律被违反。电荷与能量、动量和角动量一起，列入自然界始终守恒的少数几个量之中。"
+  },
+  {
+   "id": "static-electricity",
+   "kind": "definition",
+   "section": "18.1",
+   "name": "静电",
+   "terms": [
+    "静电"
+   ],
+   "statement": "静电是电荷在物体表面上的积累。它使在干燥的头发上梳过的梳子能吸起小纸片，也使烘干机里出来的袜子粘在毛衣上。"
+  },
+  {
+   "id": "electromagnetic-force",
+   "kind": "idea",
+   "section": "18.1",
+   "name": "电磁力",
+   "terms": [
+    "电磁力"
+   ],
+   "statement": "电磁力是自然界四种基本力之一。它包括电荷之间的静电力、运动电荷与磁体之间的磁力，以及把它们传过空间的电磁波。"
+  },
+  {
+   "id": "electron",
+   "kind": "definition",
+   "section": "18.1",
+   "name": "电子",
+   "terms": [
+    "电子"
+   ],
+   "statement": "电子是绕原子核运行的一种粒子，带有最小单位的负电荷。"
+  },
+  {
+   "id": "proton",
+   "kind": "definition",
+   "section": "18.1",
+   "name": "质子",
+   "terms": [
+    "质子",
+    "质子"
+   ],
+   "statement": "质子是原子核中的一种粒子，带正电荷，电荷的大小等于电子的电荷，而质量要大得多。",
+   "forms": [
+    {
+     "id": "eq-proton-mass",
+     "latex": "m_{\\text{p}} = 1.67 \\times 10^{-27}\\;\\text{kg}",
+     "section": "30.2",
+     "anchor": "30.2-electron-mass"
+    }
+   ]
+  },
+  {
+   "id": "conductor",
+   "kind": "definition",
+   "section": "18.2",
+   "name": "导体",
+   "terms": [
+    "导体"
+   ],
+   "statement": "有些物质，例如金属和盐水，允许电荷在其中相对容易地移动。金属中的一些电子不束缚于单个原子，这些自由电子能在材料中移动，就像空气在松散的沙子中流动一样；盐水和类似的材料则含有自由离子，离子是总电荷不为零的原子或分子。任何具有自由电子或自由离子、并允许电荷在其中相对自由地移动的物质都是导体。"
+  },
+  {
+   "id": "insulator",
+   "kind": "definition",
+   "section": "18.2",
+   "name": "绝缘体",
+   "terms": [
+    "绝缘体"
+   ],
+   "statement": "其他物质，例如玻璃，不允许电荷在其中移动；这些就是绝缘体。绝缘体中的电子和离子被束缚在结构中，不容易移动，比在导体中慢多达 $10^{23}$ 倍。纯水和干燥的食盐是绝缘体，而熔盐和盐水是导体，导线外面的橡胶和塑料使它的电荷不会向外逸出。"
+  },
+  {
+   "id": "charging-by-contact",
+   "kind": "idea",
+   "section": "18.2",
+   "name": "接触起电",
+   "statement": "用带电体接触一个物体，会使它带上同号的电荷。当带正电的玻璃棒接触验电器的金属球时，玻璃棒把电子吸引到验电器的顶部，其中一些转移到玻璃棒上。验电器保持净的正电荷，其斥力使轻的金箔分开，而玻璃棒在转移中失去了一部分过剩电荷。因为玻璃棒是绝缘体，所以它必须真正接触验电器才能转移电荷。"
+  },
+  {
+   "id": "polarization",
+   "kind": "definition",
+   "section": "18.2",
+   "name": "极化",
+   "terms": [
+    "极化",
+    "极化的"
+   ],
+   "statement": "极化是仍然保持电中性的物体中电荷的分离。当带电的棒靠近电中性的导体时，它把异号的电荷吸引到近侧，而把同号的电荷留在远侧。在绝缘体中，每个原子或分子中的电荷分布发生轻微的移动。有些分子，如水，是极性的，它们虽然整体上是电中性的，却有天然的电荷分离。"
+  },
+  {
+   "id": "grounding",
+   "kind": "definition",
+   "section": "18.2",
+   "name": "接地",
+   "terms": [
+    "接地的",
+    "接地"
+   ],
+   "statement": "当一根导线从导体通向大地时，这个导体就是接地的。由于地球很大，而且大多数地面是良导体，所以它能容易地提供或接受过剩电荷。接地的导体把任何过剩电荷损失给大地，或者从大地中吸取附近电荷所吸引的电荷。在移走附近的带电体之前断开接地连接，会使导体带上净电荷。"
+  },
+  {
+   "id": "charging-by-induction",
+   "kind": "idea",
+   "section": "18.2",
+   "name": "感应起电",
+   "terms": [
+    "感应"
+   ],
+   "statement": "你可以使一个物体带电而不必直接向它转移过剩电荷。把带电的棒靠近两个相接触的电中性球，它把异号电荷吸引到近处的球，而使另一个球带上同号电荷。在移开棒之前把两球分开，每个球就都保留了净电荷。你也可以用同样的方法使单个球带电，即在棒靠近时使它接地，然后断开接地连接。感应起电的物体得到与棒相反的电荷，而棒并没有失去任何过剩电荷，所以这个过程可以重复进行。"
+  },
+  {
+   "id": "attraction-of-neutral-objects",
+   "kind": "result",
+   "section": "18.2",
+   "name": "对电中性物体的吸引",
+   "statement": "任何带电体，无论带正电还是负电，都吸引电中性物体。当带电的棒靠近电中性的物质时，它在较近处吸引异号电荷，并排斥同号电荷。静电力随距离增大而减小，所以较远处的同号电荷所受的斥力，比较近处的异号电荷所受的引力要弱。净力是引力。这就是抛光的琥珀能吸起稻草、梳子能吸起纸片、带电的棒能使水流弯曲的原因。"
+  },
+  {
+   "id": "free-charge",
+   "kind": "definition",
+   "section": "18.2",
+   "name": "自由电荷",
+   "terms": [
+    "自由电荷"
+   ],
+   "statement": "自由电荷是能够脱离其原子或分子而单独移动的电荷。在金属中，一些电子不束缚于单个原子，这些自由电子在材料中传导电荷。"
+  },
+  {
+   "id": "free-electron",
+   "kind": "definition",
+   "section": "18.2",
+   "name": "自由电子",
+   "terms": [
+    "自由电子"
+   ],
+   "statement": "自由电子是可以自由离开其原子轨道的电子。金属是良导体，因为它们的一些电子是自由的。"
+  },
+  {
+   "id": "electrostatic-repulsion",
+   "kind": "idea",
+   "section": "18.2",
+   "name": "静电斥力",
+   "terms": [
+    "静电斥力"
+   ],
+   "statement": "静电斥力是两个带同号电荷的物体相互排斥的现象。"
+  },
+  {
+   "id": "coulombs-law",
+   "kind": "axiom",
+   "section": "18.3",
+   "name": "库仑定律",
+   "terms": [
+    "库仑定律"
+   ],
+   "statement": "静电力的主要特征是：有两种电荷，同号电荷相斥、异号电荷相吸，以及力随距离的增大而减小。十八世纪后期，夏尔·库仑把它们变成了以他命名的公式。库仑定律给出相距 $r$ 的两个点电荷之间力的大小。它与两个电荷的乘积成正比，与它们之间距离的平方成反比。现代实验已经把平方反比验证到了 $10^{16}$ 分之一的精度，没有发现任何例外，即使在原子之内也是如此。",
+   "forms": [
+    {
+     "id": "eq-coulombs-law",
+     "latex": "F = k\\frac{|q_1 q_2|}{r^2}",
+     "ktex": "\\kF = k\\frac{|\\kqone \\kqtwo|}{r^2}",
+     "condition": "两个点电荷",
+     "anchor": "18.3-electrostatic-force"
+    }
+   ]
+  },
+  {
+   "id": "coulomb-constant",
+   "kind": "axiom",
+   "section": "18.3",
+   "name": "库仑常量",
+   "symbol": "k_coul",
+   "statement": "在 SI 单位制中，库仑定律中的常量是 $k = 8.988 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2$，通常取整为 $8.99 \\times 10^{9}$。正是它的大小使一库仑成为如此大的电荷量：各为 1 C 的两个电荷，相距 1 m，相互作用的力将近 $10^{10}$ N，所以日常静电的电荷是纳库和微库量级。",
+   "forms": [
+    {
+     "id": "eq-coulomb-constant",
+     "latex": "k = 8.988 \\times 10^{9}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{C}^2} \\approx 8.99 \\times 10^{9}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{C}^2}",
+     "anchor": "18.3-electrostatic-force"
+    }
+   ]
+  },
+  {
+   "id": "coulomb-force-direction",
+   "kind": "axiom",
+   "section": "18.3",
+   "name": "库仑力的方向",
+   "statement": "静电力是一个以牛顿表示的矢量，它被理解为沿着两个电荷的连线，同号电荷之间为斥力，异号电荷之间为引力。牛顿第三定律照常适用：$q_1$ 所受的力与 $q_1$ 对 $q_2$ 施加的力大小相等、方向相反，无论这两个电荷有多大。"
+  },
+  {
+   "id": "coulomb-force-scaling",
+   "kind": "skill",
+   "section": "18.3",
+   "name": "库仑力的比例关系",
+   "statement": "因为力与每个电荷成正比，与间距的平方成反比，所以其中任何一个量的改变都会使力改变一个因子，这个因子无需计算常量就能读出。距离减半使力乘以四，距离变为三倍使力除以九，一个电荷加倍使力加倍，而要使力改变为 10 倍，距离需要朝任一方向改变 $\\sqrt{10} \\approx 3.2$ 倍。"
+  },
+  {
+   "id": "coulomb-versus-gravity",
+   "kind": "result",
+   "section": "18.3",
+   "name": "库仑力与引力",
+   "statement": "对于一个电子和一个质子，静电力与引力之比是 $2.27 \\times 10^{39}$，在任何间距下都是如此，因为二者都按平方反比减小，距离在比值中消去。因此在单个带电粒子相互作用的地方，引力完全可以忽略。在大尺度上则相反：大多数物体几乎是电中性的，所以吸引的和排斥的库仑力几乎抵消，而始终是吸引的引力则不断叠加，在大物体之间占主导地位。",
+   "forms": [
+    {
+     "id": "eq-coulomb-gravity-ratio",
+     "latex": "\\frac{F}{F_{\\text{G}}} = 2.27 \\times 10^{39}",
+     "ktex": "\\frac{\\kF}{\\kFG} = 2.27 \\times 10^{39}",
+     "condition": "一个电子和一个质子，在任何间距下",
+     "anchor": "18.3-against-gravity"
+    }
+   ]
+  },
+  {
+   "id": "electrostatic-force",
+   "kind": "definition",
+   "section": "18.3",
+   "name": "静电力",
+   "terms": [
+    "库仑力",
+    "静电力",
+    "库仑相互作用"
+   ],
+   "statement": "静电力，也称库仑力，是两个带电体之间的吸引或排斥，既有大小又有方向。库仑定律给出了点电荷之间的静电力。"
+  },
+  {
+   "id": "coulomb-force-field",
+   "kind": "idea",
+   "section": "18.4",
+   "name": "库仑力场",
+   "statement": "场描绘了围绕任何物体、并在没有明显物理联系的情况下超距作用于另一个物体的力，正如地球的引力场描绘了一个质量在任一点会感受到的力。围绕电荷 $Q$ 的库仑力场延伸到整个空间，库仑定律给出它对检验电荷 $q$ 的力的大小为 $F = k|qQ|/r^2$。它的大小和方向既取决于 $Q$，也取决于检验电荷，所以它在空间任一点都不是唯一的。"
+  },
+  {
+   "id": "test-charge",
+   "kind": "definition",
+   "section": "18.4",
+   "name": "点电荷与检验电荷",
+   "terms": [
+    "检验电荷"
+   ],
+   "statement": "产生场的电荷是点电荷，记作 $Q$；放在场中去感受场的电荷是检验电荷，记作 $q$。检验电荷取为正的，使场的方向就是它所受力的方向，而且它小到不会改变产生场的电荷分布。"
+  },
+  {
+   "id": "electric-field",
+   "kind": "definition",
+   "section": "18.4",
+   "name": "电场",
+   "symbol": "E_field",
+   "terms": [
+    "电场",
+    "电场强度"
+   ],
+   "type": "electric-field",
+   "statement": "为了得到一个只取决于产生它的电荷的场，把电场定义为库仑力与它所作用的正检验电荷之比。这样定义之后，它只代表产生它的电荷，并且在空间每一点都是唯一的，它的方向是正检验电荷所受力的方向，它的单位是牛顿每库仑。它是矢量，几个电荷产生的场像矢量一样相加。",
+   "forms": [
+    {
+     "id": "eq-electric-field",
+     "latex": "E = \\frac{F}{q}",
+     "ktex": "\\kEf = \\frac{\\kF}{\\kq}",
+     "anchor": "18.4-electric-field-defined"
+    }
+   ]
+  },
+  {
+   "id": "force-from-electric-field",
+   "kind": "result",
+   "section": "18.4",
+   "name": "场中电荷所受的力",
+   "statement": "如果已知电场，则任何电荷 $q$ 所受的静电力等于电荷乘以场。正电荷所受的力沿场的方向，负电荷所受的力与场的方向相反，这就是 $q$ 上的负号所表示的意思。",
+   "forms": [
+    {
+     "id": "eq-force-from-field",
+     "latex": "F = qE",
+     "ktex": "\\kF = \\kq\\kEf",
+     "anchor": "18.4-electric-field-defined"
+    }
+   ]
+  },
+  {
+   "id": "field-of-point-charge",
+   "kind": "result",
+   "section": "18.4",
+   "name": "点电荷的电场",
+   "statement": "把场的定义应用于检验电荷所受的库仑力，检验电荷被消去，点电荷的电场大小为 $E = k|Q|/r^2$。场只取决于电荷 $Q$ 和到它的距离 $r$，与检验电荷完全无关；它背离正的 $Q$，指向负的 $Q$。",
+   "forms": [
+    {
+     "id": "eq-field-of-point-charge",
+     "latex": "E = k\\frac{|Q|}{r^2}",
+     "ktex": "\\kEf = k\\frac{|\\kQch|}{r^2}",
+     "condition": "点电荷",
+     "anchor": "18.4-field-of-point-charge"
+    },
+    {
+     "id": "eq-field-of-point-charge-derivation",
+     "latex": "E = \\left|\\frac{F}{q}\\right| = k\\left|\\frac{qQ}{qr^2}\\right| = k\\frac{|Q|}{r^2}",
+     "ktex": "\\kEf = \\left|\\frac{\\kF}{\\kq}\\right| = k\\left|\\frac{\\kq\\kQch}{\\kq r^2}\\right| = k\\frac{|\\kQch|}{r^2}",
+     "anchor": "18.4-field-of-point-charge"
+    },
+    {
+     "id": "eq-point-charge-field",
+     "latex": "E = \\frac{F}{q} = \\frac{kQ}{r^2}",
+     "ktex": "\\kEf = \\frac{\\kF}{\\kq} = \\frac{k\\kQch}{\\kr^2}",
+     "condition": "点电荷",
+     "section": "19.3",
+     "anchor": "19.3-scalar-and-vector"
+    }
+   ]
+  },
+  {
+   "id": "electric-field-direction",
+   "kind": "result",
+   "section": "18.4",
+   "name": "电场的方向",
+   "statement": "因为场是针对正检验电荷定义的，所以它背离正电荷，指向负电荷；放在场中的电荷所受的力，对正电荷沿场的方向，对负电荷则与场的方向相反。计算中得到为正的场，是背离产生它的电荷的场。"
+  },
+  {
+   "id": "point-charge",
+   "kind": "definition",
+   "section": "18.4",
+   "name": "点电荷",
+   "terms": [
+    "点电荷"
+   ],
+   "statement": "点电荷，记作 $Q$，是产生电场的带电粒子。"
+  },
+  {
+   "id": "electric-field-lines",
+   "kind": "idea",
+   "section": "18.5",
+   "name": "电场线",
+   "terms": [
+    "电场线"
+   ],
+   "statement": "由于电场既有大小又有方向，它是矢量，你可以在任一点把它画成一个箭头，箭头的长度就是它的大小。标准的图像用连续的场线取代箭头，场线在任一点的方向与场的方向相同，场线的疏密表示场的强弱。场线是无限小的力矢量的分布图，是一种图示工具，而不是实际存在的东西。引力场、磁场和其他场使用同样的图像。"
+  },
+  {
+   "id": "field-line-properties",
+   "kind": "result",
+   "section": "18.5",
+   "name": "电场线的性质",
+   "statement": "对于任何电荷分布，场线始于正电荷，止于负电荷，对于孤立电荷则止于无穷远。从正电荷发出或进入负电荷的场线条数与电荷的大小成正比。场的强弱与垂直于场线的单位面积上的场线条数成正比。点电荷的场按 $1/r^2$ 减小，而它的场线分布在按 $r^2$ 增大的面积上，所以场线恰好表现出了这一点。场的方向是任一点处场线的切线方向。场线永远不能相交，因为场在每一点都是唯一的，相交会使它有两个方向。"
+  },
+  {
+   "id": "superposition-of-electric-fields",
+   "kind": "axiom",
+   "section": "18.5",
+   "name": "电场的叠加",
+   "statement": "在许多情形下有多个电荷，它们在一点产生的合电场是每个电荷所产生的各个场的矢量和。每个电荷在该点的场由 $E = k|Q|/r^2$ 求出，方向取正检验电荷在该点所受力的方向，然后用求力和速度时同样的矢量方法把这些场相加。"
+  },
+  {
+   "id": "add-electric-fields",
+   "kind": "skill",
+   "section": "18.5",
+   "name": "两个电荷电场的相加",
+   "statement": "要求一点的合电场，先求出每个电荷在该点的场的大小和方向，方向则假设一个正检验电荷位于该点来确定，然后把这些矢量相加。当两个场相互垂直时，如例题 18.4 那样，勾股定理给出大小，反正切给出方向；否则就用分量或图解方法。",
+   "forms": [
+    {
+     "id": "eq-total-field-perpendicular",
+     "latex": "E_{\\text{tot}} = \\left(E_1^2 + E_2^2\\right)^{1/2}",
+     "ktex": "\\kEftot = \\left(\\kEfone^2 + \\kEftwo^2\\right)^{1/2}",
+     "condition": "两个相互垂直的场",
+     "anchor": "18.5-adding-fields"
+    },
+    {
+     "id": "eq-total-field-direction",
+     "latex": "\\theta = \\tan^{-1}\\!\\left(\\frac{E_1}{E_2}\\right)",
+     "ktex": "\\theta = \\tan^{-1}\\!\\left(\\frac{\\kEfone}{\\kEftwo}\\right)",
+     "condition": "两个相互垂直的场",
+     "anchor": "18.5-adding-fields"
+    }
+   ]
+  },
+  {
+   "id": "superposition-of-coulomb-forces",
+   "kind": "skill",
+   "section": "18.5",
+   "name": "求几个电荷作用的合力",
+   "statement": "一个电荷所受的总力，是其他电荷对它施加的库仑力的矢量和，每个力都沿着这一对电荷的连线，并且每个力都由库仑定律求出。等价地，它是电荷乘以其所在位置的合电场。对称性往往在你代入任何数值之前就确定了方向，凡是各个力相互抵消的地方，合力就为零。"
+  },
+  {
+   "id": "field-of-two-charges",
+   "kind": "idea",
+   "section": "18.5",
+   "name": "两个电荷的电场",
+   "statement": "两个点电荷的场可以这样画出：求出若干代表性点处的合电场，再画出与之一致的场线。在两个同号电荷之间，场较弱，场线较稀，因为两个电荷的场在那里相互抵消；在很远处，场变成一个更大的单个电荷的场。在两个异号电荷之间，场较强，因为两个场方向相同；在远处场很弱，因为两个场相减，看起来像一个较小的单个电荷的场。"
+  },
+  {
+   "id": "sketch-field-lines",
+   "kind": "skill",
+   "section": "18.5",
+   "name": "画电场线",
+   "statement": "场线图是根据五条性质画出的：场线从正电荷发出，进入负电荷，条数与电荷成正比；它们永不相交；它们的方向是场的方向，它们的疏密是场的强弱。在单个电荷附近，场线是辐射状的；在两个电荷附近，它们弯曲，如图 18.22 和图 18.23 所示；远离任何分布处，它们看起来像一个等于总电荷的单个电荷的场线。"
+  },
+  {
+   "id": "charged-biomolecules",
+   "kind": "idea",
+   "section": "18.6",
+   "name": "大的生物分子带电",
+   "statement": "经典静电学在分子生物学中起着重要作用，因为对生命如此重要的大分子，即蛋白质和核酸，通常是带电的。DNA 沿其长度每 0.3 nm 带约两个元电荷，正是静电力把这个分子维系在一起，并赋予它结构和强度；由于库仑力按 $1/r^2$ 减小，碱基对必须足够靠近，一个碱基内约 0.3 nm，两条链之间约 1 nm，这个力才能把它们维系住。"
+  },
+  {
+   "id": "polar-molecule",
+   "kind": "definition",
+   "section": "18.6",
+   "name": "极性分子与偶极子",
+   "terms": [
+    "极性分子"
+   ],
+   "statement": "水是强极性分子：它的十个电子倾向于更靠近氧原子核而不是氢原子核，这就产生了两个等量异号的电荷中心，即偶极子，其大小称为偶极矩。氧的一侧略带负电，氢的两端略带正电，于是分子之间产生异号电荷的吸引。具有天然电荷分离的分子，比电荷均匀分布的分子受其他电荷的影响更强。"
+  },
+  {
+   "id": "electrostatic-screening",
+   "kind": "idea",
+   "section": "18.6",
+   "name": "静电屏蔽",
+   "terms": [
+    "屏蔽"
+   ],
+   "statement": "生物体内的许多分子是带电的，然而静电力在生物学中所起的作用比你预期的要小，因为屏蔽削弱了它们。水分子中的两个电荷中心，以及细胞内外的 Na⁺、K⁺ 和 Cl⁻ 离子，使来自自由电荷的一些场线终止，并减弱了库仑相互作用。屏蔽使库仑力成为短程力而不是长程力。不过，细胞内的微管仍可能使电场延伸到更远的距离。"
+  },
+  {
+   "id": "dipole",
+   "kind": "definition",
+   "section": "18.6",
+   "name": "偶极子",
+   "terms": [
+    "偶极子"
+   ],
+   "statement": "偶极子是一对分开的、等量异号的电荷中心，例如电荷分布不对称的分子，它的一侧更偏正，另一侧更偏负。"
+  },
+  {
+   "id": "electrostatic-equilibrium",
+   "kind": "definition",
+   "section": "18.7",
+   "name": "静电平衡",
+   "terms": [
+    "静电平衡"
+   ],
+   "statement": "导体含有容易移动的自由电荷。当你把过剩电荷放在导体上，或把导体放进静电场中时，电荷很快达到一种稳定状态，称为静电平衡。自由电荷移动，直到不再有力使它们移动，处于平衡的导体的每一种性质都由这个条件得出。在金属中自由电荷是电子，但正电荷向一个方向移动等价于负电荷向另一个方向移动。"
+  },
+  {
+   "id": "field-perpendicular-to-conductor",
+   "kind": "result",
+   "section": "18.7",
+   "name": "导体表面处的电场",
+   "statement": "在静电平衡的导体表面上不可能有平行于表面的场分量，因为如果有，它就会对自由电荷施加力 $F_\\parallel = qE_\\parallel$，并使电荷进一步移动。自由电荷移动，直到场垂直于表面，所以紧靠导体之外，场线垂直于导体，止于或始于表面上的电荷。",
+   "forms": [
+    {
+     "id": "eq-parallel-force",
+     "latex": "F_{\\parallel} = qE_{\\parallel}",
+     "ktex": "\\kFpar = \\kq\\kEfpar",
+     "anchor": "18.7-free-charges-and-equilibrium"
+    }
+   ]
+  },
+  {
+   "id": "field-inside-conductor-zero",
+   "kind": "result",
+   "section": "18.7",
+   "name": "导体内部的电场",
+   "statement": "电场使放在其中的导体极化。它的自由电荷移动，直到场线止于表面某一部分的过剩负电荷，并又从相对一侧的过剩正电荷开始。内部不再有场，因为自由电荷会因任何场而不断移动，直到把它抵消。外部的场在导体附近变强，而在导体之内则完全消失。"
+  },
+  {
+   "id": "excess-charge-on-surface",
+   "kind": "result",
+   "section": "18.7",
+   "name": "导体表面上的过剩电荷",
+   "statement": "球形导体上的过剩电荷相互排斥并移动，直到均匀地分布在它的表面上，一旦内部的场为零，它们就留在那里。任何过剩电荷都完全位于导体的表面上。带电球之外的场，恰好就是位于球心、等于过剩电荷的点电荷的场。"
+  },
+  {
+   "id": "uniform-field-between-plates",
+   "kind": "result",
+   "section": "18.7",
+   "name": "平行板之间的电场",
+   "statement": "带等量异号过剩电荷的两块金属板产生非常均匀的电场。平衡导体的性质使电荷均匀分布，边缘附近除外。因此场线间距均匀，所以场的强度是均匀的，并且垂直于平面，所以场的方向也是均匀的。当板靠得很近时，边缘效应就不那么重要。这样的场使电荷获得均匀的加速度，如旧式阴极射线管的电子枪中那样。"
+  },
+  {
+   "id": "earths-electric-field",
+   "kind": "idea",
+   "section": "18.7",
+   "name": "地球的电场",
+   "statement": "一个约 150 N/C、方向向下的近似匀强电场围绕着地球，它在晴天由带正电的电离层与大部分带负电的地球之间维持，电离层是约 100 km 高处的一层带电粒子，二者都是导体。在风暴条件下形成云，局部的场可能更大并且反向；如果场超过约 $3 \\times 10^{6}$ N/C，绝缘的空气就被击穿而变成导体，这种放电就是闪电或电晕。"
+  },
+  {
+   "id": "charge-concentrates-at-points",
+   "kind": "result",
+   "section": "18.7",
+   "name": "尖端处的电荷集中",
+   "statement": "在不均匀的导体上，过剩电荷集中在最尖的地方。导体两端相同的一对电荷之间的力是一样的，但只有平行于表面的分量才使电荷分开。这个分量在最平的表面上最大，在最尖的一端最小，所以电荷最终在尖端靠得更近。场必须与表面成直角相交，在那里最强。外电场同样使导体极化，电荷最集中的地方在它最尖的一端。"
+  },
+  {
+   "id": "lightning-rod",
+   "kind": "idea",
+   "section": "18.7",
+   "name": "避雷针与光滑导体",
+   "statement": "在曲率很大的表面上，电荷集中到场能把它们从表面拉走的程度。避雷针越尖越好用，因为尖端不断地泄放风暴云在建筑物上感应的电荷，从而防止了更剧烈的雷击。要反过来防止电荷转移，例如在高压输电线上或范德格拉夫起电机的端部，就要使导体非常光滑，曲率半径尽可能大。"
+  },
+  {
+   "id": "faraday-cage",
+   "kind": "idea",
+   "section": "18.7",
+   "name": "法拉第笼",
+   "terms": [
+    "法拉第笼"
+   ],
+   "statement": "法拉第笼是围住一块空间的金属屏蔽罩：所有的电荷都位于它的外表面上，内部没有电场，所以它使环境中的杂散场不会干扰灵敏的测量，例如神经细胞内的信号。汽车的金属车身就是一个法拉第笼，这就是为什么在雷暴期间或有带电的电线落在车上时，最好待在车内，前提是你完全留在里面。"
+  },
+  {
+   "id": "ionosphere",
+   "kind": "idea",
+   "section": "18.7",
+   "name": "电离层",
+   "terms": [
+    "电离层"
+   ],
+   "statement": "电离层是地球表面上方约 100 km 处的一层带电粒子。它带正电，与大部分带负电的地球一起维持晴天的电场。"
+  },
+  {
+   "id": "van-de-graaff-generator",
+   "kind": "idea",
+   "section": "18.8",
+   "name": "范德格拉夫起电机",
+   "terms": [
+    "范德格拉夫起电机"
+   ],
+   "statement": "范德格拉夫起电机同时利用光滑表面与尖锐表面、导体与绝缘体，来积累大量的静电荷，从而得到很高的电压。靠近底部的一个尖的导体把电荷喷到一条移动的绝缘传送带上。大球内部的第二个尖的导体在顶部把电荷取下，电荷移到球的外表面。在场使周围的物质极化并电离、让电荷逸走之前，会积累起非常大的过剩电荷。范德格拉夫于 1931 年为核物理研究造出了第一台，1500 万伏的电压是切实可行的。"
+  },
+  {
+   "id": "xerography",
+   "kind": "idea",
+   "section": "18.8",
+   "name": "静电复印与激光打印机",
+   "terms": [
+    "静电复印"
+   ],
+   "statement": "大多数复印机使用静电复印，这是一种基于静电学的干式复印过程。尖端把正电荷喷到涂硒的铝鼓上。硒是光电导体，在暗处是绝缘体，在光照下是导体，所以图像明亮的地方，电荷漏到接地的鼓上，而图像暗的地方，正电荷保留下来。带电的区域吸引带负电的墨粉。带有更多正电荷的纸把墨粉从鼓上拉下来，加热的滚筒把它熔进纤维中。激光打印机用扫描的激光束在鼓上形成图像，其余过程相同。"
+  },
+  {
+   "id": "ink-jet-printer",
+   "kind": "idea",
+   "section": "18.8",
+   "name": "喷墨打印机",
+   "terms": [
+    "喷墨打印机"
+   ],
+   "statement": "喷墨打印机产生微小墨滴的细雾，并使它们带上静电荷。然后，成对的带电板非常精确地引导它们在纸上形成字母和图像，一个黑色喷头和三个彩色喷头产生彩色。静电喷涂以同样的方式使涂料带电。同号电荷的相互排斥使涂料从其来源飞出，表面张力形成液滴。表面的异号电荷把它们吸过去，垂直于导体，并在拐角和尖端处有额外的涂料。"
+  },
+  {
+   "id": "electrostatic-precipitator",
+   "kind": "idea",
+   "section": "18.8",
+   "name": "静电除尘器与空气净化",
+   "terms": [
+    "静电除尘器"
+   ],
+   "statement": "静电空气净化器把过剩电荷，通常是正电荷，加在空气中的烟、灰尘、花粉和其他颗粒上，然后让空气通过一个带相反电荷的栅网，栅网吸引并留住它们。大型除尘器能除去燃煤和燃油电厂烟道气中超过 99% 的颗粒，家用装置则能除去污染颗粒、刺激物和过敏原。"
+  },
+  {
+   "id": "electrostatics-problem-solving",
+   "kind": "skill",
+   "section": "18.8",
+   "name": "求解静电学问题",
+   "statement": "首先查看情形，看静电是否起作用。确定系统，包括电荷的数目、位置和类型。列出未知量，并判断你是否需要直接用库仑力；如果需要，用场线画出的受力图会有帮助。列出已知量，注意把库仑力 $F$ 与电场 $E$ 区分开。求解适当的方程或画出场线。然后检查答案的大小、符号和单位是否合理。不合理的答案通常指向产生它的前提，例如分开的电荷过大。"
+  },
+  {
+   "id": "integrated-electrostatics",
+   "kind": "skill",
+   "section": "18.8",
+   "name": "把静电学与牛顿定律结合起来",
+   "statement": "电场对电荷施加力，所以静电学的问题延伸到动力学、运动学、圆周运动、静力学和流体。策略是确定所涉及的物理原理及其所属的各章，然后用各部分自己的策略求解每一部分：重力由 $w = mg$ 求出，电场力由 $F = qE$ 求出，加速度由带合力的牛顿第二定律求出，随之而来的运动由匀加速运动的运动学求出。",
+   "forms": [
+    {
+     "id": "eq-weight-of-drop",
+     "latex": "w = mg",
+     "ktex": "\\kwgt = m\\kg",
+     "anchor": "18.8-integrated-concepts"
+    },
+    {
+     "id": "eq-electric-force-on-drop",
+     "latex": "F = qE",
+     "ktex": "\\kF = \\kq\\kEf",
+     "anchor": "18.8-integrated-concepts"
+    },
+    {
+     "id": "eq-acceleration-of-drop",
+     "latex": "a = \\frac{F_{\\text{net}}}{m}",
+     "ktex": "\\ka = \\frac{\\kFnet}{m}",
+     "anchor": "18.8-integrated-concepts"
+    }
+   ]
+  },
+  {
+   "id": "electrostatics",
+   "kind": "definition",
+   "section": "18.8",
+   "name": "静电学",
+   "terms": [
+    "静电学"
+   ],
+   "statement": "静电学是研究静止或缓慢运动的电场力的学问。它的思想应用于范德格拉夫起电机、复印机和静电除尘器等机器中。"
+  },
+  {
+   "id": "photoconductor",
+   "kind": "definition",
+   "section": "18.8",
+   "name": "光电导体",
+   "terms": [
+    "光电导体"
+   ],
+   "statement": "光电导体是一种在受到光照之前是绝缘体、受到光照时变成导体的物质。硒就是一种。"
+  },
+  {
+   "id": "laser-printer",
+   "kind": "idea",
+   "section": "18.8",
+   "name": "激光打印机",
+   "terms": [
+    "激光打印机"
+   ],
+   "statement": "激光打印机用激光在鼓上产生一个光电导图像，该图像吸引干燥的墨粉颗粒，墨粉颗粒随后被滚压到纸上。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "electric-charge",
+   "prereq": "physical-quantity"
+  },
+  {
+   "concept": "electric-charge",
+   "prereq": "four-basic-forces"
+  },
+  {
+   "concept": "like-charges-repel",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "like-charges-repel",
+   "prereq": "force"
+  },
+  {
+   "concept": "charge-of-electron-and-proton",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "charge-of-electron-and-proton",
+   "prereq": "model"
+  },
+  {
+   "concept": "elementary-charge",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "elementary-charge",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "count-charges-from-charge",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "count-charges-from-charge",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "charge-separation-by-rubbing",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "charge-separation-by-rubbing",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "charge-separation-by-rubbing",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "conservation-of-charge",
+   "prereq": "charge-separation-by-rubbing"
+  },
+  {
+   "concept": "conservation-of-charge",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "conservation-of-charge",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "conductor",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "conductor",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "insulator",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "charging-by-contact",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "charging-by-contact",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "charging-by-contact",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "charging-by-contact",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "polarization",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "polarization",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "polarization",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "grounding",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "charging-by-induction",
+   "prereq": "polarization"
+  },
+  {
+   "concept": "charging-by-induction",
+   "prereq": "grounding"
+  },
+  {
+   "concept": "charging-by-induction",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "charging-by-induction",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "attraction-of-neutral-objects",
+   "prereq": "polarization"
+  },
+  {
+   "concept": "attraction-of-neutral-objects",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "attraction-of-neutral-objects",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "coulombs-law",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "coulombs-law",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "coulombs-law",
+   "prereq": "force"
+  },
+  {
+   "concept": "coulombs-law",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "coulomb-constant",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "coulomb-force-direction",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "coulomb-force-direction",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "coulomb-force-direction",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "coulomb-force-scaling",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "coulomb-versus-gravity",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "coulomb-versus-gravity",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "coulomb-versus-gravity",
+   "prereq": "gravitational-constant"
+  },
+  {
+   "concept": "coulomb-force-field",
+   "prereq": "force-field"
+  },
+  {
+   "concept": "coulomb-force-field",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "coulomb-force-field",
+   "prereq": "coulomb-force-direction"
+  },
+  {
+   "concept": "test-charge",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "test-charge",
+   "prereq": "coulomb-force-field"
+  },
+  {
+   "concept": "electric-field",
+   "prereq": "coulomb-force-field"
+  },
+  {
+   "concept": "electric-field",
+   "prereq": "test-charge"
+  },
+  {
+   "concept": "electric-field",
+   "prereq": "force"
+  },
+  {
+   "concept": "force-from-electric-field",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "field-of-point-charge",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "field-of-point-charge",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "electric-field-direction",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "electric-field-direction",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "electric-field-lines",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "electric-field-lines",
+   "prereq": "electric-field-direction"
+  },
+  {
+   "concept": "electric-field-lines",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "field-line-properties",
+   "prereq": "electric-field-lines"
+  },
+  {
+   "concept": "field-line-properties",
+   "prereq": "field-of-point-charge"
+  },
+  {
+   "concept": "superposition-of-electric-fields",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "superposition-of-electric-fields",
+   "prereq": "field-of-point-charge"
+  },
+  {
+   "concept": "superposition-of-electric-fields",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "superposition-of-electric-fields",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "add-electric-fields",
+   "prereq": "superposition-of-electric-fields"
+  },
+  {
+   "concept": "add-electric-fields",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "add-electric-fields",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "superposition-of-coulomb-forces",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "superposition-of-coulomb-forces",
+   "prereq": "coulomb-force-direction"
+  },
+  {
+   "concept": "superposition-of-coulomb-forces",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "superposition-of-coulomb-forces",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "superposition-of-coulomb-forces",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "field-of-two-charges",
+   "prereq": "superposition-of-electric-fields"
+  },
+  {
+   "concept": "field-of-two-charges",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "sketch-field-lines",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "sketch-field-lines",
+   "prereq": "field-of-two-charges"
+  },
+  {
+   "concept": "sketch-field-lines",
+   "prereq": "electric-field-lines"
+  },
+  {
+   "concept": "charged-biomolecules",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "charged-biomolecules",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "charged-biomolecules",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "polar-molecule",
+   "prereq": "polarization"
+  },
+  {
+   "concept": "polar-molecule",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "polar-molecule",
+   "prereq": "attraction-of-neutral-objects"
+  },
+  {
+   "concept": "electrostatic-screening",
+   "prereq": "polar-molecule"
+  },
+  {
+   "concept": "electrostatic-screening",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "electrostatic-screening",
+   "prereq": "charged-biomolecules"
+  },
+  {
+   "concept": "electrostatic-equilibrium",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "electrostatic-equilibrium",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "electrostatic-equilibrium",
+   "prereq": "static-equilibrium"
+  },
+  {
+   "concept": "field-perpendicular-to-conductor",
+   "prereq": "electrostatic-equilibrium"
+  },
+  {
+   "concept": "field-perpendicular-to-conductor",
+   "prereq": "resolving-vector"
+  },
+  {
+   "concept": "field-perpendicular-to-conductor",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "field-inside-conductor-zero",
+   "prereq": "electrostatic-equilibrium"
+  },
+  {
+   "concept": "field-inside-conductor-zero",
+   "prereq": "polarization"
+  },
+  {
+   "concept": "field-inside-conductor-zero",
+   "prereq": "field-perpendicular-to-conductor"
+  },
+  {
+   "concept": "excess-charge-on-surface",
+   "prereq": "electrostatic-equilibrium"
+  },
+  {
+   "concept": "excess-charge-on-surface",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "excess-charge-on-surface",
+   "prereq": "field-of-point-charge"
+  },
+  {
+   "concept": "excess-charge-on-surface",
+   "prereq": "field-inside-conductor-zero"
+  },
+  {
+   "concept": "uniform-field-between-plates",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "uniform-field-between-plates",
+   "prereq": "field-perpendicular-to-conductor"
+  },
+  {
+   "concept": "uniform-field-between-plates",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "earths-electric-field",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "earths-electric-field",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "earths-electric-field",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "charge-concentrates-at-points",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "charge-concentrates-at-points",
+   "prereq": "resolving-vector"
+  },
+  {
+   "concept": "charge-concentrates-at-points",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "charge-concentrates-at-points",
+   "prereq": "field-perpendicular-to-conductor"
+  },
+  {
+   "concept": "lightning-rod",
+   "prereq": "charge-concentrates-at-points"
+  },
+  {
+   "concept": "lightning-rod",
+   "prereq": "charging-by-induction"
+  },
+  {
+   "concept": "lightning-rod",
+   "prereq": "grounding"
+  },
+  {
+   "concept": "faraday-cage",
+   "prereq": "field-inside-conductor-zero"
+  },
+  {
+   "concept": "faraday-cage",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "van-de-graaff-generator",
+   "prereq": "charge-concentrates-at-points"
+  },
+  {
+   "concept": "van-de-graaff-generator",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "van-de-graaff-generator",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "van-de-graaff-generator",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "xerography",
+   "prereq": "charging-by-induction"
+  },
+  {
+   "concept": "xerography",
+   "prereq": "grounding"
+  },
+  {
+   "concept": "xerography",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "xerography",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "xerography",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "ink-jet-printer",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "ink-jet-printer",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "ink-jet-printer",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "ink-jet-printer",
+   "prereq": "charge-concentrates-at-points"
+  },
+  {
+   "concept": "electrostatic-precipitator",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "electrostatic-precipitator",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "electrostatic-precipitator",
+   "prereq": "charging-by-contact"
+  },
+  {
+   "concept": "electrostatics-problem-solving",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "electrostatics-problem-solving",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "electrostatics-problem-solving",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "electrostatics-problem-solving",
+   "prereq": "newtons-laws-problem-solving"
+  },
+  {
+   "concept": "electrostatics-problem-solving",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "weight"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "integrated-kinematics-dynamics"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "v-squared"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "centripetal-force-magnitude"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "integrated-electrostatics",
+   "prereq": "electrostatics-problem-solving"
+  },
+  {
+   "concept": "static-electricity",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "electromagnetic-force",
+   "prereq": "four-basic-forces"
+  },
+  {
+   "concept": "electromagnetic-force",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "free-charge",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "free-charge",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "electrostatics",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "electrostatics",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "electron",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "electron",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "proton",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "proton",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "free-electron",
+   "prereq": "electron"
+  },
+  {
+   "concept": "free-electron",
+   "prereq": "free-charge"
+  },
+  {
+   "concept": "electrostatic-repulsion",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "electrostatic-force",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "electrostatic-force",
+   "prereq": "force"
+  },
+  {
+   "concept": "point-charge",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "dipole",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "ionosphere",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "ionosphere",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "photoconductor",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "photoconductor",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "laser-printer",
+   "prereq": "xerography"
+  },
+  {
+   "concept": "laser-printer",
+   "prereq": "photoconductor"
+  },
+  {
+   "concept": "electrostatics-problem-solving",
+   "prereq": "electrostatics"
+  },
+  {
+   "concept": "field-of-point-charge",
+   "prereq": "point-charge"
+  }
+ ]
+}

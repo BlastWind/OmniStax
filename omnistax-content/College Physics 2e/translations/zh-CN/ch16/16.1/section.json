@@ -1,0 +1,496 @@
+{
+ "id": "16.1",
+ "module": "m42240",
+ "chapter": "16",
+ "title": "胡克定律：再论应力与应变",
+ "short": "胡克定律",
+ "lead": "把一个物体推离它的平衡<span data-concept=\"position\">位置</span>后松手，只要有一个<span data-concept=\"force\">力</span>把它拉回来，它就会振动。<span data-concept=\"hookes-law\">胡克定律</span>描述了这类<span data-concept=\"force\">力</span>中最简单的一种，即被拉伸的弹簧或弯曲的直尺所施加的力，而发生形变的物体则逆着这个力储存<span data-concept=\"energy\">能量</span>。",
+ "objectives": [
+  "就应力和形变阐述牛顿第三定律。",
+  "描述力的回复与位移。",
+  "计算胡克定律所描述的形变中的能量，以及弹簧中储存的能量。"
+ ],
+ "summary_html": "<ul><li>振动是物体在两个<span data-concept=\"deformation\">形变</span>点之间的来回运动。</li><li>振动可以产生波，波是从产生处向外传播的扰动。</li><li>最简单类型的振动和波与可用胡克定律描述的系统有关：$\\kF = -\\kk\\kx,$ 其中 $\\kF$ 是<span data-concept=\"restoring-force\">回复力</span>，$\\kx$ 是偏离平衡位置的<span data-concept=\"displacement\">位移</span>，即<span data-concept=\"deformation\">形变</span>，$\\kk$ 是系统的<span data-concept=\"force-constant\">劲度系数</span>。</li><li>储存在可用胡克定律描述的系统的<span data-concept=\"deformation\">形变</span>中的<span data-concept=\"elastic-potential-energy\">弹性势能</span> $\\kPE$ 由 $\\kPE = (1/2)\\kk\\kx^2.$ 给出。</li></ul>",
+ "notes": "书后答案中没有给出 AP 第 2、4 题 以及习题 2、4 和 6 的答案，因而略去。AP 第 1 题问的是振幅和周期，这两个概念在 16.3 节引入，所以该题放在那里。例题 16.1 旁边的汽车照片略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级和概念标签由 AI 生成。答案取自书后答案；AP 第 2、4 题 以及习题 2、4 和 6 没有给出答案，因而略去。AP 第 1 题考查振幅和周期，放在 16.3 节。开放题的建议思路由 AI 撰写，并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-ruler",
+   "kind": "sim",
+   "number": "16.2",
+   "folds": [
+    "16.3"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_01_01.jpg",
+    "/media/ch16/Figure_17_01_02a.jpg"
+   ],
+   "original_caption": "（图 16.2）当这把塑料直尺偏离其竖直的平衡位置时，由于有与位移方向相反的回复力，它会来回振动。直尺在左边时，有一个向右的力，反之亦然。（图 16.3）（a）塑料直尺已被释放，回复力正使直尺回到其平衡位置。（b）在平衡位置处合力为零，但直尺有动量，继续向右运动。（c）回复力的方向相反，它使直尺停下，并再次把它推回平衡位置。（d）现在直尺的动量向左。（e）在没有阻尼（由摩擦力引起）的情况下，直尺会回到原来的位置。从那里开始，运动将重复进行。",
+   "widths": [
+    200,
+    475
+   ],
+   "draws": [
+    "force",
+    "position",
+    "stiffness"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "clamp label, readout arithmetic, note and caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-spring-scale",
+   "kind": "sim",
+   "number": "16.4",
+   "originals": [
+    "/media/ch16/Figure_17_01_03a.jpg"
+   ],
+   "original_caption": "（a）回复力的绝对值随位移变化的图像。该图像是一条直线，这一事实说明系统遵循胡克定律。图像的斜率就是劲度系数 k。（b）图中的数据是在弹簧承受各种砝码的情况下，通过测量弹簧相对于平衡位置的位移得到的。如果质量静止，回复力等于所承受的重力。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "force",
+    "position",
+    "stiffness",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels cleared, readout arithmetic, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-stored-energy",
+   "kind": "sim",
+   "number": "16.6",
+   "folds": [
+    "16.7"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_01_05a.jpg",
+    "/media/ch16/OSX_CP2e_08_03_P9_img.jpg"
+   ],
+   "original_caption": "（图 16.6）图中画出了可用胡克定律描述的系统发生形变时，外加力随距离变化的图像。对系统所做的功等于图线下的面积，即三角形的面积，也就是底的一半乘以高，即 W = (1/2)kx²。（图 16.7）（a）在这幅枪的图像中，弹簧在上膛之前没有被压缩。（b）弹簧已被压缩了距离 x，抛体已就位。（c）释放时，弹簧把弹性势能 PEel 转变为动能。",
+   "widths": [
+    475,
+    250
+   ],
+   "draws": [
+    "energy",
+    "force",
+    "position",
+    "stiffness",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "dart clear of plate, typeset headline, note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "restoring-force",
+   "concept": "restoring-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "restoring-force",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "restoring-force",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "hookes-law",
+   "concept": "force-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "hookes-law",
+   "concept": "hookes-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "hookes-law",
+   "concept": "restoring-force",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-car",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-car",
+   "concept": "force-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic-energy",
+   "concept": "elastic-potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "elastic-energy",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic-energy",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "elastic-energy",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-toy-gun",
+   "concept": "elastic-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-toy-gun",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3294333",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "hookes-law"
+   },
+   "cite": "hookes-law",
+   "prompt": "设想一只手握住直尺的一端，另一只手使它发生形变。松手时，你可以看到直尺的振动。你可以怎样修改这个简单的实验，来增大这个系统的刚性？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "可以握住直尺的中点，这样振动的那部分直尺的长度就只有原实验中的一半。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id1917668",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "elastic-energy"
+   },
+   "cite": "elastic-energy",
+   "prompt": "如果你对一个物体施加使其形变的力，并让它达到平衡，你对系统所做的功怎么样了？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "它以势能的形式储存在物体中。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1407910",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hookes-law",
+   "prompt": "在公式 $\\kF = -\\kk\\kx$ 中，负号表示什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "它表示回复力的方向与位移的方向相同。",
+     "它表示回复力的方向与位移的方向相反。",
+     "它表示系统发生振动时，系统中的机械能减少。",
+     "以上都不对"
+    ],
+    "correct": 1,
+    "hint": "想一想被拨动的直尺。当尖端在左边时，作用在它上面的力指向哪一边？"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2008703",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "描述一个储存弹性势能的系统。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何遵循胡克定律的系统，在你使它发生形变时都会储存弹性势能。例如，玩具枪的弹簧在你把它压缩距离 $\\kx$ 时储存 $\\kPE = \\tfrac{1}{2}\\kk\\kx^2$，拉开的弓把能量储存在弯曲的弓臂中，乘客上车时汽车的弹簧也储存能量。在每一种情形中，系统在回到平衡位置的过程中都把能量还回来。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1546131",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "把鱼挂在弹簧秤上来测定它们的质量（大多数垂钓者并不觉得有义务如实报告质量）。（a）如果这种秤的弹簧在 10.0 kg 的载荷下伸长 8.00 cm，该弹簧的劲度系数是多少？（b）使弹簧伸长 5.50 cm 的鱼，质量是多少？（c）秤上相隔半千克的刻度线之间距离多远？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1230,
+      "unit": "N/m",
+      "hint": "弹簧承受载荷的重力，所以回复力等于 $mg$。把它除以以米为单位的伸长量。"
+     },
+     {
+      "part": "(b)",
+      "value": 6.88,
+      "unit": "kg",
+      "hint": "用（a）中求得的劲度系数求出重力，再求出质量。"
+     },
+     {
+      "part": "(c)",
+      "value": 4.0,
+      "unit": "mm",
+      "hint": "半千克的物体所受重力为 4.90 N。这会使这根弹簧伸长多少？"
+     }
+    ],
+    "solution": "（a）$1.23 \\times 10^{3}\\ \\text{N/m}$（b）$6.88\\ \\text{kg}$（c）$4.00\\ \\text{mm}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1908117",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一种 BB 枪用弹簧驱动的柱塞把 BB 弹从枪管中射出。（a）如果必须把柱塞的弹簧压缩 0.150 m，才能把 0.0500 kg 的柱塞驱动到 20.0 m/s 的最大速率，求该弹簧的劲度系数。（b）压缩这根弹簧必须施加多大的力？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 889,
+      "unit": "N/m",
+      "hint": "储存的能量 $\\tfrac{1}{2}\\kk\\kx^2$ 变成柱塞的动能 $\\tfrac{1}{2}m\\kv^2$。"
+     },
+     {
+      "part": "(b)",
+      "value": 133,
+      "unit": "N",
+      "hint": "使弹簧保持压缩所需的力是 $\\kk\\kx$。"
+     }
+    ],
+    "solution": "（a）$889\\ \\text{N/m}$（b）$133\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3358223",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "当一个 80.0 kg 的人站在弹跳杆上时，弹簧被压缩了 0.120 m。（a）弹簧的劲度系数是多少？（b）他沿路蹦跳时，弹簧会被压缩得更多吗？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 6530,
+    "unit": "N/m",
+    "hint": "站着不动时，弹簧支撑他的重力，所以回复力等于 $mg$。",
+    "solution": "（a）$6.53 \\times 10^{3}\\ \\text{N/m}$（b）会。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "force-constant"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "restoring-force"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "restoring-force"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "force-constant"
+  },
+  {
+   "exercise": "p3",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "p3",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "kinetic-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "force-constant"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ruler",
+   "label": "塑料直尺",
+   "figures": [
+    "sim-ruler"
+   ]
+  },
+  {
+   "id": "scale-spring",
+   "label": "挂着砝码的弹簧",
+   "figures": [
+    "sim-spring-scale"
+   ]
+  },
+  {
+   "id": "gun-spring",
+   "label": "玩具枪的弹簧",
+   "figures": [
+    "sim-stored-energy"
+   ]
+  },
+  {
+   "id": "dart",
+   "label": "飞镖",
+   "figures": [
+    "sim-stored-energy"
+   ]
+  }
+ ]
+}

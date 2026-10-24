@@ -1,0 +1,1890 @@
+{
+ "id": "24.3",
+ "module": "m42444",
+ "chapter": "24",
+ "title": "电磁波谱",
+ "short": "电磁波谱",
+ "lead": "无线电波、微波、红外线、可见光、紫外线、X 射线和 γ 射线都是同一种波，本节按<span data-concept=\"frequency\">频率</span>和<span data-concept=\"wavelength\">波长</span>走遍整个波谱。你将逐个波段地看到：每一种是如何产生的，有什么用途，穿透多远，以及它对活组织有什么作用。",
+ "objectives": [
+  "列出适用于电磁波谱上不同频率的三条“经验法则”。",
+  "解释为什么电磁波的频率越高，波长越短。",
+  "画出简化的电磁波谱，标明各类辐射波段的相对位置、频率和间距。",
+  "列出并解释电磁波在整个波谱中产生的各种不同方式。"
+ ],
+ "summary_html": "<ul><li>任何波的传播速率、<span data-concept=\"wavelength\">波长</span>和<span data-concept=\"frequency\">频率</span>之间的关系由 $\\kvw = \\kf\\klam$ 给出，所以对于电磁波，$$\\kc = \\kf\\klam,$$ 其中 $\\kf$ 是<span data-concept=\"frequency\">频率</span>，$\\klam$ 是<span data-concept=\"wavelength\">波长</span>，$\\kc$ 是<span data-concept=\"speed-of-light-in-vacuum\">光速</span>。</li><li>电磁波谱根据电磁波的<span data-concept=\"frequency\">频率</span>和<span data-concept=\"wavelength\">波长</span>、波源和用途，分成许多类别和子类别。</li><li>由导线中的<span data-concept=\"electric-current\">电流</span>产生的任何电磁波都归为无线电波，即最低<span data-concept=\"frequency\">频率</span>的电磁波。无线电波按其应用分为许多类型，最高<span data-concept=\"frequency\">频率</span>处直到微波。</li><li>红外辐射在<span data-concept=\"frequency\">频率</span>上低于可见光，由热运动以及原子和分子的振动与转动产生。红外线较低的<span data-concept=\"frequency\">频率</span>与频率最高的微波重叠。</li><li>可见光主要由原子和分子中的电子跃迁产生，其定义是人眼能够探测到的光。它的颜色随<span data-concept=\"frequency\">频率</span>而变，从最低频率处的红色到最高频率处的紫色。</li><li>紫外辐射从可见光范围中刚好高于紫光的<span data-concept=\"frequency\">频率</span>开始，主要由原子和分子中的电子跃迁产生。</li><li>X 射线产生于高压放电以及电子对金属靶的轰击。它们最低的<span data-concept=\"frequency\">频率</span>与紫外范围重叠，但延伸到高得多的值，在高端与 γ 射线重叠。</li><li>γ 射线起源于原子核，其定义包括所有类型中频率最高的电磁辐射。</li></ul>",
+ "notes": "指向 PhET 模拟“色觉”的链接已略去，因为指向出版方交互内容的链接在本书中一律略去；本模块二十四道习题中有十二道没有书后答案，随之略去，其中有调幅和调频的波长范围、可见光的频率范围、两道雷达计时题、光年题和电视接收天线题，因此后者的图像也未保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。二十四道习题中有十二道没有给出答案，已略去：调幅和调频的波长范围、可见光的频率范围、15.0 μm 红外线的频率、$6\\times 10^{-5}$ s 时的雷达回波、X 射线走过 1 mm 和 1 cm 的时间、阳光到达地球的时间、光年换算、跳动的心脏所产生的电磁波、MRI 的波长范围、电视接收天线、月球反射器，以及眼睛和耳朵所响应的频率之比。十二道思考题在书中都没有答案，作为开放题保留，并附有标明由 AI 给出的建议思路。四道 AP 题中，本模块按波长排序的一题有答案，设为判分选择题，其关于无线电波段视觉的一题没有答案，保持开放；另外两题印在 24.2 中，需要用到 $\\kc = \\kf\\klam$，在这里设置，并标明该节为其出处。本模块没有印出“理解检测”框，因此没有设置行内题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-spectrum",
+   "kind": "sim",
+   "number": "24.8",
+   "originals": [
+    "/media/ch24/Figure_25_03_01a.jpg"
+   ],
+   "original_caption": "电磁波谱，显示了电磁波的主要类别。频率和波长的范围非常惊人。有些类别之间的分界线很清楚，而另一些类别则相互重叠。",
+   "widths": [
+    620
+   ],
+   "draws": [
+    "frequency",
+    "position",
+    "velocity"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-power-line",
+   "kind": "photo",
+   "number": "24.9",
+   "original_caption": "这条通向德国奥伊廷根铁路变电站的高压牵引输电线，辐射出波长很长的电磁波。（来源：Zonk43, Wikimedia Commons）",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-elf-submarine",
+   "kind": "sim",
+   "number": "24.10",
+   "originals": [
+    "/media/ch24/Figure_25_03_04a.jpg"
+   ],
+   "original_caption": "要到达这艘潜艇，需要波长很长的无线电波，这就要用到极低频信号（ELF）。较短的波长无法穿透到任何可观的深度。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "frequency",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut; drawing factor stated against the submarine"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-am",
+   "kind": "sim",
+   "number": "24.11",
+   "originals": [
+    "/media/ch24/Figure_25_03_05a.jpg"
+   ],
+   "original_caption": "调幅广播的振幅调制。（a）频率为电台基本频率的载波。（b）频率低得多的可听音频信号。（c）载波的振幅被音频信号调制，而其基本频率不变。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "frequency",
+    "time",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut; envelope label off the curves"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fm",
+   "kind": "sim",
+   "number": "24.12",
+   "originals": [
+    "/media/ch24/Figure_25_03_06a.jpg"
+   ],
+   "original_caption": "调频广播的频率调制。（a）频率为电台基本频率的载波。（b）频率低得多的可听音频信号。（c）载波的频率被音频信号调制，而其振幅不变。",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "frequency",
+    "time",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-antenna-length",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut; duplicate length label gone; person label clear of FM"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-towers",
+   "kind": "photo",
+   "number": "24.13",
+   "original_caption": "（a）一座用于广播电视信号的大塔。真正的天线是塔顶上的小型结构——把它们架得很高，是为了在很大的广播区域上有畅通的视线。（来源：Ozizo, Wikimedia Commons）（b）日本所泽市的 NTT Dokomo 移动电话塔。（来源：tokoroten, Wikimedia Commons）",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "fig-venus",
+   "kind": "photo",
+   "number": "24.14",
+   "original_caption": "金星上带有熔岩流的西夫山的图像，基于麦哲伦号的合成孔径雷达数据，并结合雷达测高数据，生成地表的三维地图。金星大气对可见光不透明，但对用来生成这幅图像的微波并非如此。（来源：NSSDC, NASA/JPL）",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-visible",
+   "kind": "sim",
+   "number": "24.15",
+   "originals": [
+    "/media/ch24/Figure_25_03_10a.jpg"
+   ],
+   "original_caption": "电磁波谱的一小部分，包含其可见光成分。红外线、可见光和紫外线之间的分界并不十分分明，彩虹的七种颜色之间也是如此。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "position",
+    "frequency",
+    "velocity"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-earth-uv",
+   "kind": "photo",
+   "number": "24.16",
+   "original_caption": "用月球上的远紫外照相机/摄谱仪拍摄的地球图像。地球朝向太阳的一面反射大量紫外光，背向太阳的一面也明显可见紫外发射带。这些带是由太阳放出的带电粒子引起的极光造成的。这些粒子沿着地磁场的磁感线螺旋地射向地球。海军研究实验室的乔治·罗伯特·卡鲁瑟斯专门为在月球上运输和使用而设计了这台装置。右图中，卡鲁瑟斯正在向阿波罗 16 号的航天员讲解操作程序。（来源，两幅图：NASA。）"
+  },
+  {
+   "id": "fig-ozone",
+   "kind": "photo",
+   "number": "24.17",
+   "original_caption": "这张 2020 年 9 月南极上空的臭氧浓度图显示出严重的损耗，据推测是由 CFC 引起的。2020 年的臭氧损耗明显比 2019 年更严重，但比 21 世纪初好。臭氧减少后，更多来自太阳的紫外辐射到达地面，造成更大的损害。（来源：NASA Earth Observatory）",
+   "widths": [
+    225
+   ]
+  },
+  {
+   "id": "sim-xray",
+   "kind": "sim",
+   "number": "24.18",
+   "folds": [
+    "24.19"
+   ],
+   "originals": [
+    "/media/ch24/Figure_25_03_13a.jpg",
+    "/media/ch24/Figure_25_03_14a.jpg"
+   ],
+   "original_caption": "（图 24.18）艺术家构想的图：一个电子使一个原子电离，随后一个电子被重新俘获并发射出一个 X 射线。一个高能电子撞击原子，把一个电子从最靠近原子核的轨道之一击出。随后，原子俘获另一个电子，该电子落入低轨道时释放的能量产生一种称为 X 射线的高能电磁波。（图 24.19）艺术家构想的图：一个电子在材料中因碰撞而减速并发射 X 射线辐射。这个高能电子在其穿入的材料中与电子和原子发生多次碰撞。加速的电荷会辐射电磁波，这是产生 X 射线的第二种方法。",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes cut; labels off the orbits; braking remark off the bar"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-chest-xray",
+   "kind": "photo",
+   "number": "24.20",
+   "original_caption": "这幅 X 射线投影图像显示了许多有趣的特征，例如人工心脏瓣膜、起搏器和用来缝合胸骨的钢丝。（来源：P. P. Urone）",
+   "widths": [
+    200
+   ]
+  },
+  {
+   "id": "fig-bone-scan",
+   "kind": "photo",
+   "number": "24.21",
+   "original_caption": "这是集中在骨骼中并通过肾脏排出的一种化合物中的原子核所发射的 $\\gamma$ 射线的图像。骨癌的证据是类似结构中浓度不均匀。例如，有些肋骨比另一些更暗。（来源：P. P. Urone）",
+   "widths": [
+    150
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "wave-relation",
+   "concept": "c-equals-f-lambda",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-relation",
+   "concept": "sources-across-the-spectrum",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-relation",
+   "concept": "electromagnetic-spectrum",
+   "verb": "uses"
+  },
+  {
+   "span": "spectrum",
+   "concept": "electromagnetic-spectrum",
+   "verb": "introduces"
+  },
+  {
+   "span": "spectrum",
+   "concept": "spectrum-rules-of-thumb",
+   "verb": "introduces"
+  },
+  {
+   "span": "spectrum",
+   "concept": "c-equals-f-lambda",
+   "verb": "uses"
+  },
+  {
+   "span": "transmission",
+   "concept": "transmission-reflection-absorption",
+   "verb": "introduces"
+  },
+  {
+   "span": "transmission",
+   "concept": "electromagnetic-spectrum",
+   "verb": "uses"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "radio-waves-and-modulation",
+   "verb": "introduces"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "sources-across-the-spectrum",
+   "verb": "uses"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "transmission-reflection-absorption",
+   "verb": "uses"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "c-equals-f-lambda",
+   "verb": "uses"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "carrier-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "amplitude-modulation",
+   "verb": "introduces"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "extremely-low-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "television",
+   "verb": "introduces"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "very-high-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "radio-tv",
+   "concept": "ultra-high-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "fm-radio",
+   "concept": "find-wavelength-or-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "fm-radio",
+   "concept": "antenna-length-and-wavelength",
+   "verb": "introduces"
+  },
+  {
+   "span": "fm-radio",
+   "concept": "radio-waves-and-modulation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fm-radio",
+   "concept": "c-equals-f-lambda",
+   "verb": "uses"
+  },
+  {
+   "span": "fm-radio",
+   "concept": "frequency-modulation",
+   "verb": "introduces"
+  },
+  {
+   "span": "radio-interference",
+   "concept": "radio-waves-and-modulation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "radio-interference",
+   "concept": "spectrum-rules-of-thumb",
+   "verb": "reinforces"
+  },
+  {
+   "span": "radio-interference",
+   "concept": "find-wavelength-or-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "microwaves",
+   "concept": "microwaves-and-their-uses",
+   "verb": "introduces"
+  },
+  {
+   "span": "microwaves",
+   "concept": "sources-across-the-spectrum",
+   "verb": "uses"
+  },
+  {
+   "span": "microwaves",
+   "concept": "spectrum-rules-of-thumb",
+   "verb": "reinforces"
+  },
+  {
+   "span": "microwaves",
+   "concept": "radar",
+   "verb": "introduces"
+  },
+  {
+   "span": "microwave-heating",
+   "concept": "microwaves-and-their-uses",
+   "verb": "reinforces"
+  },
+  {
+   "span": "microwave-heating",
+   "concept": "radiation-and-living-tissue",
+   "verb": "uses"
+  },
+  {
+   "span": "infrared",
+   "concept": "sources-across-the-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "infrared",
+   "concept": "transmission-reflection-absorption",
+   "verb": "reinforces"
+  },
+  {
+   "span": "infrared",
+   "concept": "electromagnetic-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "infrared",
+   "concept": "thermal-agitation",
+   "verb": "introduces"
+  },
+  {
+   "span": "infrared",
+   "concept": "infrared-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "visible-light",
+   "concept": "electromagnetic-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "visible-light",
+   "concept": "find-wavelength-or-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "visible-light",
+   "concept": "sources-across-the-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "visible-light",
+   "concept": "visible-light",
+   "verb": "introduces"
+  },
+  {
+   "span": "ultraviolet",
+   "concept": "electromagnetic-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ultraviolet",
+   "concept": "radiation-and-living-tissue",
+   "verb": "uses"
+  },
+  {
+   "span": "ultraviolet",
+   "concept": "ultraviolet-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "uv-exposure",
+   "concept": "radiation-and-living-tissue",
+   "verb": "introduces"
+  },
+  {
+   "span": "uv-exposure",
+   "concept": "spectrum-rules-of-thumb",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ozone",
+   "concept": "transmission-reflection-absorption",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ozone",
+   "concept": "radiation-and-living-tissue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "uv-benefits",
+   "concept": "sources-across-the-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "uv-benefits",
+   "concept": "radiation-and-living-tissue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "x-rays",
+   "concept": "radiation-and-living-tissue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "x-rays",
+   "concept": "transmission-reflection-absorption",
+   "verb": "reinforces"
+  },
+  {
+   "span": "x-rays",
+   "concept": "spectrum-rules-of-thumb",
+   "verb": "reinforces"
+  },
+  {
+   "span": "x-rays",
+   "concept": "x-ray-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "gamma-rays",
+   "concept": "electromagnetic-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "gamma-rays",
+   "concept": "sources-across-the-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "gamma-rays",
+   "concept": "gamma-ray-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "detecting-from-space",
+   "concept": "electromagnetic-spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "detecting-from-space",
+   "concept": "transmission-reflection-absorption",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737739134",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fm-radio",
+   "prompt": "如果你住的地区有某个电视台，你有时可以在调频无线电接收机上收到它的部分音频。解释这是怎样可能的。这是否意味着电视音频是以调频方式广播的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电视音频信号是以调频方式广播的，而且 VHF 频道位于调频广播频段的两侧：2 至 6 频道使用 54 至 88 MHz，7 至 13 频道使用 174 至 222 MHz，而调频频段为 88 至 108 MHz。调谐到自己频段边缘的接收器，可以与邻近频道的音频载波共振，由于该载波正像调频电台那样被调频，接收器的电路会把它还原成声音。所以，是的，能在调频接收机上收到音频，确实意味着电视音频是以调频方式广播的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737770298",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "visible-light",
+   "prompt": "解释为什么因白内障而摘除了眼睛晶状体的人能够看到低频紫外线。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "视网膜对最低的紫外频率有响应，但这种辐射通常到达不了视网膜，因为角膜和晶状体先把它吸收了。晶状体被摘除后，原本会被晶状体吸收的紫外线就穿过去到达视网膜，视网膜对它的响应就像对可见光的响应一样。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737706053",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uv-benefits",
+   "prompt": "荧光皂渍如何使衣物在户外光线下显得“更亮更白”？在烛光下这会有效吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "荧光残留物吸收紫外线，并把能量以可见光波长再放出来，所以在阳光下，布料返回的可见光比落到它上面的更多，看上去比普通布料更亮更白。烛焰比太阳冷得多，几乎不发出紫外线，残留物没有可吸收的东西，所以在烛光下看不到这种效果。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738247195",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radio-tv",
+   "prompt": "举出电磁波接收中共振的一个例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "无线电接收机经过调谐，使其电路的共振频率与所要收的电台的载波相同，它对这一频率响应强烈，同时排除到达其天线的许多其他频率。天线本身是第二个例子：线天线在半个波长长时响应最好，因为此时一个电流驻波恰好能放进天线之中。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737895295",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spectrum",
+   "prompt": "举例说明，用电磁波能探测到的物体细节的大小与它们的波长有关，方法是比较两种不同类型的电磁波能观察到的细节（例如雷达和可见光，或红外线和 X 射线）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取一台 500 MHz 的雷达和 550 nm 的绿光。雷达的波长为 λ = c/f = 0.600 m，所以它能描绘飞机或山坡的形状，却分辨不出比半米小得多的东西；而绿光的波长约短一百万倍，能显示小到零点几微米的细节，这就是为什么光学显微镜能看到细胞而雷达不能。红外线与 X 射线之间的比较也是如此：红外线的波长约从 0.74 μm 到 300 μm，而 X 射线的波长可以小于 0.01 nm，因此会被晶体内部的间距所散射。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169736618959",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radio-tv",
+   "prompt": "为什么建筑物不像阻挡可见光那样完全阻挡无线电波？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "无线电波的波长是几米到几百米，所以建筑物及其门窗洞口与波长相比并不算大，波可以绕过并穿过它们，就像海浪绕过岩石一样。可见光的波长不到一微米，墙与之相比极其巨大，作为固体障碍物把它挡住。此外，砖、木头和灰泥在无线电频率下基本透明，在可见光频率下不透明。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169738219868",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transmission",
+   "prompt": "列出一些日常物品，并判断它们对每一类电磁波是透明的还是不透明的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "窗玻璃对可见光和最近波长的红外线透明，对紫外线基本不透明，对无线电波透明。人的皮肤对可见光和紫外线不透明，但对 X 射线透明，这正是能得到 X 射线投影图像的原因。砖墙对可见光不透明，对无线电相当透明。微波炉门上的金属网格对微波不透明，因为微波的波长远大于孔洞，而对可见光透明，因为可见光的波长远小于孔洞。空气对可见光和无线电透明，并通过其中的二氧化碳和水吸收相当多的红外线。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169738164892",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ultraviolet",
+   "prompt": "你的朋友说，在紫外光下观察，能在鸟的翅膀上看到更多的图案和颜色。你同意你朋友的说法吗？请说明你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你的朋友在图案方面说得对。许多鸟的羽毛上有一些标记，在我们看来羽毛颜色单调的地方，这些标记强烈反射紫外线，而其他鸟能看到这些频率，所以紫外图像会显示可见光下看不到的结构。不过，把它们称为通常意义上的颜色是不对的：眼睛不给紫外线分配颜色，紫外线的图片必须用代表紫外线的可见颜色来印刷，而不是紫外线本身。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169738012874",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spectrum",
+   "prompt": "电磁波上传输信息的速率与波的频率成正比。这与可见光频率的激光电话传输在每根光纤中携带的通话数远多于导线中常规电子传输这一事实是否一致？这对与潜艇的极低频无线电通信意味着什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是一致的。可见光的频率约为 5 × 10¹⁴ Hz，而导线上所传信号的频率要低几百万倍，所以一根光纤可以同时携带多得多的通话。对 ELF 的含义则相反：在约 1 kHz 时，频率又低了十一个数量级，所以单位时间内能发送的信息很少，发给水下潜艇的消息必须又短又慢。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id1169738220196",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microwave-heating",
+   "prompt": "举出电磁波携带能量的一个例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "阳光使吸收它的任何东西变暖：到达地球的太阳能量约有一半在红外区，其余大部分是可见光，而平均而言，到达的能量有一半被地球吸收。微波炉是第二个例子，其中 2.45 GHz 的微波被食物中的水吸收，使其温度升高。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id1169737979416",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radio-interference",
+   "prompt": "在 MRI 扫描中，更强的磁场需要更高频率的无线电波，才能与被成像的、其密度和位置要测定的核素共振。更大的磁场对广播这些无线电波的最有效天线有什么影响？它有利于更小的天线还是更大的天线？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "更大的磁场使共振频率升高，而由于 λ = c/f，更高的频率意味着更短的波长。最有效的线天线长半个波长，所以所需的天线随磁场增强而变短：更大的磁场有利于更小的天线。"
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id1169738115905",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "visible-light",
+   "prompt": "激光视力矫正通常使用产生 193 nm 电磁辐射的准分子激光器。这个波长被角膜极强地吸收，并烧蚀角膜，以一种能矫正视力缺陷的方式重塑角膜。解释强吸收如何有助于把能量集中在薄薄的一层中，从而在角膜成形时给出更高的准确度。再解释这种强吸收如何限制对眼睛晶状体和视网膜的损伤。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "强吸收意味着角膜在离表面很短的距离内就把辐射吸收了。一次脉冲串的全部能量都进入不到一微米厚的一层，而不是散布在角膜的整个深度。这使外科医生每次能去除可控的厚度，从而精确地塑造角膜。同样的强吸收也保护了后面的结构：193 nm 辐射几乎没有一点能穿过角膜的第一层，所以晶状体和视网膜接收不到可观的剂量。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1988815",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spectrum",
+   "prompt": "按波长从小到大的正确顺序是：",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "ELF、调频广播、微波、红外线、红、绿、紫外线、X 射线、γ 射线",
+     "ELF、调频广播、微波、红外线、绿、红、紫外线、X 射线、γ 射线",
+     "γ 射线、X 射线、紫外线、红、绿、红外线、微波、调频广播、ELF",
+     "γ 射线、X 射线、紫外线、绿、红、红外线、微波、调频广播、ELF"
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "hint": "波长的顺序与频率相反，而在可见光波段内，红光的波长是最长的。",
+    "solution": "（d）。最短的波长属于 γ 射线，最长的属于 ELF，所以列表必须从 γ 射线一端开始，到 ELF 结束，这排除了（a）和（b）。在可见光波段内，紫光和绿光的波长都比红光短，所以绿必须排在红之前，这排除了（c），只剩（d）。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2187312",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spectrum",
+   "prompt": "描述如果我们能看到我们所定义的无线电波谱中的能量，我们的视觉会有什么不同。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "我们能看到的波长范围会比现在看到的那一窄条宽得多，但清晰度要差得多。波能分辨的最小细节取决于它的波长，而无线电的波长是几米，而不是零点几微米。广播天线、手机、输电线和普通电路都会发光，因为它们每一个都在这个范围内辐射。我们或许能把调幅与调频以及其他无线电频率区分开，就像现在区分颜色一样。墙壁的障碍作用会小得多，因为建筑物阻挡无线电波不像阻挡光那样完全。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2508048",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-relation",
+   "prompt": "如果一个电磁波被描述为频率 3 GHz，它的周期和波长（在真空中）是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "3.0 × 10⁹ s，10 cm",
+     "3.3 × 10⁻¹⁰ s，10 cm",
+     "3.3 × 10⁻¹⁰ s，10 m",
+     "3.0 × 10⁹ s，10 m"
+    ],
+    "correct": 1,
+    "generated_by": "source",
+    "hint": "周期是频率的倒数，波长是光速除以频率。",
+    "solution": "（b）。周期为 T = 1/f = 1/(3 × 10⁹ Hz) = 3.3 × 10⁻¹⁰ s，波长为 λ = c/f = (3.00 × 10⁸ m/s)/(3 × 10⁹ Hz) = 0.10 m，即 10 cm。"
+   },
+   "source_section": "24.2"
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2150257",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transmission",
+   "prompt": "一个波在介质中传播，直到到达介质的尽头，那里除了真空什么也没有。机械波会怎样？电磁波呢？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "反射回来，继续前进",
+     "反射回来，反射回来",
+     "继续前进，继续前进",
+     "停止，继续前进"
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "hint": "想一想这两种波中哪一种需要有东西可供传播。",
+    "solution": "（a）。机械波是介质的扰动，边界之外没有介质，它无处可传，所以被反射回来。电磁波是电场和磁场本身的扰动，完全不需要介质，所以继续前进进入真空。"
+   },
+   "source_section": "24.2"
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738079808",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microwave-heating",
+   "prompt": "（a）微波炉获准使用两个微波频率：900 和 2560 MHz。分别计算它们的波长。（b）哪个频率会因干涉效应在食物中产生更小的热点？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) at 900 MHz",
+      "value": 33.3,
+      "unit": "cm",
+      "hint": "用 $\\klam = \\kc/\\kf$，其中 $\\kc = 3.00\\times 10^{8}$ m/s。"
+     },
+     {
+      "part": "(a) at 2560 MHz",
+      "value": 11.7,
+      "unit": "cm"
+     }
+    ],
+    "solution": "（a）33.3 cm（900 MHz），11.7 cm（2560 MHz）。（b）波长较短的微波炉会在食物中产生较小的热点，对应的是频率为 2560 MHz 的那一个。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169737966652",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radio-tv",
+   "prompt": "某电台使用介于商业调幅和调频之间的频率。波长为 11.12 m 的频道，其频率是多少？",
+   "answer": {
+    "type": "number",
+    "value": 26.96,
+    "unit": "MHz",
+    "generated_by": "source",
+    "hint": "把 $\\kc = \\kf\\klam$ 重新整理，求频率。",
+    "solution": "26.96 MHz"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169737907305",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "visible-light",
+   "prompt": "梳头会使梳子上出现过剩电子。你要把梳子上下移动得多快，才能产生红光？",
+   "answer": {
+    "type": "number",
+    "value": 500000000000000.0,
+    "unit": "Hz",
+    "generated_by": "source",
+    "hint": "加速的电荷以它被移动的频率辐射，所以问一问红光的频率是多少。",
+    "solution": "$5.0\\times 10^{14}$ Hz"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169738014493",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uv-benefits",
+   "prompt": "使用频率为 $1.20\\times 10^{15}\\ \\text{Hz}$ 的紫外光的显微镜，所能观察到的最小细节大约是多少？",
+   "answer": {
+    "type": "number",
+    "value": 2.5e-07,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "最小细节大约是一个波长。",
+    "solution": "$\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{1.20\\times 10^{15}\\ \\text{Hz}} = 2.50\\times 10^{-7}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737796139",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microwaves",
+   "prompt": "一些雷达系统可以检测飞机和地形等物体的大小和形状。利用 500 MHz 雷达，所能观察到的最小细节大约是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.6,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "探测所能分辨的最小细节大约是它的波长。",
+    "solution": "0.600 m"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1169738082947",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "x-rays",
+   "prompt": "如果你希望用电磁辐射探测原子大小（约 $1\\times 10^{-10}\\ \\text{m}$）的细节，它的波长必须约为这一大小。（a）它的频率是多少？（b）这可能是哪一类电磁辐射？",
+   "answer": {
+    "type": "number",
+    "value": 3e+18,
+    "unit": "Hz",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "用 $\\kf = \\kc/\\klam$，然后从波谱上读出答案。",
+    "solution": "（a）$\\kf = \\frac{\\kc}{\\klam} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{1\\times 10^{-10}\\ \\text{m}} = 3\\times 10^{18}\\ \\text{Hz}$。（b）X 射线。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169738080478",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radio-tv",
+   "prompt": "某条 50.0 Hz 的交流输电线辐射出一个电磁波，其最大电场强度为 13.0 kV/m。（a）这个频率很低的电磁波的波长是多少？（b）它的最大磁感应强度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6000000.0,
+      "unit": "m",
+      "hint": "第一问用 $\\klam = \\kc/\\kf$，第二问用 24.2 节的 $\\kEfo/\\kBmago = \\kc$。"
+     },
+     {
+      "part": "(b)",
+      "value": 4.33e-05,
+      "unit": "T"
+     }
+    ],
+    "solution": "（a）$6.00\\times 10^{6}\\ \\text{m}$。（b）$4.33\\times 10^{-5}\\ \\text{T}$。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169737753542",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fm-radio",
+   "prompt": "（a）一端着地的广播天线，其理想（最有效）的大小是所发射电磁辐射波长的四分之一（$\\klam/4$）。如果一个新电台有这样一根高 50.0 m 的天线，它最有效地广播的频率是多少？这是在调幅广播频段还是调频广播频段？（b）讨论一端封闭的气柱的基本共振模式与长度为其波长四分之一的天线上的电流共振之间的类比。",
+   "answer": {
+    "type": "number",
+    "value": 1500000.0,
+    "unit": "Hz",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "如果天线是四分之一波长，那么波长是它高度的四倍。",
+    "solution": "（a）$1.50\\times 10^{6}$ Hz，在调幅广播频段。（b）长度为其波长 1/4 的天线上的电流共振，类似于一端封闭的气柱的基本共振模式，因为气柱的长度同样等于基频振动波长的 1/4。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1169737930243",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "visible-light",
+   "prompt": "（a）激光眼科手术所用的 193 nm 紫外辐射的频率是多少？（b）假设这种电磁辐射烧蚀角膜的准确度与波长成正比，这种紫外线比最短的可见光波长准确多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1550000000000000.0,
+      "unit": "Hz",
+      "hint": "第二问取最短的可见光波长为 380 nm，并求比值。"
+     },
+     {
+      "part": "(b) the ratio of the wavelengths",
+      "value": 1.97,
+      "unit": ""
+     }
+    ],
+    "solution": "（a）$1.55\\times 10^{15}$ Hz。（b）可见光的最短波长为 380 nm，所以比值为 380 nm / 193 nm = 1.97。换句话说，这种紫外线比可见光的最短波长准确 97%，或者说准确度几乎是其两倍。"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1169737793662",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radio-interference",
+   "prompt": "与航天员在月面行走时的通话有回声，人们用它来估算到月球的距离。地球上的人说出的声音被转换成无线电信号发送到月球，再在航天员航天服内的扬声器中转换回声音。这个声音被航天服中的传声器（本是用来接收航天员声音的）拾取，并作为一种无线电回声发回地球。如果往返时间为 2.60 s，忽略电子设备的任何延迟，到月球的距离大约是多少？",
+   "answer": {
+    "type": "number",
+    "value": 390000000.0,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "无线电信号在往返时间内走了两遍这段距离，并且以光速传播。",
+    "solution": "$3.90\\times 10^{8}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1169738012306",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "microwaves",
+   "prompt": "雷达通过测量从物体返回的回波的往返时间来确定到各种物体的距离。（a）如果回波时间为 1000 s，金星有多远？（b）一辆距离公路警察的雷达装置 75.0 m 的汽车，回波时间是多少？（c）要确定到 12.0 km 外一架飞机的距离，使误差在 10.0 m 以内，回波时间必须测量得多准确（以纳秒计）？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 150000000000.0,
+      "unit": "m",
+      "hint": "每一次回波时间都要走两遍这段距离，速率为光速。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.5,
+      "unit": "μs"
+     },
+     {
+      "part": "(c)",
+      "value": 66.7,
+      "unit": "ns"
+     }
+    ],
+    "solution": "（a）$1.50\\times 10^{11}\\ \\text{m}$。（b）$0.500\\ \\mu\\text{s}$。（c）66.7 ns。"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id1169738107832",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "infrared",
+   "prompt": "（a）计算夜间从地球表面 $1.0\\ \\text{m}^{2}$ 上以辐射方式（几乎完全是红外）传热的速率，单位为瓦特。假设发射率为 0.90，地球的温度为 $15^\\circ\\text{C}$，外层空间的温度为 2.7 K。（b）把这种辐射的强度与白天从太阳到达地球的辐射相比，后者平均约为 $800\\ \\text{W/m}^2$，其中只有一半被吸收。（c）假设外向辐射是连续波，其中的最大磁感应强度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": -350.0,
+      "unit": "W/m²",
+      "hint": "（a）部分是第 14 章的辐射功率；（c）部分需要 24.4 节的强度。"
+     },
+     {
+      "part": "(b) as a percent of the absorbed sunlight",
+      "value": 88,
+      "unit": "%"
+     },
+     {
+      "part": "(c)",
+      "value": 1.7,
+      "unit": "μT"
+     }
+    ],
+    "solution": "（a）$-3.5\\times 10^{2}\\ \\text{W/m}^{2}$。（b）88%。（c）$1.7\\ \\mu\\text{T}$。"
+   },
+   "tag": "综合概念"
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "radio-waves-and-modulation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electromagnetic-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "radiation-and-living-tissue"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "transmission-reflection-absorption",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "radiation-and-living-tissue"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "sources-across-the-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "transmission-reflection-absorption",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "radio-waves-and-modulation"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "antenna-length-and-wavelength"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "spectrum-rules-of-thumb"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "electromagnetic-spectrum",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "transmission-reflection-absorption"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "spectrum-rules-of-thumb",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "transmission-reflection-absorption"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "electromagnetic-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "radiation-and-living-tissue"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "electromagnetic-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "spectrum-rules-of-thumb"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "electromagnetic-spectrum",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "microwaves-and-their-uses"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "radiation-and-living-tissue",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "antenna-length-and-wavelength"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "microwaves-and-their-uses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "radiation-and-living-tissue"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "transmission-reflection-absorption",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "electromagnetic-spectrum"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "c-equals-f-lambda"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "electromagnetic-spectrum"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "spectrum-rules-of-thumb"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "radio-waves-and-modulation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "c-equals-f-lambda"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "transmission-reflection-absorption"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "c-equals-f-lambda",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "microwaves-and-their-uses"
+  },
+  {
+   "exercise": "p1",
+   "concept": "c-equals-f-lambda",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p2",
+   "concept": "c-equals-f-lambda",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "sources-across-the-spectrum"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electromagnetic-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p4",
+   "concept": "spectrum-rules-of-thumb"
+  },
+  {
+   "exercise": "p5",
+   "concept": "spectrum-rules-of-thumb"
+  },
+  {
+   "exercise": "p5",
+   "concept": "microwaves-and-their-uses"
+  },
+  {
+   "exercise": "p5",
+   "concept": "find-wavelength-or-frequency",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p6",
+   "concept": "electromagnetic-spectrum"
+  },
+  {
+   "exercise": "p6",
+   "concept": "spectrum-rules-of-thumb",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "c-equals-f-lambda",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "radio-waves-and-modulation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "antenna-length-and-wavelength"
+  },
+  {
+   "exercise": "p8",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p8",
+   "concept": "radio-waves-and-modulation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "find-wavelength-or-frequency"
+  },
+  {
+   "exercise": "p9",
+   "concept": "spectrum-rules-of-thumb"
+  },
+  {
+   "exercise": "p9",
+   "concept": "radiation-and-living-tissue",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "c-equals-f-lambda"
+  },
+  {
+   "exercise": "p10",
+   "concept": "radio-waves-and-modulation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "microwaves-and-their-uses"
+  },
+  {
+   "exercise": "p11",
+   "concept": "c-equals-f-lambda",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "sources-across-the-spectrum"
+  },
+  {
+   "exercise": "p12",
+   "concept": "electromagnetic-spectrum",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "radiation-and-living-tissue",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "submarine",
+   "label": "水下的潜艇",
+   "figures": [
+    "sim-elf-submarine"
+   ]
+  },
+  {
+   "id": "am-carrier",
+   "label": "调幅电台的载波",
+   "figures": [
+    "sim-am"
+   ]
+  },
+  {
+   "id": "am-audio",
+   "label": "调幅电台所携带的音频信号",
+   "figures": [
+    "sim-am"
+   ]
+  },
+  {
+   "id": "am-wave",
+   "label": "调幅电台发出的已调幅波",
+   "figures": [
+    "sim-am"
+   ]
+  },
+  {
+   "id": "fm-carrier",
+   "label": "调频电台的载波",
+   "figures": [
+    "sim-fm"
+   ]
+  },
+  {
+   "id": "fm-audio",
+   "label": "调频电台所携带的音频信号",
+   "figures": [
+    "sim-fm"
+   ]
+  },
+  {
+   "id": "fm-wave",
+   "label": "调频电台发出的已调频波",
+   "figures": [
+    "sim-fm"
+   ]
+  },
+  {
+   "id": "am-signal",
+   "label": "例题 24.2 中 1530 kHz 的调幅广播信号",
+   "figures": [
+    "sim-antenna-length"
+   ]
+  },
+  {
+   "id": "fm-signal",
+   "label": "例题 24.2 中 105.1 MHz 的调频广播信号",
+   "figures": [
+    "sim-antenna-length"
+   ]
+  },
+  {
+   "id": "cell-signal",
+   "label": "例题 24.2 中 1.90 GHz 的手机信号",
+   "figures": [
+    "sim-antenna-length"
+   ]
+  },
+  {
+   "id": "atom",
+   "label": "被电子电离的原子",
+   "figures": [
+    "sim-xray"
+   ]
+  },
+  {
+   "id": "material",
+   "label": "电子撞击的材料",
+   "figures": [
+    "sim-xray"
+   ]
+  },
+  {
+   "id": "x-ray",
+   "label": "图 24.18 中的特征 X 射线",
+   "figures": [
+    "sim-xray"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "laser-cornea-energy",
+   "what": "一次激光脉冲串传给角膜的能量",
+   "source": "《大学物理（第2版）》，24.3 电磁波谱，例题 24.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kcspec = 4186\\ \\text{J/kg/K}"
+      },
+      {
+       "tex": "\\kdTemp = 100^\\circ\\text{C} - 34^\\circ\\text{C}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{\\kcspec}\\mk{T}{\\kdTemp}",
+      "uses": [],
+      "src": "14.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{(4186\\ \\text{J/kg/K})}\\mk{T}{(100^\\circ\\text{C} - 34^\\circ\\text{C})}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{(276{,}276\\ \\text{J/kg})}",
+       "uses": [],
+       "map": {
+        "T": "c"
+       }
+      },
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{(276\\ \\text{kJ/kg})}",
+       "uses": []
+      }
+     ],
+     "src": "例题 24.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kLv = 2256\\ \\text{kJ/kg}",
+       "src": "表 14.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQv} = \\mk{m}{\\km}\\mk{L}{\\kLv}",
+      "uses": [],
+      "src": "14.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Q}{\\kQv} = \\mk{m}{\\km}\\mk{L}{(2256\\ \\text{kJ/kg})}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "例题 24.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\krho = 1000\\ \\text{kg/m}^{3}"
+      },
+      {
+       "text": "被蒸发的一层是直径 $0.80\\ \\text{mm}$、厚 $0.30\\ \\mu\\text{m}$ 的圆盘。"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\frac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\kvol}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{(1000\\ \\text{kg/m}^{3})}\\mk{V}{(\\text{面积} \\times \\text{厚度}\\ (\\text{m}^{3}))}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{(1000\\ \\text{kg/m}^{3})}\\mk{V}{(\\pi (0.80 \\times 10^{-3}\\ \\text{m})^{2}/4)(0.30 \\times 10^{-6}\\ \\text{m})}",
+       "uses": [
+        1
+       ],
+       "cap": "直径为 $d$ 的圆盘，面积为 $\\pi d^2/4$。"
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{v}{0.151 \\times 10^{-9}\\ \\text{kg}}",
+       "uses": [],
+       "map": {
+        "r": "v",
+        "V": "v"
+       }
+      }
+     ],
+     "src": "例题 24.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQtot} = \\mk{h}{\\kQh} + \\mk{v}{\\kQv}",
+      "uses": [],
+      "why": "光的能量既用于升高组织的温度，也用于使其蒸发。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{h}{\\km(276\\ \\text{kJ/kg})} + \\mk{v}{\\km(2256\\ \\text{kJ/kg})}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{m}{\\km}(\\mk{h}{276\\ \\text{kJ/kg}} + \\mk{v}{2256\\ \\text{kJ/kg}})",
+       "uses": [],
+       "map": {
+        "h": [
+         "m",
+         "h"
+        ],
+        "v": [
+         "m",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{m}{(0.151 \\times 10^{-9}\\ \\text{kg})}(\\mk{h}{276\\ \\text{kJ/kg}} + \\mk{v}{2256\\ \\text{kJ/kg}})",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{r}{382 \\times 10^{-9}\\ \\text{kJ}}",
+       "uses": [],
+       "map": {
+        "m": "r",
+        "h": "r",
+        "v": "r"
+       }
+      }
+     ],
+     "src": "例题 24.3"
+    }
+   ]
+  }
+ ]
+}

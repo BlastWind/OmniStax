@@ -1,0 +1,1088 @@
+{
+ "id": "11.8",
+ "module": "m42197",
+ "chapter": "11",
+ "title": "液体中的内聚与附着：表面张力与毛细现象",
+ "short": "表面张力与毛细现象",
+ "lead": "液体的分子既相互吸引，也吸引液体所接触的一切物体，这些拉力使液体表面的表现像一张被拉伸的薄膜。你会看到它们怎样托住一只昆虫、怎样压缩气泡中的气体、怎样决定液滴的形状，以及怎样把液体沿细管拉升。",
+ "objectives": [
+  "理解内聚力和附着力。",
+  "定义表面张力。",
+  "理解毛细现象。"
+ ],
+ "summary_html": "<ul><li>同种分子之间的吸引<span data-concept=\"force\">力</span>称为内聚力。</li><li>不同种分子之间的吸引<span data-concept=\"force\">力</span>称为附着力。</li><li>分子之间的内聚力使液体表面收缩到尽可能小的表面<span data-concept=\"area\">面积</span>。这种普遍的效应称为<span data-concept=\"surface-tension\">表面张力</span>。</li><li>毛细现象是流体在狭窄的管（即毛细管）中被升高或压低的趋势，它是由内聚力和附着力的相对强度造成的。</li></ul>",
+ "notes": "书中没有给出答案的七道习题被略去：肺泡内衬液体的表面张力、乙醇中一根 3.50 cm 滑动金属丝所受的力、树液在木质部管中上升的高度、橡胶气球的有效表面张力、石蜡管和银管中的水、两个合并的肥皂泡，以及乙醇与水升高高度之比；11.9 中关于达到 25.0 atm 负压的装置、同样没有答案的那道习题也被略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案。第 2、4、6、8、10、12 和 14 题没有给出答案，因此被略去：肺泡内衬液体的表面张力、乙醇中一根 3.50 cm 滑动金属丝所受的力、树液在木质部管中上升的高度、橡胶气球的有效表面张力、石蜡管和银管中升高的水、合并成一个的两个肥皂泡，以及乙醇和水升高高度之比。第一道思考题问的是满载的油轮为什么比空载时在水中坐得更深，讨论的是漂浮物体沉入多深，它被放在 11.7 中，source_section 为 11.8；11.7 的说明里也这样写明。11.9 中关于水在半径为 0.500 mm 的玻璃毛细管中升高多少、获得多少势能的习题，讲的只是毛细上升，因此放在这里，source_section 为 11.9，答案取自书中，解中附有书中对其（c）问给出的答案；11.9 的说明里同样写明。11.9 中关于达到 25.0 atm 负压的装置的习题出于同样的原因本应移到这里，但它没有答案，因此被略去。七道思考题的建议思路由 AI 撰写并已标明。本章没有“理解检测”栏目，因此没有设置行内题目；所有题目都在末尾。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-bubbles",
+   "kind": "photo",
+   "number": "11.24",
+   "widths": [
+    400
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-surface-sheet",
+   "kind": "sim",
+   "number": "11.25",
+   "originals": [
+    "/media/ch11/Figure_12_08_03a.jpg"
+   ],
+   "original_caption": "表面张力支撑着一只昆虫和一根铁针的重力，它们都停在表面上，而没有穿透表面。它们不是漂浮，而是由液体的表面支撑着。（a）昆虫的腿使水面凹陷。F_ST 是平行于表面的回复力（表面张力）。（b）铁针同样使水面凹陷，直到回复力（表面张力）增大到等于它的重力。",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "force",
+    "surface-tension",
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note trimmed and set through the macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note trimmed and set through the macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: strider leg sprite, shaded needle, labeller labels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-slide-wire",
+   "kind": "sim",
+   "number": "11.26",
+   "originals": [
+    "/media/ch11/Figure_12_08_04a.jpg"
+   ],
+   "original_caption": "用于测量表面张力的滑动金属丝装置；该装置施加一个力以减小液膜的表面积。使金属丝保持原位所需的力为 F = γL = γ(2l)，因为金属丝上附着着两个液体表面。液膜被拉伸时，这个力几乎保持不变，直到液膜接近其破裂点。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "force",
+    "surface-tension",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "wire label clear of the force at short lengths; note through macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "wire label clear of the force at short lengths; note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-balloons",
+   "kind": "sim",
+   "number": "11.27",
+   "originals": [
+    "/media/ch11/Figure_12_08_05a.jpg"
+   ],
+   "original_caption": "阀门关闭时，两个大小不同的气球分别接在一根管的两端。打开阀门后，较小的气球缩小，空气流动，充入较大的气球。球形气球内的压强与其半径成反比，因此较小的气球内部压强比较大的气球大，从而产生这种流动。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "pressure",
+    "surface-tension",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut to the one fact the caption leaves out"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut to the one fact the caption leaves out"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-alveoli",
+   "kind": "photo",
+   "number": "11.28",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-surfactant",
+   "kind": "sim",
+   "number": "11.29",
+   "originals": [
+    "/media/ch11/Figure_12_08_07a.jpg"
+   ],
+   "original_caption": "表面张力随表面积变化的函数关系。肺表面活性剂的表面张力随面积减小而降低。这保证了小肺泡不会塌缩，大肺泡也不会过度膨胀。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "surface-tension",
+    "pressure",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bar header lifted off the scale; note through macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bar header lifted off the scale; note through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-contact-angle",
+   "kind": "sim",
+   "number": "11.30",
+   "originals": [
+    "/media/ch11/Figure_12_08_08a.jpg"
+   ],
+   "original_caption": "照片中，水在打过蜡的汽车漆面上聚成小珠，在没打蜡的漆面上摊平。（a）水在打过蜡的表面上形成小珠，因为造成表面张力的内聚力大于附着力，而附着力倾向于使液滴摊平。（b）裸漆上的水珠被明显摊平，因为水与漆之间的附着力很强，克服了表面张力。接触角 θ 与内聚力和附着力的相对强度直接相关。θ 越大，内聚力与附着力之比就越大。（来源：P. P. Urone）",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note trimmed"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-capillary",
+   "kind": "sim",
+   "number": "11.31",
+   "folds": [
+    "11.32"
+   ],
+   "originals": [
+    "/media/ch11/Figure_12_08_09a.jpg",
+    "/media/ch11/Figure_12_08_10a.jpg"
+   ],
+   "original_caption": "（a）汞在玻璃管中被压低，因为它的接触角大于 90°。表面张力在使汞变平的同时施加一个向下的力，把汞压低在管中。虚线表示没有表面张力的变平作用时汞表面的形状。（b）水在玻璃管中升高，因为它的接触角接近 0°。因此，表面张力在使表面变平以减小其面积时施加一个向上的力。 — （a）毛细现象取决于管的半径。管越细，所达到的高度越大。对于大半径的管，高度可以忽略。（b）在同一根管中，其他因素相同时，密度较大的流体升高的高度较小。",
+   "widths": [
+    350,
+    400
+   ],
+   "draws": [
+    "position",
+    "surface-tension",
+    "density",
+    "force",
+    "angle",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "a liquid choice sets its Table 11.4 angle on glass; note trimmed"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "a liquid choice sets its Table 11.4 angle on glass; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-negative-pressure",
+   "kind": "sim",
+   "number": "11.33",
+   "originals": [
+    "/media/ch11/Figure_12_08_11a-ce5f.jpg"
+   ],
+   "original_caption": "（a）活塞被向上提起时，会使液体略微伸长，使它处于张力之下，产生负的绝对压强 P = −F/A。（b）液体最终分开，这给出了这种液体中负压的一个实验极限。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "pressure",
+    "force",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note trimmed, set through the macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note trimmed, set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "cohesion-adhesion",
+   "concept": "cohesive-forces",
+   "verb": "introduces"
+  },
+  {
+   "span": "cohesion-adhesion",
+   "concept": "adhesive-forces",
+   "verb": "introduces"
+  },
+  {
+   "span": "cohesion-adhesion",
+   "concept": "atomic-arrangement-and-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "cohesion-adhesion",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "surface-tension",
+   "concept": "surface-tension",
+   "verb": "introduces"
+  },
+  {
+   "span": "surface-tension",
+   "concept": "cohesive-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "surface-tension",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "surface-tension",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "bubbles",
+   "concept": "pressure-inside-a-bubble",
+   "verb": "introduces"
+  },
+  {
+   "span": "bubbles",
+   "concept": "surface-tension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bubbles",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "bubbles",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "alveoli",
+   "concept": "alveoli-and-surfactant",
+   "verb": "introduces"
+  },
+  {
+   "span": "alveoli",
+   "concept": "pressure-inside-a-bubble",
+   "verb": "reinforces"
+  },
+  {
+   "span": "alveoli",
+   "concept": "surface-tension",
+   "verb": "uses"
+  },
+  {
+   "span": "contact-angle",
+   "concept": "contact-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "contact-angle",
+   "concept": "cohesive-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "contact-angle",
+   "concept": "adhesive-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "capillary-action",
+   "concept": "capillary-action",
+   "verb": "introduces"
+  },
+  {
+   "span": "capillary-action",
+   "concept": "contact-angle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "capillary-action",
+   "concept": "surface-tension",
+   "verb": "uses"
+  },
+  {
+   "span": "capillary-action",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "capillary-action",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "negative-pressure",
+   "concept": "capillary-action",
+   "verb": "reinforces"
+  },
+  {
+   "span": "negative-pressure",
+   "concept": "cohesive-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "negative-pressure",
+   "concept": "absolute-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "negative-pressure",
+   "concept": "pressure",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq2",
+   "source_id": "fs-id1276085",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "surface-tension",
+   "prompt": "表面张力是由内聚力还是附着力造成的，还是两者兼有？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "表面张力仅由内聚力造成。液体的分子相互吸引，表面上的分子只有一侧有邻近的分子，因此被拉向液体内部。结果是表面收缩到尽可能小的面积，表现得像一张被拉伸的薄膜，这就是表面张力。附着力作用于液体与其他物体之间，例如它所接触的固体，它决定的是接触角和毛细现象，而不是表面本身的张力。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3028474",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capillary-action",
+   "prompt": "毛细现象是由内聚力还是附着力造成的，还是两者兼有？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者兼有。液体与管壁之间的附着力决定接触角，从而决定液体是升高还是被压低，以及弯月面向哪个方向弯曲。内聚力使液体具有表面张力，而把液柱抬起或压下的，正是表面张力沿管壁处的弯曲表面所起的拉力；没有表面张力的液体，无论怎样润湿玻璃，也不会上升。高度 $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$ 同时包含两者：表面张力 $\\kgamma$ 来自内聚，接触角 $\\theta$ 来自附着与内聚之间的平衡。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1486629",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "surface-tension",
+   "prompt": "鸭、鹅和天鹅等鸟类的密度比水大，却能停在水面上。请解释这种能力，注意水不会润湿它们的羽毛，而且它们不能停在肥皂水上。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "比水密度大的鸟不能像通常意义上那样漂浮，就像铁针不能漂浮一样；托住它的是水的表面。由于水不润湿羽毛，接触角很大，水渗不进去，所以羽毛里存着空气，使很长的一段未被浸湿的表面与水接触。水面在鸟的重压下凹陷，它的回复力，即表面张力，沿整条接触线作用，其向上的分力之和等于鸟的重力，就像 $\\kwgt = \\kgamma L\\sin\\theta$ 托住昆虫那样。肥皂使水的表面张力降到约一半，还会润湿羽毛，因此干燥表面的长度和每单位长度的拉力都下降；表面再也承担不了这个重力，水渗进羽毛，鸟就沉得更低并被浸湿。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2971778",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "contact-angle",
+   "prompt": "水在涂了油的日光浴者身上聚成小珠，而在她旁边没涂油的人身上却不会。请用内聚力和附着力来解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两种情况下水内部的内聚力是相同的，所以差别在于水与皮肤之间的附着力。油就像汽车上的蜡：水与油之间的附着力很弱，所以内聚占上风，接触角很大，水收拢成小珠，只在很小的面积上接触皮肤。裸露的皮肤更像裸露的漆面：水与皮肤之间的附着力强到足以与内聚力抗衡，所以接触角很小，水滴被摊平，铺展成一层薄膜。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2682132",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capillary-action",
+   "prompt": "能否利用毛细现象在“失重”环境（例如绕轨道运行的空间探测器）中输送流体？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "可以，而且比在地球上更好。毛细现象来自表面张力沿管壁的拉力，与重力无关；在地球上限制高度的是液柱的重力，所以 $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$ 的分母中有 $\\kg$。在绕轨道运行的探测器中，流体和管都处于自由落体状态，没有什么能与表面的拉力相平衡，被吸入管中的润湿性流体会一直沿管前进。正文指出，毛细现象在地球上能使液体沿水平方向移动很远的距离，原因相同。航天器确实利用润湿表面、窄通道和网屏，在没有“下方”可借助的地方收集和输送推进剂和水。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2437631",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capillary-action",
+   "prompt": "毛细现象对直径均匀的压强计的读数有什么影响？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "没有影响，只要压强计的两臂直径相同且盛有同一种流体。毛细现象使每一臂中的流体升高或压低同样的高度 $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$，因为 $\\kgamma$、$\\theta$、$\\krho$ 和 $r$ 在两侧都相同，而压强计读出的是两臂液面的高度差，所以两个毛细位移相互抵消。如果两臂的直径不同，位移就会不同，读数就会偏差二者之差，这是压强计的管做得一样而且不太细的原因之一。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1993729",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alveoli",
+   "prompt": "胸壁内侧与肺外侧之间的压强通常保持为负。请解释肺内的压强怎样能在不靠肌肉动作的情况下变为正（以引起呼气）。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "内衬的液体使肺泡的表现像数亿个微小的气泡。每个肺泡内衬中的表面张力把它向内拉，并使内部空气的压强高出 $\\kPr = 4\\kgamma/r$，就像对肥皂泡那样。当维持胸廓扩张的肌肉放松时，没有什么能对抗这个拉力。肺泡收缩，把其中的空气压缩到高于体外压强的压强，空气便流出。这就是呼气为什么是被动的，也是正文所说，即使发生瘫痪，表面张力也会把空气排出肺外的原因。胸壁与肺之间的负压使肺在两次呼吸之间保持充气，抵抗这一拉力。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3123703",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bubbles",
+   "prompt": "如果内衬液体的肺泡壁的表面张力与肥皂水相同，半径为 $2.50\\times 10^{-4}\\ \\text{m}$ 的肺泡内的压强是多少？你可以假定该压强与球形气泡所产生的压强相同。",
+   "answer": {
+    "type": "number",
+    "value": 592,
+    "unit": "N/m²",
+    "generated_by": "source",
+    "hint": "把肺泡当作球形气泡，于是 $\\kPr = 4\\kgamma/r$，肥皂水的表面张力取自表 11.3。",
+    "solution": "$592\\ \\text{N/m}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2684580",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bubbles",
+   "prompt": "直径为 0.100 m 的肥皂泡内的表压强是多少毫米汞柱？",
+   "answer": {
+    "type": "number",
+    "value": 0.0223,
+    "unit": "mm Hg",
+    "generated_by": "source",
+    "hint": "题中给出的是气泡的直径，而 $\\kPr = 4\\kgamma/r$ 要用半径。像例题 11.11 那样，用 1.00 mm Hg = 133 N/m² 把帕斯卡换算成 mm Hg。",
+    "solution": "$2.23\\times 10^{-2}\\ \\text{mm Hg}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3013760",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capillary-action",
+   "prompt": "图 11.32（a）显示了管半径对毛细现象能使流体升高的高度的影响。（a）计算水在半径为 0.900 cm 的玻璃管中的高度 $\\kh$——这是一根相当粗的管，像左边那根。（b）如果右边的玻璃管使水升高到 4.00 cm，它的半径是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.00165,
+      "unit": "m",
+      "hint": "水在玻璃上的接触角为 0°，所以在 $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$ 中 $\\cos\\theta = 1$；水在 20°C 时的表面张力取自表 11.3。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.000371,
+      "unit": "m",
+      "hint": "对同一个公式解出 $r$，取 $\\kh = 4.00$ cm。"
+     }
+    ],
+    "solution": "（a）$1.65\\times 10^{-3}\\ \\text{m}$（b）$3.71\\times 10^{-4}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1986155",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "surface-tension",
+   "prompt": "如果力为 $3.16\\times 10^{-3}\\ \\text{N}$、金属丝的长度为 2.50 cm，图 11.26 所示装置中是什么流体？计算表面张力 $\\kgamma$，并从表 11.3 中找出可能相符的液体。",
+   "answer": {
+    "type": "number",
+    "value": 0.0632,
+    "unit": "N/m",
+    "generated_by": "source",
+    "hint": "液膜有两个表面附着在金属丝上，所以 $\\kgamma = \\kF/L$ 中的长度是金属丝长度的两倍，$L = 2l$。",
+    "solution": "$6.32\\times 10^{-2}\\ \\text{N/m}$。根据表中的数值，这种流体很可能是丙三醇。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2627309",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bubbles",
+   "prompt": "计算半径为 2.00 cm 的水、乙醇和肥皂水气泡内的表压强。忽略蒸发的任何影响，哪种液体形成的气泡最稳定？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "water",
+      "value": 14.6,
+      "unit": "N/m²",
+      "hint": "用 $\\kPr = 4\\kgamma/r$，水在 20°C 时的表面张力取自表 11.3，半径以米为单位。"
+     },
+     {
+      "part": "alcohol",
+      "value": 4.46,
+      "unit": "N/m²",
+      "hint": "同一个公式，用乙醇的表面张力。"
+     },
+     {
+      "part": "soapy water",
+      "value": 7.4,
+      "unit": "N/m²",
+      "hint": "同一个公式，用肥皂水的表面张力。"
+     }
+    ],
+    "solution": "$P_{\\text{w}} = 14.6\\ \\text{N/m}^2$，$P_{\\text{a}} = 4.46\\ \\text{N/m}^2$，$P_{\\text{sw}} = 7.40\\ \\text{N/m}^2$。乙醇形成的气泡最稳定，因为其内部的绝对压强最接近大气压。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3062468",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capillary-action",
+   "prompt": "如果毛细现象使橄榄油在半径为 0.100 mm 的玻璃管中升高到 7.07 cm 的高度，计算橄榄油的接触角 $\\theta$。这个值与大多数有机液体的接触角一致吗？",
+   "answer": {
+    "type": "number",
+    "value": 5.1,
+    "unit": "°",
+    "generated_by": "source",
+    "hint": "由 $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$ 解出 $\\cos\\theta$，橄榄油的表面张力取自表 11.3，其密度取自表 11.1。",
+    "solution": "$5.1^\\circ$。这接近大多数有机液体的 $\\theta = 0^\\circ$ 这个值。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1910033",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capillary-action",
+   "prompt": "计算在同一根玻璃管中，毛细现象使水和汞升高的高度之比。",
+   "answer": {
+    "type": "number",
+    "value": -2.78,
+    "generated_by": "source",
+    "hint": "对每种液体写出 $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$ 并相除；半径和 $\\kg$ 约去，剩下取自表 11.3 的表面张力、取自表 11.1 的密度和取自表 11.4 的接触角。",
+    "solution": "$-2.78$。比值为负，因为水升高而汞被压低。"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2382586",
+   "source_section": "11.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "capillary-action",
+   "prompt": "（a）水在半径为 0.500 mm 的玻璃毛细管中会升高多少？（b）水获得多少重力势能？（c）讨论这份能量的可能来源。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.97,
+      "unit": "cm",
+      "hint": "水在玻璃上的接触角为 0°；使用 $\\kh = 2\\kgamma\\cos\\theta/\\krho\\kg r$，并取水在 20°C 时的表面张力。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.39e-06,
+      "unit": "J",
+      "hint": "升起的液柱的质量为 $\\krho\\pi r^2\\kh$，其质心升高了 $\\kh/2$。"
+     }
+    ],
+    "solution": "（a）2.97 cm（b）$3.39\\times 10^{-6}\\ \\text{J}$（c）表面张力所产生的力通过 $\\kh/2$ 的有效距离做功，把水柱升起。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq2",
+   "concept": "surface-tension"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "cohesive-forces",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "capillary-action"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "adhesive-forces",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "surface-tension"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "contact-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "contact-angle"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "adhesive-forces",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "capillary-action"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "capillary-action"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "contact-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "cq8",
+   "concept": "alveoli-and-surfactant"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "pressure-inside-a-bubble",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "pressure-inside-a-bubble"
+  },
+  {
+   "exercise": "p1",
+   "concept": "alveoli-and-surfactant",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "pressure-inside-a-bubble"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capillary-action"
+  },
+  {
+   "exercise": "p5",
+   "concept": "contact-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "surface-tension"
+  },
+  {
+   "exercise": "p9",
+   "concept": "pressure-inside-a-bubble"
+  },
+  {
+   "exercise": "p9",
+   "concept": "surface-tension",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "contact-angle"
+  },
+  {
+   "exercise": "p11",
+   "concept": "capillary-action",
+   "weight": 3
+  },
+  {
+   "exercise": "p13",
+   "concept": "capillary-action"
+  },
+  {
+   "exercise": "p13",
+   "concept": "contact-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "capillary-action"
+  },
+  {
+   "exercise": "p15",
+   "concept": "contact-angle",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "insect",
+   "label": "昆虫的脚",
+   "figures": [
+    "sim-surface-sheet"
+   ]
+  },
+  {
+   "id": "needle",
+   "label": "铁针",
+   "figures": [
+    "sim-surface-sheet"
+   ]
+  },
+  {
+   "id": "wire",
+   "label": "滑动的金属丝",
+   "figures": [
+    "sim-slide-wire"
+   ]
+  },
+  {
+   "id": "film",
+   "label": "液膜",
+   "figures": [
+    "sim-slide-wire"
+   ]
+  },
+  {
+   "id": "balloon-1",
+   "label": "气球 1，开始时较大的那个",
+   "figures": [
+    "sim-two-balloons"
+   ]
+  },
+  {
+   "id": "balloon-2",
+   "label": "气球 2，开始时较小的那个",
+   "figures": [
+    "sim-two-balloons"
+   ]
+  },
+  {
+   "id": "surfactant",
+   "label": "肺表面活性剂",
+   "figures": [
+    "sim-surfactant"
+   ]
+  },
+  {
+   "id": "detergent",
+   "label": "洗涤剂",
+   "figures": [
+    "sim-surfactant"
+   ]
+  },
+  {
+   "id": "tissue-fluid",
+   "label": "组织液",
+   "figures": [
+    "sim-surfactant"
+   ]
+  },
+  {
+   "id": "alveolus",
+   "label": "肺泡",
+   "figures": [
+    "sim-surfactant"
+   ]
+  },
+  {
+   "id": "drop",
+   "label": "液滴",
+   "figures": [
+    "sim-contact-angle"
+   ]
+  },
+  {
+   "id": "tube",
+   "label": "玻璃毛细管",
+   "figures": [
+    "sim-capillary"
+   ]
+  },
+  {
+   "id": "piston",
+   "label": "活塞",
+   "figures": [
+    "sim-negative-pressure"
+   ]
+  }
+ ]
+}

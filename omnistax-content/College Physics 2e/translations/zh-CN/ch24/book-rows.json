@@ -1,0 +1,1021 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "B_0mag",
+   "latex": "B_0",
+   "macro": "\\kBmago"
+  },
+  {
+   "sym": "I_ave",
+   "latex": "I_{\\text{ave}}",
+   "macro": "\\kIave"
+  },
+  {
+   "sym": "I_0peak",
+   "latex": "I_0",
+   "macro": "\\kIopeak"
+  },
+  {
+   "sym": "Q_v",
+   "latex": "Q_{\\text{v}}",
+   "macro": "\\kQv"
+  },
+  {
+   "sym": "Q_tot",
+   "latex": "Q_{\\text{tot}}",
+   "macro": "\\kQtot"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "maxwells-equations",
+   "kind": "axiom",
+   "section": "24.1",
+   "name": "麦克斯韦方程组",
+   "terms": [
+    "麦克斯韦方程组"
+   ],
+   "statement": "麦克斯韦把奥斯特、库仑、高斯和法拉第的工作汇集成四条陈述，它们合起来构成一套完整的电磁理论。电场线始于正电荷而止于负电荷。磁感线没有起点，也没有终点。变化的磁场感应出电场。运动的电荷和变化的电场产生磁场。本章的其余内容都由这四条推出。"
+  },
+  {
+   "id": "changing-fields-generate-each-other",
+   "kind": "axiom",
+   "section": "24.1",
+   "name": "变化的电场作为磁性的来源",
+   "statement": "法拉第已经表明，变化的磁场产生电场。麦克斯韦添上了对称的陈述，即变化的电场产生磁场，正是这一补充，把四条各自独立的定律变成了一套能够预言波的理论。每一种场在变化时都创造出另一种场，所以扰动可以自己持续下去，并离开引起它的东西向远处传播。没有这一条假说，就没有可供预言的电磁波。"
+  },
+  {
+   "id": "speed-of-light-from-constants",
+   "kind": "result",
+   "section": "24.1",
+   "name": "电磁波的速率",
+   "statement": "麦克斯韦的理论不只是说有一种波存在，它还说出了这种波有多快。它由两个常量给出这一速率，这两个常量是在实验室里用电荷和电流测得的，与光毫无关系。真空电容率决定电力的强弱，真空磁导率决定磁力的强弱。它们乘积的平方根决定了两种场相互带着对方前进的那个唯一速率。",
+   "forms": [
+    {
+     "id": "eq-speed-of-light-constants",
+     "latex": "c = \\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}}",
+     "ktex": "\\kc = \\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}}",
+     "anchor": "24.1-prediction"
+    }
+   ]
+  },
+  {
+   "id": "light-is-an-electromagnetic-wave",
+   "kind": "idea",
+   "section": "24.1",
+   "name": "作为电磁波的光",
+   "statement": "麦克斯韦由两个电学常量算出的速率就是光速，这样大小的巧合并非巧合。麦克斯韦由此断定，光是一种电磁波，其波长恰是眼睛所能探测到的那一段。这一结论带来一个预言：如果光是一种波的一个波段，那么其他波长也应当存在，而且应当能够找到，接下来的两节全部用来讲述它们。"
+  },
+  {
+   "id": "hertz-observations",
+   "kind": "idea",
+   "section": "24.1",
+   "name": "赫兹的观测",
+   "statement": "预言的价值取决于对它的检验。从 1887 年起，赫兹用一个以已知频率共振的电路驱动一个金属丝圈，使火花跳过圈上的缺口，又在实验室的另一头放置第二个调谐的线圈，那里同样出现了火花。随后他由干涉图样测出了波长，由于他知道频率，就能由 $v = f\\lambda$ 求出速率，并表明它就是光速。频率的 SI 单位以他的名字命名。"
+  },
+  {
+   "id": "electromagnetic-wave",
+   "kind": "definition",
+   "section": "24.1",
+   "name": "电磁波",
+   "terms": [
+    "电磁波"
+   ],
+   "statement": "电磁波是一对变化的电场和磁场，它们相互产生，一起穿过空间传播，并携带能量，在真空中以光速传播。"
+  },
+  {
+   "id": "hertz",
+   "kind": "definition",
+   "section": "24.1",
+   "name": "赫兹",
+   "terms": [
+    "赫兹"
+   ],
+   "statement": "赫兹是频率的 SI 单位，等于每秒一个周期，以海因里希·赫兹的名字命名，他最先产生并探测到了电磁波。",
+   "forms": [
+    {
+     "id": "eq-hertz",
+     "latex": "1\\;\\text{Hz} = 1\\;\\text{cycle/s}"
+    }
+   ]
+  },
+  {
+   "id": "em-waves-from-accelerating-charges",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "加速电荷的辐射",
+   "statement": "只要电流在变化，它周围的电场和磁场就在变化，而这种变化以波的形式从波源向外传出。一般的说法还要更简单：加速的电荷会辐射。这就是为什么交流电源能驱动广播天线，为什么没有屏蔽的电路会漏掉能量，也是为什么微波炉里有一根载有振荡电流的天线。"
+  },
+  {
+   "id": "antenna-field-cycle",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "天线电场在一个周期内的变化",
+   "statement": "位于一根直导线中央的交流电源驱动电荷先到一端，再到另一端。在电荷分开得最远的时刻，天线旁的电场最强。四分之一个周期之后，电荷在中间相遇，那里的电场为零，而先前的最大值已经以 $\\kc$ 传走了。一个完整的周期就显示了波的形状从何而来。电荷分开的距离决定它的振幅，电源完成一个周期所需的时间决定它的波长，所以频率高则波短。"
+  },
+  {
+   "id": "magnetic-part-of-the-wave",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "波的磁场部分",
+   "statement": "沿天线分开的那些电荷在运动时就是电流，而由安培定律，电流产生磁场，磁感线环绕导线。电流变化时，这个磁场也随之变化，并以光速向外传播，与电场完全一样。磁场部分与电场部分具有相同的周期和相同的波长，因为两者都是由同一些电荷的同一种运动产生的。"
+  },
+  {
+   "id": "em-wave-is-transverse",
+   "kind": "result",
+   "section": "24.2",
+   "name": "横电磁波",
+   "statement": "波的两种场位于不同的平面内。电场在一个平面内振荡，磁场在与之成直角的平面内振荡，波沿两个平面相交的那条直线传播。因此两种场都垂直于传播方向，这使电磁波成为横波。两者还严格同相：它们同时达到最大值，同时经过零。这种排布决定了波如何与接收用的导线或线圈耦合，所以要学会从任何角度想象它。",
+   "terms": []
+  },
+  {
+   "id": "e-over-b-equals-c",
+   "kind": "result",
+   "section": "24.2",
+   "name": "场强之比",
+   "statement": "分开的电荷所产生的电场越强，流动的电流就越大，磁场也就越大，所以两种场强应当一起升降。事实正是如此，二者之间的恒定比值就是光速本身，在每一时刻、空间中的每一点都是如此。由于 $\\kc$ 是一个很大的数，这一结果还说明，任何电磁波的磁场部分与电场部分相比都非常弱。",
+   "forms": [
+    {
+     "id": "eq-e-over-b",
+     "latex": "\\frac{E}{B} = c",
+     "ktex": "\\frac{\\kEf}{\\kBmag} = \\kc",
+     "anchor": "24.2-field-ratio"
+    },
+    {
+     "id": "eq-b-from-e",
+     "latex": "B = \\frac{E}{c}",
+     "ktex": "\\kBmag = \\frac{\\kEf}{\\kc}",
+     "anchor": "24.2-field-ratio"
+    },
+    {
+     "id": "eq-b0-from-e0",
+     "latex": "B_0 = \\frac{E_0}{c}",
+     "ktex": "\\kBmago = \\frac{\\kEfo}{\\kc}",
+     "section": "24.4",
+     "anchor": "24.4-fields-from-intensity"
+    }
+   ]
+  },
+  {
+   "id": "find-b-from-e",
+   "kind": "skill",
+   "section": "24.2",
+   "name": "由一个场强求另一个场强",
+   "statement": "把比值改写，一步就能由一种场得到另一种场，这是本节习题一再要求的计算。把 1000 V/m 的场除以光速，得到几微特斯拉，不到地球自身微弱磁场的十分之一，这是“波的磁场部分很小”这一说法的具体形式。检验一下伏每米除以米每秒的单位是否真的是特斯拉，值得做一次。",
+   "forms": [
+    {
+     "id": "eq-find-b-from-e",
+     "latex": "B = E/c",
+     "ktex": "\\kBmag = \\kEf/\\kc"
+    }
+   ]
+  },
+  {
+   "id": "em-wave-in-a-medium",
+   "kind": "result",
+   "section": "24.2",
+   "name": "介质中的电磁波",
+   "statement": "在真空之外，电磁波会变慢，减慢的倍数就是介质的折射率所给出的因子。两种场强之比也按完全相同的比例减小，所以在介质中，两种场所对应的是波自身的速率，而不是光速。凡是波不在真空中传播的地方，这一结果都很重要，而读者遇到波的地方大多如此。",
+   "forms": [
+    {
+     "id": "eq-speed-in-medium",
+     "latex": "v = \\frac{c}{n}",
+     "ktex": "\\kv = \\frac{\\kc}{n}",
+     "anchor": "24.2-field-ratio"
+    },
+    {
+     "id": "eq-e-over-b-medium",
+     "latex": "\\frac{E}{B} = \\frac{c}{n}",
+     "ktex": "\\frac{\\kEf}{\\kBmag} = \\frac{\\kc}{n}",
+     "anchor": "24.2-field-ratio"
+    }
+   ]
+  },
+  {
+   "id": "antenna-resonance",
+   "kind": "idea",
+   "section": "24.2",
+   "name": "天线共振",
+   "statement": "天线不是一个有完整通路的电路。它是一根导线，驱动源在其上建立起电荷的驻波，它的尺寸决定了它辐射得最好的频率。这是一种共振，而调谐收音机或电视机，就是改变电学性质直到满足共振条件。接收天线的工作方式相同，只是方向相反。到来的波使其中的电子加速，并建立起一个驻波，由接收器放大，所以它也必须在应当接收的频率上共振。"
+  },
+  {
+   "id": "oscillation",
+   "kind": "definition",
+   "section": "24.2",
+   "name": "振荡",
+   "terms": [
+    "振荡"
+   ],
+   "statement": "振荡就是以稳定的节拍来回涨落，天线中的电荷如此，它们发出的波的场也如此。"
+  },
+  {
+   "id": "c-equals-f-lambda",
+   "kind": "result",
+   "section": "24.3",
+   "name": "光的波动方程",
+   "statement": "对任何波，传播速率、频率和波长都由 $\\kvw = \\kf\\klam$ 相联系，而对真空中的电磁波，传播速率始终是光速。由于 $\\kc$ 从不改变，频率和波长只能此消彼长：频率越大，波长越小。正是这一个关系，使整个电磁波谱可以排在同一根轴上，并用任一种单位读出。",
+   "forms": [
+    {
+     "id": "eq-c-equals-f-lambda",
+     "latex": "c = f\\lambda",
+     "ktex": "\\kc = \\kf\\klam",
+     "anchor": "24.3-wave-relation"
+    },
+    {
+     "id": "eq-wavelength-from-frequency",
+     "latex": "\\lambda = \\frac{c}{f}",
+     "ktex": "\\klam = \\frac{\\kc}{\\kf}",
+     "anchor": "24.3-fm-radio"
+    }
+   ]
+  },
+  {
+   "id": "find-wavelength-or-frequency",
+   "kind": "skill",
+   "section": "24.3",
+   "name": "求波长或频率",
+   "statement": "把关系式改写，得到 $\\klam = \\kc/\\kf$，本节的大多数习题归结起来就是这个算术。1530 kHz 的调幅载波长近 200 m，105.1 MHz 的调频载波长 2.85 m，手机 1.90 GHz 的信号长 15.8 cm；这三个数解释了为什么调幅发射塔如此巨大，而手机的天线却藏在机壳里。把单位“周/s”带着算下去，答案就保持为米。"
+  },
+  {
+   "id": "electromagnetic-spectrum",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "电磁波谱",
+   "terms": [
+    "电磁波谱"
+   ],
+   "statement": "所有电磁波都是同一种现象，区分无线电波与 γ 射线的只是频率，从而是波长。按频率排序，就得到有名称的各个波段：无线电波、微波、红外线、可见光、紫外线、X 射线和 γ 射线，频率和波长的范围大得惊人。有些分界线很清楚，有些则不然。两个波段重叠的地方，一列波叫什么名称，取决于它是怎样产生的，而不取决于它振荡得多快。"
+  },
+  {
+   "id": "spectrum-rules-of-thumb",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "电磁波谱的经验法则",
+   "statement": "有三条陈述适用于整个电磁波谱，值得记住：频率较高的波能量较大，穿透力也较好；频率较高的波在给定时间内携带的信息更多；用来探测某物的波，波长越短，所能分辨的细节越小。每一条都有例外——磁共振成像用 3 m 的无线电波去看小于一毫米的细节——而知道这些法则只是经验法则，也是认识它们的一部分。"
+  },
+  {
+   "id": "transmission-reflection-absorption",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "透射、反射与吸收",
+   "statement": "波遇到一种材料时，可能穿过，可能折回，也可能被吸收，通常三者都会发生一部分。材料如何表现，取决于材料和频率两者，而不只是材料本身。玻璃让可见光通过而挡住紫外线，皮肤挡住可见光而让 X 射线通过。一种物质只有对某个指明的波段才是透明的或不透明的。"
+  },
+  {
+   "id": "radio-waves-and-modulation",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "无线电波与调制",
+   "terms": [
+    "无线电波"
+   ],
+   "statement": "无线电波由其波源来定义：凡是由导线和电路中的电流产生的电磁波都是无线电波。为了携带信息，电台以自己的频率改变载波，或是改变振幅，这就是调幅（AM），或是改变频率，这就是调频（FM）。接收器在载波频率上共振，并对它所采用的那一种变化作出响应。噪声叠加在振幅上，所以调频接收机可以舍弃调幅接收机必须当作信号一部分的东西，这使调频成为两者中较安静的一种。"
+  },
+  {
+   "id": "antenna-length-and-wavelength",
+   "kind": "result",
+   "section": "24.3",
+   "name": "最有效的天线长度",
+   "statement": "当驻波恰好能放在天线上时，天线辐射得最好，对线天线，这一长度是 $\\klam/2$。若一端接地，四分之一波长就能起同样的作用，正如一端封闭的管子在其基波波长的四分之一处共振。这条法则解释了你所见到的天线的大小。调幅广播天线必须有数百米长，而调频或移动电话天线小得可以藏起来，并架得很高，以获得清晰的视线。",
+   "forms": [
+    {
+     "id": "eq-half-wavelength-antenna",
+     "latex": "L = \\frac{\\lambda}{2}",
+     "ktex": "L = \\frac{\\klam}{2}",
+     "anchor": "24.3-fm-radio"
+    },
+    {
+     "id": "eq-quarter-wavelength-antenna",
+     "latex": "L = \\frac{\\lambda}{4}",
+     "ktex": "L = \\frac{\\klam}{4}",
+     "anchor": "24.3-fm-radio"
+    }
+   ]
+  },
+  {
+   "id": "microwaves-and-their-uses",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "微波的用途",
+   "terms": [
+    "微波"
+   ],
+   "statement": "微波是普通电路中的电流所能产生的最高频率，从约 $10^{9}$ Hz 直到最高的实际 $LC$ 共振约 $10^{12}$ Hz，它们的短波长使其适于携带信息和观察细节。雷达由回波的计时求出距离，由回波中的多普勒频移求出速率，还能透过挡住可见光的云层绘制行星的地图。在微波炉中，频率的选取使极性分子为跟随交变场而转动时吸收能量，加热的是食物而不是盘子，而热点是一种干涉图样。"
+  },
+  {
+   "id": "sources-across-the-spectrum",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "电磁波谱各段的来源",
+   "statement": "每个波段都来自某种特定尺度的过程。电路中的加速电荷产生无线电波和微波。原子和分子的热运动，以及它们的振动和转动，产生微波、红外线和一部分可见光。原子和分子内部的电子跃迁产生可见光和紫外线。内层电子的跃迁和快速电子在物质中的制动产生 X 射线，而原子核本身产生 γ 射线。在两个波段重叠的地方，由波源决定名称，因为频率相同的 X 射线和 γ 射线只在起源上不同。"
+  },
+  {
+   "id": "radiation-and-living-tissue",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "辐射与生物组织",
+   "statement": "频率越高，波传给吸收它的东西的能量越多，而在可见光以上，这种能量开始使分子破碎。紫外线 B 激发并扭曲 DNA，引起皮肤癌和白内障，而臭氧层使其大部分到不了地表；X 射线穿透得更深，破坏也更大，这既是它们的危害，也是它们经小心瞄准后用来对付癌症的用途；γ 射线在更高的能量上也是如此。同样的性质也使它们有用：灭菌、维生素 D、透射成像和发射成像，以及治疗。"
+  },
+  {
+   "id": "thermal-agitation",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "热骚动",
+   "terms": [
+    "热骚动"
+   ],
+   "statement": "热骚动是绝对零度以上任何物体的原子和分子的热运动，它使它们发射和吸收辐射，主要在红外线波段。"
+  },
+  {
+   "id": "infrared-radiation",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "红外辐射",
+   "terms": [
+    "红外辐射（IR）",
+    "红外辐射"
+   ],
+   "statement": "红外辐射是电磁波谱中的一个波段，其频率从略低于红光的频率一直延伸到微波。"
+  },
+  {
+   "id": "visible-light",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "可见光",
+   "terms": [
+    "可见光"
+   ],
+   "statement": "可见光是电磁波谱中正常人眼能够响应的狭窄波段，其波长约从 380 nm 到 760 nm。"
+  },
+  {
+   "id": "ultraviolet-radiation",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "紫外辐射",
+   "terms": [
+    "紫外辐射（UV）",
+    "紫外辐射"
+   ],
+   "statement": "紫外辐射是电磁波谱中的一个波段，从紫光向上延伸到更高的频率，并与最低频的 X 射线重叠。"
+  },
+  {
+   "id": "x-ray-radiation",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "X 射线",
+   "terms": [
+    "X 射线",
+    "X 射线",
+    "X 射线"
+   ],
+   "statement": "X 射线是不可见的、穿透性的、频率很高的电磁辐射，它与下面的紫外线和上面的 γ 射线重叠。"
+  },
+  {
+   "id": "gamma-ray-radiation",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "γ 射线",
+   "terms": [
+    "γ 射线",
+    "γ 射线"
+   ],
+   "statement": "γ 射线是频率极高的电磁辐射，由原子核在核衰变或其他核过程和粒子过程中发射。"
+  },
+  {
+   "id": "carrier-wave",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "载波",
+   "terms": [
+    "载波"
+   ],
+   "statement": "载波是通过对其振幅或频率进行调制来携带信号的电磁波。"
+  },
+  {
+   "id": "amplitude-modulation",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "调幅",
+   "terms": [
+    "调幅（AM）"
+   ],
+   "statement": "调幅是用信号改变载波的振幅，而其频率保持不变，从而把信息放到电磁波上。"
+  },
+  {
+   "id": "frequency-modulation",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "调频",
+   "terms": [
+    "调频（FM）"
+   ],
+   "statement": "调频是用信号改变载波的频率，而其振幅保持不变，从而把信息放到电磁波上。"
+  },
+  {
+   "id": "radar",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "雷达",
+   "terms": [
+    "雷达"
+   ],
+   "statement": "雷达是微波的一种常见应用：它由反射脉冲返回所用的时间，求出到云和飞机等各种物体的距离。"
+  },
+  {
+   "id": "extremely-low-frequency",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "极低频",
+   "terms": [
+    "极低频（ELF）"
+   ],
+   "statement": "极低频辐射是频率最低的电磁辐射，通常为 0 到 300 Hz，但也可达约 1 kHz。"
+  },
+  {
+   "id": "television",
+   "kind": "idea",
+   "section": "24.3",
+   "name": "电视机",
+   "terms": [
+    "电视机"
+   ],
+   "statement": "电视把视频信号和音频信号载在电磁波上，在无线电波段中广播。"
+  },
+  {
+   "id": "very-high-frequency",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "甚高频",
+   "terms": [
+    "甚高频（VHF）"
+   ],
+   "statement": "甚高频电视频道使用 54 到 88 MHz 和 174 到 222 MHz 这两个范围内的频率。"
+  },
+  {
+   "id": "ultra-high-frequency",
+   "kind": "definition",
+   "section": "24.3",
+   "name": "特高频",
+   "terms": [
+    "特高频（UHF）"
+   ],
+   "statement": "特高频电视频道使用高于 VHF 的频率，从 470 到 1000 MHz。"
+  },
+  {
+   "id": "wave-energy-from-field-amplitude",
+   "kind": "result",
+   "section": "24.4",
+   "name": "波的能量与场的振幅",
+   "statement": "波把能量带进一个系统，是因为它的场对电荷施力并使其运动，场越大，所能做的功越多。对各种波，能量都与振幅的平方成正比，而对电磁波，振幅就是最大场强，所以能量与 $\\kEfo^2$ 成正比，也与 $\\kBmago^2$ 成正比。场加倍，能量变为四倍，这就是本节第一幅图的全部内容，也是场减半的微波炉要花四倍时间的原因。"
+  },
+  {
+   "id": "average-intensity-from-e0",
+   "kind": "result",
+   "section": "24.4",
+   "name": "由电场振幅求平均强度",
+   "statement": "强度是单位面积上的功率，对连续的正弦电磁波，只用电场振幅就能写出它。二分之一的因子来自对正弦的平方在一个周期上取平均，而光速和真空电容率把场强变成每平方米的功率。当已知或所求的量是电场时，用这种形式。",
+   "forms": [
+    {
+     "id": "eq-intensity-from-e0",
+     "latex": "I_{\\text{ave}} = \\frac{c\\varepsilon_0 E_0^2}{2}",
+     "ktex": "\\kIave = \\frac{\\kc\\varepsilon_0 \\kEfo^2}{2}",
+     "anchor": "24.4-average-intensity"
+    },
+    {
+     "id": "eq-e0-from-intensity",
+     "latex": "E_0 = \\left(\\frac{2I_{\\text{ave}}}{c\\varepsilon_0}\\right)^{1/2}",
+     "ktex": "\\kEfo = \\left(\\frac{2\\kIave}{\\kc\\varepsilon_0}\\right)^{1/2}",
+     "anchor": "24.4-fields-from-intensity"
+    }
+   ]
+  },
+  {
+   "id": "intensity-from-the-magnetic-amplitude",
+   "kind": "result",
+   "section": "24.4",
+   "name": "由磁场振幅求平均强度",
+   "statement": "把 $\\kBmag = \\kEf/\\kc$ 和 $\\varepsilon_0 = 1/\\mu_0\\kc^2$ 代入第一个表达式，就得到用磁场振幅表示的强度，只代入一部分，就得到同时用两个振幅表示的强度。这三种形式不是三个结果而是一个，它们按题目所给的量写成不同的样子，而三者背后的原理相同：波中的能量与振幅的平方有关。",
+   "forms": [
+    {
+     "id": "eq-intensity-from-b0",
+     "latex": "I_{\\text{ave}} = \\frac{cB_0^2}{2\\mu_0}",
+     "ktex": "\\kIave = \\frac{\\kc\\kBmago^2}{2\\mu_0}",
+     "anchor": "24.4-average-intensity"
+    },
+    {
+     "id": "eq-intensity-from-e0-b0",
+     "latex": "I_{\\text{ave}} = \\frac{E_0B_0}{2\\mu_0}",
+     "ktex": "\\kIave = \\frac{\\kEfo\\kBmago}{2\\mu_0}",
+     "anchor": "24.4-average-intensity"
+    }
+   ]
+  },
+  {
+   "id": "peak-intensity-is-twice-average",
+   "kind": "result",
+   "section": "24.4",
+   "name": "峰值强度",
+   "statement": "这三个表达式是针对正弦波写出的，对正弦的平方在一个周期上取平均，只剩下其最大值的一半。所以波峰处的强度是同样的表达式所给出的平均强度的两倍，而要求峰值而不是平均值的题目需要这个因子 2。同一个因子也是方均根场等于振幅除以二的平方根的原因。",
+   "forms": [
+    {
+     "id": "eq-peak-intensity",
+     "latex": "I_0 = 2I_{\\text{ave}}",
+     "ktex": "\\kIopeak = 2\\kIave",
+     "anchor": "24.4-average-intensity"
+    }
+   ]
+  },
+  {
+   "id": "find-fields-from-intensity",
+   "kind": "skill",
+   "section": "24.4",
+   "name": "由强度求场的振幅",
+   "statement": "本节常见的问题只朝一个方向：已知功率的波源把功率分布在已知的面积上，由此得到强度，再把第一个表达式改写，由强度得到电场振幅，然后除以光速，得到磁场振幅。按这个顺序做，可以两次避开麻烦的常量，而答案也值得看一眼大小，因为炉子里的一千瓦会给出几千伏每米的场和几微特斯拉。"
+  },
+  {
+   "id": "maximum-field-strength",
+   "kind": "definition",
+   "section": "24.4",
+   "name": "最大场强",
+   "symbol": "E_0field",
+   "terms": [
+    "最大场强"
+   ],
+   "statement": "电磁波的最大场强是其电场或磁场的振幅，即场在振荡时达到的最大值。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "maxwells-equations",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "electric-field-lines"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "rules-for-magnetic-field-lines"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "amperes-law"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "coulomb-constant"
+  },
+  {
+   "concept": "changing-fields-generate-each-other",
+   "prereq": "maxwells-equations"
+  },
+  {
+   "concept": "changing-fields-generate-each-other",
+   "prereq": "current-is-the-source-of-magnetism"
+  },
+  {
+   "concept": "speed-of-light-from-constants",
+   "prereq": "changing-fields-generate-each-other"
+  },
+  {
+   "concept": "speed-of-light-from-constants",
+   "prereq": "permeability-of-free-space"
+  },
+  {
+   "concept": "light-is-an-electromagnetic-wave",
+   "prereq": "speed-of-light-from-constants"
+  },
+  {
+   "concept": "light-is-an-electromagnetic-wave",
+   "prereq": "wave"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "natural-frequency"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "wave-speed-wavelength-frequency"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "maxwells-equations"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "changing-fields-generate-each-other"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "em-waves-from-accelerating-charges",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "electric-field-direction"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "antenna-field-cycle",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "antenna-field-cycle"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "field-of-a-long-straight-wire"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "right-hand-rule-2"
+  },
+  {
+   "concept": "magnetic-part-of-the-wave",
+   "prereq": "amperes-law"
+  },
+  {
+   "concept": "em-wave-is-transverse",
+   "prereq": "magnetic-part-of-the-wave"
+  },
+  {
+   "concept": "em-wave-is-transverse",
+   "prereq": "transverse-wave"
+  },
+  {
+   "concept": "e-over-b-equals-c",
+   "prereq": "em-wave-is-transverse"
+  },
+  {
+   "concept": "e-over-b-equals-c",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "e-over-b-equals-c",
+   "prereq": "volts-per-meter"
+  },
+  {
+   "concept": "find-b-from-e",
+   "prereq": "e-over-b-equals-c"
+  },
+  {
+   "concept": "find-b-from-e",
+   "prereq": "the-tesla"
+  },
+  {
+   "concept": "em-wave-in-a-medium",
+   "prereq": "e-over-b-equals-c"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "standing-wave"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "antenna-resonance",
+   "prereq": "nodes-and-antinodes-on-a-string"
+  },
+  {
+   "concept": "c-equals-f-lambda",
+   "prereq": "wave-speed-wavelength-frequency"
+  },
+  {
+   "concept": "c-equals-f-lambda",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "c-equals-f-lambda",
+   "prereq": "em-wave-is-transverse"
+  },
+  {
+   "concept": "find-wavelength-or-frequency",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "electromagnetic-spectrum",
+   "prereq": "c-equals-f-lambda"
+  },
+  {
+   "concept": "electromagnetic-spectrum",
+   "prereq": "light-is-an-electromagnetic-wave"
+  },
+  {
+   "concept": "spectrum-rules-of-thumb",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "spectrum-rules-of-thumb",
+   "prereq": "ultrasound-imaging-resolution"
+  },
+  {
+   "concept": "transmission-reflection-absorption",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "radio-waves-and-modulation",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "antenna-length-and-wavelength",
+   "prereq": "antenna-resonance"
+  },
+  {
+   "concept": "antenna-length-and-wavelength",
+   "prereq": "find-wavelength-or-frequency"
+  },
+  {
+   "concept": "antenna-length-and-wavelength",
+   "prereq": "closed-tube-resonances"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "radio-waves-and-modulation"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "echo-ranging"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "doppler-effect"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "polar-molecule"
+  },
+  {
+   "concept": "microwaves-and-their-uses",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "em-waves-from-accelerating-charges"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "radiation-heat-transfer"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "radiation-spectrum-and-temperature"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "greenhouse-effect"
+  },
+  {
+   "concept": "sources-across-the-spectrum",
+   "prereq": "emissivity"
+  },
+  {
+   "concept": "radiation-and-living-tissue",
+   "prereq": "sources-across-the-spectrum"
+  },
+  {
+   "concept": "radiation-and-living-tissue",
+   "prereq": "spectrum-rules-of-thumb"
+  },
+  {
+   "concept": "radiation-and-living-tissue",
+   "prereq": "transmission-reflection-absorption"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "wave-energy-amplitude"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "em-wave-is-transverse"
+  },
+  {
+   "concept": "wave-energy-from-field-amplitude",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "average-intensity-from-e0",
+   "prereq": "wave-energy-from-field-amplitude"
+  },
+  {
+   "concept": "average-intensity-from-e0",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "average-intensity-from-e0",
+   "prereq": "power"
+  },
+  {
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "prereq": "average-intensity-from-e0"
+  },
+  {
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "prereq": "e-over-b-equals-c"
+  },
+  {
+   "concept": "intensity-from-the-magnetic-amplitude",
+   "prereq": "permeability-of-free-space"
+  },
+  {
+   "concept": "peak-intensity-is-twice-average",
+   "prereq": "average-intensity-from-e0"
+  },
+  {
+   "concept": "peak-intensity-is-twice-average",
+   "prereq": "rms-values"
+  },
+  {
+   "concept": "find-fields-from-intensity",
+   "prereq": "average-intensity-from-e0"
+  },
+  {
+   "concept": "find-fields-from-intensity",
+   "prereq": "intensity-from-the-magnetic-amplitude"
+  },
+  {
+   "concept": "find-fields-from-intensity",
+   "prereq": "find-b-from-e"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "faradays-law"
+  },
+  {
+   "concept": "maxwells-equations",
+   "prereq": "lenzs-law"
+  },
+  {
+   "concept": "hertz-observations",
+   "prereq": "resonant-frequency-of-an-rlc-circuit"
+  },
+  {
+   "concept": "electromagnetic-wave",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "electromagnetic-wave",
+   "prereq": "magnetic-field"
+  },
+  {
+   "concept": "electromagnetic-wave",
+   "prereq": "wave"
+  },
+  {
+   "concept": "thermal-agitation",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "infrared-radiation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "visible-light",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "ultraviolet-radiation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "x-ray-radiation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "gamma-ray-radiation",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "carrier-wave",
+   "prereq": "electromagnetic-wave"
+  },
+  {
+   "concept": "amplitude-modulation",
+   "prereq": "carrier-wave"
+  },
+  {
+   "concept": "amplitude-modulation",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "frequency-modulation",
+   "prereq": "carrier-wave"
+  },
+  {
+   "concept": "frequency-modulation",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "hertz",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "oscillation",
+   "prereq": "periodic-motion"
+  },
+  {
+   "concept": "radar",
+   "prereq": "microwaves-and-their-uses"
+  },
+  {
+   "concept": "extremely-low-frequency",
+   "prereq": "electromagnetic-spectrum"
+  },
+  {
+   "concept": "television",
+   "prereq": "radio-waves-and-modulation"
+  },
+  {
+   "concept": "very-high-frequency",
+   "prereq": "television"
+  },
+  {
+   "concept": "ultra-high-frequency",
+   "prereq": "television"
+  },
+  {
+   "concept": "maximum-field-strength",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "maximum-field-strength",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "maximum-field-strength",
+   "prereq": "magnetic-field-strength-defined"
+  },
+  {
+   "concept": "light-is-an-electromagnetic-wave",
+   "prereq": "electromagnetic-wave"
+  }
+ ]
+}

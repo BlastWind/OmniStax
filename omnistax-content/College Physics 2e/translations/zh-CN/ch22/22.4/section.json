@@ -1,0 +1,505 @@
+{
+ "id": "22.4",
+ "module": "m42372",
+ "chapter": "22",
+ "title": "磁感应强度：磁场中运动电荷所受的力",
+ "short": "运动电荷所受的力",
+ "lead": "到目前为止遇到的每一个<span data-concept=\"force\">力</span>，都沿着一条你可以画在纸面上的直线，但<span data-concept=\"magnetic-field\">磁场</span>给运动电荷的那一推却不是这样。本节给出这个<span data-concept=\"force\">力</span>的大小，用它以特斯拉和高斯来定义磁场的强弱，并用右手定则 1 确定它的方向。",
+ "objectives": [
+  "描述磁场对运动电荷的作用。",
+  "用右手定则 1 确定电荷的速度、磁场的方向，以及运动电荷所受磁力的方向。",
+  "计算运动电荷所受的磁力。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"magnetic-field\">磁场</span>对运动电荷 <em>q</em> 施<span data-concept=\"force\">力</span>，其大小为 $\\kF = \\kq\\kv\\kBmag\\sin\\theta,$ 其中 $\\theta$ 是 $\\kv$ 与 $\\kBmag$ 的方向之间的<span data-concept=\"angle\">夹角</span>。</li><li><span data-concept=\"magnetic-field-strength-defined\">磁感应强度</span> $\\kBmag$ 的 SI 单位是特斯拉（T），它与其他单位的关系为 $1\\;\\text{T} = \\frac{1\\;\\text{N}}{\\text{C}\\cdot\\text{m/s}} = \\frac{1\\;\\text{N}}{\\text{A}\\cdot\\text{m}}.$</li><li>运动电荷所受<span data-concept=\"force\">力</span>的<em>方向</em>由右手定则 1（RHR-1）给出：让右手拇指指向 $\\kv$ 的方向，手指指向 $\\kBmag$ 的方向，垂直于手掌的方向就指向 $\\kF$ 的方向。</li><li><span data-concept=\"force\">力</span>垂直于 $\\kv$ 与 $\\kBmag$ 所构成的平面。由于 $\\kv$ 平行于 $\\kBmag$ 时<span data-concept=\"force\">力</span>为零，带电粒子常常沿着磁感线运动，而不是穿过磁感线。</li></ul>",
+ "notes": "本模块文本中没有任何内容被省略：两幅图合并成一个交互式图形，书中的两幅原图保留在它旁边；习题中的三幅方向图则复制到引用它们的习题卡片上。有五道习题没有给出答案，已略去：前三道方向题针对另一种电荷符号的重复题、磁南极上空的超声速飞机，以及电子速度可能与磁场所成的两个角。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有五道习题没有给出答案，已略去：习题 1、3、5 针对另一种电荷符号的重复题、磁南极上空的超声速飞机，以及电子的两个可能的角。第二道 AP 题书中没有给出答案，作为开放题保留，并附有标明由 AI 生成的建议思路；本节仅有的一道思考题也同样处理。本模块没有“理解检测”框，因此没有设置行内题，也没有留待后面章节的习题，或取自前面章节的习题。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-tesla",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "force",
+    "charge",
+    "velocity",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of ticks, canvas note dropped, sin 90° in readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rhr-1",
+   "kind": "sim",
+   "number": "22.16",
+   "folds": [
+    "22.17"
+   ],
+   "originals": [
+    "/media/ch22/Figure_23_04_01.jpg",
+    "/media/ch22/Figure_22_04_02-7c69.jpg"
+   ],
+   "original_caption": "磁场对运动电荷施力。这个力是已知的最基本的力之一。运动电荷所受磁力的方向垂直于 v 和 B 所构成的平面，并遵循如图所示的右手定则 1（RHR-1）。力的大小与 q、v、B 以及 v 和 B 之间夹角的正弦成正比。",
+   "widths": [
+    275,
+    400
+   ],
+   "draws": [
+    "magnetic-field",
+    "force",
+    "velocity",
+    "charge",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library hand east of the charge, labels and readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "moving-charges",
+   "concept": "magnetic-field",
+   "verb": "uses"
+  },
+  {
+   "span": "moving-charges",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "force-law",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-law",
+   "concept": "magnetic-field-strength-defined",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-law",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "force-law",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "tesla-and-gauss",
+   "concept": "the-tesla",
+   "verb": "introduces"
+  },
+  {
+   "span": "tesla-and-gauss",
+   "concept": "magnetic-field-strength-defined",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tesla-and-gauss",
+   "concept": "gauss",
+   "verb": "introduces"
+  },
+  {
+   "span": "direction-of-the-force",
+   "concept": "right-hand-rule-1",
+   "verb": "introduces"
+  },
+  {
+   "span": "direction-of-the-force",
+   "concept": "force-reverses-with-sign-of-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "direction-of-the-force",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "reinforces"
+  },
+  {
+   "span": "direction-of-the-force",
+   "concept": "the-tesla",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1822638",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-of-the-force",
+   "prompt": "一个质子沿 $-x$ 方向运动，遇到一个指向 $+x$ 方向的匀强磁场。质子由此受到的磁力沿什么方向？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "质子不受磁力。",
+     "$+x$ 方向",
+     "$-y$ 方向",
+     "$+y$ 方向"
+    ],
+    "correct": 0,
+    "hint": "速度与磁场之间的夹角为 180°，而力含有该夹角的正弦这一因子。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2770151",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-law",
+   "prompt": "一个质子以 240 m/s 的速率沿 $+x$ 方向进入一个 4.5 T 的匀强磁场区域，该磁场位于 $x,y$ 平面内，指向 $+x$ 方向之上 62° 处。求质子所受磁力的大小。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "力约为 $1.5\\times 10^{-16}\\;\\text{N}$。速度与磁场之间的夹角就是题中给出的 62°，所以由 $\\kF = \\kq\\kv\\kBmag\\sin\\ktheta$ 并取质子的电荷 $\\kq = 1.60\\times 10^{-19}\\;\\text{C}$，即可直接得到大小：$\\kF = (1.60\\times 10^{-19}\\;\\text{C})(240\\;\\text{m/s})(4.5\\;\\text{T})\\sin 62^\\circ = 1.5\\times 10^{-16}\\;\\text{N}$。大小只与两个方向之间的夹角有关。力指向哪一侧，则由两者所在的平面决定：右手定则 1 给出的力垂直于 $x,y$ 平面，沿 $+z$ 方向。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2869610",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-law",
+   "prompt": "如果一个带电粒子在某一空间区域内沿直线运动，你能断定该区域的磁场必定为零吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。磁力含有 $\\sin\\ktheta$ 这一因子，所以只要粒子沿着磁感线运动，它就为零，一个平行或反平行于强磁场运动的粒子会不偏转地径直穿过磁场。存在磁力但被另一个力抵消时，路径同样可以是直线，就像书中后面会遇到的速度选择器那样，其中电场力抵消了磁力。直线路径只能说明粒子沿路径方向所受的合力为零，而使这一点成立的磁场与粒子的布置方式有好几种。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1399302",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-of-the-force",
+   "figure": {
+    "src": "/media/ch22/FIgure_23_04_03a-780c.jpg",
+    "alt": "六幅小图，每幅都有一个磁场和一个速度。（a）中磁场垂直纸面向外，用圆点表示，速度向下。（b）中磁场向右，速度向上。（c）中磁场垂直纸面向里，速度向右。（d）中磁场向右，速度向左。（e）中磁场向上，速度垂直纸面向里。（f）中磁场向左，速度垂直纸面向外。"
+   },
+   "prompt": "在下图所示的六种情形中，沿图示方向运动的正电荷所受磁力的方向各是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）向左（西）（b）垂直纸面向里（c）向上（北）（d）没有力（e）向右（东）（f）向下（南）"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1327231",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-of-the-force",
+   "figure": {
+    "src": "/media/ch22/Figure_23_04_04a-ae97.jpg",
+    "alt": "三幅小图，每幅都有一个磁力和一个磁场。（a）中力向上，磁场垂直纸面向外。（b）中力向上，磁场向右。（c）中力向左，磁场垂直纸面向里。"
+   },
+   "prompt": "在下图所示的三种情形中，受到图示磁力的负电荷，其速度的方向各是什么？假设它垂直于 $\\kBmag$ 运动。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）向东（右）（b）垂直纸面向里（c）向南（下）"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2031113",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-of-the-force",
+   "figure": {
+    "src": "/media/ch22/Figure_23_04_05a-efb2.jpg",
+    "alt": "三幅小图，每幅都有一个磁力和一个速度。（a）中力向左，速度向上。（b）中力垂直纸面向里，速度向下。（c）中力向上，速度向左。"
+   },
+   "prompt": "在下图所示的三种情形中，产生图示的、作用在正电荷上的磁力的磁场，其方向各是什么？假设 $\\kBmag$ 垂直于 $\\kv$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）垂直纸面向里（b）西（左）（c）垂直纸面向外"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1726851",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-law",
+   "prompt": "一根带有 $0.100\\text{-}\\mu\\text{C}$ 电荷的铝棒，以 5.00 m/s 的速率从 1.50 T 永磁体的两极之间穿过，它所受力的最大值是多少？力的方向如何？",
+   "answer": {
+    "type": "number",
+    "value": 7.5e-07,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "正弦为 1 时力最大，这发生在铝棒以直角穿过磁场的时候。",
+    "solution": "$7.50\\times 10^{-7}\\;\\text{N}$，垂直于磁感线，也垂直于速度"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2092579",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tesla-and-gauss",
+   "prompt": "（a）一个朝地球运动的宇宙线质子，速率为 $5.00\\times 10^{7}\\;\\text{m/s}$，受到 $1.70\\times 10^{-16}\\;\\text{N}$ 的磁力。如果磁场与质子速度之间的夹角为 $45^\\circ$，磁感应强度是多大？（b）（a）中得到的值与已知的地球表面磁感应强度一致吗？请讨论。",
+   "answer": {
+    "type": "number",
+    "value": 3.01e-05,
+    "unit": "T",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "这就是直接使用磁感应强度的定义：用力除以电荷、速率和夹角的正弦。",
+    "solution": "（a）$3.01\\times 10^{-5}\\;\\text{T}$（b）这比地球表面 $5\\times 10^{-5}\\;\\text{T}$ 的磁感应强度略小，所以是一致的。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1645778",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "force-law",
+   "prompt": "（a）一位物理学家在做灵敏的测量，希望把仪器中运动电荷所受的磁力限制在小于 $1.00\\times 10^{-12}\\;\\text{N}$。如果电荷在地磁场中的最大速率为 30.0 m/s，电荷最大可以是多少？（b）把它与典型的静电相比，并注意到静电常常并不存在，讨论要把电荷限制在小于（a）中所得的值是否困难。",
+   "answer": {
+    "type": "number",
+    "value": 6.67e-10,
+    "unit": "C",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "取最坏的情形，即电荷以直角穿过磁场，使正弦为 1，然后对电荷求解力的公式。",
+    "solution": "（a）$6.67\\times 10^{-10}\\;\\text{C}$（取地磁场为 $5.00\\times 10^{-5}\\;\\text{T}$）（b）小于典型的静电，因此困难"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "right-hand-rule-1"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "the-tesla",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "right-hand-rule-1",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "right-hand-rule-1"
+  },
+  {
+   "exercise": "p1",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "right-hand-rule-1"
+  },
+  {
+   "exercise": "p3",
+   "concept": "force-reverses-with-sign-of-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "right-hand-rule-1"
+  },
+  {
+   "exercise": "p5",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "p7",
+   "concept": "right-hand-rule-1",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "magnetic-field-strength-defined"
+  },
+  {
+   "exercise": "p9",
+   "concept": "the-tesla",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "p11",
+   "concept": "the-tesla",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-tesla"
+   ]
+  },
+  {
+   "id": "permanent-magnets",
+   "label": "最强的永磁体",
+   "figures": [
+    "sim-tesla"
+   ]
+  },
+  {
+   "id": "superconducting-magnet",
+   "label": "超导电磁铁",
+   "figures": [
+    "sim-tesla"
+   ]
+  },
+  {
+   "id": "rod",
+   "label": "带电的玻璃棒",
+   "figures": [
+    "sim-tesla",
+    "sim-rhr-1"
+   ]
+  }
+ ]
+}

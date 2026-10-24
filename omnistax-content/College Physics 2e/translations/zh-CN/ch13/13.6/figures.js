@@ -1,0 +1,297 @@
+/* Figures for section 13.6 Humidity, Evaporation, and Boiling. Boots against the section's text article.
+   One figure moves: the exchange of molecules between water and its vapor, where
+   equilibrium is two rates becoming equal and no still can show a rate. The
+   humidity graph and the bubble in the heated beaker answer their sliders,
+   register no cycle and carry no transport. Every number comes from Table 13.5,
+   read in a straight line between its rows, which is how the book's key reads
+   the dew point of problem 15. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['13.6'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, cycle, begin, line, arrow, dot, text, topline, axes, pinned, labeller } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- Table 13.5: temperature in °C, vapor pressure in Pa, saturation vapor density in g/m³ ---------- */
+const TABLE = [
+  [-50, 4.0, 0.039], [-20, 104, 0.89], [-10, 260, 2.36], [0, 610, 4.84], [5, 868, 6.80], [10, 1190, 9.40], [15, 1690, 12.8],
+  [20, 2330, 17.2], [25, 3170, 23.0], [30, 4240, 30.4], [37, 6310, 44.0], [40, 7340, 51.1], [50, 12300, 82.4], [60, 19900, 130],
+  [70, 31200, 197], [80, 47300, 294], [90, 70100, 418], [95, 85900, 505], [100, 101000, 598], [120, 199000, 1095],
+  [150, 476000, 2430], [200, 1550000, 7090], [220, 2320000, 10200],
+];
+const ATM = 1.01e5;                                  /* the book's atmosphere, Pa */
+/* the value of column k (1 pressure, 2 density) at temperature T, in a straight line between rows */
+function tableAt(T, k) {
+  if (T <= TABLE[0][0]) return TABLE[0][k]; if (T >= TABLE[TABLE.length - 1][0]) return TABLE[TABLE.length - 1][k];
+  for (let i = 1; i < TABLE.length; i++) if (T <= TABLE[i][0]) { const a = TABLE[i - 1], b = TABLE[i]; return a[k] + (b[k] - a[k]) * (T - a[0]) / (b[0] - a[0]); }
+  return TABLE[TABLE.length - 1][k];
+}
+/* the temperature at which column k reaches the value v: the dew point for a density, the boiling point for a pressure */
+function tableInv(v, k) {
+  if (v <= TABLE[0][k]) return TABLE[0][0]; if (v >= TABLE[TABLE.length - 1][k]) return TABLE[TABLE.length - 1][0];
+  for (let i = 1; i < TABLE.length; i++) if (v <= TABLE[i][k]) { const a = TABLE[i - 1], b = TABLE[i]; return a[0] + (b[0] - a[0]) * (v - a[k]) / (b[k] - a[k]); }
+  return TABLE[TABLE.length - 1][0];
+}
+const vapP = (T) => tableAt(T, 1), satD = (T) => tableAt(T, 2);
+const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+const sup = (n) => String(n).split('').map((c) => SUP[c] ?? c).join('');
+function sci(v, sig = 3) {
+  if (v === 0) return { txt: '0', tex: '0' };
+  let e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e), ms = m.toFixed(sig - 1);
+  if (Math.abs(+ms) >= 10) { e += 1; ms = (m / 10).toFixed(sig - 1); }
+  return { txt: ms + ' × 10' + sup(e), tex: ms + '\\times 10^{' + e + '}' };
+}
+/* a density to three significant figures, as the table prints it */
+const dens = (v) => (v >= 100 ? fmt(v, 0) : v >= 10 ? fmt(v, 1) : fmt(v, 2));
+const degC = (T, d = 0) => fmt(T, d).replace('-', '−') + ' °C';
+/* a small seeded generator, so a run is the same at every scrub position */
+function rng(seed) { let s = seed >>> 0 || 1; return { u() { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; } }; }
+const TAU = Math.PI * 2;
+
+/* =====================================================================
+   FIGURE 13.32: water and its vapor in an open container and in a sealed
+   one. Moving: the loop is the five seconds after the lid goes on, during
+   which the vapor builds up until molecules return to the surface as fast
+   as they leave it; the open container runs the same five seconds as a
+   steady stream out of its mouth.
+===================================================================== */
+(function () {
+  const d = sim('sim-evaporation', 620);
+  const PERIOD = 5.0;
+  let mode = 'sealed';
+  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 0, max: 100, step: 1, value: 20, unit: '°C', dec: 0, onInput: reset, aria: '水的温度' });
+  const box = choice(d.controls, { label: '\\text{容器}', options: [{ value: 'open', label: '敞口' }, { value: 'sealed', label: '密封' }], value: mode, aria: '敞口或密封容器',
+    onInput: (v) => { mode = v; reset(); } });
+  const cy = cycle(() => PERIOD, 1.5);
+  /* the container in section: walls at XL and XR, the rim at YR, the surface at YS, the bottom at YB; molecules of radius R */
+  const XL = 260, XR = 860, YR = 150, YS = 410, YB = 580, R = 7, HS = YS - YR - R;   /* HS: the height a vapor molecule can rise under the lid */
+  const GONE = YS - YR + 40;               /* an open container: a molecule this far above the surface has drifted into the room */
+  const S0 = 180;                          /* molecular speed at 20 °C, canvas units per second, so a molecule crosses the vapor space in about a second and a half */
+  const THMAX = 50 * Math.PI / 180;        /* launch directions within 50° of straight up */
+  const PER_DENS = 0.6;                    /* drawn molecules in the vapor space at saturation, per g/m³ */
+  /* the model at the set temperature: the speed factor, the equilibrium count and the launch rate that produces it */
+  function model() {
+    const T = Ts.v, c = Math.sqrt((T + 273.15) / 293.15);
+    const meanInvS = Math.log(1.3 / 0.7) / 0.6 / (S0 * c);                                   /* E[1/s] for s uniform in 0.7 to 1.3 times S0 c */
+    const meanSec = Math.log(1 / Math.cos(THMAX) + Math.tan(THMAX)) / THMAX;               /* E[1/cos θ] for θ uniform in −θmax to θmax */
+    const life = 2 * HS * meanInvS * meanSec;                                              /* the mean time a molecule spends aloft under the lid, s */
+    const nEq = PER_DENS * satD(T);
+    return { T, c, life, nEq, rate: nEq / life };
+  }
+  /* the launches of one run: quasi-regular in time so that the count aloft hardly flickers, each with a start, a
+     place on the surface, a speed and a direction; scheduled over two periods so that the open container is a
+     steady stream and the sealed one has molecules already in flight when the lid goes on at t = 0 */
+  let launches = [], m = model(), stale = true, held = 0;
+  function reset() { cy.reset(); stale = true; }
+  function schedule() {
+    stale = false; m = model();
+    const g = rng(0x1336 + Math.round(m.T) * 977 + (mode === 'sealed' ? 1 : 0));
+    const n = Math.max(1, Math.round(m.rate * PERIOD)), out = [];
+    for (let j = 0; j < n; j++) {
+      const t0 = ((j + 0.5 + 0.6 * (g.u() - 0.5)) / n) * PERIOD;
+      const s = S0 * m.c * (0.7 + 0.6 * g.u()), th = (2 * g.u() - 1) * THMAX;
+      const one = { x0: XL + R + 12 + (XR - XL - 2 * R - 24) * g.u(), vx: s * Math.sin(th), vy: s * Math.cos(th) };
+      out.push({ ...one, t0: t0 - PERIOD }); out.push({ ...one, t0 });
+    }
+    launches = out;
+  }
+  /* a coordinate bouncing between 0 and L: where a point that has travelled u along a reflecting segment sits, and which way it is going */
+  const refl = (u, L) => { const p = ((u % (2 * L)) + 2 * L) % (2 * L); return p <= L ? { x: p, dir: 1 } : { x: 2 * L - p, dir: -1 }; };
+  const W = XR - XL - 2 * R;
+  /* where a launched molecule is at time t, or null once it has condensed, drifted away, or was already past the lid when it closed */
+  function place(q, t) {
+    const dt = t - q.t0; if (dt < 0) return null;
+    const x0 = q.x0 - XL - R;
+    if (mode === 'sealed') {
+      if (q.t0 < 0 && q.vy * -q.t0 > HS) return null;                       /* out of the mouth before the lid went on */
+      const d = q.vy * dt; if (d >= 2 * HS) return null;                    /* back at the surface: condensed */
+      return { x: XL + R + refl(x0 + q.vx * dt, W).x, y: YS - refl(d, HS).x, up: d < HS };
+    }
+    const h = q.vy * dt; if (h > GONE) return null;
+    if (h < YS - YR) return { x: XL + R + refl(x0 + q.vx * dt, W).x, y: YS - h, up: true };
+    const tr = (YS - YR) / q.vy, at = refl(x0 + q.vx * tr, W);            /* above the rim there is no wall */
+    return { x: XL + R + at.x + at.dir * Math.sign(q.vx) * Math.abs(q.vx) * (dt - tr), y: YS - h, up: true };
+  }
+  /* the liquid: a staggered lattice that jiggles in place, harder when hotter */
+  const LIQ = [];
+  for (let row = 0, y = YS + 10; y < YB - 8; row++, y += 17) for (let x = XL + R + 4 + (row % 2) * 10; x < XR - R - 2; x += 20) LIQ.push({ x, y, p: (x * 7 + y * 13) % 97 / 97 * TAU, q: (x * 3 + y * 5) % 89 / 89 * TAU });
+  const hits = [];
+  hover(d.stage, () => hits);
+  function draw() {
+    const { ctx } = begin(d.c); hits.length = 0;
+    if (stale) schedule();
+    const t = cy.now(), T = m.T, oxy = F.el('O'), tc = C('temperature'), pc = C('pressure'), dc = C('density'), kc = F.ref('container'), lc = F.ref('lid');
+    /* the container */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fillRect(XL, YS, XR - XL, YB - YS); ctx.restore();
+    line(ctx, XL, YR - 6, XL, YB, kc, 4); line(ctx, XR, YR - 6, XR, YB, kc, 4); line(ctx, XL, YB, XR, YB, kc, 4);
+    line(ctx, XL, YS, XR, YS, alpha(PAL.ink, 0.5), 2);
+    const lid = box.a('sealed'), [lx, ly] = box.off('sealed', [0, -30]), [ox, oy] = box.off('open', [0, -30]);
+    if (lid > 0) { ctx.save(); ctx.globalAlpha *= lid; ctx.fillStyle = lc; ctx.fillRect(XL - 12 + lx, YR - 12 + ly, XR - XL + 24, 12); ctx.restore(); text(ctx, '盖子', XR + 22 + lx, YR - 6 + ly, alpha(lc, lid), { size: 20, weight: 600 }); }
+    if (box.a('open') > 0) text(ctx, '向室内敞开', XR + 22 + ox, YR - 6 + oy, alpha(PAL.ink, box.a('open')), { size: 20, weight: 600 });
+    /* the liquid */
+    ctx.save(); ctx.fillStyle = oxy;
+    for (const q of LIQ) { const a = 2.6 * m.c; ctx.beginPath(); ctx.arc(q.x + a * Math.sin(3.1 * m.c * t + q.p), q.y + a * Math.sin(2.7 * m.c * t + q.q), R - 1, 0, TAU); ctx.fill(); }
+    ctx.restore();
+    /* the vapor */
+    let alive = 0;
+    ctx.save(); ctx.fillStyle = oxy;
+    for (const q of launches) {
+      const p = place(q, t); if (!p) continue; alive++;
+      ctx.beginPath(); ctx.arc(p.x, p.y, R, 0, TAU); ctx.fill();
+      if (hits.length < 400) hits.push({ x: p.x, y: p.y, r: R + 6, name: p.up ? (mode === 'sealed' ? '蒸气中上升的水分子' : '离开水的水分子') : '回到水面的水分子' });
+    }
+    ctx.restore();
+    for (let k = 0; k < 4; k++) hits.push({ x: XL + 75 + k * 150, y: (YS + YB) / 2, r: 84, name: '液态水：分子在原地抖动，水面上速率最大的分子脱离水面' });
+    text(ctx, '液体', XL + 14, YB - 22, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
+    text(ctx, '水蒸气', XL + 14, YR + 22, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
+    /* the two rates as arrows beside the container, and the vapor density as a bar against saturation */
+    /* as the lid lifts, the vapor under it drifts away: the bar drains from where it stood rather than vanishing */
+    if (mode === 'sealed') held = Math.min(1, alive / m.nEq);
+    const share = held * box.a('sealed'), pct = Math.round(share * 100);
+    const AX = 950, CX = 1110, L = 170;
+    arrow(ctx, AX, YS, AX, YS - L, PAL.ink, 4); text(ctx, '蒸发', AX, YS + 26, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    if (share > 0.02) arrow(ctx, CX, YS - L, CX, YS - L + L * share, PAL.ink, 4); else line(ctx, CX - 8, YS - L, CX + 8, YS - L, PAL.ink, 3);
+    text(ctx, '凝结', CX, YS + 26, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    box.only(ctx, 'sealed', () => text(ctx, pct + '% 的蒸发速率', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
+    box.only(ctx, 'open', () => text(ctx, '没有分子返回', CX, YS + 50, PAL.muted, { size: 17, align: 'center' }));
+    const BX = 1230, BW = 56;
+    line(ctx, BX, YS, BX, YR, PAL.muted, 2); line(ctx, BX - 10, YR, BX + BW + 10, YR, dc, 3, [10, 10]);
+    if (share > 0) { ctx.save(); ctx.fillStyle = alpha(dc, 0.3); ctx.fillRect(BX, YS - (YS - YR) * share, BW, (YS - YR) * share); ctx.restore(); line(ctx, BX, YS - (YS - YR) * share, BX + BW, YS - (YS - YR) * share, dc, 3); }
+    line(ctx, BX, YS, BX + BW, YS, PAL.muted, 2);
+    text(ctx, '蒸气密度', BX + BW / 2, YS + 26, dc, { size: 18, weight: 600, align: 'center' });
+    text(ctx, '饱和值，' + dens(satD(T)) + ' g/m³', BX + BW + 10, YR - 18, dc, { size: 17, weight: 600, align: 'right' });
+    box.only(ctx, 'sealed', () => share < 0.97 && text(ctx, dens(satD(T) * share) + ' g/m³', BX + BW + 12, YS - (YS - YR) * share, dc, { size: 17, weight: 600, bg: PAL.panel }));
+    box.only(ctx, 'open', () => text(ctx, '飘散而去', BX + BW / 2, (YS + YR) / 2, PAL.muted, { size: 17, align: 'center' }));
+    text(ctx, 'T = ' + degC(T), XL + 14, YS - 18, tc, { size: 22, weight: 600, bg: PAL.panel });
+    /* the words */
+    if (mode === 'sealed') topline(ctx, share >= 0.99
+      ? `密封后 ${fmt(t, 1)} s，在 ${degC(T)} 时水蒸气已达到饱和，分子凝结得与蒸发得一样快。`
+      : `密封后 ${fmt(t, 1)} s，在 ${degC(T)} 时水蒸气处于饱和值的 ${pct}%，所以分子凝结的速率是蒸发速率的 ${pct}%。`);
+    else topline(ctx, `在 ${degC(T)} 敞开：分子以温度所决定的速率离开水面并飘散而去，所以没有什么能与蒸发相平衡。`);
+    const P = sci(vapP(T));
+    readout(d.readout, `{\\kPr}_{\\text{vapor}} = ${P.tex}\\ \\text{Pa},\\qquad {\\krho}_{\\text{sat}} = ${dens(satD(T))}\\ \\text{g/m}^3\\qquad\\text{此时 } \\kTemp = ${fmt(T, 0)}^\\circ\\text{C}`,
+      mode === 'sealed'
+        ? `每个画出的分子在每个温度下代表同样多的水蒸气，${T === 20 ? '在 100 °C 时空间的拥挤程度是这里的 35 倍，分子的速率却只快 13%' : '所以空间的拥挤程度是 20 °C 时的 ' + fmt(satD(T) / satD(20), 1) + ' 倍，而分子的速率' + (T > 20 ? '只比 20 °C 时快 ' + fmt((m.c - 1) * 100, 0) + '%' : '比 20 °C 时慢 ' + fmt((1 - m.c) * 100, 0) + '%')}。`
+        : `分子离开水面的速率由温度决定，${T === 20 ? '在 100 °C 时它们离开的速率是这里的 35 倍，分子的速率却只快 13%' : '是 20 °C 时的 ' + fmt(satD(T) / satD(20), 1) + ' 倍，而分子的速率' + (T > 20 ? '只比 20 °C 时快 ' + fmt((m.c - 1) * 100, 0) + '%' : '比 20 °C 时慢 ' + fmt((1 - m.c) * 100, 0) + '%')}。`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   SIM: the saturation vapor density of Table 13.5 as a curve, the air as
+   a point below it, the humidity as a ratio of heights and the dew point
+   where the vapor density meets the curve. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-humidity', 560);
+  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -20, max: 40, step: 0.5, value: 25, unit: '°C', dec: 1, aria: '空气温度' });
+  const dewAt = () => { const t = tableInv(Rs.v, 2); return t >= -20 && t <= 40 ? t : null; };
+  const Rs = ctl(d.controls, { label: '\\krho', cls: 'density', min: 0.5, max: 60, step: 0.1, value: 9.4, unit: 'g/m³', dec: 2, aria: '空气的蒸气密度', specials: [{ at: () => satD(Ts.v), label: '饱和' }] });
+  Ts.mark([{ at: dewAt, label: '露点' }]);
+  /* axes fixed at −20 to 40 °C and 0 to 60 g/m³, the range of the humidity problems; a dew point beyond 40 °C is pinned */
+  const box = { l: 170, r: 1300, t: 142, b: 450 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const T = Ts.v, rho = Rs.v, tc = C('temperature'), dc = C('density');
+    const rs = satD(T), rh = rho / rs * 100, tdew = tableInv(rho, 2), over = rho > rs;
+    const { X, Y } = axes(ctx, box, [-20, 40], [0, 60], { xl: 'T (°C)', xc: tc, yl: '饱和蒸气密度 (g/m³)', yc: dc, nx: 6, ny: 6, fx: (v) => fmt(v, 0).replace('-', '−') });
+    /* the curve through the rows of the table, each row marked */
+    const rows = TABLE.filter((r) => r[0] >= -20 && r[0] <= 40);
+    ctx.save(); ctx.strokeStyle = dc; ctx.lineWidth = 5; ctx.beginPath();
+    rows.forEach((r, i) => (i ? ctx.lineTo(X(r[0]), Y(r[2])) : ctx.moveTo(X(r[0]), Y(r[2])))); ctx.stroke(); ctx.restore();
+    rows.forEach((r) => dot(ctx, X(r[0]), Y(r[2]), dc, true, 5));
+    text(ctx, '饱和蒸气密度，即表 13.5 的各行', X(-19), Y(45), dc, { size: 19, weight: 600 });
+    /* the air's state, the saturation point above or below it, and the dew point */
+    const px = X(T), py = Y(rho), sy = Y(rs);
+    line(ctx, px, py, px, sy, alpha(PAL.ink, 0.4), 2.5, [4, 8]);
+    const lab = labeller(ctx, 560); lab.block(0, 0, 1400, 104);
+    const dp = pinned(ctx, box, X, Y, tdew, rho, tc);
+    if (!dp.out) { line(ctx, dp.x, dp.y, dp.x, box.b, tc, 2.5, [4, 8]); lab.add('露点 ' + degC(tdew, 1), dp.x, dp.y, -0.7, -0.7, tc, 19, 24); }
+    else lab.add('露点 ' + degC(tdew, 1) + '，在图外', dp.x, dp.y, dp.x < (box.l + box.r) / 2 ? 1 : -1, dp.x < (box.l + box.r) / 2 ? -0.8 : 0.8, tc, 19);   /* into the box, never up into the headline */
+    line(ctx, Math.min(px, dp.x), py, Math.max(px, dp.x), py, tc, 2.5, [10, 10]);
+    dot(ctx, px, sy, dc, false, 10); dot(ctx, px, py, dc, true, 10);
+    lab.add('ρ_sat = ' + dens(rs) + ' g/m³', px, sy, px < box.l + 200 ? 0.6 : over ? -0.3 : 0.3, over && sy < box.b - 50 ? 0.9 : -0.9, dc, 19);
+    lab.add('ρ = ' + dens(rho) + ' g/m³', px, py, 0.9, over ? -0.9 : 0.5, dc, 19);
+    lab.add(over ? dens(rho - rs) + ' g/m³ 凝结' : fmt(rh, 1) + '% 的饱和值', px, over ? (px < box.l + 260 ? py - 64 : 0.6 * py + 0.4 * sy) : (py + sy) / 2, px < box.l + 260 ? 1 : -1, 0, PAL.ink, 19, 24);
+    lab.flush();
+    if (!over) topline(ctx, `在 ${degC(T, 1)} 时，含有 ${dens(rho)} g/m³ 水蒸气的空气，相对湿度为 ${fmt(rh, 1)}%，在 ${degC(tdew, 1)} 时达到露点。`);
+    else topline(ctx, `在 ${degC(T, 1)} 时，空气不能含有 ${dens(rho)} g/m³ 的水蒸气：有 ${dens(rho - rs)} g/m³ 凝结成露或雾，使空气保持饱和。`);
+    readout(d.readout, over ? `\\krho - {\\krho}_{\\text{sat}} = ${dens(rho)}\\ \\text{g/m}^3 - ${dens(rs)}\\ \\text{g/m}^3 = ${dens(rho - rs)}\\ \\text{g/m}^3\\ \\text{凝结}`
+      : `\\text{相对湿度百分比} = \\frac{\\krho}{{\\krho}_{\\text{sat}}}\\times 100 = \\frac{${dens(rho)}\\ \\text{g/m}^3}{${dens(rs)}\\ \\text{g/m}^3}\\times 100 = ${fmt(rh, 1)}\\%`,
+      over ? `露点 ${degC(tdew, 1)} 高于空气温度，所以空气仍处于饱和，相对湿度为 100%。`
+        : `空气不能冷却到露点以下，否则水就会凝结出来。`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 13.33: a bubble of air in heated water, saturated with water
+   vapor, growing as the vapor's partial pressure grows and breaking away
+   when the vapor pressure reaches the pressure over the water. Still.
+===================================================================== */
+(function () {
+  const d = sim('sim-boiling', 640);
+  const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 20, max: 150, step: 0.5, value: 20, unit: '°C', dec: 1, aria: '水的温度' });
+  const Ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 0.3, max: 2, step: 0.01, value: 1, unit: 'atm', dec: 2, aria: '水面上方的压强', detents: [{ v: 1, label: '海平面' }], snap: true,
+    specials: [{ at: () => vapP(Ts.v) / ATM, label: '沸腾' }] });
+  Ts.mark([{ at: () => tableInv(Ps.v * ATM, 1), label: '沸腾' }]);
+  const ro = F.readout(d);
+  /* the beaker: walls at XL and XR, rim at YR, bottom at YB, water to YW; the burner beneath; the bar of partial pressures at right */
+  const XL = 300, XR = 700, YR = 130, YB = 520, YW = 190, R0 = 14;
+  const BX = 850, BW = 440, BY = 400, BH = 54;
+  const hits = [];
+  hover(d.stage, () => hits);
+  function draw() {
+    const { ctx } = begin(d.c); hits.length = 0;
+    const T = Ts.v, P = Ps.v * ATM, tc = C('temperature'), pc = C('pressure'), kc = F.ref('beaker'), bc = F.ref('bubble');
+    const pv = vapP(T), pair = P - pv, boils = pair <= P * 1e-6, tb = tableInv(P, 1);
+    /* the bubble's volume from the ideal gas law with its air fixed, against the book's 20 °C, 1.00 atm start */
+    const ratio = boils ? Infinity : ((T + 273.15) / 293.15) * (ATM - vapP(20)) / pair;
+    const r = boils ? 0 : Math.min(60, R0 * Math.cbrt(ratio));
+    /* the beaker and the water */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(XL, YW, XR - XL, YB - YW); ctx.restore();
+    line(ctx, XL, YR, XL, YB, kc, 4); line(ctx, XR, YR, XR, YB, kc, 4); line(ctx, XL, YB, XR, YB, kc, 4);
+    line(ctx, XL - 14, YR, XL, YR + 8, kc, 4); line(ctx, XR + 14, YR, XR, YR + 8, kc, 4);
+    line(ctx, XL, YW, XR, YW, alpha(PAL.ink, 0.5), 2);
+    /* the burner, in ink */
+    const cxb = (XL + XR) / 2;
+    line(ctx, cxb - 60, YB + 8, cxb + 60, YB + 8, PAL.ink, 3); line(ctx, cxb - 10, YB + 40, cxb + 10, YB + 40, PAL.ink, 10); line(ctx, cxb, YB + 40, cxb, YB + 100, PAL.ink, 8); line(ctx, cxb - 34, YB + 100, cxb + 34, YB + 100, PAL.ink, 8);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(cxb - 14, YB + 36); ctx.quadraticCurveTo(cxb - 16, YB + 14, cxb, YB + 12); ctx.quadraticCurveTo(cxb + 16, YB + 14, cxb + 14, YB + 36); ctx.stroke(); ctx.restore();
+    text(ctx, '热量', cxb + 50, YB + 24, PAL.ink, { size: 17 });
+    text(ctx, 'T = ' + degC(T, 1), XL + 16, YW + 30, tc, { size: 22, weight: 600, bg: PAL.panel });
+    text(ctx, 'P = ' + fmt(Ps.v, 2) + ' atm（水面上方）', XL, YR - 26, pc, { size: 20, weight: 600 });
+    /* the bubble: on the bottom while the vapor pressure is below the pressure over the water, broken away and rising once it reaches it */
+    const bubble = (x, y, rr) => { ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = bc; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, rr, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); };
+    if (!boils) {
+      const bx = cxb + 60, by = YB - r - 3; bubble(bx, by, r);
+      hits.push({ x: bx, y: by, r: r + 8, name: `被水蒸气饱和的空气气泡，半径是 20 °C 时的 ${fmt(r / R0, 2)} 倍` });
+      text(ctx, '含空气和水蒸气的气泡', bx + r + 16, by, bc, { size: 18, bg: PAL.panel });
+    } else {
+      [[cxb + 60, YB - 34, 24], [cxb + 20, YB - 120, 32], [cxb + 90, YB - 220, 40]].forEach(([x, y, rr]) => { bubble(x, y, rr); hits.push({ x, y, r: rr + 8, name: '上升时无限增大的气泡' }); });
+      arrow(ctx, cxb + 90, YB - 220 - 40 - 6, cxb + 90, YW + 16, PAL.ink, 4);
+      text(ctx, '气泡脱离并上升', XR + 20, YB - 220, bc, { size: 18, bg: PAL.panel });
+    }
+    /* the bar of partial pressures inside the bubble: the vapor's share and the air's, summing to the pressure over the water */
+    const fv = boils ? 1 : pv / P;
+    text(ctx, '气泡内两种分压之和为 P', BX, BY - 44, PAL.ink, { size: 19, weight: 600 });
+    ctx.save(); ctx.fillStyle = alpha(pc, 0.35); ctx.fillRect(BX, BY, BW * fv, BH); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(BX + BW * fv, BY, BW * (1 - fv), BH); ctx.restore();
+    ctx.save(); ctx.strokeStyle = pc; ctx.lineWidth = 3; ctx.strokeRect(BX, BY, BW, BH); ctx.restore();
+    line(ctx, BX + BW * fv, BY - 6, BX + BW * fv, BY + BH + 6, pc, 3);
+    text(ctx, '水蒸气 ' + fmt(fv * 100, boils ? 0 : 1) + '%', BX, BY + BH + 26, pc, { size: 18, weight: 600 });
+    if (!boils) text(ctx, '空气 ' + fmt((1 - fv) * 100, 1) + '%', BX + BW, BY + BH + 26, PAL.ink, { size: 18, weight: 600, align: 'right' });
+    text(ctx, 'P = ' + sci(P).txt + ' Pa', BX + BW, BY - 16, pc, { size: 18, weight: 600, align: 'right' });
+    text(ctx, boils ? '仅蒸气压就已达到 P' : '蒸气所占的份额就是温度 T 时的蒸气压', BX, BY + BH + 84, PAL.muted, { size: 17 });
+    hits.push({ x: BX + BW * fv / 2, y: BY + BH / 2, r: Math.max(20, BW * fv / 2), name: '水蒸气的分压，' + sci(pv).txt + ' Pa' });
+    if (!boils) hits.push({ x: BX + BW * fv + BW * (1 - fv) / 2, y: BY + BH / 2, r: Math.max(20, BW * (1 - fv) / 2), name: '空气的分压，' + sci(pair).txt + ' Pa' });
+    /* the words */
+    if (!boils) topline(ctx, `在 ${degC(T, 1)} 时，气泡中 ${fmt(fv * 100, 1)}% 是水蒸气，${fmt((1 - fv) * 100, 1)}% 是空气，它停在底部${r > 40 ? '，膨胀得很大，以使其压强保持为 ' + fmt(Ps.v, 2) + ' atm' : ''}。`);
+    else topline(ctx, `在 ${degC(T, 1)} 时，水的蒸气压${pv - P < 0.02 * P ? '达到' : '超过'}水面上方的 ${fmt(Ps.v, 2)} atm，所以水蒸气无限制地进入气泡：气泡增大、脱离并上升。水沸腾了。`);
+    const Pv = sci(pv), Pa = sci(Math.max(0, pair)), Pt = sci(P);
+    const vap = '\\mk{v}{{\\kPr}_{\\text{vapor}}(\\kTemp)}', nv = `\\mk{nv}{${Pv.tex}}\\ \\text{Pa}`, nP = `\\mk{nP}{${Pt.tex}}\\ \\text{Pa}`;
+    ro.set(boils
+      ? `${vap} = ${nv} \\ge \\mk{P}{\\kPr} = ${nP}`
+      : `\\mk{P}{\\kPr} = ${vap} + \\mk{a}{{\\kPr}_{\\text{air}}} = ${nv} + \\mk{na}{${Pa.tex}}\\ \\text{Pa} = ${nP}`, (
+      `在 ${fmt(Ps.v, 2)} atm 下，水在 ${degC(tb, 1)} 沸腾，此时表 13.5 给出水的蒸气压为 ${sci(P).txt} Pa。${boils ? '' : '气泡的体积是它在 20 °C 和 1.00 atm 时的 ' + fmt(ratio, 2) + ' 倍。'}`));
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

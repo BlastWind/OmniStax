@@ -1,0 +1,738 @@
+{
+ "id": "16.7",
+ "module": "m42246",
+ "chapter": "16",
+ "title": "阻尼简谐运动",
+ "short": "阻尼简谐运动",
+ "lead": "真实的振动不会永远持续下去，因为<span data-concept=\"friction\">摩擦力</span>和其他非保守<span data-concept=\"force\">力</span>会带走其中的<span data-concept=\"energy\">能量</span>，<span data-concept=\"amplitude\">振幅</span>随之减小。运动多快消失，以及系统如何回到平衡，取决于它带有多大的阻尼。",
+ "objectives": [
+  "比较并讨论欠阻尼和过阻尼的振动系统。",
+  "解释临界阻尼系统。"
+ ],
+ "summary_html": "<ul><li>阻尼谐振子受到非保守<span data-concept=\"force\">力</span>，使其<span data-concept=\"energy\">能量</span>耗散。</li><li>临界阻尼使系统以尽可能快的速度回到平衡，而不越过。</li><li>欠阻尼系统会振动着穿过平衡<span data-concept=\"position\">位置</span>。</li><li>过阻尼系统向平衡移动得比临界阻尼系统更慢。</li></ul>",
+ "notes": "母亲推着孩子荡秋千的照片是本节开头的题图，已略去。习题 1 讨论每个循环下降百分之三的振幅，书后答案没有给出它的答案，已略去。书中自己的措辞原样保留：术语表把 over damping 和 under damping（过阻尼、欠阻尼）写成两个词，而正文写作 overdamped 和 underdamped；定义临界阻尼的那个句子把两个句子连在了一起。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案；习题 1 没有给出答案，已略去。第二道 AP 题同样没有给出答案，所以它保留为开放题，附有书中印出的选项和一条由 AI 撰写的建议思路，而不是判分选择题。第三道思考题涉及热力学第二定律，除了阻尼简谐运动外，还标记到 15.6 节中的这一结论。开放题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-damped-amplitude",
+   "kind": "sim",
+   "number": "16.20",
+   "originals": [
+    "/media/ch16/Figure_17_07_02a.jpg"
+   ],
+   "original_caption": "这幅阻尼很小的谐振子的位移随时间变化的图像中，振幅缓慢减小，但周期和频率与系统完全无阻尼时几乎相同。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-damping-regimes",
+   "kind": "sim",
+   "number": "16.21",
+   "originals": [
+    "/media/ch16/Figure_17_07_03a.jpg"
+   ],
+   "original_caption": "临界阻尼谐振子（A）和过阻尼谐振子（B）的位移随时间变化的图像。临界阻尼振子以尽可能短的时间回到 X = 0 处的平衡位置，而不会越过。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note trimmed, readout names all three"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-friction-damped",
+   "kind": "sim",
+   "number": "16.22",
+   "originals": [
+    "/media/ch16/Figure_17_07_04a.jpg"
+   ],
+   "original_caption": "在无摩擦表面上与弹簧相连的物体，其简谐运动中的能量转化如图所示。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "energy",
+    "force",
+    "position",
+    "stiffness",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline total, at-rest label moved, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "damping",
+   "concept": "damped-harmonic-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "damping",
+   "concept": "nonconservative-work-damping",
+   "verb": "introduces"
+  },
+  {
+   "span": "damping",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "damping",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "damping",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "damping",
+   "concept": "nonconservative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "damping",
+   "concept": "friction-dissipates-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "damping",
+   "concept": "work-by-nonconservative-forces",
+   "verb": "reinforces"
+  },
+  {
+   "span": "regimes",
+   "concept": "critical-damping",
+   "verb": "introduces"
+  },
+  {
+   "span": "regimes",
+   "concept": "underdamping",
+   "verb": "introduces"
+  },
+  {
+   "span": "regimes",
+   "concept": "overdamping",
+   "verb": "introduces"
+  },
+  {
+   "span": "regimes",
+   "concept": "damped-harmonic-motion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "regimes",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-example",
+   "concept": "friction-damped-oscillator",
+   "verb": "introduces"
+  },
+  {
+   "span": "friction-example",
+   "concept": "nonconservative-work-damping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "friction-example",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-example",
+   "concept": "elastic-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-example",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-example",
+   "concept": "shm-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-example",
+   "concept": "underdamping",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3256580",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "damping"
+   },
+   "cite": "damping",
+   "prompt": "为什么完全无阻尼的谐振子如此少见？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "物体只要在运动，往往就会有摩擦力起作用。摩擦力使谐振子产生阻尼。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id2611418",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "regimes"
+   },
+   "cite": "regimes",
+   "prompt": "请描述过阻尼、欠阻尼和临界阻尼之间的区别。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "过阻尼系统向平衡位置缓慢移动。欠阻尼系统很快移向平衡，但在这一过程中会围绕平衡点振动。临界阻尼系统尽可能快地移向平衡，而不振动。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1927486",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damping",
+   "prompt": "非保守的阻尼力从系统中带走的是哪种形式的能量？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "机械能",
+     "电能",
+     "热能",
+     "以上都不是"
+    ],
+    "correct": 2,
+    "hint": "本节说明了阻尼力通常把振动的能量变成什么。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3337953",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damping",
+   "prompt": "阻尼振子的机械能随时间的变化率总是：（a）0，（b）负，（c）正，（d）无定义。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（b）负。对于阻尼振子，非保守力所做的功改变机械能，$\\kWnc = \\Delta(\\kKE + \\kPEtot)$。阻尼力总是与速度方向相反，所以它在任何一个时间间隔内所做的功都为负，机械能 $\\kKE + \\kPEtot$ 在整个运动中不断减小，转化为热能。在每一时刻都在减小的量，其变化率为负。它不是 0，0 描述的是无阻尼的简谐振子；它也不是正，正则需要有驱动力把能量输入。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1548549",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "friction-example",
+   "prompt": "一个 0.5 kg 的物体与弹簧相连，做振动运动。物体与它所放置的表面之间有摩擦，摩擦因数为 $\\mu_{\\text{k}} = 0.06$。如果物体从距平衡位置 0.2 m 处释放，它运动的路程是多少？已知弹簧的劲度系数为 50 N⋅m⁻¹，物体之间的摩擦力为 0.294 N。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.698,
+    "unit": "m",
+    "hint": "使用 $\\kd = \\frac{\\kk}{2\\mu_{\\text{k}} m\\kg}\\left(\\kX^2 - \\left(\\frac{\\mu_{\\text{k}} m\\kg}{\\kk}\\right)^2\\right)$，其中 $\\kX = 0.2\\ \\text{m}$。",
+    "solution": "$\\kd = \\frac{50\\ \\text{N}\\cdot\\text{m}^{-1}}{2 \\times 0.06 \\times 9.8\\ \\text{m}\\cdot\\text{s}^{-2}}\\left((0.2)^2 - \\frac{(0.06 \\times 0.5\\ \\text{kg} \\times 9.8\\ \\text{m}\\cdot\\text{s}^{-2})^2}{(50\\ \\text{N}\\cdot\\text{m}^{-1})^2}\\right) = 1.698\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id990795",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damping",
+   "prompt": "请举出一个阻尼谐振子的例子。（它们比无阻尼谐振子或简谐振子更常见。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "被拨动的吉他弦就是一个：它以自己的频率振动，几秒钟内就会静下来，因为空气和吉他的琴身把能量带走了。秋千上的孩子是另一个，这就是为什么秋千必须不断被推才能一直摆下去；汽车的悬架是第三个，它的设计使得经过凸起之后的上下弹跳很快停止。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1352100",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "regimes",
+   "prompt": "在下列每种条件下，汽车越过一个凸起后会怎样弹跳？（a）过阻尼，（b）欠阻尼，（c）临界阻尼。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "过阻尼的汽车会缓慢地下沉回到静止时的高度而不弹跳，所花的时间比所需的更长，越过下一个凸起时，乘坐起来会显得迟钝。欠阻尼的汽车会上下弹跳，几次穿过静止时的高度，然后才稳定下来，减震器磨损的汽车就是这样。临界阻尼的汽车会以尽可能短的时间回到静止时的高度，而不会弹跳着越过它，这正是悬架的设计目标。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1941660",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damping",
+   "prompt": "大多数谐振子都是有阻尼的，如果没有驱动，最终都会停下来。这一观察与热力学第二定律有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "阻尼力把振动中有序的机械能变成散布在物体及其周围环境中的热能，在这一过程中总熵增大。第二定律说，这样的变化只朝一个方向进行：分散在分子之间的热能绝不会自己重新聚拢起来，使振子再次摆动。这就是为什么没有驱动的振子总是逐渐停下，而绝不会自行越摆越强。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "damped-harmonic-motion"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "nonconservative-force"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "critical-damping"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "underdamping"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "overdamping"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "nonconservative-work-damping"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "damped-harmonic-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "nonconservative-work-damping"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "damped-harmonic-motion",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "friction-damped-oscillator"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "nonconservative-work-damping",
+   "weight": 3
+  },
+  {
+   "exercise": "cq1",
+   "concept": "damped-harmonic-motion"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "critical-damping"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "underdamping"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "overdamping"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "damped-harmonic-motion"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "second-law-entropy-statement",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "damped-object",
+   "label": "弹簧上受轻微阻尼的物体",
+   "figures": [
+    "sim-damped-amplitude"
+   ]
+  },
+  {
+   "id": "system-a",
+   "label": "临界阻尼系统，曲线 A",
+   "figures": [
+    "sim-damping-regimes"
+   ]
+  },
+  {
+   "id": "system-b",
+   "label": "过阻尼系统，曲线 B",
+   "figures": [
+    "sim-damping-regimes"
+   ]
+  },
+  {
+   "id": "system-under",
+   "label": "欠阻尼系统",
+   "figures": [
+    "sim-damping-regimes"
+   ]
+  },
+  {
+   "id": "friction-object",
+   "label": "例题 16.7 的物体",
+   "figures": [
+    "sim-friction-damped"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "friction-damped-distance",
+   "what": "受弹簧作用的物体克服摩擦滑过的路程",
+   "source": "《大学物理（第2版）》，16.7 阻尼简谐运动，例题 16.7",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "系统停止运动时，摩擦力与弹簧施加的力平衡。",
+       "src": "例题 16.7"
+      },
+      {
+       "tex": "\\kF_{\\text{el}} = \\kk\\kx",
+       "src": "16.1"
+      },
+      {
+       "tex": "\\kff = \\mu_{\\text{k}}\\km\\kg",
+       "src": "例题 16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF_{\\text{el}}} = \\mk{f}{\\kff}",
+      "uses": [
+       0
+      ],
+      "src": "例题 16.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kk\\kx} = \\mk{f}{\\mu_{\\text{k}}\\km\\kg}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kx} = \\mk{f}{\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}}",
+       "uses": []
+      }
+     ],
+     "src": "例题 16.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "物体开始和结束时都静止，运动是水平的，所以只有弹性势能发生变化。",
+       "src": "例题 16.7"
+      },
+      {
+       "tex": "\\text{PE}_{\\text{el,i}} = \\tfrac{1}{2}\\kk\\kX^{2}",
+       "src": "例题 16.7"
+      },
+      {
+       "tex": "\\text{PE}_{\\text{el,f}} = \\tfrac{1}{2}\\kk\\kx^{2}",
+       "src": "例题 16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnc} = \\mk{d}{\\Delta(\\kKE + \\kPEtot)}",
+      "uses": [],
+      "src": "16.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kWnc} = \\mk{f}{\\text{PE}_{\\text{el,f}}} - \\mk{i}{\\text{PE}_{\\text{el,i}}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "d": [
+         "f",
+         "i"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{W}{\\kWnc} = \\mk{f}{\\tfrac{1}{2}\\kk\\kx^{2}} - \\mk{i}{\\tfrac{1}{2}\\kk\\kX^{2}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kWnc} = \\tfrac{1}{2}\\kk\\left(\\mk{f}{\\kx^{2}} - \\mk{i}{\\kX^{2}}\\right)",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{W}{\\kWnc} = \\tfrac{1}{2}\\kk\\left(\\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}} - \\mk{i}{\\kX^{2}}\\right)",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "例题 16.7"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kff = \\mu_{\\text{k}}\\km\\kg",
+       "src": "例题 16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnc} = -\\mk{f}{\\kff}\\mk{d}{\\kd}",
+      "uses": [],
+      "src": "例题 16.7",
+      "why": "摩擦力在所经过的整个路程 $\\kd$ 上都阻碍运动。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kWnc} = -\\mk{f}{\\mu_{\\text{k}}\\km\\kg}\\mk{d}{\\kd}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "例题 16.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnc} = \\tfrac{1}{2}\\kk\\left(\\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}} - \\mk{i}{\\kX^{2}}\\right)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\tfrac{1}{2}\\kk\\left(\\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}} - \\mk{i}{\\kX^{2}}\\right) = \\mk{W}{-\\mu_{\\text{k}}\\km\\kg\\kd}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kd} = \\dfrac{\\kk}{2\\mu_{\\text{k}}\\km\\kg}\\left(\\mk{i}{\\kX^{2}} - \\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}}\\right)",
+       "uses": []
+      }
+     ],
+     "src": "例题 16.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\km = 0.200\\ \\text{kg},\\quad \\mu_{\\text{k}} = 0.0800",
+       "src": "例题 16.7"
+      },
+      {
+       "tex": "\\kk = 50.0\\ \\text{N/m},\\quad \\kX = 0.100\\ \\text{m}",
+       "src": "例题 16.7"
+      },
+      {
+       "tex": "\\kg = 9.80\\ \\text{m/s}^{2}",
+       "src": "2.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kd} = \\dfrac{\\kk}{2\\mu_{\\text{k}}\\km\\kg}\\left(\\mk{i}{\\kX^{2}} - \\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}}\\right)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kd} = \\dfrac{50.0\\ \\text{N/m}}{2(0.0800)(0.200\\ \\text{kg})(9.80\\ \\text{m/s}^{2})}\\left(\\mk{i}{(0.100\\ \\text{m})^{2}} - \\mk{f}{\\left(\\dfrac{(0.0800)(0.200\\ \\text{kg})(9.80\\ \\text{m/s}^{2})}{50.0\\ \\text{N/m}}\\right)^{2}}\\right)",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kd} = \\mk{i}{1.59\\ \\text{m}}",
+       "uses": [],
+       "map": {
+        "f": "i"
+       }
+      }
+     ],
+     "src": "例题 16.7"
+    }
+   ]
+  }
+ ]
+}

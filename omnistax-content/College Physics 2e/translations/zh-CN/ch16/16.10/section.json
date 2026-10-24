@@ -1,0 +1,808 @@
+{
+ "id": "16.10",
+ "module": "m42249",
+ "chapter": "16",
+ "title": "叠加与干涉",
+ "short": "叠加与干涉",
+ "lead": "大多数波看起来复杂，是因为它们由几列简单的波相加而成；波相遇时，它们的扰动相加。把<span data-concept=\"frequency\">频率</span>相同或几乎相同的波相加，就得到干涉、弦上的驻波和拍。",
+ "objectives": [
+  "解释驻波。",
+  "描述泛音和拍频的数学表示。"
+ ],
+ "summary_html": "<ul><li>叠加是两列波在同一位置的组合。</li><li>两列相同的波同相叠加时，发生相长干涉。</li><li>两列相同的波恰好反相叠加时，发生相消干涉。</li><li>驻波是两列波叠加而产生的一种<span data-concept=\"amplitude\">振幅</span>变化但并不传播的波。</li><li>波节是驻波中不运动的点。</li><li>波腹是驻波中<span data-concept=\"amplitude\">振幅</span>最大的位置。</li><li>弦上的波是具有基频的共振驻波，也可以出现在基频更高的倍数上，称为泛音或谐波。</li><li>当<span data-concept=\"frequency\">频率</span> $\\kfone$ 和 $\\kftwo$ 相近的波叠加时，会产生拍。所得的<span data-concept=\"amplitude\">振幅</span>以<span data-concept=\"beat-frequency\">拍频</span>振动，拍频由下式给出 $$\\kfB = \\lvert\\kfone - \\kftwo\\rvert.$$</li></ul>",
+ "notes": "指向 PhET 仿真 Wave Interference 的链接与本书其他交互链接一样，予以略去。习题 2、4 和 6 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案；习题 2、4 和 6 没有给出答案，因而略去。四道 AP 题同样没有给出答案，作为开放题保留：其中两道是选择题，保留书中印出的选项，而不作为判分的选择题；还有一道关于密部和疏部的题，其图附在它的卡片上。开放题的建议思路由 AI 撰写，并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-river",
+   "kind": "photo",
+   "number": "16.32",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-superposition",
+   "kind": "sim",
+   "number": "16.33",
+   "folds": [
+    "16.34",
+    "16.35"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_10_02a.jpg",
+    "/media/ch16/Figure_17_10_03a.jpg",
+    "/media/ch16/Figure_17_10_04a.jpg"
+   ],
+   "original_caption": "（图 16.33）两列相同的波的完全相长干涉产生一列振幅为原来两倍、波长不变的波。（图 16.34）两列相同的波的完全相消干涉产生零振幅，即完全抵消。（图 16.35）不相同的波的叠加既表现出相长干涉，也表现出相消干涉。",
+   "widths": [
+    325,
+    325,
+    200
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend lowered, note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-standing-wave",
+   "kind": "sim",
+   "number": "16.36",
+   "originals": [
+    "/media/ch16/Figure_17_10_05a-c9d4.jpg"
+   ],
+   "original_caption": "两列沿相反方向运动的相同的波叠加产生的驻波。振动发生在空间中的固定位置，由相长干涉与相消干涉交替产生。",
+   "draws": [
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "antinode label inside box, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-string-harmonics",
+   "kind": "sim",
+   "number": "16.37",
+   "folds": [
+    "16.38"
+   ],
+   "originals": [
+    "/media/ch16/Figure_17_10_06a.jpg",
+    "/media/ch16/Figure_17_10_07a.jpg"
+   ],
+   "original_caption": "（图 16.37）图中是一根以基频振动的弦。（图 16.38）图中是第一泛音和第二泛音。",
+   "widths": [
+    350,
+    375
+   ],
+   "draws": [
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset, note states slow-down"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-beats",
+   "kind": "sim",
+   "number": "16.39",
+   "originals": [
+    "/media/ch16/Figure_17_10_08a.jpg"
+   ],
+   "original_caption": "拍由两列频率略有不同而振幅相同的波叠加产生。这两列波在时间上交替地相长干涉和相消干涉，使合成波的振幅随时间变化。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "frequency",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "superposition",
+   "concept": "superposition",
+   "verb": "introduces"
+  },
+  {
+   "span": "superposition",
+   "concept": "constructive-interference",
+   "verb": "introduces"
+  },
+  {
+   "span": "superposition",
+   "concept": "destructive-interference",
+   "verb": "introduces"
+  },
+  {
+   "span": "superposition",
+   "concept": "wave",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "standing-wave",
+   "verb": "introduces"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "nodes-and-antinodes-on-a-string",
+   "verb": "introduces"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "string-harmonics",
+   "verb": "introduces"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "constructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "destructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "wave-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "wave-speed-wavelength-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "standing-waves",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "beats",
+   "concept": "beats",
+   "verb": "introduces"
+  },
+  {
+   "span": "beats",
+   "concept": "beat-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "beats",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "beats",
+   "concept": "shm-kinematics",
+   "verb": "uses"
+  },
+  {
+   "span": "beats",
+   "concept": "frequency",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2005960",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "standing-waves"
+   },
+   "cite": "standing-waves",
+   "prompt": "设想你握着跳绳的一端，你的朋友握着另一端。如果你的朋友把她那一端保持不动，你就可以上下移动你这一端，产生一列横波。如果你的朋友接着开始上下移动她那一端，产生一列沿相反方向传播的波，那么你预期会在跳绳上看到什么样的合成波形？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "绳子会交替地出现振幅为原来两倍的波，以及回到平衡位置、振幅为零的状态。这些波长将同时导致相长干涉和相消干涉"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id1848513",
+   "kind": "check-understanding",
+   "bloom": "Remember",
+   "place": {
+    "at": "inline",
+    "after": "standing-waves"
+   },
+   "cite": "standing-waves",
+   "prompt": "给出波节和波腹的定义。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "波节是波干涉中没有运动的区域。波腹是波干涉中运动达到最大值的区域。"
+   }
+  },
+  {
+   "id": "cyu3",
+   "source_id": "fs-id2671107",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "superposition"
+   },
+   "cite": "superposition",
+   "prompt": "你接好了一套立体声音响系统。试音时，你发现房间的一个角落里声音显得沉闷。在另一处，声音又显得响得过分。请描述房间里传播的声音是怎样产生这些效果的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "多个扬声器向房间里发声，这些声音又被墙壁反弹，必然会出现一些波的干涉。在沉闷的区域，干涉多半是相消的。在更响的区域，干涉多半是相长的。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1255212",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standing-waves",
+   "prompt": "吉他弦有若干个自然振动的频率。在此情形下，下列哪一项是正确的？\n（a）弦的共振频率是基频的整数倍。\n（b）弦的共振频率不是基频的整数倍。\n（c）它们具有谐波泛音。\n（d）以上都不对",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）。两端固定的弦在每一端都必须是波节，所以它所能承载的驻波，是弦长 $L$ 恰好容纳整数个半波长的那些驻波。最长的是 $\\klamone = 2L$，对应基频 $\\kfone = \\kvw/2L$。接下来的是 $\\klamtwo = L$ 和 $2L/3$ 这两种，对应 $\\kftwo = 2\\kfone$ 和 $\\kfthree = 3\\kfone$，一般地有 $\\kf_n = n\\kfone$，$n = 1, 2, 3, \\ldots$ 所以固有频率是基频的整数倍，这就排除了（b）和（d）。陈述（c）对这根弦也是正确的，因为这些倍数恰好就是所谓的谐波泛音，但它只是给这些倍数命名；（a）说出的才是使它们成为谐波的那种关系。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2327948",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "superposition",
+   "prompt": "用图示说明叠加原理，图中要表示出波振幅的变化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "学生说明叠加原理，然后画出两列波在波峰与波峰相加、波谷与另一个波谷相加时合成一列更大的波。学生还画出一列波在波峰遇到波谷时被抵消，反之亦然。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1946682",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "superposition",
+   "figure": {
+    "src": "/media/ch16/CNX_APPhysics_16_M10_rarefaction_img.jpg",
+    "alt": "图中画出两个波源及其产生的疏部和密部。A、C、D 和 E 各点位于两条密部线的交点。B 点位于两条疏部线的交点。F 点位于一条密部线与一条疏部线的交点。",
+    "caption": "两个波源发出的密部和疏部在 A 到 F 各点相交。"
+   },
+   "prompt": "在此图中，哪些点是相长干涉点？\n（a）A, B, F\n（b）A, B, C, D, E, F\n（c）A, C, D, E\n（d）A, B, D",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（c）A, C, D, E。相长干涉出现在两列波到达时扰动方向相同、因而相加的地方：密部遇到密部，或者疏部遇到疏部。A、C、D 和 E 各点都位于两条密部线相交之处，所以它们是相长干涉点。F 点位于一条密部线与一条疏部线相交之处，所以扰动相反而抵消，这是相消干涉；凡是包含 F 的选项，即（a）和（b），都是错的。选项（d）漏掉了 C 和 E。B 点是两个疏部相遇之处，也是相长干涉点，所以（c）是唯一一个完全由正确的点构成的选项。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1341180",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standing-waves",
+   "prompt": "一根弦两端固定。用相等的力同时从两端拨动它。弦中产生的波的形状会发生什么变化？另外，你会观察到波的重叠吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "学生必须指出，波的形状保持不变，波先是重叠，然后分开。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1697572",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "superposition",
+   "prompt": "在上一题中，这样产生的波的振幅会怎样？另外，再考虑另一种情形：弦的一端向上拨动，另一端向下拨动。在这种情形下会发生什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用相等的力从两端同时向上拨动时，两个脉冲完全相同，并且同相到达，所以它们相遇处扰动相加，弦升高到任一脉冲振幅的两倍。这是完全相长干涉，两个脉冲彼此穿过之后，各自又恢复自己的振幅。一端向上、另一端向下拨动时，两个脉冲大小相等、方向相反，所以它们相遇处扰动抵消，弦暂时是平的，这是完全相消干涉。随后两个脉冲原样出现并继续前进，向上的仍然向上，向下的仍然向下。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2043966",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "superposition",
+   "prompt": "两列正弦波在介质中沿同一方向传播。每列波的振幅都是 $A$，二者的相位差为 180°。合成振幅是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$2A$",
+     "$3A$",
+     "0",
+     "$9A$"
+    ],
+    "correct": 2,
+    "hint": "180° 的相位差使一列波的每个波峰都落在另一列波的波谷上。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1009420",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standing-waves",
+   "prompt": "驻波图样由波节和波腹组成，它们是由两列频率相同、沿相反方向传播的波反复干涉形成的。什么是波节和波腹？它们是怎样产生的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "波节是弦不运动的点，更一般地说，是驻波中波的扰动为零之处。波腹是驻波振幅最大之处。两列沿相反方向相互穿过的波产生它们。在波节处，两个扰动在每一时刻都大小相等、方向相反，所以始终抵消。在波腹处，它们始终大小相等、方向相同，所以相加，该点以任一列波两倍的振幅摆动。波节与波腹相距四分之一波长，弦的固定端必定是波节，因为弦在那里不能运动。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2032212",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "superposition",
+   "prompt": "立体声音响系统的扬声器有两个用颜色标记的接线端，指示导线该怎样连接。如果导线接反，扬声器的运动方向就与正确连接的扬声器相反。请解释为什么让两个扬声器以相同方式连接很重要。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "扬声器的纸盆把前方的空气向外推，形成密部，又向后退，形成疏部，而对于给定的信号，接线端决定它朝哪个方向运动。两个扬声器以相同方式连接时，它们同步运动，所以两列声波同相到达听者，扰动相加：低音的波长很长，两个扬声器相距比一个波长小得多，因此发生相长干涉，听起来饱满。把其中一个扬声器的导线接反，它向外运动时另一个向内运动，于是两列波恰好反相到达，波峰对波谷，发生相消干涉。两个扬声器重现得一样的低音，这时大部分被抵消，声音就变得单薄。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1339459",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beats",
+   "prompt": "一辆汽车有两个喇叭，一个发出的频率为 199 Hz，另一个发出的频率为 203 Hz。它们产生的拍频是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4,
+    "unit": "Hz",
+    "hint": "拍频是两个频率之差。",
+    "solution": "$\\kfB = \\lvert 199\\ \\text{Hz} - 203\\ \\text{Hz}\\rvert = 4\\ \\text{Hz}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1869902",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beats",
+   "prompt": "频率为 460 和 464 Hz 的两个音叉被同时敲响。你会听到的平均频率是多少，拍频又是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the average frequency heard",
+      "value": 462,
+      "unit": "Hz",
+      "hint": "合成波的频率是这两个频率的平均值。"
+     },
+     {
+      "part": "the beat frequency",
+      "value": 4,
+      "unit": "Hz",
+      "hint": "振幅以两个频率之差起伏。"
+     }
+    ],
+    "solution": "462 Hz，4 Hz"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2953434",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standing-waves",
+   "prompt": "在拉伸到 4 m 的 Slinky® 上传播的一列波，沿 Slinky 的长度走一个来回需要 2.4 s。（a）波的速率是多少？（b）仍用同一个拉伸到同样长度的 Slinky，产生一个由三个波腹和四个波节组成的驻波。Slinky 必须以多大的频率振动？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the speed of the wave",
+      "value": 3.33,
+      "unit": "m/s",
+      "hint": "在这段时间内，波把全长走了两遍。"
+     },
+     {
+      "part": "(b) the frequency of the standing wave",
+      "value": 1.25,
+      "unit": "Hz",
+      "hint": "三个波腹和四个波节是三段，所以波长是全长的三分之二。"
+     }
+    ],
+    "solution": "（a）3.33 m/s（b）1.25 Hz"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "standing-wave"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "constructive-interference",
+   "weight": 2
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "destructive-interference",
+   "weight": 2
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "nodes-and-antinodes-on-a-string"
+  },
+  {
+   "exercise": "cyu3",
+   "concept": "constructive-interference"
+  },
+  {
+   "exercise": "cyu3",
+   "concept": "destructive-interference"
+  },
+  {
+   "exercise": "cyu3",
+   "concept": "superposition",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "string-harmonics"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "constructive-interference",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "destructive-interference",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "constructive-interference"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "destructive-interference",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "superposition",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "superposition"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "standing-wave",
+   "weight": 3
+  },
+  {
+   "exercise": "ap5",
+   "concept": "constructive-interference"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "destructive-interference"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "superposition",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "destructive-interference"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "nodes-and-antinodes-on-a-string"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "standing-wave",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "destructive-interference"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "superposition",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "constructive-interference",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "beat-frequency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "beat-frequency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "beats",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "string-harmonics"
+  },
+  {
+   "exercise": "p5",
+   "concept": "nodes-and-antinodes-on-a-string",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "wave-speed-wavelength-frequency",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "wave-1",
+   "label": "第一列波",
+   "figures": [
+    "sim-superposition"
+   ]
+  },
+  {
+   "id": "wave-2",
+   "label": "第二列波",
+   "figures": [
+    "sim-superposition"
+   ]
+  },
+  {
+   "id": "wave-right",
+   "label": "向右传播的波",
+   "figures": [
+    "sim-standing-wave"
+   ]
+  },
+  {
+   "id": "wave-left",
+   "label": "向左传播的波",
+   "figures": [
+    "sim-standing-wave"
+   ]
+  },
+  {
+   "id": "beat-wave-1",
+   "label": "产生拍的两列波中的第一列",
+   "figures": [
+    "sim-beats"
+   ]
+  },
+  {
+   "id": "beat-wave-2",
+   "label": "产生拍的两列波中的第二列",
+   "figures": [
+    "sim-beats"
+   ]
+  }
+ ]
+}

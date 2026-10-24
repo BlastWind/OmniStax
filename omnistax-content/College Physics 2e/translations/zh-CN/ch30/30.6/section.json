@@ -1,0 +1,404 @@
+{
+ "id": "30.6",
+ "module": "m42606",
+ "chapter": "30",
+ "title": "物质的波动性导致量子化",
+ "short": "波与量子化",
+ "lead": "玻尔不得不假设电子在其轨道上的<span data-concept=\"angular-momentum\">角动量</span>是量子化的。本节利用电子的波动性来追问其中的原因，然后考察一旦把电子当作波来处理，明确轨道的概念会变成什么样子。",
+ "objectives": [
+  "解释玻尔的原子模型。",
+  "定义并描述角动量的量子化。",
+  "计算原子某一轨道的角动量。",
+  "定义并描述物质的波动性质。"
+ ],
+ "summary_html": "<ul><li>轨道<span data-concept=\"energy\">能量</span>的量子化是由物质的波动性引起的。原子中的允许轨道出现在轨道上的电子发生相长干涉时，这要求轨道的周长能容纳整数个<span data-concept=\"wavelength\">波长</span>；也就是说，$$n\\klamorb = 2\\pi\\krn\\;(n = 1, 2, 3, \\ldots),$$ 其中 $\\klamorb$ 是<span data-type=\"position\">电子的德布罗意波长</span>。</li><li>由于电子的波动性和海森伯不确定性原理，不存在明确的轨道，而是存在概率云。</li><li>玻尔正确地提出，原子中电子轨道的<span data-concept=\"energy\">能量</span>和半径是量子化的，轨道之间跃迁的<span data-concept=\"energy\">能量</span>为 $$\\kdE = h\\kf = \\kEini - \\kEfin,$$ 其中 $\\kdE$ 是<span data-type=\"energy\">初、末轨道之间的能量变化</span>，$h\\kf$ 是<span data-type=\"energy\">被吸收或发射的光子的能量</span>。</li><li>把轨道<span data-concept=\"energy\">能量</span>画在一张竖直的图上是很有用的，这种图称为能级图。</li><li>玻尔提出，允许轨道是圆形的，并且必须具有量子化的轨道<span data-concept=\"angular-momentum\">角动量</span>，其值为 $$\\kL = \\kme\\kv\\krn = n\\frac{h}{2\\pi}\\;(n = 1, 2, 3, \\ldots),$$ 其中 $\\kL$ 是<span data-type=\"angular-momentum\">角动量</span>，$\\krn$ 是<span data-type=\"position\">第 $n$ 个轨道的半径</span>，$h$ 是普朗克常量。</li></ul>",
+ "notes": "略去了 PhET 模拟“量子波干涉”（Quantum Wave Interference）的链接，与全书略去出版方互动内容的链接一致。本模块没有印出习题，其四道 AP 题和思考题也都没有给出答案。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和权重由 AI 生成。本模块没有印出习题，也没有“理解检测”框，所以没有设置行内题。其四道 AP 题和思考题都没有给出答案，因此各题均作为开放题保留，附有标明由 AI 给出的建议思路，不予评分；第一道和第三道 AP 题保留了书中印出的选项。前两道 AP 题要读书中粒子 X 和粒子 Y 的波函数图，这幅图附在它们的习题卡片上。",
+ "figures": [
+  {
+   "id": "sim-orbit-wave",
+   "kind": "sim",
+   "number": "30.44",
+   "folds": [
+    "30.45"
+   ],
+   "originals": [
+    "/media/ch30/Figure_31_06_00a.jpg",
+    "/media/ch30/Figure_31_06_01a.jpg"
+   ],
+   "original_caption": "（图 30.44）（a）弦上的波，其波长与弦的长度有关，因而能够发生相长干涉。（b）如果设想把弦弯成一个封闭的圆，我们就大致明白了圆轨道上的电子如何能够发生相长干涉。（c）如果波长不能容纳在圆周之内，电子就会发生相消干涉；它不能存在于这样的轨道上。（图 30.45）第三个和第四个允许的圆轨道，其圆周中分别含有三个和四个波长。",
+   "widths": [
+    450,
+    225
+   ],
+   "draws": [
+    "position",
+    "angular-momentum"
+   ],
+   "conventions": [
+    "e-",
+    "p+"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-probability-cloud",
+   "kind": "sim",
+   "number": "30.46",
+   "originals": [
+    "/media/ch30/Figure_31_06_02a.jpg"
+   ],
+   "original_caption": "氢原子的基态有一团描述其电子位置的概率云。找到电子的概率与云的深浅成正比。电子可以比玻尔半径更近，也可以更远，但它极不可能离原子核很远。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "position"
+   ],
+   "conventions": [
+    "e-",
+    "p+"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "allowed-orbits",
+   "concept": "electron-standing-wave-orbit",
+   "verb": "introduces"
+  },
+  {
+   "span": "allowed-orbits",
+   "concept": "de-broglie-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "allowed-orbits",
+   "concept": "constructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "allowed-orbits",
+   "concept": "standing-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "allowed-orbits",
+   "concept": "bohr-angular-momentum-quantization",
+   "verb": "uses"
+  },
+  {
+   "span": "allowed-orbits",
+   "concept": "quantized",
+   "verb": "uses"
+  },
+  {
+   "span": "orbit-condition",
+   "concept": "angular-momentum-quantization-from-waves",
+   "verb": "introduces"
+  },
+  {
+   "span": "orbit-condition",
+   "concept": "electron-standing-wave-orbit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "orbit-condition",
+   "concept": "de-broglie-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "orbit-condition",
+   "concept": "angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "orbit-condition",
+   "concept": "bohr-angular-momentum-quantization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "orbit-condition",
+   "concept": "bohr-orbit-radii",
+   "verb": "uses"
+  },
+  {
+   "span": "probability-cloud",
+   "concept": "probability-cloud",
+   "verb": "introduces"
+  },
+  {
+   "span": "probability-cloud",
+   "concept": "position-momentum-uncertainty",
+   "verb": "uses"
+  },
+  {
+   "span": "probability-cloud",
+   "concept": "bohr-radius",
+   "verb": "uses"
+  },
+  {
+   "span": "probability-cloud",
+   "concept": "limits-of-bohr-theory",
+   "verb": "uses"
+  },
+  {
+   "span": "bound-systems",
+   "concept": "electron-standing-wave-orbit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bound-systems",
+   "concept": "correspondence-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "bound-systems",
+   "concept": "blackbody",
+   "verb": "uses"
+  },
+  {
+   "span": "bound-systems",
+   "concept": "quantized",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "exer-00001",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "probability-cloud",
+   "figure": {
+    "src": "/media/ch30/ch30_M6_wave.jpg",
+    "alt": "两幅振幅随 x 变化的图。粒子 X 的波包很长，有许多次振荡，在 x0 周围分布很宽，其最大的峰达到 A0。粒子 Y 的波包很短很窄，紧密集中在 x0 周围，其峰远高于 A0。"
+   },
+   "prompt": "这幅图表示两个粒子 <em>X</em> 和 <em>Y</em> 的波函数的图像，它们都沿 <em>x</em> 轴正方向运动。粒子 <em>X</em> 的波函数的最大振幅为 <em>A</em><sub>0</sub>。在这一时刻，哪个粒子位于位置 <em>x</em><sub>0</sub> 的概率更大，为什么？<ol type=\"a\"><li>粒子 <em>X</em>，因为粒子 <em>X</em> 的波函数比粒子 <em>Y</em> 的波函数在 <em>x</em><sub>0</sub> 处经过的时间更长。</li><li>粒子 <em>X</em>，因为粒子 <em>X</em> 的波函数的波长比粒子 <em>Y</em> 的波函数的波长更长。</li><li>粒子 <em>Y</em>，因为粒子 <em>Y</em> 的波函数比粒子 <em>X</em> 的波函数更窄。</li><li>粒子 <em>Y</em>，因为粒子 <em>Y</em> 的波函数在 <em>x</em><sub>0</sub> 附近的振幅比粒子 <em>X</em> 的波函数更大。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（d）：粒子 $Y$，因为它的波函数在 $x_0$ 附近的振幅更大。在某处找到粒子的概率取决于它的波函数在那里有多大，所以某一点的振幅越大，测量就越可能在该点找到粒子。在 $x_0$ 附近，粒子 $Y$ 的波函数远高于 $A_0$，而粒子 $X$ 的波函数最多只达到 $A_0$。选项（c）给出了正确的粒子，但理由不对：波包的狭窄说明粒子的定域程度，而不是它在某一点出现的可能性。选项（b）中的波长描述的是粒子的动量，而波函数并不像选项（a）所说的那样要花时间经过某一点。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "exer-00002",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "probability-cloud",
+   "figure": {
+    "src": "/media/ch30/ch30_M6_wave.jpg",
+    "alt": "两幅振幅随 x 变化的图。粒子 X 的波包很长，有许多次振荡，在 x0 周围分布很宽，其最大的峰达到 A0。粒子 Y 的波包很短很窄，紧密集中在 x0 周围，其峰远高于 A0。"
+   },
+   "prompt": "在粒子 <em>X</em> 和粒子 <em>Y</em> 的波函数图中，定性地解释粒子 <em>X</em> 和粒子 <em>Y</em> 的波函数的差别。哪个粒子更可能在离坐标 <em>x</em><sub>0</sub> 较远处被找到，为什么？哪个粒子更可能恰好在 <em>x</em><sub>0</sub> 处被找到，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "粒子 $X$ 的波函数分布在很宽的 $x$ 范围内，振幅不大，而粒子 $Y$ 的波函数集中在 $x_0$ 周围的一个狭窄区域内，振幅很大。波函数大的地方，粒子很可能被找到。粒子 $X$ 在 $x_0$ 两侧远处都有明显的振幅，所以更可能在离 $x_0$ 较远处被找到；它的位置不太确定。粒子 $Y$ 在远离 $x_0$ 处几乎没有振幅，而在 $x_0$ 处振幅最大，所以更可能恰好在 $x_0$ 处被找到。根据不确定性原理，$Y$ 的波包越窄，其动量的不确定度就越大，这表现为短波包所包含的波长范围更宽。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "exer-00003",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orbit-condition",
+   "prompt": "对于德布罗意波长为 λ 的电子，原子内下列哪些轨道周长是不被允许的？选出两个答案。<ol type=\"a\"><li>0.5 λ</li><li>λ</li><li>1.5 λ</li><li>2 λ</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不被允许的周长是（a）$0.5\\lambda$ 和（c）$1.5\\lambda$。只有当电子与自身发生相长干涉时，轨道才是允许的，这要求圆周上恰好容纳整数个波长：$n\\klamorb = 2\\pi\\krn$，$n = 1, 2, 3, \\ldots$。周长为 $\\lambda$ 和 $2\\lambda$ 时分别含有一个和两个波长，即 $n = 1$ 和 $n = 2$，所以这些轨道是允许的。周长为半个波长或一个半波长时，波绕一圈之后就与自身失步，于是发生相消干涉，这样的轨道不可能存在。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "exer-00004",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orbit-condition",
+   "prompt": "我们发现，电子的轨道必须包含整数个德布罗意波长。解释为什么在通常条件下，这使得电子不可能螺旋式地落入而与带正电的原子核合并。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "要螺旋式地落入，电子就必须经过每一个更小半径的轨道，但只有圆周上容纳整数个波长的轨道才是允许的，其中最小的一个只含一个波长，即 $n = 1$，半径为 $\\kaB$。圆周中含有的波长不足一个的允许轨道是不存在的，所以不存在更靠近原子核的允许状态。在允许轨道之间的任何轨道上，电子都会与自身发生相消干涉，不可能存在。因此，处于最低轨道的电子再没有更低的地方可去，它不能存在于更靠近原子核或在原子核内部的地方；这就是原子不会坍缩、并具有现有大小的原因。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2598438",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orbit-condition",
+   "prompt": "电子的德布罗意波长与它们在原子和分子中的轨道量子化有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "束缚电子的行为像一列波，其波长就是它的德布罗意波长，$\\klam = h/\\kme\\kv$。在圆轨道上，波绕轨道运行并与自身相遇，只有发生相长干涉时它才能存在，这在圆周上恰好容纳整数个波长时出现，即 $n\\klamorb = 2\\pi\\krn$。只有某些轨道满足这一条件，所以轨道是量子化的。把德布罗意波长代入这一条件，得到 $\\kme\\kv\\krn = nh/2\\pi$，这就是玻尔不得不假设的角动量量子化。在分子中，同样的想法也成立：允许的状态就是其波能容纳在电子所被限制的空间内的那些状态。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "probability-cloud",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "position-momentum-uncertainty"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "probability-cloud",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "position-momentum-uncertainty"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electron-standing-wave-orbit"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "electron-standing-wave-orbit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "angular-momentum-quantization-from-waves"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "electron-standing-wave-orbit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "angular-momentum-quantization-from-waves"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "de-broglie-wavelength"
+  }
+ ],
+ "referents": [],
+ "derivations": [
+  {
+   "id": "angular-momentum-quantization",
+   "what": "由电子的波长得出角动量的量子化",
+   "source": "《大学物理（第2版）》，30.6 物质的波动性导致量子化",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "相长干涉以及允许轨道，都要求轨道的周长能容纳整数个电子的波长。",
+       "src": "30.6"
+      },
+      {
+       "tex": "\\klam = h/\\kme\\kv",
+       "src": "29.6"
+      },
+      {
+       "text": "对圆轨道，$\\kL = \\km\\kv\\krad$。",
+       "src": "30.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{n\\klamorb} = \\mk{r}{2\\pi\\krn}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+      "uses": [
+       0
+      ],
+      "src": "30.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{\\frac{nh}{\\kme\\kv}} = \\mk{r}{2\\pi\\krn}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kme\\kv\\krn} = \\mk{n}{n\\frac{h}{2\\pi}}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{r}{\\kme\\kv\\krn} = \\mk{n}{n\\frac{h}{2\\pi}}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "30.6"
+    }
+   ]
+  }
+ ]
+}

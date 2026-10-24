@@ -1,0 +1,97 @@
+<section id="accuracy-precision">
+<h2>测量的准确度和精密度</h2>
+<p>科学以观察和实验为基础，也就是以测量为基础。<strong><span data-concept="accuracy">准确度</span></strong>是指一次测量与该测量的正确值的接近程度。例如，假设你正在测量<span data-type="position">标准电脑用纸的长度</span>。你所购买的纸的包装上写明它长 <span data-type="position">11.0 英寸</span>。你把<span data-type="position">纸的长度</span>测量了三次，得到以下测量结果：<span data-type="position">11.1 in.</span>、<span data-type="position">11.2 in.</span>和 <span data-type="position">10.9 in.</span>。这些测量结果相当准确，因为它们非常接近正确值 <span data-type="position">11.0 英寸</span>。相反，如果你得到的测量结果是 <span data-type="position">12 英寸</span>，你的测量就不太准确。</p>
+<p>一个测量系统的<strong><span data-concept="precision">精密度</span></strong>是指重复测量（在相同条件下重复进行的测量）之间的一致程度。考虑纸张测量的例子。这些测量的<span data-concept="precision">精密度</span>是指测得值的分散程度。分析这些测量的<span data-concept="precision">精密度</span>的一种方法是确定最低测得值与最高测得值之间的极差，即二者之差。在本例中，最低值为 <span data-type="position">10.9 in.</span>，最高值为 <span data-type="position">11.2 in.</span>。因此，各测得值彼此之间至多相差 0.3 in.。这些测量相对精密，因为它们的数值变化不大。然而，如果测得值是 <span data-type="position">10.9</span>、<span data-type="position">11.1</span>和 <span data-type="position">11.9</span>，那么这些测量就不太精密，因为各次测量之间会有显著的差异。</p>
+<p>纸张例子中的测量既准确又精密，但在某些情况下，测量准确但不精密，或者精密但不准确。我们来考虑一个例子：一个 GPS 系统正试图确定城市中<span data-ref="restaurant">一家餐馆</span>的<span data-type="position"><span data-concept="position">位置</span></span>。把<span data-ref="restaurant">餐馆的位置</span>设想为位于一个靶的靶心，并把 GPS 每一次确定<span data-ref="restaurant">餐馆</span>位置的尝试设想为一个黑点。在图 1.23 中可以看到，各次 GPS 测量彼此分散得很开，但它们的中心靠近<span data-ref="restaurant">餐馆</span>位于靶中心的<span data-type="position">实际位置</span>。这表明这是一个低<span data-concept="precision">精密度</span>、高<span data-concept="accuracy">准确度</span>的测量系统。然而，在图 1.24 中，各次 GPS 测量彼此相当集中，但它们离<span data-type="position">目标位置</span>很远。这表明这是一个高<span data-concept="precision">精密度</span>、低<span data-concept="accuracy">准确度</span>的测量系统。</p>
+<figure class="sim" id="sim-target" data-figure="1.23 + 1.24" data-original="/media/ch01/Figure_01_03_03.jpg,/media/ch01/Figure_01_03_04.jpg" data-original-caption="（图 1.23）一个 GPS 系统试图确定位于靶心的一家餐馆的位置。黑点代表每一次确定餐馆位置的尝试。这些点彼此分散得相当开，表明精密度低，但每个点都相当接近餐馆的实际位置，表明准确度高。（来源：Dark Evil）（图 1.24）在这幅图中，这些点彼此相当集中，表明精密度高，但它们离餐馆的实际位置相当远，表明准确度低。（来源：Dark Evil）">
+  <div class="sim-head"><span class="eyebrow">Figure 1.23 + 1.24</span><span>一个 GPS 系统进行八次尝试，确定位于靶心的<span data-ref="restaurant">一家餐馆</span>的位置，每次尝试是一个点。分散度滑块设定各次尝试彼此分散的程度，偏移量滑块设定它们的中心（空心标记）离<span data-ref="restaurant">餐馆</span>有多远。载入时，各点分散开，但中心靠近<span data-ref="restaurant">餐馆</span>，这是高准确度、低精密度。把分散度设为 0.3 环、偏移量设为 2.5 环，就会看到一个紧密的点簇远离中心，这是高精密度、低准确度。</span></div>
+</figure>
+</section>
+
+<section id="uncertainty">
+<h2>测量的不确定度</h2>
+<p class="cite-target">测量系统的<span data-concept="accuracy">准确度</span>和<span data-concept="precision">精密度</span>的高低与测量中的<strong><span data-concept="uncertainty">不确定度</span></strong>有关。<span data-concept="uncertainty">不确定度</span>是对你的测得值偏离标准值或期望值多少的定量量度。如果你的测量不太准确或不太精密，那么你的数值的<span data-concept="uncertainty">不确定度</span>就会很高。更一般地说，<span data-concept="uncertainty">不确定度</span>可以看作对你的测得值的一种免责声明。例如，如果有人请你提供你的汽车的<span data-type="position">里程</span>，你可能会说它是 <span data-type="position">45,000 英里</span>，正负 500 英里。这个正负的量就是你的数值的<span data-concept="uncertainty">不确定度</span>。也就是说，你在表明你的汽车的<span data-type="position">实际里程</span>可能低至 <span data-type="position">44,500 英里</span>，也可能高至 <span data-type="position">45,500 英里</span>，或者介于两者之间的任何值。所有测量都含有一定的<span data-concept="uncertainty">不确定度</span>。在我们测量纸的<span data-concept="length">长度</span>的例子中，我们可以说<span data-type="position">纸的长度</span>是 <span data-type="position">11 in.</span>，正负 0.2 in.。测量 $A$ 的<span data-concept="uncertainty">不确定度</span>常记作 $\delta A$（“delta $A$”），因此测量结果记为 $A \pm \delta A$。在我们的纸张例子中，<span data-type="position">纸的长度</span>可以表示为 $11\ \text{in.} \pm 0.2$。</p>
+<p>导致测量中<span data-concept="uncertainty">不确定度</span>的因素包括：</p>
+<ol>
+<li>测量仪器的局限，</li>
+<li>测量者的技能，</li>
+<li>被测物体的不规则性，</li>
+<li>影响结果的任何其他因素（在很大程度上取决于具体情况）。</li>
+</ol>
+<p>在我们的例子中，导致<span data-concept="uncertainty">不确定度</span>的这类因素可能是：直尺的分度值是 0.1 in.，使用直尺的人视力不好，或者纸的一边比另一边稍长。无论如何，测量的<span data-concept="uncertainty">不确定度</span>都必须基于对可能起作用的所有因素及其可能影响的仔细考虑。</p>
+<div class="note">
+<div class="eyebrow">建立联系：联系实际——发烧还是发冷？</div>
+<p><span data-concept="uncertainty">不确定度</span>是一项关键的信息，在<span data-concept="physics">物理学</span>中以及在许多其他实际应用中都是如此。设想你正在照顾一个生病的孩子。你怀疑孩子发烧了，于是用温度计测量<span data-type="temperature">其<span data-concept="temperature">温度</span></span>。如果温度计的<span data-concept="uncertainty">不确定度</span>是 $3.0\,^\circ\text{C}$，会怎样？如果<span data-type="temperature">孩子的<span data-concept="temperature">温度</span>读数</span>是 $37.0\,^\circ\text{C}$（这是<span data-type="temperature">人体的正常<span data-concept="temperature">温度</span></span>），<span data-type="temperature">“真实”<span data-concept="temperature">温度</span></span>可能是从体温过低的 $34.0\,^\circ\text{C}$ 到危险的高温 $40.0\,^\circ\text{C}$ 之间的任何值。<span data-concept="uncertainty">不确定度</span>为 $3.0\,^\circ\text{C}$ 的温度计将毫无用处。</p>
+</div>
+<div class="exercises" data-place="uncertainty"></div>
+</section>
+
+<section id="percent-uncertainty">
+<h2>以测得值的百分数表示的不确定度</h2>
+<p class="cite-target">表示<span data-concept="uncertainty">不确定度</span>的一种方法是将其表示为测得值的百分数。如果测量 $A$ 带有<span data-concept="uncertainty">不确定度</span> $\delta A$，则<strong><span data-concept="percent-uncertainty">百分不确定度</span></strong>（$\%\,\text{unc}$）定义为</p>
+$$\%\,\text{unc} = \frac{\delta A}{A} \times 100\%.$$
+<div class="example" id="ex-apples">
+<h3>例题 1.2 · 计算百分不确定度：一袋苹果</h3>
+<p>一家杂货店出售 <span data-type="force">5 lb</span> 装的袋装苹果。你在一个月内买了四袋，每次都称了苹果的重量。你得到以下测量结果：</p>
+<ul>
+<li><span data-type="force">第 1 周<span data-concept="weight">重量</span>：4.8 lb</span></li>
+<li><span data-type="force">第 2 周<span data-concept="weight">重量</span>：5.3 lb</span></li>
+<li><span data-type="force">第 3 周<span data-concept="weight">重量</span>：4.9 lb</span></li>
+<li><span data-type="force">第 4 周<span data-concept="weight">重量</span>：5.4 lb</span></li>
+</ul>
+<p>你此前已用另外的测量确定，<span data-type="force">5 lb</span> 装袋子的<span data-type="force">平均<span data-concept="weight">重量</span></span>的<span data-concept="uncertainty">不确定度</span>为 $\pm 0.4\ \text{lb}$。根据这 4 次测量，<span data-type="force">平均<span data-concept="weight">重量</span></span>以及<span data-type="force">袋子<span data-concept="weight">重量</span></span>的<span data-concept="percent-uncertainty">百分不确定度</span>各是多少？</p>
+<h4>思路</h4>
+<p><span data-type="force">四次测得的<span data-concept="weight">重量</span>的平均值</span>为 <span data-type="force">5.1 lb</span>。可以看到，<span data-type="force">测得的平均值</span>与 <span data-type="force">5 lb 的标称<span data-concept="weight">重量</span></span>在 0.4 lb 的<span data-concept="uncertainty">不确定度</span>范围内一致。这个值的<span data-concept="uncertainty">不确定度</span> $\delta A$ 为 0.4 lb。我们可以用下面的方程确定<span data-type="force"><span data-concept="weight">重量</span></span>的<span data-concept="percent-uncertainty">百分不确定度</span>：</p>
+$$\%\,\text{unc} = \frac{\delta A}{A} \times 100\%.$$
+<h4>解</h4>
+<p>将已知值代入方程：</p>
+$$\%\,\text{unc} = \frac{0.4\ \text{lb}}{5.1\ \text{lb}} \times 100\% = 8\%.$$
+<h4>讨论</h4>
+<p>我们可以得出结论：<span data-type="force">这袋苹果的<span data-concept="weight">重量</span></span>为 $5\ \text{lb} \pm 8\%$。考虑一下，如果这袋苹果只有一半重，而<span data-type="force"><span data-concept="weight">重量</span></span>的<span data-concept="uncertainty">不确定度</span>保持不变，这个<span data-concept="percent-uncertainty">百分不确定度</span>会如何变化。对今后计算的提示：计算<span data-concept="percent-uncertainty">百分不确定度</span>时，务必记住必须把这个分数乘以 100%。如果不这样做，得到的将是一个小数，而不是百分数。</p>
+</div>
+<figure class="sim" id="sim-percent">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-type="force">例题 1.2 的四个每周重量</span>标在一条<span data-concept="weight">重量</span>数轴上，<span data-type="force">平均值</span> $A$ 以实心标记表示，其周围的区间 $A \pm \delta A$ 加有阴影。下方的数轴显示的是一个只有一半重、不确定度相同的袋子。拖动 $A$ 和 $\delta A$，观察百分不确定度的变化。注意，同样的 0.4 lb 在较轻的袋子中所占的比例更大。</span></div>
+</figure>
+</section>
+
+<section id="calculations">
+<h2>计算所得量的不确定度</h2>
+<p class="cite-target">由测得量计算出的任何量都有<span data-concept="uncertainty">不确定度</span>。例如，由地板的<span data-concept="length">长度</span>和宽度的测量值计算出的地板<span data-concept="area">面积</span>具有<span data-concept="uncertainty">不确定度</span>，因为<span data-concept="length">长度</span>和宽度都有<span data-concept="uncertainty">不确定度</span>。用乘法或除法计算出的量，其<span data-concept="uncertainty">不确定度</span>有多大？如果参与计算的测量值的<span data-concept="uncertainty">不确定度</span>很小（百分之几或更小），那么对乘法或除法可以使用<strong><span data-concept="adding-percents">百分数相加法</span></strong>。该方法指出，<em>用乘法或除法计算出的量的<span data-concept="percent-uncertainty">百分不确定度</span>，等于计算中所用各量的<span data-concept="percent-uncertainty">百分不确定度</span>之和</em>。例如，如果一块地板的<span data-type="position">长度</span>为 $4.00\ \text{m}$，<span data-type="position">宽度</span>为 $3.00\ \text{m}$，<span data-concept="uncertainty">不确定度</span>分别为 $2\%$ 和 $1\%$，那么<span data-type="area">地板的面积</span>为 $12.0\ \text{m}^2$，其<span data-concept="uncertainty">不确定度</span>为 $3\%$。（以<span data-concept="area">面积</span>表示，这是 $0.36\ \text{m}^2$，由于<span data-type="area">地板的面积</span>给到了十分之一平方<span data-concept="meter">米</span>，我们将其修约为 $0.4\ \text{m}^2$。）</p>
+<figure class="sim" id="sim-area">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-type="area">长 4.00 m、宽 3.00 m 的地板</span>按比例绘出，虚线轮廓是其<span data-concept="length">长度</span>和宽度的不确定度所允许的<span data-type="area">最大和最小的地板</span>。它们之间的阴影环带就是<span data-concept="area">面积</span>的不确定度。改变<span data-concept="length">长度</span>或宽度的百分不确定度，观察环带变宽。注意，<span data-concept="area">面积</span>的百分不确定度非常接近这两者之和。</span></div>
+</figure>
+</section>
+
+<section id="sig-figs">
+<h2>测量工具的精密度与有效数字</h2>
+<p class="cite-target">影响测量的<span data-concept="accuracy">准确度</span>和<span data-concept="precision">精密度</span>的一个重要因素是测量工具的<span data-concept="precision">精密度</span>。一般来说，精密的测量工具是能以非常小的增量测量数值的工具。例如，标准直尺能把<span data-concept="length">长度</span>测到毫米，而卡尺能把<span data-concept="length">长度</span>测到 0.01 毫米。卡尺是更精密的测量工具，因为它能测出<span data-concept="length">长度</span>上极小的差别。测量工具越精密，测量就可能越精密、越准确。</p>
+<p>表示测得值时，我们只能列出我们最初用测量工具测得的那么多位数字。例如，如果你用<span data-ref="ruler">一把标准直尺</span>测量<span data-ref="stick">一根木棍</span>的<span data-type="position">长度</span>，你可能测得<span data-ref="stick">它</span>长 $36.7\ \text{cm}$。你不能把这个值表示为 $36.71\ \text{cm}$，因为你的测量工具不够精密，无法测量百分之一厘米。应当注意，测得值的最后一位数字是测量者以某种方式估读出来的。例如，用<span data-ref="ruler">直尺</span>测量<span data-ref="stick">木棍</span>的<span data-type="position">长度</span>的人注意到，<span data-type="position">木棍的长度</span>似乎介于 $36.6\ \text{cm}$ 和 $36.7\ \text{cm}$ 之间，于是他必须估读最后一位数字的值。按照<strong><span data-concept="significant-figures">有效数字</span></strong>的方法，规则是<em>测量中写下的最后一位数字是第一位含有一定<span data-concept="uncertainty">不确定度</span>的数字</em>。为了确定一个数值中有效数字的位数，从左边第一个测得的数字开始，一直数到右边写下的最后一位数字。例如，测得值 $36.7\ \text{cm}$ 有三位数字，即三位<span data-concept="significant-figures">有效数字</span>。<span data-concept="significant-figures">有效数字</span>表示用来测量某个值的测量工具的<span data-concept="precision">精密度</span>。</p>
+<h3 id="zeros">零</h3>
+<p>在数<span data-concept="significant-figures">有效数字</span>时，要特别考虑零。0.053 中的零不是有效的，因为它们只是确定小数点位置的占位符。0.053 中有两位<span data-concept="significant-figures">有效数字</span>。10.053 中的零不是占位符，而是有效的——这个数有五位<span data-concept="significant-figures">有效数字</span>。1300 中的零可能有效，也可能无效，取决于数的书写方式。它们可能表示这个数已知到最后一位，也可能只是占位符。因此，1300 可能有两位、三位或四位<span data-concept="significant-figures">有效数字</span>。（为了避免这种歧义，可将 1300 写成科学记数法。）<em>零都是有效的，除非它们只起占位符的作用</em>。</p>
+<figure class="sim" id="sim-ruler">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="ruler">一把直尺</span>滑到<span data-ref="stick">一根木棍</span>下方，停在<span data-ref="ruler">它的</span>零刻线与<span data-ref="stick">木棍的</span>左端对齐的位置。下方的视图放大了<span data-ref="stick">木棍</span>的远端，读<span data-ref="ruler">直尺</span>的人必须在那里的两条刻线之间估读最后一位数字。改变<span data-ref="ruler">直尺</span>的分度值，从一厘米到一毫米，再到卡尺的十分之一毫米，观察读数每次多出一位数字。改变<span data-ref="stick">木棍</span>的<span data-type="position">真实长度</span>，注意有效数字的位数取决于<span data-ref="ruler">工具</span>，而不取决于<span data-ref="stick">木棍</span>。</span></div>
+</figure>
+<div class="exercises" data-place="sig-figs"></div>
+</section>
+
+<section id="sig-figs-calculations">
+<h2>计算中的有效数字</h2>
+<p class="cite-target">在组合具有不同<span data-concept="accuracy">准确度</span>和<span data-concept="precision">精密度</span>的测量值时，<em>最终答案的有效数字位数不能多于最不精密的测得值的有效数字位数</em>。有两条不同的规则，一条用于乘法和除法，另一条用于加法和减法，讨论如下。</p>
+<p><em>1. 对于乘法和除法：</em><em>结果的<span data-concept="significant-figures">有效数字</span>位数应与参与计算的量中<span data-concept="significant-figures">有效数字</span>最少的那个量相同</em>。例如，圆的<span data-concept="area">面积</span>可以由其半径用 $\karea = \pi \krad^2$ 计算。我们来看，如果<span data-type="position">半径</span>只有两位——比如 $\krad = 1.2\ \text{m}$——<span data-type="area">面积</span>有多少位<span data-concept="significant-figures">有效数字</span>。于是，</p>
+$$\karea = \pi \krad^2 = (3.1415927\ldots) \times (1.2\ \text{m})^2 = 4.5238934\ \text{m}^2$$
+<p>是用一个八位输出的计算器会得到的结果。但由于<span data-type="position">半径</span>只有两位<span data-concept="significant-figures">有效数字</span>，它把计算出的量限制为两位<span data-concept="significant-figures">有效数字</span>，即</p>
+$$\karea = 4.5\ \text{m}^2,$$
+<p>尽管 $\pi$ 至少准确到八位数字。</p>
+<p><em>2. 对于加法和减法：</em><em>答案的小数位数不能多于最不精密的测量</em>。假设你在杂货店买了 <span data-type="mass">7.56 kg</span> 土豆，是用<span data-concept="precision">精密度</span>为 0.01 kg 的秤称量的。然后你把 <span data-type="mass">6.052 kg</span> 土豆留在你的实验室，是用<span data-concept="precision">精密度</span>为 0.001 kg 的秤称量的。最后，你回到家，又加上 <span data-type="mass">13.7 kg</span> 土豆，是用<span data-concept="precision">精密度</span>为 0.1 kg 的体重秤称量的。你现在有多少<span data-concept="kilogram">千克</span>土豆，答案中取几位<span data-concept="significant-figures">有效数字</span>是恰当的？<span data-type="mass"><span data-concept="mass">质量</span></span>由简单的加减法求得：</p>
+$$\begin{array}{r} 7.56\ \text{kg} \\ -6.052\ \text{kg} \\ \underline{+13.7\ \text{kg}} \\ 15.208\ \text{kg} = 15.2\ \text{kg}. \end{array}$$
+<p>接着，我们找出最不精密的测量：<span data-type="mass">13.7 kg</span>。这个测量值表示到小数点后 0.1 这一位，因此我们的最终答案也必须表示到小数点后 0.1 这一位。因此，答案修约到十分位，得到 <span data-type="mass">15.2 kg</span>。</p>
+<figure class="sim" id="sim-calc">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-type="position">两个测得的长度</span> $a$ 和 $b$ 首尾相接表示它们的和，并构成一个矩形的两边表示它们的积。每个滑块设定<span data-type="position">其长度</span>已知到小数点后几位。右侧显示计算器给出的和与积，其中必须舍去的数字以浅色字体显示。减少<span data-type="position">其中一个长度</span>的小数位数，观察和失去小数位，而积失去有效数字。</span></div>
+</figure>
+</section>
+
+<section id="sig-figs-text">
+<h2>本书中的有效数字</h2>
+<p class="cite-target">在本书中，大多数数被假定有三位<span data-concept="significant-figures">有效数字</span>。此外，所有例题都使用一致的<span data-concept="significant-figures">有效数字</span>位数。例如，你会注意到，给到三位数字的答案所依据的输入至少可靠到三位数字。如果输入的<span data-concept="significant-figures">有效数字</span>较少，答案的<span data-concept="significant-figures">有效数字</span>也会较少。我们还注意使<span data-concept="significant-figures">有效数字</span>的位数与所给情境相适应。在某些主题中，特别是在光学中，需要更准确的数，并将使用多于三位的<span data-concept="significant-figures">有效数字</span>。最后，如果一个数是<em>精确的</em>，例如圆的周长公式 $c = 2\pi \krad$ 中的 2，它不影响计算中<span data-concept="significant-figures">有效数字</span>的位数。</p>
+<div class="exercises" data-place="sig-figs-text"></div>
+</section>

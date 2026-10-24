@@ -1,0 +1,1115 @@
+{
+ "id": "5.1",
+ "module": "m42139",
+ "chapter": "5",
+ "title": "摩擦力",
+ "short": "摩擦力",
+ "lead": "<span data-concept=\"friction\">摩擦力</span>是相接触的表面之间阻碍它们运动的<span data-concept=\"force\">力</span>，它有两种：<span data-concept=\"static-friction\">静摩擦力</span>使物体保持静止，<span data-concept=\"kinetic-friction\">滑动摩擦力</span>则在物体滑动时起作用。本节把这两者与<span data-concept=\"normal-force\">法向力</span>对照衡量，跟随一位滑雪者滑下斜坡，并考察两个表面相接触处的原子。",
+ "objectives": [
+  "讨论摩擦力的一般特性。",
+  "描述摩擦力的各种类型。",
+  "计算静摩擦力和滑动摩擦力的大小。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"friction\">摩擦力</span>是系统之间的一种接触<span data-concept=\"force\">力</span>，阻碍它们之间的运动或运动趋势。遵循简单规律的<span data-concept=\"friction\">摩擦力</span>与把系统压在一起的<span data-concept=\"normal-force\">法向力</span> $\\kN$ 成正比。（<span data-concept=\"normal-force\">法向力</span>总是垂直于系统之间的接触面。）<span data-concept=\"friction\">摩擦力</span>取决于所涉及的两种材料。相对静止的系统之间的静摩擦力的大小 $\\kfs$ 由 $\\kfs \\le \\mu_{\\text{s}}\\kN,$ 给出，其中 $\\mu_{\\text{s}}$ 是<span data-concept=\"static-friction\">静摩擦</span>因数，它取决于两种材料。</li><li>相对运动的系统之间的<span data-concept=\"kinetic-friction\">滑动摩擦</span><span data-concept=\"force\">力</span> $\\kfk$ 由 $\\kfk = \\mu_{\\text{k}}\\kN,$ 给出，其中 $\\mu_{\\text{k}}$ 是<span data-concept=\"kinetic-friction\">动摩擦</span>因数，它同样取决于两种材料。</li></ul>",
+ "notes": "本节末尾链接的 PhET 模拟“Forces and Motion”略去，书后答案中没有给出的十二道习题也略去，其中两道习题所属的两位滑冰者的图和登山者的图也一并略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案；书中没有给出答案的十二道习题（2、3、5、7、8、9、11、12、13、15、17 和 19）略去，其中两道习题所属的两位滑冰者的图和登山者的图也一并略去。习题 18 所指的冰块画在本节末尾，因为习题 18 有答案。没有一道思考题有答案，因此每道都附有标明为 AI 撰写的建议思路。第一道和第三道 AP 题有答案，保留书中的选项；第二道和第四道没有答案，保留为开放式题目，附有标明为 AI 撰写的建议思路，而不作为评分的选择题。没有任何内容留给后面的小节，因为四道 AP 题考查的都是本节所介绍的摩擦力。按规则 12，从本章其他地方取来两道思考题，因为每道考查的都是本节所介绍的摩擦因数，而且都不取决于其所在小节所讲的任何内容：关于鞋底的那道，印在 5.3 节，其 source_section 为 5.3；关于雨中路面上机油和汽油的那道，印在 5.2 节，其 source_section 为 5.2。两节的说明都写明了该题去了哪里。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-interface",
+   "kind": "sim",
+   "number": "5.2",
+   "folds": [
+    "5.5"
+   ],
+   "originals": [
+    "/media/ch05/Figure_06_01_01a.jpg",
+    "/media/ch05/Figure_06_01_04a.jpg"
+   ],
+   "original_caption": "摩擦力，例如 f，总是阻碍相接触的表面之间的运动或运动趋势。摩擦力的产生，部分是由于相接触表面的粗糙度，如放大图所示。为了使物体运动，它必须上升到其凸起处能够沿下表面跳跃前进的位置。因此，仅仅要使物体开始运动就需要一个力。有些凸起处会被折断，要保持运动也需要一个力。摩擦力其实大部分来自构成这两个物体的分子之间的吸引力，所以即使是完全光滑的表面也不是无摩擦的。这种附着力还取决于表面所由构成的物质，这就解释了，例如，为什么橡胶底的鞋比皮底的鞋更不容易打滑。",
+   "widths": [
+    375,
+    250
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "mass",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels off the crate, note cut to one line through the macros"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: crate creeps and checks, or slides with its tips skipping along"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-breakaway",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels off the crate and the drop line, note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-knee",
+   "kind": "photo",
+   "number": "5.3",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-skier",
+   "kind": "sim",
+   "number": "5.4",
+   "originals": [
+    "/media/ch05/Figure_06_01_03a.jpg"
+   ],
+   "original_caption": "滑雪者的运动和摩擦力都平行于斜坡，因此最方便的做法是把所有力投影到一个坐标系上，其中一根轴平行于斜坡，另一根垂直于斜坡（坐标轴画在滑雪者左侧）。N（法向力）垂直于斜坡，f（摩擦力）平行于斜坡，而 w（滑雪者的重力）在两根轴上都有分量，即 w⊥ 和 W//。N 的大小等于 w⊥，所以垂直于斜坡的方向上没有运动。然而，f 的大小小于 W//，所以沿斜坡向下（沿 x 轴）有加速度。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "acceleration",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library crouch silhouette plumb on skis, haloed forces"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-probe",
+   "kind": "sim",
+   "number": "5.6",
+   "originals": [
+    "/media/ch05/Figure_06_01_05a.jpg"
+   ],
+   "original_caption": "探针被拖过一个表面时，针尖被摩擦力侧向拉得发生形变。对于不同材料，力如何变化的测量，正在使我们对摩擦力的原子本质获得基本的认识。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset, note cut to the one fact"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "friction label moved clear of the tip atoms"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-ice",
+   "kind": "figure",
+   "originals": [
+    "/media/ch05/Figure_06_01_07a.jpg"
+   ],
+   "original_caption": "滑动一块冰块，哪种方法需要的力更小——（a）推，还是（b）以高于水平方向的同样角度拉？",
+   "widths": [
+    234
+   ],
+   "draws": [
+    "force",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library push and pull silhouettes, angle arcs clear"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "characteristics",
+   "concept": "kinetic-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "characteristics",
+   "concept": "static-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "characteristics",
+   "concept": "friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "static-friction-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "coefficient-of-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "static-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "kinetic-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "magnitudes",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "coefficient-of-friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "incline",
+   "concept": "friction-on-an-incline",
+   "verb": "introduces"
+  },
+  {
+   "span": "incline",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "weight-components-on-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-skiing",
+   "concept": "friction-on-an-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-skiing",
+   "concept": "kinetic-friction-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-skiing",
+   "concept": "coefficient-of-friction",
+   "verb": "uses"
+  },
+  {
+   "span": "atomic",
+   "concept": "atomic-origin-of-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "atomic",
+   "concept": "coefficient-of-friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "atomic",
+   "concept": "friction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "atomic",
+   "concept": "normal-force",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1320466",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "定义法向力。当摩擦力遵循简单规律时，它与摩擦力是什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "法向力是垂直于两个系统之间接触面的力。当物体静置在水平表面上时，它的大小等于该表面所支撑的重力；在斜坡上，它只是重力垂直于表面的分量。当运动物体所受的摩擦力等于动摩擦因数乘以该法向力，即 $\\kfk = \\mu_{\\text{k}}\\kN$ 时，摩擦力遵循简单规律，因此摩擦力与把两个表面压在一起的法向力成正比，而与总接触面积无关。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1748990",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "characteristics",
+   "prompt": "胶带上的胶可以施加力。这些力可以是一种遵循简单规律的摩擦力吗？请解释，尤其要考虑到胶带能粘在竖直的墙上，甚至粘在天花板上。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "遵循简单规律的摩擦力平行于接触面，阻碍运动或运动趋势，并且与把两个表面压在一起的法向力成正比。垂直于接触面的力把胶带固定在天花板上，而没有任何东西把胶带和天花板压在一起，所以没有法向力可供这个力与之成正比。因此，胶并不施加遵循简单规律的摩擦力。黏附仍然是摩擦的一部分，因为两个表面的分子之间的吸引力造成了摩擦的很大一部分。但这些力是通过被压在一起的表面进入摩擦的，而不是以本节的 $f = \\mu \\kN$ 的形式。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1425681",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "characteristics",
+   "prompt": "学开车时，你会发现，临近停车时需要把脚从刹车踏板上稍稍松开一点，否则汽车会猛地一顿停下来。请用静摩擦力与滑动摩擦力之间的关系解释这一现象。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "汽车还在向前滚动时，使它减速的那些表面彼此之间有相对运动，所以它所受的摩擦力是滑动摩擦力。汽车一停下来，这些表面彼此之间就不再有相对运动，这时起作用的是静摩擦力，而两个表面之间的静摩擦力通常大于滑动摩擦力。因此，阻碍汽车运动的力在汽车停下的那一瞬间陡然增大，这种突然的增大就是那一顿。在汽车停下时松开踏板，就在这一变化发生之前减小了力，所以不会出现陡增。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1272970",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "characteristics",
+   "prompt": "当你在黑板上推动一根粉笔时，它有时会发出刺耳的尖叫声，因为它在打滑和黏住黑板之间快速交替。请更详细地描述这一过程，特别要解释它与滑动摩擦力小于静摩擦力这一事实有何关系。（轮胎在路面上发出尖叫声时，也发生同样的打滑—抓地过程。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "粉笔黏住时，静摩擦力与你的推力相抗衡并随之增大，直到两个表面所能提供的最大值。你的推力一旦超过这个最大值，粉笔就会打滑；打滑时它所受的摩擦力是较小的滑动摩擦力，于是有了合力，粉笔向前猛冲。猛冲时它失去了对黑板的推力，又黏住了，整个循环每秒重复许多次。因此粉笔在黑板上振动，这种振动就是尖叫声；它之所以会发生，只是因为滑动摩擦力小于静摩擦力，所以粉笔一开始运动，力就立刻下降。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1165296252981",
+   "source_section": "5.3",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "观察不同类型的鞋，包括运动鞋和人字拖。从物理学的角度看，鞋底为什么设计成现在这样？干燥和潮湿的条件会给这些表面带来什么不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "鞋底必须提供推着你前进的摩擦力，它所能提供的最大摩擦力是静摩擦因数乘以法向力，即你的重力。鞋改变不了你的重力，所以唯一剩下可以设计的就是摩擦因数。这就是为什么鞋底是橡胶的，并且模压成鞋钉、凸脊和凹槽，而不是做成光滑的。橡胶与它所压着的表面黏附得很好，表 5.1 给出鞋对木材的静摩擦因数为 0.9，而钢对钢只有 0.6。每一种运动鞋都适合它将要遇到的那一种表面：跑鞋抓住跑道，带鞋钉的靴子扎进松软的地面，而人字拖提供舒适，却几乎不抓地。水和其他液体起润滑剂的作用，所以潮湿表面的摩擦因数比干燥表面小得多；表 5.1 中橡胶对混凝土的因数从干燥时的 1.0 降到潮湿时的 0.7。凹槽给水提供了去处，使橡胶能接触到地面。这就是为什么磨损了的光滑鞋底在雨中很危险，也是为什么鞋对冰的摩擦因数只有 0.1，因为冰上总有一层薄薄的水膜夹在两个表面之间。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1165296261672",
+   "source_section": "5.2",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "汽车行驶时，机油和汽油会漏到路面上。如果下起小雨，这会对汽车的操控产生什么影响？大雨会有什么不同吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "机油和汽油在轮胎与路面之间起润滑剂的作用，而被润滑的表面的摩擦因数比干燥表面小得多，所以轮胎所能提供的最大摩擦力下降。小雨不会把油冲走，而是与油混合，使它在整个路面上摊成一层薄膜，因此驾驶员在加速、制动和转弯时的抓地力都比在干燥路面或仅仅是潮湿的路面上更小，汽车更难控制。大雨则确实有所不同，因为它会把路面上的大部分油冲掉，最初几分钟之后，抓地力会恢复到潮湿混凝土通常所能提供的水平。但另一方面，大雨可能留下积水，轮胎如果不能足够快地把水推开，就会浮在水上，完全失去与路面的接触。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "import-auto-id0000007",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "当用 20 N 的力作用在一个重力为 40 N 的静止箱子上时，箱子没有移动。这意味着静摩擦因数",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "等于 0.5。",
+     "大于 0.5。",
+     "小于 0.5。",
+     "无法确定。"
+    ],
+    "correct": 1,
+    "hint": "箱子没有移动，所以静摩擦力应对了 20 N 的推力，却没有达到它的最大值 $\\mu_{\\text{s}}\\kN$，而这里的法向力就是 40 N 的重力。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "import-auto-id0000013",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "incline",
+   "prompt": "一个 2 kg 的物块沿倾角为 $25^\\circ$ 的斜坡滑下。如果摩擦力为 4.86 N，摩擦因数是多少？倾角为多大时，这个箱子将以恒定速度下滑？取 g = 10 m/s^2。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "动摩擦因数为 0.27，物块在倾角为 $15^\\circ$ 的斜面上以恒定速度下滑。垂直于斜坡的方向上没有运动，所以法向力等于重力垂直于斜坡的分量：$\\kN = \\kwperp = \\km\\kg\\ \\text{cos}\\ 25^\\circ = (2\\ \\text{kg})(10\\ \\text{m/s}^2)(0.906) = 18.1\\ \\text{N}$。由于 $\\kfk = \\mu_{\\text{k}}\\kN$，摩擦因数为 $\\mu_{\\text{k}} = \\kfk/\\kN = 4.86\\ \\text{N}/18.1\\ \\text{N} = 0.27$。物块在加速度为零时以恒定速度下滑，所以沿斜坡向上的摩擦力与重力沿斜坡向下的分量平衡：$\\mu_{\\text{k}}\\km\\kg\\ \\text{cos}\\ \\ktheta = \\km\\kg\\ \\text{sin}\\ \\ktheta$，由此得 $\\text{tan}\\ \\ktheta = \\mu_{\\text{k}} = 0.27$，$\\ktheta = 15^\\circ$。质量消去了，所以角度只取决于摩擦因数。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "import-auto-id0000018",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "atomic",
+   "prompt": "给一个物块一个短促的推力，然后它在恒定的摩擦下沿水平地板滑动。下列哪一项陈述最能解释摩擦对运动物块所施加的力的方向？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "摩擦力将与物块的运动方向相同，因为物块与地板之间的分子相互作用会使物块沿运动方向发生形变。",
+     "摩擦力将与物块的运动方向相同，因为物块与地板之间界面处产生的热能会给物块增加动能。",
+     "摩擦力将与物块的运动方向相反，因为物块与地板之间的分子相互作用会使物块沿与运动相反的方向发生形变。",
+     "摩擦力将与物块的运动方向相反，因为物块与地板之间界面处产生的热能会把物块的一部分动能转化为势能。"
+    ],
+    "correct": 2,
+    "hint": "摩擦力总是阻碍运动或运动趋势。看看界面处的分子对运动的探针针尖做了什么。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "import-auto-id0000024",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "atomic",
+   "prompt": "一名学生把一个纸板箱推过铺着地毯的地板，之后发现箱子底部摸起来是热的。请解释纸板中的分子与地毯中的分子之间的相互作用是如何产生这种热量的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "纸板和地毯都是粗糙的，所以它们只在凸起处相接触，那里的分子相互黏附。箱子滑动时，这些黏附反复形成又断开。每个表面的原子连接成晶格，所以摩擦会使这些晶格振动：它产生了传入材料的声波。声波随距离衰减，其能量变为热量，这使得箱子底部，即发生摩擦的地方，变热。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1462497",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "一位物理专业的学生正在做早餐，他注意到钢锅铲与特氟龙煎锅之间的摩擦力只有 0.200 N。知道这两种材料之间的动摩擦因数后，他很快算出了法向力。它是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.0,
+    "unit": "N",
+    "hint": "表 5.1 给出了特氟龙对钢的动摩擦因数；把 $\\kfk = \\mu_{\\text{k}}\\kN$ 改写成求法向力的形式。",
+    "solution": "$5.00\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1550746",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "假设有一只 120 kg 的木箱放在木地板上。（a）你沿水平方向对木箱所能施加、而不使它移动的最大力是多少？（b）如果木箱开始打滑之后你继续施加这个力，它的加速度大小将是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 588,
+      "unit": "N",
+      "hint": "木箱是静止的，所以你不使它移动而能施加的力就是最大静摩擦力 $\\kfsmax = \\mu_{\\text{s}}\\kN$，法向力等于重力。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.96,
+      "unit": "m/s²",
+      "hint": "一旦打滑，摩擦力就是较小的 $\\kfk = \\mu_{\\text{k}}\\kN$，所以合力是你的 588 N 减去这个摩擦力。"
+     }
+    ],
+    "solution": "（a）$588\\ \\text{N}$ （b）$1.96\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1294370",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "一队八只狗在湿雪上拉着一辆雪橇，其雪橇滑板是涂蜡木材（冲啊！）。每只狗的平均质量为 19.0 kg，载着乘坐者的雪橇质量为 210 kg。（a）如果每只狗向后对雪地施加的平均力为 185 N，计算雪橇从静止开始时的加速度大小。（b）雪橇一旦开始运动，加速度的大小是多少？（c）对这两种情形，分别计算狗与雪橇之间连接装置中的力的大小。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.29,
+      "unit": "m/s²",
+      "hint": "系统是狗和雪橇合在一起；它们从静止开始时，雪橇所受的摩擦力是静摩擦力，所用的因数是涂蜡木材对湿雪的因数。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.52,
+      "unit": "m/s²",
+      "hint": "雪橇一旦运动，摩擦力就是较小的滑动摩擦力，所以同样的 8 × 185 N 产生更大的加速度。"
+     },
+     {
+      "part": "(c) starting from rest",
+      "value": 980,
+      "unit": "N",
+      "hint": "把雪橇单独作为系统：连接装置中的力必须使它克服滑板上的摩擦力而加速。"
+     },
+     {
+      "part": "(c) once moving",
+      "value": 945,
+      "unit": "N",
+      "hint": "用同样的系统，换成滑动摩擦力和（b）问的加速度，再做一遍。"
+     }
+    ],
+    "solution": "（a）$3.29\\ \\text{m/s}^2$ （b）$3.52\\ \\text{m/s}^2$ （c）980 N；945 N"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1555366",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "incline",
+   "prompt": "计算一名单板滑雪者冲上 $5.0^\\circ$ 斜坡时的减速度，摩擦因数取涂蜡木材对湿雪的值。关于摩擦力遵循简单规律时斜面上加速度的那道习题的结果可能有用，但要小心，因为这名单板滑雪者是在上坡。请明确展示你是如何遵循“解题策略”中的各个步骤的。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.83,
+    "unit": "m/s²",
+    "hint": "上坡时，摩擦力和重力沿斜坡的分量都指向斜坡下方，所以两者是相加而不是相减：$a = \\kg(\\sin\\theta + \\mu_{\\text{k}}\\cos\\theta)$。",
+    "solution": "$1.83\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1924033",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "incline",
+   "prompt": "计算一辆汽车在下列路况下沿 $4^\\circ$ 斜坡（与水平方向成 $4^\\circ$ 角的斜坡）向上行驶时的最大加速度。假设汽车只有一半的重力由两个驱动轮支撑，并且涉及的是静摩擦因数——也就是说，加速时不允许轮胎打滑。（忽略滚动。）（a）在干燥混凝土路面上。（b）在潮湿混凝土路面上。（c）在冰上，假设 $\\mu_{\\text{s}} = 0.100$，与鞋对冰相同。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.2,
+      "unit": "m/s²",
+      "hint": "驱动力是驱动轮上的最大静摩擦力，作用在驱动轮上的法向力是重力的一半；重力沿斜坡的分量则与之相抗。"
+     },
+     {
+      "part": "(b)",
+      "value": 2.74,
+      "unit": "m/s²",
+      "hint": "只有摩擦因数改变，换成表 5.1 给出的橡胶对潮湿混凝土的值。"
+     },
+     {
+      "part": "(c)",
+      "value": -0.195,
+      "unit": "m/s²",
+      "hint": "摩擦这么小，斜坡占了上风，答案的符号说明了这意味着什么。"
+     }
+    ],
+    "solution": "（a）$4.20\\ \\text{m/s}^2$ （b）$2.74\\ \\text{m/s}^2$ （c）$-0.195\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id1439017",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "一列货运列车由两台 $8.00 \\times 10^{5}\\text{-kg}$ 的机车和 45 节车厢组成，车厢的平均质量为 $5.50 \\times 10^{5}\\ \\text{kg}$。（a）如果摩擦力为 $7.50 \\times 10^{5}\\ \\text{N}$，假设两台机车施加的力相同，每台机车必须向后对轨道施加多大的力，才能使列车以 $5.00 \\times 10^{-2}\\ \\text{m/s}^2$ 的加速度加速？对这样一个质量巨大的系统来说，这并不算大的摩擦力。列车的滚动摩擦很小，因此列车是能量利用效率很高的运输系统。（b）假设所有车厢的质量相同，摩擦力均匀分布在所有车厢和机车上，第 37 节与第 38 节车厢之间的车钩中的力（这是它们相互施加的力）的大小是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1030000,
+      "unit": "N",
+      "hint": "取整列火车为系统：两台机车合起来必须提供使它加速的合力，并且还要克服摩擦力。"
+     },
+     {
+      "part": "(b)",
+      "value": 348000,
+      "unit": "N",
+      "hint": "取车钩后面的八节车厢为系统，连同它们分摊的摩擦力，求使它们获得同样加速度所需的力。"
+     }
+    ],
+    "solution": "（a）$1.03 \\times 10^{6}\\ \\text{N}$ （b）$3.48 \\times 10^{5}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p18",
+   "source_id": "fs-id1531145",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitudes",
+   "prompt": "一位冬季体育赛事的参赛者把一块 45.0 kg 的冰块推过结冰的湖面，如本节末图的（a）部分所示。（a）计算他要使冰块动起来必须施加的最小力 $F$。（b）如果保持这个力不变，冰块一旦开始运动，它的加速度大小是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 51.0,
+      "unit": "N",
+      "hint": "推力与水平方向成 $25^\\circ$ 向下，所以它在推动冰块前进的同时也把冰块压入冰面；先把这个向下的分量写进法向力，再令水平分量等于 $\\mu_{\\text{s}}\\kN$。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.72,
+      "unit": "m/s²",
+      "hint": "保持同样的推力，并使用冰对冰的动摩擦因数。"
+     }
+    ],
+    "solution": "（a）$51.0\\ \\text{N}$ （b）$0.720\\ \\text{m/s}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "normal-force",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "static-friction"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "atomic-origin-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "static-friction"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "kinetic-friction"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "static-friction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "kinetic-friction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "coefficient-of-friction"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "static-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "coefficient-of-friction"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "static-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "friction-on-an-incline"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "kinetic-friction-magnitude",
+   "weight": 3
+  },
+  {
+   "exercise": "ap2",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "kinetic-friction"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "atomic-origin-of-friction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "atomic-origin-of-friction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "kinetic-friction",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p1",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p4",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "p4",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p4",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p4",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "p6",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p6",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p10",
+   "concept": "friction-on-an-incline"
+  },
+  {
+   "exercise": "p10",
+   "concept": "kinetic-friction-magnitude",
+   "weight": 3
+  },
+  {
+   "exercise": "p10",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p14",
+   "concept": "friction-on-an-incline"
+  },
+  {
+   "exercise": "p14",
+   "concept": "static-friction-magnitude",
+   "weight": 3
+  },
+  {
+   "exercise": "p14",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p16",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p16",
+   "concept": "kinetic-friction-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p18",
+   "concept": "static-friction-magnitude"
+  },
+  {
+   "exercise": "p18",
+   "concept": "kinetic-friction-magnitude"
+  },
+  {
+   "exercise": "p18",
+   "concept": "coefficient-of-friction",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "crate",
+   "label": "木箱",
+   "figures": [
+    "sim-interface",
+    "sim-breakaway"
+   ]
+  },
+  {
+   "id": "floor",
+   "label": "混凝土地面",
+   "figures": [
+    "sim-interface"
+   ]
+  },
+  {
+   "id": "skier",
+   "label": "滑雪者",
+   "figures": [
+    "sim-skier"
+   ]
+  },
+  {
+   "id": "probe",
+   "label": "探针的针尖",
+   "figures": [
+    "sim-probe"
+   ]
+  },
+  {
+   "id": "substrate",
+   "label": "衬底",
+   "figures": [
+    "sim-probe"
+   ]
+  },
+  {
+   "id": "contestant",
+   "label": "参赛者",
+   "figures": [
+    "fig-ice"
+   ]
+  },
+  {
+   "id": "ice-block",
+   "label": "冰块",
+   "figures": [
+    "fig-ice"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "friction-coefficient-slope",
+   "what": "由斜坡的角度求动摩擦因数",
+   "source": "《大学物理（第2版）》，5.1 摩擦力",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "物体沿斜面以恒定速度下滑，所以它所受的合力为零。",
+       "src": "5.1"
+      },
+      {
+       "text": "滑动摩擦力与重力沿斜坡向下的分量方向相反。",
+       "src": "图 5.4"
+      },
+      {
+       "tex": "\\kfk = \\mu_{\\text{k}}\\km\\kg\\ \\text{cos}\\ \\ktheta",
+       "src": "例题 5.1"
+      },
+      {
+       "tex": "\\km\\kg_{\\text{x}} = \\km\\kg\\ \\text{sin}\\ \\ktheta",
+       "src": "图 5.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfk} = \\mk{w}{\\km\\kg_{\\text{x}}}",
+      "src": "5.1",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\mu_{\\text{k}}\\km\\kg\\ \\text{cos}\\ \\ktheta} = \\mk{w}{\\km\\kg_{\\text{x}}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\mu_{\\text{k}}\\km\\kg\\ \\text{cos}\\ \\ktheta} = \\mk{w}{\\km\\kg\\ \\text{sin}\\ \\ktheta}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{mu}{\\mu_{\\text{k}}} = \\frac{\\mk{w}{\\km\\kg\\ \\text{sin}\\ \\ktheta}}{\\mk{f}{\\km\\kg\\ \\text{cos}\\ \\ktheta}}",
+       "uses": [],
+       "map": {
+        "f": [
+         "mu",
+         "f"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{mu}{\\mu_{\\text{k}}} = \\frac{\\mk{w}{\\km\\kg\\ \\text{sin}\\ \\ktheta}}{\\mk{f}{\\km\\kg\\ \\text{cos}\\ \\ktheta}} = \\mk{t}{\\text{tan}\\ \\ktheta}",
+       "uses": [],
+       "cap": "$\\km\\kg$ 消去，且 $\\sin\\ktheta/\\cos\\ktheta = \\tan\\ktheta$。"
+      }
+     ],
+     "src": "5.1"
+    }
+   ]
+  }
+ ]
+}

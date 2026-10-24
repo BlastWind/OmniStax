@@ -1,0 +1,648 @@
+{
+  "id": "13",
+  "dir": "ch13",
+  "title": "温度、气体动理论与气体定律",
+  "intro": {
+    "module": "m42213",
+    "slug": "13-introduction-to-temperature-kinetic-theory-and-the-gas-laws"
+  },
+  "sections": [
+    {
+      "id": "13.1",
+      "module": "m42214",
+      "title": "温度",
+      "slug": "13-1-temperature"
+    },
+    {
+      "id": "13.2",
+      "module": "m42215",
+      "title": "固体和液体的热膨胀",
+      "slug": "13-2-thermal-expansion-of-solids-and-liquids"
+    },
+    {
+      "id": "13.3",
+      "module": "m42216",
+      "title": "理想气体定律",
+      "slug": "13-3-the-ideal-gas-law"
+    },
+    {
+      "id": "13.4",
+      "module": "m42217",
+      "title": "气体动理论：压强和温度的原子与分子解释",
+      "slug": "13-4-kinetic-theory-atomic-and-molecular-explanation-of-pressure-and-temperature"
+    },
+    {
+      "id": "13.5",
+      "module": "m42218",
+      "title": "相变",
+      "slug": "13-5-phase-changes"
+    },
+    {
+      "id": "13.6",
+      "module": "m42219",
+      "title": "湿度、蒸发与沸腾",
+      "slug": "13-6-humidity-evaporation-and-boiling"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "温度，用温度计测量的量",
+      "unit": "K",
+      "section": "13.1",
+      "anchor": "13.1-temperature-defined"
+    },
+    {
+      "sym": "T_C",
+      "concept": "temperature",
+      "meaning": "摄氏温标上的温度，在该温标上水在 0 °C 凝固，在 100 °C 沸腾",
+      "unit": "°C",
+      "section": "13.1",
+      "anchor": "13.1-temperature-scales"
+    },
+    {
+      "sym": "T_F",
+      "concept": "temperature",
+      "meaning": "华氏温标上的温度，在该温标上水在 32 °F 凝固，在 212 °F 沸腾",
+      "unit": "°F",
+      "section": "13.1",
+      "anchor": "13.1-temperature-scales"
+    },
+    {
+      "sym": "T_K",
+      "concept": "temperature",
+      "meaning": "开尔文温标上的温度，开尔文温标是热力学温标，其零点是绝对零度，其单位是温度的 SI 单位",
+      "unit": "K",
+      "section": "13.1",
+      "anchor": "13.1-temperature-scales"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "保持体积不变的气体的压强，它随温度沿一条直线下降，并外推到 −273.15 °C 时为零",
+      "unit": "Pa",
+      "section": "13.1",
+      "anchor": "13.1-temperature-ranges"
+    },
+    {
+      "sym": "ΔL",
+      "concept": "length",
+      "meaning": "物体的温度改变时它的长度变化",
+      "unit": "m",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "L_len",
+      "concept": "length",
+      "meaning": "温度改变前物体的长度，例如金门大桥 1275 m 的跨度",
+      "unit": "m",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "ΔT",
+      "concept": "temperature",
+      "meaning": "温度的变化，用开尔文和摄氏度表示是同一个数",
+      "unit": "°C",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "α_exp",
+      "concept": "coefficient-of-linear-expansion",
+      "meaning": "线胀系数，即每单位长度、每度的长度变化，它取决于材料，并随温度略有变化",
+      "unit": "1/°C",
+      "section": "13.2",
+      "anchor": "13.2-linear-expansion"
+    },
+    {
+      "sym": "ΔA",
+      "concept": "area",
+      "meaning": "板或孔的温度改变时它的面积变化",
+      "unit": "m²",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "温度改变前的面积",
+      "unit": "m²",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "ΔV",
+      "concept": "volume",
+      "meaning": "物体，或汽油及盛放它的油箱，温度改变时的体积变化",
+      "unit": "m³",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "温度改变前的体积",
+      "unit": "m³",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "β",
+      "concept": "coefficient-of-volume-expansion",
+      "meaning": "体胀系数，即每单位体积、每度的体积变化，非常接近线胀系数的三倍",
+      "unit": "1/°C",
+      "section": "13.2",
+      "anchor": "13.2-two-and-three-dimensions"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "本来会膨胀的物体被保持在原来体积时所产生的压强，也就是热应力",
+      "unit": "N/m²",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "B_bulk",
+      "concept": "bulk-deformation",
+      "type": "elastic-modulus",
+      "meaning": "材料的体积模量，它把体积的变化与产生它的压强联系起来",
+      "unit": "N/m²",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "V_0",
+      "concept": "volume",
+      "meaning": "汽油受热之前的原来体积",
+      "unit": "m³",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "作用在容器器壁上的力，它除以器壁的面积就是压强",
+      "unit": "N",
+      "section": "13.2",
+      "anchor": "13.2-thermal-stress"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "气体的绝对压强",
+      "unit": "Pa",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "气体占据的体积",
+      "unit": "m³",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "N_count",
+      "concept": "ideal-gas-law",
+      "meaning": "气体中原子和分子的数目，在相同的压强、体积和温度下，它对每种气体都是相同的",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "k_boltz",
+      "concept": "boltzmann-constant",
+      "meaning": "玻尔兹曼常量，它把能量与温度联系起来，其值为 1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "气体的热力学温度，在理想气体定律中必须用开尔文表示",
+      "unit": "K",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas-law"
+    },
+    {
+      "sym": "P_0",
+      "concept": "pressure",
+      "meaning": "轮胎中气体的初始压强，即其温度升高之前的压强",
+      "unit": "Pa",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "P_f",
+      "concept": "pressure",
+      "meaning": "气体的温度在体积不变的情况下升高之后的最终压强",
+      "unit": "Pa",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "T_0temp",
+      "concept": "temperature",
+      "meaning": "气体的初始热力学温度",
+      "unit": "K",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "T_ftemp",
+      "concept": "temperature",
+      "meaning": "气体的最终热力学温度",
+      "unit": "K",
+      "section": "13.3",
+      "anchor": "13.3-tire-pressure"
+    },
+    {
+      "sym": "n",
+      "concept": "mole",
+      "meaning": "气体的物质的量",
+      "unit": "mol",
+      "section": "13.3",
+      "anchor": "13.3-moles"
+    },
+    {
+      "sym": "N_A",
+      "concept": "avogadros-number",
+      "meaning": "阿伏伽德罗常量，即任何物质一摩尔中的粒子数，6.02 × 10²³ mol⁻¹",
+      "unit": "mol⁻¹",
+      "section": "13.3",
+      "anchor": "13.3-moles"
+    },
+    {
+      "sym": "R_gas",
+      "concept": "universal-gas-constant",
+      "meaning": "摩尔气体常量，即阿伏伽德罗常量与玻尔兹曼常量的乘积，8.31 J/(mol·K)",
+      "unit": "J/(mol·K)",
+      "section": "13.3",
+      "anchor": "13.3-moles-form"
+    },
+    {
+      "sym": "M",
+      "concept": "mole",
+      "meaning": "物质的摩尔质量，即一摩尔该物质的质量，例如干空气的 28.8 g/mol",
+      "unit": "g/mol",
+      "section": "13.3",
+      "anchor": "13.3-molar-volume"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "气体的压强，即它的分子对其体积的器壁所施加的单位面积上的平均力",
+      "unit": "Pa",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "容器中气体的体积",
+      "unit": "m³",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "N_count",
+      "concept": "ideal-gas-law",
+      "meaning": "容器中分子的数目",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "一个分子的质量，由摩尔质量除以阿伏伽德罗常量求得",
+      "unit": "kg",
+      "section": "13.4",
+      "anchor": "13.4-collisions"
+    },
+    {
+      "sym": "v2_bar",
+      "concept": "rms-speed",
+      "meaning": "分子的方均速率",
+      "unit": "m²/s²",
+      "section": "13.4",
+      "anchor": "13.4-collisions",
+      "type": null
+    },
+    {
+      "sym": "KE_bar",
+      "concept": "thermal-energy",
+      "meaning": "一个分子的平均平动动能，它就是热能，并且与热力学温度成正比",
+      "unit": "J",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "k_boltz",
+      "concept": "boltzmann-constant",
+      "meaning": "玻尔兹曼常量",
+      "unit": "J/K",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "气体的热力学温度",
+      "unit": "K",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "v_rms",
+      "concept": "rms-speed",
+      "meaning": "分子的方均根速率，即方均速率的平方根",
+      "unit": "m/s",
+      "section": "13.4",
+      "anchor": "13.4-thermal-energy"
+    },
+    {
+      "sym": "v_p",
+      "concept": "maxwell-boltzmann-distribution",
+      "type": "velocity",
+      "meaning": "最概然速率，位于麦克斯韦-玻尔兹曼分布的峰值处，小于方均根速率",
+      "unit": "m/s",
+      "section": "13.4",
+      "anchor": "13.4-distribution"
+    },
+    {
+      "sym": "v_x",
+      "concept": "instantaneous-velocity",
+      "meaning": "分子速度垂直于器壁的分量，它因碰撞而反向",
+      "unit": "m/s",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "Δp",
+      "concept": "linear-momentum",
+      "meaning": "分子撞到器壁后弹回时它的动量变化，2mv_x",
+      "unit": "kg·m/s",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "Δt",
+      "concept": "elapsed-time",
+      "meaning": "分子与一面器壁相继两次碰撞的平均时间间隔，即穿过盒子再返回的时间",
+      "unit": "s",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "碰撞时器壁对分子施加的力，根据牛顿第三定律，也是分子对器壁施加的力",
+      "unit": "N",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "l",
+      "concept": "length",
+      "meaning": "盒子的长度，所以分子在与同一面器壁的两次碰撞之间运动 2l",
+      "unit": "m",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "器壁的面积，所以盒子的体积是 Al",
+      "unit": "m²",
+      "section": "13.4",
+      "anchor": "13.4-derivation"
+    },
+    {
+      "sym": "T_1temp",
+      "concept": "temperature",
+      "meaning": "绘制分子速率分布的两个温度中较低的一个",
+      "unit": "K",
+      "section": "13.4",
+      "anchor": "13.4-distribution"
+    },
+    {
+      "sym": "T_2temp",
+      "concept": "temperature",
+      "meaning": "较高的温度，在此温度下分布向较高的速率移动并变宽",
+      "unit": "K",
+      "section": "13.4",
+      "anchor": "13.4-distribution"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "物质的压强，是 PV 图和相图的一个坐标轴",
+      "unit": "Pa",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "物质的体积，是 PV 图的另一个坐标轴",
+      "unit": "m³",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "物质的温度，沿等温线保持固定，是相图的一个坐标轴",
+      "unit": "K",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "N_count",
+      "concept": "ideal-gas-law",
+      "meaning": "分子的数目，沿等温线保持固定",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "k_boltz",
+      "concept": "boltzmann-constant",
+      "meaning": "玻尔兹曼常量",
+      "unit": "J/K",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "T_c",
+      "concept": "critical-temperature",
+      "meaning": "临界温度，高于它，液相在任何压强下都不能存在",
+      "unit": "K",
+      "section": "13.5",
+      "anchor": "13.5-pv-diagrams"
+    },
+    {
+      "sym": "P_press",
+      "concept": "vapor-pressure",
+      "meaning": "水在给定温度下的蒸气压，当空气饱和时它就是水蒸气的分压",
+      "redefines": true,
+      "unit": "Pa",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "n",
+      "concept": "mole",
+      "meaning": "水蒸气的物质的量",
+      "unit": "mol",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "蒸气占据的体积",
+      "unit": "m³",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "R_gas",
+      "concept": "universal-gas-constant",
+      "meaning": "摩尔气体常量，8.31 J/(mol·K)",
+      "unit": "J/(mol·K)",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "空气的热力学温度",
+      "unit": "K",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "蒸气密度，即每立方米空气中水蒸气的质量，饱和时它就是表 13.5 中的饱和蒸气密度",
+      "unit": "g/m³",
+      "section": "13.6",
+      "anchor": "13.6-vapor-density"
+    },
+    {
+      "sym": "T_0temp",
+      "concept": "temperature",
+      "meaning": "起始温度，此时双金属片的两种金属长度相同，双金属片是直的",
+      "unit": "°C",
+      "section": "13.1",
+      "anchor": "13.1-thermometers"
+    },
+    {
+      "sym": "P_0",
+      "concept": "pressure",
+      "meaning": "气体 1 在 0 °C 时的压强，它决定了它的直线的斜率",
+      "unit": "atm",
+      "section": "13.1",
+      "anchor": "13.1-temperature-ranges"
+    },
+    {
+      "sym": "T_Rtemp",
+      "concept": "temperature",
+      "meaning": "列氏温标上的温度，在该温标上水在 0 °R 凝固，在 80 °R 沸腾",
+      "unit": "°R",
+      "section": "13.1",
+      "anchor": "13.1-ex-reaumur"
+    },
+    {
+      "sym": "ΔV_s",
+      "concept": "volume",
+      "ref": "tank",
+      "meaning": "钢制油箱变暖时它的体积增加量",
+      "unit": "L",
+      "section": "13.2",
+      "anchor": "13.2-ex-gas-tank"
+    },
+    {
+      "sym": "β_s",
+      "concept": "coefficient-of-volume-expansion",
+      "ref": "tank",
+      "meaning": "钢的体胀系数，钢是油箱的材料",
+      "unit": "1/°C",
+      "section": "13.2",
+      "anchor": "13.2-ex-gas-tank"
+    },
+    {
+      "sym": "V_s",
+      "concept": "volume",
+      "ref": "tank",
+      "meaning": "钢制油箱变暖之前的体积",
+      "unit": "L",
+      "section": "13.2",
+      "anchor": "13.2-ex-gas-tank"
+    },
+    {
+      "sym": "ΔV_gas",
+      "concept": "volume",
+      "ref": "liquid",
+      "meaning": "汽油变暖时它的体积增加量",
+      "unit": "L",
+      "section": "13.2",
+      "anchor": "13.2-ex-gas-tank"
+    },
+    {
+      "sym": "β_gas",
+      "concept": "coefficient-of-volume-expansion",
+      "ref": "liquid",
+      "meaning": "汽油的体胀系数",
+      "unit": "1/°C",
+      "section": "13.2",
+      "anchor": "13.2-ex-gas-tank"
+    },
+    {
+      "sym": "V_gas",
+      "concept": "volume",
+      "ref": "liquid",
+      "meaning": "汽油变暖之前的体积，等于它所装满的油箱的体积",
+      "unit": "L",
+      "section": "13.2",
+      "anchor": "13.2-ex-gas-tank"
+    },
+    {
+      "sym": "V_spill",
+      "concept": "volume",
+      "meaning": "溢出的汽油的体积，即两个体积增加量之差",
+      "unit": "L",
+      "section": "13.2",
+      "anchor": "13.2-ex-gas-tank"
+    },
+    {
+      "sym": "β",
+      "concept": "coefficient-of-volume-expansion",
+      "meaning": "体胀系数，对大多数气体都相同",
+      "unit": "1/°C",
+      "section": "13.3",
+      "anchor": "13.3-ideal-gas"
+    },
+    {
+      "sym": "V_0",
+      "concept": "volume",
+      "meaning": "轮胎中气体的初始体积",
+      "unit": "m³",
+      "section": "13.3",
+      "anchor": "13.3-ex-tire-pressure"
+    },
+    {
+      "sym": "V_f",
+      "concept": "volume",
+      "meaning": "轮胎中气体的最终体积，与初始体积相同",
+      "unit": "m³",
+      "section": "13.3",
+      "anchor": "13.3-ex-tire-pressure"
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+ "id": "32.3",
+ "module": "m42654",
+ "chapter": "32",
+ "title": "电离辐射的治疗用途",
+ "short": "辐射的治疗用途",
+ "lead": "<span data-concept=\"ionizing-radiation\">电离辐射</span>既然会损伤健康组织，也就可以反过来用来对付癌症。本节介绍<span data-concept=\"radiotherapy\">放射治疗</span>如何把<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>集中在肿瘤中——用从多个方向交叉的射束、用放射性植入物和用放射性药物——以及用于不同癌症的剂量。",
+ "objectives": [
+  "解释放射治疗的概念，并列出癌症治疗的典型剂量。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"radiotherapy\">放射治疗</span>是用<span data-concept=\"ionizing-radiation\">电离辐射</span>治疗疾病，如今仅限于癌症治疗。</li><li>癌细胞对辐射的敏感性提高了被杀死的癌细胞与被杀死的正常细胞之比，这一比值称为<span data-concept=\"therapeutic-ratio\">治疗比</span>。</li><li>各器官的<span data-concept=\"absorbed-dose-rad-and-gray\">剂量</span>受正常组织对辐射耐受能力的限制。治疗局限于身体的一个区域，并在<span data-concept=\"time\">时间</span>上分散开来。</li></ul>",
+ "notes": "照原样保留的有：把植入物同位素写作碘-135、半衰期 6 个月，以及关于人体内碳-14 所致剂量的习题中，碳-14 占比 1.3 × 10⁻¹² 之后多出的那个 N。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。唯一的思考题没有答案，附有标明为 AI 撰写的建议思路。书中未给答案的五道习题被略去：受辐照食品中产生的离子对（一道关于食品辐照的题，见 32.4）、5000 Ci 的 ⁶⁰Co 透照装置所致的剂量、一位物理学家摄入的 ⁶⁵Zn、一名男子体内 ²²⁶Ra 的质量，以及澳大利亚每年多受 0.05 mSv 所导致的癌症死亡数。书中未印出理解检测框，因此没有设置任何内嵌题。",
+ "figures": [
+  {
+   "id": "photo-radium-ad",
+   "kind": "photo",
+   "number": "32.8",
+   "widths": [
+    270
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-crossfire",
+   "kind": "sim",
+   "number": "32.9",
+   "originals": [
+    "/media/ch32/Figure_33_03_02a-2692.jpg"
+   ],
+   "original_caption": "⁶⁰Co 的 γ 辐射源绕患者旋转，使共同交点位于肿瘤中，从而把剂量集中在那里。这种几何技术适用于边界清楚的肿瘤。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "dose",
+    "position",
+    "angle"
+   ],
+   "conventions": [
+    "gamma",
+    "Co"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "tumor",
+   "label": "肿瘤",
+   "figures": [
+    "sim-crossfire"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "radiotherapy",
+   "concept": "radiotherapy",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiotherapy",
+   "concept": "ionizing-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "radiotherapy",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "radiotherapy",
+   "concept": "nuclear-radioactivity",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "ionizing-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "medical-application",
+   "concept": "nuclear-radioactivity",
+   "verb": "uses"
+  },
+  {
+   "span": "crossfire",
+   "concept": "therapeutic-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "crossfire",
+   "concept": "crossfire-beams",
+   "verb": "introduces"
+  },
+  {
+   "span": "crossfire",
+   "concept": "radiotherapy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "crossfire",
+   "concept": "radiation-damages-dna",
+   "verb": "uses"
+  },
+  {
+   "span": "crossfire",
+   "concept": "absorbed-dose-rad-and-gray",
+   "verb": "uses"
+  },
+  {
+   "span": "crossfire",
+   "concept": "relative-biological-effectiveness",
+   "verb": "uses"
+  },
+  {
+   "span": "crossfire",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "implants",
+   "concept": "therapeutic-ratio",
+   "verb": "reinforces"
+  },
+  {
+   "span": "implants",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "implants",
+   "concept": "alpha-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "implants",
+   "concept": "range-of-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "implants",
+   "concept": "radiopharmaceuticals-and-tagging",
+   "verb": "uses"
+  },
+  {
+   "span": "implants",
+   "concept": "relative-biological-effectiveness",
+   "verb": "uses"
+  },
+  {
+   "span": "therapeutic-doses",
+   "concept": "therapeutic-doses",
+   "verb": "introduces"
+  },
+  {
+   "span": "therapeutic-doses",
+   "concept": "immediate-effects-and-dose-levels",
+   "verb": "uses"
+  },
+  {
+   "span": "therapeutic-doses",
+   "concept": "rem",
+   "verb": "uses"
+  },
+  {
+   "span": "therapeutic-doses",
+   "concept": "sievert",
+   "verb": "uses"
+  },
+  {
+   "span": "therapeutic-doses",
+   "concept": "radiotherapy",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3260289",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "therapeutic-doses",
+   "prompt": "与年轻患者相比，放射治疗更可能用于治疗老年患者的癌症。解释原因。为什么放射治疗还是会用于年轻人？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "老年人更容易接受放射治疗，是因为杀死癌细胞的辐射同样会损伤正常细胞的 DNA，而由此诱发的癌症可能要过许多年甚至几十年才会出现。老年患者不太可能活到这种风险发挥作用的时候，而年轻患者则有几十年的时间可能受其影响；年轻人身体中快速增殖的组织对辐射也更敏感。当所治疗的癌症很可能致命时，放射治疗仍会用于年轻人：现在治愈它，比很久以后患上另一种癌症的小概率更重要。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2422392",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "crossfire",
+   "prompt": "一束 168 MeV 的氮核束用于癌症治疗。如果这束粒子射向一个 0.200 kg 的肿瘤，并给它 2.00 Sv 的剂量，有多少个氮核停在了肿瘤中？（对重离子取 RBE 为 20。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 744000000.0,
+    "hint": "用以 Sv 为单位的剂量除以 RBE，得到以 Gy 为单位的剂量，乘以肿瘤的质量得到沉积的能量（单位为 J），再除以一个氮核以焦耳计的能量。",
+    "solution": "$7.44\\times 10^{8}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1537567",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "计算在下列条件下给患者拍 X 射线时，其胸部所受的剂量（单位 Sv）。X 射线束的强度为 $1.50\\;\\text{W/m}^{2}$，胸部受照面积为 $0.0750\\;\\text{m}^{2}$，35.0% 的 X 射线被 20.0 kg 的组织吸收，照射时间为 0.250 s。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.000492,
+    "unit": "Sv",
+    "hint": "到达胸部的能量等于强度乘以面积再乘以时间；取其中的 35.0%，除以吸收它的 20.0 kg，并对 X 射线取 RBE 为 1。",
+    "solution": "$4.92\\times 10^{-4}\\;\\text{Sv}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2397941",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "crossfire",
+   "prompt": "一台含有 5.00 kCi ${}^{60}\\text{Co}$ 的癌症治疗透照装置中，${}^{60}\\text{Co}$ 的质量是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.43,
+    "unit": "g",
+    "hint": "把活度换算成贝可勒尔，用以秒计的 ${}^{60}\\text{Co}$ 半衰期 5.27 y，由 $\\kRact = 0.693N/\\kthalf$ 解出 $N$，再用摩尔质量 60 g/mol 把 $N$ 变成质量。",
+    "solution": "4.43 g"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id954847",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "天然存在的 ${}^{40}\\text{K}$ 被列为 16 mrem/y 本底辐射的来源。计算一位 55 kg 的女性体内必须含有多少质量的 ${}^{40}\\text{K}$，才能产生这一剂量。每次 ${}^{40}\\text{K}$ 衰变发射一个 1.32 MeV 的 $\\beta$，其中 50% 的能量被体内吸收。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.01,
+    "unit": "g",
+    "hint": "把年剂量换算成 55 kg 的身体每年吸收的能量，除以每次衰变留在体内的能量，得到每年的衰变次数，再由 $\\kRact = 0.693N/\\kthalf$ 用 ${}^{40}\\text{K}$ 的半衰期 $1.28\\times 10^{9}$ y 求出核的数目。",
+    "solution": "0.010 g"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2673962",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "我们体内 ${}^{14}\\text{C}$ 所致的年辐射剂量为 0.01 mSv/y。每次 ${}^{14}\\text{C}$ 衰变发射一个平均能量为 0.0750 MeV 的 $\\beta^{-}$。取 ${}^{14}\\text{C}$ 的比例为普通 ${}^{12}\\text{C}$ 的 $1.3\\times 10^{-12}\\;\\text{N}$，并假设人体含碳 13%，估算被吸收的衰变能量所占的比例。（其余的逸出，使靠近你的人受到照射。）",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 95,
+    "unit": "%",
+    "tol": 0.1,
+    "hint": "对质量为 $m$ 的身体，求每千克中 ${}^{14}\\text{C}$ 核的数目，由 $\\kRact = 0.693N/\\kthalf$ 用 5730 y 的半衰期求它们的活度，以及它们一年中每千克释放的能量；把它与吸收的 0.01 mSv 比较。",
+    "solution": "95%"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "therapeutic-doses"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "linear-hypothesis-and-long-term-risk"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "radiotherapy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "exercise": "p1",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "p1",
+   "concept": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "exercise": "p2",
+   "concept": "dose-from-a-source"
+  },
+  {
+   "exercise": "p2",
+   "concept": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "exercise": "p2",
+   "concept": "intensity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "mass-from-activity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p4",
+   "concept": "dose-from-a-source"
+  },
+  {
+   "exercise": "p4",
+   "concept": "mass-from-activity"
+  },
+  {
+   "exercise": "p4",
+   "concept": "background-radiation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "dose-from-a-source"
+  },
+  {
+   "exercise": "p5",
+   "concept": "background-radiation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "activity"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-iodine-seeds",
+   "kind": "correction",
+   "html": "本书把 ${}^{135}\\text{I}$ 印为半衰期 6 个月。前列腺籽源所用的碘是 ${}^{125}\\text{I}$，其半衰期约为 60 天；${}^{135}\\text{I}$ 的寿命不到 7 小时。"
+  }
+ ]
+}

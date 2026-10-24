@@ -1,0 +1,105 @@
+<section id="rules">
+<h2>适用于任何电路的两条定则</h2>
+<p class="cite-target">许多复杂电路，例如图 21.21 中的电路，无法用“<span data-concept="resistor">电阻器</span>的串联与并联”和“<span data-concept="emf">电动势</span>：<span data-concept="terminal-voltage">端电压</span>”中建立的串并联方法来分析。不过，有两条电路分析定则，可以用来分析任何电路，无论简单还是复杂。这两条定则是电荷守恒和<span data-concept="energy">能量</span>守恒这两条<span data-concept="law">定律</span>的特例。它们称为<strong><span data-concept="kirchhoffs-rules">基尔霍夫定律</span></strong>，以其提出者古斯塔夫·基尔霍夫（1824–1887）的名字命名。</p>
+<figure class="sim" id="sim-two-loop-circuit" data-figure="21.21 + 21.25" data-original="/media/ch21/Figure_22_03_01.jpg,/media/ch21/Figure_22_03_05.jpg" data-original-width="175,300" data-original-caption="（图 21.21）这个电路无法化简为串联与并联的组合。基尔霍夫定律是电荷守恒和能量守恒这两条定律的特殊应用，可以用来分析它。（注：图中的花体 E 表示电动势。）（图 21.25）这个电路与图 21.21 中的相似，但给定了各电阻和电动势。（每个电动势都用花体 E 表示。）各支路中的电流已经标出，并假定沿图示方向流动。本例题用基尔霍夫定律求这些电流。">
+  <div class="sim-head"><span class="eyebrow">Figure 21.21 + 21.25</span><span><span data-ref="source-1 source-2">两个电源</span>和<span data-ref="resistor-1 resistor-2 resistor-3">三个电阻</span>被接入一个电路的三条支路，这个电路无论怎样串并联化简都无法求解，而节点定则和回路定则可以求出三条支路<span data-concept="electric-current">电流</span>。调节<span data-type="voltage">任一电动势</span>或<span data-type="resistance">任一负载电阻</span>，会看到<span data-type="current">某条支路电流</span>降为零，然后反向流动，这只需多一个负号，因为为它假定的方向本来只是一个猜测。</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">基尔霍夫定律</div>
+<ul>
+<li>基尔霍夫第一定律——<span data-concept="junction-rule">节点定则</span>。流入一个节点的所有<span data-concept="electric-current">电流</span>之和必须等于流出该节点的所有<span data-concept="electric-current">电流</span>之和。</li>
+<li>基尔霍夫第二定律——<span data-concept="loop-rule">回路定则</span>。沿任一闭合电路路径（回路）一周，电势的变化的代数和必须为零。</li>
+</ul>
+</div>
+<p>下面先对这两条定则作出解释，然后给出应用<span data-concept="kirchhoffs-rules">基尔霍夫定律</span>的解题提示，以及一道运用它们的例题。</p>
+</section>
+
+<section id="junction">
+<h2>基尔霍夫第一定律</h2>
+<p class="cite-target">基尔霍夫第一定律（<strong><span data-concept="junction-rule">节点定则</span></strong>）是电荷守恒在节点上的应用；图 21.22 对它作了说明。<span data-concept="electric-current">电流</span>就是电荷的流动，而电荷是守恒的；因此，流入节点的电荷必定全部流出。基尔霍夫第一定律要求 $\kIcurone = \kIcurtwo + \kIcurthree$（见图）。这样的方程可以用来、也将会用来分析电路和求解电路问题。</p>
+<div class="note">
+<div class="eyebrow">建立联系：守恒定律</div>
+<p><span data-concept="kirchhoffs-rules">基尔霍夫定律</span>用于电路分析，是<strong><span data-concept="conservation-laws">守恒定律</span></strong>在电路中的应用。第一条定则是电荷守恒的应用，而第二条定则是<span data-concept="energy">能量</span>守恒的应用。<span data-concept="conservation-laws">守恒定律</span>即使用在某个具体应用中，例如电路分析，也是如此基本，以至于构成了该应用的基础。</p>
+</div>
+<figure class="sim" id="sim-junction-rule" data-figure="21.22" data-original="/media/ch21/Figure_22_03_02.jpg" data-original-width="180" data-original-caption="节点定则。此图给出基尔霍夫第一定律的一个例子：流入一个节点的电流之和等于流出该节点的电流之和。在这个例子中，流入节点的电流分成两股流出，因此 I₁ = I₂ + I₃。这里 I₁ 必须是 11 A，因为 I₂ 为 7 A，I₃ 为 4 A。">
+  <div class="sim-head"><span class="eyebrow">Figure 21.22</span><span>一根导线把<span data-concept="electric-current">电流</span>送入节点，两根导线把它带走。设定<span data-type="current">离开的两个电流</span>，看着<span data-type="current">流入的电流</span>跟着它们的和变化，因为电荷不会在节点处积聚，流入的必定流出。</span></div>
+</figure>
+</section>
+
+<section id="loop">
+<h2>基尔霍夫第二定律</h2>
+<p class="cite-target">基尔霍夫第二定律（<strong><span data-concept="loop-rule">回路定则</span></strong>）是<span data-concept="energy">能量</span>守恒的应用。<span data-concept="loop-rule">回路定则</span>是用电势 $\kV$ 而不是<span data-concept="potential-energy">势能</span>来表述的，但二者是相关的，因为 $\text{PE}_{\text{elec}} = \kq\kV$。回想一下，<strong>电动势</strong>是电源在没有<span data-concept="electric-current">电流</span>流动时的<span data-concept="potential-difference">电势差</span>。在闭合回路中，电动势所提供的任何<span data-concept="energy">能量</span>，都必须由回路中的器件转化为其他形式，因为再没有别的方式能使<span data-concept="energy">能量</span>转移进入或离开电路。图 21.23 说明了一个简单<span data-concept="series-connection">串联</span>电路回路中的<span data-type="voltage">电势的变化</span>。</p>
+<p>基尔霍夫第二定律要求 $\kemf - \kIcur\krint - \kIcur\kResone - \kIcur\kRestwo = 0$。整理后为 $\kemf = \kIcur\krint + \kIcur\kResone + \kIcur\kRestwo$，这意味着<span data-type="voltage">电动势</span>等于回路中各 $\kIcur\kRes$（<span data-concept="potential-difference">电压</span>）降之和。</p>
+<figure class="sim" id="sim-loop-rule" data-figure="21.23" data-original="/media/ch21/Figure_22_03_03.jpg" data-original-width="200" data-original-caption="回路定则。基尔霍夫第二定律的一个例子：沿闭合回路一周，电势的变化之和必须为零。（a）在这个简单串联电路的标准电路图中，电动势提供 18 V，它被各电阻降为零：内阻上为 1 V，两个负载电阻上分别为 12 V 和 5 V，合计 18 V。（b）这幅透视图把电势表示成有点像过山车的东西，电荷的电势被电动势抬高，又被各电阻降低。（注意花体 E 代表电动势。）">
+  <div class="sim-head"><span class="eyebrow">Figure 21.23</span><span>一个带<span data-type="resistance">内阻</span>的电源驱动<span data-type="current">一个电流</span>通过<span data-ref="resistor-1 resistor-2">两个负载电阻</span>，电路下方的图像沿着回路一周追踪<span data-type="voltage">电势</span>。改变<span data-type="voltage">电动势</span>或<span data-type="resistance">三个电阻中的任何一个</span>，或者沿相反方向绕行回路，这会使回路方程的每一项都反号，然后看着<span data-type="voltage">电势</span>在电源处升高，在每个<span data-concept="resistance">电阻</span>处逐级下降，并回到起点。</span></div>
+</figure>
+</section>
+
+<section id="applying">
+<h2>应用基尔霍夫定律</h2>
+<p class="cite-target">应用<span data-concept="kirchhoffs-rules">基尔霍夫定律</span>，我们得到一些方程，用它们可以求出电路中的未知量。未知量可以是<span data-concept="electric-current">电流</span>、电动势或<span data-concept="resistance">电阻</span>。每应用一次定则，就得到一个方程。如果独立方程的个数与未知量的个数一样多，问题就可以求解。应用<span data-concept="kirchhoffs-rules">基尔霍夫定律</span>时，你必须做出两个选择。这些选择决定了你应用定则所得方程中各个量的正负号。</p>
+<ol>
+<li>应用基尔霍夫第一定律，即<span data-concept="junction-rule">节点定则</span>时，你必须标出每条支路中的<span data-concept="electric-current">电流</span>，并确定它沿什么<span data-concept="vector-direction">方向</span>流动。例如，在图 21.21、图 21.22 和图 21.23 中，<span data-concept="electric-current">电流</span>分别标为 $\kIcurone$、$\kIcurtwo$、$\kIcurthree$ 和 $\kIcur$，箭头表示它们的<span data-concept="vector-direction">方向</span>。这里没有风险，因为即使你选错了<span data-concept="vector-direction">方向</span>，求得的<span data-concept="electric-current">电流</span>大小也是正确的，只是为负。</li>
+<li>应用基尔霍夫第二定律，即<span data-concept="loop-rule">回路定则</span>时，你必须确定一个闭合回路，并决定沿哪个<span data-concept="vector-direction">方向</span>绕行，是顺时针还是逆时针。例如，在图 21.23 中，回路是沿与<span data-concept="electric-current">电流</span>相同的<span data-concept="vector-direction">方向</span>（顺时针）绕行的。这里同样没有风险；沿相反的<span data-concept="vector-direction">方向</span>绕电路一周，会使方程中每一项的符号反转，这就像把方程两边都乘以 $-1$。</li>
+</ol>
+<p>图 21.24 和下面几点，将帮助你在应用<span data-concept="loop-rule">回路定则</span>时把正负号取对。请注意，<span data-concept="resistor">电阻器</span>和电动势都是沿从 a 到 b 的方向绕行的。在许多电路中，需要构造不止一个回路。绕行每个回路时，电势的变化的符号必须前后一致。（见例题 21.5。）</p>
+<figure class="sim" id="sim-sign-rules" data-figure="21.24" data-original="/media/ch21/Figure_22_03_04.jpg" data-original-width="350" data-original-caption="这里的每个电阻器和电压源都是从 a 绕行到 b。电势的变化标在每个元件的下方，并在正文中作了解释。（注意花体 E 代表电动势。）">
+  <div class="sim-head"><span class="eyebrow">Figure 21.24</span><span>一个电阻器和一个电源，各自沿两种可能的方向从 a 绕行到 b，<span data-type="voltage">电势的变化</span>写在四种情形的每一种之下。选取一种情形，调节<span data-type="current">电流</span>、<span data-type="resistance">电阻</span>和<span data-type="voltage">电动势</span>，看着<span data-type="voltage">电势的变化</span>取得一个值，并保持该情形所给出的符号。</span></div>
+</figure>
+<ul>
+<li>当沿与<span data-concept="electric-current">电流</span>相同的<span data-concept="vector-direction">方向</span>绕行<span data-concept="resistor">电阻器</span>时，电势的变化为 $-\kIcur\kRes$。（见图 21.24。）</li>
+<li>当沿与<span data-concept="electric-current">电流</span>相反的<span data-concept="vector-direction">方向</span>绕行<span data-concept="resistor">电阻器</span>时，电势的变化为 $+\kIcur\kRes$。（见图 21.24。）</li>
+<li>当沿从 $-$ 到 $+$ 的方向绕行电动势时（与它推动正电荷运动的<span data-concept="vector-direction">方向</span>相同），电势的变化为 $+\kemf$。（见图 21.24。）</li>
+<li>当沿从 $+$ 到 $-$ 的方向绕行电动势时（与它推动正电荷运动的<span data-concept="vector-direction">方向</span>相反），电势的变化为 $-\kemf$。（见图 21.24。）</li>
+</ul>
+<div class="example" id="ex-kirchhoff">
+<h3>例题 21.5 · 计算电流：运用基尔霍夫定律</h3>
+<p>求图 21.25 的电路中<span data-type="current">流动的各<span data-concept="electric-current">电流</span></span>。</p>
+<h4>思路</h4>
+<p>这个电路相当复杂，无法用<span data-concept="ohms-law">欧姆定律</span>和串并联方法求出<span data-type="current">各<span data-concept="electric-current">电流</span></span>——必须使用<span data-concept="kirchhoffs-rules">基尔霍夫定律</span>。图中已将<span data-concept="electric-current">电流</span>标为 $\kIcurone$、$\kIcurtwo$ 和 $\kIcurthree$，并对它们的<span data-concept="vector-direction">方向</span>作了假定。图上的各个位置已用字母 a 到 h 标出。在解中，我们将应用节点定则和<span data-concept="loop-rule">回路定则</span>，寻求三个独立方程，以便解出<span data-type="current">三个未知<span data-concept="electric-current">电流</span></span>。</p>
+<h4>解</h4>
+<p>我们先在 a 点应用基尔霍夫第一定律，即<span data-concept="junction-rule">节点定则</span>。得</p>
+$$\kIcurone = \kIcurtwo + \kIcurthree,$$
+<p>因为 $\kIcurone$ 流入节点，而 $\kIcurtwo$ 和 $\kIcurthree$ 流出节点。在 e 点应用<span data-concept="junction-rule">节点定则</span>得到的恰是同一个方程，所以没有得到新的信息。这是含三个未知量的一个方程——需要三个独立方程，因此必须应用<span data-concept="loop-rule">回路定则</span>。</p>
+<p>现在考虑回路 abcdea。从 a 到 b，我们沿与<span data-type="current"><span data-concept="electric-current">电流</span></span> $\kIcurtwo$ 相同的（假定）<span data-concept="vector-direction">方向</span>绕行 $\kRestwo$，所以<span data-type="voltage">电势的变化</span>为 $-\kIcurtwo\kRestwo$。然后从 b 到 c，我们是从 $-$ 到 $+$，所以<span data-type="voltage">电势的变化</span>为 $+\kemfone$。从 c 到 d 绕行<span data-type="resistance"><span data-concept="internal-resistance">内阻</span></span> $\krintone$，得到 $-\kIcurtwo\krintone$。从 d 回到 a 完成整个回路时，又是沿与其<span data-concept="electric-current">电流</span>相同的<span data-concept="vector-direction">方向</span>绕行一个<span data-concept="resistor">电阻器</span>，得到<span data-type="voltage">一个电势的变化</span> $-\kIcurone\kResone$。</p>
+<p><span data-concept="loop-rule">回路定则</span>指出，电势的变化之和为零。因此，</p>
+$$-\kIcurtwo\kRestwo + \kemfone - \kIcurtwo\krintone - \kIcurone\kResone = -\kIcurtwo(\kRestwo + \krintone) + \kemfone - \kIcurone\kResone = 0.$$
+<p>把电路图中<span data-type="resistance">各<span data-concept="resistance">电阻</span></span>和<span data-type="voltage">电动势</span>的值代入，并约去<span data-concept="ampere">安培</span>单位，得</p>
+$$-3\kIcurtwo + 18 - 6\kIcurone = 0.$$
+<p>现在把<span data-concept="loop-rule">回路定则</span>应用于 aefgha（我们也可以选 abcdefgha），同样得到</p>
+$$+\;\kIcurone\kResone + \kIcurthree\kResthree + \kIcurthree\krinttwo - \kemftwo = +\kIcurone\kResone + \kIcurthree(\kResthree + \krinttwo) - \kemftwo = 0.$$
+<p>注意，与另一个回路相比，符号是相反的，因为各元件是沿相反的<span data-concept="vector-direction">方向</span>绕行的。代入数值后，成为</p>
+$$+\;6\kIcurone + 2\kIcurthree - 45 = 0.$$
+<p>这三个方程足以解出<span data-type="current">三个未知<span data-concept="electric-current">电流</span></span>。首先，由第二个方程解出 $\kIcurtwo$：</p>
+$$\kIcurtwo = 6 - 2\kIcurone.$$
+<p>再由第三个方程解出 $\kIcurthree$：</p>
+$$\kIcurthree = 22.5 - 3\kIcurone.$$
+<p>把这两个新方程代入第一个方程，就可以求出 $\kIcurone$ 的值：</p>
+$$\kIcurone = \kIcurtwo + \kIcurthree = (6 - 2\kIcurone) + (22.5 - 3\kIcurone) = 28.5 - 5\kIcurone.$$
+<p>合并各项，得</p>
+$$6\kIcurone = 28.5,$$
+<p>并且</p>
+$$\kIcurone = 4.75\ \text{A}.$$
+<p>把 $\kIcurone$ 的这个值代回第四个方程，得</p>
+$$\kIcurtwo = 6 - 2\kIcurone = 6 - 9.50$$
+$$\kIcurtwo = -3.50\ \text{A}.$$
+<p>负号表示 $\kIcurtwo$ 的流动<span data-concept="vector-direction">方向</span>与图 21.25 中所假定的相反。</p>
+<p>最后，把 $\kIcurone$ 的值代入第五个方程，得</p>
+$$\kIcurthree = 22.5 - 3\kIcurone = 22.5 - 14.25$$
+$$\kIcurthree = 8.25\ \text{A}.$$
+<h4>讨论</h4>
+<p>作为检验，我们注意到确有 $\kIcurone = \kIcurtwo + \kIcurthree$。也可以把所有数值代入 abcdefgha 回路的方程，来检验这些结果。</p>
+</div>
+<div class="note">
+<div class="eyebrow">运用基尔霍夫定律的解题策略</div>
+<ol>
+<li>务必画出一张清晰的电路图，以便在图上标出所有已知和未知的<span data-concept="resistance">电阻</span>、电动势和<span data-concept="electric-current">电流</span>。如果某个<span data-concept="electric-current">电流</span>未知，你必须为它指定一个<span data-concept="vector-direction">方向</span>。这对确定电势的变化取何种符号是必要的。如果你指定的<span data-concept="vector-direction">方向</span>不正确，求得的<span data-concept="electric-current">电流</span>将是负值——并无妨碍。</li>
+<li>对电路中的任一节点应用<span data-concept="junction-rule">节点定则</span>。每次应用<span data-concept="junction-rule">节点定则</span>，你得到的方程中都应含有一个在先前应用中未出现过的<span data-concept="electric-current">电流</span>——否则，这个方程就是多余的。</li>
+<li>对需要的若干个回路应用<span data-concept="loop-rule">回路定则</span>，以解出问题中的未知量。（独立方程的个数必须与未知量的个数一样多。）应用<span data-concept="loop-rule">回路定则</span>时，你必须选定绕回路的<span data-concept="vector-direction">方向</span>。然后，结合图 21.24，运用上面讨论的四条要点，仔细而前后一致地确定每个元件处电势的变化的符号。</li>
+<li>解联立方程，求出未知量。这可能涉及许多代数步骤，需要仔细地反复检查。</li>
+<li>检查答案是否合理、前后一致。数值应具有正确的<span data-concept="order-of-magnitude">数量级</span>，既不能大得离谱，也不能小得几乎为零。符号应当合理——例如，任何<span data-concept="resistance">电阻</span>都不应为负。检查所得的值是否满足应用定则所得到的各个方程。例如，各<span data-concept="electric-current">电流</span>应当满足<span data-concept="junction-rule">节点定则</span>。</li>
+</ol>
+</div>
+<p>本节的内容在理论上是正确的。我们应当能够通过测量<span data-concept="electric-current">电流</span>和<span data-concept="potential-difference">电压</span>来验证它。事实上，用于进行这类测量的一些仪器，正是对迄今所学原理的直接应用，将在后面的几节中探讨。我们将会看到，由此得出一个非常基本、甚至意义深远的事实——测量会改变被测量的量。</p>
+<div class="exercises" data-place="applying"></div>
+</section>

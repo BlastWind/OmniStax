@@ -1,0 +1,722 @@
+{
+ "id": "3.3",
+ "module": "m42128",
+ "chapter": "3",
+ "title": "矢量的加法和减法：解析法",
+ "short": "矢量：解析法",
+ "lead": "正弦、余弦和勾股定理可以代替图解法中的直尺和量角器。解析法借助矢量相互垂直的分量进行：既用来求出这些分量，也用它们来做矢量的加法或减法。",
+ "objectives": [
+  "理解用解析法进行矢量加法和减法的规则。",
+  "运用解析法确定竖直分矢量和水平分矢量。",
+  "运用解析法确定合矢量的大小和方向。"
+ ],
+ "summary_html": "<ul><li>矢量加法和减法的解析法，是利用勾股定理和三角恒等式来确定<span data-concept=\"resultant-vector\">合矢量</span>的大小和方向。</li><li>用解析法把矢量 $\\mathbf{A}$ 和 $\\mathbf{B}$ 相加的步骤如下：<br>步骤 1：确定矢量的坐标系。然后用方程 $$\\begin{aligned}\\kAx &= \\kA\\cos\\theta\\\\ \\kBx &= \\kB\\cos\\theta\\end{aligned}$$ 和 $$\\begin{aligned}\\kAy &= \\kA\\sin\\theta\\\\ \\kBy &= \\kB\\sin\\theta.\\end{aligned}$$ 确定每个矢量的水平分量和竖直分量。<br>步骤 2：把每个矢量的水平分量与竖直分量分别相加，确定<span data-concept=\"resultant-vector\">合矢量</span> $\\mathbf{R}$ 的分量 $\\kRx$ 和 $\\kRy$：$$\\kRx = \\kAx + \\kBx$$ 和 $$\\kRy = \\kAy + \\kBy.$$<br>步骤 3：用勾股定理确定<span data-concept=\"resultant-vector\">合矢量</span> $\\mathbf{R}$ 的大小 $\\kR$：$$\\kR = \\sqrt{\\kRx^2 + \\kRy^2}.$$<br>步骤 4：用三角恒等式确定 $\\mathbf{R}$ 的方向 $\\theta$：$$\\theta = \\tan^{-1}(\\kRy / \\kRx).$$</li></ul>",
+ "notes": "习题 2、6、8、10 和 12 在书后答案中没有答案，因而略去，关于矢量加法的 PhET 说明也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案；习题 2、6、8、10 和 12 没有给出答案，因而略去。书中在习题 5 下印出的答案是北偏西 35.8º 方向的 30.8 m，该题要求以另一顺序求与习题 4 相同的和，并说明结果相同；这个答案被同时用作两题的答案，因为它正是两题所要求的大小和方向，而两题的讨论部分都没有答案。凡书后答案同时给出大小和罗盘方向之处，核对的是大小，方向写在解中供对照。思考题的建议思路由 AI 撰写并已标明。没有任何内容是从其他节扣下或为其他节留下的：3.2 节的习题要求用图解法，仍留在那里，3.5 节的速度习题检验速度的合成。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-components",
+   "kind": "sim",
+   "number": "3.24",
+   "folds": [
+    "3.25",
+    "3.26"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_03_01a.jpg",
+    "/media/ch03/Figure_03_03_02a.jpg",
+    "/media/ch03/Figure_03_03_03.jpg"
+   ],
+   "original_caption": "矢量 A 的矢尾位于 x、y 坐标系的原点，图中同时给出了它的 x 分量 Ax 和 y 分量 Ay。这些矢量构成一个直角三角形。这些矢量之间的解析关系总结如下。",
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeated panel dropped, typeset headline, labels clear"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-resultant",
+   "kind": "sim",
+   "number": "3.27",
+   "originals": [
+    "/media/ch03/Figure_03_03_04a.jpg"
+   ],
+   "original_caption": "一旦确定了水平分量 Ax 和竖直分量 Ay，就可以确定合矢量的大小和方向。",
+   "widths": [
+    145
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeated panel and note dropped, 180° in the readout, labels clear"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-add",
+   "kind": "sim",
+   "number": "3.28",
+   "folds": [
+    "3.29",
+    "3.30",
+    "3.31",
+    "3.32"
+   ],
+   "originals": [
+    "/media/ch03/Figure_03_03_05a.jpg",
+    "/media/ch03/Figure_03_03_06a.jpg",
+    "/media/ch03/Figure_03_03_07a.jpg",
+    "/media/ch03/Figure_03_03_08a.jpg",
+    "/media/ch03/Figure_03_03_09a-3f2c.jpg"
+   ],
+   "original_caption": "矢量 A 和 B 是一次行走的两段路，R 是合矢量，即总位移。你可以用解析法确定 R 的大小和方向。",
+   "widths": [
+    300,
+    325,
+    375,
+    325,
+    375
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: fixed 120 m scale, labeller names, no side table, θ ± 180°"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-subtract",
+   "kind": "sim",
+   "number": "3.33",
+   "originals": [
+    "/media/ch03/Figure_03_03_10a.jpg"
+   ],
+   "original_caption": "图 3.28 中所示两个矢量的减法。–B 的分量是 B 的分量的负值。减法的方法与加法相同。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: on sim-add's fixed scale and labeller; θ ± 180°, unsigned zero"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "analytical",
+   "concept": "head-to-tail-method",
+   "verb": "uses"
+  },
+  {
+   "span": "analytical",
+   "concept": "vector-in-two-dimensions",
+   "verb": "uses"
+  },
+  {
+   "span": "analytical",
+   "concept": "analytical-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "components",
+   "concept": "components-from-magnitude-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "components",
+   "concept": "vector-components",
+   "verb": "uses"
+  },
+  {
+   "span": "components",
+   "concept": "resolving-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "components",
+   "concept": "vector-in-two-dimensions",
+   "verb": "uses"
+  },
+  {
+   "span": "resultant",
+   "concept": "magnitude-direction-from-components",
+   "verb": "introduces"
+  },
+  {
+   "span": "resultant",
+   "concept": "right-triangle-resultant",
+   "verb": "uses"
+  },
+  {
+   "span": "resultant",
+   "concept": "vector-components",
+   "verb": "uses"
+  },
+  {
+   "span": "adding",
+   "concept": "analytical-vector-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "adding",
+   "concept": "resultant-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "adding",
+   "concept": "coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "adding",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "adding",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "analytical-vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-walk",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "subtraction",
+   "concept": "analytical-vector-addition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subtraction",
+   "concept": "vector-subtraction",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1611291",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding",
+   "prompt": "假设你把两个矢量 $\\mathbf{A}$ 和 $\\mathbf{B}$ 相加。它们之间什么样的相对方向会产生大小最大的合矢量？最大的大小是多少？什么样的相对方向会产生大小最小的合矢量？最小的大小是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "当两个矢量指向同一方向时合矢量最大，因为它们沿该方向的分量直接相加，此时合矢量的大小等于两个大小之和，即 $\\kA + \\kB$。当两个矢量方向相反时合矢量最小，因为沿该直线的分量尽可能相互抵消，此时合矢量的大小等于两个大小之差，即 $|\\kA - \\kB|$，仅当两个大小相等时才为零。对于它们所成的任何其他的角，合矢量的大小都介于这两个值之间。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1611340",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "prompt": "举出一个分量为零的非零矢量的例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个正东方向 5 m 的位移，沿东西轴的 $x$ 分量为 5 m，沿南北轴的 $y$ 分量为零，因为 $\\kAy = \\kA\\sin\\theta$ 而 $\\sin 0^\\circ = 0$。任何沿某一个轴的矢量，沿另一个轴的分量都为零，其余的那个分量与矢量本身一样长。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1611347",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "prompt": "解释为什么矢量的分量不可能大于它自身的大小。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "分量为 $\\kAx = \\kA\\cos\\theta$ 和 $\\kAy = \\kA\\sin\\theta$，而一个角的余弦和正弦的大小都不可能超过 1，所以每个分量至多为 $\\kA$。换个说法，矢量是它与其分量所构成的直角三角形的斜边，而斜边是直角三角形中最长的边，所以 $\\kA = \\sqrt{\\kAx^2 + \\kAy^2}$ 至少与任一条直角边一样大。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1611354",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "prompt": "如果矢量 $\\mathbf{A}$ 和 $\\mathbf{B}$ 相互垂直，那么 $\\mathbf{A}$ 沿 $\\mathbf{B}$ 方向的分量是多少？$\\mathbf{B}$ 沿 $\\mathbf{A}$ 方向的分量是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两个分量都为零。矢量沿某一方向的分量，等于它的大小乘以该矢量与该方向所成的角的余弦，而 $\\cos 90^\\circ = 0$。取 $x$ 轴沿 $\\mathbf{A}$、$y$ 轴沿 $\\mathbf{B}$ 就能看清这一点：每个矢量都沿一个轴，在另一个轴上没有分量。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1611479",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_20a-b5e9.jpg",
+    "alt": "一幅城市地图。房屋是边长各为一百二十米的方形街区。图中用不同颜色画出了 A、B、C、D 四条路径。蓝色的路径 C 先向北延伸一个街区，然后向东五个街区，再向南两个街区，再向西一个街区，再向北一个街区，最后向西三个街区。",
+    "caption": "各条线表示不同的人在城市中行走所走过的路径。所有街区的边长都是 120 m。"
+   },
+   "prompt": "求图中路径 C 的以下量：（a）所走的总路程；（b）从起点到终点的位移的大小和方向。在题目的这一部分中，请明确写出你是如何按照矢量加法解析法的各个步骤进行的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.56,
+      "unit": "km",
+      "hint": "数出路径 C 每一段沿途的街区数，一共十三个，再乘以 120 m。"
+     },
+     {
+      "part": "(b)",
+      "value": 120,
+      "unit": "m",
+      "hint": "取向东为 x 方向、向北为 y 方向；向北和向南的路段相互抵消，向东和向西的路段留下一个街区。"
+     }
+    ],
+    "solution": "（a）1.56 km （b）向东 120 m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1751204",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_19a.jpg",
+    "alt": "一幅加利福尼亚州北部的地图，以旧金山为圆心画了一个半径为一百二十三千米的圆。萨克拉门托位于这个圆的圆周上，在旧金山的东偏北四十五度方向。"
+   },
+   "prompt": "求图中从旧金山到萨克拉门托的位移的北分量和东分量。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "north component",
+      "value": 87.0,
+      "unit": "km",
+      "hint": "这个位移为 123 km，东偏北 $45^\\circ$，所以北分量是 $\\kA\\sin\\theta$。"
+     },
+     {
+      "part": "east component",
+      "value": 87.0,
+      "unit": "km",
+      "hint": "东分量是 $\\kA\\cos\\theta$，在 $45^\\circ$ 时两个分量相等。"
+     }
+    ],
+    "solution": "北分量 87.0 km，东分量 87.0 km"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "eip-287",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_21a.jpg",
+    "alt": "给定的图中显示了一个人的位移。此人的第一段位移显示为矢量 A，从原点沿 x 轴负方向。然后他向右转。他现在的位移显示为一个沿北方向的竖直矢量。图中还画出了位移矢量 R。",
+    "caption": "两个位移 A 和 B 相加，得到大小为 R、方向为 θ 的总位移 R。"
+   },
+   "prompt": "用解析技术解下面的题：假设你向正西走 18.0 m，再向正北走 25.0 m。你离起点有多远？连接起点与末位置的直线的罗盘方向是什么？（如果你像图中那样把这两段路表示为位移矢量 $\\mathbf{A}$ 和 $\\mathbf{B}$，那么这道题就是要你求它们的和 $\\mathbf{R} = \\mathbf{A} + \\mathbf{B}$。）请注意，你也可以用图解法解这道题。讨论为什么解这道题的解析技术可能比图解法更准确。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 30.8,
+    "unit": "m",
+    "hint": "取向东为 $x$、向北为 $y$，合矢量的分量为 $\\kRx = -18.0\\ \\text{m}$ 和 $\\kRy = 25.0\\ \\text{m}$；大小由勾股定理得出，方向由两条直角边之比的反正切得出。",
+    "solution": "30.8 m，北偏西 35.8º"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "eip-430",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding",
+   "figure": {
+    "src": "/media/ch03/Figure_03_02_21a.jpg",
+    "alt": "给定的图中显示了一个人的位移。此人的第一段位移显示为矢量 A，从原点沿 x 轴负方向。然后他向右转。他现在的位移显示为一个沿北方向的竖直矢量。图中还画出了位移矢量 R。",
+    "caption": "两个位移 A 和 B 相加，得到大小为 R、方向为 θ 的总位移 R。"
+   },
+   "prompt": "用解析技术重做习题 4，但把两段路的顺序颠倒，并证明你得到相同的最终结果。（这道题表明以相反的顺序相加得到相同的结果——即 $\\mathbf{B} + \\mathbf{A} = \\mathbf{A} + \\mathbf{B}$。）讨论走另一条路到达同一点，如何可能有助于绕过挡住你原来那条路的障碍。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 30.8,
+    "unit": "m",
+    "hint": "合矢量的分量是各段路的分量之和，而和与各项的顺序无关，所以 $\\kRx$ 和 $\\kRy$ 得到相同的结果。",
+    "solution": "30.8 m，北偏西 35.8º"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1629683",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "subtraction",
+   "prompt": "用解析技术重做习题 4，并把第二段路改为向正南走 $25.0\\ \\text{m}$。（这相当于从 $\\mathbf{A}$ 中减去 $\\mathbf{B}$——即求 $\\mathbf{R}' = \\mathbf{A} - \\mathbf{B}$）（b）再重做一次，但这次先向北走 $25.0\\ \\text{m}$，再向东走 $18.0\\ \\text{m}$。（这相当于从 $\\mathbf{B}$ 中减去 $\\mathbf{A}$——即求 $\\mathbf{A} = \\mathbf{B} + \\mathbf{C}$。这与你的结果一致吗？）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 30.8,
+      "unit": "m",
+      "hint": "$-\\mathbf{B}$ 的分量是 $\\mathbf{B}$ 的分量的负值，所以第二段路沿 $y$ 方向贡献 $-25.0\\ \\text{m}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 30.8,
+      "unit": "m",
+      "hint": "两段路现在的分量都为正，合矢量指向第一象限，与（a）部分的合矢量方向相反。"
+     }
+    ],
+    "solution": "（a）$30.8\\ \\text{m}$，西偏南 $54.2^\\circ$ （b）$30.8\\ \\text{m}$，东偏北 $54.2^\\circ$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1874820",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "prompt": "你在无风的空气中沿直线飞行 $32.0\\ \\text{km}$，方向为西偏南 $35.0^\\circ$。（a）求你要先向正南飞、再向正西飞才能到达同一点所需的距离。（这一确定相当于求位移沿南向和西向的分量。）（b）求你要先沿西偏南 $45.0^\\circ$ 的方向、再沿北偏西 $45.0^\\circ$ 的方向飞所需的距离。这些是位移沿另一组坐标轴的分量——一组旋转了 $45^\\circ$ 的坐标轴。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) south",
+      "value": 18.4,
+      "unit": "km",
+      "hint": "南分量是 $32.0\\ \\text{km} \\times \\sin 35.0^\\circ$。"
+     },
+     {
+      "part": "(a) west",
+      "value": 26.2,
+      "unit": "km",
+      "hint": "西分量是 $32.0\\ \\text{km} \\times \\cos 35.0^\\circ$。"
+     },
+     {
+      "part": "(b) along 45.0º south of west",
+      "value": 31.5,
+      "unit": "km",
+      "hint": "位移与旋转后的轴成 $10.0^\\circ$ 的角，所以它沿该轴的分量是 $32.0\\ \\text{km} \\times \\cos 10.0^\\circ$。"
+     },
+     {
+      "part": "(b) along 45.0º west of north",
+      "value": 5.56,
+      "unit": "km",
+      "hint": "沿另一条旋转后的轴的分量是 $32.0\\ \\text{km} \\times \\sin 10.0^\\circ$。"
+     }
+    ],
+    "solution": "（a）向南 18.4 km，再向西 26.2 km （b）沿西偏南 $45.0^\\circ$ 方向 31.5 km，再沿北偏西 $45.0^\\circ$ 方向 5.56 km"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1849688",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "adding",
+   "prompt": "为了逃离他的小岛，吉利根造了一只木筏出海。白天风向多次变化，他被依次吹过下列直线：西偏北 $45.0^\\circ$ 的 $2.50\\ \\text{km}$；然后东偏南 $60.0^\\circ$ 的 $4.70\\ \\text{km}$；然后西偏南 $25.0^\\circ$ 的 $1.30\\ \\text{km}$；然后正东 $5.10\\ \\text{km}$；然后北偏东 $5.00^\\circ$ 的 $1.70\\ \\text{km}$；然后西偏南 $55.0^\\circ$ 的 $7.20\\ \\text{km}$；最后东偏北 $10.0^\\circ$ 的 $2.80\\ \\text{km}$。他相对于小岛的末位置在哪里？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.34,
+    "unit": "km",
+    "hint": "取向东为 $x$、向北为 $y$，求出七段路各自的分量并注意正负号，把 $x$ 分量和 $y$ 分量分别相加，然后求合矢量的大小和方向。",
+    "solution": "$7.34\\ \\text{km}$，东偏南 $63.5^\\circ$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "resultant-vector"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "analytical-vector-addition",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "components-from-magnitude-angle"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "components-from-magnitude-angle"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnitude-direction-from-components"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "components-from-magnitude-angle"
+  },
+  {
+   "exercise": "p1",
+   "concept": "analytical-vector-addition"
+  },
+  {
+   "exercise": "p1",
+   "concept": "magnitude-direction-from-components"
+  },
+  {
+   "exercise": "p1",
+   "concept": "distance-traveled",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "components-from-magnitude-angle"
+  },
+  {
+   "exercise": "p3",
+   "concept": "resolving-vector",
+   "weight": 1
+  },
+  {
+   "exercise": "p4",
+   "concept": "analytical-vector-addition"
+  },
+  {
+   "exercise": "p4",
+   "concept": "magnitude-direction-from-components"
+  },
+  {
+   "exercise": "p4",
+   "concept": "right-triangle-resultant",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "analytical-vector-addition"
+  },
+  {
+   "exercise": "p5",
+   "concept": "vector-addition-commutative"
+  },
+  {
+   "exercise": "p7",
+   "concept": "analytical-vector-addition"
+  },
+  {
+   "exercise": "p7",
+   "concept": "vector-subtraction"
+  },
+  {
+   "exercise": "p9",
+   "concept": "components-from-magnitude-angle"
+  },
+  {
+   "exercise": "p9",
+   "concept": "resolving-vector"
+  },
+  {
+   "exercise": "p11",
+   "concept": "analytical-vector-addition"
+  },
+  {
+   "exercise": "p11",
+   "concept": "components-from-magnitude-angle",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  }
+ ]
+}

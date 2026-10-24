@@ -1,0 +1,705 @@
+{
+ "id": "23",
+ "dir": "ch23",
+ "title": "电磁感应、交流电路与电气技术",
+ "intro": {
+  "module": "m42389",
+  "slug": "23-introduction-to-electromagnetic-induction-ac-circuits-and-electrical-technologies"
+ },
+ "sections": [
+  {
+   "id": "23.1",
+   "module": "m42390",
+   "title": "感应电动势与磁通量",
+   "slug": "23-1-induced-emf-and-magnetic-flux"
+  },
+  {
+   "id": "23.2",
+   "module": "m42392",
+   "title": "法拉第电磁感应定律：楞次定律",
+   "slug": "23-2-faradays-law-of-induction-lenzs-law"
+  },
+  {
+   "id": "23.3",
+   "module": "m42400",
+   "title": "动生电动势",
+   "slug": "23-3-motional-emf"
+  },
+  {
+   "id": "23.4",
+   "module": "m42404",
+   "title": "涡流与磁阻尼",
+   "slug": "23-4-eddy-currents-and-magnetic-damping"
+  },
+  {
+   "id": "23.5",
+   "module": "m42408",
+   "title": "发电机",
+   "slug": "23-5-electric-generators"
+  },
+  {
+   "id": "23.6",
+   "module": "m42411",
+   "title": "反电动势",
+   "slug": "23-6-back-emf"
+  },
+  {
+   "id": "23.7",
+   "module": "m42414",
+   "title": "变压器",
+   "slug": "23-7-transformers"
+  },
+  {
+   "id": "23.8",
+   "module": "m42416",
+   "title": "电气安全：系统与装置",
+   "slug": "23-8-electrical-safety-systems-and-devices"
+  },
+  {
+   "id": "23.9",
+   "module": "m42420",
+   "title": "电感",
+   "slug": "23-9-inductance"
+  },
+  {
+   "id": "23.10",
+   "module": "m42425",
+   "title": "RL 电路",
+   "slug": "23-10-rl-circuits"
+  },
+  {
+   "id": "23.11",
+   "module": "m42427",
+   "title": "电抗：感抗与容抗",
+   "slug": "23-11-reactance-inductive-and-capacitive"
+  },
+  {
+   "id": "23.12",
+   "module": "m42431",
+   "title": "RLC 串联交流电路",
+   "slug": "23-12-rlc-series-ac-circuits"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "Φ",
+   "concept": "magnetic-flux",
+   "meaning": "通过一块面积的磁通量，即穿过该面积的磁场的量",
+   "unit": "T·m²",
+   "section": "23.1",
+   "anchor": "23.1-flux-defined"
+  },
+  {
+   "sym": "B_mag",
+   "concept": "magnetic-field-strength-defined",
+   "meaning": "计算磁通量所取面积上的磁感应强度",
+   "unit": "T",
+   "section": "23.1",
+   "anchor": "23.1-flux-defined"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "计算磁通量所取的面积",
+   "unit": "m²",
+   "section": "23.1",
+   "anchor": "23.1-flux-defined"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "磁场与该面积法线之间的夹角",
+   "unit": "°",
+   "section": "23.1",
+   "anchor": "23.1-flux-defined"
+  },
+  {
+   "sym": "ΔΦ",
+   "concept": "magnetic-flux",
+   "meaning": "磁通量的变化，它感应出电动势",
+   "unit": "T·m²",
+   "section": "23.2",
+   "anchor": "23.2-faradays-and-lenzs-law"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "磁通量变化所用的时间",
+   "unit": "s",
+   "section": "23.2",
+   "anchor": "23.2-faradays-and-lenzs-law"
+  },
+  {
+   "sym": "emf",
+   "concept": "emf",
+   "meaning": "变化的磁通量所感应的电动势",
+   "unit": "V",
+   "section": "23.2",
+   "anchor": "23.2-faradays-and-lenzs-law"
+  },
+  {
+   "sym": "N_count",
+   "concept": "number-of-turns",
+   "meaning": "线圈的匝数，每一匝都贡献它自己的电动势",
+   "section": "23.2",
+   "anchor": "23.2-faradays-and-lenzs-law"
+  },
+  {
+   "sym": "ΔA",
+   "concept": "area",
+   "meaning": "移动的杆在导轨之间扫过的面积",
+   "unit": "m²",
+   "section": "23.3",
+   "anchor": "23.3-rod-on-rails"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "杆沿导轨的速率",
+   "unit": "m/s",
+   "section": "23.3",
+   "anchor": "23.3-rod-on-rails"
+  },
+  {
+   "sym": "l",
+   "concept": "length",
+   "meaning": "导轨之间的距离，即杆处于磁场中的长度",
+   "unit": "m",
+   "section": "23.3",
+   "anchor": "23.3-rod-on-rails"
+  },
+  {
+   "sym": "emf_0",
+   "concept": "peak-emf",
+   "meaning": "发电机的峰值电动势，线圈转过磁场最快时达到",
+   "unit": "V",
+   "section": "23.5",
+   "anchor": "23.5-the-emf-at-each-instant"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "发电机线圈转动的恒定角速度",
+   "unit": "rad/s",
+   "section": "23.5",
+   "anchor": "23.5-the-emf-at-each-instant"
+  },
+  {
+   "sym": "T",
+   "concept": "period",
+   "meaning": "发电机输出的周期，即转一圈的时间",
+   "unit": "s",
+   "section": "23.5",
+   "anchor": "23.5-the-emf-at-each-instant"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "发电机输出的频率",
+   "unit": "Hz",
+   "section": "23.5",
+   "anchor": "23.5-the-emf-at-each-instant"
+  },
+  {
+   "sym": "V_prim",
+   "concept": "potential-difference",
+   "meaning": "原线圈两端的电压，即变压器的输入",
+   "unit": "V",
+   "section": "23.7",
+   "anchor": "23.7-the-transformer-equation",
+   "ref": "primary"
+  },
+  {
+   "sym": "V_sec",
+   "concept": "potential-difference",
+   "meaning": "副线圈两端的电压，即变压器的输出",
+   "unit": "V",
+   "section": "23.7",
+   "anchor": "23.7-the-transformer-equation",
+   "ref": "secondary"
+  },
+  {
+   "sym": "N_prim",
+   "concept": "number-of-turns",
+   "meaning": "原线圈的匝数",
+   "section": "23.7",
+   "anchor": "23.7-the-transformer-equation"
+  },
+  {
+   "sym": "N_sec",
+   "concept": "number-of-turns",
+   "meaning": "副线圈的匝数",
+   "section": "23.7",
+   "anchor": "23.7-the-transformer-equation"
+  },
+  {
+   "sym": "I_prim",
+   "concept": "electric-current",
+   "meaning": "原线圈吸取的电流",
+   "unit": "A",
+   "section": "23.7",
+   "anchor": "23.7-currents-and-power",
+   "ref": "primary"
+  },
+  {
+   "sym": "I_sec",
+   "concept": "electric-current",
+   "meaning": "副线圈输出的电流",
+   "unit": "A",
+   "section": "23.7",
+   "anchor": "23.7-currents-and-power",
+   "ref": "secondary"
+  },
+  {
+   "sym": "P_prim",
+   "concept": "power",
+   "meaning": "输入变压器的功率，对好的变压器等于输出功率",
+   "unit": "W",
+   "section": "23.7",
+   "anchor": "23.7-currents-and-power",
+   "ref": "primary"
+  },
+  {
+   "sym": "P_sec",
+   "concept": "power",
+   "meaning": "变压器输出的功率",
+   "unit": "W",
+   "section": "23.7",
+   "anchor": "23.7-currents-and-power",
+   "ref": "secondary"
+  },
+  {
+   "sym": "M_ind",
+   "concept": "mutual-inductance",
+   "meaning": "两个器件的互感，即每一个在另一个中感应出电动势的效率",
+   "unit": "H",
+   "section": "23.9",
+   "anchor": "23.9-inductors"
+  },
+  {
+   "sym": "L_ind",
+   "concept": "self-inductance",
+   "meaning": "器件的自感，即它自己变化的电流在它自身中感应出电动势的效率",
+   "unit": "H",
+   "section": "23.9",
+   "anchor": "23.9-self-inductance"
+  },
+  {
+   "sym": "ΔI_curr",
+   "concept": "electric-current",
+   "meaning": "通过器件的电流的变化",
+   "unit": "A",
+   "section": "23.9",
+   "anchor": "23.9-self-inductance"
+  },
+  {
+   "sym": "E_ind",
+   "concept": "energy-stored-in-an-inductor",
+   "meaning": "储存在电感器磁场中的能量",
+   "unit": "J",
+   "section": "23.9",
+   "anchor": "23.9-inductor-energy"
+  },
+  {
+   "sym": "μ_0",
+   "concept": "permeability-of-free-space",
+   "meaning": "真空磁导率，4π × 10⁻⁷ T·m/A",
+   "unit": "T·m/A",
+   "section": "23.9",
+   "anchor": "23.9-calculating-inductance"
+  },
+  {
+   "sym": "τ_RL",
+   "concept": "rl-time-constant",
+   "meaning": "RL 电路的特征时间常量，电流走完剩余部分的 0.632 所用的时间",
+   "unit": "s",
+   "section": "23.10",
+   "anchor": "23.10-current-turning-on"
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "电路的总电阻",
+   "unit": "Ω",
+   "section": "23.10",
+   "anchor": "23.10-current-turning-on"
+  },
+  {
+   "sym": "I_0curr",
+   "concept": "electric-current",
+   "meaning": "RL 电路接通时趋于的终值电流，以及断开时的初始电流",
+   "unit": "A",
+   "section": "23.10",
+   "anchor": "23.10-current-turning-on"
+  },
+  {
+   "sym": "X_L",
+   "concept": "inductive-reactance",
+   "meaning": "感抗，即电感器对交流电的反抗",
+   "unit": "Ω",
+   "section": "23.11",
+   "anchor": "23.11-inductors-and-inductive-reactance",
+   "ref": "inductor"
+  },
+  {
+   "sym": "X_C",
+   "concept": "capacitive-reactance",
+   "meaning": "容抗，即电容器对交流电的反抗",
+   "unit": "Ω",
+   "section": "23.11",
+   "anchor": "23.11-capacitors-and-capacitive-reactance",
+   "ref": "capacitor"
+  },
+  {
+   "sym": "C_cap",
+   "concept": "capacitance",
+   "meaning": "接在交流电源上的电容器的电容",
+   "unit": "F",
+   "section": "23.11",
+   "anchor": "23.11-capacitors-and-capacitive-reactance"
+  },
+  {
+   "sym": "Z_imp",
+   "concept": "impedance",
+   "meaning": "电路的阻抗，即其电阻与两个电抗合起来的反抗",
+   "unit": "Ω",
+   "section": "23.12",
+   "anchor": "23.12-impedance"
+  },
+  {
+   "sym": "f_0",
+   "concept": "resonant-frequency-of-an-rlc-circuit",
+   "meaning": "共振频率，此时两个电抗相互抵消，阻抗最小",
+   "unit": "Hz",
+   "section": "23.12",
+   "anchor": "23.12-resonance-in-rlc-series-ac-circuits"
+  },
+  {
+   "sym": "ϕ",
+   "concept": "phase-angle",
+   "type": "angle",
+   "meaning": "电源电压与电流之间的相位角",
+   "unit": "°",
+   "section": "23.12",
+   "anchor": "23.12-power-in-rlc-series-ac-circuits"
+  },
+  {
+   "sym": "I_rms",
+   "concept": "rms-values",
+   "type": "current",
+   "meaning": "电路中的方均根电流",
+   "unit": "A",
+   "section": "23.12",
+   "anchor": "23.12-impedance"
+  },
+  {
+   "sym": "V_rms",
+   "concept": "rms-values",
+   "type": "voltage",
+   "meaning": "电源的方均根电压",
+   "unit": "V",
+   "section": "23.12",
+   "anchor": "23.12-impedance"
+  },
+  {
+   "sym": "P_ave",
+   "concept": "power",
+   "meaning": "输送给电路的平均功率",
+   "unit": "W",
+   "section": "23.12",
+   "anchor": "23.12-power-in-rlc-series-ac-circuits"
+  },
+  {
+   "sym": "V_R",
+   "concept": "potential-difference",
+   "meaning": "电阻器两端的电压",
+   "unit": "V",
+   "section": "23.12",
+   "ref": "resistor"
+  },
+  {
+   "sym": "V_L",
+   "concept": "potential-difference",
+   "meaning": "电感器两端的电压",
+   "unit": "V",
+   "section": "23.12",
+   "ref": "inductor"
+  },
+  {
+   "sym": "V_C",
+   "concept": "potential-difference",
+   "meaning": "电容器两端的电压",
+   "unit": "V",
+   "section": "23.12",
+   "ref": "capacitor"
+  },
+  {
+   "sym": "V_0R",
+   "concept": "potential-difference",
+   "meaning": "电阻器两端的峰值电压",
+   "unit": "V",
+   "section": "23.12",
+   "ref": "resistor"
+  },
+  {
+   "sym": "V_0L",
+   "concept": "potential-difference",
+   "meaning": "电感器两端的峰值电压",
+   "unit": "V",
+   "section": "23.12",
+   "ref": "inductor"
+  },
+  {
+   "sym": "V_0C",
+   "concept": "potential-difference",
+   "meaning": "电容器两端的峰值电压",
+   "unit": "V",
+   "section": "23.12",
+   "ref": "capacitor"
+  },
+  {
+   "sym": "B_mag",
+   "concept": "magnetic-field-strength-defined",
+   "section": "23.4",
+   "meaning": "导体所穿过磁场的磁感应强度；涡流所受的阻力随它增大",
+   "unit": "T",
+   "anchor": "23.4-eddy-currents"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "section": "23.4",
+   "meaning": "导体穿过磁场的速率，它决定通过导体的磁通量变化得多快",
+   "unit": "m/s",
+   "anchor": "23.4-eddy-currents"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "section": "23.4",
+   "meaning": "导体内部感应出的涡流，一个没有导线引导的电流回路",
+   "unit": "A",
+   "anchor": "23.4-eddy-currents"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "section": "23.4",
+   "meaning": "作用在涡流上的磁力，它总是反抗产生它的运动",
+   "unit": "N",
+   "anchor": "23.4-eddy-currents"
+  },
+  {
+   "sym": "x",
+   "concept": "position",
+   "section": "23.4",
+   "meaning": "板或摆锤相对于出发位置的位移，磁阻尼使它趋于静止",
+   "unit": "m",
+   "anchor": "23.4-eddy-currents"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "section": "23.6",
+   "meaning": "电动机转轴的角速度，它决定电动机对抗自己电源所产生的反电动势",
+   "unit": "rad/s",
+   "anchor": "23.6-motor-as-generator"
+  },
+  {
+   "sym": "emf",
+   "concept": "emf",
+   "section": "23.6",
+   "meaning": "运转的电动机产生的反电动势，由变化的磁通量感应出的、反抗驱动它的电压的电动势",
+   "unit": "V",
+   "anchor": "23.6-motor-as-generator"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "section": "23.6",
+   "meaning": "电动机吸取的电流，由电源电压与反电动势之差决定",
+   "redefines": true,
+   "unit": "A",
+   "anchor": "23.6-back-emf-and-speed"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "磁通量所穿过的线圈环的面积，圆形线圈环为 πr²",
+   "unit": "m²",
+   "section": "23.2",
+   "anchor": "23.2-ex-induced-emf"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "磁场与线圈环法线之间的夹角",
+   "unit": "°",
+   "section": "23.2",
+   "anchor": "23.2-ex-induced-emf"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "单匝线圈环的半径",
+   "unit": "m",
+   "section": "23.2",
+   "anchor": "23.2-ex-induced-emf"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "杆、导轨和电阻器围成的面积，磁场垂直于它",
+   "unit": "m²",
+   "section": "23.3",
+   "anchor": "23.3-rod-on-rails"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "磁场与该面积法线之间的夹角，或速度与磁场之间的夹角",
+   "unit": "°",
+   "section": "23.3",
+   "anchor": "23.3-rod-on-rails"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "沿杆和导轨构成的回路或沿系绳感应出的电流",
+   "unit": "A",
+   "section": "23.3",
+   "anchor": "23.3-relative-motion",
+   "redefines": true
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "发电机线圈的面积，圆形线圈为 πr²，矩形线圈为 ℓw",
+   "unit": "m²",
+   "section": "23.5",
+   "anchor": "23.5-ex-emf-in-a-generator-coil"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "磁场与线圈法线之间的夹角，也是侧边导线的速度与磁场之间的夹角",
+   "unit": "°",
+   "section": "23.5",
+   "anchor": "23.5-ex-emf-in-a-generator-coil"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "圆形线圈的半径，或侧边导线到转轴的距离，即线圈宽度的一半",
+   "unit": "m",
+   "section": "23.5",
+   "anchor": "23.5-ex-emf-in-a-generator-coil"
+  },
+  {
+   "sym": "w_loop",
+   "concept": "length",
+   "meaning": "矩形线圈的宽度，即转轴到每条侧边导线距离的两倍",
+   "unit": "m",
+   "section": "23.5",
+   "anchor": "23.5-the-emf-at-each-instant"
+  },
+  {
+   "sym": "Δθ",
+   "concept": "rotation-angle",
+   "meaning": "线圈在时间 Δt 内转过的角度",
+   "unit": "rad",
+   "section": "23.5",
+   "anchor": "23.5-ex-maximum-emf-of-a-generator"
+  },
+  {
+   "sym": "θ_1",
+   "concept": "angle",
+   "meaning": "区间开始时线圈已经转过的角度",
+   "unit": "°",
+   "section": "23.5",
+   "anchor": "23.5-sim-average-emf"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "螺线管的横截面积，πr²",
+   "unit": "m²",
+   "section": "23.9",
+   "anchor": "23.9-calculating-inductance"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "螺线管的半径",
+   "unit": "m",
+   "section": "23.9",
+   "anchor": "23.9-ex-self-inductance-of-a-solenoid"
+  },
+  {
+   "sym": "I_onecurr",
+   "concept": "electric-current",
+   "meaning": "线圈 1 中的电流，其变化在线圈 2 中感应出电动势",
+   "unit": "A",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-1",
+   "redefines": true
+  },
+  {
+   "sym": "I_twocurr",
+   "concept": "electric-current",
+   "meaning": "线圈 2 中的电流，其变化在线圈 1 中感应出电动势",
+   "unit": "A",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-2",
+   "redefines": true
+  },
+  {
+   "sym": "emf_one",
+   "concept": "emf",
+   "meaning": "线圈 2 中电流的变化在线圈 1 中感应出的电动势",
+   "unit": "V",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-1",
+   "redefines": true
+  },
+  {
+   "sym": "emf_two",
+   "concept": "emf",
+   "meaning": "线圈 1 中电流的变化在线圈 2 中感应出的电动势",
+   "unit": "V",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-2",
+   "redefines": true
+  },
+  {
+   "sym": "X_L",
+   "concept": "inductive-reactance",
+   "meaning": "串联电路中电感器的感抗",
+   "unit": "Ω",
+   "section": "23.12",
+   "anchor": "23.12-impedance",
+   "ref": "inductor"
+  },
+  {
+   "sym": "X_C",
+   "concept": "capacitive-reactance",
+   "meaning": "串联电路中电容器的容抗",
+   "unit": "Ω",
+   "section": "23.12",
+   "anchor": "23.12-impedance",
+   "ref": "capacitor"
+  },
+  {
+   "sym": "Q_charge",
+   "concept": "electric-charge",
+   "meaning": "电容器上的电荷，完全放电时为零",
+   "unit": "C",
+   "section": "23.11",
+   "anchor": "23.11-capacitors-and-capacitive-reactance"
+  }
+ ]
+}

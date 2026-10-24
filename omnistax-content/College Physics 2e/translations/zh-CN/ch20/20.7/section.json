@@ -1,0 +1,717 @@
+{
+ "id": "20.7",
+ "module": "m42352",
+ "chapter": "20",
+ "title": "神经传导与心电图",
+ "short": "神经传导与心电图",
+ "lead": "神经和肌肉也传送<span data-concept=\"electric-current\">电流</span>，但它们的载流子是穿过细胞膜的离子，而不是沿导线运动的电子。膜两侧的<span data-concept=\"potential-difference\">电压</span>成为沿轴突传播的脉冲，心脏中的同一过程则描记出一张心电图。",
+ "objectives": [
+  "说明电信号沿神经元传递的过程。",
+  "说明髓鞘对信号传播的影响。",
+  "说明心电图信号的各个特征所表明的含义。"
+ ],
+ "summary_html": "<ul><li>神经元和其他细胞中的<span data-concept=\"electric-potential\">电势</span>是由半透膜两侧的离子浓度差产生的。</li><li>刺激改变通透性并产生沿神经元传播的动作电位。</li><li>髓鞘加快这一过程，并减少所需的<span data-concept=\"energy\">能量</span>输入。</li><li>心脏中的这一过程可以用心电图（ECG）来测量。</li></ul>",
+ "notes": "指向 PhET 模拟“神经元”的链接被略去，书中没有给出答案的那道题也被略去，该题要求求出收缩压滞后于 QRS 波群中点的时间，并说明滞后的原因。批判性思考题的答案按书中印出的样子给出，并对题干和（b）问作了更正，（b）问的核对值为 $3.3\\times 10^{-3}$ J/s；其中包括（a）问把能量损失写成 $3.25\\times 10^{-3}$ J/s 的笔误（该题题干给出的是第一秒内 3.25 MJ），以及把焦耳写成 j。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案，书中没有给出答案的那道题被略去，并在本节的说明中指出。三道思考题是开放题，附有 AI 撰写的建议思路，并已标明。批判性思考题就是书中在此处印出的那一道，除本节自身的概念外，还标注了第 20.3 节和第 20.4 节的电阻率、电阻随温度的变化和电功率。本节没有理解检测框，也没有 AP 备考练习。",
+ "figures": [
+  {
+   "id": "sim-neuron",
+   "kind": "sim",
+   "number": "20.24",
+   "originals": [
+    "/media/ch20/Figure_21_07_01a.jpg"
+   ],
+   "original_caption": "一个带有树突和长轴突的神经元。电流形式的信号经树突并穿过突触到达胞体，刺激神经元产生自己的信号，沿轴突向下发送。互连的数量可能远多于此处所示。",
+   "widths": [
+    215
+   ],
+   "draws": [
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout speed through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-membrane",
+   "kind": "sim",
+   "number": "20.25",
+   "originals": [
+    "/media/ch20/Figure_21_07_02a.jpg"
+   ],
+   "original_caption": "细胞的半透膜内外离子浓度不同。扩散使 K+ 和 Cl− 离子沿图示方向移动，直到库仑力阻止进一步转移。这就在外侧形成一层正电荷，在内侧形成一层负电荷，从而在细胞膜两侧产生电压。该膜在正常情况下对 Na+ 不可通透。",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "electric-field",
+    "position"
+   ],
+   "conventions": [
+    "Na",
+    "K",
+    "Cl"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "state picker as a dropdown; its label as text"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-action-potential",
+   "kind": "sim",
+   "number": "20.26",
+   "originals": [
+    "/media/ch20/Figure_21_07_03a.jpg"
+   ],
+   "original_caption": "动作电位是此处作图所示的神经细胞内的电压脉冲。它由离子穿过细胞膜的运动引起，如图所示。去极化发生在刺激使膜对 Na+ 离子可通透时。复极化随后发生，此时膜再次对 Na+ 不可通透，而 K+ 从高浓度处移向低浓度处。从长远看，主动运输缓慢地维持浓度差，但细胞可以连续快速地激发数百次而不会使浓度差严重耗尽。",
+   "widths": [
+    600
+   ],
+   "draws": [
+    "voltage",
+    "time"
+   ],
+   "conventions": [
+    "Na",
+    "K"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label kept off the membrane; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-impulse",
+   "kind": "sim",
+   "number": "20.27",
+   "folds": [
+    "20.28"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_07_04a.jpg",
+    "/media/ch20/Figure_21_07_05a.jpg"
+   ],
+   "original_caption": "神经冲动是动作电位沿细胞膜的传播。刺激在某一位置引起动作电位，它改变相邻膜的通透性，在那里引起动作电位。这又影响更远处的膜，使动作电位沿细胞膜缓慢地（就电学而言）移动。尽管冲动是由 Na+ 和 K+ 穿过膜造成的，但它等效于一个电荷波沿膜的外侧和内侧移动。",
+   "widths": [
+    450,
+    400
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "position",
+    "time"
+   ],
+   "conventions": [
+    "Na",
+    "K"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout speed through the macros; choice label as text"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-eel",
+   "kind": "photo",
+   "number": "20.29",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-ecg",
+   "kind": "sim",
+   "number": "20.30",
+   "folds": [
+    "20.31"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_07_07a.jpg",
+    "/media/ch20/Figure_21_07_08a.jpg"
+   ],
+   "original_caption": "去极化期间，心脏外表面由正变负。这一去极化波从心脏顶部向外扩展，用一个指向波传播方向的矢量表示。这个矢量是电压（电势差）矢量。三个电极，标为 RA、LA 和 LL，放在患者身上。每一对（称为第 I、II 和 III 导联）测量去极化矢量的一个分量，并在心电图中画出。",
+   "widths": [
+    225,
+    275
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "time",
+    "pressure",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "round potential ticks; graph clear of headline; label as text"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: four-chamber heart, wave chamber by chamber, leads as components"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-electrodes",
+   "kind": "sim",
+   "number": "20.32",
+   "originals": [
+    "/media/ch20/OSX_CP2e_Figure_21_07_09.jpg"
+   ],
+   "original_caption": "在 12 导联心电图中，六个电极放在胸部，四个电极放在四肢。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "choice labels as text; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "nerve-conduction",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "nerve-conduction",
+   "concept": "bioelectricity",
+   "verb": "introduces"
+  },
+  {
+   "span": "resting-potential",
+   "concept": "resting-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "resting-potential",
+   "concept": "semipermeable-membrane",
+   "verb": "uses"
+  },
+  {
+   "span": "resting-potential",
+   "concept": "diffusion",
+   "verb": "uses"
+  },
+  {
+   "span": "resting-potential",
+   "concept": "coulombs-law",
+   "verb": "uses"
+  },
+  {
+   "span": "resting-potential",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "resting-potential",
+   "concept": "voltage-across-uniform-field",
+   "verb": "uses"
+  },
+  {
+   "span": "action-potential",
+   "concept": "action-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "action-potential",
+   "concept": "resting-potential",
+   "verb": "uses"
+  },
+  {
+   "span": "action-potential",
+   "concept": "active-transport",
+   "verb": "uses"
+  },
+  {
+   "span": "nerve-impulse",
+   "concept": "nerve-impulse-propagation",
+   "verb": "introduces"
+  },
+  {
+   "span": "nerve-impulse",
+   "concept": "action-potential",
+   "verb": "uses"
+  },
+  {
+   "span": "nerve-impulse",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "myelin",
+   "concept": "myelin-sheath",
+   "verb": "introduces"
+  },
+  {
+   "span": "myelin",
+   "concept": "nerve-impulse-propagation",
+   "verb": "uses"
+  },
+  {
+   "span": "myelin",
+   "concept": "insulator",
+   "verb": "uses"
+  },
+  {
+   "span": "myelin",
+   "concept": "ir-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "electrocardiograms",
+   "concept": "electrocardiogram",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrocardiograms",
+   "concept": "action-potential",
+   "verb": "uses"
+  },
+  {
+   "span": "electrocardiograms",
+   "concept": "nerve-impulse-propagation",
+   "verb": "uses"
+  },
+  {
+   "span": "electrocardiograms",
+   "concept": "potential-difference",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1824212",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resting-potential",
+   "prompt": "请注意，在图 20.25 中，浓度梯度和库仑力都倾向于把 ${\\text{Na}}^{+}$ 离子移入细胞。是什么阻止了这一点？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是膜本身阻止了这一点。在静息状态下，细胞膜是半透的：它让钾离子和氯离子通过，却不让钠离子通过，所以无论扩散和库仑力把钠向内拉得多么强烈，钠都没有可走的通路。这两种作用都是真实存在的，而且正是它们使下一段所述受到刺激的膜表现出那样的行为。一旦刺激改变了通透性，使膜对钠开放，钠离子就在这两种作用下同时涌入，而这一涌入就是动作电位的开端。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3006662",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "action-potential",
+   "prompt": "定义去极化、复极化和动作电位。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "去极化是细胞膜某一小块上电荷分离的消失。刺激使膜对钠变得可通透，钠离子涌入，膜的内侧原本约为 −90 mV，先是被中和，随后变为略带正电。复极化是这种电荷分离的恢复。去极化使膜再次对钠关闭，钾从内部的高浓度处移向外部的低浓度处，膜的内侧回落到其静息电位。动作电位是二者共同构成的电压脉冲：在膜上某一位置，在几毫秒内，从静息电位升到一个正的峰值，再降回来。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1860317",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "myelin",
+   "prompt": "根据髓磷脂的绝缘性质，解释有髓鞘神经的性质。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "髓磷脂是一种含脂肪的绝缘体，有髓鞘轴突的每一项性质都由此而来。绝缘体不让电荷通过，所以一条轴突中的信号不会漏到旁边的轴突中，因而没有串扰。被髓鞘包裹的区段像带有电阻的普通导体那样传输信号，而不是一块一块地激发动作电位，所以信号通过它们很快，并且不消耗细胞能量。代价是电压：沿髓鞘存在 $\\text{IR}$ 信号损失，脉冲到达远端时比起始时小。无髓鞘的间隙，即郎飞结，使这种损失无害，因为在那里脉冲触发一个完整的动作电位，恢复其完整的电压。因此，有髓鞘的轴突比无髓鞘的轴突更快、能量消耗更少、受到的保护更好，而多发性硬化会破坏髓鞘，使这三个优点全部丧失。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2968147",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "electrocardiograms",
+   "tag": "综合概念",
+   "prompt": "假设两次搏动之间的时间恒定，利用图 20.31 中的心电图求心率，以每分钟的搏动次数计。",
+   "answer": {
+    "type": "number",
+    "value": 80,
+    "unit": "beats/minute",
+    "generated_by": "source",
+    "hint": "从横轴上读出一个 R 峰到下一个 R 峰的时间；心率就是一分钟内有多少个这样的间隔。",
+    "solution": "80 次/min"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "exer-11111",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "myelin",
+   "tag": "批判性思考",
+   "prompt": "一根长 1.25 m 的铜线接在电路中。有 2.50 A 的电流流过这根导线。（a）起初电路处于 $20.0\\text{°}\\text{C}$。如果电路一接通，导线在第一秒内就造成 3.25 MJ<sup class=\"fn\" data-note=\"c-p2-mj\"></sup> 的能量损失，导线的半径是多少？（b）导线升温 $3.000\\text{°}\\text{C}$ 之后，电路每秒耗散多少能量？由于导线被认为在物理上受到约束而不能膨胀，忽略热膨胀的影响。假设电流保持不变。（c）在什么温度下，能量耗散会比实验开始时高 1.00%？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3.63,
+      "unit": "mm",
+      "hint": "耗散的功率为 $I^2R$，导线的电阻为 $\\rho L/A$，其中 $A = \\pi r^2$。"
+     },
+     {
+      "part": "b",
+      "value": 0.0033,
+      "unit": "J/s",
+      "hint": "温度升高通过 $\\rho = \\rho_0(1 + \\alpha \\Delta T)$ 使电阻率增大，功率随之变化。"
+     },
+     {
+      "part": "c",
+      "value": 23,
+      "unit": "°C",
+      "hint": "耗散与电阻率成正比，所以要问的是温度变化多少才能使电阻率增大百分之一。"
+     }
+    ],
+    "solution": "（a）$\\begin{array}{l}\\frac{3.25\\times {10}^{-3}}{1}\\text{j/s}=Power={I}^{2}R=\\frac{1}{{r}^{2}}\\frac{{(2.50)}^{2}(1.72\\times {10}^{-8})(1.25)}{\\pi}{\\text{jm}}^{2}\\text{/s} \\\\ r=\\sqrt{\\frac{{(2.50)}^{2}(1.72\\times {10}^{-8})(1.25)}{0.00325\\pi}}=3.63\\text{mm}\\end{array}$\n\n（b）$Power=\\frac{{(2.50)}^{2}(1.74\\times {10}^{-8})(1.25)}{{(3.63\\times {10}^{-3})}^{2}\\pi}\\text{j/s}$，所以 1 s 内消耗 3.28 j 的能量。由于表中 $\\alpha$ 只给出两位有效数字，修约为 3.3 j。<sup class=\"fn\" data-note=\"c-p2-b\"></sup>\n\n（c）由于能量耗散与电阻率成正比，能量耗散增加 0.01% 对应于电阻率增加 1%。即 $1.01=1+0.0039\\Delta T$。$T=23{}^{\\circ}\\text{C}$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "resting-potential"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "semipermeable-membrane",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "coulombs-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "action-potential"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "resting-potential",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "myelin-sheath"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "insulator",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "ir-drop",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "electrocardiogram"
+  },
+  {
+   "exercise": "p2",
+   "concept": "electric-power"
+  },
+  {
+   "exercise": "p2",
+   "concept": "resistivity",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "resistance-and-temperature",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "resistance-of-cylinder",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "axon",
+   "label": "图 20.24 中神经元的长轴突",
+   "figures": [
+    "sim-neuron"
+   ]
+  },
+  {
+   "id": "membrane",
+   "label": "图 20.25 中处于静息状态的细胞膜",
+   "figures": [
+    "sim-membrane"
+   ]
+  },
+  {
+   "id": "bare-membrane",
+   "label": "图 20.27 中无髓鞘的膜",
+   "figures": [
+    "sim-impulse"
+   ]
+  },
+  {
+   "id": "myelinated-axon",
+   "label": "图 20.28 中有髓鞘的轴突",
+   "figures": [
+    "sim-impulse"
+   ]
+  },
+  {
+   "id": "heart",
+   "label": "心脏",
+   "figures": [
+    "sim-ecg"
+   ]
+  },
+  {
+   "id": "ra",
+   "label": "右臂上的电极 RA",
+   "figures": [
+    "sim-ecg"
+   ]
+  },
+  {
+   "id": "la",
+   "label": "左臂上的电极 LA",
+   "figures": [
+    "sim-ecg"
+   ]
+  },
+  {
+   "id": "ll",
+   "label": "左腿上的电极 LL",
+   "figures": [
+    "sim-ecg"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p2-mj",
+   "kind": "correction",
+   "html": "书中印的是 3.25 MJ。书后答案按第一秒内 $3.25\\times 10^{-3}$ J，即 3.25 mJ 来计算，正是这一损失给出 3.63 mm 的半径。"
+  },
+  {
+   "id": "c-p2-b",
+   "kind": "correction",
+   "html": "书后答案在（b）中给出 3.28 J。它所写出的功率，由（a）的 $3.25\\times 10^{-3}$ J/s 乘以 $1.74/1.72$ 缩放而得，为 $3.3\\times 10^{-3}$ J/s，这就是该题核对的值；（c）中所指的是 1% 的升高，而不是 0.01%。"
+  }
+ ]
+}

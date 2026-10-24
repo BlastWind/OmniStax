@@ -1,0 +1,1132 @@
+{
+ "id": "10.4",
+ "module": "m42180",
+ "chapter": "10",
+ "title": "转动动能：再论功和能量",
+ "short": "转动动能",
+ "lead": "电动机必须做<span data-concept=\"work\">功</span>才能使<span data-ref=\"grindstone\">砂轮</span>转起来，<span data-ref=\"grindstone\">砂轮</span>则把这份<span data-concept=\"work\">功</span>以其自身转动的<span data-concept=\"energy\">能量</span>保存下来。本节求出力矩所做的<span data-concept=\"work\">功</span>和转动物体所具有的<span data-concept=\"rotational-kinetic-energy\">转动动能</span>，然后让<span data-ref=\"sliding-can thin-can thick-can\">三罐汤</span>沿斜面竞速滚下，看滚动的物体如何把它的<span data-concept=\"energy\">能量</span>分配给前进和转动。",
+ "objectives": [
+  "推导力矩的功的方程。",
+  "计算转动动能。",
+  "演示能量守恒定律。"
+ ],
+ "summary_html": "<ul><li>对于<span data-concept=\"moment-of-inertia\">转动惯量</span>为 $\\kI$、<span data-concept=\"angular-velocity\">角速度</span>为 $\\kw$ 的物体，其<span data-concept=\"rotational-kinetic-energy\">转动动能</span> $\\kKErot$ 为 $$\\kKErot = \\frac{1}{2}\\kI\\kw^2.$$</li><li>直升机在桨叶中储存大量<span data-concept=\"rotational-kinetic-energy\">转动动能</span>。这份<span data-concept=\"energy\">能量</span>必须在起飞前输入桨叶，并一直保持到飞行结束。发动机的<span data-concept=\"power\">功率</span>不足以同时提供升力并向桨叶输入可观的转动<span data-concept=\"energy\">能量</span>。</li><li>转动中的<span data-concept=\"work\">功</span>和<span data-concept=\"energy\">能量</span>与平动中的<span data-concept=\"work\">功</span>和<span data-concept=\"energy\">能量</span>完全类似。</li><li>转动的动能定理的方程为 $$\\text{合外力的功}\\;\\kW = \\frac{1}{2}\\kI\\kw^2 - \\frac{1}{2}\\kI{\\kwo}^2.$$</li></ul>",
+ "notes": "书中未给出答案的九道习题已略去：细圆环滚下山坡、摩托车车轮的转动动能、弃踢手的腿、球滚上山坡、女子用肱二头肌举起重物、两个圆柱体在两个斜面上、转动惯量表示为 MR² 的倍数、摩托车滑行上坡，以及关于滑冰者收拢手臂的自拟习题。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。关于转动动能与平动动能类比的“理解检测”在书中有答案，并放在定义转动动能的段落之后，作为行内练习。十五道习题中有六道有答案并保留：例题 10.7 中的旋转木马加孩子，书中把它的第三问的答案印为“W = 9.81 N”，保持原样；地球自转和公转的转动动能；投手的前臂；飞轮公共汽车；抬起重物的腿；以及垒球投手的手臂。九道没有答案的习题已略去，并在本节的备注中列出。本模块的四道 AP 题都问力矩如何改变角速度，这是 10.3 节引入的内容，所以它们与 10.3 放在一起，source_section 为 10.4；10.3 的备注中也这样说明。三道思考题没有答案，因此每道都附有一条由 AI 撰写并已标明的建议思路，第三道的题卡上放有书中那张气体和尘埃云的照片。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-grinder",
+   "kind": "photo",
+   "number": "10.16",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-disk-work",
+   "kind": "sim",
+   "number": "10.17",
+   "originals": [
+    "/media/ch10/Figure_11_04_02a.jpg"
+   ],
+   "original_caption": "这个圆盘所受的合力始终垂直于它的半径，该力使圆盘转动。因此合外力所做的功为（合力 F）Δs。这份合外力的功变成了转动动能。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "energy",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear the arc and each other at 2π; note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-flywheel-bus",
+   "kind": "photo",
+   "number": "10.18",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-grindstone",
+   "kind": "sim",
+   "number": "10.19",
+   "originals": [
+    "/media/ch10/Figure_11_04_04a.jpg"
+   ],
+   "original_caption": "一个人抓住外缘，使一个大砂轮转动起来。",
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "rotational-inertia",
+    "angular-rate",
+    "energy",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library hand rides the rim at the push, as the book's; note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-helicopter",
+   "kind": "photo",
+   "number": "10.20",
+   "draws": []
+  },
+  {
+   "id": "sim-helicopter",
+   "kind": "sim",
+   "draws": [
+    "angular-rate",
+    "rotational-inertia",
+    "velocity",
+    "energy",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "axis title and v label kept clear; note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cans-race",
+   "kind": "sim",
+   "number": "10.21",
+   "originals": [
+    "/media/ch10/Figure_11_04_06a.jpg"
+   ],
+   "original_caption": "三只质量相同的汤罐头沿斜面竞速滚下。第一只罐头有低摩擦涂层，不滚动而只是沿斜面滑下。它获胜，因为它把全部势能都转化成了平动动能。第二只和第三只罐头都是纯滚动地沿斜面滚下。第二只罐头装稀汤，名列第二，因为它的一部分初始势能用于使罐头转动（而不是使稀汤转动）。第三只罐头装浓汤。它名列第三，因为汤随罐头一起转动，占用了更多的初始势能作为转动动能，留给平动动能的就更少。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "energy",
+    "rotational-inertia",
+    "angular-rate",
+    "angle",
+    "mass",
+    "acceleration"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend spaced, lane names at the foot, note shortened"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "rotational-work",
+   "concept": "rotational-work",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotational-work",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-work",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-work",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-work",
+   "concept": "arc-length",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-work",
+   "concept": "linear-from-angular",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "rotational-work-energy-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "rotational-kinetic-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "newtons-second-law-rotation",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "rotational-kinematic-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "work-energy-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "rotational-kinetic-energy",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "grindstone",
+   "concept": "rotational-work",
+   "verb": "reinforces"
+  },
+  {
+   "span": "grindstone",
+   "concept": "rotational-work-energy-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "grindstone",
+   "concept": "rotational-kinetic-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "grindstone",
+   "concept": "newtons-second-law-rotation",
+   "verb": "uses"
+  },
+  {
+   "span": "grindstone",
+   "concept": "rotational-kinematic-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "grindstone",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "helicopter",
+   "concept": "rotational-energy-strategy",
+   "verb": "introduces"
+  },
+  {
+   "span": "helicopter",
+   "concept": "rotational-kinetic-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "helicopter",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "helicopter",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "helicopter",
+   "concept": "energy-problem-solving",
+   "verb": "uses"
+  },
+  {
+   "span": "helicopter",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "helicopter",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "uses"
+  },
+  {
+   "span": "rolling",
+   "concept": "rolling-splits-the-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "rolling",
+   "concept": "rotational-kinetic-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rolling",
+   "concept": "rotational-energy-strategy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rolling",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "rolling",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "rolling",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "rolling",
+   "concept": "linear-from-angular",
+   "verb": "uses"
+  },
+  {
+   "span": "rolling",
+   "concept": "choosing-a-moment-of-inertia",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2931518",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "rotational-kinetic-energy"
+   },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "<strong>转动动能与平动动能的类比</strong><br>转动动能与平动动能是否完全类似？如果有，它们之间有什么区别？请分别给出每种动能的一个例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "是的，转动动能和平动动能是完全的类比。它们都是与质量相对于某个参考系的协调（非随机）运动有关的运动能量。转动动能和平动动能之间唯一的区别在于，平动是直线运动，而转动不是。在沿自行车道骑行的自行车轮胎中，可以找到动能和平动动能两者的一个例子。轮胎的转动运动意味着它具有转动动能，而自行车沿道路的运动意味着轮胎也具有平动动能。如果把自行车的前轮抬起并使它转动，而自行车保持静止，那么相对于地球，车轮就只有转动动能。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3026004",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "描述悠悠球被向下抛出、然后沿着它的细绳爬回、被使用者抓在手中的过程中涉及的能量转换。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "开始时悠悠球在手中静止，所以它的能量是从细绳底端量起的重力势能 $m\\kg\\kh$，再加上抛出时赋予它的任何动能。下落时，细绳从转轴上松开，悠悠球必须转动。势能同时变为平动动能 $\\frac{1}{2}m\\kv^2$ 和转动动能 $\\kKErot = \\frac{1}{2}\\kI\\kw^2$，这与图 10.21 中滚动的罐头分配其能量的方式完全一样。到达细绳底端时，悠悠球不再下落，但仍在旋转，所以片刻之间它几乎全部的能量都是转动能。随后细绳重新绕回，转动动能为攀升提供所需，随着悠悠球上升、转速减慢，它又变回重力势能。它回到手中时的能量比离手时略少，因为转轴处和细绳中的摩擦力已把其中一部分变成了热量。这就是为什么悠悠球若任其自行运动，不轻拉一下就爬不到手中。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1428194",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "当直线加速赛车的发动机被加大转速、离合器被迅速松开、轮胎空转，并开始向前加速时，涉及哪些能量转换？请说明每一步中能量的来源和转化。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沿着能量的来源追踪它。加大发动机转速会燃烧燃料，释放的化学能变成热量，以及发动机转动部件（曲轴和飞轮）的转动动能 $\\kKErot = \\frac{1}{2}\\kI\\kw^2$。当驾驶员迅速松开离合器时，传动系统把这份储存的转动能传给车轮，使轮胎转动起来。在离合器两侧达到相同转速的过程中，离合器把其中一部分能量以热和噪声的形式损失掉。轮胎在赛道上空转时，摩擦力对橡胶和路面做功，把大部分转动动能变成热和烟，这就是轮胎会发热的原因。轮胎一旦抓地，转动的车轮便推动汽车向前，发动机持续做的功变成整辆赛车的平动动能 $\\frac{1}{2}m\\kv^2$。车轮保留一部分转动动能，因为汽车越快，它们必须转得越快。每一步都有一些能量以热的形式离开，所以赛程结束时的平动动能小于燃料放出的化学能。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2640555",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-kinetic-energy",
+   "figure": {
+    "src": "/media/ch10/Figure_11_04_07a.jpg",
+    "alt": "图中是天空中一颗红色行星的近景，最右侧可见一个类似太阳的天体，这颗行星被气体和尘埃的环圈所包围。",
+    "caption": "一团巨大的旋转气体和尘埃云在引力的作用下收缩而形成地球，在此过程中转动动能增大。（来源：NASA）"
+   },
+   "prompt": "地球现在具有的转动动能，比形成它的气体和尘埃云所具有的转动动能更多。这份能量是从哪里来的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这份能量来自引力。这团云散布在巨大的体积中，它的每一部分都离其他各部分很远，所以它具有大量的引力势能。当引力把气体和尘埃向内拉拢时，它把这份势能释放为落向中心的物质的动能、热量，以及所形成的天体的转动。转动之所以增强，其原因将在 10.5 节中精确说明：一个一边收缩一边转动的物体会转得更快，就像滑冰者收拢手臂时那样。引力把物质向内拉拢时所做的功，使转动动能 $\\kKErot = \\frac{1}{2}\\kI\\kw^2$ 增大。地球以几千千米的半径每天转一圈，而那团云则以数百万的半径缓慢转动。收缩中的云的引力势能的减少，为转动动能的这一增加提供了能量。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2402678",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "本题考虑例题 10.7 中的能量和功的方面——需要时使用该例题中的数据。（a）当旋转木马加孩子的角速度为 20.0 转每分时，计算他们的转动动能。（b）利用能量的考虑，求父亲要把它从静止推到这个角速度需要推过的圈数。（c）同样利用能量的考虑，计算父亲要在两圈之内使旋转木马停下所必须施加的力",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the rotational kinetic energy",
+      "value": 185,
+      "unit": "J",
+      "hint": "把 20.0 转每分换算成弧度每秒，并取例题 10.7 的（b）问中旋转木马加孩子的转动惯量 $84.38\\ \\text{kg}\\cdot\\text{m}^2$。"
+     },
+     {
+      "part": "(b) the revolutions the father pushes through",
+      "value": 0.0785,
+      "unit": "rev",
+      "hint": "他所做的功是 $(\\text{合力矩}\\;\\ktau)\\theta$，其中他的力矩为 $375\\ \\text{N}\\cdot\\text{m}$，它必须等于（a）问的转动动能；然后把以弧度计的角度换算成圈数。"
+     },
+     {
+      "part": "(c) the force that stops it in two revolutions",
+      "value": 9.81,
+      "unit": "N",
+      "hint": "使动能消失的功等于力乘以 1.50 m 的半径再乘以以弧度计的两圈的角度。"
+     }
+    ],
+    "solution": "（a）185 J。（b）0.0785 rev。（c）$W = 9.81\\ \\text{N}$。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3017926",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "（a）计算地球自转的转动动能。（b）地球在绕太阳的轨道上的转动动能是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) on its axis",
+      "value": 2.57e+29,
+      "unit": "J",
+      "hint": "把地球看作均匀球体，$\\kI = \\frac{2}{5}MR^2$，每天转一圈；质量和半径见书前的资料。"
+     },
+     {
+      "part": "(b) in its orbit",
+      "value": 2.65e+33,
+      "unit": "J",
+      "hint": "在轨道上，地球是位于轨道半径处的质点，$\\kI = Mr^2$，每年转一圈。"
+     }
+    ],
+    "solution": "（a）$2.57 \\times 10^{29}\\ \\text{J}$。（b）$\\kKErot = 2.65 \\times 10^{33}\\ \\text{J}$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1580820",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "一名棒球投手投球时，前臂绕肘关节转动，同时还有其他动作。如果球相对于肘关节的线速度在距关节 0.480 m 处为 20.0 m/s，前臂的转动惯量为 $0.500\\ \\text{kg}\\cdot\\text{m}^2$，那么前臂的转动动能是多少？",
+   "answer": {
+    "type": "number",
+    "value": 434,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "前臂的角速度等于球的速率除以球到肘的距离，$\\kw = \\kv/\\kr$；然后 $\\kKErot = \\frac{1}{2}\\kI\\kw^2$。",
+    "solution": "$\\kKErot = 434\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2662255",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "helicopter",
+   "prompt": "一辆公共汽车载有一个 1500 kg 的飞轮（一个半径为 0.600 m 的圆盘），总质量为 10,000 kg。（a）假设转动动能的 90.0% 可以转化为平动能量，计算飞轮必须具有多大的角速度，才能含有足够的能量使公共汽车从静止加速到 20.0 m/s 的速率。（b）利用这份储存的能量，公共汽车能爬上多高的山坡，并在坡顶仍有 3.00 m/s 的速率？请明确说明你是如何遵循转动能的解题策略中的各步骤的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angular velocity of the flywheel",
+      "value": 128,
+      "unit": "rad/s",
+      "hint": "飞轮是一个圆盘，$\\kI = \\frac{1}{2}MR^2$。$\\frac{1}{2}\\kI\\kw^2$ 的十分之九必须等于公共汽车在 20.0 m/s 时的 $\\frac{1}{2}m\\kv^2$。"
+     },
+     {
+      "part": "(b) the height of the hill",
+      "value": 19.9,
+      "unit": "m",
+      "hint": "飞轮能量的同样十分之九，现在变成 $m\\kg\\kh$，再加上公共汽车在坡顶以 3.00 m/s 的速率保留的动能。"
+     }
+    ],
+    "solution": "（a）128 rad/s。（b）19.9 m。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2583778",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-work",
+   "prompt": "一名男子在健身中心锻炼，他脸朝下趴在长凳上，通过收缩大腿后侧的肌肉，用一条小腿举起一个重物。（a）已知所举重物的质量为 10.0 kg，距膝关节 28.0 cm，小腿的转动惯量为 $0.900\\ \\text{kg}\\cdot\\text{m}^2$，肌肉力为 1500 N，其有效垂直力臂为 3.00 cm，求产生的角加速度。（b）如果小腿在肌肉施加恒力的情况下转过 $20.0^\\circ$ 的角度，做了多少功？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angular acceleration",
+      "value": 10.4,
+      "unit": "rad/s²",
+      "hint": "合力矩等于肌肉的力矩减去所举重物对膝关节的力矩，转动惯量等于小腿的转动惯量加上位于 28.0 cm 处 10.0 kg 质量的转动惯量，后者按质点处理。"
+     },
+     {
+      "part": "(b) the work done",
+      "value": 6.11,
+      "unit": "J",
+      "hint": "合外力的功是 $(\\text{合力矩}\\;\\ktau)\\theta$，其中角度以弧度计：$20.0^\\circ$ 即 0.349 rad。"
+     }
+    ],
+    "solution": "（a）$10.4\\ \\text{rad/s}^2$。（b）$\\text{合外力的功}\\;\\kW = 6.11\\ \\text{J}$。"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id3399194",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotational-kinetic-energy",
+   "prompt": "在垒球比赛中，投手投球时手臂完全伸直（肘部伸直）。快速投球时，球离手时的速率为 139 km/h。（a）已知手臂的转动惯量为 $0.720\\ \\text{kg}\\cdot\\text{m}^2$，球离手时距肩部支点 0.600 m，求投手手臂与球合在一起的转动动能。（b）如果肌肉的有效垂直力臂为 4.00 cm，球的质量为 0.156 kg，肌肉施加了多大的力才使手臂转动？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the rotational kinetic energy",
+      "value": 1.49,
+      "unit": "kJ",
+      "hint": "把 139 km/h 换算成 m/s，并由手的速率求出手臂的角速度，$\\kw = \\kv/\\kr$；然后用手臂的转动惯量计算 $\\kKErot = \\frac{1}{2}\\kI\\kw^2$。"
+     },
+     {
+      "part": "(b) the muscle force",
+      "value": 25200,
+      "unit": "N",
+      "hint": "肌肉所做的功 $(\\text{合力矩}\\;\\ktau)\\theta$ 变成（a）问的动能，其中力矩等于力乘以 4.00 cm 的力臂，$\\theta$ 是投球过程中手臂扫过的角度。"
+     }
+    ],
+    "solution": "（a）1.49 kJ。（b）$2.52 \\times 10^4\\ \\text{N}$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rolling-splits-the-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "rolling-splits-the-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotational-work-energy-theorem"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotational-kinetic-energy",
+   "weight": 4
+  },
+  {
+   "exercise": "p3",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rotational-energy-strategy"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rotational-kinetic-energy",
+   "weight": 4
+  },
+  {
+   "exercise": "p7",
+   "concept": "rolling-splits-the-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "rotational-work"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-second-law-rotation",
+   "weight": 3
+  },
+  {
+   "exercise": "p14",
+   "concept": "rotational-kinetic-energy"
+  },
+  {
+   "exercise": "p14",
+   "concept": "rotational-work",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "disk",
+   "label": "圆盘",
+   "figures": [
+    "sim-disk-work"
+   ]
+  },
+  {
+   "id": "grindstone",
+   "label": "砂轮",
+   "figures": [
+    "sim-grindstone"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "转动砂轮的人",
+   "figures": [
+    "sim-grindstone"
+   ]
+  },
+  {
+   "id": "helicopter",
+   "label": "救援直升机",
+   "figures": [
+    "sim-helicopter"
+   ]
+  },
+  {
+   "id": "blades",
+   "label": "直升机的四片桨叶",
+   "figures": [
+    "sim-helicopter"
+   ]
+  },
+  {
+   "id": "sliding-can",
+   "label": "第一只罐头，它在滑动",
+   "figures": [
+    "sim-cans-race"
+   ]
+  },
+  {
+   "id": "thin-can",
+   "label": "第二只罐头，装稀汤",
+   "figures": [
+    "sim-cans-race"
+   ]
+  },
+  {
+   "id": "thick-can",
+   "label": "第三只罐头，装浓汤",
+   "figures": [
+    "sim-cans-race"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "rotational-work",
+   "what": "转动中所做的功",
+   "source": "《大学物理（第2版）》，10.4 转动动能：再论功和能量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "合力垂直于圆盘的半径，并且在圆盘转动时保持垂直。",
+       "src": "10.4，图 10.17"
+      },
+      {
+       "tex": "\\ktau = \\krperp\\kF",
+       "src": "9.2"
+      },
+      {
+       "text": "转过的角度等于弧长除以半径，$\\ktheta = \\kds/\\kr$。",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{F}{(\\text{合力}\\;\\kF)}\\mk{s}{\\kds}",
+      "src": "7.1",
+      "uses": [
+       0
+      ],
+      "why": "垂直于半径的力平行于沿圆弧的位移，所以功等于力乘以弧长。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{F}{(\\kr\\;\\text{合力}\\;\\kF)}\\mk{s}{\\dfrac{\\kds}{\\kr}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{F}{(\\text{合力矩}\\;\\ktau)}\\mk{s}{\\dfrac{\\kds}{\\kr}}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "力垂直于半径，所以它的力臂是 $\\kr$。"
+      },
+      {
+       "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{F}{(\\text{合力矩}\\;\\ktau)}\\mk{s}{\\ktheta}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "rotational-work-energy-theorem",
+   "what": "转动的动能定理",
+   "source": "《大学物理（第2版）》，10.4 转动动能：再论功和能量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\text{合力矩}\\;\\ktau = \\kI\\kalpha",
+       "src": "10.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{t}{(\\text{合力矩}\\;\\ktau)}\\mk{th}{\\ktheta}",
+      "src": "10.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{I}{\\kI}\\mk{at}{\\kalpha\\ktheta}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "t": [
+         "I",
+         "at"
+        ],
+        "th": "at"
+       }
+      }
+     ],
+     "src": "10.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "角加速度 $\\kalpha$ 是恒定的。",
+       "src": "10.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kw^2} = \\mk{wo}{{\\kwo}^2} + \\mk{two}{2}\\mk{at}{\\kalpha\\ktheta}",
+      "src": "10.2，表 10.2",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{two}{2}\\mk{at}{\\kalpha\\ktheta} = \\mk{w}{\\kw^2} - \\mk{wo}{{\\kwo}^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{at}{\\kalpha\\ktheta} = \\dfrac{\\mk{w}{\\kw^2} - \\mk{wo}{{\\kwo}^2}}{\\mk{two}{2}}",
+       "uses": []
+      }
+     ],
+     "src": "10.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{I}{\\kI}\\mk{at}{\\kalpha\\ktheta}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{I}{\\kI}\\mk{at}{\\dfrac{\\kw^2 - {\\kwo}^2}{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\text{合外力的功}\\;\\kW} = \\mk{k}{\\frac{1}{2}\\kI\\kw^2} - \\mk{k0}{\\frac{1}{2}\\kI{\\kwo}^2}",
+       "uses": [],
+       "map": {
+        "I": [
+         "k",
+         "k0"
+        ],
+        "at": [
+         "k",
+         "k0"
+        ]
+       }
+      }
+     ],
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "rolling-energy",
+   "what": "罐头沿斜坡滚下时的能量",
+   "source": "《大学物理（第2版）》，10.4 转动动能：再论功和能量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "没有摩擦造成的损失时，罐头的重力势能完全转化为动能。",
+       "src": "10.4"
+      },
+      {
+       "text": "总动能是平动动能与转动动能之和。",
+       "src": "10.4"
+      },
+      {
+       "tex": "\\kPEgrav = \\km\\kg\\kh",
+       "src": "7.3"
+      },
+      {
+       "tex": "\\kKEtrans = \\frac{1}{2}\\km\\kv^2",
+       "src": "7.2"
+      },
+      {
+       "tex": "\\kKErot = \\frac{1}{2}\\kI\\kw^2",
+       "src": "10.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kPEi} = \\mk{k}{\\kKEf}",
+      "src": "10.4",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kPEgrav} = \\mk{t}{\\kKEtrans} + \\mk{r}{\\kKErot}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "k": [
+         "t",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\kKEtrans} + \\mk{r}{\\kKErot}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\kKErot}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\kI\\kw^2}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "rolling-cylinder-speed",
+   "what": "圆柱体沿斜面滚下的速率",
+   "source": "《大学物理（第2版）》，10.4 转动动能：再论功和能量，例题 10.10",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kI = \\frac{1}{2}\\km\\kR^2",
+       "src": "10.3，图 10.12"
+      },
+      {
+       "text": "圆柱体纯滚动。"
+      },
+      {
+       "tex": "\\kw = \\frac{\\kv}{\\kR}",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\kI\\kw^2}",
+      "src": "10.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\left(\\frac{1}{2}\\km\\kR^2\\right)\\kw^2}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\left(\\frac{1}{2}\\km\\kR^2\\right)\\left(\\frac{\\kv^2}{\\kR^2}\\right)}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{4}\\km\\kv^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\kv^2} + \\mk{r}{\\frac{1}{4}\\kv^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kg\\kh} = \\mk{t}{\\frac{3}{4}\\kv^2}",
+       "uses": [],
+       "map": {
+        "r": "t"
+       }
+      },
+      {
+       "tex": "\\mk{t}{\\kv} = \\mk{p}{\\left(\\frac{4\\kg\\kh}{3}\\right)^{1/2}}",
+       "uses": []
+      }
+     ],
+     "src": "例题 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kg = 9.80\\ \\text{m/s}^2,\\quad \\kh = 2.00\\ \\text{m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\kv} = \\mk{p}{\\left(\\frac{4\\kg\\kh}{3}\\right)^{1/2}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kv} = \\mk{p}{\\left[\\frac{4(9.80\\ \\text{m/s}^2)(2.00\\ \\text{m})}{3}\\right]^{1/2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\kv} = \\mk{p}{5.11\\ \\text{m/s}}",
+       "uses": []
+      }
+     ],
+     "src": "例题 10.10"
+    }
+   ]
+  }
+ ]
+}

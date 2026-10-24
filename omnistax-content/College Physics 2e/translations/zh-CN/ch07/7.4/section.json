@@ -1,0 +1,869 @@
+{
+ "id": "7.4",
+ "module": "m42149",
+ "chapter": "7",
+ "title": "保守力与势能",
+ "short": "保守力与势能",
+ "lead": "有些<span data-concept=\"force\">力</span>会把克服它们所做的<span data-concept=\"work\">功</span>的每一焦耳都还回来，被拉伸或压缩的弹簧就是日常的例子。这样的<span data-concept=\"conservative-force\">保守力</span>引出了<span data-concept=\"elastic-potential-energy\">弹簧的势能</span>和<span data-concept=\"conservation-of-mechanical-energy\">机械能守恒</span>。",
+ "objectives": [
+  "定义保守力、势能和机械能。",
+  "在胡克定律适用时，用弹簧的压缩量来解释弹簧的势能。",
+  "利用动能定理说明，只有保守力时如何得出机械能守恒。"
+ ],
+ "summary_html": "<ul><li>保守力是这样一种力：<span data-concept=\"work\">功</span>只取决于运动的起点和终点，而与所经的路径无关。</li><li>我们可以为任何保守力定义<span data-concept=\"potential-energy\">势能</span> $(\\kPEtot)$，就像我们为<span data-concept=\"force\">重力</span>定义 $\\kPEg$ 那样。</li><li><span data-concept=\"elastic-potential-energy\">弹簧的势能</span>为 $\\kPEs = \\frac{1}{2}\\kk\\kx^2$，其中 $\\kk$ 是弹簧的<span data-concept=\"force-constant\">劲度系数</span>，$\\kx$ 是相对于其未形变<span data-concept=\"position\">位置</span>的<span data-concept=\"displacement\">位移</span>。</li><li>对于保守力，机械能被定义为 $\\kKE + \\kPEtot$。</li><li>当只有保守力作用于系统并在系统内部起作用时，总机械能保持不变。写成方程形式为 $\\left(\\begin{array}{rl} &amp; \\kKE + \\kPEtot = \\text{常量} \\\\ \\text{或} &amp; \\\\ &amp; \\kKEi + \\kPEi = \\kKEf + \\kPEf \\end{array}\\right)\\ \\text{（仅保守力），}$ 其中 i 和 f 表示初值和末值。这称为机械能守恒。</li></ul>",
+ "notes": "弹跳杆习题在书后答案中没有给出答案，因而略去；通向 PhET 模拟“能量滑板公园”的链接也略去了。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成，答案仅取自书后答案。本节的两道习题中，弹跳杆题（fs-id1628356）在书后答案中没有给出答案，因而略去；它也是本节中唯一一处让读者去看 7.6 节“能量问题的解题策略”框的题目，所以本节没有任何一道题带有这一引用。四道思考题都没有给出答案，因此每道都带有 AI 撰写的建议思路并加以标明，其中最短的一道“什么是保守力？”是对旁边那段正文的“记忆”层级检测，因而就在那里以内联方式给出；本章没有在任何地方印出“理解检测”框，所以本书自己的内容没有填入那个位置。本节的九道 AP 备考练习题中，有四道给出了答案：投石机题（fs-id1632979）按它的两个数值给出，飞镖玩具枪题（fs-id2328776）和怀表题（fs-id1759232）按本书自己判分的选择题给出。两个物体的那道题（fs-id1843533）有选项但没有答案，因此保留为开放题，选项照书中所印，并附有 AI 撰写的建议思路，而不作为判分选择题；用文字提问的四道题（fs-id2319062、fs-id2524398、fs-id1360944 和 fs-id1811319）是开放题，附有 AI 撰写的建议思路。书中印在 7.1 节的一道题在这里设置，其 source_section 为 7.1：先把弹簧压缩 x、再压缩 2x 的那道题（fs-id2713956）引用了图 7.10（c），需要用到本节引入的弹簧势能，而且它有答案，所以保留为本书自己的选择题；7.1 节的说明里也写了这一点。本节有一道题则反过来：三个物体在一周内下降 1.3 m 的摆钟题（fs-id2987264）只是 $m\\kg\\kh$，别无其他，而它在 7.3 节引入，所以它在 7.3 节设置，其 source_section 为 7.4，7.3 节的说明里也写了这一点。",
+ "figures": [
+  {
+   "id": "sim-spring-energy",
+   "kind": "sim",
+   "number": "7.10",
+   "originals": [
+    "/media/ch07/Figure_08_04_01a.jpg"
+   ],
+   "original_caption": "（a）未形变的弹簧中没有储存 PE_s。（b）把弹簧拉伸（或压缩）距离 x 所需的力，大小为 F = kx，拉伸（或压缩）它所做的功为 ½kx²。由于该力是保守的，这份功作为势能（PE_s）储存在弹簧中，并且可以完全收回。（c）F 对 x 的图像的斜率为 k，图像下的面积为 ½kx²。因此所做的功或储存的势能为 ½kx²。",
+   "widths": [
+    600
+   ],
+   "draws": [
+    "energy",
+    "force",
+    "position",
+    "stiffness"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rest-line and slope labels moved clear of the headline and the line"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-double",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "force",
+    "position",
+    "stiffness"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "setting labels shortened inside the stage, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-guitar",
+   "kind": "sim",
+   "number": "7.11",
+   "originals": [
+    "/media/ch07/Figure_08_04_02a.jpg"
+   ],
+   "original_caption": "对吉他弦做功使它形变，赋予它势能。释放后，势能转化为动能，再转化回势能，弦就这样来回振动。极小一部分作为声能耗散，使弦的能量慢慢减少。",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "energy",
+    "position",
+    "stiffness"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "stretch label hidden near the rest line, note cut to the time scale"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-toy-car",
+   "kind": "sim",
+   "number": "7.12",
+   "originals": [
+    "/media/ch07/Figure_08_04_03a.jpg"
+   ],
+   "original_caption": "一辆玩具小车被压缩的弹簧推动，沿斜坡滑行而上。假设摩擦可以忽略，弹簧中的势能先完全转化为动能，随后在小车上升时转化为动能与重力势能的组合。路径的细节并不重要，因为所有的力都是保守的——如果小车走图中所示的另一条路径，最终速率也会相同。",
+   "draws": [
+    "energy",
+    "velocity",
+    "position",
+    "stiffness",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "speed labels on panels, energy bar lowered off the dip label"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "conservative-forces",
+   "concept": "conservative-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservative-forces",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-forces",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-forces",
+   "concept": "path-independence-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-forces",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "spring-energy",
+   "concept": "elastic-potential-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "spring-energy",
+   "concept": "conservative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "spring-energy",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "spring-energy",
+   "concept": "force-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "spring-energy",
+   "concept": "work-as-area",
+   "verb": "uses"
+  },
+  {
+   "span": "spring-energy",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "any-deformation",
+   "concept": "elastic-potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "any-deformation",
+   "concept": "potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conservation",
+   "concept": "mechanical-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservation",
+   "concept": "work-energy-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "net-work",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "conservative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "conservation",
+   "concept": "potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "using-conservation",
+   "concept": "solve-with-mechanical-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "using-conservation",
+   "concept": "conservation-of-mechanical-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "using-conservation",
+   "concept": "elastic-potential-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "using-conservation",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "using-conservation",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2769430",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservative-forces",
+   "prompt": "什么是保守力？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "保守力是这样一种力：它所做的功，或克服它所做的功，只取决于运动的起点和终点，而与二者之间所经的路径完全无关。重力就是一种保守力，理想弹簧的力也是。由于功只取决于两个构型，所以可以为这种力定义势能，克服该力所做的功就作为势能储存起来，并且可以完全收回。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2731704",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "any-deformation",
+   "prompt": "跳板施加的力是保守的，条件是其内摩擦可以忽略。假设摩擦可以忽略，请描述从游泳者踏上跳板之前，到他的双脚刚离开跳板之后，跳板的势能是如何变化的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "游泳者踏上跳板之前，跳板是直的，所以它不含势能。当游泳者向外走并向下压时，跳板弯曲，克服其回复力所做的功就成为跳板中的势能，正如克服弹簧所做的功成为 $\\kPEs = \\frac{1}{2}\\kk\\kx^2$ 一样。当跳板向下弯得最远、游泳者暂时处于最低点时，势能最大。随后跳板变直，把这份能量还回去，所以游泳者上升时，跳板的势能减小，在跳板经过它的直线形状时再次为零。游泳者的双脚刚离开之后，跳板只含有它自身振动的能量。其余的能量已经以动能和他所处高度的势能的形式交给了游泳者。跳板的力是保守的，所以一路上没有能量损失；能量只是从系统的一部分转移到另一部分。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1862083",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "定义机械能。机械能与非保守力有什么关系？如果只有保守力作用，机械能会怎样？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "系统的机械能是它的动能与势能之和 $\\kKE + \\kPEtot$，其中势能要计入系统具有的每一种势能。非保守力（例如摩擦力）所做的功取决于所经的路径，因此无法为它定义势能，它所做的功也不会储存在系统中；所以这种力会改变机械能，通常是使机械能减少。如果只有保守力作用于系统并在系统内部起作用，它们所做的功等于势能变化的负值，于是 $\\kdKE + \\kdPE = 0$，机械能保持不变：$\\kKEi + \\kPEi = \\kKEf + \\kPEf$。这时能量只是改变形式，在动能和各种势能之间转移，而总量保持不变。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1707793",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservative-forces",
+   "prompt": "势能与保守力有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个力只有在是保守力时才有势能。克服保守力所做的功只取决于起始和最终的构型，而与路径无关。因此，这份功是属于构型本身的一个量，这个量就是势能。保守力所做的功于是等于势能变化的负值，$\\kWc = -\\kdPE$，所以克服该力而储存起来的全部能量，都可以作为它所做的功收回。功取决于路径的力，例如摩擦力，没有势能。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1843533",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservation",
+   "prompt": "两个 4.0 kg 的物体由一根劲度系数为 25 N/m、原长为 1.0 m 的弹簧相连。如果弹簧被压缩到长度 0.80 m，两个物体以各 0.50 m/s 的速率相向运动，那么系统的总能量是多少？<ol type=\"a\"><li>1.0 J</li><li>1.5 J</li><li>9.0 J</li><li>8.0 J</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "系统的总能量就是它的机械能，即所有运动物体的动能加上储存在弹簧中的势能。每个物体的动能为 $\\frac{1}{2}m\\kv^2 = \\frac{1}{2}(4.0\\ \\text{kg})(0.50\\ \\text{m/s})^2 = 0.50\\ \\text{J}$，共有两个，所以动能为 1.0 J。弹簧从原长 1.0 m 压缩到 0.80 m，所以它相对于未形变位置的位移为 $\\kx = 0.20\\ \\text{m}$，它储存的势能为 $\\kPEs = \\frac{1}{2}\\kk\\kx^2 = \\frac{1}{2}(25\\ \\text{N/m})(0.20\\ \\text{m})^2 = 0.50\\ \\text{J}$。把两者相加得 1.5 J，这是第二个选项。请注意，弹簧被压缩后的长度不是位移；只有弹簧的形变量才进入 $\\frac{1}{2}\\kk\\kx^2$。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1632979",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一根劲度系数为 5000 N/m、原长为 3.0 m 的弹簧用在投石机中。当它被压缩到 1.0 m 时，用来发射一块 50 kg 的石块。然而，释放机构出了故障，石块几乎竖直向上发射。它能上升多高？它落到地面时的速率是多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the height the rock reaches",
+      "value": 20,
+      "unit": "m",
+      "hint": "弹簧的形变为 $\\kx = 2.0\\ \\text{m}$，在飞行的最高点，$\\frac{1}{2}\\kk\\kx^2$ 已全部变成 $m\\kg\\kh$。"
+     },
+     {
+      "part": "the speed at which it hits the ground",
+      "value": 20,
+      "unit": "m/s",
+      "hint": "只有保守力作用，所以把发射时与落地时作比较：石块回到它出发时的高度，弹簧的全部能量又变成动能。"
+     }
+    ],
+    "solution": "高 20 m，速率 20 m/s。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2319062",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spring-energy",
+   "prompt": "要计算弹簧的动能和势能，需要哪些信息？重力引起的势能呢？这几种情形各需要几个物体的信息？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对于系在弹簧上的物体的动能，你需要它的质量和速率，因为 $\\kKE = \\frac{1}{2}m\\kv^2$。这是关于一个物体的信息，即运动的那个物体。对于弹簧中的势能，你需要它的劲度系数 $\\kk$ 和它相对于未形变长度伸长或压缩的距离 $\\kx$，因为 $\\kPEs = \\frac{1}{2}\\kk\\kx^2$。质量不起作用，而且这里的信息仍只涉及一个物体，即弹簧。对于重力势能，你需要物体的质量、它上升的高度以及重力加速度，因为变化量为 $m\\kg\\kh$。由于 $\\kg$ 属于地球，这种情形涉及两个物体，即被举起的物体和它下方的地球。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2328776",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spring-energy",
+   "prompt": "你正在给一支玩具飞镖枪装弹，它有两个挡位，较强的那一挡弹簧被压缩的距离是较低挡的两倍。如果把飞镖枪压缩到较低挡需要做 5.0 J 的功，那么压缩到较高挡需要做多少功？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "20 J",
+     "10 J",
+     "2.5 J",
+     "40 J"
+    ],
+    "correct": 0,
+    "hint": "对弹簧所做的功是 $\\frac{1}{2}\\kk\\kx^2$，所以它与压缩量的平方成正比，而不是与压缩量成正比。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2524398",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "any-deformation",
+   "prompt": "请描述一个你每天都在使用的、具有内部势能的系统。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何能把能量储存在形状或构型中并能还回来的系统都可以。上紧发条的厨房计时器就是一例。转动刻度盘是在克服盘绕的弹簧做功，弹簧的力是保守的，所以它把这份功作为势能储存起来，并在弹簧慢慢松开、带动机构时把它缓缓还回来。可伸缩的圆珠笔、订书机里的弹簧、一根发圈和你睡的床垫，都以同样的方式通过改变形状来储存能量。无论你选哪一个，都要说明什么发生了形变、什么在做使它形变的功、你又如何取回储存的能量。对于遵从胡克定律的弹簧，储存的能量为 $\\kPEs = \\frac{1}{2}\\kk\\kx^2$。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1360944",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "水塔储存的不仅是水，还（至少部分地）储存了输送水所需的能量。有多少？请对塔中的水量以及你需要的其他量作出合理的估计。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "典型的城市水塔以其中的水的重力势能的形式储存约 $8\\times 10^{8}\\ \\text{J}$，大约 800 MJ。一个盛有约 $2000\\ \\text{m}^3$ 水的水箱，水的质量约为 $2\\times 10^{6}\\ \\text{kg}$，因为一立方米水是 1000 kg，而水的重心高出它所供应的干管约 40 m。于是储存的能量为 $m\\kg\\kh \\approx (2\\times 10^{6}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(40\\ \\text{m}) \\approx 8\\times 10^{8}\\ \\text{J}$。重力是保守力，所以这恰好就是水泵为把水举高而克服重力所做的功，水在经过干管流向水龙头时把这份能量还回来，这就是为什么水无需水泵运转就能在压强作用下被推出。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1759232",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spring-energy",
+   "prompt": "老式怀表需要每天上弦，以免因内部部件的摩擦而停走、走慢。这需要转动上弦钥匙很多圈，但每圈所用的力不大，而且有可能上弦过度而把表弄坏。能量是如何储存的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "质量小的物体被举高很长的距离",
+     "质量大的物体被举高很短的距离",
+     "较弱的弹簧发生很大的形变",
+     "较强的弹簧发生很小的形变"
+    ],
+    "correct": 2,
+    "hint": "转很多圈、每圈力很小，说明很小的力产生了很大的形变，而使弹簧发生形变所需的力是 $\\kF = \\kk\\kx$。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1811319",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservative-forces",
+   "prompt": "中国最早发明的一些钟是靠水驱动的。请描述你认为这是怎样做到的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "储存在机构上方水箱中的水具有重力势能，这份能量驱动着时钟。水以稳定的速率从一个小孔放出，注入固定在轮子边缘一圈的水斗中。每个水斗装满时，它的重力使轮子转过一格，水斗倒空，下一个水斗来到出水口下方，所以轮子前进的快慢由水流决定，而不是由水箱里有多少水决定。转动的轮子带动指针和报时钟声。每千克水下落高度 $\\kh$ 就放出 $m\\kg\\kh$ 的势能，这些势能变成对轮子所做的功，所以只要水箱不断补水，时钟就能一直走下去。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id2713956",
+   "source_section": "7.1",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spring-energy",
+   "prompt": "请看图 7.10（c）。你把一根弹簧压缩 $\\kx$，然后松开。接着你把弹簧压缩 $2\\kx$。第二次比第一次多做了多少功？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "一半",
+     "相同",
+     "两倍",
+     "四倍"
+    ],
+    "correct": 3,
+    "hint": "功是 $\\kF$ 对 $\\kx$ 的图像下方三角形的面积，压缩量加倍，这个三角形的底和高都加倍。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1088644",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using-conservation",
+   "prompt": "一列 $5.00\\times 10^{5}\\ \\text{kg}$ 的地铁列车，被轨道尽头的一个大型弹簧缓冲器从 0.500 m/s 的速率在 0.400 m 内制动到停止。弹簧的劲度系数 $\\kk$ 是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 781000.0,
+    "unit": "N/m",
+    "hint": "沿运动方向只有弹簧力作用，所以列车起初的动能就等于最后储存在弹簧中的能量：$\\frac{1}{2}m\\kv^2 = \\frac{1}{2}\\kk\\kx^2$。",
+    "solution": "$7.81\\times 10^{5}\\ \\text{N/m}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "conservative-force"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "potential-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservative-force",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "mechanical-energy"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "conservation-of-mechanical-energy"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "nonconservative-force",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "conservative-force"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "potential-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "mechanical-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "solve-with-mechanical-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conservation-of-mechanical-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap4",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "potential-energy"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "elastic-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "solve-with-mechanical-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "gravitational-potential-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "ap8",
+   "concept": "gravitational-potential-energy"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "potential-energy",
+   "weight": 1
+  },
+  {
+   "exercise": "ap9",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "elastic-potential-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "kinetic-energy",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "spring",
+   "label": "一端固定的弹簧",
+   "figures": [
+    "sim-spring-energy"
+   ]
+  },
+  {
+   "id": "spring-1",
+   "label": "压缩了 x 的第一根弹簧",
+   "figures": [
+    "sim-double"
+   ]
+  },
+  {
+   "id": "spring-2",
+   "label": "压缩了 2x 的第二根弹簧",
+   "figures": [
+    "sim-double"
+   ]
+  },
+  {
+   "id": "string",
+   "label": "吉他弦",
+   "figures": [
+    "sim-guitar"
+   ]
+  },
+  {
+   "id": "toy-car",
+   "label": "缓坡上 0.100 kg 的玩具小车",
+   "figures": [
+    "sim-toy-car"
+   ]
+  },
+  {
+   "id": "loop-car",
+   "label": "经过凹处和圆环的车",
+   "figures": [
+    "sim-toy-car"
+   ]
+  },
+  {
+   "id": "launcher",
+   "label": "弹射小车的压缩弹簧",
+   "figures": [
+    "sim-toy-car"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "conservation-of-mechanical-energy",
+   "what": "机械能守恒",
+   "source": "《大学物理（第2版）》，7.4 保守力与势能",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "只有保守力起作用。",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\kWnet = \\kWc",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\kWc = -\\kdPE",
+       "src": "7.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnet} = \\mk{ke}{\\frac{1}{2}\\km\\kv^2 - \\frac{1}{2}\\km\\kvo^2} = \\mk{dk}{\\kdKE}",
+      "src": "7.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kWc} = \\mk{dk}{\\kdKE}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{W}{-\\kdPE} = \\mk{dk}{\\kdKE}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{dk}{\\kdKE} + \\mk{W}{\\kdPE} = \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{dk}{\\kKE} + \\mk{W}{\\kPEtot} = \\mk{z}{\\text{常量}}",
+       "uses": [],
+       "cap": "在只涉及保守力的每一个过程中，变化量都为零的和在整个过程中保持同一个值。"
+      },
+      {
+       "tex": "\\mk{dk}{\\kKEi} + \\mk{W}{\\kPEi} = \\mk{z}{\\kKEf + \\kPEf}",
+       "uses": [],
+       "cap": "这个恒定的总量在开始和结束时具有相同的值。"
+      }
+     ],
+     "src": "7.4"
+    }
+   ]
+  }
+ ]
+}

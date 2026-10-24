@@ -1,0 +1,855 @@
+{
+ "id": "19.3",
+ "module": "m42328",
+ "chapter": "19",
+ "title": "点电荷的电势",
+ "short": "点电荷",
+ "lead": "<span data-concept=\"electric-potential\">电势</span>最简单的来源是点电荷，而且由于金属球上的电荷的作用就像位于球心一样，点电荷也是最有用的来源。问题在于：该电势如何随<span data-concept=\"distance\">距离</span>衰减，它与同一电荷的电场相比如何，以及几个电荷的电势如何组合。",
+ "objectives": [
+  "说明点电荷，并写出点电荷的电势表达式。",
+  "区分电势与电场。",
+  "已知电荷量和距离，求点电荷的电势。"
+ ],
+ "summary_html": "<ul><li>点电荷的电势为 $\\kV = k\\kQch/\\kr$。</li><li><span data-concept=\"electric-potential\">电势</span>是标量，<span data-concept=\"electric-field\">电场</span>是矢量。把<span data-concept=\"potential-difference\">电压</span>当作数相加，得到由多个点电荷的组合产生的<span data-concept=\"potential-difference\">电压</span>；而把各个场当作矢量相加，则得到总<span data-concept=\"electric-field\">电场</span>。</li></ul>",
+ "notes": "书中没有给出答案的六道题被略去：距质子 0.530 × 10⁻¹⁰ m 处的电势，距 1.00 µC 电荷多远处的电势为 100 V、在何处为 2.00 × 10² V，在 15.0 m 处产生 5.00 × 10² V 电势的电荷的正负和大小，带有 5.00 mC 电荷的科研用范德格拉夫起电机，5.00 MeV 的 α 粒子能接近金原子核到多近，以及距 3.0 µC 电荷 10 cm 和 20 cm 的两点之间的电势。书中印在“电势能：电势差”中的七道 AP 题和一道“不合理的结果”题被放在这里，因为它们都需要点电荷的电势，而本节讲述了这一结果，那一节则没有。那里印出的聚变题同样需要这一结果，且没有给出答案，所以两页都略去了它。该模块没有定义术语表词条，也没有印出“理解检测”栏目。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。六道题没有给出答案，被略去：距质子 0.530 × 10⁻¹⁰ m 处的电势，距 1.00 µC 电荷多远处的电势为 100 V，在 15.0 m 处产生 5.00 × 10² V 电势的电荷的正负和大小，带有 5.00 mC 电荷的科研用范德格拉夫起电机，α 粒子与金原子核，以及距 3.0 µC 电荷 10 cm 和 20 cm 的两点之间的电势。书中印在“电势能：电势差”中的八道题改放在这里：七道关于点电荷体系储存能量的 AP 题，以及一道关于带有 8.00 C 电荷的 10.0 cm 球附近电压的“不合理的结果”题；它们都需要本节所述的点电荷的电势。书中没有给出答案的 AP 题保留为开放题，附有标明由 AI 撰写的建议思路，而不设为判分选择题；两道思考题也是如此。",
+ "figures": [
+  {
+   "id": "sim-point-charge-potential",
+   "kind": "sim",
+   "draws": [
+    "voltage",
+    "charge",
+    "position",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "charge label off the marker; note one equation through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-potentials-add",
+   "kind": "sim",
+   "draws": [
+    "voltage",
+    "charge",
+    "position",
+    "electric-field",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "range with headroom; labels clear of arrows and bracket; note via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-van-de-graaff",
+   "kind": "sim",
+   "number": "19.7",
+   "originals": [
+    "/media/ch19/Figure_20_03_01a.jpg"
+   ],
+   "original_caption": "这台演示用范德格拉夫起电机的电压是在带电球与地之间测量的。取地球的电势为零作为参考。带电导体球的电势与位于其球心的等量点电荷的电势相同。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "charge",
+    "position",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "column fits a small sphere; needle and label clear; breakdown in headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "point-charge-potential",
+   "concept": "potential-of-point-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "point-charge-potential",
+   "concept": "test-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "point-charge-potential",
+   "concept": "coulomb-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "point-charge-potential",
+   "concept": "electric-potential",
+   "verb": "uses"
+  },
+  {
+   "span": "point-charge-potential",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "point-charge-potential",
+   "concept": "excess-charge-on-surface",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "potential-versus-field-of-point-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "superposition-of-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "potential-energy-of-point-charges",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "zero-of-potential",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "field-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "superposition-of-electric-fields",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar-and-vector",
+   "concept": "potential-scalar-field-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "charged-spheres",
+   "concept": "sphere-potential-as-point-charge",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-metal-sphere-voltage",
+   "concept": "potential-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-metal-sphere-voltage",
+   "concept": "excess-charge-on-surface",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-van-de-graaff-charge",
+   "concept": "van-de-graaff-generator",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-van-de-graaff-charge",
+   "concept": "potential-of-point-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "charged-spheres",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "charged-spheres",
+   "concept": "pe-reference-level",
+   "verb": "uses"
+  },
+  {
+   "span": "charged-spheres",
+   "concept": "zero-of-potential",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2705937",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charged-spheres",
+   "prompt": "在空间的哪个区域，均匀带电球的电势与点电荷的电势相同？在哪个区域，它与点电荷的电势不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "球外各处，即在到球心的距离大于其半径的任何地方，电势恰好等于把同样总电荷量的点电荷放在球心时的电势，$\\kV = k\\kQch/\\kr$。这就是例题 19.6 可以把 1 cm 的球当作 5.00 cm 远处的点电荷的原因。球内则不同。导体上的过剩电荷位于其表面，金属内部的场为零，所以在内部搬运检验电荷不做功，那里的电势是恒定的，等于它在表面的值，而不是像 $k\\kQch/\\kr$ 那样继续增大。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2511493",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charged-spheres",
+   "prompt": "非均匀带电球的电势可以与点电荷的电势相同吗？请说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有在远离它的地方才可以。任何电荷集合的电势都等于它各部分电势之和，每一部分都是一个数 $k\\kQch/\\kr$。在远大于球半径的距离处，各部分到该点的距离几乎都相同，于是这个和就是总电荷量除以该距离，球的作用就像点电荷一样。靠近电荷集中在一侧的球时，到各部分的距离相差很大，近侧的贡献比远侧的大。这时电势取决于该点在球的哪一侧，而点电荷的电势从不如此。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1677295",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "point-charge-potential",
+   "prompt": "一个直径 0.500 cm 的塑料球用于静电演示，其表面均匀分布着 40.0 pC 的电荷。它表面附近的电势是多少？",
+   "answer": {
+    "type": "number",
+    "value": 144,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "电荷的作用就像全部位于球心一样，所以在 $\\kV = k\\kQch/\\kr$ 中取 $\\kr$ 为球的半径 0.250 cm。",
+    "solution": "144 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1516605",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "point-charge-potential",
+   "prompt": "（a）一个球的表面均匀带有 1.00 C 的电荷。在距其球心多远处，电势为 5.00 MV？（b）你的答案对孤立如此大的电荷的实际可行性意味着什么？",
+   "answer": {
+    "type": "number",
+    "value": 1800,
+    "unit": "m",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "由 $\\kV = k\\kQch/\\kr$ 解出距离 $\\kr = k\\kQch/\\kV$，其中 $\\kQch = 1.00$ C，$\\kV = 5.00 \\times 10^{6}$ V。",
+    "solution": "（a）1.80 km（b）1 C 的电荷是非常大的电荷量；半径为 1.80 km 的球是不现实的。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id963449",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "point-charge-potential",
+   "prompt": "在距离为 1.00 mm 处产生 $-2.00\\ \\text{V}$ 电势的点电荷，其电荷的正负和大小是多少？",
+   "answer": {
+    "type": "number",
+    "value": -2.22e-13,
+    "unit": "C",
+    "generated_by": "source",
+    "hint": "由 $\\kV = k\\kQch/\\kr$ 解出电荷 $\\kQch = \\kr\\kV/k$。电势为负，意味着电荷为负。",
+    "solution": "$-2.22 \\times 10^{-13}\\ \\text{C}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2554432",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar-and-vector",
+   "prompt": "在核裂变中，一个原子核大致分裂成两半。（a）在距离一个含有 46 个质子的碎片 $2.00 \\times 10^{-14}\\ \\text{m}$ 处，电势是多少？（b）在这一距离处，一个电荷相似的碎片的势能是多少 MeV？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3310000.0,
+      "unit": "V",
+      "hint": "该碎片带有 46 个元电荷，所以 $\\kQch = 46(1.60 \\times 10^{-19}\\ \\text{C})$，电势为 $k\\kQch/\\kr$。"
+     },
+     {
+      "part": "(b)",
+      "value": 152,
+      "unit": "MeV",
+      "hint": "电荷在电势为 $\\kV$ 处的能量是 $\\kPEtot = \\kq\\kV$，而第二个碎片也带有 46 个元电荷，所以以电子伏计的答案是以伏计的电势的 46 倍。"
+     }
+    ],
+    "solution": "（a）$3.31 \\times 10^{6}\\ \\text{V}$（b）152 MeV"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1320070",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charged-spheres",
+   "prompt": "一台静电喷涂机有一个直径 0.200 m 的金属球，其电势为 25.0 kV，它把涂料液滴排斥到接地的物体上。（a）球上的电荷是多少？（b）一滴 0.100 mg 的涂料要以 10.0 m/s 的速率到达物体，它必须带多少电荷？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.78e-07,
+      "unit": "C",
+      "hint": "球的电势等于位于球心、相距 0.100 m 的点电荷的电势，所以 $\\kQch = \\kr\\kV/k$。"
+     },
+     {
+      "part": "(b)",
+      "value": 2e-10,
+      "unit": "C",
+      "hint": "液滴经过整个 25.0 kV 的电压，这些能量全部变成动能：令 $\\kq\\kV = \\frac{1}{2}m\\kv^2$，解出电荷。"
+     }
+    ],
+    "solution": "（a）$2.78 \\times 10^{-7}\\ \\text{C}$（b）$2.00 \\times 10^{-10}\\ \\text{C}$"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "eip-200",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charged-spheres",
+   "prompt": "<strong>不合理的结果</strong>（a）一个电子由静止开始，被带负电的范德格拉夫起电机的接线端经 25.0 MV 的电压加速，它的末速率是多少？（b）这个结果有什么不合理之处？（c）哪些假设导致了这一结果？",
+   "answer": {
+    "type": "number",
+    "value": 2960000000.0,
+    "unit": "m/s",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "把电势能全部转化为动能，$\\kq\\kV = \\frac{1}{2}m\\kv^2$，解出速率；然后把得数与光速比较。",
+    "solution": "（a）$2.96 \\times 10^{9}\\ \\text{m/s}$（b）这个速度大得离谱。它比光速还快。（c）假定电子的速率远小于光速、问题不需要相对论性的处理，由此得出了大于光速的答案。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2723641",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charged-spheres",
+   "prompt": "<strong>不合理的结果</strong>（a）求直径 10.0 cm、带有 8.00 C 过剩正电荷的金属球附近的电压。（b）这个结果有什么不合理之处？（c）哪些假设导致了这一结果？",
+   "answer": {
+    "type": "number",
+    "value": 1440000000000.0,
+    "unit": "V",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "球的电势等于位于球心、相距 5.00 cm 的点电荷的电势，所以 $\\kV = k\\kQch/\\kr$，其中 $\\kr = 0.0500$ m。",
+    "solution": "（a）$1.44 \\times 10^{12}\\ \\text{V}$（b）这个电压非常高。直径 10.0 cm 的球永远无法维持这样的电压；它会放电。（c）8.00 C 的电荷多于能够合理地积累在那么大的球上的电荷量。"
+   },
+   "source_section": "19.1"
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1830876",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-potentials-add",
+   "prompt": "一个体系由两个点电荷组成，一个是 2.0 µC，另一个是 −3.0 µC，二者相距 1.2 m。该体系的内能是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$-3.8 \\times 10^{-2}\\ \\text{J}$",
+     "$-4.5 \\times 10^{-2}\\ \\text{J}$",
+     "$4.5 \\times 10^{-2}\\ \\text{J}$",
+     "$3.8 \\times 10^{-2}\\ \\text{J}$"
+    ],
+    "correct": 1,
+    "hint": "一对电荷的能量，等于其中一个的电荷量乘以另一个在它所在处产生的电势，$k\\kQch_1\\kQch_2/\\kr$。异号电荷的能量为负。",
+    "solution": "(b)"
+   },
+   "source_section": "19.1"
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1773635",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-potentials-add",
+   "prompt": "一个由三个点电荷组成的体系：原点处有 1.00 µC 的电荷，$x = 30$ cm 处有 −2.00 µC 的电荷，$x = 70$ cm 处有 3.00 µC 的电荷。这一构型储存的总势能是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "储存的总能量是 $-0.156$ J。一对点电荷的能量是 $k\\kQch_1\\kQch_2/\\kr$，而这一构型的能量是三对电荷的能量之和，因为能量是可以相加的数。1.00 µC 与 −2.00 µC 的电荷相距 0.30 m，得到 $(8.99 \\times 10^{9})(1.00 \\times 10^{-6})(-2.00 \\times 10^{-6})/0.30 = -0.0599$ J。1.00 µC 与 3.00 µC 的电荷相距 0.70 m，得到 $+0.0385$ J；−2.00 µC 与 3.00 µC 的电荷相距 0.40 m，得到 $-0.1348$ J。总和为 $-0.0599 + 0.0385 - 0.1348 = -0.156$ J。它为负，是因为相互吸引最强的一对距离最近，所以必须对体系做功才能把这些电荷拉开。"
+   },
+   "source_section": "19.1"
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1872138",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-potentials-add",
+   "prompt": "一个体系在 (50 cm, 0) 和 (−50 cm, 0) 处各有 2.00 µC 的电荷，在 (0, 70 cm) 处有 −1.00 µC 的电荷。随着 −1.00 µC 电荷的 $y$ 坐标增大，势能___；随着 −1.00 µC 电荷的 $y$ 坐标减小，势能___。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "增大，增大",
+     "增大，减小",
+     "减小，增大",
+     "减小，减小"
+    ],
+    "correct": 1,
+    "hint": "负电荷受到两个正电荷的吸引，所以它与它们的能量为负，且越靠近它们就越负。把它移远会使这个负数的绝对值变小，这就是增大。",
+    "solution": "(b)"
+   },
+   "source_section": "19.1"
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1944533",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-potentials-add",
+   "prompt": "一个由三个点电荷组成的体系：原点处有 1.00 µC 的电荷，$x = 30$ cm 处有 −2.00 µC 的电荷，$x = 70$ cm 处有 3.00 µC 的电荷。如果 −2.00 µC 的电荷和 3.00 µC 的电荷互换位置，这个体系的总势能会怎样变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "总势能升高 0.0856 J，从 $-0.156$ J 变为 $-0.0706$ J。互换之后，3.00 µC 的电荷在 30 cm 处，−2.00 µC 的电荷在 70 cm 处，每对电荷的能量 $k\\kQch_1\\kQch_2/\\kr$ 都要重新算一遍。互相排斥的 1.00 µC 与 3.00 µC 的电荷现在相距 0.30 m，得到 $(8.99 \\times 10^{9})(1.00 \\times 10^{-6})(3.00 \\times 10^{-6})/0.30 = +0.0899$ J。互相吸引的 1.00 µC 与 −2.00 µC 的电荷现在相距 0.70 m，得到 $-0.0257$ J。−2.00 µC 与 3.00 µC 的电荷仍相距 0.40 m，保持 $-0.1348$ J。新的总和为 $0.0899 - 0.0257 - 0.1348 = -0.0706$ J。把互相排斥的一对拉近，并把互相吸引的一对拉远，都会使能量升高，所以总能量上升。"
+   },
+   "source_section": "19.1"
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id3081143",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-potentials-add",
+   "prompt": "取一个由点电荷构成的正方形构型，两个为正、两个为负，电荷量大小都相同，同号电荷位于同一条对角线上。如果其中一个负电荷变成电荷量相同的正电荷，这个体系的内能会怎样变化？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "增大",
+     "减小",
+     "不变",
+     "信息不足"
+    ],
+    "correct": 0,
+    "hint": "数一数电荷对。改变一个电荷的符号，会使该电荷在正方形边上所属的两个互相吸引的对变成互相排斥的对，并使它在对角线上互相排斥的一对变成互相吸引的对；边比对角线近，所以能量升高的两对胜过能量降低的那一对。",
+    "solution": "(a)"
+   },
+   "source_section": "19.1"
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2794286",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-potentials-add",
+   "prompt": "取一个由点电荷构成的正方形构型，两个为正、两个为负，电荷量大小都相同，同号电荷位于同一条对角线上。如果正方形的边长减小，这个体系的内能会怎样变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它变得更负。每一对电荷的能量都是 $k\\kQch_1\\kQch_2/\\kr$，而缩小正方形会使所有的间距，边和对角线一样，都除以同一个因子，所以整个和乘以这个因子。在这种排列中，每个电荷在边上有两个异号的近邻，在对角线对面有一个同号电荷，而且因为边比对角线短，互相吸引的对已经占优势，总和为负。把一个负的总和乘以一个大于 1 的数，会使它更负，也就是说电荷被束缚得更紧，必须做功才能把正方形重新拉开。"
+   },
+   "source_section": "19.1"
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id3350954",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-potentials-add",
+   "prompt": "一个体系在 (50 cm, 0) 和 (−50 cm, 0) 处各有 2.00 µC 的电荷，在 (0, 70 cm) 处有 −1.00 µC 的电荷，后者的速度沿 –$y$ 方向。当 −1.00 µC 的电荷位于 (0, 0) 时，势能处于___，动能为___。",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "最大，最大",
+     "最大，最小",
+     "最小，最大",
+     "最小，最小"
+    ],
+    "correct": 2,
+    "hint": "在原点处，负电荷沿该路径与两个正电荷靠得最近，所以它与它们的能量负得最多。动能与势能之和不变，所以一个最小之处，另一个就最大。",
+    "solution": "(c)"
+   },
+   "source_section": "19.1"
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "sphere-potential-as-point-charge"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "potential-of-point-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sphere-potential-as-point-charge"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "superposition-of-potential",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "potential-of-point-charge"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sphere-potential-as-point-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "potential-of-point-charge"
+  },
+  {
+   "exercise": "p3",
+   "concept": "sphere-potential-as-point-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "potential-of-point-charge"
+  },
+  {
+   "exercise": "p7",
+   "concept": "potential-of-point-charge"
+  },
+  {
+   "exercise": "p7",
+   "concept": "potential-energy-of-point-charges",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "electron-volt",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "potential-of-point-charge"
+  },
+  {
+   "exercise": "p9",
+   "concept": "sphere-potential-as-point-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "energy-conservation-for-charges",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "speed-from-potential-difference"
+  },
+  {
+   "exercise": "p12",
+   "concept": "energy-from-potential-difference",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "potential-of-point-charge"
+  },
+  {
+   "exercise": "p13",
+   "concept": "sphere-potential-as-point-charge",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "potential-energy-of-point-charges"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "superposition-of-potential",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "potential-energy-of-point-charges"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "superposition-of-potential",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "potential-energy-of-point-charges"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "superposition-of-potential",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "potential-energy-of-point-charges"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "superposition-of-potential",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "potential-energy-of-point-charges"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "superposition-of-potential",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "potential-energy-of-point-charges"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "superposition-of-potential",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "potential-energy-of-point-charges"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "superposition-of-potential",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "potential-of-point-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "potential-of-point-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "potential-of-point-charge",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "energy-conservation-for-charges",
+   "weight": 4,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "charge-1",
+   "label": "第一个点电荷，+2.00 µC",
+   "figures": [
+    "sim-potentials-add"
+   ]
+  },
+  {
+   "id": "charge-2",
+   "label": "第二个点电荷",
+   "figures": [
+    "sim-potentials-add"
+   ]
+  },
+  {
+   "id": "sphere",
+   "label": "范德格拉夫起电机的金属球",
+   "figures": [
+    "sim-van-de-graaff"
+   ]
+  },
+  {
+   "id": "voltmeter",
+   "label": "测量金属球对地电压的电压表",
+   "figures": [
+    "sim-van-de-graaff"
+   ]
+  }
+ ]
+}

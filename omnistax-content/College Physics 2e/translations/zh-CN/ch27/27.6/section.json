@@ -1,0 +1,674 @@
+{
+ "id": "27.6",
+ "module": "m42517",
+ "chapter": "27",
+ "title": "分辨极限：瑞利判据",
+ "short": "瑞利判据",
+ "lead": "衍射把每个点光源发出的光扩展成一个模糊的光斑，周围环绕着较暗的光环，因此靠得很近的两个光源的像会重叠，并可能模糊成一个。两个光源能靠得多近而仍可区分，决定了望远镜、眼睛或显微镜所能显示的最精细的细节。",
+ "objectives": [
+  "讨论瑞利判据。"
+ ],
+ "summary_html": "<ul><li>衍射限制分辨率。</li><li>对于圆孔、透镜或面镜，瑞利判据指出：当一个衍射图样的中心恰好位于另一个衍射图样的一级极小之上时，两个像刚好可分辨。</li><li>这种情形出现在被<span data-concept=\"angle\">角度</span> $\\theta = 1.22\\frac{\\klam}{\\kDap}$ 隔开的两个点物体上，其中 $\\klam$ 是光（或其他电磁辐射）的<span data-concept=\"wavelength\">波长</span>，$\\kDap$ 是孔径、透镜、面镜等的直径。这个方程也给出了直径为 $\\kDap$ 的光源发出的光的角展宽。</li></ul>",
+ "notes": "本节自带的关于激光打印机点的习题把这一判据拼作“Raleigh’s”；它没有给出答案，因而略去。本节十三道习题中有八道没有给出答案，因而略去：哈勃能在月球上观察到的最小细节、1.00 mm 氦氖激光束的扩展和光斑大小、瞳孔为 3.00 mm 时眼睛的分辨率、他们的眼白、透过 0.40 cm 的瞳孔所见的前照灯、激光打印机的点、用来看木星卫星上的人的望远镜，以及要求自行构造的题目。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十三道习题中有八道没有给出答案，因而略去，它们在本节的说明中列出。一道 AP 题有答案，设为判分选择题；另一道没有答案，保留为开放题，附有标明由 AI 生成的建议思路。思考题没有答案，附有标明由 AI 生成的建议思路。冥王星与卡戎一题的答案是用文字给出的，设为开放题，附书中的答案。本节没有印出“理解检测”框，因此没有行内题。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-rayleigh",
+   "kind": "sim",
+   "number": "27.25",
+   "folds": [
+    "27.26"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_06_01a.jpg",
+    "/media/ch27/Figure_28_06_02a.jpg"
+   ],
+   "original_caption": "（图 27.25）（a）单色光穿过一个小圆孔，产生这样的衍射图样。（b）两个靠得很近的点光源，由于衍射而产生相互重叠的像。（c）如果它们靠得更近，就无法被分辨或区分。（图 27.26）（a）圆孔衍射图样的强度曲线。注意，与单缝类似，中央极大比两侧的极大更宽、更亮。（b）两个点物体产生相互重叠的衍射图样。这里表示的是刚好可分辨的瑞利判据。一个图样的中央极大位于另一个图样的一级极小上。",
+   "widths": [
+    350,
+    400
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#000000",
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "theta label lifted off the center line"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-m82",
+   "kind": "photo",
+   "number": "27.27",
+   "originals": [
+    "/media/ch27/Figure_28_06_03a.jpg"
+   ],
+   "original_caption": "M82 星系的这两张照片，让人了解使用哈勃空间望远镜与使用地基望远镜所能观察到的细节的对比。（a）左侧是地基望远镜拍摄的图像。（来源：Ricnun, Wikimedia Commons）（b）右侧的照片由哈勃拍摄。（来源：NASA, ESA, and the Hubble Heritage Team (STScI/AURA)）",
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "photo-arecibo",
+   "kind": "photo",
+   "number": "27.28",
+   "originals": [
+    "/media/ch27/Figure_28_06_04a.jpg"
+   ],
+   "original_caption": "波多黎各阿雷西博的一个直径 305 m 的天然碗形洼地，内衬反射材料，使之成为一台射电望远镜。它是世界上最大的弯曲聚焦碟面。尽管阿雷西博的 $D$ 比哈勃望远镜的大得多，但它探测的是波长长得多的辐射，其衍射极限比哈勃的差得多。阿雷西博仍然非常有用，因为无线电波携带着可见光所不携带的重要信息。（来源：Tatyana Temirbulatova, Flickr）",
+   "widths": [
+    200
+   ]
+  },
+  {
+   "id": "sim-beam-spread",
+   "kind": "sim",
+   "number": "27.29",
+   "originals": [
+    "/media/ch27/Figure_28_06_05a.jpg"
+   ],
+   "original_caption": "这台微波发射天线所产生的光束，由于衍射，将以最小角度 $\\theta = 1.22\\;\\lambda/D$ 向外扩展。不可能产生近乎平行的光束，因为光束的直径是有限的。",
+   "widths": [
+    144
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-resolving-power",
+   "kind": "sim",
+   "number": "27.30",
+   "originals": [
+    "/media/ch27/Figure_28_06_06a.jpg"
+   ],
+   "original_caption": "（a）两个点相距 $x$，并位于距物镜 $d$ 远处。（来源：Infopro, Wikimedia Commons）（b）讨论透镜和点 P 处物体的分辨本领时所用的术语和符号。（来源：Infopro, Wikimedia Commons）",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note through the macros, approximation marked"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-focal-spot",
+   "kind": "sim",
+   "number": "27.31",
+   "originals": [
+    "/media/ch27/Figure_28_06_07a.jpg"
+   ],
+   "original_caption": "（a）在几何光学中，焦点是一个点，但在物理上不可能产生这样的点，因为它意味着无限大的强度。（b）在波动光学中，焦点是一个扩展的区域。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "facts": [
+    "#a3ff00"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "focal-region label by hover at high NA, arc kept off the lens"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "diffraction-limits",
+   "concept": "diffraction-limits-resolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "rayleigh",
+   "concept": "rayleigh-criterion",
+   "verb": "introduces"
+  },
+  {
+   "span": "rayleigh",
+   "concept": "diffraction-limits-resolution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hubble-example",
+   "concept": "find-a-resolvable-separation",
+   "verb": "introduces"
+  },
+  {
+   "span": "hubble-example",
+   "concept": "rayleigh-criterion",
+   "verb": "uses"
+  },
+  {
+   "span": "beam-spreading",
+   "concept": "diffraction-spreading-of-a-beam",
+   "verb": "introduces"
+  },
+  {
+   "span": "resolving-power",
+   "concept": "resolving-power-of-a-lens",
+   "verb": "introduces"
+  },
+  {
+   "span": "resolving-power",
+   "concept": "resolution-and-numerical-aperture",
+   "verb": "introduces"
+  },
+  {
+   "span": "resolving-power",
+   "concept": "rayleigh-criterion",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2328847",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rayleigh",
+   "prompt": "穿过圆孔形成的中央衍射极大的宽度（<em>W</em>）与孔径的大小（<em>S</em>）之间是什么关系？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "<em>S</em> 增大时，<em>W</em> 增大。",
+     "<em>S</em> 增大时，<em>W</em> 减小。",
+     "<em>S</em> 减小时，<em>W</em> 可能增大，也可能减小。",
+     "<em>S</em> 减小时，<em>W</em> 既不可能增大，也不可能减小。"
+    ],
+    "correct": 1,
+    "hint": "一级极小位于 $\\theta = 1.22\\klam/\\kDap$ 处，所以问一问：孔径增大时，这个角度会怎样变化。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1526437",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rayleigh",
+   "prompt": "来自两个光源的光穿过一个圆孔，在屏上形成像。陈述这两个像刚好可分辨时的瑞利判据，并画一幅图直观地加以说明。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "瑞利判据指出：当一个衍射图样的中心恰好位于另一个衍射图样的一级极小之上时，两个像刚好可分辨。对于直径为 $\\kDap$ 的圆孔，当两个光源被角度 $\\theta = 1.22\\klam/\\kDap$ 隔开时就是这种情形。一幅好的图应当画出这两个光源、来自每个光源并在孔径处交叉的光线，以及屏上的两条强度曲线，每条曲线都有一个宽的中央极大和较小的旁极大，并且摆放得使一条曲线的峰恰好落在另一条曲线的第一个零点上。两条曲线之和在两个峰之间显示出一个轻微的凹陷，这恰好足以表明有两个光源。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737729104",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beam-spreading",
+   "prompt": "光束总是会扩展开来。为什么不能产生由平行光线构成的光束来防止扩展？为什么不能用透镜、面镜或孔径来校正这种扩展？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "每一束光都有有限的直径 $\\kDap$，被限制在这一宽度内的、波长为 $\\klam$ 的光会发生衍射，以约 $\\theta = 1.22\\klam/\\kDap$ 的角度扩展。这种扩展来自光的波动性和光束宽度的有限，而不是来自光线的任何不完美，所以光线的任何安排都无法消除它。透镜、面镜或孔径也具有有限的直径，因此离开它们的光会以同样的方式发生衍射；它们所能做到的至多是使光束变宽，这会使扩展角变小，但永远不会变为零。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738092358",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hubble-example",
+   "prompt": "图 27.28 所示的直径 300 m 的阿雷西博射电望远镜探测平均波长为 4.00 cm 的无线电波。（a）对这台望远镜来说，两个刚好可分辨的点光源之间的夹角是多少？（b）这些点光源在仙女星系 200 万光年的距离上最近能靠多近？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the angle between just-resolvable sources",
+      "value": 0.000163,
+      "unit": "rad",
+      "hint": "用 $\\theta = 1.22\\klam/\\kDap$，两个长度都以米为单位。"
+     },
+     {
+      "part": "(b) the closest separation at Andromeda",
+      "value": 326,
+      "unit": "ly",
+      "hint": "把角度乘以距离，$\\ks = r\\theta$。"
+     }
+    ],
+    "solution": "（a）$1.63\\times 10^{-4}\\;\\text{rad}$\n\n（b）326光年"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738182730",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beam-spreading",
+   "prompt": "与手电筒光学系统中的其他限制（例如其面镜中的球差）相比，手电筒的衍射扩展微不足道。为说明这一点，计算一束原本直径为 5.00 cm、平均波长为 600 nm 的手电筒光束的最小角展宽。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.46e-05,
+    "unit": "rad",
+    "hint": "直径为 $\\kDap$ 的光束以 $\\theta = 1.22\\klam/\\kDap$ 扩展。",
+    "solution": "$1.46\\times 10^{-5}\\;\\text{rad}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738006864",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beam-spreading",
+   "prompt": "可以用望远镜来增大激光束的直径，从而限制衍射扩展。让激光束沿与正常方向相反的方向穿过望远镜，然后就可以把它投射到卫星或月球上。（a）如果用威尔逊山望远镜这样做，产生直径 2.54 m、波长 633 nm 的光束，那么光束的最小角展宽（光束的极大与其第一个零点之间的夹角）是多少？（b）忽略大气效应，设月球的距离为 $3.84\\times 10^{8}\\;\\text{m}$，这束光在月球上会形成多大的光斑？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the minimum angular spread",
+      "value": 3.04e-07,
+      "unit": "rad",
+      "hint": "用 $\\theta = 1.22\\klam/\\kDap$。"
+     },
+     {
+      "part": "(b) the diameter of the spot on the Moon",
+      "value": 235,
+      "unit": "m",
+      "hint": "光束在其轴线两侧各扩展 $r\\theta$，所以光斑的宽度约为它的两倍。"
+     }
+    ],
+    "solution": "（a）$3.04\\times 10^{-7}\\;\\text{rad}$\n\n（b）直径为 235 m"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169738076111",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hubble-example",
+   "prompt": "望远镜的面镜至少要有多大的直径，才能让你看清约 384,000 km 外的月球上小到 5.00 km 的细节？设所接收光的平均波长为 550 nm。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.15,
+    "unit": "cm",
+    "hint": "由 $\\ks = r\\theta$ 求出角度，再由 $\\theta = 1.22\\klam/\\kDap$ 解出 $\\kDap$。",
+    "solution": "5.15 cm"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738080661",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hubble-example",
+   "prompt": "（a）行星冥王星与其卫星卡戎相距 19,600 km。忽略大气效应，当它们距地球 $4.50\\times 10^{9}\\;\\text{km}$ 时，直径 5.08 m 的帕洛马山望远镜应当能够分辨这两个天体吗？设平均波长为 550 nm。（b）实际上，用地基望远镜仅勉强能看出冥王星和卡戎是两个分开的天体。这是什么原因？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）能。应当很容易分辨。\n\n（b）仅勉强能分辨出这是两个分开的天体，这一事实表明大气像差的严重程度。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "rayleigh-criterion"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "diffraction-limits-resolution",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "rayleigh-criterion"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "diffraction-spreading-of-a-beam"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rayleigh-criterion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "find-a-resolvable-separation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "diffraction-spreading-of-a-beam"
+  },
+  {
+   "exercise": "p3",
+   "concept": "diffraction-spreading-of-a-beam"
+  },
+  {
+   "exercise": "p3",
+   "concept": "find-a-resolvable-separation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "find-a-resolvable-separation"
+  },
+  {
+   "exercise": "p4",
+   "concept": "rayleigh-criterion",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "find-a-resolvable-separation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "rayleigh-criterion",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "object-1",
+   "label": "物体 1",
+   "figures": [
+    "sim-rayleigh"
+   ]
+  },
+  {
+   "id": "object-2",
+   "label": "物体 2",
+   "figures": [
+    "sim-rayleigh"
+   ]
+  },
+  {
+   "id": "antenna",
+   "label": "碟形天线",
+   "figures": [
+    "sim-beam-spread"
+   ]
+  },
+  {
+   "id": "objective",
+   "label": "显微镜物镜",
+   "figures": [
+    "sim-resolving-power"
+   ]
+  },
+  {
+   "id": "specimen",
+   "label": "标本",
+   "figures": [
+    "sim-resolving-power"
+   ]
+  },
+  {
+   "id": "point-p",
+   "label": "点 P",
+   "figures": [
+    "sim-resolving-power"
+   ]
+  },
+  {
+   "id": "point-objects",
+   "label": "两个点物体",
+   "figures": [
+    "sim-resolving-power"
+   ]
+  },
+  {
+   "id": "lens",
+   "label": "透镜",
+   "figures": [
+    "sim-focal-spot"
+   ]
+  },
+  {
+   "id": "focal-spot",
+   "label": "焦斑",
+   "figures": [
+    "sim-focal-spot"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "resolving-power",
+   "what": "透镜的分辨本领",
+   "source": "《大学物理（第2版）》，27.6 分辨极限：瑞利判据",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "两个点相距 $\\kx$，位于距物镜 $\\kd$ 处，$\\kx$ 比 $\\kd$ 小得多，所以 $\\text{tan}\\;\\ktheta = \\kx/\\kd$。",
+       "src": "图 27.30"
+      },
+      {
+       "tex": "\\text{tan}\\;\\ktheta \\approx \\text{sin}\\;\\ktheta \\approx \\ktheta",
+       "src": "27.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\ktheta} = \\mk{r}{1.22\\frac{\\klam}{\\kDap}}",
+      "uses": [],
+      "src": "27.6",
+      "why": "根据瑞利判据，当两个点的角间隔等于一级衍射极小的角度时，它们刚好可以被分辨。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\ktheta} = \\mk{r}{1.22\\frac{\\klam}{\\kDap}} = \\mk{x}{\\frac{\\kx}{\\kd}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}}",
+       "uses": [],
+       "map": {
+        "t": "r"
+       }
+      }
+     ],
+     "src": "27.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "直径为 $\\kDap$ 的透镜，在相距 $\\kd$ 的点 P 处所张的半角为 $\\kalphahalf$，所以 $\\text{tan}\\;\\kalphahalf = (\\kDap/2)/\\kd$。",
+       "src": "图 27.30（b）"
+      },
+      {
+       "tex": "\\text{tan}\\;\\ktheta \\approx \\text{sin}\\;\\ktheta \\approx \\ktheta",
+       "src": "27.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\text{tan}\\;\\kalphahalf} = \\mk{f}{\\frac{\\kDap/2}{\\kd}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\text{sin}\\;\\kalphahalf} = \\mk{f}{\\frac{\\kDap/2}{\\kd}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\text{sin}\\;\\kalphahalf} = \\mk{f}{\\frac{\\kDap/2}{\\kd}} = \\mk{g}{\\frac{\\kDap}{2\\kd}}",
+       "uses": []
+      }
+     ],
+     "src": "27.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\text{NA} = n\\;\\text{sin}\\;\\kalphahalf",
+       "src": "26.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}}",
+      "uses": [],
+      "src": "27.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}} = \\mk{s}{1.22\\frac{\\klam}{2\\;\\text{sin}\\;\\kalphahalf}}",
+       "uses": [
+        1
+       ],
+       "cap": "由 $\\text{sin}\\;\\kalphahalf = \\kDap/2\\kd$ 得，比值 $\\kd/\\kDap$ 为 $1/(2\\;\\text{sin}\\;\\kalphahalf)$。"
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}} = \\mk{s}{1.22\\frac{\\klam}{2\\;\\text{sin}\\;\\kalphahalf}} = \\mk{n}{0.61\\frac{\\klam n}{n\\;\\text{sin}\\;\\kalphahalf}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}} = \\mk{s}{1.22\\frac{\\klam}{2\\;\\text{sin}\\;\\kalphahalf}} = \\mk{n}{0.61\\frac{\\klam n}{\\text{NA}}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "27.6"
+    }
+   ]
+  }
+ ]
+}

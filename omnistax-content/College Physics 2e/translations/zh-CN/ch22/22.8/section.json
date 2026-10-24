@@ -1,0 +1,582 @@
+{
+ "id": "22.8",
+ "module": "m42380",
+ "chapter": "22",
+ "title": "载流线圈所受的力矩：电动机与电表",
+ "short": "载流线圈所受的力矩",
+ "lead": "把一根通有<span data-concept=\"electric-current\">电流</span>的导线弯成线圈，放在<span data-concept=\"magnetic-field\">磁场</span>中，并把它挂在一根转轴上，线圈两边受到的横向<span data-concept=\"force\">力</span>就会使它转动。本节求出这个力矩，并以它为基础构造两种机器：由电刷保持持续转动的电动机，以及由弹簧拉住指针、不让它继续转动的电表。",
+ "objectives": [
+  "说明电动机和电表如何依据载流线圈所受的力矩工作。",
+  "计算磁场中载流线圈所受的力矩。"
+ ],
+ "summary_html": "<ul><li>均匀<span data-concept=\"magnetic-field\">磁场</span>中任意形状的载流线圈所受的力矩 $\\ktau$ 为 $\\ktau = N\\kIcur A\\kBmag\\sin\\theta ,$ 其中 $N$ 是匝数，$\\kIcur$ 是<span data-concept=\"electric-current\">电流</span>，$A$ 是线圈的<span data-concept=\"area\">面积</span>，$\\kBmag$ 是<span data-concept=\"magnetic-field-strength-defined\">磁感应强度</span>，$\\theta$ 是线圈的法线与<span data-concept=\"magnetic-field\">磁场</span>之间的<span data-concept=\"angle\">夹角</span>。</li></ul>",
+ "notes": "书中有四道习题没有给出答案，已略去：150 匝方形线圈的最大力矩及其在 10.9° 时的力矩，200 匝线圈要产生 300 N⋅m 的力矩所需的磁感应强度，力矩分别为最大值的 90.0%、50.0% 和 10.0% 时的三个角度，以及位于地磁场中的 200 匝圆形线圈。本模块中的其余内容均未略去：它的四幅图全部重绘成交互式图形，书中的原图附在旁边；转轴上的线圈、四幅俯视图和电刷合为一个图形，因为它们是同一台机器画了三次。例题 22.5 把边长为 10.0 cm 的线圈的面积印成 0.100 m²，而该行的算式及其所得的 30.0 N⋅m 都是按 0.0100 m² 计算的；这一行按书中原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。本节的那道思考题没有给出答案，其建议思路由 AI 撰写，并已作标注。有四道习题没有给出答案，已略去：150 匝线圈的最大力矩，产生 300 N⋅m 力矩所需的磁感应强度，力矩为其最大值某几个比例时的三个角度，以及地磁场中的 200 匝圆形线圈。本节最后一道习题写的是“重复”，原文把它链接到本节第一道习题，但它给出的答案 0.666 N⋅m、向西，是书中紧挨在它前面印出的那道地磁场中线圈题的答案，所以这个链接是印刷错误；因为那道题是被略去的无答案题之一，它所重复的情形就在习题题干里引述出来，9.5 节对滑轮习题也是这样做的。没有习题被留到后面的小节，也没有习题来自前面的小节。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-motor",
+   "kind": "sim",
+   "number": "22.33",
+   "folds": [
+    "22.34",
+    "22.35"
+   ],
+   "originals": [
+    "/media/ch22/Figure_23_08_01a.jpg",
+    "/media/ch22/Figure_23_08_02a.jpg",
+    "/media/ch22/Figure_23_08_03a.jpg"
+   ],
+   "original_caption": "（图 22.33）载流线圈所受的力矩。一个载流导线线圈装在竖直转动的转轴上，受到磁力，产生从上方看为顺时针的力矩。（图 22.34）磁场中载流线圈的俯视图。（a）力矩的公式就是根据这个视图推导的。注意线圈的法线与磁场的夹角为 θ，它与 w/2 和 F 之间的夹角相同。（b）当 θ 为直角、sin θ = 1 时，力矩最大。（c）当 θ 为零、sin θ = 0 时，力矩为零（最小）。（d）线圈转过 θ = 0 之后，力矩反向。（图 22.35）（a）当线圈的角动量带着它转过 θ = 0 时，电刷使电流反向，以保持力矩为顺时针。（b）线圈将沿顺时针方向持续转动，电流每转半圈反向一次，以维持顺时针的力矩。",
+   "widths": [
+    330,
+    600,
+    400
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "force",
+    "torque",
+    "angle",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headlines shortened, torque ticks thinned, notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-meter",
+   "kind": "sim",
+   "number": "22.36",
+   "originals": [
+    "/media/ch22/Figure_23_08_04a.jpg"
+   ],
+   "original_caption": "电表与电动机非常相似，只是只转过一圈的一部分。这个电表的磁极被做成特定形状，使 B 垂直于线圈的分量保持不变，因此力矩与 θ 无关，克服回复弹簧的偏转只与电流 I 成正比。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "magnetic-field",
+    "current",
+    "torque",
+    "angle",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of needle and poles, graph note dropped, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "torque-on-a-loop",
+   "concept": "torque-on-a-current-loop",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "torque-varies-with-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "net-force-on-a-loop-is-zero",
+   "verb": "introduces"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "magnetic-force-on-a-current-carrying-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "direction-of-force-on-a-current",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "right-hand-rule-1",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "torque-on-a-loop",
+   "concept": "number-of-turns",
+   "verb": "introduces"
+  },
+  {
+   "span": "keeping-the-coil-turning",
+   "concept": "brushes-reverse-the-current",
+   "verb": "introduces"
+  },
+  {
+   "span": "keeping-the-coil-turning",
+   "concept": "torque-varies-with-angle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "keeping-the-coil-turning",
+   "concept": "stable-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "keeping-the-coil-turning",
+   "concept": "angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "keeping-the-coil-turning",
+   "concept": "electric-motor",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "meter-and-galvanometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "torque-on-a-current-loop",
+   "verb": "reinforces"
+  },
+  {
+   "span": "meters",
+   "concept": "restoring-torque",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1347587",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-on-a-loop",
+   "prompt": "画一幅图，并用右手定则 1 说明：图 22.33 中电动机载流线圈的顶边和底边所受的力是竖直的，对转轴不产生力矩。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "顶边和底边所受的力一个竖直向下、一个竖直向上，沿着转轴方向，所以它们对转轴不产生力矩。把转轴画成竖直的，磁场 $\\kBmag$ 水平地从左边的北极指向右边的南极，线圈转到使它的顶边垂直纸面向里、底边垂直纸面向外，电流沿线圈绕行。对于顶边，让右手拇指沿电流指向纸面里，四指沿磁场指向右边：与手掌垂直的方向向下。对于底边，电流垂直纸面向外，拇指反转，力向上。线圈在任何角度时情形都相同，因为线段和磁场都位于水平面内，同时垂直于两者的力必然是竖直的。这两个力大小相等、方向相反，所以合力为零，而且各自都与转动轴平行。平行于某根轴的力无法使物体绕这根轴转动，就像沿铰链线向上或向下推一扇门，不会使它转开一样。线圈所受的力矩完全来自两条竖直边，它们所受的水平力作用在距转轴 $\\kwloop/2$ 的地方。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1615066",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-motor",
+   "prompt": "（a）如果电动机的永磁体失去 5.0% 的磁性强度，电动机的力矩减小百分之几？（b）电流需要增大百分之几，才能使力矩恢复到原来的值？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 5.0,
+      "unit": "%",
+      "hint": "力矩与磁感应强度成正比，与其他未变的量无关，所以磁感应强度减小的比例就是力矩减小的比例。"
+     },
+     {
+      "part": "(b)",
+      "value": 5.26,
+      "unit": "%",
+      "hint": "电流必须补回损失的整个因子，所以应当乘以 1/0.950。"
+     }
+    ],
+    "solution": "（a）若 B 减小 5.00%，则 $\\ktau$ 减小 5.00%\n（b）增大 5.26%"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "eip-32",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-motor",
+   "prompt": "线圈由 50 匝边长为 15.0 cm 的方形线匝组成，处在 0.800 T 的匀强磁场中。求线圈中所需的电流，使它产生的最大力矩为 $9\\text{.}\\text{00 N}\\cdot\\text{m.}$",
+   "answer": {
+    "type": "number",
+    "value": 10.0,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "力矩取最大值，所以正弦等于 1；由 $\\ktau_{\\text{max}} = N\\kIcur A\\kBmag$ 解出电流，面积取边长的平方。",
+    "solution": "10.0 A"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2925094",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "torque-on-a-loop",
+   "prompt": "由于载流线圈所受力矩的公式为 $\\ktau = N\\kIcur A\\kBmag\\sin\\theta$，所以 $\\text{N}\\cdot\\text{m}$ 的单位必须等于 $\\text{A}\\cdot{\\text{m}}^{2}\\;\\text{T}$ 的单位。请验证这一点。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{A}\\cdot{\\text{m}}^{2}\\cdot\\text{T} = \\text{A}\\cdot{\\text{m}}^{2}\\left(\\frac{\\text{N}}{\\text{A}\\cdot\\text{m}}\\right) = \\text{N}\\cdot\\text{m}$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1554187",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-motor",
+   "prompt": "质子因绕自身轴的自旋而具有磁场。这个磁场与半径为 $0\\text{.}\\text{650}\\times {\\text{10}}^{-\\text{15}}\\;\\text{m}$、电流为 $1\\text{.}\\text{05}\\times {\\text{10}}^{4}\\;\\text{A}$ 的圆形载流线圈产生的磁场相似（没开玩笑）。求质子在 2.50 T 的磁场中所受的最大力矩。（对于这么小的粒子来说，这是相当大的力矩。）",
+   "answer": {
+    "type": "number",
+    "value": 3.48e-26,
+    "unit": "N⋅m",
+    "generated_by": "source",
+    "hint": "线圈只有一匝，且力矩取最大值，所以它等于电流乘以圆的面积再乘以磁感应强度；面积为 $\\pi r^2$，半径取题中所给的值。",
+    "solution": "$3\\text{.}\\text{48}\\times {\\text{10}}^{-\\text{26}}\\;\\text{N}\\cdot\\text{m}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2089664",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-motor",
+   "prompt": "重复书中印在本题之前的那道题——“（a）一个 200 匝的圆形线圈，半径为 50.0 cm，竖直放置，其轴线沿东西方向。从东边看，100 A 的电流在线圈中沿顺时针方向流动。此处地磁场正北，与地面平行，磁感应强度为 $3\\text{.}\\text{00}\\times {\\text{10}}^{-5}\\;\\text{T}$。线圈所受力矩的方向和大小各是多少？（b）这个装置作为电动机有什么实际用途吗？”——但这次线圈平放在地面上，电流（从上方看）沿逆时针方向流动，所在地点的地磁场向北，但与水平面成 $\\text{45}\\text{.}0^\\circ$ 角向下倾斜，磁感应强度为 $\\text{6.}\\text{00}\\times {\\text{10}}^{-5}\\;\\text{T}$。",
+   "answer": {
+    "type": "number",
+    "value": 0.666,
+    "unit": "N⋅m",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "线圈平放，所以它的法线是竖直的，这条法线与向水平面以下倾斜 45.0° 的磁场之间的夹角为 45.0°；面积为 $\\pi r^2$。",
+    "solution": "（a）$\\text{0.666 N}\\cdot\\text{m}$，向西\n（b）这个力矩不算很大，所以实际用途有限。此外，电流还需要交替变向才能使线圈转动（否则它只会来回振动）。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "net-force-on-a-loop-is-zero"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "direction-of-force-on-a-current",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "torque-on-a-current-loop",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "torque-on-a-current-loop"
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque-on-a-current-loop"
+  },
+  {
+   "exercise": "p3",
+   "concept": "torque-varies-with-angle",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "torque-on-a-current-loop"
+  },
+  {
+   "exercise": "p5",
+   "concept": "the-tesla",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "torque-on-a-current-loop"
+  },
+  {
+   "exercise": "p7",
+   "concept": "torque-varies-with-angle",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "torque-on-a-current-loop"
+  },
+  {
+   "exercise": "p9",
+   "concept": "torque-varies-with-angle",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "direction-of-force-on-a-current",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "loop",
+   "label": "线圈",
+   "figures": [
+    "sim-motor"
+   ]
+  },
+  {
+   "id": "magnet",
+   "label": "磁体",
+   "figures": [
+    "sim-motor"
+   ]
+  },
+  {
+   "id": "shaft",
+   "label": "转轴",
+   "figures": [
+    "sim-motor"
+   ]
+  },
+  {
+   "id": "brushes",
+   "label": "电刷",
+   "figures": [
+    "sim-motor"
+   ]
+  },
+  {
+   "id": "meter-loop",
+   "label": "电表的线圈",
+   "figures": [
+    "sim-meter"
+   ]
+  },
+  {
+   "id": "meter-poles",
+   "label": "电表的极面",
+   "figures": [
+    "sim-meter"
+   ]
+  },
+  {
+   "id": "spring",
+   "label": "弹簧",
+   "figures": [
+    "sim-meter"
+   ]
+  },
+  {
+   "id": "needle",
+   "label": "指针",
+   "figures": [
+    "sim-meter"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-loop-area",
+   "kind": "correction",
+   "html": "书中把面积印成 $0.100\\;\\text{m}^2$。边长为 $10.0\\;\\text{cm}$ 的方形线圈，面积为 $0.0100\\;\\text{m}^2$，正是用这个面积才得到例题所得的 $30.0\\;\\text{N}\\cdot\\text{m}$。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "torque-on-loop",
+   "what": "载流线圈所受的力矩",
+   "source": "《大学物理（第2版）》，22.8 载流线圈所受的力矩：电动机与电表",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "每条竖直边到转轴的距离都是 $\\kwloop/2$。",
+       "src": "22.8，图 22.34"
+      },
+      {
+       "text": "两条竖直边所受的力各自产生一个顺时针的力矩，所以两个力矩相加。",
+       "src": "22.8"
+      },
+      {
+       "text": "每条竖直边的长度为 $\\kl$，且垂直于 $\\kBmag$。",
+       "src": "22.8"
+      },
+      {
+       "tex": "\\kF = \\kIcur\\kl\\kBmag",
+       "src": "22.7"
+      },
+      {
+       "text": "一个 $N$ 匝的线圈所受的力矩是单匝线圈的 $N$ 倍。",
+       "src": "22.8"
+      },
+      {
+       "tex": "\\karea = \\kwloop\\kl",
+       "src": "22.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\krad}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta}",
+      "src": "9.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\dfrac{\\kwloop}{2}}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\dfrac{\\kwloop}{2}}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta} + \\mk{r2}{\\dfrac{\\kwloop}{2}}\\mk{F2}{\\kF}\\mk{s2}{\\sin\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\kwloop}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta}",
+       "uses": [],
+       "map": {
+        "r2": "r",
+        "F2": "F",
+        "s2": "s"
+       }
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\kwloop}\\mk{F}{\\kIcur \\kl\\kBmag}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{N}{N}\\mk{r}{\\kwloop}\\mk{F}{\\kIcur \\kl\\kBmag}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{N}{N}\\mk{F}{\\kIcur}\\mk{r}{\\karea}\\mk{B}{\\kBmag}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        5
+       ],
+       "map": {
+        "F": [
+         "F",
+         "r",
+         "B"
+        ]
+       }
+      }
+     ],
+     "src": "22.8"
+    }
+   ]
+  }
+ ]
+}

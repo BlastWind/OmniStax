@@ -1,0 +1,1219 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "V_gap",
+   "latex": "V_{\\text{gap}}",
+   "macro": "\\kVgap"
+  },
+  {
+   "sym": "B_bary",
+   "latex": "B"
+  },
+  {
+   "sym": "L_e",
+   "latex": "L_{e}"
+  },
+  {
+   "sym": "L_mu",
+   "latex": "L_{\\mu}"
+  },
+  {
+   "sym": "L_tau",
+   "latex": "L_{\\tau}"
+  },
+  {
+   "sym": "S_str",
+   "latex": "S"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "virtual-particle-exchange",
+   "kind": "idea",
+   "section": "33.1",
+   "name": "虚粒子的交换",
+   "statement": "力是通过交换虚粒子来传递的，虚粒子是在不确定性原理所允许的范围内、暂时违反质能守恒而在短时间内产生的。这样的粒子不能被直接观测到，因为观测它所需的时间比它存在的时间更长。"
+  },
+  {
+   "id": "range-and-carrier-mass",
+   "kind": "result",
+   "section": "33.1",
+   "name": "力程与媒介粒子的质量",
+   "statement": "媒介粒子至多只能传播光在其可存在的时间内所走的距离，$d \\approx c\\,\\Delta t$，而粒子的质量越大，这个时间越短。媒介粒子越重，它所传递的力的力程就越短。",
+   "forms": [
+    {
+     "id": "eq-range-of-force",
+     "latex": "d \\approx c\\,\\Delta t",
+     "ktex": "\\kd \\approx \\kc\\,\\kdt",
+     "anchor": "33.1-virtual-particles"
+    }
+   ]
+  },
+  {
+   "id": "estimate-carrier-mass",
+   "kind": "skill",
+   "section": "33.1",
+   "name": "估算媒介粒子的质量",
+   "statement": "媒介粒子的质量分三步估算：由力程得出粒子可存在的时间，由不确定性原理把这个时间换算成能量，再由 $\\Delta E = mc^{2}$ 把能量换算成质量。同样的链条也可以反过来，由质量求力程。",
+   "forms": [
+    {
+     "id": "eq-pion-lifetime",
+     "latex": "\\Delta t \\approx \\frac{d}{c} = \\frac{10^{-15}\\;\\text{m}}{3.0 \\times 10^{8}\\;\\text{m/s}} \\approx 3.3 \\times 10^{-24}\\;\\text{s}",
+     "ktex": "\\kdt \\approx \\frac{\\kd}{\\kc} = \\frac{10^{-15}\\;\\text{m}}{3.0 \\times 10^{8}\\;\\text{m/s}} \\approx 3.3 \\times 10^{-24}\\;\\text{s}",
+     "anchor": "33.1-pion-mass"
+    },
+    {
+     "id": "eq-pion-energy",
+     "latex": "\\Delta E \\approx \\frac{h}{4\\pi\\,\\Delta t} \\approx 100\\;\\text{MeV}",
+     "ktex": "\\kdE \\approx \\frac{h}{4\\pi\\,\\kdt} \\approx 100\\;\\text{MeV}",
+     "anchor": "33.1-pion-mass"
+    },
+    {
+     "id": "eq-pion-mass",
+     "latex": "m \\approx 100\\;\\text{MeV}/c^{2}",
+     "anchor": "33.1-pion-mass",
+     "ktex": "\\km \\approx 100\\;\\text{MeV}/c^{2}"
+    }
+   ]
+  },
+  {
+   "id": "pions-and-muons",
+   "kind": "idea",
+   "section": "33.1",
+   "name": "π 介子与 μ 子",
+   "statement": "π 介子的质量与汤川所预言的大致相同，它在核子之间传递强力；μ 子的质量几乎与之相同，却完全感受不到强力。"
+  },
+  {
+   "id": "virtual-particle",
+   "kind": "definition",
+   "section": "33.1",
+   "name": "虚粒子",
+   "terms": [
+    "虚粒子"
+   ],
+   "statement": "虚粒子是在不确定性原理所允许的范围内、暂时违反质能守恒而在短时间内产生的粒子，它不能被直接观测到。"
+  },
+  {
+   "id": "pion",
+   "kind": "definition",
+   "section": "33.1",
+   "name": "π 介子",
+   "terms": [
+    "π 介子"
+   ],
+   "statement": "π 介子是在核子之间交换、传递强核力的粒子；它是一种介子，质量约为电子的 270 倍。"
+  },
+  {
+   "id": "meson",
+   "kind": "definition",
+   "section": "33.1",
+   "name": "介子",
+   "terms": [
+    "介子"
+   ],
+   "statement": "介子是质量介于电子和核子之间的粒子，如 π 介子的质量；这个名称现在涵盖了整整一类粒子。"
+  },
+  {
+   "id": "properties-of-the-four-forces",
+   "kind": "idea",
+   "section": "33.2",
+   "name": "四种力的性质",
+   "statement": "四种基本力的强度和力程差别很大：引力和电磁力的力程为无限远，弱核力和强核力的力程很短，每种力各由自己的粒子传递，分别是引力子、光子、$W^{\\pm}$ 和 $Z^{0}$，以及胶子。"
+  },
+  {
+   "id": "feynman-diagrams",
+   "kind": "definition",
+   "section": "33.2",
+   "name": "费曼图",
+   "terms": [
+    "费曼图"
+   ],
+   "statement": "费曼图是时间对位置的图，表示粒子相互靠近、交换虚粒子并离开的过程。"
+  },
+  {
+   "id": "quantum-electrodynamics",
+   "kind": "idea",
+   "section": "33.2",
+   "name": "量子电动力学",
+   "terms": [
+    "量子电动力学"
+   ],
+   "statement": "量子电动力学是电磁力的量子理论，它把电磁力看作由虚光子传递，并用费曼图进行计算。此后每一种力的理论都以它为模板。"
+  },
+  {
+   "id": "carrier-mass-sets-range",
+   "kind": "result",
+   "section": "33.2",
+   "name": "媒介粒子的质量与力程",
+   "statement": "表 33.1 中的四种力程由一条规则得出：光子和引力子没有质量，所以它们的力可以到达任意距离；而 $W^{\\pm}$ 和 $Z^{0}$ 的质量约为 π 介子的 1000 倍，使弱力的力程约为强力的 1/1000。"
+  },
+  {
+   "id": "gluon",
+   "kind": "definition",
+   "section": "33.2",
+   "name": "胶子",
+   "terms": [
+    "胶子"
+   ],
+   "statement": "胶子是在夸克之间传递强力的八种无质量粒子之一。"
+  },
+  {
+   "id": "accelerators-create-matter",
+   "kind": "result",
+   "section": "33.3",
+   "name": "在加速器中产生物质",
+   "statement": "碰撞可以由其能量产生新粒子，$m = \\Delta E/c^{2}$，所以加速器给予粒子的能量越多，在守恒定律的范围内能产生的粒子就越重。",
+   "forms": [
+    {
+     "id": "eq-mass-from-energy-33",
+     "latex": "m = \\Delta E/c^{2}",
+     "ktex": "\\km = \\kdE/\\kc^{2}",
+     "anchor": "33.3-matter-from-energy"
+    }
+   ]
+  },
+  {
+   "id": "van-de-graaff-and-cyclotron",
+   "kind": "idea",
+   "section": "33.3",
+   "name": "早期加速器",
+   "statement": "最早的加速器是静电式的范德格拉夫加速器和回旋加速器：前者给予粒子的能量等于一个大电压的能量，后者用频率固定的交变电压使粒子穿过间隙时加速，同时由磁场使它们以越来越大的圆周再次转回。"
+  },
+  {
+   "id": "synchrotron",
+   "kind": "definition",
+   "section": "33.3",
+   "name": "同步加速器",
+   "terms": [
+    "同步加速器"
+   ],
+   "statement": "同步加速器是一种圆形加速器，其中加速电压的频率和磁场的强度随着粒子能量的增加而升高，使粒子保持在半径固定的轨道上。"
+  },
+  {
+   "id": "synchrotron-radiation",
+   "kind": "definition",
+   "section": "33.3",
+   "name": "同步辐射",
+   "terms": [
+    "同步辐射"
+   ],
+   "statement": "同步辐射是带电粒子在磁场使其路径弯曲时发出的电磁辐射。它使电子等轻粒子损失的能量最多。"
+  },
+  {
+   "id": "colliding-beams",
+   "kind": "result",
+   "section": "33.3",
+   "name": "对撞束",
+   "terms": [
+    "对撞束"
+   ],
+   "statement": "束流打在固定靶上时，产物必须反冲，造成能量浪费；两束对头相遇的束流总动量为零，因此可以产生能量为束流能量两倍的粒子。"
+  },
+  {
+   "id": "accelerator-gap-voltage",
+   "kind": "skill",
+   "section": "33.3",
+   "name": "求粒子在加速间隙中获得的能量",
+   "statement": "粒子穿过加速间隙所获得的能量为 $\\text{PE}_{\\text{elec}} = qV$，所以质子每穿过一伏电压就获得 1 eV，直线加速器给出的能量是各间隙电压之和。",
+   "forms": [
+    {
+     "id": "eq-gap-energy",
+     "latex": "\\text{PE}_{\\text{elec}} = qV",
+     "ktex": "\\kPE = \\kq\\kVgap",
+     "anchor": "33.3-gap-voltage"
+    },
+    {
+     "id": "eq-gap-voltage-example",
+     "latex": "V_{\\text{gap}} = \\frac{800\\;\\text{MV}}{2000} = 400\\;\\text{kV}",
+     "ktex": "\\kVgap = \\frac{800\\;\\text{MV}}{2000} = 400\\;\\text{kV}",
+     "anchor": "33.3-gap-voltage"
+    }
+   ]
+  },
+  {
+   "id": "van-de-graaff",
+   "kind": "definition",
+   "section": "33.3",
+   "name": "范德格拉夫加速器",
+   "terms": [
+    "范德格拉夫"
+   ],
+   "statement": "范德格拉夫加速器是一种静电加速器，它给予带电粒子的能量等于它在带电圆顶上建立起来的那一个大电压的能量。"
+  },
+  {
+   "id": "cyclotron",
+   "kind": "definition",
+   "section": "33.3",
+   "name": "回旋加速器",
+   "terms": [
+    "回旋加速器"
+   ],
+   "statement": "回旋加速器是这样一种加速器：磁场使带电粒子沿螺旋形路径弯曲，而每当粒子穿过两个空心 D 形电极之间的间隙时，频率固定的交变电压就使它们加速。"
+  },
+  {
+   "id": "linear-accelerator",
+   "kind": "definition",
+   "section": "33.3",
+   "name": "直线加速器",
+   "terms": [
+    "直线加速器"
+   ],
+   "statement": "直线加速器使带电粒子沿直线穿过一系列管子而加速，在每根管子与下一根管子之间的间隙中给予它们能量。"
+  },
+  {
+   "id": "antimatter-and-annihilation",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "反粒子与湮没",
+   "statement": "每种粒子都有一个质量相同、电荷相反的反粒子，粒子与它的反粒子可以湮没，把全部质量转化为光子，光子向相反方向分开飞离，以保持总动量为零。"
+  },
+  {
+   "id": "hadrons-and-leptons",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "强子与轻子",
+   "statement": "粒子首先按它们所感受的力来分类：强子感受强核力，轻子则不感受。轻子只有六种，而且似乎是基本的，强子则有许多种。"
+  },
+  {
+   "id": "bosons-and-fermions",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "玻色子与费米子",
+   "statement": "粒子按自旋分为玻色子和费米子，玻色子的自旋为整数，费米子的自旋为半整数，并服从不相容原理。所有媒介粒子都是玻色子，而夸克和轻子是费米子。"
+  },
+  {
+   "id": "lepton-family-numbers",
+   "kind": "axiom",
+   "section": "33.4",
+   "name": "轻子数守恒",
+   "statement": "六种轻子分为三代，即电子族、μ 子族和 τ 子族，在每一个反应中，总电子轻子数 $L_{e}$、总 μ 子轻子数 $L_{\\mu}$ 和总 τ 子轻子数 $L_{\\tau}$ 都各自守恒。",
+   "forms": [
+    {
+     "id": "eq-muon-decay",
+     "latex": "\\mu^{-} \\to e^{-} + \\bar{\\nu}_{e} + \\nu_{\\mu}",
+     "anchor": "33.4-lepton-families"
+    },
+    {
+     "id": "eq-tau-decay",
+     "latex": "\\tau^{-} \\to \\mu^{-} + \\bar{\\nu}_{\\mu} + \\nu_{\\tau}",
+     "anchor": "33.4-lepton-families"
+    }
+   ]
+  },
+  {
+   "id": "mesons-and-baryons",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "介子与重子",
+   "statement": "强子有两类，区分它们靠的不是质量而是衰变：介子可以衰变为轻子而不留下强子，重子则总是衰变为另一个重子。"
+  },
+  {
+   "id": "baryon-number-conservation",
+   "kind": "axiom",
+   "section": "33.4",
+   "name": "重子数守恒",
+   "terms": [
+    "总重子数守恒"
+   ],
+   "statement": "在每一个反应中，总重子数都守恒。这就是为什么最轻的重子质子不会衰变，也是核反应中核子数保持不变的原因。"
+  },
+  {
+   "id": "particle-lifetime-and-force",
+   "kind": "idea",
+   "section": "33.4",
+   "name": "粒子的寿命与力",
+   "statement": "引起衰变的力越强，衰变越快，所以粒子的寿命表明起作用的是哪种力：强力约为 $10^{-23}$ s，弱力为 $10^{-10}$ s 或更长。产物中有轻子也指向弱力。",
+   "forms": [
+    {
+     "id": "eq-neutron-decay-33",
+     "latex": "n \\to p + e^{-} + \\bar{\\nu}_{e}",
+     "anchor": "33.4-forces-reactions"
+    }
+   ]
+  },
+  {
+   "id": "strangeness",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "奇异数",
+   "symbol": "S_str",
+   "terms": [
+    "奇异数"
+   ],
+   "statement": "奇异数 $S$ 是赋予粒子的一个量子数，用来解释那些其他各条守恒定律都允许、却从未发生的衰变；普通强子的奇异数为 0，奇异粒子的奇异数不为 0。"
+  },
+  {
+   "id": "check-conservation-in-decays",
+   "kind": "skill",
+   "section": "33.4",
+   "name": "检验衰变中的守恒",
+   "statement": "检验衰变时，把衰变前后的电荷、重子数、轻子数和奇异数分别相加：全部守恒的衰变可以发生，而改变奇异数的衰变只能通过弱力发生。"
+  },
+  {
+   "id": "boson",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "玻色子",
+   "terms": [
+    "玻色子"
+   ],
+   "statement": "玻色子是自旋为整数（0、1、2 等）的粒子；玻色子不服从泡利不相容原理。"
+  },
+  {
+   "id": "fermion",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "费米子",
+   "terms": [
+    "费米子"
+   ],
+   "statement": "费米子是自旋为半整数（1/2、3/2 等）的粒子；费米子服从泡利不相容原理。"
+  },
+  {
+   "id": "hadron",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "强子",
+   "terms": [
+    "强子"
+   ],
+   "statement": "强子是感受强核力的粒子。"
+  },
+  {
+   "id": "lepton",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "轻子",
+   "terms": [
+    "轻子"
+   ],
+   "statement": "轻子是不感受强核力的基本粒子；六种轻子是电子、μ 子和 τ 子及其三种中微子。"
+  },
+  {
+   "id": "baryon",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "重子",
+   "terms": [
+    "重子"
+   ],
+   "statement": "重子是总是衰变为另一个重子的强子；它由三个夸克组成。"
+  },
+  {
+   "id": "baryon-number",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "重子数",
+   "symbol": "B_bary",
+   "terms": [
+    "重子数"
+   ],
+   "statement": "重子数 $B$ 是一个量子数，重子为 $+1$，反重子为 $-1$，介子和轻子为 0。"
+  },
+  {
+   "id": "electron-family-number",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "电子轻子数",
+   "symbol": "L_e",
+   "terms": [
+    "电子轻子数"
+   ],
+   "statement": "电子轻子数 $L_{e}$ 对电子及其中微子为 $+1$，对它们的反粒子为 $-1$，对其他每种粒子为 0。"
+  },
+  {
+   "id": "muon-family-number",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "μ 子轻子数",
+   "symbol": "L_mu",
+   "terms": [
+    "μ 子轻子数"
+   ],
+   "statement": "μ 子轻子数 $L_{\\mu}$ 对 μ 子及其中微子为 $+1$，对它们的反粒子为 $-1$，对其他每种粒子为 0。"
+  },
+  {
+   "id": "tau-family-number",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "τ 子轻子数",
+   "symbol": "L_tau",
+   "terms": [
+    "τ 子轻子数"
+   ],
+   "statement": "τ 子轻子数 $L_{\\tau}$ 对 τ 子及其中微子为 $+1$，对它们的反粒子为 $-1$，对其他每种粒子为 0。"
+  },
+  {
+   "id": "muon-family-number-conservation",
+   "kind": "axiom",
+   "section": "33.4",
+   "name": "μ 子轻子数守恒",
+   "terms": [
+    "总μ 子轻子数守恒"
+   ],
+   "statement": "在每一个反应中，总 μ 子轻子数都守恒。"
+  },
+  {
+   "id": "strangeness-conservation",
+   "kind": "axiom",
+   "section": "33.4",
+   "name": "奇异数守恒",
+   "statement": "在强力和电磁力引起的反应中，奇异数守恒，但在弱力引起的反应中可以改变。"
+  },
+  {
+   "id": "fundamental-particles",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "基本粒子",
+   "terms": [
+    "基本粒子"
+   ],
+   "statement": "基本粒子是没有内部结构、除其波长外也没有大小的粒子。已知的基本粒子有三类：轻子、夸克和媒介粒子。"
+  },
+  {
+   "id": "quark-flavors",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "夸克味",
+   "terms": [
+    "味"
+   ],
+   "statement": "味是夸克的六种类型：上、下、奇、粲、底和顶。它们的电荷是质子电荷的分数，上、粲和顶夸克为 $+\\frac{2}{3}q_{e}$，下、奇和底夸克为 $-\\frac{1}{3}q_{e}$。"
+  },
+  {
+   "id": "quark-composition-of-hadrons",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "强子的夸克组成",
+   "statement": "在夸克模型中，每个重子由三个夸克组成，每个介子由一个夸克和一个反夸克组成，这些规则使强子只带整数电荷。"
+  },
+  {
+   "id": "quantum-numbers-from-quarks",
+   "kind": "skill",
+   "section": "33.5",
+   "name": "由夸克求量子数",
+   "statement": "把强子各夸克的电荷、重子数和奇异数相加，就得到该强子的电荷、重子数和奇异数；反过来推算，就能由粒子的量子数定出它的各个夸克。"
+  },
+  {
+   "id": "weak-force-changes-flavor",
+   "kind": "axiom",
+   "section": "33.5",
+   "name": "夸克味的改变",
+   "statement": "弱力能改变夸克的味，强力则不能。中子衰变就是一个下夸克变为上夸克，同样的改变也是只有弱力才能改变奇异数的原因。",
+   "forms": [
+    {
+     "id": "eq-down-to-up",
+     "latex": "d \\to u + \\beta^{-} + \\bar{\\nu}_{e}",
+     "anchor": "33.5-how-does-it-work"
+    },
+    {
+     "id": "eq-neutron-decay-quarks",
+     "latex": "n \\to p + \\beta^{-} + \\bar{\\nu}_{e}\\ \\text{变为}\\ udd \\to uud + \\beta^{-} + \\bar{\\nu}_{e}",
+     "anchor": "33.5-how-does-it-work"
+    }
+   ]
+  },
+  {
+   "id": "evidence-for-quarks",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "夸克存在的证据",
+   "statement": "还没有分离出任何夸克，但夸克存在的证据很有力：$\\Omega^{-}$ 正如夸克模型所预言的那样被发现；高能电子从质子内部的三个点状电荷上散射；碰撞还产生由单个夸克形成的粒子喷注。"
+  },
+  {
+   "id": "quark-color-and-confinement",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "夸克的色与禁闭",
+   "statement": "每个夸克带有三种色中的一种，强子总是白色的，重子由三种色组合而成，介子由一种色及其反色组合而成。色使处于 $sss$ 等态的夸克服从不相容原理，并解释了为什么单个夸克不能被分离出来。"
+  },
+  {
+   "id": "three-families",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "三代",
+   "statement": "轻子、夸克和媒介粒子各自分为三代类似的粒子，即正常的、奇特的和更奇特的，较高代的粒子衰变为第一代的粒子。"
+  },
+  {
+   "id": "up-quark",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "上夸克",
+   "terms": [
+    "上"
+   ],
+   "statement": "上夸克是第一代中电荷为 $+\\frac{2}{3}q_{e}$ 的夸克味；质子是 $uud$。"
+  },
+  {
+   "id": "down-quark",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "下夸克",
+   "terms": [
+    "下"
+   ],
+   "statement": "下夸克是第一代中电荷为 $-\\frac{1}{3}q_{e}$ 的夸克味；中子是 $udd$。"
+  },
+  {
+   "id": "strange-quark",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "奇夸克",
+   "terms": [
+    "奇"
+   ],
+   "statement": "奇夸克是第二代中电荷为 $-\\frac{1}{3}q_{e}$、奇异数为 $-1$ 的夸克味。"
+  },
+  {
+   "id": "charm-quark",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "粲夸克",
+   "terms": [
+    "粲"
+   ],
+   "statement": "粲夸克是第二代中电荷为 $+\\frac{2}{3}q_{e}$ 的夸克味。"
+  },
+  {
+   "id": "bottom-quark",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "底夸克",
+   "terms": [
+    "底"
+   ],
+   "statement": "底夸克是第三代中电荷为 $-\\frac{1}{3}q_{e}$ 的夸克味。"
+  },
+  {
+   "id": "top-quark",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "顶夸克",
+   "terms": [
+    "顶"
+   ],
+   "statement": "顶夸克是第三代中电荷为 $+\\frac{2}{3}q_{e}$ 的夸克味，是远远最重的夸克。"
+  },
+  {
+   "id": "quark-color",
+   "kind": "definition",
+   "section": "33.5",
+   "name": "色",
+   "terms": [
+    "色"
+   ],
+   "statement": "色是夸克的一个量子数，有三个值，称为红、绿、蓝，反夸克则带有它们的反色；它与可见光的颜色毫无关系。"
+  },
+  {
+   "id": "quark-confinement",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "夸克禁闭",
+   "terms": [
+    "夸克禁闭理论"
+   ],
+   "statement": "夸克禁闭理论认为，夸克之间的力随它们的间距增大而增大，所以单个夸克永远不能被分离出来，夸克只存在于白色的组合中。"
+  },
+  {
+   "id": "quantum-chromodynamics",
+   "kind": "idea",
+   "section": "33.5",
+   "name": "量子色动力学",
+   "terms": [
+    "量子色动力学"
+   ],
+   "statement": "量子色动力学是夸克之间强力的理论，这种力由胶子传递，并作用于夸克的色。"
+  },
+  {
+   "id": "electroweak-unification",
+   "kind": "idea",
+   "section": "33.6",
+   "name": "电弱理论",
+   "terms": [
+    "电弱理论"
+   ],
+   "statement": "电弱理论统一了电磁力和弱力，表明它们在高能下是同一种力。它在 $W^{\\pm}$ 和 $Z^{0}$ 被发现之前就预言了它们及其质量。"
+  },
+  {
+   "id": "gluons-and-qcd",
+   "kind": "idea",
+   "section": "33.6",
+   "name": "胶子与色",
+   "statement": "八种胶子在夸克之间传递强力，并能改变夸克的色。核子之间交换 π 介子，其实质是交换夸克和胶子。"
+  },
+  {
+   "id": "standard-model",
+   "kind": "idea",
+   "section": "33.6",
+   "name": "标准模型",
+   "terms": [
+    "标准模型"
+   ],
+   "statement": "标准模型是电弱理论与量子色动力学的结合，是目前关于基本粒子和力的理论，希格斯玻色子是它最后一个被预言的部分。"
+  },
+  {
+   "id": "grand-unified-theories",
+   "kind": "idea",
+   "section": "33.6",
+   "name": "大统一理论",
+   "terms": [
+    "大统一理论"
+   ],
+   "statement": "大统一理论把强力与电弱力统一起来。能量越高，探测的距离越小，在极高的能量下各种力的强度趋于一致，这远远超出了任何加速器所能达到的范围。"
+  },
+  {
+   "id": "proton-decay",
+   "kind": "result",
+   "section": "33.6",
+   "name": "质子衰变",
+   "statement": "大统一理论预言质子会衰变，如 $p \\to \\pi^{0} + e^{+}$，寿命接近 $10^{31}$ y。质子衰变尚未被观测到，这对这些理论构成了限制。",
+   "forms": [
+    {
+     "id": "eq-proton-decay",
+     "latex": "p \\to \\pi^{0} + e^{+}",
+     "anchor": "33.6-proton-decay"
+    }
+   ]
+  },
+  {
+   "id": "higgs-boson",
+   "kind": "definition",
+   "section": "33.6",
+   "name": "希格斯玻色子",
+   "terms": [
+    "希格斯玻色子"
+   ],
+   "statement": "希格斯玻色子是标准模型所预言的一种有质量的粒子，用来解释其他粒子为何有质量，并于 2012 年被发现。"
+  },
+  {
+   "id": "particle-decay",
+   "kind": "definition",
+   "section": "33.4",
+   "name": "粒子衰变",
+   "terms": [
+    "粒子衰变",
+    "衰变方式"
+   ],
+   "statement": "不稳定粒子，如 μ 子、τ 子、K 介子或自由中子，会衰变为较轻的粒子。每种衰变模式都守恒电荷、重子数、轻子数和质能，而驱动衰变的力决定了寿命：通过强力的衰变最快，通过弱力的衰变慢得多。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "carrier-particle"
+  },
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "energy-time-uncertainty"
+  },
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "range-and-carrier-mass",
+   "prereq": "virtual-particle-exchange"
+  },
+  {
+   "concept": "estimate-carrier-mass",
+   "prereq": "range-and-carrier-mass"
+  },
+  {
+   "concept": "estimate-carrier-mass",
+   "prereq": "uncertainty-principle-calculation"
+  },
+  {
+   "concept": "estimate-carrier-mass",
+   "prereq": "atomic-mass-unit"
+  },
+  {
+   "concept": "pions-and-muons",
+   "prereq": "range-and-carrier-mass"
+  },
+  {
+   "concept": "properties-of-the-four-forces",
+   "prereq": "four-basic-forces"
+  },
+  {
+   "concept": "properties-of-the-four-forces",
+   "prereq": "carrier-particle"
+  },
+  {
+   "concept": "properties-of-the-four-forces",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "feynman-diagrams",
+   "prereq": "virtual-particle-exchange"
+  },
+  {
+   "concept": "quantum-electrodynamics",
+   "prereq": "feynman-diagrams"
+  },
+  {
+   "concept": "carrier-mass-sets-range",
+   "prereq": "range-and-carrier-mass"
+  },
+  {
+   "concept": "carrier-mass-sets-range",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "accelerators-create-matter",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "van-de-graaff-and-cyclotron",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "van-de-graaff-and-cyclotron",
+   "prereq": "circular-motion-in-a-magnetic-field"
+  },
+  {
+   "concept": "synchrotron",
+   "prereq": "van-de-graaff-and-cyclotron"
+  },
+  {
+   "concept": "synchrotron",
+   "prereq": "radius-of-curvature"
+  },
+  {
+   "concept": "synchrotron-radiation",
+   "prereq": "synchrotron"
+  },
+  {
+   "concept": "colliding-beams",
+   "prereq": "accelerators-create-matter"
+  },
+  {
+   "concept": "accelerator-gap-voltage",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "accelerator-gap-voltage",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "antimatter-and-annihilation",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "antimatter-and-annihilation",
+   "prereq": "mass-energy-equivalence"
+  },
+  {
+   "concept": "hadrons-and-leptons",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "hadrons-and-leptons",
+   "prereq": "pions-and-muons"
+  },
+  {
+   "concept": "bosons-and-fermions",
+   "prereq": "spin-quantum-numbers"
+  },
+  {
+   "concept": "bosons-and-fermions",
+   "prereq": "pauli-exclusion-principle"
+  },
+  {
+   "concept": "lepton-family-numbers",
+   "prereq": "conservation-of-electron-family-number"
+  },
+  {
+   "concept": "lepton-family-numbers",
+   "prereq": "hadrons-and-leptons"
+  },
+  {
+   "concept": "mesons-and-baryons",
+   "prereq": "hadrons-and-leptons"
+  },
+  {
+   "concept": "baryon-number-conservation",
+   "prereq": "mesons-and-baryons"
+  },
+  {
+   "concept": "baryon-number-conservation",
+   "prereq": "conservation-of-nucleon-number"
+  },
+  {
+   "concept": "particle-lifetime-and-force",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "particle-lifetime-and-force",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "particle-lifetime-and-force",
+   "prereq": "mesons-and-baryons"
+  },
+  {
+   "concept": "strangeness",
+   "prereq": "particle-lifetime-and-force"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "lepton-family-numbers"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "baryon-number-conservation"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "strangeness"
+  },
+  {
+   "concept": "check-conservation-in-decays",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "fundamental-particles",
+   "prereq": "hadrons-and-leptons"
+  },
+  {
+   "concept": "fundamental-particles",
+   "prereq": "bosons-and-fermions"
+  },
+  {
+   "concept": "quark-flavors",
+   "prereq": "fundamental-particles"
+  },
+  {
+   "concept": "quark-flavors",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "quark-composition-of-hadrons",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "quark-composition-of-hadrons",
+   "prereq": "mesons-and-baryons"
+  },
+  {
+   "concept": "quantum-numbers-from-quarks",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "quantum-numbers-from-quarks",
+   "prereq": "check-conservation-in-decays"
+  },
+  {
+   "concept": "weak-force-changes-flavor",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "weak-force-changes-flavor",
+   "prereq": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "concept": "weak-force-changes-flavor",
+   "prereq": "strangeness"
+  },
+  {
+   "concept": "evidence-for-quarks",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "evidence-for-quarks",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "quark-color-and-confinement",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "quark-color-and-confinement",
+   "prereq": "pauli-exclusion-principle"
+  },
+  {
+   "concept": "three-families",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "three-families",
+   "prereq": "lepton-family-numbers"
+  },
+  {
+   "concept": "electroweak-unification",
+   "prereq": "properties-of-the-four-forces"
+  },
+  {
+   "concept": "electroweak-unification",
+   "prereq": "carrier-mass-sets-range"
+  },
+  {
+   "concept": "electroweak-unification",
+   "prereq": "feynman-diagrams"
+  },
+  {
+   "concept": "gluons-and-qcd",
+   "prereq": "quark-color-and-confinement"
+  },
+  {
+   "concept": "gluons-and-qcd",
+   "prereq": "feynman-diagrams"
+  },
+  {
+   "concept": "standard-model",
+   "prereq": "electroweak-unification"
+  },
+  {
+   "concept": "standard-model",
+   "prereq": "gluons-and-qcd"
+  },
+  {
+   "concept": "grand-unified-theories",
+   "prereq": "electroweak-unification"
+  },
+  {
+   "concept": "grand-unified-theories",
+   "prereq": "estimate-carrier-mass"
+  },
+  {
+   "concept": "proton-decay",
+   "prereq": "grand-unified-theories"
+  },
+  {
+   "concept": "proton-decay",
+   "prereq": "baryon-number-conservation"
+  },
+  {
+   "concept": "proton-decay",
+   "prereq": "lepton-family-numbers"
+  },
+  {
+   "concept": "antimatter-and-annihilation",
+   "prereq": "antimatter"
+  },
+  {
+   "concept": "virtual-particle",
+   "prereq": "energy-time-uncertainty"
+  },
+  {
+   "concept": "virtual-particle",
+   "prereq": "rest-energy"
+  },
+  {
+   "concept": "pion",
+   "prereq": "meson"
+  },
+  {
+   "concept": "pion",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "pion",
+   "prereq": "carrier-particle"
+  },
+  {
+   "concept": "gluon",
+   "prereq": "carrier-particle"
+  },
+  {
+   "concept": "gluon",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "van-de-graaff",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "cyclotron",
+   "prereq": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "concept": "cyclotron",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "linear-accelerator",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "boson",
+   "prereq": "intrinsic-spin"
+  },
+  {
+   "concept": "fermion",
+   "prereq": "intrinsic-spin"
+  },
+  {
+   "concept": "fermion",
+   "prereq": "pauli-exclusion-principle"
+  },
+  {
+   "concept": "hadron",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "lepton",
+   "prereq": "strong-and-weak-nuclear-forces"
+  },
+  {
+   "concept": "baryon",
+   "prereq": "hadron"
+  },
+  {
+   "concept": "baryon-number",
+   "prereq": "baryon"
+  },
+  {
+   "concept": "electron-family-number",
+   "prereq": "lepton"
+  },
+  {
+   "concept": "muon-family-number",
+   "prereq": "lepton"
+  },
+  {
+   "concept": "tau-family-number",
+   "prereq": "lepton"
+  },
+  {
+   "concept": "muon-family-number-conservation",
+   "prereq": "muon-family-number"
+  },
+  {
+   "concept": "strangeness-conservation",
+   "prereq": "strangeness"
+  },
+  {
+   "concept": "strangeness-conservation",
+   "prereq": "four-basic-forces"
+  },
+  {
+   "concept": "up-quark",
+   "prereq": "quark"
+  },
+  {
+   "concept": "up-quark",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "down-quark",
+   "prereq": "quark"
+  },
+  {
+   "concept": "down-quark",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "strange-quark",
+   "prereq": "quark"
+  },
+  {
+   "concept": "strange-quark",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "strange-quark",
+   "prereq": "strangeness"
+  },
+  {
+   "concept": "charm-quark",
+   "prereq": "quark"
+  },
+  {
+   "concept": "charm-quark",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "bottom-quark",
+   "prereq": "quark"
+  },
+  {
+   "concept": "bottom-quark",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "top-quark",
+   "prereq": "quark"
+  },
+  {
+   "concept": "top-quark",
+   "prereq": "quark-flavors"
+  },
+  {
+   "concept": "quark-color",
+   "prereq": "quark"
+  },
+  {
+   "concept": "quark-confinement",
+   "prereq": "quark-color"
+  },
+  {
+   "concept": "quark-confinement",
+   "prereq": "quark-composition-of-hadrons"
+  },
+  {
+   "concept": "quantum-chromodynamics",
+   "prereq": "quark-color"
+  },
+  {
+   "concept": "quantum-chromodynamics",
+   "prereq": "gluon"
+  },
+  {
+   "concept": "quantum-chromodynamics",
+   "prereq": "quantum-electrodynamics"
+  },
+  {
+   "concept": "higgs-boson",
+   "prereq": "boson"
+  },
+  {
+   "concept": "higgs-boson",
+   "prereq": "standard-model"
+  },
+  {
+   "concept": "virtual-particle-exchange",
+   "prereq": "virtual-particle"
+  },
+  {
+   "concept": "pions-and-muons",
+   "prereq": "pion"
+  },
+  {
+   "concept": "gluons-and-qcd",
+   "prereq": "gluon"
+  },
+  {
+   "concept": "gluons-and-qcd",
+   "prereq": "quantum-chromodynamics"
+  },
+  {
+   "concept": "quark-composition-of-hadrons",
+   "prereq": "hadron"
+  },
+  {
+   "concept": "lepton-family-numbers",
+   "prereq": "lepton"
+  },
+  {
+   "concept": "baryon-number-conservation",
+   "prereq": "baryon-number"
+  },
+  {
+   "concept": "meson",
+   "prereq": "mass"
+  },
+  {
+   "concept": "mesons-and-baryons",
+   "prereq": "meson"
+  },
+  {
+   "concept": "particle-decay",
+   "prereq": "nuclear-decay"
+  }
+ ]
+}

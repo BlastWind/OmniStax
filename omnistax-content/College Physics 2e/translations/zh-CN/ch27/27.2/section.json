@@ -1,0 +1,429 @@
+{
+ "id": "27.2",
+ "module": "m42505",
+ "chapter": "27",
+ "title": "惠更斯原理：衍射",
+ "short": "惠更斯原理与衍射",
+ "lead": "惠更斯原理由旧波前上每一点发出的子波，构造出波前的每一个新位置。同样的作图可以追随一列波射到面镜上、进入较慢的介质、穿过一个开口，波在开口处因衍射而绕着边缘弯曲。",
+ "objectives": [
+  "讨论横波的传播。",
+  "讨论惠更斯原理。",
+  "解释光的弯曲。"
+ ],
+ "summary_html": "<ul><li>确定波如何传播以及传播到哪里的一种精确方法，由惠更斯原理给出：波前上的每一点都是子波的波源，子波以与波本身相同的速率向前扩展。新的波前是与所有子波相切的一条线。</li><li>衍射是波绕过开口或其他障碍物的边缘而发生的弯曲。</li></ul>",
+ "notes": "本节没有印出习题。其中关于光从真空进入介质时波长为什么减小的思考题，与第 27.1 节放在一起，因为第 27.1 节引入了介质中的波长。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。第一道 AP 题在原书中给有答案，设为判分选择题；第二道 AP 题和四道思考题没有答案，作为开放题保留，并附有标明由 AI 生成的建议思路。关于光的波长在介质中为什么减小的思考题，与第 27.1 节放在一起，因为第 27.1 节引入了介质中的波长。本节没有印出习题，也没有“理解检测”框。",
+ "figures": [
+  {
+   "id": "sim-transverse-views",
+   "kind": "sim",
+   "number": "27.4",
+   "originals": [
+    "/media/ch27/Figure_28_02_01a.jpg"
+   ],
+   "original_caption": "一列横波，例如光这样的电磁波，从上方和从侧面看的样子。传播方向垂直于波前（或称波峰），并用像光线一样的箭头表示。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "time"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "s label moved off the wave, headline c typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-huygens",
+   "kind": "sim",
+   "number": "27.5",
+   "folds": [
+    "27.6",
+    "27.7"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_02_02a.jpg",
+    "/media/ch27/Figure_28_02_03a.jpg",
+    "/media/ch27/Figure_28_02_04a.jpg"
+   ],
+   "original_caption": "（图 27.5）惠更斯原理应用于平直的波前。波前上的每一点都发出一个半圆形子波，子波移动的距离为 $s = vt$。新的波前是与这些子波相切的一条线。（图 27.6）惠更斯原理应用于射到面镜上的平直波前。图中所示的子波是波前上各点射到面镜时发出的。这些子波的切线表明，新的波前以等于入射角的角度被反射。传播方向垂直于波前，如向下的箭头所示。（图 27.7）惠更斯原理应用于从一种介质进入另一种介质的平直波前，它在第二种介质中的速率较小。光线向法线偏折，因为子波在第二种介质中的速率较低。",
+   "widths": [
+    150,
+    225,
+    250
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "dropdown, labels clear of wavelets, arcs under headline, macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-doorway",
+   "kind": "sim",
+   "number": "27.8",
+   "folds": [
+    "27.9"
+   ],
+   "originals": [
+    "/media/ch27/Figure_28_02_05a.jpg",
+    "/media/ch27/Figure_28_02_06a.jpg"
+   ],
+   "original_caption": "（图 27.8）（a）光穿过门口，在地板上形成清晰的轮廓。由于光的波长与门的大小相比非常小，它的表现像光线。（b）声波弯曲着进入房间的各个部分，这是一种波的效应，因为它们的波长与门的大小相近。（图 27.9）惠更斯原理应用于射到一个开口上的平直波前。波前的边缘在穿过开口之后发生弯曲，这一过程称为衍射。开口越小，弯曲越显著，这与下面的事实一致：波动特性在与大小和波长大致相同的物体相互作用时最为明显。",
+   "widths": [
+    375,
+    250
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "frequency"
+   ],
+   "facts": [
+    "#f3dc8a"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "door leaf kept below headline and labelled; repeated note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "wavefronts",
+   "concept": "transverse-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "huygens-principle",
+   "concept": "huygens-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "huygens-principle",
+   "concept": "huygens-reflection-and-refraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "huygens-principle",
+   "concept": "law-of-reflection",
+   "verb": "uses"
+  },
+  {
+   "span": "huygens-principle",
+   "concept": "snells-law",
+   "verb": "uses"
+  },
+  {
+   "span": "huygens-principle",
+   "concept": "bending-toward-or-away-from-the-normal",
+   "verb": "uses"
+  },
+  {
+   "span": "diffraction",
+   "concept": "diffraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffraction",
+   "concept": "diffraction-depends-on-opening-size",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffraction",
+   "concept": "huygens-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "diffraction",
+   "concept": "ray-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "diffraction",
+   "concept": "wave-speed-wavelength-frequency",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1891127",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "huygens-principle",
+   "prompt": "关于惠更斯的次级子波原理，下列哪项说法是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "它可以用来解释波的粒子行为。",
+     "它指出波前上的每一点都可以看作一个新的波源。",
+     "它可以用来求波的速度。",
+     "以上全部。"
+    ],
+    "correct": 1,
+    "hint": "回想一下，该原理说波前上的每一点会做什么。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1478973",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction",
+   "prompt": "解释为什么衍射时发生的弯曲程度取决于光所穿过的开口的宽度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "根据惠更斯原理，开口内波前上的每一点都是子波的波源。在宽的开口中，这些波源大多在两侧都有相邻的波源，它们的子波叠加成一个径直前进的平直波前；只有靠近边缘的少数子波扩展到阴影区，因此与光束的宽度相比，弯曲很小。在窄的开口中，只有几个波长宽甚至更窄，边缘占了开口的大部分，子波向几乎所有向前的方向扩展，很像单个子波那样。因此，当开口与波长的大小相当时，弯曲最大，这就是为什么光的波长极短，只有穿过非常窄的狭缝才表现出衍射。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169737939503",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction",
+   "prompt": "波的效应如何取决于与波相互作用的物体的大小？例如，为什么声音能绕过建筑物的拐角，而光不能？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "衍射等波的效应，在物体或开口的大小与波长相当时最为明显，而当物体远大于波长时可以忽略。可听声的波长从几厘米到几米，与门口或建筑物拐角的大小相近，所以它能明显地绕过它们。可见光的波长只有 400 到 700 nm，比建筑物小几百万倍，所以它在边缘处只发生极其微小的弯曲，表现得像光线，投下清晰的影子。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169735534790",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction",
+   "prompt": "在什么条件下可以把光当作光线来建模？当作波呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "当光与远大于其波长的物体和开口相互作用时，例如透镜、面镜和门口，就把光当作光线。这时衍射可以忽略，光沿直线传播，只在反射或折射处例外。当光与大小同其波长相当的物体或开口相互作用时，例如窄缝、细密的光栅或薄膜，就把光当作波，因为这时衍射和干涉变得明显。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737776998",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffraction",
+   "prompt": "到室外阳光下观察你的影子。即使你自己的轮廓是清晰的，影子的边缘也是模糊的。这是衍射效应吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "大多不是。太阳不是点光源：它在天空中约占半度的张角，所以太阳一侧的光能到达另一侧的光到达不了的点。影子边缘附近有一个只被太阳的一部分照亮的区域，这使边缘看起来模糊，而且影子离你越远，这个区域越宽。边缘处确实会发生衍射，但由于可见光的波长与你的身体相比如此之小，它引起的弯曲小得在普通的影子里根本看不出来。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737818719",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "huygens-principle",
+   "prompt": "惠更斯原理适用于所有类型的波吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "适用。惠更斯原理只取决于波前上的每一点作为子波的波源，子波以波的速率传播，而这对每一种波都成立。课文说它适用于所有类型的波，包括水波、声波和光波，这也是为什么由它解释的衍射在所有这些波中都能观察到。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "huygens-principle"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "diffraction-depends-on-opening-size"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "huygens-principle"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "diffraction-depends-on-opening-size"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "diffraction"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "diffraction-depends-on-opening-size"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "diffraction"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "huygens-principle"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ray",
+   "label": "光线",
+   "figures": [
+    "sim-transverse-views"
+   ]
+  },
+  {
+   "id": "old-wavefront",
+   "label": "旧波前",
+   "figures": [
+    "sim-huygens"
+   ]
+  },
+  {
+   "id": "new-wavefront",
+   "label": "新波前",
+   "figures": [
+    "sim-huygens"
+   ]
+  },
+  {
+   "id": "mirror",
+   "label": "面镜",
+   "figures": [
+    "sim-huygens"
+   ]
+  },
+  {
+   "id": "medium-1",
+   "label": "第一种介质",
+   "figures": [
+    "sim-huygens"
+   ]
+  },
+  {
+   "id": "medium-2",
+   "label": "第二种介质",
+   "figures": [
+    "sim-huygens"
+   ]
+  },
+  {
+   "id": "wall",
+   "label": "墙",
+   "figures": [
+    "sim-doorway"
+   ]
+  },
+  {
+   "id": "door",
+   "label": "门",
+   "figures": [
+    "sim-doorway"
+   ]
+  },
+  {
+   "id": "listener",
+   "label": "听者",
+   "figures": [
+    "sim-doorway"
+   ]
+  }
+ ]
+}

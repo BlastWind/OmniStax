@@ -1,0 +1,611 @@
+{
+ "id": "23.1",
+ "module": "m42390",
+ "chapter": "23",
+ "title": "感应电动势与磁通量",
+ "short": "感应电动势与磁通量",
+ "lead": "法拉第发现，闭合或断开<span data-ref=\"switch\">一个开关</span>、把<span data-ref=\"bar-magnet\">一根条形磁铁</span>推入<span data-ref=\"coil\">一个线圈</span>，或转动<span data-ref=\"rotating-coil\">场中的一个线圈</span>，都能在没有电池的电路中驱动电流。本节考察这些实验，并定义它们共同改变的那个量，即穿过一个线圈的<span data-concept=\"magnetic-flux\">磁通量</span>。",
+ "objectives": [
+  "计算匀强磁场穿过任意取向线圈的磁通量。",
+  "描述用磁场或磁体与一个导线围成的线圈产生电动势（emf）的方法。"
+ ],
+ "summary_html": "<ul><li>感应中的关键量是<span data-concept=\"magnetic-flux\">磁通量</span> $\\kPhi$，其定义为 $\\kPhi = \\kBmag A\\cos\\theta$，其中 $\\kBmag$ 是作用在<span data-concept=\"area\">面积</span> $A$ 上的<span data-concept=\"magnetic-field-strength-defined\">磁感应强度</span>，它与该<span data-concept=\"area\">面积</span>的法线成<span data-concept=\"angle\">角</span> $\\theta$。</li><li><span data-concept=\"magnetic-flux\">磁通量</span> $\\kPhi$ 的单位是 $\\text{T}\\cdot\\text{m}^2$。</li><li><span data-concept=\"magnetic-flux\">磁通量</span> $\\kPhi$ 的任何变化都会感应出电动势——这一过程被定义为电磁感应。</li></ul>",
+ "notes": "本节的第二道习题，即第二种排布中穿过线圈的、由其旁边导线引起的磁通量，书中没有给出答案，因此略去。第二道 AP 题同样没有答案，保留为开放题，并附一个建议思路。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示，以及四道思考题和第二道 AP 题的建议思路均由 AI 生成并作了标注；第一道 AP 题和第一道习题的答案来自书后答案，此处没有计算任何内容。第二道习题没有给出答案，予以略去。第二道 AP 题同样没有给出答案——CNXML 中带有一个书中并未印出的答案——所以保留为开放题，并附建议思路。书中把椭圆形线圈置于匀强磁场中的图印在第一道 AP 题答案的末尾，但它其实是第二道题所说的上图，所以放在第二道题的卡片上；被拉伸的线圈放在第四道思考题的卡片上，两种线圈排布放在第一道习题的卡片上。本节没有印出“理解检测”框，所以所有题目都在末尾。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-faraday-ring",
+   "kind": "sim",
+   "number": "23.3",
+   "originals": [
+    "/media/ch23/Figure_24_01_01.jpg"
+   ],
+   "original_caption": "法拉第用来演示磁场可以产生电流的装置。上方线圈所产生的磁场的变化，在下方线圈中感应出电动势，从而感应出电流。当开关断开和闭合时，电流计记录到方向相反的电流。当开关保持闭合或断开时，没有电流流过电流计。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut to two sentences"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-magnet-coil",
+   "kind": "sim",
+   "number": "23.4",
+   "originals": [
+    "/media/ch23/Figure_24_01_02.jpg"
+   ],
+   "original_caption": "磁体相对于线圈的运动产生如图所示的电动势。如果线圈相对于磁体运动，则产生相同的电动势。速率越大，电动势的大小越大；没有运动时，电动势为零。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "velocity",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library hand replaces the drawn grip; arrow moved; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rotating-coil",
+   "kind": "sim",
+   "number": "23.5",
+   "originals": [
+    "/media/ch23/Figure_24_01_03.jpg"
+   ],
+   "original_caption": "线圈在磁场中转动产生电动势。这是发电机的基本结构，转动线圈所做的功转化为电能。请注意，发电机在结构上与电动机非常相似。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "voltage",
+    "angular-rate",
+    "area",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "flux bar and meter moved off the pole; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-flux-angle",
+   "kind": "sim",
+   "number": "23.6",
+   "originals": [
+    "/media/ch23/Figure_24_01_04.jpg"
+   ],
+   "original_caption": "磁通量 Φ 与磁场及其所在的面积有关。磁通量 Φ = BA cos θ 与感应有关；Φ 的任何变化都会感应出电动势。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "magnetic-field",
+    "magnetic-flux",
+    "area",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note set through the macros, line count dropped; field lines shortened"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "changing-field",
+   "concept": "induction",
+   "verb": "introduces"
+  },
+  {
+   "span": "changing-field",
+   "concept": "magnetic-field",
+   "verb": "uses"
+  },
+  {
+   "span": "changing-field",
+   "concept": "electromagnet",
+   "verb": "uses"
+  },
+  {
+   "span": "changing-field",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "changing-field",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "changing-field",
+   "concept": "meter-and-galvanometer",
+   "verb": "uses"
+  },
+  {
+   "span": "flux-defined",
+   "concept": "magnetic-flux",
+   "verb": "introduces"
+  },
+  {
+   "span": "flux-defined",
+   "concept": "flux-and-orientation",
+   "verb": "introduces"
+  },
+  {
+   "span": "flux-defined",
+   "concept": "magnetic-field",
+   "verb": "uses"
+  },
+  {
+   "span": "flux-defined",
+   "concept": "direction-of-field-lines",
+   "verb": "uses"
+  },
+  {
+   "span": "all-induction",
+   "concept": "ways-to-change-flux",
+   "verb": "introduces"
+  },
+  {
+   "span": "all-induction",
+   "concept": "induction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "all-induction",
+   "concept": "magnetic-flux",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1457853",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "changing-field",
+   "prompt": "要用线圈和条形磁铁产生电流，你可以：",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "移动线圈但不移动磁体。",
+     "移动磁体但不移动线圈。",
+     "移动线圈或磁体均可。",
+     "不可能产生电流。"
+    ],
+    "correct": 2,
+    "generated_by": "source",
+    "hint": "线圈所响应的是穿过它的磁通量的变化，而只要磁体和线圈相对于彼此运动，磁通量就会变化。想一想，实验能否分辨出两者中是哪一个在动。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1583528",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux-defined",
+   "figure": {
+    "src": "/media/ch23/CNX_APPhysics_23_M1_S01_img.jpg",
+    "alt": "一个椭圆形物体在均匀的水平流场中倾斜成角 θ，流场由平行的蓝色箭头表示。",
+    "caption": "线圈与匀强磁场成 θ 角放置。"
+   },
+   "prompt": "计算面积为 0.2 m² 的线圈在与强度为 1.5 × 10⁻³ T 的磁场成 <em>θ</em> = 60° 角放置时（如下图所示）的磁通量。磁通量在什么角度时最大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "磁通量为 $1.5 \\times 10^{-4}\\ \\text{T}\\cdot\\text{m}^2$，在 $\\theta = 0^\\circ$ 时最大。磁通量为 $\\kPhi = \\kBmag A\\cos\\theta$，其中 $\\theta$ 是磁场与面积的法线（图中的虚线）之间的夹角。代入已知值，$\\kPhi = (1.5 \\times 10^{-3}\\ \\text{T})(0.2\\ \\text{m}^2)\\cos 60^\\circ = 1.5 \\times 10^{-4}\\ \\text{T}\\cdot\\text{m}^2$，因为 $\\cos 60^\\circ = 0.5$。余弦在其角为零时最大，所以当线圈的法线沿着磁场方向、磁场笔直穿过线圈时，磁通量最大。此时磁通量为 $3.0 \\times 10^{-4}\\ \\text{T}\\cdot\\text{m}^2$，是 $60^\\circ$ 时的两倍。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736739851",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "changing-field",
+   "prompt": "图 23.3 所示的法拉第装置版本中的多匝线圈和铁环，如何增强了对感应电动势的观察？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者都使效应变大，而不改变其起因。铁环把上方线圈的磁场传到下方线圈，而不是让它散入空气中。这样，几乎全部磁场都穿过下方线圈，那里的磁通量比两个线圈分开放置时大得多。把铁拿走，指针的摆动几乎消失。多匝的作用则不同。下方线圈的每一匝所围的磁通量相同，各有自己的电动势，而因为各匝首尾相连，这些电动势相加，所以一个多匝线圈给出的电动势是单匝线圈的许多倍。法拉第两者都需要，因为断开或闭合开关所产生的电动势，只持续到磁场建立或消失所需的那么长时间，而电流计不会显示小到看不见的摆动。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738069605",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "changing-field",
+   "prompt": "当磁体像图 23.4（a）那样被推入线圈时，线圈施加在磁体上的力是什么方向？画一幅图，显示线圈中感应电流的方向及其产生的磁场，以证明你的回答。这个力的大小如何取决于电流计的电阻？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "磁体所受的力指向磁体来的方向，阻碍它的运动。画出线圈，磁体的北极从上方靠近。向下穿过线圈的磁通量在增大，所以感应电流的方向是使它自己产生一个向上的磁场，与增大的磁场相对抗。右手四指弯曲，沿该电流的方向，拇指就沿轴线指向上方，所以线圈的磁场从其上表面出来，就像北极的磁场一样。这个北极面对着靠近的磁体北极，二者相斥，磁体被推回。把磁体拉开，一切都反过来：磁通量现在减小，感应电流沿相反方向，线圈吸引磁体，并试图留住它。力的大小取决于该电动势能驱动多大的电流，而这由电路的电阻决定。电阻低的电流计让大电流流过，力就大；电阻高的电流计几乎不让电流流过，对磁体几乎毫无阻碍。电动势本身在两种情况下是一样的，因为它只取决于磁通量变化得多快。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737926882",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux-defined",
+   "prompt": "解释当磁场不为零时，磁通量如何可以为零。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "磁通量不是磁场。它是 $\\kPhi = \\kBmag A\\cos\\theta$，而当磁场与面积的法线之间的夹角为 $90^\\circ$ 时，余弦为零。这就是线圈侧对着磁场、磁场位于其平面内的情形。磁场依然一样强，但没有一条磁感线穿过线圈所围的面积，所以磁通量为零。同一说法的另一种形式一句话就说明了：$\\kPhi = \\kBmag_{\\perp}A$，即面积乘以笔直穿过它的那部分磁场，而位于面积所在平面内的磁场没有这样的部分。把本节图中的线圈转到 $90^\\circ$，它所截获的磁感线条数就降到零，而磁感线本身并没有变。面积为零同样给出零磁通量，但有意思的情形是：磁场很强、面积很大，却仍然什么也没有给出。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737882391",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "all-induction",
+   "figure": {
+    "src": "/media/ch23/Figure_24_01_05.jpg",
+    "alt": "图的第一部分显示一个圆形导线线圈置于磁场中。磁场指向纸内。线圈由双手握住拉伸。图的第二部分显示同一个圆形导线线圈在磁场中被拉伸后的样子。",
+    "caption": "一个圆形导线线圈在磁场中被拉伸。"
+   },
+   "prompt": "下图中的线圈被拉伸时，其中是否感应出电动势？如果是，请说明原因，并给出感应电流的方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的，感应电流沿顺时针方向。磁通量为 $\\kPhi = \\kBmag A\\cos\\theta$。指向纸内的磁场处处相同，线圈保持平放在纸面内，所以 $\\kBmag$ 和 $\\theta$ 不变，但拉伸改变了面积。长度固定的一圈导线围成圆时所围的面积最大，所以把圆拉成细长的椭圆，面积变小。随着线圈被拉伸，指向纸内的磁通量减小，而变化的磁通量感应出电动势。根据楞次定律，感应电流产生的磁场阻碍这一变化，所以在线圈内部其磁场指向纸内，以维持磁通量。根据右手定则，在线圈内部产生指向纸内磁场的电流，在图中看是沿顺时针方向。电动势只在线圈被拉伸期间存在，双手一停止移动，它就停止。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737949952",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux-defined",
+   "figure": {
+    "src": "/media/ch23/Figure_24_01_06-9353.jpg",
+    "alt": "图的第一部分显示两个单匝线圈。线圈一竖直放置，其中的电流沿逆时针方向。线圈二水平放置。两个线圈显示为互相垂直。第二幅图显示一根竖直的导线，其中的电流向上。导线旁边有一个水平放置的单匝线圈。",
+    "caption": "（a）两个线圈的平面互相垂直。（b）导线垂直于线圈的平面。"
+   },
+   "prompt": "下图中，由线圈 1 引起的线圈 2 处的磁通量的值是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0,
+    "unit": "T·m²",
+    "generated_by": "source",
+    "hint": "两个线圈的平面互相垂直，所以请想一想：线圈 1 的磁场与线圈 2 的法线成多大的角，该角的余弦是多少。",
+    "solution": "零"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "induction"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "ways-to-change-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "magnetic-flux"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "flux-and-orientation",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "induction"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "magnetic-flux",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "induction"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ways-to-change-flux",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "flux-and-orientation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "magnetic-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "ways-to-change-flux"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "magnetic-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "flux-and-orientation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "magnetic-flux",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "top-coil",
+   "label": "环上方的线圈",
+   "figures": [
+    "sim-faraday-ring"
+   ]
+  },
+  {
+   "id": "bottom-coil",
+   "label": "环下方的线圈",
+   "figures": [
+    "sim-faraday-ring"
+   ]
+  },
+  {
+   "id": "iron-ring",
+   "label": "铁环",
+   "figures": [
+    "sim-faraday-ring"
+   ]
+  },
+  {
+   "id": "switch",
+   "label": "开关",
+   "figures": [
+    "sim-faraday-ring"
+   ]
+  },
+  {
+   "id": "ring-galvanometer",
+   "label": "环上的电流计",
+   "figures": [
+    "sim-faraday-ring"
+   ]
+  },
+  {
+   "id": "bar-magnet",
+   "label": "条形磁铁",
+   "figures": [
+    "sim-magnet-coil"
+   ]
+  },
+  {
+   "id": "coil",
+   "label": "线圈",
+   "figures": [
+    "sim-magnet-coil"
+   ]
+  },
+  {
+   "id": "coil-galvanometer",
+   "label": "线圈上的电流计",
+   "figures": [
+    "sim-magnet-coil"
+   ]
+  },
+  {
+   "id": "rotating-coil",
+   "label": "转动的线圈",
+   "figures": [
+    "sim-rotating-coil"
+   ]
+  },
+  {
+   "id": "generator-magnet",
+   "label": "磁体",
+   "figures": [
+    "sim-rotating-coil"
+   ]
+  },
+  {
+   "id": "rings-brushes",
+   "label": "滑环和电刷",
+   "figures": [
+    "sim-rotating-coil"
+   ]
+  },
+  {
+   "id": "generator-galvanometer",
+   "label": "电刷上的电流计",
+   "figures": [
+    "sim-rotating-coil"
+   ]
+  },
+  {
+   "id": "loop",
+   "label": "方形线圈",
+   "figures": [
+    "sim-flux-angle"
+   ]
+  }
+ ]
+}

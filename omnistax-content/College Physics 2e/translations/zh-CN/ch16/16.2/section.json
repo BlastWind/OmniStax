@@ -1,0 +1,402 @@
+{
+ "id": "16.2",
+ "module": "m42241",
+ "chapter": "16",
+ "title": "振动中的周期与频率",
+ "short": "周期与频率",
+ "lead": "当你拨动<span data-ref=\"string\">一根吉他弦</span>时，每一次振动所用的<span data-type=\"time\">时间</span>都与前一次相同。这个<span data-concept=\"time\">时间</span>就是<span data-concept=\"period\">周期</span>，而每秒内的振动次数就是<span data-concept=\"frequency\">频率</span>。",
+ "objectives": [
+  "观察吉他弦的振动。",
+  "确定振动的频率。"
+ ],
+ "summary_html": "<ul><li>周期运动是重复性的振动。</li><li>一次振动所用的<span data-concept=\"time\">时间</span>是<span data-concept=\"period\">周期</span> $\\kT$。</li><li>单位<span data-concept=\"time\">时间</span>内的振动次数是<span data-concept=\"frequency\">频率</span> $\\kf$。</li><li>这些量之间的关系为 $\\kf = \\frac{1}{\\kT}.$</li></ul>",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案来自书后答案；本节的每道习题都有答案。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-guitar",
+   "kind": "photo",
+   "number": "16.8",
+   "widths": [
+    225
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-period",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-count",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "periodic-motion",
+   "concept": "periodic-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "periodic-motion",
+   "concept": "period",
+   "verb": "introduces"
+  },
+  {
+   "span": "frequency",
+   "concept": "frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "frequency",
+   "concept": "period-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "frequency",
+   "concept": "period",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-ultrasound",
+   "concept": "period-frequency",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2401394",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "frequency"
+   },
+   "cite": "frequency",
+   "prompt": "找出你生活中某个有规律发生的事件（比如领工资）。同时指出这个事件的周期和频率。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "我每隔一个星期日回父母家吃晚饭。我回家的频率是每个日历年 26 次。周期是两周。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2524521",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "frequency",
+   "prompt": "一个连接在弹簧上的质量块作振动，在 30 s 内完成 50 个完整循环。这个系统的周期和频率各是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "f",
+      "value": 1.66,
+      "unit": "Hz",
+      "hint": "频率是循环数除以这些循环所用的时间。"
+     },
+     {
+      "part": "T",
+      "value": 0.6,
+      "unit": "s",
+      "hint": "周期是一个循环所用的时间，也就是频率的倒数。"
+     }
+    ],
+    "solution": "频率为 $\\kf = \\frac{1}{\\kT} = \\frac{50\\ \\text{循环}}{30\\ \\text{s}} = 1.66\\ \\text{Hz}$。周期为：$\\kT = \\frac{1}{\\kf} = \\frac{1}{1.66} = 0.6\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2409820",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "频率为 $60.0\\ \\text{Hz}$ 的电力，其周期是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 16.7,
+    "unit": "ms",
+    "hint": "周期是频率的倒数。请以毫秒为单位给出答案。",
+    "solution": "16.7 ms"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2952945",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "如果你在剧烈运动时的心率是 150 次/min，那么以秒为单位，每次心跳的时间是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.4,
+    "unit": "s",
+    "hint": "先求出每秒的心跳次数。每次心跳的时间是它的倒数。",
+    "solution": "$0.400\\ \\text{s/次}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1863946",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "求一个音叉的频率，该音叉完成一次振动需要 $2.50 \\times 10^{-3}\\ \\text{s}$。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 400,
+    "unit": "Hz",
+    "hint": "一次振动的时间就是周期，频率是周期的倒数。",
+    "solution": "400 Hz"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1402085",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一台频闪仪设置为每隔 $8.00 \\times 10^{-5}\\ \\text{s}$ 闪光一次。闪光的频率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 12500,
+    "unit": "Hz",
+    "hint": "两次闪光之间的时间是周期。频率是每秒内的闪光次数。",
+    "solution": "12,500 Hz"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2421181",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一条轮胎的胎面花纹每隔 2.00 cm 有一道沟槽。轮胎行进时，每道沟槽产生一次振动。如果汽车以 30.0 m/s 的速率行驶，这些振动的频率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5,
+    "unit": "kHz",
+    "hint": "一秒内汽车行驶 30.0 m。数一数在这段距离内有多少道相隔 2.00 cm 的沟槽经过。",
+    "solution": "1.50 kHz"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1011966",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "工程应用",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "发动机的每个活塞每隔一圈发出一次尖锐的声音。（a）一辆赛车的八缸发动机发出频率为 750 Hz 的声音，已知发动机每千米转 2000 圈，这辆赛车的速率是多大？（b）发动机每分钟转多少圈？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 93.8,
+      "unit": "m/s",
+      "hint": "八个活塞，每个每隔一圈响一次，所以每转一圈有四次声音。先求出每秒转多少圈，再利用每千米的圈数。"
+     },
+     {
+      "part": "(b)",
+      "value": 11300,
+      "unit": "rev/min",
+      "hint": "把每秒转的圈数乘以 60。"
+     }
+    ],
+    "solution": "（a）93.8 m/s （b） $11.3 \\times 10^{3}\\ \\text{rev/min}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "period"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "frequency"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "periodic-motion"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "frequency"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "period"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "period-frequency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "period-frequency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "period"
+  },
+  {
+   "exercise": "p2",
+   "concept": "period-frequency"
+  },
+  {
+   "exercise": "p2",
+   "concept": "frequency"
+  },
+  {
+   "exercise": "p2",
+   "concept": "period"
+  },
+  {
+   "exercise": "p3",
+   "concept": "period-frequency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "frequency"
+  },
+  {
+   "exercise": "p4",
+   "concept": "period-frequency"
+  },
+  {
+   "exercise": "p4",
+   "concept": "frequency"
+  },
+  {
+   "exercise": "p5",
+   "concept": "frequency"
+  },
+  {
+   "exercise": "p5",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "p6",
+   "concept": "frequency"
+  },
+  {
+   "exercise": "p6",
+   "concept": "average-velocity"
+  }
+ ],
+ "referents": [
+  {
+   "id": "string",
+   "label": "吉他弦",
+   "figures": [
+    "sim-period"
+   ]
+  },
+  {
+   "id": "bob",
+   "label": "弹簧上的物体",
+   "figures": [
+    "sim-count"
+   ]
+  }
+ ]
+}

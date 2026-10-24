@@ -1,0 +1,895 @@
+{
+ "id": "12.4",
+ "module": "m42209",
+ "chapter": "12",
+ "title": "黏度与层流；泊肃叶定律",
+ "short": "黏度与泊肃叶定律",
+ "lead": "果汁倒出来流得自如，糖浆却黏在壶上，二者的差别在于流体内部的<span data-concept=\"friction\">摩擦</span>，这是前面几节略去的。你将了解层流和湍流以及<span data-concept=\"viscosity\">黏度</span>，并看到通过管的流动如何取决于驱动它的<span data-concept=\"pressure\">压强</span>差和阻碍它的<span data-concept=\"flow-resistance\">流阻</span>。",
+ "objectives": [
+  "定义层流和湍流。",
+  "解释什么是黏度。",
+  "用泊肃叶定律计算流量和流阻。",
+  "解释压降如何由流阻造成。"
+ ],
+ "summary_html": "<ul><li>层流的特点是流体分层平稳地流动，各层互不混合。</li><li>湍流的特点是出现涡旋和旋涡，把各层流体混合在一起。</li><li>流体<span data-concept=\"viscosity\">黏度</span> $\\keta$ 源于流体内部的<span data-concept=\"friction\">摩擦</span>。代表性数值见表 12.1。<span data-concept=\"viscosity\">黏度</span>的单位是 $(\\text{N/m}^2)\\text{s}$ 或 $\\text{Pa}\\cdot\\text{s}$。</li><li>流动与<span data-concept=\"pressure\">压强</span>差成正比，与<span data-concept=\"flow-resistance\">流阻</span>成反比：$$\\kQ = \\frac{\\kPrtwo - \\kProne}{R}.$$</li><li>对于管中的层流，<span data-concept=\"flow-resistance\">流阻</span>的泊肃叶定律指出 $$R = \\frac{8\\keta l}{\\pi r^4}.$$</li><li>管中流动的泊肃叶定律为 $$\\kQ = \\frac{(\\kPrtwo - \\kProne)\\pi r^4}{8\\keta l}.$$</li><li>由流动和<span data-concept=\"flow-resistance\">流阻</span>造成的<span data-concept=\"pressure\">压强</span>降为 $$\\kPrtwo - \\kProne = R\\kQ.$$</li></ul>",
+ "notes": "本书没有给出答案的十道习题已略去，其中有两道“自拟习题”；至于关于物体在黏性流体中运动的三道习题（这一内容由 12.6 引入），有答案的一道编排在 12.6，没有答案的两道在两节中都已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。有十道习题没有给出答案，因而略去：两片载玻片之间夹水的那道、一段动脉所受的合力与功率那道、对 100 cm³/s 流量做出五种改变那道、血管成形术那道、验证 19.0% 的减小那道、压强差升高 20.0% 的血栓那道、供水量从 20.0 L/min 降到 8.00 L/min 的供水干管那道、混凝土泵那道，以及两道自拟习题。书中印在本节的三道习题检验的是 12.6 引入的内容：由钢球下落求机油黏度的那道有答案，编排在 12.6，并注明本节为其来源；由斯托克斯定律求球的终极速率那道和展开四肢的跳伞者那道没有答案，两节都略去。气垫导轨上小车的那道两个小问都有答案；斑块使血管变窄的那道，第（a）问的答案是数值，第（b）问的答案是文字，所以它的卡片核对数值，并把书中的文字放进解答。两片载玻片之间的油，答案给的是黏度，而书中点出了油的名称，解答中重复了这一点。第四道思考题在它的卡片上保留了书中水龙头旁空气管的照片。四道思考题的建议思路由 AI 撰写并加以标明。由于本章没有理解检测框，所有题目都放在末尾。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-smoke",
+   "kind": "photo",
+   "number": "12.14",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-laminar-turbulent",
+   "kind": "sim",
+   "number": "12.15",
+   "originals": [
+    "/media/ch12/Figure_13_04_02a.jpg"
+   ],
+   "original_caption": "（a）层流中，流体分层流动而不混合。注意，黏度既在各层之间产生阻力，也在流体与固定表面之间产生阻力。（b）容器中的障碍物产生湍流。湍流使流体混合。与层流相比，相互作用更多，发热更大，流阻也更大。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: readout writes the bed layer's speed; laminar note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-viscosity-plates",
+   "kind": "sim",
+   "number": "12.16",
+   "originals": [
+    "/media/ch12/Figure_13_04_03a.jpg"
+   ],
+   "original_caption": "图中显示了流体在两块面积为 A 的板之间的层流。下板固定。当上板被推向右边时，它拖着流体一起运动。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "viscosity",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: fluid label moved off the plate stack"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-velocity-profile",
+   "kind": "sim",
+   "number": "12.17",
+   "originals": [
+    "/media/ch12/Figure_13_04_04a.jpg"
+   ],
+   "original_caption": "（a）如果管内流体流动的流阻可以忽略，则整个管内各处的速率相同。（b）黏性流体流过管时，其在管壁处的速率为零，逐渐增大，在管中心达到最大值。（c）本生灯火焰的形状是由管内的速度分布造成的。（来源：Jason Woodhead）",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "flow-rate",
+    "velocity",
+    "viscosity",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: tubes respaced so the v̄ labels clear the walls; note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-poiseuille",
+   "kind": "sim",
+   "number": "12.18",
+   "originals": [
+    "/media/ch12/Figure_13_04_05a.jpg"
+   ],
+   "original_caption": "泊肃叶定律适用于黏度为 η 的不可压缩流体在长度为 l、半径为 r 的管中的层流。流动方向是从较高压强到较低压强。流量 Q 与压强差 P₂ − P₁ 成正比，与管的长度 l 和流体的黏度 η 成反比。流量随 r⁴ 增大，即随半径的四次方增大。",
+   "widths": [
+    313
+   ],
+   "draws": [
+    "flow-rate",
+    "viscosity",
+    "pressure",
+    "velocity",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: Q label off the arrows, fluid label off the headline; note typeset"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: fluid parcels along the tube, a marked column into the parabola"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-water-main",
+   "kind": "sim",
+   "number": "12.19",
+   "originals": [
+    "/media/ch12/Figure_13_04_06a.jpg"
+   ],
+   "original_caption": "用水高峰期，供水干管中有显著的压降，供给用户的 P₁ 明显小于自来水厂产生的 P₂。如果流量很小，则压降可以忽略，P₂ ≈ P₁。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "pressure",
+    "flow-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: main label clear of the gauges, P1 label off the junction"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-circulation",
+   "kind": "sim",
+   "number": "12.20",
+   "originals": [
+    "/media/ch12/Figure_13_04_07a.jpg"
+   ],
+   "original_caption": "循环系统示意图。压强差由心脏的两个泵产生，并被血管中的流阻降低。血管分支为毛细血管，使血液能够到达各个细胞，并与细胞交换氧和代谢废物等物质。该系统调节流向各个器官的血流的能力令人印象深刻，这主要是靠改变血管直径来实现的。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "pressure",
+    "flow-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: pressure axis 0 to 350 mm Hg from the slider extremes"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "laminar-viscosity",
+   "concept": "laminar-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "turbulent-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "viscosity",
+   "verb": "introduces"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "laminar-viscosity",
+   "concept": "shear-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "velocity-profile-in-tube",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "flow-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "poiseuilles-law-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "poiseuilles-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "radius-fourth-power-sensitivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "viscosity",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "laminar-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "flow-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "poiseuille",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "pressure-drop-from-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "flow-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "radius-fourth-power-sensitivity",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "turbulent-flow",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "flow-rate-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-drops",
+   "concept": "continuity-branching",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2016654",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laminar-viscosity",
+   "prompt": "解释为什么液体的黏度随温度升高而减小——也就是说，温度升高如何可能减弱液体中内聚力的作用？还要解释为什么气体的黏度随温度升高而增大——也就是说，气体温度升高如何使原子和分子之间产生更多的碰撞？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "黏度是流体各层相互滑过时层与层之间的摩擦。在液体中，分子彼此靠得很近，一层通过它们之间的内聚力拖着下一层。温度升高使分子具有更多的运动能量，于是每个分子被束缚在邻近分子旁的时间更短，更容易挣脱它们。内聚力失去了束缚作用，各层滑过彼此时更加自如，黏度就下降了。表 12.1 显示，水的黏度从 0 °C 时的 1.792 mPa·s 降到 100 °C 时的 0.282 mPa·s。在气体中，分子相距很远，它们之间的内聚力可以忽略。一层拖着下一层，是因为分子从一层游走到另一层，并与那里的分子碰撞，把自己的运动带了过去。较热的气体分子运动得更快，在层间穿越得更频繁，碰撞也更频繁，所以各层相互拖曳得更厉害，黏度就升高。这就是为什么表 12.1 中空气的黏度从 0 °C 时的 0.0171 mPa·s 升到 100 °C 时的 0.0218 mPa·s。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1390466",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "逆流划独木舟时，最明智的做法是尽量靠近岸边。顺流划独木舟时，也许最好待在河中央。请解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "河流是在河道中流动的黏性流体，所以它的速率分布就是图 12.17（b）横过来的样子：与河岸和河床接触的水被它们拖住，几乎不动，速率朝中间逐渐增大，在中间最大。逆流划行时你是在逆着水流用力，所以你想要最慢的水，它在岸边附近。顺流划行时水流带着你走，所以你想要最快的水，它在河中间附近。居家实验中的那两根木棍表明的也是这一点：扔在河中间的那根比扔在河边的那根走在前面。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2442163",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drops",
+   "prompt": "有人冲马桶时，为什么你淋浴的水流会减小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "淋浴和马桶由同一根供水管供水，而这根管有流阻。马桶水箱开始重新注水时，通过共用管的流量 $\\kQ$ 增大，沿管的压降 $\\kPrtwo - \\kProne = R\\kQ$ 也随之增大。因此管到达淋浴处的压强 $\\kProne$ 比原来低了，而通过花洒的流量等于该压强除以淋浴自身的流阻，所以在水箱注满、共用管中的流量回落之前，淋浴出水就会减少。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1528282",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-drops",
+   "figure": {
+    "src": "/media/ch12/Figure_13_04_08a.jpg",
+    "alt": "这张图显示水从水龙头里喷涌而出。水龙头中的龙头已标出。水龙头前的水管上有一个开口，开口处竖直连接着一根充满空气的管子。",
+    "caption": "图 12.21 水龙头附近的竖直管始终充满空气，起着有用的作用。"
+   },
+   "prompt": "管道系统通常在水龙头附近装有充满空气的管子，如图 12.21 所示。请解释为什么需要它们，以及它们是如何起作用的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水龙头开着时，整整一柱水在管中流动，快速关上水龙头时，这柱水必须停下来。水几乎是不可压缩的，所以突然让它停下来会使管中的压强急剧升高，就像在很短的时间内使一个运动的质量停下来需要很大的力一样。管子会砰砰作响，接头也会受力。这根竖直管是一个朝上的死胡同，所以水无法把里面的空气挤出去，管内始终充满空气。空气是可压缩的，所以水龙头关闭时，运动的水继续冲进管内并压缩空气，空气起到缓冲垫的作用。水在更长的时间内慢下来，压强的升高小得多，管子也就不会受损。这根管对任何突然的流动变化都以同样方式起作用，例如洗衣机的阀门猛然关闭。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1011276",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laminar-viscosity",
+   "prompt": "（a）已知下列信息，计算小车与水平气垫导轨之间空气层的黏度所产生的阻力：空气温度为 20 °C，小车以 0.400 m/s 运动，其表面积为 $2.50\\times10^{-2}\\ \\text{m}^2$，空气层的厚度为 $6.00\\times10^{-5}\\ \\text{m}$。（b）这个力与 0.300 kg 小车的重力之比是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.00302,
+      "unit": "N",
+      "hint": "空气层就是两块板之间的流体：$\\kF = \\keta\\kv A/L$，其中空气在 20 °C 时的黏度取自表 12.1，为 $0.0181\\ \\text{mPa}\\cdot\\text{s}$，要换算成 Pa·s。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.00103,
+      "unit": "",
+      "hint": "用力除以小车的重力 $m\\kg$。"
+     }
+    ],
+    "solution": "（a）$3.02\\times10^{-3}\\ \\text{N}$（b）$1.03\\times10^{-3}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1585889",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "用静脉输液输入的葡萄糖溶液，其流量为 $4.00\\ \\text{cm}^3\\text{/min}$。如果把葡萄糖溶液换成密度相同、黏度为葡萄糖溶液 2.50 倍的全血，新的流量是多少？其他因素保持不变。",
+   "answer": {
+    "type": "number",
+    "value": 1.6,
+    "unit": "cm³/min",
+    "generated_by": "source",
+    "hint": "在泊肃叶定律中，流量与黏度成反比，所以把 $\\keta$ 乘以 2.50，$\\kQ$ 就除以 2.50。",
+    "solution": "$1.60\\ \\text{cm}^3\\text{/min}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2392198",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "一根小动脉长 $1.1\\times10^{-3}\\ \\text{m}$，半径为 $2.5\\times10^{-5}\\ \\text{m}$。如果这根动脉两端的压降为 1.3 kPa，通过这根动脉的流量是多少？（假设温度为 37 °C。）",
+   "answer": {
+    "type": "number",
+    "value": 8.7e-11,
+    "unit": "m³/s",
+    "generated_by": "source",
+    "hint": "泊肃叶定律 $\\kQ = (\\kPrtwo - \\kProne)\\pi r^4/8\\keta l$，其中全血在 37 °C 时的黏度取自表 12.1，为 $2.084\\ \\text{mPa}\\cdot\\text{s}$，压降要用 N/m² 表示。",
+    "solution": "$8.7\\times10^{-11}\\ \\text{m}^3\\text{/s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3385463",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "通向某个器官的微动脉（小动脉）收缩，以减少流向该器官的血流。为了关停一个器官，血流会自然地减少到原来的 1.00%。微动脉的半径收缩为原来的多少倍？企鹅站在冰上时就是这样做的，以减少流向脚的血流。",
+   "answer": {
+    "type": "number",
+    "value": 0.316,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "压强差、长度和黏度不变时，$\\kQ$ 与 $r^4$ 成正比，所以半径之比等于流量之比的四次方根，即 $(0.0100)^{1/4}$。",
+    "solution": "0.316"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2639230",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "（a）假设一根血管的半径因斑块沉积而减小到原来的 90.0%，身体通过增大血管两端的压强差来补偿，以保持流量不变。压强差必须增大为原来的多少倍？（b）如果障碍物造成湍流，它对流量还会有什么额外影响？",
+   "answer": {
+    "type": "number",
+    "value": 1.52,
+    "unit": "",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "在泊肃叶定律中保持 $\\kQ$ 不变，而 $r^4$ 降到原来的 $(0.900)^4$，这意味着压强差必须升高到原来的这个因子的倒数倍。",
+    "solution": "（a）1.52（b）湍流会使血液的流量减小，这就需要压强差进一步更大幅度地增加，导致血压升高。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3034936",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laminar-viscosity",
+   "prompt": "一层厚 1.50 mm 的油被夹在两片载玻片之间。研究人员发现，当接触面积为 $6.00\\ \\text{cm}^2$ 时，要使一片载玻片以 1.00 cm/s 的速率在另一片上滑动，需要 $5.50\\times10^{-4}\\ \\text{N}$ 的力。这种油的黏度是多少？它可能是哪种油？",
+   "answer": {
+    "type": "number",
+    "value": 0.138,
+    "unit": "Pa·s",
+    "generated_by": "source",
+    "hint": "载玻片就是图 12.16 中的两块板，所以 $\\keta = \\kF L/\\kv A$，各量均用 SI 单位；然后在表 12.1 中查这个值。",
+    "solution": "$0.138\\ \\text{Pa}\\cdot\\text{s}$，可能是橄榄油。"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2683828",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "例题 12.8 讨论了静脉输液系统中生理盐水的流动。（a）验证：在生理盐水中深度为 1.61 m 处产生的压强为 $1.62\\times10^{4}\\ \\text{N/m}^2$，设其密度等于海水的密度。（b）如果生理盐水的高度降到 1.50 m，计算新的流量。（c）在多高处流动的方向会反过来？（当病人站起来时，这种反向可能成为一个问题。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 16200.0,
+      "unit": "N/m²",
+      "hint": "流体的重力产生的压强是 $\\kh\\krho\\kg$，其中海水的密度取自表 11.1。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.111,
+      "unit": "cm³/s",
+      "hint": "新的入口压强是 1.50 m 处的 $\\kh\\krho\\kg$；静脉处仍是 $1.066\\times10^{3}\\ \\text{N/m}^2$，而 $\\kQ$ 与新的压强差成正比，所以拿它与例题中的压强差比较。"
+     },
+     {
+      "part": "(c)",
+      "value": 10.6,
+      "unit": "cm",
+      "hint": "当针头入口处的压强等于静脉中的压强时，流动方向反过来，所以令 $\\kh\\krho\\kg$ 等于 $1.066\\times10^{3}\\ \\text{N/m}^2$。"
+     }
+    ],
+    "solution": "（a）$1.62\\times10^{4}\\ \\text{N/m}^2$（b）$0.111\\ \\text{cm}^3\\text{/s}$（c）10.6 cm"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id742312",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "在一场马拉松比赛中，一位跑步者的血流量增大到她静息时的 10.0 倍。她血液的黏度降到正常值的 95.0%，而整个循环系统两端的血压差增大了 50.0%。她血管的平均半径增大为原来的多少倍？",
+   "answer": {
+    "type": "number",
+    "value": 1.59,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "分别写出静息状态和跑步状态下的泊肃叶定律，然后把一式除以另一式：半径四次方之比等于 $\\kQ$ 的倍数乘以 $\\keta$ 的倍数，再除以压强差的倍数，所求答案是它的四次方根。",
+    "solution": "1.59"
+   }
+  },
+  {
+   "id": "p19",
+   "source_id": "fs-id2400972",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poiseuille",
+   "prompt": "一口喷油井通过一根直径为 0.100 m 的管，把原油喷到 25.0 m 的空中。忽略空气阻力，但不忽略管的流阻，并假设为层流，计算 50.0 m 长的竖直管入口处的表压强。取油的密度为 $900\\ \\text{kg/m}^3$，黏度为 $1.00\\ (\\text{N/m}^2)\\cdot\\text{s}$（即 $1.00\\ \\text{Pa}\\cdot\\text{s}$）。注意，你必须考虑管中 50.0 m 油柱所产生的压强。",
+   "answer": {
+    "type": "number",
+    "value": 2950000.0,
+    "unit": "N/m²",
+    "generated_by": "source",
+    "hint": "管顶处的速率就是能使油逆着重力上升 25.0 m 的速率，流量等于这个速率乘以管的横截面积。入口压强等于 50.0 m 油柱的压强，加上沿管的压降 $R\\kQ$，其中 $R = 8\\keta l/\\pi r^4$。",
+    "solution": "$2.95\\times10^{6}\\ \\text{N/m}^2$（表压强）"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "viscosity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "velocity-profile-in-tube"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "laminar-flow",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "pressure-drop-from-resistance"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "flow-resistance",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pressure-drop-from-resistance"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "flow-resistance",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "viscosity"
+  },
+  {
+   "exercise": "p3",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "viscosity",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "viscosity",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "radius-fourth-power-sensitivity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "poiseuilles-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "radius-fourth-power-sensitivity"
+  },
+  {
+   "exercise": "p9",
+   "concept": "poiseuilles-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "turbulent-flow",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "viscosity"
+  },
+  {
+   "exercise": "p15",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p15",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "p17",
+   "concept": "radius-fourth-power-sensitivity"
+  },
+  {
+   "exercise": "p17",
+   "concept": "poiseuilles-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p19",
+   "concept": "poiseuilles-law"
+  },
+  {
+   "exercise": "p19",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "bed",
+   "label": "小河的河床",
+   "figures": [
+    "sim-laminar-turbulent"
+   ]
+  },
+  {
+   "id": "obstruction",
+   "label": "障碍物",
+   "figures": [
+    "sim-laminar-turbulent"
+   ]
+  },
+  {
+   "id": "top-plate",
+   "label": "运动的上板",
+   "figures": [
+    "sim-viscosity-plates"
+   ]
+  },
+  {
+   "id": "bottom-plate",
+   "label": "固定的下板",
+   "figures": [
+    "sim-viscosity-plates"
+   ]
+  },
+  {
+   "id": "nonviscous",
+   "label": "左侧的管，流体无黏性",
+   "figures": [
+    "sim-velocity-profile"
+   ]
+  },
+  {
+   "id": "viscous",
+   "label": "右侧的管，流体有黏性",
+   "figures": [
+    "sim-velocity-profile"
+   ]
+  },
+  {
+   "id": "tube",
+   "label": "这根管，起初是静脉输液针头",
+   "figures": [
+    "sim-poiseuille"
+   ]
+  },
+  {
+   "id": "works",
+   "label": "自来水厂",
+   "figures": [
+    "sim-water-main"
+   ]
+  },
+  {
+   "id": "main",
+   "label": "供水干管",
+   "figures": [
+    "sim-water-main"
+   ]
+  },
+  {
+   "id": "houses",
+   "label": "住户",
+   "figures": [
+    "sim-water-main"
+   ]
+  },
+  {
+   "id": "aorta",
+   "label": "主动脉",
+   "figures": [
+    "sim-circulation"
+   ]
+  },
+  {
+   "id": "arterioles",
+   "label": "微动脉",
+   "figures": [
+    "sim-circulation"
+   ]
+  },
+  {
+   "id": "venae-cavae",
+   "label": "腔静脉",
+   "figures": [
+    "sim-circulation"
+   ]
+  },
+  {
+   "id": "pulmonary-veins",
+   "label": "肺静脉",
+   "figures": [
+    "sim-circulation"
+   ]
+  }
+ ]
+}

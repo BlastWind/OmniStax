@@ -1,0 +1,195 @@
+/* Figures for section 8.7 Introduction to Rocket Propulsion. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['8.7'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, vbracket, axes, nice, curve, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- numbers ---------- */
+const G = 9.80;
+const SUP = { '-': '\u207b', 0: '\u2070', 1: '\u00b9', 2: '\u00b2', 3: '\u00b3', 4: '\u2074', 5: '\u2075', 6: '\u2076', 7: '\u2077', 8: '\u2078', 9: '\u2079' };
+/* a number in scientific notation for a drawn label, 3.36 × 10⁷ */
+function sciT(v, d = 2) {
+  if (!isFinite(v) || v === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e);
+  return fmt(m, d) + ' \u00d7 10' + String(e).split('').map((c) => SUP[c]).join('');
+}
+/* the same for a readout, in LaTeX */
+function sciX(v, d = 2) {
+  if (!isFinite(v) || v === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e);
+  return `${fmt(m, d)}\\times10^{${e}}`;
+}
+/* thousands separated, so a tick reads 15,000 rather than 15000 */
+const commas = (t) => t.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+/* the decimals a tick label needs for the step nice() chose */
+const decs = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0);
+
+/* ---------- sprites, in the colour they are handed ---------- */
+/* a rocket standing on its fins, centered on (x, y), 134 units tall at scale 1 */
+function rocket(ctx, x, y, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(0, -70); ctx.lineTo(17, -30); ctx.lineTo(17, 40); ctx.lineTo(32, 64); ctx.lineTo(-32, 64); ctx.lineTo(-17, 40); ctx.lineTo(-17, -30);
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-17, -8); ctx.lineTo(17, -8); ctx.stroke();
+  ctx.restore();
+}
+/* the exhaust streaming from the nozzle at (x, y), len units long */
+function plume(ctx, x, y, len, color) {
+  ctx.save(); ctx.fillStyle = alpha(color, 0.3);
+  ctx.beginPath(); ctx.moveTo(x - 20, y); ctx.quadraticCurveTo(x - 11, y + len * 0.6, x, y + len); ctx.quadraticCurveTo(x + 11, y + len * 0.6, x + 20, y);
+  ctx.closePath(); ctx.fill(); ctx.restore();
+}
+/* a bar from x1 to x2 at y, h tall, filled to the fraction f in color */
+function bar(ctx, x1, x2, y, h, f, color) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x1, y, x2 - x1, h);
+  ctx.fillStyle = color; ctx.fillRect(x1, y, Math.max(0, Math.min(1, f)) * (x2 - x1), h);
+  ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(x1, y, x2 - x1, h); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 8.12: the rocket before and after it ejects a mass of gas, with
+   its free-body diagram. The mass falls while the rocket burns, so the
+   idea has a clock in it: one burn per loop, from liftoff to the moment
+   the fuel is exhausted, with the scrubber. Three quarters of the liftoff
+   mass is fuel, so that the burn has an end.
+===================================================================== */
+(function () {
+  const d = sim('sim-rocket', 800);
+  const ve = ctl(d.controls, { label: '\\kve', cls: 'velocity', min: 0.5, max: 2.5, step: 0.05, value: 2.4, unit: '\u00d7 10\u00b3 m/s', dec: 2, onInput: reset, aria: '排气速度' });
+  const rate = ctl(d.controls, { label: '\\kdm / \\kdt', cls: '', min: 2, max: 20, step: 0.5, value: 14, unit: '\u00d7 10\u00b3 kg/s', dec: 1, onInput: reset, aria: '气体喷出的速率' });
+  const m0 = ctl(d.controls, { label: '\\kmo', cls: 'mass', min: 0.5, max: 4, step: 0.05, value: 2.8, unit: '\u00d7 10\u2076 kg', dec: 2, onInput: reset, aria: '起飞质量' });
+  const FUEL = 0.75;                                    /* the share of the liftoff mass that is fuel in this scene */
+  const V = () => ve.v * 1e3, R = () => rate.v * 1e3, M0 = () => m0.v * 1e6;
+  const burn = () => (FUEL * M0()) / R();               /* the time the fuel lasts */
+  const mass = (t) => M0() - R() * t;
+  const acc = (t) => (V() * R()) / mass(t) - G;
+  const vel = (t) => V() * Math.log(M0() / mass(t)) - G * t;
+  /* the height reached, integrated in closed form, so the drawing is a function of the time alone */
+  const height = (t) => { const A = mass(t); return (V() / R()) * (R() * t - A * Math.log(M0() / A)) - 0.5 * G * t * t; };
+  const cy = cycle(() => burn(), 1.2);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const T = burn(), tau = cy.now(), done = tau >= T - 1e-9;
+    const m = mass(tau), a = acc(tau), v = vel(tau), p = m * v;
+    /* the free-body arrows are on one scale fixed from the slider maxima, 150 units at 5 × 10⁷ N,
+       which is the fiercest thrust the sliders allow, and the momentum bar is fixed at 2.2 × 10⁹
+       kg·m/s, the most a rocket of this scene can gather. Neither scale moves. */
+    const thrust = V() * R(), weight = m * G, Fmax = 5e7, pMax = 2.2e9;
+    const yTop = Math.max(1e-6, height(T)), prog = Math.max(0, Math.min(1, height(tau) / yTop));
+
+    /* the scene: the rocket and the gas it throws down */
+    const rx = 270, ry = 600 - 340 * prog, S = 1.3;
+    const Lv = 40 + 50 * (V() / 2500);
+    const cr = F.ref('rocket');
+    plume(ctx, rx, ry + 81, 70 + 40 * (R() / 2e4), F.ref('gas'));
+    rocket(ctx, rx, ry, cr, S);
+    arrow(ctx, rx, ry + 100, rx, ry + 100 + Lv, C('velocity'), 5);
+    text(ctx, 'v\u2091 = ' + sciT(V()) + ' m/s', rx - 58, Math.min(ry + 100 + Lv / 2, 656), C('velocity'), { size: 20, weight: 600, align: 'right' });   /* held above the ground line so it never lands on its label at liftoff */
+    line(ctx, 40, 686, 190, 686, PAL.rule, 2, [10, 10]);
+    text(ctx, '起飞位置', 40, 708, PAL.muted, { size: 17 });
+
+    /* the free-body diagram: the thrust that lifts the rocket and the weight that holds it down */
+    const fx = 600, fy = 410, Lt = 40 + 150 * Math.min(1, thrust / Fmax), Lw = 40 + 150 * Math.min(1, weight / Fmax);
+    dot(ctx, fx, fy, cr, true, 10);
+    text(ctx, '火箭', fx + 22, fy, cr, { size: 17 });
+    arrow(ctx, fx, fy, fx, fy - Lt, C('force'), 5);
+    text(ctx, '推力 = ' + sciT(thrust) + ' N', fx, fy - Lt - 24, C('force'), { size: 20, weight: 600, align: 'center' });
+    arrow(ctx, fx, fy, fx, fy + Lw, C('force'), 5);
+    text(ctx, '重力 mg = ' + sciT(weight) + ' N', fx, fy + Lw + 24, C('force'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, '火箭所受的两个外力', fx, 708, PAL.muted, { size: 17, align: 'center' });
+
+    /* the graph beside the scene: the acceleration climbing as the mass falls */
+    const box = { l: 860, r: 1340, t: 200, b: 500 };
+    /* fixed axes. The slowest burn lasts 0.75 × 4 × 10⁶ / (2 × 10³) = 1500 s and the fiercest
+       engine ends at 390 m/s², but the Saturn V of the example burns for 150 s and finishes at
+       38 m/s², so on ranges that large it would be a mark in the corner. Both are fixed to hold
+       that default flight comfortably instead, 0 to 200 s by −10 to 50 m/s², ticked every 50 s and
+       every 10 m/s². A longer or fiercer burn is clipped at the edge and its acceleration is
+       pinned there. Neither range moves. */
+    const TR = 200, ALO = -10, AHI = 50;
+    const { X, Y } = axes(ctx, box, [0, TR], [ALO, AHI], { xl: 't (s)', yl: 'a (m/s\u00b2)', xc: C('time'), yc: C('acceleration'), nx: 4, ny: 6, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
+    const ca = (t) => Math.min(Math.max(acc(t), ALO), AHI);
+    /* the curve leaves the frame where it passes the range rather than running flat along its top */
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    curve(ctx, acc, 0, Math.min(T, TR), X, Y, alpha(C('acceleration'), 0.35), 5, 90);
+    curve(ctx, acc, 0, Math.min(Math.max(tau, 1e-6), TR), X, Y, C('acceleration'), 5, 90);
+    ctx.restore();
+    line(ctx, X(Math.min(tau, TR)), Y(ca(Math.min(tau, TR))), X(Math.min(tau, TR)), box.b, C('acceleration'), 2, [4, 8]);
+    dot(ctx, X(0), Y(ca(0)), C('acceleration'), false, 10);
+    pinned(ctx, box, X, Y, tau, a, C('acceleration'), fmt(a, 1) + ' m/s²');
+
+    /* what is left of the rocket, and the momentum it has gathered */
+    bar(ctx, 860, 1340, 600, 34, m / M0(), alpha(C('mass'), 0.3));
+    line(ctx, 860 + (1 - FUEL) * 480, 596, 860 + (1 - FUEL) * 480, 638, PAL.muted, 3);
+    text(ctx, '当前质量 m = ' + sciT(m) + ' kg', 860, 578, C('mass'), { size: 20, weight: 600 });
+    text(ctx, 'm\u1d63，燃尽时所剩质量', 860 + (1 - FUEL) * 480, 658, PAL.muted, { size: 17, align: 'center' });
+    bar(ctx, 860, 1340, 722, 34, p / pMax, alpha(C('momentum'), 0.55));
+    text(ctx, '动量 p = mv = ' + sciT(p) + ' kg\u00b7m/s', 860, 700, C('momentum'), { size: 20, weight: 600 });
+
+    topline(ctx, acc(0) <= 0 && tau < 1e-9 ? '推力 ' + sciT(thrust) + ' N 小于重力 ' + sciT(weight) + ' N，所以火箭停留在发射台上。'
+      : tau < 1e-9 ? '火箭以 ' + fmt(acc(0), 2) + ' m/s\u00b2 的加速度起飞，推力 ' + sciT(thrust) + ' N 对抗 ' + sciT(weight) + ' N 的重力。'
+      : done ? '燃料在 ' + fmt(T, 0) + ' s 后耗尽，加速度达到了最大值 ' + fmt(a, 1) + ' m/s\u00b2。'
+      : '经过 ' + fmt(tau, 0) + ' s 后，火箭还剩 ' + sciT(m) + ' kg，所以同样的推力现在使它产生 ' + fmt(a, 1) + ' m/s\u00b2 的加速度。');
+    readout(d.readout, `\\ka = \\frac{\\kve}{\\km}\\;\\frac{\\kdm}{\\kdt} - \\kg = \\frac{${sciX(V())}\\ \\text{m/s}}{${sciX(m)}\\ \\text{kg}}(${sciX(R())}\\ \\text{kg/s}) - 9.80\\ \\text{m/s}^2 = ${fmt(a, 2)}\\ \\text{m/s}^2`,
+      `整个燃烧过程中，推力始终为 $\\kFthrust = \\kve\\,\\kdm/\\kdt = ${sciX(thrust)}\\ \\text{N}$。`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => burn() / 5), draw });
+})();
+
+/* =====================================================================
+   SIM: the final velocity of a one-stage rocket and its mass ratio. The
+   equation is what a whole burn comes to, so the picture answers its
+   sliders and has no time in it: a still figure with no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-mass-ratio', 640);
+  const ve = ctl(d.controls, { label: '\\kve', cls: 'velocity', min: 0.5, max: 5, step: 0.1, value: 2.5, unit: '\u00d7 10\u00b3 m/s', dec: 1, aria: '排气速度' });
+  const ratio = ctl(d.controls, { label: 'm_0 / m_{\\text{r}}', cls: '', min: 1, max: 200, step: 1, value: 88, unit: '', dec: 0, aria: '质量比',
+    specials: [{ at: () => Math.exp(11.2 / ve.v), label: '逃逸速度' }] });
+  const ESCAPE = 11.2e3;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const V = ve.v * 1e3, Rm = ratio.v, v = V * Math.log(Rm), left = 100 / Rm;
+
+    /* the rocket, with its tanks drawn as the share of the liftoff mass that is fuel */
+    const rx = 340, top = 160, bot = 540, w = 92;
+    const keep = Math.max(7, (bot - top) / Rm);               /* what is left at burnout, never thinner than a drawn line */
+    const cr = F.ref('escape-rocket');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cr; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(rx, top - 66); ctx.lineTo(rx + w / 2, top); ctx.lineTo(rx + w / 2, bot); ctx.lineTo(rx - w / 2, bot); ctx.lineTo(rx - w / 2, top); ctx.closePath();
+    ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(cr, 0.22); ctx.fillRect(rx - w / 2 + 2, top + keep, w - 4, bot - top - keep); ctx.restore();
+    line(ctx, rx - w / 2, top + keep, rx + w / 2, top + keep, cr, 3);
+    vbracket(ctx, rx + w / 2 + 40, top + keep, bot, PAL.ink, '燃料，占 m\u2080 的 ' + fmt(100 - left, 1) + '%', 1);
+    arrow(ctx, rx - w / 2 - 120, top + keep / 2, rx - w / 2 - 10, top + keep / 2, PAL.ink, 4);
+    text(ctx, 'm\u1d63, ' + fmt(left, 2) + '%', rx - w / 2 - 128, top + keep / 2, PAL.ink, { size: 20, weight: 600, align: 'right' });
+
+    /* the graph: the velocity against the mass ratio, flattening as the logarithm does */
+    const box = { l: 830, r: 1330, t: 170, b: 490 };
+    /* fixed axes: the fastest exhaust the slider allows, 5 × 10³ m/s, reaches
+       5000 ln 200 = 26,500 m/s at the far end of the mass-ratio axis, so the graph is always
+       1 to 200 by 0 to 30,000 m/s, ticked every 6000, and never rescales */
+    const VR = 30000;
+    const { X, Y } = axes(ctx, box, [0, 200], [0, VR], { xl: '质量比 m\u2080 / m\u1d63', yl: 'v (m/s)', xc: PAL.ink, yc: C('velocity'), nx: 4, ny: 5, fx: (u) => fmt(u, 0), fy: (u) => commas(fmt(u, 0)) });
+    curve(ctx, (r) => V * Math.log(r), 1, 200, X, Y, C('velocity'), 5, 120);
+    line(ctx, X(Rm), Y(Math.min(v, VR)), X(Rm), box.b, C('velocity'), 2, [4, 8]);
+    if (ESCAPE <= VR) {
+      line(ctx, box.l, Y(ESCAPE), box.r, Y(ESCAPE), PAL.muted, 3, [10, 10]);
+      /* named in a key above the frame, where neither the curve nor the drop line runs */
+      line(ctx, box.l + 140, box.t - 34, box.l + 190, box.t - 34, PAL.muted, 3, [10, 10]);
+      text(ctx, '逃逸速度，11.2 \u00d7 10\u00b3 m/s', box.l + 204, box.t - 34, PAL.muted, { size: 17 });
+    }
+    pinned(ctx, box, X, Y, Rm, v, C('velocity'), commas(fmt(v, 0)) + ' m/s');
+
+    topline(ctx, '排气速度 ' + sciT(V) + ' m/s、质量比 ' + fmt(Rm, 0) + '，得到的末速度为 ' + sciT(v) + ' m/s。');
+    readout(d.readout, `\\kv = \\kve\\;\\text{ln}\\;\\frac{\\kmo}{\\kmr} = (${sciX(V)}\\ \\text{m/s})\\,\\text{ln}\\;${fmt(Rm, 0)} = ${sciX(v)}\\ \\text{m/s}`,
+      '有效载荷、发动机和燃料箱合在一起，就是燃料烧完时所剩下的、占起飞质量 ' + fmt(left, 2) + '% 的那部分。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+};

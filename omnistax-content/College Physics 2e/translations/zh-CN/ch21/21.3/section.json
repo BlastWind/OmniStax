@@ -1,0 +1,782 @@
+{
+ "id": "21.3",
+ "module": "m42359",
+ "chapter": "21",
+ "title": "基尔霍夫定律",
+ "short": "基尔霍夫定律",
+ "lead": "许多电路无法分解为串联和并联的组合，对这些电路，你需要改用两条定则：用于在节点相会的<span data-concept=\"electric-current\">电流</span>的节点定则，以及用于沿闭合路径一周电势的变化的回路定则。本节说明每条定则从何而来，列出符号约定，并把一个双回路电路一直算到<span data-type=\"current\">它的三个支路电流</span>。",
+ "objectives": [
+  "运用基尔霍夫定律分析复杂电路，并使用确定各项正确符号的约定。"
+ ],
+ "summary_html": "<ul><li>基尔霍夫定律可用来分析任何电路，无论简单还是复杂。</li><li>基尔霍夫第一定律——节点定则：流入一个节点的所有<span data-concept=\"electric-current\">电流</span>之和必须等于流出该节点的所有<span data-concept=\"electric-current\">电流</span>之和。</li><li>基尔霍夫第二定律——回路定则：沿任一闭合电路路径（回路）一周，电势的变化的代数和必须为零。</li><li>这两条定则分别基于电荷守恒定律和<span data-concept=\"energy\">能量</span>守恒定律。</li><li>用基尔霍夫定律计算电势和<span data-concept=\"electric-current\">电流</span>时，必须遵循一套约定，以确定各项的正确符号。</li><li>较简单的串联和并联规则是基尔霍夫定律的特例。</li></ul>",
+ "notes": "书中没有给出标准答案的六道习题已略去；对于印有不止一幅图的习题，习题卡片上放电路图，其余的图在题目中用文字描述。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "从图中取得的数据可以认为精确到三位有效数字。",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十一道习题中有五道给出了答案，在此保留；其余六道略去：沿 aedcba 回路应用回路定则，例题的第二个和第三个方程的两道验证题，沿 abcdefghija 回路应用回路定则，四电源电路的各电流，以及思考题所用电路的各电流。五道思考题和四道 AP 题中的第一道没有给出答案，因而各附有标明为 AI 撰写的建议思路；其余三道 AP 题在原书中给出了答案，附有书中自己的答案。一张习题卡片只带一幅图，所以在第一道和第三道 AP 题中，书中印出的其余图（四个备选图像和一个修改后的电路）在题目中用文字描述。",
+ "figures": [
+  {
+   "id": "sim-two-loop-circuit",
+   "kind": "sim",
+   "number": "21.21",
+   "folds": [
+    "21.25"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_03_01.jpg",
+    "/media/ch21/Figure_22_03_05.jpg"
+   ],
+   "original_caption": "（图 21.21）这个电路无法化简为串联与并联的组合。基尔霍夫定律是电荷守恒和能量守恒这两条定律的特殊应用，可以用来分析它。（注：图中的花体 E 表示电动势。）（图 21.25）这个电路与图 21.21 中的相似，但给定了各电阻和电动势。（每个电动势都用花体 E 表示。）各支路中的电流已经标出，并假定沿图示方向流动。本例题用基尔霍夫定律求这些电流。",
+   "widths": [
+    175,
+    300
+   ],
+   "draws": [
+    "current",
+    "voltage",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline currents typeset; loop equations set through macros; caption line cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-junction-rule",
+   "kind": "sim",
+   "number": "21.22",
+   "originals": [
+    "/media/ch21/Figure_22_03_02.jpg"
+   ],
+   "original_caption": "节点定则。此图给出基尔霍夫第一定律的一个例子：流入一个节点的电流之和等于流出该节点的电流之和。在这个例子中，流入节点的电流分成两股流出，因此 I₁ = I₂ + I₃。这里 I₁ 必须是 11 A，因为 I₂ 为 7 A，I₃ 为 4 A。",
+   "widths": [
+    180
+   ],
+   "draws": [
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note dropped; the scene line already says it"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-loop-rule",
+   "kind": "sim",
+   "number": "21.23",
+   "originals": [
+    "/media/ch21/Figure_22_03_03.jpg"
+   ],
+   "original_caption": "回路定则。基尔霍夫第二定律的一个例子：沿闭合回路一周，电势的变化之和必须为零。（a）在这个简单串联电路的标准电路图中，电动势提供 18 V，它被各电阻降为零：内阻上为 1 V，两个负载电阻上分别为 12 V 和 5 V，合计 18 V。（b）这幅透视图把电势表示成有点像过山车的东西，电荷的电势被电动势抬高，又被各电阻降低。（注意花体 E 代表电动势。）",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-sign-rules",
+   "kind": "sim",
+   "number": "21.24",
+   "originals": [
+    "/media/ch21/Figure_22_03_04.jpg"
+   ],
+   "original_caption": "这里的每个电阻器和电压源都是从 a 绕行到 b。电势的变化标在每个元件的下方，并在正文中作了解释。（注意花体 E 代表电动势。）",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note and caption-repeating scene line dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "rules",
+   "concept": "kirchhoff-from-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "rules",
+   "concept": "kirchhoffs-rules",
+   "verb": "introduces"
+  },
+  {
+   "span": "rules",
+   "concept": "conservation-laws",
+   "verb": "introduces"
+  },
+  {
+   "span": "junction",
+   "concept": "junction-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "junction",
+   "concept": "kirchhoff-from-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "loop",
+   "concept": "loop-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "loop",
+   "concept": "kirchhoff-from-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applying",
+   "concept": "loop-rule-signs",
+   "verb": "introduces"
+  },
+  {
+   "span": "applying",
+   "concept": "apply-kirchhoffs-rules",
+   "verb": "introduces"
+  },
+  {
+   "span": "applying",
+   "concept": "junction-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "applying",
+   "concept": "loop-rule",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2296992",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "applying"
+   },
+   "cite": "applying",
+   "prompt": "基尔霍夫定律可以应用于简单的串联和并联电路，还是仅限于用在不是串并联组合的更复杂的电路中？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "基尔霍夫定律可以应用于任何电路，因为它们是两条守恒定律在电路中的应用。守恒定律是物理学中适用范围最广的原理。在较简单的电路中，使用串联和并联规则通常在数学上更简单，所以我们强调把基尔霍夫定律用于更复杂的情形。但是，串联和并联规则可以由基尔霍夫定律推导出来。此外，基尔霍夫定律可以推广到电阻和电动势以外的器件，例如电容器，并且是电路分析中的基本分析手段之一。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1525010",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "junction",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_06.jpg",
+    "alt": "一个 T 形节点，电流 I₁、I₂ 和 I₃ 都画成流入节点。"
+   },
+   "prompt": "图中所有流入节点的电流都可以是正的吗？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先看节点定则对这三个都画成流入的电流有什么要求。流入一个节点的电流之和等于流出该节点的电流之和，而这里没有画出任何流出的电流，所以这三个电流之和必须为零。三个正数不可能加起来等于零，因此三个电流中至少有一个必为负，这意味着该支路中的电流实际上沿相反方向流动。否则电荷就会在节点处积聚，而电荷是守恒的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3137904",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "一个含有四个电动势和若干电阻的电路，连成两个回路和两个节点。图上的点标为 a 到 g，各支路的电流分别标出。"
+   },
+   "prompt": "对图中的节点 b 应用节点定则。在 e 处应用节点定则，能得到新的信息吗？（图中每个电动势都用花体 E 表示。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在 b 处，电流 $\\kIcurone$ 流入，$\\kIcurtwo$ 和 $\\kIcurthree$ 流出，所以节点定则给出 $\\kIcurone = \\kIcurtwo + \\kIcurthree$。在 e 处应用它得不到新的信息。在 b 处相会的三条支路，就是在 e 处相会的同样三条：$\\kIcurtwo$ 从 d 经过 $r_4$ 和 $\\mathcal{E}_4$ 到达 e，$\\kIcurthree$ 从 g 经过 $\\krinttwo$ 到达 e，$\\kIcurone$ 经过 $\\kResfour$ 从 e 流向 f。e 处的定则写成 $\\kIcurtwo + \\kIcurthree = \\kIcurone$，就是 b 处方程的重新整理。有两个节点的电路只给出一个独立的节点方程，其余方程必须来自回路定则。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3154834",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "一个含有四个电动势和若干电阻的电路，连成两个回路和两个节点。图上的点标为 a 到 g，各支路的电流分别标出。"
+   },
+   "prompt": "（a）图中从点 a 到点 b 的电势差是多少？（b）从 c 到 b 的电势差是多少？（c）从 e 到 g 呢？（d）从 e 到 d 呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）$-(20\\ Ω)\\kIcurone$。从 a 到 b 沿 $\\kIcurone$ 的方向经过 $\\kResone$，所以电势下降 $\\kIcurone\\kResone$。\n\n（b）$+(8.0\\ Ω)\\kIcurtwo$。从 c 到 b 逆着 $\\kIcurtwo$ 经过 $\\kResthree$（该电流从 b 流向 c），所以电势上升 $\\kIcurtwo\\kResthree$。\n\n（c）$(0.25\\ Ω)\\kIcurthree - 3.0\\ \\text{V}$。从 e 向上逆着 $\\kIcurthree$ 经过 $\\krinttwo$，电势上升 $\\kIcurthree\\krinttwo$，然后在 $\\kemftwo$ 的正极进入（长杠朝向 e），并在其负极离开，电势下降 3.0 V。\n\n（d）$24\\ \\text{V} + (0.75\\ Ω)\\kIcurtwo$。从 e 到 d，在 $\\mathcal{E}_4$ 的负极进入，电势上升 24 V，然后逆着 $\\kIcurtwo$ 经过 $r_4$（该电流从 d 流向 e），再上升 $\\kIcurtwo r_4$。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2383320",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "一个含有四个电动势和若干电阻的电路，连成两个回路和两个节点。图上的点标为 a 到 g，各支路的电流分别标出。"
+   },
+   "prompt": "对图中的回路 afedcba 应用回路定则。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沿 a、f、e、d、c、b 再回到 a 绕行，全程都逆着图中画出的电流，回路定则给出 $0.5\\kIcurone - 18 + 15\\kIcurone + 24 + 0.75\\kIcurtwo + 0.5\\kIcurtwo - 12 + 8\\kIcurtwo + 20\\kIcurone = 0$，其中电流以安培为单位，整理后为 $35.5\\kIcurone + 9.25\\kIcurtwo - 6 = 0$。每一项来自一个元件。从 a 向下到 f，逆着 $\\kIcurone$ 经过 $\\krintone$（$+0.5\\kIcurone$），并在 $\\kemfone$ 的正极进入（−18 V）。从 f 到 e，逆着 $\\kIcurone$ 经过 $\\kResfour$（$+15\\kIcurone$）。从 e 到 d，在 $\\mathcal{E}_4$ 的负极进入（+24 V），并逆着 $\\kIcurtwo$ 经过 $r_4$（$+0.75\\kIcurtwo$）。从 d 向上到 c，逆着 $\\kIcurtwo$ 经过 $r_3$（$+0.5\\kIcurtwo$），并在 $\\mathcal{E}_3$ 的正极进入（−12 V）。最后逆着 $\\kIcurtwo$ 和 $\\kIcurone$ 分别经过 $\\kResthree$ 和 $\\kResone$（$+8\\kIcurtwo$ 和 $+20\\kIcurone$）。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2402513",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_07-007f.jpg",
+    "alt": "一个含有四个电动势和若干电阻的电路，连成两个回路和两个节点。图上的点标为 a 到 g，各支路的电流分别标出。"
+   },
+   "prompt": "对图中的回路 abgefa 和 cbgedc 应用回路定则。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对 abgefa，$-20\\kIcurone - 6\\kIcurthree + 3.0 - 0.25\\kIcurthree - 15\\kIcurone + 18 - 0.5\\kIcurone = 0$，其中电流以安培为单位，整理后为 $35.5\\kIcurone + 6.25\\kIcurthree = 21$。这个回路上的每个电阻都是沿其电流的方向经过的，所以每个都给出 $-\\kIcur\\kRes$：$\\kResone$、$\\kResfour$ 和 $\\krintone$ 对应 $\\kIcurone$，$\\kRestwo$ 和 $\\krinttwo$ 对应 $\\kIcurthree$。两个电源都是在负极进入的，$\\kemftwo$ 是从 g 向下到 e，$\\kemfone$ 是从 f 向上到 a，所以每个都加上它的电动势。\n\n对 cbgedc，$8\\kIcurtwo - 6\\kIcurthree + 3.0 - 0.25\\kIcurthree + 24 + 0.75\\kIcurtwo + 0.5\\kIcurtwo - 12 = 0$，整理后为 $9.25\\kIcurtwo - 6.25\\kIcurthree + 15 = 0$。这里 $\\kResthree$、$r_4$ 和 $r_3$ 是逆着 $\\kIcurtwo$ 经过的（正项），$\\kRestwo$ 和 $\\krinttwo$ 是顺着 $\\kIcurthree$ 经过的（负项）；$\\kemftwo$ 和 $\\mathcal{E}_4$ 是在负极进入的（+3.0 V 和 +24 V），而 $\\mathcal{E}_3$ 是从 d 向上到 c，在正极进入的（−12 V）。用第二个方程减去第一个方程，得 $35.5\\kIcurone + 9.25\\kIcurtwo - 6 = 0$，这正是回路 afedcba 的方程，理应如此。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1561181",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S06.jpg",
+    "alt": "一个电路，顶部从左到右有 a、b、c 三点，底部从左到右有 h、g、f 三点。ah 段中有电动势为 E 的电源和电阻 r；bg 段中有点 i、电阻 R₁ 和点 j；cf 段中有电阻 R₂、点 d、点 e 和电阻 R₃。"
+   },
+   "prompt": "按图中所示的电路图搭建了一个实验。设 $\\kResone = 10\\ Ω$，$\\kRestwo = \\kResthree = 5\\ Ω$，$\\krint = 0\\ Ω$，$\\kemf = 6\\ \\text{V}$。\n\n（a）检查实验装置的步骤之一，是测试电势相同的点。下列哪些点可以测试？（a）b、c 和 d 点。（b）d、e 和 f 点。（c）f、h 和 j 点。（d）a、h 和 i 点。\n\n（b）应在哪三个点测量电流，才能直接验证基尔霍夫节点定则？（a）b、c 和 d 点。（b）d、e 和 f 点。（c）f、h 和 j 点。（d）a、h 和 i 点。\n\n（c）如果含电压源的支路中的电流向上，另外两条支路中的电流向下，也就是说 a 处的电流是 i 处和 c 处电流之和，指出下列哪些可以成立。选两个答案。（a）i 处的电流等于 j 处的电流减去 f 处的电流。（b）e 处的电流等于 h 处的电流减去 i 处的电流。（c）c 处的电流等于 j 处的电流减去 a 处的电流。（d）d 处的电流等于 h 处的电流减去 j 处的电流。\n\n（d）测量显示通过 $\\kResone$ 的电流为 0.5 A，通过 $\\kResthree$ 的电流为 0.6 A。根据你对基尔霍夫定律的了解，确认下列哪个说法正确。（a）$\\kResone$ 的测量电流正确，但 $\\kResthree$ 的测量电流不正确。（b）$\\kResthree$ 的测量电流正确，但 $\\kResone$ 的测量电流不正确。（c）两个测得的电流都正确。（d）两个测得的电流都不正确。\n\n（e）书中印出了 $\\kResone$ 上耗散的能量随时间变化的图线，是一条从原点出发的直线，在时刻 $t_1$ 上升到能量为 $E_1$ 的点。下列哪个是 $\\kRestwo$ 上耗散的能量随时间变化的图线？（a）从原点到时刻 $t_1$ 能量为 $2E_1$ 的直线。（b）从原点到时刻 $t_1$ 能量为 $E_1$ 的直线。（c）从原点到时刻 $t_1$ 能量为 $E_1/2$ 的直线。（d）从原点到时刻 $t_1$ 能量为 $E_1/4$ 的直线。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）选项（c），f、h 和 j 点。没有电阻的导线上没有电压，而 f、h 和 j 都在下面那根导线上，它们之间没有任何元件。其他各选项中，任意两点之间都有电阻或电源。\n\n（b）选项（c），f、h 和 j 点。要验证节点定则，就要测量三条支路中每一条的电流，而 h 在电源所在的支路中，j 在 $\\kResone$ 所在的支路中，f 在 $\\kRestwo$ 和 $\\kResthree$ 所在的支路中。其他选项把其中两个或三个点放在同一条支路中。\n\n（c）选项（b）和（d）。h、i、j 和 c、d、e、f 各处的电流分别是电源电流、通过 $\\kResone$ 的电流和通过串联的一对电阻的电流，而节点定则使电源电流等于另外两个电流之和。于是 e 处（或 d 处）的电流等于 h 处的电流减去 i 处（或 j 处）的电流。选项（a）把通过 $\\kResone$ 的电流表示成它自己减去第三条支路中的电流，选项（c）则把一条支路的电流表示成它自己的负值。\n\n（d）选项（b）。没有内阻时，全部 6 V 都加在 $\\kResone$ 两端和串联的那一对电阻两端，所以通过 $\\kResone$ 的电流为 $6\\ \\text{V}/10\\ Ω = 0.6\\ \\text{A}$，通过 $\\kResthree$ 的电流为 $6\\ \\text{V}/(5\\ Ω + 5\\ Ω) = 0.6\\ \\text{A}$。$\\kResthree$ 的测量值 0.6 A 是正确的，$\\kResone$ 的测量值 0.5 A 则不正确。\n\n（e）选项（c），在 $t_1$ 时到 $E_1/2$ 的直线。两个电阻中的电流都是 0.6 A，所以功率分别为：$\\kResone$ 中 $I^2R = (0.6\\ \\text{A})^2(10\\ Ω) = 3.6\\ \\text{W}$，$\\kRestwo$ 中 $(0.6\\ \\text{A})^2(5\\ Ω) = 1.8\\ \\text{W}$。能量等于功率乘以时间，所以在任意时间内，$\\kRestwo$ 耗散的能量都只有 $\\kResone$ 的一半。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1222161",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S09_img.jpg",
+    "alt": "一个含有四个电动势和若干电阻的电路，连成若干回路，节点为 a 和 e，电流 I₁、I₂ 和 I₃ 用箭头标出，各点用字母 a 到 l 标出。"
+   },
+   "prompt": "本题考虑图中所示的电路。\n\n（a）假设三个电流 $\\kIcurone$、$\\kIcurtwo$ 和 $\\kIcurthree$ 都不等于零，下列哪个说法是错误的？（a）在 a 点，$\\kIcurthree = \\kIcurone + \\kIcurtwo$。（b）在 e 点，$\\kIcurtwo = \\kIcurthree - \\kIcurone$。（c）通过 $\\kResthree$ 的电流等于通过 $R_5$ 的电流。（d）通过 $\\kResone$ 的电流等于通过 $R_5$ 的电流。\n\n（b）下列哪个说法是正确的？（a）$\\kemfone + \\kemftwo + \\kIcurone\\kResone - \\kIcurtwo\\kRestwo + \\kIcurone\\krintone - \\kIcurtwo\\krinttwo + \\kIcurone R_5 = 0$。（b）$-\\kemfone + \\kemftwo + \\kIcurone\\kResone - \\kIcurtwo\\kRestwo + \\kIcurone\\krintone - \\kIcurtwo\\krinttwo - \\kIcurone R_5 = 0$。（c）$\\kemfone - \\kemftwo - \\kIcurone\\kResone + \\kIcurtwo\\kRestwo - \\kIcurone\\krintone + \\kIcurtwo\\krinttwo - \\kIcurone R_5 = 0$。（d）$\\kemfone + \\kemftwo - \\kIcurone\\kResone + \\kIcurtwo\\kRestwo - \\kIcurone\\krintone + \\kIcurtwo\\krinttwo + \\kIcurone R_5 = 0$。\n\n（c）如果 $\\kIcurone = 5\\ \\text{A}$，$\\kIcurthree = -2\\ \\text{A}$，下列哪个说法是错误的？（a）通过 $\\kResone$ 的电流从 a 流向 b，等于 5 A。（b）通过 $\\kResthree$ 的电流从 a 流向 j，等于 2 A。（c）通过 $R_5$ 的电流从 d 流向 e，等于 5 A。（d）以上都不是。\n\n（d）如果 $\\kIcurone = 5\\ \\text{A}$，$\\kIcurthree = -2\\ \\text{A}$，则 $\\kIcurtwo$ 等于（a）3 A，（b）−3 A，（c）7 A，（d）−7 A。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）（c）；（b）（c）；（c）（d）；（d）（d）。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id4214079",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S10.jpg",
+    "alt": "一个电路，左边竖直支路中有电动势为 E 的电源，中间支路中有电阻 R₁，右边支路中有电阻 R₂，三条支路在顶部和底部用导线相连。"
+   },
+   "prompt": "在一个实验中搭建了图示的电路。用三个电流表记录三条竖直支路中的电流，这三条支路分别含 $\\kResone$、$\\kRestwo$ 和 $\\kemf$。电阻所在支路中的电流表读数，即通过 $\\kResone$ 和 $\\kRestwo$ 的电流，分别为 2 A 和 3 A。\n\n（a）求在含 $\\kResone$ 和 $\\kRestwo$ 的回路中应用基尔霍夫回路定则所得的方程。\n\n（b）第三个电流表，即含 $\\kemf$ 的支路中的那个，读数是多少？如果把 $\\kemf$ 换成 $3\\kemf$，这个读数会怎样变化？\n\n（c）现在修改电路，在两个电阻之间的上方导线中再加入第二个电源，电动势为 $2\\kemf$，电路其余部分不变。求三个电流表的读数。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）只含两个电阻的那个回路里面没有电源，所以两个电势的变化必须相互抵消，$\\kIcurone\\kResone = \\kIcurtwo\\kRestwo$；代入 2 A 和 3 A 的读数，这就是 $2\\kResone = 3\\kRestwo$。（b）节点定则使第三个电流表的读数等于另外两个之和，即 5 A；每个电流都与驱动它的电动势成正比，所以把 $\\kemf$ 换成 $3\\kemf$ 会使这个读数变为 15 A。（c）加入电动势为 $2\\kemf$ 的第二个电源，位置在两个电阻之间的上方导线中，电流表的读数为：含 $\\kResone$ 的支路中 2 A，含 $\\kRestwo$ 的支路中 9 A，含 $\\kemf$ 的支路中 11 A。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1175790",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M3_S12_img.jpg",
+    "alt": "一个电路，顶部有电动势为 E₁ 的电源和电阻 r₁，中部在 A、B 两点之间有电阻 R₁，底部有电动势为 E₂ 的电源和电阻 r₂，左侧有电阻 R₂，右侧有电阻 R₃。"
+   },
+   "prompt": "在这个电路中，假设通过 $\\kResone$、$\\kRestwo$ 和 $\\kResthree$ 的电流分别为 $\\kIcurone$、$\\kIcurtwo$ 和 $\\kIcurthree$，且都沿顺时针方向流动。\n\n（a）求在 A 点应用基尔霍夫节点定则所得的方程。\n\n（b）求在上、下两个回路中应用基尔霍夫回路定则所得的方程。\n\n（c）设 $\\kResone = \\kRestwo = 6\\ Ω$，$\\kResthree = 12\\ Ω$，$\\krintone = \\krinttwo = 0\\ Ω$，$\\kemfone = 6\\ \\text{V}$，$\\kemftwo = 4\\ \\text{V}$。计算 $\\kIcurone$、$\\kIcurtwo$ 和 $\\kIcurthree$。\n\n（d）对于把 $\\kemftwo$ 换成一个闭合开关的情形，重做（a）和（b）。使用（c）中 $\\kResone$、$\\kRestwo$、$\\kResthree$、$\\krintone$ 和 $\\kemfone$ 的值，计算通过三个电阻的电流。\n\n（e）对于（d）中的电路，计算电压源的输出功率和所有电阻上的功率。检验电路中能量是否守恒。\n\n（f）一名学生在实验室里搭建了（d）中的电路，测得通过其中一个电阻的电流为 0.19 A。根据（d）中算出的结果，指出是哪个或哪些电阻。说明测量值与计算值之间的任何差异的原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$\\kIcurone + \\kIcurthree = \\kIcurtwo$。（b）$\\kemfone - \\kIcurone\\kResone - \\kIcurtwo\\kRestwo - \\kIcurone\\krintone = 0$ 和 $-\\kemftwo + \\kIcurone\\kResone - \\kIcurthree\\kResthree - \\kIcurthree\\krinttwo = 0$。（c）$\\kIcurone = 8/15\\ \\text{A}$，$\\kIcurtwo = 7/15\\ \\text{A}$，$\\kIcurthree = -1/15\\ \\text{A}$。（d）$\\kIcurone = 2/5\\ \\text{A}$，$\\kIcurtwo = 3/5\\ \\text{A}$，$\\kIcurthree = 1/5\\ \\text{A}$。（e）电源输出 18/5 W，各电阻耗散 24/25 W、54/25 W 和 12/25 W，加起来是 18/5 W，所以能量守恒。（f）$\\kResthree$，差异是由电路中的损耗造成的。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2074624",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "对图 21.25 中的回路 abcdefgha 应用回路定则。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\kIcurtwo\\kRestwo + \\kemfone - \\kIcurtwo\\krintone + \\kIcurthree\\kResthree + \\kIcurthree\\krinttwo - \\kemftwo = 0$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3199702",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "junction",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_08-1bf9.jpg",
+    "alt": "一个含有四个电动势和若干电阻的电路，连成两个回路和许多节点。图上的点标为 a 到 j，各支路的电流分别标出。"
+   },
+   "prompt": "对图中的 a 点应用节点定则。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kIcurthree = \\kIcurone + \\kIcurtwo$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2601229",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_08-1bf9.jpg",
+    "alt": "一个含有四个电动势和若干电阻的电路，连成两个回路和许多节点。图上的点标为 a 到 j，各支路的电流分别标出。"
+   },
+   "prompt": "对图中的回路 akledcba 应用回路定则。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kemftwo - \\kIcurtwo\\krinttwo - \\kIcurtwo\\kRestwo + \\kIcurone R_5 + \\kIcurone\\krintone - \\kemfone + \\kIcurone\\kResone = 0$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3080612",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "求解例题 21.5，但用回路 abcdefgha 代替回路 akledcba。请明确说明你是如何遵循“串联与并联电阻器的解题策略”中的各个步骤的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.75,
+      "unit": "A",
+      "hint": "把 a 处的节点定则、一个回路方程和外回路的方程放在一起，先解出中间支路的电流。"
+     },
+     {
+      "part": "(b)",
+      "value": -3.5,
+      "unit": "A",
+      "hint": "负电流并不是错误：它表示该支路中的电流沿与为它假定的方向相反的方向流动。"
+     },
+     {
+      "part": "(c)",
+      "value": 8.25,
+      "unit": "A",
+      "hint": "把你求出的中间支路电流代回含第二个电源的那个回路方程。"
+     }
+    ],
+    "solution": "$\\kIcurone = 4.75\\ \\text{A}$，$\\kIcurtwo = -3.5\\ \\text{A}$，$\\kIcurthree = 8.25\\ \\text{A}$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2057574",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "junction",
+   "figure": {
+    "src": "/media/ch21/Figure_22_03_09.jpg",
+    "alt": "一个含有两个电动势 E₁ 和 E₂ 以及三个电阻的电路，连成两个回路和两个节点，点标为 a 到 h，各支路的电流分别标出。"
+   },
+   "prompt": "<strong>不合理的结果</strong> 考虑图中的电路，假设电动势未知，而给定电流为 $\\kIcurone = 5.00\\ \\text{A}$，$\\kIcurtwo = 3.0\\ \\text{A}$，$\\kIcurthree = -2.00\\ \\text{A}$。（a）你能求出电动势吗？（b）这些假设有什么问题？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）不能，你会得到彼此矛盾的方程。（b）$\\kIcurone \\neq \\kIcurtwo + \\kIcurthree$。假设的电流违反了节点定则。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "kirchhoff-from-conservation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "apply-kirchhoffs-rules",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "loop-rule",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "loop-rule"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "loop-rule-signs",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "loop-rule"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "loop-rule-signs",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "junction-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "junction-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "apply-kirchhoffs-rules",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "loop-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "junction-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "loop-rule",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "p1",
+   "concept": "loop-rule",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "p3",
+   "concept": "loop-rule-signs"
+  },
+  {
+   "exercise": "p4",
+   "concept": "apply-kirchhoffs-rules"
+  },
+  {
+   "exercise": "p4",
+   "concept": "loop-rule-signs",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "junction-rule"
+  },
+  {
+   "exercise": "p5",
+   "concept": "apply-kirchhoffs-rules",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "source-1",
+   "label": "第一个电源，电动势 ℰ₁ 及其内阻 r₁",
+   "figures": [
+    "sim-two-loop-circuit"
+   ]
+  },
+  {
+   "id": "source-2",
+   "label": "第二个电源，电动势 ℰ₂ 及其内阻 r₂",
+   "figures": [
+    "sim-two-loop-circuit"
+   ]
+  },
+  {
+   "id": "resistor-1",
+   "label": "电阻器 R₁",
+   "figures": [
+    "sim-two-loop-circuit",
+    "sim-loop-rule"
+   ]
+  },
+  {
+   "id": "resistor-2",
+   "label": "电阻器 R₂",
+   "figures": [
+    "sim-two-loop-circuit",
+    "sim-loop-rule"
+   ]
+  },
+  {
+   "id": "resistor-3",
+   "label": "电阻器 R₃",
+   "figures": [
+    "sim-two-loop-circuit"
+   ]
+  }
+ ]
+}

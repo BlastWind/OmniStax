@@ -1,0 +1,1224 @@
+{
+ "id": "4.5",
+ "module": "m42075",
+ "chapter": "4",
+ "title": "法向力、张力及力的其他实例",
+ "short": "法向力和张力",
+ "lead": "有几种<span data-concept=\"force\">力</span>有各自的名称：表面对静置于其上的任何物体所施加的<span data-concept=\"normal-force\">法向力</span>、绳或缆绳中的<span data-concept=\"tension\">张力</span>，以及斜面上物体的<span data-concept=\"weight\">重力</span>及其两个分量；而真实<span data-concept=\"force\">力</span>则与加速的观察者似乎看到的虚拟力区分开来。",
+ "objectives": [
+  "定义法向力和张力。",
+  "应用牛顿运动定律求解涉及各种力的问题。",
+  "利用三角恒等式把重力分解为分量。"
+ ],
+ "summary_html": "<ul><li>当物体静止在某个表面上时，该表面对物体施加一个<span data-concept=\"force\">力</span>，用来支撑物体的<span data-concept=\"weight\">重力</span>。这个支撑<span data-concept=\"force\">力</span>垂直于该表面并背离该表面。它被称为<span data-concept=\"normal-force\">法向力</span>，$\\kN$。</li><li>当物体静止在不加速的水平面上时，<span data-concept=\"normal-force\">法向力</span>的大小等于物体的<span data-concept=\"weight\">重力</span>：$\\kN = m\\kg.$</li><li>当物体静止在与水平面成 $\\theta$ 角的斜面上时，物体的<span data-concept=\"weight\">重力</span>可以分解为垂直于（$\\kwperp$）和平行于（$\\kwpar$）斜面的分量。这些分量可以用 $\\kwpar = \\kwgt\\sin(\\theta) = m\\kg\\sin(\\theta)$ 和 $\\kwperp = \\kwgt\\cos(\\theta) = m\\kg\\cos(\\theta).$ 计算。</li><li>沿着拉紧的柔索（如绳或缆绳）作用的拉<span data-concept=\"force\">力</span>称为<span data-concept=\"tension\">张力</span>，$\\kTf$。当绳子支撑一个静止物体的<span data-concept=\"weight\">重力</span>时，绳中的<span data-concept=\"tension\">张力</span>等于该物体的<span data-concept=\"weight\">重力</span>：$\\kTf = m\\kg.$</li><li>在任何惯性参考系（不加速也不转动的参考系）中，牛顿定律具有本章给出的简单形式，所有<span data-concept=\"force\">力</span>都是具有物理起源的真实<span data-concept=\"force\">力</span>。</li></ul>",
+ "notes": "PhET 模拟链接“Forces in 1 Dimension”略去，书中没有给出答案的三道习题以及弹簧秤上婴儿的图也略去，该图属于其中最后一道。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "答案来自书后答案；布鲁姆层级、概念标签、提示和建议思路由 AI 撰写，建议思路已标明。六道题中有三道没有给出答案，因此略去：蹦床上的体操运动员（fs-id1600446）、爬绳的体操运动员（fs-id1914521）和弹簧秤上的婴儿（fs-id2372303），其图随该题一并略去。本节第一道 AP 题，即箭所受的引力（fs-id1367314），就是 4.3 节的重力 $\\kwgt = m\\kg$，别无其他内容，因此放在 4.3 节，4.3 的说明中也这样写明。关于平底雪橇和斜坡上汽车的 AP 题没有给出答案，保留为开放式题目，平底雪橇一题的四个选项照书中印出的样子给出，因为不能为评分的选择题虚构答案。关于孩子和四轮小车的一题保留在书中印出的位置，尽管它依赖 4.3 和 4.4 节的所研究的系统和第三定律，这是因为小车由柔索拉动，答案取决于拉手中的张力。两道思考题共用书中牵引中的腿的图，因为书中在两处都提到了它。",
+ "figures": [
+  {
+   "id": "sim-normal",
+   "kind": "sim",
+   "number": "4.11",
+   "originals": [
+    "/media/ch04/Figure_04_05_01.jpg"
+   ],
+   "original_caption": "（a）拿着那袋狗粮的人必须提供一个向上的力 F_hand，其大小与狗粮的重力 w 相等、方向相反。（b）把狗粮放在折叠牌桌上时，桌子会下垂，很像一张硬蹦床。桌子中的弹性回复力随着下垂而增大，直到它们提供一个大小等于载荷重力、方向相反的力 N。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "stiffness",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library hand, one-line headline, labeller labels, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-skier",
+   "kind": "sim",
+   "number": "4.12",
+   "originals": [
+    "/media/ch04/Figure_04_05_02.jpg"
+   ],
+   "original_caption": "由于运动和摩擦力都平行于斜坡，最方便的做法是把所有的力投影到这样一个坐标系上：一个坐标轴平行于斜坡，另一个垂直于斜坡（坐标轴画在滑雪者左侧）。N 垂直于斜坡，f 平行于斜坡，而 w 在两个坐标轴上都有分量，即 w_⊥ 和 w_∥。N 的大小等于 w_⊥，所以垂直于斜坡方向上没有运动；但 f 小于 w_∥，所以有沿斜坡向下的加速度（沿平行轴）。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: silhouette on skis, static readout form when friction holds, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-incline",
+   "kind": "sim",
+   "number": "4.13",
+   "originals": [
+    "/media/ch04/Figure_04_05_03.jpg"
+   ],
+   "original_caption": "一个物体静止在与水平面成 θ 角的斜面上。",
+   "widths": [
+    425
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "curve labels off the ticks, note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rope",
+   "kind": "sim",
+   "number": "4.14",
+   "originals": [
+    "/media/ch04/Figure_04_05_04.jpg"
+   ],
+   "original_caption": "当一根完全柔性的柔索（弯折它不需要任何力）如图中的绳子那样传递一个力 T 时，这个力必须平行于绳子的长度，如图所示。这样的柔索所施加的拉力就是张力。请注意，绳子对手和被支撑的物体施加大小相等、方向相反的拉力（忽略绳子的重力）。这是牛顿第三定律的一个例子。绳子是在两个物体之间传递这对大小相等、方向相反的力的介质。手与物体之间绳子上各处的张力都相等。一旦你确定了绳子上某一处的张力，也就确定了绳子上所有位置的张力。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library hand, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-corners",
+   "kind": "sim",
+   "number": "4.15",
+   "originals": [
+    "/media/ch04/Figure_04_05_05.jpg"
+   ],
+   "original_caption": "（a）手指中的肌腱把力 T 从肌肉传递到手指的其他部位，通常改变力的方向，但不改变力的大小（肌腱几乎没有摩擦）。（b）自行车的刹车线把张力 T 从车把传递到刹车机构。同样，T 的方向改变了，大小没有改变。",
+   "draws": [
+    "force",
+    "acceleration",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library hand, labels beside arrows, label and note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tightrope",
+   "kind": "sim",
+   "number": "4.16",
+   "folds": [
+    "4.17"
+   ],
+   "originals": [
+    "/media/ch04/Figure_04_05_06.jpg",
+    "/media/ch04/Figure_04_05_07.jpg"
+   ],
+   "original_caption": "走钢丝者的重力使钢丝下垂 5.0 度。这里所研究的系统是钢丝上走钢丝者所站的那一点。",
+   "widths": [
+    375,
+    450
+   ],
+   "draws": [
+    "force",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: silhouette walker, labeller tensions, components to scale"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-chain",
+   "kind": "sim",
+   "number": "4.18",
+   "originals": [
+    "/media/ch04/Figure_04_05_08.jpg"
+   ],
+   "original_caption": "沿垂直于链条长度的方向推它，我们就可以在链条中产生很大的张力，如图所示。假设在没有拖吊车可用时，我们想把一辆汽车从泥地里拉出来。汽车每向前移动一次，链条就被拉紧一次，使它尽可能保持接近伸直。链条中的张力由 T = F_⊥ / (2 sin θ) 给出；因为 θ 很小，所以 T 很大。这种情形与图 4.16 所示的走钢丝者类似，只不过这里画出的张力是传递给汽车和树的张力，而不是作用在 F_⊥ 施加点上的张力。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "force",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout separators, label clear of the angle, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-bridge",
+   "kind": "photo",
+   "number": "4.19",
+   "widths": [
+    325
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "named-forces",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-force",
+   "concept": "normal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "normal-force",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-force",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-force",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "weight-components-on-incline",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "acceleration-on-frictionless-incline",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-on-incline",
+   "concept": "independence-of-perpendicular-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-incline",
+   "concept": "acceleration-on-frictionless-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-incline",
+   "concept": "weight-components-on-incline",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-incline",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "tension",
+   "verb": "introduces"
+  },
+  {
+   "span": "tension",
+   "concept": "tension-supports-weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "tension",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "tightrope",
+   "concept": "tension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tightrope",
+   "concept": "tension-supports-weight",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tightrope",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "tightrope",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "tightrope",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-tightrope",
+   "concept": "tension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "large-tension",
+   "concept": "tension-from-perpendicular-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "large-tension",
+   "concept": "tension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inertial-frames",
+   "concept": "inertial-frame",
+   "verb": "introduces"
+  },
+  {
+   "span": "inertial-frames",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "inertial-frames",
+   "concept": "reference-frame",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1458737",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "prompt": "一根缆绳以 1.3 m/s<sup>2</sup> 的加速度提升质量为 120.0 kg 的物体。缆绳中的张力是多大？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1332,
+    "unit": "N",
+    "hint": "缆绳既要托住物体的重力，又要使物体加速，所以把与重力平衡的力和产生加速度的力相加。",
+    "solution": "张力必须等于重力加上使物体加速所需的力。前者可以用 $F = m\\kg$ 计算，后者可以用 $F = m\\ka$ 计算。对于重力：$F = m\\kg = (120.0\\ \\text{kg})(9.8\\ \\text{m/s}^2) = 1205.4\\ \\text{N}$。对于加速度：$F = m\\ka = (120.0\\ \\text{kg})(1.3\\ \\text{m/s}^2) = 159.9\\ \\text{N}$。缆绳中的总张力为 1176 N + 156 N = 1332 N。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1591869",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "prompt": "一个孩子拉着一辆四轮小车在草地上前行。请确定系统，指出起作用的力对，并说明结果。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "以小车为所研究的系统，因为问题问的是它的运动。有四个外力作用在它上面：手柄中的张力，由孩子的手沿手柄拉动；小车的重力，竖直向下；草地的法向力，垂直于地面；以及草地对车轮的摩擦力，平行于地面并阻碍运动。每个力都是一个第三定律力对中的一个。手柄向前拉小车，小车向后拉孩子的手。地球向下拉小车，小车向上拉地球。地面向上推车轮，车轮向下推地面。草地向后拖拽车轮，车轮向前拖拽草地。只有作用在小车上的力才进入小车的牛顿第二定律。竖直方向的力相互平衡，因为小车没有离开地面，而张力的水平分量与摩擦力相抗衡。当它是两者中较大的一个时，小车向前加速；当两者相等时，小车以恒定速度继续滚动。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1349141",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "prompt": "两支队伍正在进行拔河。绳子突然断了。关于所涉及的力，下列哪种说法是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "两支队伍施加的力不再相等；结果是两队将沿相反方向加速。",
+     "队员们施加的力不再被绳中的张力平衡；结果是两队将沿相反方向加速。",
+     "重力与队员们施加的力相平衡；结果是两队将摔倒。",
+     "绳中的张力传递给了队员；结果是两队将沿相反方向加速。"
+    ],
+    "correct": 1,
+    "hint": "绳子还完好时，绳中的张力平衡了每支队伍对地面的推力。想一想绳子没了以后，什么力没有被平衡。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1624568",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-on-incline",
+   "figure": {
+    "src": "/media/ch04/CNX_APPhysics_04_M5_Q20_img.jpg",
+    "alt": "该图由一个红点和四条背离红点的黑色实线箭头组成。箭头 f 指向右方并略微向上。箭头 p 的长度约为箭头 f 的一半，方向相反，指向左方并略微向下。箭头 N 的长度与 f 大致相同，指向上方并略微偏左。另一条长度相近的箭头 w 竖直向下。一条红色虚线箭头从红点出发，方向与箭头 N 相反（向下偏右），长度相同。另一条短的红色虚线箭头从第一条虚线箭头的箭尖延伸到 w 箭头的箭尖，并与之成直角。"
+   },
+   "prompt": "下面的受力图表示山坡上的一架平底雪橇。你预期它会有怎样的加速度，为什么？<ol type=\"a\"><li>沿山坡向下加速；被推动的力与重力沿山坡向下的分量一起，克服了阻碍的摩擦力。</li><li>沿山坡向下加速；摩擦力小于重力所产生的阻碍分量。</li><li>不动；摩擦力大于被推动的力。</li><li>不动；摩擦力大于沿山坡向下的各力之和。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在图中的坐标轴上分析：一个沿斜坡，一个垂直于斜坡。垂直于斜坡方向上，法向力 $\\kN$ 与重力的垂直部分（与 $\\kN$ 相反的长虚线箭头）大小相等、方向相反，所以穿过表面的方向上什么也不会发生。沿斜坡方向有三个箭头。推力 $p$ 和重力的平行部分（短虚线箭头）都指向山下，而摩擦力 $f$ 指向山上。只有当两个指向山下的箭头加起来比 $f$ 更长时，平底雪橇才会加速。这里并非如此：$f$ 的长度是 $p$ 的两倍，而重力的平行部分是那条短虚线箭头。摩擦力大于两个指向山下的力之和，所以平底雪橇不会移动，这就是第四个答案。第三个答案只拿摩擦力与推力比较，漏掉了重力，因此是错的。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2298446",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "figure": {
+    "src": "/media/ch04/Figure_04_05_13.jpg",
+    "alt": "一幅受力图表示作用在一点上的三个力：向下的重力（Fg）、向左的张力（Ft）和向上并偏向右的风力（Fw）。"
+   },
+   "prompt": "画一幅受力图，表示作用在一只静止悬在空中、由一根线牵着的风筝上的各个力。请在图中标出这些力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "该图有一个黑点和三条背离黑点的红色实线箭头。箭头 F<sub>t</sub> 很长，指向左方并略微向下。箭头 F<sub>w</sub> 也很长，位于上与右之间的对角线稍下方。短箭头 F<sub>g</sub> 指向下方。<strong>F</strong><sub>g</sub> 是风筝所受的重力。<strong>F</strong><sub>w</sub> 是风对风筝施加的力。<strong>F</strong><sub>t</sub> 是牵着风筝的线中的张力。要使风筝静止悬在空中，它必须与另外两个力的矢量和相平衡。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2154704",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weight-on-incline",
+   "prompt": "一辆汽车正沿着坡度为 20° 的山坡下滑。汽车的质量为 965 kg。用缆绳把汽车向上拉时，施加的力为 4215 N。忽略摩擦力，汽车的加速度是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "以汽车为系统，取沿斜坡和垂直于斜坡的坐标轴，如例题 4.5 所示。垂直于斜坡方向上，法向力与 $\\kwperp$ 平衡，没有任何东西在加速。沿斜坡方向有两个力：缆绳沿斜坡向上的拉力，以及重力的平行分量 $\\kwpar = m\\kg\\sin\\theta = (965\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin 20^\\circ = 3234\\ \\text{N}$，沿斜坡向下。因此沿斜坡的合力为 $4215\\ \\text{N} - 3234\\ \\text{N} = 981\\ \\text{N}$，沿斜坡向上，牛顿第二定律给出 $\\kapar = 981\\ \\text{N} / 965\\ \\text{kg} = 1.02\\ \\text{m/s}^2$，方向沿斜坡向上。装上缆绳时汽车正在下滑，所以这个加速度先使它减速，再使它停下，然后把它拉回山上。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2656274",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "figure": {
+    "src": "/media/ch04/Figure_04_05_10.jpg",
+    "alt": "牵引中的腿的示意图。",
+    "caption": "用牵引装置悬吊一条腿，装置中用钢丝传递力。无摩擦的滑轮改变力 T 的方向而不改变其大小。"
+   },
+   "prompt": "如果像图中所示用牵引装置悬吊一条腿，绳中的张力是多大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "绳子绕过无摩擦的滑轮，所以绳上各处的张力相同，在自由端，绳子只是托住悬挂的重物。该重物静止悬挂，所以那里的张力等于它的重力，$\\kTf = \\kwgt = m\\kg$。同样的张力被传过每一个滑轮直到腿上，在每个拐角处改变了方向，但没有改变大小。因此，拉腿的各个力的大小都是 $m\\kg$，不同的滑轮布置所改变的是各个拉力的方向，而不是拉得多用力。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1384888",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tension",
+   "figure": {
+    "src": "/media/ch04/Figure_04_05_10.jpg",
+    "alt": "牵引中的腿的示意图。",
+    "caption": "用牵引装置悬吊一条腿，装置中用钢丝传递力。无摩擦的滑轮改变力 T 的方向而不改变其大小。"
+   },
+   "prompt": "在为骨折而设的牵引装置中，有滑轮和绳子可用，我们怎样才能用同样的重物增大沿胫骨方向的力？（请注意，胫骨就是此图中所示的小腿骨。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "悬挂的重物决定了张力，因为无论滑轮把绳子引向何处，绳子上各处都承受 $\\kTf = m\\kg$。可以改变的是每股绳拉动的方向，以及有多少股绳拉在骨头上。让绳子绕过更多的滑轮，使好几股绳回到脚上，它们施加的力就会叠加起来。还要让这些股绳更接近平行于胫骨，使每个张力全部作用在沿骨头的方向上，而不是只有一个分量起作用，就像例题 4.6 中近乎水平的钢丝把大部分张力都花在了相互抵消的分量上那样。这两种改变都会增大沿胫骨方向的力，而重物以及张力保持不变。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2600233",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "两支各有九名队员的队伍进行拔河。第一支队伍的每名队员平均质量为 68 kg，水平方向平均施加 1350 N 的力。第二支队伍的每名队员平均质量为 73 kg，水平方向平均施加 1365 N 的力。（a）两支队伍的加速度大小是多少？（b）两队之间那段绳子中的张力是多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.11,
+      "unit": "m/s²",
+      "hint": "把两支队伍和绳子作为一个系统。两支队伍对地面施加的力是外力，总质量是全部十八名队员的质量。"
+     },
+     {
+      "part": "b",
+      "value": 12000,
+      "unit": "N",
+      "hint": "现在以其中一支队伍为系统。绳子以张力拉这支队伍，对这支队伍单独应用牛顿第二定律就能得出它。"
+     }
+    ],
+    "solution": "(a) $0.11\\ \\text{m/s}^2$  (b) $1.2 \\times 10^4\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2666528",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）一只质量为 $8.00 \\times 10^{-5}\\ \\text{kg}$ 的蜘蛛一动不动地挂在蛛网的一根竖直丝线上，计算这根丝线中的张力。（b）计算同一只蜘蛛一动不动地坐在一根水平丝线中间时这根丝线中的张力，这很像图 4.16 中的走钢丝者。这根丝线在水平线下方下垂 $12^\\circ$ 角。把它与竖直丝线中的张力相比较（求它们的比值）。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.000784,
+      "unit": "N",
+      "hint": "一只一动不动的蜘蛛挂在竖直丝线上，就是图 4.14 中悬挂的物体：张力等于重力。"
+     },
+     {
+      "part": "b",
+      "value": 0.00189,
+      "unit": "N",
+      "hint": "这就是例题 4.6 中的钢丝，下垂 12°，所以 $\\kTf = \\kwgt / (2\\sin\\theta)$。"
+     }
+    ],
+    "solution": "（a）$7.84 \\times 10^{-4}\\ \\text{N}$（b）$1.89 \\times 10^{-3}\\ \\text{N}$。这是竖直丝线中张力的 2.41 倍。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id858402",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "证明，正如正文所说，垂直于柔性介质的长度、作用在其中心的力 $\\kFperp$（例如图 4.16 中走钢丝的钢丝上的力）会产生大小为 $\\kTf = \\frac{\\kFperp}{2\\sin(\\theta)}$ 的张力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "对竖直方向应用牛顿第二定律，得 $F_y = F - 2\\kTf\\sin\\theta = 0$，于是 $F = 2\\kTf\\sin\\theta$，$\\kTf = \\frac{F}{2\\sin\\theta}$。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "tension-supports-weight"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "weight"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "tension"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "tension"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "newtons-first-law",
+   "weight": 1
+  },
+  {
+   "exercise": "ap4",
+   "concept": "weight-components-on-incline"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "friction"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "normal-force",
+   "weight": 1
+  },
+  {
+   "exercise": "ap5",
+   "concept": "tension"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "force"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "weight-components-on-incline"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "acceleration-on-frictionless-incline"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "tension"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "tension-supports-weight"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "tension"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "tension-from-perpendicular-force",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "tension"
+  },
+  {
+   "exercise": "p1",
+   "concept": "tension-supports-weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "tension-supports-weight"
+  },
+  {
+   "exercise": "p3",
+   "concept": "tension-from-perpendicular-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "tension-from-perpendicular-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "components-from-magnitude-angle"
+  }
+ ],
+ "referents": [
+  {
+   "id": "dog-food",
+   "label": "一袋狗粮",
+   "figures": [
+    "sim-normal"
+   ]
+  },
+  {
+   "id": "table",
+   "label": "桌子",
+   "figures": [
+    "sim-normal"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "手",
+   "figures": [
+    "sim-rope"
+   ]
+  },
+  {
+   "id": "hanging-mass",
+   "label": "悬挂的物体",
+   "figures": [
+    "sim-rope"
+   ]
+  },
+  {
+   "id": "walker",
+   "label": "走钢丝者",
+   "figures": [
+    "sim-tightrope"
+   ]
+  },
+  {
+   "id": "wire",
+   "label": "钢丝",
+   "figures": [
+    "sim-tightrope"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "汽车",
+   "figures": [
+    "sim-chain"
+   ]
+  },
+  {
+   "id": "tree",
+   "label": "树",
+   "figures": [
+    "sim-chain"
+   ]
+  },
+  {
+   "id": "skier",
+   "label": "滑雪者",
+   "figures": [
+    "sim-skier"
+   ]
+  },
+  {
+   "id": "object",
+   "label": "斜面上的物体",
+   "figures": [
+    "sim-incline"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "weight-components",
+   "what": "斜面上重力的分量",
+   "source": "《大学物理（第2版）》，4.5 法向力、张力及力的其他实例",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "斜面的角度 $\\ktheta$ 与 $\\kwgt$ 和 $\\kwperp$ 之间的角相同。",
+       "src": "4.5"
+      },
+      {
+       "text": "三个重力矢量构成一个直角三角形，$\\kwgt$ 为其斜边。",
+       "src": "图 4.13"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\cos(\\ktheta)} = \\frac{\\mk{p}{\\kwperp}}{\\mk{w}{\\kwgt}}",
+      "src": "4.5",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "$\\kwperp$ 是三角形中与 $\\ktheta$ 相邻的边。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kwperp} = \\mk{w}{\\kwgt}\\mk{c}{\\cos(\\ktheta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kwperp} = \\mk{w}{\\kwgt}\\mk{c}{\\cos(\\ktheta)} = \\mk{m}{\\km\\kg\\cos(\\ktheta)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "斜面的角度 $\\ktheta$ 与 $\\kwgt$ 和 $\\kwperp$ 之间的角相同。",
+       "src": "4.5"
+      },
+      {
+       "text": "三个重力矢量构成一个直角三角形，$\\kwgt$ 为其斜边。",
+       "src": "图 4.13"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sin(\\ktheta)} = \\frac{\\mk{p}{\\kwpar}}{\\mk{w}{\\kwgt}}",
+      "src": "4.5",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "$\\kwpar$ 是三角形中 $\\ktheta$ 的对边。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kwpar} = \\mk{w}{\\kwgt}\\mk{s}{\\sin(\\ktheta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kwpar} = \\mk{w}{\\kwgt}\\mk{s}{\\sin(\\ktheta)} = \\mk{m}{\\km\\kg\\sin(\\ktheta)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5"
+    }
+   ]
+  },
+  {
+   "id": "rope-tension",
+   "what": "支撑物体的绳中的张力",
+   "source": "《大学物理（第2版）》，4.5 法向力、张力及力的其他实例",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "物体静止，所以它的加速度为零，$\\kFnet = 0$。"
+      },
+      {
+       "text": "作用在物体上的外力只有它的重力 $\\kwgt$ 和绳子的张力 $\\kTf$，以向上为正。"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnet} = \\mk{T}{\\kTf} - \\mk{w}{\\kwgt}",
+      "src": "4.5",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnet} = \\mk{T}{\\kTf} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\mk{w}{\\kwgt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} = \\mk{m}{\\km\\kg}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5"
+    }
+   ]
+  },
+  {
+   "id": "tightrope-tension",
+   "what": "钢丝中的张力",
+   "source": "《大学物理（第2版）》，4.5 法向力、张力及力的其他实例，例题 4.6",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "走钢丝者静止，所以作用在他身上的合外力为零。",
+       "src": "例题 4.6"
+      },
+      {
+       "tex": "\\kTL{}_{x} = \\kTL\\cos(5.0^\\circ),\\quad \\kTR{}_{x} = \\kTR\\cos(5.0^\\circ)",
+       "src": "图 4.17"
+      },
+      {
+       "tex": "\\cos(5.0^\\circ) \\neq 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnetx} = \\mk{Lx}{\\kTL{}_{x}} - \\mk{Rx}{\\kTR{}_{x}}",
+      "src": "例题 4.6",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnetx} = \\mk{z}{0} = \\mk{Lx}{\\kTL{}_{x}} - \\mk{Rx}{\\kTR{}_{x}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL{}_{x}} = \\mk{Rx}{\\kTR{}_{x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL\\cos(5.0^\\circ)} = \\mk{Rx}{\\kTR\\cos(5.0^\\circ)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL} = \\mk{Rx}{\\kTR}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL} = \\mk{Rx}{\\kTR} = \\mk{T}{\\kTf}",
+       "uses": []
+      }
+     ],
+     "src": "例题 4.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "走钢丝者静止，所以作用在他身上的合外力为零。",
+       "src": "例题 4.6"
+      },
+      {
+       "tex": "\\kTL{}_{y} = \\kTL\\sin(5.0^\\circ),\\quad \\kTR{}_{y} = \\kTR\\sin(5.0^\\circ)",
+       "src": "图 4.17"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnety} = \\mk{Ly}{\\kTL{}_{y}} + \\mk{Ry}{\\kTR{}_{y}} - \\mk{w}{\\kwgt}",
+      "src": "例题 4.6",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnety} = \\mk{Ly}{\\kTL{}_{y}} + \\mk{Ry}{\\kTR{}_{y}} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFnety} = \\mk{Ly}{\\kTf\\sin(5.0^\\circ)} + \\mk{Ry}{\\kTf\\sin(5.0^\\circ)} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Ly}{2\\kTf\\sin(5.0^\\circ)} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "Ry": "Ly"
+       }
+      },
+      {
+       "tex": "\\mk{Ly}{2\\kTf\\sin(5.0^\\circ)} = \\mk{w}{\\kwgt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{Ly}{\\kTf} = \\frac{\\mk{w}{\\kwgt}}{\\mk{d}{2\\sin(5.0^\\circ)}}",
+       "uses": [],
+       "map": {
+        "Ly": [
+         "Ly",
+         "d"
+        ]
+       }
+      }
+     ],
+     "src": "例题 4.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\km = 70.0\\ \\text{kg},\\quad \\kg = 9.80\\ \\text{m/s}^2"
+      },
+      {
+       "tex": "\\sin(5.0^\\circ) = 0.0872"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kTf} = \\frac{\\mk{w}{\\kwgt}}{\\mk{d}{2\\sin(5.0^\\circ)}}",
+      "src": "例题 4.6",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kTf} = \\frac{\\mk{w}{\\kwgt}}{\\mk{d}{2\\sin(5.0^\\circ)}} = \\frac{\\mk{m}{\\km\\kg}}{\\mk{d2}{2\\sin(5.0^\\circ)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\frac{\\mk{m}{(70.0\\ \\text{kg})(9.80\\ \\text{m/s}^2)}}{\\mk{d2}{2(0.0872)}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\mk{m}{3900\\ \\text{N}}",
+       "uses": [],
+       "map": {
+        "d2": "m"
+       }
+      }
+     ],
+     "src": "例题 4.6"
+    }
+   ]
+  }
+ ]
+}

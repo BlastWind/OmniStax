@@ -1,0 +1,298 @@
+/* Figures for section 11.6 Gauge Pressure, Absolute Pressure, and Pressure Measurement. Boots against the section's text article.
+   Fluid statics has no time in it, so every figure here is a still picture:
+   none registers a cycle, none carries a transport, and a control's input
+   alone redraws it. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['11.6'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, pinned, spring, fixed } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- shared numbers ---------- */
+const G = 9.80, PATM = 101.3e3;                       /* Pa; the book's 1.013 × 10⁵ N/m² */
+const PSI = 6.90e3;                                   /* Pa per lb/in², Table 11.2 */
+/* The fluids of Table 11.1 a manometer or a barometer is filled with, their
+   densities in kg/m³, and the colour each is drawn in. The colours are the
+   physical fact and not a hue of the scheme (root rule 7, ch11/COLOR.md):
+   mercury is silver, and the three colourless liquids are the pale blue the
+   book prints its water in, told apart by their label. */
+const HG = '#a9b2bd', CLEAR = '#bfe0f2';
+/* a fluid's own colour through the facts switch; with facts off it is a neutral tint, not a solid ink fill */
+const liquid = (c) => (F.shown.facts ? F.fact(c) : PAL.soft);
+const FLUIDS = {
+  water: { name: '水', rho: 1000, s: '1.00\\times 10^{3}', color: CLEAR, of: '水的' },
+  alcohol: { name: '乙醇', rho: 790, s: '0.79\\times 10^{3}', color: CLEAR, of: '乙醇的' },
+  glycerin: { name: '丙三醇', rho: 1260, s: '1.26\\times 10^{3}', color: CLEAR, of: '丙三醇的' },
+  mercury: { name: '汞', rho: 13600, s: '13.6\\times 10^{3}', color: HG, of: '汞的' },
+};
+const eps = (v, d) => (Math.abs(v) < 0.5 * Math.pow(10, -d) ? 0 : v);
+const num = (v, d) => { const x = eps(v, d); return (x < 0 ? '−' : '') + fmt(Math.abs(x), d); };
+/* three significant figures, for a height that may be millimetres or metres */
+function sig3(v) { const a = Math.abs(v); if (a === 0) return '0'; const d = Math.max(0, 2 - Math.floor(Math.log10(a))); return (v < 0 ? '−' : '') + fmt(a, d); }
+/* a height written in the unit that suits its size */
+function hstr(h) { const a = Math.abs(h); return a >= 1 ? sig3(h) + ' m' : a >= 0.01 ? sig3(h * 100) + ' cm' : sig3(h * 1000) + ' mm'; }
+/* a rounded-rectangle outline, for a jar and a lid */
+function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
+  ctx.save(); ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r); ctx.arcTo(x + w, y + h, x + w - r, y + h, r); ctx.lineTo(x + r, y + h); ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r); ctx.arcTo(x, y, x + r, y, r); ctx.closePath();
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw || 3; ctx.stroke(); } ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 11.13: the aneroid gauge. The pressure being measured enters a
+   set of bellows, the bellows push on a rod, the rod turns a pointer on a
+   pivot against a spring, and the pointer reads on a dial. Still: a gauge
+   held on a tire has no time in it, so the figure answers its slider and
+   registers no cycle. The dial's numbers are placed by the same linkage
+   that places the pointer, so the dial is honest to the mechanism drawn.
+===================================================================== */
+(function () {
+  const d = sim('sim-aneroid', 740);
+  /* The slider is in pounds per square inch because the tire gauge of the text reads
+     psi and the book's worked numbers (34, 14.7, 48.7) are in it; the readout gives the pascals. */
+  const Ps = ctl(d.controls, { label: '\\kPg', cls: 'pressure', min: -14.7, max: 60, step: 0.1, value: 34, unit: 'psi', dec: 1, aria: '所测的表压强',
+    detents: [{ v: 34, label: '轮胎' }], snap: true, specials: [{ at: 0, label: '大气压' }] });
+  const dial = choice(d.controls, { label: '\\text{刻度盘的读数}', options: [{ value: 'gauge', label: '表压强' }, { value: 'abs', label: '绝对压强' }], value: 'gauge', aria: '刻度盘是从大气压还是从真空起标数' });
+  const PATM_PSI = 14.7;
+  /* the linkage, in canvas units: the fixed plate of the bellows at XR, the bellows
+     L0 + K·P long, a rod of length R from the moving plate to the lower end of the
+     pointer, ARM below the pivot; the pointer's tip TIP above it. */
+  const XR = 1020, L0 = 180, K = 2.0, R = 155, PX = 640, PY = 432, ARM = 120, TIP = 270, DIAL = 290, BH = 96;
+  const lengthOf = (p) => L0 + K * p;
+  /* the angle of the pointer from the vertical for a gauge pressure p, positive leaning left */
+  function angleOf(p) { const bx = XR - lengthOf(p) - R; return Math.asin(Math.max(-1, Math.min(1, (bx - PX) / ARM))); }
+  const KF = 2.6, KPA = PSI / 1000;
+  /* the ruler of absolute pressure under the gauge: 0 to 80 psi, fixed from the slider maximum */
+  const RX0 = 230, RX1 = 1170, RY = 660, RMAX = 80;
+  const RX = (v) => RX0 + (v / RMAX) * (RX1 - RX0);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('pressure'), fc = C('force');
+    const p = Ps.v, pabs = p + PATM_PSI, shift = dial.mix((v) => (v === 'abs' ? PATM_PSI : 0));
+    const L = lengthOf(p), xm = XR - L, phi = angleOf(p), s = Math.sin(phi), c = Math.cos(phi);
+    const B = { x: PX + ARM * s, y: PY + ARM * c }, T = { x: PX - TIP * s, y: PY - TIP * c }, S = { x: PX - 110 * s, y: PY - 110 * c };
+    /* the wall the spring is anchored to, the spring, the pivot and the pointer */
+    fixed(ctx, 250, PY - 70, 24, 140);
+    spring(ctx, 274, PY, S.x, S.y, 9, 13, F.ref('spring'), 3);
+    text(ctx, '弹簧', 262, PY - 100, F.ref('spring'), { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    /* the dial: an arc about the pivot with its ticks placed by the linkage */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath();
+    ctx.arc(PX, PY, DIAL, -Math.PI / 2 - angleOf(-14.7), -Math.PI / 2 - angleOf(60)); ctx.stroke(); ctx.restore();
+    /* the numbering slides round the dial by 14.7 psi between gauge and absolute, each number fading at the dial's ends */
+    for (let t = -10; t <= 70; t += 10) {
+      const g = t - shift, edge = Math.min(g + 14.7, 60 - g); if (edge < -2) continue;
+      const a = angleOf(Math.max(-14.7, Math.min(60, g))), zero = t === 0;
+      const ux = -Math.sin(a), uy = -Math.cos(a);
+      ctx.save(); ctx.globalAlpha = Math.min(1, Math.max(0, (edge + 2) / 2));
+      line(ctx, PX + ux * (DIAL - 16), PY + uy * (DIAL - 16), PX + ux * DIAL, PY + uy * DIAL, zero ? PAL.ink : PAL.muted, zero ? 3.5 : 2);
+      text(ctx, num(t, 0), PX + ux * (DIAL + 26), PY + uy * (DIAL + 26), zero ? PAL.ink : PAL.muted, { size: 18, weight: zero ? 600 : 400, align: 'center' });
+      ctx.restore();
+    }
+    for (const [v, head, zero] of [['gauge', '刻度盘读的是表压强，单位为 psi：', '零点是大气压'], ['abs', '刻度盘读的是绝对压强，单位为 psi：', '零点是真空']]) {
+      const a = dial.a(v); if (a <= 0) continue;
+      const [dx, dy] = dial.off(v, [0, 12]);
+      ctx.save(); ctx.globalAlpha = a;
+      text(ctx, head, 1300 + dx, 230 + dy, PAL.muted, { size: 18, align: 'right' });
+      text(ctx, zero, 1300 + dx, 256 + dy, PAL.muted, { size: 18, align: 'right' });
+      ctx.restore();
+    }
+    /* the stem the pressure comes in through, and the pressure itself */
+    line(ctx, XR + 14, PY - 14, 1130, PY - 14, PAL.ink, 3); line(ctx, XR + 14, PY + 14, 1130, PY + 14, PAL.ink, 3);
+    arrow(ctx, 1220, PY, 1060, PY, pc, 5);
+    text(ctx, 'P_g = ' + num(p, 1) + ' psi', 1236, PY - 12, pc, { size: 21, weight: 600, align: 'left' });
+    text(ctx, '被测量的', 1236, PY + 20, PAL.muted, { size: 18, align: 'left' });
+    text(ctx, '压强', 1236, PY + 44, PAL.muted, { size: 18, align: 'left' });
+    /* the bellows: a pleated box between the moving plate at xm and the fixed plate at XR */
+    const n = 6, step = L / n;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('bellows'); ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(xm, PY - BH);
+    for (let i = 0; i < n; i++) { ctx.lineTo(xm + step * (i + 0.5), PY - BH - 22); ctx.lineTo(xm + step * (i + 1), PY - BH); }
+    ctx.lineTo(XR, PY + BH);
+    for (let i = n; i > 0; i--) { ctx.lineTo(xm + step * (i - 0.5), PY + BH + 22); ctx.lineTo(xm + step * (i - 1), PY + BH); }
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    for (let i = 1; i < n; i++) line(ctx, xm + step * i, PY - BH, xm + step * i, PY + BH, alpha(PAL.ink, 0.3), 2);
+    ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.muted; ctx.fillRect(xm - 14, PY - BH - 20, 14, 2 * BH + 40); ctx.fillRect(XR, PY - BH - 20, 14, 2 * BH + 40); ctx.restore();
+    text(ctx, '柔性波纹管', (xm + XR) / 2, PY - BH - 52, F.ref('bellows'), { size: 19, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* the force the pressure makes on the two ends, outward when the gauge pressure is positive */
+    if (Math.abs(p) >= 0.05) {
+      const len = KF * Math.abs(p), a = xm - 7, b = xm - 7 - len, c2 = XR + 7, e = XR + 7 + len, y = PY - 40;
+      if (p > 0) { arrow(ctx, a, y, b, y, fc, 5); arrow(ctx, c2, y, e, y, fc, 5); }
+      else { arrow(ctx, b, y, a, y, fc, 5); arrow(ctx, e, y, c2, y, fc, 5); }
+      if (p > 0) text(ctx, 'F', (a + b) / 2, y - 28, fc, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      else text(ctx, 'F', b - 18, y, fc, { size: 24, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    }
+    /* the rod from the moving plate to the lower end of the pointer, the pivot, the pointer */
+    line(ctx, xm - 14, PY, B.x, B.y, PAL.ink, 4);
+    dot(ctx, B.x, B.y, PAL.ink, true, 5);
+    line(ctx, B.x, B.y, T.x, T.y, F.ref('pointer'), 5);
+    arrow(ctx, PX - (TIP - 60) * s, PY - (TIP - 60) * c, T.x, T.y, F.ref('pointer'), 5);
+    dot(ctx, PX, PY, PAL.ink, true, 11);
+    text(ctx, '支点', PX - 22, PY + 34, PAL.ink, { size: 19, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, '指针', T.x + (s > -0.1 ? 22 : -22), T.y + 30, F.ref('pointer'), { size: 19, align: s > -0.1 ? 'left' : 'right', bg: alpha(PAL.panel, 0.85) });
+    /* the ruler of absolute pressure under the gauge, fixed from 0 to 80 psi */
+    line(ctx, RX0, RY, RX1, RY, PAL.muted, 2);
+    for (let v = 0; v <= RMAX; v += 10) { line(ctx, RX(v), RY - 8, RX(v), RY + 8, PAL.muted, 2); text(ctx, fmt(v, 0), RX(v), RY + 28, PAL.muted, { size: 17, align: 'center' }); }
+    text(ctx, '绝对压强 (psi)', RX1, RY + 60, pc, { size: 19, weight: 600, align: 'right' });
+    text(ctx, '真空', RX0, RY + 60, PAL.muted, { size: 17, align: 'left' });
+    line(ctx, RX(PATM_PSI), RY - 12, RX(PATM_PSI), RY + 40, pc, 3, [6, 6]);
+    text(ctx, 'P_atm = 14.7 psi', RX(PATM_PSI), RY + 60, pc, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (Math.abs(p) >= 0.05) hbracket(ctx, RX(PATM_PSI), RX(pabs), RY - 66, pc, 'P_g = ' + num(p, 1) + ' psi');
+    dot(ctx, RX(pabs), RY, pc, true, 9);
+    const pl = p < 0 || pabs > 40;
+    text(ctx, 'P_abs = ' + num(pabs, 1) + ' psi', RX(pabs) + (pl ? -16 : 16), RY - 30, pc, { size: 19, weight: 600, align: pl ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    topline(ctx, Math.abs(p) < 0.05 ? '压强表读数为零：里面的压强就是大气压，绝对压强为 14.7 psi，波纹管所受的合力为零。'
+      : pabs < 0.05 ? '压强表读数为 −14.7 psi，这是可能的最小表压强：里面的绝对压强为零，即真空。'
+      : p > 0 ? '压强表读数为 ' + num(p, 1) + ' psi，所以里面的绝对压强为 ' + num(p, 1) + ' psi 加 14.7 psi，即 ' + num(pabs, 1) + ' psi。'
+      : '压强表读数为 ' + num(p, 1) + ' psi：里面的压强低于大气压，大气挤压波纹管，绝对压强为 ' + num(pabs, 1) + ' psi。');
+    readout(d.readout, `\\kPabs = \\kPg + \\kPatm = ${num(p, 1)}\\ \\text{psi} + 14.7\\ \\text{psi} = ${num(pabs, 1)}\\ \\text{psi} = ${fmt(pabs * KPA, 0)}\\ \\text{kPa}`,
+      Math.abs(p) < 0.05 ? '表压强标尺的零点就是绝对压强标尺上 14.7 psi 的刻度。'
+      : p > 0 ? '波纹管被一个大小为 ' + num(p, 1) + ' psi 乘以其面积的力向外推，这个力拉伸弹簧，使指针转动。'
+      : '流体只推不拉，所以读数最低只能降到 −14.7 psi，此时里面的绝对压强为零。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.14: the open-tube manometer. The left leg is open to the
+   atmosphere and the right is connected to a source; the difference in the
+   two levels is the height the gauge pressure supports. The three panels
+   of the book are three states of one slider: open at zero, the balloon
+   above it and the vacuum-packed jar below it. Still: a manometer settles
+   and stays, so the figure answers its controls and registers no cycle.
+===================================================================== */
+(function () {
+  const d = sim('sim-manometer', 740);
+  const Ps = ctl(d.controls, { label: '\\kPg', cls: 'pressure', min: -10, max: 20, step: 0.01, value: 0.49, unit: 'kPa', dec: 2, aria: '与右侧相连的压强源的表压强',
+    detents: [{ v: -6.66, label: '罐' }, { v: 0.49, label: '气球' }, { v: 16, label: '收缩压' }], snap: true, specials: [{ at: 0, label: '液面相平' }] });
+  const fl = choice(d.controls, { label: '\\text{流体}', options: [{ value: 'water', label: '水' }, { value: 'alcohol', label: '乙醇' }, { value: 'glycerin', label: '丙三醇' }, { value: 'mercury', label: '汞' }], value: 'water', aria: '管中的流体' });
+  /* The scene scale is fixed from the slider maximum in mercury, 0.150 m across the
+     two levels, at 2000 canvas units to the metre, and never follows a slider. */
+  const S = 2000, XL = 340, XR = 720, Y0 = 390, YT = 190, YB = 630, IW = 44, WALL = 6, YRUN = 640, RB = 40, TOP = 180;
+  const legBox = (x) => ({ l: x, r: x, t: YT, b: YB });
+  const ident = (v) => v;
+  function tubePath(ctx) { ctx.beginPath(); ctx.moveTo(XL, TOP); ctx.lineTo(XL, YRUN - RB); ctx.arcTo(XL, YRUN, XL + RB, YRUN, RB); ctx.lineTo(XR - RB, YRUN); ctx.arcTo(XR, YRUN, XR, YRUN - RB, RB); ctx.lineTo(XR, TOP); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('pressure'), hc = C('position'), rc = C('density');
+    const p = Ps.v * 1000, f = FLUIDS[fl.value];
+    const h = p / (f.rho * G), half = fl.mix((v) => p / (FLUIDS[v].rho * G)) * S / 2;
+    const yl = Y0 - half, yr = Y0 + half;                          /* the level on the open side rises when the source pushes */
+    const outL = yl < YT || yl > YB, outR = yr < YT || yr > YB, out = outL || outR;
+    const yL = Math.min(Math.max(yl, YT), YB), yR = Math.min(Math.max(yr, YT), YB);
+    /* the glass: walls, then the bore */
+    ctx.save(); ctx.lineCap = 'butt'; ctx.strokeStyle = F.ref('tube'); ctx.lineWidth = IW + 2 * WALL; tubePath(ctx); ctx.stroke();
+    ctx.strokeStyle = PAL.panel; ctx.lineWidth = IW; tubePath(ctx); ctx.stroke(); ctx.restore();
+    /* the fluid, clipped to below the two levels */
+    ctx.save(); ctx.beginPath(); ctx.rect(XL - IW / 2, yL, IW, YRUN - yL + IW); ctx.rect(XR - IW / 2, yR, IW, YRUN - yR + IW); ctx.rect(XL, YRUN - IW, XR - XL, 2 * IW); ctx.clip();
+    ctx.lineCap = 'butt'; ctx.lineWidth = IW; ctx.strokeStyle = fl.mixColor((v) => liquid(FLUIDS[v].color)); tubePath(ctx); ctx.stroke(); ctx.restore();
+    line(ctx, XL - IW / 2, yL, XL + IW / 2, yL, PAL.ink, 2.5); line(ctx, XR - IW / 2, yR, XR + IW / 2, yR, PAL.ink, 2.5);
+    /* the meter stick between the legs, in centimetres from the rest level */
+    const MX = 420;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(MX - 12, YT - 10, 24, YB - YT + 20); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(MX - 12, YT - 10, 24, YB - YT + 20); ctx.restore();
+    for (let cm = -10; cm <= 10; cm++) {
+      const y = Y0 - cm * 0.01 * S; if (y < YT - 4 || y > YB + 4) continue;
+      const big = cm % 5 === 0; line(ctx, MX - 12, y, MX - 12 + (big ? 24 : 10), y, PAL.muted, big ? 2 : 1.5);
+      if (big) text(ctx, num(cm, 0) + ' cm', MX + 20, y, PAL.muted, { size: 15, align: 'left' });
+    }
+    text(ctx, '米尺', MX + 18, YT - 32, PAL.muted, { size: 17, align: 'left' });
+    /* the levels carried to the stick, and the height between them */
+    line(ctx, XL + IW / 2, yL, MX - 12, yL, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    line(ctx, XR - IW / 2, yR, MX + 12, yR, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    if (Math.abs(yR - yL) >= 1) { vbracket(ctx, 535, Math.min(yL, yR), Math.max(yL, yR), hc); text(ctx, 'h = ' + hstr(Math.abs(h)), 551, (yL + yR) / 2, hc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) }); }
+    if (outL) pinned(ctx, legBox(XL), ident, ident, XL, yl, hc);
+    if (outR) pinned(ctx, legBox(XR), ident, ident, XR, yr, hc);
+    /* the open side, and the source on the right */
+    text(ctx, '与大气相通', XL, 148, PAL.muted, { size: 18, align: 'center' });
+    if (Math.abs(p) < 0.5) text(ctx, '与大气相通', XR, 148, PAL.muted, { size: 18, align: 'center' });
+    else {
+      /* a pipe from the top of the right leg to the source */
+      const PY = TOP;
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(XR - IW / 2, PY - 22, IW, 30); ctx.restore();
+      line(ctx, XR - IW / 2 - WALL, PY, XR - IW / 2 - WALL, PY - 22, PAL.ink, 3); line(ctx, XR + IW / 2 + WALL, PY, XR + IW / 2 + WALL, PY - 22, PAL.ink, 3);
+      line(ctx, XR - IW / 2 - WALL, PY - 22, 1000, PY - 22, PAL.ink, 3); line(ctx, XR + IW / 2 + WALL, PY + 22, 1000, PY + 22, PAL.ink, 3);
+      arrow(ctx, 960, PY, 810, PY, pc, 5);
+      text(ctx, 'P_abs = ' + fmt((PATM + p) / 1000, 1) + ' kPa', 885, PY + 50, pc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      if (p > 0) {
+        /* the toy balloon */
+        ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('balloon'); ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.ellipse(1130, PY, 124, 94, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(1000, PY - 18); ctx.lineTo(1012, PY); ctx.lineTo(1000, PY + 18); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+        text(ctx, '玩具气球', 1130, PY + 130, F.ref('balloon'), { size: 19, align: 'center' });
+      } else {
+        /* the vacuum-packed jar, its lid at the pipe */
+        rrect(ctx, 1040, PY - 12, 180, 210, 18, PAL.soft, F.ref('jar'), 3);
+        rrect(ctx, 1000, PY - 28, 60, 56, 8, PAL.muted, F.ref('jar'), 3);
+        ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); for (let i = 0; i < 26; i++) { const x = 1060 + (i * 37) % 140, y = PY + 60 + (i * 53) % 118; ctx.beginPath(); ctx.ellipse(x, y, 9, 6, i, 0, Math.PI * 2); ctx.fill(); } ctx.restore();
+        text(ctx, '真空包装的罐', 1130, PY + 226, F.ref('jar'), { size: 19, align: 'center' });
+      }
+    }
+    text(ctx, f.name, (XL + XR) / 2, YRUN + 62, PAL.ink, { size: 18, align: 'center' });
+    const cmw = p / (FLUIDS.water.rho * G) * 100, mmhg = p / (FLUIDS.mercury.rho * G) * 1000;
+    topline(ctx, Math.abs(p) < 0.5 ? '两侧都与大气相通，所以' + f.name + '在两侧处于同一高度。'
+      : out ? (p > 0 ? '气球' : '罐') + '比大气压' + (p > 0 ? '高' : '低') + ' ' + fmt(Math.abs(p) / 1000, 2) + ' kPa，这将支撑 ' + hstr(Math.abs(h)) + ' 高的' + f.name + '，超出了这根管子所能容纳的高度。'
+      : p > 0 ? '气球比大气压高 ' + fmt(p / 1000, 2) + ' kPa，所以' + f.name + '在开口一侧高出 ' + hstr(h) + '。'
+      : '罐比大气压低 ' + fmt(-p / 1000, 2) + ' kPa，所以大气把' + f.name + '压到罐的一侧高出 ' + hstr(-h) + '。');
+    readout(d.readout, `\\kPg = \\kh\\krho\\kg = (${Math.abs(h) < 0.1 ? num(h, 4) : sig3(h)}\\ \\text{m})(${f.s}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${Math.abs(p) >= 1000 ? fmt(p / 1000, 2) + '\\ \\text{kPa}' : num(p, 0) + '\\ \\text{Pa}'}`,
+      Math.abs(p) < 0.5 ? '大气压对两侧向下的推力相等，所以其效应相互抵消。'
+      : out ? '表压强为 ' + num(cmw, 1) + ' cm 水柱，即 ' + num(mmhg, 1) + ' 毫米汞柱，汞的密度是水的 13.6 倍，能把这样大小的压强保持在管内。'
+      : '绝对压强为 ' + fmt((PATM + p) / 1000, 1) + ' kPa，表压强为 ' + num(cmw, 2) + ' cm 水柱，即 ' + num(mmhg, 2) + ' 毫米汞柱。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.16: the mercury barometer. A tube closed at the top and empty
+   of air stands in a dish open to the atmosphere, and the atmosphere holds
+   up a column whose weight makes exactly the atmosphere's pressure. Still:
+   a barometer stands and reads, so the figure answers its controls and
+   registers no cycle.
+===================================================================== */
+(function () {
+  const d = sim('sim-barometer', 720);
+  const Ps = ctl(d.controls, { label: '\\kPatm', cls: 'pressure', min: 0, max: 120, step: 0.1, value: 101.3, unit: 'kPa', dec: 1, aria: '作用在汞槽上的大气压', detents: [{ v: 101.3, label: '1 atm' }], snap: true });
+  const fl = choice(d.controls, { label: '\\text{流体}', options: [{ value: 'mercury', label: '汞' }, { value: 'water', label: '水' }], value: 'mercury', aria: '槽和管中的流体' });
+  /* The scene scale is fixed from the slider maximum in mercury, 0.900 m, at 540
+     canvas units to the metre, and never follows a slider; the tube holds 0.95 m. */
+  const S = 540, TX = 700, TW = 40, WALL = 6, YS = 620, TUBE = 0.95, YTOP = YS - TUBE * S;
+  const ident = (v) => v;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('pressure'), hc = C('position');
+    const p = Ps.v * 1000, f = FLUIDS[fl.value];
+    const h = p / (f.rho * G), hd = fl.mix((v) => p / (FLUIDS[v].rho * G)), out = hd > TUBE, yh = YS - Math.min(hd, TUBE) * S;
+    /* the dish and the fluid in it */
+    ctx.fillStyle = fl.mixColor((v) => liquid(FLUIDS[v].color)); ctx.fillRect(452, YS, 496, 60);
+    ctx.save(); ctx.strokeStyle = F.ref('dish'); ctx.lineWidth = 5; ctx.lineCap = 'butt';
+    ctx.beginPath(); ctx.moveTo(450, 580); ctx.lineTo(450, 682); ctx.lineTo(950, 682); ctx.lineTo(950, 580); ctx.stroke(); ctx.restore();
+    line(ctx, 452, YS, TX - TW / 2 - WALL, YS, PAL.ink, 2.5); line(ctx, TX + TW / 2 + WALL, YS, 948, YS, PAL.ink, 2.5);
+    text(ctx, f.name, 700, 706, PAL.ink, { size: 19, align: 'center' });
+    /* the tube: the walls, the bore, the vacuum above the column and the column itself */
+    ctx.save(); ctx.fillStyle = F.ref('barometer'); ctx.fillRect(TX - TW / 2 - WALL, YTOP - WALL, TW + 2 * WALL, YS + 40 - YTOP + WALL); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(TX - TW / 2, YTOP, TW, YS + 40 - YTOP); ctx.restore();
+    ctx.fillStyle = fl.mixColor((v) => liquid(FLUIDS[v].color)); ctx.fillRect(TX - TW / 2, yh, TW, YS + 40 - yh);
+    if (!out) line(ctx, TX - TW / 2, yh, TX + TW / 2, yh, PAL.ink, 2.5);
+    if (!out) text(ctx, '真空 (P_abs = 0)', TX + TW / 2 + 24, YTOP + 22, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    /* a scale up the tube, in tenths of a metre */
+    for (let k = 1; k <= 9; k++) { const y = YS - k * 0.1 * S, x0 = TX - TW / 2 - WALL; line(ctx, x0 - 14, y, x0, y, PAL.muted, 2); text(ctx, fmt(k * 0.1, 1) + ' m', x0 - 20, y, PAL.muted, { size: 15, align: 'right' }); }
+    /* the atmosphere on the surface of the dish */
+    if (p >= 50) for (const x of [470, 935]) arrow(ctx, x, YS - 110, x, YS - 12, pc, 5);   /* no arrows where there is no atmosphere */
+    text(ctx, 'P_atm = ' + fmt(p / 1000, 1) + ' kPa', 470, YS - 134, pc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* the point in the tube at the level of the surface, where the column's weight balances the atmosphere */
+    line(ctx, TX - 9, YS - 9, TX + 9, YS + 9, PAL.ink, 2.5); line(ctx, TX - 9, YS + 9, TX + 9, YS - 9, PAL.ink, 2.5);
+    text(ctx, 'P_abs = hρg', TX + TW / 2 + 22, YS - 50, pc, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, '= P_atm', TX + TW / 2 + 22, YS - 24, pc, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    /* the height of the column */
+    if (hd > 0.0005) vbracket(ctx, TX - 130, out ? YTOP : yh, YS, hc, 'h = ' + (h >= 1 ? sig3(h) : fmt(h, 3)) + ' m', -1);
+    if (out) pinned(ctx, { l: TX, r: TX, t: YTOP, b: YS }, ident, ident, TX, YS - hd * S, hc);
+    const mmhg = p / (FLUIDS.mercury.rho * G) * 1000, atm = p / PATM;
+    topline(ctx, p < 50 ? '没有大气作用在槽上，就没有什么能托住液柱，管中的' + f.name + '降到与槽中液面同高。'
+      : out ? '在 ' + fmt(p / 1000, 1) + ' kPa 时，大气能托起 ' + hstr(h) + ' 高的水，远远超出这根管子的顶端。'
+      : '在 ' + fmt(p / 1000, 1) + ' kPa 时，大气托起 ' + fmt(h, 3) + ' m 高的' + f.name + '，相当于 ' + fmt(mmhg, 0) + ' mm Hg，即 ' + fmt(atm, 2) + ' atm。');
+    readout(d.readout, `\\kh\\krho\\kg = (${h >= 1 ? sig3(h) : fmt(h, 3)}\\ \\text{m})(${f.s}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${fmt(p / 1000, 1)}\\ \\text{kPa} = \\kPatm`,
+      out ? '同样的压强可以托起 ' + fmt(p / (FLUIDS.mercury.rho * G), 3) + ' m 高的汞，这就是气压计里装汞的原因。'
+      : p < 50 ? '液柱上方的压强为零，所以只有作用在槽上的大气能托住它。'
+      : '在同样的压强下，水气压计将有 ' + hstr(p / (FLUIDS.water.rho * G)) + ' 高。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

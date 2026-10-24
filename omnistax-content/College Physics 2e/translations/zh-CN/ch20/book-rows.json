@@ -1,0 +1,1268 @@
+{
+ "types": [
+  {
+   "id": "current",
+   "label": "电流",
+   "dimension": "A"
+  },
+  {
+   "id": "resistance",
+   "label": "电阻",
+   "dimension": "Ω"
+  },
+  {
+   "id": "resistivity",
+   "label": "电阻率",
+   "dimension": "Ω·m"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "I_curr",
+   "latex": "I",
+   "macro": "\\kIcur"
+  },
+  {
+   "sym": "ΔQ_charge",
+   "latex": "\\Delta Q",
+   "macro": "\\kdQch"
+  },
+  {
+   "sym": "v_d",
+   "latex": "v_{\\text{d}}",
+   "macro": "\\kvd"
+  },
+  {
+   "sym": "R_res",
+   "latex": "R",
+   "macro": "\\kRes"
+  },
+  {
+   "sym": "R_0res",
+   "latex": "R_0",
+   "macro": "\\kReso"
+  },
+  {
+   "sym": "ρ_0res",
+   "latex": "\\rho_0",
+   "macro": "\\krhoores"
+  },
+  {
+   "sym": "α_res",
+   "latex": "\\alpha",
+   "macro": "\\kalphares"
+  },
+  {
+   "sym": "V_0volt",
+   "latex": "V_0",
+   "macro": "\\kVo"
+  },
+  {
+   "sym": "I_0curr",
+   "latex": "I_0",
+   "macro": "\\kIocur"
+  },
+  {
+   "sym": "I_rms",
+   "latex": "I_{\\text{rms}}",
+   "macro": "\\kIrms"
+  },
+  {
+   "sym": "V_rms",
+   "latex": "V_{\\text{rms}}",
+   "macro": "\\kVrms"
+  },
+  {
+   "sym": "P_ave",
+   "latex": "P_{\\text{ave}}",
+   "macro": "\\kPave"
+  },
+  {
+   "sym": "P_0pow",
+   "latex": "P_0",
+   "macro": "\\kPo"
+  },
+  {
+   "sym": "R_w",
+   "latex": "R_{\\text{w}}",
+   "macro": "\\kRw"
+  },
+  {
+   "sym": "r_short",
+   "latex": "r",
+   "macro": "\\krshort"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "electric-current",
+   "kind": "definition",
+   "section": "20.1",
+   "name": "电流",
+   "symbol": "I_curr",
+   "terms": [
+    "电流",
+    "电流"
+   ],
+   "type": "current",
+   "statement": "电流是电荷流动的速率。大电流，例如发动卡车引擎的电流，在很短的时间内移动大量电荷；小电流，例如驱动手持计算器的电流，则在很长的时间内移动少量电荷。因为电流是一个速率而不是一个量，所以同一个概念既能描述闪电，也能描述钟表电池，本章的其他每一个结果都建立在它之上。",
+   "forms": [
+    {
+     "id": "eq-current",
+     "latex": "I = \\frac{\\Delta Q}{\\Delta t}",
+     "ktex": "\\kIcur = \\frac{\\kdQch}{\\kdt}",
+     "anchor": "20.1-electric-current"
+    }
+   ]
+  },
+  {
+   "id": "ampere",
+   "kind": "definition",
+   "section": "20.1",
+   "name": "安培",
+   "terms": [
+    "安培"
+   ],
+   "statement": "由于电流是电荷除以时间，它的国际单位制单位是每秒一库仑，以法国物理学家安德烈-玛丽·安培（André-Marie Ampère）的名字命名为安培。保险丝、断路器和许多电器都以安培标注额定值。",
+   "forms": [
+    {
+     "id": "eq-ampere",
+     "latex": "1\\;\\text{A} = 1\\;\\text{C/s}",
+     "ktex": "1\\;\\text{A} = 1\\;\\text{C/s}",
+     "anchor": "20.1-electric-current"
+    }
+   ]
+  },
+  {
+   "id": "conventional-current",
+   "kind": "definition",
+   "section": "20.1",
+   "name": "约定电流",
+   "statement": "约定电流的方向是正电荷流动的方向。视情形而定，运动的可能是正电荷、负电荷，或者两者兼有。在金属导线中由电子载流，在盐水等离子溶液中两种符号的电荷都运动，而范德格拉夫起电机可以产生纯粹由正电荷构成的电流。一种约定使同样的电路分析适用于任何载流子。请记住，导线中的电子实际上是沿与图中所画电流相反的方向运动的。"
+  },
+  {
+   "id": "circuit-schematic",
+   "kind": "skill",
+   "section": "20.1",
+   "name": "读懂电路图",
+   "statement": "电路图用两条平行线表示电池，用一条直线表示导线，用锯齿线表示负载。同一幅电路图可以代表从点亮前照灯的卡车电池到点亮钥匙孔灯的小电池之间的任何情形。因为分析对各种各样的情形都相同，所以理解几种电路图就能让你把这些概念应用到更多的情形中。"
+  },
+  {
+   "id": "charge-carriers",
+   "kind": "idea",
+   "section": "20.1",
+   "name": "载流子",
+   "statement": "电流是自由电荷的流动，哪些电荷是自由的取决于材料。在金属中，自由电荷是离原子核足够远的电子，它们像海洋一样在原子之间运动；而在离子溶液或神经细胞中，两种符号的离子都在运动。载有电流的导体中存在电场，由电场提供移动电荷的能量。因此它并不处于静电平衡，而前两章的导体则是处于静电平衡的。"
+  },
+  {
+   "id": "drift-velocity",
+   "kind": "definition",
+   "section": "20.1",
+   "name": "漂移速度",
+   "symbol": "v_d",
+   "terms": [
+    "漂移速度"
+   ],
+   "type": "velocity",
+   "statement": "漂移速度是导体中自由电荷的平均速度。单个电子运动得很快，而且几乎是随机的，不断与原子以及其他电子碰撞，但电场使这种随机游走发生倾斜，于是整群电子朝同一方向缓缓移动。漂移速度相当小，约为 $10^{-4}$ m/s 的量级，因为自由电荷非常多：载流子的密度越大，输送给定电流所需的速度就越小。"
+  },
+  {
+   "id": "signal-speed-versus-drift",
+   "kind": "idea",
+   "section": "20.1",
+   "name": "信号速率与漂移",
+   "statement": "电信号的传播速率约为 $10^{8}$ m/s 的量级，大约是载运它们的电荷的漂移速度的 $10^{12}$ 倍。电荷之间的力能够迅速地隔空作用，这就调和了两种速率。被迫进入导线一端的电荷会推动它前面的电荷，这些电荷又推动更远处的电荷，如此沿线传递。信号是电场的一种快速传播的变化，而不是某一个特定电子的到达。"
+  },
+  {
+   "id": "current-and-drift-velocity",
+   "kind": "result",
+   "section": "20.1",
+   "name": "电流与漂移速度",
+   "statement": "数一数一段导线中的自由电荷，就能直接得到电流。横截面积为 $A$、长度为 $x$ 的一段含有 $nAx$ 个载流子，每个载流子的电荷为 $q$，如果它们全部在时间 $\\Delta t$ 内离开这一段，则电流就是该电荷除以该时间。由于 $x/\\Delta t$ 是漂移速度，电流为 $I = nqAv_\\text{d}$。这把你用电流表测得的数值与一群电子的微观图像联系了起来。",
+   "forms": [
+    {
+     "id": "eq-current-drift",
+     "latex": "I = nqAv_{\\text{d}}",
+     "ktex": "\\kIcur = n\\kq A\\kvd",
+     "anchor": "20.1-current-from-drift"
+    }
+   ]
+  },
+  {
+   "id": "ohms-law",
+   "kind": "axiom",
+   "section": "20.2",
+   "name": "欧姆定律",
+   "terms": [
+    "欧姆定律"
+   ],
+   "statement": "格奥尔格·西蒙·欧姆（Georg Simon Ohm）是第一个通过实验证明金属导线中的电流与所加电压成正比的人。把这种正比关系与电流和电阻成反比这一事实结合起来，就得到 $I = V/R$，它可以被理解为一种因果关系，电压是因，电流是果。本章其余部分乃至整个电路分析，都建立在这个关系之上。",
+   "forms": [
+    {
+     "id": "eq-ohms-law",
+     "latex": "I = \\frac{V}{R}",
+     "ktex": "\\kIcur = \\frac{\\kV}{\\kRes}",
+     "anchor": "20.2-resistance-circuits"
+    },
+    {
+     "id": "eq-current-proportional-voltage",
+     "latex": "I \\propto V",
+     "ktex": "\\kIcur \\propto \\kV",
+     "anchor": "20.2-ohms-law"
+    },
+    {
+     "id": "eq-current-inverse-resistance",
+     "latex": "I \\propto \\frac{1}{R}",
+     "ktex": "\\kIcur \\propto \\frac{1}{\\kRes}",
+     "anchor": "20.2-resistance-circuits"
+    },
+    {
+     "id": "eq-initial-current",
+     "latex": "I_0 = \\frac{\\mathcal{E}}{R}",
+     "ktex": "\\kIocur = \\frac{\\kemf}{\\kRes}",
+     "section": "21.6",
+     "anchor": "21.6-rc-circuits"
+    },
+    {
+     "id": "eq-rl-final-current",
+     "latex": "I_0 = \\frac{V}{R}",
+     "ktex": "\\kIocur = \\frac{\\kV}{\\kRes}",
+     "section": "23.10",
+     "anchor": "23.10-current-turning-on"
+    }
+   ]
+  },
+  {
+   "id": "resistance",
+   "kind": "definition",
+   "section": "20.2",
+   "name": "电阻",
+   "symbol": "R_res",
+   "terms": [
+    "电阻"
+   ],
+   "type": "resistance",
+   "statement": "如果电压驱动电流，就必然有某种东西阻碍电流，这种电学性质称为电阻。运动电荷与物质的原子和分子的碰撞把能量传给了物质，并限制了电流，所以电流与电阻成反比，电阻加倍则电流减半。电阻的范围跨越许多个数量级，从一米粗铜线的 $10^{-5}\\;\\Omega$ 到陶瓷绝缘体的 $10^{12}\\;\\Omega$。",
+   "forms": [
+    {
+     "id": "eq-resistance",
+     "latex": "R = V/I",
+     "ktex": "\\kRes = \\kV/\\kIcur"
+    }
+   ]
+  },
+  {
+   "id": "ohm",
+   "kind": "definition",
+   "section": "20.2",
+   "name": "欧姆",
+   "terms": [
+    "欧姆"
+   ],
+   "statement": "电阻的单位是每安培一伏特，称为欧姆，用大写希腊字母欧米伽表示，$1\\;\\Omega = 1\\;\\text{V/A}$。具有简单电阻的物体称为电阻器，即使它的电阻很小。",
+   "forms": [
+    {
+     "id": "eq-ohm-unit",
+     "latex": "1\\;\\Omega = 1\\;\\frac{\\text{V}}{\\text{A}}",
+     "ktex": "1\\;\\Omega = 1\\;\\frac{\\text{V}}{\\text{A}}",
+     "anchor": "20.2-resistance-circuits"
+    }
+   ]
+  },
+  {
+   "id": "ohmic-material",
+   "kind": "definition",
+   "section": "20.2",
+   "name": "欧姆材料",
+   "terms": [
+    "欧姆的"
+   ],
+   "statement": "欧姆定律和胡克定律一样，并不是普遍成立的。许多服从它的物质称为欧姆的，它们包括铜和铝这样的良导体，以及某些情形下的一些不良导体。欧姆材料的电阻不依赖于它两端的电压或通过它的电流。因为这条定律是经验性的而不是基本的，所以你需要知道什么时候过原点的直线是正确的模型，什么时候不是。"
+  },
+  {
+   "id": "simple-circuit",
+   "kind": "definition",
+   "section": "20.2",
+   "name": "简单电路",
+   "terms": [
+    "简单电路"
+   ],
+   "statement": "简单电路只有一个电压源和一个电阻器，连接导线被认为电阻可以忽略，或者其电阻已计入 $R$ 中。它是最小的完整电路，而弄清电压、电流和电阻在其中如何表现，正是下一章中较复杂的电路得以处理的关键。"
+  },
+  {
+   "id": "ir-drop",
+   "kind": "result",
+   "section": "20.2",
+   "name": "IR 压降",
+   "terms": [
+    "电压降"
+   ],
+   "statement": "把欧姆定律解出电压，得到 $V = IR$，这是电流流过电阻器时在其上产生的电压降，常称为 $IR$ 压降。测量电路中各点的电压，你会发现它在电压源处升高，在电阻器处降低。在简单电路中，同样的电荷流过两者，所以能量守恒要求电源提供的电压等于电阻器上降落的电压。",
+   "forms": [
+    {
+     "id": "eq-ir-drop",
+     "latex": "V = IR",
+     "ktex": "\\kV = \\kIcur\\kRes",
+     "anchor": "20.2-resistance-circuits"
+    }
+   ]
+  },
+  {
+   "id": "resistivity",
+   "kind": "definition",
+   "section": "20.3",
+   "name": "电阻率",
+   "symbol": "ρ",
+   "terms": [
+    "电阻率"
+   ],
+   "type": "resistivity",
+   "statement": "对于给定的形状，电阻取决于物体所用的材料，而电阻率就是承载这种依赖关系的性质。电阻率是材料的内禀性质，与其形状和大小无关，它的单位是欧姆米。"
+  },
+  {
+   "id": "resistance-of-cylinder",
+   "kind": "result",
+   "section": "20.3",
+   "name": "圆柱体的电阻",
+   "statement": "均匀圆柱体的电阻与它的长度成正比，与它的横截面积成反比，就像管道对流体流动的阻力一样：圆柱体越长，电荷与其原子的碰撞就越多，直径越大，它能载运的电流就越大。结合材料的电阻率，仅凭尺寸就可以得到任何简单形状的电阻。",
+   "forms": [
+    {
+     "id": "eq-resistance-cylinder",
+     "latex": "R = \\frac{\\rho L}{A}",
+     "ktex": "\\kRes = \\frac{\\rho L}{A}",
+     "anchor": "20.3-material-and-shape"
+    }
+   ]
+  },
+  {
+   "id": "conductors-semiconductors-insulators",
+   "kind": "idea",
+   "section": "20.3",
+   "name": "导体、半导体和绝缘体",
+   "statement": "表 20.1 中的材料按其电阻率分为三类。导体的电阻率最小，自由电荷密度各不相同但都很大。绝缘体的电阻率最大，因为它们的大多数电荷被束缚在原子上，不能自由移动。半导体介于两者之间：它们的自由电荷远少于导体，但其数量强烈依赖于所含杂质的种类和数量，而现代电子学正是建立在这一性质之上。"
+  },
+  {
+   "id": "superconductivity",
+   "kind": "idea",
+   "section": "20.3",
+   "name": "超导电性",
+   "terms": [
+    "超导体"
+   ],
+   "statement": "所有材料的电阻率都依赖于温度，有些材料在很低的温度下会成为超导体，电阻率为零。一块汞样品在约 4.2 K 以下完全没有电阻，高于这个临界温度，它的电阻会突然跳升，然后近似线性地增大。没有电阻的材料无需持续供给能量就能载运稳定的电流，这就是这种可能性的意义远远超出实验室的原因。"
+  },
+  {
+   "id": "temperature-coefficient-of-resistivity",
+   "kind": "definition",
+   "section": "20.3",
+   "name": "电阻率温度系数",
+   "symbol": "α_res",
+   "terms": [
+    "电阻率温度系数"
+   ],
+   "type": "temperature-coefficient",
+   "statement": "电阻率温度系数是描述材料的电阻率随温度变化多少的经验量。对金属它是正的，因为温度越高，它们的原子振动得越快、振幅越大，所以电子发生的碰撞更多。对表 20.2 中的半导体它是负的，因为热骚动的增强在那里释放出更多可以载流的电荷。有些合金，例如锰铜，其系数接近于零，这使它们成为与温度无关的电阻标准的理想材料。"
+  },
+  {
+   "id": "resistivity-and-temperature",
+   "kind": "axiom",
+   "section": "20.3",
+   "name": "电阻率与温度",
+   "statement": "在相对较小的温度变化范围内，约 100 °C 或更小，电阻率随温度变化呈线性变化，其中 $\\rho_0$ 是原电阻率，$\\alpha$ 是温度系数。对于更大的变化，系数本身可能会变化，或者可能需要非线性方程，所以请把线性形式当作它本来的样子，即一种近似。",
+   "forms": [
+    {
+     "id": "eq-resistivity-temperature",
+     "latex": "\\rho = \\rho_0(1 + \\alpha\\Delta T)",
+     "ktex": "\\rho = \\rho_0(1 + \\alpha\\kdTemp)",
+     "anchor": "20.3-temperature-variation"
+    }
+   ]
+  },
+  {
+   "id": "resistance-and-temperature",
+   "kind": "result",
+   "section": "20.3",
+   "name": "电阻与温度",
+   "statement": "由于圆柱体的电阻与电阻率成正比，而且长度和面积随温度的变化远小于电阻率的变化，所以物体的电阻与电阻率具有相同的温度依赖关系。许多温度计就是基于这种效应，最常见的是热敏电阻，这是一种温度依赖性很强的半导体晶体，通过测量其电阻来得到它的温度。",
+   "forms": [
+    {
+     "id": "eq-resistance-temperature",
+     "latex": "R = R_0(1 + \\alpha\\Delta T)",
+     "ktex": "\\kRes = \\kReso(1 + \\alpha\\kdTemp)",
+     "anchor": "20.3-resistance-with-temperature"
+    }
+   ]
+  },
+  {
+   "id": "electric-power",
+   "kind": "result",
+   "section": "20.4",
+   "name": "电功率",
+   "terms": [
+    "电功率"
+   ],
+   "statement": "电功率是电源供给电能或器件耗散电能的速率。由于电能是 $\\text{PE} = qV$，功率就是每秒的电荷乘以电压，也就是电流乘以电压，$P = IV$。一安培伏特就是一瓦特。",
+   "forms": [
+    {
+     "id": "eq-power-iv",
+     "latex": "P = IV",
+     "ktex": "\\kP = \\kIcur\\kV",
+     "anchor": "20.4-power-in-electric-circuits"
+    },
+    {
+     "id": "eq-power-from-charge",
+     "latex": "P = \\frac{\\text{PE}}{t} = \\frac{qV}{t}",
+     "ktex": "\\kP = \\frac{\\kPEtot}{\\kt} = \\frac{\\kq\\kV}{\\kt}",
+     "anchor": "20.4-power-in-electric-circuits"
+    }
+   ]
+  },
+  {
+   "id": "power-and-resistance",
+   "kind": "result",
+   "section": "20.4",
+   "name": "功率与电阻",
+   "terms": [
+    "焦耳定律"
+   ],
+   "statement": "把欧姆定律代入 $P = IV$ 会得到另外两个表达式，每一个都给出各自的见解。第一个说明，连接到给定电压源的电阻越低，输出的功率越大。由于电压是平方的，提高电压的影响比预期的更大，这就是为什么一只 25 W 的灯泡接到 240 V 上会很亮并且烧坏。第二个是在电流而不是电压固定时使用的形式，例如在输电线中。第一个表达式总是成立；这两个只能用于电阻器。",
+   "forms": [
+    {
+     "id": "eq-power-v2r",
+     "latex": "P = \\frac{V^2}{R}",
+     "ktex": "\\kP = \\frac{\\kV^2}{\\kRes}",
+     "anchor": "20.4-power-in-electric-circuits"
+    },
+    {
+     "id": "eq-power-i2r",
+     "latex": "P = I^2R",
+     "ktex": "\\kP = \\kIcur^2\\kRes",
+     "anchor": "20.4-power-in-electric-circuits"
+    }
+   ]
+  },
+  {
+   "id": "power-supplied-equals-dissipated",
+   "kind": "idea",
+   "section": "20.4",
+   "name": "供给功率与耗散功率",
+   "statement": "在只有一个电压源和一个电阻器的电路中，电源供给的功率与电阻器耗散的功率是相同的，因为电阻器是能量唯一可以去的地方。在较复杂的电路中，$P$ 可能是单个器件耗散的功率，而不是电路中的总功率，所以一定要说明你指的是哪个功率。"
+  },
+  {
+   "id": "electrical-energy-and-cost",
+   "kind": "result",
+   "section": "20.4",
+   "name": "电能与电费",
+   "type": "energy",
+   "statement": "由于功率是单位时间内的能量，器件使用的能量就是它的功率乘以它开启的时间，而这就是电费单上出现的内容。电费单上的能量单位是千瓦时，它等于 $3.6\\times10^{6}$ J，运行任何东西的费用都可以根据它以千瓦计的额定功率、开启的小时数和每千瓦时的费用来估算。",
+   "forms": [
+    {
+     "id": "eq-energy-from-power",
+     "latex": "E = Pt",
+     "ktex": "\\kE = \\kP\\kt",
+     "anchor": "20.4-cost-of-electricity"
+    },
+    {
+     "id": "eq-kilowatt-hour",
+     "latex": "1\\;\\text{kW}\\cdot\\text{h} = 3.6\\times10^{6}\\;\\text{J}",
+     "ktex": "1\\;\\text{kW}\\cdot\\text{h} = 3.6\\times10^{6}\\;\\text{J}",
+     "anchor": "20.4-cost-of-electricity"
+    }
+   ]
+  },
+  {
+   "id": "lighting-efficiency",
+   "kind": "idea",
+   "section": "20.4",
+   "name": "照明效率",
+   "statement": "你可以通过缩短使用时间或降低功率消耗来减少所用的电能。照明是最快见效的地方之一，因为它约占家庭能量使用的百分之二十，占商业建筑的将近百分之四十。荧光灯的效率约为白炽灯的四倍，寿命长达十倍。白色发光二极管灯的效率约为其两倍，寿命是紧凑型荧光灯的五倍。"
+  },
+  {
+   "id": "direct-current",
+   "kind": "definition",
+   "section": "20.5",
+   "name": "直流电",
+   "terms": [
+    "直流电"
+   ],
+   "statement": "直流电是电荷只沿一个方向的流动，它是恒定电压电路（例如由电池驱动的电路）的稳定状态。给它命名，才使它与交流电的对比鲜明起来，而本章到目前为止的大多数例子都属于这一类。"
+  },
+  {
+   "id": "alternating-current",
+   "kind": "definition",
+   "section": "20.5",
+   "name": "交流电",
+   "symbol": "V_0volt",
+   "terms": [
+    "交流电",
+    "交流电流"
+   ],
+   "statement": "交流电是周期性地反向的电荷流动，当电源按正弦规律变化时，该电路就是交流电路。接线端之间的电压为 $V = V_0\\sin 2\\pi ft$，其中 $V_0$ 是峰值电压，$f$ 是以赫兹为单位的频率。在简单电阻电路中，电流与之同相，$I = I_0\\sin 2\\pi ft$，其中 $I_0 = V_0/R$。我们使用的大部分商用和民用电力都属于这一种。",
+   "forms": [
+    {
+     "id": "eq-ac-voltage",
+     "latex": "V = V_0\\sin 2\\pi ft",
+     "ktex": "\\kV = \\kVo\\sin 2\\pi \\kf\\kt",
+     "anchor": "20.5-alternating-current"
+    },
+    {
+     "id": "eq-ac-current",
+     "latex": "I = I_0\\sin 2\\pi ft",
+     "ktex": "\\kIcur = \\kIocur\\sin 2\\pi \\kf\\kt",
+     "anchor": "20.5-alternating-current"
+    }
+   ]
+  },
+  {
+   "id": "ac-power",
+   "kind": "result",
+   "section": "20.5",
+   "name": "交流电的平均功率",
+   "symbol": "P_ave",
+   "type": "power",
+   "statement": "由于供给的功率是电流与电压的乘积，而且两者同相，功率为 $I_0V_0\\sin^2 2\\pi ft$，它从不为负，每个周期内在零与 $I_0V_0$ 之间起伏两次。我们最常关心的是平均值而不是起伏，而平均值是峰值的一半，从图中可以看出，因为半峰值线上方和下方的面积相等。",
+   "forms": [
+    {
+     "id": "eq-ac-power-average",
+     "latex": "P_{\\text{ave}} = \\frac{1}{2}I_0V_0",
+     "ktex": "\\kPave = \\frac{1}{2}\\kIocur\\kVo",
+     "anchor": "20.5-ac-power"
+    },
+    {
+     "id": "eq-ac-power-rms",
+     "latex": "P_{\\text{ave}} = I_{\\text{rms}}V_{\\text{rms}}",
+     "ktex": "\\kPave = \\kIrms\\kVrms",
+     "anchor": "20.5-rms-values"
+    }
+   ]
+  },
+  {
+   "id": "rms-values",
+   "kind": "result",
+   "section": "20.5",
+   "name": "方均根电流与电压",
+   "statement": "交流电的普通平均值为零，所以我们需要另一种平均：把该量平方，求其平均值，再取平方根。得到的结果就是方均根。通常的做法是给出方均根电流和电压以及平均功率，而不是峰值，所以描述为 120 V 交流电的家用电，其方均根电压为 120 V，峰值约为 170 V。可以把它们看作简单电阻电路中等效的直流值。",
+   "forms": [
+    {
+     "id": "eq-rms-current",
+     "latex": "I_{\\text{rms}} = \\frac{I_0}{\\sqrt{2}}",
+     "ktex": "\\kIrms = \\frac{\\kIocur}{\\sqrt{2}}",
+     "anchor": "20.5-rms-values"
+    },
+    {
+     "id": "eq-rms-voltage",
+     "latex": "V_{\\text{rms}} = \\frac{V_0}{\\sqrt{2}}",
+     "ktex": "\\kVrms = \\frac{\\kVo}{\\sqrt{2}}",
+     "anchor": "20.5-rms-values"
+    }
+   ]
+  },
+  {
+   "id": "ac-ohms-law",
+   "kind": "result",
+   "section": "20.5",
+   "name": "交流电的欧姆定律",
+   "statement": "对于交流电，欧姆定律和功率的表达式与直流电的完全类似，条件是自始至终使用方均根值和平均值。这就是方均根平均值值得定义的原因：有了它，20.2 和 20.4 中的一切都可以原封不动地沿用。",
+   "forms": [
+    {
+     "id": "eq-ohms-law-ac",
+     "latex": "I_{\\text{rms}} = \\frac{V_{\\text{rms}}}{R}",
+     "ktex": "\\kIrms = \\frac{\\kVrms}{\\kRes}",
+     "anchor": "20.5-ac-ohms-law"
+    },
+    {
+     "id": "eq-ac-power-v2r",
+     "latex": "P_{\\text{ave}} = \\frac{V_{\\text{rms}}^{2}}{R}",
+     "ktex": "\\kPave = \\frac{\\kVrms^{2}}{\\kRes}",
+     "anchor": "20.5-ac-ohms-law"
+    },
+    {
+     "id": "eq-ac-power-i2r",
+     "latex": "P_{\\text{ave}} = I_{\\text{rms}}^{2}R",
+     "ktex": "\\kPave = \\kIrms^{2}\\kRes",
+     "anchor": "20.5-ac-ohms-law"
+    }
+   ]
+  },
+  {
+   "id": "high-voltage-transmission",
+   "kind": "idea",
+   "section": "20.5",
+   "name": "高压输电",
+   "statement": "规模经济使少数几个很大的发电厂比许多小发电厂更便宜，所以电力必须远距离输送，而途中损失的能量必须保持很小。对于给定的功率，提高电压会降低电流，而由于固定电阻线路中的损耗为 $I^2R$，损耗按平方下降。以 200 kV 通过 1.00-Ω 的线路输送 100 MW，损失百分之零点二五，而同样的功率以 25 kV 输送则损失百分之十六。交流电压比直流电压容易升高和降低得多，这就是交流电在大规模配电中占据主导的原因。"
+  },
+  {
+   "id": "ac-voltage",
+   "kind": "definition",
+   "section": "20.5",
+   "name": "交流电压",
+   "terms": [
+    "交流电压"
+   ],
+   "statement": "交流电压是随时间按正弦规律起伏的电压，$V = V_0\\sin 2\\pi ft$，其中 $V_0$ 是它的峰值，$f$ 是它的频率。",
+   "forms": [
+    {
+     "id": "eq-ac-voltage-2",
+     "latex": "V = V_0\\sin 2\\pi ft",
+     "ktex": "\\kV = \\kVo\\sin 2\\pi \\kf\\kt"
+    }
+   ]
+  },
+  {
+   "id": "rms-current",
+   "kind": "definition",
+   "section": "20.5",
+   "name": "方均根电流",
+   "terms": [
+    "方均根电流"
+   ],
+   "statement": "方均根电流是交流电的方均根，$I_\\text{rms} = I_0/\\sqrt{2}$，其中 $I_0$ 是峰值电流。",
+   "forms": [
+    {
+     "id": "eq-rms-current-2",
+     "latex": "I_{\\text{rms}} = I_0/\\sqrt{2}",
+     "ktex": "\\kIrms = \\kIocur/\\sqrt{2}"
+    }
+   ]
+  },
+  {
+   "id": "rms-voltage",
+   "kind": "definition",
+   "section": "20.5",
+   "name": "方均根电压",
+   "terms": [
+    "方均根电压"
+   ],
+   "statement": "方均根电压是交流电压的方均根，$V_\\text{rms} = V_0/\\sqrt{2}$，其中 $V_0$ 是峰值电压。",
+   "forms": [
+    {
+     "id": "eq-rms-voltage-2",
+     "latex": "V_{\\text{rms}} = V_0/\\sqrt{2}",
+     "ktex": "\\kVrms = \\kVo/\\sqrt{2}"
+    }
+   ]
+  },
+  {
+   "id": "thermal-hazard",
+   "kind": "definition",
+   "section": "20.6",
+   "name": "热危害",
+   "terms": [
+    "热危害"
+   ],
+   "statement": "热危害是指过大的电功率造成不希望出现的热效应，例如在房屋的墙壁中引起火灾。每当电能转化为热能的速率超过它能被安全耗散的速率时，电功率就会造成这样的加热。把这种危害与电击区分开来，就清楚地表明支配两者的是不同的量。"
+  },
+  {
+   "id": "short-circuit",
+   "kind": "definition",
+   "section": "20.6",
+   "name": "短路",
+   "terms": [
+    "短路"
+   ],
+   "statement": "短路是电压源两端之间的一条低电阻通路，例如磨损的绝缘层使两根导线接触时形成的通路。因为短路的电阻非常小，在其中耗散的功率为 $V^2/r$，所以该功率非常大：120 V 加在 0.100 Ω 上得到 144 kW，远大于任何家用电器的用电功率，以这样的速率传递的热能会很快使周围的材料熔化或着火。更糟的是，加热可能使材料电离而使电阻进一步降低，从而使功率再次升高。",
+   "forms": [
+    {
+     "id": "eq-short-circuit-power",
+     "latex": "P = \\frac{V^2}{r}",
+     "ktex": "\\kP = \\frac{\\kV^2}{\\krshort}",
+     "anchor": "20.6-thermal-hazards"
+    }
+   ]
+  },
+  {
+   "id": "overloaded-wires",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "过载的导线",
+   "statement": "一种不那么戏剧性的热危害发生在给用户供电的导线载有过大电流时，因为其中耗散的功率为 $I^2R_\\text{w}$：一根磨损的电器电源线，其电阻为 2.00 Ω，而不是它本应有的 0.100 Ω，当 10.0 A 的电流通过它时会耗散 200 W。保险丝和断路器在持续电流超过安全限度时自动断开电路，从而限制这样的电流，保险丝靠熔断金属条，断路器则靠弯曲双金属片来触发弹簧。",
+   "forms": [
+    {
+     "id": "eq-wire-heating",
+     "latex": "P = I^2R_{\\text{w}}",
+     "ktex": "\\kP = \\kIcur^2\\kRw",
+     "anchor": "20.6-thermal-hazards"
+    }
+   ]
+  },
+  {
+   "id": "shock-hazard",
+   "kind": "definition",
+   "section": "20.6",
+   "name": "电击危害",
+   "terms": [
+    "电击危害"
+   ],
+   "statement": "电击危害发生在电流通过人体时，其影响从疼痛但并无其他伤害，到心脏停跳不等。通过人体的电流并不总是有害的，有时还有用，因为它可以阻断背痛、烧掉疣、驱动起搏器，或者使心脏脱离颤动；决定结果的是电流的大小、它所经过的路径、电击的持续时间以及电流的频率。"
+  },
+  {
+   "id": "shock-severity-factors",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "电流对人体的影响",
+   "statement": "一旦路径、持续时间和频率确定，电流就是决定电击严重程度的主要因素。感觉阈值只有 1 mA，低于 5 mA 的电击显然是无害的。从 10 到 20 mA，电流会刺激肌肉持续收缩，所以手会攥紧导线而无法松开。在 100 到 300 mA 之间有可能出现心室颤动，常常是致命的，超过约 300 mA 就开始出现烧伤。在几安培时，心脏和膈肌在电击持续期间收缩，之后往往恢复正常，除颤器就是这样工作的。身体对常用的 50 和 60 Hz 附近最敏感，在更高的频率下敏感性逐渐降低。"
+  },
+  {
+   "id": "body-resistance-and-microshock",
+   "kind": "idea",
+   "section": "20.6",
+   "name": "人体电阻与微电击",
+   "statement": "较大的电压更危险，但由于 $I = V/R$，电击的严重程度取决于电压和电阻的组合，所以不知道电阻就无从说哪个电压是危险的。人体的电阻大部分在干燥的皮肤上，从手到脚约为 200 kΩ，120 V 只能驱动 0.6 mA 通过它。同一个人浑身湿透时可能只有 10.0 kΩ，并通过 12 mA，超过了无法松开的阈值。当静脉输液、导管或外露的起搏器导线绕过皮肤时，这个人就对微电击敏感，约为表 20.3 中千分之一的电流就会产生类似的效应。"
+  },
+  {
+   "id": "microshock-sensitivity",
+   "kind": "definition",
+   "section": "20.6",
+   "name": "微电击敏感性",
+   "terms": [
+    "对微电击敏感"
+   ],
+   "statement": "当皮肤的电阻被绕过时，可能是由于某种医疗操作，使得极小的电流就能到达心脏，这个人就对微电击敏感。"
+  },
+  {
+   "id": "resting-potential",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "静息电位",
+   "statement": "细胞膜把钠、钾和氯离子浓度不同的电中性液体隔开，它是半透性的，在静息状态下允许钾和氯通过，但不允许钠通过。扩散使这些离子穿过细胞膜，直到它们所积累的电荷层通过库仑力阻止进一步的转移，于是在膜上留下两层电荷，膜两侧的电势差为 70 至 90 mV。因为膜只有约 8 nm 厚，这个很小的电压产生了约 11 MV/m 量级的场，对膜的结构和渗透性有根本的影响。"
+  },
+  {
+   "id": "action-potential",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "动作电位",
+   "statement": "任何改变膜渗透性的刺激都会沿膜产生电流。膜暂时变得对钠可渗透，钠在扩散和库仑力的共同驱动下涌入，先是中和、然后反转膜的内侧，这就是去极化；去极化使膜再次对钠关闭，钾的运动使细胞回到静息电位，这就是复极化。这一序列是一个称为动作电位的电压脉冲，而且只有一小部分离子发生移动，所以细胞可以激发数百次，钠钾泵才必须通过主动运输来恢复浓度。"
+  },
+  {
+   "id": "nerve-impulse-propagation",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "神经冲动如何传播",
+   "terms": [
+    "神经传导"
+   ],
+   "statement": "动作电位是膜上某一处的电压脉冲，那里变化的电压和电场改变了相邻膜的渗透性，于是同样的过程在隔壁发生，然后再往下一处。结果是神经冲动沿细胞膜以约 1 m/s 的速率移动，从电学角度看很慢，虽然它是由钠和钾穿过膜引起的，但它等效于一个沿膜外侧和内侧运动的电荷波。"
+  },
+  {
+   "id": "myelin-sheath",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "髓鞘",
+   "statement": "髓磷脂是一种脂肪绝缘体，被称为郎飞结的无髓鞘缺口隔断，包裹着一些轴突。因为髓磷脂是绝缘体，它使信号不会在相邻的神经之间跳跃。有髓鞘的区域像普通导体一样高速传递信号，没有动作电位，因此也不消耗细胞能量。髓磷脂中有 $IR$ 信号损耗，但每个缺口都使信号恢复到完整的电压。因此有髓鞘的轴突传递冲动更快，耗能更少，并且能更好地防止串扰。鞘的破坏会损害传递，多发性硬化症就是如此。"
+  },
+  {
+   "id": "electrocardiogram",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "心电图",
+   "terms": [
+    "心电图（ECG）"
+   ],
+   "statement": "使肌细胞收缩的去极化可以刺激相邻的细胞，所以一个去极化波从窦房结穿过心脏，协调它有节律的收缩。心电图是对这个波及其后的复极化所产生的电压的记录，读作身体上成对电极之间的矢量分量。在第 II 导联电势中，P 波是心房的去极化，QRS 波群是心室的去极化，T 波是它们的复极化，收缩压在 QRS 波群之后不久出现。"
+  },
+  {
+   "id": "bioelectricity",
+   "kind": "idea",
+   "section": "20.7",
+   "name": "生物电",
+   "terms": [
+    "生物电"
+   ],
+   "statement": "生物电是生物系统内部及其产生的电效应。神经细胞传递电信号，使肌肉收缩的电流产生可以在体外测得的电压。"
+  },
+  {
+   "id": "free-charge-density",
+   "kind": "definition",
+   "section": "20.1",
+   "name": "自由电荷密度",
+   "symbol": "n",
+   "terms": [
+    "自由电荷密度",
+    "自由电子密度"
+   ],
+   "statement": "材料的自由电荷密度 $n$ 是单位体积内自由电荷的数目，是材料的一种性质。导体的自由电荷密度很大；在绝缘体中，大多数电荷被束缚在原子上。密度越大，给定电流所需的漂移速度就越小。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "electric-current",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "electric-current",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "electric-current",
+   "prereq": "flow-rate"
+  },
+  {
+   "concept": "electric-current",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "ampere",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "ampere",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "conventional-current",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "conventional-current",
+   "prereq": "charge-of-electron-and-proton"
+  },
+  {
+   "concept": "circuit-schematic",
+   "prereq": "conventional-current"
+  },
+  {
+   "concept": "circuit-schematic",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "field-inside-conductor-zero"
+  },
+  {
+   "concept": "charge-carriers",
+   "prereq": "conventional-current"
+  },
+  {
+   "concept": "drift-velocity",
+   "prereq": "charge-carriers"
+  },
+  {
+   "concept": "drift-velocity",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "drift-velocity",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "signal-speed-versus-drift",
+   "prereq": "drift-velocity"
+  },
+  {
+   "concept": "signal-speed-versus-drift",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "current-and-drift-velocity",
+   "prereq": "drift-velocity"
+  },
+  {
+   "concept": "current-and-drift-velocity",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "current-and-drift-velocity",
+   "prereq": "ampere"
+  },
+  {
+   "concept": "ohms-law",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "ohms-law",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "ohms-law",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "resistance",
+   "prereq": "charge-carriers"
+  },
+  {
+   "concept": "resistance",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "ohm",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ohm",
+   "prereq": "ampere"
+  },
+  {
+   "concept": "ohmic-material",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ohmic-material",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "simple-circuit",
+   "prereq": "circuit-schematic"
+  },
+  {
+   "concept": "simple-circuit",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "simple-circuit"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "ir-drop",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "resistivity",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "resistance-of-cylinder",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "resistance-of-cylinder",
+   "prereq": "flow-resistance"
+  },
+  {
+   "concept": "conductors-semiconductors-insulators",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "conductors-semiconductors-insulators",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "conductors-semiconductors-insulators",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "superconductivity",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "superconductivity",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "temperature-coefficient-of-resistivity",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "temperature-coefficient-of-resistivity",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "temperature-coefficient-of-resistivity",
+   "prereq": "kinetic-theory"
+  },
+  {
+   "concept": "resistivity-and-temperature",
+   "prereq": "temperature-coefficient-of-resistivity"
+  },
+  {
+   "concept": "resistance-and-temperature",
+   "prereq": "resistivity-and-temperature"
+  },
+  {
+   "concept": "resistance-and-temperature",
+   "prereq": "resistance-of-cylinder"
+  },
+  {
+   "concept": "resistance-and-temperature",
+   "prereq": "thermal-expansion"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "power"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "watt"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "electric-power",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "power-and-resistance",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "power-and-resistance",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "power-supplied-equals-dissipated",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "power-supplied-equals-dissipated",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "power-supplied-equals-dissipated",
+   "prereq": "simple-circuit"
+  },
+  {
+   "concept": "electrical-energy-and-cost",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "electrical-energy-and-cost",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "electrical-energy-and-cost",
+   "prereq": "cost-of-energy"
+  },
+  {
+   "concept": "lighting-efficiency",
+   "prereq": "electrical-energy-and-cost"
+  },
+  {
+   "concept": "lighting-efficiency",
+   "prereq": "efficiency"
+  },
+  {
+   "concept": "direct-current",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "direct-current"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "alternating-current",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ac-power",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "ac-power",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "rms-values",
+   "prereq": "ac-power"
+  },
+  {
+   "concept": "rms-values",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "ac-ohms-law",
+   "prereq": "rms-values"
+  },
+  {
+   "concept": "ac-ohms-law",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ac-ohms-law",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "high-voltage-transmission",
+   "prereq": "ac-ohms-law"
+  },
+  {
+   "concept": "high-voltage-transmission",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "high-voltage-transmission",
+   "prereq": "resistance-of-cylinder"
+  },
+  {
+   "concept": "thermal-hazard",
+   "prereq": "electric-power"
+  },
+  {
+   "concept": "short-circuit",
+   "prereq": "thermal-hazard"
+  },
+  {
+   "concept": "short-circuit",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "overloaded-wires",
+   "prereq": "thermal-hazard"
+  },
+  {
+   "concept": "overloaded-wires",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "shock-hazard",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "shock-hazard",
+   "prereq": "charge-carriers"
+  },
+  {
+   "concept": "shock-severity-factors",
+   "prereq": "shock-hazard"
+  },
+  {
+   "concept": "shock-severity-factors",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "body-resistance-and-microshock",
+   "prereq": "shock-severity-factors"
+  },
+  {
+   "concept": "body-resistance-and-microshock",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "body-resistance-and-microshock",
+   "prereq": "resistivity"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "semipermeable-membrane"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "diffusion"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "resting-potential",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "action-potential",
+   "prereq": "resting-potential"
+  },
+  {
+   "concept": "action-potential",
+   "prereq": "active-transport"
+  },
+  {
+   "concept": "nerve-impulse-propagation",
+   "prereq": "action-potential"
+  },
+  {
+   "concept": "nerve-impulse-propagation",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "myelin-sheath",
+   "prereq": "nerve-impulse-propagation"
+  },
+  {
+   "concept": "myelin-sheath",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "myelin-sheath",
+   "prereq": "ir-drop"
+  },
+  {
+   "concept": "electrocardiogram",
+   "prereq": "action-potential"
+  },
+  {
+   "concept": "electrocardiogram",
+   "prereq": "nerve-impulse-propagation"
+  },
+  {
+   "concept": "electrocardiogram",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "bioelectricity",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "bioelectricity",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "ac-voltage",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "ac-voltage",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "ac-voltage",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "rms-current",
+   "prereq": "alternating-current"
+  },
+  {
+   "concept": "rms-current",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "rms-voltage",
+   "prereq": "ac-voltage"
+  },
+  {
+   "concept": "microshock-sensitivity",
+   "prereq": "shock-hazard"
+  },
+  {
+   "concept": "microshock-sensitivity",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "free-charge-density",
+   "prereq": "free-electron"
+  }
+ ]
+}

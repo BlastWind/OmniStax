@@ -1,0 +1,108 @@
+<section id="torque-defined">
+<h2>力矩：力的转动效果</h2>
+<div class="note">
+<div class="eyebrow">力矩</div>
+<p>达到平衡所必需的第二条件，涉及避免加速转动（即保持恒定的<span data-concept="angular-velocity">角速度</span>）。一个转动的物体或<span data-concept="system">系统</span>，如果其转动的快慢保持恒定，并且不因作用在它上面的<span data-concept="force">力</span>而改变，就可以处于平衡。为了弄清哪些因素影响转动，让我们想一想，当你让<span data-ref="door">一扇普通的门</span>绕<span data-ref="door">它的</span><span data-ref="hinges">铰链</span>转动，从而把<span data-ref="door">它</span>打开时，会发生什么。</p>
+</div>
+<p class="cite-target">有几个常见的因素，决定了你开<span data-ref="door">门</span>的效果有多好。见图 9.6。首先，<span data-type="force"><span data-concept="force">力</span></span>越大，开<span data-ref="door">门</span>就越有效——显然，你推得越用力，<span data-ref="door">门</span>就开得越快。其次，你推的位置也很关键。如果你把<span data-type="force">你的<span data-concept="force">力</span></span>作用得太靠近<span data-ref="hinges">铰链</span>，<span data-ref="door">门</span>就会开得很慢，甚至根本打不开。大多数人都犯过这个错误而感到尴尬，在门没有像预期的那样很快打开时撞到了门上。最后，你推的<span data-concept="vector-direction">方向</span>也很重要。最有效的<span data-concept="vector-direction">方向</span>是垂直于<span data-ref="door">门</span>——我们几乎是本能地沿这个<span data-concept="vector-direction">方向</span>推。</p>
+<figure class="sim" id="sim-door" data-figure="9.6" data-original="/media/ch09/Figure_10_02_01a.jpg" data-original-width="375" data-original-caption="力矩是力的转动或扭转效果，这里以门绕其铰链的转动为例说明（从上方看）。力矩既有大小，也有方向。（a）这个力产生逆时针力矩，这意味着门在 F 的作用下将沿逆时针方向转动。注意，r_⊥ 是支点到力的作用线的垂直距离。（b）较小的力 F′ 作用在离铰链（即支点）同样远的位置，产生较小的逆时针力矩。（c）与（a）中相同的力，作用在离铰链较近处时，产生较小的逆时针力矩。（d）与（a）中相同的力，但作用方向相反，产生顺时针力矩。（e）大小相同的力作用在同一点上，但方向不同，产生较小的逆时针力矩。这里 θ 小于 90°。（f）这里的力矩为零，因为力只是在拉铰链，不产生转动。此时 θ = 0°。">
+  <div class="sim-head"><span class="eyebrow">Figure 9.6</span><span>你从上方俯视<span data-ref="door">一扇门</span>，<span data-ref="door">它的</span><span data-ref="hinges">铰链</span>在左侧，<span data-type="force">一个力</span> $\kF$ 在离<span data-ref="hinges">铰链</span>的<span data-type="position">距离</span>为 $\krlev$ 处推着<span data-ref="door">它</span>。一条穿过<span data-ref="door">门</span>的线标出<span data-type="force">力</span>的作用线，<span data-type="position">垂直力臂</span> $\krperp$ 从<span data-ref="hinges">铰链</span>延伸到这条线。改变推的力度、位置和方向，观察<span data-type="torque">力矩</span>如何增大、减小、反向，并在<span data-type="force">力</span>正对<span data-ref="hinges">铰链</span>时降为零。</span></div>
+</figure>
+<p><span data-concept="force">力</span>的<span data-concept="vector-magnitude">大小</span>、<span data-concept="vector-direction">方向</span>和作用点，都被纳入称为<span data-concept="torque">力矩</span>的<span data-concept="physical-quantity">物理量</span>的定义之中。<strong><span data-concept="torque">力矩</span></strong>是<span data-concept="force">力</span>的转动对应量。它是<span data-concept="force">力</span>在改变或加速转动（在一段<span data-concept="time">时间</span>内改变<span data-concept="angular-velocity">角速度</span>）时的有效程度的量度。写成公式，<span data-concept="torque">力矩</span>的<span data-concept="vector-magnitude">大小</span>定义为</p>
+$$\ktau = \krlev\kF\sin\ktheta$$
+<p>其中 $\ktau$（希腊字母 τ）是<span data-concept="torque">力矩</span>的符号，$\krlev$ 是从支点到<span data-concept="force">力</span>作用点的<span data-concept="distance">距离</span>，$\kF$ 是<span data-concept="force">力</span>的<span data-concept="vector-magnitude">大小</span>，$\ktheta$ 是<span data-concept="force">力</span>与从作用点指向支点的<span data-concept="vector">矢量</span>之间的<span data-concept="angle">夹角</span>，如图 9.6 和图 9.7 所示。<span data-concept="torque">力矩</span>的另一种表达式，是用<strong><span data-concept="perpendicular-lever-arm">垂直力臂</span></strong> $\krperp$ 给出的，如图 9.6 和图 9.7 所示，它定义为</p>
+$$\krperp = \krlev\sin\ktheta$$
+<p>于是</p>
+$$\ktau = \krperp\kF.$$
+<figure class="sim" id="sim-hockey-stick" data-figure="9.7" data-original="/media/ch09/Figure_10_02_02abc.jpg" data-original-width="350" data-original-caption="作用在物体上的力可以产生力矩，力矩取决于支点的位置。（a）物体上支点 A 对应的三个因素 r、F 和 θ 如图所示——r 是从所选支点到力 F 的作用点的距离，θ 是 F 与从作用点指向支点的矢量之间的夹角。如果物体能绕 A 点转动，它将沿逆时针方向转动。这意味着相对于支点 A，力矩是逆时针的。（b）在这种情况下，B 点是支点。所施加的力产生的力矩会使物体绕 B 点沿顺时针方向转动，因此相对于 B，它是顺时针力矩。">
+  <div class="sim-head"><span class="eyebrow">Figure 9.7</span><span><span data-ref="nail">一枚钉子</span>把<span data-ref="stick">一根冰球杆</span>在一点上钉在冰面上，<span data-type="force">一个力</span> $\kF$ 推着<span data-ref="stick">冰球杆</span>靠近<span data-ref="stick">它</span>握把的位置。从<span data-ref="nail">钉子</span>到<span data-ref="hand">手</span>的<span data-type="position">距离</span> $\krlev$、<span data-type="angle">夹角</span> $\ktheta$ 和<span data-type="position">垂直力臂</span> $\krperp$，都从你选定的<span data-ref="nail">钉子</span>处算起。沿着<span data-ref="stick">冰球杆</span>滑动<span data-ref="nail">钉子</span>。当<span data-ref="nail">钉子</span>在<span data-ref="hand">手</span>的下方时，<span data-type="force">同一个力</span>使<span data-ref="stick">冰球杆</span>沿逆时针方向转动；当<span data-ref="nail">钉子</span>落在<span data-type="force">力</span>的作用线上时，它什么也不做；而一旦<span data-ref="nail">钉子</span>在上方，它就使<span data-ref="stick">冰球杆</span>沿顺时针方向转动。</span></div>
+</figure>
+<div class="exercises" data-place="torque-defined"></div>
+</section>
+
+<section id="pivot">
+<h2>力臂，以及取矩所围绕的支点</h2>
+<p class="cite-target"><span data-concept="perpendicular-lever-arm">垂直力臂</span> $\krperp$ 是从支点到 $\kF$ 的作用线的最短<span data-concept="distance">距离</span>；它在图 9.6 和图 9.7 中以虚线表示。注意，定义<span data-concept="distance">距离</span> $\krperp$ 的线段垂直于 $\kF$，正如它的名称所暗示的那样。有时求出或想象出 $\krperp$，比同时求出 $\krlev$ 和 $\ktheta$ 更容易。在这种情况下，计算<span data-concept="torque">力矩</span>时用 $\ktau = \krperp\kF$ 而不用 $\ktau = \krlev\kF\sin\ktheta$ 可能更方便，但两者同样成立。</p>
+<p><strong><span data-concept="torque">力矩</span>的 SI 单位</strong>是牛顿乘以<span data-concept="meter">米</span>，通常写作 $\text{N}\cdot\text{m}$。例如，如果你垂直于<span data-ref="door">门</span>，用<span data-type="force">40 N 的<span data-concept="force">力</span></span>推，推的位置离<span data-ref="hinges">铰链</span>的<span data-type="position"><span data-concept="distance">距离</span>为 0.800 m</span>，你相对于<span data-ref="hinges">铰链</span>就施加了<span data-type="torque">32 N·m 的<span data-concept="torque">力矩</span></span>（0.800 m × 40 N × sin 90°）。如果把<span data-type="force"><span data-concept="force">力</span></span>减小到 20 N，<span data-type="torque"><span data-concept="torque">力矩</span></span>就减小到 16 N·m，依此类推。</p>
+<p><span data-concept="torque">力矩</span>总是相对于某个选定的支点来计算的。对于同一个施加的<span data-concept="force">力</span>，选取不同位置的支点，会得到不同的<span data-concept="torque">力矩</span>值，因为 $\krlev$ 和 $\ktheta$ 都取决于支点的位置。任何物体中的任意一点，都可以被选来计算关于该点的<span data-concept="torque">力矩</span>。物体实际上可能并不绕所选的“支点”转动。</p>
+<p>注意，对于在一个平面内的转动，<span data-concept="torque">力矩</span>有两种可能的<span data-concept="vector-direction">方向</span>。相对于所选的支点，<span data-concept="torque">力矩</span>要么是顺时针的，要么是逆时针的，如图 9.7 中分别对 B 点和 A 点所示。如果<span data-ref="stick">物体</span>能绕 A 点转动，<span data-ref="stick">它</span>将沿逆时针方向转动，这意味着图中所示的<span data-type="force"><span data-concept="force">力</span></span>的<span data-type="torque"><span data-concept="torque">力矩</span></span>相对于 A 是逆时针的。但如果<span data-ref="stick">物体</span>能绕 B 点转动，<span data-ref="stick">它</span>将沿顺时针方向转动，这意味着所示的那个<span data-type="force"><span data-concept="force">力</span></span>的<span data-type="torque"><span data-concept="torque">力矩</span></span>相对于 B 是顺时针的。此外，力臂越长，<span data-concept="torque">力矩</span>的<span data-concept="vector-magnitude">大小</span>越大。</p>
+</section>
+
+<section id="second-condition">
+<h2>平衡的第二条件</h2>
+<p class="cite-target">现在，<em>达到平衡所必需的第二条件</em>是：<em><span data-concept="system">系统</span>所受的合外<span data-concept="torque">力矩</span>必须为零</em>。外<span data-concept="torque">力矩</span>是由<span data-concept="external-force">外力</span>产生的力矩。你可以选取计算<span data-concept="torque">力矩</span>时所围绕的点。这个点可以是<span data-concept="system">系统</span>实际的支点，也可以是空间中的任何其他点——但对所有<span data-concept="torque">力矩</span>，它必须是同一个点。如果第二条件（<span data-concept="system">系统</span>所受的合外<span data-concept="torque">力矩</span>为零）对支点的某一种选取成立，那么对所研究的<span data-concept="system">系统</span>之内或之外的支点的任何其他选取，它也同样成立。（这只在<span data-concept="inertial-frame">惯性参考系</span>中才成立。）达到平衡所必需的第二条件，用公式表示为</p>
+$$\text{合力矩}\;\ktau = 0$$
+<p>其中 net（合）的意思是总的。<span data-concept="vector-direction">方向</span>相反的<span data-concept="torque">力矩</span>被赋予相反的符号。一个常见的约定是，把逆时针<span data-concept="torque">力矩</span>称为正，把顺时针<span data-concept="torque">力矩</span>称为负。</p>
+</section>
+
+<section id="seesaw">
+<h2>跷跷板上的两个孩子</h2>
+<p class="cite-target">当<span data-ref="child-1 child-2">两个孩子</span>如图 9.8 所示让<span data-ref="seesaw">跷跷板</span>保持平衡时，<span data-ref="child-1 child-2">他们</span>满足平衡的两个条件。大多数人对跷跷板有着完美的直觉，知道较轻的孩子必须坐得离支点更远，而较重的孩子可以让较轻的孩子一直悬离地面。</p>
+<figure class="sim" id="sim-seesaw" data-figure="9.8" data-original="/media/ch09/Figure_10_02_03.jpg" data-original-width="300" data-original-caption="两个孩子使跷跷板保持平衡，满足平衡的两个条件。较轻的孩子坐得离支点更远，以产生与较重的孩子大小相等的力矩。">
+  <div class="sim-head"><span class="eyebrow">Figure 9.8</span><span><span data-ref="child-1 child-2">两个孩子</span>坐在<span data-ref="seesaw">一个跷跷板</span>上，这个跷跷板的<span data-type="mass">质量可忽略</span>，<span data-ref="child-1">第一个孩子</span>离<span data-ref="pivot">支点</span>的<span data-type="position">距离</span>为 $\krone$，<span data-ref="child-2">第二个孩子</span>在另一侧，为 $\krtwo$。<span data-type="force">每个孩子的重力</span>都对<span data-ref="pivot">支点</span>产生<span data-type="torque">一个力矩</span>，一个逆时针，一个顺时针，而<span data-ref="pivot">支点</span>以 $\kFp$ 向上推，根本不产生任何力矩。改变任一<span data-type="mass">质量</span>或任一<span data-type="position">距离</span>，观察<span data-ref="seesaw">木板</span>向<span data-type="torque">较大的力矩</span>一侧倾斜，当<span data-type="torque">两个力矩</span>相等时又恢复水平。</span></div>
+</figure>
+<div class="example" id="ex-seesaw">
+<h3>例题 9.1 · 跷跷板上的力矩</h3>
+<p>图 9.8 中所示的<span data-ref="child-1 child-2">两个孩子</span>在一个<span data-type="mass"><span data-concept="mass">质量</span>可忽略</span>的<span data-ref="seesaw">跷跷板</span>上保持平衡。（做这个假设是为了让例题保持简单——后面会有更复杂的例题。）<span data-ref="child-1">第一个孩子</span>的<span data-type="mass"><span data-concept="mass">质量</span>为 26.0 kg</span>，坐在离<span data-ref="pivot">支点</span> <span data-type="position">1.60 m</span> 处。（a）如果<span data-ref="child-2">第二个孩子</span>的<span data-type="mass"><span data-concept="mass">质量</span>为 32.0 kg</span>，<span data-ref="child-2">她</span>离<span data-ref="pivot">支点</span>有多远？（b）<span data-ref="pivot">支点</span>施加的<span data-type="force">支持<span data-concept="force">力</span></span> $\kFp$ 是多少？</p>
+<h4>思路</h4>
+<p>平衡的两个条件都必须满足。在（a）部分中，要求的是<span data-type="position"><span data-concept="distance">距离</span></span>；因此必须使用第二条件（涉及<span data-concept="torque">力矩</span>），因为第一条件（只涉及<span data-concept="force">力</span>）中没有<span data-concept="distance">距离</span>。为了应用平衡的第二条件，我们首先把所研究的<span data-concept="system">系统</span>确定为<span data-ref="seesaw">跷跷板</span>加上<span data-ref="child-1 child-2">两个孩子</span>。我们取<span data-ref="pivot">起支撑作用的支点</span>作为计算<span data-type="torque"><span data-concept="torque">力矩</span></span>时所围绕的点。然后我们找出作用在<span data-concept="system">系统</span>上的<span data-type="force">所有<span data-concept="external-force">外力</span></span>。</p>
+<h4>（a）的解</h4>
+<p>作用在<span data-concept="system">系统</span>上的<span data-type="force">三个<span data-concept="external-force">外力</span></span>是<span data-ref="child-1 child-2">两个孩子</span>的<span data-type="force"><span data-concept="weight">重力</span></span>，以及<span data-ref="pivot">支点</span>的<span data-type="force">支持<span data-concept="force">力</span></span>。我们来考察每个力产生的<span data-type="torque"><span data-concept="torque">力矩</span></span>。<span data-concept="torque">力矩</span>定义为</p>
+$$\ktau = \krlev\kF\sin\theta.$$
+<p>这里 $\ktheta = 90^\circ$，所以对<span data-type="force">全部三个<span data-concept="force">力</span></span>都有 $\sin\ktheta = 1$。这意味着三者都有 $\krperp = \krlev$。<span data-type="force">这三个<span data-concept="force">力</span></span>所施加的<span data-type="torque"><span data-concept="torque">力矩</span></span>，第一个是，</p>
+$$\ktauone = \krone\kwone$$
+<p>第二个是，</p>
+$$\ktautwo = -\krtwo\kwtwo$$
+<p>第三个是，</p>
+$$\begin{aligned}\tau_{\text{p}} &= r_{\text{p}}\kFp\\ &= 0\cdot\kFp\\ &= 0.\end{aligned}$$
+<p>注意，第二个式子中插入了一个负号，因为<span data-type="torque">这个<span data-concept="torque">力矩</span></span>是顺时针的，因此按约定为负。由于 $\kFp$ 直接作用在<span data-ref="pivot">支点</span>上，<span data-type="position"><span data-concept="distance">距离</span></span> $r_{\text{p}}$ 为零。作用在支点上的<span data-concept="force">力</span>不会引起转动，就像直接推门的铰链不会使门转动一样。现在，平衡的第二条件是，<span data-ref="child-1 child-2">两个孩子</span>所受<span data-type="torque"><span data-concept="torque">力矩</span>之和</span>为零。因此</p>
+$$\ktautwo = -\ktauone,$$
+<p>或者</p>
+$$\krtwo\kwtwo = \krone\kwone.$$
+<p><span data-concept="weight">重力</span>等于<span data-concept="mass">质量</span>乘以<span data-concept="acceleration-due-to-gravity">重力加速度</span>。用 $\km\kg$ 代替 $\kwgt$，我们得到</p>
+$$\krtwo \kmtwo\kg = \krone \kmone\kg.$$
+<p>解出未知量 $\krtwo$：</p>
+$$\krtwo = \krone\frac{\kmone}{\kmtwo}.$$
+<p>等式右边的量都是已知的；因此 $\krtwo$ 为</p>
+$$\krtwo = (1.60\ \text{m})\frac{26.0\ \text{kg}}{32.0\ \text{kg}} = 1.30\ \text{m}.$$
+<p>正如预期的那样，<span data-ref="child-2">较重的孩子</span>必须坐得离<span data-ref="pivot">支点</span>更近（1.30 m 对 1.60 m），才能使<span data-ref="seesaw">跷跷板</span>保持平衡。</p>
+<h4>（b）的解</h4>
+<p>这一部分求的是<span data-type="force">一个<span data-concept="force">力</span></span> $\kFp$。求它最简单的办法是使用平衡的第一条件，即</p>
+$$\text{合力}\;\kF = 0.$$
+<p><span data-type="force">这些<span data-concept="force">力</span></span>都是竖直的，所以我们处理的是沿竖直轴的一维问题；因此，该条件可以写成</p>
+$$\text{合力}\;\kFy = 0$$
+<p>其中我们仍把竖直轴称为 <em>y</em> 轴。取向上为正<span data-concept="vector-direction">方向</span>，并用正负号表示<span data-type="force">这些<span data-concept="force">力</span></span>的<span data-concept="vector-direction">方向</span>，我们看到</p>
+$$\kFp - \kwone - \kwtwo = 0.$$
+<p>这个方程给出了一开始就可能猜到的结果：</p>
+$$\kFp = \kwone + \kwtwo.$$
+<p>于是，<span data-ref="pivot">支点</span>提供的<span data-type="force">支持<span data-concept="force">力</span></span>等于<span data-concept="system">系统</span>的<span data-type="force">总<span data-concept="weight">重力</span></span>：</p>
+$$\kFp = \kmone\kg + \kmtwo\kg.$$
+<p>代入已知数值得到</p>
+$$\begin{aligned}\kFp &= (26.0\ \text{kg})(9.80\ \text{m/s}^2) + (32.0\ \text{kg})(9.80\ \text{m/s}^2)\\ &= 568\ \text{N.}\end{aligned}$$
+<h4>讨论</h4>
+<p>这两个结果合乎直觉。<span data-ref="child-2">较重的孩子</span>坐得离<span data-ref="pivot">支点</span>更近。<span data-ref="pivot">支点</span>承受着<span data-ref="child-1 child-2">两个孩子</span>的<span data-type="force"><span data-concept="weight">重力</span></span>。（b）部分也可以用平衡的第二条件求解，因为<span data-type="position">两个<span data-concept="distance">距离</span></span>都是已知的，但前提是所选的支点不在<span data-ref="seesaw">跷跷板</span><span data-ref="pivot">实际支点</span>的位置！</p>
+</div>
+</section>
+
+<section id="seesaw-lessons">
+<h2>跷跷板给我们的启示</h2>
+<p class="cite-target">前面这个例题的几个方面有着广泛的意义。第一，选取<span data-ref="pivot">支点</span>作为计算<span data-type="torque"><span data-concept="torque">力矩</span></span>时所围绕的点，使问题得到了简化。由于 $\kFp$ 作用在<span data-ref="pivot">支点</span>上，<span data-type="position">它的力臂</span>为零。因此，<span data-type="force">支持<span data-concept="force">力</span></span> $\kFp$ 所施加的<span data-type="torque"><span data-concept="torque">力矩</span></span>相对于<span data-ref="pivot">那个支点</span>为零。平衡的第二条件对支点的任何选取都成立，所以我们选取支点，以简化问题的求解。</p>
+<figure class="sim" id="sim-any-pivot">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>例题中的<span data-ref="child-1 child-2">两个孩子</span>坐在<span data-ref="seesaw">一个平衡的跷跷板</span>上，你取<span data-ref="child-1 child-2">他们</span>的<span data-type="force">重力</span>和<span data-type="force">支持力</span>的<span data-type="torque">力矩</span>时，所围绕的是你自己选的一个点，而不是<span data-ref="pivot">支点</span>。沿着<span data-ref="seesaw">木板</span>滑动这个点，观察<span data-type="torque">全部三个力矩</span>的变化。点一离开<span data-ref="pivot">支点</span>，<span data-type="force">支持力</span>就有了<span data-type="position">力臂</span>，但三个力矩之和仍为零。所以第二条件对任何点都成立，例题的（b）部分只需要力矩就够了。</span></div>
+</figure>
+<p>第二，在这个问题中，<span data-type="acceleration"><span data-concept="acceleration-due-to-gravity">重力加速度</span></span>被约去了，我们剩下的是<span data-concept="mass">质量</span>之比。<em>情况并不总是这样</em>。一定要代入正确的<span data-concept="force">力</span>——不要急着代入某个<span data-concept="mass">质量</span>之比。</p>
+<p>第三，<span data-ref="child-1 child-2">每个孩子</span>的<span data-type="force"><span data-concept="weight">重力</span></span>分布在<span data-ref="seesaw">跷跷板</span>的一块<span data-concept="area">面积</span>上，但我们却把<span data-type="force"><span data-concept="weight">重力</span></span>当作<span data-type="force">每个<span data-concept="force">力</span></span>都作用在一个点上。这并不是近似——<span data-type="position"><span data-concept="distance">距离</span></span> $\krone$ 和 $\krtwo$ 是到<span data-ref="child-1 child-2">每个孩子</span><strong><span data-concept="center-of-gravity">重心</span></strong>正下方各点的<span data-type="position"><span data-concept="distance">距离</span></span>。正如我们将在下一节看到的，<span data-concept="system">系统</span>的<span data-concept="mass">质量</span>和<span data-concept="weight">重力</span>可以像位于一个点上那样起作用。</p>
+<p>最后，请注意，<span data-concept="torque">力矩</span>这一概念的重要性不止于<span data-concept="static-equilibrium">静态平衡</span>。<em><span data-concept="torque">力矩</span>在<span data-concept="motion">转动</span>中所起的作用，与<span data-concept="force">力</span>在直线<span data-concept="motion">运动</span>中所起的作用相同。</em>我们将在下一章研究这一点。</p>
+<div class="note">
+<div class="eyebrow">居家实验</div>
+<p>取一块橡皮泥放在桌子上，然后把一个圆柱体按进去，使直尺能在圆柱体的圆弧面上保持平衡，同时一切保持静止。在离支点 8 cm 处放一枚一美分硬币。要把两枚一美分硬币放在哪里才能保持平衡？三枚呢？</p>
+</div>
+</section>
+
+<section id="anchored-object">
+<h2>绕同一点的五个相等的力</h2>
+<p class="cite-target"><span data-type="force">五个<span data-concept="vector-magnitude">大小</span>相等的<span data-concept="force">力</span></span>作用在<span data-ref="object">一个物体</span>的边缘各处，该物体被固定在点 $P$ 上。<span data-type="force">这些<span data-concept="force">力</span></span>相等，所以每一个力相对于 $P$ 所产生的<span data-type="torque"><span data-concept="torque">力矩</span></span>，仅由<span data-type="position"><span data-concept="perpendicular-lever-arm">垂直力臂</span></span>决定，垂直力臂就是从 $P$ 到<span data-type="force">该<span data-concept="force">力</span></span>的作用线的最短<span data-concept="distance">距离</span>。<span data-ref="object">物体</span>、该点和<span data-type="force">这五个<span data-concept="force">力</span></span>都画在下面。</p>
+<figure class="sim" id="fig-forces" data-original="/media/ch09/Figure_09_S2_02.jpg" data-original-caption="作用在一个物体上的五个力。">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span><span data-ref="object">一个物体</span>绕点 $P$ 转动，<span data-type="force">五个大小相等的力</span>（标为 $A$ 至 $E$）作用在<span data-ref="object">它</span>的边缘各处。每个箭头都从<span data-type="force">它所代表的力</span>的作用处出发，从 $P$ 到<span data-type="force">每个力</span>的作用线的<span data-type="position">距离</span>，决定了它所产生的<span data-type="torque">力矩</span>。</span></div>
+</figure>
+</section>

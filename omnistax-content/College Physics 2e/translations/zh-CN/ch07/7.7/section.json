@@ -1,0 +1,726 @@
+{
+ "id": "7.7",
+ "module": "m42152",
+ "chapter": "7",
+ "title": "功率",
+ "short": "功率",
+ "lead": "腾空升起的火箭、驶离起跑线的直线加速赛车和向大气中喷出熔岩的火山有一个共同点：它们都在极短的时间内做了大量的<span data-concept=\"work\">功</span>。<span data-concept=\"power\">功率</span>衡量的是做<span data-concept=\"work\">功</span>有多快，由它可以得出一件家用电器所用的<span data-concept=\"energy\">能量</span>以及运行它的费用。",
+ "objectives": [
+  "通过计算能量随时间的变化来计算功率。",
+  "研究功率消耗以及所消耗能量的费用计算。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"power\">功率</span>是做<span data-concept=\"work\">功</span>的快慢，用方程表示即：在<span data-concept=\"time\">时间</span> $\\kt$ 内做<span data-concept=\"work\">功</span> $\\kW$，则平均<span data-concept=\"power\">功率</span> $\\kP$ 为 $\\kP = \\kW/\\kt$。</li><li><span data-concept=\"power\">功率</span>的 SI 单位是瓦特（W），其中 $\\text{1 W} = \\text{1 J/s}$。</li><li>电动机等许多设备的<span data-concept=\"power\">功率</span>也常用马力（hp）表示，其中 $\\text{1 hp} = \\text{746 W}$。</li></ul>",
+ "notes": "书后答案中没有给出答案的七道习题被略去：亮度为太阳一千倍、发生超新星爆发的那颗恒星，运转一年的电钟，每天用电 5.00 kW·h 的用电器，直线加速赛车，电梯电动机，装有 100 MW 发动机的飞机，以及替代一座发电厂所需的太阳能集热器面积。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成，答案只取自书后答案。十四道习题中有七道没有给出答案，因此略去：亮度为太阳一千倍的恒星（fs-id955671）、运转一年的 3.00 W 电钟（fs-id2070989）、每天用电 5.00 kW·h 的用电器（fs-id2297940）、500 kg 的直线加速赛车（fs-id1171838）、提升 2500 kg 的电梯电动机（fs-id1492039）、装有 100 MW 发动机的飞机（fs-id1546639），以及替代一座 750 MW 发电厂所需的太阳能集热器面积（fs-id1649741）。书中印在第一道习题里的蟹状星云照片没有编号，因为本书中习题内的每一幅图都没有编号，所以它随该习题的卡片一同显示，附有书中的图注及其来源说明。斜坡上汽车的习题（fs-id1545912）附有书中自己的解答，照书中印刷的样子给出，其中包括已知量清单里给出的 3.00 m/s（而题目本身说的是 30.0 m/s）以及算式随后所用的 30.0 m/s；它要求遵循能量问题的解题策略各步骤的说明保留了书中的措辞，因为这则说明在 7.6 节。三道思考题都没有给出答案，所以各自附有一条由 AI 撰写并已标明的建议思路；其中第一道问用电器的瓦特标定值是否取决于用电器开着多长时间，它是对功率定义的一次检验，因此就地放在该定义旁边，因为本章从不印出“理解检测”框。没有任何内容留给后面的小节，也没有取自其他小节的内容：本节不设 AP 题，本章其他地方也没有哪道 AP 题涉及做功的快慢。7.8 节有两道习题要求以瓦特和马力给出输出功率，即 70.0 kg 的短跑运动员（fs-id2501866）和推铅球运动员（fs-id1636804），但两道都是关于人体能输出多少功率，这是 7.8 节的主题和 7.8 节的表格，所以仍留在那里；无论如何两道都没有给出答案。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-shuttle",
+   "kind": "photo",
+   "number": "7.20",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-stairs",
+   "kind": "sim",
+   "number": "7.21",
+   "originals": [
+    "/media/ch07/Figure_08_07_02.jpg"
+   ],
+   "original_caption": "这位女士从静止开始跑上楼梯时，把最初来自食物的化学能转化为动能和重力势能。她的输出功率取决于她做这件事的快慢。",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "power",
+    "energy",
+    "position",
+    "velocity",
+    "acceleration",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph labels moved off the rising line and under the graph"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-plant",
+   "kind": "photo",
+   "number": "7.22",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-power-ladder",
+   "kind": "sim",
+   "draws": [
+    "power"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "names inside the stage, factors and values on panels, ticks thinned, note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-bill",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "energy",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "meter caption shortened, clipped total stated, labels guarded, note"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "what-is-power",
+   "concept": "power",
+   "verb": "introduces"
+  },
+  {
+   "span": "what-is-power",
+   "concept": "watt",
+   "verb": "introduces"
+  },
+  {
+   "span": "what-is-power",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "what-is-power",
+   "concept": "work-transfers-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "what-is-power",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "what-is-power",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "what-is-power",
+   "concept": "horsepower",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating-power",
+   "concept": "calculate-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating-power",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating-power",
+   "concept": "watt",
+   "verb": "reinforces"
+  },
+  {
+   "span": "calculating-power",
+   "concept": "mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-stairs",
+   "concept": "calculate-power",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-stairs",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-stairs",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-stairs",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "examples-of-power",
+   "concept": "power",
+   "verb": "reinforces"
+  },
+  {
+   "span": "examples-of-power",
+   "concept": "watt",
+   "verb": "reinforces"
+  },
+  {
+   "span": "examples-of-power",
+   "concept": "energy-transformation",
+   "verb": "uses"
+  },
+  {
+   "span": "examples-of-power",
+   "concept": "efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "examples-of-power",
+   "concept": "order-of-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "consumption",
+   "concept": "energy-from-power",
+   "verb": "introduces"
+  },
+  {
+   "span": "consumption",
+   "concept": "cost-of-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "consumption",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "consumption",
+   "concept": "kilowatt-hour",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-cost",
+   "concept": "cost-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-cost",
+   "concept": "energy-from-power",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-cost",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "saving-energy",
+   "concept": "cost-of-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "saving-energy",
+   "concept": "energy-transformation",
+   "verb": "uses"
+  },
+  {
+   "span": "saving-energy",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1299861",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "what-is-power",
+   "prompt": "大多数用电器都以瓦特标定。这一标定值是否取决于用电器开着的时间有多长？（关着的时候，它是一个零瓦特的设备。）请根据功率的定义加以解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不取决于。功率是做功的快慢，$\\kP = \\kW/\\kt$，所以一瓦特是每秒一焦耳，而不是一定量的能量。这个标定值说的是用电器运行时从电源取用能量有多快，而这个快慢属于用电器本身，所以把它开一分钟或开一个月都不会改变它。时间确实会改变的，是用电器所用的能量 $\\kE = \\kP\\kt$，这才是电力公司向你收费的依据。一只 60 W 的灯泡无论开多久，每秒都取用 60 J；累积起来的只有总量。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1354581",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "consumption",
+   "prompt": "请根据功率的定义解释，为什么能量消耗有时用千瓦时而不是焦耳来列出。这两个能量单位之间是什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "由于功率是能量被消耗的快慢，所消耗的能量就是功率乘以时间，$\\kE = \\kP\\kt$，因此任何功率单位乘以任何时间单位，都是一个能量单位。一千瓦时，就是一台取用一千瓦的设备在一小时内取用的能量。家用电器取用约一千瓦，并且一次连续运行数小时，所以它们一个月加起来是几百千瓦时，这是一个便于印在账单上的数字大小。同样的能量若用焦耳表示就会很笨拙，因为 $1\\ \\text{kW}\\cdot\\text{h} = (1000\\ \\text{W})(3600\\ \\text{s}) = 3.6 \\times 10^{6}\\ \\text{J}$，所以账单上的每一千瓦时都是三百五十万焦耳。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2072181",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "what-is-power",
+   "prompt": "静电火花，比如在寒冷干燥的日子里你可能从门把手上受到的那种，可能带有几百瓦的功率。请解释你为什么不会被这样的火花所伤。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "几百瓦听起来吓人，因为那是一盏明亮的灯消耗能量的快慢，但功率只是一个快慢，而火花只持续一秒的极小一部分。真正传到你身上的能量是 $\\kE = \\kP\\kt$，在数量级为一微秒的时间里，几百瓦只相当于一焦耳的很小一部分，远不足以加热组织或造成任何伤害，不管那一下电击感觉有多尖锐。以瓦特给出的标定值本身从来不能决定某件事是否危险；你还得问它持续多长时间。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1312411",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-power",
+   "figure": {
+    "src": "/media/ch07/graphics4-80ec.jpg",
+    "alt": "一次超新星爆发。",
+    "caption": "蟹状星云（来源：ESO, via Wikimedia Commons）"
+   },
+   "prompt": "蟹状星云（见下图）脉冲星是公元 1054 年发生的一次超新星爆发的遗迹。利用表 7.3 中的数据，计算这个天体的输出功率自爆发以来下降的大致倍数。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2e-10,
+    "hint": "表 7.3 给出了超新星在峰值时的功率和蟹状星云脉冲星现在的功率。输出功率下降的倍数是这两者中的第二个除以第一个。",
+    "solution": "$2 \\times 10^{-10}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id939112",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "what-is-power",
+   "prompt": "身体状况良好的人可以连续数小时输出 100 W 的有用功率，比如通过蹬一个驱动发电机的装置。忽略发电机效率方面的任何问题以及休息时间之类的实际考虑：（a）运转一台 4.00 kW 的电动干衣机需要多少人？（b）要替代一座发电 800 MW 的大型发电厂需要多少人？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the clothes dryer",
+      "value": 40,
+      "unit": "people",
+      "hint": "每个人提供 100 W，所以用干衣机所需的功率除以一个人能输出的功率。"
+     },
+     {
+      "part": "the power plant",
+      "value": 8000000,
+      "unit": "people",
+      "hint": "一兆瓦是 $10^{6}\\ \\text{W}$，所以先把 800 MW 写成以瓦特计的数，再除以一个人提供的 100 W。"
+     }
+    ],
+    "solution": "（a）40；（b）800 万。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1627229",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "consumption",
+   "prompt": "一台大型家用空调可能消耗 15.0 kW 的功率。如果电价为每 $\\text{kW}\\cdot\\text{h}$ ＄0.110，这台空调每天运行 3.00 h、共运行 30.0 d 的费用是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 149,
+    "unit": "$",
+    "hint": "用 $\\kE = \\kP\\kt$ 求能量，功率取千瓦，时间取小时，然后把这个千瓦时数乘以一千瓦时的价格。",
+    "solution": "＄149"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1407273",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating-power",
+   "prompt": "（a）一个人在 8.00 h 内做了 $6.00 \\times 10^{6}\\ \\text{J}$ 的有用功，他的平均有用输出功率是多少？（b）以这个速率工作，这个人把 2000 kg 的砖举高 1.50 m 到一个平台上需要多长时间？（举起他自己身体所做的功可以略去，因为在这里它不被算作有用输出。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the power output",
+      "value": 208,
+      "unit": "W",
+      "hint": "先把时间换算成秒，再用功除以它。"
+     },
+     {
+      "part": "the time to lift the bricks",
+      "value": 141,
+      "unit": "s",
+      "hint": "所需的功是举起砖所需的 $m\\kg\\kh$，时间就是这个功除以（a）中求得的功率。"
+     }
+    ],
+    "solution": "（a）$208\\ \\text{W}$；（b）141 s。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1848763",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating-power",
+   "prompt": "（a）一辆 850 kg 的汽车，有用输出功率为 40.0 hp（1 hp = 746 W），忽略摩擦，要多长时间才能达到 15.0 m/s 的速率？（b）如果汽车在此过程中还爬上一座 3.00 m 高的山坡，这次加速要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "on the level",
+      "value": 3.2,
+      "unit": "s",
+      "hint": "发动机必须做的功等于汽车获得的动能，时间就是这个功除以以瓦特计的功率。"
+     },
+     {
+      "part": "up the hill",
+      "value": 4.04,
+      "unit": "s",
+      "hint": "现在发动机除了动能之外，还必须提供重力势能 $m\\kg\\kh$。"
+     }
+    ],
+    "solution": "（a）3.20 s；（b）4.04 s。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1379052",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "consumption",
+   "prompt": "（a）一块电池让一只 2.00 W 的电钟运行 18 个月，它可用的能量含量是多少焦耳？（b）一块能提供 $8.00 \\times 10^{4}\\ \\text{J}$ 的电池，能让一个以 $1.00 \\times 10^{-3}\\ \\text{W}$ 的速率消耗能量的袖珍计算器运行多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the energy in the clock battery",
+      "value": 94600000,
+      "unit": "J",
+      "hint": "用 $\\kE = \\kP\\kt$，其中时间以秒表示。"
+     },
+     {
+      "part": "how long the calculator runs",
+      "value": 2.54,
+      "unit": "y",
+      "hint": "用能量除以功率得到以秒计的时间，再把它换算成年。"
+     }
+    ],
+    "solution": "（a）$9.46 \\times 10^{7}\\ \\text{J}$；（b）2.54 y。"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id1545912",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating-power",
+   "prompt": "计算一辆 950 kg 的汽车以恒定的 30.0 m/s 爬上 $2.00^\\circ$ 的斜坡所需的输出功率，已知它所遇到的空气阻力和摩擦力共计 600 N。请明确展示你是如何遵循能量问题的解题策略中的各个步骤的。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 27700,
+    "unit": "W",
+    "hint": "速率恒定时，汽车施加的力必须与阻力以及重力沿斜坡的分力相平衡，功率就是这个力乘以速率。",
+    "solution": "确定已知量：$m = 950\\ \\text{kg}$，斜坡的倾角 $\\theta = 2.00^\\circ$，$\\kv = 3.00\\ \\text{m/s}$<sup class=\"fn\" data-note=\"c-p13-speed\"></sup>，$f = 600\\ \\text{N}$。确定未知量：汽车的功率 $\\kP$，汽车施加于路面的力 $\\kF$。求解未知量：$$\\kP = \\frac{\\kW}{\\kt} = \\frac{\\kF\\kd}{\\kt} = \\kF\\left(\\frac{\\kd}{\\kt}\\right) = \\kF\\kv,$$ 其中 $\\kF$ 平行于斜面，必须抵抗阻力和重力：$$\\kF = f + w = 600\\ \\text{N} + m\\kg\\sin\\theta.$$ 把它代入功率的表达式并求解：$$\\begin{aligned}\\kP &= (f + m\\kg\\sin\\theta)\\kv\\\\ &= (600\\ \\text{N} + (950\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin 2^\\circ)(30.0\\ \\text{m/s})\\\\ &= 2.77 \\times 10^{4}\\ \\text{W}.\\end{aligned}$$ 约 28 kW（或约 37 hp）对一辆汽车爬上一段平缓的斜面来说是合理的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "power"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "watt",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "energy-from-power",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "energy-from-power"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "watt",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "unit-conversion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "power"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "energy-from-power",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "power"
+  },
+  {
+   "exercise": "p1",
+   "concept": "watt",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "order-of-magnitude",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "power"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p3",
+   "concept": "watt",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "cost-of-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "energy-from-power",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p7",
+   "concept": "energy-from-power",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p9",
+   "concept": "watt",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "gravitational-potential-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "energy-from-power"
+  },
+  {
+   "exercise": "p11",
+   "concept": "unit-conversion",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "calculate-power"
+  },
+  {
+   "exercise": "p13",
+   "concept": "power"
+  },
+  {
+   "exercise": "p13",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "p13",
+   "concept": "energy-problem-solving",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "woman",
+   "label": "跑上楼梯的 60.0 kg 的女士",
+   "figures": [
+    "sim-stairs"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p13-speed",
+   "kind": "correction",
+   "html": "书中把速率列为 3.00 m/s；题中给出的是 30.0 m/s，下面的算式用的正是这个速率。"
+  }
+ ]
+}

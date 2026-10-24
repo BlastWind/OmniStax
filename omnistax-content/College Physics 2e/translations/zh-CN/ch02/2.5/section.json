@@ -1,0 +1,1209 @@
+{
+ "id": "2.5",
+ "module": "m42099",
+ "chapter": "2",
+ "title": "一维恒定加速度运动的运动学方程",
+ "short": "运动学方程",
+ "lead": "当<span data-concept=\"acceleration\">加速度</span>恒定时，一小组方程把<span data-concept=\"displacement\">位移</span>、<span data-concept=\"velocity\">速度</span>、<span data-concept=\"acceleration\">加速度</span>和<span data-concept=\"time\">时间</span>联系起来。你可以推导其中的每一个，并学会选择适合给定问题的那一个。",
+ "objectives": [
+  "已知初位置和速度，计算不加速物体的位移。",
+  "已知初速度、加速度和时间，计算加速物体的末速度。",
+  "已知初位置、初速度、时间和加速度，计算加速物体的位移和末位置。"
+ ],
+ "summary_html": "<ul>\n<li>为了简化计算，我们把<span data-concept=\"acceleration\">加速度</span>取为恒定，因此在任何时刻都有 $\\kab = \\ka$。</li>\n<li>我们还把初<span data-concept=\"time\">时刻</span>取为零。</li>\n<li>初<span data-concept=\"position\">位置</span>和<span data-concept=\"velocity\">速度</span>带有下标 0；末值没有下标。因此，$\\kdt = \\kt$，$\\kdx = \\kx - \\kxo$，$\\kdv = \\kv - \\kvo$。</li>\n<li>以下是适用于恒定 $\\ka$ 的运动的运动学方程，它们很有用：$\\kx = \\kxo + \\kvb\\kt$，$\\kvb = \\frac{\\kvo + \\kv}{2}$，$\\kv = \\kvo + \\ka\\kt$，$\\kx = \\kxo + \\kvo\\kt + \\tfrac{1}{2}\\ka\\kt^2$，$\\kv^2 = \\kvo^2 + 2\\ka(\\kx - \\kxo)$。</li>\n<li>在竖直运动中，用 $y$ 代替 $\\kx$。</li>\n</ul>",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级和概念标签由 AI 生成。答案取自书后答案；没有给出答案的习题略去。开放式问题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-notation",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset, true minus in the bracket"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-avg",
+   "kind": "sim",
+   "draws": [
+    "acceleration",
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels on either side of the level, headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-jogger",
+   "kind": "sim",
+   "number": "2.26",
+   "originals": [
+    "/media/ch02/Figure_02_05_00a.jpg",
+    "/media/ch02/Figure02_05_00b.jpg"
+   ],
+   "original_caption": "（图 2.26）位移与平均速度之间存在线性关系。对于给定的时间 t，运动速度是另一个物体两倍的物体，其位移也是另一个物体的两倍。",
+   "widths": [
+    400,
+    300
+   ],
+   "draws": [
+    "position",
+    "time",
+    "velocity"
+   ],
+   "folds": [
+    "2.25"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-plane",
+   "kind": "sim",
+   "number": "2.28",
+   "folds": [
+    "2.27"
+   ],
+   "originals": [
+    "/media/ch02/Figure_02_05_00c.jpg",
+    "/media/ch02/Figure_02_04_01.jpg"
+   ],
+   "original_caption": "（图 2.28）飞机以 70.0 m/s 的初速度着陆，减速到 10.0 m/s 的末速度，然后驶向航站楼。请注意，加速度是负的，因为它的方向与速度的方向相反，而速度为正。",
+   "widths": [
+    350,
+    600
+   ],
+   "draws": [
+    "acceleration",
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene below the headline, end label and minus sign"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dragster",
+   "kind": "sim",
+   "number": "2.31",
+   "folds": [
+    "2.32"
+   ],
+   "originals": [
+    "/media/ch02/Figure_02_04_02a.jpg",
+    "/media/ch02/Figure_02_04_02b.jpg"
+   ],
+   "widths": [
+    350,
+    350
+   ],
+   "draws": [
+    "acceleration",
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "half-time label on its own row, headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-braking",
+   "kind": "sim",
+   "number": "2.34",
+   "folds": [
+    "2.33"
+   ],
+   "originals": [
+    "/media/ch02/Figure_02_04_02c.jpg",
+    "/media/ch02/Figure_02_04_03.jpg"
+   ],
+   "original_caption": "（图 2.34）使汽车停下来所需的距离变化很大，取决于路况和驾驶员的反应时间。这里显示的是按本例计算的、最初以 30.0 m/s 行驶的汽车在干燥和潮湿路面上的制动距离。图中还显示了从驾驶员第一次看到红灯亮起的那一点算起的总路程，假设反应时间为 0.500 s。",
+   "widths": [
+    350,
+    600
+   ],
+   "draws": [
+    "acceleration",
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "light's line under the labels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-merge",
+   "kind": "sim",
+   "number": "2.35",
+   "originals": [
+    "/media/ch02/Figure_02_04_03a.jpg"
+   ],
+   "widths": [
+    250
+   ],
+   "draws": [
+    "acceleration",
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene lowered, ramp end on hover, caption names the mark"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-shuttle",
+   "kind": "photo",
+   "number": "2.29",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "constant-a",
+   "concept": "const-a",
+   "verb": "introduces"
+  },
+  {
+   "span": "avg-velocity",
+   "concept": "x-from-vbar",
+   "verb": "introduces"
+  },
+  {
+   "span": "avg-velocity",
+   "concept": "vbar-midpoint",
+   "verb": "introduces"
+  },
+  {
+   "span": "avg-velocity",
+   "concept": "const-a",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-jogger",
+   "concept": "x-from-vbar",
+   "verb": "uses"
+  },
+  {
+   "span": "final-velocity",
+   "concept": "v-from-at",
+   "verb": "introduces"
+  },
+  {
+   "span": "final-velocity",
+   "concept": "const-a",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-airplane",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "position-quadratic",
+   "concept": "x-quadratic",
+   "verb": "introduces"
+  },
+  {
+   "span": "position-quadratic",
+   "concept": "x-from-vbar",
+   "verb": "uses"
+  },
+  {
+   "span": "position-quadratic",
+   "concept": "vbar-midpoint",
+   "verb": "uses"
+  },
+  {
+   "span": "position-quadratic",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-dragster",
+   "concept": "x-quadratic",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-squared",
+   "concept": "v-squared",
+   "verb": "introduces"
+  },
+  {
+   "span": "velocity-squared",
+   "concept": "x-from-vbar",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-squared",
+   "concept": "vbar-midpoint",
+   "verb": "uses"
+  },
+  {
+   "span": "velocity-squared",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-dragster2",
+   "concept": "v-squared",
+   "verb": "uses"
+  },
+  {
+   "span": "summary",
+   "concept": "choose-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "summary",
+   "concept": "x-from-vbar",
+   "verb": "reinforces"
+  },
+  {
+   "span": "summary",
+   "concept": "v-from-at",
+   "verb": "reinforces"
+  },
+  {
+   "span": "summary",
+   "concept": "x-quadratic",
+   "verb": "reinforces"
+  },
+  {
+   "span": "summary",
+   "concept": "v-squared",
+   "verb": "reinforces"
+  },
+  {
+   "span": "together",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-braking",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-braking",
+   "concept": "v-squared",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-braking",
+   "concept": "v-from-at",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-braking",
+   "concept": "x-from-vbar",
+   "verb": "uses"
+  },
+  {
+   "span": "merge",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-merge",
+   "concept": "physical-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-merge",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-merge",
+   "concept": "x-quadratic",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-merge",
+   "concept": "v-from-at",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu-rocket",
+   "source_id": "fs-id1164906434690",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "final-velocity"
+   },
+   "prompt": "一枚火箭在发射过程中以 $20\\,\\text{m/s}^2$ 的加速度加速。火箭需要多长时间才能达到 400 m/s 的速度？",
+   "answer": {
+    "type": "number",
+    "value": 20,
+    "unit": "s",
+    "generated_by": "source",
+    "solution": "选择一个方程，使你仅凭 $\\ka$、$\\kvo$ 和 $\\kv$ 就能求出时间 $\\kt$：$\\kv = \\kvo + \\ka\\kt$。整理得：$\\kt = \\dfrac{\\kv - \\kvo}{\\ka} = \\dfrac{400\\,\\text{m/s} - 0}{20\\,\\text{m/s}^2} = 20\\,\\text{s}$。"
+   }
+  },
+  {
+   "id": "ap-marble",
+   "source_id": "fs-id1844508",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一组学生正在尝试确定一颗从长斜面顶端释放的弹珠的平均加速度。下面是一组表示弹珠位置随时间变化的数据。<table class=\"data\"><tr><th>位置 (cm)</th><th>时间 (s)</th></tr><tr><td>0.0</td><td>0.0</td></tr><tr><td>0.3</td><td>0.5</td></tr><tr><td>1.25</td><td>1.0</td></tr><tr><td>2.8</td><td>1.5</td></tr><tr><td>5.0</td><td>2.0</td></tr><tr><td>7.75</td><td>2.5</td></tr><tr><td>11.3</td><td>3.0</td></tr></table>利用上面的数据表作图，以确定弹珠的加速度。从表中选取一组数据点，并把这些点画在图上。对于除所给数据之外你在图上画出的任何量，把它们填入表中的空白列。标出坐标轴并指明各轴的标度。通过你的数据点画一条最佳拟合直线或曲线。利用最佳拟合直线，确定弹珠加速度的值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "弹珠的加速度约为 $2.5\\ \\text{cm/s}^2$。弹珠从原点由静止开始运动，所以 $\\kxo = 0$，$\\kvo = 0$，$\\kx = \\kxo + \\kvo\\kt + \\tfrac{1}{2}\\ka\\kt^2$ 简化为 $\\kx = \\tfrac{1}{2}\\ka\\kt^2$。这样，位置对 $\\kt^2$ 的图像就是一条过原点、斜率为 $\\tfrac{1}{2}\\ka$ 的直线。空白列填入 $\\kt^2$：0.0、0.25、1.0、2.25、4.0、6.25 和 $9.0\\ \\text{s}^2$。以厘米为单位的位置画在纵轴上（0 到 12 cm，每格 1 cm），以 $\\text{s}^2$ 为单位的 $\\kt^2$ 画在横轴上（0 到 10，每格 $1\\ \\text{s}^2$），七个点落在一条过原点的直线上。根据这条直线的两个端点读出它的斜率为 $(11.3\\ \\text{cm})/(9.0\\ \\text{s}^2) = 1.25\\ \\text{cm/s}^2$，每个点给出的比值几乎相同，例如 $(5.0\\ \\text{cm})/(4.0\\ \\text{s}^2) = 1.25\\ \\text{cm/s}^2$。所以 $\\ka = 2 \\times 1.25\\ \\text{cm/s}^2 = 2.5\\ \\text{cm/s}^2$。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1164906440403",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一名奥运级别的短跑运动员以 $4.50\\,\\text{m/s}^2$ 的加速度起跑。（a）2.40 s 后她的速率是多少？（b）画出这段时间内她的位置—时间图像草图。",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 10.8,
+    "unit": "m/s",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1164906478917",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一个投得很好的球被一只衬垫很厚的手套接住。如果球的减速度为 $2.10\\times10^{4}\\,\\text{m/s}^2$，从球刚接触手套到停下经过了 1.85 ms $(1\\,\\text{ms} = 10^{-3}\\,\\text{s})$，那么球的初速度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 38.9,
+    "unit": "m/s",
+    "generated_by": "source",
+    "solution": "38.9 m/s（约 87 英里每小时）"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1164906424347",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）一列轻轨通勤列车以 $1.35\\,\\text{m/s}^2$ 的加速度加速。从静止开始，它需要多长时间才能达到 80.0 km/h 的最大速率？（b）同一列车通常以 $1.65\\,\\text{m/s}^2$ 的减速度减速。从最大速率停下来需要多长时间？（c）在紧急情况下，列车可以更迅速地减速，从 80.0 km/h 在 8.30 s 内停下来。以 $\\text{m/s}^2$ 为单位，它的紧急减速度是多少？",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 16.5,
+    "unit": "s",
+    "generated_by": "source",
+    "solution": "（a）16.5 s（b）13.5 s（c）$-2.68\\,\\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1164906459799",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "在一场比赛结束时，一名跑步者从 9.00 m/s 的速度开始，以 $2.00\\,\\text{m/s}^2$ 的减速度减速。（a）在接下来的 5.00 s 内她前进了多远？（b）她的末速度是多少？（c）评估这一结果。它合理吗？",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 20.0,
+    "unit": "m",
+    "generated_by": "source",
+    "solution": "（a）20.0 m（b）$-1.00$ m/s（c）这个结果其实不合理。如果跑步者从 9.00 m/s 开始，以 $2.00\\,\\text{m/s}^2$ 的减速度减速，那么她在 4.50 s 后就会停下来。如果她继续减速，她就会向后跑。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1164906467421",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "在一次大力射门中，一名冰球运动员使冰球的速度沿同一方向从 8.00 m/s 加速到 40.0 m/s。如果这次射门用时 $3.33\\times10^{-2}\\,\\text{s}$，计算冰球加速所经过的距离。",
+   "answer": {
+    "type": "number",
+    "value": 0.799,
+    "unit": "m",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1164906451358",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "货运列车只能产生相对较小的加速度和减速度。（a）一列货运列车从 4.00 m/s 的初速度开始，以 $0.0500\\,\\text{m/s}^2$ 的加速度加速 8.00 min，它的末速度是多少？（b）如果列车能以 $0.550\\,\\text{m/s}^2$ 的减速度减速，从这个速度停下来需要多长时间？（c）两种情形下它各行驶多远？",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 28.0,
+    "unit": "m/s",
+    "generated_by": "source",
+    "solution": "（a）28.0 m/s（b）50.9 s（c）加速时行驶 7.68 km，减速时行驶 713 m"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id1164906453058",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "湖面上的一只天鹅靠拍打翅膀并在水面上奔跑而起飞。（a）如果天鹅必须达到 6.00 m/s 的速度才能起飞，并且它从静止开始以 $0.350\\,\\text{m/s}^2$ 的平均加速度加速，那么它在离开水面之前会前进多远？（b）这需要多长时间？",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 51.4,
+    "unit": "m",
+    "generated_by": "source",
+    "solution": "（a）51.4 m（b）17.1 s"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1164906466373",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "一名不留神的橄榄球运动员以 7.50 m/s 的速度奔跑时撞上了有衬垫的球门柱，在把衬垫和他自己的身体压缩 0.350 m 后完全停了下来。（a）他的减速度是多少？（b）碰撞持续多长时间？",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": -80.4,
+    "unit": "m/s²",
+    "generated_by": "source",
+    "solution": "（a）$-80.4\\,\\text{m/s}^2$（b）$9.33\\times10^{-2}$ s"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id1164906495944",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "设想一只灰松鼠从树上掉到地面。（a）如果在这种情况下忽略空气阻力（仅为了这道题），并假设它是从 3.0 m 的高度掉下来的，求松鼠在落地前一瞬间的速度。（b）如果松鼠通过弯曲四肢在 2.0 cm 的距离内停下来，把它的减速度与上一题中那名飞行员的减速度相比较。",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 7.7,
+    "unit": "m/s",
+    "generated_by": "source",
+    "solution": "（a）7.7 m/s（b）$-15\\times10^{2}\\,\\text{m/s}^2$。这大约是那些飞行员减速度的 3 倍，而他们是从几千米的高空坠落的！"
+   }
+  },
+  {
+   "id": "p18",
+   "source_id": "fs-id1164906502756",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "直线加速赛车实际上只需 4.45 s 就能达到 145 m/s 的最大速率——比上面直线加速赛车例题中给出的时间短得多。（a）计算这样一辆直线加速赛车的平均加速度。（b）求这辆直线加速赛车从静止开始、以（a）中求得的加速度加速 402 m（四分之一英里）后的末速度，不使用任何有关时间的信息。（c）为什么这个末速度大于用来求平均加速度的那个速度？<em>提示</em>：考虑恒定加速度的假设对直线加速赛车是否成立。如果不成立，讨论加速度在行驶开始时还是结束时更大，以及这会对末速度产生什么影响。",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 32.6,
+    "unit": "m/s²",
+    "generated_by": "source",
+    "solution": "（a）$32.6\\,\\text{m/s}^2$（b）162 m/s（c）$v > v_{\\text{max}}$，因为恒定加速度的假设对直线加速赛车并不成立。直线加速赛车要换挡，一挡时的加速度会大于二挡，二挡时又大于三挡，依此类推。加速度在开始时最大，所以最后几米它并不是以 $32.6\\,\\text{m/s}^2$ 加速的，而是小得多，末速度会小于 162 m/s。"
+   }
+  },
+  {
+   "id": "p20",
+   "source_id": "fs-id1164906433774",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "1967 年，新西兰人伯特·门罗在犹他州的邦纳维尔盐滩上，以 183.58 mi/h 的最大速率创造了印第安摩托车的世界纪录。这条单程赛道长 5.00 mi。加速度常用从静止加速到 60.0 mi/h 所需的时间来描述。如果这个时间是 4.00 s，而伯特一直以这个加速度加速到达到他的最大速率，那么伯特跑完这条赛道用了多长时间？",
+   "answer": {
+    "type": "number",
+    "value": 104,
+    "unit": "s",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "p21",
+   "source_id": "fs-id1164906508150",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "prompt": "（a）2008 年北京奥林匹克运动会上，牙买加的尤塞恩·博尔特创造了男子 100 m 短跑的世界纪录。博尔特以 9.69 s 的成绩“滑行”冲过终点线。如果假设博尔特加速了 3.00 s 达到他的最大速率，并在比赛的其余时间保持这一速率，计算他的最大速率和加速度。（b）在同一届奥运会上，博尔特还以 19.30 s 的成绩创造了 200 m 短跑的世界纪录。采用与 100 m 短跑相同的假设，他在这场比赛中的最大速率是多少？",
+   "answer": {
+    "type": "number",
+    "part": "(a) speed",
+    "value": 12.2,
+    "unit": "m/s",
+    "generated_by": "source",
+    "solution": "（a）$v = 12.2$ m/s；$a = 4.07\\,\\text{m/s}^2$（b）$v = 11.2$ m/s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu-rocket",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "ap-marble",
+   "concept": "x-quadratic"
+  },
+  {
+   "exercise": "ap-marble",
+   "concept": "const-a"
+  },
+  {
+   "exercise": "p1",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p2",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p4",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p6",
+   "concept": "x-quadratic"
+  },
+  {
+   "exercise": "p6",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p6",
+   "concept": "const-a"
+  },
+  {
+   "exercise": "p8",
+   "concept": "x-from-vbar"
+  },
+  {
+   "exercise": "p8",
+   "concept": "vbar-midpoint"
+  },
+  {
+   "exercise": "p10",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p10",
+   "concept": "x-quadratic"
+  },
+  {
+   "exercise": "p10",
+   "concept": "physical-solution"
+  },
+  {
+   "exercise": "p12",
+   "concept": "v-squared"
+  },
+  {
+   "exercise": "p12",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p14",
+   "concept": "v-squared"
+  },
+  {
+   "exercise": "p14",
+   "concept": "x-from-vbar"
+  },
+  {
+   "exercise": "p16",
+   "concept": "v-squared"
+  },
+  {
+   "exercise": "p18",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p18",
+   "concept": "v-squared"
+  },
+  {
+   "exercise": "p18",
+   "concept": "const-a"
+  },
+  {
+   "exercise": "p20",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p20",
+   "concept": "x-quadratic"
+  },
+  {
+   "exercise": "p20",
+   "concept": "x-from-vbar"
+  },
+  {
+   "exercise": "p20",
+   "concept": "choose-equation"
+  },
+  {
+   "exercise": "p21",
+   "concept": "v-from-at"
+  },
+  {
+   "exercise": "p21",
+   "concept": "x-quadratic"
+  },
+  {
+   "exercise": "p21",
+   "concept": "x-from-vbar"
+  },
+  {
+   "exercise": "p21",
+   "concept": "choose-equation"
+  }
+ ],
+ "referents": [
+  {
+   "id": "jogger",
+   "label": "慢跑者",
+   "figures": [
+    "sim-jogger"
+   ]
+  },
+  {
+   "id": "airplane",
+   "label": "着陆的飞机",
+   "figures": [
+    "sim-plane"
+   ]
+  },
+  {
+   "id": "dragster",
+   "label": "直线加速赛车",
+   "figures": [
+    "sim-dragster"
+   ]
+  },
+  {
+   "id": "braking-car",
+   "label": "在干燥和潮湿混凝土路面上停下来的汽车",
+   "figures": [
+    "sim-braking"
+   ]
+  },
+  {
+   "id": "merging-car",
+   "label": "汇入车流的汽车",
+   "figures": [
+    "sim-merge"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "position-from-average-velocity",
+   "what": "当加速度（$\\ka$）恒定时，由平均速度求位移（$\\kdx$）和末位置（$\\kx$）",
+   "source": "《大学物理（第2版）》，2.5 一维恒定加速度运动的运动学方程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kdx = \\kx - \\kxo",
+       "src": "2.5"
+      },
+      {
+       "tex": "\\kdt = \\kt",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvb} = \\frac{\\mk{x}{\\kdx}}{\\mk{t}{\\kdt}}",
+      "src": "2.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kvb} = \\frac{\\mk{x}{\\kx - \\kxo}}{\\mk{t}{\\kt}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{v}{\\kvb}\\mk{t}{\\kt}",
+       "uses": [],
+       "map": {
+        "x": [
+         "x",
+         "x0"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  },
+  {
+   "id": "final-velocity",
+   "what": "末速度",
+   "source": "《大学物理（第2版）》，2.5 一维恒定加速度运动的运动学方程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kab = \\ka = \\text{常量}",
+       "src": "2.5"
+      },
+      {
+       "tex": "\\kdv = \\kv - \\kvo",
+       "src": "2.5"
+      },
+      {
+       "tex": "\\kdt = \\kt",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\ka} = \\frac{\\mk{dv}{\\kdv}}{\\mk{t}{\\kdt}}",
+      "src": "2.4",
+      "uses": [
+       0
+      ],
+      "why": "平均加速度为 $\\kdv/\\kdt$，而当加速度恒定时，平均加速度与瞬时加速度相等。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\ka} = \\frac{\\mk{v}{\\kv} - \\mk{v0}{\\kvo}}{\\mk{t}{\\kt}}\\;(\\text{恒定 }\\ka)",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "dv": [
+         "v",
+         "v0"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\mk{v0}{\\kvo} + \\mk{a}{\\ka}\\mk{t}{\\kt}\\;(\\text{恒定 }\\ka)",
+       "uses": []
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  },
+  {
+   "id": "position-constant-acceleration",
+   "what": "速度不恒定（$\\ka \\neq 0$）时的末位置",
+   "source": "《大学物理（第2版）》，2.5 一维恒定加速度运动的运动学方程",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvb = \\frac{\\kvo + \\kv}{2}\\;(\\text{恒定 }\\ka)",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\mk{v0}{\\kvo} + \\mk{a}{\\ka\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v0b}{\\kvo} + \\mk{v}{\\kv} = \\mk{v0}{2\\kvo} + \\mk{a}{\\ka\\kt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{vb}{\\frac{\\kvo + \\kv}{2}} = \\mk{v0}{\\kvo} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt}",
+       "uses": [],
+       "map": {
+        "v0b": "vb",
+        "v": "vb"
+       }
+      },
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\mk{v0}{\\kvo} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{(\\kvo + \\tfrac{1}{2}\\ka\\kt)}\\mk{t}{\\kt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{v0t}{\\kvo\\kt} + \\mk{at}{\\tfrac{1}{2}\\ka\\kt^2}\\;(\\text{恒定 }\\ka)",
+       "uses": [],
+       "map": {
+        "vb": [
+         "v0t",
+         "at"
+        ],
+        "t": [
+         "v0t",
+         "at"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  },
+  {
+   "id": "velocity-without-time",
+   "what": "速度不恒定（$\\ka \\neq 0$）时的末速度",
+   "source": "《大学物理（第2版）》，2.5 一维恒定加速度运动的运动学方程",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\mk{v0}{\\kvo} + \\mk{a}{\\ka}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kv} - \\mk{v0}{\\kvo} = \\mk{a}{\\ka}\\mk{t}{\\kt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{\\kt} = \\frac{\\mk{v}{\\kv} - \\mk{v0}{\\kvo}}{\\mk{a}{\\ka}}",
+       "uses": []
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvb = \\frac{\\kvo + \\kv}{2}\\;(\\text{恒定 }\\ka)",
+       "src": "2.5"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\left(\\frac{\\kvo + \\kv}{2}\\right)}\\mk{t}{\\kt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\left(\\frac{\\kvo + \\kv}{2}\\right)}\\mk{t}{\\left(\\frac{\\kv - \\kvo}{\\ka}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\frac{\\mk{sq}{\\kv^2 - \\kvo^2}}{\\mk{den}{2\\ka}}",
+       "uses": [],
+       "map": {
+        "vb": [
+         "sq",
+         "den"
+        ],
+        "t": [
+         "sq",
+         "den"
+        ]
+       },
+       "cap": "两个分子相乘，成为平方差：$(\\kv + \\kvo)(\\kv - \\kvo) = \\kv^2 - \\kvo^2$。"
+      },
+      {
+       "tex": "\\mk{x}{\\kx} - \\mk{x0}{\\kxo} = \\frac{\\mk{sq}{\\kv^2 - \\kvo^2}}{\\mk{den}{2\\ka}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{den}{2\\ka}(\\mk{x}{\\kx} - \\mk{x0}{\\kxo}) = \\mk{sq}{\\kv^2 - \\kvo^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kv^2} = \\mk{v0}{\\kvo^2} + \\mk{den}{2\\ka}(\\mk{x}{\\kx} - \\mk{x0}{\\kxo})\\;(\\text{恒定 }\\ka)",
+       "uses": [],
+       "map": {
+        "sq": [
+         "v",
+         "v0"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  }
+ ]
+}

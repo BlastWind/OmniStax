@@ -1,0 +1,664 @@
+{
+ "id": "11.6",
+ "module": "m42195",
+ "chapter": "11",
+ "title": "表压强、绝对压强与压强的测量",
+ "short": "表压强与绝对压强",
+ "lead": "瘪了的轮胎上，轮胎压强表的读数为零，尽管里面的空气仍处于<span data-concept=\"atmospheric-pressure\">大气压</span>下。你将遇到表述<span data-concept=\"pressure\">压强</span>的两种方式——相对于大气，或相对于真空——以及测量它的仪器。",
+ "objectives": [
+  "定义表压强和绝对压强。",
+  "理解无液气压计和开管气压计的工作原理。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"gauge-pressure\">表压强</span>是相对于<span data-concept=\"atmospheric-pressure\">大气压</span>的<span data-concept=\"pressure\">压强</span>。</li><li><span data-concept=\"absolute-pressure\">绝对压强</span>是<span data-concept=\"gauge-pressure\">表压强</span>与<span data-concept=\"atmospheric-pressure\">大气压</span>之和。</li><li>无液压强表利用波纹管与弹簧的组合来测量<span data-concept=\"pressure\">压强</span>，该组合与已标定的标尺上的指针相连。</li><li>开管压强计有 U 形管，其一端始终开口。它用来测量<span data-concept=\"pressure\">压强</span>。</li><li>汞气压计是测量<span data-concept=\"atmospheric-pressure\">大气压</span>的装置。</li></ul>",
+ "notes": "书中未给出答案的三道习题——通过流体的重力产生的压强换算 120 比 80、高压锅的锁扣以及搁浅潜艇的舱门——被略去了。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。习题 2、4 和 6 没有给出答案，因而略去：通过 $\\kPr = \\kh\\krho\\kg$ 把 120 比 80 mm Hg 换算成牛顿每平方米并讨论婴儿的血压，高压锅的锁扣必须承受的力，以及打开搁浅潜艇舱门所需的力。习题 1 的答案给出四个数，即气球的表压强和绝对压强（以厘米水柱表示）以及罐的表压强和绝对压强（以毫米汞柱表示），卡片检查这四个数。习题 5 的答案给出 38.7 mm Hg 的增量和腿处 159 比 119 的读数，卡片检查这三个数。本节没有印出 AP 题。没有任何内容取自其他小节，本节自身的内容也没有留给后面的页面，正如本章的 config 所决定的。三道思考题的建议思路由 AI 撰写，并已标明。第一道思考题是对那段说明大气压对敞开的压强计两侧向下推力相等的文字的简短检查，就地放在该段之后；其余都放在末尾。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-aneroid",
+   "kind": "sim",
+   "number": "11.13",
+   "originals": [
+    "/media/ch11/Figure_12_06_01a.jpg"
+   ],
+   "original_caption": "这个无液压强表利用与机械指示器相连的柔性波纹管来测量压强。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "pressure",
+    "force"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut to the fact the caption leaves out"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-manometer",
+   "kind": "sim",
+   "number": "11.14",
+   "originals": [
+    "/media/ch11/Figure_12_06_02a.jpg"
+   ],
+   "original_caption": "开管压强计的一侧与大气相通。（a）两侧的流体深度必须相同，否则两侧在底部施加的压强就不相等，流体将从较深的一侧流走。（b）传递到压强计一侧的正表压强 P_g = hρg 能够支撑一段高度为 h 的流体柱。（c）同样，大气压比负的表压强 P_g 大 hρg。罐子的刚性使大气压无法传递到花生上。",
+   "widths": [
+    600
+   ],
+   "draws": [
+    "pressure",
+    "position",
+    "density",
+    "acceleration"
+   ],
+   "facts": [
+    "#bfe0f2",
+    "#a9b2bd"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "balloon redrawn as one oval; h label clear of level lines; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-cuff",
+   "kind": "photo",
+   "number": "11.15",
+   "originals": [
+    "/media/ch11/Figure_12_06_03a.jpg"
+   ],
+   "original_caption": "在常规的血压测量中，把一个充气袖带绑在上臂上，与心脏处于同一高度。袖带正下方检测血流，相应的压强被传递到一个盛有汞的压强计。（来源：美国陆军照片，摄影：Spc. Micah E. Clare\\4TH BCT）",
+   "widths": [
+    300
+   ]
+  },
+  {
+   "id": "sim-barometer",
+   "kind": "sim",
+   "number": "11.16",
+   "originals": [
+    "/media/ch11/Figure_12_06_04a.jpg"
+   ],
+   "original_caption": "汞气压计测量大气压。汞柱的重力产生的压强 hρg 等于大气压。大气之所以能把管中的汞压到高度 h，是因为汞上方的压强为零。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "pressure",
+    "position",
+    "density",
+    "acceleration"
+   ],
+   "facts": [
+    "#bfe0f2",
+    "#a9b2bd"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "point label off the arrow; no arrows at zero atmosphere; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "gauge",
+   "concept": "gauge-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "gauge",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "gauge",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "gauge",
+   "concept": "pressures-add",
+   "verb": "uses"
+  },
+  {
+   "span": "absolute",
+   "concept": "absolute-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "absolute",
+   "concept": "gauge-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "absolute",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "absolute",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "gauges",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "gauges",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "gauges",
+   "concept": "gauge-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "gauges",
+   "concept": "absolute-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "manometer",
+   "concept": "manometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "manometer",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "manometer",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "manometer",
+   "concept": "gauge-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "manometer",
+   "concept": "absolute-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "blood-pressure",
+   "concept": "blood-pressure-measurement",
+   "verb": "introduces"
+  },
+  {
+   "span": "blood-pressure",
+   "concept": "manometer",
+   "verb": "reinforces"
+  },
+  {
+   "span": "blood-pressure",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "blood-pressure",
+   "concept": "density-from-pressure-and-height",
+   "verb": "uses"
+  },
+  {
+   "span": "blood-pressure",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "blood-pressure",
+   "concept": "systolic-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "blood-pressure",
+   "concept": "diastolic-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "barometer",
+   "concept": "barometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "barometer",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "barometer",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "barometer",
+   "concept": "absolute-pressure",
+   "verb": "reinforces"
+  },
+  {
+   "span": "barometer",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  },
+  {
+   "span": "barometer",
+   "concept": "mm-hg",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2010871",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "manometer",
+   "prompt": "解释为什么当压强计的两侧都与大气相通时，即使两根管子的直径不同，流体也会在两侧达到相同的高度。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "流体中某一点的压强来自其上方流体的重力，以及压在液面上的大气，即 $\\kPr = \\kPatm + \\kh\\krho\\kg$。它只取决于深度，而与该点上方的流体量或管子的宽度无关。取 U 形管底部、两侧相连处的一点。大气对两个敞开的液面向下的推力相等。如果某一侧的流体更高，那么这一侧在底部产生的压强就会多出那段额外深度乘以 $\\krho\\kg$，流体就会从较深的一侧流走，直到两侧深度相等。较宽的管子装的流体更多，但在同一深度处，宽管和窄管中的压强是一样的，所以管子的直径对液面最终停在何处没有影响。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "eip-id3037483",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "blood-pressure",
+   "prompt": "图 11.15 展示了动脉血压的一种常见测量方法。如果压强计被降低，对测得的压强有影响吗？把手臂举过肩膀，会有什么影响？让人站着，把袖带绑在大腿上，又会有什么影响？请用流体的重力产生的压强来解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "空气把袖带和压强计连通起来，而空气很稀薄，一米左右高的空气柱的重力所产生的压强可以忽略不计。因此，升高或降低压强计对读数没有影响：不论压强计放在哪里，袖带中的压强都原封不动地传到汞上。手臂中的血液则不同，因为血液是一种密度与水相近的液体。把手臂举过肩膀，动脉就被抬到心脏之上，那里的压强比心脏处低，低的量为升高的高度所对应的 $\\kh\\krho\\kg$，所以袖带读出的压强较低。站着的人把袖带绑在大腿上，袖带位于心脏之下很多，那里的压强比心脏处高，高出的量为该深度所对应的 $\\kh\\krho\\kg$，所以读数较高，正如习题中对心脏下方 0.500 m 处的袖带所算出的那样。这就是袖带要绑在上臂、与心脏同一高度的原因。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1314393",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "blood-pressure",
+   "prompt": "考虑到典型动脉血压的大小，为什么这些测量用的是汞压强计而不是水压强计？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "压强计把表压强读作一段流体柱的高度，$\\kPg = \\kh\\krho\\kg$，所以对给定的压强，高度为 $\\kh = \\kPg/\\krho\\kg$，与流体的密度成反比。典型的收缩压 120 mm Hg 只使汞升高 120 mm，这样的管子放在桌上或挂在墙上都装得下。水的密度是汞的 1/13.6，所以同样的压强会使水柱高度是汞柱高度的 13.6 倍，约 1.6 m，而习题中算得，测量最高 300 mm Hg 压强的水压强计得有 4.08 m 高。汞压强计小巧，便于使用和读数，而用来测量血压的水压强计则不然。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2666940",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "manometer",
+   "prompt": "求图 11.14 所示气球和花生罐中的表压强和绝对压强，假设与气球相连的压强计用水，而与罐相连的压强计装汞。气球以厘米水柱表示，罐以毫米汞柱表示，两者都取 $\\kh = 0.0500\\ \\text{m}$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "balloon, $\\kPg$",
+      "value": 5.0,
+      "unit": "cm H₂O",
+      "hint": "在水压强计中，以厘米水柱表示时，表压强就是水柱本身的高度，而气球把开口一侧的水柱托住。"
+     },
+     {
+      "part": "balloon, $\\kPabs$",
+      "value": 1035,
+      "unit": "cm H₂O",
+      "hint": "同一单位下的大气压见表 11.2，绝对压强就是表压强加上它。"
+     },
+     {
+      "part": "jar, $\\kPg$",
+      "value": -50.0,
+      "unit": "mm Hg",
+      "hint": "罐内低于大气压，所以它的表压强为负，在汞压强计中它等于汞柱的高度，以毫米为单位。"
+     },
+     {
+      "part": "jar, $\\kPabs$",
+      "value": 710,
+      "unit": "mm Hg",
+      "hint": "表 11.2 给出了 1 atm 对应的毫米汞柱数；再减去罐的表压强。"
+     }
+    ],
+    "solution": "气球：$\\kPg = 5.00\\ \\text{cm}\\ \\text{H}_2\\text{O}$，$\\kPabs = 1.035\\times 10^{3}\\ \\text{cm}\\ \\text{H}_2\\text{O}$。罐：$\\kPg = -50.0\\ \\text{mm Hg}$，$\\kPabs = 710\\ \\text{mm Hg}$。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2594876",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "manometer",
+   "prompt": "要测量高达 300 mm Hg 的血压，装水的压强计必须多高？",
+   "answer": {
+    "type": "number",
+    "value": 4.08,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "用 $1.0\\ \\text{mm Hg} = 133\\ \\text{Pa}$ 把 300 mm Hg 换算成帕斯卡，再由 $\\kh = \\kPg/\\krho\\kg$ 求出产生该压强的水柱高度。",
+    "solution": "4.08 m"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2599483",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "blood-pressure",
+   "prompt": "假设你测量一个站立的人的血压，把袖带绑在他心脏下方 0.500 m 的腿上。如果心脏处的压强为 120 比 80 mm Hg，计算你将观测到的压强（以 mm Hg 为单位）。假设循环系统中没有因阻力造成的压强损失（这是一个合理的假设，因为主要动脉都很粗）。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$\\kdPr$",
+      "value": 38.7,
+      "unit": "mm Hg",
+      "hint": "多出来的压强是一段 0.500 m 高的血柱产生的 $\\kh\\krho\\kg$，取血的密度，再换算成毫米汞柱。"
+     },
+     {
+      "part": "systolic at the leg",
+      "value": 159,
+      "unit": "mm Hg",
+      "hint": "把这一增量加到心脏处的 120 mm Hg 上。"
+     },
+     {
+      "part": "diastolic at the leg",
+      "value": 119,
+      "unit": "mm Hg",
+      "hint": "把同样的增量加到心脏处的 80 mm Hg 上。"
+     }
+    ],
+    "solution": "$\\kdPr = 38.7\\ \\text{mm Hg}$，所以腿处的血压为 $\\dfrac{159}{119}$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2408955",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gauge",
+   "prompt": "假设自行车轮胎完全柔软，仅靠压强来支撑自行车和骑车人的重力，计算轮胎与地面接触的总面积。自行车加骑车人的质量为 80.0 kg，轮胎内的表压强为 $3.50\\times 10^{5}\\ \\text{Pa}$。",
+   "answer": {
+    "type": "number",
+    "value": 22.4,
+    "unit": "cm²",
+    "generated_by": "source",
+    "hint": "轮胎以等于压强乘以接触面积的力托住重力 $m\\kg$，起作用的是表压强，因为大气既压在轮胎的外面，也压在地面上。",
+    "solution": "$22.4\\ \\text{cm}^2$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "manometer"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "atmospheric-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "blood-pressure-measurement"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "manometer",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "manometer"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "blood-pressure-measurement",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "manometer"
+  },
+  {
+   "exercise": "p1",
+   "concept": "absolute-pressure"
+  },
+  {
+   "exercise": "p1",
+   "concept": "gauge-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "manometer"
+  },
+  {
+   "exercise": "p3",
+   "concept": "blood-pressure-measurement",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "blood-pressure-measurement"
+  },
+  {
+   "exercise": "p5",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "gauge-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "force-from-pressure"
+  },
+  {
+   "exercise": "p7",
+   "concept": "gauge-pressure",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "bellows",
+   "label": "柔性波纹管",
+   "figures": [
+    "sim-aneroid"
+   ]
+  },
+  {
+   "id": "spring",
+   "label": "弹簧",
+   "figures": [
+    "sim-aneroid"
+   ]
+  },
+  {
+   "id": "pointer",
+   "label": "指针",
+   "figures": [
+    "sim-aneroid"
+   ]
+  },
+  {
+   "id": "tube",
+   "label": "压强计的 U 形管",
+   "figures": [
+    "sim-manometer"
+   ]
+  },
+  {
+   "id": "balloon",
+   "label": "玩具气球",
+   "figures": [
+    "sim-manometer"
+   ]
+  },
+  {
+   "id": "jar",
+   "label": "真空包装的花生罐",
+   "figures": [
+    "sim-manometer"
+   ]
+  },
+  {
+   "id": "barometer",
+   "label": "气压计管",
+   "figures": [
+    "sim-barometer"
+   ]
+  },
+  {
+   "id": "dish",
+   "label": "汞槽",
+   "figures": [
+    "sim-barometer"
+   ]
+  }
+ ]
+}

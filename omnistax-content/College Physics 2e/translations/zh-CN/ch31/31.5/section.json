@@ -1,0 +1,852 @@
+{
+ "id": "31.5",
+ "module": "m42636",
+ "chapter": "31",
+ "title": "半衰期与活度",
+ "short": "半衰期与活度",
+ "lead": "每个放射性原子核都是随机衰变的，但由许多原子核组成的样品，却按一定的规律稳定地损失其原子核。本节用<span data-concept=\"half-life\">半衰期</span>和<span data-concept=\"decay-constant\">衰变常量</span>来度量这一规律，并由古老物体所保留的碳-14 求出它们的年代，还定义了放射源的<span data-concept=\"activity\">活度</span>，即它的衰变率。",
+ "objectives": [
+  "定义半衰期。",
+  "定义鉴年。",
+  "用放射性鉴年法计算古老物体的年代。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"half-life\">半衰期</span> $\\kthalf$ 是一个原子核有 50% 的概率发生衰变所用的<span data-concept=\"time\">时间</span>。原子核数目 $N$ 随<span data-concept=\"time\">时间</span>变化的函数是 $$N = N_0e^{-\\klamdec\\kt},$$ 其中 $N_0$ 是 $\\kt = 0$ 时存在的数目，$\\klamdec$ 是<span data-concept=\"decay-constant\">衰变常量</span>，它与<span data-concept=\"half-life\">半衰期</span>的关系为 $$\\klamdec = \\frac{0.693}{\\kthalf}.$$</li><li>放射性衰变的应用之一是放射性鉴年法，其中材料的年代由发生的放射性衰变的量来确定。<span data-concept=\"activity\">衰变率</span>称为<span data-concept=\"activity\">活度</span> $\\kRact$：$$\\kRact = \\frac{\\Delta N}{\\kdt}.$$</li><li>$\\kRact$ 的 SI 单位是贝可勒尔（Bq），定义为 $$1\\;\\text{Bq} = 1\\;\\text{衰变/s}.$$</li><li>$\\kRact$ 也用居里（Ci）表示，其中 $$1\\;\\text{Ci} = 3.70\\times 10^{10}\\;\\text{Bq}.$$</li><li>一个源的<span data-concept=\"activity\">活度</span> $\\kRact$ 与 $N$ 和 $\\kthalf$ 的关系为 $$\\kRact = \\frac{0.693N}{\\kthalf}.$$</li><li>由于 $N$ 的变化呈指数行为，如方程 $N = N_0e^{-\\klamdec\\kt}$ 所示，<span data-concept=\"activity\">活度</span>也呈指数行为，由下式给出 $$\\kRact = \\kRoact e^{-\\klamdec\\kt},$$ 其中 $\\kRoact$ 是 $\\kt = 0$ 时的<span data-concept=\"activity\">活度</span>。</li></ul>",
+ "notes": "PhET 模拟“α 衰变”的链接被略去；按原书照录的有：碳-14 由太阳中微子（而非中子）撞击氮-14 产生的说法，关于钋-215 的 AP 题的答案中，对 1.78 ms 的半衰期却除以 0.00173 s、而其结果是按 1.78 ms 算出的那一处，以及 Fiestaware 习题（c）问的答案中单写的一笔钱数。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "做这些习题可能需要用到附录中的数据和元素周期表。",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。关于三个半衰期后剩下多少原子的 AP 题，其答案在原书源文件中被注释掉了，所以把它设为开放题，附有它的选项和标明为 AI 撰写的建议思路。这里印出的四道关于结合能的思考题（束缚系统较小的质量、向更紧密束缚的衰变、BE 中电子的结合能，以及核力的力程）放在 31.6，因为那一节引入了结合能。保留下来的三道思考题没有答案，附有标明为 AI 撰写的建议思路。书中没有给出答案的十三道习题被略去：标为 4.00 mCi 的 ⁶⁰Co 源、一克活碳的活度、牛奶中的 ¹³¹I、²³⁵U 的半衰期、铀玻璃花瓶、自地球形成以来剩下的 ⁴⁰K、地球形成时的天然铀、涂镭的表盘、贫铀弹、4000 kg 的 ²³⁸U 块、关于空间探测器功率的“自拟习题”，以及关于原生 ²³⁶U 和 ²³⁴U 的“不合理的结果”习题。本节没有印出理解检测框，所以没有内嵌任何题目。",
+ "figures": [
+  {
+   "id": "sim-decay-curve",
+   "kind": "sim",
+   "number": "31.19",
+   "originals": [
+    "/media/ch31/Figure_32_05_01a.jpg"
+   ],
+   "original_caption": "放射性衰变使放射性原子核的数目随时间减少。在一个半衰期 t½ 内，数目减少到原来数值的一半。剩下的原子核中又有一半在下一个半衰期内衰变，再下一个半衰期内又衰变其中的一半，依此类推。这是一种指数式衰减，从表示存在的原子核数目随时间变化的图线可以看出。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "time",
+    "decay-constant"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-shroud",
+   "kind": "photo",
+   "number": "31.20",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-chernobyl",
+   "kind": "photo",
+   "number": "31.21",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-carbon-dating",
+   "kind": "sim",
+   "draws": [
+    "time",
+    "decay-constant",
+    "activity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "lifetimes",
+   "concept": "nuclear-radioactivity",
+   "verb": "uses"
+  },
+  {
+   "span": "half-life",
+   "concept": "half-life",
+   "verb": "introduces"
+  },
+  {
+   "span": "half-life",
+   "concept": "exponential-decay-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "half-life",
+   "concept": "decay-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "half-life",
+   "concept": "nucleus",
+   "verb": "uses"
+  },
+  {
+   "span": "half-life",
+   "concept": "time",
+   "verb": "uses"
+  },
+  {
+   "span": "radioactive-dating",
+   "concept": "radioactive-dating-technique",
+   "verb": "introduces"
+  },
+  {
+   "span": "radioactive-dating",
+   "concept": "carbon-14-dating",
+   "verb": "introduces"
+  },
+  {
+   "span": "radioactive-dating",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "shroud-example",
+   "concept": "radioactive-dating",
+   "verb": "introduces"
+  },
+  {
+   "span": "shroud-example",
+   "concept": "exponential-decay-law",
+   "verb": "uses"
+  },
+  {
+   "span": "shroud-example",
+   "concept": "decay-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "rock-dating",
+   "concept": "radioactive-dating-technique",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rock-dating",
+   "concept": "parent-daughter-decay-series",
+   "verb": "uses"
+  },
+  {
+   "span": "activity",
+   "concept": "activity",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "becquerel",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "curie",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "reinforces"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "carbon-14-dating",
+   "verb": "uses"
+  },
+  {
+   "span": "artificial-radioactivity",
+   "concept": "radioactive",
+   "verb": "uses"
+  },
+  {
+   "span": "artificial-radioactivity",
+   "concept": "curie",
+   "verb": "uses"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "reinforces"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "activity-decays",
+   "concept": "activity-decays-exponentially",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity-decays",
+   "concept": "exponential-decay-law",
+   "verb": "uses"
+  },
+  {
+   "span": "activity-decays",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1705205",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "half-life",
+   "prompt": "一个放射性样品起初有 N 个原子。经过 3 个半衰期后，还剩多少个原子？（a）N/3（b）N/6（c）N/8（d）N/27",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "答案是（c），$N/8$。每个半衰期都使存在的原子核剩下开始时的一半，所以原子核数目在一个半衰期后从 $N$ 减少到 $N/2$，两个半衰期后减少到 $N/4$，三个半衰期后减少到 $N/8$，$N\\left(\\tfrac{1}{2}\\right)^{3} = N/8$。其余选项把每个半衰期当成减少了三分之一或固定的量，而衰变并不是这样进行的。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1400928",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "half-life",
+   "prompt": "${}^{215}_{84}\\text{Po}$ 衰变时，产物是 ${}^{211}_{82}\\text{Pb}$。这一衰变过程的半衰期是 1.78 ms。如果初始样品含有 $3.4\\times 10^{17}$ 个母核，经过 35 ms 后还剩多少个？这是哪一种衰变过程（α 衰变、β 衰变还是 γ 衰变）？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 410000000000.0,
+    "part": "number remaining",
+    "hint": "用 $N = N_0e^{-\\klamdec\\kt}$ 和 $\\klamdec = 0.693/\\kthalf$ 求解，并比较母核与子核的质量数和原子序数，以确定是哪种衰变。",
+    "solution": "这一定是 α 衰变，因为母核失去了 4 个核子（2 个正电荷）。剩下的数目可由下式求得：$N(\\kt) = N_0e^{-0.693\\kt/\\kthalf} = 3.4\\times 10^{17}e^{-(0.693)(0.035)/0.00173}$<sup class=\"fn\" data-note=\"c-ap2-half-life\"></sup>，所以 $N(\\kt) = 4.1\\times 10^{11}$ 个原子核。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2655147",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rock-dating",
+   "prompt": "在一块年龄为 $3\\times 10^{9}$ 年的岩石中，原来含有一些 ${}^{238}\\text{U}$（其半衰期为 $4.5\\times 10^{9}$ 年），我们预期其中还剩有一些 ${}^{238}\\text{U}$。为什么这样的岩石中也能发现 ${}^{226}\\text{Ra}$、${}^{222}\\text{Rn}$ 和 ${}^{210}\\text{Po}$，尽管它们的半衰期短得多（分别为 1600 年、3.8 天和 138 天）？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "镭、氡和钋都是 ${}^{238}\\text{U}$ 衰变系的成员，${}^{238}\\text{U}$ 经过它们衰变到 ${}^{206}\\text{Pb}$。岩石形成时存在的那些早已消失殆尽，但铀仍在衰变，所以它们每一种都在不断重新生成。寿命短的成员衰变得几乎和生成得一样快，因此只要铀还存在，岩石中就始终保留着少量而稳定的该成员。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2404373",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "half-life",
+   "prompt": "样品中放射性原子核的数目，在一个半衰期内是否会<em>恰好</em>减少到原来数值的一半？请从放射性衰变的统计性质来解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不会。半衰期是使每个原子核有 50% 的概率发生衰变的时间，而且每个原子核都是随机衰变的，彼此独立，就像掷硬币出现正面一样。因此，在一个半衰期内衰变的数目，只有平均而言才接近一半；在任何一个样品中，它都在一半附近涨落，涨落幅度约为 $\\sqrt{N}$。当 $N$ 非常大时，这一涨落只占总数的极小一部分，所以剩下的数目非常接近一半，而对于小样品，则可能明显偏多或偏少。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1439074",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "放射性取决于原子核，而不取决于原子或其化学状态。那么，为什么一千克铀比一千克六氟化铀的放射性更强？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个源的活度与其中放射性原子核的数目成正比，$\\kRact = 0.693N/\\kthalf$。在一千克六氟化铀 $\\text{UF}_6$ 中，有一部分质量是氟，而氟没有放射性：每个分子的质量约为 352 u，其中只有约 238 u 是铀。所以一千克这种化合物所含的铀原子核只有一千克铀的约三分之二，它的活度也只有约三分之二，尽管每个铀原子核的衰变与在金属中完全一样。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2391582",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radioactive-dating",
+   "prompt": "考古发掘中发现了一处古老的火堆。发现其中的木炭所含的 ${}^{14}\\text{C}$ 不到正常量的 1/1000。请估算这些木炭的最小年龄，并注意 $2^{10} = 1024$。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 57300,
+    "unit": "y",
+    "hint": "每个半衰期都使剩下的 ${}^{14}\\text{C}$ 减半，所以数一数需要经过多少个 5730 y 的半衰期，才能降到 1/1000 以下。",
+    "solution": "57,300 y"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2392383",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "（a）计算 1.00 g ${}^{226}\\text{Ra}$ 的活度 $\\kRact$，以居里为单位。（b）居里最初本应恰好是一克镭的活度，请讨论为什么你的答案并不恰好是 1.00 Ci。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.988,
+    "unit": "Ci",
+    "part": "(a)",
+    "hint": "由摩尔质量 226 g/mol 求出 1.00 g 中的原子核数目，再用 $\\kRact = 0.693N/\\kthalf$ 及 ${}^{226}\\text{Ra}$ 的半衰期 1600 y，并换算成居里。",
+    "solution": "（a）0.988 Ci（b）${}^{226}\\text{Ra}$ 的半衰期现在测得更精确了。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3408229",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "汽灯纱罩含有钍，因为钍能形成一种氧化物，可以长时间加热到白炽状态而不被破坏。天然钍几乎 100% 是 ${}^{232}\\text{Th}$，其半衰期为 $1.405\\times 10^{10}\\;\\text{y}$。如果一个普通汽灯纱罩含 300 mg 钍，它的活度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1220.0,
+    "unit": "Bq",
+    "hint": "求出 300 mg 中 ${}^{232}\\text{Th}$ 原子核的数目，再用 $\\kRact = 0.693N/\\kthalf$，半衰期要换算成秒。",
+    "solution": "$1.22\\times 10^{3}\\;\\text{Bq}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2070004",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "（a）天然钾含有 ${}^{40}\\text{K}$，其半衰期为 $1.277\\times 10^{9}$ y。人体内多大质量的 ${}^{40}\\text{K}$ 的衰变率为 4140 Bq？（b）已知此人体内有 140 g，天然钾中 ${}^{40}\\text{K}$ 所占的比例是多少？（这些数字对 70 kg 的成年人是典型的。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 16.0,
+      "unit": "mg",
+      "hint": "把 $\\kRact = 0.693N/\\kthalf$ 对 $N$ 求解，再用摩尔质量 40 g/mol 把原子核数目换算成质量。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.0114,
+      "unit": "%"
+     }
+    ],
+    "solution": "（a）16.0 mg（b）0.0114%"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2011543",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "${}^{50}\\text{V}$ 具有已知最长的放射性半衰期之一。在一次艰难的实验中，一位研究者发现 1.00 kg ${}^{50}\\text{V}$ 的活度是 1.75 Bq。半衰期是多少年？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.48e+17,
+    "unit": "y",
+    "hint": "求出 1.00 kg 中的原子核数目，再把 $\\kRact = 0.693N/\\kthalf$ 对 $\\kthalf$ 求解，并把秒换算成年。",
+    "solution": "$1.48\\times 10^{17}\\;\\text{y}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2440734",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "一棵树在森林里倒下。要过多少年，这棵树 1.00 g 碳中的 ${}^{14}\\text{C}$ 活度才会降到每小时 1.00 次衰变？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 56000.0,
+    "unit": "y",
+    "hint": "一克活碳的活度为 0.250 Bq。把 $\\kRact = \\kRoact e^{-\\klamdec\\kt}$ 对 $\\kt$ 求解，两个活度要用同一单位。",
+    "solution": "$5.6\\times 10^{4}\\;\\text{y}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1935760",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "一个用于癌症治疗的 5000 Ci 的 ${}^{60}\\text{Co}$ 源，当其活度降到 3500 Ci 时，就被认为太弱而无用。这在制造之后多久发生？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.71,
+    "unit": "y",
+    "hint": "把 $\\kRact = \\kRoact e^{-\\klamdec\\kt}$ 对 $\\kt$ 求解，取 $\\klamdec = 0.693/\\kthalf$，${}^{60}\\text{Co}$ 的半衰期为 5.27 y。",
+    "solution": "2.71 y"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2681183",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "${}^{3}\\text{H}$（氚）衰变时发射的 $\\beta^{-}$ 粒子与物质相互作用而发光，使在黑暗中发光的出口标志亮起来。制造时，这样的标志含有 15.0 Ci 的 ${}^{3}\\text{H}$。（a）氚的质量是多少？（b）制造 5.00 y 后，它的活度是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.56,
+      "unit": "mg",
+      "hint": "把 $\\kRact = 0.693N/\\kthalf$ 对 $N$ 求解，用氚的半衰期 12.33 y，再用它的摩尔质量 3.02 g/mol。"
+     },
+     {
+      "part": "(b)",
+      "value": 11.3,
+      "unit": "Ci",
+      "hint": "用 $\\kRact = \\kRoact e^{-\\klamdec\\kt}$。"
+     }
+    ],
+    "solution": "（a）1.56 mg（b）11.3 Ci"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2935919",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "（a）一个物理实验室用的 ${}^{210}\\text{Po}$ 源，标明在制备之日的活度为 $1.0\\;\\mu\\text{Ci}$。一名学生用盖革计数器测量这个源的放射性，观察到每分钟 1500 个计数。她注意到这个源是在她做实验的 120 天前制备的。她用仪器观察到的衰变占多大比例？（b）指出探测器只观察到所发射的 $\\alpha$ 粒子中一部分的若干原因。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.00123,
+    "part": "(a)",
+    "hint": "由 $\\kRact = \\kRoact e^{-\\klamdec\\kt}$ 及 ${}^{210}\\text{Po}$ 的半衰期 138 天，求出 120 天后的活度，并与每秒的计数相比较。",
+    "solution": "（a）$1.23\\times 10^{-3}$（b）只有一部分发射出的辐射朝着探测器的方向。其中又只有一部分能使探测器产生响应。有些发射出的辐射（主要是 $\\alpha$ 粒子）在源内就被观察到了。有些在源内被吸收，有些被探测器吸收，有些则没有穿透探测器。"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "eip-525",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "红橙色 Fiestaware 盘子上的陶瓷釉是 $\\text{U}_2\\text{O}_3$，含有 50.0 克 ${}^{238}\\text{U}$，而 ${}^{235}\\text{U}$ 很少。（a）这个盘子的活度是多少？（b）计算 ${}^{238}\\text{U}$ 衰变将释放出的总能量。（c）如果能量按每 $\\text{kW}\\cdot\\text{h}$ 12.0 美分计价，所发出的能量值多少钱？（这些盘子大约 30 年前就停产了，但仍可作为收藏品买到。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.68e-05,
+      "unit": "Ci",
+      "hint": "用 $\\kRact = 0.693N/\\kthalf$，${}^{238}\\text{U}$ 的半衰期为 $4.468\\times 10^{9}$ y。"
+     },
+     {
+      "part": "(b)",
+      "value": 86500000000.0,
+      "unit": "J",
+      "hint": "每个原子核最终都会衰变；把它们的数目乘以 ${}^{238}\\text{U}$ 一次 $\\alpha$ 衰变的能量 4.27 MeV。"
+     },
+     {
+      "part": "(c)",
+      "value": 2900.0,
+      "unit": "dollars"
+     }
+    ],
+    "solution": "（a）$1.68\\times 10^{-5}\\;\\text{Ci}$（b）$8.65\\times 10^{10}\\;\\text{J}$（c）＄2.9 × 10³"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "eip-660",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "<em>伽利略</em>号空间探测器于 1989 年发射，开始了飞越数颗行星的漫长旅程，最终目标是木星。它的动力源是 11.0 kg 的 ${}^{238}\\text{Pu}$，这是核武器钚生产的副产品。电能由热电方式产生，热量来自每次衰变发射的 5.59 MeV $\\alpha$ 粒子在钚及其屏蔽层内猛然停住时所产生的热。${}^{238}\\text{Pu}$ 的半衰期是 87.7 年。（a）${}^{238}\\text{Pu}$ 最初的活度是多少贝可勒尔？（b）发出的功率是多少千瓦？（c）发射 12.0 y 后发出的功率是多少？你可以忽略来自子核的任何额外能量，以及 $\\gamma$ 射线逸出造成的任何损失。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6970000000000000.0,
+      "unit": "Bq",
+      "hint": "用 $\\kRact = 0.693N/\\kthalf$ 求 11.0 kg 中的原子核数目。"
+     },
+     {
+      "part": "(b)",
+      "value": 6.24,
+      "unit": "kW",
+      "hint": "功率等于每秒的衰变次数乘以每次衰变的能量。"
+     },
+     {
+      "part": "(c)",
+      "value": 5.67,
+      "unit": "kW",
+      "hint": "功率随活度下降，$\\kRact = \\kRoact e^{-\\klamdec\\kt}$。"
+     }
+    ],
+    "solution": "（a）$6.97\\times 10^{15}\\;\\text{Bq}$（b）6.24 kW（c）5.67 kW"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "eip-68",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "不合理的结果。一家烟雾报警器的制造商认为，他能探测到的最小 $\\alpha$ 辐射电流是 $1.00\\;\\mu\\text{A}$。（a）求能产生 $1.00\\;\\mu\\text{A}$ $\\alpha$ 粒子电流的 $\\alpha$ 发射体的活度，以居里为单位。（b）这个结果有什么不合理之处？（c）是哪个假设造成的？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 84.5,
+    "unit": "Ci",
+    "part": "(a)",
+    "hint": "每个 $\\alpha$ 粒子带的电荷是 $2(1.60\\times 10^{-19}\\;\\text{C})$，所以每秒的衰变次数等于电流除以这个电荷。",
+    "solution": "（a）84.5 Ci（b）活度极大，比家用允许的值大许多个数量级。（c）假设 $1.00\\;\\mu\\text{A}$ 大得不合理。其他方法可以探测到小得多的衰变率。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "exponential-decay-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "exponential-decay-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "decay-constant"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "parent-daughter-decay-series"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "exponential-decay-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p1",
+   "concept": "radioactive-dating"
+  },
+  {
+   "exercise": "p1",
+   "concept": "carbon-14-dating"
+  },
+  {
+   "exercise": "p1",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "p2",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p2",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p2",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p3",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p3",
+   "concept": "becquerel"
+  },
+  {
+   "exercise": "p3",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p4",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p4",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p5",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p5",
+   "concept": "becquerel"
+  },
+  {
+   "exercise": "p5",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p6",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p6",
+   "concept": "radioactive-dating"
+  },
+  {
+   "exercise": "p6",
+   "concept": "carbon-14-dating"
+  },
+  {
+   "exercise": "p7",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p7",
+   "concept": "decay-constant"
+  },
+  {
+   "exercise": "p8",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p8",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p8",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p9",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p9",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p10",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p10",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p10",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p11",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p11",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p11",
+   "concept": "power"
+  },
+  {
+   "exercise": "p12",
+   "concept": "activity"
+  },
+  {
+   "exercise": "p12",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p12",
+   "concept": "electric-current"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-c14-neutrons",
+   "kind": "correction",
+   "html": "原书说的是太阳中微子；碳-14 是宇宙线中子撞击 ${}^{14}\\text{N}$ 时产生的，反应为 ${}^{14}\\text{N}(n,p){}^{14}\\text{C}$。"
+  },
+  {
+   "id": "c-ap2-half-life",
+   "kind": "correction",
+   "html": "原书的答案除以的是 0.00173 s。半衰期是 1.78 ms，即 0.00178 s，用这个值得出的正是答案中的 $4.1\\times 10^{11}$ 个原子核。"
+  }
+ ]
+}

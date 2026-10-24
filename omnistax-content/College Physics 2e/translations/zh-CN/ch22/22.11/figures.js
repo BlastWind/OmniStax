@@ -1,0 +1,468 @@
+/* Figures for section 22.11 More Applications of Magnetism. Boots against the
+   section's text article.
+
+   The section is a list of things built out of the chapter's two results, so
+   each figure takes one of them apart. Figure 22.41 is the mass spectrometer:
+   the radius r = mv/qB read as a weighing machine, with the selector in front
+   of it and a detector wall behind it. The sim beside it is the selector on
+   its own, where three speeds go in and one comes out, which is the only piece
+   of new physics the section proves. Figure 22.42 is the cathode ray tube,
+   where the gun's voltage sets the speed and a coil's field bends the beam.
+   The third sim is the magnet of an MRI unit, whose field rises across the
+   patient so that every slice answers a broadcast of its own; the fourth sets
+   every field strength the chapter has named on one logarithmic scale, which
+   is the only way the sentence "10^-6 to 10^-8 less than the Earth's" becomes
+   a picture.
+
+   One of the four has a clock in it and moves: the ions flying through the
+   spectrometer, where the lighter one lands first because its arc is shorter.
+   The other three answer their controls and register no cycle.
+
+   The page binds magnetic-field, electric-field, velocity, voltage, position,
+   charge and force. The first five are the list ch22/COLOR.md gives it; force
+   and charge are the two the plan adds, since the selector draws qE against
+   qvB and every readout of the first three figures writes the charge that
+   cancels out of the balance. The two isotopes of the spectrometer, its ion
+   source, selector and detector, the gun, steering coil and screen of the tube,
+   the patient, and the Earth, the heart and brain and the MRI magnet on the
+   scale of field strengths (the magnet is also the bore the patient lies in)
+   are the section's referents. The three ions of the selector are one species at three
+   speeds and are drawn in oxygen's own colour from the element palette, as the
+   electron of the tube and the protons of the MRI slice are drawn in theirs. The dot that stands for a field out of
+   the page and the cross for one into it wear the field hue. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['22.11'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, labeller, hbracket, vbracket, axes, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- helpers shared by the figures ---------- */
+const TAU = 2 * Math.PI;
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (n) => String(n).split('').map((c) => SUP[c] ?? c).join('');
+function sciParts(x, d) { const e = Math.floor(Math.log10(Math.abs(x))); return { m: (x / Math.pow(10, e)).toFixed(d), e }; }
+const sci = (x, d = 2) => { if (x === 0) return '0'; const { m, e } = sciParts(x, d); return e === 0 ? m : m + ' × 10' + sup(e); };
+const sciTex = (x, d = 2) => { if (x === 0) return '0'; const { m, e } = sciParts(x, d); return e === 0 ? m : m + ' \\times 10^{' + e + '}'; };
+const QE = 1.60e-19;                 /* the size of one electron charge, in coulombs */
+const ME = 9.11e-31;                 /* the mass of an electron, in kilograms */
+const M16 = 2.66e-26;                /* the mass of an oxygen-16 ion, the book's own number */
+const B_EARTH = 5.00e-5;             /* the Earth's field strength, the book's own number */
+
+/* the mark for a field perpendicular to the page: a dot in a circle for a field
+   coming out, a cross for one going in. Both wear the field hue, since both are
+   field lines seen end-on (ch22/COLOR.md). */
+function outOfPage(ctx, x, y, color, s = 8) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(x, y, s, 0, TAU); ctx.stroke();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, 3.0, 0, TAU); ctx.fill(); ctx.restore();
+}
+function intoPage(ctx, x, y, color, s = 8) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.6; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x - s, y - s); ctx.lineTo(x + s, y + s); ctx.moveTo(x + s, y - s); ctx.lineTo(x - s, y + s); ctx.stroke(); ctx.restore();
+}
+/* one polyline through a list of [x, y] points */
+function poly(ctx, pts, color, w, dash) {
+  if (pts.length < 2) return;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.lineJoin = 'round';
+  ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore();
+}
+/* a legend line: the mark, then its name set to the right of it */
+function legend(ctx, mark, x, y, s, color) {
+  mark(ctx, x, y, color, 8);
+  text(ctx, s, x + 24, y, color, { size: 19, weight: 600 });
+}
+
+/* =====================================================================
+   FIGURE 22.41: the mass spectrometer. Ions leave the source together,
+   cross a velocity selector that passes one speed, and turn half circles
+   of radius r = mv/qB in the chamber, landing 2r from where they entered.
+   Moving: the flight has a clock in it, and the lighter ion, whose arc is
+   the shorter, lands first (rule 14). One fixed scale, 270 units to the
+   metre, from the widest pair of arcs the sliders reach (2.69 m).
+===================================================================== */
+(function () {
+  const H = 960, d = sim('sim-mass-spectrometer', H);
+  function reset() { cy.reset(); }
+  const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 1.70, max: 3.60, step: 0.01, value: 2.50, unit: '× 10⁶ m/s', dec: 2, aria: '速度选择器放行的速率', onInput: reset });
+  const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.500, max: 0.700, step: 0.005, value: 0.600, unit: 'T', dec: 3, aria: '分离室内的磁感应强度', onInput: reset });
+  const SC = 270;                                        /* units to the metre, fixed from the widest pair of arcs */
+  const XW = 560, Y0 = 130;                              /* the entry point on the detector wall */
+  const CH_R = 1000, CH_B = 890;                         /* the chamber's right edge and floor */
+  const XS = 150;                                        /* where the beam leaves the ion source */
+  const RUN = (XW - XS) / SC;                            /* the straight run, in metres */
+  const rOf = (m) => (m * vS.v * 1e6) / (QE * bS.v);     /* the radius of the arc, in metres */
+  const flight = (m) => (RUN + Math.PI * rOf(m)) / (vS.v * 1e6);
+  const period = () => flight(M16 * 18 / 16);            /* the heavier ion is the last to land */
+  const cy = cycle(period, 1.0);
+
+  /* where an ion of mass m has got to after t seconds of model time */
+  function at(m, t) {
+    const s = vS.v * 1e6 * t, r = rOf(m), R = r * SC;
+    if (s <= RUN) return { x: XS + s * SC, y: Y0, done: false };
+    const a = (s - RUN) / r;
+    if (a >= Math.PI) return { x: XW, y: Y0 + 2 * R, done: true };
+    const th = -Math.PI / 2 + a;
+    return { x: XW + R * Math.cos(th), y: Y0 + R + R * Math.sin(th), done: false };
+  }
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const col = { B: C('magnetic-field'), E: C('electric-field'), v: C('velocity'), r: C('position') };
+    const ions = [{ a: 16, m: M16, c: F.ref('oxygen-16'), name: '氧-16' }, { a: 18, m: M16 * 18 / 16, c: F.ref('oxygen-18'), name: '氧-18' }];
+    const sc = F.ref('source'), vc = F.ref('selector'), dc = F.ref('detector');
+    const t = cy.now();
+    /* the chamber, and the field that fills it, out of the page */
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.22); ctx.lineWidth = 2; ctx.strokeRect(XW, 92, CH_R - XW, CH_B - 92); ctx.restore();
+    for (let x = XW + 42; x < CH_R; x += 84) for (let y = 130; y < CH_B; y += 84) outOfPage(ctx, x, y, alpha(col.B, 0.55));
+    /* the ion source */
+    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = sc; ctx.fillStyle = PAL.panel;
+    ctx.beginPath(); ctx.rect(40, 96, 110, 68); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, '离子源', 95, 120, sc, { size: 18, align: 'center' });
+    text(ctx, '', 95, 142, sc, { size: 18, align: 'center' });
+    /* the velocity selector: two plates, the field between them and the beam through the middle */
+    line(ctx, 220, 96, 500, 96, vc, 4);
+    line(ctx, 220, 164, 500, 164, vc, 4);
+    text(ctx, '−', 210, 96, PAL.ink, { size: 24, weight: 700, align: 'right' });
+    text(ctx, '+', 210, 164, PAL.ink, { size: 24, weight: 700, align: 'right' });
+    for (let x = 250; x < 500; x += 62) outOfPage(ctx, x, 112, alpha(col.B, 0.55), 7);
+    arrow(ctx, 470, 158, 470, 102, col.E, 4);
+    text(ctx, 'E', 482, 128, col.E, { size: 22, weight: 600 });
+    text(ctx, '速度选择器', 360, 190, vc, { size: 19, weight: 600, align: 'center' });
+    line(ctx, XS, Y0, XW, Y0, alpha(col.v, 0.45), 3, [10, 10]);
+    arrow(ctx, 520, Y0, 556, Y0, col.v, 4);
+    /* the detector wall, and the arcs the two ions turn */
+    line(ctx, XW, Y0, XW, CH_B - 6, dc, 5);
+    text(ctx, '探测器', XW + 16, Y0 - 22, dc, { size: 19, weight: 600 });
+    ions.forEach((ion, i) => {
+      const R = rOf(ion.m) * SC, cyc = Y0 + R;
+      ctx.save(); ctx.strokeStyle = alpha(ion.c, 0.25); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
+      ctx.beginPath(); ctx.arc(XW, cyc, R, -Math.PI / 2, Math.PI / 2); ctx.stroke(); ctx.restore();
+      const p = at(ion.m, t), a = Math.min(Math.PI, Math.max(0, (vS.v * 1e6 * t - RUN) / rOf(ion.m)));
+      if (a > 0) { ctx.save(); ctx.strokeStyle = ion.c; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(XW, cyc, R, -Math.PI / 2, -Math.PI / 2 + a); ctx.stroke(); ctx.restore(); }
+      else poly(ctx, [[XS, Y0], [p.x, p.y]], ion.c, 5);
+      dot(ctx, p.x, p.y, ion.c, true, 11);
+      /* the landing mark, its name, and the guide out to the bracket */
+      const land = Y0 + 2 * R;
+      dot(ctx, XW, land, ion.c, true, 9);
+      label(ctx, ion.name, XW, land, { side: 'right', size: 20, color: ion.c, gap: 22 });
+      line(ctx, XW, land, 1010 + i * 190, land, alpha(ion.c, 0.35), 2, [8, 8]);
+      vbracket(ctx, 1020 + i * 190, Y0, land, ion.c, '2r = ' + fmt(2 * rOf(ion.m), 3) + ' m', 1, { H, side: 'right', size: 20 });
+    });
+    line(ctx, XW, Y0, 1010, Y0, alpha(PAL.ink, 0.28), 2, [8, 8]);
+    /* the bar that fixes the scale of the drawing */
+    line(ctx, 600, 920, 600 + SC, 920, PAL.muted, 3);
+    line(ctx, 600, 912, 600, 928, PAL.muted, 2); line(ctx, 600 + SC, 912, 600 + SC, 928, PAL.muted, 2);
+    text(ctx, '1 m', 600 + SC / 2, 944, PAL.muted, { size: 17, align: 'center' });
+    /* the legend and the two sentences that say what to watch */
+    legend(ctx, outOfPage, 40, 300, '磁场 B，垂直于纸面向外', col.B);
+    const sep = 2 * (rOf(ions[1].m) - rOf(ions[0].m));
+    topline(ctx, `速率为 ${sci(vS.v * 1e6, 2)} m/s、磁场为 ${fmt(bS.v, 3)} T 时，氧-16 转过半径为 ${fmt(rOf(M16), 3)} m 的半圆，氧-18 转过半径为 ${fmt(rOf(ions[1].m), 3)} m 的半圆，所以两者落在探测器上相距 ${fmt(sep, 3)} m 处。`);
+    readout(d.readout,
+      `2\\kr_{18} - 2\\kr_{16} = \\frac{2(\\km_{18} - \\km_{16})\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex(ions[1].m - M16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(sep, 3)}\\ \\text{m}`,
+      '磁场更强或速率更低，都会使两条圆弧收得更紧，落点之间的间隔也随之缩小。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => period() / 5), draw });
+})();
+
+/* =====================================================================
+   A SIM OF ITS OWN: the velocity selector. Three ions of one kind enter
+   at three speeds, carrying the electric force one way and the magnetic
+   force the other, and only the one for which they balance reaches the
+   slit. Still: which ion gets through is a state of the two fields and
+   nothing about it is a fact about time. One fixed scale, 6000 units to
+   the metre, over a channel 0.200 m long and 0.0300 m across.
+===================================================================== */
+(function () {
+  const H = 700, d = sim('sim-velocity-selector', H);
+  const eS = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 1.00, max: 2.00, step: 0.01, value: 1.50, unit: '× 10⁶ V/m', dec: 2, aria: '两极板之间的电场',
+    specials: [1.50, 2.50, 3.50].map((v6) => ({ at: () => v6 * bS.v, label: fmt(v6, 1) + ' × 10⁶ m/s 通过' })) });
+  const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.500, max: 0.700, step: 0.005, value: 0.600, unit: 'T', dec: 3, aria: '穿过两极板的磁场',
+    specials: [1.50, 2.50, 3.50].map((v6) => ({ at: () => eS.v / v6, label: fmt(v6, 1) + ' × 10⁶ m/s 通过' })) });
+  const signC = choice(d.controls, { label: '\\text{离子}', options: [{ value: 'pos', label: '带正电' }, { value: 'neg', label: '带负电' }], value: 'pos', aria: '离子所带电荷的正负' });
+  const SC = 6000;                                       /* units to the metre */
+  const X0 = 140, AX = 330, L = 0.200, GAP = 0.0300;     /* the channel: where it starts, its axis, its length and its gap */
+  const XE = X0 + L * SC, HALF = (GAP / 2) * SC;
+  const SLIT = 0.0020;                                   /* the half width of the slit at the far end, in metres */
+  const SPEEDS = [1.50, 2.50, 3.50];                     /* the three speeds that enter, in 10^6 m/s */
+
+  const sel = () => (eS.v * 1e6) / bS.v;                 /* the speed the setting passes */
+  const accel = (v) => (signC.value === 'neg' ? -1 : 1) * (QE * (eS.v * 1e6 - v * bS.v)) / M16;   /* upward, in m/s^2 */
+  /* how far the ion has been pushed across the channel after travelling x metres */
+  const rise = (v, x) => 0.5 * accel(v) * Math.pow(x / v, 2);
+  /* where it ends: at the plate it strikes, or at the far end of the channel */
+  function track(v) {
+    const a = accel(v), hit = Math.abs(a) < 1e-6 ? Infinity : v * Math.sqrt(GAP / Math.abs(a));
+    const xEnd = Math.min(L, hit), pts = [];
+    for (let i = 0; i <= 40; i++) { const x = (xEnd * i) / 40; pts.push([X0 + x * SC, AX - rise(v, x) * SC]); }
+    return { pts, xEnd, stopped: hit < L, exit: rise(v, L), passes: hit >= L && Math.abs(rise(v, L)) <= SLIT };
+  }
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const col = { B: C('magnetic-field'), E: C('electric-field'), v: C('velocity'), F: C('force') };
+    const ION = el('O'), neg = signC.value === 'neg';
+    /* the plates, their charges and the two fields between them */
+    line(ctx, X0, AX - HALF, XE, AX - HALF, PAL.ink, 5);
+    line(ctx, X0, AX + HALF, XE, AX + HALF, PAL.ink, 5);
+    text(ctx, '−   −   −   −   −   −   −   −   −   −', (X0 + XE) / 2, AX - HALF - 24, PAL.ink, { size: 20, weight: 700, align: 'center' });
+    text(ctx, '+   +   +   +   +   +   +   +   +   +', (X0 + XE) / 2, AX + HALF + 24, PAL.ink, { size: 20, weight: 700, align: 'center' });
+    for (let x = X0 + 90; x < XE - 40; x += 130) { outOfPage(ctx, x, AX - 56, alpha(col.B, 0.45)); outOfPage(ctx, x, AX + 56, alpha(col.B, 0.45)); }
+    [X0 + 34, XE - 46].forEach((x) => arrow(ctx, x, AX + HALF - 8, x, AX - HALF + 8, alpha(col.E, 0.8), 4));
+    text(ctx, 'E', X0 + 50, AX - HALF + 28, col.E, { size: 22, weight: 600 });
+    legend(ctx, outOfPage, X0 + 130, 162, '磁场 B，垂直于纸面向外', col.B);
+    /* the wall at the far end, with its slit on the axis */
+    line(ctx, XE, AX - HALF, XE, AX - SLIT * SC, PAL.ink, 6);
+    line(ctx, XE, AX + SLIT * SC, XE, AX + HALF, PAL.ink, 6);
+    text(ctx, '狭缝', XE + 14, AX - 34, PAL.muted, { size: 18 });
+    /* the three tracks, each named where the three have parted company */
+    SPEEDS.forEach((v6, i) => {
+      const v = v6 * 1e6, tr = track(v), end = tr.pts[tr.pts.length - 1];
+      poly(ctx, tr.pts, tr.passes ? ION : alpha(ION, 0.6), tr.passes ? 5 : 3.5, tr.passes ? null : [12, 8]);
+      if (tr.passes) poly(ctx, [[XE, AX], [XE + 50, AX]], ION, 5);
+      dot(ctx, end[0], end[1], ION, true, 10);
+      const at = tr.pts[[36, 9, 34][i]];
+      /* the slow ion is named on the channel side of its track, past the force arrows */
+      const up = i === 0 ? at[1] > AX : at[1] <= AX;
+      label(ctx, fmt(v6, 2) + ' × 10⁶ m/s', at[0], at[1], { side: up ? 'above' : 'below', size: 20, color: ION, gap: 24 });
+    });
+    /* the two forces on an ion at the selected speed, drawn at the middle of the channel */
+    const mx = (X0 + XE) / 2;
+    dot(ctx, mx, AX, ION, true, 11);
+    arrow(ctx, mx, AX, mx, AX - 70, col.F, 5);
+    arrow(ctx, mx, AX, mx, AX + 70, col.F, 5);
+    text(ctx, neg ? 'qvB' : 'qE', mx - 16, AX - 56, col.F, { size: 22, weight: 600, align: 'right' });
+    text(ctx, neg ? 'qE' : 'qvB', mx - 16, AX + 56, col.F, { size: 22, weight: 600, align: 'right' });
+    arrow(ctx, 40, AX, X0 - 8, AX, col.v, 5);
+    text(ctx, '离子进入', 40, AX - 28, col.v, { size: 19, weight: 600 });
+    /* the sentences that say what is being watched */
+    const passing = SPEEDS.filter((v6) => track(v6 * 1e6).passes);
+    topline(ctx, `${sci(eS.v * 1e6, 2)} V/m 的电场与 ${fmt(bS.v, 3)} T 的磁场正交，放行的速率为 ${sci(sel(), 2)} m/s，所以${passing.length ? '这是三个离子中到达狭缝的那一个' : '三个离子都到不了狭缝'}。`);
+    readout(d.readout,
+      `\\kv = \\frac{\\kEf}{\\kBmag} = \\frac{${sciTex(eS.v * 1e6, 2)}\\,\\text{V/m}}{${fmt(bS.v, 3)}\\,\\text{T}} = ${sciTex(sel(), 2)}\\ \\text{m/s}`,
+      '电荷从 qE = qvB 中约去，所以对任何电荷、任何质量的离子，选定的速率都相同。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 22.42: the cathode ray tube. The gun's voltage sets the speed,
+   the coil's field bends the beam into an arc of radius r = mv/qB, and
+   the spot lands where the straight run from the coil meets the screen.
+   Still: where the spot sits is a state of the two settings, and the
+   flight of the electron is not what the figure teaches (rule 14). One
+   fixed scale, 2750 units to the metre.
+===================================================================== */
+(function () {
+  const H = 700, d = sim('sim-crt-steering', H);
+  const uS = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 5.0, max: 20.0, step: 0.1, value: 10.0, unit: 'kV', dec: 1, aria: '电子枪的加速电压' });
+  const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.200, max: 1.000, step: 0.005, value: 0.500, unit: 'mT', dec: 3, aria: '偏转线圈的磁感应强度' });
+  const dirC = choice(d.controls, { label: '\\text{线圈的磁场}', options: [{ value: 'in', label: '垂直于纸面向里' }, { value: 'out', label: '垂直于纸面向外' }], value: 'in', aria: '偏转线圈磁场的方向' });
+  const SC = 2750;                                       /* units to the metre */
+  const AX = 280, XG = 240, XC = 420, LC = 0.0500;       /* the axis, the gun's mouth, the coil's near edge and its length */
+  const XCE = XC + LC * SC, XS = 1180;                   /* the coil's far edge and the screen */
+  const DRIFT = (XS - XCE) / SC;                         /* the run from the coil to the screen, in metres */
+  const speed = () => Math.sqrt((2 * QE * uS.v * 1e3) / ME);
+  const radius = () => (ME * speed()) / (QE * bS.v * 1e-3);
+  const angle = () => Math.asin(Math.min(0.999, LC / radius()));
+  const drop = () => radius() * (1 - Math.cos(angle())) + DRIFT * Math.tan(angle());
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const col = { B: C('magnetic-field'), v: C('velocity'), F: C('force'), V: C('voltage'), r: C('position') };
+    const E = el('e-'), into = dirC.value === 'in', gc = F.ref('gun'), kc = F.ref('coil'), rc = F.ref('screen');
+    /* +1 sends the beam down the screen; reversing the field swings it through the axis to the other side */
+    const s = dirC.mix((v) => (v === 'in' ? 1 : -1));
+    const through = (x, y, r0, c = alpha(col.B, 0.85)) => [['in', intoPage], ['out', outOfPage]].forEach(([v, sym]) => dirC.only(ctx, v, () => sym(ctx, x, y, c, r0), [0, 0]));
+    const r = radius(), th = angle(), R = r * SC;
+    /* the envelope of the tube, drawn in ink */
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(XG, AX - 46); ctx.lineTo(XC - 20, AX - 62); ctx.lineTo(XS, AX - 190);
+    ctx.moveTo(XG, AX + 46); ctx.lineTo(XC - 20, AX + 62); ctx.lineTo(XS, AX + 250); ctx.stroke(); ctx.restore();
+    /* the gun: a cathode, an anode and the voltage between them */
+    ctx.save(); ctx.strokeStyle = gc; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(90, AX - 34); ctx.lineTo(90, AX + 34); ctx.moveTo(180, AX - 34); ctx.lineTo(180, AX - 12); ctx.moveTo(180, AX + 12); ctx.lineTo(180, AX + 34); ctx.stroke(); ctx.restore();
+    text(ctx, '阴极', 90, AX - 52, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, '阳极', 182, AX - 52, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, fmt(uS.v, 1) + ' kV', 135, AX + 62, col.V, { size: 21, weight: 600, align: 'center' });
+    /* the coil's field, drawn between the pole faces of the coil pair */
+    ctx.save(); ctx.strokeStyle = kc; ctx.lineWidth = 3;
+    ctx.strokeRect(XC, AX - 110, XCE - XC, 220); ctx.restore();
+    for (let x = XC + 34; x < XCE; x += 68) for (let y = AX - 76; y <= AX + 76; y += 76) through(x, y);
+    text(ctx, '偏转线圈', (XC + XCE) / 2, AX - 130, kc, { size: 19, weight: 600, align: 'center' });
+    /* the beam: straight to the coil, an arc across it, straight on to the screen */
+    line(ctx, 180, AX, XC, AX, E, 5);
+    ctx.save(); ctx.strokeStyle = E; ctx.lineWidth = 5; ctx.beginPath();
+    for (let i = 0; i <= 40; i++) { const a = (th * i) / 40, x = XC + R * Math.sin(a), y = AX + s * R * (1 - Math.cos(a)); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
+    ctx.stroke(); ctx.restore();
+    const xe = XC + R * Math.sin(th), ye = AX + s * R * (1 - Math.cos(th));
+    const spotY = AX + s * drop() * SC;
+    line(ctx, xe, ye, XS, spotY, E, 5);
+    /* the screen and the spot */
+    line(ctx, XS, AX - 190, XS, AX + 250, rc, 6);
+    text(ctx, '屏幕', XS + 16, AX - 170, rc, { size: 19, weight: 600 });
+    dot(ctx, XS, spotY, E, true, 12);
+    line(ctx, XC, AX, XS, AX, alpha(PAL.ink, 0.28), 2, [10, 10]);
+    if (Math.abs(spotY - AX) > 4) vbracket(ctx, XS - 34, AX, spotY, col.r, fmt(drop() * 100, 2) + ' cm', -1, { H, side: 'left', size: 20 });
+    /* the force on the electron where it enters the field */
+    if (Math.abs(s) > 0.1) arrow(ctx, XC + 8, AX, XC + 8, AX + s * 92, col.F, 5);
+    text(ctx, 'F', XC - 8, AX + (into ? 70 : -70), col.F, { size: 22, weight: 600, align: 'right' });
+    arrow(ctx, 250, AX - 60, 330, AX - 60, col.v, 4);
+    text(ctx, 'v', 290, AX - 80, col.v, { size: 22, weight: 600, align: 'center' });
+    /* right hand rule 1, in the corner, as the book's own figure has it */
+    const rx = 200, ry = 580;
+    text(ctx, '右手定则 1', rx - 80, ry - 150, PAL.muted, { size: 20, weight: 600 });
+    arrow(ctx, rx, ry, rx + 110, ry, col.v, 4); text(ctx, 'v', rx + 122, ry, col.v, { size: 22, weight: 600 });
+    through(rx + 54, ry - 40, 9, col.B); text(ctx, 'B', rx + 78, ry - 40, col.B, { size: 22, weight: 600 });
+    if (Math.abs(s) > 0.1) { arrow(ctx, rx, ry, rx, ry - s * 70, col.F, 4); arrow(ctx, rx, ry, rx, ry + s * 70, E, 4); }
+    const sd = into ? 1 : -1;
+    text(ctx, '正电荷所受的力 F', rx + 16, ry - sd * 86, col.F, { size: 19, weight: 600 });
+    text(ctx, '电子所受的力 F', rx + 16, ry + sd * 86, E, { size: 19, weight: 600 });
+    topline(ctx, `${fmt(uS.v, 1)} kV 的电子枪使电子以 ${sci(speed(), 2)} m/s 的速率穿过线圈，${fmt(bS.v, 3)} mT 的磁场使它们弯成半径为 ${fmt(r, 3)} m 的圆，使光斑落在轴线${into ? '下方' : '上方'} ${fmt(drop() * 100, 2)} cm 处。`);
+    readout(d.readout,
+      `\\kr = \\frac{\\km\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(speed(), 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${sciTex(bS.v * 1e-3, 2)}\\,\\text{T})} = ${fmt(r, 3)}\\ \\text{m}`,
+      `电子枪通过 qV = ½mv² 设定速率，在 ${fmt(uS.v, 1)} kV 时得到 ${sci(speed(), 2)} m/s。`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   A SIM OF ITS OWN: the field of an MRI magnet, made to rise a little
+   along the patient so that each slice sits in a field of its own and
+   answers a broadcast of its own. Still: the tuning of the receiver is a
+   state, and the sweep it stands for is not drawn. Scene above, graph
+   below, since the patient lies across the page.
+===================================================================== */
+(function () {
+  const H = 920, d = sim('sim-mri-gradient', H);
+  const b0S = ctl(d.controls, { label: '\\kBmag_0', cls: 'magnetic-field', min: 1.00, max: 2.00, step: 0.01, value: 1.50, unit: 'T', dec: 2, aria: '磁体在患者头部的磁场' });
+  const gS = ctl(d.controls, { label: '\\text{梯度}', cls: '', min: 0, max: 20.0, step: 0.5, value: 10.0, unit: 'mT/m', dec: 1, aria: '磁场沿患者身体上升得多快' });
+  const tS = ctl(d.controls, { label: '\\kBmag_\\text{tuned}', cls: 'magnetic-field', min: 1.000, max: 2.050, step: 0.001, value: 1.509, unit: 'T', dec: 3, aria: '发射频率所对应的磁感应强度' });
+  const SC = 250, XH = 475, LEN = 1.80;                  /* units to the metre, the patient's head, and how tall the patient is */
+  const XF = XH + LEN * SC;                              /* the patient's feet */
+  const fieldAt = (p) => b0S.v + (gS.v / 1000) * p;      /* the field a distance p from the head, in tesla */
+  const slice = () => (gS.v > 1e-6 ? (tS.v - b0S.v) / (gS.v / 1000) : NaN);
+  const ro = F.readout(d);
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const col = { B: C('magnetic-field'), x: C('position') };
+    const p = slice(), inside = p >= -1e-9 && p <= LEN + 1e-9;
+    /* the bore of the magnet, and the field that fills it */
+    const mc = F.ref('mri-magnet');
+    ctx.save(); ctx.strokeStyle = mc; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.rect(330, 160, 740, 290); ctx.stroke(); ctx.restore();
+    text(ctx, '超导磁体的孔径', 700, 138, mc, { size: 19, weight: 600, align: 'center' });
+    for (let x = 372; x + 58 < 1060; x += 96) arrow(ctx, x, 196, x + 58, 196, alpha(col.B, 0.55), 3);
+    text(ctx, 'B', 350, 196, col.B, { size: 22, weight: 600 });
+    /* the patient: the library's standing body turned a quarter turn, so the feet sit at XF,
+       the crown at XH and the face is up, scaled to the 1.80 m the scale gives */
+    ctx.save(); ctx.translate(XF, 330); ctx.rotate(-Math.PI / 2);
+    F.silhouette(ctx, { x: 0, y: 0, s: LEN * SC / F.silhouette.height(1), pose: 'stand', color: alpha(F.ref('patient'), 0.7),
+      feet: [{ x: 6, y: 4 }, { x: -6, y: 4 }], hands: [{ x: 14, y: -56 }, { x: -10, y: -56 }] });   /* legs and arms laid straight */
+    ctx.restore();
+    /* the slice the receiver has picked out */
+    if (inside) {
+      const sx = XH + p * SC;
+      ctx.save(); ctx.fillStyle = alpha(col.B, 0.22); ctx.fillRect(sx - 12, 168, 24, 274); ctx.restore();
+      line(ctx, sx, 168, sx, 442, col.B, 3);
+      [0, 1, 2].forEach((i) => dot(ctx, sx, 246 + i * 42, el('p+'), true, 7));
+      text(ctx, '处于共振的层面', sx, 470, col.B, { size: 20, weight: 600, align: 'center' });
+    }
+    text(ctx, '头部', XH - 22, 312, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, '足部', XF + 22, 330, PAL.muted, { size: 18, align: 'left' });
+    /* the graph: how far the field stands above the magnet's own value, along the patient */
+    const box = { l: 200, r: 1280, t: 570, b: 830 };
+    const { X, Y } = axes(ctx, box, [0, LEN], [0, 40], {
+      xl: '与头部的距离（m）', xc: col.x, yl: '高出 ' + fmt(b0S.v, 2) + ' T 的磁场（mT）', yc: col.B, nx: 6, ny: 4,
+      fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0),
+    });
+    line(ctx, X(0), Y(0), X(LEN), Y(gS.v * LEN), col.B, 5);
+    const lvl = (tS.v - b0S.v) * 1000;
+    if (lvl >= 0 && lvl <= 40) {               /* the tuned level, named in the band above the plot where no curve reaches */
+      line(ctx, box.l, Y(lvl), box.r, Y(lvl), alpha(col.B, 0.55), 3, [10, 10]);
+      line(ctx, box.r - 380, box.t - 24, box.r - 330, box.t - 24, alpha(col.B, 0.55), 3, [10, 10]);
+      text(ctx, '发射频率所对应的磁场', box.r - 318, box.t - 24, alpha(col.B, 0.8), { size: 18, align: 'left' });
+    }
+    if (inside) { pinned(ctx, box, X, Y, p, lvl, col.x, fmt(p, 2) + ' m'); line(ctx, X(p), Y(lvl), X(p), box.b, alpha(col.x, 0.5), 2, [4, 8]); }
+    topline(ctx, gS.v < 1e-6
+      ? `没有梯度时，患者的每个层面都处在同一个 ${fmt(b0S.v, 2)} T 的磁场中，所以整个身体同时响应同一个发射频率，返回的信号中不含位置信息。`
+      : inside
+        ? `磁场每米上升 ${fmt(gS.v, 1)} mT，所以距头部 ${fmt(p, 2)} m 的层面处在 ${fmt(fieldAt(p), 3)} T 的磁场中，正是被发射频率翻转的那个层面。`
+        : `磁场从头部的 ${fmt(b0S.v, 3)} T 变化到足部的 ${fmt(fieldAt(LEN), 3)} T，而 ${fmt(tS.v, 3)} T 在这个范围之外，所以患者没有哪个层面处于共振。`);
+    const flat = gS.v < 1e-6, x = slice(), xd = Math.abs(x) < 10 ? 2 : 1;
+    ro.set(flat
+      ? `\\kBmag = \\kBmag_0 = ${fmt(b0S.v, 2)}\\ \\text{T}`
+      : `\\kBmag = \\kBmag_0 + G\\kx = ${fmt(b0S.v, 2)}\\,\\text{T} + (${fmt(gS.v, 1)}\\,\\text{mT/m})(${fmt(x, xd)}\\,\\text{m}) = ${fmt(tS.v, 3)}\\ \\text{T}`,
+      flat ? '' : '对于同一个调谐值，梯度越陡，层面越靠近头部，因为 $\\kx = (\\kBmag_\\text{tuned} - \\kBmag_0)/G$。',
+      { form: flat });
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   A SIM OF ITS OWN: every field strength the chapter has named, set on
+   one scale a decade to the step, so that the distance between an MRI
+   magnet and a beating heart can be looked at rather than imagined.
+   Still: a scale of strengths has no clock. Both controls are choices,
+   since the source is a discrete state and the book gives the biomagnetic
+   fields as three decades rather than a range to be dialled (rule 26.1).
+===================================================================== */
+(function () {
+  const H = 680, d = sim('sim-field-scale', H);
+  const srcC = choice(d.controls, {
+    label: '\\text{来源}', value: 'earth', aria: '磁场的来源',
+    options: [{ value: 'mri', label: 'MRI 磁体' }, { value: 'perm', label: '永磁体' }, { value: 'earth', label: '地球' }, { value: 'body', label: '心脏和脑' }],
+  });
+  const facC = choice(d.controls, {
+    label: '\\text{比地磁场低}', value: '-7', aria: '心脏和脑的磁场比地磁场低多少',
+    options: [{ value: '-6', label: '10⁻⁶' }, { value: '-7', label: '10⁻⁷' }, { value: '-8', label: '10⁻⁸' }],
+  });
+  const LO = -13, HI = 1, XL = 130, XR = 1320, AXY = 300;   /* the decades the scale covers, and where it sits */
+  const X = (b) => XL + ((Math.log10(b) - LO) / (HI - LO)) * (XR - XL);
+  const factor = () => Math.pow(10, Number(facC.value));
+  const bodyB = () => B_EARTH * factor();
+  const LOGS = { mri: Math.log10(1.50), perm: Math.log10(0.500), earth: Math.log10(B_EARTH) };
+  const chosen = () => ({ mri: 1.50, perm: 0.500, earth: B_EARTH, body: bodyB() }[srcC.value]);
+
+  function draw() {
+    const { ctx } = begin(d.c);
+    const col = { B: C('magnetic-field') };
+    /* the scale: one tick to the decade, a label every second one */
+    line(ctx, XL, AXY, XR, AXY, PAL.muted, 3);
+    for (let e = LO; e <= HI; e++) {
+      const x = XL + ((e - LO) / (HI - LO)) * (XR - XL);
+      line(ctx, x, AXY - 10, x, AXY + 10, PAL.muted, 2);
+      if ((e - LO) % 2 === 0) text(ctx, '10' + sup(e), x, AXY + 34, PAL.muted, { size: 17, align: 'center' });
+    }
+    text(ctx, '磁感应强度（T）', XL, AXY - 130, col.B, { size: 20, weight: 600 });
+    /* the marks, each one the book's own number */
+    const marks = [
+      { key: 'mri', ref: 'mri-magnet', b: 1.50, lo: 1.00, hi: 2.00, name: 'MRI 磁体，1 至 2 T', up: true },
+      { key: 'perm', b: 0.500, name: '永磁体，0.500 T', up: false },
+      { key: 'earth', ref: 'earth', b: B_EARTH, name: '地球，' + sci(B_EARTH, 2) + ' T', up: true },
+      { key: 'body', ref: 'heart-brain', b: B_EARTH * Math.pow(10, facC.mix((v) => Number(v))), name: '心脏和脑，' + sci(bodyB(), 2) + ' T', up: false },
+    ];
+    const lab = labeller(ctx, H, { headline: 2 });
+    marks.forEach((m) => {
+      const x = X(m.b), on = srcC.value === m.key, c = m.ref ? alpha(F.ref(m.ref), on ? 1 : 0.7) : alpha(PAL.ink, 0.5);
+      if (m.lo) { ctx.save(); ctx.fillStyle = alpha(col.B, on ? 0.3 : 0.14); ctx.fillRect(X(m.lo), AXY - 26, X(m.hi) - X(m.lo), 52); ctx.restore(); }
+      line(ctx, x, m.up ? AXY - 74 : AXY + 74, x, AXY, c, on ? 5 : 3);
+      dot(ctx, x, AXY, c, true, 8);
+      /* the heart's name runs toward the middle of the scale, never off its left end */
+      lab.beside({ x1: x, y1: AXY, x2: x, y2: m.up ? AXY - 74 : AXY + 74 }, m.up || m.key === 'body' ? 'left' : 'right', m.name, c, on ? 21 : 19, { offset: 1, gap: 20 });
+    });
+    lab.flush();
+    /* the chosen field is one mark that slides along the decades to the next choice */
+    const lgBody = Math.log10(B_EARTH) + facC.mix((v) => Number(v));
+    const lgNow = srcC.mix((v) => (v === 'body' ? lgBody : LOGS[v]));
+    dot(ctx, XL + ((lgNow - LO) / (HI - LO)) * (XR - XL), AXY, col.B, true, 13);
+    /* the span the scale covers, so the gap is a length on the page */
+    hbracket(ctx, X(bodyB()), X(1.50), AXY + 150, alpha(PAL.ink, 0.5),
+      fmt(Math.log10(1.50 / bodyB()), 0) + ' 个数量级，从 MRI 磁体到跳动的心脏', { H, side: 'below', size: 19 });
+    text(ctx, '心脏和脑的磁场是用保持在液氦温度的探测器读出的。', XL, 520, PAL.muted, { size: 18 });
+    const b = chosen();
+    topline(ctx, `${{ mri: 'MRI 设备的磁体', perm: '永磁体', earth: '地球', body: '心脏和脑的磁场' }[srcC.value]}可达约 ${sci(b, 2)} T，${srcC.value === 'earth' ? '即地球上每个指南针所响应的磁场' : '是地球自身磁场的 ' + sci(b / B_EARTH, 2) + ' 倍'}。`);
+    readout(d.readout, `\\kBmag = ${sciTex(b, 2)}\\ \\text{T}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

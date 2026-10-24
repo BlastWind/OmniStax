@@ -1,0 +1,540 @@
+{
+ "id": "11.5",
+ "module": "m42193",
+ "chapter": "11",
+ "title": "帕斯卡原理",
+ "short": "帕斯卡原理",
+ "lead": "对密闭流体某一部分的推压，在它的每一部分都能感受到，这就是所谓的帕斯卡原理。你会看到液压系统如何利用它把一个小<span data-concept=\"force\">力</span>变成大力，汽车的刹车就是这样做的，以及这在距离上要付出什么代价。",
+ "objectives": [
+  "定义压强。",
+  "陈述帕斯卡原理。",
+  "理解帕斯卡原理的应用。",
+  "推导液压系统中各力之间的关系。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"pressure\">压强</span>是单位<span data-concept=\"area\">面积</span>上的<span data-concept=\"force\">力</span>。</li><li>施加于密闭流体的<span data-concept=\"pressure\">压强</span>变化，会大小不变地传递到流体的各个部分以及容器壁。</li><li>液压系统是用来施加<span data-concept=\"force\">力</span>的密闭流体系统。</li></ul>",
+ "notes": "书中未给出答案的两道题——支撑一辆 2000 kg 汽车的升降机，其主缸上的力；以及设计一个把输入力放大一百倍的系统——已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重、提示，以及对那道思考题的建议思路，均由 AI 生成并已标明；三道有答案的习题和反铲挖掘机那道习题的答案取自书后答案，此处未做任何计算。习题 2（支撑一辆 2000 kg 汽车的液压升降机，其主缸上的力，fs-id2392885）和习题 4（输出力为输入力 100 倍的系统，fs-id3069160）没有给出答案，已略去。本章没有“理解检测”栏目，其 AP 题全部在 11.2 和 11.3 中，因此没有内嵌题，所有题目都放在末尾。反铲挖掘机的液压系统（fs-id3077567）取自 11.9，source_section 为 11.9，因为它是前面带有一根杠杆的液压系统的力比问题，书中的反铲挖掘机图片随题目卡片一起显示。本节自己的题目没有留待后面页面的。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-hydraulic",
+   "kind": "sim",
+   "number": "11.11",
+   "originals": [
+    "/media/ch11/Figure_12_05_01a.jpg"
+   ],
+   "original_caption": "一个典型的液压系统，有两个充满流体的液压缸，顶部装有活塞，并由一根称为液压管路的管子相连。作用在左活塞上的向下的力 F1 产生一个压强，该压强大小不变地传递到密闭流体的各个部分。这使右活塞上产生一个向上的力 F2，由于右活塞的面积较大，F2 比 F1 大。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "pressure",
+    "force",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "repeating readout note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-brakes",
+   "kind": "sim",
+   "number": "11.12",
+   "originals": [
+    "/media/ch11/Figure_12_05_02a.jpg"
+   ],
+   "original_caption": "液压刹车利用了帕斯卡原理。驾驶员对刹车踏板施加 100 N 的力。这个力先经简单杠杆增大，又经液压系统再次增大。每个相同的轮缸受到相同的压强，因此产生相同的输出力 F2。主缸和轮缸的圆形横截面积分别用 A1 和 A2 表示",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "pressure",
+    "force",
+    "area",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels moved off the lever and cylinders; note trimmed, macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-hydraulic-work",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "area",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note trimmed and set through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pascals-principle",
+   "concept": "pascals-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "pascals-principle",
+   "concept": "pressures-add",
+   "verb": "introduces"
+  },
+  {
+   "span": "pascals-principle",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pascals-principle",
+   "concept": "fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-system",
+   "concept": "hydraulic-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydraulic-system",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "hydraulic-force-ratio",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "pascals-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "lever",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-forces",
+   "concept": "hydraulic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "hydraulic-work-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "hydraulic-work",
+   "concept": "simple-machine",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1430946",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "prompt": "假设液压系统中的主缸位置比轮缸高。请解释这会如何影响轮缸处产生的力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "关系式 $\\kFone/A_1 = \\kFtwo/A_2$ 适用于两个处于同一高度的活塞，此时任一活塞处的压强都没有来自深度差的部分。把主缸放得更高，两个活塞之间的流体就形成一段高为 $\\kh$ 的液柱。根据“流体中压强随深度的变化”的结果，较低处轮缸的压强就比主缸处的压强大，大出的部分是这段液柱的重力 $\\kh\\krho\\kg$。帕斯卡原理仍然把踏板带来的变化大小不变地传递，而且压强可以相加，所以轮缸处的压强是 $\\kFone/A_1 + \\kh\\krho\\kg$。那里的力是 $\\kFtwo = A_2(\\kFone/A_1 + \\kh\\krho\\kg)$，比同高度关系式给出的值略大。对汽车来说，这额外的一项很小：一米高的刹车液只增加大约 $10^4\\;\\text{N/m}^2$ 的压强，而例题 11.6 中踏板产生的压强是 $10^7\\;\\text{N/m}^2$。如果主缸反而比轮缸低，同一项就要减去。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2617779",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "prompt": "例题 11.6 所考虑的液压系统中传递的压强是多少？请分别用帕斯卡和标准大气压表示你的答案。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "in pascals",
+      "value": 25500000.0,
+      "unit": "Pa",
+      "hint": "流体中各处压强相同，所以在哪个缸处取都可以：主缸上的 500 N 除以直径为 0.500 cm 的圆的面积，面积以平方米计。"
+     },
+     {
+      "part": "in atmospheres",
+      "value": 251,
+      "unit": "atm",
+      "hint": "一个标准大气压是 $1.01\\times 10^{5}\\;\\text{N/m}^2$。"
+     }
+    ],
+    "solution": "$2.55\\times 10^{7}\\;\\text{Pa}$；或 251 atm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1397225",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "prompt": "一位粗鲁的主人在聚会后，把几瓶酒的剩酒倒进一个罐子里。然后他把一个直径 2.00 cm 的软木塞塞进瓶子，使它与酒直接接触。他把软木塞砸到位时，罐底（直径 14.0 cm）竟然裂开脱落，他大吃一惊。如果他是用 120 N 的力砸软木塞，求作用在罐底上额外增加的力。",
+   "answer": {
+    "type": "number",
+    "value": 5760,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "软木塞和罐底就是液压系统的两个活塞，酒是密闭流体。面积与直径的平方成正比，所以你需要的是直径之比。",
+    "solution": "额外的力为 $5.76\\times 10^{3}\\;\\text{N}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2452595",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-work",
+   "prompt": "（a）验证：假设没有摩擦损失，液压系统的输入功等于输出功。方法是证明输出力移动的距离减小的倍数，与输出力增大的倍数相同。假设流体的体积不变。（b）流体内部以及系统各部件之间的摩擦会对输出力产生什么影响？这与流体是否在运动有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$V = d_{\\text{i}}A_{\\text{i}} = d_{\\text{o}}A_{\\text{o}} \\Rightarrow d_{\\text{o}} = d_{\\text{i}}\\left(\\frac{A_{\\text{i}}}{A_{\\text{o}}}\\right).$ 现在，利用方程：$\\frac{\\kFone}{A_1} = \\frac{\\kFtwo}{A_2} \\Rightarrow F_{\\text{o}} = F_{\\text{i}}\\left(\\frac{A_{\\text{o}}}{A_{\\text{i}}}\\right).$ 最后，$W_{\\text{o}} = F_{\\text{o}}d_{\\text{o}} = \\left(\\frac{F_{\\text{i}}A_{\\text{o}}}{A_{\\text{i}}}\\right)\\left(\\frac{d_{\\text{i}}A_{\\text{i}}}{A_{\\text{o}}}\\right) = F_{\\text{i}}d_{\\text{i}} = W_{\\text{i}}.$ 换句话说，输出功等于输入功。（b）如果系统不动，摩擦就不起作用。有摩擦时，我们知道会有损失，于是 $W_{\\text{out}} = W_{\\text{in}} - W_{\\text{f}}$；因此输出功小于输入功。换句话说，有摩擦时，你需要比无摩擦情形的计算值更用力地推输入活塞。"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3077567",
+   "source_section": "11.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydraulic-forces",
+   "figure": {
+    "src": "/media/ch11/Figure_12_09_05a-4a71.jpg",
+    "alt": "反铲挖掘机的臂和铲斗举起一铲泥土的示意图。臂的重力 w 下标 arm 用一个矢量表示，它从距臂顶端 1.10 m 处的臂上竖直向下延伸；w 下标 arm 与铲斗的臂成 30 度角。载荷的重力 w 下标 load 用一个矢量表示，它从铲斗中部、距臂顶端 1.70 m 处向下延伸。力 F 是一个矢量，作用在距臂顶端 0.30 m 处，推着铲斗的臂，方向与臂垂直。",
+    "caption": "液压杠杆系统和机械杠杆系统用于这台反铲挖掘机之类的重型机械。"
+   },
+   "prompt": "反铲挖掘机的液压系统用来举起图示的载荷。（a）求副缸必须施加多大的力 $\\kF$，才能支撑 400 kg 的载荷以及 150 kg 的斜撑和铲斗。（b）如果副缸的直径为 2.50 cm，液压油中的压强是多少？（c）为了产生这个压强，你需要在机械利益为 5.00 的杠杆上施加多大的力，该杠杆作用在直径为 0.800 cm 的主缸上？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 13800.0,
+      "unit": "N",
+      "hint": "以臂的顶端，也就是它的支点，为轴取力矩。力 $\\kF$ 垂直于臂，作用在距支点 0.30 m 处；两个重力竖直向下，分别作用在沿臂 1.10 m 和 1.70 m 处，而臂与竖直方向成 $30^\\circ$ 角，所以它们的力臂是这些距离乘以 $\\sin 30^\\circ$。"
+     },
+     {
+      "part": "(b)",
+      "value": 28100000.0,
+      "unit": "N/m²",
+      "hint": "压强等于（a）中求得的力除以直径为 2.50 cm 的圆的面积，面积以平方米计。"
+     },
+     {
+      "part": "(c)",
+      "value": 283,
+      "unit": "N",
+      "hint": "同样的压强作用在主缸的面积上，就得到该缸所需的力，而杠杆提供 5.00 的机械利益，所以你只需推这个力的五分之一。"
+     }
+    ],
+    "solution": "（a）$1.38\\times 10^{4}\\;\\text{N}$（b）$2.81\\times 10^{7}\\;\\text{N/m}^2$（c）283 N"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "hydraulic-force-ratio"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pressure-from-weight-of-fluid",
+   "weight": 3
+  },
+  {
+   "exercise": "cq1",
+   "concept": "pressures-add",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "pascals-principle"
+  },
+  {
+   "exercise": "p1",
+   "concept": "pressure",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "atmospheric-pressure",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "hydraulic-force-ratio"
+  },
+  {
+   "exercise": "p3",
+   "concept": "pascals-principle",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "hydraulic-work-limit"
+  },
+  {
+   "exercise": "p5",
+   "concept": "hydraulic-force-ratio",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "conservation-of-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p6",
+   "concept": "hydraulic-force-ratio"
+  },
+  {
+   "exercise": "p6",
+   "concept": "second-condition-equilibrium",
+   "weight": 4
+  },
+  {
+   "exercise": "p6",
+   "concept": "force-from-pressure",
+   "weight": 3
+  },
+  {
+   "exercise": "p6",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "piston-1",
+   "label": "左边的小活塞",
+   "figures": [
+    "sim-hydraulic",
+    "sim-hydraulic-work"
+   ]
+  },
+  {
+   "id": "piston-2",
+   "label": "右边的大活塞",
+   "figures": [
+    "sim-hydraulic",
+    "sim-hydraulic-work"
+   ]
+  },
+  {
+   "id": "pedal-cylinder",
+   "label": "主缸",
+   "figures": [
+    "sim-brakes"
+   ]
+  },
+  {
+   "id": "wheel-cylinders",
+   "label": "轮缸",
+   "figures": [
+    "sim-brakes"
+   ]
+  },
+  {
+   "id": "pedal",
+   "label": "刹车踏板及其杠杆",
+   "figures": [
+    "sim-brakes"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "hydraulic-forces",
+   "what": "液压系统中的力",
+   "source": "《大学物理（第2版）》，11.5 帕斯卡原理",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "两个活塞处于同一高度，因此不存在因深度差而产生的压强差。",
+       "src": "11.5，图 11.11"
+      },
+      {
+       "text": "帕斯卡原理：施加于密闭流体的压强变化，会大小不变地传递到流体的各个部分以及容器壁。",
+       "src": "11.5"
+      },
+      {
+       "tex": "\\kPr = \\frac{\\kF}{\\karea}",
+       "src": "11.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p1}{\\kProne} = \\mk{p2}{\\kPrtwo}",
+      "src": "11.5",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p1}{\\frac{\\kFone}{\\kareaone}} = \\mk{p2}{\\kPrtwo}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p1}{\\frac{\\kFone}{\\kareaone}} = \\mk{p2}{\\frac{\\kFtwo}{\\kareatwo}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.5"
+    }
+   ]
+  }
+ ]
+}

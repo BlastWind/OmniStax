@@ -1,0 +1,374 @@
+{
+ "id": "2",
+ "dir": "ch02",
+ "title": "运动学",
+ "intro": {
+  "module": "m42122",
+  "slug": "2-introduction-to-one-dimensional-kinematics"
+ },
+ "sections": [
+  {
+   "id": "2.1",
+   "module": "m42033",
+   "title": "位移",
+   "slug": "2-1-displacement"
+  },
+  {
+   "id": "2.2",
+   "module": "m42124",
+   "title": "矢量、标量和坐标系",
+   "slug": "2-2-vectors-scalars-and-coordinate-systems"
+  },
+  {
+   "id": "2.3",
+   "module": "m42096",
+   "title": "时间、速度和速率",
+   "slug": "2-3-time-velocity-and-speed"
+  },
+  {
+   "id": "2.4",
+   "module": "m42100",
+   "title": "加速度",
+   "slug": "2-4-acceleration"
+  },
+  {
+   "id": "2.5",
+   "module": "m42099",
+   "title": "一维恒定加速度运动的运动学方程",
+   "slug": "2-5-motion-equations-for-constant-acceleration-in-one-dimension"
+  },
+  {
+   "id": "2.6",
+   "module": "m42125",
+   "title": "一维运动学的解题基础",
+   "slug": "2-6-problem-solving-basics-for-one-dimensional-kinematics"
+  },
+  {
+   "id": "2.7",
+   "module": "m42102",
+   "title": "落体",
+   "slug": "2-7-falling-objects"
+  },
+  {
+   "id": "2.8",
+   "module": "m42103",
+   "title": "一维运动的图像分析",
+   "slug": "2-8-graphical-analysis-of-one-dimensional-motion"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "x",
+   "concept": "position",
+   "meaning": "位置，相对于所选参考系",
+   "unit": "m",
+   "section": "2.1",
+   "anchor": "2.1-position"
+  },
+  {
+   "sym": "x0",
+   "concept": "position",
+   "meaning": "初位置",
+   "unit": "m",
+   "section": "2.1",
+   "anchor": "2.1-displacement"
+  },
+  {
+   "sym": "xf",
+   "concept": "position",
+   "meaning": "末位置",
+   "unit": "m",
+   "section": "2.1",
+   "anchor": "2.1-displacement"
+  },
+  {
+   "sym": "Δx",
+   "concept": "displacement",
+   "meaning": "位移，x_f − x_0；其正负号给出方向",
+   "unit": "m",
+   "section": "2.1",
+   "anchor": "2.1-displacement"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "时间间隔，初时刻取为零（秒表上的末时刻）",
+   "unit": "s",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "x0",
+   "concept": "position",
+   "meaning": "初位置",
+   "unit": "m",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "x",
+   "concept": "position",
+   "meaning": "末位置",
+   "unit": "m",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "Δx",
+   "concept": "displacement",
+   "meaning": "位移，x − x0",
+   "unit": "m",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "v0",
+   "concept": "instantaneous-velocity",
+   "meaning": "初速度",
+   "unit": "m/s",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "末速度",
+   "unit": "m/s",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "v̄",
+   "concept": "average-velocity",
+   "meaning": "平均速度；加速度恒定时等于 (v0 + v)/2",
+   "unit": "m/s",
+   "section": "2.5",
+   "anchor": "2.5-avg-velocity"
+  },
+  {
+   "sym": "Δv",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的变化量，v − v0",
+   "unit": "m/s",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "加速度，假定为恒定，因此 ā = a",
+   "unit": "m/s²",
+   "section": "2.5",
+   "anchor": "2.5-constant-a"
+  },
+  {
+   "sym": "t0",
+   "concept": "time",
+   "meaning": "运动开始时的时刻；在本书中取为零，就像秒表开始计时时那样",
+   "unit": "s",
+   "section": "2.3",
+   "anchor": "2.3-elapsed-time"
+  },
+  {
+   "sym": "tf",
+   "concept": "time",
+   "meaning": "运动结束时的时刻",
+   "unit": "s",
+   "section": "2.3",
+   "anchor": "2.3-elapsed-time"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "时间间隔，末时刻与初时刻之差",
+   "unit": "s",
+   "section": "2.3",
+   "anchor": "2.3-elapsed-time"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "时间间隔；开始时刻取为零时使用的符号，此时 Δt = t_f ≡ t",
+   "unit": "s",
+   "section": "2.3",
+   "anchor": "2.3-elapsed-time"
+  },
+  {
+   "sym": "v̄",
+   "concept": "average-velocity",
+   "meaning": "平均速度，位移除以行进的时间；v 上方的横线表示平均",
+   "unit": "m/s",
+   "section": "2.3",
+   "anchor": "2.3-average-velocity"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "瞬时速度，即某一特定时刻或无穷小时间间隔内的平均速度",
+   "unit": "m/s",
+   "section": "2.3",
+   "anchor": "2.3-instantaneous-velocity"
+  },
+  {
+   "sym": "ā",
+   "concept": "average-acceleration",
+   "meaning": "平均加速度，速度的变化量除以变化所用的时间；横线表示平均",
+   "unit": "m/s²",
+   "section": "2.4",
+   "anchor": "2.4-average-acceleration"
+  },
+  {
+   "sym": "a",
+   "concept": "instantaneous-acceleration",
+   "meaning": "瞬时加速度，某一特定时刻的加速度",
+   "unit": "m/s²",
+   "section": "2.4",
+   "anchor": "2.4-instantaneous"
+  },
+  {
+   "sym": "Δv",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度的变化量，末速度减去初速度；加速度沿 Δv 的方向",
+   "unit": "m/s",
+   "section": "2.4",
+   "anchor": "2.4-average-acceleration"
+  },
+  {
+   "sym": "v0",
+   "concept": "instantaneous-velocity",
+   "meaning": "初速度，其正负号给出它在所选坐标系中的方向",
+   "unit": "m/s",
+   "section": "2.4",
+   "anchor": "2.4-average-acceleration"
+  },
+  {
+   "sym": "vf",
+   "concept": "instantaneous-velocity",
+   "meaning": "末速度",
+   "unit": "m/s",
+   "section": "2.4",
+   "anchor": "2.4-average-acceleration"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度的大小，在地球表面平均为 9.80 m/s²；其方向向下，指向地心",
+   "unit": "m/s²",
+   "section": "2.7",
+   "anchor": "2.7-accel-gravity"
+  },
+  {
+   "sym": "y",
+   "concept": "position",
+   "meaning": "竖直位置或位移，向上取为正；y 用于竖直运动，x 用于水平运动",
+   "unit": "m",
+   "section": "2.7",
+   "anchor": "2.7-vertical-motion"
+  },
+  {
+   "sym": "y0",
+   "concept": "position",
+   "meaning": "初竖直位置，通常取在释放点处为零",
+   "unit": "m",
+   "section": "2.7",
+   "anchor": "2.7-vertical-motion"
+  },
+  {
+   "sym": "v0",
+   "concept": "instantaneous-velocity",
+   "meaning": "初速度，物体向上抛出时为正，向下抛出时为负",
+   "unit": "m/s",
+   "section": "2.7",
+   "anchor": "2.7-vertical-motion"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "t 时刻的速度，物体向下运动时为负",
+   "unit": "m/s",
+   "section": "2.7",
+   "anchor": "2.7-vertical-motion"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "运动学方程中的加速度，向上取为正时为 −g，向下取为正时为 +g",
+   "unit": "m/s²",
+   "section": "2.7",
+   "anchor": "2.7-vertical-motion"
+  },
+  {
+   "sym": "t",
+   "concept": "elapsed-time",
+   "meaning": "自物体被释放或抛出起经过的时间",
+   "unit": "s",
+   "section": "2.7",
+   "anchor": "2.7-vertical-motion"
+  },
+  {
+   "sym": "m",
+   "concept": "slope",
+   "meaning": "直线图像的斜率，即纵向增量除以横向增量",
+   "unit": "",
+   "section": "2.8",
+   "anchor": "2.8-slopes"
+  },
+  {
+   "sym": "b",
+   "concept": "y-intercept",
+   "meaning": "纵截距，即直线图像与纵轴相交的点",
+   "unit": "",
+   "section": "2.8",
+   "anchor": "2.8-slopes"
+  },
+  {
+   "sym": "x0",
+   "concept": "position",
+   "meaning": "时刻为零时的位置，即位置对时间图像的截距",
+   "unit": "m",
+   "section": "2.8",
+   "anchor": "2.8-x-t"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "速度，位置对时间图像的斜率；切线的斜率给出瞬时速度",
+   "unit": "m/s",
+   "section": "2.8",
+   "anchor": "2.8-x-t"
+  },
+  {
+   "sym": "a",
+   "concept": "acceleration",
+   "meaning": "加速度，速度对时间图像的斜率",
+   "unit": "m/s²",
+   "section": "2.8",
+   "anchor": "2.8-v-t"
+  },
+  {
+   "sym": "t0",
+   "concept": "time",
+   "meaning": "初时刻，取为零，就像用秒表计时一样",
+   "unit": "s",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "tf",
+   "concept": "time",
+   "meaning": "末时刻，运动结束时秒表上的读数；t_0 = 0 时它等于时间间隔",
+   "unit": "s",
+   "section": "2.5",
+   "anchor": "2.5-notation"
+  },
+  {
+   "sym": "vf",
+   "concept": "instantaneous-velocity",
+   "meaning": "末速度，例题 2.9 中着陆飞机的未知量；本节其他地方写作 v",
+   "unit": "m/s",
+   "section": "2.5",
+   "anchor": "2.5-ex-airplane"
+  }
+ ]
+}

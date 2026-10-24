@@ -1,0 +1,576 @@
+/* Figures for section 23.1 Induced Emf and Magnetic Flux. The page binds
+   magnetic-flux, magnetic-field and voltage, which is what ch23/COLOR.md gives
+   it, and two more that plan.md argues for: velocity, for the speed of the
+   magnet in sim-magnet-coil, and angular-rate, for the rate the coil is turned
+   in sim-rotating-coil, with area and angle wherever a figure sets or names
+   them. A flux never wears the field's hue: the lines drawn in space are in the
+   field hue and the part of them a surface catches is in the flux hue. The
+   things the text points at are the section's referents and wear their
+   referent colours through F.ref: the two coils, the iron ring, the switch and
+   the galvanometer of Faraday's apparatus, the bar magnet and its coil, the
+   turning coil with its magnet and its rings and brushes, and the square loop.
+   The battery, the wires and the number of turns stay in ink. The
+   galvanometer's needle is in the voltage hue, since what it stands for here is
+   the induced emf, which the section says is more basic than the current.
+   Three of the four figures move, because induction is a rate; the flux
+   geometry of Figure 23.6 is an orientation, which is a state and not a
+   process, so it registers no cycle and takes no transport. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['23.1'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, label, angleArc, view, face } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+const RAD = Math.PI / 180, TAU = 2 * Math.PI;
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+/* A meter reading that grows with what it is given and never quite reaches the
+   end of its scale, so that no setting of the sliders pins the needle. */
+const soft = (x) => x / Math.sqrt(1 + x * x);
+/* a number as a × 10^b, for the canvas and for KaTeX */
+function sci(x, dp) {
+  if (!(Math.abs(x) > 0)) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
+  const sup = String(e).replace(/-/g, '−').replace(/[0-9]/g, (c) => '⁰¹²³⁴⁵⁶⁷⁸⁹'[+c]);
+  return fmt(m, dp ?? 2) + ' × 10' + sup;
+}
+function sciTex(x, dp) {
+  if (!(Math.abs(x) > 0)) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
+  return fmt(m, dp ?? 2) + ' \\times 10^{' + e + '}';
+}
+
+/* A galvanometer: a case, a scale with its zero in the middle and a needle
+   standing at r of full scale, from −1 to 1. The needle and the name of what it
+   reads are in the voltage hue; the case is drawn in the meter's referent colour
+   and the scale is ink. */
+function meter(ctx, cx, cy, R, r, title, id) {
+  const sw = 1.06, a = -Math.PI / 2 + clamp(r, -1, 1) * sw;
+  ctx.save();
+  ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref(id); ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(cx, cy, R, Math.PI, 0); ctx.lineTo(cx + R, cy + R * 0.26); ctx.lineTo(cx - R, cy + R * 0.26); ctx.closePath();
+  ctx.fill(); ctx.stroke(); ctx.restore();
+  for (let i = -4; i <= 4; i++) {
+    const t = -Math.PI / 2 + (i / 4) * sw;
+    line(ctx, cx + Math.cos(t) * R * 0.76, cy + Math.sin(t) * R * 0.76, cx + Math.cos(t) * R * 0.9, cy + Math.sin(t) * R * 0.9, i === 0 ? PAL.ink : PAL.muted, i === 0 ? 3 : 2);
+  }
+  line(ctx, cx, cy, cx + Math.cos(a) * R * 0.8, cy + Math.sin(a) * R * 0.8, C('voltage'), 4);
+  dot(ctx, cx, cy, PAL.ink, true, 6);
+  text(ctx, '0', cx, cy - R * 0.6, PAL.muted, { size: 17, align: 'center' });
+  text(ctx, title, cx, cy - R - 24, C('voltage'), { size: 20, weight: 600, align: 'center' });
+}
+
+/* The flux through a coil as a bar standing out of a zero line, up for one sign
+   and down for the other. `frac` runs from −1 to 1 of the tallest bar the
+   sliders reach, so the bar keeps one fixed scale whatever they are set to. */
+function fluxBar(ctx, cx, cy, h, frac, capt, value) {
+  const w = 38, f = clamp(frac, -1, 1);
+  ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2;
+  ctx.strokeRect(cx - w / 2, cy - h, w, 2 * h); ctx.restore();
+  line(ctx, cx - w / 2 - 10, cy, cx + w / 2 + 10, cy, PAL.muted, 2);
+  if (Math.abs(f) > 0.002) {
+    ctx.save(); ctx.fillStyle = C('magnetic-flux');
+    ctx.fillRect(cx - w / 2 + 2, f > 0 ? cy - f * h : cy, w - 4, Math.abs(f) * h);
+    ctx.restore();
+  }
+  text(ctx, capt, cx, cy + h + 26, C('magnetic-flux'), { size: 19, weight: 600, align: 'center' });
+  text(ctx, value, cx, cy + h + 50, PAL.muted, { size: 17, align: 'center' });
+}
+
+
+/* =====================================================================
+   FIGURE 23.3 · sim-faraday-ring · moving · 2D from a locked view
+   Faraday's iron ring: a coil on its upper part driven by a battery through a
+   switch, a coil on its lower part read by a galvanometer. The cycle throws the
+   switch for the reader — closed at 0.5 s, opened at 3.6 s, the field rising
+   and dying with a time constant of 0.28 s — because the one thing the book's
+   still cannot show is that the needle moves only while the field is changing.
+   The ring is projected from the book's own viewpoint with view()/face() and
+   does not orbit (root rule 28.2), as ch23/config.md asks. The lower coil
+   encloses 0.012 m² of the ring's cross-section; with the iron taken away only
+   a small part of the upper coil's field reaches it, which is what the
+   section's first conceptual question is about. The needle is set on one fixed
+   scale taken from the sliders' maxima.
+===================================================================== */
+(function () {
+  const d = sim('sim-faraday-ring', 700);
+  const B = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.05, max: 0.60, step: 0.05, value: 0.25, unit: 'T', dec: 2, aria: '上方线圈在环中产生的磁场', onInput: () => cy.reset() });
+  const N = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 20, step: 1, value: 8, unit: '匝', dec: 0, aria: '下方线圈的匝数' });
+  const core = choice(d.controls, { label: '\\text{铁芯}', options: [{ value: 'iron', label: '铁环' }, { value: 'air', label: '空气' }], value: 'iron', aria: '是否用铁环把磁场从一个线圈传到另一个线圈' });
+
+  const TC = 0.28, T_ON = 0.5, T_OFF = 3.6, T_END = 6.4, AREA = 0.012;
+  const FULL = 20 * AREA * (0.60 / TC);            /* the greatest N ΔΦ/Δt the sliders reach */
+  const cy = cycle(() => T_END, 0.8);
+  const k = () => core.mix((c) => (c === 'iron' ? 1 : 0.04));      /* taking the iron out thins the field the lower coil sees */
+  const rise = 1 - Math.exp(-(T_OFF - T_ON) / TC);
+  const field = (t) => (t < T_ON ? 0 : t < T_OFF ? B.v * (1 - Math.exp(-(t - T_ON) / TC)) : B.v * rise * Math.exp(-(t - T_OFF) / TC));
+  const slope = (t) => (t < T_ON ? 0 : t < T_OFF ? (B.v / TC) * Math.exp(-(t - T_ON) / TC) : -((B.v * rise) / TC) * Math.exp(-(t - T_OFF) / TC));
+
+  const CX = 460, CY = 380, R0 = 185, TUBE = 44;
+  const V = view({ yaw: 0, pitch: 0.55, dist: 2400, cx: CX, cy: CY });
+  const at = (r, a) => V.P([r * Math.cos(a), 0, r * Math.sin(a)]);
+  const circle = (r) => { const p = []; for (let i = 0; i <= 96; i++) p.push(at(r, (i / 96) * TAU)); return p; };
+  /* a coil of n turns on the ring: each turn is a loop drawn right round the
+     tube's cross-section, so the wire is seen to be wound on the iron rather
+     than laid across it; the half of each loop behind the tube is hidden */
+  function winding(ctx, a0, a1, n, color) {
+    for (let i = 0; i < n; i++) {
+      const a = a0 + ((a1 - a0) * (i + 0.5)) / n;
+      ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineCap = 'round';
+      ctx.beginPath();
+      for (let k = 0; k <= 40; k++) {
+        const u = -Math.PI / 2 + (k / 40) * Math.PI;           /* the near half of the loop */
+        const r = R0 + (TUBE + 10) * Math.sin(u), y = (TUBE * 0.62) * Math.cos(u);
+        const q = V.P([r * Math.cos(a), y, r * Math.sin(a)]);
+        if (k) ctx.lineTo(q[0], q[1]); else ctx.moveTo(q[0], q[1]);
+      }
+      ctx.stroke(); ctx.restore();
+    }
+  }
+  function ring(ctx) {
+    ctx.save(); ctx.globalAlpha = 0.3 + 0.7 * core.a('iron');     /* the iron fades to the outline the coils are wound on */
+    const outer = circle(R0 + TUBE), rc = F.ref('iron-ring');
+    face(ctx, outer, 0.1);
+    ctx.beginPath(); outer.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+    ctx.strokeStyle = rc; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.stroke();
+    ctx.restore();
+    const inner = circle(R0 - TUBE);
+    ctx.save(); ctx.beginPath(); inner.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+    ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = rc; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+  }
+  function fieldArrows(ctx, b) {
+    if (b < 0.004) return;
+    const a = clamp(b / 0.60, 0.12, 1), round = core.a('iron');
+    for (let i = 0; i < 12; i++) {
+      const c = (i / 12) * TAU + 0.26;
+      const w = c > 200 * RAD && c < 340 * RAD ? 1 : round;   /* without the iron the field stays in the upper coil */
+      if (w <= 0) continue;
+      const p1 = at(R0, c - 0.13), p2 = at(R0, c + 0.13);
+      arrow(ctx, p1[0], p1[1], p2[0], p2[1], alpha(C('magnetic-field'), (0.25 + 0.75 * a) * w), 4);
+    }
+  }
+  function circuits(ctx, closed) {
+    const pl = at(R0, 250 * RAD), pr = at(R0, 290 * RAD), sl = at(R0, 110 * RAD), sr = at(R0, 70 * RAD);
+    const YT = 150;
+    /* the battery's circuit: up from the back of the ring, the battery standing on
+       one upright and the switch on the other, joined across the top */
+    line(ctx, pl[0], pl[1], pl[0], 236, PAL.ink, 3); line(ctx, pl[0], 214, pl[0], YT, PAL.ink, 3);
+    line(ctx, pl[0] - 26, 236, pl[0] + 26, 236, PAL.ink, 4); line(ctx, pl[0] - 15, 222, pl[0] + 15, 222, PAL.ink, 7);
+    line(ctx, pl[0], YT, pr[0], YT, PAL.ink, 3);
+    line(ctx, pr[0], pr[1], pr[0], 248, PAL.ink, 3); line(ctx, pr[0], 188, pr[0], YT, PAL.ink, 3);
+    const sc = F.ref('switch');
+    dot(ctx, pr[0], 248, sc, true, 7); dot(ctx, pr[0], 188, sc, true, 7);
+    const a = closed ? -Math.PI / 2 : -Math.PI / 2 + 0.62;
+    line(ctx, pr[0], 248, pr[0] + 62 * Math.cos(a), 248 + 62 * Math.sin(a), sc, 5);
+    /* the meter's two leads, down from the front of the ring */
+    line(ctx, sr[0], sr[1], sr[0], 600, PAL.ink, 3); line(ctx, sr[0], 600, 1058, 600, PAL.ink, 3); line(ctx, 1058, 600, 1058, 496, PAL.ink, 3);
+    line(ctx, sl[0], sl[1], sl[0], 645, PAL.ink, 3); line(ctx, sl[0], 645, 1202, 645, PAL.ink, 3); line(ctx, 1202, 645, 1202, 496, PAL.ink, 3);
+  }
+  function draw() {
+    const t = cy.now(), { ctx } = begin(d.c);
+    const b = field(t), db = slope(t), closed = t >= T_ON && t < T_OFF;
+    const phi = k() * b * AREA, emf = N.v * k() * db * AREA, r = soft((2.2 * emf) / FULL);
+    ring(ctx);
+    winding(ctx, 210 * RAD, 330 * RAD, 7, F.ref('top-coil'));
+    winding(ctx, 30 * RAD, 150 * RAD, clamp(N.v, 1, 11), F.ref('bottom-coil'));   /* a coil of more than eleven turns is drawn with eleven */
+    fieldArrows(ctx, b);
+    circuits(ctx, closed);
+    meter(ctx, 1130, 470, 95, r, '感应电动势', 'ring-galvanometer');
+    fluxBar(ctx, 880, 380, 110, phi / (0.60 * AREA), '穿过下方线圈的 Φ', sci(phi, 1) + ' T·m²');
+    label(ctx, '电池和开关', at(R0, 250 * RAD)[0] - 28, 214, { side: 'left', size: 20, color: F.ref('switch') });
+    label(ctx, core.value === 'iron' ? '铁环' : '无铁：线圈置于空气中', CX - R0 - TUBE, CY, { side: 'left', size: 20, color: F.ref('iron-ring') });
+    label(ctx, '电表所读的线圈，' + fmt(N.v, 0) + ' 匝', at(R0 + TUBE, 120 * RAD)[0], at(R0 + TUBE, 120 * RAD)[1] + 8, { side: 'below', size: 20, gap: 22, color: F.ref('bottom-coil') });
+    if (b > 0.004) text(ctx, '环中 B = ' + fmt(b, 2) + ' T', CX, CY, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    const head = t < T_ON ? '开关断开，环中没有磁场，指针停在零点。'
+      : Math.abs(db) > 0.06
+        ? `开关刚刚${closed ? '闭合' : '断开'}，环中的磁场正在${closed ? '增强' : '消失'}，指针摆向${closed ? '右' : '左'}侧。`
+        : closed
+          ? `开关已闭合 ${fmt(t - T_ON, 1)} s，环中的磁场稳定在 ${fmt(b, 2)} T，指针已回落到零。`
+          : `开关已断开 ${fmt(t - T_OFF, 1)} s，磁场已消失，指针回到了零点。`;
+    topline(ctx, head);
+    readout(d.readout,
+      `\\kPhi = \\kBmag \\karea = (${fmt(k() * b, 3)}\\ \\text{T})(0.012\\ \\text{m}^2) = ${sciTex(phi, 2)}\\ \\text{T}\\cdot\\text{m}^2`,
+      `${core.value === 'iron' ? '铁把上方线圈几乎全部的磁场传到下方线圈。' : '没有铁，上方线圈的磁场只有约二十五分之一到达下方线圈。'}${N.v === 1 ? '单匝携带这一磁通量；每增加一匝，就再携带一次，电动势随匝数增大。' : `${fmt(N.v, 0)} 匝中的每一匝都携带这一磁通量，所以电动势随匝数增大。`}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 23.4 · sim-magnet-coil · moving · flat
+   A bar magnet pushed into a coil and pulled out again. The book draws five
+   stills of this one experiment and they are five states of this figure: the
+   pole that faces the coil is a choice, what moves is a choice, and the speed
+   is a slider, so the reader can reach every stage the book prints and the ones
+   between. The magnet's field is drawn as a bundle of lines out of its pole
+   that spread as they go, so the field at the coil falls as B/(1 + z/0.05)² and
+   the lines the coil catches fall with it; the coil is 0.0050 m² in two turns
+   and the magnet travels 0.12 m. The needle is set on one fixed scale taken
+   from the sliders' maxima.
+===================================================================== */
+(function () {
+  const d = sim('sim-magnet-coil', 640);
+  const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.05, max: 1.20, step: 0.05, value: 0.40, unit: 'm/s', dec: 2, aria: '磁体或线圈移动的速率', onInput: () => cy.reset() });
+  const Bs = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.02, max: 0.20, step: 0.01, value: 0.08, unit: 'T', dec: 2, aria: '磁体磁极端面处的磁场' });
+  const pole = choice(d.controls, { label: '\\text{朝向线圈的磁极}', options: [{ value: 'n', label: '北极' }, { value: 's', label: '南极' }], value: 'n', aria: '磁体的哪一个磁极朝向线圈' });
+  const mover = select(d.controls, { label: '\\text{运动的是}', options: [{ value: 'magnet', label: '磁体' }, { value: 'coil', label: '线圈' }, { value: 'none', label: '都不动' }], value: 'magnet', aria: '是磁体运动、线圈运动，还是两者都保持静止', onInput: () => cy.reset() });
+
+  const ZM = 0.12, ZS = 0.05, AC = 0.0050, NL = 2, PX = 2500, CY = 330, APER = 100, ML = 180;
+  const spread = (z) => 1 + z / ZS;
+  const Bat = (z) => Bs.v / (spread(z) * spread(z));
+  const sign = () => pole.mix((p) => (p === 'n' ? 1 : -1));   /* turning the magnet round carries the flux through zero to its mirror */
+  const dphidz = (z) => -sign() * ((2 * Bs.v * AC) / (ZS * Math.pow(spread(z), 3)));
+  const FULL = NL * ((2 * 0.20 * AC) / (ZS * Math.pow(spread(ZM / 2), 3))) * 1.20;   /* a middling emf at the greatest settings */
+  const still = () => mover.value === 'none';
+  const leg = () => ZM / v.v;
+  const cy = cycle(() => (still() ? 3 : 2 * leg()), 0.9);
+  const at = (t) => {
+    if (still()) return { z: 0.045, dz: 0 };
+    const L = leg();
+    return t < L ? { z: ZM * (1 - t / L), dz: -v.v } : { z: ZM * ((t - L) / L), dz: v.v };
+  };
+
+  function draw() {
+    const t = cy.now(), st = at(t), { ctx } = begin(d.c);
+    const zpx = st.z * PX;
+    const coilX = mover.value === 'coil' ? 400 + zpx : 700;
+    const poleX = mover.value === 'coil' ? 420 : coilX + 20 - zpx;
+    const phi = sign() * Bat(st.z) * AC, emf = -NL * dphidz(st.z) * st.dz, r = soft((2.2 * emf) / FULL);
+
+    /* the magnet's field: a bundle of lines out of the pole, spreading as they go */
+    const n = Math.max(3, Math.round(3 + (8 * Bs.v) / 0.20)), BAND = 190;
+    let caught = 0;
+    for (let i = 0; i < n; i++) {
+      const off = n === 1 ? 0 : -80 + (160 * i) / (n - 1);
+      const xp = poleX;
+      const yAt = (x) => CY + off * (1 + Math.max(0, x - xp) / 125);
+      /* a line is drawn until it leaves the band the figure keeps for it */
+      const reach = Math.abs(off) < 1 ? 1e4 : 125 * (BAND / Math.abs(off) - 1);
+      const xe = Math.min(coilX + 150, xp + reach);
+      const inside = Math.abs(off * (1 + Math.max(0, coilX - xp) / 125)) < APER;
+      if (inside) caught++;
+      const out = sign() > 0;
+      const s = Math.abs(sign());
+      arrow(ctx, out ? xp : xe, out ? yAt(xp) : yAt(xe), out ? xe : xp, out ? yAt(xe) : yAt(xp), alpha(C('magnetic-field'), 0.55 * s), 3);
+      if (inside) line(ctx, coilX - 46, yAt(coilX - 46), coilX + 46, yAt(coilX + 46), alpha(C('magnetic-flux'), s), 6);
+    }
+    /* the magnet, its poles lettered */
+    const mx = poleX - ML;
+    const mc = F.ref('bar-magnet');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = mc; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.rect(mx, CY - 30, ML, 60); ctx.fill(); ctx.stroke(); ctx.restore();
+    line(ctx, mx + ML / 2, CY - 30, mx + ML / 2, CY + 30, mc, 2);
+    [['n', 'S', 'N'], ['s', 'N', 'S']].forEach(([p, back, front]) => {
+      const a = pole.a(p); if (a <= 0) return;
+      text(ctx, back, mx + ML / 4, CY, alpha(PAL.ink, a), { size: 24, weight: 600, align: 'center' });
+      text(ctx, front, mx + (3 * ML) / 4, CY, alpha(PAL.ink, a), { size: 24, weight: 600, align: 'center' });
+    });
+    /* the coil: two turns seen from the side, drawn over the magnet where it is inside */
+    ctx.save(); ctx.strokeStyle = F.ref('coil'); ctx.lineWidth = 6;
+    [-16, 16].forEach((dx) => { ctx.beginPath(); ctx.ellipse(coilX + dx, CY, 26, APER, 0, 0, TAU); ctx.stroke(); });
+    ctx.restore();
+    line(ctx, coilX + 16, CY + APER, coilX + 16, 556, PAL.ink, 3); line(ctx, coilX + 16, 556, 1106, 556, PAL.ink, 3); line(ctx, 1106, 556, 1106, 492, PAL.ink, 3);
+    line(ctx, coilX - 16, CY + APER, coilX - 16, 598, PAL.ink, 3); line(ctx, coilX - 16, 598, 1194, 598, PAL.ink, 3); line(ctx, 1194, 598, 1194, 492, PAL.ink, 3);
+    /* the hand on whatever moves, and the way it is going */
+    if (!still()) {
+      const onCoil = mover.value === 'coil';
+      F.hand(ctx, onCoil ? coilX - 16 : mx + 34, onCoil ? CY - APER - 92 : CY - 104, { aim: [0, 1], view: 'back', curl: 0.8, thumb: 'along', s: 1 });
+      const way = onCoil ? (st.dz < 0 ? -1 : 1) : (st.dz < 0 ? 1 : -1);
+      const ax = onCoil ? coilX + 150 : mx + ML / 2, ay = onCoil ? CY - APER - 96 : CY + 62;
+      arrow(ctx, ax - way * 46, ay, ax + way * 46, ay, C('velocity'), 5);
+      text(ctx, fmt(v.v, 2) + ' m/s', ax, onCoil ? ay - 26 : ay + 28, C('velocity'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    }
+    meter(ctx, 1150, 462, 95, r, '感应电动势', 'coil-galvanometer');
+    fluxBar(ctx, 950, 300, 100, phi / (0.20 * AC), '穿过线圈的 Φ', sci(phi, 1) + ' T·m²');
+    hits = [
+      { x: mx + ML / 2, y: CY, r: 60, name: '条形磁铁' },
+      { x: coilX, y: CY - APER + 20, r: 40, name: '线圈，两匝' },
+      { x: coilX, y: CY + APER - 20, r: 40, name: '线圈，两匝' },
+      { x: coilX, y: CY, r: 34, name: '线圈截获的磁感线，其条数就是磁通量' },
+      { x: poleX + 130, y: CY + 60, r: 40, name: '磁体的磁场' },
+    ];
+    const head = still()
+      ? '没有任何东西在运动，穿过线圈的磁通量和磁体一样稳定，无论磁体多强，指针都停在零点。'
+      : `${mover.value === 'coil' ? `线圈正${st.dz < 0 ? '套向' : '离开'}磁体` : `磁体正${st.dz < 0 ? '进入' : '离开'}线圈`}，速率为 ${fmt(v.v, 2)} m/s，穿过线圈的磁通量正在${st.dz < 0 ? '增大' : '减小'}，指针偏向${r > 0 ? '右' : '左'}侧。`;
+    topline(ctx, head);
+    readout(d.readout,
+      `\\kPhi = \\kBmag \\karea = (${fmt(Bat(st.z), 4)}\\ \\text{T})(0.0050\\ \\text{m}^2) = ${sciTex(Math.abs(phi), 2)}\\ \\text{T}\\cdot\\text{m}^2\\ \\text{，线圈距磁极}\\ ${fmt(st.z * 100, 1)}\\ \\text{cm}`,
+      `线圈截获了从磁极出来的 ${n} 条磁感线中的 ${caught} 条，这个条数就是磁通量。指针响应的是条数变化得多快，而不是条数有多大；移动线圈与移动磁体的效果相同。`);
+  }
+  let hits = [];
+  F.hover(d.stage, () => hits);
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 23.5 · sim-rotating-coil · moving · flat
+   The coil of a generator turned in the field of a magnet, seen from above, so
+   that the angle between the field and the perpendicular to the coil is drawn
+   full size and the width of field the coil catches foreshortens as cos θ. The
+   field and the area never change here; only the angle runs round, and that is
+   enough to carry the flux from its greatest value through zero to its greatest
+   value the other way. The sinusoid a generator draws belongs to 23.5, where
+   the book draws it; this figure carries the flux on a bar and the emf on the
+   needle. The rings and brushes on the axle are drawn beneath, seen from the
+   side, as the book draws them.
+===================================================================== */
+(function () {
+  const d = sim('sim-rotating-coil', 700);
+  const B = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.10, max: 0.40, step: 0.05, value: 0.20, unit: 'T', dec: 2, aria: '磁体两极之间的磁场' });
+  const w = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 1, max: 12, step: 0.5, value: 4, unit: 'rad/s', dec: 1, aria: '线圈转动的快慢', onInput: () => cy.reset() });
+  const A = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.04, max: 0.16, step: 0.01, value: 0.08, unit: 'm²', dec: 2, aria: '线圈的面积' });
+
+  const CX = 520, CY = 320, FULL = 0.30, PHI_MAX = 0.40 * 0.16, RY = 540;
+  const cy = cycle(() => TAU / w.v, 0);
+  const half = () => 50 + 95 * Math.sqrt(A.v / 0.16);
+
+  function poles(ctx) {
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('generator-magnet'); ctx.lineWidth = 3;
+    [[-1, 'N'], [1, 'S']].forEach(([s, name]) => {
+      const x = CX + s * 300;
+      ctx.beginPath(); ctx.rect(x - 46, CY - 166, 92, 332); ctx.fill(); ctx.stroke();
+      text(ctx, name, x, CY, PAL.ink, { size: 26, weight: 600, align: 'center' });
+    });
+    ctx.restore();
+  }
+  function rings(ctx) {
+    text(ctx, '转轴上的滑环和电刷，侧视', CX, 668, PAL.muted, { size: 17, align: 'center' });
+    line(ctx, CX, RY - 40, CX, RY + 48, PAL.ink, 4);
+    const rb = F.ref('rings-brushes');
+    [0, 28].forEach((dy, i) => {
+      ctx.save(); ctx.strokeStyle = rb; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.ellipse(CX, RY + dy, 26, 9, 0, 0, TAU); ctx.stroke(); ctx.restore();
+      const s = i ? -1 : 1, x = CX + s * 66, xe = i ? 1168 : 1232;
+      line(ctx, CX + s * 26, RY + dy, x, RY + dy, rb, 5);
+      line(ctx, x, RY + dy, x, 636, PAL.ink, 3); line(ctx, x, 636, xe, 636, PAL.ink, 3); line(ctx, xe, 636, xe, 508, PAL.ink, 3);
+    });
+  }
+  function draw() {
+    const t = cy.now(), th = (w.v * t) % TAU, { ctx } = begin(d.c);
+    const sgn = th > Math.PI ? th - TAU : th;         /* the angle the book measures, never more than 180° */
+    const deg = Math.abs(sgn) / RAD;
+    const L = half(), c = Math.cos(th), s = Math.sin(th);
+    const phi = B.v * A.v * c, emf = B.v * A.v * w.v * s, r = soft((2.2 * emf) / FULL);
+    poles(ctx);
+    const catchH = L * Math.abs(c);
+    for (let i = -5; i <= 5; i++) {
+      const y = CY + i * 30;
+      arrow(ctx, CX - 250, y, CX + 250, y, alpha(C('magnetic-field'), 0.5), 3);
+      if (Math.abs(i * 30) < catchH) line(ctx, CX - 120, y, CX + 120, y, C('magnetic-flux'), 6);
+    }
+    const ex = s * L, ey = c * L;
+    const cc = F.ref('rotating-coil');
+    line(ctx, CX - ex, CY - ey, CX + ex, CY + ey, cc, 9);
+    dot(ctx, CX + ex, CY + ey, cc, true, 10); dot(ctx, CX - ex, CY - ey, cc, true, 10);
+    const nx = c * 130, ny = -s * 130;
+    line(ctx, CX, CY, CX + nx * 0.72, CY + ny * 0.72, PAL.muted, 3, [10, 8]);
+    arrow(ctx, CX + nx * 0.7, CY + ny * 0.7, CX + nx, CY + ny, PAL.muted, 3);
+    angleArc(ctx, { x: CX, y: CY }, 78, 0, sgn, 'θ = ' + fmt(deg, 0) + '°', undefined, C('angle'));
+    dot(ctx, CX, CY, PAL.ink, true, 7);
+    line(ctx, CX, CY, CX, RY - 40, alpha(PAL.ink, 0.35), 2, [6, 8]);
+    rings(ctx);
+    meter(ctx, 1200, 478, 95, r, '感应电动势', 'generator-galvanometer');
+    fluxBar(ctx, 990, 300, 104, phi / PHI_MAX, '穿过线圈的 Φ', sci(phi, 1) + ' T·m²');
+    text(ctx, '从上方看', 210, 120, PAL.muted, { size: 17, align: 'center' });
+    label(ctx, 'B，两极之间的磁场', CX, CY - 172, { side: 'above', size: 20, color: C('magnetic-field'), leader: false });
+    hits = [
+      { x: CX + ex * 0.6, y: CY + ey * 0.6, r: 36, name: '线圈，侧面朝向磁场' },
+      { x: CX - ex * 0.6, y: CY - ey * 0.6, r: 36, name: '线圈，侧面朝向磁场' },
+      { x: CX + nx * 0.85, y: CY + ny * 0.85, r: 30, name: '线圈的法线' },
+    ];
+    topline(ctx, `线圈的法线与磁场成 ${fmt(deg, 0)}°，所以穿过线圈的磁通量为 ${sci(phi, 1)} T·m²，并且${Math.abs(s) < 0.06 ? '在转折点' : s > 0 ? '在减小' : '在增大'}。`);
+    readout(d.readout,
+      `\\kPhi = \\kBmag \\karea\\cos\\ktheta = (${fmt(B.v, 2)}\\ \\text{T})(${fmt(A.v, 2)}\\ \\text{m}^2)\\cos ${fmt(deg, 0)}^\\circ = ${sciTex(phi, 2)}\\ \\text{T}\\cdot\\text{m}^2`,
+      `线圈转动时，磁场和面积都不变；只有角度使磁通量循环往复。磁通量最大处指针停在零，线圈侧对磁场、磁通量为零处指针摆得最远。`);
+  }
+  let hits = [];
+  F.hover(d.stage, () => hits);
+  register(d.fig, {
+    update: (dt) => { if (cy.tau >= cy.period()) { cy.tau = 0; cy.wait = 0; } cy.step(dt, () => 1); },
+    draw,
+  });
+})();
+
+/* =====================================================================
+   FIGURE 23.6 · sim-flux-angle · still · a full 3D scene (root rule 28.3)
+   A square loop of area A in a uniform field, the field drawn as parallel lines
+   through the space around it and coloured in the flux hue where they cross the
+   loop, so the flux is the count of lines the loop catches. What is taught is an
+   arrangement in space — a plane surface and a direction in the space round it —
+   and a flat drawing has to lie about one of the two. The orbit is held from 8°
+   below the plane the field lies in to 85° above it, since the scene is
+   symmetric about that plane and a view from underneath only repeats one from
+   above; the yaw is free, since there is no ground and no front to the scene.
+   Still: an orientation is a state, so it registers no cycle and takes no
+   transport. The defaults are the numbers of the section's second test-prep
+   item, 0.20 m² at 60° to a 1.5 mT field. Where WebGL is missing the canvas
+   draws the book's own side view instead.
+===================================================================== */
+(function () {
+  const THREE = window.THREE;
+  const glOk = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } };
+  const hasGL = !!(THREE && glOk());
+  const d = sim('sim-flux-angle', hasGL ? 0 : 620);
+  const B = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.5, max: 3.0, step: 0.1, value: 1.5, unit: 'mT', dec: 1, aria: '匀强磁场的磁感应强度' });
+  const A = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.05, max: 0.40, step: 0.01, value: 0.20, unit: 'm²', dec: 2, aria: '线圈的面积' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 1, value: 60, unit: '°', dec: 0, aria: '磁场与线圈法线之间的夹角',
+    specials: [{ at: 0, label: '正对' }, { at: 90, label: '侧对' }] });
+  /* the flux changes form at the two angles the text names: face on it is B A, edge on it is nothing */
+  const { formula: eqHost, note } = F.readout(d);
+
+  const U = 3.5;                                   /* scene units to the metre, so 0.40 m² fills the frame */
+  const REG = 1.15, ZEND = 1.75;                    /* the lines cover a square of side 2 REG and run from −ZEND to ZEND */
+  const state = () => {
+    const t = th.v * RAD, c = th.v >= 90 ? 0 : Math.cos(t), a = (Math.sqrt(A.v) * U) / 2;   /* a right angle catches exactly nothing */
+    const B_T = B.v * 1e-3, phi = B_T * A.v * c;
+    const n = clamp(Math.round(2 + (B.v / 3.0) * 5), 3, 7);   /* the lines are drawn more closely as the field grows */
+    const rows = [];
+    let caught = 0, face = 0;
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        const x = -REG + (2 * REG * i) / (n - 1);
+        const y = -REG + (2 * REG * j) / (n - 1);
+        const hit = c > 0.02 && Math.abs(x) < a * c && Math.abs(y) < a;
+        if (hit) caught++;
+        if (Math.abs(x) < a && Math.abs(y) < a) face++;      /* what the same loop would catch face on */
+        rows.push({ x, y, hit, z: hit ? -x * Math.tan(t) : 0 });
+      }
+    }
+    return { t, c, a, B_T, phi, n: n * n, caught, face, rows };
+  };
+  const word = () => (th.v >= 89 ? '线圈与磁场平行，什么也截获不到' : th.v <= 1 ? '线圈正对磁场，截获其面积所能容纳的全部磁场' : `线圈截获的是正对时所截获量的 ${fmt(Math.cos(th.v * RAD) * 100, 0)}%`);
+
+  /* ---------- the scene ---------- */
+  let V = null, S = null, g3 = null, sig = '';
+  const paint = [];
+  const pmat = (col, extra) => { const m = F.mesh.mat(col(), extra); paint.push({ m, col }); return m; };
+  const loopC = () => F.ref('loop'), mutedC = () => PAL.muted, BC = () => C('magnetic-field'), FC = () => C('magnetic-flux');
+  /* an arrow of shaft radius r that keeps its materials, so a change of theme repaints it */
+  function vec(g, a, b, r, col, name) {
+    const A3 = new THREE.Vector3(a[0], a[1], a[2]), B3 = new THREE.Vector3(b[0], b[1], b[2]);
+    const dd = B3.clone().sub(A3), L = dd.length(), hl = Math.min(0.34, L * 0.45), u = dd.clone().normalize();
+    const base = B3.clone().sub(u.clone().multiplyScalar(hl));
+    const shaft = new THREE.Mesh(F.mesh.geo().cyl, pmat(col)); shaft.scale.set(r, 1, r);
+    F.mesh.setStick(shaft, a, base.toArray()); g.add(shaft);
+    const cone = new THREE.Mesh(F.mesh.geo().cone, pmat(col));
+    cone.position.copy(base).add(u.clone().multiplyScalar(hl / 2));
+    cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), u);
+    cone.scale.set(r * 3.2, hl, r * 3.2); g.add(cone);
+    if (name) { V.pickable(shaft, name); V.pickable(cone, name); }
+  }
+  function build() {
+    if (!V || !V.scene || !g3) return;
+    V.clear(); paint.length = 0; sig = '';
+    S = { lines: new THREE.Group(), loop: new THREE.Group(), arc: new THREE.Group() };
+    g3.add(S.lines); g3.add(S.loop); g3.add(S.arc);
+    S.plate = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.02), pmat(FC, { transparent: true, opacity: 0.18 }));
+    S.loop.add(S.plate); V.pickable(S.plate, '计算磁通量所依据的面积 A');
+    S.edges = [0, 1, 2, 3].map(() => {
+      const m = new THREE.Mesh(F.mesh.geo().cyl, pmat(loopC)); m.scale.set(0.028, 1, 0.028);
+      S.loop.add(m); V.pickable(m, '围成该面积的线圈'); return m;
+    });
+    vec(S.loop, [0, 0, 0], [0, 0, 1.85], 0.032, mutedC, '面积的法线，角 θ 从它量起');
+    vec(g3, [0, 0, -1.6], [0, 0, 1.6], 0.05, BC, 'B，磁场，在空间中处处相同');
+    S.lab = {
+      B: V.label('B', [0, 0, 1.66], g3, 12),
+      th: V.label('θ', [0, 0, 0], g3, 0),
+      n: V.label('法线', [0, 0, 1.85], S.loop, 12),
+      A: V.label('A', [0, 0, 0], S.loop, 0),
+    };
+    V.invalidate();
+  }
+  /* the field lines, rebuilt when their number, the tilt or the area changes */
+  function rebuildLines(st) {
+    const key = `${st.n}|${th.v}|${A.v}`;
+    if (key === sig) return;
+    sig = key;
+    S.lines.children.forEach((c) => { c.geometry?.dispose(); c.material?.dispose(); });
+    S.lines.clear();
+    const faint = (o) => { o.material.transparent = true; o.material.opacity = 0.5; return o; };
+    st.rows.forEach((L) => {
+      faint(F.mesh.polyline(S.lines, [[L.x, L.y, -ZEND], [L.x, L.y, ZEND]], C('magnetic-field')));
+      const cone = new THREE.Mesh(F.mesh.geo().cone, F.mesh.mat(C('magnetic-field'), { transparent: true, opacity: 0.5 }));
+      cone.position.set(L.x, L.y, ZEND - 0.12);
+      cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 1));
+      cone.scale.set(0.055, 0.22, 0.055); S.lines.add(cone);
+      if (L.hit) {
+        F.mesh.polyline(S.lines, [[L.x, L.y, L.z - 0.46], [L.x, L.y, L.z + 0.46]], C('magnetic-flux'));
+        F.mesh.sphere(S.lines, [L.x, L.y, L.z], 0.06, C('magnetic-flux'));
+      }
+    });
+  }
+  function apply(st) {
+    if (!S) return;
+    paint.forEach((p) => { try { p.m.color.set(p.col()); } catch (e) { /* a palette value the renderer cannot read is left as it was */ } });
+    S.loop.rotation.y = st.t;
+    S.plate.scale.set(2 * st.a, 2 * st.a, 1);
+    const a = st.a, corners = [[-a, -a], [a, -a], [a, a], [-a, a]];
+    corners.forEach((p, i) => {
+      const q = corners[(i + 1) % 4];
+      F.mesh.setStick(S.edges[i], [p[0], p[1], 0], [q[0], q[1], 0]);
+    });
+    rebuildLines(st);
+    S.arc.children.forEach((c) => { c.geometry?.dispose(); c.material?.dispose(); });
+    S.arc.clear();
+    const pt = th.v > 3 ? F.mesh.arc(S.arc, [0, 0, 1], [Math.sin(st.t), 0, Math.cos(st.t)], 1.5, [0, 0, 0], C('angle')) : [1.1, 0, 1.1];
+    V.move(S.lab.th, pt);
+    S.lab.th.textContent = 'θ = ' + fmt(th.v, 0) + '°'; S.lab.th.hidden = th.v <= 3;
+    S.lab.A.textContent = 'A = ' + fmt(A.v, 2) + ' m²';
+    V.move(S.lab.A, [-a * 0.86, a * 0.88, 0]);
+    S.lab.B.style.color = C('magnetic-field'); S.lab.A.style.color = C('area');
+    S.lab.th.style.color = C('angle'); S.lab.n.style.color = PAL.muted;
+    V.headline(`${fmt(B.v, 1)} mT 的磁场穿过 ${fmt(A.v, 2)} m² 的面积，与法线成 ${fmt(th.v, 0)}°，给出的磁通量为 ${sci(st.phi, 1)} T·m²：${word()}。`);
+    V.invalidate();
+  }
+
+  /* ---------- the book's own side view, where there is no WebGL for the scene ---------- */
+  function drawFlat(ctx, st) {
+    const cx = 620, cy = 330, a = 155, K = 170;
+    const nx = Math.cos(st.t), ny = -Math.sin(st.t);          /* the perpendicular to the loop */
+    const lx = Math.sin(st.t), ly = Math.cos(st.t);           /* the loop, seen edge on */
+    for (let i = -3; i <= 3; i++) {
+      if (i === 0) continue;
+      arrow(ctx, cx - 280, cy + i * 46, cx + 280, cy + i * 46, alpha(C('magnetic-field'), 0.4), 3);
+    }
+    line(ctx, cx - lx * a, cy - ly * a, cx + lx * a, cy + ly * a, F.ref('loop'), 9);
+    line(ctx, cx, cy, cx + nx * K * 0.72, cy + ny * K * 0.72, PAL.muted, 3, [10, 8]);
+    arrow(ctx, cx + nx * K * 0.7, cy + ny * K * 0.7, cx + nx * K, cy + ny * K, PAL.muted, 3);
+    arrow(ctx, cx - 280, cy, cx + 280, cy, C('magnetic-field'), 5);
+    const k = K * st.c;
+    arrow(ctx, cx, cy, cx + nx * k, cy + ny * k, C('magnetic-flux'), 5);
+    angleArc(ctx, { x: cx, y: cy }, 84, 0, st.t, 'θ = ' + fmt(th.v, 0) + '°', undefined, C('angle'));
+    text(ctx, 'B = ' + fmt(B.v, 1) + ' mT', cx + 286, cy, C('magnetic-field'), { size: 21, weight: 600, align: 'left', bg: PAL.panel });
+    label(ctx, 'B cos θ，穿过线圈的部分', cx + nx * k, cy + ny * k, { side: 'right', size: 20, color: C('magnetic-flux') });
+    label(ctx, '面积的法线', cx + nx * K, cy + ny * K, { side: 'above', size: 20, color: PAL.muted });
+    label(ctx, 'A = ' + fmt(A.v, 2) + ' m²，从侧面看', cx - lx * a, cy - ly * a, { side: 'left', size: 20, color: C('area') });
+    text(ctx, '此浏览器无法转动场景，所以线圈按书中自己的视角侧对着画出，', 700, 540, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, '并画出磁场沿法线的分量，这就是面积所截获的那部分。', 700, 564, PAL.muted, { size: 17, align: 'center' });
+    topline(ctx, `${fmt(B.v, 1)} mT 的磁场穿过 ${fmt(A.v, 2)} m² 的面积，与法线成 ${fmt(th.v, 0)}°，给出的磁通量为 ${sci(st.phi, 1)} T·m²：${word()}。`);
+  }
+
+  function draw() {
+    const st = state();
+    if (hasGL && S) apply(st);
+    if (!hasGL && d.c) { const { ctx } = begin(d.c); drawFlat(ctx, st); }
+    const Bv = `\\mk{Bv}{${sciTex(st.B_T, 2)}}\\ \\text{T}`, Av = `\\mk{Av}{${fmt(A.v, 2)}}\\ \\text{m}^2`, u = `\\ \\mk{u}{\\text{T}\\cdot\\text{m}^2}`;
+    F.morph(eqHost, th.v <= 0
+      ? `\\mk{Phi}{\\kPhi} = \\mk{B}{\\kBmag} \\mk{A}{\\karea} = (${Bv})(${Av}) = \\mk{r}{${sciTex(st.phi, 2)}}${u}`
+      : th.v >= 90
+        ? `\\mk{Phi}{\\kPhi} = \\mk{r}{0}`
+        : `\\mk{Phi}{\\kPhi} = \\mk{B}{\\kBmag} \\mk{A}{\\karea}\\mk{cos}{\\cos\\ktheta} = (${Bv})(${Av})\\mk{cv}{\\cos ${fmt(th.v, 0)}^\\circ} = \\mk{r}{${sciTex(st.phi, 2)}}${u}`);
+    const said = `同一个磁通量也是 $\\kPhi = \\kBmag_{\\perp}\\karea$，即面积乘以笔直穿过它的那部分磁场：这里 $\\kBmag_{\\perp} = \\kBmag\\cos\\ktheta = ${sciTex(st.B_T * st.c, 2)}\\ \\text{T}$。`;
+    if (note.dataset.said !== said) { note.dataset.said = said; note.textContent = said; F.renderMath(note); }
+  }
+
+  if (hasGL) {
+    V = F.view3d(d.stage, {
+      h: 620, dist: 7.0, tilt: 0.32, spin: 'off',
+      views: [{ label: '书中的视角', yaw: -0.55, pitch: 0.32 }, { label: '沿磁场方向', yaw: 0, pitch: 0 }, { label: '从上方看', yaw: 0, pitch: 1.40 }],
+      pitch: [-0.14, 1.48], yaw: 'free', zoomMin: 0.7, zoomMax: 2.4,
+    });
+    if (!V.scene) V = null;
+    else { g3 = V.part(0); V.setView(-0.55, 0.32); }
+  }
+  if (V) { try { build(); } catch (e) { console.error('sim-flux-angle: the scene could not be built', e); S = null; } }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+};

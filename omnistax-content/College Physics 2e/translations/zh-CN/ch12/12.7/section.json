@@ -1,0 +1,560 @@
+{
+ "id": "12.7",
+ "module": "m42212",
+ "chapter": "12",
+ "title": "分子输运现象：扩散、渗透及相关过程",
+ "short": "扩散与渗透",
+ "lead": "一种物质可以不靠任何流动，而是被它自身分子的无规热运动从一处带到另一处。你将认识扩散以及决定其快慢的常量，认识由概率决定的扩散方向和速率，还会认识物质穿过膜的过程：渗透、透析和主动运输。",
+ "objectives": [
+  "定义扩散、渗透、透析和主动运输。",
+  "计算扩散速率。"
+ ],
+ "summary_html": "<ul><li>扩散是物质由于分子的无规热运动而发生的移动。</li><li>分子在给定的<span data-concept=\"time\">时间</span>内通过扩散行进的平均<span data-concept=\"distance\">距离</span> $\\kxrms$ 为 $$\\kxrms = \\sqrt{2D\\kt},$$ 其中 $D$ 是<span data-concept=\"diffusion-constant\">扩散常量</span>，其代表性数值见表 12.2。</li><li>渗透是溶剂分子穿过半透膜，从较稀的溶液进入较浓的溶液的过程，从而使膜两侧的溶质浓度趋于相等。</li><li>透析是任何其他分子由于浓度差而穿过半透膜的运输。</li><li>这两种过程都可以被<span data-concept=\"pressure\">背压</span>逆转。</li><li>主动运输是生物膜消耗<span data-concept=\"energy\">能量</span>来使物质穿过它的过程。</li></ul>",
+ "notes": "书中没有给出答案的两道习题，即氧在空气中与在水中扩散距离之比，以及氧通过 0.200 mm 泪膜的扩散，均予省略。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有两道习题没有给出答案，因而省略：氧在空气中与在水中扩散的平均距离之比，以及氧分子扩散通过 0.200 mm 泪膜并求向角膜供应 0.500 cm³ 氧气所需的时间。三道有答案的习题，即香水分子、0.500 mm 泪膜和比氧早 1.00 s 到达的氢，均按数值题设置。两道思考题的建议思路由 AI 撰写并已标明。本节没有 AP 题，没有取自其他小节的内容，本节自己的内容也没有留待后面的页面。所有题目都放在末尾，因为本章没有理解检测框。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-random-walk",
+   "kind": "sim",
+   "number": "12.26",
+   "originals": [
+    "/media/ch12/Figure_13_07_01a.jpg"
+   ],
+   "original_caption": "流体中一个分子在时间 t 内的无规热运动。这种运动称为无规行走。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "time",
+    "diffusion-constant"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: note names x_rms through the macro and drops the caption's √t"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-concentration",
+   "kind": "sim",
+   "number": "12.27",
+   "originals": [
+    "/media/ch12/Figure_13_07_02a.jpg"
+   ],
+   "original_caption": "扩散从浓度较高的区域向浓度较低的区域进行。净移动速率与浓度差成正比。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "position",
+    "area",
+    "diffusion-constant"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: note cut to what the figure shows, D typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-membrane",
+   "kind": "sim",
+   "number": "12.28",
+   "originals": [
+    "/media/ch12/Figure_13_07_03a.jpg"
+   ],
+   "original_caption": "（a）具有小孔、只允许小分子通过的半透膜。（b）某些分子溶解在这种膜中并扩散穿过它。",
+   "widths": [
+    400
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: legend moved off the headline; notes cut to the scale fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-osmosis",
+   "kind": "sim",
+   "number": "12.29",
+   "originals": [
+    "/media/ch12/Figure_13_07_04a.jpg"
+   ],
+   "original_caption": "（a）两种浓度不同的糖水溶液，被一层让水通过而不让糖通过的半透膜隔开。渗透将向右进行，因为那里水的浓度较低。（b）液面上升，直到背压 ρgh 等于相对渗透压；此后水的净转移为零。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "pressure",
+    "position"
+   ],
+   "conventions": [
+    "H",
+    "O",
+    "C"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "review: pressure labels kept inside the chambers; note typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "diffusion",
+   "concept": "diffusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffusion",
+   "concept": "random-walk-distance",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffusion",
+   "concept": "fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion",
+   "concept": "distance",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-constant",
+   "concept": "diffusion-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffusion-constant",
+   "concept": "random-walk-distance",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-constant",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-constant",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "rate-direction",
+   "concept": "diffusion-rate-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "rate-direction",
+   "concept": "diffusion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rate-direction",
+   "concept": "diffusion-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "membranes",
+   "concept": "semipermeable-membrane",
+   "verb": "introduces"
+  },
+  {
+   "span": "membranes",
+   "concept": "diffusion",
+   "verb": "uses"
+  },
+  {
+   "span": "osmosis",
+   "concept": "osmosis",
+   "verb": "introduces"
+  },
+  {
+   "span": "osmosis",
+   "concept": "dialysis",
+   "verb": "introduces"
+  },
+  {
+   "span": "osmosis",
+   "concept": "semipermeable-membrane",
+   "verb": "uses"
+  },
+  {
+   "span": "osmosis",
+   "concept": "diffusion-rate-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "osmotic-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "osmosis",
+   "verb": "uses"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "dialysis",
+   "verb": "reinforces"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "pressure-from-weight-of-fluid",
+   "verb": "uses"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "relative-osmotic-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "reverse-osmosis",
+   "verb": "introduces"
+  },
+  {
+   "span": "osmotic-pressure",
+   "concept": "reverse-dialysis",
+   "verb": "introduces"
+  },
+  {
+   "span": "active-transport",
+   "concept": "active-transport",
+   "verb": "introduces"
+  },
+  {
+   "span": "active-transport",
+   "concept": "osmosis",
+   "verb": "reinforces"
+  },
+  {
+   "span": "active-transport",
+   "concept": "dialysis",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3076697",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffusion-constant",
+   "prompt": "为什么你会预期扩散速率随温度升高而增大？你能举一个例子吗，比如糖在热水中溶解得更快这一事实？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "流体的分子在不停地做无规运动，它们的平均动能 $\\frac{1}{2}m\\kv^2$ 与热力学温度成正比，所以温度较高的流体，其分子运动得更快。更快的分子在两次碰撞之间走过的路程更长，在给定时间内游荡得更远，因此更容易离开挤满同类分子的区域。这正是较大的扩散常量 $D$ 的含义，而净扩散速率与 $D$ 成正比。糖在热茶中比在冰茶中溶解得更快，是因为水分子把溶解的糖更快地从晶体旁带走。热饭的香味比冷饭的香味更快地充满房间，原因也一样。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3397393",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "osmosis",
+   "prompt": "渗透和透析有哪些相似之处？又有哪些不同之处？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两者都是穿过半透膜的扩散，由膜两侧的浓度差驱动：分子凭概率从它们浓度较高的一侧移向浓度较低的一侧，两者都能建立起相当大的压强，都会被等于渗透压或相对渗透压的背压所阻止，并被更大的背压所逆转，肾也同时利用两者来净化血液。它们的不同仅在于运动的是什么。渗透是水穿过膜的运输；透析是任何其他分子，例如溶解的盐或废物，穿过允许它通过的膜的运输。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3095372",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffusion",
+   "prompt": "你打开香水瓶后很快就能闻到香味。为了说明香味并不是通过扩散到达你鼻子的，请计算一个香水分子在空气中一秒内移动的平均距离，已知其扩散常量 $D$ 为 $1.00 \\times 10^{-6}\\ \\text{m}^2\\text{/s}$。",
+   "answer": {
+    "type": "number",
+    "value": 0.00141,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "分子在时间 $\\kt$ 内通过扩散移动的平均距离为 $\\kxrms = \\sqrt{2D\\kt}$；代入扩散常量和一秒钟。",
+    "solution": "$1.41 \\times 10^{-3}\\ \\text{m}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2621123",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffusion-constant",
+   "prompt": "氧通过扩散穿过厚 0.500 mm 的泪膜，到达眼睛无血管的角膜。平均而言，一个氧分子完成这一过程需要多长时间？",
+   "answer": {
+    "type": "number",
+    "value": 130,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "把 $\\kxrms = \\sqrt{2D\\kt}$ 解出时间，$\\kt = \\kxrms^2/2D$，泪膜的厚度用米表示，氧在水中的扩散常量取自表 12.2。",
+    "solution": "$1.3 \\times 10^{2}\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2603271",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diffusion-constant",
+   "prompt": "假设氢和氧在空气中扩散。同时释放少量的每一种气体。经过多长时间，氢会比氧领先 1.00 s？到达时间的这种差别在气相色谱法中被用作一种分析工具。",
+   "answer": {
+    "type": "number",
+    "value": 0.391,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "氢领先 1.00 s，是指它在时间 $\\kt$ 内到达的距离，等于氧在 $\\kt + 1.00\\ \\text{s}$ 内到达的距离。对每种气体写出 $\\kxrms = \\sqrt{2D\\kt}$，各用表 12.2 中它自己的扩散常量，令两个距离相等，解出 $\\kt$。",
+    "solution": "0.391 s"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "diffusion-constant"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "diffusion",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "osmosis"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "dialysis"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "semipermeable-membrane",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "random-walk-distance"
+  },
+  {
+   "exercise": "p1",
+   "concept": "diffusion",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "random-walk-distance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "diffusion-constant",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "random-walk-distance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "diffusion-constant",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "region-1",
+   "label": "区域 1，浓度较高",
+   "figures": [
+    "sim-concentration"
+   ]
+  },
+  {
+   "id": "region-2",
+   "label": "区域 2",
+   "figures": [
+    "sim-concentration"
+   ]
+  },
+  {
+   "id": "membrane",
+   "label": "两区域之间的膜",
+   "figures": [
+    "sim-membrane"
+   ]
+  },
+  {
+   "id": "left-solution",
+   "label": "左侧浓度较低的溶液",
+   "figures": [
+    "sim-osmosis"
+   ]
+  },
+  {
+   "id": "right-solution",
+   "label": "右侧浓度较高的溶液",
+   "figures": [
+    "sim-osmosis"
+   ]
+  },
+  {
+   "id": "osmotic-membrane",
+   "label": "让水通过而不让糖通过的膜",
+   "figures": [
+    "sim-osmosis"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,817 @@
+{
+ "id": "15.3",
+ "module": "m42234",
+ "chapter": "15",
+ "title": "热力学第二定律导论：热机及其效率",
+ "short": "第二定律与热机",
+ "lead": "<span data-concept=\"heat\">热</span>传递由热到冷，<span data-ref=\"car\">一辆正在刹车的汽车</span>使<span data-ref=\"car\">它</span>的刹车发热，<span data-ref=\"puff\">一团气体</span>在<span data-ref=\"chamber\">一个真空室</span>中扩散，而这些过程没有一个会自行反向进行，尽管第一定律允许它们这样做。热力学第二定律就是它们所服从的规则，而顺着<span data-concept=\"heat\">热</span>传递穿过一台热机，就能看出其中有多少可以变成<span data-concept=\"work\">功</span>。",
+ "objectives": [
+  "陈述热力学第二定律的各种表述。",
+  "利用第二定律的特性，计算燃煤电厂的效率和二氧化碳排放量。",
+  "描述并定义奥托循环。"
+ ],
+ "summary_html": "<ul><li>热力学第二定律的两种表述是：（i）<span data-concept=\"heat\">热</span>传递自发地由高温物体传向低温物体，但绝不会自发地沿相反方向进行；（ii）在任何系统中，来自某一热库的<span data-concept=\"heat\">热</span>传递都不可能在系统回到初态的循环过程中完全转化为<span data-concept=\"work\">功</span>。</li><li>不可逆过程依赖于路径，不会回到原来的状态。循环过程是在每个循环结束时回到原来状态的过程。</li><li>在循环过程（例如热机）中，系统所做的<span data-concept=\"net-work\">净功</span>等于进入系统的净<span data-concept=\"heat\">热</span>传递，即 $\\kW = \\kQH - \\kQC$，其中 $\\kQH$ 是来自高温物体（高温热库）的<span data-concept=\"heat\">热</span>传递，$\\kQC$ 是流入低温物体（低温热库）的<span data-concept=\"heat\">热</span>传递。</li><li>效率可以表示为 $\\text{Eff} = \\frac{\\kW}{\\kQH}$，即输出的<span data-concept=\"work\">功</span>与输入的<span data-concept=\"energy\">能量</span>之比。</li><li>四冲程汽油机常常用奥托循环来解释，奥托循环是一个把<span data-concept=\"heat\">热量</span>转化为<span data-concept=\"work\">功</span>的重复过程序列。</li></ul>",
+ "notes": "融化浮冰的照片（图 15.14）作为题图被略去，习题 2、4、6 和 8 在书后答案中没有给出答案，也被略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6 和 8 没有给出答案，因而略去。本节没有 AP 备考练习，也没有理解检测框，没有内容留给其他小节，也没有取自其他小节的内容。四道思考题的建议思路由 AI 撰写，并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-one-way",
+   "kind": "sim",
+   "number": "15.15",
+   "originals": [
+    "/media/ch15/Figure_16_03_02-53bf.jpg"
+   ],
+   "original_caption": "自然界中单向过程的例子。（a）热传递自发地由热物体传向冷物体，而不会由冷物体传向热物体。（b）这辆汽车的刹车把它的动能转化为向环境的热传递。其逆过程是不可能的。（c）放入这个真空室的一股气体迅速膨胀，均匀地充满真空室的每一部分。气体分子的无规运动绝不会使它们回到角落。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "temperature",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "Q label off the boxes' join; note repeating the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-heat-engine",
+   "kind": "sim",
+   "number": "15.16",
+   "originals": [
+    "/media/ch15/Figure_16_03_03-c0d4.jpg"
+   ],
+   "original_caption": "（a）热传递自发地由热物体传向冷物体，这与热力学第二定律一致。（b）热机（这里用一个圆表示）利用一部分热传递来做功。热物体和冷物体分别称为高温热库和低温热库。Q_h 是从高温热库传出的热传递，W 是输出的功，Q_c 是传入低温热库的热传递。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "energy",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "held label off the panel name; notes repeating the headline cut"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: energy packets streaming along the Q_h, W and Q_c arrows"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-four-stroke",
+   "kind": "sim",
+   "number": "15.17",
+   "originals": [
+    "/media/ch15/Figure_16_03_04-beb2.jpg"
+   ],
+   "original_caption": "在四冲程内燃汽油机中，热传递转化为功是在这里所示的循环过程中完成的。活塞与一根旋转的曲轴相连，曲轴既从气缸中的气体取出功，又对它做功。（a）在进气冲程中，空气与燃料混合。（b）在压缩冲程中，随着活塞在气门关闭的情况下上升，空气-燃料混合气在近似绝热的过程中被迅速压缩。对气体做功。（c）做功冲程分为两个不同的部分。首先，空气-燃料混合气被点燃，化学势能几乎瞬间转化为热能，使压强大幅升高。然后活塞下行，气体在近似绝热的过程中通过施加一个力并使其移动一段距离而做功。（d）排气冲程把热气体排出，为发动机的下一个循环做好准备，再从进气冲程开始。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "pressure",
+    "energy",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "key line inside the stage; note names heats through macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-otto",
+   "kind": "sim",
+   "number": "15.18",
+   "folds": [
+    "15.19"
+   ],
+   "originals": [
+    "/media/ch15/Figure_16_03_05.jpg",
+    "/media/ch15/Figure_16_03_06-064b.jpg"
+   ],
+   "original_caption": "一个简化的奥托循环的 PV 图，类似于内燃机所采用的循环。A 点对应于内燃机压缩冲程的起点。路径 AB 和 CD 是绝热的，分别对应于内燃机的压缩冲程和做功冲程。路径 BC 和 DA 是等容的，分别与内燃机循环的点火部分和排气-进气部分产生类似的结果。沿路径 AB 对气体做功，但沿路径 CD 气体所做的功更多，因此有净功输出。",
+   "widths": [
+    400,
+    300
+   ],
+   "draws": [
+    "pressure",
+    "energy",
+    "temperature",
+    "volume"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the two works it adds"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "irreversible",
+   "concept": "irreversible-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "irreversible",
+   "concept": "reversible-process",
+   "verb": "uses"
+  },
+  {
+   "span": "irreversible",
+   "concept": "heat",
+   "verb": "uses"
+  },
+  {
+   "span": "irreversible",
+   "concept": "friction-dissipates-mechanical-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "first-expression",
+   "concept": "second-law-heat-flow-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "first-expression",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "first-expression",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "first-expression",
+   "concept": "second-law-of-thermodynamics",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-engines",
+   "concept": "second-law-no-perfect-engine",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-engines",
+   "concept": "heat-engine",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-engines",
+   "concept": "second-law-heat-flow-direction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "cyclical",
+   "concept": "cyclical-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "cyclical",
+   "concept": "heat-engine-work-output",
+   "verb": "introduces"
+  },
+  {
+   "span": "cyclical",
+   "concept": "first-law-of-thermodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "cyclical",
+   "concept": "internal-energy-is-a-state-function",
+   "verb": "uses"
+  },
+  {
+   "span": "efficiency",
+   "concept": "heat-engine-efficiency",
+   "verb": "introduces"
+  },
+  {
+   "span": "efficiency",
+   "concept": "efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "efficiency",
+   "concept": "heat-engine-work-output",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coal",
+   "concept": "calculate-engine-efficiency",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-coal",
+   "concept": "heat-engine-work-output",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coal",
+   "concept": "heat-engine-efficiency",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-coal",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "otto",
+   "concept": "otto-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "otto",
+   "concept": "adiabatic-process",
+   "verb": "uses"
+  },
+  {
+   "span": "otto",
+   "concept": "isochoric-process",
+   "verb": "uses"
+  },
+  {
+   "span": "otto",
+   "concept": "net-work-of-a-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "otto",
+   "concept": "heat-engine-work-output",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169736669581",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "efficiency",
+   "prompt": "设想你驾车登上科罗拉多州的派克斯峰。要把一辆重 1000 千克的汽车升高 100 米，大约需要一百万焦耳。一加仑汽油所含的能量可以把一辆汽车升高 12.5 千米。开车登上派克斯峰（仅仅 3000 米的爬升）应该消耗略少于一夸脱的汽油。但是还必须考虑其他因素。请从效率的角度解释，哪些因素可能使你在这次行程中无法实现理想的能源使用。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这一估算把汽油中的每一焦耳都当作用来抬升汽车的功，也就是效率为 1。汽车的发动机是一台热机，它的效率是其输出功除以来自燃烧燃料的热传递，即 $\\text{Eff} = \\kW/\\kQH$。第二定律指出，$\\kQH$ 的很大一部分必须以热传递 $\\kQC$ 的形式经散热器和排气管传向环境，所以汽油机只能把燃料能量的大约四分之一转化为功。这些功中有很大一部分用在了抬升汽车以外的事情上：传动系统和轮胎中的摩擦、空气阻力、驱动交流发电机和其他附件，以及沿途的任何刹车——刹车把动能转化为损失掉的热传递。道路还是蜿蜒的，所以汽车行驶的路程远大于 3000 米，在整个路程上都要克服摩擦和阻力做功。这些因素中的每一个都会降低把汽油转化为高度的总体效率，所以这趟行程消耗的汽油远多于一夸脱。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169737937019",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-engines",
+   "prompt": "运转热机是否必须有温差？请说明理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "是的。热机通过从高温热库取得热传递 $\\kQH$，并把其中一部分 $\\kQC$ 传给低温热库来做功，所做的功就是两者之差，$\\kW = \\kQH - \\kQC$。热传递只会自发地由高温物体传向低温物体，这就是第二定律的第一种表述，所以没有温差，就没有进入热机的热传递，也就没有功。第二种表述从另一面说的是同一件事：来自单一热库的热传递不可能在循环过程中完全转化为功，所以热机不可能只从一个热库取热来运转；它必须把热传递排给一个较冷的热库，而这需要两个温度。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738074321",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "efficiency",
+   "prompt": "效率的定义随能量转化方式的不同而不同。比较人体和热机的效率定义。在每种情形中，效率的定义与被转化为做功的能量类型有什么关系？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两种定义都是所得与所付之比：输出的有用功除以输入的能量。对热机而言，输入是来自高温热库的热传递，所以 $\\text{Eff} = \\kW/\\kQH$，第二定律对它加以限制，因为 $\\kQH$ 的一部分必须传给低温热库。对人体而言，输入是食物的化学能，效率是所做的有用功除以人体消耗的能量，后者由氧的使用量来度量。人体不是热机。它的肌肉把化学势能直接转化为功，而不是从高温热库取得热传递，所以两个热库的温度并不限制它的效率。这个效率仍然很小，最好时约为 20%，因为大部分食物能量以热传递的形式传向周围环境。在每种情形中，分母都是实际被转化的能量形式：热机是热传递，人体是食物能量。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738209764",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "irreversible",
+   "prompt": "除了热力学第二定律说可逆热机效率最高这一事实之外，为什么采用可逆过程的热机应当比采用不可逆过程的热机效率更高？请考虑耗散机制是造成不可逆性的原因之一。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不可逆过程是只朝一个方向进行的过程，而摩擦、湍流以及跨越有限温差的热传递等耗散机制，正是使过程不可逆的原因。它们中的每一种都把本可以做功的能量变成了向环境的热传递，这就是一种损失；例如，热机运动部件中的摩擦把机械能转化为热能，而这些热能绝不会再变回功。每一种这样的损失都会使 $\\kQC$（传向低温热库的热传递）增大，并在 $\\kQH$ 相同时使 $\\kW$ 减小，于是效率 $\\kW/\\kQH$ 下降。可逆热机没有耗散机制，所以不会以这种方式损失任何东西，它给出的是热传递所能提供的最多的功；有不可逆过程的实际热机则必定做得更差。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737820977",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cyclical",
+   "prompt": "某台热机在一个循环过程中做了 10.0 kJ 的功，并有 8.50 kJ 的热传递传向环境。（a）流入这台热机的热传递是多少？（b）这台热机的效率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 18.5,
+      "unit": "kJ",
+      "hint": "在循环过程中，净功等于净热传递，$\\kW = \\kQH - \\kQC$，所以流入的热传递等于功加上传出的热传递。"
+     },
+     {
+      "part": "(b)",
+      "value": 54.1,
+      "unit": "%",
+      "hint": "效率等于输出功除以流入热机的热传递，$\\text{Eff} = \\kW/\\kQH$。"
+     }
+    ],
+    "solution": "（a） $18.5\\ \\text{kJ}$（b） 54.1%"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738238293",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "efficiency",
+   "prompt": "（a）一台循环热机的效率为 22.0%，流入热机的热传递为 $6.00 \\times 10^{9}\\ \\text{J}$，它的输出功是多少？（b）有多少热传递传向环境？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1320000000,
+      "unit": "J",
+      "hint": "由 $\\text{Eff} = \\kW/\\kQH$ 解出功：$\\kW = \\text{Eff} \\cdot \\kQH$。"
+     },
+     {
+      "part": "(b)",
+      "value": 4680000000,
+      "unit": "J",
+      "hint": "传向环境的热传递，就是 $\\kQH$ 减去功之后剩下的部分，$\\kQC = \\kQH - \\kW$。"
+     }
+    ],
+    "solution": "（a） $1.32 \\times 10^{9}\\ \\text{J}$（b） $4.68 \\times 10^{9}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169738005780",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "efficiency",
+   "prompt": "一艘大型船舶的发动机以 5.00% 的效率做了 $2.00 \\times 10^{8}\\ \\text{J}$ 的功。（a）有多少热传递传向环境？（b）如果每桶燃料燃烧时产生 $6.00 \\times 10^{9}\\ \\text{J}$ 的热传递，那么消耗了多少桶燃料？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3800000000,
+      "unit": "J",
+      "hint": "先求流入发动机的热传递 $\\kQH = \\kW/\\text{Eff}$，再求 $\\kQC = \\kQH - \\kW$。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.667,
+      "unit": "barrels",
+      "hint": "每桶燃料向发动机提供 $6.00 \\times 10^{9}\\ \\text{J}$ 的热传递，所以用 $\\kQH$ 除以它。"
+     }
+    ],
+    "solution": "（a） $3.80 \\times 10^{9}\\ \\text{J}$（b） 0.667 桶"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169736621436",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-coal",
+   "prompt": "假设燃煤发电厂的汽轮机经过升级，效率提高了 3.32%。假设升级之前电厂的效率为 36%，并且一天中流入热机的热传递仍然相同，为 $2.50 \\times 10^{14}\\ \\text{J}$。（a）由于升级，多产生了多少电能？（b）由于升级，传向环境的热传递减少了多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 8300000000000,
+      "unit": "J",
+      "hint": "输出功为 $\\text{Eff} \\cdot \\kQH$，所以在 $\\kQH$ 不变时，多出来的功就是 $\\kQH$ 的额外 3.32%。"
+     },
+     {
+      "part": "(b)",
+      "value": -8300000000000,
+      "unit": "J",
+      "hint": "由于 $\\kQC = \\kQH - \\kW$ 而 $\\kQH$ 不变，传向环境的热传递恰好减少多出来的那部分功；书中把这一变化写成负号。"
+     }
+    ],
+    "solution": "（a） $8.30 \\times 10^{12}\\ \\text{J}$，这是 $2.50 \\times 10^{14}\\ \\text{J}$ 的 3.32%。（b） $-8.30 \\times 10^{12}\\ \\text{J}$，其中负号表示传向环境的热传递减少。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "heat-engine-efficiency"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "efficiency",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "second-law-no-perfect-engine"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "second-law-heat-flow-direction",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "heat-engine-work-output",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "heat-engine-efficiency"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "efficiency",
+   "weight": 1
+  },
+  {
+   "exercise": "cq3",
+   "concept": "body-efficiency",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "irreversible-process"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "second-law-no-perfect-engine",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "heat-engine-efficiency",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "heat-engine-work-output"
+  },
+  {
+   "exercise": "p1",
+   "concept": "heat-engine-efficiency"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-engine-efficiency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-engine-efficiency"
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-engine-work-output"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-engine-efficiency"
+  },
+  {
+   "exercise": "p5",
+   "concept": "calculate-engine-efficiency"
+  },
+  {
+   "exercise": "p5",
+   "concept": "heat-engine-efficiency",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "heat-engine-work-output",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "calculate-engine-efficiency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-engine-efficiency"
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-engine-work-output"
+  }
+ ],
+ "referents": [
+  {
+   "id": "car",
+   "label": "正在刹车的汽车",
+   "figures": [
+    "sim-one-way"
+   ]
+  },
+  {
+   "id": "puff",
+   "label": "那团气体",
+   "figures": [
+    "sim-one-way"
+   ]
+  },
+  {
+   "id": "chamber",
+   "label": "真空室",
+   "figures": [
+    "sim-one-way"
+   ]
+  },
+  {
+   "id": "hot-reservoir",
+   "label": "高温热库",
+   "figures": [
+    "sim-heat-engine",
+    "sim-otto"
+   ]
+  },
+  {
+   "id": "cold-reservoir",
+   "label": "低温热库",
+   "figures": [
+    "sim-heat-engine",
+    "sim-otto"
+   ]
+  },
+  {
+   "id": "engine",
+   "label": "热机",
+   "figures": [
+    "sim-heat-engine",
+    "sim-otto"
+   ]
+  },
+  {
+   "id": "piston",
+   "label": "活塞",
+   "figures": [
+    "sim-four-stroke"
+   ]
+  },
+  {
+   "id": "crankshaft",
+   "label": "曲轴",
+   "figures": [
+    "sim-four-stroke"
+   ]
+  },
+  {
+   "id": "mixture",
+   "label": "空气-燃料混合气",
+   "figures": [
+    "sim-four-stroke"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "cyclical-work",
+   "what": "循环过程的净功",
+   "source": "《大学物理（第2版）》，15.3 热力学第二定律导论：热机及其效率",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "循环过程使系统回到原来的状态，所以它的内能在每个循环的开始和结束时相同：$\\kdEint = 0$。",
+       "src": "15.3"
+      },
+      {
+       "tex": "\\kQh = \\kQH - \\kQC",
+       "src": "15.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dE}{\\kdEint} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+      "uses": [],
+      "src": "15.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dE}{0} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{Q}{\\kQh}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{Q}{\\kQH - \\kQC}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "15.3"
+    }
+   ]
+  },
+  {
+   "id": "heat-engine-efficiency",
+   "what": "循环热机的效率",
+   "source": "《大学物理（第2版）》，15.3 热力学第二定律导论：热机及其效率",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kW = \\kQH - \\kQC",
+       "src": "15.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\text{Eff}} = \\dfrac{\\mk{W}{\\kW}}{\\mk{H}{\\kQH}}",
+      "uses": [],
+      "src": "15.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\text{Eff}} = \\dfrac{\\mk{W}{\\kQH - \\kQC}}{\\mk{H}{\\kQH}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\text{Eff}} = \\mk{W}{1 - \\dfrac{\\kQC}{\\kQH}}",
+       "uses": [],
+       "map": {
+        "H": "W"
+       }
+      }
+     ],
+     "src": "15.3"
+    }
+   ]
+  }
+ ]
+}

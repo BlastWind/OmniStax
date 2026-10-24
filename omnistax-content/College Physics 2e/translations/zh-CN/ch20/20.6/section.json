@@ -1,0 +1,805 @@
+{
+ "id": "20.6",
+ "module": "m42350",
+ "chapter": "20",
+ "title": "电气危害与人体",
+ "short": "电气危害",
+ "lead": "电会以两种方式造成伤害：一是大<span data-concept=\"power\">功率</span>在不该产生的地方产生的热，二是它驱动通过人体的<span data-concept=\"electric-current\">电流</span>。先讲短路以及防范短路的保险丝和断路器，然后讲各种大小的电流对人体分别产生什么作用。",
+ "objectives": [
+  "定义热危害、电击危害和短路。",
+  "解释各种大小的电流对人体有什么影响。"
+ ],
+ "summary_html": "<ul><li>两类电气危害是热危害（过大的<span data-concept=\"power\">功率</span>）和电击危害（通过人体的<span data-concept=\"electric-current\">电流</span>）。</li><li>电击的严重程度由<span data-concept=\"electric-current\">电流</span>、路径、持续时间和交流<span data-concept=\"frequency\">频率</span>决定。</li><li>表 20.3 列出了电击危害随<span data-concept=\"electric-current\">电流</span>变化的情况。</li><li>图 20.22 画出了两种危害的阈值<span data-concept=\"electric-current\">电流</span>随<span data-concept=\"frequency\">频率</span>变化的曲线。</li></ul>",
+ "notes": "书中没有给出答案的五道题被略去：1.44 kW 短路所涉及的电压；收音机外壳上可能引起心室颤动的最小电压；直接加在心脏上 20.0 µA 电流时构成危险的最小电压；心脏除颤器题的四个小问；以及关于保护工人所需绝缘的自拟习题一项。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十二道思考题没有给出答案，因此每道题附有一份 AI 撰写的建议思路，而不是评分用的答案。十道习题中有五道没有给出答案而被略去，本节的说明列出了它们。本节没有印出理解检测框，也没有 AP 备考练习题，所以所有习题都放在习题文档中。",
+ "figures": [
+  {
+   "id": "sim-short-circuit",
+   "kind": "sim",
+   "number": "20.18",
+   "originals": [
+    "/media/ch20/Figure_21_06_01a.jpg"
+   ],
+   "original_caption": "短路是跨接在电压源两端的一条不期望出现的低电阻通路。（a）烤面包机导线上磨损的绝缘层使它们以很小的电阻 $r$ 接触在一起。由于 $P={V}^{2}/r$，热功率产生得如此之快，以致电源线熔化或烧焦。（b）短路的电路图。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "power",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "insulation label off the toaster; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fuse-breaker",
+   "kind": "sim",
+   "number": "20.19",
+   "folds": [
+    "20.20"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_06_02a.jpg",
+    "/media/ch20/Figure_21_06_03a.jpg"
+   ],
+   "original_caption": "（a）保险丝有一条熔点低的金属片，当它被过大的电流加热到过热时，就永久地断开电路与电压源的连接。（b）断路器是一种自动但可复位的电开关。图中所示的断路器有一条双金属片，过热时它向右弯曲并弯进缺口。随后弹簧把金属片向下压，在触点处断开电连接。",
+   "widths": [
+    300,
+    175
+   ],
+   "draws": [
+    "current",
+    "resistance",
+    "power"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout zero once the circuit opens; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-shock",
+   "kind": "sim",
+   "number": "20.21",
+   "originals": [
+    "/media/ch20/Figure_21_06_04a.jpg"
+   ],
+   "original_caption": "电流可以引起肌肉收缩，产生不同的效果。（a）受害者被不自主的肌肉收缩“抛”向后方，这些收缩使双腿和躯干伸直。（b）受害者无法摆脱那根刺激着手上所有肌肉的导线。合拢手指的肌肉比张开手指的肌肉更强。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "current",
+    "voltage",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "current marker kept off the band names; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-frequency-sensitivity",
+   "kind": "sim",
+   "number": "20.22",
+   "originals": [
+    "/media/ch20/Figure_21_06_05a.jpg"
+   ],
+   "original_caption": "感觉阈和不可摆脱电流的平均值随频率变化的曲线图。数值越低，人体在该频率下越敏感。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "current",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "current value set off the curves; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-electric-arc",
+   "kind": "photo",
+   "number": "20.23",
+   "originals": [
+    "/media/ch20/Figure_21_06_06a.jpg"
+   ],
+   "original_caption": "这个电弧危险吗？答案取决于交流频率和所涉及的功率。（来源：Khimich Alex, Wikimedia Commons）",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "hazards",
+   "concept": "thermal-hazard",
+   "verb": "introduces"
+  },
+  {
+   "span": "hazards",
+   "concept": "shock-hazard",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-hazards",
+   "concept": "thermal-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-hazards",
+   "concept": "short-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-hazards",
+   "concept": "overloaded-wires",
+   "verb": "introduces"
+  },
+  {
+   "span": "shock-hazards",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  },
+  {
+   "span": "shock-hazards",
+   "concept": "shock-severity-factors",
+   "verb": "introduces"
+  },
+  {
+   "span": "body-resistance",
+   "concept": "body-resistance-and-microshock",
+   "verb": "introduces"
+  },
+  {
+   "span": "body-resistance",
+   "concept": "shock-severity-factors",
+   "verb": "uses"
+  },
+  {
+   "span": "body-resistance",
+   "concept": "microshock-sensitivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "path-duration-frequency",
+   "concept": "shock-severity-factors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "path-duration-frequency",
+   "concept": "shock-hazard",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3013869",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "一名学生用欧姆表测量自己身体上不同两点之间的电阻。他发现，同一根手指上两点之间的电阻，与两只手上相对的两点之间的电阻大致相同——都是几十万欧姆。此外，当更多的皮肤与欧姆表的探头接触时，电阻会减小。最后，皮肤潮湿时电阻会急剧下降（降到几千欧姆）。解释这些观察结果，并说明它们对皮肤电阻和人体内部电阻意味着什么。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "欧姆表读出的电阻几乎全部在皮肤上，探头之间的身体里几乎没有电阻。这就是为什么同一根手指上的两点读数与两只手上的两点大致相同：两种情形下，电流都要两次穿过皮肤，然后通过导电性良好的内部离子溶液和体液。让更多的皮肤压在探头上，就使更多的路径并联起来，而在同样的电压下，并联的路径通过的电流更大，所以测得的电阻下降。皮肤湿润时，盐类在皮肤表面变成离子形态，电阻就降到几千欧姆。其含义正是本节就安全问题所得出的结论：浑身湿透、或皮肤破损或被旁路的人，对同样的电压呈现的电阻要小得多，因此通过的电流也大得多。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2626129",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hazards",
+   "prompt": "电的两种主要危害是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "热危害和电击危害。热危害是指过大的电功率使电能转化为热能的速率快于热能能被安全耗散的速率，以致导线或其周围的材料熔化或起火。电击危害是指电流通过人体，其效果从仅仅能被感觉到的电击，直到心室颤动和死亡。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3091714",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "为什么短路不是电击危害？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为短路的电流并不通过人体。短路是径直跨接在电源两端的一条电阻极低的通路，电流走的是这条通路，而不是它旁边电阻大得多的任何路径。人体至少是几千欧姆的通路，所以几乎没有电流通过人体。短路的危险在于它耗散的功率 $\\kP = \\kV^2/\\krshort$，由于 $\\krshort$ 如此之小，这个功率极大，它使周围材料的温度升高，直到熔化或燃烧。这种危害是热危害，而不是电击危害。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2384713",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "什么决定电击的严重程度？不给出进一步的信息，能说某个电压是危险的吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "有四个因素决定严重程度：通过人体的电流、电流所经过的路径、电击的持续时间和电流的频率。不能，电压本身并不危险。由于 $\\kIcur = \\kV/\\kRes$，电流既取决于电压，也取决于电阻。120 V 通过干燥皮肤的 200 kΩ，会通过一个感觉不到的 0.6 mA，而同样的 120 V 通过浑身湿透的人的 10.0 kΩ，则会通过 12 mA，超过“无法摆脱”阈值。路径也很重要，因为通过脑部的电流不会影响心脏，持续时间和频率也是如此。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3190812",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shock-hazards",
+   "prompt": "一根通电的针被用来烧掉疣，电路则通过让患者坐在一块大的回路电极板上而构成闭合。这块回路电极板为什么要大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "同样的电流既通过针也通过回路电极板，但烧灼取决于电流有多集中。在针处，电流集中在很小的面积上，这正是所需要的，因为要把疣烧掉。在回路电极板处，大面积把同样的电流分散开，使患者身上没有任何一处的电流集中到足以烧伤的程度。除颤器的电极板做得很大，也是同样的道理。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3013708",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "path-duration-frequency",
+   "prompt": "有些手术用高压电从金属手术刀通过被切割的组织进行。考虑导体表面电场的性质，你为什么预期大部分电流会从手术刀的锋利边缘流出？你认为所用的是高频还是低频交流电？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "导体表面的电场在表面弯曲最厉害的地方最大，所以电场在刀片的薄边处最大。最大的电场驱动最大的电流密度，因此几乎所有的电流都沿手术刀的刀口离开，恰好在应当切割和烧灼的地方。手术刀用的是高频交流电。人体对越来越高的频率越来越不敏感，因为神经放电的速度有限，而在非常高的频率下，电流只沿人体表面传播。因此高频电流可以切割和烧灼，而不刺激神经，也不使心脏停跳。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3407779",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "浴室里常用的一些设备，例如吹风机，常带有安全提示：“浴缸或水盆里装满水时不要使用。”这是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "浴缸或水盆里的积水为电流从用电器通向水管，从而通向大地，提供了一条低电阻的通路，而在水中或水边的湿身的人就是这条通路的一部分。湿皮肤的电阻是几千欧姆，而不是干皮肤的几十万欧姆，所以如果用电器有故障，或掉进水里，同样的 120 V 通过人体的电流会比在干燥地面上大几十倍，足以轻易达到表 20.3 中的“无法摆脱”和颤动水平。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id2677167",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "我们常被告诫不要用湿手拨动电开关，要先把手擦干。我们还被告诫永远不要向电气火灾泼水。这是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "湿皮肤的电阻比干皮肤小得多，因为皮肤上的盐类变成了离子形态，所以有故障的开关处的同样电压，通过湿手驱动的电流要比通过干手大得多。向电气火灾泼水则更糟：水是导体，水流本身就可以把电流从带电部分传回到拿着容器的人身上，使他们进入电路。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id2428881",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shock-hazards",
+   "prompt": "在对输电线路进行作业之前，专家会用手背触碰线路，作为确认电压为零的最后检查。为什么用手背？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为“无法摆脱”效应。在 10 到 20 mA 及以上时，电流使肌肉持续收缩，而合拢手指的肌肉比张开手指的肌肉更强，所以掌心向下放在带电导线上的手会握住它，无法拉开。手背就没有这种风险：同样的收缩会使手指蜷离导线，所以手会被甩开，而不是被抓住。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3179465",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "为什么潮湿皮肤的电阻比干燥皮肤小得多，为什么血液和其他体液的电阻很低？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "皮肤潮湿时，皮肤上的盐类变成离子形态，这些离子是能够携带电流的自由电荷，所以皮肤的电阻从几十万欧姆降到几千欧姆。血液和人体的其他体液出于同样的原因是离子溶液，到处都充满可移动的离子，所以人体内部是比干燥皮肤好得多的导体。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id3009000",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "接受静脉输液（IV）的人会对微电击敏感吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "会。静脉输液管是一条盐溶液的导电通路，它穿过皮肤进入体内，因此几乎构成人体全部电阻的皮肤电阻被旁路了。处于这种状况的人对微电击敏感，约为表 20.3 所列值千分之一的电流就能产生同样的效果，这就是医院的电气安全要求如此严格的原因。"
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id2409820",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "鉴于引起电击危害的电流很小，而断路器和保险丝切断的电流较大，它们在预防电击危害中起什么作用？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们并不作用于通过人体的电流，这个电流只有几毫安，远低于它们所带的任何额定值。它们所做的是，在故障一开始吸取大电流时就断开电路，而大多数电击危害都始于故障：磨损的绝缘层使带电导线碰到接地的外壳，或者一次已经开始熔化电源线的短路。该装置在有人接触到有故障的用电器之前，就使其断电，并且阻止会使更多带电金属暴露出来的热损坏。因此，预防电击是一种间接的作用，这也是为什么还需要能感知这些小电流本身的装置。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2952945",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "（a）220 V 交流电通过 $0.250\\ \\Omega$ 的电阻发生短路时，耗散的功率是多少？（b）流过的电流是多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 194,
+      "unit": "kW",
+      "hint": "短路处耗散的功率为 $\\kP = \\kV^2/\\krshort$，其中电压是电源提供的电压，电阻是短路处的电阻。"
+     },
+     {
+      "part": "(b)",
+      "value": 880,
+      "unit": "A",
+      "hint": "欧姆定律给出通过短路处的电流 $\\kIcur = \\kV/\\krshort$；功率也可以用 $\\kP = \\kIcur\\kV$ 来核对。"
+     }
+    ],
+    "solution": "（a）194 kW（b）880 A"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1071853",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "求通过一个人的电流，并指出如果她触碰 120 V 交流电源，可能对她产生什么影响：（a）如果她站在橡胶垫上，总电阻为 $300\\ \\text{k}\\Omega$；（b）如果她赤脚站在湿草地上，电阻只有 $4500\\ \\Omega$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.4,
+      "unit": "mA",
+      "hint": "用 $\\kIcur = \\kV/\\kRes$，然后对照表 20.3 读出该电流的影响，记住感觉阈是 1 mA。"
+     },
+     {
+      "part": "(b)",
+      "value": 26.7,
+      "unit": "mA",
+      "hint": "对小得多的电阻用同一关系式，并将答案与表 20.3 中 10 到 20 mA 一行对照。"
+     }
+    ],
+    "solution": "（a）0.400 mA，无影响（b）26.7 mA，在电击持续期间肌肉收缩（无法摆脱）"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2930233",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "body-resistance",
+   "prompt": "一名男子愚蠢地试图用一把金属黄油刀从烤面包机里夹出一片正在燃烧的面包，结果接触到了 120 V 交流电。他甚至毫无感觉，因为幸运的是他穿着橡胶底鞋。电流通过这个人的路径的最小电阻是多少？",
+   "answer": {
+    "type": "number",
+    "value": 120000,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "他毫无感觉，所以电流至多是 1 mA 的感觉阈。使电流保持这么小的最小电阻是 $\\kRes = \\kV/\\kIcur$。",
+    "solution": "$1.20\\times{10}^{5}\\ \\Omega$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1371721",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "（a）产生 96.8 kW 峰值功率的 220 V 交流短路，其电阻是多少？（b）如果电压是 120 V 交流，平均功率会是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.0,
+      "unit": "Ω",
+      "hint": "所给出的交流电压是方均根电压，峰值功率是平均功率的两倍，所以 $\\kPo = \\kVrms^2\\cdot 2/\\krshort$。由此解出电阻。"
+     },
+     {
+      "part": "(b)",
+      "value": 14.4,
+      "unit": "kW",
+      "hint": "电阻已知后，在新的方均根电压下，平均功率为 $\\kPave = \\kVrms^2/\\krshort$。"
+     }
+    ],
+    "solution": "（a）$1.00\\ \\Omega$（b）14.4 kW"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2438452",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thermal-hazards",
+   "prompt": "<strong>综合概念</strong> 一根 120 V 电器电源线中的短路电阻为 $0.500\\text{-}\\Omega$。计算周围 2.00 g 材料的温度升高，假设它们的比热容为 $0.200\\ \\text{cal/g}\\cdot^\\circ\\text{C}$，且断路器需要 0.0500 s 来切断电流。这很可能造成损坏吗？",
+   "answer": {
+    "type": "number",
+    "value": 860,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "由 $\\kP = \\kV^2/\\krshort$ 求出短路处的功率，乘以时间得到传入的能量，把这个能量换算成卡，然后用 $Q = mc\\kdTemp$ 和所给的比热容。",
+    "solution": "温度升高 $860^\\circ\\text{C}$。很可能造成损坏。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "thermal-hazard"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "shock-hazard"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "shock-hazard",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "shock-hazard",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "overloaded-wires"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "shock-hazard",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "p3",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "p3",
+   "concept": "shock-severity-factors"
+  },
+  {
+   "exercise": "p5",
+   "concept": "body-resistance-and-microshock"
+  },
+  {
+   "exercise": "p5",
+   "concept": "shock-severity-factors",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "p9",
+   "concept": "short-circuit"
+  },
+  {
+   "exercise": "p9",
+   "concept": "overloaded-wires",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "toaster",
+   "label": "烤面包机",
+   "figures": [
+    "sim-short-circuit"
+   ]
+  },
+  {
+   "id": "short",
+   "label": "短路处，裸露的导体相接触的地方",
+   "figures": [
+    "sim-short-circuit"
+   ]
+  },
+  {
+   "id": "cord",
+   "label": "烤面包机磨损的电源线",
+   "figures": [
+    "sim-short-circuit"
+   ]
+  },
+  {
+   "id": "wires",
+   "label": "供电导线，即磨损的电器电源线",
+   "figures": [
+    "sim-fuse-breaker"
+   ]
+  },
+  {
+   "id": "fuse",
+   "label": "保险丝",
+   "figures": [
+    "sim-fuse-breaker"
+   ]
+  },
+  {
+   "id": "breaker",
+   "label": "断路器",
+   "figures": [
+    "sim-fuse-breaker"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "触碰导线的人",
+   "figures": [
+    "sim-shock"
+   ]
+  },
+  {
+   "id": "wire",
+   "label": "带电导线",
+   "figures": [
+    "sim-shock"
+   ]
+  }
+ ]
+}

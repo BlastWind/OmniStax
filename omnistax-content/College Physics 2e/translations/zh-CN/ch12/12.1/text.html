@@ -1,0 +1,88 @@
+<section id="flow-rate">
+<h2>流量及其单位</h2>
+<p class="cite-target"><strong><span data-concept="flow-rate">流量</span></strong> $\kQ$ 定义为在一段<span data-concept="time">时间</span>内流经某处、通过某个<span data-concept="area">面积</span>的流体的<span data-concept="volume">体积</span>，如图 12.2 所示。用符号表示，可以写成</p>
+$$\kQ = \frac{\kvol}{\kt},$$
+<p>其中 $\kvol$ 是<span data-concept="volume">体积</span>，$\kt$ 是<span data-concept="elapsed-time">时间间隔</span>。</p>
+<p><span data-concept="flow-rate">流量</span>的 SI 单位是 $\text{m}^3\text{/s}$，但 $\kQ$ 还有许多其他<span data-concept="units">单位</span>也很常用。例如，静息状态下成年人的心脏泵血的<span data-type="flow-rate">速率为每分钟 5.00 <span data-concept="liter">升</span></span>（L/min）。请注意，<strong><span data-concept="liter">升</span></strong>（L）是 1/1000 立方<span data-concept="meter">米</span>，即 1000 立方厘米（$10^{-3}\;\text{m}^3$ 或 $10^{3}\;\text{cm}^3$）。在本书中，我们将根据具体情形选用最方便的公制<span data-concept="units">单位</span>。</p>
+<figure class="sim" id="sim-flow-cylinder" data-figure="12.2" data-original="/media/ch12/Figure_13_01_01a.jpg" data-original-width="275" data-original-caption="流量是单位时间内流过某一点、通过面积 A 的流体的体积。这里，阴影部分的流体圆柱体在时间 t 内流过均匀管中的点 P。圆柱体的体积为 Ad，平均速度为 v̄ = d/t，因此流量为 Q = Ad/t = Av̄。">
+  <div class="sim-head"><span class="eyebrow">Figure 12.2</span><span>流体以<span data-type="velocity">平均速率</span> $\kvb$ 流过<span data-ref="pipe">一根均匀的管子</span>，管子的<span data-type="position">半径</span>为 $\krad$，<span data-ref="cylinder">阴影圆柱体</span>是在<span data-type="time">时间</span> $\kt$ 内已流过点 $\text{P}$ 的流体。<span data-ref="cylinder">它</span>的<span data-type="position">长度</span>为 $\kd = \kvb\kt$，<span data-ref="cylinder">它</span>的横截面就是<span data-ref="pipe">管子</span>的<span data-type="area">面积</span> $\karea$，<span data-ref="cylinder">它</span>的<span data-type="volume">体积</span>除以<span data-type="time">时间</span>就是<span data-type="flow-rate">流量</span> $\kQ = \karea\kvb$。依次播放各个步骤，跟随书中的论证：<span data-concept="flow-rate">流量</span>是<span data-concept="volume">体积</span>除以<span data-concept="time">时间</span>，$\kQ = \kvol/\kt$；<span data-concept="volume">体积</span>为 $\karea\kd$，所以 $\kQ = \karea\kd/\kt$；<span data-concept="length">长度</span>除以<span data-concept="time">时间</span>就是平均速率，所以 $\kQ = \karea\kvb$，<span data-ref="cylinder">圆柱体</span>的<span data-concept="length">长度</span>变成了<span data-type="velocity">速率</span>的箭头。在任何一步，都可以改变<span data-type="velocity">速率</span>、<span data-ref="pipe">管子</span>的<span data-type="position">半径</span>或<span data-type="time">时间</span>，观察<span data-ref="cylinder">圆柱体</span>变长或变粗，同时方程随<span data-ref="cylinder">它</span>变化。</span></div>
+</figure>
+<div class="example" id="ex-heart">
+<h3>例题 12.1 · 由流量计算体积：心脏一生泵出大量血液</h3>
+<p>假设<span data-type="flow-rate">平均<span data-concept="flow-rate">流量</span></span>为 5.00 L/min，心脏在<span data-type="time">75 年的一生</span>中共泵出<span data-type="volume">多少立方<span data-concept="meter">米</span>的血液</span>？</p>
+<h4>思路</h4>
+<p><span data-type="time"><span data-concept="time">时间</span></span>和<span data-type="flow-rate"><span data-concept="flow-rate">流量</span></span> $\kQ$ 已知，因此可以由<span data-concept="flow-rate">流量</span>的定义计算<span data-type="volume">体积</span> $\kvol$。</p>
+<h4>解</h4>
+<p>由 $\kQ = \kvol/\kt$ 解出<span data-concept="volume">体积</span>，得到</p>
+$$\kvol = \kQ\kt.$$
+<p>代入已知数值，得到</p>
+$$\begin{aligned}\kvol &= \left(\frac{5.00\ \text{L}}{1\ \text{min}}\right)(75\ \text{y})\left(\frac{1\ \text{m}^3}{10^3\ \text{L}}\right)\left(5.26\times10^{5}\frac{\text{min}}{\text{y}}\right)\\ &= 2.0\times10^{5}\ \text{m}^3.\end{aligned}$$
+<h4>讨论</h4>
+<p>这个量约为 200,000 吨血液。作为比较，这个数值相当于<span data-type="volume">一个 6 泳道、50 m 长的游泳池中所盛水的体积</span>的约 200 倍。</p>
+</div>
+</section>
+
+<section id="flow-rate-velocity">
+<h2>流量与速度</h2>
+<p class="cite-target"><span data-concept="flow-rate">流量</span>与<span data-concept="velocity">速度</span>是相关但又很不相同的<span data-concept="physical-quantity">物理量</span>。为了把二者的区别说清楚，不妨想一想河流的<span data-concept="flow-rate">流量</span>。水的<span data-concept="velocity">速度</span>越大，河流的<span data-concept="flow-rate">流量</span>就越大。但<span data-concept="flow-rate">流量</span>还取决于河流的大小。例如，一条湍急的山溪所输送的水，远少于巴西的亚马孙河。<span data-concept="flow-rate">流量</span> $\kQ$ 与<span data-concept="velocity">速度</span> $\kvb$ 之间的精确关系是</p>
+$$\kQ = \karea\kvb,$$
+<p>其中 $\karea$ 是<span data-concept="area">横截面积</span>，$\kvb$ 是<span data-concept="average-velocity">平均速度</span>。这个方程看起来相当合乎情理。这一关系告诉我们，<span data-concept="flow-rate">流量</span>与<span data-concept="average-velocity">平均速度</span>的<span data-concept="vector-magnitude">大小</span>（下文称为速率）以及河流、管子或其他管道的大小都成正比。管道越大，其<span data-concept="area">横截面积</span>就越大。图 12.2 说明了这一关系是如何得出的。</p>
+<figure class="dv" id="drv-flow-rate-velocity"></figure>
+</section>
+
+<section id="continuity">
+<h2>连续性方程</h2>
+<p class="cite-target">图 12.3 表示一种不可压缩流体沿着半径逐渐减小的管子流动。由于流体是不可压缩的，为保证流动的连续性，在给定的<span data-concept="time">时间</span>内，必须有同样多的流体流过管中的任一点。在这种情况下，由于<span data-type="area">管子的横截面积</span>减小，<span data-type="velocity"><span data-concept="velocity">速度</span></span>必然增大。按照这一逻辑可以推广为：沿管子各处的<span data-concept="flow-rate">流量</span>必须相同。特别是，对于<span data-ref="point-1 point-2">点 1 和点 2</span>，</p>
+$$\left.\begin{aligned}\kQone &= \kQtwo\\ \kareaone\kvbone &= \kareatwo\kvbtwo\end{aligned}\right\}.$$
+<p>这称为连续性方程，对任何不可压缩流体都成立。当水从软管流入狭窄的喷嘴时，可以观察到连续性方程的结果：水以很大的速率喷出——这正是喷嘴的用途。反过来，当河流注入水库的一端时，水流会明显变慢，而当它从水库的另一端流出时，也许又会重新加快。换句话说，<span data-concept="area">横截面积</span>减小时，速率增大；<span data-concept="area">横截面积</span>增大时，速率减小。</p>
+<figure class="sim" id="sim-continuity" data-figure="12.3" data-original="/media/ch12/Figure_13_01_02a.jpg" data-original-width="450" data-original-caption="管变窄时，同样的体积占据更长的长度。为使同样的体积在给定的时间内通过点 1 和点 2，点 2 处的速率必须更大。这一过程是完全可逆的。如果流体沿相反方向流动，则管变宽时其速率将减小。（请注意，两个圆柱体的相对体积以及相应的速度矢量箭头并未按比例绘出。）">
+  <div class="sim-head"><span class="eyebrow">Figure 12.3</span><span>一种不可压缩流体从<span data-ref="point-1">管的宽处</span>（<span data-type="position">半径</span>为 $\krone$）流入<span data-ref="point-2">窄处</span>（<span data-type="position">半径</span>为 $\krtwo$），<span data-type="flow-rate">流量</span> $\kQ$ 在<span data-ref="point-1 point-2">这两点</span>相同。阴影圆柱体是<span data-type="volume">一份体积的流体</span>，按比例绘出，并以慢动作沿管输送，因此<span data-ref="point-1">点 1</span> 处的短薄片到<span data-ref="point-2">点 2</span> 处被拉成长圆柱体，必须运动得更快，才能在相同的<span data-concept="time">时间</span>内通过。改变<span data-type="flow-rate">流量</span>或<span data-type="position">任一半径</span>，观察圆柱体和速率箭头的响应；下方的图像显示<span data-type="velocity">速率</span>如何随着<span data-type="position">半径</span>的平方减小而增大。把 $\krtwo$ 设得比 $\krone$ 大，管就变宽了，流体则变慢。</span></div>
+</figure>
+<p>由于液体本质上是不可压缩的，连续性方程对所有液体都成立。然而，气体是可压缩的，因此，如果气体受到压缩或膨胀，就必须谨慎地对气体应用这个方程。</p>
+<div class="example" id="ex-nozzle">
+<h3>例题 12.2 · 计算流体的速率：管变窄时速率增大</h3>
+<p><span data-ref="point-2">一个喷嘴</span>，其<span data-type="position">半径为 0.250 cm</span>，接在<span data-ref="point-1">一根花园软管</span>上，软管的<span data-type="position">半径为 0.900 cm</span>。通过<span data-ref="point-1 point-2">软管和喷嘴</span>的<span data-type="flow-rate"><span data-concept="flow-rate">流量</span></span>为 0.500 L/s。求<span data-type="velocity">水的速率</span>：（a）在<span data-ref="point-1">软管</span>中，（b）在<span data-ref="point-2">喷嘴</span>中。</p>
+<h4>思路</h4>
+<p>我们可以利用<span data-concept="flow-rate">流量</span>与速率之间的关系，求出<span data-type="velocity">两个<span data-concept="velocity">速度</span></span>。我们用下标 1 表示<span data-ref="point-1">软管</span>，用下标 2 表示<span data-ref="point-2">喷嘴</span>。</p>
+<h4>（a）的解</h4>
+<p>首先，由 $\kQ = \karea\kvb$ 解出 $\kvone$，并注意到<span data-type="area">横截面积</span>为 $\karea = \pi \krad^2$，得到</p>
+$$\kvbone = \frac{\kQ}{\kareaone} = \frac{\kQ}{\pi \krone^2}.$$
+<p>代入已知数值并作适当的单位换算，得到</p>
+$$\kvbone = \frac{(0.500\ \text{L/s})(10^{-3}\ \text{m}^3/\text{L})}{\pi(9.00\times10^{-3}\ \text{m})^2} = 1.96\ \text{m/s}.$$
+<h4>（b）的解</h4>
+<p>我们可以重复上面的计算来求<span data-ref="point-2">喷嘴</span>中的<span data-type="velocity">速率</span> $\kvbtwo$，但我们将利用连续性方程，以获得稍有不同的认识。利用如下方程</p>
+$$\kareaone\kvbone = \kareatwo\kvbtwo,$$
+<p>解出 $\kvbtwo$，并用 $\pi \krad^2$ 代替<span data-type="area">横截面积</span>，得到</p>
+$$\kvbtwo = \frac{\kareaone}{\kareatwo}\kvbone = \frac{\pi \krone^2}{\pi \krtwo^2}\kvbone = \frac{\krone^2}{\krtwo^2}\kvbone.$$
+<p>代入已知数值，</p>
+$$\kvbtwo = \frac{(0.900\ \text{cm})^2}{(0.250\ \text{cm})^2}\,1.96\ \text{m/s} = 25.5\ \text{m/s}.$$
+<h4>讨论</h4>
+<p><span data-type="velocity">1.96 m/s 的速率</span>，对于从不带喷嘴的软管中流出的水来说，大致是合适的。<span data-ref="point-2">喷嘴</span>仅仅通过把水流收缩到更细的管中，就产生了快得多的水流。</p>
+</div>
+<p>该例题最后一部分的解表明，速率与管的半径的<em>平方</em>成反比，因此半径变化时会产生很大的影响。例如，我们撮起嘴唇，就能在相当远的<span data-concept="distance">距离</span>外吹灭一支蜡烛，而张大嘴巴去吹蜡烛则效果很差。</p>
+</section>
+
+<section id="branching">
+<h2>流动分支处的连续性</h2>
+<p class="cite-target">在许多情形中，包括在心血管系统中，都会出现流动的分支。血液从心脏被泵入动脉，动脉再细分为较小的动脉（微动脉），后者又分支成非常细的血管，称为毛细血管。在这种情形下，流动的连续性依然保持，但保持不变的是，沿管任一部分中各分支的<span data-concept="flow-rate">流量</span>之<em>和</em>。更一般形式的连续性方程变为</p>
+$$n_1\kareaone\kvbone = n_2\kareatwo\kvbtwo,$$
+<p>其中 $n_1$ 和 $n_2$ 是沿管各段中的分支数。</p>
+<figure class="sim" id="sim-branching">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="vessel">一根血管</span>的<span data-type="position">半径</span>为 $\krone$，它分成 $n_2$ 条<span data-ref="branches">分支</span>，每条的<span data-type="position">半径</span>为 $\krtwo$；<span data-type="flow-rate">同样的流量</span> $\kQ$ 既流过<span data-ref="vessel">这一根血管</span>，也合起来流过<span data-ref="branches">所有分支</span>。两根条形比较<span data-ref="vessel">血管</span>的<span data-type="area">横截面</span>与<span data-ref="branches">其分支</span>的<span data-type="area">总横截面</span>，<span data-ref="branches">分支</span>中的<span data-type="velocity">速率</span>由<span data-type="area">这个总和</span>得出。改变<span data-ref="branches">分支</span>的数目或<span data-ref="branches">它们</span>的<span data-type="position">半径</span>，观察血流在<span data-type="area">总横截面</span>增大处变慢、在减小处变快；读数栏给出了<span data-ref="vessel">主动脉</span>和<span data-ref="branches">毛细血管</span>的算式。</span></div>
+</figure>
+<div class="example" id="ex-aorta">
+<h3>例题 12.3 · 计算流动速率和血管直径：心血管系统中的分支</h3>
+<p><span data-ref="vessel">主动脉</span>是血液借以离开心脏、在全身循环的主要血管。（a）若<span data-type="flow-rate"><span data-concept="flow-rate">流量</span></span>为 5.0 L/min，求<span data-ref="vessel">主动脉</span>中<span data-type="velocity">血液的<span data-concept="average-speed">平均速率</span></span>。<span data-ref="vessel">主动脉</span>的<span data-type="position">半径为 10 mm</span>。（b）血液还流过称为毛细血管的较小血管。当<span data-ref="vessel">主动脉</span>中的<span data-type="flow-rate">血流量</span>为 5.0 L/min 时，<span data-ref="branches">毛细血管</span>中<span data-type="velocity">血液的速率</span>约为 0.33 mm/s。已知<span data-type="position">毛细血管的平均直径</span>为 $8.0\;\mu\text{m}$，求血液循环系统中毛细血管的数目。</p>
+<h4>思路</h4>
+<p>我们可以用 $\kQ = \karea\kvb$ 计算<span data-ref="vessel">主动脉</span>中的<span data-type="velocity">流动速率</span>，然后利用连续性方程的一般形式计算毛细血管的数目，因为其他变量都是已知的。</p>
+<h4>（a）的解</h4>
+<p><span data-type="flow-rate"><span data-concept="flow-rate">流量</span></span>由 $\kQ = \karea\kvb$ 给出，对圆柱形血管亦即 $\kvb = \frac{\kQ}{\pi \krad^2}$。</p>
+<p>代入已知数值（已换算成以<span data-concept="meter">米</span>和<span data-concept="second">秒</span>为<span data-concept="units">单位</span>），得到</p>
+$$\kvb = \frac{(5.0\ \text{L/min})(10^{-3}\ \text{m}^3\text{/L})(1\ \text{min/}60\ \text{s})}{\pi(0.010\ \text{m})^2} = 0.27\ \text{m/s}.$$
+<h4>（b）的解</h4>
+<p>利用 $n_1\kareaone\kvbone = n_2\kareatwo\kvbone$<sup class="fn" data-note="c-branching"></sup>，用下标 1 表示<span data-ref="vessel">主动脉</span>、下标 2 表示<span data-ref="branches">毛细血管</span>，并解出 $n_2$（毛细血管的数目），得到 $n_2 = \frac{n_1\kareaone\kvbone}{\kareatwo\kvbtwo}$。将所有量换算成以<span data-concept="meter">米</span>和<span data-concept="second">秒</span>为<span data-concept="units">单位</span>，代入上式，得到</p>
+$$n_2 = \frac{(1)(\pi)(10\times10^{-3}\ \text{m})^2(0.27\ \text{m/s})}{(\pi)(4.0\times10^{-6}\ \text{m})^2(0.33\times10^{-3}\ \text{m/s})} = 5.0\times10^{9}\ \text{条毛细血管}.$$
+<h4>讨论</h4>
+<p>请注意，<span data-ref="branches">毛细血管</span>中的<span data-type="velocity">流动速率</span>相对于<span data-ref="vessel">主动脉</span>中的<span data-type="velocity">速率</span>大大降低，这是因为<span data-ref="branches">毛细血管</span>处<span data-type="area">总横截面积</span>显著增大。<span data-type="velocity">这样低的速率</span>是为了留出足够的<span data-concept="time">时间</span>，使有效的交换得以发生，不过同样重要的是，血流不能变为静止，以避免凝血的可能。体内有这么多的毛细血管，合理吗？在活动的肌肉中，每 $\text{mm}^3$ 约有 200 条毛细血管，即每 1 kg 肌肉约有 $200\times10^{6}$ 条。对于<span data-type="mass">20 kg 的肌肉</span>，这相当于约 $4\times10^{9}$ 条毛细血管。</p>
+</div>
+</section>

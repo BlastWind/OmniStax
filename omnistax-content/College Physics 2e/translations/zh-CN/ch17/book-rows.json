@@ -1,0 +1,1369 @@
+{
+ "types": [
+  {
+   "id": "intensity",
+   "label": "强度",
+   "dimension": "W/m²"
+  },
+  {
+   "id": "acoustic-impedance",
+   "label": "声阻抗",
+   "dimension": "kg/(m²·s)"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "λ",
+   "latex": "\\lambda",
+   "macro": "\\klam"
+  },
+  {
+   "sym": "λ_prime",
+   "latex": "\\lambda'",
+   "macro": "\\klamprime"
+  },
+  {
+   "sym": "v_s",
+   "latex": "v_{\\text{s}}",
+   "macro": "\\kvs"
+  },
+  {
+   "sym": "v_obs",
+   "latex": "v_{\\text{obs}}",
+   "macro": "\\kvobs"
+  },
+  {
+   "sym": "v_blood",
+   "latex": "v_{\\text{b}}",
+   "macro": "\\kvblood"
+  },
+  {
+   "sym": "f_obs",
+   "latex": "f_{\\text{obs}}",
+   "macro": "\\kfobs"
+  },
+  {
+   "sym": "f_src",
+   "latex": "f_{\\text{s}}",
+   "macro": "\\kfsrc"
+  },
+  {
+   "sym": "f_prime",
+   "latex": "f'",
+   "macro": "\\kfprime"
+  },
+  {
+   "sym": "f_n",
+   "latex": "f_n",
+   "macro": "\\kfn"
+  },
+  {
+   "sym": "f_1",
+   "latex": "f_1",
+   "macro": "\\kfone"
+  },
+  {
+   "sym": "f_2",
+   "latex": "f_2",
+   "macro": "\\kftwo"
+  },
+  {
+   "sym": "f_3",
+   "latex": "f_3",
+   "macro": "\\kfthree"
+  },
+  {
+   "sym": "f_B",
+   "latex": "f_{\\text{B}}",
+   "macro": "\\kfB"
+  },
+  {
+   "sym": "I_intens",
+   "latex": "I",
+   "macro": "\\kIntens"
+  },
+  {
+   "sym": "I_0",
+   "latex": "I_0",
+   "macro": "\\kIo"
+  },
+  {
+   "sym": "I_1",
+   "latex": "I_1",
+   "macro": "\\kIone"
+  },
+  {
+   "sym": "I_2",
+   "latex": "I_2",
+   "macro": "\\kItwo"
+  },
+  {
+   "sym": "Δp_press",
+   "latex": "\\Delta p",
+   "macro": "\\kdpamp"
+  },
+  {
+   "sym": "β_dB",
+   "latex": "\\beta"
+  },
+  {
+   "sym": "Z",
+   "latex": "Z",
+   "macro": "\\kZ"
+  },
+  {
+   "sym": "Z_1",
+   "latex": "Z_1",
+   "macro": "\\kZone"
+  },
+  {
+   "sym": "Z_2",
+   "latex": "Z_2",
+   "macro": "\\kZtwo"
+  },
+  {
+   "sym": "a_refl",
+   "latex": "a"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "sound",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "声",
+   "terms": [
+    "声"
+   ],
+   "statement": "声是物质的一种扰动，由声源向外传播，它是一种波。在原子尺度上，它是原子的一种扰动，比原子的热运动有序得多；在许多情形下，它是一种周期波，其中的原子做简谐运动。"
+  },
+  {
+   "id": "sound-longitudinal-pressure-wave",
+   "kind": "idea",
+   "section": "17.1",
+   "name": "作为压强波的声",
+   "statement": "振动的弦压缩它前方的空气，并使它后方的空气膨胀，这些密部和疏部以弦的频率作为纵向压强波向外传播。空气和大多数流体中的声波是纵波，因为流体几乎没有抗切强度。表压强随离声源距离变化的图像是一条正弦波，对于一般的声音，压强只比大气压略有变化。振幅随距离减小，原因有三。能量分布在更大的面积上；鼓膜等物体会吸收它；空气的黏度以及密部与疏部之间的热传递会把它变成热运动。"
+  },
+  {
+   "id": "hearing",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "听觉",
+   "terms": [
+    "听觉"
+   ],
+   "statement": "听觉是对声音的知觉，正如视觉是对可见光的知觉。物理现象与对它的知觉有关联，但并不是一回事，本章把二者区分开：波长、频率、振幅和传播速率属于波，音调和响度属于听者。"
+  },
+  {
+   "id": "pitch",
+   "kind": "definition",
+   "section": "17.2",
+   "name": "音调",
+   "terms": [
+    "音调"
+   ],
+   "statement": "对频率的知觉称为音调。你直接感知声音的频率，而只是间接地通过乐器的大小感知波长。短笛等小型乐器发出音调高、波长短的声音，大号等大型乐器发出音调低、波长长的声音。"
+  },
+  {
+   "id": "speed-of-sound-frequency-wavelength",
+   "kind": "result",
+   "section": "17.2",
+   "name": "声速、频率和波长",
+   "statement": "声速、频率和波长之间的关系与一切波相同。波长是波中相邻相同部分之间的距离，例如相邻密部之间的距离，频率是声源的频率，即单位时间内经过某一点的波的个数。在给定介质、条件固定时，速率是恒定的，所以频率越高，波长越小。",
+   "forms": [
+    {
+     "id": "eq-speed-frequency-wavelength",
+     "latex": "v_{\\text{w}} = f\\lambda",
+     "ktex": "\\kvw = \\kf\\klam",
+     "anchor": "17.2-wave-relation"
+    },
+    {
+     "id": "eq-wavelength-from-speed",
+     "latex": "\\lambda = \\frac{v_{\\text{w}}}{f}",
+     "ktex": "\\klam = \\frac{\\kvw}{\\kf}",
+     "anchor": "17.2-ex-wavelengths"
+    }
+   ]
+  },
+  {
+   "id": "speed-of-sound-in-media",
+   "kind": "idea",
+   "section": "17.2",
+   "name": "不同介质中的声速",
+   "statement": "介质中的声速由介质的刚性（气体则为压缩性）与其密度共同决定。介质越刚硬或越不易压缩，声速越大；对于刚性相近的材料，声音在密度较低的材料中传播得更快。空气中的声速较小，因为空气可压缩，而液体和固体中的声速通常更大。地震表现出同样的依赖关系：在花岗岩中，纵向的 P 波比横向的 S 波跑得快，因为花岗岩的体积模量大于它的剪切模量。"
+  },
+  {
+   "id": "speed-of-sound-temperature",
+   "kind": "result",
+   "section": "17.2",
+   "name": "声速与温度",
+   "statement": "对于海平面处的空气，0 °C 时的声速为 331 m/s，并随热力学温度的平方根增大。气体中的声速跟随其粒子的平均速率，而粒子的平均速率本身与温度的平方根成正比。这种依赖关系是真实的，但并不强：在 20.0 °C 时声速为 343 m/s，增大不到 4%。",
+   "forms": [
+    {
+     "id": "eq-speed-of-sound-air",
+     "latex": "v_{\\text{w}} = (331\\ \\text{m/s})\\sqrt{\\frac{T}{273\\ \\text{K}}}",
+     "ktex": "\\kvw = (331\\ \\text{m/s})\\sqrt{\\frac{\\kTemp}{273\\ \\text{K}}}",
+     "condition": "海平面处的空气，T 以开尔文计",
+     "anchor": "17.2-temperature"
+    }
+   ]
+  },
+  {
+   "id": "speed-of-sound-independent-of-frequency",
+   "kind": "idea",
+   "section": "17.2",
+   "name": "声速与频率",
+   "statement": "在开阔的空气中，可听范围内所有频率的声速都相同。如果不是这样，行进中的乐队的音乐到达时就会节奏错乱，你站得越远，低音调乐器就越落后于高音调乐器；因为无论多远所有乐器的声音都同时到达，所以所有频率的传播速率几乎相同，于是固定的声速把频率和波长联系在一起。"
+  },
+  {
+   "id": "frequency-fixed-across-media",
+   "kind": "idea",
+   "section": "17.2",
+   "name": "跨介质的频率",
+   "statement": "声音从一种介质传入另一种介质时，它的速率改变，但频率通常保持不变，因为它就像受迫振动，具有原始声源的频率。既然速率变了而频率没变，波长就必然改变：对于给定的频率，声速越大，波长越长。"
+  },
+  {
+   "id": "echo-ranging",
+   "kind": "skill",
+   "section": "17.2",
+   "name": "由回声求距离",
+   "statement": "蝙蝠利用声音的回声找路并捕捉猎物，声呐和医学成像也以同样的方式使用回声。声音以介质中的声速往返传播，所以回声返回所需的时间与距离成正比。回声时间的精度决定了你能分辨的最小距离差。"
+  },
+  {
+   "id": "sound-intensity",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "声强",
+   "statement": "声强是波每单位面积所携带的功率，其中功率是波传递能量的速率，其国际单位是瓦特每平方米。它是响度背后的物理量，适用于每一种声音，无论可听与否。一般声音的声强很小：在听阈处，落在鼓膜上的功率只有约 10⁻¹⁶ W。",
+   "forms": [
+    {
+     "id": "eq-intensity-17",
+     "latex": "I = \\frac{P}{A}",
+     "ktex": "\\kIntens = \\frac{\\kP}{A}",
+     "anchor": "17.3-intensity"
+    }
+   ]
+  },
+  {
+   "id": "intensity-and-pressure-amplitude",
+   "kind": "result",
+   "section": "17.3",
+   "name": "强度与压强振幅",
+   "statement": "声波的强度与其振幅的平方成正比。压强振幅是波中最大压强与最小压强之差的一半，密度是声音所在材料的密度，速率是该介质中的声速。空气振动元的能量与其振幅的平方成正比，而压强的变化与振动的振幅成正比。因此强度与压强振幅的平方成正比：振幅越大，声音对空气的压缩越厉害。",
+   "forms": [
+    {
+     "id": "eq-intensity-pressure-amplitude",
+     "latex": "I = \\frac{(\\Delta p)^2}{2\\rho v_{\\text{w}}}",
+     "ktex": "\\kIntens = \\frac{(\\kdpamp)^2}{2\\krho\\kvw}",
+     "anchor": "17.3-pressure-amplitude"
+    }
+   ]
+  },
+  {
+   "id": "sound-intensity-level",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "声强级",
+   "symbol": "β_dB",
+   "terms": [
+    "声强级"
+   ],
+   "statement": "我们引用分贝表示的声强级，远比引用以瓦特每平方米表示的声强更频繁，因为强度的对数比强度本身更能描述我们的耳朵如何感知声音。强度为 $I$ 的声音的声强级，是它与参考强度 $I_0 = 10^{-12}$ W/m² 之比的对数的十倍。因为它是一个比值，所以声强级是无量纲的，给出的是声音相对于一个固定标准的大小。分贝中的“分”（deci）表示比值的对数要乘以十。",
+   "forms": [
+    {
+     "id": "eq-sound-intensity-level",
+     "latex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{I}{I_0}\\right)",
+     "ktex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{\\kIntens}{\\kIo}\\right)",
+     "condition": "I₀ = 10⁻¹² W/m²",
+     "anchor": "17.3-decibels"
+    }
+   ]
+  },
+  {
+   "id": "threshold-of-hearing",
+   "kind": "idea",
+   "section": "17.3",
+   "name": "听阈",
+   "statement": "参考强度 $I_0 = 10^{-12}$ W/m² 是听力正常的人在 1000 Hz 频率下能感知的最低声强，它的声强级是 0 dB，因为 1 的对数为零。耳朵能感受到低至万亿分之一瓦特每平方米的声强，此时空气分子的振动幅度不到一个分子直径，表压强小于 10⁻⁹ atm，而它又能承受强度大 10¹² 倍的声音；范围如此之宽，正是对数标度比强度本身更符合经验的原因。"
+  },
+  {
+   "id": "decibel-ratios",
+   "kind": "result",
+   "section": "17.3",
+   "name": "以分贝表示的强度之比",
+   "statement": "强度每增大到 10 倍，就对应 10 dB，所以 90 dB 的声音是三个 10 倍，即 1000 倍，其强度是 60 dB 声音的 1000 倍。因为比值的对数是对数之差，所以两个声音的声强级之差只取决于它们强度之比：强度加倍使声强级升高约 3 dB，增大到 5 倍使其升高 7 dB，无论强度本身是多少。",
+   "forms": [
+    {
+     "id": "eq-sound-level-difference",
+     "latex": "\\beta_2 - \\beta_1 = 10\\log_{10}\\left(\\frac{I_2}{I_1}\\right)",
+     "ktex": "\\beta_2 - \\beta_1 = 10\\log_{10}\\left(\\frac{\\kItwo}{\\kIone}\\right)",
+     "anchor": "17.3-ratios"
+    },
+    {
+     "id": "eq-log-of-ratio",
+     "latex": "\\log_{10} b - \\log_{10} a = \\log_{10}\\left(\\frac{b}{a}\\right)",
+     "anchor": "17.3-ratios"
+    }
+   ]
+  },
+  {
+   "id": "combining-sound-sources",
+   "kind": "skill",
+   "section": "17.3",
+   "name": "声源强度相加",
+   "statement": "当许多声源一起发声并且可以忽略干涉时，它们的强度相加，声强级升高声源数目的对数的十倍：一千只苍蝇各发出 40.0 dB，合起来是 70.0 dB；十台立体声音响在圆心处合成 120 dB，每台贡献 110 dB。这一规则就是把分贝关系应用于一个是计数的比值。"
+  },
+  {
+   "id": "sound-pressure-level",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "声压级",
+   "terms": [
+    "声压级"
+   ],
+   "statement": "另一种分贝标度，即声压级，使用压强振幅与参考压强之比，而不是强度与参考强度之比。它常用于声音在水中传播的场合，对同一个声音可以给出很不相同的分贝数。船只发出的海洋噪声以声压级计可能是 200 dB，而以声强级计则低于 140 dB。它的数值比本书使用的声强级高 60 至 70 dB，正如 17.7 节所指出的。"
+  },
+  {
+   "id": "doppler-effect",
+   "kind": "idea",
+   "section": "17.4",
+   "name": "多普勒效应",
+   "terms": [
+    "多普勒效应"
+   ],
+   "statement": "多普勒效应是由于声源或观察者的运动而引起的声音的观测频率的改变，频率的实际改变量就是多普勒频移。每个密部从声源发出它的那一点起向四周呈球面扩展。声源运动时，发射点也随之移动，所以密部在声源前方靠得更近，在声源后方离得更远。介质决定声速，所以较短的波长到达时就是较高的频率。当观察者运动而不是声源运动时，她遇到密部的速率会改变。相向的相对运动使接收频率升高，相背的运动使之降低，相对速率越大，效应越大。"
+  },
+  {
+   "id": "doppler-shift-moving-source",
+   "kind": "result",
+   "section": "17.4",
+   "name": "声源运动时的多普勒频移",
+   "statement": "对于静止的观察者和运动的声源，接收到的频率等于声源频率乘以声速与“声速加减声源沿二者连线的速率”之比，声源朝向观察者运动时取减号，远离时取加号。声源的速率越大，效应越大，而且朝向与远离的频移并不对称。",
+   "forms": [
+    {
+     "id": "eq-doppler-moving-source",
+     "latex": "f_{\\text{obs}} = f_{\\text{s}}\\left(\\frac{v_{\\text{w}}}{v_{\\text{w}} \\pm v_{\\text{s}}}\\right)",
+     "ktex": "\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)",
+     "condition": "观察者静止，声源运动；声源朝向观察者运动时取减号，远离时取加号",
+     "anchor": "17.4-doppler-shift"
+    }
+   ]
+  },
+  {
+   "id": "doppler-shift-moving-observer",
+   "kind": "result",
+   "section": "17.4",
+   "name": "观察者运动时的多普勒频移",
+   "statement": "对于静止的声源和运动的观察者，接收到的频率等于声源频率乘以“声速加减观察者的速率”与声速之比。朝向声源运动时取加号，远离时取减号。这一形式不同于声源运动的情形，因为观察者穿过的是波长保持不变的波的更多或更少的波峰。",
+   "forms": [
+    {
+     "id": "eq-doppler-moving-observer",
+     "latex": "f_{\\text{obs}} = f_{\\text{s}}\\left(\\frac{v_{\\text{w}} \\pm v_{\\text{obs}}}{v_{\\text{w}}}\\right)",
+     "ktex": "\\kfobs = \\kfsrc\\left(\\frac{\\kvw \\pm \\kvobs}{\\kvw}\\right)",
+     "condition": "声源静止，观察者运动；朝向声源运动时取加号，远离时取减号",
+     "anchor": "17.4-doppler-shift"
+    }
+   ]
+  },
+  {
+   "id": "doppler-shift-source-and-observer",
+   "kind": "result",
+   "section": "17.4",
+   "name": "声源和观察者都运动时的多普勒频移",
+   "statement": "当二者相对于空气都在运动时，有两个多普勒频移，一个来自运动的观察者，一个来自运动的声源，接收到的频率是这两个因子的乘积。声源和观察者一起被带着运动，例如同一列火车上的司机和这列火车的喇叭，接收到的是未改变的发射频率，因为两个因子相互抵消；重要的是二者之间没有相对运动。",
+   "forms": [
+    {
+     "id": "eq-doppler-source-and-observer",
+     "latex": "f_{\\text{obs}} = \\left[f_{\\text{s}}\\left(\\frac{v_{\\text{w}} \\pm v_{\\text{obs}}}{v_{\\text{w}}}\\right)\\right]\\left(\\frac{v_{\\text{w}}}{v_{\\text{w}} \\pm v_{\\text{s}}}\\right)",
+     "ktex": "\\kfobs = \\left[\\kfsrc\\left(\\frac{\\kvw \\pm \\kvobs}{\\kvw}\\right)\\right]\\left(\\frac{\\kvw}{\\kvw \\pm \\kvs}\\right)",
+     "condition": "声源和观察者都在运动",
+     "anchor": "17.4-ex-train-horn"
+    }
+   ]
+  },
+  {
+   "id": "sonic-boom",
+   "kind": "idea",
+   "section": "17.4",
+   "name": "声爆",
+   "terms": [
+    "声爆"
+   ],
+   "statement": "当声源的速率接近声速时，它前方的观测频率趋于无穷大，因为每一个后来的波都堆叠在前一个波上。如果声源超过声速，则在声源经过之前，没有任何声音到达观察者。这些波沿着一个圆锥的母线发生相长干涉，这种叠加就是声爆，即由速率超过声速的物体所产生的声音的相长干涉。圆锥内部的干涉大部分是相消的。声源越快，圆锥的角越小。一架飞机会产生两次声爆，一次来自机头，一次来自机尾。"
+  },
+  {
+   "id": "bow-wake",
+   "kind": "idea",
+   "section": "17.4",
+   "name": "弓形波",
+   "terms": [
+    "弓形波"
+   ],
+   "statement": "声爆是弓形波的一个例子，弓形波是波源的运动速率超过波的传播速率时产生的 V 形扰动。水波从产生它们的点向四周呈圆形扩展，一只游得比水波扩展还快的鸭子会留下我们熟悉的尾流；一个亚原子粒子在水中运动得比光在水中还快，会留下一个光锥，称为切伦科夫辐射。"
+  },
+  {
+   "id": "doppler-shift",
+   "kind": "definition",
+   "section": "17.4",
+   "name": "多普勒频移",
+   "terms": [
+    "多普勒频移"
+   ],
+   "statement": "多普勒频移是由于声源和观察者的相对运动而引起的频率的实际改变量。"
+  },
+  {
+   "id": "sound-interference",
+   "kind": "idea",
+   "section": "17.5",
+   "name": "声波干涉",
+   "statement": "干涉是波的标志，证明某物是波的一种方法就是观察到干涉效应。流体中的声波是符合帕斯卡原理的压强波，所以来自两个声源的压强像普通的数一样相加和相减：正的和负的表压强相加后得到小得多的压强，声音的强度也更低。降噪耳机引入第二个声音，其极大值和极小值与入射噪声恰好相反，而同时演奏两个相近音所产生的拍也是干涉。"
+  },
+  {
+   "id": "air-column-resonance",
+   "kind": "idea",
+   "section": "17.5",
+   "name": "气柱的共振",
+   "statement": "气柱只有某些固有频率。音叉的扰动以声速沿管传播，并在封闭端反弹。如果管的长度恰到好处，反射的声音恰好晚半个周期回到音叉处，并与继续传来的声音发生相长干涉。入射声和反射声就形成驻波。只有共振频率才发生相长干涉而形成驻波，其他频率发生相消干涉而不存在。从瓶子的呜声到歌手的嗓音，每一种声共振都是干涉问题。可以把它看作气柱的一种固有振动，无论是什么引起的。"
+  },
+  {
+   "id": "nodes-and-antinodes",
+   "kind": "definition",
+   "section": "17.5",
+   "name": "管中的波节和波腹",
+   "statement": "在一端封闭的管中，驻波在开口端有最大的空气位移，即波腹，那里的空气可以自由运动。在封闭端位移为零，即波节，那里的空气不能运动。从波节到波腹的距离是四分之一波长，所以对于最低的共振，波长是管长的四倍。两端开口的管在两端都有波腹，对于最低的共振，管内有半个波长。"
+  },
+  {
+   "id": "fundamental-and-overtones",
+   "kind": "definition",
+   "section": "17.5",
+   "name": "基频、泛音和谐波",
+   "symbol": "n",
+   "statement": "一个系统的最低共振频率是它的基频，所有更高的共振频率都是泛音。每个共振频率都是基频的整数倍，所以它们合称为谐波：基频是一次谐波，第一泛音是二次谐波，依此类推。对于一端封闭的管，第一泛音是基频的三倍，因而是三次谐波。存在哪些泛音以及它们的强度如何，使小号的中央 C 不同于单簧管的中央 C，也使一个人的声音不同于另一个人的声音。"
+  },
+  {
+   "id": "closed-tube-resonances",
+   "kind": "result",
+   "section": "17.5",
+   "name": "闭管的共振",
+   "statement": "基频时管内有四分之一波长，第一泛音时有四分之三波长，这一规律可以概括为一个表达式：一端封闭的管的共振频率是声速除以四倍管长的奇数倍。它们取决于声速，因而取决于温度，这就是乐手在一起演奏之前要让管乐器达到室温的原因。",
+   "forms": [
+    {
+     "id": "eq-closed-tube-harmonics",
+     "latex": "f_n = n\\frac{v_{\\text{w}}}{4L},\\ n = 1, 3, 5, \\ldots",
+     "ktex": "\\kfn = n\\frac{\\kvw}{4L},\\ n = 1, 3, 5, \\ldots",
+     "condition": "一端封闭的管",
+     "anchor": "17.5-closed-tube"
+    },
+    {
+     "id": "eq-closed-tube-fundamental",
+     "latex": "f = \\frac{v_{\\text{w}}}{\\lambda} = \\frac{v_{\\text{w}}}{4L}",
+     "ktex": "\\kf = \\frac{\\kvw}{\\klam} = \\frac{\\kvw}{4L}",
+     "condition": "一端封闭的管，λ = 4L",
+     "anchor": "17.5-closed-tube"
+    },
+    {
+     "id": "eq-closed-tube-first-overtone",
+     "latex": "f' = 3\\frac{v_{\\text{w}}}{4L} = 3f",
+     "ktex": "\\kfprime = 3\\frac{\\kvw}{4L} = 3\\kf",
+     "condition": "一端封闭的管，λ′ = 4L/3",
+     "anchor": "17.5-closed-tube"
+    }
+   ]
+  },
+  {
+   "id": "open-tube-resonances",
+   "kind": "result",
+   "section": "17.5",
+   "name": "开管的共振",
+   "statement": "两端开口的管在两端都有最大的空气位移，所以它的共振频率都是声速除以二倍管长的整数倍。它的基频是同一根管一端封闭时基频的两倍，而且泛音谱不同。因此，两根基频相同的管，一根开口一根封闭，演奏时听起来不同。",
+   "forms": [
+    {
+     "id": "eq-open-tube-harmonics",
+     "latex": "f_n = n\\frac{v_{\\text{w}}}{2L},\\ n = 1, 2, 3, \\ldots",
+     "ktex": "\\kfn = n\\frac{\\kvw}{2L},\\ n = 1, 2, 3, \\ldots",
+     "condition": "两端开口的管",
+     "anchor": "17.5-open-tube"
+    }
+   ]
+  },
+  {
+   "id": "tube-length-from-resonance",
+   "kind": "skill",
+   "section": "17.5",
+   "name": "求管的长度或频率",
+   "statement": "要求发出给定基频的管的长度，或给定长度的管发出的频率，先由空气温度求出当天的声速。然后针对该管的端点类型，解共振关系式求出未知量。同样的计算还可以给出外耳道基频的范围，以及乐器的频率在冷房间与暖房间之间改变的比例。",
+   "forms": [
+    {
+     "id": "eq-tube-length",
+     "latex": "L = \\frac{v_{\\text{w}}}{4f_1}",
+     "ktex": "L = \\frac{\\kvw}{4\\kfone}",
+     "condition": "一端封闭的管",
+     "anchor": "17.5-closed-tube"
+    }
+   ]
+  },
+  {
+   "id": "sounding-box-resonance",
+   "kind": "idea",
+   "section": "17.5",
+   "name": "乐器中的共振",
+   "statement": "管乐器利用气柱中的共振放大嘴唇或簧片发出的音，弦乐器则使用共鸣箱：振动的弦产生的声音在箱中共振，被大大放大，并产生泛音，使乐器具有独特的韵味，箱子的形状越复杂，它能共振的频率范围就越宽。马林巴琴的葫芦和小提琴的琴身起同样的作用，说话时咽喉和口腔的空腔也是如此。这些观念适用于任何具有波动特性的系统，直至原子中电子的驻波。"
+  },
+  {
+   "id": "antinode",
+   "kind": "definition",
+   "section": "17.5",
+   "name": "波腹",
+   "terms": [
+    "波腹"
+   ],
+   "statement": "波腹是驻波中位移最大的点。在管中，它位于开口端，那里的空气可以自由运动。"
+  },
+  {
+   "id": "node",
+   "kind": "definition",
+   "section": "17.5",
+   "name": "波节",
+   "terms": [
+    "波节",
+    "波节"
+   ],
+   "statement": "波节是驻波中位移为零的点。在管中，它位于封闭端，那里的空气不能运动。"
+  },
+  {
+   "id": "fundamental",
+   "kind": "definition",
+   "section": "17.5",
+   "name": "基频",
+   "terms": [
+    "基频",
+    "基频"
+   ],
+   "statement": "基频是一个系统频率最低的共振。"
+  },
+  {
+   "id": "overtones",
+   "kind": "definition",
+   "section": "17.5",
+   "name": "泛音",
+   "terms": [
+    "泛音"
+   ],
+   "statement": "泛音是一个系统高于基频的所有共振频率。"
+  },
+  {
+   "id": "harmonics",
+   "kind": "definition",
+   "section": "17.5",
+   "name": "谐波",
+   "terms": [
+    "谐波"
+   ],
+   "statement": "谐波是对基频及其泛音的统称，每一个都是基频的整数倍。基频是一次谐波。"
+  },
+  {
+   "id": "audible-range",
+   "kind": "definition",
+   "section": "17.6",
+   "name": "可听范围",
+   "statement": "正常人的听觉涵盖 20 至 20,000 Hz 的频率。低于 20 Hz 的声音是次声，高于 20,000 Hz 的声音是超声；二者都不能被耳朵感知，不过次声有时可以作为振动被感觉到。其他动物的听觉不同：狗可达 30,000 Hz，蝙蝠和海豚可达 100,000 Hz，大象可低于 20 Hz。"
+  },
+  {
+   "id": "pitch-discrimination",
+   "kind": "idea",
+   "section": "17.6",
+   "name": "对音调的分辨精度",
+   "statement": "我们大多数人有极好的相对音感，当两个频率相差 0.3% 或更多时，就能分辨一个声音与另一个声音的频率不同，所以 500.0 Hz 和 501.5 Hz 是明显不同的。音调知觉与频率直接相关，受强度的影响不大。乐音是具有特定名称的特定声音，听到后就能说出其名称的罕见能力称为绝对音感。"
+  },
+  {
+   "id": "loudness",
+   "kind": "definition",
+   "section": "17.6",
+   "name": "响度",
+   "terms": [
+    "响度"
+   ],
+   "statement": "对强度的知觉是响度。在给定的频率下，你能分辨出约 1 dB 的差别，并且很容易注意到 3 dB 的变化。响度并不只取决于强度。耳朵在 2000 至 5000 Hz 之间最灵敏，所以这个范围内的声音听起来比强度相同而频率为 500 或 10,000 Hz 的声音更响，而接近听觉范围两端的声音听起来更不响。耳朵对强度相差万亿倍的范围都有响应，极少有仪器能与之相比。"
+  },
+  {
+   "id": "timbre",
+   "kind": "definition",
+   "section": "17.6",
+   "name": "音色",
+   "terms": [
+    "音色",
+    "音质"
+   ],
+   "statement": "小提琴和钢琴演奏同一个中央 C 时，绝不会把二者弄混，因为各自产生一组独特的频率和强度。我们对这些组合的知觉是音色，即音质，可以用沉闷、明亮、温暖或丰满等词来描述；它比响度或音调更主观，并涉及知觉心理学。音是音乐中具有特定名称的基本单位，音的组合构成音乐。"
+  },
+  {
+   "id": "equal-loudness-curves",
+   "kind": "skill",
+   "section": "17.6",
+   "name": "读取等响曲线",
+   "statement": "方是响度知觉的单位，正如分贝是物理声强级的单位，二者在 1000 Hz 时数值相等。等响曲线把听力正常的人的响度与声强级和频率联系起来。沿着给定曲线的每一个声音听起来一样响。要求一个声音的响度，在网格上找到它的频率和声强级，并在曲线之间内插。要求给定响度所需的声强级，沿着那条曲线找到该频率。曲线在 2000 至 5000 Hz 之间下凹，那里耳朵最灵敏，而在两端上升。低于 0 方曲线的声音听不见，不过有少数低于 0 dB 的声音是听得见的。"
+  },
+  {
+   "id": "hearing-loss-and-audiograms",
+   "kind": "idea",
+   "section": "17.6",
+   "name": "听力损失与听力图",
+   "statement": "大多数谈话的声音落在一定的频率和声强级范围内。如果在所有频率上听力损失 40 方，你仍然能听懂谈话，只是声音轻些。损失 60 方则只剩下最低的频率，除非说话声比正常大得多，否则你听不懂语音。听力测试涵盖 250 至 8000 Hz，并以听力图表示，其阈值是相对于正常阈值的，所以正常听力在每个频率上都记为 0 dB。由噪声引起的损失在 4000 Hz 附近出现一个凹陷，无论是什么频率造成的。最常见的损失是老年性聋，随年龄增长而出现，频率越高越严重。"
+  },
+  {
+   "id": "hearing-mechanism",
+   "kind": "idea",
+   "section": "17.6",
+   "name": "听觉机制",
+   "statement": "耳朵是一个换能器，把声波转换成电的神经冲动。外耳，即外耳道，把声音传到鼓膜，并像气柱一样共振，这在一定程度上是耳朵在 2000 至 5000 Hz 之间最灵敏的原因。中耳的杠杆系统接受声压作用在鼓膜上的力，将其放大，并通过前庭窗作用在小得多的耳蜗面积上。那里的压强波约是鼓膜上的 40 倍。两块肌肉在几毫秒内对强烈的声音作出反应，减小所传递的力。在内耳中，压强波使盖膜相对于毛细胞振动。毛细胞对不同频率在不同位置共振，高频靠近底部，低频在远端。约 1000 Hz 以下，神经以声音本身的频率发出信号，高于它则以位置发出信号。当传导失效时，声音可以通过颅骨到达耳蜗，人工耳蜗则可以通过直接刺激神经来代替丧失的纤毛。"
+  },
+  {
+   "id": "phon",
+   "kind": "definition",
+   "section": "17.6",
+   "name": "方",
+   "terms": [
+    "方"
+   ],
+   "statement": "方是响度的数值单位。一个声音以方计的响度，等于听起来同样响的 1000 Hz 纯音的声强级（以分贝计），所以在 1000 Hz 时，方和分贝数值相等。"
+  },
+  {
+   "id": "note",
+   "kind": "definition",
+   "section": "17.6",
+   "name": "音",
+   "terms": [
+    "音"
+   ],
+   "statement": "音是音乐中具有特定名称（如中央 C）的基本单位，把音组合起来就构成曲调。"
+  },
+  {
+   "id": "ultrasound",
+   "kind": "definition",
+   "section": "17.6",
+   "name": "超声",
+   "terms": [
+    "超声"
+   ],
+   "statement": "超声是频率高于 20,000 Hz 的声音，20,000 Hz 是正常人听觉范围的上限。耳朵感知不到它。"
+  },
+  {
+   "id": "infrasound",
+   "kind": "definition",
+   "section": "17.6",
+   "name": "次声",
+   "terms": [
+    "次声"
+   ],
+   "statement": "次声是频率低于 20 Hz 的声音，20 Hz 是正常人听觉范围的下限。耳朵感知不到它，不过它有时可以作为振动被感觉到。"
+  },
+  {
+   "id": "ultrasound-therapy",
+   "kind": "idea",
+   "section": "17.7",
+   "name": "作为探测手段和治疗手段的超声",
+   "statement": "超声是任何高于 20 kHz 的声音，它的特性，即频率、强度以及限制所能探测的细节的波长，是一切波共有的波的性质。像任何波一样，它携带能量，介质会吸收这些能量，其效应随强度而变：聚焦到 10³ 至 10⁵ W/m² 时，它能粉碎胆结石并使组织碎裂，部分是通过空化，即蒸气空腔的产生和溃灭；在 10³ 至 10⁴ W/m² 时，它是超声透热疗法的深部加热；约 10⁻² W/m² 的诊断强度太低，不会造成热损伤，几十年的使用也没有显示出不良影响。"
+  },
+  {
+   "id": "acoustic-impedance",
+   "kind": "definition",
+   "section": "17.7",
+   "name": "声阻抗",
+   "symbol": "Z",
+   "terms": [
+    "声阻抗"
+   ],
+   "type": "acoustic-impedance",
+   "statement": "两种介质之间边界处的反射是由它们的声阻抗之差引起的，声阻抗是介质的密度与声音通过该介质的速率之积，单位为 kg/(m²·s)。软组织的声阻抗相差不大，但软组织与空气之间以及软组织与骨之间有很大的差别，这就是这些边界反射如此强烈的原因。",
+   "forms": [
+    {
+     "id": "eq-acoustic-impedance",
+     "latex": "Z = \\rho v",
+     "ktex": "Z = \\krho\\kv",
+     "anchor": "17.7-impedance"
+    }
+   ]
+  },
+  {
+   "id": "intensity-reflection-coefficient",
+   "kind": "result",
+   "section": "17.7",
+   "name": "强度反射系数",
+   "symbol": "a_refl",
+   "terms": [
+    "强度反射系数"
+   ],
+   "statement": "在声阻抗不同的介质之间的边界处，波的一部分能量被反射，一部分透过，声阻抗相差越大，反射越强。强度反射系数是反射强度与入射强度之比。当两个声阻抗相同时它为零，即全部透射，而阻抗匹配使声音能有效地从一种介质耦合到另一种介质中。超声图像追踪这些反射，并绘出它们在一个平面内的强度。",
+   "forms": [
+    {
+     "id": "eq-intensity-reflection-coefficient",
+     "latex": "a = \\frac{(Z_2 - Z_1)^2}{(Z_1 + Z_2)^2}",
+     "anchor": "17.7-reflection"
+    }
+   ]
+  },
+  {
+   "id": "ultrasound-imaging-resolution",
+   "kind": "idea",
+   "section": "17.7",
+   "name": "超声的分辨率与穿透深度",
+   "statement": "换能器，即一块压电晶体，既发射超声，又记录它的回声，信号与每个回声之间的时间乘以组织中约 1540 m/s 的声速，就给出每个边界的深度。要探测比探头波长更小的细节是非常困难的：在 7 MHz 时，组织中的波长是 0.22 mm，实际上可以达到 1 mm 的细节。频率越高，细节越精细，但穿透越浅，经验法则是有效深度约为 500 个波长，所以高频适用于眼睛等小器官，而不适用于深部的腹部。"
+  },
+  {
+   "id": "doppler-shifted-ultrasound",
+   "kind": "result",
+   "section": "17.7",
+   "name": "多普勒频移超声",
+   "terms": [
+    "多普勒频移超声"
+   ],
+   "statement": "从运动的血液或跳动的胎心反射回来的超声，发生两次多普勒频移。反射体先作为运动的观察者接收到一个频移后的频率，然后作为运动的声源把它返回，频移的大小与反射体的速度成正比。回波与发射频率叠加而产生拍，拍的频率是二者之差的绝对值。频移本身，在大约两兆赫中只有几百赫兹，很难测量。拍频则容易测量，不受发射频率任何漂移的影响，并且落在可听范围内。多普勒雷达按同样的原理测量风速、飞机速度和汽车速度。",
+   "forms": [
+    {
+     "id": "eq-beat-frequency-echo",
+     "latex": "f_{\\text{B}} = |f_{\\text{obs}} - f_{\\text{s}}|",
+     "ktex": "\\kfB = |\\kfobs - \\kfsrc|",
+     "anchor": "17.7-doppler"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "sound",
+   "prereq": "periodic-motion"
+  },
+  {
+   "concept": "sound",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "sound",
+   "prereq": "thermal-energy"
+  },
+  {
+   "concept": "sound-longitudinal-pressure-wave",
+   "prereq": "sound"
+  },
+  {
+   "concept": "sound-longitudinal-pressure-wave",
+   "prereq": "pressure"
+  },
+  {
+   "concept": "sound-longitudinal-pressure-wave",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "sound-longitudinal-pressure-wave",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "sound-longitudinal-pressure-wave",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "sound-longitudinal-pressure-wave",
+   "prereq": "viscosity"
+  },
+  {
+   "concept": "sound-longitudinal-pressure-wave",
+   "prereq": "second-law-heat-flow-direction"
+  },
+  {
+   "concept": "hearing",
+   "prereq": "sound"
+  },
+  {
+   "concept": "pitch",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "pitch",
+   "prereq": "hearing"
+  },
+  {
+   "concept": "speed-of-sound-frequency-wavelength",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "speed-of-sound-frequency-wavelength",
+   "prereq": "period-frequency"
+  },
+  {
+   "concept": "speed-of-sound-frequency-wavelength",
+   "prereq": "average-speed"
+  },
+  {
+   "concept": "speed-of-sound-in-media",
+   "prereq": "bulk-deformation"
+  },
+  {
+   "concept": "speed-of-sound-in-media",
+   "prereq": "shear-deformation"
+  },
+  {
+   "concept": "speed-of-sound-in-media",
+   "prereq": "density"
+  },
+  {
+   "concept": "speed-of-sound-temperature",
+   "prereq": "temperature"
+  },
+  {
+   "concept": "speed-of-sound-temperature",
+   "prereq": "temperature-scales"
+  },
+  {
+   "concept": "speed-of-sound-temperature",
+   "prereq": "absolute-zero"
+  },
+  {
+   "concept": "speed-of-sound-temperature",
+   "prereq": "rms-speed"
+  },
+  {
+   "concept": "speed-of-sound-temperature",
+   "prereq": "kinetic-theory"
+  },
+  {
+   "concept": "speed-of-sound-temperature",
+   "prereq": "boltzmann-constant"
+  },
+  {
+   "concept": "speed-of-sound-independent-of-frequency",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "frequency-fixed-across-media",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "frequency-fixed-across-media",
+   "prereq": "speed-of-sound-in-media"
+  },
+  {
+   "concept": "echo-ranging",
+   "prereq": "speed-of-sound-temperature"
+  },
+  {
+   "concept": "echo-ranging",
+   "prereq": "speed-of-sound-in-media"
+  },
+  {
+   "concept": "echo-ranging",
+   "prereq": "average-speed"
+  },
+  {
+   "concept": "echo-ranging",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "sound-intensity",
+   "prereq": "power"
+  },
+  {
+   "concept": "sound-intensity",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "sound-intensity",
+   "prereq": "sound"
+  },
+  {
+   "concept": "intensity-and-pressure-amplitude",
+   "prereq": "sound-intensity"
+  },
+  {
+   "concept": "intensity-and-pressure-amplitude",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "intensity-and-pressure-amplitude",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "intensity-and-pressure-amplitude",
+   "prereq": "density"
+  },
+  {
+   "concept": "intensity-and-pressure-amplitude",
+   "prereq": "shm-energy"
+  },
+  {
+   "concept": "intensity-and-pressure-amplitude",
+   "prereq": "sound-longitudinal-pressure-wave"
+  },
+  {
+   "concept": "sound-intensity-level",
+   "prereq": "sound-intensity"
+  },
+  {
+   "concept": "sound-intensity-level",
+   "prereq": "order-of-magnitude"
+  },
+  {
+   "concept": "threshold-of-hearing",
+   "prereq": "sound-intensity-level"
+  },
+  {
+   "concept": "threshold-of-hearing",
+   "prereq": "order-of-magnitude"
+  },
+  {
+   "concept": "decibel-ratios",
+   "prereq": "sound-intensity-level"
+  },
+  {
+   "concept": "combining-sound-sources",
+   "prereq": "decibel-ratios"
+  },
+  {
+   "concept": "combining-sound-sources",
+   "prereq": "sound-intensity"
+  },
+  {
+   "concept": "sound-pressure-level",
+   "prereq": "sound-intensity-level"
+  },
+  {
+   "concept": "sound-pressure-level",
+   "prereq": "intensity-and-pressure-amplitude"
+  },
+  {
+   "concept": "doppler-effect",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "doppler-effect",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "doppler-effect",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "doppler-shift-moving-source",
+   "prereq": "doppler-effect"
+  },
+  {
+   "concept": "doppler-shift-moving-source",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "doppler-shift-moving-observer",
+   "prereq": "doppler-effect"
+  },
+  {
+   "concept": "doppler-shift-moving-observer",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "doppler-shift-source-and-observer",
+   "prereq": "doppler-shift-moving-source"
+  },
+  {
+   "concept": "doppler-shift-source-and-observer",
+   "prereq": "doppler-shift-moving-observer"
+  },
+  {
+   "concept": "doppler-shift-source-and-observer",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "sonic-boom",
+   "prereq": "doppler-shift-moving-source"
+  },
+  {
+   "concept": "sonic-boom",
+   "prereq": "speed-of-sound-temperature"
+  },
+  {
+   "concept": "bow-wake",
+   "prereq": "sonic-boom"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "pascals-principle"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "pressures-add"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "sound-longitudinal-pressure-wave"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "gauge-pressure"
+  },
+  {
+   "concept": "air-column-resonance",
+   "prereq": "sound-interference"
+  },
+  {
+   "concept": "air-column-resonance",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "air-column-resonance",
+   "prereq": "restoring-force"
+  },
+  {
+   "concept": "air-column-resonance",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "nodes-and-antinodes",
+   "prereq": "air-column-resonance"
+  },
+  {
+   "concept": "nodes-and-antinodes",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "fundamental-and-overtones",
+   "prereq": "air-column-resonance"
+  },
+  {
+   "concept": "fundamental-and-overtones",
+   "prereq": "nodes-and-antinodes"
+  },
+  {
+   "concept": "closed-tube-resonances",
+   "prereq": "nodes-and-antinodes"
+  },
+  {
+   "concept": "closed-tube-resonances",
+   "prereq": "fundamental-and-overtones"
+  },
+  {
+   "concept": "closed-tube-resonances",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "open-tube-resonances",
+   "prereq": "closed-tube-resonances"
+  },
+  {
+   "concept": "open-tube-resonances",
+   "prereq": "nodes-and-antinodes"
+  },
+  {
+   "concept": "tube-length-from-resonance",
+   "prereq": "closed-tube-resonances"
+  },
+  {
+   "concept": "tube-length-from-resonance",
+   "prereq": "open-tube-resonances"
+  },
+  {
+   "concept": "tube-length-from-resonance",
+   "prereq": "speed-of-sound-temperature"
+  },
+  {
+   "concept": "sounding-box-resonance",
+   "prereq": "air-column-resonance"
+  },
+  {
+   "concept": "sounding-box-resonance",
+   "prereq": "fundamental-and-overtones"
+  },
+  {
+   "concept": "sounding-box-resonance",
+   "prereq": "energy-transformation"
+  },
+  {
+   "concept": "audible-range",
+   "prereq": "hearing"
+  },
+  {
+   "concept": "audible-range",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "pitch-discrimination",
+   "prereq": "pitch"
+  },
+  {
+   "concept": "loudness",
+   "prereq": "hearing"
+  },
+  {
+   "concept": "loudness",
+   "prereq": "sound-intensity-level"
+  },
+  {
+   "concept": "loudness",
+   "prereq": "decibel-ratios"
+  },
+  {
+   "concept": "loudness",
+   "prereq": "threshold-of-hearing"
+  },
+  {
+   "concept": "timbre",
+   "prereq": "fundamental-and-overtones"
+  },
+  {
+   "concept": "timbre",
+   "prereq": "pitch"
+  },
+  {
+   "concept": "equal-loudness-curves",
+   "prereq": "loudness"
+  },
+  {
+   "concept": "equal-loudness-curves",
+   "prereq": "sound-intensity-level"
+  },
+  {
+   "concept": "equal-loudness-curves",
+   "prereq": "audible-range"
+  },
+  {
+   "concept": "hearing-loss-and-audiograms",
+   "prereq": "equal-loudness-curves"
+  },
+  {
+   "concept": "hearing-loss-and-audiograms",
+   "prereq": "decibel-ratios"
+  },
+  {
+   "concept": "hearing-mechanism",
+   "prereq": "hearing"
+  },
+  {
+   "concept": "hearing-mechanism",
+   "prereq": "lever"
+  },
+  {
+   "concept": "hearing-mechanism",
+   "prereq": "lever-mechanical-advantage"
+  },
+  {
+   "concept": "hearing-mechanism",
+   "prereq": "force-from-pressure"
+  },
+  {
+   "concept": "hearing-mechanism",
+   "prereq": "closed-tube-resonances"
+  },
+  {
+   "concept": "hearing-mechanism",
+   "prereq": "air-column-resonance"
+  },
+  {
+   "concept": "ultrasound-therapy",
+   "prereq": "audible-range"
+  },
+  {
+   "concept": "ultrasound-therapy",
+   "prereq": "sound-intensity"
+  },
+  {
+   "concept": "ultrasound-therapy",
+   "prereq": "sound-intensity-level"
+  },
+  {
+   "concept": "ultrasound-therapy",
+   "prereq": "sound-pressure-level"
+  },
+  {
+   "concept": "acoustic-impedance",
+   "prereq": "density"
+  },
+  {
+   "concept": "acoustic-impedance",
+   "prereq": "speed-of-sound-in-media"
+  },
+  {
+   "concept": "intensity-reflection-coefficient",
+   "prereq": "acoustic-impedance"
+  },
+  {
+   "concept": "intensity-reflection-coefficient",
+   "prereq": "sound-intensity"
+  },
+  {
+   "concept": "ultrasound-imaging-resolution",
+   "prereq": "echo-ranging"
+  },
+  {
+   "concept": "ultrasound-imaging-resolution",
+   "prereq": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "concept": "ultrasound-imaging-resolution",
+   "prereq": "audible-range"
+  },
+  {
+   "concept": "doppler-shifted-ultrasound",
+   "prereq": "doppler-shift-source-and-observer"
+  },
+  {
+   "concept": "doppler-shifted-ultrasound",
+   "prereq": "doppler-shift-moving-observer"
+  },
+  {
+   "concept": "doppler-shifted-ultrasound",
+   "prereq": "doppler-shift-moving-source"
+  },
+  {
+   "concept": "doppler-shifted-ultrasound",
+   "prereq": "sound-interference"
+  },
+  {
+   "concept": "speed-of-sound-frequency-wavelength",
+   "prereq": "wavelength"
+  },
+  {
+   "concept": "speed-of-sound-frequency-wavelength",
+   "prereq": "wave-velocity"
+  },
+  {
+   "concept": "sound-intensity",
+   "prereq": "intensity"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "constructive-interference"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "destructive-interference"
+  },
+  {
+   "concept": "sound-interference",
+   "prereq": "beats"
+  },
+  {
+   "concept": "air-column-resonance",
+   "prereq": "standing-wave"
+  },
+  {
+   "concept": "air-column-resonance",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "nodes-and-antinodes",
+   "prereq": "nodes-and-antinodes-on-a-string"
+  },
+  {
+   "concept": "fundamental-and-overtones",
+   "prereq": "string-harmonics"
+  },
+  {
+   "concept": "phon",
+   "prereq": "loudness"
+  },
+  {
+   "concept": "phon",
+   "prereq": "sound-intensity-level"
+  },
+  {
+   "concept": "doppler-shift",
+   "prereq": "doppler-effect"
+  },
+  {
+   "concept": "doppler-shift",
+   "prereq": "frequency"
+  },
+  {
+   "concept": "antinode",
+   "prereq": "nodes-and-antinodes"
+  },
+  {
+   "concept": "antinode",
+   "prereq": "standing-wave"
+  },
+  {
+   "concept": "node",
+   "prereq": "nodes-and-antinodes"
+  },
+  {
+   "concept": "node",
+   "prereq": "standing-wave"
+  },
+  {
+   "concept": "fundamental",
+   "prereq": "fundamental-and-overtones"
+  },
+  {
+   "concept": "fundamental",
+   "prereq": "resonance"
+  },
+  {
+   "concept": "overtones",
+   "prereq": "fundamental-and-overtones"
+  },
+  {
+   "concept": "overtones",
+   "prereq": "fundamental"
+  },
+  {
+   "concept": "harmonics",
+   "prereq": "fundamental-and-overtones"
+  },
+  {
+   "concept": "harmonics",
+   "prereq": "fundamental"
+  },
+  {
+   "concept": "harmonics",
+   "prereq": "overtones"
+  },
+  {
+   "concept": "note",
+   "prereq": "timbre"
+  },
+  {
+   "concept": "note",
+   "prereq": "pitch"
+  },
+  {
+   "concept": "ultrasound",
+   "prereq": "audible-range"
+  },
+  {
+   "concept": "ultrasound",
+   "prereq": "sound"
+  },
+  {
+   "concept": "infrasound",
+   "prereq": "audible-range"
+  },
+  {
+   "concept": "infrasound",
+   "prereq": "sound"
+  },
+  {
+   "concept": "doppler-shift-moving-source",
+   "prereq": "doppler-shift"
+  },
+  {
+   "concept": "doppler-shift-moving-observer",
+   "prereq": "doppler-shift"
+  },
+  {
+   "concept": "doppler-shift-source-and-observer",
+   "prereq": "doppler-shift"
+  },
+  {
+   "concept": "ultrasound-therapy",
+   "prereq": "ultrasound"
+  },
+  {
+   "concept": "ultrasound-imaging-resolution",
+   "prereq": "ultrasound"
+  },
+  {
+   "concept": "doppler-shifted-ultrasound",
+   "prereq": "ultrasound"
+  }
+ ]
+}

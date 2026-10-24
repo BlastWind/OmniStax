@@ -1,0 +1,108 @@
+<section id="natural-convection">
+<h2>自然对流与对流环流</h2>
+<p class="cite-target"><span data-concept="convection">对流</span>由物质的大规模流动驱动。就地球而言，大气环流是由热空气从热带流向两极、冷空气从两极流向热带引起的。（注意，地球的自转造成了在北半球观测到的偏东气流。）汽车发动机靠冷却系统中水的流动保持低温，水泵不断把冷水送到活塞处。循环系统用于身体：身体过热时，皮肤中的血管扩张，使流向皮肤的血流增加，血液在那里可以通过出汗得到冷却。这些血管在室外寒冷时变小，在炎热时变大（因此流过的流体更多，传递的<span data-concept="energy">能量</span>也更多）。</p>
+<p>身体还通过呼吸过程损失相当大一部分<span data-concept="heat">热量</span>。</p>
+<p>虽然<span data-concept="convection">对流</span>通常比<span data-concept="conduction">热传导</span>复杂，但我们仍可以描述<span data-concept="convection">对流</span>，并对它的效应做一些直截了当而贴近实际的计算。自然<span data-concept="convection">对流</span>由<span data-concept="buoyant-force">浮力</span>驱动：热空气上升，因为<span data-concept="density">密度</span>随<span data-concept="temperature">温度</span>升高而减小。图 14.21 中的<span data-ref="house">房屋</span>就是这样保持温暖的，图 14.22 中炉灶上的<span data-ref="pot">那锅水</span>也是如此。洋流和大尺度大气环流把<span data-concept="energy">能量</span>从地球的一处传递到另一处。二者都是自然<span data-concept="convection">对流</span>的例子。</p>
+<figure class="sim" id="sim-convective-loop" data-figure="14.21 + 14.22" data-original="/media/ch14/Figure_15_06_01a.jpg,/media/ch14/Figure_15_06_02a.jpg" data-original-width="275,200" data-original-caption="被所谓重力式热风炉加热的空气膨胀并上升，形成对流环流，把能量传递到房间的其他部分。当空气在天花板和外墙处冷却时，它收缩，最终变得比房间里的空气密度更大，并下沉到地板。像这样使用自然对流的供暖系统，只要设计得当，可以相当高效地使整座房屋均匀升温。（图 14.22）对流在这锅水内部的热传递中起着重要作用。热量一旦传导到内部，传向锅中其他部分的热传递主要靠对流。较热的水膨胀，密度减小，上升而把热量传递到水的其他区域，而较冷的水则下沉到底部。这一过程不断重复。">
+  <div class="sim-head"><span class="eyebrow">Figure 14.21 + 14.22</span><span><span data-ref="furnace">重力式热风炉</span>加热<span data-ref="furnace">它</span>旁边的空气，<span data-ref="burner">灶头</span>加热<span data-ref="pot">一口锅</span>底部的水。在这两种情形中，被加热的流体都膨胀，变得比周围的流体密度小，<span data-concept="buoyant-force">浮力</span>把它向上推。在天花板处或<span data-ref="pot">锅</span>壁处冷却了的流体下沉，来填补它的位置。流体团沿着这个环流运动，两根条形则比较<span data-type="density">被加热流体的密度</span>与<span data-type="density">其余流体的密度</span>。选择<span data-ref="house">房间</span>或<span data-ref="pot">锅</span>，提高<span data-type="temperature">加热处流体的温度</span>，随着被加热的流体变轻，环流就转得更快。</span></div>
+</figure>
+<div class="note">
+<div class="eyebrow">居家实验：受热锅中的对流卷</div>
+<p>取两个盛水的小锅，用滴管在每个锅的底部附近滴一滴食用色素。把一个放在工作台面上，另一个放在炉灶上<span data-concept="heat">加热</span>。观察颜色如何扩散，以及颜色到达顶部需要多长时间。观察对流环流是如何形成的。</p>
+</div>
+</section>
+
+<section id="moving-mass">
+<h2>一定质量的流体所携带的热量</h2>
+<div class="example" id="ex-house">
+<h3>例题 14.7 · 计算通过对流的热传递：空气通过房屋墙壁的对流</h3>
+<p class="cite-target">大多数房屋并不是密不透风的：空气会在门窗周围进出，穿过缝隙和裂口，顺着电线进到开关和插座，等等。一座典型房屋里的空气在不到一小时内就会被完全更换。假设<span data-ref="leaky-house">一座中等大小的房屋</span>内部尺寸为 $12.0\ \text{m} \times 18.0\ \text{m} \times 3.00\ \text{m}$ 高，并且所有空气在 <span data-type="time">30.0 min</span> 内被更换。计算使进入的冷空气升温 $10.0^\circ\text{C}$ 所需的以<span data-concept="watt">瓦特</span>计的<span data-type="power">单位<span data-concept="time">时间</span>的<span data-concept="heat">热</span>传递</span>，以此补回仅由<span data-concept="convection">对流</span>传走的<span data-concept="heat">热量</span>。</p>
+<h4>思路</h4>
+<p><span data-concept="heat">热量</span>用来升高<span data-type="temperature">空气的<span data-concept="temperature">温度</span></span>，因此 $\kQh = \km\kcspec\kdTemp$。<span data-type="power"><span data-concept="heat">热</span>传递速率</span>则为 $\kQh/\kt$，其中 $\kt$ 是空气换气的<span data-concept="time">时间</span>。已知 $\kdTemp$ 为 $10.0^\circ\text{C}$，但在计算 $\kQh$ 之前，我们还必须求出<span data-type="mass">空气的<span data-concept="mass">质量</span></span>及<span data-type="specific-heat">其<span data-concept="specific-heat">比热容</span></span>。<span data-type="specific-heat">空气的<span data-concept="specific-heat">比热容</span></span>是氮和氧的<span data-concept="specific-heat">比热容</span>的加权平均，由表 14.1 得 $\kcspec = \kcp \cong 1000\ \text{J/kg}\cdot{}^\circ\text{C}$（注意，这一过程必须使用<span data-concept="specific-heat">比</span>定<span data-concept="pressure">压</span>热容）。</p>
+<h4>解</h4>
+<ol>
+<li>根据<span data-type="density">空气的<span data-concept="density">密度</span></span>和<span data-type="volume">房屋的给定体积</span>，确定<span data-type="mass">空气的<span data-concept="mass">质量</span></span>。<span data-type="density"><span data-concept="density">密度</span></span>由<span data-type="density"><span data-concept="density">密度</span></span> $\krho$ 和<span data-type="volume">体积</span>给出
+$$\km = \krho\kvol = (1.29\ \text{kg/m}^3)(12.0\ \text{m} \times 18.0\ \text{m} \times 3.00\ \text{m}) = 836\ \text{kg.}$$</li>
+<li>由<span data-type="temperature">空气<span data-concept="temperature">温度</span>的变化</span>计算<span data-type="energy">传递的<span data-concept="heat">热量</span></span>：$\kQh = \km\kcspec\kdTemp$，因此
+$$\kQh = (836\ \text{kg})(1000\ \text{J/kg}\cdot{}^\circ\text{C})(10.0^\circ\text{C}) = 8.36 \times 10^{6}\ \text{J.}$$</li>
+<li>由<span data-type="energy"><span data-concept="heat">热量</span></span> $\kQh$ 和<span data-type="time">换气<span data-concept="time">时间</span></span> $\kt$ 计算<span data-type="power"><span data-concept="heat">热</span>传递</span>。由于空气在 $\kt = 0.500\ \text{h} = 1800\ \text{s}$ 内换气一次，<span data-type="power">单位<span data-concept="time">时间</span>传递的<span data-concept="heat">热量</span></span>为
+$$\frac{\kQh}{\kt} = \frac{8.36 \times 10^{6}\ \text{J}}{1800\ \text{s}} = 4.64\ \text{kW.}$$</li>
+</ol>
+<h4>讨论</h4>
+<p><span data-type="power">这一<span data-concept="heat">热</span>传递速率</span>等于<span data-type="power">约四十六个 100 W 灯泡所消耗的<span data-concept="power">功率</span></span>。新建住宅是按<span data-type="time">2 小时或更长的换气<span data-concept="time">时间</span></span>设计的，而不是像<span data-ref="leaky-house">本例中的房屋</span>那样的 <span data-type="time">30 分钟</span>。人们通常采用门窗密封条、填缝和改进的窗户密封。在非常寒冷（或炎热）的气候中，有时会采取更极端的措施，以达到一次换气<span data-type="time">超过 6 小时</span>的严格标准。更长的换气<span data-concept="time">时间</span>则对健康不利，因为需要一定最低量的新鲜空气来提供呼吸所需的氧气，并稀释家庭污染物。外界空气从窗户、门和地基周围的缝隙漏入房屋的过程，称为“空气渗透”。</p>
+</div>
+<figure class="sim" id="sim-house-turnover">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="leaky-house">例题 14.7 中的房屋</span>漏风：冷空气从门窗周围进入，暖空气排出，因此<span data-ref="leaky-house">它</span>的全部空气在一个<span data-type="time">换气时间</span>内更换一次。进入的每一千克空气都必须升高<span data-type="temperature">同样的温度变化</span>，而<span data-type="energy">这所需的热量</span>除以<span data-type="time">换气时间</span>，就是<span data-type="power">加热必须运行的速率</span>。条形以瓦特为单位给出<span data-type="power">这一速率</span>，它旁边的一行则显示这相当于点亮多少个 100 W 灯泡。把<span data-type="time">换气时间</span>延长到新建住宅的 <span data-type="time">2 小时</span>或密封良好的住宅的 <span data-type="time">6 小时</span>，灯泡就熄灭了。</span></div>
+</figure>
+</section>
+
+<section id="wind-chill">
+<h2>风寒</h2>
+<p class="cite-target">寒冷的风比静止的冷空气更让人觉得冷得多，因为<span data-concept="convection">对流</span>与身体中的<span data-concept="conduction">热传导</span>共同作用，加快了<span data-concept="energy">能量</span>从身体传走的速率。下表给出近似的风寒温度，它们是指产生与给定<span data-concept="temperature">温度</span>和风速的空气相同降温速率的静止空气的<span data-concept="temperature">温度</span>。风寒温度生动地提醒我们，<span data-concept="convection">对流</span>传递<span data-concept="heat">热量</span>的速率比<span data-concept="conduction">热传导</span>更快。例如，<span data-type="velocity">15.0 m/s</span> 的风在 $0^\circ\text{C}$ 时，其寒冷程度相当于约 $-18^\circ\text{C}$ 的静止空气。</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 14.4</span><span>风寒温度</span></div>
+  <table>
+    <thead>
+      <tr><th>流动空气的<span data-concept="temperature">温度</span></th><th colspan="5">风速（m/s）</th></tr>
+      <tr><th>$({}^\circ\text{C})$</th><th>$2$</th><th>$5$</th><th>$10$</th><th>$15$</th><th>$20$</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>$5$</td><td>$3$</td><td>$-1$</td><td>$-8$</td><td>$-10$</td><td>$-12$</td></tr>
+      <tr><td>$2$</td><td>$0$</td><td>$-7$</td><td>$-12$</td><td>$-16$</td><td>$-18$</td></tr>
+      <tr><td>$0$</td><td>$-2$</td><td>$-9$</td><td>$-15$</td><td>$-18$</td><td>$-20$</td></tr>
+      <tr><td>$-5$</td><td>$-7$</td><td>$-15$</td><td>$-22$</td><td>$-26$</td><td>$-29$</td></tr>
+      <tr><td>$-10$</td><td>$-12$</td><td>$-21$</td><td>$-29$</td><td>$-34$</td><td>$-36$</td></tr>
+      <tr><td>$-20$</td><td>$-23$</td><td>$-34$</td><td>$-44$</td><td>$-50$</td><td>$-52$</td></tr>
+      <tr><td>$-40$</td><td>$-44$</td><td>$-59$</td><td>$-73$</td><td>$-82$</td><td>$-84$</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="sim-wind-chill">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="person-wind">一个人</span>站在风中，<span data-ref="air-thermometer chill-thermometer">两支温度计</span>读取空气的读数。<span data-ref="air-thermometer">第一支</span>读出<span data-type="temperature">流动空气本身的温度</span>。<span data-ref="chill-thermometer">第二支</span>读出<span data-type="temperature">表 14.4 中的风寒温度</span>，即<span data-type="temperature">静止空气的温度</span>，这样的静止空气带走<span data-ref="person-wind">身体</span>的<span data-concept="heat">热量</span>的速率与之相同。场景旁边的图像把表中的每一行都对着<span data-type="velocity">风速</span>作图，选定的<span data-type="temperature">空气温度</span>所在的那一行被突出标出，你的点就在这一行上。把<span data-type="temperature">空气温度</span>和<span data-type="velocity">风速</span>设为表中的值，或设为它们之间的任意值，就能读出风比静止空气让人觉得冷多少。</span></div>
+</figure>
+<div class="exercises" data-place="wind-chill"></div>
+</section>
+
+<section id="trapped-air">
+<h2>不能流动的空气是隔热体</h2>
+<p class="cite-target">虽然空气可以通过<span data-concept="convection">对流</span>迅速传递<span data-concept="heat">热量</span>，但它是不良<span data-concept="thermal-conductor-and-insulator">导体</span>，因而是良好的<span data-concept="thermal-conductor-and-insulator">隔热体</span>。可供气流活动的空间大小，决定了空气起<span data-concept="thermal-conductor-and-insulator">隔热体</span>还是<span data-concept="thermal-conductor-and-insulator">导体</span>的作用。例如，房屋内墙与外墙之间的空间<span data-type="position">约 9 cm（3.5 in）</span>——大到足以让<span data-concept="convection">对流</span>有效地起作用。添加墙体隔热层可阻止气流，因此<span data-concept="heat">热量</span>损失（或获得）减少。同样，双层玻璃窗两层玻璃之间的间隙<span data-type="position">约 1 cm</span>，这阻止了<span data-concept="convection">对流</span>，并利用空气的低热导率来防止更大的损失。皮毛、纤维和玻璃纤维也利用空气的低热导率，把空气截留在小到无法支持<span data-concept="convection">对流</span>的空间里，如图所示。皮毛和羽毛很轻，因此非常适合用来保护动物。</p>
+<figure class="sim" id="sim-fur" data-figure="14.23" data-original="/media/ch14/Figure_15_06_03a.jpg" data-original-caption="皮毛里充满空气，把空气分隔成许多小气室。这里的对流非常缓慢，因为环流非常小。空气的低热导率使皮毛成为非常好的轻质隔热体。">
+  <div class="sim-head"><span class="eyebrow">Figure 14.23</span><span><span data-ref="layer">一层皮毛</span>覆盖着<span data-ref="warm-side">温暖的身体</span>，<span data-ref="cold-side">外面是冷空气</span>。<span data-ref="layer">皮毛</span>把<span data-ref="layer">这一层</span>的空气分隔成许多小气室。在每个气室中，靠近<span data-ref="warm-side">身体</span>的空气比靠近<span data-ref="cold-side">冷的一侧</span>的空气更暖、更轻，所以如果可能，就会形成一个对流环流。它能否形成，取决于<span data-type="position">气室的大小</span>。作用在一个暖空气气室上的<span data-concept="buoyant-force">浮力</span>随<span data-type="volume">气室的体积</span>增大，而<span data-type="viscosity">空气的黏度</span>阻碍任何运动。在小气室中，空气静止不动，<span data-concept="heat">热量</span>只能通过空气中的热传导穿过<span data-ref="layer">皮毛</span>，而空气是不良导体。把气室扩大到<span data-ref="layer">双层玻璃窗 1 cm 的间隙</span>或<span data-ref="layer">房屋墙体 9 cm 的空腔</span>，环流就开始转动了。</span></div>
+</figure>
+</section>
+
+<section id="phase-change">
+<h2>伴有相变的对流</h2>
+<p class="cite-target">有些有趣的现象发生在<em><span data-concept="convection">对流</span>伴有相变时</em>。它使我们即使在周围空气的<span data-concept="temperature">温度</span>超过<span data-concept="temperature">体温</span>时，也能靠出汗来降温。汗要从皮肤蒸发，需要来自皮肤的<span data-concept="heat">热量</span>，但如果没有气流，空气就会饱和，蒸发便停止。由<span data-concept="convection">对流</span>引起的气流用干空气取代饱和空气，蒸发便得以继续。</p>
+<div class="example" id="ex-sweat">
+<h3>例题 14.8 · 计算对流中的质量流动：汗液把热量带离身体</h3>
+<p><span data-ref="person-shade">普通人</span>在休息时产生<span data-concept="heat">热量</span>的<span data-type="power">速率约为 120 W</span>。为了排出所有这些<span data-concept="energy">能量</span>，水必须以多大的速率从<span data-ref="person-shade">身体</span>蒸发？（当<span data-ref="person-shade">一个人</span>坐在阴凉处，而且<span data-type="temperature">周围<span data-concept="temperature">温度</span></span>与<span data-type="temperature">皮肤<span data-concept="temperature">温度</span></span>相同，从而消除了其他方式的<span data-concept="heat">热</span>传递时，就可能发生这种蒸发。）</p>
+<h4>思路</h4>
+<p>相变需要<span data-concept="energy">能量</span>（$\kQh = \km\kLv$）。因此，<span data-type="power">单位<span data-concept="time">时间</span>的<span data-concept="energy">能量</span>损失</span>为</p>
+$$\frac{\kQh}{\kt} = \frac{\km\kLv}{\kt} = 120\ \text{W} = 120\ \text{J/s.}$$
+<p>将方程两边同除以 $\kLv$，得到单位<span data-concept="time">时间</span>蒸发的<span data-concept="mass">质量</span>为</p>
+$$\frac{\km}{\kt} = \frac{120\ \text{J/s}}{\kLv}.$$
+<h4>解</h4>
+<p>（1）代入表 14.2 中<span data-type="latent-heat"><span data-concept="heat">潜热</span>的值</span>，$\kLv = 2430\ \text{kJ/kg} = 2430\ \text{J/g}$。由此得到</p>
+$$\frac{\km}{\kt} = \frac{120\ \text{J/s}}{2430\ \text{J/g}} = 0.0494\ \text{g/s} = 2.96\ \text{g/min.}$$
+<h4>讨论</h4>
+<p>每分钟蒸发约 3 g 似乎是合理的。这相当于每小时约 180 g（约 7 oz）。如果空气非常干燥，汗液蒸发了甚至可能不会被察觉。肺和呼吸道中也发生大量蒸发。</p>
+</div>
+<figure class="sim" id="sim-sweat">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="person-shade">一个人</span>坐在阴凉处，空气与皮肤一样暖，因此汗液是<span data-concept="heat">热量</span>离开<span data-ref="person-shade">身体</span>的唯一途径，就像例题 14.8 中那样。每蒸发一克汗液，就带走<span data-type="energy">一克水的汽化热</span>，所以水必须蒸发的速率，等于<span data-type="power">需要散发的功率</span>除以<span data-type="latent-heat">汽化热</span>。条形以每分钟多少克表示这一速率，<span data-ref="cup">杯子</span>则收集在<span data-type="time">选定的时间</span>内<span data-type="mass">蒸发出的水</span>。把<span data-type="power">功率</span>从<span data-type="power">睡眠时的 83 W</span>提高到<span data-type="power">静坐时的 210 W</span>，看看需要多蒸发多少水。</span></div>
+</figure>
+<p>相变与<span data-concept="convection">对流</span>相结合的另一个重要例子，发生在水从海洋蒸发的时候。水蒸发时，<span data-concept="heat">热量</span>从海洋中被带走。如果<span data-concept="vapor">水蒸气</span>在云形成时凝结成液滴，<span data-concept="heat">热量</span>就在大气中释放出来。这样，<span data-concept="heat">热量</span>总体上从海洋传递到了大气。这一过程是积雨云背后的驱动力，这些巨大的积云可上升多达 20.0 km，进入平流层。由<span data-concept="convection">对流</span>带入的<span data-concept="vapor">水蒸气</span>凝结，释放出巨大的<span data-concept="energy">能量</span>。这些<span data-concept="energy">能量</span>使空气膨胀并上升，到达更冷的地方。在这些更冷的区域发生更多的凝结，这又反过来把云推得更高。这样的机制称为正反馈，因为这个过程会自我强化、自我加速。这类系统有时会产生伴有闪电和冰雹的猛烈风暴，并构成驱动飓风的机制。</p>
+<figure class="photo" id="fig-cumulus" data-figure="14.24">
+  <img src="/media/ch14/Figure_15_06_04a.jpg" alt="图中是蓝天中的一朵积云。">
+  <figcaption><span class="eyebrow">Figure 14.24</span><span>积云由因对流而上升的水蒸气形成。云的上升由正反馈机制驱动。（来源：Mike Love）</span></figcaption>
+</figure>
+<figure class="photo" id="fig-thunderhead" data-figure="14.25">
+  <img src="/media/ch14/Figure_15_06_05a.jpg" alt="图中是城市上空积雨云中的闪电。" data-width="213">
+  <figcaption><span class="eyebrow">Figure 14.25</span><span>伴有相变的对流释放出<span data-concept="energy">能量</span>，驱动这块积雨云升入平流层。（来源：Gerardo García Moretti ）</span></figcaption>
+</figure>
+<figure class="photo" id="fig-icebergs" data-figure="14.26">
+  <img src="/media/ch14/Figure_15_06_06a.jpg" alt="图中是一些蓝色的冰山漂浮在水中，上方是积雪覆盖的山峰和多云的天空。前面的一些冰山正在熔化。" data-width="227">
+  <figcaption><span class="eyebrow">Figure 14.26</span><span>这座冰山熔化时发生的相变，涉及巨大的<span data-concept="heat">热</span>传递。（来源：Dominic Alves）</span></figcaption>
+</figure>
+<p>冰山的移动是<span data-concept="convection">对流</span>伴有相变的另一个例子。假设一座冰山从格陵兰漂入较暖的大西洋水域。冰熔化时，<span data-concept="heat">热量</span>从温暖的海水中被带走；而冰山在格陵兰形成时，<span data-concept="heat">热量</span>释放到<span data-concept="mass">陆块</span>上。</p>
+</section>

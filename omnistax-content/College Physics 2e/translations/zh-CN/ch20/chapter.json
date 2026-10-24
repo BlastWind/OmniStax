@@ -1,0 +1,349 @@
+{
+ "id": "20",
+ "dir": "ch20",
+ "title": "电流、电阻与欧姆定律",
+ "intro": {
+  "module": "m42339",
+  "slug": "20-introduction-to-electric-current-resistance-and-ohms-law"
+ },
+ "sections": [
+  {
+   "id": "20.1",
+   "module": "m42341",
+   "title": "电流",
+   "slug": "20-1-current"
+  },
+  {
+   "id": "20.2",
+   "module": "m42344",
+   "title": "欧姆定律：电阻与简单电路",
+   "slug": "20-2-ohms-law-resistance-and-simple-circuits"
+  },
+  {
+   "id": "20.3",
+   "module": "m42346",
+   "title": "电阻与电阻率",
+   "slug": "20-3-resistance-and-resistivity"
+  },
+  {
+   "id": "20.4",
+   "module": "m42714",
+   "title": "电功率与电能",
+   "slug": "20-4-electric-power-and-energy"
+  },
+  {
+   "id": "20.5",
+   "module": "m42348",
+   "title": "交流电与直流电",
+   "slug": "20-5-alternating-current-versus-direct-current"
+  },
+  {
+   "id": "20.6",
+   "module": "m42350",
+   "title": "电气危害与人体",
+   "slug": "20-6-electric-hazards-and-the-human-body"
+  },
+  {
+   "id": "20.7",
+   "module": "m42352",
+   "title": "神经传导与心电图",
+   "slug": "20-7-nerve-conduction-electrocardiograms"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "电流，即电荷流过某一点的速率",
+   "unit": "A",
+   "section": "20.1",
+   "anchor": "20.1-electric-current"
+  },
+  {
+   "sym": "ΔQ_charge",
+   "concept": "electric-charge",
+   "meaning": "在时间 Δt 内通过给定面积的电荷",
+   "unit": "C",
+   "section": "20.1",
+   "anchor": "20.1-electric-current"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "电荷 ΔQ 通过该面积所用的时间",
+   "unit": "s",
+   "section": "20.1",
+   "anchor": "20.1-electric-current"
+  },
+  {
+   "sym": "q",
+   "concept": "electric-charge",
+   "meaning": "每个运动载流子所带的电荷",
+   "unit": "C",
+   "section": "20.1",
+   "anchor": "20.1-current-from-drift"
+  },
+  {
+   "sym": "q_e",
+   "concept": "elementary-charge",
+   "type": "charge",
+   "meaning": "一个电子所带的电荷，−1.60 × 10⁻¹⁹ C",
+   "unit": "C",
+   "section": "20.1",
+   "anchor": "20.1-conventional-current"
+  },
+  {
+   "sym": "n",
+   "concept": "free-charge-density",
+   "meaning": "材料中单位体积内的自由电荷数，取决于材料",
+   "unit": "1/m^3",
+   "section": "20.1",
+   "anchor": "20.1-current-from-drift"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "电荷流过的导线的横截面积",
+   "unit": "m^2",
+   "section": "20.1",
+   "anchor": "20.1-current-from-drift"
+  },
+  {
+   "sym": "v_d",
+   "concept": "drift-velocity",
+   "meaning": "漂移速度，即自由电荷的平均速度",
+   "unit": "m/s",
+   "section": "20.1",
+   "anchor": "20.1-drift-velocity"
+  },
+  {
+   "sym": "E_field",
+   "concept": "electric-field",
+   "meaning": "导体中的电场，它提供移动电荷的能量",
+   "unit": "V/m",
+   "section": "20.1",
+   "anchor": "20.1-conventional-current"
+  },
+  {
+   "sym": "V_volt",
+   "concept": "potential-difference",
+   "meaning": "电源加在导体两端的电势差",
+   "unit": "V",
+   "section": "20.2",
+   "anchor": "20.2-voltage-sources"
+  },
+  {
+   "sym": "R_res",
+   "concept": "resistance",
+   "meaning": "电阻，即阻碍电流的电学性质",
+   "unit": "Ω",
+   "section": "20.2",
+   "anchor": "20.2-resistance-circuits"
+  },
+  {
+   "sym": "ρ",
+   "concept": "resistivity",
+   "meaning": "材料的电阻率，一种与形状或大小无关的内禀性质",
+   "unit": "Ω⋅m",
+   "section": "20.3",
+   "anchor": "20.3-material-and-shape"
+  },
+  {
+   "sym": "ρ_0res",
+   "concept": "resistivity",
+   "meaning": "原电阻率，即温度变化 ΔT 之前的电阻率",
+   "unit": "Ω⋅m",
+   "section": "20.3",
+   "anchor": "20.3-temperature-variation"
+  },
+  {
+   "sym": "L_len",
+   "concept": "length",
+   "meaning": "电流流过的均匀圆柱体的长度",
+   "unit": "m",
+   "section": "20.3",
+   "anchor": "20.3-material-and-shape"
+  },
+  {
+   "sym": "D",
+   "concept": "length",
+   "meaning": "圆柱形导体的直径",
+   "unit": "m",
+   "section": "20.3",
+   "anchor": "20.3-material-and-shape"
+  },
+  {
+   "sym": "α_res",
+   "concept": "temperature-coefficient-of-resistivity",
+   "meaning": "电阻率温度系数，对金属为正，对表 20.2 中的半导体为负",
+   "unit": "1/°C",
+   "section": "20.3",
+   "anchor": "20.3-temperature-variation"
+  },
+  {
+   "sym": "R_0res",
+   "concept": "resistance",
+   "meaning": "原电阻，即温度变化 ΔT 之前的电阻",
+   "unit": "Ω",
+   "section": "20.3",
+   "anchor": "20.3-resistance-with-temperature"
+  },
+  {
+   "sym": "ΔT",
+   "concept": "temperature",
+   "meaning": "导体的温度变化",
+   "unit": "°C",
+   "section": "20.3",
+   "anchor": "20.3-temperature-variation"
+  },
+  {
+   "sym": "P",
+   "concept": "power",
+   "meaning": "电功率，即电源供给能量或器件耗散能量的速率",
+   "unit": "W",
+   "section": "20.4",
+   "anchor": "20.4-power-in-electric-circuits"
+  },
+  {
+   "sym": "E",
+   "concept": "electrical-energy-and-cost",
+   "meaning": "器件在时间 t 内使用的电能，以千瓦时计费",
+   "unit": "J",
+   "section": "20.4",
+   "anchor": "20.4-cost-of-electricity"
+  },
+  {
+   "sym": "PE",
+   "concept": "electric-potential-energy",
+   "meaning": "被移动的电荷所带的势能，qV",
+   "unit": "J",
+   "section": "20.4",
+   "anchor": "20.4-power-in-electric-circuits"
+  },
+  {
+   "sym": "t",
+   "concept": "time",
+   "meaning": "器件消耗其功率所用的时间",
+   "unit": "s",
+   "section": "20.4",
+   "anchor": "20.4-cost-of-electricity"
+  },
+  {
+   "sym": "V_0volt",
+   "concept": "alternating-current",
+   "type": "voltage",
+   "meaning": "交流电源的峰值电压",
+   "unit": "V",
+   "section": "20.5",
+   "anchor": "20.5-alternating-current"
+  },
+  {
+   "sym": "I_0curr",
+   "concept": "alternating-current",
+   "type": "current",
+   "meaning": "简单电阻电路中的峰值电流，V₀/R",
+   "unit": "A",
+   "section": "20.5",
+   "anchor": "20.5-alternating-current"
+  },
+  {
+   "sym": "f",
+   "concept": "frequency",
+   "meaning": "交流电源的频率，以赫兹计",
+   "unit": "Hz",
+   "section": "20.5",
+   "anchor": "20.5-alternating-current"
+  },
+  {
+   "sym": "V_rms",
+   "concept": "rms-values",
+   "type": "voltage",
+   "meaning": "方均根电压，即交流电压的方均根，V₀/√2",
+   "unit": "V",
+   "section": "20.5",
+   "anchor": "20.5-rms-values"
+  },
+  {
+   "sym": "I_rms",
+   "concept": "rms-values",
+   "type": "current",
+   "meaning": "方均根电流，I₀/√2",
+   "unit": "A",
+   "section": "20.5",
+   "anchor": "20.5-rms-values"
+  },
+  {
+   "sym": "P_ave",
+   "concept": "ac-power",
+   "meaning": "交流电的平均功率，等于峰值电流与峰值电压乘积的一半",
+   "unit": "W",
+   "section": "20.5",
+   "anchor": "20.5-ac-power"
+  },
+  {
+   "sym": "P_0pow",
+   "concept": "ac-power",
+   "meaning": "交流电的峰值功率，是平均功率的两倍",
+   "unit": "W",
+   "section": "20.5",
+   "anchor": "20.5-ex-peak-voltage"
+  },
+  {
+   "sym": "r_short",
+   "concept": "resistance",
+   "meaning": "电压源两端短路的极小电阻",
+   "unit": "Ω",
+   "section": "20.6",
+   "anchor": "20.6-thermal-hazards"
+  },
+  {
+   "sym": "R_w",
+   "concept": "resistance",
+   "meaning": "给用户供电的导线的电阻",
+   "unit": "Ω",
+   "section": "20.6",
+   "anchor": "20.6-thermal-hazards",
+   "ref": "wires"
+  },
+  {
+   "sym": "ΔV_volt",
+   "concept": "potential-difference",
+   "meaning": "细胞膜两侧的电势差，静息状态下为 70 至 90 mV",
+   "unit": "V",
+   "section": "20.7",
+   "anchor": "20.7-resting-potential"
+  },
+  {
+   "sym": "d",
+   "concept": "distance",
+   "meaning": "细胞膜的厚度，约 8 nm",
+   "unit": "m",
+   "section": "20.7",
+   "anchor": "20.7-resting-potential"
+  },
+  {
+   "sym": "x",
+   "concept": "length",
+   "meaning": "自由电荷在时间 Δt 内移动的平均距离，即阴影段的长度",
+   "unit": "m",
+   "section": "20.1",
+   "anchor": "20.1-current-from-drift"
+  },
+  {
+   "sym": "r",
+   "concept": "length",
+   "meaning": "导线的半径，为其直径的一半，由它求得横截面积 πr²",
+   "unit": "m",
+   "section": "20.1",
+   "anchor": "20.1-current-from-drift"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "电流流过的均匀圆柱体的横截面积",
+   "unit": "m^2",
+   "section": "20.3",
+   "anchor": "20.3-material-and-shape"
+  }
+ ]
+}

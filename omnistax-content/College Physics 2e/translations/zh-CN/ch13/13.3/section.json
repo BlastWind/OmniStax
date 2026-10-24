@@ -1,0 +1,1005 @@
+{
+ "id": "13.3",
+ "module": "m42216",
+ "chapter": "13",
+ "title": "理想气体定律",
+ "short": "理想气体定律",
+ "lead": "气体在受热时的表现比固体或液体简单得多，因为它的分子相隔很远。理想气体定律把气体的<span data-concept=\"pressure\">压强</span>、<span data-concept=\"volume\">体积</span>和热力学<span data-concept=\"temperature\">温度</span>与其中的分子数联系起来，分子数既可以逐个计数，也可以用摩尔计数；它还说明了轮胎的<span data-concept=\"pressure\">压强</span>如何随升温而变化。",
+ "objectives": [
+  "陈述用分子数和用物质的量表示的理想气体定律。",
+  "用理想气体定律计算压强变化、温度变化、体积变化，或给定体积中的分子数或物质的量。",
+  "用阿伏伽德罗常量在分子数与物质的量之间换算。"
+ ],
+ "summary_html": "<ul><li>理想气体定律把气体的<span data-concept=\"pressure\">压强</span>和<span data-concept=\"volume\">体积</span>与气体的分子数和气体的<span data-concept=\"temperature\">温度</span>联系起来。</li><li>理想气体定律可以用气体的分子数来写：$\\kPr V = Nk\\kTemp,$ 其中 $\\kPr$ 是<span data-concept=\"pressure\">压强</span>，$V$ 是<span data-concept=\"volume\">体积</span>，$\\kTemp$ 是<span data-concept=\"temperature\">温度</span>，$N$ 是分子数，$k$ 是玻尔兹曼常量 $k = 1.38\\times10^{-23}\\ \\text{J/K}.$</li><li>1 摩尔是 12 g 碳-12 样品中的原子数。</li><li>1 摩尔中的分子数称为阿伏伽德罗常量 $N_{\\text{A}}$，$N_{\\text{A}} = 6.02\\times10^{23}\\ \\text{mol}^{-1}.$</li><li>任何物质的 1 摩尔，其以克为单位的<span data-concept=\"mass\">质量</span>等于它的分子量，分子量可以由元素周期表确定。</li><li>理想气体定律也可以用气体的物质的量来写并求解：$\\kPr V = nR\\kTemp,$ 其中 $n$ 是物质的量，$R$ 是摩尔气体常量，$R = 8.31\\ \\text{J/mol}\\cdot\\text{K}.$</li><li>理想气体定律在<span data-concept=\"temperature\">温度</span>远高于沸点<span data-concept=\"temperature\">温度</span>时通常成立。</li></ul>",
+ "notes": "本节开头那张与正文没有任何呼应的热气球照片，以及书中没有给出答案的八道习题，均已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。三个“理解检测”框都已配上答案并内嵌排版：关于摩尔的那段文字之后是对乙酰氨基酚药片；例题 13.6 之后是空气密度减半，位置即本书所印之处；关于密度小到千分之一意味着间距大到十倍的那个框，则放在开头关于分子间距的那段文字之后，因为它考查的正是这一点，尽管本书把它印在解题策略之后。十七道习题中有九道有答案并保留；没有答案的八道已略去：把绝对压强换算成以 lb/in² 计的表压强（fs-id2798567），实验室里的氦气球（fs-id2687223），把标准状况下的数密度换算成 cm⁻³以及一立方微米中的原子数（fs-id2094656），飞机乘客胃里的空气（fs-id2932069），昂贵的真空系统（fs-id1908858），放掉 100 cm³ 空气的自行车轮胎（fs-id1804845），7.41 × 10⁷ N/m² 下 2.00 L 中的物质的量（fs-id2084983），以及装有 3.60 mol 气体的汽车轮胎（fs-id1544154）。关于 $nRT$ 的单位的那道习题要求验证而不是求一个数，因此作为开放题给出，附本书自己的解答；灯泡一题的两问都有答案，气体钢瓶和星系之间的深空各有三个数值答案，其最后几问用本书的文字写在解中。有一道习题来自 13.6，其 source_section 为 13.6，这是本章 config 的决定：10¹⁴ N/m² 下每立方米物质的量的“不合理的结果”一题（fs-id1582923），其（a）问有答案，本书的（b）（c）两问写在解中；13.6 的说明中也有此说明。第一道 AP 题要求给出两个答案，答案为“(a), (c)”，这无法用评分选择题表示，所以它是一道开放题，四个选项写在题干中，本书的答案作为其答案。第二道 AP 题没有答案：它的数据表放在题干中，表头的笔误“x10m<sup>5</sup>”按本书所印保留，本书的活塞图附在题卡上，建议的思路由 AI 撰写并已标明。三道思考题的建议思路由 AI 撰写并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-gas-molecules",
+   "kind": "sim",
+   "number": "13.18",
+   "originals": [
+    "/media/ch13/Figure_14_03_01.jpg"
+   ],
+   "original_caption": "气体中的原子和分子通常相隔很远，如图所示。由于在这样的距离上它们之间的力相当微弱，气体的性质更多地取决于单位体积内的原子数和温度，而不是原子的种类。",
+   "widths": [
+    250
+   ],
+   "draws": [],
+   "conventions": [
+    "N",
+    "O",
+    "He"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend wrapped inside the stage, rho via macros, article, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tire",
+   "kind": "sim",
+   "number": "13.19",
+   "originals": [
+    "/media/ch13/Figure_14_03_02.jpg"
+   ],
+   "original_caption": "（a）向瘪了的轮胎里打气时，它的体积起初增大，而压强增加不多。（b）轮胎充到一定程度后，胎壁阻止它进一步膨胀，随着空气增多，压强升高。（c）轮胎充好气后，它的压强随温度升高。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "pressure",
+    "temperature",
+    "volume"
+   ],
+   "conventions": [
+    "N",
+    "O"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes cut, caption names where the strike count is"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mole",
+   "kind": "sim",
+   "number": "13.20",
+   "originals": [
+    "/media/ch13/Figure_14_03_03.jpg"
+   ],
+   "original_caption": "一摩尔有多大？在宏观层面上，一摩尔乒乓球可以把地球覆盖到约 40 km 的深度。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note's repeat of the caption dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "ideal-gas",
+   "concept": "ideal-gas",
+   "verb": "introduces"
+  },
+  {
+   "span": "ideal-gas",
+   "concept": "volume-thermal-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-gas",
+   "concept": "phases-of-matter",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-gas",
+   "concept": "atomic-arrangement-and-phase",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-gas",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-gas-law",
+   "concept": "ideal-gas-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "ideal-gas-law",
+   "concept": "boltzmann-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "ideal-gas-law",
+   "concept": "ideal-gas",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ideal-gas-law",
+   "concept": "pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-gas-law",
+   "concept": "absolute-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-gas-law",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "ideal-gas-law",
+   "concept": "absolute-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "tire-pressure",
+   "concept": "ideal-gas-ratio-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "tire-pressure",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "tire-pressure",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "tire-pressure",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "stp",
+   "concept": "molar-volume-at-stp",
+   "verb": "introduces"
+  },
+  {
+   "span": "stp",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "stp",
+   "concept": "boltzmann-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "stp",
+   "concept": "atmospheric-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "moles",
+   "concept": "mole",
+   "verb": "introduces"
+  },
+  {
+   "span": "moles",
+   "concept": "avogadros-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "moles",
+   "concept": "fundamental-units",
+   "verb": "uses"
+  },
+  {
+   "span": "molar-volume",
+   "concept": "molar-volume-at-stp",
+   "verb": "reinforces"
+  },
+  {
+   "span": "molar-volume",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "molar-volume",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "molar-volume",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "moles-form",
+   "concept": "ideal-gas-law-moles",
+   "verb": "introduces"
+  },
+  {
+   "span": "moles-form",
+   "concept": "ideal-gas-law",
+   "verb": "uses"
+  },
+  {
+   "span": "moles-form",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "moles-form",
+   "concept": "boltzmann-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "moles-form",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "moles-form",
+   "concept": "universal-gas-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy",
+   "concept": "ideal-gas-law-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "ideal-gas-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strategy",
+   "concept": "ideal-gas-law-moles",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strategy",
+   "concept": "ideal-gas-ratio-method",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu3",
+   "source_id": "fs-id1445894",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "ideal-gas"
+   },
+   "cite": "ideal-gas",
+   "prompt": "液体和固体的密度约为气体的 1000 倍。请解释，这如何意味着气体中原子和分子之间的距离约为其原子和分子大小的 10 倍。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "在固体和液体中，原子和分子靠得很近。在气体中，它们被空的空间隔开。因此气体的密度比液体和固体低。密度是单位体积的质量，而体积与物体（例如球）的大小的立方有关。所以，如果原子和分子之间的距离增大到 10 倍，那么所占的体积就增大到 1000 倍，密度就减小到千分之一。"
+   }
+  },
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2696745",
+   "kind": "check-understanding",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "moles"
+   },
+   "cite": "moles",
+   "prompt": "泰诺药片的有效成分是 325 mg 对乙酰氨基酚 $(\\text{C}_8\\text{H}_9\\text{NO}_2)$。求对乙酰氨基酚的摩尔质量，并由此求一片药中对乙酰氨基酚的物质的量和分子数。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "molar mass",
+      "value": 151,
+      "unit": "g/mol",
+      "hint": "把分子式中每种元素的原子数乘以周期表中该元素的原子质量，再把四个乘积相加。"
+     },
+     {
+      "part": "number of moles",
+      "value": 0.00215,
+      "unit": "mol",
+      "hint": "物质的量等于药片的质量除以摩尔质量，先要把毫克换算成克。"
+     },
+     {
+      "part": "number of molecules",
+      "value": 1.3e+21,
+      "unit": "molecules",
+      "hint": "每摩尔含有阿伏伽德罗常量那么多个分子。"
+     }
+    ],
+    "solution": "我们首先需要计算对乙酰氨基酚的摩尔质量（一摩尔的质量）。为此，我们需要把每种元素的原子数乘以该元素的原子质量。$(8\\ \\text{摩尔碳})(12\\ \\text{克/摩尔}) + (9\\ \\text{摩尔氢})(1\\ \\text{克/摩尔}) + (1\\ \\text{摩尔氮})(14\\ \\text{克/摩尔}) + (2\\ \\text{摩尔氧})(16\\ \\text{克/摩尔}) = 151\\ \\text{g}$。然后我们需要计算 325 mg 中的物质的量。$\\left(\\frac{325\\ \\text{mg}}{151\\ \\text{克/摩尔}}\\right)\\left(\\frac{1\\ \\text{克}}{1000\\ \\text{mg}}\\right) = 2.15\\times10^{-3}\\ \\text{摩尔}$。然后用阿伏伽德罗常量计算分子数。$N = (2.15\\times10^{-3}\\ \\text{摩尔})(6.02\\times10^{23}\\ \\text{个分子/摩尔}) = 1.30\\times10^{21}\\ \\text{个分子}$。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id2710286",
+   "kind": "check-understanding",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "molar-volume"
+   },
+   "cite": "tire-pressure",
+   "prompt": "标准条件下空气的密度 $(\\kPr = 1\\ \\text{atm}$ 且 $\\kTemp = 20^\\circ\\text{C})$ 为 $1.20\\ \\text{kg/m}^3$。如果温度和分子数保持不变，密度为 $0.60\\ \\text{kg/m}^3$ 时的压强是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.5,
+    "unit": "atm",
+    "generated_by": "source",
+    "hint": "如果密度减半而没有分子损失，同样的分子就充满两倍的体积。对这两个状态写出理想气体定律并相除，所有保持不变的量都会约去。",
+    "solution": "处理这个问题的最好办法是思考正在发生什么。如果密度降到原来的一半且没有分子损失，那么体积必定加倍。观察方程 $\\kPr V = Nk\\kTemp$ 可知，温度恒定时，压强与体积成反比。因此，如果体积加倍，压强必定降到原来的一半，$\\kPrf = 0.50\\ \\text{atm}.$"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2591367",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moles",
+   "prompt": "查一查地球上的人口数。地球上居住的人是否有一摩尔？如果一个人的平均质量是 60 kg，计算一摩尔人的质量。一摩尔人的质量与地球的质量相比如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "地球上的人口约为 $8\\times10^{9}$，而一摩尔是 $6.02\\times10^{23}$，所以远远没有一摩尔的人：人口得再增大约 $10^{14}$ 倍。一摩尔人，每人 60 kg，质量为 $(6.02\\times10^{23})(60\\ \\text{kg}) = 3.6\\times10^{25}\\ \\text{kg}$。地球的质量是 $6.0\\times10^{24}\\ \\text{kg}$，所以一摩尔人的质量约为他们所站立的这颗行星的六倍。这道题的要点在于阿伏伽德罗常量之大：任何一摩尔与人质量相当的东西，其质量都超过地球，所以摩尔只适合用于像原子和分子这样小的东西。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2799079",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-gas",
+   "prompt": "在什么情况下，你预期气体的行为会与理想气体定律的预言有显著的不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "该定律基于两个假设：分子所占的体积在总体积中可以忽略，并且分子之间只通过完全弹性碰撞相互作用。当分子挤得很近时，这两个假设都不成立。在高压下，分子本身占据的体积不再是 $V$ 中可以忽略的一部分。在低温下，接近凝结时，分子运动得很慢，以致它们之间微弱的吸引力变得重要。该定律在温度远高于沸点温度时成立。预期气体在接近变成液体时，或者把它压缩到接近液体的密度时，会偏离该定律。在普通压强下且远高于沸点的气体，接近理想气体。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2378151",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-gas-law",
+   "prompt": "定容气体温度计里装有一定量的气体。测量气体的什么性质来指示它的温度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它的压强。在 $\\kPr V = Nk\\kTemp$ 中，体积 $V$ 和分子数 $N$ 都保持不变，$k$ 是常量，所以压强与热力学温度成正比：$\\kPr = (Nk/V)\\kTemp$。因此，一旦温度计在一个已知温度下校准好，用压强计读出压强，就能得到以开尔文计的温度；而且当温度趋近绝对零度时，压强趋近于零，前面几节中的气体温度计就是这样找到绝对零度所在的位置的。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1320035",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-gas-law",
+   "prompt": "一定量的理想气体保存在体积固定的容器中。以摄氏度为单位的温度 <em>T</em> 为横坐标，作出气体的绝对压强 <em>P</em>（以帕斯卡为单位）的图像。下列哪些是对这些数据的最佳拟合曲线的性质？请选择<em>两个</em>答案。<ol type=\"a\"><li>斜率为正</li><li>通过原点</li><li>在某个负温度处压强为零</li><li>温度趋于无穷大时压强趋于零</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a), (c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1390822",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-gas-law",
+   "figure": {
+    "src": "/media/ch13/Figure_Ch13_S01.jpg",
+    "alt": "一个黑色矩形，下部三分之二呈灰色，并有“Gas”字样。矩形上方有一个粗实线的倒 T 形，T 的竖直部分向上伸出矩形的上边缘。矩形内 T 上方的顶部区域为白色。"
+   },
+   "prompt": "这幅图显示一个透明塑料容器，里面有一个可移动的活塞，容器中装有一定量的气体。一组学生被要求判断这种气体是否是理想气体。学生们设计并进行了一个实验。他们测量了下面数据表中记录的三个量。<table class=\"data\"><tr><th>实验次序</th><th>气体绝对压强（x10m<sup>5</sup> Pa）</th><th>体积（m<sup>3</sup>）</th><th>温度（K）</th><th></th><th></th></tr><tr><td>1</td><td>1.1</td><td>0.020</td><td>270</td><td></td><td></td></tr><tr><td>2</td><td>1.4</td><td>0.016</td><td>270</td><td></td><td></td></tr><tr><td>3</td><td>1.9</td><td>0.012</td><td>270</td><td></td><td></td></tr><tr><td>4</td><td>2.2</td><td>0.010</td><td>270</td><td></td><td></td></tr><tr><td>5</td><td>2.8</td><td>0.008</td><td>270</td><td></td><td></td></tr><tr><td>6</td><td>1.2</td><td>0.020</td><td>290</td><td></td><td></td></tr><tr><td>7</td><td>1.5</td><td>0.016</td><td>290</td><td></td><td></td></tr><tr><td>8</td><td>2.0</td><td>0.012</td><td>290</td><td></td><td></td></tr><tr><td>9</td><td>2.4</td><td>0.010</td><td>290</td><td></td><td></td></tr><tr><td>10</td><td>3.0</td><td>0.008</td><td>290</td><td></td><td></td></tr><tr><td>11</td><td>1.3</td><td>0.020</td><td>310</td><td></td><td></td></tr><tr><td>12</td><td>1.6</td><td>0.016</td><td>310</td><td></td><td></td></tr><tr><td>13</td><td>2.1</td><td>0.012</td><td>310</td><td></td><td></td></tr><tr><td>14</td><td>2.6</td><td>0.010</td><td>310</td><td></td><td></td></tr><tr><td>15</td><td>3.2</td><td>0.008</td><td>310</td><td></td><td></td></tr></table>（a）从表中选取一组数据点，并把这些点画在图上，以判断这种气体是否表现出理想气体的性质。对于你作图的量，凡不是给定数据的，请在表中的空白列里填上。标出坐标轴并标明每个轴的标度。通过你的数据点画一条最佳拟合直线或曲线。（b）指出这种气体是否表现出理想气体的性质，并解释你的图像的哪一特征提供了证据。（c）学生们用一个完全相同、但所装气体只有一半的容器重复实验。他们取得与表中相同的体积和温度值下的数据。新的数据会导致关于该气体是否为理想气体的不同结论吗？请根据气体分子与容器壁之间的相互作用来论证你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）取同一温度下的五次实验，比如 270 K 下的第 1 至 5 次，并在一个空白列中为每次填入 $1/V$。然后画出 $\\kPr$ 对 $1/V$ 的图，横轴为 $1/V$，以 $\\text{m}^{-3}$ 为单位，从 0 到 125，纵轴为 $\\kPr$，以 $10^5$ Pa 为单位，从 0 到 3。在 $N$ 和 $\\kTemp$ 固定时，理想气体定律给出 $\\kPr = (Nk\\kTemp)(1/V)$，这是一条过原点的直线，所以如果这种气体是理想气体，最佳拟合直线就应通过原点。或者，在空白列中为每次实验填入 $\\kPr V$，并画出它对 $\\kTemp$ 的图；该定律预言这是一条过原点、斜率为 $Nk$ 的直线。（b）每个温度下的乘积 $\\kPr V$ 都近似为常量：270 K 时约为 $2.2\\times10^{3}$ J，290 K 时约为 $2.4\\times10^{3}$ J，310 K 时约为 $2.6\\times10^{3}$ J。它们与热力学温度成正比地增大，所以在测量的散布范围内，这些点位于一条过原点的直线上，这种气体表现为理想气体。（c）气体量减半，$N$ 就减半。在相同体积和温度下，每个压强都减半，直线的斜率也减半，但它仍是一条过原点的直线，所以这种气体仍是理想气体。压强来自分子撞击器壁，而该定律假设分子对器壁的作用是相互独立的。分子数减半，撞击次数就减半，压强也减半，结论不变。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2682279",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tire-pressure",
+   "prompt": "你的汽车轮胎的表压强在温度为 $35.0^\\circ\\text{C}$ 时是 $2.50\\times10^{5}\\ \\text{N/m}^2$，这时你把车开上去阿拉斯加的渡轮。后来它们的温度降到 $-40.0^\\circ\\text{C}$，这时它们的表压强是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1.62,
+    "unit": "atm",
+    "generated_by": "source",
+    "hint": "该定律要用绝对压强和热力学温度：把表压强加上大气压，把每个摄氏温度加上 273，在体积恒定时取比值，然后再减去大气压，得到表压强。",
+    "solution": "1.62 atm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2804147",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tire-pressure",
+   "prompt": "假设一只充有气体的白炽灯泡在制造时，使灯泡温度为 $20.0^\\circ\\text{C}$ 时泡内气体处于大气压下。（a）假设灯泡热的时候平均温度为 $60.0^\\circ\\text{C}$（一种近似），并忽略热膨胀或漏气引起的体积变化，求这种灯泡热的时候泡内的表压强。（b）灯泡的实际末压强会小于（a）问算得的值，因为玻璃泡会膨胀。考虑到这一点，实际末压强是多少？这个差别可以忽略吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.136,
+      "unit": "atm",
+      "hint": "体积恒定时，绝对压强按热力学温度之比升高，而表压强是去掉大气压后剩下的部分。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.135,
+      "unit": "atm",
+      "hint": "玻璃的体积膨胀量等于表 13.2 中的体胀系数乘以温度变化，所以比值中的体积比原来稍大一点。"
+     }
+    ],
+    "solution": "（a）0.136 atm。（b）0.135 atm。这个值与（a）问所得的值之差可以忽略。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1746230",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy",
+   "prompt": "验证对 $R$ 的每个值，$nR\\kTemp$ 的单位都是能量的单位：（a）$8.31\\ \\text{J/mol}\\cdot\\text{K}$，（b）$1.99\\ \\text{cal/mol}\\cdot\\text{K}$，以及（c）$0.0821\\ \\text{L}\\cdot\\text{atm/mol}\\cdot\\text{K}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$nR\\kTemp = (\\text{mol})(\\text{J/mol}\\cdot\\text{K})(\\text{K}) = \\text{J}$。（b）$nR\\kTemp = (\\text{mol})(\\text{cal/mol}\\cdot\\text{K})(\\text{K}) = \\text{cal}$。（c）$nR\\kTemp = (\\text{mol})(\\text{L}\\cdot\\text{atm/mol}\\cdot\\text{K})(\\text{K}) = \\text{L}\\cdot\\text{atm} = (\\text{m}^3)(\\text{N/m}^2) = \\text{N}\\cdot\\text{m} = \\text{J}$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2631403",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moles-form",
+   "prompt": "计算普通人肺中 2.00 L 空气的物质的量。注意空气的温度为 $37.0^\\circ\\text{C}$（体温）。",
+   "answer": {
+    "type": "number",
+    "value": 0.0786,
+    "unit": "mol",
+    "generated_by": "source",
+    "hint": "取空气处于大气压下，把升换算成立方米，把温度换算成开尔文，然后对 $\\kPr V = nR\\kTemp$ 求解 $n$。",
+    "solution": "$7.86\\times10^{-2}\\ \\text{mol}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2739655",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moles",
+   "prompt": "（a）如果每粒沙子都是边长 1.0 mm 的立方体，阿伏伽德罗常量那么多粒沙子的体积（以 $\\text{km}^3$ 计）是多少？（b）如果海滩平均宽 100 m、深 10.0 m，这些沙子能铺满多少千米长的海滩？忽略沙粒之间的空隙。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 602000,
+      "unit": "km³",
+      "hint": "一立方毫米是 $10^{-9}\\ \\text{m}^3$，一立方千米是 $10^{9}\\ \\text{m}^3$。"
+     },
+     {
+      "part": "(b)",
+      "value": 602000000,
+      "unit": "km",
+      "hint": "用体积除以海滩的横截面积 100 m 乘 10.0 m，得到长度。"
+     }
+    ],
+    "solution": "（a）$6.02\\times10^{5}\\ \\text{km}^3$。（b）$6.02\\times10^{8}\\ \\text{km}$。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id2328150",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-gas-law",
+   "prompt": "我们这颗行星上空某处气体原子的数密度约为 $1.00\\times10^{11}\\ \\text{m}^{-3},$ 该处的压强为 $2.75\\times10^{-10}\\ \\text{N/m}^2$。那里的温度是多少？",
+   "answer": {
+    "type": "number",
+    "value": -73.9,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "按给出的 $N/V$，对 $\\kPr V = Nk\\kTemp$ 求解 $\\kTemp$，然后把开尔文换算成摄氏度。",
+    "solution": "$-73.9^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id2889733",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tire-pressure",
+   "prompt": "一只高压气瓶里装有 50.0 L 有毒气体，压强为 $1.40\\times10^{7}\\ \\text{N/m}^2$，温度为 $25.0^\\circ\\text{C}$。气瓶掉落后阀门漏气。把气瓶冷却到干冰温度 $(-78.5^\\circ\\text{C})$，以降低漏气速率和压强，使它可以被安全地修理。（a）假设冷却过程中漏掉的气体可以忽略，并且没有相变，罐内的末压强是多少？（b）如果十分之一的气体逸出，末压强是多少？（c）要把压降到 1.00 atm，必须把罐冷却到什么温度（假设气体不发生相变，且冷却期间没有泄漏）？（d）冷却罐看起来是一种切实可行的解决办法吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 9140000,
+      "unit": "N/m²",
+      "hint": "体积和分子数都固定，所以压强按热力学温度之比下降。"
+     },
+     {
+      "part": "(b)",
+      "value": 8230000,
+      "unit": "N/m²",
+      "hint": "十分之一的气体逸出后，$N$ 是原来的十分之九，在相同体积和温度下压强是（a）问答案的十分之九。"
+     },
+     {
+      "part": "(c)",
+      "value": 2.16,
+      "unit": "K",
+      "hint": "令末压强为 1.00 atm，对末热力学温度解这个比值。"
+     }
+    ],
+    "solution": "（a）$9.14\\times10^{6}\\ \\text{N/m}^2$。（b）$8.23\\times10^{6}\\ \\text{N/m}^2$。（c）2.16 K。（d）不是。所需的末温太低，对于一个大物体来说不容易达到。"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2735156",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moles",
+   "prompt": "计算阿伏伽德罗常量那么多个乒乓球能把地球覆盖到多深。每个球的直径为 3.75 cm。假设球之间的空隙使它们的体积额外增加 25.0%，并假设它们不会被自身的重力压碎。",
+   "answer": {
+    "type": "number",
+    "value": 41,
+    "unit": "km",
+    "generated_by": "source",
+    "hint": "求一个球的体积，加上四分之一作为空隙，乘以阿伏伽德罗常量，再除以地球的表面积 $4\\pi R_{\\text{E}}^2$，其中 $R_{\\text{E}} = 6.37\\times10^{6}\\ \\text{m}$。",
+    "solution": "41 km"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id2869966",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moles-form",
+   "prompt": "（a）在星系之间的深空，原子的密度低到 $10^{6}\\ \\text{个原子/m}^3,$ 温度是严寒的 2.7 K。压强是多少？（b）1 mol 气体占据多大的体积（以 $\\text{m}^3$ 计）？（c）如果这个体积是一个立方体，它的边长是多少千米？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.7e-17,
+      "unit": "Pa",
+      "hint": "用 $\\kPr = (N/V)k\\kTemp$，数密度取给出的值。"
+     },
+     {
+      "part": "(b)",
+      "value": 6e+17,
+      "unit": "m³",
+      "hint": "一摩尔是阿伏伽德罗常量那么多个原子，数密度告诉我们多少立方米含有那么多个原子。"
+     },
+     {
+      "part": "(c)",
+      "value": 840,
+      "unit": "km",
+      "hint": "取体积的立方根，并把米换算成千米。"
+     }
+    ],
+    "solution": "（a）$3.7\\times10^{-17}\\ \\text{Pa}$。（b）$6.0\\times10^{17}\\ \\text{m}^3$。（c）$8.4\\times10^{2}\\ \\text{km}$。"
+   }
+  },
+  {
+   "id": "p18",
+   "source_id": "fs-id1582923",
+   "source_section": "13.6",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ideal-gas",
+   "prompt": "（a）在压强为 $1.00\\times10^{14}\\ \\text{N/m}^2$、温度为 $0^\\circ\\text{C}$ 时，每立方米理想气体有多少摩尔？（b）这个结果有什么不合理之处？（c）是哪个前提或假设造成的？",
+   "answer": {
+    "type": "number",
+    "value": 44100000000.0,
+    "unit": "mol/m³",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "在 273 K 下对 $\\kPr V = nR\\kTemp$ 求解 $n/V$，然后想一想这个数对每个分子所占的空间意味着什么。",
+    "solution": "（a）$4.41\\times10^{10}\\ \\text{mol/m}^3$。（b）它大得不合理。（c）在这样的高压下，理想气体定律不再适用。因此，用它就会得出不合理的答案。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu3",
+   "concept": "ideal-gas"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "mole"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "avogadros-number",
+   "weight": 3
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "ideal-gas-ratio-method"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "mole"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "avogadros-number",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ideal-gas"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "ideal-gas-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "ideal-gas-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ideal-gas-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ideal-gas",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "ideal-gas-ratio-method"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "ideal-gas-ratio-method"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "ideal-gas-law-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "ideal-gas-law-moles",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "ideal-gas-law-moles"
+  },
+  {
+   "exercise": "p9",
+   "concept": "avogadros-number"
+  },
+  {
+   "exercise": "p9",
+   "concept": "mole",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "ideal-gas-law"
+  },
+  {
+   "exercise": "p13",
+   "concept": "ideal-gas-ratio-method"
+  },
+  {
+   "exercise": "p13",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "avogadros-number"
+  },
+  {
+   "exercise": "p15",
+   "concept": "mole",
+   "weight": 2
+  },
+  {
+   "exercise": "p17",
+   "concept": "ideal-gas-law-moles"
+  },
+  {
+   "exercise": "p17",
+   "concept": "ideal-gas-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p18",
+   "concept": "ideal-gas"
+  },
+  {
+   "exercise": "p18",
+   "concept": "ideal-gas-law-moles",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "tire",
+   "label": "自行车轮胎",
+   "figures": [
+    "sim-tire"
+   ]
+  },
+  {
+   "id": "everest",
+   "label": "按比例画出的珠穆朗玛峰",
+   "figures": [
+    "sim-mole"
+   ]
+  },
+  {
+   "id": "balls",
+   "label": "一摩尔球及其铺成的球层",
+   "figures": [
+    "sim-mole"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "ideal-gas-law-moles",
+   "what": "用物质的量表示的理想气体定律",
+   "source": "《大学物理（第2版）》，13.3 理想气体定律",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "n = \\dfrac{N}{N_{\\text{A}}}",
+       "src": "13.3"
+      },
+      {
+       "tex": "R = N_{\\text{A}}k",
+       "src": "13.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{N}\\mk{k}{k}\\mk{T}{\\kTemp}",
+      "uses": [],
+      "src": "13.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{\\dfrac{N}{N_{\\text{A}}}}\\mk{NA}{N_{\\text{A}}}\\mk{k}{k}\\mk{T}{\\kTemp}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{n}\\mk{NA}{N_{\\text{A}}}\\mk{k}{k}\\mk{T}{\\kTemp}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{n}\\mk{NA}{R}\\mk{T}{\\kTemp}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "k": "NA"
+       }
+      }
+     ],
+     "src": "13.3"
+    }
+   ]
+  }
+ ]
+}

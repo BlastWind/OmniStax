@@ -1,0 +1,929 @@
+{
+ "id": "9.5",
+ "module": "m42174",
+ "chapter": "9",
+ "title": "简单机械",
+ "short": "简单机械",
+ "lead": "简单机械能把你所施加的<span data-concept=\"force\">力</span>成倍放大，它的机械利益，即输出与输入<span data-concept=\"force\">力</span>之比，对杠杆而言由对支点的力矩平衡得出。你可以从<span data-ref=\"barrow\">独轮手推车</span>、铁锹、<span data-ref=\"ramp\">斜面</span>、<span data-ref=\"crank\">曲柄</span>、<span data-ref=\"axle\">车轴</span>和滑轮组上读出同一个比值。",
+ "objectives": [
+  "描述不同的简单机械。",
+  "计算机械利益。"
+ ],
+ "summary_html": "<ul><li>简单机械是可以用来成倍放大或增强我们所施加的<span data-concept=\"force\">力</span>的装置——往往以牺牲我们必须施加<span data-concept=\"force\">力</span>所经过的<span data-concept=\"distance\">距离</span>为代价。</li><li>对任何简单机械而言，输出与输入<span data-concept=\"force\">力</span>之比称为它的机械利益。</li><li>一些简单机械有杠杆、起钉器、独轮手推车、曲柄等。</li></ul>",
+ "notes": "习题 2、4 和 6 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6 分别要求求出割草机下杠杆的支点、汽车车轴的机械利益和双缆绳滑轮中的张力，在书后答案中没有给出，因而略去。四道思考题和第二道 AP 题同样没有答案，附有标明为 AI 撰写的建议思路，而第一道 AP 题有答案，其开放式答案出自本书。第二道 AP 题开头写的是“图 9.24（a）所示是一辆独轮手推车”，这是 AP 物理版给独轮手推车的编号；在本版中，图 9.24 是滑轮的组合，独轮手推车是图 9.22，因此该题按 9.22 编排，落在它所说的那幅图上。有两道习题指向另一道习题而不是重复它：习题 5 提到习题 1 的起钉器，该题保留；习题 7 重复习题 6，而习题 6 已略去，因此习题 6 的原话被引在习题 7 之中，什么也没有丢失。没有任何内容留待后面的小节，也没有取自其他小节的内容：本模块所印的每一道题测试的都是本节所介绍的内容。",
+ "figures": [
+  {
+   "id": "sim-nail-puller",
+   "kind": "sim",
+   "number": "9.21",
+   "originals": [
+    "/media/ch09/Figure_10_05_01-8f17.jpg"
+   ],
+   "original_caption": "起钉器是机械利益很大的杠杆。起钉器所受的外力用实线箭头表示。起钉器施加给钉子的力（F_o）不是作用在起钉器上的力。钉子反过来作用在起钉器上的反作用力（F_n）是外力，与 F_o 大小相等、方向相反。输入力和输出力的垂直力臂分别为 l_i 和 l_o。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "library fist for the hand, clear of the headline; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-wheelbarrow",
+   "kind": "sim",
+   "number": "9.22",
+   "originals": [
+    "/media/ch09/Figure_10_05_02a.jpg"
+   ],
+   "original_caption": "（a）就独轮手推车而言，输出力或载荷位于支点与输入力之间。支点是车轮的车轴。这里，输出力大于输入力。因此，独轮手推车使你能抬起比你仅凭身体所能抬起的重得多的载荷。（b）就铁锹而言，输入力位于支点与载荷之间，但输入力臂比输出力臂短。支点在右手握住的手柄处。这里，输出力（支撑铁锹的载荷）小于输入力（来自离载荷最近的那只手），因为输入的作用点比输出的作用点更靠近支点。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "force",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: one silhouette on barrow and shovel at one scale, labeller labels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-incline",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "push label set at its arrowhead; the up arrow named lift, not w"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-crank",
+   "kind": "sim",
+   "number": "9.23",
+   "originals": [
+    "/media/ch09/Figure_10_05_03.jpg"
+   ],
+   "original_caption": "（a）曲柄是一种可以绕其支点转动 360° 的杠杆。曲柄通常设计成具有较大的 MA。（b）简化的汽车车轴驱动一个车轮，车轮的直径比车轴大得多。MA 小于 1。（c）用一个定滑轮提起重物。滑轮改变绳所施加的力 T 的方向，而不改变其大小。因此，这台机械的 MA 为 1。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "radii names moved off the forces; smallest radii drawn larger; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-pulleys",
+   "kind": "sim",
+   "number": "9.24",
+   "originals": [
+    "/media/ch09/Figure_10_05_04a.jpg"
+   ],
+   "original_caption": "（a）滑轮组合用来成倍放大力。如果滑轮无摩擦，则这个力是张力的整数倍。这个滑轮组有两根缆绳连在载荷上，因此施加的力约为 2T。这台机械的 MA ≈ 2。（b）用三个滑轮提起载荷，使机械利益约为 3。实际上有三根缆绳连在载荷上。（c）这个滑轮组施加的力为 4T，因此它的 MA ≈ 4。实际上有四根缆绳在拉所研究的系统。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "force",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "thousands commas in TeX; repeated notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "machines",
+   "concept": "simple-machine",
+   "verb": "introduces"
+  },
+  {
+   "span": "machines",
+   "concept": "mechanical-advantage",
+   "verb": "introduces"
+  },
+  {
+   "span": "machines",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "machines",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "lever",
+   "verb": "introduces"
+  },
+  {
+   "span": "lever",
+   "concept": "lever-mechanical-advantage",
+   "verb": "introduces"
+  },
+  {
+   "span": "lever",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "perpendicular-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "lever",
+   "concept": "mechanical-advantage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "lever",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "lever-mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "wheelbarrow",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "incline",
+   "concept": "simple-machine",
+   "verb": "reinforces"
+  },
+  {
+   "span": "incline",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "crank",
+   "concept": "crank-and-wheel",
+   "verb": "introduces"
+  },
+  {
+   "span": "crank",
+   "concept": "lever",
+   "verb": "reinforces"
+  },
+  {
+   "span": "crank",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "pulleys",
+   "concept": "pulley-mechanical-advantage",
+   "verb": "introduces"
+  },
+  {
+   "span": "pulleys",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "pulleys",
+   "concept": "tension",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2581856",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "剪刀就像一个双杠杆系统。图 9.21 和图 9.22 中的简单机械，哪一个与剪刀最相似？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "剪刀的每一片刀刃都是一根杠杆，其支点是连接两片刀刃的螺钉。支点位于推动手柄的手与刀刃上发生切割的位置之间。这正是图 9.21 中起钉器的布置，输入力和输出力位于支点的两侧。它不是图 9.22 中独轮手推车或铁锹的布置，那里两个力在支点的同一侧。因此剪刀就是两个彼此相对工作的起钉器，每片刀刃一个。你把材料放得离螺钉越近，输出力臂就越短，刀刃所施加的力就越大。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2597028",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "假设你用图 9.21 所示的起钉器以恒定的速率拔钉子。起钉器处于平衡状态吗？如果你拔钉子时带有一定的加速度，这时起钉器处于平衡状态吗？在哪种情况下，施加在起钉器上的力更大，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "以恒定速率拔钉子时，起钉器处于平衡状态。它的速度不变，所以作用在它上面的合外力为零；它的转动也不加快，所以作用在它上面的合力矩同样为零。这就是本章第一节的动态平衡，输入力的力矩恰好与钉子作用在起钉器上的反作用力的力矩相等。如果你拔钉子时带有一定的加速度，起钉器就不处于平衡状态，因为第二条件不再成立。要使绕支点的转动加快，输入力的力矩必须大于钉子的反作用力的力矩。因此在加速的情形下，所施加的力更大，因为它的力臂没有变，只有更大的力才能产生更大的力矩。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2730066",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheelbarrow",
+   "prompt": "解释独轮手推车的机械利益，以及它如何说明用独轮手推车搬运重物为什么更容易。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "独轮手推车是绕车轮车轴转动的杠杆。手推车及其载荷的重力向下作用在重心处，重心靠近车轴，而你的双手在手柄的末端向上抬，离车轴很远。在你把手推车托住时，对车轴的两个力矩必须相等。所以你提供的向上的力就是把重力按两个力臂之比缩小，机械利益就是这个比值，即较长的手的力臂除以较短的载荷力臂。在例题中它是 13.6，所以 32.4 N 就能托住重 441 N 的载荷。其余的重力由车轮承担，这就是为什么你单凭身体抬不动的载荷，用独轮手推车却能轻松移动。手柄更长，或者把载荷放得更靠近车轮，机械利益还会更大。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1428982",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pulleys",
+   "prompt": "滑轮如何使人用很小的力就能抬起像钢琴一样重的载荷？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "单个定滑轮完全不能减小力；它只是改变拉力的方向，所以它的机械利益是 1。起作用的是滑轮的组合，其排布使得有几根缆绳向下通到钢琴所悬挂的动滑轮上。在无摩擦的绳上，张力几乎处处相同，所以这几根缆绳中的每一根都以这个张力向上拉载荷，它们合起来托住的力约为缆绳根数乘以张力。有四根缆绳时，人只需提供钢琴重力的约四分之一。什么都不是白得的：你必须把绳的自由端拉动约为钢琴上升距离四倍的长度，所以所做的功与直接抬起钢琴相同。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2166007",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "作为一名年幼的学生，你很可能学过，简单机械能够提高抬起和移动物体的能力。现在，作为一名受过教育的 AP 物理学生，你知道这种能力是由力与力矩之间的关系决定的。请在下面的空白处解释，为什么力矩是简单机械所产生的力的增大中不可或缺的部分。你可以用一个例子或一张图来辅助你的解释。你的解释中还要务必提到机械利益。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "学生应当提到，简单机械背后的指导原理是平衡的第二条件。尽管离开机械的力矩必须等于进入机械的力矩，但对力并没有同样的要求。因此，减小现有力所对应的力臂，现有力的大小就会增大。机械利益将等于离开和进入机械的力之比。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1777151",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheelbarrow",
+   "prompt": "图 9.22（a）显示一辆独轮手推车被外加力 $\\mathbf{F}_{\\text{i}}$ 抬起。如果手推车里装满了二十块砖，每块质量为 3 kg，请估算外加力 $\\mathbf{F}_{\\text{i}}$ 的值。请说明总重力 $\\boldsymbol{w}$ 的由来以及你得出最终答案的任何推理。此外，请给出你认为这个力可能取值的范围。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先求总重力。二十块砖每块 3 kg，共 60 kg，而手推车本身也有重力。一辆园艺用独轮手推车的质量为 10 至 20 kg，所以总质量约为 70 至 80 kg，总重力为 $\\boldsymbol{w} = mg$，约 690 至 780 N。然后用机械利益。图 9.22（a）中载荷的重心离车轮车轴很近，而双手离车轴很远，例题测得这两个力臂分别为 7.50 cm 和 1.02 m，机械利益为 13.6。用重力除以这个机械利益，得到外加力约为 50 至 60 N。合理的范围是 40 N 至 90 N，因为手推车的质量和砖的位置都是估计值。把砖堆得更靠后会使载荷的力臂变长，从而增大你必须提供的力。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3038577",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "一个起钉器——与图 9.21 所示的类似——你在距支点 $45\\ \\text{cm}$ 处施力，而钉子在另一侧距支点 $1.8\\ \\text{cm}$ 处，它的机械利益是多少？要对钉子施加 $1250\\ \\text{N}$ 的力，你至少必须施加多大的力？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "MA",
+      "value": 25,
+      "unit": "",
+      "hint": "杠杆的机械利益是两个垂直力臂之比，$\\text{MA} = \\kli/\\klo$。"
+     },
+     {
+      "part": "$\\kFi$",
+      "value": 50,
+      "unit": "N",
+      "hint": "机械利益也等于 $\\kFo/\\kFi$，所以输入力等于输出力除以它。"
+     }
+    ],
+    "solution": "$\\text{MA} = 25$，最小输入力为 $50\\ \\text{N}$。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3530769",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheelbarrow",
+   "prompt": "（a）如果独轮手推车及其载荷的重心的垂直力臂为 5.50 cm，而双手的垂直力臂为 1.02 m，那么像图 9.22 中那样的独轮手推车的机械利益是多少？（b）如果独轮手推车及其载荷的总质量为 55.0 kg，你应当施加多大的向上的力来托住它们？（c）车轮对地面施加多大的力？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 18.5,
+      "unit": "",
+      "hint": "这根杠杆的机械利益是手的力臂除以载荷的力臂，即 $\\kli/\\klo$。"
+     },
+     {
+      "part": "(b)",
+      "value": 29.1,
+      "unit": "N",
+      "hint": "手推车及其载荷的重力为 $\\kwgt = mg$，向上的力等于这个重力除以机械利益。"
+     },
+     {
+      "part": "(c)",
+      "value": 510,
+      "unit": "N",
+      "hint": "平衡的第一条件给出 $\\kFi + \\kN = \\kwgt$，而根据牛顿第三定律，车轮以大小相同的力压在地面上，方向向下。"
+     }
+    ],
+    "solution": "（a）$\\text{MA} = 18.5$ （b）$\\kFi = 29.1\\ \\text{N}$ （c）510 N，向下。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2552465",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lever",
+   "prompt": "这组习题中第一题的起钉器对支撑面施加多大的力？起钉器的质量为 2.10 kg。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1300,
+    "unit": "N",
+    "hint": "起钉器处于平衡状态，所以支点处的法向力与压在它上面的一切平衡：输入力、钉子的反作用力和起钉器自身的重力。",
+    "solution": "$1.3\\times 10^{3}\\ \\text{N}$."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2696021",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pulleys",
+   "prompt": "对图 9.24（c）所示的滑轮重复上一题——“如果你用图 9.24（a）所示类型的理想滑轮来托住质量为 115 kg 的汽车发动机，（a）绳中的张力是多少？（b）假设你竖直向下拉绳，天花板必须提供多大的力？”——并假设你竖直向上拉绳。滑轮组的质量为 7.00 kg。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 299,
+      "unit": "N",
+      "hint": "图 9.24（c）中有四根缆绳向上拉载荷，所以 $\\kFo \\approx 4\\kTf$，而这里的载荷是发动机连同滑轮组。"
+     },
+     {
+      "part": "(b)",
+      "value": 897,
+      "unit": "N",
+      "hint": "数一数通到天花板的缆绳，而不是通到载荷的缆绳，并记住你是在自由端竖直向上拉。"
+     }
+    ],
+    "solution": "（a）$\\kTf = 299\\ \\text{N}$ （b）897 N，向上。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "lever"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "simple-machine",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "lever"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "lever",
+   "weight": 1
+  },
+  {
+   "exercise": "cq4",
+   "concept": "pulley-mechanical-advantage"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "simple-machine",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "lever",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "second-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "p1",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "p1",
+   "concept": "lever",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "lever-mechanical-advantage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "mechanical-advantage"
+  },
+  {
+   "exercise": "p3",
+   "concept": "lever",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "lever"
+  },
+  {
+   "exercise": "p5",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "mechanical-advantage",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "pulley-mechanical-advantage"
+  },
+  {
+   "exercise": "p7",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "puller",
+   "label": "起钉器",
+   "figures": [
+    "sim-nail-puller"
+   ]
+  },
+  {
+   "id": "nail",
+   "label": "钉子",
+   "figures": [
+    "sim-nail-puller"
+   ]
+  },
+  {
+   "id": "hand",
+   "label": "握着手柄的手",
+   "figures": [
+    "sim-nail-puller"
+   ]
+  },
+  {
+   "id": "barrow",
+   "label": "独轮手推车",
+   "figures": [
+    "sim-wheelbarrow"
+   ]
+  },
+  {
+   "id": "lifter",
+   "label": "你，抬着手柄",
+   "figures": [
+    "sim-wheelbarrow"
+   ]
+  },
+  {
+   "id": "cart",
+   "label": "手推车",
+   "figures": [
+    "sim-incline"
+   ]
+  },
+  {
+   "id": "ramp",
+   "label": "斜面",
+   "figures": [
+    "sim-incline"
+   ]
+  },
+  {
+   "id": "crank",
+   "label": "曲柄",
+   "figures": [
+    "sim-crank"
+   ]
+  },
+  {
+   "id": "axle",
+   "label": "车轴",
+   "figures": [
+    "sim-crank"
+   ]
+  },
+  {
+   "id": "wheel",
+   "label": "车轴所驱动的车轮",
+   "figures": [
+    "sim-crank"
+   ]
+  },
+  {
+   "id": "pulley",
+   "label": "定滑轮",
+   "figures": [
+    "sim-crank"
+   ]
+  },
+  {
+   "id": "load",
+   "label": "载荷",
+   "figures": [
+    "sim-pulleys"
+   ]
+  },
+  {
+   "id": "block",
+   "label": "动滑轮",
+   "figures": [
+    "sim-pulleys"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "lever-mechanical-advantage",
+   "what": "杠杆的机械利益",
+   "source": "《大学物理（第2版）》，9.5 简单机械",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "钉子没有移动。",
+       "src": "9.5"
+      },
+      {
+       "text": "平衡的第二条件：合外力矩为零。",
+       "src": "9.2"
+      },
+      {
+       "text": "$\\kN$ 作用在支点上，所以它的力矩为零。",
+       "src": "9.5"
+      },
+      {
+       "tex": "\\ktau = \\krperp\\kF",
+       "src": "9.2"
+      },
+      {
+       "text": "$\\kFnail$ 与 $\\kFo$ 大小相等、方向相反。",
+       "src": "9.5，图 9.21"
+      },
+      {
+       "tex": "\\text{MA} = \\dfrac{\\kFo}{\\kFi}",
+       "src": "9.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\ktau_{\\text{i}}} = \\mk{o}{\\ktau_{\\text{nail}}}",
+      "src": "9.5",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "只有 $\\kFi$ 和 $\\kFnail$ 产生力矩，且使起钉器向相反的方向转动，所以这两个力矩必须相等。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\kli\\kFi} = \\mk{o}{\\klo\\kFnail}",
+       "uses": [
+        3
+       ],
+       "cap": "$\\kFi$ 和 $\\kFnail$ 的垂直力臂分别为 $\\kli$ 和 $\\klo$。"
+      },
+      {
+       "tex": "\\mk{i}{\\kli\\kFi} = \\mk{o}{\\klo\\kFo}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{o}{\\kFo}}{\\mk{i}{\\kFi}} = \\dfrac{\\mk{li}{\\kli}}{\\mk{lo}{\\klo}}",
+       "uses": [],
+       "map": {
+        "i": [
+         "i",
+         "li"
+        ],
+        "o": [
+         "o",
+         "lo"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{ma}{\\text{MA}} = \\dfrac{\\mk{o}{\\kFo}}{\\mk{i}{\\kFi}} = \\dfrac{\\mk{li}{\\kli}}{\\mk{lo}{\\klo}}",
+       "uses": [
+        5
+       ]
+      }
+     ],
+     "src": "9.5"
+    }
+   ]
+  }
+ ]
+}

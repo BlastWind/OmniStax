@@ -1,0 +1,506 @@
+{
+ "id": "20.2",
+ "module": "m42344",
+ "chapter": "20",
+ "title": "欧姆定律：电阻与简单电路",
+ "short": "欧姆定律与简单电路",
+ "lead": "<span data-concept=\"electric-current\">电流</span>由<span data-concept=\"potential-difference\">电压</span>驱动，并受到它所流过之物的<span data-concept=\"resistance\">电阻</span>的阻碍，欧姆定律把这三者联系起来。欧姆、该定律成立的材料和不成立的材料，以及最简单的电路，即一个<span data-concept=\"potential-difference\">电压</span>源和一个电阻器，都由此而来。",
+ "objectives": [
+  "解释欧姆定律的由来。",
+  "用欧姆定律计算电压、电流或电阻。",
+  "解释什么是欧姆材料。",
+  "描述简单电路。"
+ ],
+ "summary_html": "<ul><li>简单电路<em>就是</em>只有一个<span data-concept=\"potential-difference\">电压</span>源和一个<span data-concept=\"resistance\">电阻</span>的电路。</li><li>欧姆定律的一种表述给出，简单电路中<span data-concept=\"electric-current\">电流</span> $\\kIcur$、<span data-concept=\"potential-difference\">电压</span> $\\kV$ 和<span data-concept=\"resistance\">电阻</span> $\\kRes$ 之间的关系为 $\\kIcur = \\frac{\\kV}{\\kRes}.$</li><li><span data-concept=\"resistance\">电阻</span>的单位是欧姆（$\\Omega$），它与伏特和安培的关系为 $1\\;\\Omega = 1$ V/A。</li><li>电阻器两端有<span data-concept=\"potential-difference\">电压</span>或 $IR$ 压降，由流过它的<span data-concept=\"electric-current\">电流</span>引起，由 $\\kV = \\kIcur\\kRes$ 给出。</li></ul>",
+ "notes": "出版方提供的 PhET 模拟“欧姆定律”的链接略去，与书中其他交互式链接一样。有三道习题没有给出答案，因而略去：袖珍计算器的等效电阻、DVD 播放器指示灯所加的电压，以及输电塔上玻璃绝缘子中的电流。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。有三道习题没有给出答案，因而略去：袖珍计算器、DVD 播放器的指示灯和玻璃绝缘子。书中未给出答案的第二道 AP 题保留为开放式题目，题干中带有书中自己的电压和电流表，并附有标明为 AI 撰写的建议思路。两道思考题是开放式题目，附有标明为 AI 撰写的建议思路。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-ohmic",
+   "kind": "sim",
+   "draws": [
+    "current",
+    "voltage",
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "resistance label clear of the current label; notes dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-simple-circuit",
+   "kind": "sim",
+   "number": "20.8",
+   "folds": [
+    "20.9"
+   ],
+   "originals": [
+    "/media/ch20/Figure_21_02_01a.jpg",
+    "/media/ch20/Figure_21_02_02a.jpg"
+   ],
+   "original_caption": "（图 20.8）一个简单电路：由导体（通常是金属导线）把负载连接到电池的接线端，为电流提供闭合路径，电池用红色平行线表示。锯齿形符号表示这个单个电阻器，并包括与电压源连接部分的任何电阻。（图 20.9）简单电路中电阻器两端的电压降等于电池的输出电压。",
+   "widths": [
+    225,
+    300
+   ],
+   "draws": [
+    "current",
+    "resistance",
+    "voltage"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout notes dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "voltage-sources",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-sources",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "ohms-law",
+   "concept": "ohms-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "ohms-law",
+   "concept": "electric-current",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ohm",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ohmic-material",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "simple-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ir-drop",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "ohms-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resistance-circuits",
+   "concept": "potential-difference",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2556054",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ohms-law",
+   "prompt": "如果加在一个固定电阻两端的电压加倍，电流会怎样？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "它加倍。",
+     "它减半。",
+     "它保持不变。",
+     "电流无法确定。"
+    ],
+    "correct": 0,
+    "hint": "欧姆定律说，电流等于电压除以电阻，而这里的电阻不变，所以电流随电压成正比地变化。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2382064",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-ohmic",
+   "prompt": "下表给出了在一个电阻器两端记录的电压和电流。<table class=\"data\"><tr><th>电压（V）</th><td>2.50</td><td>5.00</td><td>7.50</td><td>10.00</td><td>12.50</td></tr><tr><th>电流（A）</th><td>0.69</td><td>1.38</td><td>2.09</td><td>2.76</td><td>3.49</td></tr></table>（a）画出图像并评论其形状。（b）计算该电阻器的电阻值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）以电流为纵轴、电压为横轴作图，得到的五个点落在一条过原点的直线上。这正是欧姆材料给出的形状：电流与电压成正比，所以无论在何处测量，电压与电流之比都相同，这条直线没有弯曲，也没有截距。（b）电阻等于电压除以电流，也就是这条直线斜率的倒数。每一组数据给出的数几乎相同：2.50/0.69 = 3.62 Ω，5.00/1.38 = 3.62 Ω，7.50/2.09 = 3.59 Ω，10.00/2.76 = 3.62 Ω，12.50/3.49 = 3.58 Ω，所以这个电阻器约为 3.6 Ω。取通过全部五个点的最佳拟合直线的斜率，即 3.49 A 比 12.50 V，也得到同样的答案。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2314598",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "当接上 4 V 的电压源时，灯泡中的电流为 1.25 A，这个灯泡的电阻是多少？如果把电压源增大到 7 V，灯泡中的电流将是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the resistance",
+      "value": 3.2,
+      "unit": "Ω",
+      "hint": "把欧姆定律变形，得到电阻等于电压除以电流。"
+     },
+     {
+      "part": "the current at 7 V",
+      "value": 2.19,
+      "unit": "A",
+      "hint": "把你刚求出的电阻视为不变，把新的电压代入 $I = V/R$。"
+     }
+    ],
+    "solution": "3.2 Ω，2.19 A"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3008822",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "电阻器两端的 $IR$ 压降意味着电阻器两端的电势或电压有变化。电流通过电阻器时有没有任何变化？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电流没有变化。进入电阻器的电荷与离开它的电荷相同，因为电荷在电阻器中既不产生也不消失，在简单电路中它也没有别处可去，所以电荷通过回路中每一点的速率都相同。变化的是这些电荷每库仑所带的能量：电源提高电荷的电势，电阻器把这份势能转换为热能，电阻器两端电势的下降就是 $IR$ 压降。电流是流过的东西，而电压是被用掉的东西。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2392111",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-simple-circuit",
+   "prompt": "电阻器中的 $IR$ 压降与流体流过管子时的压降有什么相似之处？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两种情形中，都是某种东西被驱动着通过阻碍它的东西，而驱动它的量在这一阻碍两端下降。泵提高流体的压强，流体在通过阻碍流动的狭窄或粗糙的管子时又失去这一压强。电压源提高电荷的电势，电荷在通过电阻器时又失去这一电势。沿管子各处的流量相同，正如沿回路各处的电流相同，所以管子和电阻器所取走的不是流动本身，而是驱动流动的压强和电压。两种情形中，泵或电源所提供的能量都变成了热：在管子中通过黏性摩擦，在电阻器中通过运动电荷的碰撞。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3045633",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "一个 3.00 V 手电筒的灯泡，其热态电阻为 $3\\text{.}\\text{60}\\;\\Omega$ 时，通过灯泡的电流是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.833,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "$I = V/R$ 形式的欧姆定律，可以由各节电池的电压和灯泡的电阻直接得到电流。",
+    "solution": "0.833 A"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3172806",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "当汽车蓄电池对起动机加上 11.0 V 的电压，有 150 A 的电流流过它时，汽车起动机的等效电阻是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.0733,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "把欧姆定律变形为 $R = V/I$；很大的电流配上很普通的电压，意味着电阻很小。",
+    "solution": "$7\\text{.}\\text{33}\\times{\\text{10}}^{-2}\\;\\Omega$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2930974",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-circuits",
+   "prompt": "（a）求一根电阻为 $0\\text{.}\\text{0600-}\\Omega$ 的延长线上的电压降，其中通过的电流为 5.00 A。（b）一根较便宜的延长线用的导线更细，电阻为 $0\\text{.}\\text{300}\\;\\Omega$。当 5.00 A 的电流流过时，它上面的电压降是多少？（c）为什么提供给正在使用的任何用电器的电压会减少这么多？这对用电器有什么影响？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.3,
+      "unit": "V",
+      "hint": "电阻载有电流时，其两端的电压降为 $V = IR$。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.5,
+      "unit": "V",
+      "hint": "相同的电流通过五倍的电阻，电压降也是五倍。"
+     }
+    ],
+    "solution": "（a）0.300 V（b）1.50 V（c）提供给正在使用的任何用电器的电压会减少，是因为从墙上到用电器最终输出端的总电压降是固定的。因此，如果延长线上的电压降很大，用电器上的电压降就会明显减小，于是用电器输出的功率会明显减小，降低用电器正常工作的能力。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ohmic-material"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "ohms-law",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ir-drop"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "simple-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ir-drop"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ohms-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ohm",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "ir-drop"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "ohms-law",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "battery",
+   "label": "电池，即简单电路的电压源",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "resistor",
+   "label": "简单电路中的单个电阻器",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "voltmeter",
+   "label": "跨接在电阻器两端的电压表",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "pump",
+   "label": "与电压源相比拟的泵",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  },
+  {
+   "id": "narrow-pipe",
+   "label": "与电阻器相比拟的细管",
+   "figures": [
+    "sim-simple-circuit"
+   ]
+  }
+ ]
+}

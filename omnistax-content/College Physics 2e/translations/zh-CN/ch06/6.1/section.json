@@ -1,0 +1,741 @@
+{
+ "id": "6.1",
+ "module": "m42083",
+ "chapter": "6",
+ "title": "转角与角速度",
+ "short": "转角与角速度",
+ "lead": "当物体绕某一轴转动时，其上的每个点都沿一段圆弧运动。有两个新的量来描述这种转动：以弧度度量的<span data-concept=\"rotation-angle\">转角</span>，以及<span data-concept=\"angular-velocity\">角速度</span>，它们都与你已经熟悉的<span data-concept=\"arc-length\">弧长</span>和线速率联系在一起。",
+ "objectives": [
+  "定义弧长、转角、曲率半径和角速度。",
+  "计算汽车车轮转动的角速度。"
+ ],
+ "summary_html": "<ul><li>匀速圆周运动是沿圆周以恒定速率进行的运动。<span data-concept=\"rotation-angle\">转角</span> $\\Delta\\theta$ 定义为<span data-concept=\"arc-length\">弧长</span>与<span data-concept=\"circular-path-radius\">曲率半径</span>之比：$\\Delta\\theta = \\frac{\\kds}{\\kr}$，其中<span data-concept=\"arc-length\">弧长</span> $\\kds$ 是沿圆形路径走过的<span data-concept=\"distance-traveled\">路程</span>，$\\kr$ 是该圆形路径的<span data-concept=\"circular-path-radius\">曲率半径</span>。量 $\\Delta\\theta$ 以弧度（rad）为单位度量，其中 $2\\pi\\;\\text{rad} = 360^\\circ = 1\\ \\text{圈.}$</li><li>弧度与度之间的换算为 $1\\;\\text{rad} = 57.3^\\circ$。</li><li><span data-concept=\"angular-velocity\">角速度</span> $\\kw$ 是<span data-concept=\"angle\">角度</span>的变化率，$\\kw = \\frac{\\Delta\\theta}{\\kdt}$，其中转动 $\\Delta\\theta$ 发生在<span data-concept=\"time\">时间</span> $\\kdt$ 内。<span data-concept=\"angular-velocity\">角速度</span>的单位是弧度每秒（rad/s）。<span data-concept=\"velocity\">线速度</span> $\\kv$ 与<span data-concept=\"angular-velocity\">角速度</span> $\\kw$ 的关系为 $\\kv = \\kr\\kw$ 或 $\\kw = \\frac{\\kv}{\\kr}$。</li></ul>",
+ "notes": "习题 2、4 和 6 以及“自拟习题”一项在书后答案中没有给出，因而略去；Ladybug Revolution 模拟的链接也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2（微波炉）、4（地球的周期及其表面处的线速度）、6（长曲棍球）以及关于游乐园里转动的圆柱体的“自拟习题”一项没有给出答案，因而略去。思考题的建议思路由 AI 撰写并已标明。本节没有“理解检测”框，所以没有就地放置的题目。另一节的一道习题属于这里：关于地球自诞生以来所走过距离的那道题，本书把它与 6.2 的向心加速度印在一起，它要求由转角求弧长，因此考查的正是本节所介绍的内容，它连同 source_section 6.2 取到这里，6.2 的说明中也这样写明。6.2 的其余角度方面的习题与它们所引出的向心加速度放在一起，6.4 重复的两道思考题属于 6.5，6.6 中关于竖直圆环的批判性思考题属于 6.3。习题 8 的三问都有答案，仍放在本书印出它的位置，尽管只有其（a）问是本节自己的：（b）问求作用在橄榄球上的平均力，这是“动力学：牛顿运动定律”中的牛顿第二定律，（c）问求射程，这属于 3.4 节，因此该题标注了这两个概念，并降低了权重。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-cd",
+   "kind": "photo",
+   "number": "6.2",
+   "widths": [
+    225
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-rotation-angle",
+   "kind": "sim",
+   "number": "6.3",
+   "folds": [
+    "6.4"
+   ],
+   "originals": [
+    "/media/ch06/Figure_07_01_01ab.jpg",
+    "/media/ch06/Figure_07_01_02a.jpg"
+   ],
+   "original_caption": "圆的半径转过角度 Δθ。弧长 Δs 标在圆周上。点 1 和点 2 转过相同的角度（Δθ），但点 2 经过的弧长（Δs）更大，因为它离转动中心（r）更远。",
+   "widths": [
+    300,
+    230
+   ],
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "pit labels kept off the turning arrow, headline typeset, note cut to one fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-omega",
+   "kind": "sim",
+   "draws": [
+    "angular-rate",
+    "time",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "slope label moved clear of the levels, angle label on a panel, headline typeset"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tire",
+   "kind": "sim",
+   "number": "6.5",
+   "originals": [
+    "/media/ch06/Figure_07_01_03a.jpg"
+   ],
+   "original_caption": "一辆汽车以速度 v 向右行驶，其轮胎以角速度 ω 转动。轮胎胎面相对于车轴的速率为 v，与把汽车用千斤顶顶起时相同。因此汽车以线速度 v=rω 向前行驶，其中 r 是轮胎半径。轮胎的角速度越大，汽车的速度就越大。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "angular-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph labels placed by the labeller, clear of each other and the axis"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-record",
+   "kind": "sim",
+   "number": "6.6",
+   "originals": [
+    "/media/ch06/Figure_07_01_04a.jpg"
+   ],
+   "original_caption": "当物体沿圆周运动时，这里是一只苍蝇停在一张老式黑胶唱片的边缘上，它的瞬时速度总是与圆相切。在这个例子中，角速度的方向是顺时针的。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position",
+    "velocity",
+    "angular-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "velocity labels placed, r label shortened, headline typeset, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "circular-motion",
+   "concept": "uniform-circular-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "circular-motion",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "arc-length",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "rotation-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "distance-traveled",
+   "verb": "uses"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "circular-path-radius",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotation-angle",
+   "concept": "cd-pit",
+   "verb": "introduces"
+  },
+  {
+   "span": "radians",
+   "concept": "radian",
+   "verb": "introduces"
+  },
+  {
+   "span": "radians",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-velocity",
+   "concept": "angular-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "angular-velocity",
+   "concept": "rotation-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "angular-velocity",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "linear-angular-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "arc-length",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-angular",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-tire",
+   "concept": "linear-angular-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-tire",
+   "concept": "angular-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-tire",
+   "concept": "radian",
+   "verb": "reinforces"
+  },
+  {
+   "span": "directions",
+   "concept": "angular-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "directions",
+   "concept": "uniform-circular-motion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "directions",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3119404",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "转动的物理量与线性的物理量之间存在类比关系。哪些转动量类似于距离和速度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个点沿圆形路径走过的路程是弧长 $\\kds$，与之类似的转动量是转角 $\\Delta\\theta$，它就是该弧长除以曲率半径。线速度 $\\kv$ 是一个点走过路程的快慢，与之类似的转动量是角速度 $\\kw$，它是转角变化的快慢。关系式 $\\kds = \\kr\\Delta\\theta$ 和 $\\kv = \\kr\\kw$ 把这两对量联系起来：把每个转动量乘以曲率半径，就得到它对应的线性量。请注意，转动物体上每个点的转角和角速度都相同，而弧长和线速度则随点离中心越远而越大。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3004274",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radians",
+   "prompt": "半挂车的一个挂车车轮的轮毂上装有里程表。轮毂加了配重，使它不会转动，但里面有齿轮来计数车轮转过的圈数——然后它计算出所行驶的路程。如果车轮的直径为 1.15 m，转过 200,000 圈，里程表应该读出多少千米？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 723,
+    "unit": "km",
+    "hint": "每转一圈，车轮转过的转角为 $\\Delta\\theta = 2\\pi$ rad，所以它在路面上留下的弧长为 $\\kds = \\kr\\Delta\\theta = 2\\pi \\kr$，即一个周长。把它乘以转过的圈数，并记住直径是半径的两倍。",
+    "solution": "723 km"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1921627",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radians",
+   "prompt": "一辆汽车的轮胎半径为 0.260 m，行驶 80,000 km 后轮胎磨损报废。忽略任何倒车以及半径因磨损而产生的任何变化，轮胎转了多少圈？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 50000000,
+    "unit": "rotations",
+    "hint": "每转一圈留下一个周长的弧长，即 $2\\pi \\kr$，所以用它去除整个路程，注意全程使用同一个长度单位。",
+    "solution": "$5 \\times 10^{7}\\;\\text{圈}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2979194",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "棒球投手投球时把手臂向前挥出，前臂绕肘部转动。如果球在投手手中的速度是 35.0 m/s，球离肘关节 0.300 m，那么前臂的角速度是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 117,
+    "unit": "rad/s",
+    "hint": "球是以肘部为圆心、半径为 0.300 m 的圆周上的一个点，所以关系式的第二种写法 $\\kw = \\kv / \\kr$ 直接就给出角速度。",
+    "solution": "117 rad/s"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2678694",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "一辆卡车的轮胎半径为 0.420 m，以 32.0 m/s 行驶。轮胎转动的角速度是多少弧度每秒？用 rev/min 表示又是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "ω",
+      "value": 76.2,
+      "unit": "rad/s",
+      "hint": "卡车轮胎胎面的速率就是卡车的速率，所以 $\\kw = \\kv / \\kr$。"
+     },
+     {
+      "part": "in rev/min",
+      "value": 728,
+      "unit": "rev/min",
+      "hint": "一圈是 $2\\pi$ rad，一分钟是 60 s，所以先除以 $2\\pi$ 得到每秒转过的圈数，再乘以 60。"
+     }
+    ],
+    "solution": "76.2 rad/s，728 rpm"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1429548",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-angular",
+   "prompt": "踢橄榄球时，踢球者的腿绕髋关节转动。（a）如果踢球者鞋尖的速度是 35.0 m/s，髋关节到鞋尖的距离是 1.05 m，那么鞋尖的角速度是多少？（b）鞋与最初静止的 0.500 kg 的橄榄球接触 20.0 ms。要使橄榄球获得 20.0 m/s 的速度，作用在球上的平均力是多少？（c）忽略空气阻力，求橄榄球的最大射程。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 33.3,
+      "unit": "rad/s",
+      "hint": "鞋尖在以髋关节为圆心、半径为 1.05 m 的圆周上运动，所以 $\\kw = \\kv / \\kr$。"
+     },
+     {
+      "part": "(b)",
+      "value": 500,
+      "unit": "N",
+      "hint": "球从静止开始，在 20.0 ms 内获得 20.0 m/s 的速度离开，由此得到它的平均加速度；平均力再由牛顿第二定律得出。"
+     },
+     {
+      "part": "(c)",
+      "value": 40.8,
+      "unit": "m",
+      "hint": "水平地面上的射程在抛射角为 $45^\\circ$ 时最大，此时 $\\kR = \\kvo^2 / \\kg$。"
+     }
+    ],
+    "solution": "（a）33.3 rad/s （b）500 N （c）40.8 m"
+   }
+  },
+  {
+   "id": "p-earth-orbit",
+   "source_id": "fs-id3116567",
+   "kind": "problem",
+   "source_section": "6.2",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rotation-angle",
+   "prompt": "取地球的年龄约为 $4 \\times 10^{9}$ 年，并假设它的轨道半径 $1.5 \\times 10^{11}$ m 没有改变且轨道是圆形，求地球自诞生以来所走过的总路程的近似值（在相对于太阳静止的参考系中）。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4e+21,
+    "unit": "m",
+    "hint": "地球每年绕轨道一周，所以转角是 $2\\pi$ 乘以年数；所走过的路程就是弧长 $\\kds = \\kr\\Delta\\theta$。",
+    "solution": "$4 \\times 10^{21}\\ \\text{m}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "angular-velocity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rotation-angle"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "arc-length",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "linear-angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "p1",
+   "concept": "radian",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "rotation-angle",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "p3",
+   "concept": "radian",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "rotation-angle",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p5",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p7",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "radian",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "linear-angular-velocity"
+  },
+  {
+   "exercise": "p8",
+   "concept": "angular-velocity",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p8",
+   "concept": "range",
+   "weight": 2
+  },
+  {
+   "exercise": "p-earth-orbit",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "p-earth-orbit",
+   "concept": "rotation-angle",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "cd",
+   "label": "光盘",
+   "figures": [
+    "sim-rotation-angle"
+   ]
+  },
+  {
+   "id": "pit-1",
+   "label": "凹坑 1，靠近转轴",
+   "figures": [
+    "sim-rotation-angle"
+   ]
+  },
+  {
+   "id": "pit-2",
+   "label": "凹坑 2，位于边缘",
+   "figures": [
+    "sim-rotation-angle"
+   ]
+  },
+  {
+   "id": "wheel",
+   "label": "车轮",
+   "figures": [
+    "sim-omega"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "汽车",
+   "figures": [
+    "sim-tire"
+   ]
+  },
+  {
+   "id": "tire",
+   "label": "汽车轮胎",
+   "figures": [
+    "sim-tire"
+   ]
+  },
+  {
+   "id": "earth-mover",
+   "label": "土方机械",
+   "figures": [
+    "sim-tire"
+   ]
+  },
+  {
+   "id": "record",
+   "label": "黑胶唱片",
+   "figures": [
+    "sim-record"
+   ]
+  },
+  {
+   "id": "fly-1",
+   "label": "第一只苍蝇",
+   "figures": [
+    "sim-record"
+   ]
+  },
+  {
+   "id": "fly-2",
+   "label": "第二只苍蝇",
+   "figures": [
+    "sim-record"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "linear-angular-velocity",
+   "what": "线速度与角速度之间的关系",
+   "source": "《大学物理（第2版）》，6.1 转角与角速度",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{th}{\\kdtheta} = \\frac{\\mk{s}{\\kds}}{\\mk{r}{\\kr}}",
+      "src": "6.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kds} = \\mk{r}{\\kr}\\mk{th}{\\kdtheta}",
+       "uses": []
+      }
+     ],
+     "src": "6.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kw = \\frac{\\kdtheta}{\\kdt}",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\frac{\\mk{s}{\\kds}}{\\mk{t}{\\kdt}}",
+      "src": "6.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kv} = \\frac{\\mk{s}{\\kr\\kdtheta}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\frac{\\mk{s}{\\kr\\kdtheta}}{\\mk{t}{\\kdt}} = \\mk{w}{\\kr\\kw}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\mk{w}{\\kr\\kw} \\quad\\text{或}\\quad \\mk{w2}{\\kw} = \\frac{\\mk{v2}{\\kv}}{\\mk{r}{\\kr}}",
+       "uses": []
+      }
+     ],
+     "src": "6.1"
+    }
+   ]
+  }
+ ]
+}

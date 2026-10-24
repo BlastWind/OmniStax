@@ -1,0 +1,1008 @@
+{
+ "id": "21.6",
+ "module": "m42363",
+ "chapter": "21",
+ "title": "含电阻器和电容器的直流电路",
+ "short": "电阻器与电容器",
+ "lead": "既有电容器又有电阻器的电路，并不会在你闭合开关的那一刻就进入它的最终状态，因为电荷必须经过<span data-concept=\"resistance\">电阻</span>流上或流离极板。本节追踪充电和放电的电容器两端的<span data-concept=\"potential-difference\">电压</span>随<span data-concept=\"time\">时间</span>的变化，由<span data-concept=\"resistance\">电阻</span>和<span data-concept=\"capacitance\">电容</span>定义时间常量，最后讲到从相机闪光灯到人工起搏器各种用到它的电路。",
+ "objectives": [
+  "说明时间常量 $\\ktauRC$ 的重要性，并计算给定电阻和电容的时间常量。",
+  "解释为什么手电筒中的电池会逐渐耗尽电量，灯光随时间变暗。",
+  "描述电容器充电时，其两端电压随时间变化的图线会发生什么。",
+  "解释定时电路如何工作，并列举一些应用。",
+  "计算在某一特定长度上“定住”物体的运动所需的频闪闪光的速率。"
+ ],
+ "summary_html": "<ul><li>RC 电路是同时含有电阻器和电容器的电路。</li><li>RC 电路的<span data-concept=\"time-constant\">时间常量</span> $\\ktauRC$ 为 $\\ktauRC = \\kRes\\kCap$。</li><li>当一个起初未充电（$\\kt = 0$ 时 $\\kVzero = 0$）的电容器与电阻器串联，由直流<span data-concept=\"potential-difference\">电压</span>源充电时，<span data-concept=\"potential-difference\">电压</span>上升，渐近地趋近<span data-concept=\"potential-difference\">电压</span>源的电动势；作为<span data-concept=\"time\">时间</span>的函数，$\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right)$（充电）。</li><li>在每个<span data-concept=\"time-constant\">时间常量</span> $\\ktauRC$ 的时间跨度内，<span data-concept=\"potential-difference\">电压</span>上升剩余值的 0.632，渐近地趋近最终<span data-concept=\"potential-difference\">电压</span>。</li><li>如果一个初始<span data-concept=\"potential-difference\">电压</span>为 $\\kVzero$ 的电容器从 $\\kt = 0$ 起通过电阻器放电，则其<span data-concept=\"potential-difference\">电压</span>按指数规律减小，由 $\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}$ 给出（放电）。</li><li>在每个<span data-concept=\"time-constant\">时间常量</span> $\\ktauRC$ 内，<span data-concept=\"potential-difference\">电压</span>下降其剩余初始值的 0.368，渐近地趋近于零。</li></ul>",
+ "notes": "书中没有给出答案的九道题被略去，PhET 仿真“电路构建工具包（仅直流）”的链接也没有保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "取自图中的数据可以假定精确到三位有效数字。",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十八道题中有九道有答案，已收入本节；其余九道被略去：起搏器的充电电阻，由两个电容器和两个电阻器得出的四个时间常量，500 Ω 电路的初始电流和时间常量，心电图监测仪的最大电容，放电到原电压百分之一的精确时间，闪烁的圣诞耳环，时间常量为 $1.00 \\times 10^{3}$ s 时不合理的电容，以及两道自拟习题。每道思考题，以及书中没有给出答案的那道 AP 题，都附有一份 AI 标注的建议思路，而不是评分用的答案；那道 AP 题作为开放题保留，选项照书中印出的样子，因为它在两个小问中各要求做出两个选择。关于串联和并联电阻器所耗散功率的批判性思考题，是根据 21.1 的组合规则作答的，但书中把它印在这里，所以也放在本节。",
+ "figures": [
+  {
+   "id": "sim-rc-charge-discharge",
+   "kind": "sim",
+   "number": "21.37",
+   "folds": [
+    "21.38"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_06_01.jpg",
+    "/media/ch21/Figure_22_06_02.jpg"
+   ],
+   "original_caption": "（图 21.37）（a）一个带有起初未充电的电容器的 RC 电路。开关一闭合，电流就沿图示方向流动（与电子流动方向相反）。电容器中同种电荷的相互排斥随着电容器被充电而逐渐减慢电流，电容器充满电时电流停止，此时 Q = C·电动势。（b）电容器两端电压随时间变化的图线，开关在时刻 t = 0 闭合。（请注意，在图的两个部分中，花体大写字母 E 表示电动势，q 表示电容器上储存的电荷，τ 是 RC 时间常量。）（图 21.38）（a）闭合开关，电容器 C 通过电阻器 R 放电。每块极板上同种电荷的相互排斥驱动电流。（b）电容器两端电压随时间变化的图线，t = 0 时 V = V₀。电压按指数规律减小，在随后的每个时间常量 τ 内，都朝零下降固定比例的一段。",
+   "widths": [
+    400,
+    300
+   ],
+   "draws": [
+    "voltage",
+    "time",
+    "resistance",
+    "capacitance",
+    "current",
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption matches the ms axis; note cut to the 0.632 and 0.368 fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-hummingbird",
+   "kind": "photo",
+   "number": "21.39",
+   "originals": [
+    "/media/ch21/Figure_22_06_03.jpg"
+   ],
+   "original_caption": "这张棕煌蜂鸟（Selasphorus rufus）在花上取食的定格照片，是用一次极短而强烈的闪光拍得的，这次闪光由电容器通过气体放电提供能量。（来源：Dean E. Biggins，美国鱼类和野生动物管理局）",
+   "widths": [
+    280
+   ]
+  },
+  {
+   "id": "sim-flashing-lamp",
+   "kind": "sim",
+   "number": "21.40",
+   "originals": [
+    "/media/ch21/Figure_22_06_04.jpg"
+   ],
+   "original_caption": "（a）这个 RC 电路中的灯通常具有很高的电阻，所以电池给电容器充电时就像灯不存在一样。当电压达到某个阈值时，就有电流流过灯，使它的电阻急剧减小，电容器便通过灯放电，就像电池和充电电阻器不存在一样。放电完毕后，这个过程重新开始，闪光周期由 RC 常量 τ 决定。（b）这个电路的电压随时间变化的图线。",
+   "widths": [
+    325
+   ],
+   "draws": [
+    "voltage",
+    "time",
+    "resistance",
+    "capacitance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "charging current drawn in the source loop, not the lamp's; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "rc-circuits",
+   "concept": "rc-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "charging-a-capacitor",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "time-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "fraction-per-time-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "rc-circuits",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "discharging",
+   "concept": "discharging-a-capacitor",
+   "verb": "introduces"
+  },
+  {
+   "span": "discharging",
+   "concept": "time-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "discharging",
+   "concept": "fraction-per-time-constant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "discharging",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "timing",
+   "concept": "rc-timing-circuits",
+   "verb": "introduces"
+  },
+  {
+   "span": "timing",
+   "concept": "time-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "timing",
+   "concept": "discharging-a-capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "timing",
+   "concept": "capacitor-energy-applications",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-426",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "timing"
+   },
+   "cite": "timing",
+   "prompt": "电容器两端的电势差在什么时候是电动势？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "只有当从电容器中取出或向电容器中送入的电流为零时才是。电容器和电池一样，具有内阻，所以除非电流为零，它的输出电压就不是电动势。这在实践中很难测量，所以我们说电容器的电压，而不说它的电动势。但电容器中电势差的来源是基本的，而且它就是一种电动势。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2963669",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "关于关系式 $\\ktauRC = \\kRes\\kCap$ 中涉及的单位，验证电阻乘以电容的单位是时间，即 $\\Omega \\cdot \\text{F} = \\text{s}$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把每个单位都用伏特、安培和库仑写出来，让它们相互约去。一欧姆是每安培一伏特，因为 $\\kRes = \\kV/\\kIcur$；一法拉是每伏特一库仑，因为 $\\kCap = \\kQch/\\kV$。两者相乘，伏特约去，剩下库仑每安培。一安培是每秒一库仑，所以库仑每安培就是秒，因此电阻与电容之积是时间，这样 $e^{-\\kt/\\kRes\\kCap}$ 才有意义。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2514369",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "心脏除颤中的 RC 时间常量，对限制电流流动的时间至关重要。如果除颤装置中的电容是固定的，你会如何调节电路中的电阻来调整 RC 常量 $\\ktauRC$？是否还需要调整所加的电压，才能保证输送的电流有合适的数值？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电容固定时，时间常量与电阻成正比，所以要使脉冲更短，就要减小电路中的电阻，要使脉冲更长，就要增大电阻。但电流并不只由时间常量决定：初始电流为 $\\kIocur = \\kVzero/\\kRes$，所以为缩短脉冲而减小电阻，会同时使通过病人的电流增大。因此，如果要使输送的电流保持在既有效又安全的范围内，初始电压也必须相应调整，电阻减小时要把它调低。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1569819",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "做心电图测量时，重要的是测量小时间间隔内的电压变化。时间受电路的 RC 常量限制——不可能测量比 RC 更短的时间变化。你会如何调节电路中的 $\\kRes$ 和 $\\kCap$，以便进行所需的测量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "时间常量是两者之积，所以两者都必须小，电路才能跟得上快速的变化。在仪器允许的范围内尽量减小电容，因为较小的电容器储存的电荷较少，因而更快充满和放空；同时也要保持电路的电阻较低。电阻有很大一部分是病人自己的胸部，设计者无法选择，所以应着手调整的是电容。这样，仪器能分辨的最短间隔就约为余下部分的一个时间常量。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3356740",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "画出电容器上电荷随时间变化的两幅图。一幅画一个起初未充电的电容器与电阻器串联充电的情形，如图 21.37 的电路，从 $\\kt = 0$ 开始。另一幅画电容器通过电阻器放电的情形，如图 21.38 的电路，从 $\\kt = 0$ 开始，初始电荷为 $\\kQch_0$。至少画出两个 $\\ktauRC$ 的间隔。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电容器上的电荷为 $\\kQch = \\kCap\\kV$，而电容不变，所以每一幅电荷图线的形状都与本节所画的电压图线完全相同。充电图线从原点出发，陡峭上升，并向最终电荷 $\\kCap \\cdot \\text{emf}$ 弯曲，在 $\\kt = \\ktauRC$ 时达到该值的 0.632，在 $\\kt = 2\\ktauRC$ 时达到 0.865。放电图线从 $\\kQch_0$ 出发，起初下降得陡，后来变缓，在 $\\kt = \\ktauRC$ 时降到 $0.368\\kQch_0$，在 $\\kt = 2\\ktauRC$ 时降到 $0.135\\kQch_0$。把时间轴按 $\\ktauRC$ 的倍数标出，使这两个间隔清晰可见。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2687700",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "给电容器充电时，如图 21.37 所讨论的，电容器上的电压需要多长时间才能达到电动势？这是个问题吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "严格说来，永远达不到。充电定律是 $\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right)$，而指数函数永远不会恰好为零，所以电压只是趋近电动势而永远达不到。这在实践中不成问题，因为电压在每个时间常量内都走完剩余部分的 0.632：经过五个时间常量后，它与电动势相差不到 0.7%，这比任何普通测量能分辨的差别都小，所以电容器在数学上说它充满之前很久，就已经算作充满了。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id3157300",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "给电容器放电时，如图 21.38 所讨论的，电容器上的电压需要多长时间才能降到零？这是个问题吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "出于同样的原因，它永远不会恰好降到零：$\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}$ 在每个时间常量内降到原值的 0.368，却永远不会变成零。在实践中这同样不成问题，因为经过五个时间常量后，电压已不到起始值的 0.7%。不过要记住，充了高电压的大电容器，在你切断电源之后的许多个时间常量内仍然危险。这就是此类电路带有泄放电荷的电阻器的原因。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2647698",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "参照图 21.37，画出电阻器两端电势差随时间变化的图线，至少画出两个 $\\ktauRC$ 的间隔。再画出这种情形下电流随时间变化的图线。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "回路定则说，电阻器两端的电压等于电容器尚未取走的那部分，所以 $\\kV_{\\kRes} = \\text{emf} - \\kV = \\text{emf}\\,e^{-\\kt/\\kRes\\kCap}$。因此这条图线从完整的电动势出发并衰减，在 $\\kt = \\ktauRC$ 时达到电动势的 0.368，在 $\\kt = 2\\ktauRC$ 时达到 0.135。电流等于该电压除以电阻，$\\kIcur = \\kIocur e^{-\\kt/\\kRes\\kCap}$，其中 $\\kIocur = \\text{emf}/\\kRes$，所以电流图线的形状完全相同，从初始电流出发，在每个时间常量内下降相同的比例。两者都是衰减曲线，都不像电容器自身电压那条上升的曲线。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3181723",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "一根又长又便宜的延长线把屋内与屋外的冰箱相连。冰箱运行得不正常。问题可能出在哪里？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一根细导线做成的长电线，电阻不再很小，而且它与冰箱串联。电动机取用的电流在电线上产生 $\\kIcur\\kRes$ 电压降，于是实际到达冰箱的电压低于供电电压，而且恰恰在电动机起动、取用电流最大的时候降得最多。电压不足的电动机转得很慢，甚至根本无法起动，电线中白白耗费的功率还会使电线发热。补救办法是用较短的电线，或者用电阻较低的较粗导线。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3175808",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "在图 21.40 中，图线是否表明放电的时间常量比充电的短？你是否预期电离气体的电阻很低？你会如何调节 $\\kRes$ 来获得更长的闪光间隔时间？调节 $\\kRes$ 会影响放电时间吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "图线上升得慢，下降得几乎垂直，所以放电的时间常量比充电的短得多。这正是灯中电离气体所应有的表现：一旦导通，它里面充满自由电荷，电阻很低，所以放电的 $\\ktauRC$ 很小。要拉长两次闪光之间的时间，就增大充电电阻 $\\kRes$，因为这样电容器要花更长时间才能达到灯点亮的电压。增大 $\\kRes$ 不会影响放电，因为电容器是通过灯而不是通过 $\\kRes$ 放电的，放电的时间常量由灯自身的电阻和电容决定。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3165385",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "figure": {
+    "src": "/media/ch21/Figure_22_06_05.jpg",
+    "alt": "一个带电容器的电路，在电容器两端并联了一个额外的电阻器 R 下标 b l，称为泄放电阻器。",
+    "caption": "泄放电阻器 R_bl 在这个电子设备关闭后给电容器放电。"
+   },
+   "prompt": "电子设备的电源部分可能有高电压下的大电容器，即使设备已经关闭，也有电击危害。因此，在这样的电容器两端并联一个“泄放电阻器”，如下图的示意图所示，用来在设备关闭后把电容器中的电荷泄放掉。为什么泄放电阻必须比电路其余部分的等效电阻大得多？这对电容器放电的时间常量有什么影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "设备运行时，泄放电阻器也跨在电容器两端，设备关掉之后同样如此。通过它的任何电流，都是电路其余部分得不到的电流，而且是白白变成热的功率。使它的电阻远大于电路的等效电阻，就能把这部分白白损耗的电流限制在整体中可以忽略的份额。代价在之后才出现：放电的时间常量是泄放电阻与电容之积，所以泄放电阻大就意味着时间常量长、放电慢。因此这个设计是一种折中。电阻要选得足够大，使设备运行时浪费得很少；又要选得足够小，使设备关闭后能在合理的时间内把电容器放空。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1673724",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "一个电池与一个电阻器和一个未充电的电容器相连。电路的开关在 $\\kt = 0$ s 时闭合。（a）电容器充电期间，下列哪一项正确？（a）通过电阻器的电流和电阻器两端的电压增大。（b）通过电阻器的电流和电阻器两端的电压减小。（c）通过电阻器的电流和电阻器两端的电压先增大后减小。（d）通过电阻器的电流和电阻器两端的电压先减小后增大。（b）电容器充满电时，下列哪一项不为零？（a）电阻器中的电流。（b）电阻器两端的电压。（c）电容器中的电流。（d）以上都不是。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）选项（b）：通过电阻器的电流和电阻器两端的电压都减小。根据回路定则，电阻器两端的电压等于电动势减去电容器的电压 $\\kV$，而电流等于该电压除以 $\\kRes$，$\\kIcur = \\kIocur e^{-\\kt/\\kRes\\kCap}$。电容器的电压从零开始，只是向电动势攀升，所以电阻器两端的电压从完整的电动势开始下降，电流随之下降。\n\n（b）选项（d），以上都不是。电容器充满电时，其电压等于电动势，所以电阻器两端什么也不剩，既然它两端没有电压，就没有电流通过它。电容器与电阻器串联，所以电容器中的电流也为零。所提到的三个量全都为零。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3552653",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "一个未充电的电容器 $\\kCap$ 与一个电阻器 $\\kResone$ 和一个电压源 $\\kemf$ 串联（带开关）。设 $\\kemf = 24$ V，$\\kResone = 1.2$ kΩ，$\\kCap = 1$ mF。（a）开关闭合时电路中的电流是多大？画出电路图，并标出开关闭合后电流的方向。电容器充电到 99% 需要多长时间？（b）充满电后，把这个电容器与另一个电阻器 $\\kRestwo = 1$ kΩ 串联。刚接通时电路中的电流是多大？画出电路图，并标出电流的方向。电容器电压达到 3.24 V 需要多长时间？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）20 mA，电路按图 21.37 画出，电流从电源正极出发，经 $\\kResone$ 流向电容器，5.5 s；（b）24 mA，电源已去掉，由电容器驱动电流沿回路反方向经 $\\kRestwo$ 流动，2 s。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1410678",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "汽车间歇式刮水器系统中的定时装置基于 RC 时间常量，使用了一个 $0.500\\text{-}\\mu\\text{F}$ 的电容器和一个可变电阻器。要得到 2.00 到 15.0 s 的时间常量，$\\kRes$ 必须在什么范围内变化？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "smallest R",
+      "value": 4.0,
+      "unit": "MΩ",
+      "hint": "时间常量为 $\\ktauRC = \\kRes\\kCap$，所以最小的电阻对应最短的时间常量。"
+     },
+     {
+      "part": "largest R",
+      "value": 30.0,
+      "unit": "MΩ",
+      "hint": "用最长的时间常量除以同样的电容。"
+     }
+    ],
+    "solution": "范围为 4.00 至 30.0 MΩ。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2679599",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "照相机闪光的持续时间与 RC 时间常量有关，某台照相机的这个时间常量为 $0.100\\ \\mu\\text{s}$。（a）如果放电期间闪光灯的电阻为 $0.0400\\ Ω$，为它供能的电容器有多大？（b）如果充电电阻为 $800\\ \\text{k}Ω$，给电容器充电的时间常量是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.5,
+      "unit": "μF",
+      "hint": "电容等于时间常量除以放电时闪光灯的电阻。"
+     },
+     {
+      "part": "(b)",
+      "value": 2.0,
+      "unit": "s",
+      "hint": "同一个电容器现在通过大得多的电阻充电，时间常量仍是它们的乘积。"
+     }
+    ],
+    "solution": "（a）$2.50\\ \\mu\\text{F}$ （b）2.00 s"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2588824",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "经过两个时间常量后，一个起初未充电的电容器 $\\kCap$ 通过电阻 $\\kRes$ 充电，它上面的电压是最终电压（电动势）的百分之几？",
+   "answer": {
+    "type": "number",
+    "value": 86.5,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "把 $\\kt = 2\\ktauRC$ 代入充电定律，使指数为 $e^{-2}$。",
+    "solution": "86.5%"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1574837",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "正在给病人使用的心脏除颤器，由于病人的电阻和除颤器的电容，其 RC 时间常量为 10.0 ms。（a）如果除颤器具有 $8.00\\text{-}\\mu\\text{F}$ 的电容，通过病人的路径电阻是多少？（可以忽略病人的电容和除颤器的电阻。）（b）如果初始电压为 12.0 kV，降到 $6.00 \\times 10^{2}\\ \\text{V}$ 需要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.25,
+      "unit": "kΩ",
+      "hint": "电阻等于时间常量除以电容。"
+     },
+     {
+      "part": "(b)",
+      "value": 30.0,
+      "unit": "ms",
+      "hint": "电压在每个时间常量内降到原来的 0.368，所以数一数乘多少次 0.368 能把 12.0 kV 降到 600 V。"
+     }
+    ],
+    "solution": "（a）$1.25\\ \\text{k}Ω$ （b）30.0 ms"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1390130",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "figure": {
+    "src": "/media/ch21/Figure_22_06_07.jpg",
+    "alt": "图中显示了一个并联电路，包含一个开关、一个嵌入的电子电路、一个电容器和一个电阻器。嵌入的电子电路、电容器和电阻器彼此并联：电子电路在左，电容器在中，电阻器在右。电容器的电容为八十微法。电阻器的电阻为二百五十千欧。开关在上方，位于电子电路与电容器之间。",
+    "caption": "跨接在电子设备电容器两端的泄放电阻器，开关位于设备与电容器之间。"
+   },
+   "prompt": "下图显示了如何用泄放电阻器在电子设备关闭后给电容器放电，使人能在触电风险较小的情况下检修电子元件。（a）时间常量是多少？（b）放电开始后，要使电容器上的电压降到其满值的 0.250%（5% 的 5%），需要多长时间？（c）如果电容器通过 $100\\text{-}Ω$ 的电阻充电到电压 $\\kVzero$，计算它上升到 $0.865\\kVzero$ 所需的时间（这大约是两个时间常量）。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 20.0,
+      "unit": "s",
+      "hint": "图上标出的泄放电阻与电容相乘，得到时间常量。"
+     },
+     {
+      "part": "(b)",
+      "value": 120.0,
+      "unit": "s",
+      "hint": "每个时间常量使电压降到原来的 0.368，所以求出需要多少个时间常量才能降到原值的 0.250%。"
+     },
+     {
+      "part": "(c)",
+      "value": 16.0,
+      "unit": "ms",
+      "hint": "充电到最终电压的 0.865 需要两个时间常量，而这里的充电电阻只有 100 Ω。"
+     }
+    ],
+    "solution": "（a）20.0 s （b）120 s （c）16.0 ms"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3384990",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "用精确的指数方法，求通过 $75.0\\text{-M}Ω$ 的电阻器把一个起初未充电的 100-pF 电容器充电到其最终电压的 90.0% 需要多长时间。",
+   "answer": {
+    "type": "number",
+    "value": 0.0173,
+    "unit": "s",
+    "generated_by": "source",
+    "hint": "在充电定律中令 $\\kV/\\kemf = 0.900$ 并解出 $\\kt$，得 $\\kt = \\ktauRC \\ln 10$。",
+    "solution": "$1.73 \\times 10^{-2}\\ \\text{s}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3081489",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "timing",
+   "prompt": "综合概念。如果你想拍一张以 500 m/s 飞行的子弹的照片，那么通过闪光管的 RC 放电产生的极短闪光可以限制模糊。假设在一个 RC 常量内运动 1.00 mm 是可以接受的，并且闪光由 $600\\text{-}\\mu\\text{F}$ 的电容器驱动，闪光管的电阻是多大？",
+   "answer": {
+    "type": "number",
+    "value": 0.00333,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "子弹以 500 m/s 的速率在一个时间常量内走过 1.00 mm，电阻就是这个时间常量除以电容。",
+    "solution": "$3.33 \\times 10^{-3}\\ Ω$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2584044",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "discharging",
+   "prompt": "综合概念。一个充电到 450 V 的 $160\\text{-}\\mu\\text{F}$ 电容器通过 $31.2\\text{-k}Ω$ 的电阻器放电。（a）求时间常量。（b）计算电阻器的温度升高，已知其质量为 2.50 g，比热容为 $1.67\\ \\frac{\\text{kJ}}{\\text{kg} \\cdot {}^\\circ\\text{C}}$，注意放电时间很短，大部分热能保留在电阻器中。（c）假设它是纯碳，计算新的电阻。（d）这个电阻的变化看起来显著吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.99,
+      "unit": "s",
+      "hint": "把电阻乘以电容。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.87,
+      "unit": "°C",
+      "hint": "电容器中储存的能量为 $\\kCap\\kV^2/2$，全部变成电阻器中的热能。"
+     },
+     {
+      "part": "(c)",
+      "value": 31.1,
+      "unit": "kΩ",
+      "hint": "碳的电阻率温度系数为负，所以电阻器变热后电阻略有降低。"
+     }
+    ],
+    "solution": "（a）4.99 s （b）$3.87\\ ^\\circ\\text{C}$ （c）$31.1\\ \\text{k}Ω$ （d）否"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "exer-12347",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rc-circuits",
+   "prompt": "批判性思考。一个电路有一个产生 $1.00 \\times 10^{2}\\ \\text{V}$ 的电压源和一个 $2.50 \\times 10^{3}\\ Ω$ 的电阻器。（a）如果电路中没有别的东西，电阻器耗散多大功率？（b）在第一个电阻器上并联第二个 $2.50 \\times 10^{3}\\ Ω$ 的电阻器。现在两个电阻器耗散多大功率？（c）现在把这两个电阻器串联。两个电阻器耗散多大功率？（d）为什么阻值相同的电阻器并联时比串联时耗散更多功率？（e）在给定的时间段内，并联组合的电阻器、串联组合的电阻器，哪一个输送的能量更多，还是在给定的时间段内输送的能量相同？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.0,
+      "unit": "W",
+      "hint": "电阻器两端是全部电源电压，$\\kP = \\kV^2/\\kRes$。"
+     },
+     {
+      "part": "(b)",
+      "value": 8.0,
+      "unit": "W",
+      "hint": "两个相等的电阻器并联，总电阻是其中一个的一半，同样的电压加在一半的电阻上，耗散的功率是两倍。"
+     },
+     {
+      "part": "(c)",
+      "value": 2.0,
+      "unit": "W",
+      "hint": "两个相等的电阻器串联，总电阻是其中一个的两倍，所以同样的电压耗散的功率是一半。"
+     }
+    ],
+    "solution": "（a）$\\kP = \\frac{\\kV^2}{\\kRes} = \\frac{(1.00 \\times 10^{2})^2}{2.50 \\times 10^{3}}\\ \\text{W} = 4.00\\ \\text{W}$。（b）$\\frac{1}{\\kRes_{eq}} = \\frac{2}{\\kResone}$，所以 $\\kRes_{eq} = \\frac{\\kResone}{2} = 1.25 \\times 10^{3}\\ Ω$，$\\kP = \\frac{(1.00 \\times 10^{2})^2}{1.25 \\times 10^{3}}\\ \\text{W} = 8\\ \\text{W}$。（c）$\\kRes_{eq} = \\kResone + \\kRestwo = 2\\kResone$，所以 $\\kP = \\frac{(1.00 \\times 10^{2})^2}{5.00 \\times 10^{3}}\\ \\text{W} = 2\\ \\text{W}$。（d）在并联情形中，电流通过每条支路，所以通过电阻器系统的电流更多。在串联情形中，电路的电阻更大，允许流过的电流更少。$\\kP = \\kIcur\\kV$ 在电压不变时与电流成正比。（e）在给定的时间段内，并联组合输送的能量更多。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "rc-circuit"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "emf",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "rc-timing-circuits",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rc-timing-circuits",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "fraction-per-time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "fraction-per-time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "fraction-per-time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "rc-circuit",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "rc-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "rc-timing-circuits"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "rc-circuit"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "charging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p1",
+   "concept": "rc-timing-circuits",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p2",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "fraction-per-time-constant"
+  },
+  {
+   "exercise": "p3",
+   "concept": "charging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p4",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "discharging-a-capacitor"
+  },
+  {
+   "exercise": "p5",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "charging-a-capacitor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "charging-a-capacitor"
+  },
+  {
+   "exercise": "p6",
+   "concept": "time-constant",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rc-timing-circuits",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "time-constant"
+  },
+  {
+   "exercise": "p8",
+   "concept": "discharging-a-capacitor",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "capacitor-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p9",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "p9",
+   "concept": "power-and-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "capacitor",
+   "label": "RC 电路中的电容器 C",
+   "figures": [
+    "sim-flashing-lamp",
+    "sim-rc-charge-discharge"
+   ]
+  },
+  {
+   "id": "resistor",
+   "label": "电容器经其充电或放电的电阻器 R",
+   "figures": [
+    "sim-flashing-lamp",
+    "sim-rc-charge-discharge"
+   ]
+  },
+  {
+   "id": "lamp",
+   "label": "跨接在定时电路电容器两端的灯",
+   "figures": [
+    "sim-flashing-lamp"
+   ]
+  }
+ ]
+}

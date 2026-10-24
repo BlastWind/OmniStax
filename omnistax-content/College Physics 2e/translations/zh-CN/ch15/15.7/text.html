@@ -1,0 +1,136 @@
+<section id="why-disorder">
+<h2>为什么无序比有序更可能出现</h2>
+<p class="cite-target">表述<span data-concept="second-law-of-thermodynamics">热力学第二定律</span>的各种方式，说的是会发生什么，而不是为什么会发生。为什么<span data-concept="heat">热</span>传递只会从热的物体传向冷的物体？为什么<span data-concept="energy">能量</span>可用来做<span data-concept="work">功</span>的部分会越来越少？为什么宇宙会变得越来越无序？答案在于，这是一个压倒性概率的问题。无序的可能性就是远远大于有序。</p>
+<p>当你看着一场刚刚来临的暴雨开始打湿地面时，会注意到雨滴在<span data-concept="time">时间</span>上和空间上的降落都是杂乱无章的。有些落得很近，有些落得很远，但它们从来不会落成笔直、有序的行列。雨以有序的方式落下并非不可能，只是极不可能，因为无序的方式比有序的方式多得多。为了说明这一事实，我们来研究一些随机过程，先从掷硬币开始。</p>
+</section>
+
+<section id="coin-tosses">
+<h2>掷硬币</h2>
+<p class="cite-target">掷<span data-ref="coins">5 枚硬币</span>，可能出现哪些结果？<span data-ref="coins">每枚硬币</span>落下时，不是正面朝上就是反面朝上。在大尺度上，我们只关心正面和反面的总数，而不关心正面和反面出现的先后次序。存在以下几种可能：</p>
+$$\begin{array}{l}\text{5 个正面，0 个反面} \\ \text{4 个正面，1 个反面} \\ \text{3 个正面，2 个反面} \\ \text{2 个正面，3 个反面} \\ \text{1 个正面，4 个反面} \\ \text{0 个正面，5 个反面}\end{array}$$
+<p>这些就是我们所说的<span data-concept="macrostate">宏观态</span>。<strong><span data-concept="macrostate">宏观态</span></strong>是<span data-concept="system">系统</span>的整体性质。它不规定<span data-concept="system">系统</span>的细节，例如正面和反面出现的先后次序，或者哪几枚硬币是正面、哪几枚是反面。</p>
+<p>按照这种叫法，<span data-ref="coins">一个由 5 枚硬币构成的<span data-concept="system">系统</span></span>有刚才列出的 6 种可能的<span data-concept="macrostate">宏观态</span>。有些<span data-concept="macrostate">宏观态</span>比其他的更容易出现。例如，得到 5 个正面只有一种方式，而得到 3 个正面和 2 个反面却有好几种方式，这使后一个<span data-concept="macrostate">宏观态</span>的概率更大。表 15.3 列出了掷<span data-ref="coins">5 枚硬币</span>的所有方式，其中考虑了正面和反面出现的先后次序。每一种序列称为一个<strong><span data-concept="microstate">微观态</span></strong>——对<span data-concept="system">系统</span>中每个要素的详细描述。</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 15.3</span><span>掷 5 枚硬币</span></div>
+  <table>
+    <thead><tr><th></th><th>各个微观态</th><th>微观态数</th></tr></thead>
+    <tbody>
+      <tr><td>5 个正面，0 个反面</td><td>HHHHH</td><td>1</td></tr>
+      <tr><td>4 个正面，1 个反面</td><td>HHHHT, HHHTH, HHTHH, HTHHH, THHHH</td><td>5</td></tr>
+      <tr><td>3 个正面，2 个反面</td><td>HTHTH, THTHH, HTHHT, THHTH, THHHT HTHTH, THTHH, HTHHT, THHTH, THHHT<sup class="fn" data-note="c-three-heads"></sup></td><td>10</td></tr>
+      <tr><td>2 个正面，3 个反面</td><td>TTTHH, TTHHT, THHTT, HHTTT, TTHTH, THTHT, HTHTT, THTTH, HTTHT, HTTTH</td><td>10</td></tr>
+      <tr><td>1 个正面，4 个反面</td><td>TTTTH, TTTHT, TTHTT, THTTT, HTTTT</td><td>5</td></tr>
+      <tr><td>0 个正面，5 个反面</td><td>TTTTT</td><td>1</td></tr>
+      <tr><td></td><td></td><td>总计：32</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>3 个正面和 2 个反面这个<span data-concept="macrostate">宏观态</span>可以通过 10 种方式实现，因此它的概率是 5 个正面那种情形的 10 倍。毫不奇怪，与之相反的 2 个正面和 3 个反面，概率也同样大。同样，得到 5 个反面和得到 5 个正面的概率相等。请注意，所有这些结论都建立在一个关键假设之上，即每个<span data-concept="microstate">微观态</span>的概率相等。对于掷硬币，这要求<span data-ref="coins">这些硬币</span>不能在某种程度上不对称而偏向某一面，就像灌了铅的骰子那样。对于任何<span data-concept="system">系统</span>，所有<span data-concept="microstate">微观态</span>概率相等这一假设都必须成立，否则分析就是错误的。</p>
+<p>最有序的两种可能是 5 个正面或 5 个反面。（它们比其他情形更有结构。）它们同时也是可能性最小的，32 种可能中只占 2 种。最无序的可能是 3 个正面和 2 个反面及其相反情形。（它们的结构性最弱。）最无序的可能同样也是可能性最大的，3 个正面和 2 个反面及其相反情形在 32 种可能中占 20 种。如果我们从 5 个正面这样的有序排列出发，再把<span data-ref="coins">这些硬币</span>掷一遍，结果很可能得到一个有序程度较低的排列，因为 32 种可能中有 30 种的有序程度较低。所以，即使你从一个有序的状态出发，也有很强的趋势从有序走向无序，从低<span data-concept="entropy">熵</span>走向高<span data-concept="entropy">熵</span>。反过来也可能发生，但可能性不大。</p>
+<figure class="sim" id="sim-coin-tosses">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="coins">这些硬币</span>一遍又一遍地掷，每掷一次，就在它所产生的宏观态（即出现的正面数）上记一次数。计数的背后是表 15.3 和表 15.4 中各宏观态的微观态数，已按投掷次数换算。计数会趋近这一微观态数，因为每个微观态的概率相等。下方是各宏观态的<span data-type="entropy">熵</span> $\kSent = k\ln W$，在微观态数最多的中间最大。设定硬币数，随着<span data-ref="coins">硬币</span>增多，直方图的两端会逐渐空出来。让<span data-ref="coins">硬币</span>偏向正面，计数就会偏离微观态数，因为这时各微观态的概率不再相等。</span></div>
+</figure>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 15.4</span><span>掷 100 枚硬币</span></div>
+  <table>
+    <thead>
+      <tr><th colspan="2">宏观态</th><th>微观态数</th></tr>
+      <tr><th>正面</th><th>反面</th><th>($W$)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>100</td><td>0</td><td>1</td></tr>
+      <tr><td>99</td><td>1</td><td>$1.0\times10^{2}$</td></tr>
+      <tr><td>95</td><td>5</td><td>$7.5\times10^{7}$</td></tr>
+      <tr><td>90</td><td>10</td><td>$1.7\times10^{13}$</td></tr>
+      <tr><td>75</td><td>25</td><td>$2.4\times10^{23}$</td></tr>
+      <tr><td>60</td><td>40</td><td>$1.4\times10^{28}$</td></tr>
+      <tr><td>55</td><td>45</td><td>$6.1\times10^{28}$</td></tr>
+      <tr><td>51</td><td>49</td><td>$9.9\times10^{28}$</td></tr>
+      <tr><td>50</td><td>50</td><td>$1.0\times10^{29}$</td></tr>
+      <tr><td>49</td><td>51</td><td>$9.9\times10^{28}$</td></tr>
+      <tr><td>45</td><td>55</td><td>$6.1\times10^{28}$</td></tr>
+      <tr><td>40</td><td>60</td><td>$1.4\times10^{28}$</td></tr>
+      <tr><td>25</td><td>75</td><td>$2.4\times10^{23}$</td></tr>
+      <tr><td>10</td><td>90</td><td>$1.7\times10^{13}$</td></tr>
+      <tr><td>5</td><td>95</td><td>$7.5\times10^{7}$</td></tr>
+      <tr><td>1</td><td>99</td><td>$1.0\times10^{2}$</td></tr>
+      <tr><td>0</td><td>100</td><td>1</td></tr>
+      <tr><td></td><td></td><td>总计：$1.27\times10^{30}$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>对于更大的<span data-concept="system">系统</span>，这一结果就变得惊人了。设想你有的是<span data-ref="coins">100 枚硬币</span>，而不只是 5 枚，会发生什么。最有序（结构性最强）的排列是 100 个正面或 100 个反面。最无序（结构性最弱）的是 50 个正面和 50 个反面。要得到 100 个正面这种最有序的排列，只有 1 种方式（1 个<span data-concept="microstate">微观态</span>）。要得到次有序的 99 个正面和 1 个反面这种排列，有 100 种方式（100 个<span data-concept="microstate">微观态</span>）（得到其相反情形也是 100 种）。而要得到最无序的排列，即 50 个正面和 50 个反面，则有 $1.0\times10^{29}$ 种方式。表 15.4 是各种<span data-concept="macrostate">宏观态</span>以及每个<span data-concept="macrostate">宏观态</span>的<span data-concept="microstate">微观态</span>数的简表。<span data-concept="microstate">微观态</span>的总数——即<span data-ref="coins">100 枚硬币</span>可以被掷出的不同方式的总数——大得惊人，为 $1.27\times10^{30}$。现在，如果我们从 100 个正面这样的有序<span data-concept="macrostate">宏观态</span>出发，把<span data-ref="coins">这些硬币</span>掷一遍，几乎可以肯定会得到一个有序程度较低的<span data-concept="macrostate">宏观态</span>。如果我们不断地掷<span data-ref="coins">这些硬币</span>，有可能但极不可能再回到最有序的<span data-concept="macrostate">宏观态</span>。如果你每<span data-concept="second">秒</span>掷一次<span data-ref="coins">这些硬币</span>，可以预期每隔 $2\times10^{22}$ 年才会出现一次 100 个正面或 100 个反面！<span data-type="time">这段时间</span>是宇宙年龄的 1 万亿（$10^{12}$）倍，所以机会基本上为零。相比之下，得到 50 个正面的机会为 8%，得到 45 到 55 个正面的机会为 73%，得到 40 到 60 个正面的机会为 96%。无序的可能性极大。</p>
+</section>
+
+<section id="disorder-in-a-gas">
+<h2>气体中的无序</h2>
+<p class="cite-target">我们看到，从 5 枚硬币增加到 100 枚硬币时，有利于无序的可能性出现了惊人的增长，这种增长会随着<span data-concept="system">系统</span>中个体数目的增多而继续下去。现在让我们设想把这种方法用于，比如说，<span data-ref="gas">一小份气体样品</span>。由于对<span data-concept="microstate">微观态</span>和<span data-concept="macrostate">宏观态</span>计数涉及统计，这称为<strong><span data-concept="statistical-analysis">统计分析</span></strong>。气体的<span data-concept="macrostate">宏观态</span>对应于它的宏观性质，例如<span data-concept="volume">体积</span>、<span data-concept="temperature">温度</span>和<span data-concept="pressure">压强</span>；它的<span data-concept="microstate">微观态</span>则对应于对其<span data-concept="atom">原子</span>的<span data-concept="position">位置</span>和<span data-concept="velocity">速度</span>的详细描述。即使是少量气体，也含有数量巨大的<span data-concept="atom">原子</span>：在 <span data-type="pressure">1.0 atm</span> 和 $0^\circ\text{C}$ 下，$1.0\ \text{cm}^3$ 的理想气体含有 $2.7\times10^{19}$ 个<span data-concept="atom">原子</span>。因此，每个<span data-concept="macrostate">宏观态</span>都有数量极大的<span data-concept="microstate">微观态</span>。通俗地说，这意味着气体中的<span data-concept="atom">原子</span>有极多种排布方式，而<span data-concept="pressure">压强</span>、<span data-concept="temperature">温度</span>等仍然相同。</p>
+<p>气体最可能出现的状况（即<span data-concept="macrostate">宏观态</span>）就是我们时时都能看到的那种——<span data-concept="atom">原子</span>在空间中随机分布，速率服从麦克斯韦-玻尔兹曼分布，<span data-concept="vector-direction">方向</span>随机，这正是<span data-concept="theory">气体动理论</span>所预言的。这是我们所能想象的最无序、最没有结构的状况。与之相对，有一种非常有序、有结构的<span data-concept="macrostate">宏观态</span>：<span data-ref="gas">所有<span data-concept="atom">原子</span></span>都在<span data-ref="container">容器</span>的一个角上，且具有<span data-type="velocity">相同的<span data-concept="velocity">速度</span></span>。要做到这一点的方式极少（与之对应的<span data-concept="microstate">微观态</span>极少），所以它极不可能出现。（见图 15.38（b）。）事实上，它是如此不可能，以至于我们有一条<span data-concept="law">定律</span>说它不可能发生，而这条定律从未被观察到有过违背——这就是<span data-concept="second-law-of-thermodynamics">热力学第二定律</span>。</p>
+<figure class="sim" id="sim-gas-disorder" data-figure="15.38" data-original="/media/ch15/Figure_16_07_02.jpg" data-original-width="220" data-original-caption="（a）容器中气体的通常状态，是原子或分子无序、随机的分布，其速率服从麦克斯韦-玻尔兹曼分布。这些原子或分子最终全都聚在容器一角的可能性是如此之小，以至于不妨认为它不可能发生。（b）借助能量传递，可以把气体压到一个角上，使它的熵大大减小。但只要不去管它，它就会自发地增大熵，回到正常状态，因为正常状态的可能性要大得多。">
+  <div class="sim-head"><span class="eyebrow">Figure 15.38</span><span><span data-ref="gas">气体的原子</span>从<span data-ref="container">容器</span>的一个角出发，<span data-type="velocity">速率都相同</span>，但方向随机。<span data-ref="gas">它们</span>相互碰撞，也与器壁碰撞，直到<span data-ref="gas">它们</span>以<span data-type="velocity">一系列不同的速率</span>散布到<span data-ref="container">整个容器</span>中。<span data-ref="container">容器</span>分成四等份，计数显示每一份中的原子数。微观态数 $W$ 是把<span data-ref="gas">原子</span>按这些数目分配到各份中的方式数。<span data-ref="container">容器</span>旁边的柱显示<span data-type="entropy">该排布的熵</span> $\kSent = k\ln W$，图线则画出它随<span data-type="time">时间</span>的变化。随着<span data-ref="gas">原子</span>散开，它从零开始上升，然后保持在最大值附近，在其下方略有起伏，永远不会回到零。让<span data-ref="gas">气体</span>一开始就已散开，则<span data-type="entropy">熵</span>只会在最大值附近起伏，因为<span data-ref="gas">原子</span>绝不会自行聚到一个角上。设定原子数，看看原子越多，<span data-type="entropy">熵</span>的波动就越小。</span></div>
+</figure>
+<p>无序的状况是高<span data-concept="entropy">熵</span>的状况，有序的状况则是低<span data-concept="entropy">熵</span>的状况。通过从另一个<span data-concept="system">系统</span>传入<span data-concept="energy">能量</span>，我们可以<span data-concept="force">迫使</span><span data-ref="gas">所有<span data-concept="atom">原子</span></span>进入一个角，使<span data-type="entropy">局部的<span data-concept="entropy">熵</span>减小</span>，但代价是宇宙的<span data-type="entropy">总体<span data-concept="entropy">熵</span>增加</span>。如果<span data-ref="gas"><span data-concept="atom">原子</span></span>一开始就在一个角上，<span data-ref="gas">它们</span>将很快散开并变得均匀分布，再也不会回到最初的有序状态（图 15.38（b））。<span data-concept="entropy">熵</span>将会增加。对于<span data-ref="gas">如此大量的<span data-concept="atom">原子</span></span>，<span data-concept="entropy">熵</span>减小是可能的——但其可能性小到难以想象。无序比有序的可能性大得多。</p>
+<p>关于无序和高<span data-concept="entropy">熵</span>是最可能的状态的论证相当有说服力。伟大的奥地利物理学家路德维希·玻尔兹曼（1844–1906）——他与麦克斯韦一起为<span data-concept="theory">气体动理论</span>做出了许多贡献——证明了，处于给定状态（即一个<span data-concept="macrostate">宏观态</span>）的<span data-concept="system">系统</span>的<span data-concept="entropy">熵</span>可以写成</p>
+$$\kSent = k\ln W,$$
+<p>其中 $k = 1.38\times10^{-23}\ \text{J/K}$ 是玻尔兹曼常量，$\ln W$ 是与给定<span data-concept="macrostate">宏观态</span>对应的<span data-concept="microstate">微观态</span>数 $W$ 的自然对数。$W$ 与该<span data-concept="macrostate">宏观态</span>出现的概率成正比。因此，<span data-concept="entropy">熵</span>与状态的概率直接相关——状态越可能，它的<span data-concept="entropy">熵</span>就越大。玻尔兹曼证明了，$s$ 的这个表达式等价于我们已经大量使用的定义 $\kdS = \kQh/\kTemp$。</p>
+<p>于是，<span data-concept="second-law-of-thermodynamics">热力学第二定律</span>在非常基本的层面上得到了解释：在每一个过程中，<span data-concept="entropy">熵</span>要么保持不变，要么增加。这一现象源于减小的概率极其微小，其依据是<span data-concept="entropy">熵</span>较大的<span data-concept="system">系统</span>所含的<span data-concept="microstate">微观态</span>数极其之大。<span data-concept="entropy">熵</span><em>可以</em>减小，但对任何宏观<span data-concept="system">系统</span>而言，这一结果极不可能出现，以至于永远不会被观察到。</p>
+</section>
+
+<section id="entropy-change">
+<h2>两个宏观态之间的熵变</h2>
+<div class="example" id="ex-coin-toss-entropy">
+<h3>例题 15.9 · 掷硬币时熵增加</h3>
+<p class="cite-target">假设你从<span data-ref="initial">60 个正面和 40 个反面</span>开始，掷<span data-ref="coins">100 枚硬币</span>，得到了最可能的结果，即<span data-ref="final">50 个正面和 50 个反面</span>。<span data-type="entropy"><span data-concept="change-in-entropy">熵变</span></span>是多少？</p>
+<h4>思路</h4>
+<p>注意到在表 15.4 中，掷 100 枚硬币时的<span data-concept="microstate">微观态</span>数记作 $W$，我们可以用 $\kdS = \kSf - \kSi = k\ln W_{\text{f}} - k\ln W_{\text{i}}$ 来计算<span data-type="entropy"><span data-concept="change-in-entropy">熵变</span></span>。</p>
+<h4>解</h4>
+<p><span data-type="entropy"><span data-concept="change-in-entropy">熵变</span></span>为</p>
+$$\kdS = \kSf - \kSi = k\ln W_{\text{f}} - k\ln W_{\text{i}},$$
+<p>其中下标 i 表示<span data-ref="initial">初始的 60 个正面和 40 个反面的状态</span>，下标 f 表示<span data-ref="final">最终的 50 个正面和 50 个反面的状态</span>。把表 15.4 中的 $W$ 值代入，得</p>
+$$\begin{array}{lll}\kdS & = & (1.38\times10^{-23}\ \text{J/K})[\ln(1.0\times10^{29}) - \ln(1.4\times10^{28})] \\ & = & 2.7\times10^{-23}\ \text{J/K}\end{array}$$
+<h4>讨论</h4>
+<p><span data-type="entropy">这一<span data-concept="entropy">熵</span>的增加</span>意味着我们已经转到了一个有序程度较低的情形。再掷下去产生<span data-ref="initial">最初的 60 个正面和 40 个反面的状态</span>并非不可能，但可能性较小。<span data-type="entropy">那一次<span data-concept="entropy">熵</span>的减小</span>（$-2.7\times10^{-23}\ \text{J/K}$）发生的机会约为九十分之一。如果我们计算<span data-type="entropy">转到最有序状态时<span data-concept="entropy">熵</span>的减小</span>，就得到 $\kdS = -92\times10^{-23}\ \text{J/K}$。这一变化发生的机会约为 $1\ \text{比}\ 10^{30}$。所以，虽然很小的<span data-concept="entropy">熵</span>减小不太可能发生，但稍大一些的减小，其可能性小到等于不可能。这些概率再次表明，对于宏观<span data-concept="system">系统</span>，<span data-concept="entropy">熵</span>的减小是不可能的。例如，若要<span data-concept="heat">热</span>传递自发地从 <span data-type="mass">1.00 kg</span> $0^\circ\text{C}$ 的冰传向它 $0^\circ\text{C}$ 的环境，就会出现 $1.22\times10^{3}\ \text{J/K}$ 的<span data-type="entropy"><span data-concept="entropy">熵</span>减小</span>。已知 $\kdS\ \text{为}\ 10^{-21}\ \text{J/K}$ 大约对应 $1\ \text{比}\ 10^{30}$ 的机会，那么如此大小的减小（$10^{3}\ \text{J/K}$）就<em>完全</em>不可能。即使是<span data-type="mass">一毫克</span>融化的冰自发重新冻结，也是不可能的。</p>
+</div>
+<figure class="sim" id="sim-entropy-change">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="coins">这些硬币</span>的每个宏观态都是一根柱，柱高为<span data-type="entropy">它的熵</span> $\kSent = k\ln W$，你选定的那两个，即<span data-ref="initial">初宏观态</span>和<span data-ref="final">末宏观态</span>，被填充并用括号标出，括号表示<span data-type="entropy">熵变</span> $\kdS = \kSf - \kSi = k\ln W_{\text{f}} - k\ln W_{\text{i}}$。两个微观态数之比说明<span data-ref="final">末宏观态</span>比<span data-ref="initial">初宏观态</span>可能多少倍，这也就是一次投掷的赔率的实质。设定硬币数和<span data-ref="initial final">这两个宏观态</span>，观察<span data-type="entropy">熵变</span>如何随柱高之差增大，并在<span data-ref="final">末宏观态</span>是二者中较有序的一个时变为负值。</span></div>
+</figure>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 15.5</span><span>掷 10 枚硬币</span></div>
+  <table>
+    <thead>
+      <tr><th colspan="2">宏观态</th><th>微观态数 ($W$)</th></tr>
+      <tr><th>正面</th><th>反面</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr><td>10</td><td>0</td><td>1</td></tr>
+      <tr><td>9</td><td>1</td><td>10</td></tr>
+      <tr><td>8</td><td>2</td><td>45</td></tr>
+      <tr><td>7</td><td>3</td><td>120</td></tr>
+      <tr><td>6</td><td>4</td><td>210</td></tr>
+      <tr><td>5</td><td>5</td><td>252</td></tr>
+      <tr><td>4</td><td>6</td><td>210</td></tr>
+      <tr><td>3</td><td>7</td><td>120</td></tr>
+      <tr><td>2</td><td>8</td><td>45</td></tr>
+      <tr><td>1</td><td>9</td><td>10</td></tr>
+      <tr><td>0</td><td>10</td><td>1</td></tr>
+      <tr><td></td><td></td><td>总计：1024</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section id="entropy-strategy">
+<h2>求解涉及熵的问题</h2>
+<div class="note">
+<div class="eyebrow">熵的解题策略</div>
+<ol class="cite-target">
+<li><em>检查所面对的情形，判断是否涉及<span data-concept="entropy">熵</span>。</em></li>
+<li><em>确定所关心的<span data-concept="system">系统</span>，并画出该<span data-concept="system">系统</span>的带标注的示意图，图中标出<span data-concept="energy">能量</span>的流动。</em></li>
+<li><em>准确找出题目中需要求出的量（确定未知量）。</em>写成清单会有帮助。</li>
+<li><em>列出题目已给出的、或可由题目叙述推断出的量（确定已知量）。</em>你必须仔细确定<span data-concept="heat">热</span>传递（如果有的话）以及过程发生时的<span data-concept="temperature">温度</span>。同样重要的是确定初态和末态。</li>
+<li><em>针对待求量（未知量）解适当的方程。</em>请注意，任意两个状态之间的<span data-concept="change-in-entropy">熵变</span>，都可以通过按<span data-concept="reversible-process">可逆过程</span>计算它来求得。</li>
+<li><em>把已知值连同它们的<span data-concept="units">单位</span>代入适当的方程，得到带有<span data-concept="units">单位</span>的完整数值解。</em></li>
+<li><em>检验是否合理：它说得通吗？</em>例如，对任何实际过程，总<span data-concept="entropy">熵</span>应当增加，对<span data-concept="reversible-process">可逆过程</span>则应保持不变。无序的状态应当比有序的状态更可能，且<span data-concept="entropy">熵</span>更大。</li>
+</ol>
+</div>
+</section>

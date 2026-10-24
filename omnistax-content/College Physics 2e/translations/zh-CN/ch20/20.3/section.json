@@ -1,0 +1,850 @@
+{
+ "id": "20.3",
+ "module": "m42346",
+ "chapter": "20",
+ "title": "电阻与电阻率",
+ "short": "电阻与电阻率",
+ "lead": "物体的<span data-concept=\"resistance\">电阻</span>取决于它由什么材料制成（通过它的<span data-concept=\"resistivity\">电阻率</span>体现）以及它的形状。材料按电阻率分为导体、半导体和绝缘体，而<span data-concept=\"temperature\">温度</span>会改变电阻率，进而改变由该材料制成的物体的电阻。",
+ "objectives": [
+  "说明电阻率的概念。",
+  "利用电阻率计算指定材料构型的电阻。",
+  "利用电阻率温度系数计算电阻随温度的变化。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"length\">长度</span>为 $L$、<span data-concept=\"area\">横截面积</span>为 $A$ 的圆柱体，其<span data-concept=\"resistance\">电阻</span> $\\kRes$ 为 $\\kRes = \\frac{\\rho L}{A}$，其中 $\\rho$ 是材料的<span data-concept=\"resistivity\">电阻率</span>。</li><li>表 20.1 中 $\\rho$ 的值表明，材料分为三组——<em>导体、半导体和绝缘体</em>。</li><li><span data-concept=\"temperature\">温度</span>会影响<span data-concept=\"resistivity\">电阻率</span>；对于相对较小的<span data-concept=\"temperature\">温度</span>变化 $\\kdTemp$，<span data-concept=\"resistivity\">电阻率</span>为 $\\rho = \\rho_0(1 + \\alpha\\kdTemp)$，其中 $\\rho_0$ 是原<span data-concept=\"resistivity\">电阻率</span>，$\\alpha$ 是<span data-concept=\"temperature-coefficient-of-resistivity\">电阻率温度系数</span>。</li><li>表 20.2 给出了 $\\alpha$ 的值，即<span data-concept=\"temperature-coefficient-of-resistivity\">电阻率温度系数</span>。</li><li>物体的<span data-concept=\"resistance\">电阻</span> $\\kRes$ 也随<span data-concept=\"temperature\">温度</span>变化：$\\kRes = \\kReso(1 + \\alpha\\kdTemp)$，其中 $\\kReso$ 是原<span data-concept=\"resistance\">电阻</span>，$\\kRes$ 是<span data-concept=\"temperature\">温度</span>变化之后的<span data-concept=\"resistance\">电阻</span>。</li></ul>",
+ "notes": "本书中指向 PhET 模拟“导线中的电阻”的链接已略去。八道没有标准答案的习题已略去：一千米 0 号铜线的电阻、电阻每单位长度相同的铝导线与铜导线的直径之比、使铜导线电阻加倍的温度、电阻在 100 °C 时比在 20.0 °C 时大 40.0% 的材料、由尺寸和电阻识别出的导线、拉长到四倍长度的导线、在 37.0 °C 时电阻的 82.0% 处读数的热敏电阻，以及关于康铜的“不合理的结果”习题。本书自身的疏漏照原样保留：表 20.1 的标题为 Resistivities of Various materials（materials 小写），表 20.2 的标题为 Tempature Coefficients of Resistivity（Tempature 拼写有误）；第四道 AP 题的题干给出的电阻为 3 Ω 和 11 Ω，却要求求 1 Ω 导线的电阻率，而答案是 11 Ω 导线的答案；综合概念习题让读者回头参看前一道习题，而其给出的答案是例题 20.6 的答案，所以该题是对照那个例题来设定的。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示均由 AI 生成。答案取自书后答案。书中没有给出答案的八道习题已略去，并在本节的说明中列出。第二道 AP 题要求从四个选项中选出两个答案，分级判分的选择题无法容纳，所以保留为附有书后答案的开放题。第一、第三和第五道 AP 题没有答案，保留为开放题，选项照书中印出的样子给出，并附有 AI 撰写的建议思路，已标明，绝不作为分级判分的选择题；四道思考题同样是开放题。镍铬合金一题的答案是一个温度范围，而不是一个数，所以它也是开放题，附有书后答案。",
+ "figures": [
+  {
+   "id": "sim-cylinder",
+   "kind": "sim",
+   "number": "20.10",
+   "originals": [
+    "/media/ch20/Figure_21_03_01a.jpg"
+   ],
+   "original_caption": "长度为 L、横截面积为 A 的均匀圆柱体。它对电流流动的阻碍类似于管道对流体流动的阻碍。圆柱体越长，其电阻越大。其横截面积 A 越大，电阻越小。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "resistance",
+    "position",
+    "area",
+    "resistivity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-resistivity-scale",
+   "kind": "sim",
+   "draws": [
+    "resistance",
+    "resistivity",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "chosen name kept inside the stage; note dropped; caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mercury-superconductor",
+   "kind": "sim",
+   "number": "20.11",
+   "originals": [
+    "/media/ch20/Figure_21_03_02a.jpg"
+   ],
+   "original_caption": "汞样品的电阻在极低温度下为零——在约 4.2 K 以下它是超导体。超过该临界温度后，其电阻突然跃升，然后近似线性地随温度增大。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "resistance",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "sample and its reading lifted off the bottom edge; notes dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-thermometers",
+   "kind": "photo",
+   "number": "20.12",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-temperature-resistance",
+   "kind": "sim",
+   "draws": [
+    "resistance",
+    "temperature",
+    "temperature-coefficient"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "R0 label off the tick row; negative linear result stated; notes dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "material-and-shape",
+   "concept": "resistivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "material-and-shape",
+   "concept": "resistance-of-cylinder",
+   "verb": "introduces"
+  },
+  {
+   "span": "material-and-shape",
+   "concept": "resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "material-and-shape",
+   "concept": "charge-carriers",
+   "verb": "uses"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "conductors-semiconductors-insulators",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "resistivity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "resistance-of-cylinder",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resistivity-table",
+   "concept": "charge-carriers",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "superconductivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "temperature-coefficient-of-resistivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "resistivity-and-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "resistivity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "temperature-variation",
+   "concept": "charge-carriers",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistance-and-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistivity-and-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistance-of-cylinder",
+   "verb": "uses"
+  },
+  {
+   "span": "resistance-with-temperature",
+   "concept": "resistance",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1973763",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "以下哪些因素会影响导线的电阻率？<ol type=\"a\"><li>长度</li><li>横截面积</li><li>材料</li><li>以上全部</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电阻率只是材料本身的性质。它的定义使得物体的电阻与它成正比，而本节明确指出，它是材料的固有性质，与物体的形状和大小无关。导线的长度和横截面积确实会通过 $\\kRes = \\rho L/A$ 改变它的电阻，但不会改变电阻率：一根又长又细的铜导线和一根又短又粗的铜导线都是铜，表 20.1 给铜只列了一个数。所以答案是材料，即选项（c），而不是选项（d）。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2856008",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "figure": {
+    "src": "/media/ch20/CNX_APPhysics_20_M3_S03_img.jpg",
+    "alt": "四个圆柱体，表示几段导线。导线 1 又长又细，长度为 2L，直径为 D。导线 2 又短又细，长度为 L，直径为 D。导线 3 又长又粗，长度为 2L，直径为 2D。导线 4 又短又粗，长度为 L，直径为 2D。",
+    "caption": "四根导线的长度和直径。"
+   },
+   "prompt": "已知四根导线的长度和直径如图所示。如果这四根导线由同一种材料制成，则下列哪些说法正确？选出<em>两个</em>答案。<ol type=\"a\"><li>导线 3 的电阻 &gt; 导线 2 的电阻</li><li>导线 1 的电阻 &gt; 导线 2 的电阻</li><li>导线 1 的电阻 &lt; 导线 4 的电阻</li><li>导线 4 的电阻 &lt; 导线 3 的电阻</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(b), (d)"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1981700",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "设某根导线的电阻为 <em>R</em> Ω。另一根导线材料相同、长度相同，但直径是前者的两倍，它的电阻是多少？<ol type=\"a\"><li><em>R</em>/2</li><li>2<em>R</em></li><li><em>R</em>/4</li><li>4<em>R</em></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "选项（c），即原电阻的四分之一。在 $\\kRes = \\krhomat\\kLlen/\\karea$ 中，材料相同，所以 $\\krhomat$ 相同；长度也相同，所以只有面积改变。圆形横截面的面积为 $\\karea = \\pi \\kD^2/4$，与直径的平方成正比，所以直径加倍使面积变为原来的四倍。由于电阻与面积成反比，它就降为原来的四分之一。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1742954",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "两根导线的长度和横截面积相同，电阻分别为 3 Ω 和 11 Ω。若 3 Ω 导线的电阻率为 2.65 × 10<sup>−8</sup> Ω∙m，求 1 Ω 导线的电阻率<sup class=\"fn\" data-note=\"c-ap4-wire\"></sup>。",
+   "answer": {
+    "type": "number",
+    "value": 9.72e-08,
+    "unit": "Ω·m",
+    "generated_by": "source",
+    "hint": "长度和面积相同，$\\kRes = \\rho L/A$ 使电阻与电阻率成正比，所以两个电阻率之比等于两个电阻之比。",
+    "solution": "9.72 × 10⁻⁸ Ω∙m"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2387820",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "下面给出了三根导线的长度和直径。如果它们的电阻都相同，求它们的电阻率之比。<table><thead><tr><th><em>导线</em></th><th><em>长度</em></th><th><em>直径</em></th></tr></thead><tbody><tr><td>导线 1</td><td>2 m</td><td>1 cm</td></tr><tr><td>导线 2</td><td>1 m</td><td>0.5 cm</td></tr><tr><td>导线 3</td><td>1 m</td><td>1 cm</td></tr></tbody></table>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "导线 1、2、3 的电阻率之比为 2 : 1 : 4。把 $\\kRes = \\krhomat\\kLlen/\\karea$ 改写，得 $\\krhomat = \\kRes\\karea/\\kLlen$。三根导线的电阻相同，所以每根导线的电阻率与其面积除以长度成正比，而面积与直径的平方成正比；因子 $\\pi/4$ 对三根导线都相同，在比值中约去。导线 1 的 $\\kD^2/\\kLlen = (1\\ \\text{cm})^2/(2\\ \\text{m}) = 0.5\\ \\text{cm}^2/\\text{m}$，导线 2 为 $(0.5\\ \\text{cm})^2/(1\\ \\text{m}) = 0.25\\ \\text{cm}^2/\\text{m}$，导线 3 为 $(1\\ \\text{cm})^2/(1\\ \\text{m}) = 1\\ \\text{cm}^2/\\text{m}$。各除以 0.25，得 2 : 1 : 4。就其长度而言，导线 2 最细，所以它必须用电阻率最小的材料制成，才能与其他导线的电阻相同。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2595784",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "设某导线的电阻为 2 Ω。如果把这根导线拉长到原来长度的三倍，它的电阻将是多少？假设体积不变。",
+   "answer": {
+    "type": "number",
+    "value": 18,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "在体积不变的条件下拉伸，导线变长的同时也变细，所以 $\\kRes = \\rho L/A$ 中的 $L$ 和 $A$ 都改变。如果长度是原来的三倍，那么为使体积 $AL$ 保持不变，面积必须是多少？",
+    "solution": "18 Ω"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2446582",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistivity-table",
+   "prompt": "在表 20.1 所列的三种半导体材料中，杂质在哪些材料里提供自由电荷？（提示：查看每种材料的电阻率范围，并判断纯半导体的电导率较高还是较低。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "锗和硅。在这两种材料中，纯材料的电阻率都是其范围中的最高值，所以杂质只能使它降低。表 20.1 给出纯锗为 600 × 10⁻³ Ω·m，而其范围为 (1 至 600) × 10⁻³ Ω·m；纯硅为 2300 Ω·m，而其范围为 0.1 至 2300 Ω·m。因此含杂质的材料导电性更好，锗最多可好 600 倍，硅最多可好 23 000 倍，而这只能是因为杂质自己提供了自由电荷。碳则相反：纯碳的 3.5 × 10⁻⁵ Ω·m 处在其范围 (3.5 至 60) × 10⁻⁵ Ω·m 的最低端，所以杂质使它成为较差的导体，而不是较好的导体。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1575560",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "物体的电阻是否取决于电流通过它所走的路径？例如，考虑一根长方形的棒——它沿长度方向的电阻与沿宽度方向的电阻相同吗？（见下图。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "取决于。电阻不只是物体本身的性质，而是物体连同电流被要求走的路径一起决定的，因为 $\\kRes = \\rho L/A$ 需要一个长度和一个面积，二者都沿该路径量取。沿棒的长度方向，长度是长的那个尺寸，面积是小的端面，因此电阻大。沿宽度方向，长度短，面积是大的侧面，因此电阻小。两种情形中材料相同，所以电阻率相同，这正是本书列表给出的是电阻率而不是电阻的原因。"
+   },
+   "figure": {
+    "src": "/media/ch20/Figure_21_03_04a.jpg",
+    "alt": "图的 a 部分显示用电池沿长方形棒的长度方向施加电压 V。电流从正极流出，沿长方形棒的长度方向通过，进入电池负极。长方形棒沿长度方向的电阻标为 R，电流标为 I。图的 b 部分显示用电池沿同一长方形棒的宽度方向施加电压 V。电流从正极流出，沿长方形棒的宽度方向通过，进入电池负极。长方形棒沿宽度方向的电阻标为 R 撇，电流标为 I 撇。",
+    "caption": "电流沿两条不同路径通过同一物体，遇到的电阻会不同吗？"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2452298",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistivity-table",
+   "prompt": "长度相同的铝导线和铜导线电阻相同，哪一根的直径更大？为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "铝导线。由 $\\kRes = \\rho L/A$ 可知，长度相同、电阻相同的两根导线，其面积之比等于电阻率之比。表 20.1 给出铝为 2.65 × 10⁻⁸ Ω·m，铜为 1.72 × 10⁻⁸ Ω·m，所以铝的电阻率约为铜的 1.54 倍，铝导线所需的横截面积约为铜导线的 1.54 倍。由于面积与直径的平方成正比，它的直径必须是铜导线的约 $\\sqrt{1.54}$ 倍，即约 1.24 倍。电阻率较大的材料必须做得更粗，才能同样容易地载运电流。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1404656",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "解释为什么用于物体电阻 $\\kRes$ 随温度变化的 $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$，不如给出电阻率 $\\rho$ 随温度变化的 $\\rho = \\rho_0(1 + \\alpha\\kdTemp)$ 准确。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电阻率的表达式含有一个近似，电阻的表达式含有两个。第一个近似是电阻率随温度线性变化，这在约 100 °C 或更小的变化范围内成立得很好，超出后就差一些。电阻的表达式还假定物体受热时长度和横截面积保持不变，因为 $\\kRes = \\rho L/A$ 同时依赖这两者。实际上物体是会膨胀的。第二个近似很温和，因为线胀系数比典型的电阻率温度系数约小两个数量级，所以它的误差约为效应本身的百分之一。不过，温和不等于没有：在综合概念习题中，计入灯丝的热膨胀会使答案改变百分之三。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2442974",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "一段长 20.0 m、直径 2.053 mm 的 12 号铜线，其电阻是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.104,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "先由直径求横截面积 $A = \\pi \\kD^2/4$，并从表 20.1 中取铜的电阻率。",
+    "solution": "0.104 Ω"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2668793",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "material-and-shape",
+   "prompt": "如果灯泡中直径为 0.010 mm 的钨丝在 $20.00^\\circ\\text{C}$ 时的电阻要达到 0.200 Ω，它应该多长？",
+   "answer": {
+    "type": "number",
+    "value": 0.000281,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "把 $\\kRes = \\rho L/A$ 改写以求长度，并记住直径是以毫米给出的，而电阻率的单位是欧姆米。",
+    "solution": "$2.81\\times 10^{-4}$ m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2396605",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistivity-table",
+   "prompt": "当对一根直径为 2.54 cm、长 20.0 cm 的纯硅棒施加 $1.00\\times 10^{3}$ V 的电压时，有多大电流通过它？（例如，这样的棒可用来制作核粒子探测器。）",
+   "answer": {
+    "type": "number",
+    "value": 0.0011,
+    "unit": "A",
+    "generated_by": "source",
+    "hint": "分两步：先由 $\\kRes = \\rho L/A$ 和表 20.1 中纯硅的电阻率求棒的电阻，再用欧姆定律。",
+    "solution": "$1.10\\times 10^{-3}$ A"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2681436",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "一个由镍铬合金导线制成的电阻器，用在这样一种场合：其电阻相对于 $20.0^\\circ\\text{C}$ 时的值变化不得超过 1.00%。它可以在多大的温度范围内使用？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-5^\\circ\\text{C}$ 至 $45^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3201853",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "一台设计为可在 $-10.0^\\circ\\text{C}$ 至 $55.0^\\circ\\text{C}$ 范围内任何温度下工作的电子设备中含有纯碳电阻器。在这一范围内，它们的电阻增大为原来的多少倍？",
+   "answer": {
+    "type": "number",
+    "value": 1.03,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "由 $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$ 求出这一范围两端的电阻，其中纯碳的系数取自表 20.2，再用较大的值除以较小的值。注意系数的符号。",
+    "solution": "1.03"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3103900",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "假设电阻率温度系数为常数，一根从 $20.0^\\circ\\text{C}$ 开始的康铜导线，其电阻最大能减小百分之几？",
+   "answer": {
+    "type": "number",
+    "value": 0.06,
+    "unit": "%",
+    "generated_by": "source",
+    "hint": "康铜的系数为正，所以电阻在导线可能达到的最低温度时最小。任何东西最冷能冷到多少？",
+    "solution": "0.06%"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2448773",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "一根铜导线在 $20.0^\\circ\\text{C}$ 时的电阻为 $0.500\\;\\Omega$，一根铁导线在同一温度下的电阻为 $0.525\\;\\Omega$。在什么温度下它们的电阻相等？",
+   "answer": {
+    "type": "number",
+    "value": -17,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "对每根导线写出 $\\kRes = \\kReso(1 + \\alpha\\kdTemp)$，其中 $\\kdTemp$ 相同，令两个表达式相等并解出 $\\kdTemp$。铁的系数较大，所以两条曲线在低于 20 °C 处相交。",
+    "solution": "$-17^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3189568",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resistance-with-temperature",
+   "prompt": "<strong>综合概念</strong>（a）重做例题 20.6，计入钨丝的热膨胀。你可以假设热膨胀系数为 $12\\times 10^{-6}/^\\circ\\text{C}$。（b）你的答案与例题中的答案相差百分之几？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 4.7,
+      "unit": "Ω",
+      "hint": "灯丝受热时变长也变粗。$\\kRes = \\rho L/A$ 中的 $L$ 和 $A$ 都改变，而面积与线度膨胀的平方成正比。"
+     },
+     {
+      "part": "b",
+      "value": 3.0,
+      "unit": "%",
+      "hint": "把你刚求出的电阻与例题中的 4.8 Ω 比较。"
+     }
+    ],
+    "solution": "（a）4.7 Ω（总值）  （b）减小 3.0%"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "resistivity"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "resistance-of-cylinder",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "resistivity"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "resistance-of-cylinder",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "conductors-semiconductors-insulators"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "resistivity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "resistivity-and-temperature",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "resistance-of-cylinder",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "p1",
+   "concept": "resistivity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "p2",
+   "concept": "resistivity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "resistance-of-cylinder"
+  },
+  {
+   "exercise": "p3",
+   "concept": "conductors-semiconductors-insulators",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "ohms-law",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p4",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p5",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p6",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p7",
+   "concept": "temperature-coefficient-of-resistivity",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "resistance-and-temperature"
+  },
+  {
+   "exercise": "p8",
+   "concept": "resistance-of-cylinder",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "cylinder",
+   "label": "图 20.10 中的均匀圆柱体",
+   "figures": [
+    "sim-cylinder"
+   ]
+  },
+  {
+   "id": "mercury",
+   "label": "汞样品",
+   "figures": [
+    "sim-mercury-superconductor"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-ap4-wire",
+   "kind": "correction",
+   "html": "本书要求的是 1 Ω 导线的电阻率。另一根导线是 11 Ω 的那根，书后答案求出的是它的电阻率：$(11/3)(2.65\\times 10^{-8}\\ \\Omega\\cdot\\text{m}) = 9.72\\times 10^{-8}\\ \\Omega\\cdot\\text{m}$。"
+  }
+ ]
+}

@@ -1,0 +1,788 @@
+{
+ "id": "22.5",
+ "module": "m42375",
+ "chapter": "22",
+ "title": "磁场中运动电荷所受的力：实例与应用",
+ "short": "运动电荷所受的力：应用",
+ "lead": "运动电荷所受的<span data-concept=\"force\">磁力</span>总是与其<span data-concept=\"velocity\">速度</span>成直<span data-concept=\"angle\">角</span>，所以它能使粒子转向，却不能使粒子加速或减速。本节追踪这种转向带来的结果，从气泡室的弯曲径迹和极光的螺旋，到大气层之上<span data-ref=\"inner-belt outer-belt\">被捕获粒子形成的辐射带</span>，以及为把粒子束或等离子体约束在原处而建造的磁场。",
+ "objectives": [
+  "描述磁场对运动电荷的作用。",
+  "计算在磁场中运动的电荷的路径的曲率半径。"
+ ],
+ "summary_html": "<ul><li>磁力可以提供<span data-concept=\"centripetal-force\">向心力</span>，使带电粒子沿半径为$$\\kr = \\frac{m\\kv}{\\kq\\kBmag},$$的圆形路径运动，其中 $\\kv$ 是<span data-concept=\"velocity\">速度</span>垂直于 $\\kBmag$ 的分量，该带电粒子的<span data-concept=\"mass\">质量</span>为 <em>m</em>、电荷为 <em>q</em>。</li></ul>",
+ "notes": "略去了六道习题。其中五道书中没有给出答案：把质子保持在 0.800 m 的圆上所需的磁感应强度、氧-16 离子的电荷、速度选择器的磁感应强度和电压、质子与电子之间的四项比较，以及铀同位素的分离。第六道要求求出电子在与该质子相同的磁场中运动的半径，也随之略去，因为书中没有给出质子所需的磁场，没有它就无法读懂这道题。本节唯一的 AP 题问的是载流导线所受力的方向，因此把它放在引入这种力的“载流导体所受的磁力”一节。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。有五道习题没有给出答案，因而略去：把质子保持在 0.800 m 的圆上的磁场、氧-16 离子的电荷、速度选择器、质子与电子之间的四项比较，以及铀同位素的分离；要求求出电子在与该质子相同的磁场中的半径的那道有答案的习题也随之略去，因为它所需的磁场正是书中从未给出的答案。七道思考题在书中没有答案，因此每一道都作为开放式题目保留，并附有 AI 撰写的建议思路；其中两道的习题卡片上带有本书自己的插图，第三道问的是其中第二幅插图，因此也配上了该图。本节唯一的 AP 题放在“载流导体所受的磁力”一节，source_section 记为 22.5，因为载流导线所受的力是那一节的结果。",
+ "figures": [
+  {
+   "id": "sim-circle-radius",
+   "kind": "sim",
+   "number": "22.18",
+   "folds": [
+    "22.19"
+   ],
+   "originals": [
+    "/media/ch22/Figure_23_05_01a.jpg",
+    "/media/ch22/Figure_23_05_02a.jpg"
+   ],
+   "original_caption": "（图 22.18）在这幅由画家绘制的气泡室图中，高能带电粒子穿过过热液氢，留下一串串气泡径迹。有一个垂直于纸面的强磁场，使粒子的路径发生弯曲。路径的半径可用来求出粒子的质量、电荷和能量。（图 22.19）一个带负电的粒子在纸面内运动，所在区域的磁场垂直纸面向里（用带 x 的小圆圈表示——就像箭尾）。磁力垂直于速度，所以速度的方向改变而大小不变。结果是匀速圆周运动。",
+   "widths": [
+    250,
+    400
+   ],
+   "draws": [
+    "magnetic-field",
+    "velocity",
+    "force",
+    "charge",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "velocity arrow turned to the way the charge goes, notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-isotope-arcs",
+   "kind": "sim",
+   "draws": [
+    "magnetic-field",
+    "velocity",
+    "charge",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "canvas note dropped, readout note cut to the radii"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-spiral-mirror",
+   "kind": "sim",
+   "number": "22.20",
+   "folds": [
+    "22.21"
+   ],
+   "originals": [
+    "/media/ch22/Figure_23_05_03a.jpg",
+    "/media/ch22/Figure_23_05_04a.jpg"
+   ],
+   "original_caption": "（图 22.20）侧视图，显示磁体接触计算机显示器或电视屏幕时发生的情形。朝屏幕运动的电子绕磁感线作螺旋运动，同时保持其速度平行于磁感线的分量。这使屏幕上的图像失真。（图 22.21）当带电粒子沿磁感线进入磁场变强的区域时，粒子受到一个力，使其速度平行于磁场的分量减小。这个力使沿磁感线的运动变慢，并在此处使之反向，形成“磁镜”。",
+   "widths": [
+    350,
+    250
+   ],
+   "draws": [
+    "magnetic-field",
+    "velocity",
+    "force",
+    "charge",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-earth-trap",
+   "kind": "sim",
+   "number": "22.22",
+   "folds": [
+    "22.23"
+   ],
+   "originals": [
+    "/media/ch22/Figure_23_05_05a.jpg",
+    "/media/ch22/Figure_23_05_06a.jpg"
+   ],
+   "original_caption": "（图 22.22）来自太阳和遥远外层空间的高能电子和质子是宇宙线的组成部分，它们常常沿着地球的磁感线运动，而不是穿过磁感线。（回想一下，就条形磁铁而言，地球的磁北极实际上是一个南极。）（图 22.23）范艾仑带是两个区域，其中高能带电粒子被捕获在地磁场中。一条辐射带位于地球表面上方约 300 km 处，另一条约在 16,000 km 处。这些辐射带中的带电粒子沿磁感线迁移，并被两极附近较强的磁场部分地反射离开两极。进入大气层的带电粒子由太阳和遥远外层空间的来源补充。",
+   "widths": [
+    300,
+    300
+   ],
+   "draws": [
+    "magnetic-field",
+    "velocity",
+    "angle"
+   ],
+   "conventions": [
+    "p+"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "legend clear of field lines, particle as a dropdown, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-fermilab",
+   "kind": "photo",
+   "number": "22.24",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-tokamak",
+   "kind": "sim",
+   "number": "22.25",
+   "originals": [
+    "/media/ch22/Figure_23_05_08a.jpg"
+   ],
+   "original_caption": "像图中所示的这种托卡马克正在被研究，目标是通过核聚变经济地生产能量。甜甜圈形装置中的磁场约束并引导起反应的带电粒子。（来源：David Mellis，Flickr）",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "magnetic-field",
+    "velocity",
+    "charge",
+    "position"
+   ],
+   "conventions": [
+    "p+"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "canvas note dropped, headline says radius, note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "curved-paths",
+   "concept": "magnetic-force-does-no-work",
+   "verb": "introduces"
+  },
+  {
+   "span": "curved-paths",
+   "concept": "circular-motion-in-a-magnetic-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "curved-paths",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "curved-paths",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "curved-paths",
+   "concept": "uniform-circular-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "curved-paths",
+   "concept": "centripetal-force-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "radius",
+   "concept": "radius-of-curvature",
+   "verb": "introduces"
+  },
+  {
+   "span": "radius",
+   "concept": "circular-motion-in-a-magnetic-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "radius",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "radius",
+   "concept": "centripetal-force-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "spirals",
+   "concept": "spiral-along-field-lines",
+   "verb": "introduces"
+  },
+  {
+   "span": "spirals",
+   "concept": "magnetic-mirror",
+   "verb": "introduces"
+  },
+  {
+   "span": "spirals",
+   "concept": "radius-of-curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "spirals",
+   "concept": "magnetic-force-on-a-moving-charge",
+   "verb": "reinforces"
+  },
+  {
+   "span": "confinement",
+   "concept": "magnetic-confinement",
+   "verb": "introduces"
+  },
+  {
+   "span": "confinement",
+   "concept": "magnetic-mirror",
+   "verb": "reinforces"
+  },
+  {
+   "span": "confinement",
+   "concept": "radius-of-curvature",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1900640",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curved-paths",
+   "prompt": "如何利用带电粒子的运动来区分磁场和电场？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "看速率发生了什么变化。电场对电荷施加沿电场方向的力 $\\kq\\kEf$，不论电荷在做什么，所以这个力可以沿运动方向起作用而改变速率。在电场中由静止释放的电荷会沿直线开始运动。磁场施加的力 $\\kq\\kv\\kBmag\\sin\\ktheta$ 总是垂直于速度，所以它不做功，不改变动能和速率，只使路径转向。静止在磁场中的电荷根本不受力，而横穿磁场运动的电荷则以恒定的速率沿圆运动。因此，沿直线加速或减速的粒子遇到的是电场，而保持速率不变、弯成圆或螺旋的粒子遇到的是磁场。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1172179",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spirals",
+   "prompt": "高速带电粒子会损伤生物细胞，是从研究设施到自然本底等各种场所中辐射照射的一个组成部分。请描述如何利用磁场来保护自己。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用一个磁场把要保护的空间包围起来，磁感线的方向要横穿粒子飞来的方向。必须穿过磁感线的带电粒子会弯成半径为 $\\kr = \\km\\kv/\\kq\\kBmag$ 的圆。如果磁场足够强，使这个半径比磁场区域的厚度小得多，粒子就会在穿过之前折返，永远到不了你这里。地球在中纬度正是这样做的，那里入射的宇宙线必须穿过磁感线，其中许多永远到不了大气层。屏蔽作用在沿磁场本身的方向上最弱，因为沿磁感线运动的粒子不受力，所以要布置磁场，使它不留下这样的通路。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2017025",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spirals",
+   "prompt": "如果一个宇宙线质子从外层空间沿着指向地心的直线飞向地球，且这条直线位于赤道平面内，它会被地磁场向什么方向偏转？电子呢？中子呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在赤道上空，地磁场指向北方，而质子向内运动，也就是朝地心向下运动。用右手定则 1，四指沿速度方向并向磁场方向弯曲，得到正电荷所受的力指向东方，所以质子向东偏转。电子带相反的电荷，同一定则给出相反的方向，所以它向西偏转。中子不带电，而电荷所受的磁力与该电荷成正比，所以中子根本不受磁力，径直前进。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1466692",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curved-paths",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_01a.jpg",
+    "alt": "示意图，磁感线垂直纸面向里。各电荷从图的下方向上方运动，因此垂直于磁感线。电荷 a 向左弯曲。电荷 b 沿直线从下向上运动。电荷 c 向右弯曲。"
+   },
+   "prompt": "下图中各粒子所带电荷的正负是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "磁场垂直纸面向里，三个粒子都沿纸面向上运动。对于在垂直纸面向里的磁场中向上运动的正电荷，右手定则 1 给出向左的力，所以向左弯曲的粒子 a 带正电。粒子 c 向右弯曲，方向相反，所以它带负电。粒子 b 完全没有偏转，而三者的速率和磁场相同，不受磁力的唯一办法是不带电：粒子 b 呈电中性。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1222134",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_02a.jpg",
+    "alt": "示意图，磁感线垂直纸面向外。电荷 a 从图的下方向上方运动，沿顺时针方向弯曲，半径较大。电荷 b 从图的中下部向中上部运动，沿顺时针方向弯曲，半径小得多。"
+   },
+   "prompt": "假设下图中的粒子电荷和质量都相同，哪个粒子的速度最大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "粒子 a，即弧线较宽的那个。圆的半径为 $\\kr = \\km\\kv/\\kq\\kBmag$，所以在质量、电荷和磁场都相同时，半径与速率成正比。因此路径弯曲得最小的粒子速率最大。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2746930",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "figure": {
+    "src": "/media/ch22/Figure_23_99_02a.jpg",
+    "alt": "示意图，磁感线垂直纸面向外。电荷 a 从图的下方向上方运动，沿顺时针方向弯曲，半径较大。电荷 b 从图的中下部向中上部运动，沿顺时针方向弯曲，半径小得多。"
+   },
+   "prompt": "假设所有粒子的电荷和速度都相同，上图中哪个粒子的质量最大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "仍然是粒子 a，理由相同，只是反过来读。在 $\\kr = \\km\\kv/\\kq\\kBmag$ 中，当速率、电荷和磁场保持不变时，半径与质量成正比，所以质量较大的粒子就是沿较宽的弧线转弯的那个。质谱仪测量的正是这一点：固定速率、电荷和磁场，路径的半径就是质量的读数。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2083803",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "一台高精度电视显示器在工作时，维修期间被侧放。显示器上的图像变色并略微模糊。讨论这些效应与地磁场的可能关系。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "图像是由穿过显像管的电子画出来的，地磁场会把它们弯成半径为 $\\kr = \\km\\kv/\\kq\\kBmag$ 的圆弧，就像贴在玻璃上的磁体所做的那样，只是温和得多，因为地磁场大约比永磁体的磁场弱一万倍。关键在于只有速度垂直于磁场的分量才会被弯曲。把显示器侧放，使电子束相对于地磁场转了向，于是这一分量改变，电子束落点就与之前略有不同。由于三种颜色由三束电子产生，每束电子必须打在各自的荧光粉点上，所以哪怕只有很小的偏移，也会使图像模糊并使各色套准不良。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1702844",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "一个宇宙线电子以 $7.50 \\times 10^{6}\\ \\text{m/s}$ 的速率垂直于地磁场运动，所在高度处的磁感应强度为 $1.00 \\times 10^{-5}\\ \\text{T}$。该电子沿圆形路径运动的半径是多少？",
+   "answer": {
+    "type": "number",
+    "value": 4.27,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "路径的半径为 $\\kr = m\\kv/\\kq\\kBmag$。代入电子的质量 $9.11 \\times 10^{-31}$ kg 和电荷 $1.60 \\times 10^{-19}$ C，再代入给定的速率和磁感应强度。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1649236",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "（a）<em>《星际迷航》</em>的观众听说过“<em>企业号</em>”星舰上的反物质驱动器。这种未来能源的一种可能方式，是把反物质带电粒子储存在真空室中，让它们在磁场中循环运动，然后按需取出。反物质与普通物质湮灭，产生纯能量。要把以 $5.00 \\times 10^{7}\\ \\text{m/s}$ 的速率沿半径为 2.00 m 的圆形路径运动的反质子保持住，需要多大磁感应强度的磁场？反质子的质量与质子相同，但电荷相反（为负）。（b）这样的磁感应强度用今天的技术能得到，还是只是一种未来的可能？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.261,
+      "unit": "T",
+      "hint": "对磁感应强度解 $\\kr = m\\kv/\\kq\\kBmag$，得 $\\kBmag = m\\kv/\\kq\\kr$。反质子的质量与质子相同，为 $1.67 \\times 10^{-27}$ kg，所带电荷的大小与电子的相同。"
+     }
+    ],
+    "solution": "（a）0.261 T。（b）这样的强度用今天的技术肯定能得到。用永磁体就能得到 0.500 T 的磁感应强度。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1411417",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curved-paths",
+   "prompt": "电视 CRT 中的一个电子以 $6.00 \\times 10^{7}\\ \\text{m/s}$ 的速率运动，运动方向垂直于地磁场，该磁场的磁感应强度为 $5.00 \\times 10^{-5}\\ \\text{T}$。（a）必须垂直于地磁场施加多大场强的电场，才能使电子沿直线运动？（b）如果这是在相距 1.00 cm 的两块极板之间进行的，所加的电压是多少？（注意，电视机通常被铁磁材料包围，以屏蔽外部磁场，从而避免需要这样的修正。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3000,
+      "unit": "V/m",
+      "hint": "要使路径保持为直线，电场力必须与磁力平衡，所以 $\\kq\\kEf = \\kq\\kv\\kBmag$，电荷约去。"
+     },
+     {
+      "part": "(b)",
+      "value": 30,
+      "unit": "V",
+      "hint": "平行极板之间的电场，其场强等于电压除以间距，所以电压等于场强乘以 1.00 cm。"
+     }
+    ],
+    "solution": "（a）3.00 kV/m（b）30.0 V"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1515291",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radius",
+   "prompt": "一台质谱仪正被用来把常见的氧-16 与稀少得多的氧-18 分开，样品取自古老的冰川冰。（这两种氧同位素的相对丰度与冰沉积时的气候温度有关。）这两种离子的质量之比为 16 比 18，氧-16 的质量为 $2.66 \\times 10^{-26}\\ \\text{kg},$ 它们都是一价的，以 $5.00 \\times 10^{6}\\ \\text{m/s}$ 的速率在 1.20 T 的磁场中运动。它们走过一个半圆后撞击靶，两条路径之间的间距是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.173,
+    "unit": "m",
+    "generated_by": "source",
+    "hint": "每个离子走过半个圆，所以它落在距入射点 $2\\kr$ 的地方。对每种质量算出 $\\kr = m\\kv/\\kq\\kBmag$，再取两个半径之差的两倍。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "magnetic-force-does-no-work"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "force-from-electric-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "magnetic-mirror",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "right-hand-rule-1"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "force-reverses-with-sign-of-charge"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "right-hand-rule-1"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "force-reverses-with-sign-of-charge"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "circular-motion-in-a-magnetic-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "spiral-along-field-lines"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "radius-of-curvature",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "p2",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "p2",
+   "concept": "circular-motion-in-a-magnetic-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "magnetic-force-on-a-moving-charge"
+  },
+  {
+   "exercise": "p3",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "p3",
+   "concept": "force-from-electric-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "p4",
+   "concept": "circular-motion-in-a-magnetic-field",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "oxygen-16",
+   "label": "氧-16 离子",
+   "figures": [
+    "sim-isotope-arcs"
+   ]
+  },
+  {
+   "id": "heavy-ion",
+   "label": "较重的离子",
+   "figures": [
+    "sim-isotope-arcs"
+   ]
+  },
+  {
+   "id": "source",
+   "label": "离子源",
+   "figures": [
+    "sim-isotope-arcs"
+   ]
+  },
+  {
+   "id": "magnet",
+   "label": "贴在屏幕上的磁体",
+   "figures": [
+    "sim-spiral-mirror"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-earth-trap"
+   ]
+  },
+  {
+   "id": "inner-belt",
+   "label": "内范艾仑带",
+   "figures": [
+    "sim-earth-trap"
+   ]
+  },
+  {
+   "id": "outer-belt",
+   "label": "外范艾仑带",
+   "figures": [
+    "sim-earth-trap"
+   ]
+  },
+  {
+   "id": "chamber",
+   "label": "托卡马克的真空室",
+   "figures": [
+    "sim-tokamak"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "radius-in-magnetic-field",
+   "what": "带电粒子在磁场中所做圆周运动的半径",
+   "source": "《大学物理（第2版）》，22.5 磁场中运动电荷所受的力：实例与应用",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "磁力提供向心力。",
+       "src": "22.5"
+      },
+      {
+       "tex": "\\kF = \\kq\\kv\\kBmag",
+       "src": "22.5"
+      },
+      {
+       "tex": "\\kFc = \\dfrac{\\km\\kv^2}{\\kr}",
+       "src": "6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{Fc}{\\kFc}",
+      "src": "22.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kq\\kv\\kBmag} = \\mk{Fc}{\\kFc}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kq\\kv\\kBmag} = \\mk{Fc}{\\dfrac{\\km\\kv^2}{\\kr}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kr} = \\dfrac{\\mk{Fc}{\\km\\kv}}{\\mk{F}{\\kq\\kBmag}}",
+       "uses": []
+      }
+     ],
+     "src": "22.5"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,629 @@
+{
+ "id": "29.8",
+ "module": "m42581",
+ "chapter": "29",
+ "title": "波粒二象性回顾",
+ "short": "波粒二象性回顾",
+ "lead": "每个粒子都具有波动性，无论是像光子那样没有质量，还是像电子那样有<span data-concept=\"mass\">质量</span>；不过，有质量的粒子的大量组合几乎不显示波动性，而光子的大量组合则主要表现为波动行为。本节最后是把光子与前面各章的原理结合起来的习题，首先是<span data-ref=\"dust\">一粒尘埃</span>吸收<span data-ref=\"photon\">单个光子</span>后的反冲。",
+ "objectives": [
+  "解释波粒二象性的概念及其适用范围。"
+ ],
+ "summary_html": "<ul><li>波粒二象性指的是这样一个事实：所有粒子——有<span data-concept=\"mass\">质量</span>的和没有<span data-concept=\"mass\">质量</span>的——都具有波动特性。</li><li>这是<span data-concept=\"mass\">质量</span>与<span data-concept=\"energy\">能量</span>之间的又一种联系。</li></ul>",
+ "notes": "图 29.24 和图 29.25 照书中原样保留，因为它们可能表现的变化已在“光子动量”和“物质的波动性”中以实时图示的方式画出。十六道习题中有七道没有给出答案，因而略去：电子通过 1.00 nm 的单缝、微波炉和意大利面、来自斯坦福直线加速器的电子、电子显微镜的圆孔、照射在金属钙上的激光、1.00 fm 的光子，以及太阳帆。书中把批判性思考一题（a）部分的答案印作“1.21 kg × 10⁻²⁷ m/s”，这里照印；书中的角度用序数符号印出，这里排作度的符号。与前面各章的联系只作纯文本。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十六道习题中有七道没有给出答案，因而略去，它们在本节的说明中列出。批判性思考一题在书中列于习题之下而未归类，这里设为习题。要求解释或回答是否的部分，答案在解答中给出，不判分。思考题和第二道 AP 题没有给出答案，附有标明由 AI 生成的建议思路；第二道 AP 题依赖前一节的不确定性原理，因此也标记到那一节。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "photo-duality-particles",
+   "kind": "photo",
+   "number": "29.24",
+   "widths": [
+    150
+   ]
+  },
+  {
+   "id": "photo-duality-classical",
+   "kind": "photo",
+   "number": "29.25",
+   "widths": [
+    250
+   ]
+  },
+  {
+   "id": "sim-dust-recoil",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "velocity",
+    "position",
+    "mass"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "before-state note that repeated the headline dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "particles-with-and-without-mass",
+   "concept": "particle-wave-duality-universal",
+   "verb": "introduces"
+  },
+  {
+   "span": "particles-with-and-without-mass",
+   "concept": "classical-limit-of-duality",
+   "verb": "introduces"
+  },
+  {
+   "span": "particles-with-and-without-mass",
+   "concept": "de-broglie-wavelength",
+   "verb": "reinforces"
+  },
+  {
+   "span": "integrated-concepts",
+   "concept": "integrated-quantum-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrated-concepts",
+   "concept": "photon-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "integrated-concepts",
+   "concept": "photon-momentum-conservation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id3000369",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "particles-with-and-without-mass",
+   "prompt": "下列哪一项描述了波粒二象性的主要特征之一？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "随着速率增大，物质的波动性变得更加明显。",
+     "随着动量减小，物质的粒子性变得更加明显。",
+     "随着能量增大，物质的波动性变得更容易观察。",
+     "随着质量增大，物质的波动性变得更不容易观察。"
+    ],
+    "correct": 3,
+    "hint": "波长为 $\\klam = h/\\kp$，所以想一想动量变大，也就是质量变大，会对它产生什么影响。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2679541",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "particles-with-and-without-mass",
+   "prompt": "解释为什么海森伯不确定性原理限制了亚原子粒子的动量或位置能够被精确知道的程度，而在宏观层面上对物质却不再那么适用。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "粒子有波长 $\\klam = h/\\kp$，要确定它的位置，就必须用波长很短的东西去探测它，而这种东西携带很大的动量，会扰动粒子。因此，两个不确定度的乘积不可能小于 $h/4\\pi$：$\\kdx\\,\\kdp \\ge h/4\\pi$。对于原子中的电子，这个限度与这些量本身一样大，所以我们无法精确知道位置或动量。然而，普朗克常量非常小，因此对于质量很大的宏观物体，速度的不确定度 $\\Delta v = \\kdp/m$ 远低于我们能够测量的任何程度。它的波动性小到无法观察，所以该原理在那里不构成实际的限制。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1296598",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "particles-with-and-without-mass",
+   "prompt": "物质与能量之间有哪些联系，是在相对论和量子力学发展之前不为人所知的？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "相对论表明，质量是能量的一种形式，其静能为 $mc^2$，因此质量可以转化为其他形式的能量，也可以转化回来。量子力学表明，电磁辐射中的能量以光子的形式出现，光子是携带量子化能量 $h\\kf$ 和动量 $h/\\klam$ 的粒子，尽管它们没有质量；而物质反过来具有波动性，其波长为 $h/\\kp$。因此物质和能量都表现出波粒二象性，这是它们之间的又一种联系。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1550693",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> 例题 29.7 中的 54.0 eV 电子的波长为 0.167 nm。如果让这样的电子通过双缝，其一级极大出现在 $25.0^\\circ$ 角处，缝间距 $\\kd$ 是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.395,
+    "generated_by": "source",
+    "hint": "产生相长干涉的双缝条件 $\\kd\\sin\\theta = m\\klam$ 对电子和对光一样成立；取 $m = 1$。",
+    "solution": "0.395 nm",
+    "unit": "nm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1557935",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> 某加热灯发射 200 W 的辐射，以红外为主，平均波长为 1500 nm。（a）平均光子能量是多少焦耳？（b）假设受影响部分的质量为 4.0 kg，比热容为 $0.83\\;\\text{kcal/kg}\\cdot{}^\\circ\\text{C}$，要使一个人肩部的温度升高 $2.0^\\circ\\text{C}$，需要多少个这样的光子？另外假设没有其他显著的热传递。（c）这需要多长时间？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the average photon energy",
+      "value": 1.3e-19,
+      "hint": "用 $\\kE = hc/\\klam$。",
+      "unit": "J"
+     },
+     {
+      "part": "(b) the number of photons",
+      "value": 2.1e+23,
+      "hint": "求出以焦耳计的热量 $Q = mc\\Delta T$，其中 1 kcal = 4186 J，再除以一个光子的能量。"
+     },
+     {
+      "part": "(c) the time",
+      "value": 140.0,
+      "hint": "灯每秒提供 200 J；用热量除以功率。",
+      "unit": "s"
+     }
+    ],
+    "solution": "（a）$1.3\\times 10^{-19}\\;\\text{J}$ （b）$2.1\\times 10^{23}$ （c）$1.4\\times 10^{2}\\;\\text{s}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2684418",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> （a）把 1.00 kg 的汤从 $20.0^\\circ\\text{C}$ 加热到 $100^\\circ\\text{C}$，需要多少焦耳的微波能量？（b）完成这件事所需的全部微波光子的总动量是多少？（c）求具有相同动量的 1.00 kg 质量的速度。（d）这个质量的动能是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the energy",
+      "value": 335000.0,
+      "hint": "把汤当作水，比热容取 1.00 kcal/kg·°C，并用 $Q = mc\\Delta T$。",
+      "unit": "J"
+     },
+     {
+      "part": "(b) the total momentum",
+      "value": 0.00112,
+      "hint": "对光子有 $\\kp = \\kE/\\kc$，这对所有光子的总能量同样成立。",
+      "unit": "kg·m/s"
+     },
+     {
+      "part": "(c) the velocity",
+      "value": 0.00112,
+      "hint": "用 1.00 kg 的质量去除动量。",
+      "unit": "m/s"
+     },
+     {
+      "part": "(d) the kinetic energy",
+      "value": 6.23e-07,
+      "hint": "用 $\\frac{1}{2}m\\kv^2$。",
+      "unit": "J"
+     }
+    ],
+    "solution": "（a）$3.35\\times 10^{5}\\;\\text{J}$ （b）$1.12\\times 10^{-3}\\;\\text{kg}\\cdot\\text{m/s}$ （c）$1.12\\times 10^{-3}\\;\\text{m/s}$ （d）$6.23\\times 10^{-7}\\;\\text{J}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1305461",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> （a）费米实验室的加速器产生的、能量为 1.00 TeV 的质子，其 $\\gamma$ 是多少？（b）求它的动量。（c）质子的波长是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) γ",
+      "value": 1060.0,
+      "hint": "总能量为 $\\gamma mc^2$；用 1.00 TeV 除以质子的静能 938 MeV。"
+     },
+     {
+      "part": "(b) the momentum",
+      "value": 5.33e-16,
+      "hint": "在这个能量下静能可以忽略，所以 $\\kp \\approx \\kE/\\kc$。",
+      "unit": "kg·m/s"
+     },
+     {
+      "part": "(c) the wavelength",
+      "value": 1.24e-18,
+      "hint": "用 $\\klam = h/\\kp$。",
+      "unit": "m"
+     }
+    ],
+    "solution": "（a）$1.06\\times 10^{3}$ （b）$5.33\\times 10^{-16}\\;\\text{kg}\\cdot\\text{m/s}$ （c）$1.24\\times 10^{-18}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1737477",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> （a）求电子的速度，这些电子通过双缝时形成的图样与 450 nm 的光相同。（b）求各自的动能并加以比较。（c）两者之中哪一个更容易产生？请解释。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the electrons’ velocity",
+      "value": 1620.0,
+      "hint": "图样相同意味着波长相同，所以 $\\kv = h/m\\klam$。",
+      "unit": "m/s"
+     },
+     {
+      "part": "(b) the photon’s energy",
+      "value": 4.42e-19,
+      "hint": "用 $\\kE = hc/\\klam$。",
+      "unit": "J"
+     },
+     {
+      "part": "(b) the electron’s kinetic energy",
+      "value": 1.19e-24,
+      "hint": "用 $\\frac{1}{2}m\\kv^2$ 和（a）问中求得的速率。",
+      "unit": "J"
+     }
+    ],
+    "solution": "（a）$1.62\\times 10^{3}\\;\\text{m/s}$ （b）光子为 $4.42\\times 10^{-19}\\;\\text{J}$，电子为 $1.19\\times 10^{-24}\\;\\text{J}$，光子的能量大 $3.71\\times 10^{5}$ 倍 （c）光更容易产生，因为 450 nm 的光是蓝光，很容易产生。产生能量为 $7.43\\;\\mu\\text{eV}$ 的电子并不困难，但需要真空。"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1323508",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> （a）要使 650 nm 的光在 $45.0^\\circ$ 处产生二级极小，双缝的间距应是多少？（b）要用 1.00 keV 的质子产生同样的图样，需要多大的缝间距。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the slit separation for light",
+      "value": 2.3e-06,
+      "hint": "极小满足 $\\kd\\sin\\theta = (m + \\frac{1}{2})\\klam$；二级极小对应 $m = 1$。",
+      "unit": "m"
+     },
+     {
+      "part": "(b) the slit separation for protons",
+      "value": 3.2e-12,
+      "hint": "由 $\\text{KE} = \\kp^2/2m$ 求质子的动量，由 $\\klam = h/\\kp$ 求它们的波长，再按波长之比缩放缝间距。",
+      "unit": "m"
+     }
+    ],
+    "solution": "（a）$2.30\\times 10^{-6}\\;\\text{m}$ （b）$3.20\\times 10^{-12}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id1383708",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> X 射线的一个问题是人感觉不到它们。计算在下列条件下，一位研究人员在几秒内意外受到近乎致命剂量的 X 射线照射后的温度升高。X 射线光子的能量为 200 keV，每千克组织吸收 $4.00\\times 10^{13}$ 个光子，组织的比热容为 $0.830\\;\\text{kcal/kg}\\cdot{}^\\circ\\text{C}$。（注意，医用诊断 X 射线机<em>不能</em>产生这么大的强度。）",
+   "answer": {
+    "type": "number",
+    "value": 0.000369,
+    "generated_by": "source",
+    "hint": "把每千克吸收的能量换算成焦耳，再用 $Q = mc\\Delta T$，其中 1 kcal = 4186 J。",
+    "solution": "$3.69\\times 10^{-4}\\;{}^\\circ\\text{C}$",
+    "unit": "°C"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1262888",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>综合概念</strong> 光从镜子正对着反射回去时，其动量恰好反向，假设镜子的反冲可以忽略。因此动量的变化是光子动量的两倍。设强度为 $1.00\\;\\text{kW/m}^2$ 的光从面积为 $2.00\\;\\text{m}^2$ 的镜子上反射。（a）求 1.00 s 内反射的能量。（b）传给镜子的动量是多少？（c）用牛顿第二定律的最一般形式，镜子受到的力是多少？（d）不计镜子反冲的假设看起来合理吗？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the energy",
+      "value": 2.0,
+      "hint": "强度是单位面积的功率；乘以面积和时间。",
+      "unit": "kJ"
+     },
+     {
+      "part": "(b) the momentum",
+      "value": 1.33e-05,
+      "hint": "光的动量为 $\\kE/\\kc$，正对着反射回去，镜子得到的是它的两倍。",
+      "unit": "kg·m/s"
+     },
+     {
+      "part": "(c) the force",
+      "value": 1.33e-05,
+      "hint": "力等于动量的变化除以发生这一变化所用的 1.00 s。",
+      "unit": "N"
+     }
+    ],
+    "solution": "（a）2.00 kJ （b）$1.33\\times 10^{-5}\\;\\text{kg}\\cdot\\text{m/s}$ （c）$1.33\\times 10^{-5}\\;\\text{N}$ （d）合理"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "exer-00001",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrated-concepts",
+   "prompt": "<strong>批判性思考</strong> 一个波长为 550.0 nm 的光子与一个电子发生碰撞。普朗克常量取 $6.63\\times 10^{-34}\\;\\text{m}^2\\;\\text{kg/s}$。（a）光子在碰撞前的动量是多少？（b）如果离开碰撞的光子的波长为 650.0 nm，此时光子的动量是多少？（c）动量必须在每个方向上都守恒吗？（d）较长的波长意味着比较短的波长更大还是更小的动量？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the momentum before",
+      "value": 1.21e-27,
+      "hint": "用 $\\kp = h/\\klam$。",
+      "unit": "kg·m/s"
+     },
+     {
+      "part": "(b) the momentum after",
+      "value": 1.02e-27,
+      "hint": "用 $\\kp = h/\\klam$，波长取新的值。",
+      "unit": "kg·m/s"
+     }
+    ],
+    "solution": "（a）$\\kp=\\frac{h}{\\klam}=\\frac{6.63\\times 10^{-34}}{550\\times 10^{-9}}\\;\\text{kg m/s}=1.21\\;\\text{kg}\\times 10^{-27}\\;\\text{m/s}$ （b）$\\kp=\\frac{h}{\\klam}=\\frac{6.63\\times 10^{-34}}{650\\times 10^{-9}}\\;\\text{kg m/s}=1.02\\times 10^{-27}\\;\\text{kg m/s}$ （c）是的，动量守恒适用。 （d）波长较长的光子的动量比波长较短的光子小。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "particle-wave-duality-universal",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "classical-limit-of-duality",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "de-broglie-wavelength",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "classical-limit-of-duality",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "position-momentum-uncertainty",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "uncertainty-negligible-for-large-objects",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "particle-wave-duality-universal",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "de-broglie-wavelength",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "photon-energy-from-wavelength",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "photons-per-second",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "photon-momentum-and-energy",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "de-broglie-wavelength",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "photon-momentum-and-energy",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "de-broglie-wavelength",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "photon-energy-from-wavelength",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "de-broglie-wavelength",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "photon-energy",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "photon-momentum-conservation",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "photon-momentum-and-energy",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "integrated-quantum-problem",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "photon-momentum",
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "compton-effect",
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "photon",
+   "label": "550 nm 的光子",
+   "figures": [
+    "sim-dust-recoil"
+   ]
+  },
+  {
+   "id": "dust",
+   "label": "尘埃颗粒",
+   "figures": [
+    "sim-dust-recoil"
+   ]
+  }
+ ]
+}

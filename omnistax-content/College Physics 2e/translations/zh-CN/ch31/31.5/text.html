@@ -1,0 +1,130 @@
+<section id="lifetimes">
+<h2>原子核的寿命</h2>
+<p class="cite-target">不稳定的原子核会<span data-concept="nuclear-decay">衰变</span>。不过，有些<span data-concept="nuclide">核素</span><span data-concept="nuclear-decay">衰变</span>得比另一些快。例如，居里夫妇发现的镭和钋，就比铀<span data-concept="nuclear-decay">衰变</span>得快。这意味着它们的寿命更短，从而有更大的<span data-concept="activity">衰变率</span>。本节我们探讨<span data-concept="half-life">半衰期</span>和<span data-concept="activity">活度</span>，它们分别是寿命和<span data-concept="activity">衰变率</span>的定量说法。</p>
+</section>
+
+<section id="half-life">
+<h2>半衰期</h2>
+<p class="cite-target">为什么用<span data-concept="half-life">半衰期</span>这样的词，而不用寿命？答案可以在图 31.19 中找到，该图表示样品中<span data-concept="radioactive">放射性</span>原子核的数目如何随<span data-concept="time">时间</span>减少。<em>原来的原子核有一半发生<span data-concept="nuclear-decay">衰变</span>所用的<span data-concept="time">时间</span></em>，定义为<strong><span data-concept="half-life">半衰期</span></strong> $\kthalf$。剩下的原子核中，又有一半在下一个<span data-concept="half-life">半衰期</span>内<span data-concept="nuclear-decay">衰变</span>。再进一步，这部分的一半又在随后的<span data-concept="half-life">半衰期</span>内<span data-concept="nuclear-decay">衰变</span>。因此，<span data-concept="radioactive">放射性</span>原子核的数目在一个<span data-concept="half-life">半衰期</span>内从 $N$ 减少到 $N/2$，在下一个半衰期内减少到 $N/4$，再下一个减少到 $N/8$，依此类推。如果 $N$ 很大，那么要经过<em>许多</em>个<span data-concept="half-life">半衰期</span>（而不只是两个），所有原子核才会<span data-concept="nuclear-decay">衰变</span>完。核<span data-concept="nuclear-decay">衰变</span>是纯统计过程的一个例子。<span data-concept="half-life">半衰期</span>的更精确定义是：<em>每个<span data-concept="nucleus">原子核</span>有 50% 的概率存活的<span data-concept="time">时间</span>等于一个<span data-concept="half-life">半衰期</span> $\kthalf$</em>。因此，只要 $N$ 足够大，原来的原子核就有一半在一个<span data-concept="half-life">半衰期</span>的<span data-concept="time">时间</span>内<span data-concept="nuclear-decay">衰变</span>。如果某个<span data-concept="nucleus">原子核</span>熬过了这段<span data-concept="time">时间</span>，它仍有 50% 的概率再存活一个<span data-concept="half-life">半衰期</span>。即使它碰巧熬过了数百个<span data-concept="half-life">半衰期</span>，它仍有 50% 的概率再多存活一个。无论你从哪个时刻开始计数，<span data-concept="nuclear-decay">衰变</span>的概率都是一样的。这就像随机掷硬币。无论之前发生过什么，出现正面的概率都是 50%。</p>
+<figure class="sim" id="sim-decay-curve" data-figure="31.19" data-original="/media/ch31/Figure_32_05_01a.jpg" data-original-width="300" data-original-caption="放射性衰变使放射性原子核的数目随时间减少。在一个半衰期 t½ 内，数目减少到原来数值的一半。剩下的原子核中又有一半在下一个半衰期内衰变，再下一个半衰期内又衰变其中的一半，依此类推。这是一种指数式衰减，从表示存在的原子核数目随时间变化的图线可以看出。">
+  <div class="sim-head"><span class="eyebrow">Figure 31.19</span><span>含 $N_0$ 个放射性原子核的样品在衰变：实心的原子核尚未衰变，空心的已经衰变。无论年龄多大，每个原子核在每个<span data-concept="half-life">半衰期</span> $\kthalf$ 内都有 50% 的概率存活，剩下的原子核数目画在光滑的指数曲线 $N = N_0e^{-\klamdec\kt}$ 旁边。每次运行都抽取一份新的样品。把 $N_0$ 往下拖，原子核数目就在曲线附近起伏；拖动<span data-concept="half-life">半衰期</span>，曲线就被拉伸，因为<span data-concept="half-life">半衰期</span>越短，<span data-concept="decay-constant">衰变常量</span> $\klamdec$ 越大，衰变也越快。</span></div>
+</figure>
+<p>各种<span data-concept="nuclide">核素</span>的<span data-concept="half-life">半衰期</span>范围极其宽广，最不稳定的短至 <span data-type="time">$10^{-23}$ s</span>，最稳定的长达 <span data-type="time">$10^{16}$ y</span> 以上，相差约 46 个<span data-concept="order-of-magnitude">数量级</span>。<span data-concept="half-life">半衰期</span>最短的<span data-concept="nuclide">核素</span>，是那些核<span data-concept="force">力</span>吸引作用最弱的，这表明核<span data-concept="force">力</span>在多大程度上取决于<span data-concept="neutron">中子</span>和<span data-concept="proton">质子</span>的特定组合。<span data-concept="half-life">半衰期</span>的概念也适用于其他亚原子粒子，这将在“粒子物理学”中讨论。它也适用于<span data-concept="atom">原子</span>和原子核中激发态的衰变。下面的方程给出了零<span data-concept="time">时刻</span>存在的原子核的原始数目（$N_0$）与较后<span data-concept="time">时刻</span> $\kt$ 的数目（$N$）之间的定量关系：</p>
+$$N = N_0e^{-\klamdec\kt},$$
+<p>其中 $e = 2.71828\ldots$ 是自然对数的底，$\klamdec$ 是该<span data-concept="nuclide">核素</span>的<strong><span data-concept="decay-constant">衰变常量</span></strong>。<span data-concept="half-life">半衰期</span>越短，$\klamdec$ 的值越大，指数 $e^{-\klamdec\kt}$ 随<span data-concept="time">时间</span>减小得越快。<span data-concept="decay-constant">衰变常量</span> $\klamdec$ 与<span data-concept="half-life">半衰期</span> $\kthalf$ 之间的关系是</p>
+$$\klamdec = \frac{\ln(2)}{\kthalf} \approx \frac{0.693}{\kthalf}.$$
+<p>要看出原子核的数目如何在一个<span data-concept="half-life">半衰期</span>内减少到原来数值的一半，只需在方程 $N = N_0e^{-\klamdec\kt}$ 的指数中令 $\kt = \kthalf$。这样得到 $N = N_0e^{-\klamdec\kt} = N_0e^{-0.693} = 0.500N_0$。对于整数个<span data-concept="half-life">半衰期</span>，你可以直接把原来的数目一次又一次地除以 2，而不必使用指数关系。例如，如果过去了十个<span data-concept="half-life">半衰期</span>，我们就把 $N$ 除以 2 十次，这样它就减小到 $N/1024$。对于任意的<span data-concept="time">时间</span>，而不只是<span data-concept="half-life">半衰期</span>的整数倍，就必须使用指数关系。</p>
+</section>
+
+<section id="radioactive-dating">
+<p class="cite-target"><strong><span data-concept="radioactive-dating-technique">放射性鉴年法</span></strong>是对天然存在的<span data-concept="nuclear-radioactivity">放射性</span>的巧妙利用。它最著名的应用是<strong><span data-concept="carbon-14-dating">碳-14 鉴年法</span></strong>。碳-14 的<span data-concept="half-life">半衰期</span>为 <span data-type="time">5730 年</span>，它产生于太阳<span data-concept="neutrino">中微子</span><sup class="fn" data-note="c-c14-neutrons"></sup>撞击大气中的 ${}^{14}\text{N}$ 时引发的核反应。<span data-concept="radioactive">放射性</span>碳与稳定的碳具有相同的化学性质，因此它混入生态圈，被生物摄取，成为每一个生物体的一部分。碳-14 在普通碳中的丰度为万亿分之 1.3。因此，如果你知道一件物体中碳原子核的数目（也许是由<span data-concept="mass">质量</span>和阿伏伽德罗常量求得），就把这个数乘以 $1.3\times 10^{-12}$，得到该物体中 ${}^{14}\text{C}$ 原子核的数目。生物体死亡后，与环境的碳交换停止，${}^{14}\text{C}$ 在<span data-concept="nuclear-decay">衰变</span>的同时得不到补充。把一件文物（如木乃伊裹布）中 ${}^{14}\text{C}$ 的丰度与活组织中的正常丰度相比较，就可以确定该文物的年代（即<span data-type="time">自死亡以来的<span data-concept="time">时间</span></span>）。<span data-concept="carbon-14-dating">碳-14 鉴年法</span>可用于年代久远至 <span data-type="time">5 万或 6 万年</span>的生物组织，但对较年轻的样品最为准确，因为其中 ${}^{14}\text{C}$ 原子核的丰度更大。非常古老的生物材料根本不含 ${}^{14}\text{C}$。在有些情形下，文物的年代可以用其他方法确定，例如历史知识或数树的年轮。这些相互参照证实了<span data-concept="carbon-14-dating">碳-14 鉴年法</span>的有效性，也使我们得以校准这种技术。<span data-concept="carbon-14-dating">碳-14 鉴年法</span>使考古学的一些领域发生了革命性的变化，其重要性之大，使它的发明者、美国化学家威拉德·利比（1908–1980）获得了 1960 年诺贝尔化学奖。</p>
+<p>关于<span data-concept="carbon-14-dating">碳-14 鉴年法</span>，最著名的案例之一涉及都灵裹尸布，这是一块长长的织物，据称是耶稣的裹尸布（见图 31.20）。这件圣物于 1354 年首次在都灵展出，当时就被一位法国主教斥为骗局。它上面有一个显然是被钉上十字架的身体的奇特负像印迹，与当时被接受的耶稣形象相似，因此这块裹尸布从未被完全弃置不顾，几个世纪以来一直存在争议。直到 1988 年才用<span data-concept="carbon-14-dating">碳-14 鉴年法</span>测定这块裹尸布的年代，那时这一过程已经改进到只需破坏少量材料的程度。样品在三个独立的实验室中检测，每个实验室拿到四块布，其中只有一块来自裹尸布，且未标明出处，以避免先入之见。三个实验室都发现，裹尸布样品所含的 ${}^{14}\text{C}$ 是活组织中 ${}^{14}\text{C}$ 的 92%，这使得裹尸布的年代得以测定（见例题 31.4）。</p>
+<figure class="photo" id="photo-shroud" data-figure="31.20">
+  <img src="/media/ch31/Figure_32_05_02a.jpg" data-width="250" alt="图中显示了耶稣的两幅图像。左图非常模糊，几乎看不见，右图则清晰得多。">
+  <figcaption><span class="eyebrow">Figure 31.20</span><span>都灵裹尸布的一部分，上面有耶稣的奇特负像印迹，连钉十字架所留伤口的痕迹也俱全。这块裹尸布于 14 世纪首次出现，直到最近才做了碳-14 鉴年。这幅图像是怎样印到布上的，至今没有定论。（来源：Butko, Wikimedia Commons）</span></figcaption>
+</figure>
+</section>
+
+<section id="shroud-example">
+<h3>例题 31.4 · 都灵裹尸布有多古老？</h3>
+<p class="cite-target">计算都灵裹尸布的年代，已知其中发现的 ${}^{14}\text{C}$ 的量是活组织中的 92%。</p>
+<h4>思路</h4>
+<p>已知 ${}^{14}\text{C}$ 剩下 92%，意味着 $N/N_0 = 0.92$。因此，可以用方程 $N = N_0e^{-\klamdec\kt}$ 求出 $\klamdec\kt$。我们还知道 ${}^{14}\text{C}$ 的<span data-concept="half-life">半衰期</span>是 <span data-type="time">5730 y</span>，所以一旦知道了 $\klamdec\kt$，就可以用方程 $\klamdec = \frac{0.693}{\kthalf}$ 求出 $\klamdec$，再按要求求出 $\kt$。在这里，我们假设 ${}^{14}\text{C}$ 的减少完全是由于核<span data-concept="nuclear-decay">衰变</span>。</p>
+<h4>解</h4>
+<p>把方程 $N = N_0e^{-\klamdec\kt}$ 对 $N/N_0$ 求解，得到</p>
+$$\frac{N}{N_0} = e^{-\klamdec\kt}.$$
+<p>因此，</p>
+$$0.92 = e^{-\klamdec\kt}.$$
+<p>对方程两边取自然对数，得到</p>
+$$\ln 0.92 = -\klamdec\kt$$
+<p>于是</p>
+$$-0.0834 = -\klamdec\kt.$$
+<p>整理，把 $\kt$ 单独解出，得到</p>
+$$\kt = \frac{0.0834}{\klamdec}.$$
+<p>现在，可以用方程 $\klamdec = \frac{0.693}{\kthalf}$ 求出 ${}^{14}\text{C}$ 的 $\klamdec$。解出 $\klamdec$ 并代入已知的<span data-concept="half-life">半衰期</span>，得到</p>
+$$\klamdec = \frac{0.693}{\kthalf} = \frac{0.693}{5730\;\text{y}}.$$
+<p>我们把这个值代入前面的方程来求 $\kt$：</p>
+$$\kt = \frac{0.0834}{\frac{0.693}{5730\;\text{y}}} = 690\;\text{y}.$$
+<h4>讨论</h4>
+<p>这就把裹尸布中的材料定在 1988–690 = 公元 1300 年。我们的计算只精确到两位数字，所以年份取整为 1300。三个独立实验室得到的数值，加权平均后的年代为公元 $1320 \pm 60$ 年。这一<span data-concept="uncertainty">不确定度</span>是<span data-concept="carbon-14-dating">碳-14 鉴年法</span>的典型情形，其原因在于活组织中 ${}^{14}\text{C}$ 的量很少、可用的材料数量有限，以及实验的<span data-concept="uncertainty">不确定度</span>（通过三次独立测量而减小）。裹尸布的年代与它最早的存在记录相符，而与耶稣生活的时期不符，这一点是有意义的。</p>
+</section>
+
+<section id="rock-dating">
+<p class="cite-target">还有其他形式的<span data-concept="radioactive-dating-technique">放射性鉴年法</span>。例如，岩石有时可以根据 ${}^{238}\text{U}$ 的<span data-concept="nuclear-decay">衰变</span>来测定年代。${}^{238}\text{U}$ 的<span data-concept="decay-series">衰变系</span>终止于 ${}^{206}\text{Pb}$，因此岩石中这两种<span data-concept="nuclide">核素</span>的比值，表明了岩石凝固至今有多长时间。必须有相当把握地知道岩石最初的成分，例如其中不含铅。不过，与<span data-concept="carbon-14-dating">碳-14 鉴年法</span>一样，这种技术可以用一整套相互一致的知识来验证。由于 ${}^{238}\text{U}$ 的<span data-concept="half-life">半衰期</span>为 <span data-type="time">$4.5\times 10^{9}$ y</span>，它只适用于对非常古老的材料鉴年，例如表明地球上最古老的岩石大约在 <span data-type="time">$3.5\times 10^{9}$ 年前</span>凝固。</p>
+</section>
+
+<section id="activity">
+<h2>活度，即衰变率</h2>
+<p class="cite-target">说一个放射源的<span data-concept="radioactive">放射性</span>很强，是什么意思？一般来说，这是指单位<span data-concept="time">时间</span>内的<span data-concept="nuclear-decay">衰变</span>次数非常多。我们把<strong><span data-concept="activity">活度</span></strong> $\kRact$ 定义为以单位<span data-concept="time">时间</span>内的<span data-concept="nuclear-decay">衰变</span>次数表示的<strong><span data-concept="activity">衰变率</span></strong>。写成方程就是</p>
+$$\kRact = \frac{\Delta N}{\kdt}$$
+<p>其中 $\Delta N$ 是在<span data-concept="time">时间</span> $\kdt$ 内发生的<span data-concept="nuclear-decay">衰变</span>次数。<span data-concept="activity">活度</span>的 SI 单位是每<span data-concept="second">秒</span>一次<span data-concept="nuclear-decay">衰变</span>，为纪念<span data-concept="nuclear-radioactivity">放射性</span>的发现者，被命名为<strong><span data-concept="becquerel">贝可勒尔</span></strong>（Bq）。也就是说，</p>
+$$1\;\text{Bq} = 1\;\text{衰变/s}.$$
+<p><span data-concept="activity">活度</span> $\kRact$ 常用其他<span data-concept="units">单位</span>表示，例如每分钟的<span data-concept="nuclear-decay">衰变</span>次数或每年的<span data-concept="nuclear-decay">衰变</span>次数。<span data-concept="activity">活度</span>最常用的<span data-concept="units">单位</span>之一是<strong><span data-concept="curie">居里</span></strong>（Ci），其定义是 1 g ${}^{226}\text{Ra}$ 的<span data-concept="activity">活度</span>，以纪念玛丽·居里对镭的研究工作。<span data-concept="curie">居里</span>的定义是</p>
+$$1\;\text{Ci} = 3.70\times 10^{10}\;\text{Bq},$$
+<p>或<span data-type="activity">每<span data-concept="second">秒</span> $3.70\times 10^{10}$ 次<span data-concept="nuclear-decay">衰变</span></span>。一<span data-concept="curie">居里</span>是<span data-concept="activity">活度</span>的大单位，而一<span data-concept="becquerel">贝可勒尔</span>则是相对较小的单位。$1\;\text{MBq} = 100\;\text{微居里}\;(\mu\text{Ci})$。在澳大利亚和新西兰这类更多遵循 <span data-concept="si-units">SI 单位</span>的国家，大多数<span data-concept="radioactive">放射</span>源，例如用于医学诊断或<span data-concept="physics">物理学</span>实验室的，都以 Bq 或兆贝可勒尔（MBq）标示。</p>
+<p>凭直觉，你会预期一个源的<span data-concept="activity">活度</span>取决于两件事：存在的<span data-concept="radioactive">放射性</span>物质的量，以及它的<span data-concept="half-life">半衰期</span>。样品中存在的<span data-concept="radioactive">放射性</span>原子核越多，单位<span data-concept="time">时间</span>内<span data-concept="nuclear-decay">衰变</span>的就越多。对于给定的原子核数目，<span data-concept="half-life">半衰期</span>越短，单位<span data-concept="time">时间</span>内的<span data-concept="nuclear-decay">衰变</span>就越多。所以，<span data-concept="activity">活度</span> $\kRact$ 应当与<span data-concept="radioactive">放射性</span>原子核的数目 $N$ 成正比，与它们的<span data-concept="half-life">半衰期</span> $\kthalf$ 成反比。事实上，你的直觉是对的。可以证明，一个源的<span data-concept="activity">活度</span>为</p>
+$$\kRact = \frac{0.693N}{\kthalf}$$
+<p>其中 $N$ 是存在的、<span data-concept="half-life">半衰期</span>为 $\kthalf$ 的<span data-concept="radioactive">放射性</span>原子核的数目。这一关系在各种计算中很有用，下面两个例题就说明了这一点。</p>
+</section>
+
+<section id="carbon-activity-example">
+<h3>例题 31.5 · 活组织中 ¹⁴C 的活度有多大？</h3>
+<p class="cite-target">计算活生物体中 1.00 kg 碳里 ${}^{14}\text{C}$ 所产生的<span data-concept="activity">活度</span>。以 Bq 和 Ci 为<span data-concept="units">单位</span>表示该<span data-concept="activity">活度</span>。</p>
+<h4>思路</h4>
+<p>要用方程 $\kRact = \frac{0.693N}{\kthalf}$ 求<span data-concept="activity">活度</span> $\kRact$，我们必须知道 $N$ 和 $\kthalf$。${}^{14}\text{C}$ 的<span data-concept="half-life">半衰期</span>可以在附录 B 中查到，前面也已给出为 <span data-type="time">5730 y</span>。要求 $N$，我们先利用<span data-concept="mole">摩尔</span>的概念，求出 1.00 kg 碳中 ${}^{12}\text{C}$ 原子核的数目。如前所述，然后乘以 $1.3\times 10^{-12}$（活生物体碳样品中 ${}^{14}\text{C}$ 的丰度），得到活生物体中 ${}^{14}\text{C}$ 原子核的数目。</p>
+<h4>解</h4>
+<p>1 <span data-concept="mole">摩尔</span>碳的<span data-concept="mass">质量</span>为 12.0 g，因为它几乎是纯的 ${}^{12}\text{C}$。（1 <span data-concept="mole">摩尔</span>的<span data-concept="mass">质量</span>以克为单位，在数值上等于元素周期表中的 $A$。）因此，一<span data-concept="kilogram">千克</span>中碳原子核的数目为</p>
+$$N({}^{12}\text{C}) = \frac{6.02\times 10^{23}\;\text{mol}^{-1}}{12.0\;\text{g/mol}}\times(1000\;\text{g}) = 5.02\times 10^{25}.$$
+<p>所以 1 kg 碳中 ${}^{14}\text{C}$ 原子核的数目为</p>
+$$N({}^{14}\text{C}) = (5.02\times 10^{25})(1.3\times 10^{-12}) = 6.52\times 10^{13}.$$
+<p>现在用方程 $\kRact = \frac{0.693N}{\kthalf}$ 求<span data-concept="activity">活度</span> $\kRact$。</p>
+<p>代入已知数值，得到</p>
+$$\kRact = \frac{0.693(6.52\times 10^{13})}{5730\;\text{y}} = 7.89\times 10^{9}\;\text{y}^{-1},$$
+<p>或<span data-type="activity">每年 $7.89\times 10^{9}$ 次<span data-concept="nuclear-decay">衰变</span></span>。要把它换算成 Bq 这个单位，只需把年换算成<span data-concept="second">秒</span>。于是，</p>
+$$\kRact = (7.89\times 10^{9}\;\text{y}^{-1})\frac{1.00\;\text{y}}{3.16\times 10^{7}\;\text{s}} = 250\;\text{Bq},$$
+<p>或<span data-type="activity">每<span data-concept="second">秒</span> 250 次<span data-concept="nuclear-decay">衰变</span></span>。要把 $\kRact$ 用<span data-concept="curie">居里</span>表示，我们用<span data-concept="curie">居里</span>的定义，</p>
+$$\kRact = \frac{250\;\text{Bq}}{3.7\times 10^{10}\;\text{Bq/Ci}} = 6.76\times 10^{-9}\;\text{Ci}.$$
+<p>因此，</p>
+$$\kRact = 6.76\;\text{nCi}.$$
+<h4>讨论</h4>
+<p>我们自己的身体含有数<span data-concept="kilogram">千克</span>碳，想到我们体内正在发生<span data-type="activity">每<span data-concept="second">秒</span>数百次 ${}^{14}\text{C}$ <span data-concept="nuclear-decay">衰变</span></span>，真是耐人寻味。碳-14 和我们体内其他天然存在的<span data-concept="radioactive">放射性</span>物质，对我们所受的本底<span data-concept="background-radiation">辐射</span>有贡献。本例中一<span data-concept="kilogram">千克</span>碳每<span data-concept="second">秒</span>的<span data-concept="nuclear-decay">衰变</span>次数很少，由此你可以体会到，要在一小块材料样品中探测 ${}^{14}\text{C}$ 是多么困难。如果一<span data-concept="kilogram">千克</span>中<span data-type="activity">每<span data-concept="second">秒</span>有 250 次<span data-concept="nuclear-decay">衰变</span></span>，那么活组织中一克碳里就<span data-type="activity">每<span data-concept="second">秒</span>有 0.25 次<span data-concept="nuclear-decay">衰变</span></span>。要观察到这一点，你必须能把<span data-concept="nuclear-decay">衰变</span>与其他形式的<span data-concept="nuclear-radiation">辐射</span>区分开来，以降低背景噪声。对于古老的组织样品，这就更困难了，因为它含的 ${}^{14}\text{C}$ 更少；而对于 <span data-type="time">5 万年</span>以上的样品，这就不可能了。</p>
+</section>
+
+<section id="artificial-radioactivity">
+<p class="cite-target">人造（即人工）<span data-concept="nuclear-radioactivity">放射性</span>已经产生了几十年，用途很多。其中包括治疗癌症的医学疗法、医学成像与诊断，以及用辐照保存食品。许多应用以及<span data-concept="nuclear-radiation">辐射</span>的生物效应，将在“核物理学的医学应用”中探讨，但很明显，<span data-concept="nuclear-radiation">辐射</span>是有危害的。这方面有不少悲惨的例子，最严重的灾难之一是乌克兰切尔诺贝利反应堆群的堆芯熔化和起火（见图 31.21）。数种<span data-concept="radioactive">放射性</span><span data-concept="isotopes">同位素</span>被大量释放出来，污染了数千平方千米的土地，直接影响了数十万人。最主要的释放物是 ${}^{131}\text{I}$、${}^{90}\text{Sr}$、${}^{137}\text{Cs}$、${}^{239}\text{Pu}$、${}^{238}\text{U}$ 和 ${}^{235}\text{U}$。据估计，释放的<span data-concept="nuclear-radiation">辐射</span>总量约为 <span data-type="activity">1 亿<span data-concept="curie">居里</span></span>。</p>
+</section>
+
+<section id="human-medical">
+<h2>人体与医学方面的应用</h2>
+<figure class="photo" id="photo-chernobyl" data-figure="31.21">
+  <img src="/media/ch31/Figure_32_05_03a.jpg" data-width="250" alt="一个人拿着手持式辐射探测器，站在切尔诺贝利反应堆附近。">
+  <figcaption><span class="eyebrow">Figure 31.21</span><span>切尔诺贝利反应堆。堆芯熔化后不久就有 100 多人死亡，将来还会有数千人死于辐射致癌。这次事故虽然是由一连串人为失误造成的，但清理行动是英勇的。当场死亡的大多是消防员和反应堆工作人员。（来源：Elena Filatova）</span></figcaption>
+</figure>
+</section>
+
+<section id="chernobyl-example">
+<h3>例题 31.6 · 切尔诺贝利泄漏了多少质量的 ¹³⁷Cs？</h3>
+<p class="cite-target">据估计，切尔诺贝利灾难向环境中释放了 <span data-type="activity">6.0 MCi</span> 的 ${}^{137}\text{Cs}$。计算所释放的 ${}^{137}\text{Cs}$ 的<span data-concept="mass">质量</span>。</p>
+<h4>思路</h4>
+<p>如果能先求出所释放的原子核数目 $N$，我们就可以利用阿伏伽德罗常量和<span data-concept="mole">摩尔</span>的概念算出所释放的<span data-concept="mass">质量</span>。由于<span data-concept="activity">活度</span> $\kRact$ 已经给出，而 ${}^{137}\text{Cs}$ 的<span data-concept="half-life">半衰期</span>在附录 B 中查得为 <span data-type="time">30.2 y</span>，所以我们可以用方程 $\kRact = \frac{0.693N}{\kthalf}$ 求出 $N$。</p>
+<h4>解</h4>
+<p>把方程 $\kRact = \frac{0.693N}{\kthalf}$ 对 $N$ 求解，得到</p>
+$$N = \frac{\kRact\kthalf}{0.693}.$$
+<p>代入给定的数值，得到</p>
+$$N = \frac{(6.0\;\text{MCi})(30.2\;\text{y})}{0.693}.$$
+<p>把<span data-concept="curie">居里</span>换算成<span data-concept="becquerel">贝可勒尔</span>，把年换算成<span data-concept="second">秒</span>，我们得到</p>
+$$\begin{array}{lll}N & = & \frac{(6.0\times 10^{6}\;\text{Ci})(3.7\times 10^{10}\;\text{Bq/Ci})(30.2\;\text{y})(3.16\times 10^{7}\;\text{s/y})}{0.693} \\ & = & 3.1\times 10^{26}.\end{array}$$
+<p>1 <span data-concept="mole">摩尔</span><span data-concept="nuclide">核素</span> ${}^{A}X$ 的<span data-concept="mass">质量</span>为 $A$ 克，所以 1 <span data-concept="mole">摩尔</span> ${}^{137}\text{Cs}$ 的<span data-concept="mass">质量</span>为 137 g。1 <span data-concept="mole">摩尔</span>含有 $6.02\times 10^{23}$ 个原子核。因此，所释放的 ${}^{137}\text{Cs}$ 的<span data-concept="mass">质量</span>为</p>
+$$\begin{array}{lll}\km & = & \left(\frac{137\;\text{g}}{6.02\times 10^{23}}\right)(3.1\times 10^{26}) = 70\times 10^{3}\;\text{g} \\ & = & 70\;\text{kg}.\end{array}$$
+<h4>讨论</h4>
+<p>虽然与发电厂的燃料量相比，<span data-type="mass">70 kg 材料</span>可能不算很大的<span data-concept="mass">质量</span>，但它的<span data-concept="radioactive">放射性</span>极强，因为它只有 <span data-type="time">30 年的<span data-concept="half-life">半衰期</span></span>。<span data-type="activity">六兆居里（6.0 MCi）</span>是非同寻常的<span data-concept="activity">活度</span>，但只是核反应堆所产生的活度的一小部分。切尔诺贝利事故中还释放了类似数量的其他<span data-concept="isotopes">同位素</span>。虽然发生这种灾难的可能性看上去也许很小，但后果极其严重，需要比当时所用的更加谨慎。下一章将进一步谈到反应堆的安全设计，但应当指出，较新的反应堆在设计上从根本上更安全。</p>
+</section>
+
+<section id="activity-decays">
+<p class="cite-target"><span data-concept="activity">活度</span> $\kRact$ 随<span data-concept="time">时间</span>减小，在一个<span data-concept="half-life">半衰期</span>内降到原来数值的一半，在下一个<span data-concept="half-life">半衰期</span>内降到原来数值的四分之一，依此类推。由于 $\kRact = \frac{0.693N}{\kthalf}$，<span data-concept="activity">活度</span>随<span data-concept="radioactive">放射性</span>原子核数目的减少而减小。把方程 $N = N_0e^{-\klamdec\kt}$ 与 $\kRact = \frac{0.693N}{\kthalf}$ 结合起来，就得到 $\kRact$ 随<span data-concept="time">时间</span>变化的方程，即</p>
+$$\kRact = \kRoact e^{-\klamdec\kt},$$
+<p>其中 $\kRoact$ 是 $\kt = 0$ 时的<span data-concept="activity">活度</span>。这个方程表明<span data-concept="radioactive">放射性</span>原子核的指数<span data-concept="nuclear-decay">衰减</span>。例如，如果一个源最初具有 <span data-type="activity">1.00 mCi 的<span data-concept="activity">活度</span></span>，它在一个<span data-concept="half-life">半衰期</span>后降到 <span data-type="activity">0.500 mCi</span>，两个<span data-concept="half-life">半衰期</span>后降到 <span data-type="activity">0.250 mCi</span>，三个<span data-concept="half-life">半衰期</span>后降到 <span data-type="activity">0.125 mCi</span>，依此类推。对于不是整数个<span data-concept="half-life">半衰期</span>的<span data-concept="time">时间</span>，必须用方程 $\kRact = \kRoact e^{-\klamdec\kt}$ 求 $\kRact$。</p>
+<figure class="sim" id="sim-carbon-dating">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>碳-14 鉴年法，读自 ${}^{14}\text{C}$ 的衰变曲线，其<span data-concept="half-life">半衰期</span>为 <span data-type="time">5730 y</span>。拖动样品仍保有的活组织 ${}^{14}\text{C}$ 的比例 $N/N_0$，就可以在下方读出它的年代 $\kt$，并在右侧读出其一千克碳的<span data-concept="activity">活度</span> $\kRact$，它沿着同一条曲线，从活组织的 <span data-type="activity">250 Bq</span> 下降。裹尸布的 92% 已标出。剩下很少的地方曲线几乎是平的，所以测量值的一个小误差就会使年代移动数千年。</span></div>
+</figure>
+</section>

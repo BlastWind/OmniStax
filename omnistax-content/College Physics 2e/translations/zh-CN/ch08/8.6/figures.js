@@ -1,0 +1,326 @@
+/* Figures for section 8.6 Collisions of Point Masses in Two Dimensions.
+   Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['8.6'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, curve, choice, hover } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- shared helpers ---------- */
+const RAD = Math.PI / 180, TAU = 2 * Math.PI;
+const sgn = (v) => (v < 0 ? '−' : '');
+/* a signed number with a proper minus sign, since fmt writes a hyphen */
+const num = (v, d) => sgn(v) + fmt(Math.abs(v), d);
+/* the model clock: the incoming object travels for TA, then both travel for TB */
+const TA = 1.6, TB = 1.2, TTOT = TA + TB;
+
+/* a puck, a ball or a nucleus, centered on (x, y) */
+function disc(ctx, x, y, r, color, filled) {
+  ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = color; ctx.fillStyle = filled ? color : PAL.panel;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+}
+/* the radius that shows a mass without swamping the scene */
+const rad = (m) => Math.max(11, Math.min(26, 15 * Math.cbrt(m / 0.25)));
+/* the angle from the x-axis round to th degrees, its name queued with the figure's labeller */
+function angleArc(ctx, x, y, r, th, label, lab) { F.angleArc(ctx, { x, y }, r, 0, th * RAD, label, lab, C('angle')); }
+/* one bar of a ledger, growing right from (x, y) */
+function bar(ctx, x, y, w, h, color, a) {
+  ctx.save(); ctx.fillStyle = alpha(color, a); ctx.strokeStyle = color; ctx.lineWidth = 2.5;
+  const l = Math.min(x, x + w), ww = Math.abs(w);
+  ctx.fillRect(l, y - h / 2, ww, h); ctx.strokeRect(l, y - h / 2, ww, h); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 8.10: the two-dimensional collision and the coordinate system.
+   One object slides in along the x-axis and strikes another at rest; the
+   reader sets the two scattering angles and the conservation equations
+   give the two final speeds. The ledger beside the scene adds the
+   components up. The collision takes time, so the figure runs it once
+   per loop and takes the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-scatter', 700);
+  const M1 = 0.250;                                   /* the incoming mass, as in Example 8.7 */
+  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 4, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: '入射物体的速率' });
+  const t1 = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: '碰撞后入射物体的角' });
+  const t2 = ctl(d.controls, { label: '\\kthetatwo', cls: 'angle', min: -80, max: -10, step: 0.5, value: -48.5, unit: '°', dec: 1, onInput: reset, aria: '碰撞后被击物体的角' });
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: '被击物体的质量' });
+  /* the momentum labels would ride objects that move, so the kind is named once beside the scene and
+     each object gives its name and momentum under the pointer (rule 26.7) */
+  let hits = [];
+  hover(d.stage, () => hits);
+  /* the two conservation equations, read for the two final speeds */
+  function state() {
+    const a1 = t1.v * RAD, a2 = t2.v * RAD, den = Math.sin(a2 - a1);
+    const v1p = (v1.v * Math.sin(a2)) / den, v2p = (-(M1 / m2.v) * v1.v * Math.sin(a1)) / den;
+    const ke = 0.5 * M1 * v1.v * v1.v, kep = 0.5 * M1 * v1p * v1p + 0.5 * m2.v * v2p * v2p;
+    return { a1, a2, v1p, v2p, ke, kep, p1: M1 * v1.v, p1p: M1 * v1p, p2p: m2.v * v2p };
+  }
+  const cy = cycle(() => TTOT, 1);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const s = state(), tau = cy.now(), hit = tau >= TA;
+    const OX = 400, OY = 360, R = 250, cm = C('momentum'), ce = C('energy');
+    const lab = F.labeller(ctx, 700);
+    /* the ground the objects cover is paced so that the incoming one reaches the origin at the same
+       moment whatever its speed; the momentum arrows are on a scale fixed from the slider maxima,
+       240 units per kg·m/s, and no arrow is drawn longer than 320 units */
+    const S = R / Math.max(v1.v * TA, s.v1p * TB, s.v2p * TB, 1e-6);
+    const pScale = 240, cap = (L) => Math.min(320, L);
+    /* the axes the section chooses: x along the incoming velocity */
+    line(ctx, OX - 330, OY, OX + 320, OY, PAL.muted, 2);
+    text(ctx, 'x', OX + 334, OY, PAL.ink, { size: 22, weight: 600 });
+    line(ctx, OX, OY + 270, OX, OY - 280, PAL.muted, 2);
+    text(ctx, 'y', OX + 16, OY - 270, PAL.ink, { size: 22, weight: 600 });
+    /* the two directions the reader has set */
+    line(ctx, OX, OY, OX + 300 * Math.cos(s.a1), OY - 300 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
+    line(ctx, OX, OY, OX + 300 * Math.cos(s.a2), OY - 300 * Math.sin(s.a2), PAL.rule, 2, [10, 10]);
+    angleArc(ctx, OX, OY, 80, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', lab);
+    angleArc(ctx, OX, OY, 120, t2.v, 'θ₂ = ' + num(t2.v, 1) + '°', lab);
+    /* where each object is, and the momentum it carries */
+    const r1 = rad(M1), r2 = rad(m2.v);
+    if (!hit) {
+      const x = OX - (TA - tau) * v1.v * S, L = cap(s.p1 * pScale);
+      disc(ctx, x, OY, r1, F.ref('object-1'), true);
+      arrow(ctx, x, OY, x + L, OY, cm, 5);
+      disc(ctx, OX, OY, r2, F.ref('object-2'), false);
+      text(ctx, '静止', OX + r2 + 12, OY + 34, F.ref('object-2'), { size: 18 });
+      hits = [{ x, y: OY, r: r1 + 8, name: '入射物体，m₁' }, { x: OX, y: OY, r: r2 + 8, name: '被击物体，m₂' }];
+    } else {
+      const q = tau - TA;
+      const x1 = OX + s.v1p * q * S * Math.cos(s.a1), y1 = OY - s.v1p * q * S * Math.sin(s.a1);
+      const x2 = OX + s.v2p * q * S * Math.cos(s.a2), y2 = OY - s.v2p * q * S * Math.sin(s.a2);
+      const L1 = cap(s.p1p * pScale), L2 = cap(s.p2p * pScale);
+      disc(ctx, x1, y1, r1, F.ref('object-1'), true);
+      arrow(ctx, x1, y1, x1 + L1 * Math.cos(s.a1), y1 - L1 * Math.sin(s.a1), cm, 5);
+      disc(ctx, x2, y2, r2, F.ref('object-2'), false);
+      arrow(ctx, x2, y2, x2 + L2 * Math.cos(s.a2), y2 - L2 * Math.sin(s.a2), cm, 5);
+      hits = [{ x: x1, y: y1, r: r1 + 8, name: "碰撞后的第一个物体，p′₁ = " + fmt(s.p1p, 3) + ' kg·m/s' },
+        { x: x2, y: y2, r: r2 + 8, name: "碰撞后的被击物体，p′₂ = " + fmt(s.p2p, 3) + ' kg·m/s' }];
+    }
+    lab.flush();
+    text(ctx, '每个箭头表示一个动量', 60, 612, cm, { size: 18, weight: 600 });
+    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 640, C('mass'), { size: 19 });
+    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg', 60, 668, C('mass'), { size: 19 });
+    /* momentum alone allows pairs of angles that would need energy from somewhere, so the figure says so */
+    const gained = s.kep - s.ke;
+    text(ctx, gained > 0.002
+      ? '这两个角需要从别处获得 ' + fmt(gained, 3) + ' J。'
+      : '内动能从 ' + fmt(s.ke, 3) + ' J 降到 ' + fmt(s.kep, 3) + ' J。',
+      760, 636, ce, { size: 18, weight: 600 });
+    text(ctx, gained > 0.002
+      ? '它最终为 ' + fmt(s.kep, 3) + ' J，开始时为 ' + fmt(s.ke, 3) + ' J。'
+      : '仅凭动量就允许这种情况；没有任何能量来自别处。',
+      760, 666, ce, { size: 18 });
+    /* the ledger: the components along each axis, before the collision and after */
+    const p1x = s.p1, ax1 = s.p1p * Math.cos(s.a1), ax2 = s.p2p * Math.cos(s.a2);
+    const ay1 = s.p1p * Math.sin(s.a1), ay2 = s.p2p * Math.sin(s.a2);
+    /* the ledger is on scales fixed from the slider maxima: 400 units per kg·m/s along x, where the
+       incoming momentum never passes 0.250 kg × 4 m/s, and 380 along y, where the two components
+       always cancel; a longer bar than the panel holds is drawn at the panel's width */
+    const K = 400, Z = 900;
+    text(ctx, '沿 x 的动量（kg·m/s）', Z - 60, 196, cm, { size: 19, weight: 600 });
+    text(ctx, '之前', Z - 14, 250, PAL.muted, { size: 18, align: 'right' });
+    bar(ctx, Z, 250, Math.min(p1x * K, 420), 28, cm, 0.55);
+    text(ctx, fmt(p1x, 3), Z + Math.min(p1x * K, 420) + 12, 250, cm, { size: 19, weight: 600 });
+    text(ctx, '之后', Z - 14, 306, PAL.muted, { size: 18, align: 'right' });
+    bar(ctx, Z, 306, Math.min(ax1 * K, 420), 28, cm, 0.55);
+    bar(ctx, Z + Math.min(ax1 * K, 420), 306, Math.min(ax2 * K, 420 - Math.min(ax1 * K, 420)), 28, cm, 0.22);
+    text(ctx, fmt(ax1, 3), Z + Math.min(ax1 * K, 420) / 2, 344, cm, { size: 17, align: 'center' });
+    text(ctx, fmt(ax2, 3), Z + Math.min(ax1 * K, 420) + Math.min(ax2 * K, 420 - Math.min(ax1 * K, 420)) / 2, 344, cm, { size: 17, align: 'center' });
+    const Ky = 380, Zy = 1080;
+    text(ctx, '沿 y 的动量（kg·m/s）', Z - 60, 440, cm, { size: 19, weight: 600 });
+    line(ctx, Zy, 466, Zy, 566, PAL.muted, 2);
+    text(ctx, '之前', Zy - 274, 494, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, '0', Zy + 12, 494, PAL.muted, { size: 19 });
+    text(ctx, '之后', Zy - 274, 546, PAL.muted, { size: 18, align: 'right' });
+    const by1 = Math.max(-200, Math.min(200, ay1 * Ky)), by2 = Math.max(-200, Math.min(200, ay2 * Ky));
+    bar(ctx, Zy, 546, by1, 28, cm, 0.55);
+    bar(ctx, Zy, 546, by2, 28, cm, 0.22);
+    text(ctx, '+' + fmt(ay1, 3), Zy + by1 + 12, 546, cm, { size: 18, weight: 600 });
+    text(ctx, num(ay2, 3), Zy + by2 - 12, 546, cm, { size: 18, weight: 600, align: 'right' });
+    topline(ctx, hit
+      ? '两个物体分别以 ' + fmt(s.v1p, 2) + ' m/s 和 ' + fmt(s.v2p, 2) + ' m/s 离开，它们沿 y 的动量仍然相互抵消。'
+      : '全部动量都沿 x，为 ' + fmt(s.p1, 3) + ' kg·m/s，沿 y 没有动量。');
+    readout(d.readout,
+      `\\kmone\\kvone = ${fmt(s.p1, 3)}\\ \\text{kg}\\cdot\\text{m/s} = \\kmone\\kvoneprime\\cos\\kthetaone + \\kmtwo\\kvtwoprime\\cos\\kthetatwo = ${fmt(ax1, 3)} + ${fmt(ax2, 3)}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 8.11: the collision in a dark room of Example 8.7. The angle
+   and the speed at which the first object emerges, together with the
+   mass of the object it struck, give the velocity of that object, which
+   is drawn dashed inside the room. The collision takes time, so the
+   figure runs it once per loop and takes the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-dark-room', 700);
+  const M1 = 0.250;
+  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 4, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: '射入时的速率' });
+  const v1p = ctl(d.controls, { label: '\\kvoneprime', cls: 'velocity', min: 0.5, max: 3, step: 0.05, value: 1.5, unit: 'm/s', dec: 2, onInput: reset, aria: '射出时的速率' });
+  const t1 = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: '射出时的角' });
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: '看不见的物体的质量' });
+  /* the ratio of the two conservation equations gives the angle, and either gives the speed */
+  function state() {
+    const a1 = t1.v * RAD;
+    const a2 = Math.atan2(-v1p.v * Math.sin(a1), v1.v - v1p.v * Math.cos(a1));
+    const v2p = (M1 * v1p.v * Math.sin(a1)) / (-m2.v * Math.sin(a2));
+    const tan = (v1p.v * Math.sin(a1)) / (v1p.v * Math.cos(a1) - v1.v);
+    const ke = 0.5 * M1 * v1.v * v1.v, kep = 0.5 * M1 * v1p.v * v1p.v + 0.5 * m2.v * v2p * v2p;
+    return { a1, a2, v2p, tan, ke, kep, deg: (a2 / RAD + 360) % 360 };
+  }
+  const cy = cycle(() => TTOT, 1);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const s = state(), tau = cy.now(), hit = tau >= TA;
+    const OX = 700, OY = 400, R = 280, cv = C('velocity');
+    const lab = F.labeller(ctx, 700);
+    /* the velocity arrows are on a scale fixed from the slider maxima, 32 units per m/s, and no
+       arrow is drawn longer than 300 units; the travel is paced so that the object reaches the
+       room at the same moment whatever its speed */
+    const S = R / Math.max(v1.v * TA, v1p.v * TB, s.v2p * TB, 1e-6), K = 32, cap = (L) => Math.min(300, L);
+    /* the dark room */
+    const cr = F.ref('dark-room'), c1 = F.ref('object-1'), c2 = F.ref('object-2');
+    ctx.save(); ctx.fillStyle = alpha(cr, 0.13); ctx.fillRect(OX - 200, OY - 225, 400, 420); ctx.restore();
+    ctx.save(); ctx.strokeStyle = cr; ctx.lineWidth = 2.5; ctx.strokeRect(OX - 200, OY - 225, 400, 420); ctx.restore();
+    text(ctx, '一间暗室', OX, OY - 243, cr, { size: 19, align: 'center' });
+    line(ctx, OX - 560, OY, OX + 480, OY, PAL.rule, 2, [10, 10]);
+    text(ctx, 'x', OX + 492, OY, PAL.ink, { size: 22, weight: 600 });
+    line(ctx, OX, OY + 250, OX, OY - 290, PAL.rule, 2, [10, 10]);
+    text(ctx, 'y', OX, OY - 310, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    line(ctx, OX, OY, OX + 400 * Math.cos(s.a1), OY - 400 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
+    angleArc(ctx, OX, OY, 90, t1.v, 'θ₁ = ' + fmt(t1.v, 1) + '°', lab);
+    angleArc(ctx, OX, OY, 140, s.a2 / RAD, 'θ₂ = ' + fmt(s.deg, 1) + '°', lab);
+    const r1 = rad(M1), r2 = rad(m2.v);
+    if (!hit) {
+      const x = OX - (TA - tau) * v1.v * S;
+      disc(ctx, x, OY, r1, c1, true);
+      arrow(ctx, x, OY, x + cap(v1.v * K), OY, cv, 5);
+      lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + cap(v1.v * K) / 2, OY, 0, -1, cv, 20, 22);
+      disc(ctx, OX, OY, r2, c2, false);
+      lab.add('静止的、看不见的物体', OX, OY + r2, 0, 1, c2, 18, 22);
+    } else {
+      const q = tau - TA;
+      const x1 = OX + v1p.v * q * S * Math.cos(s.a1), y1 = OY - v1p.v * q * S * Math.sin(s.a1);
+      const x2 = OX + s.v2p * q * S * Math.cos(s.a2), y2 = OY - s.v2p * q * S * Math.sin(s.a2);
+      disc(ctx, x1, y1, r1, c1, true);
+      const A1 = cap(v1p.v * K);
+      arrow(ctx, x1, y1, x1 + A1 * Math.cos(s.a1), y1 - A1 * Math.sin(s.a1), cv, 5);
+      lab.beside({ x1, y1, x2: x1 + A1 * Math.cos(s.a1), y2: y1 - A1 * Math.sin(s.a1) }, 'left', "v′₁ = " + fmt(v1p.v, 2) + ' m/s', cv, 20);
+      ctx.save(); ctx.setLineDash([9, 9]);
+      disc(ctx, x2, y2, r2, c2, false);
+      ctx.restore();
+      const A2 = cap(s.v2p * K);
+      arrow(ctx, x2, y2, x2 + A2 * Math.cos(s.a2), y2 - A2 * Math.sin(s.a2), alpha(cv, 0.75), 5);
+      lab.beside({ x1: x2, y1: y2, x2: x2 + A2 * Math.cos(s.a2), y2: y2 - A2 * Math.sin(s.a2) }, 'right', "v′₂ = " + fmt(s.v2p, 3) + ' m/s', cv, 20);
+    }
+    lab.flush();
+    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 620, C('mass'), { size: 19 });
+    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg，你知道的唯一质量', 60, 650, C('mass'), { size: 19 });
+    topline(ctx, hit
+      ? '看不见的物体以 ' + fmt(s.v2p, 3) + ' m/s 和 ' + fmt(s.deg, 1) + '° 离开。'
+      : '这个 ' + fmt(M1, 3) + ' kg 的物体以 ' + fmt(v1.v, 2) + ' m/s 滑入，带着全部 ' + fmt(s.ke, 3) + ' J 的内动能。');
+    const diff = s.kep - s.ke;
+    readout(d.readout,
+      `\\tan\\kthetatwo = \\frac{\\kvoneprime\\sin\\kthetaone}{\\kvoneprime\\cos\\kthetaone - \\kvone} = ${num(s.tan, 3)}\\ \\Rightarrow\\ \\kthetatwo = ${fmt(s.deg, 1)}^\\circ`,
+      `$\\kvtwoprime = -(\\kmone/\\kmtwo)\\kvoneprime\\sin\\kthetaone/\\sin\\kthetatwo = ${fmt(s.v2p, 3)}\\ \\text{m/s}$，而内动能`
+      + (Math.abs(diff) < 0.002 ? '保持为 ' + fmt(s.ke, 3) + ' J。'
+        : (diff < 0 ? '减小' : '增大') + '，由 ' + fmt(s.ke, 3) + ' J 变为 ' + fmt(s.kep, 3) + ' J。'));
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
+})();
+
+/* =====================================================================
+   SIM: two equal masses on a pool table. Momentum alone fixes the two
+   final speeds once the two angles are set, so the internal kinetic
+   energy after the collision is fixed as well; the graph follows it as
+   the angle of separation opens and closes, and it returns to its value
+   before the collision only at ninety degrees. The shot takes time, so
+   the figure runs it once per loop and takes the scrubber.
+===================================================================== */
+(function () {
+  const d = sim('sim-billiards', 900);
+  const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 2, max: 10, step: 0.25, value: 6, unit: 'm/s', dec: 2, onInput: reset, aria: '母球的速率' });
+  const t1 = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 10, max: 45, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: '碰撞后母球的角' });
+  const t2 = ctl(d.controls, { label: '\\kthetatwo', cls: 'angle', min: -80, max: -10, step: 1, value: -60, unit: '°', dec: 0, onInput: reset, aria: '碰撞后被击球的角',
+    specials: [{ at: () => t1.v - 90, label: '相隔 90°' }] });
+  /* with equal masses, momentum alone gives both speeds from the two angles */
+  const speeds = (d1, d2, u) => {
+    const a1 = d1 * RAD, a2 = d2 * RAD, den = Math.sin(a2 - a1);
+    return { v1p: (u * Math.sin(a2)) / den, v2p: (-u * Math.sin(a1)) / den };
+  };
+  /* the internal kinetic energy after the collision, in units of the mass, against the one before it */
+  const ratio = (d1, d2) => { const s = speeds(d1, d2, 1); return s.v1p * s.v1p + s.v2p * s.v2p; };
+  const cy = cycle(() => TTOT, 1);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), hit = tau >= TA, cv = C('velocity'), ce = C('energy');
+    const s = speeds(t1.v, t2.v, v1.v), sep = t1.v - t2.v;
+    const ke = 0.5 * v1.v * v1.v, kep = 0.5 * (s.v1p * s.v1p + s.v2p * s.v2p);
+    const extra = s.v1p * s.v2p * Math.cos(sep * RAD);
+    const OX = 560, OY = 320, R = 210;
+    const S = R / Math.max(v1.v * TA, s.v1p * TB, s.v2p * TB, 1e-6);
+    /* one fixed scale for the velocity arrows, 18 units per m/s, from the slider's own maximum;
+       the struck ball can leave faster than the cue ball came in, up to 12 m/s at the widest angles */
+    const K = 18;
+    const lab = F.labeller(ctx, 900);
+    /* the table */
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(90, 110, 1220, 450); ctx.restore();
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.strokeRect(90, 110, 1220, 450); ctx.restore();
+    /* the guide lines stop at the cushions */
+    ctx.save(); ctx.beginPath(); ctx.rect(92, 112, 1216, 446); ctx.clip();
+    line(ctx, 110, OY, 1290, OY, PAL.rule, 2, [10, 10]);
+    line(ctx, OX, OY, OX + 300 * Math.cos(t1.v * RAD), OY - 300 * Math.sin(t1.v * RAD), PAL.rule, 2, [10, 10]);
+    line(ctx, OX, OY, OX + 300 * Math.cos(t2.v * RAD), OY - 300 * Math.sin(t2.v * RAD), PAL.rule, 2, [10, 10]);
+    ctx.restore();
+    angleArc(ctx, OX, OY, 84, t1.v, 'θ₁ = ' + fmt(t1.v, 0) + '°', lab);
+    angleArc(ctx, OX, OY, 126, t2.v, 'θ₂ = ' + num(t2.v, 0) + '°', lab);
+    if (!hit) {
+      const x = OX - (TA - tau) * v1.v * S;
+      disc(ctx, x, OY, 26, F.ref('object-1'), true);
+      arrow(ctx, x + 26, OY, x + 26 + v1.v * K, OY, cv, 5);
+      lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + 26 + (v1.v * K) / 2, OY, 0, -1, cv, 20, 44);
+      disc(ctx, OX, OY, 26, F.ref('object-2'), false);
+      lab.add('静止', OX, OY + 26, 0, 1, F.ref('object-2'), 18, 22);
+    } else {
+      const q = tau - TA, a1 = t1.v * RAD, a2 = t2.v * RAD;
+      const x1 = OX + s.v1p * q * S * Math.cos(a1), y1 = OY - s.v1p * q * S * Math.sin(a1);
+      const x2 = OX + s.v2p * q * S * Math.cos(a2), y2 = OY - s.v2p * q * S * Math.sin(a2);
+      /* each arrow leaves from the rim of its ball */
+      const e1 = { x: x1 + 26 * Math.cos(a1), y: y1 - 26 * Math.sin(a1) }, e2 = { x: x2 + 26 * Math.cos(a2), y: y2 - 26 * Math.sin(a2) };
+      disc(ctx, x1, y1, 26, F.ref('object-1'), true);
+      arrow(ctx, e1.x, e1.y, e1.x + s.v1p * K * Math.cos(a1), e1.y - s.v1p * K * Math.sin(a1), cv, 5);
+      lab.beside({ x1: e1.x, y1: e1.y, x2: e1.x + s.v1p * K * Math.cos(a1), y2: e1.y - s.v1p * K * Math.sin(a1) }, 'left', "v′₁ = " + fmt(s.v1p, 2) + ' m/s', cv, 20);
+      disc(ctx, x2, y2, 26, F.ref('object-2'), false);
+      arrow(ctx, e2.x, e2.y, e2.x + s.v2p * K * Math.cos(a2), e2.y - s.v2p * K * Math.sin(a2), cv, 5);
+      lab.beside({ x1: e2.x, y1: e2.y, x2: e2.x + s.v2p * K * Math.cos(a2), y2: e2.y - s.v2p * K * Math.sin(a2) }, 'right', "v′₂ = " + fmt(s.v2p, 2) + ' m/s', cv, 20);
+    }
+    lab.flush();
+    text(ctx, '两个球的质量相同，都是 m', 110, 592, PAL.ink, { size: 19 });
+    text(ctx, '分离角 θ₁ − θ₂ = ' + fmt(sep, 0) + '°', 110, 620, C('angle'), { size: 19, weight: 600 });
+    /* the graph: the internal kinetic energy after the collision against the angle of separation */
+    const box = { l: 300, r: 1120, t: 670, b: 830 };
+    const g = axes(ctx, box, [10, 170], [0.5, 1.5], { xl: '分离角 θ₁ − θ₂（°）', xc: C('angle'), yl: 'KE′_int / KE_int', yc: ce, nx: 4, ny: 2, fy: (v) => fmt(v, 1) });
+    line(ctx, box.l, g.Y(1), box.r, g.Y(1), ce, 2.5, [10, 10]);
+    text(ctx, '与碰撞前相同', box.r - 12, g.Y(1) - 18, ce, { size: 17, align: 'right' });
+    line(ctx, g.X(90), box.t, g.X(90), box.b, PAL.muted, 2, [4, 8]);
+    text(ctx, '90°', g.X(90), box.t - 16, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    curve(ctx, (x) => ratio(t1.v, t1.v - x), t1.v + 10, t1.v + 80, g.X, g.Y, ce, 5, 140);
+    ctx.restore();
+    F.pinned(ctx, box, g.X, g.Y, sep, kep / ke, PAL.ink, fmt(kep / ke, 2));
+    topline(ctx, Math.abs(sep - 90) < 0.5
+      ? '两球以 90° 分离，母球以 ' + fmt(s.v1p, 2) + ' m/s 离开，被击球以 ' + fmt(s.v2p, 2) + ' m/s 离开。'
+      : '两球以 ' + fmt(sep, 0) + '° 分离，碰撞后的内动能是碰撞前的 ' + fmt(kep / ke, 2) + ' 倍。');
+    readout(d.readout,
+      `\\tfrac{1}{2}{\\kvone}^2 = \\tfrac{1}{2}{\\kvoneprime}^2 + \\tfrac{1}{2}{\\kvtwoprime}^2 + \\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo):\\ ${fmt(ke, 1)} = ${fmt(0.5 * s.v1p * s.v1p, 1)} + ${fmt(0.5 * s.v2p * s.v2p, 1)} ${extra < 0 ? '-' : '+'} ${fmt(Math.abs(extra), 1)}\\ \\text{J/kg}`,
+      Math.abs(extra) < 0.05 ? '最后一项为零，所以这次碰撞是弹性的。' : '最后一项不为零，所以这次碰撞不是弹性的。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
+})();
+};

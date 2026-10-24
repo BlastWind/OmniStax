@@ -1,0 +1,97 @@
+<section id="alternating-current">
+<h2>交流电</h2>
+<p class="cite-target">到目前为止，所讨论的大多数例子，尤其是那些使用电池的例子，都采用<span data-concept="potential-difference">电压</span>恒定的电源。因此，<span data-concept="electric-current">电流</span>一旦建立，也是恒定的。<strong><span data-concept="direct-current">直流电</span></strong>（DC）是<span data-concept="electric-charge">电荷</span>只沿一个<span data-concept="vector-direction">方向</span>的流动。它是恒压电路的稳恒状态。然而，大多数广为人知的应用使用的是随时间变化的<span data-concept="potential-difference">电压</span>源。<strong><span data-concept="alternating-current">交流电</span></strong>（AC）是<span data-concept="electric-charge">电荷</span>周期性地改变<span data-concept="vector-direction">方向</span>的流动。如果电源周期性地变化，尤其是按正弦规律变化，这个电路就称为<span data-concept="alternating-current">交流</span>电路。例子包括满足我们诸多需求的商用和民用<span data-concept="power">电力</span>。图 20.14 给出了典型直流和交流<span data-concept="power">电力</span>的<span data-concept="potential-difference">电压</span>和<span data-concept="electric-current">电流</span>随<span data-concept="time">时间</span>变化的图线。家庭和商业场所通常使用的<span data-concept="ac-voltage">交流电压</span>和<span data-concept="frequency">频率</span>在世界各地各不相同。</p>
+<figure class="sim" id="sim-ac-versus-dc" data-figure="20.14 + 20.15" data-original="/media/ch20/Figure_21_05_01.jpg,/media/ch20/Figure_21_05_03.jpg" data-original-width="200,200" data-original-caption="（a）一旦电流建立起来，直流电的电压和电流就不随时间变化。（b）60 Hz 交流电的电压和电流随时间变化的图线。对于简单的电阻电路，电压和电流都是正弦的，并且同相。不同交流电源的频率和峰值电压相差很大。">
+  <div class="sim-head"><span class="eyebrow">Figure 20.14 + 20.15</span><span><span data-ref="battery ac-source">一个电源</span>驱动<span data-type="current">一股电流</span>通过<span data-ref="resistor">单个电阻器</span>，电路下方的图线则随<span data-concept="time">时间</span>描出<span data-type="voltage">电压</span> $\kV$ 和<span data-type="current">电流</span> $\kIcur$。在直流电情形下，两者都是恒定的，只要<span data-ref="battery">电源</span>保持接通，自由电子就沿回路朝一个方向漂移。在交流电情形下，<span data-type="voltage">电压</span>按正弦规律起伏，<span data-type="current">电流</span>与之同步。图线在轴线上方时，电子朝一个方向运动，在轴线下方时，电子朝另一个方向运动，每当图线穿过零点，运动方向就改变一次。改变<span data-type="voltage">峰值电压</span>、<span data-type="frequency">频率</span>或<span data-type="resistance">电阻</span>，观察图线和<span data-type="current">电流</span>如何响应；在<span data-ref="battery ac-source">两种电源</span>之间切换，可使平直的图线弯成正弦曲线。</span></div>
+</figure>
+<p>图 20.15 给出了含有<span data-ref="ac-source">一个<span data-concept="ac-voltage">交流电压</span>源</span>的<span data-concept="simple-circuit">简单电路</span>的电路图。<span data-type="voltage">接线端之间的<span data-concept="potential-difference">电压</span></span>如图所示发生起伏，其中<strong><span data-concept="ac-voltage">交流电压</span></strong>由下式给出：</p>
+$$\kV = \kVo\sin 2\pi \kf\kt,$$
+<p>其中 $\kV$ 是<span data-concept="time">时刻</span> $\kt$ 的<span data-concept="potential-difference">电压</span>，$\kVo$ 是峰值<span data-concept="potential-difference">电压</span>，$\kf$ 是以<span data-concept="hertz">赫兹</span>为单位的<span data-concept="frequency">频率</span>。对于这个简单的<span data-concept="resistance">电阻</span>电路，$\kIcur = \kV/\kRes$，因此<strong><span data-concept="alternating-current">交流电流</span></strong>为</p>
+$$\kIcur = \kIocur\sin 2\pi \kf\kt,$$
+<p>其中 $\kIcur$ 是<span data-concept="time">时刻</span> $\kt$ 的<span data-concept="electric-current">电流</span>，$\kIocur = \kVo/\kRes$ 是峰值<span data-concept="electric-current">电流</span>。在这个例子中，<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>和<span data-type="current"><span data-concept="electric-current">电流</span></span>称为同相，如图 20.14（b）所示。</p>
+</section>
+
+<section id="ac-power">
+<h2>交流电所输送的功率</h2>
+<p class="cite-target">由于 $\kIcur = \kV/\kRes$，<span data-ref="resistor"><span data-concept="resistor">电阻器</span></span>中的<span data-type="current"><span data-concept="electric-current">电流</span></span>与<span data-type="voltage">驱动<span data-concept="potential-difference">电压</span></span>一样来回交替变化。例如，如果<span data-ref="resistor"><span data-concept="resistor">电阻器</span></span>是一只荧光灯泡，那么随着<span data-type="current"><span data-concept="electric-current">电流</span></span>反复经过零点，<span data-ref="resistor">它</span>每<span data-concept="second">秒</span>变亮和变暗 120 次。<span data-type="frequency">120 Hz</span> 的闪烁太快，眼睛察觉不到，但如果你在脸和荧光灯之间来回挥动手，就会看到频闪效应，这证明了交流电的存在。光输出起伏这一事实意味着<span data-type="power"><span data-concept="power">功率</span></span>在起伏。<span data-type="power">所供给的<span data-concept="power">功率</span></span>是 $\kP = \kIcur\kV$。利用上面 $\kIcur$ 和 $\kV$ 的表达式，我们看到<span data-concept="power">功率</span>随<span data-concept="time">时间</span>的变化关系是 $\kP = \kIocur\kVo\sin^2 2\pi \kf\kt$，如图 20.16 所示。</p>
+<div class="note">
+<div class="eyebrow">建立联系：居家实验——交流与直流下的灯</div>
+<p>在你的脸和一只荧光灯泡之间来回挥动手。用汽车的前照灯做同样的事，你观察到的是同样的现象吗？解释你的观察。<em>警告：不要直视很亮的光</em>。</p>
+</div>
+<figure class="sim" id="sim-ac-power" data-figure="20.16" data-original="/media/ch20/Figure_21_05_04.jpg" data-original-width="225" data-original-caption="交流电功率随时间变化的函数。由于这里的电压和电流同相，它们的乘积非负，并在零与 I_0 V_0 之间起伏。平均功率为 (1/2) I_0 V_0。">
+  <div class="sim-head"><span class="eyebrow">Figure 20.16</span><span>一个简单的<span data-concept="resistance">电阻</span>电路的<span data-type="voltage">电压</span>和<span data-type="current">电流</span>画在<span data-type="power">它们的乘积，即功率</span>的上方。由于两者同相，它们同时为负、同时为正，所以它们的乘积永远不会低于零，并且在电源的每个周期中两次经过最大值。横跨<span data-concept="power">功率</span>曲线的虚线是<span data-type="power">平均功率</span>，阴影<span data-concept="area">面积</span>表明，曲线在该线上方的部分与在其下方的部分一样多。改变<span data-type="voltage">峰值电压</span>、<span data-type="resistance">电阻</span>或<span data-type="frequency">频率</span>，观察<span data-type="power">峰值功率</span>和<span data-type="power">平均值</span>如何随之变化。</span></div>
+</figure>
+<p>我们最常关心的是平均<span data-concept="power">功率</span>，而不是它的起伏——例如，你台灯里那只<span data-type="power">60 W</span> 的灯泡，其<span data-type="power">平均<span data-concept="power">功率</span>消耗为 60 W</span>。如图 20.16 所示，平均<span data-concept="power">功率</span> $\kPave$ 为</p>
+$$\kPave = \frac{1}{2}\kIocur\kVo.$$
+<p>从图线可以明显看出这一点，因为 $(1/2)\kIocur\kVo$ 线上方和下方的<span data-concept="area">面积</span>相等，但也可以用三角恒等式来证明。</p>
+</section>
+
+<section id="rms-values">
+<h2>方均根值，即等效直流</h2>
+<p class="cite-target">类似地，我们定义平均电流或<strong><span data-concept="rms-current">方均根电流</span></strong> $\kIrms$，以及平均电压或<strong><span data-concept="rms-voltage">方均根电压</span></strong> $\kVrms$，它们分别为</p>
+$$\kIrms = \frac{\kIocur}{\sqrt{2}}$$
+<p>和</p>
+$$\kVrms = \frac{\kVo}{\sqrt{2}}.$$
+<p>其中 rms 代表“方均根”（root mean square），这是一种特殊的平均。一般来说，要得到方均根，先把该量平方，求出它的均值（或平均值），再取平方根。这对交流电很有用，因为它的平均值为零。</p>
+<figure class="dv" id="drv-average-power-rms"></figure>
+<p>通行的做法是给出 $\kIrms$、$\kVrms$ 和 $\kPave$，而不是峰值。例如，大多数家用电是 <span data-type="voltage">120 V</span> 交流电，这意味着 $\kVrms$ 为 <span data-type="voltage">120 V</span>。常见的 <span data-type="current">10 A</span> 断路器会切断持续大于 <span data-type="current">10 A</span> 的 $\kIrms$。你的 <span data-type="power">1.0 kW</span> 微波炉消耗的 $\kPave = 1.0\ \text{kW}$，诸如此类。你可以把这些方均根值和平均值看作简单电阻电路中的等效直流值。</p>
+</section>
+
+<section id="ac-ohms-law">
+<h2>交流电的欧姆定律与功率</h2>
+<p class="cite-target">总结一下，处理交流电时，<span data-concept="ohms-law">欧姆定律</span>和<span data-concept="power">功率</span>方程与直流电的完全类似，只是交流电用的是方均根值和平均值。因此，对于交流电，<span data-concept="ohms-law">欧姆定律</span>写成</p>
+$$\kIrms = \frac{\kVrms}{\kRes}.$$
+<p>交流电<span data-concept="power">功率</span> $\kPave$ 的各种表达式为</p>
+$$\kPave = \kIrms\kVrms,$$
+$$\kPave = \frac{\kVrms^{2}}{\kRes},$$
+<p>和</p>
+$$\kPave = \kIrms^{2}\kRes.$$
+<div class="example" id="ex-peak-voltage">
+<h3>例题 20.9 · 交流电的峰值电压与功率</h3>
+<p>（a）<span data-type="voltage">120 V</span> 交流<span data-concept="power">电力</span>的<span data-type="voltage">峰值<span data-concept="potential-difference">电压</span>的值</span>是多少？（b）一只 <span data-type="power">60.0 W</span> 的交流灯泡的<span data-type="power">峰值<span data-concept="power">功率</span>消耗率</span>是多少？</p>
+<h4>思路</h4>
+<p>已知 $\kVrms$ 为 120 V，$\kPave$ 为 60.0 W。我们可以用 $\kVrms = \frac{\kVo}{\sqrt{2}}$ 求出<span data-type="voltage">峰值<span data-concept="potential-difference">电压</span></span>，并且可以对<span data-concept="power">功率</span>的定义加以变形，由<span data-type="power">给定的平均<span data-concept="power">功率</span></span>求出<span data-type="power">峰值<span data-concept="power">功率</span></span>。</p>
+<h4>（a）的解</h4>
+<p>把方程 $\kVrms = \frac{\kVo}{\sqrt{2}}$ 对<span data-type="voltage">峰值<span data-concept="potential-difference">电压</span></span> $\kVo$ 求解，并代入 $\kVrms$ 的已知值，得到</p>
+$$\kVo = \sqrt{2}\kVrms = 1.414(120\ \text{V}) = 170\ \text{V}.$$
+<h4>（a）的讨论</h4>
+<p>这意味着<span data-type="voltage"><span data-concept="ac-voltage">交流电压</span></span>每<span data-concept="second">秒</span>从 170 V 摆动到 $-170\ \text{V}$ 再摆回来 60 次。<span data-type="voltage">等效的直流<span data-concept="potential-difference">电压</span></span>是恒定的 120 V。</p>
+<h4>（b）的解</h4>
+<p>峰值<span data-concept="power">功率</span>等于峰值<span data-concept="electric-current">电流</span>乘以峰值<span data-concept="potential-difference">电压</span>。因此，</p>
+$$\kPo = \kIocur\kVo = 2\left(\frac{1}{2}\kIocur\kVo\right) = 2\kPave.$$
+<p>我们知道<span data-type="power">平均<span data-concept="power">功率</span></span>为 60.0 W，所以</p>
+$$\kPo = 2(60.0\ \text{W}) = 120\ \text{W}.$$
+<h4>讨论</h4>
+<p>所以，<span data-type="power"><span data-concept="power">功率</span></span>每<span data-concept="second">秒</span>从零摆动到 <span data-type="power">120 W</span> 一百二十次（每个周期两次），而<span data-type="power"><span data-concept="power">功率</span></span>平均为 <span data-type="power">60 W</span>。</p>
+</div>
+</section>
+
+<section id="transmission">
+<h2>为什么用交流电配电？</h2>
+<p class="cite-target">大多数大型配电系统都是交流电的。而且，<span data-concept="power">电力</span>是以比我们在家中和工作场所使用的 <span data-type="voltage">120 V</span> 交流电（世界上大多数地区为 <span data-type="voltage">240 V</span>）高得多的<span data-concept="potential-difference">电压</span>输送的。规模经济使得建造少数几座非常大的发电厂，比建造众多小型发电厂更便宜。这就必须把<span data-concept="power">电力</span>送往很远的<span data-concept="distance">距离</span>，显然，把途中的<span data-concept="energy">能量</span>损失减到最小是很重要的。正如我们将看到的，高<span data-concept="potential-difference">电压</span>输送时的<span data-concept="power">功率</span>损耗，比低<span data-concept="potential-difference">电压</span>时小得多。（见图 20.17。）出于安全原因，用户端的<span data-concept="potential-difference">电压</span>被降低到人们熟悉的数值。关键因素是，升高和降低<span data-concept="ac-voltage">交流电压</span>比直流电容易得多，所以大多数大型<span data-concept="power">电力</span>配电系统采用交流电。</p>
+<figure class="photo" id="fig-transformers" data-figure="20.17">
+  <img src="/media/ch20/Figure_21_05_05.jpg" alt="安装在输电线上的变压器的照片。" data-width="225">
+  <figcaption><span class="eyebrow">Figure 20.17</span><span>为了减少输电线中的<span data-concept="power">功率</span>损耗，<span data-concept="power">电力</span>以高<span data-concept="potential-difference">电压</span>输送到很远的<span data-concept="distance">距离</span>。发电厂产生的<span data-concept="potential-difference">电压</span>由称为变压器的无源器件升高（见“变压器”），达到 <span data-type="voltage">330,000 伏特</span>（世界上有些地方更高）。在用电地点，变压器把输送来的<span data-concept="potential-difference">电压</span>降低，供居民和商业安全使用。（来源：GeorgHH, Wikimedia Commons）</span></figcaption>
+</figure>
+<figure class="sim" id="sim-transmission">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="plant">一座发电厂</span>沿<span data-ref="line">一条输电线</span>向<span data-ref="city">远方的一座城市</span>输送<span data-type="power">固定的功率</span>，<span data-ref="line">输电线</span>的<span data-type="resistance">电阻固定</span>，并在沿途把<span data-type="power">这部分功率</span>中的一些以<span data-concept="heat">热量</span>的形式损失掉。由于<span data-type="power">所输送的功率</span>是<span data-type="current">电流</span>与<span data-type="voltage">电压</span>的乘积，所以<span data-type="voltage">以更高的电压</span>输送就意味着<span data-type="current">以更小的电流</span>输送，而<span data-type="power">损耗</span> $\kIrms^{2}\kRes$ 随<span data-type="voltage">电压</span>的平方减小。设定<span data-type="power">功率</span>、<span data-type="voltage">输电电压</span>和<span data-type="resistance">线路的电阻</span>，读出<span data-type="power">损耗</span>，这就是例题 20.10 分别在 <span data-type="voltage">200 kV</span> 和 <span data-type="voltage">25.0 kV</span> 下所作的论证。</span></div>
+</figure>
+<div class="example" id="ex-power-losses">
+<h3>例题 20.10 · 高压输电的功率损耗更小</h3>
+<p>（a）以 <span data-type="voltage">200 kV</span> 输送 <span data-type="power">100 MW</span> 的<span data-concept="power">功率</span>，需要多大的<span data-type="current"><span data-concept="electric-current">电流</span></span>？（b）若<span data-ref="line">输电线</span>的<span data-type="resistance"><span data-concept="resistance">电阻</span></span>为 $1.00\ \Omega$，<span data-ref="line">它们</span>所<span data-type="power">耗散的<span data-concept="power">功率</span></span>是多少？（c）<span data-ref="line">输电线</span>中损失的<span data-type="power"><span data-concept="power">功率</span></span>占百分之几？</p>
+<h4>思路</h4>
+<p>已知 $\kPave = 100\ \text{MW}$，$\kVrms = 200\ \text{kV}$，而<span data-type="resistance">线路的<span data-concept="resistance">电阻</span></span>为 $\kRes = 1.00\ \Omega$。利用这些已知量，我们可以求出<span data-type="current">流过的<span data-concept="electric-current">电流</span></span>（由 $\kP = \kIcur\kV$），然后求出<span data-ref="line">线路</span>中<span data-type="power">耗散的<span data-concept="power">功率</span></span>（$\kP = \kIcur^{2}\kRes$），再取它与<span data-type="power">所输送的总<span data-concept="power">功率</span></span>之比。</p>
+<h4>解</h4>
+<p>为求<span data-type="current"><span data-concept="electric-current">电流</span></span>，我们把关系式 $\kPave = \kIrms\kVrms$ 变形并代入已知值。这样得到</p>
+$$\kIrms = \frac{\kPave}{\kVrms} = \frac{100\times 10^{6}\ \text{W}}{200\times 10^{3}\ \text{V}} = 500\ \text{A}.$$
+<h4>解</h4>
+<p>知道了<span data-type="current"><span data-concept="electric-current">电流</span></span>，又已知<span data-type="resistance">线路的<span data-concept="resistance">电阻</span></span>，<span data-ref="line">它们</span>中<span data-type="power">耗散的<span data-concept="power">功率</span></span>可由 $\kPave = \kIrms^{2}\kRes$ 求出。代入已知值，得到</p>
+$$\kPave = \kIrms^{2}\kRes = (500\ \text{A})^{2}(1.00\ \Omega) = 250\ \text{kW}.$$
+<h4>解</h4>
+<p>损耗百分比是<span data-type="power">这部分损失的<span data-concept="power">功率</span></span>与<span data-type="power">总<span data-concept="power">功率</span>即输入功率</span>之比再乘以 100：</p>
+$$\text{\% 损耗} = \frac{250\ \text{kW}}{100\ \text{MW}}\times 100 = 0.250\ \%.$$
+<h4>讨论</h4>
+<p>百分之一的四分之一是可以接受的损耗。请注意，如果以 <span data-type="voltage">25 kV</span> 输送 <span data-type="power">100 MW</span> 的<span data-concept="power">功率</span>，就需要<span data-type="current"> 4000 A 的<span data-concept="electric-current">电流</span></span>。这将使线路中的<span data-type="power"><span data-concept="power">功率</span>损耗达 16.0 MW</span>，即 16.0%，而不是 0.250%。<span data-concept="potential-difference">电压</span>越低，所需的<span data-concept="electric-current">电流</span>越大，电阻固定的输电线中的<span data-concept="power">功率</span>损耗也越大。当然，可以建造电阻更低的线路，但这需要更大、更昂贵的导线。如果能经济地制造出超导线路，输电线中就根本没有损耗了。但是，正如我们将在后面的章节中看到的，<span data-concept="superconductivity">超导体</span>中的<span data-concept="electric-current">电流</span>也有极限。总之，高<span data-concept="potential-difference">电压</span>输送<span data-concept="power">功率</span>更经济，而且<span data-concept="ac-voltage">交流电压</span>要容易升降得多，所以大多数大规模<span data-concept="power">电力</span>配电系统采用交流电。</p>
+</div>
+<p>人们普遍认识到，高<span data-concept="potential-difference">电压</span>比低<span data-concept="potential-difference">电压</span>带来更大的危险。但实际上，有些高<span data-concept="potential-difference">电压</span>，例如与常见的<span data-concept="static-electricity">静电</span>相联系的那些，可能是无害的。所以，决定危险的并不只是<span data-concept="potential-difference">电压</span>。人们不太普遍认识到的是，交流电电击往往比类似的直流电电击更有害。托马斯·爱迪生认为交流电电击更有害，并在 19 世纪末于纽约市建立了一个直流电配电系统。当时发生了激烈的争斗，特别是在爱迪生与乔治·威斯汀豪斯和尼古拉·特斯拉之间，后两人主张在早期配电系统中使用交流电。交流电之所以占了上风，主要是由于<span data-concept="transformer">变压器</span>和高压输电时较低的<span data-concept="power">功率</span>损耗。</p>
+</section>
